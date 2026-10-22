@@ -38,10 +38,10 @@
       <li>No rain at {PLACE}</li>
     </titles>
     <texts>
-      <li>No rain has fallen on {FACTION}'s country for two months. The streams above {PLACE} have dried to strings of pools, the wheat is standing white in the fields, and the herders are driving their animals further every day to find water.\n\nThey're calling it {NAME}. If the rains don't come soon, it will be a hungry winter in {PLACE}.</li>
-      <li>[theirLowtech] Upriver, in {FACTION}'s country, the wells are failing one by one. At {PLACE} they are carrying water from a spring two hours' walk away, and the elders have started the old prayers for rain.\n\nThe herders are already on the move, looking for water. Some of them will come this way.</li>
-      <li>[theirHightech] {FACTION}'s reservoir at {PLACE} is down to a muddy bowl, and the pumps are pulling air. Water is rationed by the bucket, the crops are being let go field by field, and the herders are trucking their animals anywhere there's grass.\n\nThey're calling it {NAME}. It shows no sign of ending.</li>
-      <li>[summer] The summer came early to {FACTION}'s country and stayed. It hasn't rained at {PLACE} since the spring, and the fields are cracking open. {NAME}, they call it there, and everyone is watching the sky.</li>
+      <li>No rain has fallen on {FACTION}'s country for two months. The streams above {PLACE} have dried to strings of pools, the wheat is standing white in the fields, and the herders are driving their animals farther every day to find water.\n\nThey're calling it {NAME}. If the rains don't come soon, it will be a hungry winter in {PLACE}.</li>
+      <li>[theirLowtech] Upriver, in {FACTION}'s country, the wells are failing one by one. At {PLACE} they are carrying water from a spring two hours' walk away, and the elders have started the old prayers for rain.\n\nThe herders have already begun driving their animals downriver, toward the colony.</li>
+      <li>[theirHightech] {FACTION}'s reservoir at {PLACE} is down to a muddy bowl, and the pumps are pulling air. Water is rationed by the bucket, the crops are being let go field by field, and the herders are trucking their animals anywhere there's grass.\n\n{NAME}, their traders call it, and there's no end in sight.</li>
+      <li>[summer] "Dust," said the trader from {PLACE}, and tipped a boot out at the gate to show it. It hasn't rained in {FACTION}'s country since the spring, the fields are cracking open, and the people there have started calling the summer {NAME}.\n\nAt {PLACE} they watch the sky all day. It stays blue.</li>
     </texts>
     <summaries>
       <li>{FACTION}'s country is drying out: their herders will come looking for water, their caravans come less often, and heat waves are likelier. Help now will be remembered. If the rains don't come, a famine may follow.</li>
@@ -71,7 +71,7 @@
         </titles>
         <texts>
           <li>[river] Herders of {FACTION} have driven their animals down from the dry country, and they ask leave to water them at the colony's stretch of the river for a few days. The animals are thin and lowing, and the herders not much better.\n\nThey can pay {COUNT} silver, or owe the colony a favor.</li>
-          <li>[!river] Herders of {FACTION} have come down from the dry country with their animals, and ask leave to water them at the colony's wells for a few days and graze the land beyond the fields. The animals are thin, and so are the herders.\n\nThey can pay {COUNT} silver, or owe the colony a favor.</li>
+          <li>[!river] A boy of {FACTION} has run ahead of the herd to ask: may they water their animals at the colony's wells for a few days, and graze the land beyond the fields? Behind him, the dust of the herd is already on the road.\n\nThe herders can pay {COUNT} silver, or owe the colony a favor.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -88,7 +88,7 @@
           </li>
           <li>
             <label>Let them, for {COUNT} silver</label>
-            <outcome>The herders pay, counting out the silver slowly, and bring the animals down to drink.</outcome>
+            <outcome>The head herder counts out the silver slowly, and only then whistles the animals down to drink.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
@@ -97,7 +97,7 @@
           </li>
           <li>
             <label>Keep them away</label>
-            <outcome>The herders are turned back. They go on looking for water somewhere else, and the animals with them.</outcome>
+            <outcome>The herders are turned back at the boundary and drive the herd on, looking for water somewhere else.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
             </effects>
@@ -126,7 +126,7 @@
             <outcome>{A_nameDef} went over the ground at {PLACE} with their diggers and showed them where the rock would give. They struck water two days later.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Mining</riskSkill>
-            <riskOutcome>{A_nameDef} found them the best spot there was, and they dug for a week. The well is deep, and damp at the bottom, and not much more. It's something.</riskOutcome>
+            <riskOutcome>{A_nameDef} found them the best spot there was, and they dug for a week. The well is deep and damp at the bottom, and gives about a bucket an hour.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Mining</skill><xp>1200</xp></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
@@ -138,7 +138,7 @@
           </li>
           <li>
             <label>Pay for a well-digger ({COUNT} silver)</label>
-            <outcome>The colony's silver goes to {PLACE}, and a well-digger with it before the week is out.</outcome>
+            <outcome>A rider takes the silver from the gate in a locked box. A well-digger will be on the road to {PLACE} before the week is out.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the well-digger's silver</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
@@ -159,16 +159,16 @@
         <day>9~15</day>
         <count>40~80</count>
         <titles>
-          <li>{FACTION} ask for food</li>
+          <li>Food until the rains</li>
         </titles>
         <texts>
-          <li>The first fields at {PLACE} have been given up for lost, and {FACTION} are rationing what's left. A rider has come to ask for {COUNT} portions of food, any kind, to stretch the stores until the rains come.\n\nThey can pay something. They'd rather owe the colony than pay the grain dealers' prices.</li>
+          <li>{FACTION} have given up the first fields at {PLACE} for lost and are rationing what's left. Their rider asks for {COUNT} portions of food, any kind, to stretch the stores until the rains come, and porters will follow to fetch it if the colony agrees.\n\nThey can pay something. They would rather pay the colony than the grain dealers.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Send {COUNT} food</label>
-            <outcome>The rider goes home with the food on two mules. {PLACE} will hold out a while longer.</outcome>
+            <outcome>Porters from {PLACE} come up for the food and go home bent under it. It will keep the town going a while longer.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
@@ -179,7 +179,7 @@
           </li>
           <li>
             <label>Sell it at a fair price</label>
-            <outcome>{FACTION} pay the usual price and take the food home.</outcome>
+            <outcome>{FACTION}'s porters come for the food and pay the usual price for it at the gate, counting the silver out on an upturned basket.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
@@ -190,7 +190,7 @@
           </li>
           <li>
             <label>Nothing to spare</label>
-            <outcome>The rider goes home empty. The colony may need its stores if the drought comes this way.</outcome>
+            <outcome>The rider is told the colony can't spare it. If the drought comes this way, the colony will need every sack.</outcome>
           </li>
         </options>
       </li>
@@ -201,11 +201,11 @@
         <minHelp>3</minHelp>
         <helped>true</helped>
         <titles>
-          <li>The rains come back</li>
+          <li>Three days of rain</li>
         </titles>
         <texts>
           <li>The rain came at last, three days of it, soaking and steady. At {PLACE} people stood out in it with their faces up. {NAME} is over.\n\n{FACTION} got through it, with help from the colony, and they know exactly how much.</li>
-          <li>[well] The rain has come back to {FACTION}'s country, and the new well at {PLACE} is still running sweet. They've named it after the colony.\n\n{NAME} is over, and {FACTION} won't forget who stood with them.</li>
+          <li>[well] The new well at {PLACE} is still running sweet now that the rain is back, and {FACTION} have named it after the colony.\n\n{NAME} is over.</li>
         </texts>
         <chronicle>{NAME} broke at last; {FACTION} remember the colony's help.</chronicle>
         <effects>
@@ -221,9 +221,9 @@
           <li>The rains come back</li>
         </titles>
         <texts>
-          <li>The rains came back to {FACTION}'s country, late but heavy. {NAME} cost them a harvest, but the colony did its part, and {FACTION} say so.</li>
+          <li>Late but heavy, the rains came back to {FACTION}'s country. {NAME} cost them a harvest, and {FACTION} remember the colony's share in getting through it.</li>
         </texts>
-        <chronicle>{NAME} broke; the colony did its part.</chronicle>
+        <chronicle>{NAME} broke, and the colony had done its share.</chronicle>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
         </effects>
@@ -245,10 +245,10 @@
       <li>
         <key>ignored</key>
         <titles>
-          <li>The rains come back</li>
+          <li>The drought breaks</li>
         </titles>
         <texts>
-          <li>The rain came back to {FACTION}'s country, and {NAME} is over. {PLACE} lost a harvest and a good many animals.\n\nThe colony kept to itself through all of it. {FACTION} noticed.</li>
+          <li>{NAME} is over, and {PLACE} lost a harvest and a good many animals to it.\n\nWhen {FACTION} talk about who stood by them that year, the colony doesn't come up.</li>
         </texts>
         <chronicle>{NAME} ran its course; the colony kept to itself.</chronicle>
       </li>
@@ -285,9 +285,9 @@
       <li>{FACTION} build a road</li>
     </titles>
     <texts>
-      <li>[!noenemy] {FACTION} and {ENEMY} have agreed to build a road between their towns, and the surveyors' stakes run right past the colony. Work gangs from {PLACE} are already clearing the line, and they mean to be done before the season turns.\n\nA road brings traders, travelers, news and noise. Where it runs, and who helps build it, will be remembered.</li>
-      <li>[noenemy] {FACTION} are building a road out from {PLACE} toward the passes, and the line the surveyors staked out runs past the colony. The work gangs are already felling trees and laying the bed.\n\nA road brings traders, travelers, news and noise. Where it runs, and who helps build it, will be remembered.</li>
-      <li>[theirLowtech] {FACTION} are laying a stone road out of {PLACE}, the first in the region since the old empire's, and its line comes close by the colony. Oxen are hauling stone from the quarries, and the work gangs sing as they dig.\n\nWhen it's done, the traders will follow it.</li>
+      <li>[!noenemy] {FACTION} and {ENEMY} have agreed to build a road between their towns, and the surveyors' stakes run right past the colony. Work gangs from {PLACE} are already clearing the line.\n\nTheir foreman came up to the gate to say good day, and to ask where the colony draws its water so the gangs won't foul it.</li>
+      <li>[noenemy] {FACTION} are building a road out from {PLACE} toward the passes, and the line the surveyors staked out runs past the colony. The work gangs are already felling trees and laying the bed.\n\nWhen it's done, carts will come past every week, and the news with them.</li>
+      <li>[theirLowtech] {FACTION} are laying a stone road out of {PLACE}, the first in the region since the old empire's, and its line comes close by the colony. Oxen haul stone from the quarries, and the work gangs dig to the same two lines all day:\n\n"One for the ditch and one for the bed, and one for the stone that the carts will tread."</li>
       <li>[theirHightech] {FACTION}'s road crews are grading a new highway out of {PLACE}, and their machines can be heard from the colony on a still day. The survey line runs a few hundred paces from the gate.\n\nWhen it's done, the trucks will follow it.</li>
     </texts>
     <summaries>
@@ -319,7 +319,7 @@
         <options>
           <li>
             <label>Sell them {COUNT} wood</label>
-            <outcome>The road gang's carts come for the timber that afternoon. {FACTION} pay a fair price for it.</outcome>
+            <outcome>The road gang's carts come for the timber, and {FACTION} pay a fair price for it at the gate.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Sell"><thing>WoodLog</thing><price>1.3</price></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
@@ -329,7 +329,7 @@
           </li>
           <li>
             <label>Give it, as the colony's share</label>
-            <outcome>The timber goes down to the road with the colony's compliments. The foreman made a note of it on the tally stick.</outcome>
+            <outcome>The road gang hauls the timber down from the gate with the colony's compliments. The foreman makes a mark for it on the tally stick.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for the road</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
@@ -351,7 +351,7 @@
           <li>Where the road runs</li>
         </titles>
         <texts>
-          <li>The surveyors have two lines for the road past the colony, and they've asked the council to choose. One runs right past the gate, with all the traffic that brings, good and bad. The other swings round behind the hill, a day's work longer and much quieter.\n\nThe surveyors will go with the colony's word.</li>
+          <li>The surveyors have two lines for the road past the colony, and they've asked the council to choose. One runs right past the gate, with all the traffic that brings, good and bad. The other swings around behind the hill, a day's work longer and much quieter.\n\nThe surveyors will go with the colony's word.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -364,8 +364,8 @@
             <ways><openness>2</openness></ways>
           </li>
           <li>
-            <label>Round behind the hill</label>
-            <outcome>The surveyors move their stakes round behind the hill. The road will pass the colony by, near enough to walk to and far enough not to hear.</outcome>
+            <label>Behind the hill</label>
+            <outcome>The surveyors move their stakes around behind the hill. The road will pass the colony by, near enough to walk to and far enough not to hear.</outcome>
             <flags><li>around</li></flags>
             <ways><openness>-2</openness></ways>
           </li>
@@ -387,13 +387,13 @@
           <li>The road needs a builder</li>
         </titles>
         <texts>
-          <li>The road has reached the river crossing below the colony, and {FACTION}'s gang can't agree how to bridge it. They've heard {A_nameDef} knows building, and ask whether {A_nameDef} would spend a day with them on it. They'll pay {COUNT} silver.</li>
+          <li>{FACTION}'s road gang has set the footing for the river bridge below the colony twice now, and twice the current has taken it. They've heard {A_nameDef} knows building, and ask for a day of {A_possessive} time at the crossing. They'll pay {COUNT} silver.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Lend them {A_nameDef} for a day</label>
-            <outcome>{A_nameDef} spent the day at the crossing with the road gang, and the bridge they build will be {A_nameDef}'s design. {FACTION} paid as promised.</outcome>
+            <outcome>{A_nameDef} spent the day in the river with the road gang, and the footing {A_pronoun} set is still standing. {FACTION}'s foreman brought the silver up afterward, as promised.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Construction</skill><xp>1200</xp></li>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
@@ -428,7 +428,7 @@
           <li>The road stops short</li>
         </titles>
         <texts>
-          <li>The money ran out before the road did. {FACTION}'s gangs have gone home, and {NAME} ends in a heap of stones a mile past the colony.\n\nSomeone may finish it one day. For now, it's a very good place to graze goats.</li>
+          <li>The money ran out before the road did. {FACTION}'s gangs have gone home, and {NAME} ends in a heap of stones a mile past the colony.\n\nThe grass is already coming up through the gravel.</li>
         </texts>
         <chronicle>{NAME} was abandoned half built.</chronicle>
       </li>
@@ -440,8 +440,8 @@
           <li>{NAME} opens</li>
         </titles>
         <texts>
-          <li>{NAME} is open, and it runs right past the colony's gate. The first carts came through yesterday, and stopped to water their animals and sell what they had.\n\nThere'll be more of them now, every season.</li>
-          <li>[bridge] {NAME} is open, over {A_nameDef}'s bridge and right past the colony's gate. The first carts came through yesterday, and the drivers stopped to look at the bridge.\n\nThere'll be more of them now, every season.</li>
+          <li>{NAME} is open, and it runs right past the colony's gate. The first carts are coming through now, and some of them will stop to water their animals and sell what they have.\n\nThere'll be more of them every season.</li>
+          <li>[bridge] {NAME} is open, over {A_nameDef}'s bridge and right past the colony's gate. The first carts are rolling over it now, and the drivers slow down to look at the work.\n\nSome of them will turn in at the colony's gate. There'll be more every season.</li>
         </texts>
         <chronicle>{NAME} opened, running past the colony's gate.</chronicle>
         <effects>
@@ -457,7 +457,7 @@
           <li>{NAME} opens</li>
         </titles>
         <texts>
-          <li>{NAME} is open, swinging round behind the hill as the colony asked. On a still night the carts can just be heard. The colony has the best of both: a road close enough to use, and far enough to ignore.</li>
+          <li>{NAME} runs behind the hill, as the colony asked, and opened this week. On a still night, the carts can just be heard.</li>
         </texts>
         <chronicle>{NAME} opened, passing behind the hill.</chronicle>
         <effects>
@@ -470,7 +470,7 @@
           <li>{NAME} opens</li>
         </titles>
         <texts>
-          <li>{NAME} is open, and {FACTION}'s carts are already on it. It isn't the colony's road, but the colony will use it.</li>
+          <li>{FACTION}'s carts are already on {NAME}. It isn't the colony's road, but the colony will use it.</li>
         </texts>
         <chronicle>{NAME} opened near the colony.</chronicle>
         <effects>
@@ -506,10 +506,10 @@
       <li>{FACTION} keep {NAME}</li>
     </titles>
     <texts>
-      <li>{FACTION}'s priests have declared {NAME} at {PLACE}: a season of grace, when debts are forgiven, feuds are set aside and every traveler is fed. Pilgrims are already on the roads, and {FACTION} hope their neighbors will keep it with them.</li>
-      <li>[ideology] The faithful of {FACTION} have proclaimed {NAME}, which comes once in a generation. At {PLACE} the shrines are open day and night, debts are being torn up in the square, and pilgrims are setting out from every corner of the region.\n\n{FACTION} have sent word to every neighbor: the year asks something of everyone.</li>
+      <li>{FACTION}'s priests have declared {NAME} at {PLACE}, a season when debts are forgiven, feuds are set aside and every traveler is fed. Pilgrims are already on the roads.\n\n{FACTION} hope their neighbors will keep the year with them, and they will see who does.</li>
+      <li>[ideology] The faithful of {FACTION} have proclaimed {NAME}, which comes once in a generation. At {PLACE} the shrines are open day and night, debts are being torn up in the square, and pilgrims are setting out from every corner of the region.\n\n{FACTION} have sent the same message to every neighbor. The year, it says, asks something of everyone.</li>
       <li>[theirLowtech] Bells have been ringing at {PLACE} for three days. {FACTION}'s elders have declared {NAME}, as their grandparents did, and the old customs come with it: no hand raised in anger, no traveler turned away, and gifts for the poor at every door.</li>
-      <li>[theirHightech] {FACTION} have announced {NAME}: a season of public feasts, debts written off and pilgrimages to the shrine at {PLACE}. Their broadcasts are asking every settlement in range to take part.</li>
+      <li>[theirHightech] {FACTION} have announced {NAME}: a season of public feasts, debts written off and pilgrimages to the shrine at {PLACE}. Their couriers have brought the notice to every settlement in reach, the colony included, printed on good paper and sealed.</li>
     </texts>
     <summaries>
       <li>Pilgrims and travelers pass far more often, and fewer raids come while the year lasts. {FACTION} hope the colony will feed pilgrims and keep the peace; generosity now is remembered.</li>
@@ -533,7 +533,7 @@
           <li>Pilgrims at the gate</li>
         </titles>
         <texts>
-          <li>A long line of pilgrims bound for {PLACE} has stopped outside the colony's gate, as pilgrims in {NAME} do at every door on the road. They ask, as the custom is, for a bite of food and a blessing given.\n\nAbout {COUNT} portions would feed them all.</li>
+          <li>A long line of pilgrims bound for {PLACE} has stopped outside the colony's gate, as pilgrims in {NAME} do at every door on the road. They ask, as the custom is, for a bite of food, and they will give a blessing for it.\n\nAbout {COUNT} portions would feed them all.</li>
           <li>[winter] Pilgrims bound for {PLACE} have come to the gate out of the cold, singing. In {NAME}, every door on the road is opened to them, and they ask the colony for food, about {COUNT} portions, and somewhere warm to sit before they go on.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -552,7 +552,7 @@
           </li>
           <li>
             <label>Send them on</label>
-            <outcome>The pilgrims are sent on. They bless the colony anyway on their way past the gate.</outcome>
+            <outcome>The pilgrims are sent on. The last of them stops at the gate to say the blessing all the same.</outcome>
             <ways><generosity>-1</generosity></ways>
           </li>
         </options>
@@ -566,7 +566,7 @@
           <li>A debt forgiven</li>
         </titles>
         <texts>
-          <li>In {NAME}, every household at {PLACE} is asked to forgive one debt. {FACTION}'s priests have sent to ask the colony to do the same: a family of {FACTION} owes the colony's traders {COUNT} silver from a bad year, and would be free of it.\n\nThe colony would never have seen that silver anyway, some say. Others aren't so sure.</li>
+          <li>In {NAME}, every household at {PLACE} is asked to forgive one debt. {FACTION}'s priests have written to ask the colony to do the same. A family of {FACTION} owes the colony {COUNT} silver from a bad year, and has never managed to pay more than a few coins at a time.\n\nIf the colony holds them to it, they can raise about half now.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -582,7 +582,7 @@
           </li>
           <li>
             <label>A debt is a debt</label>
-            <outcome>The family will pay when it can, holy year or no. {FACTION}'s priests aren't pleased.</outcome>
+            <outcome>The family raises half, all they can manage, and their eldest brings it up the road. {FACTION}'s priests aren't pleased.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>0.5</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
@@ -608,7 +608,7 @@
         <options>
           <li>
             <label>Let {A_objective} keep it</label>
-            <outcome>{A_nameDef} spent a day in silence by the colony's gate and the next carrying water, splitting wood and mending for everyone else. {A_nameDef} came out of it calm.</outcome>
+            <outcome>{A_nameDef} kept a day of silence by the gate and spent the next doing other people's chores, and has been easier company since.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_KeptTheYear</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{A_nameDef}'s day of silence</label><target>A</target><to>Gate</to><hours>6~10</hours><duration>5~6</duration></li>
@@ -650,9 +650,9 @@
           <li>{NAME} ends</li>
         </titles>
         <texts>
-          <li>{NAME} is over, and the pilgrims have gone home. The colony did its part, and {FACTION} say so.</li>
+          <li>The last pilgrims of {NAME} have gone home past the colony's gate. {FACTION} remember that the colony kept some of the year with them.</li>
         </texts>
-        <chronicle>{NAME} ended; the colony did its part.</chronicle>
+        <chronicle>{NAME} ended; the colony had kept some of it.</chronicle>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
         </effects>
@@ -703,9 +703,9 @@
       <li>{NAME} is dead</li>
     </titles>
     <texts>
-      <li>{NAME}, who led {ENEMY}'s raiders on the roads around {PLACE} for as long as anyone remembers, is dead. Riders of {FACTION} caught the bandit lord at a ford and finished it.\n\nThe band is breaking up. Some of it will want revenge, some will want a new master, and some will want to come in from the cold.</li>
+      <li>{NAME} is dead, run down at a ford by riders of {FACTION}. The bandit lord had led {ENEMY}'s raiders on the roads around {PLACE} for as long as anyone remembers.\n\nThe band is coming apart. Some of its people want revenge or a new master. A few only want to stop running.</li>
       <li>[theirLowtech] The head of {NAME} is on a spear over the gate at {PLACE}. {FACTION}'s warriors ran the bandit lord down in the hills after twenty years of raids, and {ENEMY}'s band has scattered into the woods.\n\nThe roads are safer already. They aren't safe yet.</li>
-      <li>[theirHightech] {FACTION}'s militia raided the hideout of {NAME} three nights ago and broke {ENEMY}'s gang for good. The bandit boss died in the firefight. The survivors are scattered across the region, and no one can say what they'll do now.</li>
+      <li>[theirHightech] {FACTION}'s militia raided the hideout of {NAME} three nights ago and broke {ENEMY}'s gang for good. The bandit boss died in the firefight.\n\nThe survivors are scattered across the region, and every farm for miles is barring its doors until they settle somewhere.</li>
     </texts>
     <summaries>
       <li>Stragglers from {ENEMY}'s broken band are on the roads: deserters asking for shelter, wounded strangers, buried loot coming to light. One of the band's lieutenants may try to gather the rest.</li>
@@ -726,7 +726,7 @@
           <li>Out of the band</li>
         </titles>
         <texts>
-          <li>Among the stragglers from the broken band is one who was never a bandit: taken from a farm of {FACTION} years ago, and kept to cook and carry. Free at last, with nowhere left to go home to, this one has come to the colony's gate to ask for a place.</li>
+          <li>One of the stragglers at the gate was never a bandit. Taken from a farm of {FACTION} years ago, they have been kept to cook and carry ever since, and the farm they were taken from is gone.\n\nThey ask the colony for a place.</li>
           <li>[winter] Someone has walked out of the snow to the colony's gate, thin and ragged in a bandit's coat. They were {ENEMY}'s captive, not one of them, taken from {FACTION}'s country as a child. The band is gone, and they ask the colony for a place to stay.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -761,13 +761,13 @@
           <li>The bandit lord's hoard</li>
         </titles>
         <texts>
-          <li>One of {NAME}'s men has turned up at the gate with a scrap of map and a story: the bandit lord's hoard is buried in the hills, and only a few of the band knew where. The map is the colony's for {COUNT} silver.\n\n{FACTION} would very much like to know where it is, too. Most of what's in it was theirs.</li>
+          <li>"Under a dead pine with a split in it you could put your arm through," says the man at the gate, one of {NAME}'s, and holds up a scrap of map. Only a few of the band knew where the bandit lord buried the hoard, and he is one of them. The map is the colony's for {COUNT} silver.\n\n{FACTION} would very much like to know where it is too. Most of what's in it was theirs.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Buy the map ({COUNT} silver)</label>
-            <outcome>The map was true. A shovel and an afternoon turned up an iron box under a dead pine, and its contents are the colony's now.</outcome>
+            <outcome>The map was true. A shovel and an afternoon turned up an iron box under the split pine, and what was in it belongs to the colony now.</outcome>
             <riskChance>0.35</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>The map was true, as far as it went. Somebody else got there first: the hole was already dug, and the box was empty.</riskOutcome>
@@ -793,7 +793,7 @@
           </li>
           <li>
             <label>Send the bandit away</label>
-            <outcome>The bandit is sent away, map and all.</outcome>
+            <outcome>The bandit is sent off down the road, map and all, to try the next gate.</outcome>
           </li>
         </options>
       </li>
@@ -818,15 +818,15 @@
           <li>A victory feast at {PLACE}</li>
         </titles>
         <texts>
-          <li>{FACTION} are holding a feast at {PLACE} to mark the end of {NAME}, and every neighbor who suffered from the band is invited to send something for the tables. It's mostly a gesture. Gestures matter, this year.</li>
+          <li>{FACTION} are holding a feast at {PLACE} to mark the end of {NAME}, and every neighbor who suffered from the band is asked to send something for the tables. Their carts are going around the farms to collect it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
-            <label>Send a cart for the tables (20 food)</label>
-            <outcome>The colony's cart goes to {PLACE} loaded with food and comes back with a story about the feast that grows every time it's told.</outcome>
+            <label>Send food for the tables (20 food)</label>
+            <outcome>A cart from {PLACE} collects the colony's share at the gate. At the feast, the colony's name is called out with the rest.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the cart for the tables</label><what>rawfood</what><count>20</count><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the tables</label><what>rawfood</what><count>20</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
             </effects>
             <help>1</help>
@@ -849,7 +849,7 @@
           <li>The roads are quiet</li>
         </titles>
         <texts>
-          <li>The last of {NAME}'s band has scattered or come in from the cold, and the roads around {PLACE} are quiet for the first season in years. {FACTION} remember who helped them finish it.\n\nSome of the band's old fighters are looking for work. They'll find it somewhere.</li>
+          <li>The last of {NAME}'s band has scattered or come in from the cold, and the roads around {PLACE} are quiet for the first season in years. {FACTION} remember who helped them finish it.\n\nSome of the band's old fighters are looking for work, and not all of them are particular about what kind.</li>
         </texts>
         <chronicle>After the fall of {NAME}, the roads around {PLACE} went quiet; {FACTION} remember the colony's part.</chronicle>
         <effects>
@@ -877,7 +877,7 @@
           <li>The band is gone</li>
         </titles>
         <texts>
-          <li>The band of {NAME} is gone: some of it dead, some in {FACTION}'s cells, most of it scattered to the four winds. The roads around {PLACE} are slowly filling with carts again.</li>
+          <li>The band of {NAME} is gone. A few are dead and a few are in {FACTION}'s cells, and the rest have scattered too far for any new leader to find.\n\nThe roads around {PLACE} are slowly filling with carts again.</li>
         </texts>
         <chronicle>The band of {NAME} scattered after the bandit lord's fall.</chronicle>
         <effects>
@@ -913,7 +913,7 @@
       <li>{NAME} at {PLACE}</li>
     </titles>
     <texts>
-      <li>A sickness has gone through the herds of {FACTION}. At {PLACE} they are burning carcasses outside the town walls, and the smoke can be seen for miles. They call it {NAME}, and no one knows where it started.\n\nIt doesn't touch people. It touches everything people eat.</li>
+      <li>A sickness has gone through the herds of {FACTION}. At {PLACE} they are burning carcasses outside the town walls, and the smoke can be seen for miles. They call it {NAME}, and no one knows where it started.\n\nIt doesn't touch people. It takes their milk and their meat, and the oxen that pull their plows.</li>
       <li>[theirLowtech] {NAME} has come to {FACTION}'s pastures: the cattle cough, then stagger, then lie down and won't get up. At {PLACE} every family has lost animals, and the herders are fighting over whose fault it is.\n\nThere'll be no meat to trade this season, and not much milk.</li>
       <li>[theirHightech] {FACTION}'s livestock inspectors have shut the markets at {PLACE}: a herd fever, spreading fast, with whole farms put down to stop it. They're calling it {NAME}, and asking every neighbor to keep their animals well away.</li>
     </texts>
@@ -935,10 +935,10 @@
         <key>pen</key>
         <day>1~3</day>
         <titles>
-          <li>{FACTION} ask the colony to pen its animals</li>
+          <li>Pen your animals</li>
         </titles>
         <texts>
-          <li>{FACTION}'s herd-masters have sent word to every neighbor: keep your animals penned, off the common grazing and away from the roads, until {NAME} has burned itself out. It spreads by contact, they say, and on the wind for a short way.\n\nIt would mean a few weeks of carrying feed. It would also mean the colony's own animals are much less likely to catch it.</li>
+          <li>The notice from {FACTION}'s herd-masters is the same one every neighbor got:\n\nKeep all beasts penned, off the common grazing and away from the roads, until {NAME} has passed. It goes by touch, and a short way on the wind.\n\nPenning the colony's animals would mean a few weeks of hauling feed. It would also make them much less likely to catch it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -971,7 +971,7 @@
           <li>{FACTION} ask for {A_nameDef}</li>
         </titles>
         <texts>
-          <li>Word has reached {PLACE} that {A_nameDef} knows animals as well as anyone in the region. {FACTION}'s herders are losing animals faster than they can bury them, and they ask whether {A_nameDef} would look at the sick ones and tell them what to do.\n\n{A_nameDef} would have to keep well apart from the colony's own animals for a few days afterwards.</li>
+          <li>Word has reached {PLACE} that {A_nameDef} knows animals as well as anyone in the region. {FACTION}'s herders are losing animals faster than they can bury them, and they ask whether {A_nameDef} would look at the sick ones and tell them what to do.\n\n{A_nameDef} would have to keep well apart from the colony's own animals for a few days afterward.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -980,7 +980,7 @@
             <outcome>{A_nameDef} spent two days among {FACTION}'s herds, sorting the sick from the well and showing the herders how to keep them apart. The losses at {PLACE} have slowed.</outcome>
             <riskChance>0.3</riskChance>
             <riskSkill>Animals</riskSkill>
-            <riskOutcome>{A_nameDef} did what could be done, and it wasn't much. The sickness had too much of a start. {FACTION} are grateful anyway.</riskOutcome>
+            <riskOutcome>{A_nameDef} did what could be done, and it wasn't much. The sickness had too long a start. {FACTION} thanked {A_nameDef} all the same, and meant it.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>1200</xp></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
@@ -1003,13 +1003,13 @@
           <li>Hungry at {PLACE}</li>
         </titles>
         <texts>
-          <li>With half their herds dead or burned, {FACTION} are short of meat and milk at {PLACE}, and the winter stores are going faster than they should. A rider asks whether the colony can spare {COUNT} portions of food.</li>
+          <li>With half their herds dead or burned, {FACTION} are short of meat and milk at {PLACE}, and the winter stores are going faster than they should. A rider asks whether the colony can spare {COUNT} portions of food.\n\nTheir porters would come for it on foot. Most of their oxen are dead.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Send {COUNT} food</label>
-            <outcome>The rider goes home with the food. {PLACE} will eat this week.</outcome>
+            <outcome>Porters come for the food on foot and go home with it on their backs. {PLACE} will eat this week.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
@@ -1020,7 +1020,7 @@
           </li>
           <li>
             <label>Sell it at a fair price</label>
-            <outcome>{FACTION} pay the usual price and take the food home.</outcome>
+            <outcome>{FACTION}'s porters pay the usual price at the gate and shoulder the sacks.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
@@ -1045,8 +1045,8 @@
           <li>The end of {NAME}</li>
         </titles>
         <texts>
-          <li>{NAME} has burned itself out. {FACTION} lost a great many animals, but the herds at {PLACE} are calving again, and the markets are open.\n\nThey know who helped. They'll say so for a long time.</li>
-          <li>[penned] {NAME} is over. The colony's animals came through it untouched, penned close to home, and the herds of {FACTION} are recovering. {FACTION} know who helped them through it.</li>
+          <li>The herds at {PLACE} are calving again, and the markets are open. {NAME} cost {FACTION} a great many animals, but it has passed.\n\nThey know who helped them through it.</li>
+          <li>[penned] The colony's animals came through {NAME} untouched, penned close to home, and the herds of {FACTION} are recovering. The colony kept its word about the pens, and the herd-masters noticed.</li>
         </texts>
         <chronicle>{NAME} ended, and {FACTION} remember the colony's help.</chronicle>
         <effects>
@@ -1062,9 +1062,9 @@
           <li>The end of {NAME}</li>
         </titles>
         <texts>
-          <li>{NAME} is over. The herds of {FACTION} are thinner than they were, but they'll recover, and the colony did its part.</li>
+          <li>{FACTION}'s herds are thin and few now that {NAME} has passed, but they'll recover, and the colony helped where it was asked.</li>
         </texts>
-        <chronicle>{NAME} ended; the colony did its part.</chronicle>
+        <chronicle>{NAME} ended; the colony had lent a hand.</chronicle>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
         </effects>
@@ -1075,9 +1075,9 @@
           <li>The end of {NAME}</li>
         </titles>
         <texts>
-          <li>{NAME} has run its course, and left {FACTION} with half the herds they had and a lean season ahead. The colony kept to itself through all of it.</li>
+          <li>{NAME} has run its course, and left {FACTION} with half the herds they had and a lean season ahead. The colony's animals grazed where they always had, and the colony sent nothing.</li>
         </texts>
-        <chronicle>{NAME} ran its course; the colony kept to itself.</chronicle>
+        <chronicle>{NAME} ran its course; the colony sent nothing.</chronicle>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_Famine</situation><chance>0.15</chance></li>
         </effects>
@@ -1121,7 +1121,7 @@
     <texts>
       <li>Three nights ago a light crossed the whole sky and came down in the hills past {PLACE}. It was a ship, {NAME}, and most of it is still there, broken across a valley. Salvagers of {FACTION} are already on their way.\n\nSo is everyone else with a truck and a cutting torch for a hundred miles.</li>
       <li>[spacer] {NAME}, a freighter nobody in the region knew was up there, lost its orbit and came down in the hills near {PLACE}. The wreck is spread over a mile of ground, and the salvage rights are already being fought over in {FACTION}'s courts.\n\nIn the meantime, the scavengers are moving in.</li>
-      <li>[industrial] The sky lit up over {PLACE} one night, and in the morning there was a ship in the hills, broken in three pieces and still smoking. Its name is painted on the largest: {NAME}.\n\n{FACTION} have claimed it. Half the region is going to try to take pieces of it home anyway.</li>
+      <li>[industrial] The sky lit up over {PLACE} one night, and in the morning there was a ship in the hills, broken in three pieces and still smoking. Its name is painted on the largest: {NAME}.\n\n{FACTION} have claimed it. Every scrap dealer in the region is going to try to take pieces of it home anyway.</li>
     </texts>
     <summaries>
       <li>Salvagers and scavengers crowd the roads to the wreck of {NAME}. Ship chunks and pods fall more often, components and steel are going cheap, and a survivor may turn up. Pirates may come for the wreck.</li>
@@ -1171,7 +1171,7 @@
           <li>A survivor of {NAME}</li>
         </titles>
         <texts>
-          <li>Someone has walked out of the hills to the colony's gate in the rags of a ship's uniform: a survivor of {NAME}, who climbed out of the wreck before the salvagers came and has been walking ever since. They ask for help, and maybe more than help.</li>
+          <li>A survivor of {NAME} is at the colony's gate, still in the rags of a ship's uniform. They climbed out of the wreck before the salvagers came and have been walking ever since.\n\nThey ask for water first, and then whether the colony takes in strays.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -1219,7 +1219,7 @@
         <options>
           <li>
             <label>Let {A_nameDef} have a look</label>
-            <outcome>{A_nameDef} spent the day bent over {NAME}'s logs with a pot of tea and came out of it knowing more about orbital freight than anyone needs to. {FACTION} paid as promised.</outcome>
+            <outcome>{A_nameDef} spent the day bent over {NAME}'s logs with a pot of tea and came out of it knowing more about orbital freight than anyone needs to. The salvagers paid as promised when they came back for the core.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>1500</xp></li>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
@@ -1271,7 +1271,7 @@
           <li>{NAME} picked clean</li>
         </titles>
         <texts>
-          <li>The last of the salvagers have left the wreck of {NAME}. There's nothing left in the valley worth carrying, except stories, and those are getting bigger every week.</li>
+          <li>The last of the salvagers have left the wreck of {NAME}. What's left in the valley is too heavy to move or too bent to sell.</li>
         </texts>
         <chronicle>The wreck of {NAME} was picked clean.</chronicle>
       </li>
