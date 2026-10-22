@@ -17,13 +17,13 @@
     <lines>
       <plain>
         <li>The colony was underwater, and we all went on working, slower, with fish in the rafters.</li>
-        <li>In the dream every door led back into my own room. I opened eleven of them.</li>
+        <li>My hands were full of bees in the dream, not stinging, only humming, and I couldn't put them down.</li>
         <li>I could hear what the walls were thinking. They were worried about the roof.</li>
         <li>The dream went on after I woke. For a while the floor kept rippling.</li>
         <li>[child] I was a bird, and I could see the whole colony from up high.</li>
       </plain>
-      <warm><li>Everyone I've lost was sitting at our table, passing bread down the line.</li></warm>
-      <gloomy><li>The sun didn't come up, and I was the only one who noticed.</li></gloomy>
+      <warm><li>The ones I've lost were all out in the yard, hanging up washing, and they waved me over to help.</li></warm>
+      <gloomy><li>The sun didn't come up, and we lit lamps and went on as if it had.</li></gloomy>
       <cold><li>The fever produced another vivid dream. I'm keeping notes on them.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -51,7 +51,7 @@
       <plain>
         <li>I was drowning in a warm river, and someone kept pulling me up by the collar.</li>
         <li>In the dream the doctor was counting the medicine, and every time there was one less.</li>
-        <li>My bed was a boat drifting away from shore, and the people on the bank were waving.</li>
+        <li>I was a long way down a corridor, and at the far end someone kept saying my name, patiently, every few breaths.</li>
       </plain>
       <warm><li>My mother was wiping my forehead with a cool cloth. I woke up and it was the doctor.</li></warm>
       <gloomy><li>I saw my own grave, neat and well kept.</li></gloomy>
@@ -73,10 +73,10 @@
         <li>In the dream they came in quietly, one at a time, and sat down at our table as if they lived here.</li>
         <li>[child] The bad men came back in my dream, but the big ones stood in front of me.</li>
       </plain>
-      <warm><li>Dreamt of the fight, and then of someone pulling me back from it by the collar. I woke up holding the blanket.</li></warm>
+      <warm><li>Dreamt of the fight, and then of someone's hand on my shoulder, steering me out of it.</li></warm>
       <blunt><li>Dreamt the fight. Woke up swinging.</li></blunt>
       <gloomy><li>The fight didn't end in the dream. It just went on until morning.</li></gloomy>
-      <cold><li>The engagement replayed itself. I noted two mistakes I made, and woke before I could fix them.</li></cold>
+      <cold><li>The engagement again, in my sleep, exactly as it happened, down to the smell. Two mistakes. I've noted both.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -91,12 +91,12 @@
       <plain>
         <li>Something stood at the end of my bed with too many joints in its arms. It didn't move. Neither did I.</li>
         <li>Every room in the colony had one more door than it should, and behind each one something was breathing.</li>
-        <li>I dreamt I was awake, and the dark in the corner was paying attention to me.</li>
+        <li>Dreamt I was awake, and the dark in the corner was paying attention to me.</li>
         <li>[child] There was a thing in my dream with no face. I hid under the blanket and it went away.</li>
       </plain>
       <warm><li>The dark came for me in the dream, and someone lit a lamp, and it went back where it came from.</li></warm>
       <blunt><li>That thing again. In my sleep this time.</li></blunt>
-      <gloomy><li>I dreamt the thing was still out there. I'm not sure that was a dream.</li></gloomy>
+      <gloomy><li>The thing was still out there, in the dream. I'm not sure that part was a dream.</li></gloomy>
       <cold><li>A dream about the entity. My mind is still filing what it saw.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
