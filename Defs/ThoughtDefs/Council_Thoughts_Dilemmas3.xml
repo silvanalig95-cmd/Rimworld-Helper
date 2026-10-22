@@ -14,7 +14,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_ChildArmed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a child with a weapon</label><description>The council let a child loose with a weapon. I've started walking behind things.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>a child with a weapon</label><description>A child with a weapon, and the council allowed it. I've started walking behind things.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -185,7 +185,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Swoon</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a love letter, read from a chair</label><description>One of us stood on a chair and read a love letter aloud at dinner. It was sweet.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a love letter, read from a chair</label><description>Somebody stood on a chair and read a love letter aloud at dinner. It was sweet.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 

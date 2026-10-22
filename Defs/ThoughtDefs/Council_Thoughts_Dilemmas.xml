@@ -68,7 +68,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_ForcedTogether</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>stuck with someone I can't stand</label><description>The council's answer was to throw us together. I can barely stand being near them.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>stuck with someone I can't stand</label><description>Thrown together with them by the council's order. I can barely stand being near them.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -127,7 +127,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Shirking</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>someone got days off</label><description>One of us got let off the work. I'm tired too, and I'm still hauling.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>someone got days off</label><description>Days off for one of us, and the rest keep hauling. I'm tired too.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

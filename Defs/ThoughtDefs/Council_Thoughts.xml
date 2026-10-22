@@ -162,7 +162,7 @@
     <stages>
       <li>
         <label>had to do it myself</label>
-        <description>The council wasn't going to do it, so I did it myself, on my own time.</description>
+        <description>I did it myself, on my own time, since the council wasn't going to.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -380,7 +380,7 @@
     <stages>
       <li>
         <label>something green</label>
-        <description>There's a potted plant by my bed now. I've caught myself talking to it.</description>
+        <description>A plant in a pot, right by my bed. I've caught myself talking to it.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -524,7 +524,7 @@
     <stages>
       <li>
         <label>the defenses I asked for</label>
-        <description>I asked for stronger defenses, and they're built. I've walked the whole line twice just to look.</description>
+        <description>The defenses I asked for are built. I've walked the whole line twice just to look.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -584,7 +584,7 @@
     <stages>
       <li>
         <label>art in my room</label>
-        <description>There's a piece of art in my room now. I like looking at it before I sleep.</description>
+        <description>My room has a piece of art in it now. I like looking at it before I sleep.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>

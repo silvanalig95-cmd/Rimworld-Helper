@@ -99,7 +99,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_TimeToMend</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>time to get better</label><description>The council told me to rest until I'm well. I haven't argued.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>time to get better</label><description>Rest until you're well, the council said. I haven't argued.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -165,7 +165,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_SleptAtLast</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>slept at last</label><description>The council sent me to bed and put someone else at the sickbed. I slept like a stone, the whole night through.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>slept at last</label><description>Someone else took over at the sickbed, by the council's order. I slept like a stone, the whole night through.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -241,13 +241,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_LateSupper</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>supper waits for the meeting</label><description>The council won't start until everyone is in from work, so supper is late and the meetings run into the night.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>supper waits for the meeting</label><description>Supper is late now, because the council won't start until everyone is in from work, and the meetings run into the night.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_MadeItUp</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>they made it up to me</label><description>The council broke its word, then came and made it right. I'll give the next promise more credit.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>they made it up to me</label><description>They broke their word to me, then came and made it right. I'll give the next promise more credit.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -311,7 +311,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_NotYet</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>not allowed to stop</label><description>I asked to put down my tools after all these years. The council says they still need me. My back says otherwise.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>not allowed to stop</label><description>After all these years I wanted to put down my tools. The council says they still need me. My back says otherwise.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -323,14 +323,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_ToldAStory</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a story instead</label><description>I asked a question and they told me a story. It wasn't really the answer, but it was a good story.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a story instead</label><description>They answered my question with a story. It wasn't really the answer, but it was a good story.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_AskedByAChild</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a child asked me</label><description>One of the children brought me a question the council couldn't answer, and I could. They listened to all of it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a child asked me</label><description>A child brought me a question the council couldn't answer, and I could. They listened to all of it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -360,7 +360,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_SentToPlay</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>sent off to play</label><description>I asked to do real work and they told me to go and play. I'm not a baby.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>sent off to play</label><description>Go and play, they said, when I asked for real work. I'm not a baby.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Found things ===================== -->
@@ -408,7 +408,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_FoodIsFood</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>food is food, they said</label><description>I asked for a change at mealtimes and the council told me food is food. Then they went and ate the same thing I did.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>food is food, they said</label><description>Food is food, the council told me, when I asked for a change. Then they went and ate the same thing I did.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -433,7 +433,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmL_SomeoneHasTo</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>someone has to do it</label><description>I asked for different work. The council said someone has to do mine. Apparently that someone is me, forever.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>someone has to do it</label><description>Someone has to do my work, the council says, so I can't have different work. Apparently that someone is me, forever.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

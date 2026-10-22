@@ -57,7 +57,7 @@
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
       <li><label>austerity</label><description>We can't even ask the council for anything now, and I had a request all worked out.</description><baseMoodEffect>-8</baseMoodEffect></li>
-      <li><label>tightened belts</label><description>The council isn't taking requests. We make do.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>tightened belts</label><description>No more requests to the council until this is over. We make do.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>living simply</label><description>I don't mind going without for a while. I never needed much.</description><baseMoodEffect>2</baseMoodEffect></li>
       <li><label>blessed simplicity</label><description>At last we all live simply, the way I always have.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
@@ -78,7 +78,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DecreeHeeded</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the council heeded me</label><description>I asked for a decree, and the council actually declared it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the council heeded me</label><description>The decree I asked for is in force. They actually listened to me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Gratitude</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 

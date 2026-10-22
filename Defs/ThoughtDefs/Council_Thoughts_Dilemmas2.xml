@@ -84,7 +84,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Superstition</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council believes in dreams</label><description>The council is making decisions based on a bad dream. I don't like it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the council believes in dreams</label><description>Somebody has a bad dream, and the council acts on it. I don't like it.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -211,7 +211,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Forbidden</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the council stopped the fight</label><description>The council stopped the fight before it started. Now it'll never be settled.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>the council stopped the fight</label><description>No fight, the council said. Now it'll never be settled.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Old sins ===================== -->

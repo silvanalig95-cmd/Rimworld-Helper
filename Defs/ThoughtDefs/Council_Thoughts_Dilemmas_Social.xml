@@ -11,7 +11,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Separated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>kept apart like children</label><description>The council split our work and our mealtimes so we'd stay apart. My half of the colony is smaller.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>kept apart like children</label><description>Separate work, separate mealtimes, so we stay apart. My half of the colony is smaller.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -220,7 +220,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Uncredited</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>no credit for my work</label><description>The council called it colony work and didn't name anyone. I'll remember that next time there's colony work to do.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>no credit for my work</label><description>Colony work, the council called it, without a single name. I'll remember that next time there's colony work to do.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Office ===================== -->

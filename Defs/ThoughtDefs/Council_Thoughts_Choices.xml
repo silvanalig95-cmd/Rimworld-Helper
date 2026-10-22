@@ -9,7 +9,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Choice_SleepingDraught</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a sleeping draught</label><description>One of ours mixed me something to help me sleep. It tasted awful, and I slept until noon.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a sleeping draught</label><description>Somebody mixed me a draught to help me sleep. It tasted awful, and I slept until noon.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -39,7 +39,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Choice_TreatedWell</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>treated a patient well</label><description>The council trusted me with a patient instead of paying a stranger, and I didn't let them down.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>treated a patient well</label><description>They trusted me with a patient instead of paying a stranger. I didn't let them down.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- New small events (Council_Events_NewsAndPlayers.xml). -->
