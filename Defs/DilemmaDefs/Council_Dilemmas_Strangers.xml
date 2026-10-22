@@ -436,7 +436,7 @@
         <ways><generosity>5</generosity><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>8</minLevel><asB>true</asB></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TaughtNeighbors</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_FedTheHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
@@ -471,7 +471,7 @@
         <outcome>The council paid {X_nameDef} eighty silver for the bite. {X_nameDef} counted it with the bandaged hand, which no longer seemed to hurt.</outcome>
         <ways><generosity>4</generosity><openness>2</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_PaidForTheBite</thought></li>
         </effects>
@@ -715,7 +715,7 @@
         <outcome>{A_nameDef} drank the tonic in one swallow, pulled a terrible face, and slept fourteen hours straight. {A_nameDef} woke up better than {A_pronoun} has been in weeks, and won't hear a word against the stuff.</outcome>
         <ways><generosity>4</generosity><openness>2</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_WellRested</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TonicWorked</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.3</chance></li>
@@ -724,7 +724,7 @@
         <riskReplaces>true</riskReplaces>
         <riskOutcome>The tonic was water, sugar and something that tasted like an old boot. {A_nameDef} drank all of it anyway, out of spite, and people have been calling {A_objective} the alchemist since.</riskOutcome>
         <riskEffects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TonicSwindle</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_WastedSilver</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
         </riskEffects>
@@ -734,7 +734,7 @@
         <outcome>{X_nameDef} took a swig, smacked {X_possessive} lips, and fell asleep on {X_possessive} own pack. When {X_nameDef} woke up, the council bought the rest for sixty silver.</outcome>
         <ways><generosity>-2</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_WellRested</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TonicWorked</thought></li>
         </effects>
@@ -809,7 +809,7 @@
         <riskReplaces>true</riskReplaces>
         <riskOutcome>The council paid {X_nameDef} a hundred and fifty silver to keep quiet. {X_nameDef} pocketed it and told the story anyway, while the coins were still warm.</riskOutcome>
         <riskEffects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_RevealSecret" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_HushMoney</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
         </riskEffects>
@@ -984,7 +984,7 @@
         <outcome>{X_nameDef} counted the silver into {A_nameDef}'s hand and took {PET_definite} by the lead. {PET_nameDef} went along without a fuss. {A_nameDef} kept the silver shut in {A_possessive} fist for a long while afterward.</outcome>
         <ways><mercy>-3</mercy><openness>3</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>120</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>120</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_GivePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_SoldMyAnimal</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GoodPriceThough</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
@@ -997,7 +997,7 @@
         <outcome>The council asked two hundred and fifty silver, expecting a no. {X_nameDef} paid on the spot without haggling, and the animal went home with {X_objective}.</outcome>
         <ways><generosity>-5</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>250</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>250</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_GivePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_SoldMyAnimal</thought><exceptTrait><li>Greedy</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GoodPriceThough</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
@@ -1053,7 +1053,7 @@
         <outcome>{X_nameDef} worked on {A_nameDef} with hot stones and strong hands for most of the afternoon while {B_nameDef} watched every move. The old injury still aches, but less.</outcome>
         <ways><generosity>3</generosity><openness>4</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_HealerSawMe</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>800</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
@@ -1063,7 +1063,7 @@
         <riskReplaces>true</riskReplaces>
         <riskOutcome>{X_nameDef} rubbed something brown into {A_nameDef}'s old injury, hummed over it a while, and was gone with the silver before supper. {B_nameDef} learned a few things not to do.</riskOutcome>
         <riskEffects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_QuackHealer</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>300</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><xpPerHour>50</xpPerHour><hours>11~17</hours><duration>1~1.5</duration></li>
@@ -1074,7 +1074,7 @@
         <outcome>For sixty silver {X_nameDef} spent the afternoon teaching {B_nameDef} what everything in the bag is for, using {A_nameDef}'s old injury for practice. {A_nameDef} was poked a great deal and helped not at all.</outcome>
         <ways><tradition>-3</tradition><openness>4</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>1500</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_LearnedFromHealer</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_PracticeDummy</thought></li>

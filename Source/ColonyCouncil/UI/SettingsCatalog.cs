@@ -333,6 +333,7 @@ namespace ColonyCouncil
             Toggle("colonyCalendar", "CC_Settings_Calendar", "CC_SetNote_Calendar");
             Section("CC_SetSec_PlayOut");
             Toggle("answersPlayOut", "CC_Settings_AnswersPlayOut", "CC_SetNote_AnswersPlayOut");
+            Toggle("goodsComeAndGo", "CC_Settings_GoodsComeAndGo", "CC_SetNote_GoodsComeAndGo");
 
             // Building: personal touches, the room planner's defaults and the build menu.
             Page(SettingsPage.Building);

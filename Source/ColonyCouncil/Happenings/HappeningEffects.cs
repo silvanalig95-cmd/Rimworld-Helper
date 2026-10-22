@@ -72,12 +72,17 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Things of the colony's era worth about <see cref="value"/> silver, near A (or by drop pod in an industrial colony).</summary>
+    /// <summary>
+    /// Things of the colony's era worth about <see cref="value"/> silver, near A (or by drop pod in an industrial colony).
+    /// With <see cref="by"/> Outsiders (a gift, a payment, an inheritance), they're brought: the event's visitor sets them
+    /// down if they're here, else a courier carries them in (Couriers/); pods stay pods.
+    /// </summary>
     public class DilemmaEffect_Loot : DilemmaEffect
     {
         public FloatRange value = FloatRange.Zero;
         public bool fancy;
         public bool pod;
+        public GoodsBy by;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -90,6 +95,7 @@ namespace ColonyCouncil
             var things = Loot.Make(v, fancy);
             var near = target == DilemmaTarget.X && ctx.stranger != null && ctx.stranger.Spawned ? ctx.stranger.Position
                 : ctx.a != null && ctx.a.Spawned && ctx.a.Map == ctx.map ? ctx.a.Position : IntVec3.Invalid;
+            if (by == GoodsBy.Outsiders && !(pod && !Avail.IsPreIndustrial) && Couriers.Deliver(ctx.map, things, Couriers.PeopleOf(ctx), near, ctx.stranger)) return;
             Loot.Deliver(things, ctx.map, near, pod);
         }
     }

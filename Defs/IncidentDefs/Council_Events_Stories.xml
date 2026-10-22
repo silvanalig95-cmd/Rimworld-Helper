@@ -356,7 +356,7 @@
             <label>Pay them ({COUNT} silver)</label>
             <outcome>The silver is counted out on the table, coin by coin.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
             <ways><generosity>2</generosity></ways>
           </li>
@@ -402,7 +402,7 @@
             <label>Give it all back ({COUNT} silver)</label>
             <outcome>The silver goes back with the foreman.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
             <ways><generosity>2</generosity></ways>
           </li>
@@ -738,7 +738,7 @@
             <label>Pay {X_objective} off ({COUNT} silver)</label>
             <outcome>The silver is sent.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
           </li>
           <li>
@@ -1007,7 +1007,7 @@
             <label>Pay {ENEMY} to turn back ({COUNT} silver)</label>
             <outcome>The silver is sent.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
           </li>
           <li>
@@ -1397,7 +1397,7 @@
             <outcome>{X_nameDef} sets off again with the hired guides, the colony's food on their backs and the map case under {X_possessive} arm.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the rescue</label><what>rawfood</what><count>40</count></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
             <ways><mercy>3</mercy><generosity>2</generosity></ways>
           </li>

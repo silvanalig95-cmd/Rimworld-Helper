@@ -160,7 +160,7 @@
         <outcome>Eighty silver went to {FACTION}. It will buy them bread from someone else's ovens, and {A_nameDef} wishes it had been the colony's own.</outcome>
         <ways><mercy>4</mercy><generosity>3</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_SilverNotMercy</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -322,7 +322,7 @@
         <outcome>{X_nameDef} was handed fifty silver "for the road", in front of the caravan guards. {X_nameDef} weighed the purse in one hand, didn't bite any of it, and made no more jokes that day.</outcome>
         <ways><generosity>6</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmR_UnexpectedGift</thought><about>A</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_SavedFace</thought></li>
@@ -346,7 +346,7 @@
         <outcome>Two silver a bucket for the pack animals, the council ruled, twenty silver in all. {X_nameDef} paid without a word, which was worse than the jokes. {A_nameDef} wishes {A_pronoun} had never brought it up.</outcome>
         <ways><generosity>-6</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>20</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>20</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmR_ChargedForWater</thought><about>A</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_MadeItWorse</thought></li>

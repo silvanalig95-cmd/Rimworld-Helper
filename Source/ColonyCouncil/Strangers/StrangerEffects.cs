@@ -176,13 +176,18 @@ namespace ColonyCouncil
             else a.inventory?.innerContainer?.Remove(thing);
             var buyer = ctx.stranger;
             if (buyer?.inventory?.innerContainer == null || buyer.Dead || !buyer.inventory.innerContainer.TryAdd(thing)) thing.Destroy();
-            int left = price;
-            while (left > 0)
+            // The buyer counts the silver out in person (Couriers/: with a word), or it's left by the seller, as before.
+            var map = a.MapHeld ?? ctx.map;
+            if (!Couriers.Deliver(map, Couriers.Make(ThingDefOf.Silver, price), buyer?.Faction, a.PositionHeld, buyer))
             {
-                var silver = ThingMaker.MakeThing(ThingDefOf.Silver);
-                silver.stackCount = Mathf.Min(left, ThingDefOf.Silver.stackLimit);
-                left -= silver.stackCount;
-                GenPlace.TryPlaceThing(silver, a.PositionHeld, a.MapHeld ?? ctx.map, ThingPlaceMode.Near);
+                int left = price;
+                while (left > 0)
+                {
+                    var silver = ThingMaker.MakeThing(ThingDefOf.Silver);
+                    silver.stackCount = Mathf.Min(left, ThingDefOf.Silver.stackLimit);
+                    left -= silver.stackCount;
+                    GenPlace.TryPlaceThing(silver, a.PositionHeld, map, ThingPlaceMode.Near);
+                }
             }
             ctx.count = price;
         }
@@ -206,9 +211,11 @@ namespace ColonyCouncil
             if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
             if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer)
             {
-                // Nobody to take it: it's turned loose instead.
+                // Nobody to take it: it's turned loose instead, and moves on off the land within a few hours.
                 if (pet.Spawned) pet.jobs?.StopAll();
                 pet.SetFaction(null);
+                if (pet.Spawned && pet.mindState != null && !pet.RaceProps.Humanlike)
+                    pet.mindState.exitMapAfterTick = Find.TickManager.TicksGame + Rand.Range(GenDate.TicksPerHour, GenDate.TicksPerHour * 4);
                 return;
             }
             if (pet.Spawned) pet.jobs?.StopAll();

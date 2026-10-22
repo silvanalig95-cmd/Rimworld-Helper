@@ -95,6 +95,8 @@ namespace ColonyCouncil
         public const int RareNews = 167;
         public const int RarePlayOut = 113;
         public const int RareWeekMemory = 199;
+        /// <summary>Courier trips waiting to come or on the map (Couriers/), only while there are any.</summary>
+        public const int RareCouriers = 59;
 
         // ---------------- Other rhythms ----------------
 

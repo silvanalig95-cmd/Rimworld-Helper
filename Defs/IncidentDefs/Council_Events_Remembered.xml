@@ -164,7 +164,7 @@
             <label>Send {COUNT} silver</label>
             <outcome>{X_nameDef} ties the purse inside {X_possessive} coat and sets off for {PLACE} before dark. Between the colony and {FACTION}, the account is square.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay" />
+              <li Class="ColonyCouncil.WorldEffect_Pay"><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>favorDone</kind><about>none</about></li>
             </effects>
@@ -174,7 +174,7 @@
             <label>Send medicine instead (8)</label>
             <outcome>{X_nameDef} packs the medicine in straw for the road. The healers at {PLACE} will be gladder of it than of silver, {X_pronoun} says, and the favor is returned.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Medicine"><count>8</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Medicine"><count>8</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>favorDone</kind><about>none</about></li>
             </effects>
@@ -271,7 +271,7 @@
             <label>Accept it, and send them home with silver (60)</label>
             <outcome>The colony takes the {THING} and tries to press a purse into {X_nameDef}'s hands for the road. {X_nameDef} pushes it back twice. The third time, {X_nameDef} keeps it.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>relief</kind><about>thing</about><weight>6</weight></li>
@@ -377,7 +377,7 @@
             <label>Make peace over a meal (25 raw food)</label>
             <outcome>The colony carries bread and stew out to where {X_nameDef} waits, and {A_nameDef} sits down in the grass across from {X_objective}. They eat slowly, and talk more as the bowls empty. {X_nameDef} goes home with the peace and a full belly.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>25</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>25</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_MakePeace"><goodwill>15</goodwill></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>madePeace</kind><about>none</about><weight>12</weight></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_PeaceAfterYears</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>

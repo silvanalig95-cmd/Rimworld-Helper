@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Goods and people that come and go on the map (Source/ColonyCouncil/Couriers). At the gate, a courier sets down
+    what they brought, then fetches from the stores what they came for (JobGiver_CourierWork); otherwise they wait
+    close by. Nothing else: no meals, no beds, no wandering into the colony.
+  -->
+  <DutyDef>
+    <defName>Council_CourierWork</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_CourierWork" />
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>3</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <JobDef>
+    <defName>Council_CourierDrop</defName>
+    <driverClass>ColonyCouncil.JobDriver_CourierDrop</driverClass>
+    <reportString>setting down what they brought.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_CourierFetch</defName>
+    <driverClass>ColonyCouncil.JobDriver_CourierFetch</driverClass>
+    <reportString>coming for TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_CourierLoad</defName>
+    <driverClass>ColonyCouncil.JobDriver_CourierLoad</driverClass>
+    <reportString>loading up TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>

@@ -992,7 +992,7 @@
         <outcome>Sixty silver, and the message went out in {A_nameDef}'s best hand, sealed twice. A few of the more nervous colonists have asked who else might read it on the way.</outcome>
         <ways><generosity>6</generosity><openness>2</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_WordSent</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Squandered</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
@@ -1003,7 +1003,7 @@
         <riskReplaces>true</riskReplaces>
         <riskOutcome>The message went out with sixty silver, and an answer came back sooner than expected. The spouse was glad to hear the news, has married again, and asks for no more letters.</riskOutcome>
         <riskEffects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Replaced</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>FriendsOfA</target><thought>Council_Dlm_Helped</thought><chance>0.5</chance></li>
@@ -1016,7 +1016,7 @@
         <outcome>A short note went out with the next traveler, for twenty silver and a handshake. It may or may not get there, and {A_nameDef} has started counting the days.</outcome>
         <ways><generosity>2</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>20</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>20</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
@@ -1024,7 +1024,7 @@
         <riskReplaces>true</riskReplaces>
         <riskOutcome>The twenty silver went to a traveler who swore the note would get there. The note turned up the next morning, trodden into the mud by the gate.</riskOutcome>
         <riskEffects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>20</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>20</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoWord</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
         </riskEffects>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What couriers say (Source/ColonyCouncil/Couriers/CourierWords.cs), over their heads through Speech. Every line has
+    its moment: arrive (at the gate), await (waiting there for an errand), deliver (setting things down), collect (the
+    first load from the stores), receive (an errand handed it over), leave, inperson (someone of an event who is here
+    hands things over). Goods: silver, food, medicine, wood, goods; bring or take. Their people: theirLowtech (tribes,
+    medieval folk) or theirHightech. The weather and the hour come from the speaker's moment (rain, snow, winter,
+    morning...). Keep them short: only the first sentence shows as floating text.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_CourierLines</defName>
+    <lines>
+      <plain>
+        <li>[arrive] This is the gate, then.</li>
+        <li>[arrive,bring] We've brought what was promised.</li>
+        <li>[arrive,take] We're here for what was agreed.</li>
+        <li>[arrive,theirLowtech] We left before first light to get here.</li>
+        <li>[arrive,theirHightech] Right place? Good. Let's get this done.</li>
+        <li>[arrive,rain] Wet the whole way here.</li>
+        <li>[arrive,snow] Snow up to the knees on the pass.</li>
+        <li>[arrive,winter] Cold road. We won't stay long.</li>
+        <li>[arrive,summer] Hot work, walking that far with a load.</li>
+        <li>[arrive,morning] Early start. We'd like to be home by dark.</li>
+        <li>[await] I'll wait here by the gate.</li>
+        <li>[await,silver] Someone's bringing the silver out, I was told.</li>
+        <li>[await,food] I'll take the food back to the ones who need it.</li>
+        <li>[await,medicine] Our healer's waiting on this.</li>
+        <li>[await,wood] I've brought a strap for the timber.</li>
+        <li>[await,theirLowtech] Tell your people the runner has come.</li>
+        <li>[deliver,silver] Count it if you like. It's all there.</li>
+        <li>[deliver,silver,theirLowtech] Every coin, as the elders said.</li>
+        <li>[deliver,silver,theirHightech] There's your payment, to the last coin.</li>
+        <li>[deliver,food] Mind that sack, the seam's going.</li>
+        <li>[deliver,medicine] Keep these dry and they'll keep.</li>
+        <li>[deliver,wood] Stacked it as straight as I could.</li>
+        <li>[deliver,goods] That's the lot. Have a look through it.</li>
+        <li>[deliver] Set down safe.</li>
+        <li>[collect,food] Good weight to these.</li>
+        <li>[collect,food,theirLowtech] There'll be bread at home tonight.</li>
+        <li>[collect,silver] I'll count it again on the road.</li>
+        <li>[collect,wood] Dry timber. They'll be glad of it at home.</li>
+        <li>[collect,medicine] This'll be with the sick by tomorrow.</li>
+        <li>[collect] One load done. Now the rest.</li>
+        <li>[receive] That's what I came for.</li>
+        <li>[receive,silver] All here. I'll see it gets where it's going.</li>
+        <li>[receive,food] This will be shared out tonight.</li>
+        <li>[receive,medicine] Our healer will be glad of this.</li>
+        <li>[receive,wood] Home before dark with this, if the road's kind.</li>
+        <li>[leave] Long walk home.</li>
+        <li>[leave,theirLowtech] Back before the moon's up, if we hurry.</li>
+        <li>[leave,rain] Back out into the wet, then.</li>
+        <li>[fetch,person] On your feet. You're coming with us.</li>
+        <li>[fetch,person,theirLowtech] The elders will want a word with you.</li>
+        <li>[fetch,person,theirHightech] You'll answer for it where you belong.</li>
+        <li>[fetch,animal] There you are. Come on, home.</li>
+        <li>[fetch,animal] Easy now. Easy.</li>
+        <li>[inperson,silver] Here. As we agreed.</li>
+        <li>[inperson] This is yours now.</li>
+        <li>[inperson,goods] Yours. Look it over.</li>
+        <li>[inperson,food] It isn't much, but it's good.</li>
+      </plain>
+      <warm>
+        <li>[arrive] Your fields look well from the road.</li>
+        <li>[arrive,theirLowtech] The elders send their greetings.</li>
+        <li>[deliver] With thanks from all of us.</li>
+        <li>[collect] You're kinder than people say.</li>
+        <li>[receive] We won't forget who sent this.</li>
+        <li>[leave] Keep well, all of you.</li>
+        <li>[inperson] For your trouble, and with thanks.</li>
+        <li>[fetch,animal] They've missed you at home, you know.</li>
+      </warm>
+      <blunt>
+        <li>[arrive] Where do you want it?</li>
+        <li>[arrive,take] Show me the stores.</li>
+        <li>[deliver] There. Done.</li>
+        <li>[collect] Next sack.</li>
+        <li>[await] I don't have all day.</li>
+        <li>[receive] Good. I'm off.</li>
+        <li>[inperson] Take it.</li>
+        <li>[fetch,person] Up. Walk.</li>
+      </blunt>
+      <cheerful>
+        <li>[arrive] Made good time on the road!</li>
+        <li>[deliver] Lighter already.</li>
+        <li>[collect] A full load. My back's complaining already.</li>
+        <li>[await] Nice spot to wait, this.</li>
+        <li>[leave] Off we go, then.</li>
+      </cheerful>
+      <gloomy>
+        <li>[arrive] My feet won't forgive me for this road.</li>
+        <li>[deliver] Heavier than it looks, all of it.</li>
+        <li>[collect] Uphill all the way back, with this.</li>
+        <li>[await] I'll stand here till someone tells me otherwise.</li>
+        <li>[leave] All that road again.</li>
+      </gloomy>
+      <cold>
+        <li>[arrive] We keep to a schedule.</li>
+        <li>[deliver] Payment made. We're square.</li>
+        <li>[collect] As agreed. No more, no less.</li>
+        <li>[receive] Received. We'll be on our way.</li>
+        <li>[inperson] The agreed amount.</li>
+        <li>[fetch,person] Don't make this harder than it needs to be.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

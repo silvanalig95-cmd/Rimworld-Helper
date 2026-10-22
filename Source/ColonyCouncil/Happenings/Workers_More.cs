@@ -46,20 +46,31 @@ namespace ColonyCouncil
             {
                 int back = 0;
                 float worth = 0f;
-                foreach (var t in ctx.things.Where(t => t != null && !t.Destroyed).ToList())
+                var left = ctx.things.Where(t => t != null && !t.Destroyed).ToList();
+                foreach (var t in left)
                 {
                     back++;
                     worth += t.MarketValue * t.stackCount;
-                    t.Destroy();
                 }
                 // Sent back for a finder's fee, and they paid it: 15% of what came back.
-                if (option == 2 && !risk && back > 0 && ctx.map != null)
+                bool fee = option == 2 && !risk && back > 0 && ctx.map != null;
+                if (fee) ctx.count = Mathf.Max(20, Mathf.RoundToInt(worth * 0.15f / 5f) * 5);
+                // Their people come for what's lying about (and bring the fee) (Couriers/); else it goes with their rider at once.
+                var lying = left.Where(t => t.Spawned && t.Map == ctx.map).ToList();
+                if (ctx.map != null && lying.Count > 0 && Couriers.CollectThings(ctx.map, lying, ctx.faction, fee ? Couriers.Make(ThingDefOf.Silver, ctx.count) : null))
                 {
-                    ctx.count = Mathf.Max(20, Mathf.RoundToInt(worth * 0.15f / 5f) * 5);
-                    var silver = ThingMaker.MakeThing(ThingDefOf.Silver);
-                    silver.stackCount = ctx.count;
-                    var near = (ctx.b ?? ctx.a) is Pawn p && p.Spawned && p.Map == ctx.map ? p.Position : ctx.spot.IsValid ? ctx.spot : ctx.map.Center;
-                    GenPlace.TryPlaceThing(silver, near, ctx.map, ThingPlaceMode.Near);
+                    foreach (var t in left.Where(t => !t.Spawned)) t.Destroy();
+                }
+                else
+                {
+                    foreach (var t in left) t.Destroy();
+                    if (fee)
+                    {
+                        var silver = ThingMaker.MakeThing(ThingDefOf.Silver);
+                        silver.stackCount = ctx.count;
+                        var near = (ctx.b ?? ctx.a) is Pawn p && p.Spawned && p.Map == ctx.map ? p.Position : ctx.spot.IsValid ? ctx.spot : ctx.map.Center;
+                        GenPlace.TryPlaceThing(silver, near, ctx.map, ThingPlaceMode.Near);
+                    }
                 }
                 if (back < ctx.things.Count) outcome += " " + "CC_Evt_CargoPartly".Translate().Resolve();
             }

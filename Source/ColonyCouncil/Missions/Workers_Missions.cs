@@ -260,8 +260,12 @@ namespace ColonyCouncil
             var look = new LookTargets(new TargetInfo(spot, map));
             if (m.goals.All(g => g.have >= g.count))
             {
-                foreach (var g in m.goals) Missions.Take(map, g.what, g.count);
-                VarietyUtil.PaySilver(map, spot, m.reward);
+                // Their carts come for it and pay on the spot (Couriers/); else it's taken and paid at once.
+                if (!Couriers.CollectGoals(map, m.goals.Select(g => new KeyValuePair<string, int>(g.what, g.count)).ToList(), m.faction, m.reward))
+                {
+                    foreach (var g in m.goals) Missions.Take(map, g.what, g.count);
+                    VarietyUtil.PaySilver(map, spot, m.reward);
+                }
                 Missions.Goodwill(m, m.goodwill);
                 Missions.Finish(m, MissionState.Done, "delivered", m.reward.ToString(), look);
                 return;
@@ -269,9 +273,16 @@ namespace ColonyCouncil
             if (m.goals.All(g => g.have * 2 >= g.count))
             {
                 float worth = 0f;
-                foreach (var g in m.goals) worth += Missions.Take(map, g.what, g.count) * Missions.UnitValue(g.what);
+                foreach (var g in m.goals) worth += Mathf.Min(g.count, g.have) * Missions.UnitValue(g.what);
                 int pay = VarietyUtil.Round(Mathf.Max(10, Mathf.RoundToInt(worth)));
-                VarietyUtil.PaySilver(map, spot, pay);
+                // Their carts take what there is and pay for that (Couriers/); else it's taken and paid at once.
+                if (!Couriers.CollectGoals(map, m.goals.Select(g => new KeyValuePair<string, int>(g.what, Mathf.Min(g.count, g.have))).ToList(), m.faction, pay))
+                {
+                    worth = 0f;
+                    foreach (var g in m.goals) worth += Missions.Take(map, g.what, g.count) * Missions.UnitValue(g.what);
+                    pay = VarietyUtil.Round(Mathf.Max(10, Mathf.RoundToInt(worth)));
+                    VarietyUtil.PaySilver(map, spot, pay);
+                }
                 Missions.Finish(m, MissionState.Done, "partial", pay.ToString(), look, LetterDefOf.NeutralEvent);
                 return;
             }
@@ -451,7 +462,10 @@ namespace ColonyCouncil
                 Missions.Finish(m, MissionState.Failed, "cancelled", null);
                 return;
             }
-            if (x != null && !x.Dead && x.Spawned && x.Faction == Faction.OfPlayer)
+            // Their herder comes for it and pays once they have it (Couriers/); else it walks off by itself, as before.
+            bool fetched = x != null && !x.Dead && x.Spawned && x.Faction == Faction.OfPlayer
+                           && Couriers.Fetch(map, x, m.faction, Couriers.Make(ThingDefOf.Silver, m.reward), DropCellFinder.TradeDropSpot(map), false);
+            if (!fetched && x != null && !x.Dead && x.Spawned && x.Faction == Faction.OfPlayer)
             {
                 try
                 {
@@ -480,7 +494,7 @@ namespace ColonyCouncil
                     }
                 }
             }
-            VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), m.reward);
+            if (!fetched) VarietyUtil.PaySilver(map, DropCellFinder.TradeDropSpot(map), m.reward);
             Missions.Goodwill(m, m.goodwill);
             Missions.Finish(m, MissionState.Done, "returned", m.reward.ToString(), x != null && x.Spawned ? new LookTargets(x) : LookTargets.Invalid);
         }
@@ -665,7 +679,8 @@ namespace ColonyCouncil
             IntVec3? spot = CellFinder.TryFindRandomCellNear(shrine.Position, map, 3, c => c.Standable(map) && c.GetFirstBuilding(map) == null, out var near) ? near : (IntVec3?)null;
             if (pilgrims.Count == 0 || Arrivals.Visit(pilgrims, map, m.faction, spot, Rand.Range(16f, 24f)) == null)
                 foreach (var p in pilgrims.Where(p => !p.Spawned)) Arrivals.Discard(p);
-            VarietyUtil.PaySilver(map, shrine.Position, m.reward);
+            // The pilgrims pay at the shrine once they reach it (Couriers/); else it's left there now.
+            Couriers.PaySilver(map, shrine.Position, m.reward, m.faction, pilgrims.FirstOrDefault(p => p.Spawned), spot ?? shrine.Position);
             Missions.Goodwill(m, m.goodwill);
             var def = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Mission_Shrine");
             if (def != null)

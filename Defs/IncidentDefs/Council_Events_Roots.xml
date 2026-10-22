@@ -49,7 +49,7 @@
               <li>[past:soldier] {A_nameDef} ate one of the biscuits with water, the old way, and didn't say anything for a long while afterwards.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_TasteOfHome</thought></li>
             </effects>
             <ways><generosity>1</generosity></ways>
@@ -62,7 +62,7 @@
               <li>[trait:Gourmand] {A_nameDef} cooked for most of the day and tasted everything twice. The colony ate well, and {A_nameDef} ate better.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_TasteOfHome</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_SomeonesHome</thought></li>
@@ -134,7 +134,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_MadePeacePast</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>100~250</value></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Loot"><value>100~250</value><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2~3</duration></li>
             </effects>
             <riskEffects>
@@ -216,7 +216,7 @@
               <li>[colony:Traditional] The colony gathered at the graves when the last stone was set, and {A_nameDef} read the names out, one by one.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_GravesMarked</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>4</amount><onlyStrained>true</onlyStrained></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><duration>2~3</duration></li>
@@ -231,7 +231,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Artistic</skill><minLevel>3</minLevel><asB>true</asB></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Artistic</skill><xp>1200</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Artistic</skill><duration>2~3</duration></li>
@@ -395,7 +395,7 @@
             <label>Sell {X_objective} medicine (2)</label>
             <outcome>{X_nameDef} paid for two doses of the colony's medicine and hurried back to the herd with them.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>0.6</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
             </effects>
@@ -453,7 +453,7 @@
               <li>[winter] The colony brought food over through the snow, and the camp's fire was built so high that the guests sat in shirtsleeves.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>20</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>-15</tension><warm>2</warm></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_CampFeastGuests</thought></li>

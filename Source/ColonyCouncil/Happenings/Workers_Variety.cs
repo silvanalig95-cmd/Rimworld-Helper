@@ -165,8 +165,9 @@ namespace ColonyCouncil
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             // Sold: the materials go, the silver comes.
-            if (option == 1 && !byDefault && VarietyUtil.TakeFromStores(ctx.map, ctx.thing, ctx.variant))
-                VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
+            // Carried out to the merchants, who pay in person (Couriers/).
+            if (option == 1 && !byDefault && Couriers.TakeFromStoresFor(ctx, ctx.thing, ctx.variant))
+                Couriers.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count, Couriers.PeopleOf(ctx), ctx.stranger);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
@@ -303,11 +304,13 @@ namespace ColonyCouncil
             var map = ctx.map;
             var spot = DropCellFinder.TradeDropSpot(map);
             int have = VarietyUtil.InStores(map, ctx.thing);
-            bool filled = have >= ctx.variant && VarietyUtil.TakeFromStores(map, ctx.thing, ctx.variant);
+            // Their carts come for it and pay on the spot, the letter with them (Couriers/); else taken and paid now.
+            var carts = have >= ctx.variant ? Couriers.CollectOrder(map, ctx.thing, ctx.variant, ctx.count, ctx.faction) : null;
+            bool filled = carts != null || (have >= ctx.variant && VarietyUtil.TakeFromStores(map, ctx.thing, ctx.variant));
             var f = ctx.faction;
             if (filled)
             {
-                VarietyUtil.PaySilver(map, spot, ctx.count);
+                if (carts == null) VarietyUtil.PaySilver(map, spot, ctx.count);
                 f.TryAffectGoodwillWith(Faction.OfPlayer, 6, true, false);
             }
             // A broken promise costs a little, but never a war.
@@ -317,6 +320,15 @@ namespace ColonyCouncil
             string title = VarietyUtil.Line(filled ? more?.doneTitles : more?.failTitles, ctx) ?? ctx.incident.LabelCap.ToString();
             string text = VarietyUtil.Line(filled ? more?.done : more?.fail, ctx, new[] { have > 0 ? "some" : "none" }, VarietyUtil.Bundle(ctx.thing, have));
             if (text.NullOrEmpty()) return;
+            if (carts != null)
+            {
+                carts.letterLabel = title;
+                carts.letterText = text;
+                carts.letterDef = LetterDefOf.PositiveEvent;
+                carts.chronicle = title + ": " + text;
+                carts.chroniclePawn = ctx.a != null && !ctx.a.Dead ? ctx.a : null;
+                return;
+            }
             Find.LetterStack.ReceiveLetter(title, text, filled ? LetterDefOf.PositiveEvent : LetterDefOf.NeutralEvent, new LookTargets(new TargetInfo(spot, map)));
             comp?.AddChronicle(new ChronicleEntry(ChronicleKind.World, title + ": " + text, ctx.a != null && !ctx.a.Dead ? ctx.a : null));
         }
@@ -437,7 +449,8 @@ namespace ColonyCouncil
         {
             // The medicine itself goes out with the answer's errand (DilemmaEffect_CarryOut: carried to their runner at
             // the gate, or taken at once if it never happens); a sale is paid for now.
-            if (option == 1 && !byDefault) VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
+            // Paid by the one who waits at the gate for it (Couriers/: they bring the silver), or left as before.
+            if (option == 1 && !byDefault) Couriers.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count, Couriers.PeopleOf(ctx), ctx.stranger);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

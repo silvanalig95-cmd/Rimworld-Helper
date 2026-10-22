@@ -229,7 +229,7 @@
             <label>Keep {BEAST}, and pay {COUNT} silver</label>
             <outcome>{BEAST} stays, paid for.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
           </li>
           <li>

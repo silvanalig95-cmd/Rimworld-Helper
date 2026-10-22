@@ -97,11 +97,15 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Medicine out of the stores: any kind, the plainest first. Unavailable without enough.</summary>
+    /// <summary>
+    /// Medicine out of the stores: any kind, the plainest first. Unavailable without enough. With <see cref="by"/>
+    /// Outsiders, handed over on the map (Couriers.TakeFor).
+    /// </summary>
     public class WorldEffect_Medicine : DilemmaEffect
     {
         /// <summary>How many (0: the beat's {COUNT}).</summary>
         public int count;
+        public GoodsBy by;
 
         private int Need(DilemmaContext ctx) => Mathf.Max(1, count > 0 ? count : ctx.count);
 
@@ -121,6 +125,7 @@ namespace ColonyCouncil
         {
             var map = SituationEffectUtil.MapOf(ctx);
             int left = Need(ctx);
+            if (by == GoodsBy.Outsiders && Couriers.TakeFor(ctx, "medicine", null, left)) return;
             foreach (var t in Stock(map).OrderBy(t => t.MarketValue).ToList())
             {
                 if (left <= 0) break;
@@ -131,7 +136,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Silver for the colony, left where traders drop their goods ({COUNT} times <see cref="factor"/>, or <see cref="count"/>).</summary>
+    /// <summary>
+    /// Silver for the colony from the situation's people ({COUNT} times <see cref="factor"/>, or <see cref="count"/>):
+    /// handed over by their visitor if here, else carried in by a courier (Couriers/), else left where traders drop goods.
+    /// </summary>
     public class WorldEffect_Silver : WorldEffect
     {
         public int count;
@@ -141,7 +149,7 @@ namespace ColonyCouncil
         {
             if (!Gate(ctx)) return;
             int n = Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor);
-            VarietyUtil.PaySilver(SituationEffectUtil.MapOf(ctx), IntVec3.Invalid, n);
+            Couriers.PaySilver(SituationEffectUtil.MapOf(ctx), IntVec3.Invalid, n, Couriers.PeopleOf(ctx), ctx.stranger);
         }
     }
 
@@ -316,7 +324,11 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Takes goods out of the stores and pays for them: {COUNT} of {THING} (or the given ones) at <see cref="price"/> times their worth.</summary>
+    /// <summary>
+    /// Takes goods out of the stores and pays for them: {COUNT} of {THING} (or the given ones) at <see cref="price"/>
+    /// times their worth. The buyers' courier brings the silver and takes the goods in one visit (Couriers/); with
+    /// <see cref="later"/>, they come for the goods now and the silver comes when the situation ends.
+    /// </summary>
     public class WorldEffect_Sell : DilemmaEffect
     {
         public ThingDef thing;
@@ -342,11 +354,15 @@ namespace ColonyCouncil
             var map = SituationEffectUtil.MapOf(ctx);
             if (d == null || map == null) return;
             int n = Need(ctx);
-            if (!VarietyUtil.TakeFromStores(map, d, n)) return;
             int silver = Mathf.RoundToInt(n * d.BaseMarketValue * price);
             var s = SituationEffectUtil.Of(ctx);
-            if (later && s != null) s.AddNum("owed", silver);
-            else VarietyUtil.PaySilver(map, IntVec3.Invalid, silver);
+            var buyers = Couriers.PeopleOf(ctx);
+            if (later && s != null)
+            {
+                if (!Couriers.TakeFromStores(map, d, n, buyers)) return;
+                s.AddNum("owed", silver);
+            }
+            else Couriers.Sell(map, d, n, silver, buyers, IntVec3.Invalid);
         }
     }
 
@@ -414,11 +430,13 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Silver paid out of the stores: {COUNT} times <see cref="factor"/>, rounded to tens (no quartermaster's discount,
-    /// so the price in the letter is the price paid). Unavailable without enough.
+    /// so the price in the letter is the price paid). Unavailable without enough. With <see cref="by"/> Outsiders (paid
+    /// to someone: a seller, a messenger), handed over on the map (Couriers.TakeFor).
     /// </summary>
     public class WorldEffect_Pay : DilemmaEffect
     {
         public float factor = 1f;
+        public GoodsBy by;
 
         public static int Amount(int count, float factor) => Mathf.Max(10, Mathf.RoundToInt(count * factor / 10f) * 10);
 
@@ -434,6 +452,7 @@ namespace ColonyCouncil
             var map = SituationEffectUtil.MapOf(ctx);
             if (map == null) return;
             int left = Amount(ctx.count, factor);
+            if (by == GoodsBy.Outsiders && Couriers.TakeFor(ctx, "silver", null, left)) return;
             foreach (var t in map.listerThings.ThingsOfDef(ThingDefOf.Silver).Where(t => t.Spawned && !t.IsForbidden(Faction.OfPlayer)).ToList())
             {
                 if (left <= 0) break;
@@ -461,19 +480,26 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> texts = new List<string>();
     }
 
-    /// <summary>Things of the colony's era worth about <see cref="value"/> silver (scaled by the colony's wealth), left where traders drop their goods.</summary>
+    /// <summary>
+    /// Things of the colony's era worth about <see cref="value"/> silver (scaled by the colony's wealth): from the
+    /// situation's people, carried in by a courier (Couriers/), else left where traders drop their goods. With
+    /// <see cref="by"/> Home, something the colony found or brought back itself: there at once.
+    /// </summary>
     public class WorldEffect_Loot : WorldEffect
     {
         public FloatRange value = new FloatRange(300f, 600f);
         public bool fancy;
         /// <summary>Sent by drop pod in an industrial colony (a gift from afar); else carried to where traders drop their goods.</summary>
         public bool pod;
+        public GoodsBy by = GoodsBy.Outsiders;
 
         public override void Apply(DilemmaContext ctx)
         {
             var map = SituationEffectUtil.MapOf(ctx);
             if (map == null || !Gate(ctx)) return;
             var things = Loot.Make(value.RandomInRange * LivingEvents.WealthFactor(map), fancy);
+            // Pods stay pods (an industrial colony's gift from afar); anything else from outside is carried in.
+            if (by == GoodsBy.Outsiders && !(pod && !Avail.IsPreIndustrial) && Couriers.Deliver(map, things, Couriers.PeopleOf(ctx), DropCellFinder.TradeDropSpot(map), ctx.stranger)) return;
             Loot.Deliver(things, map, pod ? IntVec3.Invalid : DropCellFinder.TradeDropSpot(map), pod);
         }
     }

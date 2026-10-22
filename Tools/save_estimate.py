@@ -68,6 +68,8 @@ C = {
     "SharedMemories": const("Persona/PersonaTracker.cs", "MaxMemories", 900),
     "TalkNotes": const("Social/Talk/TalkTracker.cs", "MaxNotes", 40),
     "PlayResults": const("PlayOut/PlayOutTracker.cs", "MaxResults", 30),
+    "CourierTrips": const("Couriers/CourierMath.cs", "MaxTrips", 12),
+    "CourierPeople": const("Couriers/CourierMath.cs", "MaxPeople", 3),
     "KinNoteDays": const("World/MemoryMath.cs", "NoteDays", 30),
 }
 
@@ -292,6 +294,11 @@ MODEL = {
     "PlayOut/PlayOutLord.cs:abstained": ("while", 4, P, "while the gathering lasts"),
     "PlayOut/PlayOutTracker.cs:plays": ("cap", (8, 0.5), 600, "waiting ones capped, done ones dropped"),
     "PlayOut/PlayOutTracker.cs:results": ("cap", (C["PlayResults"], 1), 120, "how the last ones went: PlayOutTracker.MaxResults"),
+    # Couriers: trips waiting or on the map (CourierMath.MaxTrips), each dropped two days after it ends at most
+    "Couriers/CourierTracker.cs:trips": ("cap", (C["CourierTrips"], 0.5), 900, "trips waiting or under way: CourierMath.MaxTrips; ended ones dropped within two days"),
+    "Couriers/CourierTrip.cs:people": ("while", C["CourierPeople"], P, "a trip's people, while it lasts"),
+    "Couriers/CourierTrip.cs:things": ("while", 8, P, "particular things a trip came for (a neighbour's cargo), while it lasts"),
+    "Couriers/CourierTrip.cs:toUnload": ("while", C["CourierPeople"] + 1, P, "who still carries the colony's goods, while the trip lasts"),
     "PlayOut/PlayOuts.cs:invited": ("fixed", 8, P, "per play-out (counted under plays)"),
     "PlayOut/PlayOuts.cs:spots": ("fixed", 2, 60, "per play-out"),
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),

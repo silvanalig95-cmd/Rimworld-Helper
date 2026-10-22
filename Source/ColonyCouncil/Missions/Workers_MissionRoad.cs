@@ -473,7 +473,8 @@ namespace ColonyCouncil
                 else Arrivals.SendAway(new[] { x });
             }
             var spotNear = x.Spawned ? x.Position : DropCellFinder.TradeDropSpot(map);
-            VarietyUtil.PaySilver(map, spotNear, m.reward);
+            // The family pay when they reach the child (Couriers/); else it's left there now.
+            Couriers.PaySilver(map, spotNear, m.reward, m.faction, kin.FirstOrDefault(p => p.Spawned), x.Spawned ? x.Position : (IntVec3?)null);
             Missions.Goodwill(m, m.goodwill);
             var finderNow = m.a;
             KinMemory.Note(m.faction, "foundChild", finderNow, m.name);

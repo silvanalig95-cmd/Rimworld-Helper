@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Goods and people that come and go on the map (Source/ColonyCouncil/Couriers/): silver, goods and gifts the colony
+    is given, and goods it gives, sells or pays, are carried in and out by real people.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Couriers</defName>
+    <label>goods carried by hand</label>
+    <category>Council</category>
+    <order>22</order>
+    <summary>Silver, goods and gifts from outside are carried in by runners and porters, and what the colony gives away is fetched from the stores by them.</summary>
+    <tip>Keep the way from the map's edge to the gate and the stockpiles open: porters who can't reach the stores leave, and the rest of the deal is settled from a distance.</tip>
+    <description>With "Goods and people come and go on the map" on (the Events and world page of the settings, on by default), the things Rimfolk's events move between the colony and the outside world are carried by people you can see. When a neighbor pays for timber, sends a gift, settles a debt or brings home a venture's takings, someone walks in with it. When the colony sends food to a village, pays a toll or sells its steel, someone comes for it. A message tells you when they appear at the edge of the map and again when they have set their load down or picked yours up.
+
+They come a few hours after the answer, by day, and never while there are enemies on the map. They come from the event's own people if those are at peace with the colony; otherwise from the nearest people of a fitting tech level, so a tribal colony's neighbors send runners from a tribe or a medieval village, never a shuttle. Goods the colony owes stay in its stores until the porters take them, so keep them there.</description>
+    <sections>
+      <li>
+        <heading>Who comes, and what they do</heading>
+        <table>
+          <li>Trip | Who comes | What happens</li>
+          <li>Bringing | One to three runners, porters or couriers | They walk to the gate and set the goods down there, where your haulers can take them in</li>
+          <li>Fetching | One to three porters | They walk to the stockpiles, take what was agreed with their own hands, and walk off with it</li>
+          <li>A sale | Porters with the price | They set the silver down at the gate first, then fetch the goods</li>
+          <li>Waiting at the gate | One of their people | They wait while one of your colonists carries the answer's errand out to them, then take it home</li>
+          <li>Someone handed over | Two or more of them | They come for a prisoner they paid for, or an animal given back, pay once they have them, and lead them away</li>
+        </table>
+        <text>The number depends on the load: a purse of silver brings one runner, 250 corn two porters, a cart's worth of timber three. For a big load they bring a pack animal from their own caravans (a muffalo, a dromedary, whatever their traders use and the land allows). What's called "runner", "porter" or "courier" follows their people: tribes send runners, medieval folk porters, everyone later couriers. When the event's visitor is already at the colony, they hand the things over themselves; if they're still walking in, they carry it with them and set it down when they arrive.</text>
+      </li>
+      <li>
+        <heading>When it doesn't go to plan</heading>
+        <text>A trip that can't come within three days (never safe, no way in from the edge, nobody at peace with the colony) is settled the old way: things owed to the colony appear where traders leave their goods, and goods owed by it leave the stores. The same happens if they can't get to the stores within six hours, if danger comes while they are there (they leave at once), or if the setting is turned off. If the goods were used up in the meantime, they take what's left and the deal stands. If their people turn hostile, they set down what they brought and take nothing more.
+
+Hurt, arrest or kill one of them and the deal holds only as far as it got: what they still carry for the colony stays with them, and they take no more. A trip is settled once only, so nothing is ever given or taken twice, and it all saves with the game. Couriers leave with nothing of the colony's but what they came for.</text>
+      </li>
+      <li>
+        <heading>Doors and stockpiles</heading>
+        <text>Couriers open the colony's doors like any visitor at peace with it, and go only where the goods are. They don't wander into bedrooms or pick up anything else, and they never touch what someone else has claimed or what you have forbidden. A pack animal waits outside by the gate. Letters about a venture, a market or a fair come when the goods do, not before.</text>
+      </li>
+    </sections>
+    <keywords><li>courier</li><li>porter</li><li>runner</li><li>pack animal</li><li>delivery</li><li>gift</li><li>payment</li><li>sale</li><li>silver</li><li>on the map</li></keywords>
+    <seeAlso><li>Council_Alm_C_PlayOut</li><li>Council_Alm_C_WorldEvents</li><li>Council_Alm_C_WorldSituations</li><li>Council_Alm_C_Dilemmas</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

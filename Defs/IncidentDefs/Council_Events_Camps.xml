@@ -55,7 +55,7 @@
               <li>They count the silver, thank {A_nameDef} twice, and start packing.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><onlyIfChosen>true</onlyIfChosen><by>Outsiders</by></li>
             </effects>
             <ways><generosity>2</generosity><openness>-1</openness></ways>
           </li>

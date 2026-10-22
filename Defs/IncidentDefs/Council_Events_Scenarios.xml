@@ -42,14 +42,14 @@
             <label>Pay the {COUNT} silver</label>
             <outcome>The silver is counted out for {ENEMY}'s collector, every coin, and the debt is settled at last.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>
           </li>
           <li>
             <label>Pay half now and ask for more time</label>
             <outcome>{A_nameDef} hands over half the silver and a great many promises. {ENEMY} agree to wait. The rest will cost more when they come back for it.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
             </effects>
           </li>
           <li>

@@ -581,7 +581,8 @@ namespace ColonyCouncil
                 {
                     try
                     {
-                        if (owed > 0) VarietyUtil.PaySilver(map, IntVec3.Invalid, owed);
+                        // Carried home by their courier (Couriers/), or left where traders leave goods.
+                        if (owed > 0) Couriers.PaySilver(map, IntVec3.Invalid, owed, s.ctx.faction);
                         string cause = "CC_WS_Cause".Translate(def.LabelCap).Resolve();
                         s.ctx.cause = cause;
                         using (Causes.Push(cause))
@@ -611,7 +612,7 @@ namespace ColonyCouncil
                     {
                         try
                         {
-                            VarietyUtil.PaySilver(map, IntVec3.Invalid, owed);
+                            Couriers.PaySilver(map, IntVec3.Invalid, owed, s.ctx.faction);
                             News.Post("CC_WS_OwedPaid".Translate(owed, s.Label).Resolve(), LookTargets.Invalid, NewsKind.World, MessageTypeDefOf.PositiveEvent, Importance.Notable);
                         }
                         catch (Exception e)

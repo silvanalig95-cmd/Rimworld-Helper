@@ -659,8 +659,8 @@
             <label>Buy it (a third of the price)</label>
             <outcome>The carter tips the sacks off at the gate, counts the silver, and goes home a good deal lighter.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.35</factor></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawCorn</thing></li>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.35</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawCorn</thing><by>Outsiders</by></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
             </effects>
           </li>

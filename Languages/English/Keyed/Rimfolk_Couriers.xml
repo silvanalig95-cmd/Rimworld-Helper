@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Goods and people that come and go on the map (Source/ColonyCouncil/Couriers). -->
+
+  <!-- The setting -->
+  <CC_Settings_GoodsComeAndGo>Goods and people come and go on the map</CC_Settings_GoodsComeAndGo>
+  <CC_Settings_GoodsComeAndGo_Tip>When an event gives the colony silver, goods, a gift or a payment owed, or takes goods it gave, sold or paid, people come to do it on the map. A few hours later, by day, a runner, a few porters or couriers from a people at peace with the colony walk in from the edge of the map: the event's own people when they can, else the neighbors whose town is nearest. They set down what they bring by the colony's gate, or walk to the stores and carry off what they came for, or wait at the gate while one of your colonists carries it out to them. A big load comes with a pack animal from their own caravans. They stay a little and walk off.\n\nThey only come when it's safe, and leave at the first sign of danger. If they can't come, can't reach the stores or can't finish, what's left of the deal is settled the old way: things owed to the colony are left where traders leave their goods, and goods owed by it leave the stores. Hurt or arrest one of them and the deal holds only as far as it got.\n\nOff: everything is handed over at once, as before.</CC_Settings_GoodsComeAndGo_Tip>
+  <CC_SetNote_GoodsComeAndGo>Runners and porters walk in to bring silver and goods, or to carry off what the colony gives.</CC_SetNote_GoodsComeAndGo>
+
+  <!-- Who they are -->
+  <CC_Courier_Runner>runner</CC_Courier_Runner>
+  <CC_Courier_Runners>runners</CC_Courier_Runners>
+  <CC_Courier_Porter>porter</CC_Courier_Porter>
+  <CC_Courier_Porters>porters</CC_Courier_Porters>
+  <CC_Courier_Courier>courier</CC_Courier_Courier>
+  <CC_Courier_Couriers>couriers</CC_Courier_Couriers>
+  <CC_Courier_Two>two {0}</CC_Courier_Two>
+  <CC_Courier_Three>three {0}</CC_Courier_Three>
+  <CC_Courier_The>the {0}</CC_Courier_The>
+  <CC_Courier_And>{0} and {1}</CC_Courier_And>
+
+  <!-- What they carry: "250 corn", "a longsword, 40 steel and 3 more things" -->
+  <CC_Courier_Amount>{0} {1}</CC_Courier_Amount>
+  <CC_Courier_MoreThings>{0} more things</CC_Courier_MoreThings>
+  <CC_Courier_ByGate>by the gate</CC_Courier_ByGate>
+  <CC_Courier_NearColony>near the colony</CC_Courier_NearColony>
+
+  <!-- They've come: {0} who, {1} their people, {2} what they came for (or bring), {3} what they bring -->
+  <CC_Courier_Arrive_Deliver_One>{0} from {1} is on the way in with {3}.</CC_Courier_Arrive_Deliver_One>
+  <CC_Courier_Arrive_Deliver_Many>{0} from {1} are on the way in with {3}.</CC_Courier_Arrive_Deliver_Many>
+  <CC_Courier_Arrive_Collect_One>{0} from {1} has come for {2}.</CC_Courier_Arrive_Collect_One>
+  <CC_Courier_Arrive_Collect_Many>{0} from {1} have come for {2}.</CC_Courier_Arrive_Collect_Many>
+  <CC_Courier_Arrive_Exchange_One>{0} from {1} has come with {3}, to take {2} back with them.</CC_Courier_Arrive_Exchange_One>
+  <CC_Courier_Arrive_Exchange_Many>{0} from {1} have come with {3}, to take {2} back with them.</CC_Courier_Arrive_Exchange_Many>
+  <CC_Courier_Arrive_Await_One>{0} from {1} is walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_One>
+  <CC_Courier_Arrive_Await_Many>{0} from {1} are walking up to the gate to wait for {2}.</CC_Courier_Arrive_Await_Many>
+  <CC_Courier_Arrive_Fetch_One>{0} from {1} has come for {2}.</CC_Courier_Arrive_Fetch_One>
+  <CC_Courier_Arrive_Fetch_Many>{0} from {1} have come for {2}.</CC_Courier_Arrive_Fetch_Many>
+  <CC_Courier_Arrive_FetchPay_One>{0} from {1} has come with {3} for {2}.</CC_Courier_Arrive_FetchPay_One>
+  <CC_Courier_Arrive_FetchPay_Many>{0} from {1} have come with {3} for {2}.</CC_Courier_Arrive_FetchPay_Many>
+  <CC_Courier_Arrive_AwaitPay_One>{0} from {1} is walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_One>
+  <CC_Courier_Arrive_AwaitPay_Many>{0} from {1} are walking up to the gate with {3}, to wait for {2}.</CC_Courier_Arrive_AwaitPay_Many>
+
+  <!-- Their business is done: {0} who, {1} their people, {2} what they took (or set down), {3} where, {4} what they set down -->
+  <CC_Courier_Done_Deliver>{0} from {1} set down {2} {3}.</CC_Courier_Done_Deliver>
+  <CC_Courier_Done_Exchange>{0} from {1} set down {4} {3} and loaded up {2}.</CC_Courier_Done_Exchange>
+  <CC_Courier_Done_Await>{0} from {1} took {2} and turned for home.</CC_Courier_Done_Await>
+  <CC_Courier_Done_Collect>{0} from {1} loaded up {2} from the stores.</CC_Courier_Done_Collect>
+  <CC_Courier_Done_Fetch>{0} from {1} took charge of {2}.</CC_Courier_Done_Fetch>
+  <CC_Courier_Done_FetchPay>{0} from {1} set down {4} {3} and took charge of {2}.</CC_Courier_Done_FetchPay>
+  <CC_Courier_Done_Bearer>{PAWN_nameDef} set down {GOODS} for the colony.</CC_Courier_Done_Bearer>
+  <CC_Courier_FetchGone>{0} from {1} came for {2}, who is no longer the colony's to give. They left without paying.</CC_Courier_FetchGone>
+  <CC_Courier_Done_Nothing>{0} from {1} found none of what they came for left in the stores.</CC_Courier_Done_Nothing>
+
+  <!-- What was left of a deal went another way -->
+  <CC_Courier_Fell_In>{0} from {1} came by another road. Look where traders leave their goods.</CC_Courier_Fell_In>
+  <CC_Courier_Fell_Out>Nobody from {1} could come in person, so {0} went from the stores with the next traveler their way.</CC_Courier_Fell_Out>
+  <CC_Courier_End_Danger>{0} from {1} left at the first sign of danger.</CC_Courier_End_Danger>
+  <CC_Courier_End_TimedOut>{0} from {1} couldn't finish and set off home.</CC_Courier_End_TimedOut>
+  <CC_Courier_End_Other>{0} from {1} went home early.</CC_Courier_End_Other>
+  <CC_Courier_End_In>What they still carried for the colony was set down before they went.</CC_Courier_End_In>
+  <CC_Courier_End_Out>The rest of {0} went from the stores all the same.</CC_Courier_End_Out>
+
+  <!-- What they're doing -->
+  <CC_Courier_Report_Drop>setting down what they brought.</CC_Courier_Report_Drop>
+  <CC_Courier_Report_Unload>unloading the pack animal.</CC_Courier_Report_Unload>
+  <CC_Courier_Report_Load>loading up {0}.</CC_Courier_Report_Load>
+  <CC_Courier_Report_Fetch>coming for {0}.</CC_Courier_Report_Fetch>
+
+  <!-- An errand waiting for its courier -->
+  <CC_Courier_Why_NotYet>the one who'll take it hasn't reached the gate yet</CC_Courier_Why_NotYet>
+
+</LanguageData>

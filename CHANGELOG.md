@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Goods carried by hand
+
+*27 October 2026, version 0.10.1*
+
+- Goods that events move between the colony and the world now move on the map. Sell corn to a village and their porters walk in some hours later, go to your stockpile and carry it off; the silver comes back with a runner. A big load brings one of their pack animals. Gifts, payments, rewards and bought goods are carried in and set down by the gate.
+- Errands to the gate are handed to someone who really waits there. A prisoner you sell is led off by the buyer's riders, a runaway animal by its owners' herder, lost cargo and a crashed drone by their owners, who pay the finder's fee on the spot.
+- Letters about a venture, a market or a fair now arrive with the goods. Couriers come by day, only when the map is safe, and say a word or two in their own people's way; if nobody can come, or the setting "Goods and people come and go on the map" is off, everything happens at once as before. The Almanac page "goods carried by hand" explains it.
+
 ## Every event in its own voice
 
 *26 October 2026, later, version 0.10.0*

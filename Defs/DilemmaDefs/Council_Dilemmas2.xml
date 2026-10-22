@@ -245,7 +245,7 @@
         <outcome>A hundred silver went to {FACTION}, with a letter {A_nameDef} took two evenings to write. Their thanks came back with the next traveler.</outcome>
         <ways><generosity>8</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_DebtRepaid</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
@@ -256,7 +256,7 @@
         <riskReplaces>true</riskReplaces>
         <riskOutcome>The silver never reached {FACTION}. It went missing somewhere on the road, and so did whoever was carrying it.</riskOutcome>
         <riskEffects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>100</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_DebtUnpaid</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Squandered</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
@@ -267,7 +267,7 @@
         <outcome>{A_nameDef} sent 25 silver and a note to {FACTION}, and wrote the note over three times, trying to make it say more than the silver could.</outcome>
         <ways><generosity>2</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>25</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>25</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
@@ -278,7 +278,7 @@
         <outcome>Sacks of food went to {FACTION}, who had more use for grain than coin this season. There's a gap on the storeroom shelves where they stood.</outcome>
         <ways><generosity>6</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>50</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>50</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>7</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_DebtRepaid</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
