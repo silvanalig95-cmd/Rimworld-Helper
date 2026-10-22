@@ -22,7 +22,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_HarvestHome</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>harvest home</label><description>The harvest is in, and we celebrated with a big meal. We'll be fine this winter.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>harvest home</label><description>The harvest is in and the stores are full, and we ate like it.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -34,7 +34,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Stories</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>midwinter stories</label><description>We sat up late on midwinter night, telling stories about where we came from.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>stories by the fire</label><description>We sat round the fire telling stories about where we came from, some of them sad.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -52,13 +52,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_YearOfTheDead</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>a year for those we lost</label><description>We named this year for the ones we lost.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a year for those we lost</label><description>We named this year for the ones we lost. It's theirs now, every day of it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Muffalo</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the year of the muffalo</label><description>We named the year after a muffalo. I laughed until I cried, and the muffalo didn't care at all.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the year of the muffalo</label><description>We named the year after a muffalo. I can't say it with a straight face, and I've tried.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -70,13 +70,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_SpoilsUnfair</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>someone grabbed the best spoils</label><description>We all fought. One of us got the good boots.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>someone grabbed the best spoils</label><description>The spoils didn't go round fairly. Somebody else is wearing the good boots.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_FairShares</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>fair shares</label><description>The spoils were split evenly between us. That's fair.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>fair shares</label><description>The spoils were shared out properly, with no grabbing. That's fair.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -101,7 +101,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_PetReleased</defName>
     <durationDays>15</durationDays>
-    <stages><li><label>they made me let my animal go</label><description>The council had my animal turned loose in the wild. I keep looking at the treeline.</description><baseMoodEffect>-12</baseMoodEffect></li></stages>
+    <stages><li><label>lost my animal to the wild</label><description>My animal is out there in the wild now, and it isn't coming back. I keep looking at the treeline.</description><baseMoodEffect>-12</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -113,13 +113,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_TraditionKept</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>a tradition kept</label><description>We kept up our tradition, the way we do every year.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a tradition kept</label><description>We kept our tradition again this year, the same way as always, down to who stands where.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_TraditionBroken</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>a tradition broken</label><description>We've kept that tradition every year until now. It doesn't feel right to let it go.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>a tradition broken</label><description>We've kept that day every year until now. This year it just went by.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

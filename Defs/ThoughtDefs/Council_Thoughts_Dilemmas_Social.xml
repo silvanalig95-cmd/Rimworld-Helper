@@ -11,13 +11,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Separated</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>kept apart like children</label><description>The council split up our work and our rooms so we'd stay apart. My half of the colony is smaller.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>kept apart like children</label><description>Separate work, separate mealtimes, so we stay apart. My half of the colony is smaller.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Reshuffled</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>my shifts were reshuffled</label><description>My shifts got moved around because of somebody else's quarrel. I wasn't even asked.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>my shifts were reshuffled</label><description>My chores got moved around to suit somebody else. I wasn't even asked.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -50,7 +50,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_PostedApart</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>posted apart from my friend</label><description>I asked to work beside my friend, and the council decided the turnips need me more.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>posted apart from my friend</label><description>I asked to work beside my friend, and the council decided the potato rows need me more.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -68,7 +68,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Meddled</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council meddled in my friendships</label><description>Now the council has opinions about who I spend my evenings with. That's none of their business.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the council's meddling</label><description>Now the council has opinions about who I spend my evenings with. That's none of their business.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -91,13 +91,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Spared</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>walked away clean</label><description>I lied to cover for my friend, and now they're the one being punished. I got off clean, and I feel awful.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>walked away clean</label><description>I lied to cover for my friend, and now they're the one being punished. I got off clean, and I can't eat.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_TookTheFall</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my friend took my punishment</label><description>It was my mistake, but my friend is the one being punished for it. I can't look them in the eye.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>my friend took my punishment</label><description>It was my mistake, but my friend is the one being punished for it. I keep finding reasons to be somewhere else.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -132,7 +132,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Remembrance</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>the remembrance night</label><description>We told the story of the fight from start to end and drank to all who bled for this place. I slept well that night.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the remembrance night</label><description>We told the story of the fight from start to end and drank to all who bled for this place. It was nearly light when I went to bed.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -141,7 +141,7 @@
     <durationDays>15</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>told the story of the fight together</label><description>We told the story of the fight together, the way it really happened. They know what that day was like.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <stages><li><label>told the story of the fight together</label><description>We told the story of the fight together, and it got bigger every time. They know what that day was like.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -220,7 +220,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmSoc_Uncredited</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>no credit for my work</label><description>The council called it colony work and didn't name anyone. I'll remember that next time there's colony work to do.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>no credit for my work</label><description>Colony work, the council called it, without a single name. I'll remember that next time there's colony work to do.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Office ===================== -->

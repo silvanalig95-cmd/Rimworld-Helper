@@ -24,10 +24,10 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>locked in at night</label><description>Barred in my own home at ten like a prisoner. The best hours of the day, gone.</description><baseMoodEffect>-6</baseMoodEffect></li>
-      <li><label>a curfew</label><description>In by ten, gate barred, lights out. The evenings are very short.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>safe at night</label><description>Everyone in, the gate barred, the watch on the wall. I sleep easier.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>the gate barred</label><description>Nobody out in the dark, nothing coming in. For the first time in weeks I'm not listening for footsteps.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>locked in at night</label><description>Barred in my own home at ten like a prisoner. I used to do my best thinking at night.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>a curfew</label><description>We're all in by ten with the lights out. The evenings are very short.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>safe at night</label><description>With the gate barred and the watch on the wall, I sleep easier.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>the gate barred</label><description>The night belongs to the watch now, and nothing gets past the gate. I've stopped lying awake listening for footsteps.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -50,7 +50,7 @@
     <stages>
       <li><label>food given away</label><description>Our food, handed out at the gate to people who never lifted a finger for it.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>alms at the gate</label><description>Food goes out at the gate every morning. I hope we don't need it ourselves.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>bread at the gate</label><description>Nobody leaves our gate hungry this week. That's a good thing to be able to say.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>bread at the gate</label><description>The bowls go out at the gate every morning, and they come back empty. That's a good thing to see.</description><baseMoodEffect>2</baseMoodEffect></li>
       <li><label>feeding the hungry</label><description>A child came back to the gate today just to say thank you. I had to go inside for a while.</description><baseMoodEffect>3</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -63,7 +63,7 @@
       <li><label>someone else's holy days</label><description>Three days of prayers that aren't mine, and work stopped for every one of them.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>holy days</label><description>Prayers at dawn and dusk, and work set down for them. It's not my way.</description><baseMoodEffect>-1</baseMoodEffect></li>
       <li><label>keeping the holy days</label><description>We set down our work for the faith, together. It steadies me.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>the faith kept well</label><description>Three days given to the faith, the whole colony at prayer. I feel closer to what matters than I have in a long time.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>the faith kept well</label><description>Three days given to the faith, the whole colony at prayer. My prayers come easier than they have in years.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -74,7 +74,7 @@
     <stages>
       <li><label>strangers everywhere</label><description>Strangers wandering through the colony, handling everything. I can't wait for them to leave.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>market crowds</label><description>Too many people, too much noise, and somebody always wanting to sell me something.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>market day</label><description>Stalls by the gate, haggling, news from the road. It's good to see new faces.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>market day</label><description>There are stalls by the gate and people haggling over everything. It's good to see new faces.</description><baseMoodEffect>2</baseMoodEffect></li>
       <li><label>a good market</label><description>I got the better of a trader today, and I'm going to be talking about it for a week.</description><baseMoodEffect>3</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -108,8 +108,8 @@
     <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
     <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
     <stages>
-      <li><label>kept apart</label><description>Everyone at arm's length, the gate shut, nobody to talk to. It's worse than being ill.</description><baseMoodEffect>-5</baseMoodEffect></li>
-      <li><label>quarantine</label><description>Keeping our distance, sleeping apart, nobody in or out. It's lonely.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>kept apart</label><description>I haven't sat close to another person in days. It's worse than being ill.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>quarantine</label><description>We keep our distance and sleep apart, and the gate stays shut. It's lonely.</description><baseMoodEffect>-2</baseMoodEffect></li>
       <li><label>keeping it out</label><description>The sick apart, the gate shut. Whatever is going round, it isn't getting in here.</description><baseMoodEffect>2</baseMoodEffect></li>
       <li><label>safe behind the gate</label><description>I've seen what a fever does to a town. Here, at least, we're doing it right.</description><baseMoodEffect>3</baseMoodEffect></li>
     </stages>
@@ -122,7 +122,7 @@
     <stages>
       <li><label>hungry for strangers</label><description>Half portions for us so strangers can eat. I'm hungry, and I didn't choose this.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>famine bread</label><description>Smaller bowls, and the rest sent down the road to the hungry. I mind it more than I'd like to.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>sharing the lean times</label><description>We eat a little less so others can eat at all. It's the right thing.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>sharing the lean times</label><description>We eat a little less so others can eat at all. My bowl's smaller, and I can live with that.</description><baseMoodEffect>2</baseMoodEffect></li>
       <li><label>bread for the hungry</label><description>Every sack that goes down the road is someone who lives through the winter. I'd give more.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -134,8 +134,8 @@
     <stages>
       <li><label>the gates left open</label><description>Anyone could walk in. Anyone at all. I keep a knife under my pillow now.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>open gates</label><description>Strangers coming and going all week. I don't like not knowing who's about.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>a welcoming place</label><description>New faces at the gate, news from the road. It feels like we're part of the world again.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>open to the world</label><description>Travellers at supper and stories from far away. This is how a colony should live.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a welcoming place</label><description>There's always someone new at the gate. It feels like we're part of the world again.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>open to the world</label><description>Travelers at supper, and stories from places I'll never see. I hope the gate stays open.</description><baseMoodEffect>3</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 

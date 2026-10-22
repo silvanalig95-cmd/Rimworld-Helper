@@ -31,7 +31,7 @@
     <defName>Council_Ail_HeadCold_Mood</defName>
     <hediff>Council_Ail_HeadCold</hediff>
     <stages>
-      <li><label>a head cold</label><description>My nose won't stop running.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a head cold</label><description>My nose won't stop running. I've gone through every rag I own.</description><baseMoodEffect>-1</baseMoodEffect></li>
       <li><label>stuffed up with a cold</label><description>I can't breathe through my nose, and my head feels full of wool.</description><baseMoodEffect>-2</baseMoodEffect></li>
       <li><label>a miserable cold</label><description>Everything aches and I can't stop sneezing. I want my bed.</description><baseMoodEffect>-3</baseMoodEffect></li>
     </stages>
@@ -51,7 +51,7 @@
     <defName>Council_Ail_ChestCold_Mood</defName>
     <hediff>Council_Ail_ChestCold</hediff>
     <stages>
-      <li><label>a tickly cough</label><description>There's a tickle in my chest that won't leave me alone.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a tickly cough</label><description>A tickle in my chest, and it won't leave me alone.</description><baseMoodEffect>-1</baseMoodEffect></li>
       <li><label>a chesty cough</label><description>Every cough comes from somewhere deep down. It keeps me up at night.</description><baseMoodEffect>-2</baseMoodEffect></li>
       <li><label>a hacking cough</label><description>I can't finish a sentence without coughing. My ribs hurt from it.</description><baseMoodEffect>-3</baseMoodEffect></li>
     </stages>
@@ -79,7 +79,7 @@
     <defName>Council_Ail_Dreamfever_Mood</defName>
     <hediff>Council_Ail_Dreamfever</hediff>
     <stages>
-      <li><label>restless nights</label><description>I keep waking up in the night, and I can't settle again.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>restless nights</label><description>I keep waking in the night with my heart pounding, and I can never remember why.</description><baseMoodEffect>-2</baseMoodEffect></li>
       <li><label>dreamfever</label><description>The dreams are so real. This morning I went looking for a door that isn't there.</description><baseMoodEffect>-3</baseMoodEffect></li>
       <li><label>waking dreams</label><description>I'm not always sure which things are dreams. The walls moved again today.</description><baseMoodEffect>-4</baseMoodEffect></li>
     </stages>
@@ -99,7 +99,7 @@
     <defName>Council_Ail_SoreHands_Mood</defName>
     <hediff>Council_Ail_SoreHands</hediff>
     <stages>
-      <li><label>aching hands</label><description>My hands ache from all that work. I can feel every joint.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>aching hands</label><description>My hands ache from all that work. I feel every knuckle when I make a fist.</description><baseMoodEffect>-1</baseMoodEffect></li>
       <li><label>swollen wrists</label><description>My wrists are swollen. I dropped a cup this morning.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -108,7 +108,7 @@
     <defName>Council_Ail_Blisters_Mood</defName>
     <hediff>Council_Ail_Blisters</hediff>
     <stages>
-      <li><label>sore feet</label><description>My feet are sore from walking.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>sore feet</label><description>My feet are sore, and my boots have found every soft spot.</description><baseMoodEffect>-1</baseMoodEffect></li>
       <li><label>broken blisters</label><description>The blisters have burst. Every step stings.</description><baseMoodEffect>-1</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -217,9 +217,9 @@
     <defName>Council_Ail_Tetanus_Mood</defName>
     <hediff>Council_Ail_Tetanus</hediff>
     <stages>
-      <li><label>lockjaw</label><description>My jaw won't open properly. I know what that means.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>lockjaw</label><description>My jaw won't open past a finger's width. That old cut was worse than I thought.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>rigid muscles</label><description>My whole body is clenched like a fist, and I can't make it let go.</description><baseMoodEffect>-7</baseMoodEffect></li>
-      <li><label>tetanus spasms</label><description>The spasms come out of nowhere. I'm afraid of the next one.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>tetanus spasms</label><description>The spasms come out of nowhere and bend me like a bow.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>severe tetanus</label><description>Every spasm takes my breath away. I'm afraid I won't get it back.</description><baseMoodEffect>-12</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -230,7 +230,7 @@
     <stages>
       <li><label>pneumonia coming on</label><description>I'm hot, then cold, and it hurts to breathe in.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>pneumonia</label><description>The fever's high and every breath hurts. I'm scared.</description><baseMoodEffect>-6</baseMoodEffect></li>
-      <li><label>struggling to breathe</label><description>I can't get enough air. I'm so tired.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>struggling to breathe</label><description>I can't get enough air, however hard I pull.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>the pneumonia crisis</label><description>I can't breathe. I don't know if I'll see tomorrow.</description><baseMoodEffect>-12</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -242,7 +242,7 @@
       <li><label>a cough that won't go</label><description>This cough has been with me for weeks. I've stopped pretending it's nothing.</description><baseMoodEffect>-3</baseMoodEffect></li>
       <li><label>consumption</label><description>I'm wasting away. I eat and eat and the weight still falls off me.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>wasting</label><description>I can hardly climb out of bed. My clothes hang off me.</description><baseMoodEffect>-8</baseMoodEffect></li>
-      <li><label>dying of consumption</label><description>I don't think I have much time left.</description><baseMoodEffect>-10</baseMoodEffect></li>
+      <li><label>dying of consumption</label><description>I've started thinking about who should have my things.</description><baseMoodEffect>-10</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -250,9 +250,9 @@
     <defName>Council_Ail_Typhus_Mood</defName>
     <hediff>Council_Ail_Typhus</hediff>
     <stages>
-      <li><label>typhus fever</label><description>My head is pounding and I'm burning up.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>typhus fever</label><description>My head is pounding, and the sweat won't stop.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>typhus rash</label><description>There's a rash spreading over my chest, and the fever won't break.</description><baseMoodEffect>-6</baseMoodEffect></li>
-      <li><label>typhus stupor</label><description>Everything is far away and foggy.</description><baseMoodEffect>-8</baseMoodEffect></li>
+      <li><label>typhus stupor</label><description>I keep losing hours. I blink, and the light has moved across the floor.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>typhus delirium</label><description>They keep talking to me, but I can't make sense of the words.</description><baseMoodEffect>-10</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -261,7 +261,7 @@
     <defName>Council_Ail_Meningitis_Mood</defName>
     <hediff>Council_Ail_Meningitis</hediff>
     <stages>
-      <li><label>a crushing headache</label><description>My head is splitting and the light hurts my eyes.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>a crushing headache</label><description>Light stabs at my eyes, and the headache won't let up.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>meningitis</label><description>My neck won't bend and the headache is the worst pain I've known.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>confused</label><description>I don't know where I am. Who are these people?</description><baseMoodEffect>-10</baseMoodEffect></li>
       <li><label>seizures</label><description>My body keeps seizing up. I'm terrified.</description><baseMoodEffect>-12</baseMoodEffect></li>
@@ -283,7 +283,7 @@
     <defName>Council_Ail_Glassblood_Mood</defName>
     <hediff>Council_Ail_Glassblood</hediff>
     <stages>
-      <li><label>glittering fever</label><description>There's a glitter under my skin, and I'm burning up.</description><baseMoodEffect>-4</baseMoodEffect></li>
+      <li><label>glittering fever</label><description>There's a glitter under my skin, and a fever behind it.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>stiffening joints</label><description>My joints are stiffening. They click like glass.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>glass joints</label><description>I can barely bend my fingers. I'm turning to glass.</description><baseMoodEffect>-8</baseMoodEffect></li>
       <li><label>crystallizing</label><description>My chest feels like it's full of broken glass.</description><baseMoodEffect>-10</baseMoodEffect></li>
@@ -331,7 +331,7 @@
     <hediff>Council_Ail_MotionSick</hediff>
     <stages>
       <li><label>queasy from the road</label><description>The swaying never stops, and my stomach doesn't like it.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>travel-sick</label><description>I've been sick twice today. I'd give anything for ground that keeps still.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>travel-sick</label><description>I've lost my breakfast at the side of the road. I'd give anything for ground that keeps still.</description><baseMoodEffect>-3</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -339,7 +339,7 @@
     <defName>Council_Ail_Splinter_Mood</defName>
     <hediff>Council_Ail_Splinter</hediff>
     <stages>
-      <li><label>a splinter</label><description>There's a splinter deep in my palm. I feel it every time I grip something.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a splinter</label><description>A splinter's gone deep into my palm. I feel it every time I grip something.</description><baseMoodEffect>-1</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -399,7 +399,7 @@
     <hediff>Council_Ail_AthletesFoot</hediff>
     <stages>
       <li><label>itchy toes</label><description>Between my toes itches and stings. It's all the wading.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>cracked feet</label><description>My feet are cracked and peeling, and every step stings.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>cracked feet</label><description>My feet are cracked and peeling, and the cracks open up when I walk.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -436,7 +436,7 @@
     <defName>Council_Ail_Appendicitis_Mood</defName>
     <hediff>Council_Ail_Appendicitis</hediff>
     <stages>
-      <li><label>a belly ache</label><description>There's a pain low in my belly that won't settle.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a belly ache</label><description>My belly aches low down, and it won't settle.</description><baseMoodEffect>-3</baseMoodEffect></li>
       <li><label>appendicitis</label><description>The pain has moved to my right side and it's sharp now. I can't stand up straight.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>something burst</label><description>Something gave way inside me. Now the pain is everywhere.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>peritonitis</label><description>My belly is hard as a board and burning. I'm frightened.</description><baseMoodEffect>-12</baseMoodEffect></li>
@@ -469,7 +469,7 @@
     <hediff>Council_Ail_KidneyStone</hediff>
     <stages>
       <li><label>an aching side</label><description>There's still a dull ache in my side, but the worst is over.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>passing a stone</label><description>The pain comes in waves. When it comes, I can't think about anything else.</description><baseMoodEffect>-5</baseMoodEffect></li>
+      <li><label>passing a stone</label><description>The pain comes in waves. Between them I lie very still and wait.</description><baseMoodEffect>-5</baseMoodEffect></li>
       <li><label>renal colic</label><description>It's the worst pain I've ever had. I can't sit, I can't lie down.</description><baseMoodEffect>-8</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -489,8 +489,8 @@
     <hediff>Council_Ail_HiveFever</hediff>
     <stages>
       <li><label>a swollen sting</label><description>The insect wound has gone hot and hard.</description><baseMoodEffect>-3</baseMoodEffect></li>
-      <li><label>hive fever</label><description>I'm burning up, and the wound throbs with my heartbeat.</description><baseMoodEffect>-6</baseMoodEffect></li>
-      <li><label>the hum</label><description>There's a hum in my ears that won't stop. It sounds like the hive.</description><baseMoodEffect>-9</baseMoodEffect></li>
+      <li><label>hive fever</label><description>The fever's up, and the skin around the wound has gone purple.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>the hum</label><description>A hum in my ears, day and night. It sounds like the hive.</description><baseMoodEffect>-9</baseMoodEffect></li>
       <li><label>hive convulsions</label><description>My body won't stop shaking, and I can still hear them.</description><baseMoodEffect>-12</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -521,7 +521,7 @@
     <hediff>Council_Ail_Limp</hediff>
     <stages>
       <li><label>a stiff leg</label><description>The bone's knit. The leg doesn't quite believe it yet.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>limping</label><description>I limp like an old dog. Everyone can see it.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>limping</label><description>I limp like an old dog. It takes me twice as long to cross the yard.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -562,7 +562,7 @@
     <hediff>Council_Ail_PollutionCough</hediff>
     <stages>
       <li><label>a scratchy throat</label><description>My throat's raw from the grit out on the bad ground.</description><baseMoodEffect>-1</baseMoodEffect></li>
-      <li><label>pollution cough</label><description>I cough up grey, and it tastes of metal.</description><baseMoodEffect>-2</baseMoodEffect></li>
+      <li><label>pollution cough</label><description>Every cough tastes of metal. I can feel the grit down in my chest.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -570,7 +570,7 @@
     <defName>Council_Ail_SnowBlind_Mood</defName>
     <hediff>Council_Ail_SnowBlind</hediff>
     <stages>
-      <li><label>gritty eyes</label><description>My eyes feel full of sand after a day on the snow.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>gritty eyes</label><description>After a day out on the snow, my eyes won't stop watering.</description><baseMoodEffect>-1</baseMoodEffect></li>
       <li><label>snow-blind</label><description>The light hurts and everything is a blur. I have to keep my eyes shut.</description><baseMoodEffect>-2</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
@@ -597,9 +597,9 @@
     <hediff>Council_Ail_SwampFever</hediff>
     <stages>
       <li><label>swamp fever</label><description>I'm burning up, my eyes are red and my calves ache like I've walked for a week.</description><baseMoodEffect>-4</baseMoodEffect></li>
-      <li><label>yellow with swamp fever</label><description>My skin's gone yellow. Nobody says anything about it, which is worse.</description><baseMoodEffect>-6</baseMoodEffect></li>
+      <li><label>yellow with swamp fever</label><description>My skin's gone yellow. People try not to stare, and I can tell when they do.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>failing with swamp fever</label><description>Everything hurts and I can't keep water down.</description><baseMoodEffect>-8</baseMoodEffect></li>
-      <li><label>bleeding lungs</label><description>There's blood when I cough. I'm so tired.</description><baseMoodEffect>-10</baseMoodEffect></li>
+      <li><label>bleeding lungs</label><description>There's blood when I cough. I keep my face turned to the wall.</description><baseMoodEffect>-10</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 
@@ -617,7 +617,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HeartTags"><feelings><li>Pride</li></feelings><weight>0.6</weight></li>
     </modExtensions>
-    <stages><li><label>pulled a patient through</label><description>I nursed someone through a bad illness, and they lived.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>pulled a patient through</label><description>I sat up nights with them through the worst of it. Now they're sitting up and asking for food.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -626,7 +626,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HeartTags"><feelings><li>Hope</li></feelings><weight>0.6</weight></li>
     </modExtensions>
-    <stages><li><label>over the worst</label><description>I was really sick, and I came through it. Breakfast tasted better this morning.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>over the worst</label><description>I was really sick, and I came through it. Food tastes like food again.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>
