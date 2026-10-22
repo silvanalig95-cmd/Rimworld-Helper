@@ -34,11 +34,11 @@
       <li>A levy from {PLACE}</li>
     </titles>
     <texts>
-      <li>An imperial steward at {PLACE} has written to every settlement within a month's ride. The Empire is raising a levy for a campaign on the far side of the world, and it expects its neighbors to contribute, in silver or in kind.\n\nIt isn't a tax, the letter says. It is an opportunity to be remembered.</li>
+      <li>A letter has come from the imperial steward at {PLACE}, sealed in red wax and copied, by the look of it, a hundred times:\n\n"To the settlements within a month's ride. The Empire raises a levy for its campaign on the far side of the world. Contributions are expected, in silver or in kind. This is not a tax. It is an opportunity to be remembered."</li>
       <li>[titled] An imperial steward at {PLACE} has written to the colony, addressing its titled colonists by their full honors. The Empire is raising a levy for a campaign far away, and those who hold its titles are expected to set an example.\n\nThe letter is polite. It is also very clear.</li>
     </texts>
     <summaries>
-      <li>{FACTION} will ask the colony for a share of the levy. Paying earns their goodwill; refusing costs some, though nobody marches over it.</li>
+      <li>{FACTION} will ask the colony for a share of the levy. Paying earns their goodwill; refusing costs some, though it won't come to blows.</li>
       <li>[paid] The colony has paid its share of the levy. {FACTION} will remember it.</li>
     </summaries>
     <modExtensions>
@@ -129,7 +129,7 @@
           <li>The levy is raised without us</li>
         </titles>
         <texts>
-          <li>The Empire's campaign has its silver, from other settlements. The steward at {PLACE} has not written again, which is its own kind of letter.</li>
+          <li>The Empire's campaign has its silver, from other settlements. The steward at {PLACE} has not written again. The colony's name is in his ledger, with a line through it.</li>
         </texts>
         <chronicle>The colony refused the Empire's levy.</chronicle>
       </li>
@@ -172,7 +172,7 @@
     </titles>
     <texts>
       <li>A unit of the Empire's troops walked away from their posts near {PLACE} last week, and some of them took their gear with them. The Empire has posted a reward for every one brought back.\n\nImperial patrols are on the roads, asking questions at every gate. Some of the deserters are hiding in the hills. Some of them are only tired.</li>
-      <li>[titled] The Empire has written to the colony's titled colonists in person: deserters from a garrison near {PLACE} are loose in the region, and those who hold the Empire's honors are expected to help bring them in.\n\nSome of the deserters joined the ones who fight the Empire outright. Most are only tired of it.</li>
+      <li>[titled] The Empire has written to the colony's titled colonists in person: deserters from a garrison near {PLACE} are loose in the region, and those who hold the Empire's honors are expected to help bring them in.\n\nSome of the deserters have gone over to the Empire's enemies. Most of them just want to go home.</li>
     </texts>
     <summaries>
       <li>A deserter may come to the colony asking for help. {FACTION} will pay for any that are handed over, and won't thank anyone who hides one.</li>
@@ -223,7 +223,7 @@
           </li>
           <li>
             <label>Feed the deserter and send them on</label>
-            <outcome>The deserter ate two bowls of stew, took a loaf for the road, and was gone before the patrol came by. Nobody at the colony had seen anyone.</outcome>
+            <outcome>The deserter ate two bowls of stew, took a loaf for the road, and was gone before the patrol came by. When it did, the colony hadn't seen anyone.</outcome>
             <flags><li>fed</li></flags>
             <ways><mercy>1</mercy></ways>
           </li>
@@ -448,10 +448,10 @@
         <options>
           <li>
             <label>Let him dig, for a third</label>
-            <outcome>The prospector worked the stream for a week, singing. At the end of it he left the colony its third, weighed out on a little brass scale: more than anyone expected.</outcome>
+            <outcome>The prospector panned the stream until dark, singing, and came up to the gate grinning. The colony's third was weighed out on his little brass scale and paid in silver, more than anyone expected.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>The prospector worked the stream for a week and found mud, a boot and some very surprised frogs. He left in good spirits, heading for the next creek.</riskOutcome>
+            <riskOutcome>The prospector panned the stream until dark and found mud, a boot and some very surprised frogs. He left in good spirits, heading for the next creek.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>220</count></li>
             </effects>

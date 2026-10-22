@@ -24,7 +24,7 @@
       <li>A famous healer</li>
     </titles>
     <texts>
-      <li>[theirLowtech] {X_nameFull} is touring the region. Twenty years ago {X_nameDef} was a village healer; now there are songs about {X_objective}, and people walk for days to be seen. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} has put back a hand that was gone and cured fevers nobody else could name. Some of that may even be true.</li>
+      <li>[theirLowtech] {X_nameFull} is touring the region. Twenty years ago {X_nameDef} was a village healer; now there are songs about {X_objective}, and people walk for days to be seen. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} once put back a hand that was gone, and cured a fever no other healer could name. The line outside {X_possessive} door in {PLACE} starts before dawn.</li>
       <li>[theirHightech] {X_nameFull}, the surgeon, is touring the region with a van full of equipment and a waiting list longer than the road. {X_nameDef} is in {PLACE} this week and will move on soon.\n\nThey say {X_nameDef} has rebuilt a hand that was gone and cured things other doctors had given up on. Some of that may even be true.</li>
     </texts>
     <summaries>
@@ -47,7 +47,7 @@
         <options>
           <li>
             <label>Invite {X_objective} ({COUNT} silver)</label>
-            <outcome>The silver goes to {PLACE} with a rider. {X_nameDef} will come within a few days.</outcome>
+            <outcome>The assistant's rider takes the fee back to {PLACE}. {X_nameDef} will come within a few days.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the healer's fee</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
             </effects>
@@ -129,8 +129,8 @@
     </titles>
     <texts>
       <li>Every few years the herds of the region move together, and this is one of those years. The ground shakes at dusk, the birds follow the dust, and the hunters of {FACTION} have come out of {PLACE} in force.\n\nThere will be meat for anyone who wants it, and trouble for anyone who gets in the way.</li>
-      <li>[fall] The herds are going south ahead of the cold, all of them together, the way they do every few years. The hunters of {FACTION} have come out of {PLACE} to meet them, and the valleys are full of dust and noise.</li>
-      <li>[spring] The herds are coming back north with the new grass, all of them together, the way they do every few years. The hunters of {FACTION} have come out of {PLACE} to meet them.</li>
+      <li>[fall] The herds are going south ahead of the cold, all of them at once. From the colony's wall the dust can be seen a day before the animals, and {FACTION}'s hunters are already camped along the valleys out of {PLACE}.</li>
+      <li>[spring] The herds are coming back north with the new grass, so many that the far hills seem to move. The hunters of {FACTION} have come out of {PLACE} to meet them, their winter stores nearly gone.</li>
     </texts>
     <summaries>
       <li>Herds pass the colony far more often, and rare beasts with them. {FACTION}'s hunters may ask to hunt on the colony's land.</li>
@@ -165,7 +165,7 @@
         <options>
           <li>
             <label>Let them hunt</label>
-            <outcome>The hunters thank the colony and go after the herds. Their horns can be heard at dawn for days.</outcome>
+            <outcome>The party thanks the colony and goes after the herds. For days afterward their horns can be heard at dawn.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
             </effects>
@@ -176,7 +176,7 @@
           </li>
           <li>
             <label>Let them hunt, for {COUNT} silver</label>
-            <outcome>The hunters pay without arguing and go after the herds.</outcome>
+            <outcome>Their headman pays without arguing, and the party goes after the herds.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
             </effects>
@@ -357,7 +357,7 @@
         <options>
           <li>
             <label>Let {A_objective} study it</label>
-            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of things nobody else at the colony can read.</outcome>
+            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of things only {A_nameDef} can read.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>2000</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration" />
@@ -392,7 +392,7 @@
           <li>The ley lines settle</li>
         </titles>
         <texts>
-          <li>The sky has gone back to its usual colors, and the mages of {PLACE} have opened their towers again. Whatever stirred the ley lines has settled, for now.</li>
+          <li>The sky has gone back to its usual colors, and the mages of {PLACE} have opened their towers again. Whatever stirred the ley lines has gone still, and the mages are already arguing about what it was.</li>
         </texts>
         <chronicle>A season of wild magic passed.</chronicle>
       </li>

@@ -725,7 +725,7 @@
         </titles>
         <texts>
           <li>[share] The rush has moved on to the next valley. The prospectors who worked the colony's creeks left the colony's share at the gate on their way out: {COUNT} silver, counted twice in front of witnesses.</li>
-          <li>[fee] The rush has moved on to the next valley, and the prospectors with it. The colony was paid up front, and nobody knows whether they found more than that.</li>
+          <li>[fee] The rush has moved on to the next valley, and the prospectors with it. The colony was paid up front. Whether they found more than that, they didn't say.</li>
           <li>[!share,!fee] The rush has moved on to the next valley. The colony's hills are quiet again, and still full of whatever was or wasn't in them.</li>
         </texts>
         <chronicle>The silver rush moved on.</chronicle>

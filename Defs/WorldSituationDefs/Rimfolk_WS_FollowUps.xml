@@ -103,7 +103,7 @@
           <li>A builder for {PLACE}</li>
         </titles>
         <texts>
-          <li>{FACTION} have the timber now and the willing hands, but nobody who knows how to raise a bridge that will take a laden cart. They've heard of {A_nameDef}.\n\nThey ask for a week of {A_nameDef}'s time. They promise to feed {A_objective} better than {A_pronoun} has ever been fed.</li>
+          <li>{FACTION} have the timber now and the willing hands, but not one builder who can raise a bridge that will take a laden cart. They've heard of {A_nameDef}.\n\nThey ask for a week of {A_nameDef}'s time. They promise to feed {A_objective} better than {A_pronoun} has ever been fed.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
