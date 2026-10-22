@@ -77,7 +77,7 @@
       <cold><li>Slept eight hours. Worth the wood.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll sleep in my boots and coat, then, with the rug on top.</li></plain>
+      <plain><li>Boots and coat to bed, with the rug on top.</li></plain>
       <warm><li>I'll pile on whatever blankets I can find. There are people worse off than me.</li></warm>
       <blunt><li>If I freeze, I'm haunting this council first.</li></blunt>
       <gloomy><li>Cold room, long winter. I'll see you in spring, if I'm lucky.</li></gloomy>
@@ -119,7 +119,7 @@
     </wants>
     <request>
       <plain>
-        <li>Our books live in a pile by the door, and they get trodden on twice a day. Could we build {THING}?</li>
+        <li>Our books live in a pile by the door and get trodden on twice a day. I'd build {THING} myself if I knew how.</li>
         <li>[winter] I caught someone about to burn one of our books for warmth. They need a shelf of their own.</li>
         <li>I've read everything we have twice. Those books have earned a shelf.</li>
         <li>[rain] The roof leaks, and the books are on the floor right under the drip.</li>
@@ -263,7 +263,7 @@
     </wants>
     <request>
       <plain>
-        <li>I've been training against the wall, and my knuckles show it. Could we build {THING}?</li>
+        <li>I've been training against the wall, and my knuckles show it. Put up {THING} and the wall can rest.</li>
         <li>Between raids I get slow, and then I'm slow when the raid comes.</li>
         <li>[afterraid] I missed three times out there. Three. I want somewhere to practice before the next lot shows up.</li>
         <li>[hurt] I got hurt because I was a step slow. I'd like to be a step faster next time.</li>
@@ -295,7 +295,7 @@
       <cold><li>Practice resumes at dawn. Anyone who'd like to live longer may join.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll keep sparring with the wall and the fence posts.</li></plain>
+      <plain><li>The fence posts and I will carry on sparring. They're losing.</li></plain>
       <blunt><li>Don't come crying to me when we lose the next fight.</li></blunt>
       <gloomy><li>Rusty it is. Let's hope they're rustier.</li></gloomy>
       <cold><li>I'll get slower. When it costs us, I'll say so.</li></cold>
@@ -364,7 +364,7 @@
     </thanks>
     <expired>
       <plain><li>Back in the crate, little one. Sorry.</li></plain>
-      <warm><li>We'll manage. Babies have slept in worse places than this.</li></warm>
+      <warm><li>Babies have slept in worse places than a crate. I'll pad it with my coat.</li></warm>
       <blunt><li>My kid sleeps in a box. Remember that next time you want something from me.</li></blunt>
       <gloomy><li>Of course. Even the baby gets the leftovers.</li></gloomy>
     </expired>
@@ -585,7 +585,7 @@
     </thanks>
     <expired>
       <plain><li>Back to plain bread.</li></plain>
-      <warm><li>Plain food still fills you up. I'll manage.</li></warm>
+      <warm><li>Plain food still fills you up. I'll save my sweet tooth for the next trader.</li></warm>
       <blunt><li>Bland food for a bland colony. Fitting.</li></blunt>
       <gloomy><li>No honey. I don't know why I expected any.</li></gloomy>
     </expired>
@@ -656,7 +656,7 @@
       <cold><li>Now we negotiate from strength.</li></cold>
     </thanks>
     <expired>
-      <plain><li>We'll keep scraping by like peasants, I suppose.</li></plain>
+      <plain><li>Scraping by like peasants. I'd hoped for better from us.</li></plain>
       <blunt><li>Go on, spend it all on rubbish.</li></blunt>
       <gloomy><li>Poor we are, and poor we'll stay.</li></gloomy>
       <cold><li>A missed opportunity. I've made a note of it.</li></cold>
@@ -762,17 +762,17 @@
         <li>I deserve something fine. Excellent work, at least. Masterwork, if we're being honest.</li>
         <li>[rich,morning] We have money now. I'd like to look like it.</li>
         <li>[poor,evening] I know we're poor. That's exactly why one of us should look like we aren't.</li>
-        <li>[afterraid] If I die in the next raid, I'd like it to be in something better than this.</li>
-        <li>[skill:Social] People listen to someone well dressed. I'd get far more done in something fine.</li>
+        <li>[afterraid] If I die in the next raid, it won't be in this shirt.</li>
+        <li>[skill:Social] People listen to someone well dressed. I'd get far more done in a good coat.</li>
       </plain>
       <warm>
         <li>I know it's vain. But one really good piece of clothing would make me feel like a person again.</li>
       </warm>
       <blunt>
-        <li>I look like a scarecrow. Get me something fine.</li>
+        <li>I'm dressed like a sack of grain. Get me something fine.</li>
       </blunt>
       <cheerful>
-        <li>Something beautiful to wear, with good stitching! I'd wear it to every meal.</li>
+        <li>A shirt with real embroidery on the cuffs! I'd wear it to every meal.</li>
       </cheerful>
       <gloomy>
         <li>Fine clothes won't make this place any better. I'd feel better in them, though.</li>
@@ -789,9 +789,9 @@
       <cold><li>People will take me more seriously now. They already hand me things more carefully.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Back to the patched shirt, then.</li></plain>
+      <plain><li>The patched shirt goes back on.</li></plain>
       <blunt><li>I see who gets the nice things around here. Not me.</li></blunt>
-      <gloomy><li>Of course. Rags suit this place, and me with it.</li></gloomy>
+      <gloomy><li>Rags suit this place, and me with it.</li></gloomy>
       <cold><li>Disappointing. I'll remember who decides these things.</li></cold>
     </expired>
     <reminder>
@@ -826,8 +826,8 @@
       <plain>
         <li>Everything I own is useful. Just once, give me one thing that's only pretty.</li>
         <li>I used to wear a chain around my neck. I lost it on the way here, and I'd like another.</li>
-        <li>[spring] Spring's here and I want to feel pretty. Something small and shiny would do it.</li>
-        <li>[evening] I'd like something nice to wear in the evenings, when the work's done and nobody's bleeding.</li>
+        <li>[spring] Everything's blooming but me. Something small and shiny would help.</li>
+        <li>[evening] In the evenings, when the work's done and nobody's bleeding, I'd wear something nice. If I had it.</li>
         <li>[trait:Pretty|trait:Beautiful] People already look at me. I'd like to give them something extra to look at.</li>
         <li>[rich,day] We've got silver lying around. Some of it could be lying around my neck instead.</li>
       </plain>
@@ -841,7 +841,7 @@
         <li>Something sparkly, that catches the light when I move! I'd never take it off.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] I want something beautiful in my life. If it has to be small enough to wear, so be it.</li>
+        <li>[lowmood] Nothing beautiful in my life fits in my hand. A ring or a pendant would be a start.</li>
         <li>Nothing lasts out here except metal and stone. Let me wear a bit of the pretty kind.</li>
       </gloomy>
       <cold>
@@ -856,7 +856,7 @@
       <cold><li>A fine piece. It will hold its value.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Nothing that shines, then. Just dirt and work clothes.</li></plain>
+      <plain><li>Nothing that shines. Just dirt and work clothes.</li></plain>
       <cheerful><li>I'll find a pretty stone and tie it on a string instead!</li></cheerful>
       <gloomy><li>Pretty things aren't for people like me. I should have known.</li></gloomy>
     </expired>
@@ -893,7 +893,7 @@
         <li>I know every rock around this colony by now.</li>
         <li>Next time a caravan goes out, I'd like to be on it. I don't care where. Somewhere with different dirt.</li>
         <li>[spring] The ground's drying out. It's good walking weather for a caravan.</li>
-        <li>[winter] I know it's a bad time for it. But when the weather turns, I want to be on the first caravan out.</li>
+        <li>[winter] I know it's a bad time for it. But when the weather turns, put me on the first caravan out.</li>
         <li>[old] I'm not getting younger. If I'm going to see the world, it had better be before my knees give out.</li>
         <li>[trait:Undergrounder] I don't want to leave, exactly. I want to see what's out there so I can come back and feel smug about it.</li>
       </plain>
@@ -904,7 +904,7 @@
         <li>If I look at these walls one more day I'll start punching them. Send me somewhere.</li>
       </blunt>
       <cheerful>
-        <li>A trip! I want to eat whatever they eat in the next settlement and sleep under a different sky.</li>
+        <li>A trip! New food in the next settlement, and a different sky to sleep under.</li>
       </cheerful>
       <gloomy>
         <li>[lowmood] I'll probably die in this colony. I'd like to see one other place first.</li>
@@ -991,7 +991,7 @@
     <expired>
       <plain><li>And there it goes over the hill. Goodbye, {THINGBARE}.</li></plain>
       <blunt><li>{OTHER_nameDef} walked off with it. Thanks for nothing.</li></blunt>
-      <cheerful><li>Oh well! Maybe the next trader will have one.</li></cheerful>
+      <cheerful><li>Maybe the next trader will have one! There's always a next trader.</li></cheerful>
       <gloomy><li>Some other colony gets it now. Lucky them.</li></gloomy>
     </expired>
     <reminder>
@@ -1091,7 +1091,7 @@
     <request>
       <plain>
         <li>I love the work, I'm just bad at it. Could I learn from {OTHER_nameDef}?</li>
-        <li>{OTHER_nameDef} makes it look easy. When I try, it looks like an accident. I want lessons.</li>
+        <li>{OTHER_nameDef} makes it look easy. When I try, it looks like an accident.</li>
         <li>[evening] I've been watching {OTHER_nameDef} at work, trying to pick it up. I'd learn faster if {OTHER_pronoun} showed me.</li>
         <li>[newcomer] I'm new, I know. But I want to be good at this, and {OTHER_nameDef} could show me how.</li>
         <li>[teen] I'm young enough to learn anything, and {OTHER_nameDef} is the best we've got when it comes to {SUBJECT}.</li>
@@ -1227,7 +1227,7 @@
         <li>We've made room for the living and room for the dead. Nothing for whoever's listening.</li>
         <li>[grieving] I lost someone. I want somewhere to say their name out loud without feeling foolish.</li>
         <li>[afterraid] We lived through that one. Somebody deserves thanks for it, and I'd like a proper place to say it.</li>
-        <li>[night] At night it gets very quiet and I feel very small. I need somewhere to go and pray.</li>
+        <li>[night] At night it gets very quiet and I feel very small. That's when I pray, and I've nowhere to do it.</li>
         <li>[storm] Hear that? Somebody up there is angry. Let's build them something nice.</li>
         <li>[trait:Nervous] I pray when I'm scared, which is always. I'd like somewhere to do it sitting down.</li>
       </plain>
@@ -1244,7 +1244,7 @@
         <li>There's probably no one listening. If there is, I want a proper place to complain.</li>
       </gloomy>
       <cold>
-        <li>I'd like an altar. What I say at it is between me and whoever's there.</li>
+        <li>An altar, please. What I say at it is between me and whoever's there.</li>
       </cold>
     </request>
     <thanks>
@@ -1293,7 +1293,7 @@
     <request>
       <plain>
         <li>I wash out of a bucket. The bucket is cold, and someone keeps drinking from it.</li>
-        <li>I can smell myself from across the room, and so can the rest of you. Could we build {THING}?</li>
+        <li>I can smell myself from across the room, and so can the rest of you. We need {THING}.</li>
         <li>[winter] I washed in the trough this morning and had to break the ice first. A hot bath, please.</li>
         <li>[hot] It's sweltering, and we all smell like the inside of a boot. We need a bath.</li>
         <li>[afterraid] There's still blood under my fingernails from the raid. I'd like to soak until it's gone.</li>
@@ -1326,9 +1326,9 @@
     </thanks>
     <expired>
       <plain><li>Back to the bucket. Please stop drinking from it.</li></plain>
-      <warm><li>A bucket and a rag still get most of it. I'll manage.</li></warm>
+      <warm><li>A bucket and a rag still get most of it.</li></warm>
       <blunt><li>Enjoy the smell. I'm the least of it.</li></blunt>
-      <gloomy><li>So we all go on smelling like this.</li></gloomy>
+      <gloomy><li>We'll all go on smelling like this, and we'll stop noticing.</li></gloomy>
     </expired>
     <reminder>
       <plain>
@@ -1397,7 +1397,7 @@
       <cold><li>Nothing goes to the flies now. I'll keep the tally anyway.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I'll keep throwing meat out to the flies.</li></plain>
+      <plain><li>More meat for the flies.</li></plain>
       <blunt><li>Every scrap of rotten meat is on the council now.</li></blunt>
       <gloomy><li>It'll all go bad. It always does.</li></gloomy>
     </expired>
@@ -1465,7 +1465,7 @@
     </thanks>
     <expired>
       <plain><li>The flowers will have to manage on their own.</li></plain>
-      <blunt><li>No hive, no honey. Remember that at supper.</li></blunt>
+      <blunt><li>No hive, no honey. Don't come asking for any.</li></blunt>
       <cheerful><li>I'll stand in the field and buzz encouragingly, then!</li></cheerful>
     </expired>
     <reminder>
@@ -1638,7 +1638,7 @@
     </wants>
     <request>
       <plain>
-        <li>Last raid I found my weapon under a pile of somebody's dirty socks. Could we build {THING}?</li>
+        <li>Last raid I found my weapon under a pile of somebody's dirty socks. That's why I'm asking for {THING}.</li>
         <li>Weapons on the floor, armor in a heap. When the alarm goes, it's a scramble. I want it all on {THING}.</li>
         <li>[afterraid] Three of us spent the start of that raid hunting for our gear.</li>
         <li>[night] If they come tonight, I'm not sure where my weapon is.</li>

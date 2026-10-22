@@ -42,8 +42,8 @@
         <li>I don't need much. A bed, a door that closes, somewhere to keep my things.</li>
         <li>[trigger:barracks] Somebody's elbow woke me at three in the morning. I want a room with a door I can shut.</li>
         <li>[trigger:barracks] Someone in the barracks talks in their sleep. Last night it was about me.</li>
-        <li>[winter] All winter the barracks has been full of coughing. I'd give a lot for a room to myself.</li>
-        <li>[trait:Greedy] I work harder than most people here, and I still sleep in a heap with the rest of them.</li>
+        <li>[winter] It's a long winter to spend without a door to shut. I'd give a lot for a room to myself.</li>
+        <li>[trait:Greedy] I work harder than most people here, and I still haven't got a room of my own.</li>
         <li>[trait:Jealous] Some people here have rooms of their own. I'd like to know why I don't.</li>
         <li>[old] When I go, I'd like it to be in my own bed, in my own room. Not for a while yet, mind you.</li>
         <li>[newcomer] I know I'm new here, but I'm not used to sleeping in a room full of strangers.</li>
@@ -57,14 +57,14 @@
       </warm>
       <blunt>
         <li>I'm done sleeping in a pile of elbows. I want my own room.</li>
-        <li>Someone in that barracks snores like a dying muffalo. Move me out.</li>
+        <li>Give me a room with a door. I'll build it myself if I have to.</li>
       </blunt>
       <cheerful>
         <li>I've already decided where my bed would go! Under the window, if there's a window.</li>
         <li>You know what would make me unbearably happy? A room with my name on the door.</li>
       </cheerful>
       <gloomy>
-        <li>Other people get a door to close. I get the barracks.</li>
+        <li>Other people get a door to close. I don't.</li>
         <li>I lie awake every night listening to the others breathe. A room of my own might help.</li>
       </gloomy>
       <cold>
@@ -73,7 +73,7 @@
     </request>
     <requestForOther>
       <plain>
-        <li>{FOR_nameDef} has been in the barracks for ages and never complains. Could we build {FOR_objective} a room of {FOR_possessive} own?</li>
+        <li>{FOR_nameDef} has gone without a room of {FOR_possessive} own for ages and never complains. Could we build {FOR_objective} one?</li>
         <li>Have you seen how tired {FOR_nameDef} looks lately? I'd help build {FOR_objective} a room of {FOR_possessive} own.</li>
       </plain>
       <warm>
@@ -106,9 +106,9 @@
     </thanks>
     <expired>
       <plain>
-        <li>So I'm still in the barracks.</li>
+        <li>So there's still no door of my own.</li>
         <li>Never mind about the room. I'll get used to the snoring.</li>
-        <li>[winter] Another winter in the barracks, then.</li>
+        <li>[winter] A long winter ahead, and nowhere of my own to spend it.</li>
         <li>Fine. I'll learn to sleep through anything.</li>
         <li>[trait:Abrasive] Remember this the next time you need someone to haul at midnight.</li>
       </plain>
@@ -119,10 +119,10 @@
         <li>Forget it. I'll sleep with one eye open, like always.</li>
       </blunt>
       <cheerful>
-        <li>No room yet? Oh well, maybe next season.</li>
+        <li>No room yet? I'll practice being tidy where I am.</li>
       </cheerful>
       <gloomy>
-        <li>Of course. Why would anyone build me a room.</li>
+        <li>I didn't really think anyone would build me a room.</li>
       </gloomy>
       <cold>
         <li>I'll stop asking. I won't stop remembering.</li>
@@ -200,11 +200,11 @@
     </thanks>
     <expired>
       <plain>
-        <li>My room stays plain, then. At least it has a door.</li>
+        <li>My room stays plain. At least it has a door.</li>
         <li>[rich] All this wealth and I still wake up to bare walls.</li>
       </plain>
       <blunt>
-        <li>Fine. I'll keep living in a shoebox.</li>
+        <li>I'll go on living in a shoebox. Don't visit.</li>
       </blunt>
       <gloomy>
         <li>Bare walls suit me, apparently.</li>
@@ -272,7 +272,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>I'll just keep tucking my elbows in, then.</li>
+        <li>Elbows in, knees up. I'm getting good at it.</li>
       </plain>
       <gloomy>
         <li>It's still a cramped little box. I'll live.</li>
@@ -354,7 +354,7 @@
     <expired>
       <plain>
         <li>Separate beds again tonight.</li>
-        <li>I suppose {OTHER_nameDef} and I will keep meeting in the hallway, then.</li>
+        <li>{OTHER_nameDef} and I will go on meeting in the hallway.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} and I will manage. We always have.</li>
@@ -488,7 +488,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>I'll keep feeling my way around in the dark.</li>
+        <li>I know the room by touch now. Mostly.</li>
         <li>[night] Another night in the dark.</li>
       </plain>
     </expired>
@@ -573,7 +573,7 @@
     <expired>
       <plain>
         <li>I'll pile on blankets or kick them off, whatever the night calls for.</li>
-        <li>[winter] I'll sleep in my coat, then. Again.</li>
+        <li>[winter] Another night under every blanket I own.</li>
       </plain>
       <gloomy>
         <li>I'm getting used to not sleeping, which can't be good.</li>
@@ -647,10 +647,10 @@
     <expired>
       <plain>
         <li>Back to eating off my knees.</li>
-        <li>No table, then. I'll eat standing up.</li>
+        <li>No table. I'll eat standing up, like a horse.</li>
       </plain>
       <blunt>
-        <li>Fine. The floor it is.</li>
+        <li>The floor it is. Don't step in my soup.</li>
       </blunt>
     </expired>
   </ColonyCouncil.WishDef>
@@ -717,7 +717,7 @@
     <thanks>
       <plain>
         <li>Something new to do. I've already lost twice.</li>
-        <li>[winter] Something to do while the snow piles up. Thank you.</li>
+        <li>[winter] Let the snow pile up. We've got a game to finish.</li>
       </plain>
       <cheerful>
         <li>This is the best thing that has happened since we got here!</li>
@@ -729,7 +729,7 @@
     <expired>
       <plain>
         <li>Back to watching the clouds go by.</li>
-        <li>[winter] I'll sit and watch the snow come down, I suppose.</li>
+        <li>[winter] I'll count snowflakes. I'm up to four thousand.</li>
       </plain>
       <gloomy>
         <li>Same old evenings. I'll go back to staring at the wall.</li>
@@ -757,7 +757,7 @@
       <plain>
         <li>Could I have {THING} in my room? I like having something alive nearby.</li>
         <li>A few flowers by the bed. It's silly, but it would help.</li>
-        <li>[winter] Everything outside is dead. I want one green thing in my room.</li>
+        <li>[winter] Everything outside is dead or asleep. Let me have one green thing indoors.</li>
         <li>My hands miss soil when I'm indoors.</li>
       </plain>
       <warm>
@@ -779,7 +779,7 @@
         <li>[winter] A bit of green in the middle of winter. That'll do.</li>
       </plain>
       <gloomy>
-        <li>There's something alive in my room besides me. I like that.</li>
+        <li>There's another living thing in my room. It doesn't talk back.</li>
       </gloomy>
     </thanks>
     <expired>

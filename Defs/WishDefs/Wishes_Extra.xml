@@ -114,7 +114,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>Just another day, then.</li>
+        <li>Just another day.</li>
         <li>[child] I thought somebody would remember my birthday.</li>
       </plain>
     </expired>
@@ -193,7 +193,7 @@
         <li>I haven't had a moment to myself in days. Could I have a few hours off?</li>
         <li>Work, sleep, work. I need something in between.</li>
         <li>[trait:Industrious|trait:HardWorker] I know, it's not like me to ask. Just one afternoon.</li>
-        <li>[winter] It's a long winter. Let me spend some of it doing something other than work.</li>
+        <li>[winter] It's a long winter. Let me spend an afternoon of it on anything but work.</li>
         <li>[afterraid] We just survived another attack. Let me sit down for a while before the next job.</li>
       </plain>
       <warm>

@@ -140,7 +140,7 @@
     </request>
     <thanks>
       <plain>
-        <li>{OTHER_nameDef} looked back once, on the way out. I think that meant something.</li>
+        <li>{OTHER_nameDef} looked at me differently today. I think that meant something.</li>
         <li>We're still decent people, then.</li>
       </plain>
       <warm><li>Thank you. I'd have hated to be wrong about this place.</li></warm>
@@ -177,7 +177,7 @@
     <request>
       <plain>
         <li>When was the last time anyone here laughed? Not counting the time the boomalope exploded.</li>
-        <li>One evening with some food and something to drink, and no work. That's all I'm asking.</li>
+        <li>One evening with food and drink and no work. I'd settle for that.</li>
         <li>We work from dawn to dark every day. Let's take one night off together.</li>
         <li>[afterraid] We're alive. That's worth a drink.</li>
         <li>[winter] It's dark at four and colder than a grave. Let's light a fire and make some noise.</li>
@@ -326,7 +326,7 @@
       </warm>
       <blunt>
         <li>I need to shoot something. Better an animal than one of you.</li>
-        <li>[trait:Bloodlust] I'm itching to kill something. Find me a muffalo before it's one of you.</li>
+        <li>[trait:Bloodlust] My hands won't keep still. Point me at something big out there and stand back.</li>
       </blunt>
       <cheerful>
         <li>A hunting trip! I'll be back with supper, or at least a good story.</li>
@@ -350,7 +350,7 @@
     </thanks>
     <expired>
       <plain><li>Fine. The animals live. I'll go back to whatever this is.</li></plain>
-      <blunt><li>I'm still itchy. Remember that.</li></blunt>
+      <blunt><li>I'm still itchy. Keep out of my way for a day or two.</li></blunt>
     </expired>
   </ColonyCouncil.WishDef>
 
