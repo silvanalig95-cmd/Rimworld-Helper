@@ -47,8 +47,8 @@
   <CC_Courier_Done_Exchange>{0} from {1} set down {4} {3} and loaded up {2}.</CC_Courier_Done_Exchange>
   <CC_Courier_Done_Await>{0} from {1} took {2} and turned for home.</CC_Courier_Done_Await>
   <CC_Courier_Done_Collect>{0} from {1} loaded up {2} from the stores.</CC_Courier_Done_Collect>
-  <CC_Courier_Done_Fetch>{0} from {1} are taking {2} away with them.</CC_Courier_Done_Fetch>
-  <CC_Courier_Done_FetchPay>{0} from {1} set down {4} {3} and are taking {2} away with them.</CC_Courier_Done_FetchPay>
+  <CC_Courier_Done_Fetch>{0} from {1} took charge of {2}.</CC_Courier_Done_Fetch>
+  <CC_Courier_Done_FetchPay>{0} from {1} set down {4} {3} and took charge of {2}.</CC_Courier_Done_FetchPay>
   <CC_Courier_Done_Bearer>{PAWN_nameDef} set down {GOODS} for the colony.</CC_Courier_Done_Bearer>
   <CC_Courier_FetchGone>{0} from {1} came for {2}, who is no longer the colony's to give. They left without paying.</CC_Courier_FetchGone>
   <CC_Courier_Done_Nothing>{0} from {1} found none of what they came for left in the stores.</CC_Courier_Done_Nothing>
