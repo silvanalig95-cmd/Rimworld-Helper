@@ -33,7 +33,7 @@
         <li>Fresh air! Remember fresh air? I'd love a breath of it.</li>
       </cheerful>
       <gloomy>
-        <li>These walls are all I've seen for days. I'd like to see the sun again before I die.</li>
+        <li>I can't remember the last time I was warmed by the sun instead of a fire.</li>
       </gloomy>
       <cold>
         <li>My productivity is falling. The cause is the walls. Assign me outdoors.</li>
@@ -43,6 +43,7 @@
       <plain>
         <li>Wind in my face. I forgot how much I missed it.</li>
         <li>The sky's still there. I'd started to wonder.</li>
+        <li>Air. Real air.</li>
       </plain>
       <cheerful><li>Hello, sun! I missed you.</li></cheerful>
       <gloomy><li>Cold and gray out there. Still better than in here.</li></gloomy>
@@ -135,7 +136,7 @@
         <li>Take {SUBJECT} off my list. If I yell at you about it, yell back.</li>
       </blunt>
       <cheerful>
-        <li>I'm getting clean! The first weeks will be awful, but I'm ready for them.</li>
+        <li>Lock it up and lose the key! I'm going to be the cleanest person here.</li>
       </cheerful>
       <gloomy>
         <li>It'll be the worst few weeks of my life. Still better than the rest of my life like this.</li>
@@ -256,7 +257,7 @@
         <li>Get me medicine or start practicing your death rattle.</li>
       </blunt>
       <cheerful>
-        <li>A full medicine shelf! I'd sleep so much better knowing it's there.</li>
+        <li>Fill the shelf and I'll keep every one of you in one piece. That's a promise!</li>
       </cheerful>
       <gloomy>
         <li>Someone's going to bleed out on my table because we were saving silver.</li>

@@ -91,7 +91,7 @@
       <gloomy><li>Next time I'll just lie down in the yard.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still sick, still in the same bed as always.</li></plain>
+      <plain><li>Coughed half the night again. Same bed, same draft.</li></plain>
       <warm><li>When someone has a moment, about that bed for the sick.</li></warm>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -421,7 +421,7 @@
       <gloomy><li>I'll eat on the step again. I'm used to it.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still eating in turns.</li></plain>
+      <plain><li>Ate supper on the woodpile again.</li></plain>
       <warm><li>When there's wood to spare, a few more chairs at the table.</li></warm>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -565,7 +565,7 @@
       <gloomy><li>It'll be a hungry spring.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still nothing put by that keeps.</li></plain>
+      <plain><li>Everything in the stores is the kind that spoils.</li></plain>
       <cold><li>No preserved reserve yet.</li></cold>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -899,7 +899,7 @@
       <gloomy><li>There was probably nothing there anyway.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still thinking about what's under our feet.</li></plain>
+      <plain><li>I put my ear to the ground today. Don't laugh.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 
@@ -1165,7 +1165,7 @@
       <gloomy><li>I'll end up in whatever hole is quickest to dig.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still no resting place ready.</li></plain>
+      <plain><li>I measured myself today, so whoever builds it knows the length.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 
@@ -1502,7 +1502,7 @@
       <gloomy><li>They'll wander off, and that'll be that.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Chased the animals out of the fields again today.</li></plain>
+      <plain><li>One of the animals got into the crops again. I chased it out with a broom.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 

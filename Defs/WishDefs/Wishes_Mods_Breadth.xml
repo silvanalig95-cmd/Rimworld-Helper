@@ -66,7 +66,7 @@
       <warm><li>Thank you. That was the kindest thing anyone's done for me all week.</li></warm>
       <blunt><li>Good. Another.</li></blunt>
       <cheerful><li>A whole pot just for me. Well, nearly.</li></cheerful>
-      <gloomy><li>Still sick. But warm.</li></gloomy>
+      <gloomy><li>I'm no better. But my hands are warm.</li></gloomy>
       <cold><li>Symptoms improved.</li></cold>
     </thanks>
     <expired>
@@ -75,7 +75,7 @@
       <gloomy><li>Sick and thirsty, then. It's how things go here.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Still coughing. Still no tea.</li></plain>
+      <plain><li>I'm still coughing, if anyone has a pot on.</li></plain>
     </reminder>
   </ColonyCouncil.WishDef>
 
