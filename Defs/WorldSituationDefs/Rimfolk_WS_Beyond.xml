@@ -594,7 +594,7 @@
           <li>{NAME} fades</li>
         </titles>
         <texts>
-          <li>[theirLowtech|theirHightech] {NAME} is fading, a little dimmer every night, and soon it will be gone. The war it foretold didn't come, nor the plague, nor the end of the world. A child was born in {PLACE} on the night it was brightest, and they've named her after it.</li>
+          <li>[theirLowtech|theirHightech] {NAME} is fading, dimmer every night, and soon it will be gone. The war it foretold didn't come, nor the plague, nor the end of the world. A child was born in {PLACE} on the night it was brightest, and they've named her after it.</li>
           <li>[watched] {NAME} has gone back into the dark. The colony still talks about the night on the hill, with the fire and the blankets, when everyone looked up at once.</li>
           <li>[noenemy] {NAME} is gone from the sky. The fortune tellers are already explaining what it meant, now that it can't argue.</li>
         </texts>
