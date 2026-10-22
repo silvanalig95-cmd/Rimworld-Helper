@@ -329,7 +329,7 @@
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>The apology came at dinner, four words long and said to the soup. {B_nameDef} didn't mean any of them.</riskOutcome>
+        <riskOutcome>The apology came at dinner, four words long and said to {B_possessive} bowl. {B_nameDef} didn't mean any of them.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_PublicApology</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LostKeepsake</thought></li>
