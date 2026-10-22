@@ -27,8 +27,8 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>At midday {X_indefinite} crept into the strip of shade along the storehouse wall and lay there panting. {A_nameDef} set a dish of water down at arm's length and backed away.</li>
-      <li>{A_nameDef} came round the well into the only shade for a mile and found {X_indefinite} already in it. They shared it, one at each end, until the sun moved.</li>
-      <li>[hot] It was too hot for {A_nameDef} or {X_definite} under the lean-to to bother being afraid of each other. They lay in the shade a few paces apart and waited out the worst of the afternoon.</li>
+      <li>{A_nameDef} and {X_indefinite} shared the only shade for a mile, one at each end of the well, until the sun moved.</li>
+      <li>[hot] Under the lean-to, {A_nameDef} and {X_definite} were both too hot to be afraid of each other. They lay a few paces apart and waited out the afternoon.</li>
       <li>[child] {A_nameDef} found {X_indefinite} asleep in the shadow of the water trough and sat down beside it to watch it breathe, until a grown-up called {A_objective} in.</li>
     </texts>
     <effects>
@@ -45,10 +45,10 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{X_nameDef} watched {A_nameDef} spit grit for the third time in an hour and showed {A_objective} how {FACTION} people wrap a cloth over the mouth and nose, tucked so the wind can't pull it loose.</li>
-      <li>{X_nameDef} of {FACTION} showed {A_nameDef} how to find water in a dry riverbed: the outside of the bend, a hand's depth down, where the sand stays dark after sunrise.</li>
-      <li>[theirLowtech] {X_nameDef} gave {A_nameDef} a handful of dates and a pinch of salt and told {A_objective} to eat both at noon, every day, the way {FACTION} people do on the long dry walks.</li>
-      <li>[hot] Sitting out the heat of the day in the shade, {X_nameDef} told {A_nameDef} that in the deep sand country people sleep by day and travel by night, and laughed at the colony for working at noon.</li>
+      <li>{A_nameDef} spat grit for the third time in an hour, and {X_nameDef} showed {A_objective} how {FACTION} people tie a cloth over the mouth so the wind can't pull it loose.</li>
+      <li>"The outside of the bend, a hand's depth down, where the sand stays dark after sunrise." {X_nameDef} was teaching {A_nameDef} to find water in a dry riverbed.</li>
+      <li>[theirLowtech] {X_nameDef} gave {A_nameDef} a handful of dates and a pinch of salt. "At noon, every day, both of them. That's how {FACTION} people cross the dry country."</li>
+      <li>[hot] In the deep sand country people sleep through the noon heat and travel by night, {X_nameDef} told {A_nameDef}, and laughed at the colony for working through it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_SandTrick</thought></li>
@@ -67,8 +67,8 @@
     <weight>1.1</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>The desert goes cold fast after sundown. Wrapped in a blanket on the wall, {A_nameDef} watched {X_indefinite} come down to the trough to drink under more stars than {A_pronoun} could count.</li>
-      <li>On watch in the cold small hours, {A_nameDef} heard soft steps in the sand and saw {X_indefinite} cross the open ground in the starlight, unhurried, leaving tracks that would be gone by noon.</li>
+      <li>Wrapped in a blanket on the wall, {A_nameDef} watched {X_indefinite} come down to the trough to drink. The desert goes cold fast after sundown.</li>
+      <li>Soft steps in the sand, in the cold small hours. {A_nameDef}, on watch, saw {X_indefinite} cross the open ground in the starlight, leaving tracks that would be gone by noon.</li>
       <li>[clear] There was no moon, and the sky over the dunes was so thick with stars that {A_nameDef} could see {X_indefinite} by their light alone, nosing along the foot of the wall.</li>
     </texts>
     <effects>
@@ -93,9 +93,9 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} found a line of fresh tracks across the snow and followed them over the rise, and there at the end of them was {X_indefinite}, digging for whatever grows under the crust.</li>
-      <li>[skill:Animals] {A_nameDef} read the tracks in the snow like a page: who made them, how heavy, how long ago. Half a mile on, {X_indefinite} looked up from the drift as if it had been expecting {A_objective}.</li>
-      <li>[child] {A_nameDef} followed the little holes in the snow all the way to the trees and found {X_indefinite} at the end of them, and came back to tell everyone with frost in {A_possessive} eyelashes.</li>
+      <li>Fresh tracks led over the rise, and at the end of them {A_nameDef} found {X_indefinite} digging through the crust for whatever grows beneath.</li>
+      <li>[skill:Animals] {A_nameDef} read the tracks in the snow like a page, and half a mile on found {X_indefinite} exactly where {A_pronoun} had said it would be.</li>
+      <li>[child] {A_nameDef} followed the little holes in the snow all the way to the trees, found {X_indefinite} at the end of them, and ran back with frost on {A_possessive} eyelashes to tell the grown-ups.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_FollowedTracks</thought></li>
@@ -119,7 +119,7 @@
     <texts>
       <li>Everything was white and silent this morning. {A_nameDef} stood at the door with a cup going cold in {A_possessive} hands and watched {X_indefinite} in the frozen field, its breath hanging in the air.</li>
       <li>Frost had furred every branch overnight. Out on the white ground {X_indefinite} stood so still that {A_nameDef} took it for a stump until it lifted its head.</li>
-      <li>[snow] Snow was coming down in big slow flakes, and through it {A_nameDef} watched {X_indefinite} plod along the tree line, steam rising off its back.</li>
+      <li>[snow] Through the big slow flakes {A_nameDef} could just make out {X_indefinite} plodding along the tree line, steam rising off its back.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_StillMorning</thought></li>
@@ -136,9 +136,9 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{X_nameDef} of {FACTION} saw {A_nameDef} stamping {A_possessive} feet and showed {A_objective} the trick: dry grass packed in the boots, changed every evening, and tomorrow's socks slept on inside your shirt.</li>
+      <li>"Dry grass in the boots, changed every evening. And sleep with tomorrow's socks inside your shirt." {X_nameDef} of {FACTION} had been watching {A_nameDef} stamp {A_possessive} feet all morning.</li>
       <li>{X_nameDef} rubbed a smear of fat into {A_nameDef}'s cheeks and nose against the wind, the way {FACTION} mothers do for their children, and laughed at the face {A_nameDef} made.</li>
-      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how {FACTION} people line their mittens with rabbit fur turned inward, and how to tie them to a cord so they can't be lost in the snow.</li>
+      <li>[theirLowtech] {A_nameDef} copied {X_nameDef}'s mittens before supper, rabbit fur turned inward and the pair tied on a cord the {FACTION} way, so neither gets lost in the snow.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ColdTrick</thought></li>
@@ -183,9 +183,9 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{X_nameDef} of {FACTION} cut four broad leaves from the edge of the clearing, pinned them together with thorns and showed {A_nameDef} how to wear them over the shoulders against the rain. It worked better than {A_nameDef}'s coat.</li>
-      <li>Caught out together in the downpour, {X_nameDef} folded a huge leaf into a hood for {A_nameDef} in a few quick movements, then made another for {X_possessive} own head, and they walked back to the colony dry from the neck up.</li>
-      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how {FACTION} people weave a rain cape from palm fronds, overlapping like roof thatch. {A_nameDef} made one before supper, a bit lopsided.</li>
+      <li>{X_nameDef} of {FACTION} pinned four broad leaves together with thorns and hung them over {A_nameDef}'s shoulders. It kept the rain off better than {A_nameDef}'s coat.</li>
+      <li>Caught out in the downpour with {A_nameDef}, {X_nameDef} folded two huge leaves into hoods, and they walked back to the colony dry from the neck up.</li>
+      <li>[theirLowtech] By supper {A_nameDef} had a rain cape of palm fronds, overlapping like roof thatch, woven the {FACTION} way under {X_nameDef}'s eye. It was a bit lopsided.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_LeafCape</thought></li>
@@ -205,7 +205,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{A_nameDef} was up to the knees in black water, clearing a channel, when {X_indefinite} went past through the reeds without a sound. {A_nameDef} held {A_possessive} breath until it was gone.</li>
-      <li>The reeds parted a few paces from {A_nameDef} and {X_indefinite} looked out, dripping, with weed hanging off it. They regarded each other for a while, and then the reeds closed again.</li>
+      <li>The reeds parted a few paces from {A_nameDef}, and out looked {X_indefinite}, dripping weed. Then the reeds closed again.</li>
       <li>[fog] Mist lay on the marsh like milk. {A_nameDef} heard the slow wading before {A_pronoun} saw anything, and then {X_indefinite} came out of the white and went back into it.</li>
     </texts>
     <effects>
@@ -226,8 +226,8 @@
     <weight>1</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>Late at night {A_nameDef} and {X_definite} watched pale lights drift low over the marsh, slow as breathing, where nobody could be standing, and {X_definite} growled at them until they faded.</li>
-      <li>{A_nameDef} went out to see why {X_definite} was whining at the gate and found the marsh full of small cold lights, moving among the reeds. They stood together and watched until the lights went out one by one.</li>
+      <li>Pale lights drifted low over the marsh tonight, where nobody could be standing. {A_nameDef} watched them, and beside {A_objective} {X_definite} growled until they faded.</li>
+      <li>At the gate {X_definite} was whining. Out on the marsh small cold lights were moving among the reeds, and {A_nameDef} stood with {X_objective} until they went out one by one.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_MarshLights</thought><exceptTrait><li>Nerves</li></exceptTrait></li>
@@ -270,8 +270,8 @@
     <weight>1.1</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{X_nameDef} of {FACTION} came over the pass to get here and told {A_nameDef} about it: the switchbacks, the cairns left by people who went before, and the cold at the top that gets into your teeth.</li>
-      <li>{X_nameDef} drew the mountains in the dirt for {A_nameDef} with a stick, every valley and saddle, and marked where the snow closes the road in winter and where the rockfalls come in spring.</li>
+      <li>{X_nameDef} of {FACTION} came over the high pass to get here, and told {A_nameDef} about the cold at the top, the kind that gets into your teeth.</li>
+      <li>With a stick in the dirt, {X_nameDef} drew {A_nameDef} the mountains, every valley and saddle, and marked where the snow closes the road in winter and where the rockfalls come in spring.</li>
       <li>[winter] {X_nameDef} said the high pass closed behind {FACTION}'s party the day after they came through it, and they'll be going the long way round. {A_nameDef} heard all about the long way round.</li>
     </texts>
     <effects>
@@ -293,7 +293,7 @@
     <weight>0.9</weight>
     <cooldownDays>12</cooldownDays>
     <texts>
-      <li>All morning {X_definite} kept running off toward the rocks and coming back, until {A_nameDef} followed and found a crack in the hillside with cold air breathing out of it. They stood at the mouth together and listened to water dripping somewhere far inside.</li>
+      <li>All morning {X_definite} kept running off toward the rocks and coming back. When {A_nameDef} finally followed, there was a crack in the hillside with cold air breathing out of it, and water dripping somewhere far inside.</li>
       <li>{A_nameDef} lost sight of {X_definite} among the boulders and found {X_objective} at last half inside a narrow cave, covered in cobwebs and very pleased about it.</li>
     </texts>
     <effects>
@@ -317,7 +317,7 @@
     <weight>1.2</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} walked the shore at low tide and had company: {X_indefinite}, working along the wrack line ahead of {A_objective}, turning over weed and picking through what the sea left behind.</li>
+      <li>At low tide {A_nameDef} walked the shore with {X_indefinite} working along the wrack line ahead, turning over weed and picking through what the sea had left.</li>
       <li>The tide had gone out a long way, and {A_nameDef} and {X_indefinite} were the only two things moving on the wet sand. They kept a careful distance and the same slow pace.</li>
       <li>[fog] Sea fog lay over the beach, and the only sounds were the waves and {X_indefinite} somewhere ahead in the gray, crunching shells. {A_nameDef} followed the sound for a while.</li>
     </texts>
@@ -335,8 +335,8 @@
     <weight>1.1</weight>
     <cooldownDays>10</cooldownDays>
     <texts>
-      <li>{X_nameDef} sells salt fish along this coast and has pockets full of shells for the children of every village. {A_nameDef} isn't a child, but {X_nameDef} gave {A_objective} one anyway: a spiral, pink inside.</li>
-      <li>Between haggling over the price of salt, {X_nameDef} pressed a smooth white shell into {A_nameDef}'s hand and said it would bring good weather. It hasn't yet. {A_nameDef} keeps it anyway.</li>
+      <li>{X_nameDef} sells salt fish along this coast and has pockets full of shells for the children of every village. {A_nameDef} isn't a child, but {X_nameDef} gave {A_objective} one anyway, a spiral, pink inside.</li>
+      <li>Between haggling over the price of salt, {X_nameDef} pressed a smooth white shell into {A_nameDef}'s hand and said it would bring good weather. It hasn't yet. {A_nameDef} keeps it on the windowsill.</li>
       <li>[child] {X_nameDef} held a big shell to {A_nameDef}'s ear and told {A_objective} the sea was inside it. {A_nameDef} listened, eyes wide, and was allowed to keep it.</li>
     </texts>
     <effects>
@@ -385,8 +385,8 @@
     <cooldownDays>10</cooldownDays>
     <texts>
       <li>The first green of the year was coming through in the low field, and {X_indefinite} had found it before anyone else. {A_nameDef} stopped on the path to watch it graze.</li>
-      <li>{A_nameDef} saw {X_indefinite} nosing at the new shoots by the stream, thin from the winter, and thought that it had come through the cold the same as the colony had.</li>
-      <li>[rain] Spring rain, warm for once. Out in the soft field {X_indefinite} grazed with water running off its back, and {A_nameDef} stood under the eaves and watched it for a while.</li>
+      <li>By the stream {A_nameDef} found {X_indefinite} nosing at the new shoots, ribs still showing from the winter, and went round the long way so as not to startle it.</li>
+      <li>[rain] Spring rain, warm for once. Out in the soft field {X_indefinite} grazed with water running off its back, and {A_nameDef} stayed out in it longer than {A_pronoun} needed to.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_FirstGreen</thought></li>
@@ -405,7 +405,7 @@
     <weight>1</weight>
     <cooldownDays>10</cooldownDays>
     <texts>
-      <li>{A_nameDef} watched {X_indefinite} carry mouthful after mouthful of something to a hole under the old stump, getting ready for winter. The colony had spent the same day doing the same thing.</li>
+      <li>Mouthful after mouthful, {X_indefinite} carried something to a hole under the old stump, while {A_nameDef} carried sacks to the storeroom.</li>
       <li>All week {X_indefinite} has been raiding the dropped grain along the field's edge, fattening up for the cold. {A_nameDef} hasn't chased it off.</li>
       <li>[work:Growing] Bringing in the last of the harvest, {A_nameDef} kept company with {X_indefinite}, which was bringing in its own from the stubble a few rows over.</li>
     </texts>
@@ -430,7 +430,7 @@
     <texts>
       <li>It was so hot by midafternoon that {A_nameDef} and {X_definite} walked straight into the water without stopping and stood there up to the knees, both of them sighing.</li>
       <li>{A_nameDef} sat on the bank with {A_possessive} feet in the water and watched {X_definite} splash about in the shallows, chasing things that weren't there.</li>
-      <li>[child] {A_nameDef} and {X_definite} spent the hottest part of the day in the shallows, and came back to the colony so wet and muddy they had to be scrubbed down at the well.</li>
+      <li>[child] {A_nameDef} and {X_definite} spent the hottest part of the day in the shallows and came back so muddy they were scrubbed down at the well.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_Waded</thought></li>
@@ -446,7 +446,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>{X_nameDef} came in from the cold blue to the lips, and {A_nameDef} put a hot cup in {X_possessive} hands before {X_pronoun} could say a word. They sat by the stove until the color came back.</li>
-      <li>{A_nameDef} found {X_nameDef} of {FACTION} trying to thaw {X_possessive} fingers on a lamp, and brought {X_objective} a bowl of something hot and a dry pair of socks.</li>
+      <li>Trying to thaw {X_possessive} fingers on a lamp, {X_nameDef} of {FACTION} got a bowl of something hot from {A_nameDef}, and a dry pair of socks.</li>
       <li>[snow] {X_nameDef} came through the gate with snow piled on {X_possessive} hood and shoulders, and {A_nameDef} brushed it off, sat {X_objective} by the stove and fetched the kettle.</li>
     </texts>
     <effects>
@@ -514,7 +514,7 @@
     <texts>
       <li>This morning {X_definite} went mad in the snow, leaping and rolling and snapping at the flakes, and {A_nameDef} laughed until {A_pronoun} was too cold to stand there any longer.</li>
       <li>{A_nameDef} threw a snowball for {X_definite}, who chased it, lost it, dug for it and came up with a face full of snow and no idea where it went.</li>
-      <li>[child] {A_nameDef} and {X_definite} made a long trench through the snow running back and forth across the yard, and the grown-ups had to walk around it for the rest of the day.</li>
+      <li>[child] {A_nameDef} and {X_definite} wore a trench through the snow from one side of the yard to the other, and the grown-ups had to walk around it all day.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_SnowPlay</thought></li>
@@ -534,7 +534,7 @@
     <cooldownDays>8</cooldownDays>
     <texts>
       <li>Every clap of thunder sent {X_definite} deeper under the table. {A_nameDef} crawled under with {X_objective} and talked to {X_objective} until the storm moved off and the shaking stopped.</li>
-      <li>In the worst of the storm {X_definite} came to {A_nameDef} with {X_possessive} ears flat and pressed against {A_possessive} legs. {A_nameDef} sat on the floor and held on through the worst of it.</li>
+      <li>In the worst of the storm {X_definite} came to {A_nameDef} with {X_possessive} ears flat and pressed against {A_possessive} legs. {A_nameDef} sat down on the floor and held on.</li>
       <li>[trait:Nervous|trait:Volatile] {A_nameDef} hates thunder too, so {A_pronoun} sat with {X_definite} through the storm, and by the end it was hard to say which of them was comforting the other.</li>
     </texts>
     <effects>
@@ -554,7 +554,7 @@
     <weight>1.1</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{X_nameDef} of {FACTION} pointed out the stars to {A_nameDef} as {FACTION} people know them: a plow where the colony sees a hunter, a river where it sees nothing at all, and a story for each.</li>
+      <li>Where the colony sees a hunter in the stars, {FACTION} people see a plow. {X_nameDef} went across the whole sky with {A_nameDef} that way, a story for each.</li>
       <li>Lying on the roof on a clear night, {X_nameDef} told {A_nameDef} which star sailors steer by in {FACTION} country, and which one you must never point at, and why.</li>
       <li>[theirHightech] {X_nameDef} showed {A_nameDef} which of the bright points overhead are worlds people live on, and which one {X_pronoun} came from. {A_nameDef} looked at it for a long time.</li>
     </texts>
@@ -573,7 +573,7 @@
     <weight>1</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>The trading was done hours ago, but {A_nameDef} sat up at the caravan's lamp with {X_nameDef} anyway, drinking something hot and talking about nothing much until the lamp burned low.</li>
+      <li>Long after the trading was done, {A_nameDef} and {X_nameDef} sat up at the caravan's lamp, talking about nothing much until it burned low.</li>
       <li>{X_nameDef} couldn't sleep either. {A_nameDef} found {X_objective} sitting on a crate by the pack animals and sat down beside {X_objective}, and they talked about the road and the people they'd left behind.</li>
       <li>[theirLowtech] By the light of a tallow candle, {X_nameDef} told {A_nameDef} the story behind every scar on {X_possessive} hands, and asked about each of {A_nameDef}'s in return.</li>
     </texts>
