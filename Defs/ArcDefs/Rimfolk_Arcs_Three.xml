@@ -578,7 +578,7 @@
           <plain><li>{OTHER_nameDef} sat me down and listened to all of it. I said things I've never said. I think {OTHER_pronoun} understands now.</li></plain>
         </thirdJournal>
         <chronicle>
-          <li>An uneasy peace holds between {OTHER_nameDef} and {THIRD_nameDef}.</li>
+          <li>{THIRD_nameDef} has had {THIRD_possessive} say too. An uneasy peace holds between {OTHER_nameDef} and {THIRD_nameDef}.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>

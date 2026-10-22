@@ -59,7 +59,7 @@
           <cold><li>{PET_nameDef} needs less exercise and more warmth now. I've arranged both.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} spends the afternoons with old {PET_nameDef} these days.</li>
+          <li>In the afternoons {PAWN_nameDef} sits with {PET_nameDef} in the one patch of sun by the door.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><hours>13~17</hours><duration>1.5~2</duration></li>
@@ -82,7 +82,7 @@
           <cold><li>I gave {PET_nameDef} a day of everything {PET_pronoun} once enjoyed. The work can wait one day.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} took a day off to give old {PET_nameDef} one more good day.</li>
+          <li>{PAWN_nameDef} took a whole day off to give {PET_nameDef} one more good one.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Rest" />
@@ -105,7 +105,7 @@
           <cold><li>{PET_nameDef} remains in reasonable health for {PET_possessive} age. I'm gladder of it than I'd admit to anyone.</li></cold>
         </journal>
         <chronicle>
-          <li>Old {PET_nameDef} is still with {PAWN_nameDef}, and {PAWN_nameDef} keeps every day of it.</li>
+          <li>{PET_nameDef} is still with {PAWN_nameDef}, slower every week, and {PAWN_nameDef} keeps every day of it.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_EveryDayAGift</thought></li>
@@ -186,8 +186,8 @@
           <warm><li>{PET_nameDef} cries if I'm out of sight. I've started leaving my old shirt in {PET_possessive} nest.</li></warm>
           <blunt><li>{PET_nameDef}'s eating on {PET_possessive} own. Good.</li></blunt>
           <cheerful><li>{PET_nameDef} ran. Badly, sideways, into a bucket. But ran!</li></cheerful>
-          <gloomy><li>{PET_nameDef} is stronger. I can almost stop holding my breath every morning.</li></gloomy>
-          <cold><li>{PET_nameDef} is gaining weight on schedule. The hand-feeding can be reduced.</li></cold>
+          <gloomy><li>Stronger every day, {PET_nameDef}. I can almost stop holding my breath every morning.</li></gloomy>
+          <cold><li>Weighed {PET_nameDef} again. On schedule, so the hand-feeding can be reduced.</li></cold>
         </journal>
         <chronicle>
           <li>{PET_nameDef} follows {PAWN_nameDef} everywhere now, tripping over {PET_possessive} own feet.</li>
@@ -215,7 +215,7 @@
           <blunt><li>{PET_nameDef}'s nearly grown.</li></blunt>
           <cheerful><li>Look how big {PET_nameDef} is. I did that. Well, the milk did. And me.</li></cheerful>
           <gloomy><li>Soon {PET_nameDef} won't need me. That's the point, I know.</li></gloomy>
-          <cold><li>{PET_nameDef} is approaching adult size. A satisfactory outcome.</li></cold>
+          <cold><li>Nearly adult size, {PET_nameDef}. A satisfactory outcome.</li></cold>
         </journal>
         <chronicle>
           <li>{PAWN_nameDef}'s orphan {PET_nameDef} is nearly grown.</li>
@@ -316,7 +316,7 @@
           <cold><li>A handful of scraps each evening keeps the stray close. I'm curious how close it will come.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been leaving scraps out for the stray.</li>
+          <li>Every evening {PAWN_nameDef} leaves scraps by the back door, and every morning the bowl is empty.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>4</count></li>
@@ -338,7 +338,7 @@
           <cold><li>The stray is habituated. I've had it marked for taming.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has asked the handlers to bring in the stray.</li>
+          <li>The stray lets {PAWN_nameDef} close now, and {PAWN_nameDef} has asked the handlers to bring it in.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_TameStray" />
@@ -462,7 +462,7 @@
           <cold><li>{PET_nameDef} and I have reached an understanding. I'll observe whether it holds.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {PET_nameDef} have called a truce.</li>
+          <li>{PET_nameDef} accepted the crust off {PAWN_nameDef}'s bread today. A truce, of sorts.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Near</hold><hours>8</hours><minDays>2</minDays><timeoutDays>15</timeoutDays><timeoutPasses>true</timeoutPasses></gate>
       </li>

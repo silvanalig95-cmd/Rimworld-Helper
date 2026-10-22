@@ -557,7 +557,7 @@
           <cold><li>The last job's done. I have nothing to do and no one waiting on me, and I don't mind it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}'s last work in {SKILL} is done, and {PAWN_nameDef} has carried a chair out into the sun.</li>
+          <li>{PAWN_nameDef}'s last work in {SKILL} is done, and {PAWN_pronoun} has carried a chair out into the sun.</li>
         </chronicle>
         <gate>
           <kind>Hold</kind>
