@@ -26,11 +26,12 @@
         <titles>
           <li>A wild harvest</li>
           <li>Ripe for picking</li>
-          <li>The land's gift</li>
+          <li>Free for the picking</li>
         </titles>
         <texts>
-          <li>[food] {A_nameDef} came back from a walk with good news. Patches of wild {TALE} have ripened across the colony's land and are ready to pick.</li>
-          <li>[medicine] {A_nameDef} has found {TALE} growing all across the colony's land, far more than usual. Harvested, it would keep the colony's healer supplied for a good while.</li>
+          <li>[food] {A_nameDef} came back from a walk with stained fingers. Patches of wild {TALE} have ripened all over the colony's land, by the paths and along the edges of the fields, and they won't keep forever.</li>
+          <li>[medicine] There's {TALE} coming up all across the colony's land this season, far more than usual, and {A_nameDef} has marked where. Cut and dried, it would keep the healer's shelf stocked for a good while.</li>
+          <li>[food] {A_nameDef} ate half of what {A_pronoun} picked on the way back, which is how the colony found out. There are patches of wild {TALE} ripe all over its land, and more coming.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WildBounty</thought></li>
@@ -58,9 +59,9 @@
           <li>The long-tailed star</li>
         </titles>
         <texts>
-          <li>A comet has appeared, a long smear of light across the sky, bright enough to see by day. It will hang there for several days. Some in the colony take it for a good omen and some for a bad one, but they all find time to look up at it.</li>
+          <li>There's a comet over the colony, a long pale smear across the sky, bright enough to see by day. It will hang there for several days. Work keeps stopping while people look up at it, and the arguments over what it means go on late into the night.</li>
           <li>[lowtech] A star with a tail has appeared in the sky. The old folk have stories about such things, and the stories don't agree. It's a sign of good harvests, or of war, or of a king's death, depending on who tells it. It will hang there for days.</li>
-          <li>[!lowtech] A bright comet is passing close enough to see by day. One of the colonists worked out its orbit and says it won't be back for nine hundred years. Some take it as a good omen; others are sure it's a bad one.</li>
+          <li>[!lowtech] A bright comet is passing close enough to see by day. One of the colonists worked out its orbit and says it won't be back for nine hundred years. Opinion is split on whether that's a good omen or a bad one.</li>
         </texts>
       </li>
     </modExtensions>
@@ -130,7 +131,7 @@
         </titles>
         <texts>
           <li>Hail the size of knuckles is hammering down out of a black sky. Crops in the open will suffer, young ones most of all. It won't hurt anyone and won't last long, but anyone caught outside will be miserable. (Fields under a roof are safe.)</li>
-          <li>[lowtech] The sky turned green, and then the hail came, hammering down on everything. Young crops in the open fields won't all survive it. It stings, but it won't hurt anyone, and it won't last long. (Fields under a roof are safe.)</li>
+          <li>[lowtech] The sky turned green, and then the hail came, bouncing off the roofs and stripping the leaves from everything in the fields. Young crops in the open won't all survive it. It stings, but it won't hurt anyone, and it won't last long. (Fields under a roof are safe.)</li>
         </texts>
       </li>
     </modExtensions>
@@ -157,7 +158,7 @@
         <texts>
           <li>[loss,lowtech] Rats got into the stores. By the time anyone noticed, they had ruined {COUNT} units of food and left droppings through the rest.</li>
           <li>[loss,!lowtech] Big rats, the kind that will eat anything, got into the stores and chewed through or spoiled {COUNT} units of food before anyone noticed.</li>
-          <li>[mouser] Rats tried to get into the stores last night, but {PET_nameDef} caught them at it. No food was lost, and the bodies have been left in a neat row by the door.</li>
+          <li>[mouser] Rats tried to get into the stores last night, and {PET_nameDef} caught them at it. No food was lost. {PET_nameDef} has been sitting by the storeroom door since, looking pleased.</li>
         </texts>
       </li>
     </modExtensions>
@@ -183,7 +184,7 @@
           <li>[mining] Cutting into the rock, {A_nameDef} broke into a hollow that had been walled up long ago. Someone hid a cache there and never came back for it.</li>
           <li>[farming] {A_nameDef}'s spade struck a box buried in the field, rotted at the corners but still shut.</li>
           <li>[child] {A_nameDef} was digging for worms and turned up an old buried cache instead, and has been dragging people over to see it ever since.</li>
-          <li>{A_nameDef} tripped over the corner of a box sticking out of the ground and dug it up. It's an old cache, buried by someone who never came back for it.</li>
+          <li>{A_nameDef} tripped over the corner of a box sticking out of the ground and dug it up. Whoever buried it scratched three marks on the lid, and never came back to read them.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FoundCache</thought></li>

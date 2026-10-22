@@ -36,15 +36,15 @@
           <li>[fall] After three days of soft rain, the ground {PLACE} has broken out in mushrooms: pale caps in rings, brown ones on the fallen logs, a cluster of orange ones {A_nameDef} has never seen before. {A_nameDef} came back with a hatful and a lot of questions.\n\nSome of them are good eating. Some of them are not, and none of the colonists can say for sure which are which.</li>
           <li>[spring] The warm rain last night brought the mushrooms up {PLACE}, thick in the leaf litter and along the old stumps. {A_nameDef} spotted them on the way back from the fields this morning.\n\nThere are enough to fill a few baskets, for someone who knows which ones to pick.</li>
           <li>[lowtech] Mushrooms have come up overnight {PLACE}, the way they do after rain. The old saying goes that the brown caps with a ring on the stem are safe, and the white ones with a cup at the foot will kill a muffalo. {A_nameDef} has a basket and is waiting to hear which saying to trust.</li>
-          <li>[!lowtech] The rain has brought up a crop of wild mushrooms {PLACE}, more than {A_nameDef} has seen in one place before. {A_nameDef} took a few back to the kitchen, where they now sit on a plate while everyone argues over a book with no pictures in it.</li>
-          <li>[forest] The woods {PLACE} smell of wet earth and rot, and every fallen trunk has sprouted a shelf of mushrooms. {A_nameDef} counted six kinds before giving up.\n\nA good picker could fill a basket in an hour. A careless one could fill a grave.</li>
+          <li>[!lowtech] The rain has brought up a crop of wild mushrooms {PLACE}, more than {A_nameDef} has seen in one place before. {A_nameDef} took a few back to the kitchen, where they now sit on a plate while the cook and two others argue over a book with no pictures in it.</li>
+          <li>[forest] The woods {PLACE} smell of wet earth and rot, and every fallen trunk has sprouted a shelf of mushrooms. {A_nameDef} counted six kinds before giving up.\n\nA good picker could fill a basket before noon. A careless one could poison the whole table.</li>
           <li>[swamp] Between the pools {PLACE}, wherever the ground rises out of the water, the mushrooms have come up in rings after the rain. {A_nameDef} picked one, sniffed it, and put it back.\n\nThe colony could use the food, if someone knows what they're doing.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Send our best grower to pick the good ones</label>
-            <outcome>{B_nameDef} came back at dusk with two full baskets, every cap turned over and checked twice. The rest were left where they grew.</outcome>
+            <outcome>{B_nameDef} came back at dusk with two full baskets, every cap turned over and checked. The rest were left where they grew.</outcome>
             <outcomes>
               <li>[b:past:farmer] {B_nameDef} grew up picking mushrooms on the family's land and knew every kind by its smell. The baskets came back full before noon.</li>
               <li>[lowtech] {B_nameDef} cut each mushroom at the stem with a knife, so the ring would come up again next year, and came back with the baskets full.</li>
@@ -135,16 +135,16 @@
           <li>It's midsummer, and this far north the sun barely sets. It dips behind the hills for an hour or two and comes straight back up, and the sky never gets darker than a deep blue.\n\n{A_nameDef} gave up on sleep last night and mended a whole basket of clothes by the window. Others are lying awake in the barracks, staring at the ceiling.</li>
           <li>[tribal] The elders call this the time when the sun forgets to sleep. It slides along the edge of the world all night and never quite goes down, and the birds sing at what should be midnight.\n\n{A_nameDef} says among the tribes of the north, people dance through these nights instead of fighting them.</li>
           <li>[medieval] It's the season of the white nights, when the sun hangs low over the hills at midnight and the sky stays pale until it's day again. Back in the old country, {A_nameDef} says, these were the nights for courting and for staying up too late.\n\nHardly anyone at the colony is sleeping well, and the council has been asked what to do about it.</li>
-          <li>[industrial|spacer] The midnight sun has come. The solar panels are drinking it in at two in the morning, and the colonists are not: hardly anyone slept last night, and {A_nameDef} was seen out in the yard at three, wide awake, throwing a ball against a wall.</li>
-          <li>[cold] Summer is short here, and these weeks are the whole of it: the sun up nearly all night, warm air for once, the ground soft under the boots.\n\n{A_nameDef} says it's a waste to spend nights like these asleep. The tired faces at breakfast say otherwise.</li>
-          <li>It's the time of year when night never quite comes. The sun skims along behind the hills until the small hours and rises again almost at once.\n\n{A_nameDef} hasn't slept properly in three days, and isn't the only one.</li>
+          <li>[industrial|spacer] The midnight sun has come. The solar panels are drinking it in at two in the morning, and the colonists are not. Hardly anyone slept last night, and {A_nameDef} was seen out in the yard at three, wide awake, throwing a ball against a wall.</li>
+          <li>[cold] Summer is short here, and these few weeks are the whole of it, with the sun up nearly all night, warm air for once and the ground soft under the boots.\n\n{A_nameDef} says it's a waste to spend nights like these asleep. The tired faces at breakfast say otherwise.</li>
+          <li>Night never quite comes, this time of year. The sun skims along behind the hills until the small hours and rises again almost at once.\n\n{A_nameDef} hasn't slept properly in three days, and isn't the only one.</li>
           <li>The nights have gone pale. At midnight the sky is the color of milk, and the birds don't know whether to sleep or sing. {A_nameDef} wants the colony to make something of these nights before they're gone.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Stay up through the bright night together</label>
-            <outcome>The colony stayed up through the night: food, a fire that wasn't needed for light, and {A_nameDef} telling stories until the birds started singing again.</outcome>
+            <outcome>The colony stayed up through the night with food and a fire it didn't need for light, and {A_nameDef} told stories until the birds started singing again.</outcome>
             <outcomes>
               <li>[tribal] They danced through the bright night the way the northern tribes do, and when the sun came up again the drums were still going.</li>
               <li>[medieval] Somebody found a fiddle, somebody found the beer, and the colony kept the white night the way {A_nameDef} said they did in the old country.</li>
@@ -161,7 +161,7 @@
             <label>Blankets over the windows, beds at the usual hour</label>
             <outcome>The windows are blacked out with blankets and the council keeps the usual hours. Most people sleep, more or less.</outcome>
             <outcomes>
-              <li>[industrial|spacer] Blackout sheets go up in every window, and the lights-out bell rings at the usual hour. Most people sleep, more or less.</li>
+              <li>[industrial|spacer] Blackout sheets go up in every window, the lights-out bell rings at the usual hour, and by midnight the barracks is dark, if not asleep.</li>
               <li>[trait:Industrious] The council keeps the usual hours. {A_nameDef} approves, and is up at dawn anyway.</li>
             </outcomes>
             <ways><toil>1</toil></ways>
@@ -207,13 +207,13 @@
           <li>The bloom</li>
         </titles>
         <texts>
-          <li>Rain came to the desert last week, the first in a long while, and now the ground {PLACE} has bloomed. Flowers have come up out of bare sand: yellow, white, and a red so bright it hurts to look at. They'll be gone in a few days.\n\n{A_nameDef} saw them first and came running back to tell everyone.</li>
+          <li>Rain came to the desert last week, the first in a long while, and now the ground {PLACE} has bloomed. Flowers have come up out of bare sand: yellow, white, and a red so bright it hurts to look at. They'll be gone in a few days.\n\n{A_nameDef} saw them first and came running back to tell the others.</li>
           <li>[tribal] The old people say the desert remembers every seed it was ever given, and keeps them for the year the rain comes. This is that year. The sand {PLACE} is purple and gold from one dune to the next.\n\n{A_nameDef} wants the colony to go and see, before the sun burns it away again.</li>
-          <li>[medieval] After one night of hard rain, the dry country {PLACE} has done what {A_nameDef} swore it never could: it has flowered, mile after mile of it, as if a garden had been hidden under the sand all along.</li>
-          <li>[industrial|spacer] The satellite images would call it a vegetation anomaly. Standing in it, {A_nameDef} calls it something else: the scrub {PLACE} has burst into flower overnight after the rain, and the air is thick with bees.\n\nThe bloom will last a few days at most.</li>
+          <li>[medieval] After one night of hard rain, the dry country {PLACE} has done what {A_nameDef} swore it never could, and flowered, mile after mile of it, as if a garden had been hidden under the sand all along.</li>
+          <li>[industrial|spacer] The satellite images would call it a vegetation anomaly. Standing in it, {A_nameDef} calls it a miracle. The scrub {PLACE} has burst into flower overnight after the rain, and the air is thick with bees.\n\nThe bloom will last a few days at most.</li>
           <li>The rain was a day and a night, and the desert {PLACE} has answered it. Low green leaves first, then buds, and this morning flowers as far as {A_nameDef} could see, humming with insects that weren't there yesterday.</li>
-          <li>The desert has turned green and gold {PLACE} after the rain, the way it does once in a few years. {A_nameDef} came back with flowers in {A_possessive} hair and sand to the knees, saying everyone has to see it before it's gone.</li>
-          <li>It rained in the desert, and the desert answered. The sand {PLACE} is covered in small bright flowers, and bees have come from nowhere. {A_nameDef} says it will last a few days at most.</li>
+          <li>The desert has turned green and gold {PLACE} after the rain, the way it does once in a few years. {A_nameDef} came back with flowers in {A_possessive} hair and sand to the knees, saying they all have to see it before it's gone.</li>
+          <li>Bees were what {A_nameDef} noticed first, bees where there were none a week ago. Then the flowers under them. After the rain the sand {PLACE} is covered in small bright blooms, and they'll last a few days at most.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -221,7 +221,7 @@
             <label>Walk out to see it</label>
             <outcome>The colony walked out into the flowers in the cool of the evening and came back with pollen on their boots and nothing much to say.</outcome>
             <outcomes>
-              <li>[tribal] The colony went out to the flowers at dusk and sat among them, and {A_nameDef} sang one of the old rain songs, quietly.</li>
+              <li>[tribal] The colony went out to the flowers at dusk and sat among them, and {A_nameDef} sang one of the old rain songs under {A_possessive} breath.</li>
               <li>[children] The children ran ahead into the flowers and had to be fetched back at dark, yellow to the elbows.</li>
             </outcomes>
             <effects>
@@ -235,7 +235,7 @@
             <label>Have our best grower gather the seed</label>
             <outcome>{B_nameDef} spent two days on hands and knees among the flowers, shaking seed heads into a sack, and came back with a much better idea of what grows here and why.</outcome>
             <outcomes>
-              <li>[b:skill:Plants] {B_nameDef} came back from the bloom sunburned and happy, with seed packets labelled in a hand nobody else can read.</li>
+              <li>[b:skill:Plants] {B_nameDef} came back from the bloom sunburned and happy, with seed packets labeled in a hand nobody else can read.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>4</minLevel><asB>true</asB></li>
@@ -295,8 +295,8 @@
           <li>The rains have come, and they don't stop. Warm, heavy rain, day and night, for nine days now. The paths are mud to the shin, everything that can grow mold has grown it, and tempers are short.\n\n{A_nameDef} has found three leaks in the roof and a frog in the storeroom.</li>
           <li>[jungle] It's the wet season, and the forest around the colony steams. The rain comes down in sheets every afternoon and drips from every leaf all night, and nothing ever quite dries: not the bedding, not the boots, not the firewood.\n\n{A_nameDef} says the leaks are getting worse.</li>
           <li>[lowtech] The long rains are here. The thatch is soaked through, the fire smokes from wet wood, and the colony has been cooped up together for a week with nothing to do but listen to the drumming on the roof.\n\n{A_nameDef} has started counting the drips out loud.</li>
-          <li>[!lowtech] Ten days of rain, and the colony is starting to smell like a wet dog. The gutters overflow, the drains back up, and somebody's socks have been hanging by the heater since last Tuesday.\n\n{A_nameDef} wants something done before everyone goes mad.</li>
-          <li>[swamp] The marsh has come up to meet the rain. Water stands in the yard, the paths are gone under it, and the frogs sing all night loud enough to keep everyone awake.</li>
+          <li>[!lowtech] Ten days of rain, and the colony is starting to smell like a wet dog. The gutters overflow, the drains back up, and somebody's socks have hung by the heater for four days without getting any drier.\n\n{A_nameDef} wants something done before somebody goes mad.</li>
+          <li>[swamp] The marsh has come up to meet the rain. Water stands in the yard, the paths are gone under it, and the frogs sing all night loud enough to keep the colony awake.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -317,7 +317,7 @@
           </li>
           <li>
             <label>Games and stories indoors</label>
-            <outcome>The council called a rainy evening: cards, stories, whatever games anyone could remember the rules to. It's still raining, but the evenings go faster.</outcome>
+            <outcome>The council called a rainy evening of cards and stories and whatever games anyone could remember the rules to. It's still raining, but the evenings go faster.</outcome>
             <outcomes>
               <li>[lowtech] The colony gathered round the fire for riddles and stories while the rain hammered on the roof, and {A_nameDef} told the longest story anyone has ever heard.</li>
               <li>[!lowtech] Somebody dug out an old board game with half the pieces missing, and the colony made up the rest. It got loud.</li>
@@ -371,10 +371,10 @@
         <texts>
           <li>The cold has held long enough that the river has frozen bank to bank. {A_nameDef} walked out on it this morning and jumped, and it didn't so much as creak.\n\nWord has come from {FACTION}: when the river freezes this hard, they hold a fair on the ice below {PLACE}, and the colony is welcome to come.</li>
           <li>[lowtech] The river is a road now, white and hard from bank to bank. In {FACTION}'s country, the first hard freeze means a frost fair: stalls on the ice, fires on iron sheets, races on bone skates. A rider has come to say the fair is on at {PLACE}, and the colony is invited.</li>
-          <li>[!lowtech] The river froze solid overnight. {A_nameDef} measured the ice with a drill and a tape and announced, very seriously, that it would hold a truck.\n\nA courier from {FACTION} came across it an hour later: they're holding their winter fair on the ice near {PLACE}, and the colony is invited.</li>
-          <li>[children] The children found out about the ice before the grown-ups did, and the council had to send someone to fetch them in for supper. Then word came from {FACTION}: there's a fair on the ice near {PLACE} this week, and everyone is welcome.</li>
-          <li>The cold has gone on so long that the river near {PLACE} has frozen thick enough to stand a horse on. {FACTION} keep an old custom for winters like this: a fair on the ice, with games, stalls and fires. They've sent word that the colony is welcome.</li>
-          <li>{A_nameDef} came back from the river grinning, with frost in {A_possessive} eyebrows: the ice is thick and smooth, and {FACTION} are already setting up stalls on it near {PLACE}. There'll be a fair on the ice while the freeze lasts, and the colony is invited.</li>
+          <li>[!lowtech] The river froze solid overnight. {A_nameDef} measured the ice with a drill and a tape and announced, very seriously, that it would hold a truck.\n\nA courier from {FACTION} came across it an hour later to say they're holding their winter fair on the ice near {PLACE}, and the colony is invited.</li>
+          <li>[children] The children found out about the ice before the grown-ups did, and the council had to send someone to fetch them in for supper. Then word came from {FACTION}: there's a fair on the ice near {PLACE} this week, and the colony is welcome, children and all.</li>
+          <li>The river near {PLACE} has frozen thick enough to stand a horse on, the cold has gone on so long. {FACTION} keep an old custom for winters like this, a fair on the ice with games and stalls and fires, and they've sent word that the colony is welcome.</li>
+          <li>{A_nameDef} came back from the river grinning, with frost in {A_possessive} eyebrows. The ice is thick and smooth, and {FACTION} are already setting up stalls on it near {PLACE}. There'll be a fair on the ice while the freeze lasts, and the colony is invited.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -408,7 +408,7 @@
           </li>
           <li>
             <label>Stay off the ice</label>
-            <outcome>The council would rather nobody tested the ice. The river stays quiet, and the colony stays indoors.</outcome>
+            <outcome>The council would rather the ice went untested. The river stays quiet, and the colony stays indoors.</outcome>
             <outcomes>
               <li>[colony:Guarded] The colony keeps to itself, as it does. The fair goes on downriver without it.</li>
             </outcomes>
@@ -450,14 +450,14 @@
           <li>[river] The cranes came back to the river today. {A_nameDef} heard them before seeing them, a long rattling call from high up, and then there they were, dropping down onto the shallows in pairs, dancing.</li>
           <li>[tribal] The geese have come back from wherever geese go, in long wavering lines across the sky, calling all the way. Among the tribes, the day the geese return is the first day of the year, and {A_nameDef} wants to mark it.</li>
           <li>[medieval] Cuckoos in the woods, swallows under the eaves, a lark going up over the fields. Spring has come back with its birds, and {A_nameDef} heard the first cuckoo before breakfast, which back home meant a lucky year.</li>
-          <li>[industrial|spacer] The motion sensors on the perimeter have been going off since dawn. It isn't raiders: it's birds, thousands of them, back for the spring and settling on every wire and gutter the colony has.\n\n{A_nameDef} has turned the alarms down and gone out to watch.</li>
+          <li>[industrial|spacer] The motion sensors on the perimeter have been going off since dawn, and the cause is birds, thousands of them, back for the spring and settling on every wire and gutter the colony has.\n\n{A_nameDef} has turned the alarms down and gone out to watch.</li>
           <li>[cold] Spring comes late and fast here. Yesterday there was snow in the hollows; today the sky is full of birds coming north, and the marshes ring with them all night.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Get the planting started</label>
-            <outcome>The council takes the birds at their word. Seed comes out of the stores, and everyone who can hold a hoe is in the fields by midday.</outcome>
+            <outcome>The council takes the birds at their word. Seed comes out of the stores, and anyone who can hold a hoe is in the fields by midday.</outcome>
             <outcomes>
               <li>[lowtech] The seed baskets come down from the rafters, and the colony is in the fields before the swallows have finished building.</li>
             </outcomes>
@@ -517,9 +517,9 @@
         </titles>
         <texts>
           <li>It's the rutting season, and the big stags {PLACE} have been bellowing every night for a week. This morning {A_nameDef} watched two of them fight on the ridge, antlers locked, for the better part of an hour.\n\nThe hunters want to go out. Some of the others just want to go and watch.</li>
-          <li>[tundra] The caribou are rutting {PLACE}, and the bulls have gone half mad: they roar at nothing, fight anything and charge the colony's fence if they see a shadow move. {A_nameDef} wants a closer look. So does everyone who can hold a bow.</li>
+          <li>[tundra] The caribou are rutting {PLACE}, and the bulls have gone half mad: they roar at nothing, fight anything and charge the colony's fence if they see a shadow move. {A_nameDef} wants a closer look. So does anyone who can hold a bow.</li>
           <li>[lowtech] The stags are roaring {PLACE}, the sound that means the year is turning. The hunters of the old tribes went out at the rut to take the bulls too busy fighting to notice them, and {A_nameDef} is already restringing a bow.</li>
-          <li>[!lowtech] Something has been roaring in the hills {PLACE} all night, every night. It's the rut: big stags calling and fighting over the hinds. {A_nameDef} has been out on the ridge at dawn with a pair of binoculars, and has a lot to say about it.</li>
+          <li>[!lowtech] Something has been roaring in the hills {PLACE} all night, every night. It's the rut, the big stags calling and fighting over the hinds. {A_nameDef} has been out on the ridge at dawn with a pair of binoculars, and has a lot to say about it.</li>
           <li>[forest] In the woods {PLACE}, the stags have scraped the bark off half the young trees and the ground is churned to mud where they fought. Their bellowing carries for miles at dusk.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -555,7 +555,7 @@
           </li>
           <li>
             <label>Keep everyone close to home</label>
-            <outcome>A stag in the rut will charge a cart. The council keeps everyone close to home until the roaring dies down.</outcome>
+            <outcome>A stag in the rut will charge a cart. The council keeps the colony close to home until the roaring dies down.</outcome>
           </li>
         </options>
       </li>
@@ -609,7 +609,7 @@
         <options>
           <li>
             <label>Call it a snow day</label>
-            <outcome>The council called a snow day. The work can wait one morning. The yard was full of snowball fights by breakfast, and of people warming their hands at the fire by noon.</outcome>
+            <outcome>The council called a snow day, and the work waited. The yard was full of snowball fights by breakfast, and of people warming their hands at the fire by noon.</outcome>
             <outcomes>
               <li>[children] The council called a snow day, and the children were overjoyed. So were a few of the grown-ups, who were seen hiding behind the woodpile with an armful of snowballs.</li>
               <li>[colony:Hardworking] The council surprised everyone by calling a snow day. {A_nameDef} wasn't sure what to do with it at first.</li>
@@ -623,9 +623,9 @@
           </li>
           <li>
             <label>Clear the paths and carry on</label>
-            <outcome>The paths are shoveled, the firewood is brought in under cover, and the colony gets on with its day in the snow.</outcome>
+            <outcome>The paths were shoveled and the firewood brought in under cover, and the colony got on with its day in the snow.</outcome>
             <outcomes>
-              <li>[colony:Easygoing] The paths get cleared, eventually, between snowball fights.</li>
+              <li>[colony:Easygoing] The paths got cleared, eventually, between snowball fights.</li>
             </outcomes>
             <ways><toil>1</toil></ways>
             <effects>
@@ -669,8 +669,8 @@
           <li>[tribal] Tonight is the longest night of the year. Among the tribes, the longest night is kept awake: the fire is kept high until dawn, so the sun can find its way back.\n\n{A_nameDef} has been stacking wood since noon.</li>
           <li>[medieval] It's midwinter's eve. In the villages {A_nameDef} grew up among, the longest night was for a log big enough to burn until morning, and for staying up with it, telling the year's stories.\n\nThere's an old stump by the fields that would do nicely, {A_nameDef} says.</li>
           <li>[industrial] It's the longest night of the year. {A_nameDef} says back home they hung lights in every window and kept a candle burning in the kitchen till morning, and the colony could do with something like that this winter.</li>
-          <li>[spacer] By the colony's own calendar, tonight is midwinter, the longest night this world has. {A_nameDef} grew up on a ship with no seasons at all, and wants to mark it anyway: a fire, a meal, everyone awake to see the sun come back.</li>
-          <li>[cold] The sun was up for barely five hours today, low and red, and tonight is the longest night of the year. {A_nameDef} thinks the colony should keep it together rather than each alone in the dark.</li>
+          <li>[spacer] By the colony's own calendar, tonight is midwinter, the longest night this world has. {A_nameDef} grew up on a ship with no seasons at all, and wants to mark it anyway, with a fire and a meal and all of them awake to see the sun come back.</li>
+          <li>[cold] The sun was up for barely five hours today, low and red, and tonight is the longest night of the year. {A_nameDef} has been asking around whether the colony means to sit it out in the dark, or light something.</li>
           <li>Tonight is the longest night of the year. The dark came down before supper and won't lift until long after breakfast.\n\n{A_nameDef} thinks it's a night to keep together: a big fire, food, and no one alone in the dark.</li>
           <li>The sun set in the middle of the afternoon, and it won't be back for a long while. {A_nameDef} has been asking around what people did on the longest night where they grew up, and has a list of ideas.</li>
         </texts>
@@ -694,9 +694,9 @@
           </li>
           <li>
             <label>A good supper, then early to bed</label>
-            <outcome>The longest night gets a better supper than most, and an early night after it.</outcome>
+            <outcome>The longest night got a better supper than most, and an early bed after it.</outcome>
             <outcomes>
-              <li>[lowtech] The colony marks the night with a roast and a jug of something warm, and goes to bed early, as people sensibly do in winter.</li>
+              <li>[lowtech] The colony marked the night with a roast and a jug of something warm, and went to bed early, as people sensibly do in winter.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
@@ -771,7 +771,7 @@
             <label>Watch it through smoked glass</label>
             <outcome>The colony took turns at the smoked glass while {B_nameDef} explained what was happening and why, and drew the moon's path in the dirt with a stick.</outcome>
             <outcomes>
-              <li>[lowtech] {B_nameDef} held up a piece of dark horn to the sun and let everyone look through it in turn, explaining as much as anyone knows about why the sun hides.</li>
+              <li>[lowtech] {B_nameDef} held up a piece of dark horn to the sun and let them look through it in turn, explaining as much as anyone knows about why the sun hides.</li>
               <li>[spacer] {B_nameDef} put the numbers up on a screen and talked everyone through the orbits while the shadow crossed. Some of them even listened.</li>
             </outcomes>
             <effects>

@@ -27,22 +27,22 @@
         <texts>
           <li>Strangers of {FACTION} are making camp {PLACE}.</li>
           <li>A party of {FACTION} has stopped {PLACE} and is pitching tents. They say they mean no harm and won't stay long.</li>
-          <li>Smoke is rising {PLACE}: travelers of {FACTION} have made camp there and are unloading their packs.</li>
+          <li>Travelers of {FACTION} have made camp {PLACE}, and are unloading their packs as if they mean to stay a while.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Let them stay</label>
-            <outcome>The colony lets them be. They will camp {PLACE} for a while.</outcome>
+            <outcome>Word goes out that they can stay. The camp {PLACE} will be there a while.</outcome>
             <outcomes>
               <li>[trait:Kind] {A_nameDef} walks out with a pot of something hot and tells them they're welcome. They will camp {PLACE} for a while.</li>
-              <li>[winter] The colony lets them be, and they look glad of it in this cold. They will camp {PLACE} for a while.</li>
+              <li>[winter] The colony lets them be, and in this cold they look glad of it. They'll be camped {PLACE} a while yet.</li>
             </outcomes>
             <ways><openness>2</openness></ways>
           </li>
           <li>
             <label>Let them stay, on terms</label>
-            <outcome>The colony will let them stay, on terms it sets.</outcome>
+            <outcome>They may stay, on terms the colony will set.</outcome>
             <outcomes>
               <li>[skill:Social] {A_nameDef} will go out and talk terms with them. They seem ready to listen.</li>
             </outcomes>
@@ -69,9 +69,9 @@
           </li>
           <li>
             <label>Drive them off</label>
-            <outcome>Armed colonists walk out to meet them, and the strangers hurry off the colony's land.</outcome>
+            <outcome>The strangers are told to be off the colony's land, now, and what will happen if they aren't. They pack in a hurry.</outcome>
             <outcomes>
-              <li>The strangers see the colonists coming with weapons in hand and leave their fire burning in their hurry to go.</li>
+              <li>The strangers don't wait to argue. They're gone within the hour, and their fire is still burning.</li>
             </outcomes>
             <ways><mercy>-3</mercy><openness>-3</openness></ways>
           </li>
