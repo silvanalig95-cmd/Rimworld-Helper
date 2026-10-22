@@ -89,10 +89,10 @@
     <defName>Council_Journal_EncC_PetMischief</defName>
     <lines>
       <plain>
-        <li>My good hat is in pieces, and {X_definite} is asleep on the pieces.</li>
+        <li>My things are in pieces, and {X_definite} is asleep on the pieces.</li>
         <li>Hung my things on a higher peg, and {X_definite} got to them anyway.</li>
         <li>I've started keeping my belongings in a locked chest, like a miser. All because of one animal.</li>
-        <li>[winter] My good gloves are chewed through, in the middle of winter. I'm sure {X_definite} planned it.</li>
+        <li>[winter] Chewed to bits in the middle of winter, when I can least spare a thing. I'm sure {X_definite} planned it.</li>
         <li>[child] Today {X_definite} ate my best stick. It was the best one. I will never find another stick like it.</li>
         <li>[trait:Greedy] I'm keeping a list of everything {X_definite} has destroyed. Someday, somebody is paying me back for all of it.</li>
         <li>[rain] Stuck indoors with {X_definite} all day. Lost a sandal, a belt and most of my patience.</li>
