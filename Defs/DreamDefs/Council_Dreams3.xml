@@ -214,7 +214,7 @@
         <li>[child] I was the best in the whole colony at everything, and they gave me a crown made of bread.</li>
         <li>[old] Dreamt the young ones were telling stories about me, and they got most of it right.</li>
       </plain>
-      <warm><li>Dreamt everyone I've ever worked with came to shake my hand. It took all night.</li></warm>
+      <warm><li>Every person I've ever worked with lined up to shake my hand. It took all night.</li></warm>
       <blunt><li>Dreamt I was good at {SKILL}. I am.</li></blunt>
       <cheerful><li>They put up a statue of me in my dream! The nose was wrong, but I loved it.</li></cheerful>
       <gloomy><li>I was proud of myself in the dream. Strange feeling. It didn't last.</li></gloomy>
@@ -260,7 +260,7 @@
         <li>[trait:TooSmart] I solved something enormous in my dream and wrote it on my arm. It's just scribbles.</li>
         <li>[spacer] I was aboard a ship I've never seen, and every panel I opened had another ship inside it.</li>
       </plain>
-      <warm><li>Dreamt I showed everyone a secret garden I'd found, and they loved it as much as I did.</li></warm>
+      <warm><li>I found a secret garden and showed it to the others, and they loved it as much as I did.</li></warm>
       <blunt><li>A door in the dream. Didn't open it. Annoying.</li></blunt>
       <cheerful><li>There was a secret room under the kitchen in my dream! I'm knocking on the walls today.</li></cheerful>
       <gloomy><li>I found a door in my dream, and it opened onto the same room, over and over.</li></gloomy>
@@ -478,7 +478,7 @@
         <li>Dreamt I woke up in their camp and couldn't find the way back to ours.</li>
         <li>[child] I went to live with the camp people in my dream, and they let me ride their animals.</li>
       </plain>
-      <warm><li>Dreamt we all ate together, the colony and the camp, on blankets in the grass, and nobody counted the bowls.</li></warm>
+      <warm><li>The colony and the camp ate together on blankets in the grass, and nobody counted the bowls.</li></warm>
       <blunt><li>The camp, in my sleep. They're still out there.</li></blunt>
       <cheerful><li>Had a dream the camp threw a festival and invited the whole colony!</li></cheerful>
       <gloomy><li>The camp took everything and left in the night. In the dream, anyway.</li></gloomy>
@@ -499,7 +499,7 @@
         <li>Followed the camp's tracks for days in the dream and found them by a river, waiting for me.</li>
         <li>Dreamt my friend from the camp and I sent each other messages, and every one arrived.</li>
       </plain>
-      <warm><li>Dreamt the camp came back, and everyone was glad to see each other again.</li></warm>
+      <warm><li>The camp came back up the road, and there was a lot of hugging.</li></warm>
       <blunt><li>Camp dream. They're gone. That's that.</li></blunt>
       <cheerful><li>Dreamt the camp people moved in for good!</li></cheerful>
       <gloomy><li>The road was empty all the way to the horizon.</li></gloomy>
@@ -586,7 +586,7 @@
         <li>Dividing one loaf among the whole colony, and the slices kept getting thinner.</li>
         <li>Dreamt of the hungry towns, and children at our gate holding out bowls.</li>
       </plain>
-      <warm><li>Dreamt we shared what we had with the hungry, and there was enough to go around.</li></warm>
+      <warm><li>I baked for the hungry towns all night, and the oven never ran out of loaves.</li></warm>
       <blunt><li>Hunger dream. Counted the stores this morning.</li></blunt>
       <cheerful><li>The famine ended with a rain of bread rolls! I caught six.</li></cheerful>
       <gloomy><li>The stores ran out in my dream. One day they will.</li></gloomy>
@@ -628,7 +628,7 @@
         <li>Had a dream we buried our silver under the floor and then forgot where.</li>
         <li>The banners on the road changed every morning, and we never knew whose side we were on.</li>
       </plain>
-      <warm><li>Dreamt we all stood at the wall together while the riders went by.</li></warm>
+      <warm><li>The riders went by, and one of them lifted a hand to me, and I lifted mine.</li></warm>
       <blunt><li>Fighting on the roads, all night. Sharpened my knife this morning.</li></blunt>
       <cheerful><li>Dreamt the riders went right past and waved!</li></cheerful>
       <gloomy><li>They came, in the dream. Sooner or later they will.</li></gloomy>
@@ -653,7 +653,7 @@
         <li>Opened every window in the colony and let the winter out.</li>
         <li>[child] Mud! The good squishy kind, all the way up to my knees.</li>
       </plain>
-      <warm><li>Dreamt we all walked out on the first warm day and lay in the new grass.</li></warm>
+      <warm><li>First warm day, and we carried the tables outside and ate in the sun.</li></warm>
       <blunt><li>Spring dream. Fields need work.</li></blunt>
       <cheerful><li>Spring flowers everywhere, even on the roof!</li></cheerful>
       <gloomy><li>Dreamt of spring. The mud's real enough.</li></gloomy>
@@ -697,7 +697,7 @@
         <li>We brought in the last of the crops, and sang all the way back.</li>
         <li>Dreamt the larder was full to the ceiling, and I could smell every jar.</li>
       </plain>
-      <warm><li>Dreamt we were all in the kitchen putting up the harvest, and nobody wanted to leave.</li></warm>
+      <warm><li>All of us in the kitchen putting up the harvest, steam on the windows, and nobody wanted to leave.</li></warm>
       <blunt><li>Harvest dream. Then the harvest.</li></blunt>
       <cheerful><li>Dreamt of the biggest pumpkin anyone's ever grown, and it was ours!</li></cheerful>
       <gloomy><li>Dreamt of the harvest, and then the long winter after it.</li></gloomy>
