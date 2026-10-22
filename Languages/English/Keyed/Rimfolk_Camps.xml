@@ -33,19 +33,19 @@
   <CC_Camp_Built>The {NAME} from {FACTION} finished their camp {PLACE}.</CC_Camp_Built>
 
   <!-- Day to day -->
-  <CC_Camp_Traded>The colony traded with {X_nameDef} at the camp. Trade makes for easier neighbors.</CC_Camp_Traded>
-  <CC_Camp_Taken>The camp's {THING} turned up in the colony's stockpile, and the {NAME} noticed.</CC_Camp_Taken>
-  <CC_Camp_FeePaid>The {NAME} paid their fee: {COUNT} silver, left where the colony can collect it.</CC_Camp_FeePaid>
-  <CC_Camp_Shared>The {NAME} left {COUNT} meat from their hunt for the colony, as agreed.</CC_Camp_Shared>
-  <CC_Camp_Found>{X_nameDef} found {COUNT} {THING} at the diggings.</CC_Camp_Found>
+  <CC_Camp_Traded>The colony traded with {X_nameDef} at the camp, and the camp is friendlier for it.</CC_Camp_Traded>
+  <CC_Camp_Taken>The camp's {THING} ended up in the colony's stockpile, and the {NAME} noticed.</CC_Camp_Taken>
+  <CC_Camp_FeePaid>The {NAME} paid their fee of {COUNT} silver. It's waiting at the edge of their camp for someone from the colony to fetch.</CC_Camp_FeePaid>
+  <CC_Camp_Shared>The {NAME} left {COUNT} meat at the edge of their camp, the colony's third of their hunt, as agreed.</CC_Camp_Shared>
+  <CC_Camp_Found>{X_nameDef} turned up {COUNT} {THING} at the diggings.</CC_Camp_Found>
   <CC_Camp_Tended>{X_nameDef} from the camp tended {A_nameDef}'s wounds where {A_pronoun} lay.</CC_Camp_Tended>
   <CC_Camp_HelpTitle>A good turn from the camp</CC_Camp_HelpTitle>
-  <CC_Camp_Help_meat>The {NAME} had a good day's hunting and left {COUNT} meat where the colony can collect it.</CC_Camp_Help_meat>
-  <CC_Camp_Help_wood>The {NAME} cut more wood than they needed and left {COUNT} logs where the colony can collect them.</CC_Camp_Help_wood>
-  <CC_Camp_Help_medicine>The {NAME} gathered healing herbs and left {COUNT} bundles of herbal medicine for the colony.</CC_Camp_Help_medicine>
-  <CC_Camp_Help_mend>{X_nameDef} from the camp saw {A_nameDef}'s worn {THING} and mended it, asking nothing for the work.</CC_Camp_Help_mend>
+  <CC_Camp_Help_meat>The {NAME} had a good day's hunting, more than they can eat or carry, and left {COUNT} meat at the edge of their camp for the colony.</CC_Camp_Help_meat>
+  <CC_Camp_Help_wood>The {NAME} cut more wood than they could burn, and stacked {COUNT} logs on the colony's side of their camp.</CC_Camp_Help_wood>
+  <CC_Camp_Help_medicine>The {NAME} went out gathering healing herbs at dawn, and came back with enough to leave {COUNT} bundles of herbal medicine by their camp for the colony.</CC_Camp_Help_medicine>
+  <CC_Camp_Help_mend>{X_nameDef} from the camp took one look at the state of {A_nameDef}'s {THING} and mended it on the spot, and wouldn't take anything for the work.</CC_Camp_Help_mend>
   <CC_Camp_Help_heal>{X_nameDef} from the camp saw to {A_nameDef}'s {THING}, and asked nothing for it. {A_nameDef} is already feeling better.</CC_Camp_Help_heal>
-  <CC_Camp_Help_herbs>The {NAME} had herbs to spare and left {COUNT} bundles of herbal medicine where the colony can collect them.</CC_Camp_Help_herbs>
+  <CC_Camp_Help_herbs>The {NAME} had herbs to spare. {COUNT} bundles of herbal medicine are waiting on the colony's side of their camp.</CC_Camp_Help_herbs>
   <CC_Camp_Help_show>The {NAME} put on a show at their fire this evening, and the colony was invited. {X_nameDef} was the star of it.</CC_Camp_Help_show>
   <CC_Camp_Help_blessing>{X_nameDef} from the camp came to the colony at dusk and blessed it, its people and its fields, in the old words.</CC_Camp_Help_blessing>
   <CC_Camp_Help_survey>{X_nameDef} from the camp has been taking sightings in the hills, and has shown {A_nameDef} a seam of {THING} in the colony's own rock.</CC_Camp_Help_survey>
@@ -58,9 +58,9 @@
   <CC_Camp_TensionLabel>Between the colony and the camp</CC_Camp_TensionLabel>
   <CC_Camp_TensionTip>It grows the longer they stay, the more they take from the land, and when either side breaks the terms. Trade, gifts and friendships ease it. If it breaks, they leave, and their people think less of the colony.</CC_Camp_TensionTip>
   <CC_Camp_TensionTitle>Unease with the camp</CC_Camp_TensionTitle>
-  <CC_Camp_Tension>Things are getting tense between the colony and the {NAME} {PLACE}. There have been sharp words over firewood and game, and some colonists would like the camp gone. The council could set terms, smooth things over with a gift, or ask them to move on.</CC_Camp_Tension>
+  <CC_Camp_Tension>There were sharp words at the woodpile again today, and a quarrel over whose kill it was. Things are getting tense between the colony and the {NAME} {PLACE}, and some colonists would like the camp gone. The council could set terms, smooth things over with a gift, or ask them to move on.</CC_Camp_Tension>
   <CC_Camp_TensionHighTitle>Trouble with the camp</CC_Camp_TensionHighTitle>
-  <CC_Camp_TensionHigh>Relations with the {NAME} {PLACE} are close to breaking. {X_nameDef} has stopped returning greetings, and the colonists talk about the camp at every meal. If nothing changes, the {NAME} will leave on bad terms, and {FACTION} will hear about it.</CC_Camp_TensionHigh>
+  <CC_Camp_TensionHigh>Relations with the {NAME} {PLACE} are close to breaking. {X_nameDef} has stopped returning greetings, and the camp is all the colonists talk about at meals. If nothing changes, the {NAME} will leave on bad terms, and {FACTION} will hear about it.</CC_Camp_TensionHigh>
   <CC_Camp_Took>So far they have felled {0} trees and hunted {1} animals.</CC_Camp_Took>
 
   <!-- Terms -->
@@ -81,8 +81,8 @@
   <CC_Camp_TermsRefused>They refused {0}.</CC_Camp_TermsRefused>
   <CC_Camp_BrokenTitle>The camp bends the terms</CC_Camp_BrokenTitle>
   <CC_Camp_Broken_boundary>The {NAME} {PLACE} cut wood on the colony's side of their camp today, against the terms they agreed to.</CC_Camp_Broken_boundary>
-  <CC_Camp_Broken_share>The {NAME} {PLACE} kept all the meat from their last hunt, though they agreed to share a third of it.</CC_Camp_Broken_share>
-  <CC_Camp_Broken_fee>Word came from the camp {PLACE}: their fee will be late this time.</CC_Camp_Broken_fee>
+  <CC_Camp_Broken_share>The {NAME} {PLACE} brought in a kill and kept every scrap of it, though they agreed to share a third.</CC_Camp_Broken_share>
+  <CC_Camp_Broken_fee>The camp {PLACE} sent word that their fee will be late this time, and didn't say why.</CC_Camp_Broken_fee>
   <CC_Camp_Reminded>{X_nameDef} agrees to keep to the terms.</CC_Camp_Reminded>
   <CC_Camp_RemindedStiff>{X_nameDef} agrees to keep to the terms, stiffly. The camp didn't like being told.</CC_Camp_RemindedStiff>
 
@@ -92,17 +92,17 @@
   <CC_Camp_JoinDeclined>{X_nameDef} nods and goes back to the camp.</CC_Camp_JoinDeclined>
   <CC_Camp_JoinedTitle>{X_nameDef} joins</CC_Camp_JoinedTitle>
   <CC_Camp_Hired>{X_nameDef} from the camp took {COUNT} silver to work for the colony and moved in.</CC_Camp_Hired>
-  <CC_Camp_Welcomed>{X_nameDef} left the camp and moved in with the colony.</CC_Camp_Welcomed>
+  <CC_Camp_Welcomed>{X_nameDef} said goodbye at the camp's fire and moved in with the colony.</CC_Camp_Welcomed>
 
   <!-- Staying longer -->
   <CC_Camp_OverstayTitle>The camp asks for more time</CC_Camp_OverstayTitle>
-  <CC_Camp_Overstay>The {NAME} {PLACE} meant to be gone by now. {X_nameDef} asks whether they could stay a few more days.</CC_Camp_Overstay>
+  <CC_Camp_Overstay>The {NAME} {PLACE} meant to be gone by now, but the camp shows no sign of packing. {X_nameDef} came up to ask whether they could stay a few more days.</CC_Camp_Overstay>
   <CC_Camp_Extended>The {NAME} will stay a few days more.</CC_Camp_Extended>
 
   <!-- Asking them to go -->
   <CC_Camp_RefusedTitle>The camp won't go</CC_Camp_RefusedTitle>
-  <CC_Camp_Refused>{X_nameDef} heard the colony out and said no. They came a long way, the land isn't the colony's to give, and they will leave when they're ready.\n\nA gift of {COUNT} silver might change their minds. Insisting will cost goodwill with {FACTION}.</CC_Camp_Refused>
-  <CC_Camp_LetStay>The camp stays, and nobody brings it up again for now.</CC_Camp_LetStay>
+  <CC_Camp_Refused>{X_nameDef} heard the colony out, and said no. They came a long way, {X_pronoun} said. The land isn't the colony's to give, and they'll leave when they're ready.\n\nA gift of {COUNT} silver might change their minds. Insisting will cost goodwill with {FACTION}.</CC_Camp_Refused>
+  <CC_Camp_LetStay>The camp stays, and the matter is dropped.</CC_Camp_LetStay>
   <CC_Camp_Force_War>The camp took it as an attack. They are arming themselves, and their people now count the colony as an enemy.</CC_Camp_Force_War>
   <CC_Camp_Gifted>The camp accepted the gift of {COUNT} silver.</CC_Camp_Gifted>
 
@@ -143,11 +143,11 @@
   <CC_Camp_End_crowded>The colony has spread out toward the camp {PLACE}. The {NAME} took the hint, packed up and moved on.</CC_Camp_End_crowded>
   <CC_Camp_End_fallout>The {NAME} from {FACTION} had enough of the colony. They broke camp {PLACE} and left without a word to anyone, and their people will hear about it.</CC_Camp_End_fallout>
   <CC_Camp_End_harmed>After the colony turned on them, the {NAME} from {FACTION} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_harmed>
-  <CC_Camp_End_arrest>When the colony moved to arrest one of them, the {NAME} from {FACTION} fled their camp {PLACE}, leaving most of their things behind.</CC_Camp_End_arrest>
+  <CC_Camp_End_arrest>When the colony moved to arrest one of them, the rest of the {NAME} from {FACTION} ran. Their camp {PLACE} stands abandoned, with most of their things still in it.</CC_Camp_End_arrest>
   <CC_Camp_End_fight>The {NAME} from {FACTION} fought the colony at their camp {PLACE}.</CC_Camp_End_fight>
   <CC_Camp_End_fightOver>The fight at the camp {PLACE} is over. Those of the {NAME} who could still walk have fled, and the camp stands empty.</CC_Camp_End_fightOver>
   <CC_Camp_End_lost>The {NAME} from {FACTION} couldn't reach the spot they wanted and moved on.</CC_Camp_End_lost>
-  <CC_Camp_End_empty>The camp {PLACE} stands empty now. Nobody from it is left there.</CC_Camp_End_empty>
+  <CC_Camp_End_empty>The camp {PLACE} stands empty. The last of its people are gone.</CC_Camp_End_empty>
   <CC_Camp_Stayed>Staying on with the colony: {0}.</CC_Camp_Stayed>
 
   <!-- The World page -->
