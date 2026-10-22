@@ -10,7 +10,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>made peace with family</label><description>Family came looking for us, and we talked it through. Not everything is mended, but we're writing to each other again.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>made peace with family</label><description>My family came looking for us, and we talked all day without anyone raising their voice. They went home with a letter from me.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -26,7 +26,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a gift sent home</label><description>The colony sent a gift home to my family. Maybe it helps.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a gift sent home</label><description>The colony sent a gift home to my family. I wrote a line to go with it, and crossed most of it out.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -34,7 +34,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a letter from home</label><description>A letter came from home, full of news about people I haven't seen in a long time. I've read it more than once.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>a letter from home</label><description>A letter came from home, full of small news about people I haven't seen in years. I could hear their voices in it.</description><baseMoodEffect>4</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -43,7 +43,7 @@
     <durationDays>8</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>family came to stay</label><description>Family of mine came all this way to live here. I keep looking in on them to make sure they're settling in.</description><baseMoodEffect>8</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>family came to stay</label><description>Family of mine has moved in for good. I look in on them twice a day to see they're settling.</description><baseMoodEffect>8</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Fortune, name and vengeance ===================== -->
@@ -69,7 +69,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>sought out for my skill</label><description>Someone walked a long way to ask for my help, and knew me by name before they got here.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>sought out for my skill</label><description>A stranger walked a long way to ask for my help, and knew my name before they got here.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -85,7 +85,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>let them pass</label><description>The people I swore vengeance on were camped a few hours away, and we let them go.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>let them pass</label><description>The people I swore vengeance on were camped a few hours away, and we let them go. I watched their smoke until it was gone.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -127,7 +127,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a guest on a winter night</label><description>A traveler came in out of the cold and shared our fire for the night. It made the dark feel shorter.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a guest on a winter night</label><description>A traveler came in out of the cold and got a seat by our fire, a hot drink and a blanket for the night.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -136,7 +136,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>turned someone away in the cold</label><description>Someone knocked at the gate on a freezing night, and we didn't open it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>turned someone away in the cold</label><description>Someone knocked at the gate on a freezing night, and we didn't open it. The knocking went on a long while.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -172,7 +172,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>won over a strange creature</label><description>A strange creature wandered onto our land, and I won it over. It eats from my hand now.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>won over a strange creature</label><description>A strange creature wandered onto our land, and I sat still by it all afternoon. When I got up to go home, it followed me.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

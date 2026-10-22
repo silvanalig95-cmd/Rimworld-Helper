@@ -11,32 +11,32 @@
 
   <ThoughtDef ParentName="Council_DreamBase">
     <defName>Council_Dream_Sweet</defName>
-    <stages><li><label>a sweet dream</label><description>I woke up smiling. I'd like to go back.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a sweet dream</label><description>Woke up smiling and lay there a while, trying to get back into it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><rest>0.1</rest><feelings><li>Joy</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_DreamBase">
     <defName>Council_Dream_Strange</defName>
     <durationDays>0.4</durationDays>
-    <stages><li><label>a strange dream</label><description>I had a strange dream. I keep turning it over in my head.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a strange dream</label><description>Still turning this one over. It all made sense while I was in it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><inspiration>0.04</inspiration><feelings><li>Curiosity</li></feelings><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_DreamBase">
     <defName>Council_Dream_Nightmare</defName>
-    <stages><li><label>nightmare</label><description>I woke up with my heart pounding. It's still with me.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>nightmare</label><description>My heart was pounding when I woke, and the blanket was on the floor. It hasn't let go of me yet.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_DreamBase">
     <defName>Council_Dream_Omen</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>a vivid dream</label><description>It didn't feel like an ordinary dream. I think it meant something.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>a vivid dream</label><description>That wasn't an ordinary dream. It felt like being told something.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_DreamBase">
     <defName>Council_Dream_Lost</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>visited in a dream</label><description>One of the people I've lost was with me again in a dream. Waking up was hard.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>visited in a dream</label><description>Someone I lost was with me again for a night, talking as if nothing had happened. Then I woke up.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_DreamBase">
@@ -47,7 +47,7 @@
   <ThoughtDef ParentName="Council_DreamBase">
     <defName>Council_Dream_Inspiring</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>an inspiring dream</label><description>I woke up with an idea fully formed. I have to try it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>an inspiring dream</label><description>The idea was there, whole, the moment I opened my eyes. I need to get it down before it goes.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -55,7 +55,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my dream came true</label><description>I dreamt it before it happened. I wonder what else I'll see.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>my dream came true</label><description>I saw it in a dream before it happened. Now I'm trying to remember everything else I dreamt that week.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -64,7 +64,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>dreamt about me</label><description>They told me they had a good dream about me. That's nice to hear.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>dreamt about me</label><description>They told me over breakfast that they'd dreamt about me, and that it was a good one.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 

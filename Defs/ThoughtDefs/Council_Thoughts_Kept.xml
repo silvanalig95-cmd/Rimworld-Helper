@@ -15,7 +15,7 @@
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
     <stages>
       <li>
-        <label>they took back what the council gave me</label>
+        <label>the council took it back</label>
         <description>I asked the council for something, and they gave it to me. Now it's gone again, as if they never meant it.</description>
         <baseMoodEffect>-6</baseMoodEffect>
       </li>

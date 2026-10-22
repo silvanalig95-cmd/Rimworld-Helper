@@ -13,7 +13,7 @@
     <stages>
       <li>
         <label>caught a new species</label>
-        <description>Nobody here had ever caught one of those before, and I'm the one who did it.</description>
+        <description>I caught a kind of Pokémon the colony has never had, and walked it home myself.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -61,7 +61,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_PW_OwnPokemon</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>a Pokémon of my own</label><description>It's mine to train now, and I'm its trainer. I've already worked out three things it's good at.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a Pokémon of my own</label><description>It's mine to train now. I've already worked out three things it's good at.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- Granted: a supply of ball belts. -->
@@ -76,7 +76,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_PW_SawRareOne</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>saw a rare one</label><description>We crept up the ridge and lay in the grass and watched it. Most trainers never see one in their lives.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>saw a rare one</label><description>I lay flat in the grass and watched it until it moved on. Most trainers never see one in their lives.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.08</joy><feelings><li>Awe</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -97,7 +97,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_PW_SparLost</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>lost a friendly spar</label><description>Mine lost the spar. I saw exactly where it went wrong, and we'll practise that tomorrow.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>lost a friendly spar</label><description>Mine lost the spar. I saw exactly where it went wrong, and we'll practice that tomorrow.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skill>Animals</skill><xp>160</xp></li></modExtensions>
   </ThoughtDef>
 

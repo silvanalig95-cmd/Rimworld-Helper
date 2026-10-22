@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>sent a parcel home</label><description>I packed a parcel for my family and sent it off with a trader. I keep picturing them opening it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>sent a parcel home</label><description>I packed a parcel for my family and sent it off with a trader. I put a note in the bottom, where they'll find it last.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -16,7 +16,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a letter read at supper</label><description>Someone read their letter from home out at supper. All that small news from people I've never met, and I enjoyed every word.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a letter read at supper</label><description>Someone read their letter from home out at supper. I've never met any of those people, and now I know all about their dog.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -25,7 +25,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>taught a young guest a trade</label><description>I spent a day showing a young visitor how we make things here. They went home knowing how, and that was my doing.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>taught a young guest a trade</label><description>I spent a day at the workbench showing a young visitor how we make things here. They left with sore hands and a trade.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>

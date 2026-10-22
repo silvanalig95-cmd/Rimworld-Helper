@@ -11,7 +11,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>sent a letter home</label><description>A scribe wrote down what I wanted to say, and it's on its way to someone who'll be glad to read it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>sent a letter home</label><description>A scribe wrote down what I wanted to say, every word of it. It goes out with the next rider headed that way.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -36,7 +36,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a glitterworlder's questions</label><description>A tourist from a glitterworld stayed with us and asked about everything. Where the water comes from. Why the beds are so hard. It was funny, mostly.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a glitterworlder's questions</label><description>The glitterworld tourist asked three times where our water comes from, and wrote the answer down every time.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -45,7 +45,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a glitterworlder in the barn</label><description>I watched a rich tourist from a glitterworld muck out the barn. I'll remember that for a long time.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a glitterworlder in the barn</label><description>I watched a rich tourist from a glitterworld muck out our barn, complaining with every forkful.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -54,7 +54,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the spirit-singer's song</label><description>A spirit-singer sang to the land all night by our fire. The drum is still going in my head.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>the spirit-singer's song</label><description>A spirit-singer sang to the land by our fire, one long song with the drum under it. I can still hear the drum.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -62,7 +62,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>our dead were sung to</label><description>A singer went from grave to grave and sang to each of our dead. It felt like they were finally put to rest.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>our dead were sung to</label><description>A singer went from grave to grave in the dusk and sang each of our dead a short song of its own.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -86,7 +86,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a healer saw to me</label><description>A traveling healer saw what was wrong and saw to it, and the council paid. I feel better already.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a healer saw to me</label><description>A traveling healer looked me over, knew what it was straight away, and the council paid for the cure. It's easing already.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -94,7 +94,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>someone played just for me</label><description>A musician sat with me last night and played until I fell asleep. I didn't know how tired I was until then.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>someone played just for me</label><description>A musician sat out by the woodpile with me and played slow tunes until I fell asleep where I sat.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -102,7 +102,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>they came to see how we decide</label><description>Envoys came all the way from a neighbor's town to watch how our council works. We must be doing something right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>they came to see how we decide</label><description>Envoys came all the way from a neighbor's town to watch our council decide things, and wrote down every word.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -113,7 +113,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a taste of home</label><description>A peddler had food from where I grew up, and the council bought it for me. One bite and I was a child again.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <stages><li><label>a taste of home</label><description>A peddler had food from where I grew up, and the council bought it for me. The smell alone took me straight back.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -121,7 +121,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a supper from someone's home</label><description>We ate a supper from someone else's homeland tonight, with the stories that go with it. Strange food, good evening.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a supper from someone's home</label><description>We ate a supper from someone else's homeland, with the story of every dish. I'd have the sour one again.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -129,7 +129,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>made peace with an old enemy</label><description>Someone who wronged me before I came here came all this way to say sorry. I didn't know how much I'd been carrying.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>made peace with an old enemy</label><description>The one who wronged me, years before the colony, turned up at the gate to say sorry. We talked behind a closed door most of the afternoon.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -145,7 +145,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>our dead have proper markers</label><description>Every grave has a proper marker now, with the name cut in stone. It feels like the colony is keeping its promises.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>our dead have proper markers</label><description>Every grave has a proper marker now, with the name cut in stone. I read them all on my way past.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -153,7 +153,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a feast at the camp</label><description>We were guests at the camp's fire last night. Good food, new faces, songs I'd never heard.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>a feast at the camp</label><description>We spent the evening at the camp's fire with their people, eating out of the same pot.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -161,7 +161,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the council backed me</label><description>I had a quarrel with someone from the camp, and the council took my side.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the council backed me</label><description>I had a quarrel with someone from the camp, and the council came down on my side. They went back with a face like thunder.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

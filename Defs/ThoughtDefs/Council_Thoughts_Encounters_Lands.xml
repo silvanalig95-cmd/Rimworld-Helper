@@ -18,7 +18,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_SandTrick</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>a trick for the dry country</label><description>A traveler showed me how they live with the sand and the sun. I'm going to try it tomorrow.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a trick for the dry country</label><description>A traveler showed me how their people manage out in the sand and the sun. It's simpler than what I was doing.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -32,7 +32,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_FollowedTracks</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>followed tracks in the snow</label><description>I followed a line of tracks across the snow until I found who made them. Worth the cold feet.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>followed tracks in the snow</label><description>I followed a line of tracks across the snow until I found who made them, digging through the crust for something to eat.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -46,7 +46,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_ColdTrick</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a trick against the cold</label><description>A traveler from colder country than this showed me how to keep my feet warm. It works.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a trick against the cold</label><description>How to keep the frost off, from a traveler who's known worse cold than this. I'm trying it tonight.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.15</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -60,13 +60,13 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_UneasyInTheGreen</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>something in the undergrowth</label><description>Something was watching me from the green. I didn't see what until it moved, and I didn't like it either way.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>something in the undergrowth</label><description>An animal kept pace with me through the green all the way back from the far plot. I never once saw it properly.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_LeafCape</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>a cape of leaves</label><description>A traveler showed me how to make a rain cape out of broad leaves. I stayed dry all afternoon, mostly.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a cape of leaves</label><description>Four broad leaves and a few thorns, and the traveler had made me a rain cape. It keeps the wet off better than my coat.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -80,14 +80,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_MarshLights</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>lights over the marsh</label><description>Pale lights drifted over the marsh last night. My animal watched them with me. I don't know what they were.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>lights over the marsh</label><description>Pale lights drifted low over the marsh after dark. My animal watched them with me. I don't know what they were.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_MarshLightsUneasy</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>lights over the marsh</label><description>Lights moved out over the marsh last night where nobody could be standing. My animal growled at them. I haven't stopped thinking about it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>lights over the marsh</label><description>Lights moved out over the marsh after dark, where nobody could be standing. My animal growled at them, and I haven't stopped thinking about it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -100,7 +100,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_HighRoads</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>news of the high roads</label><description>A traveler told me about the passes and the high roads through these mountains. I'd like to see them one day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>news of the high roads</label><description>The traveler came over the high pass and told me about the cold at the top, the kind that gets into your teeth. I'd like to see it anyway.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -121,7 +121,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_ShellGift</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a shell from the trader</label><description>The trader gave me a shell for nothing, a spiral one with pink inside. I've put it where I can see it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a shell from the trader</label><description>The trader gave me a shell for nothing and said it brings good weather. It's on my windowsill now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -136,21 +136,21 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncS_FirstGreen</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>the first green</label><description>An animal was grazing on the first green shoots of the year. Spring is really here.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the first green</label><description>An animal found the first green shoots of the year before we did. Its ribs still showed from the winter.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncS_ReadyForWinter</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>getting ready for winter</label><description>I watched a small animal carrying food to its hole, getting ready for the cold. The same as us.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>getting ready for winter</label><description>A small animal was carrying food to its hole while I carried sacks to the storeroom. We kept at it all afternoon.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncS_Waded</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>cooled off in the water</label><description>It was so hot that my animal and I walked straight into the water and stood there. Best part of the day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>cooled off in the water</label><description>It was so hot that my animal and I walked straight into the water and stood there up to our knees, sighing.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.15</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -166,14 +166,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncW_RainShelter</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>waited out the rain together</label><description>My animal and I waited out the rain together, listening to it on the roof.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>waited out the rain together</label><description>The rain came down in sheets, and my animal pressed up against me, steaming, until it stopped.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.1</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncW_FogShape</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>a shape in the fog</label><description>A shape came out of the fog toward me and turned out to be an animal. We were both surprised.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a shape in the fog</label><description>A big dark shape came out of the fog at me and turned into an animal. We both stopped dead, then both backed off.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -193,21 +193,21 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncW_CalmedInStorm</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>calmed my animal in the storm</label><description>The thunder frightened my animal half to death. I sat with it and talked until it stopped shaking. I think it helped me too.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>calmed my animal in the storm</label><description>The thunder frightened my animal half to death. I sat on the floor with it and talked until it stopped shaking.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Animals</skill><xp>150</xp><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncN_StarNames</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>other names for the stars</label><description>A traveler showed me the stars as their people know them, with different names and different stories. The sky looks different now.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>other names for the stars</label><description>Their people have their own names for the stars, and a story for each. The traveler went across the whole sky with me.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><research>50</research><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncN_LateTea</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>late talk at the caravan</label><description>I sat up late at the caravan's fire with the trader, talking about nothing in particular. I'd do it again.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>late talk at the caravan</label><description>I sat up with the trader long after the trading was done, talking about the road and the people we'd left behind.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 

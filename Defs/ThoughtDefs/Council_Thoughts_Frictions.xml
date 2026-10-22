@@ -208,7 +208,7 @@
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Council_Mend_AirCleared</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>cleared the air</label><description>We talked it over. It wasn't worth staying cross about.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>cleared the air</label><description>We talked it over, and I can look them in the eye again.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">

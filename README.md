@@ -188,7 +188,7 @@ get a message at once ("Hector's guest bed is no longer kept for guests. If it i
 it as the council going back on its word."), and a grace period starts: a day by default, or none, half a day or
 three days in the settings. Moving it doesn't count: a building packed up to be carried, stored or reinstalled, a
 plan or frame of the same thing being built (for up to a week), a bed lent to a patient. Back in time, nothing
-happens. Still gone after it: "they took back what the council gave me" (-3 to -6 for 5 days, the bigger the sooner
+happens. Still gone after it: "the council took it back" (-3 to -6 for 5 days, the bigger the sooner
 it happened, scaled by their standards), the trust a broken promise costs, a line in their journal, a little less
 trust from their partner and close friends, and they may soon ask for it again. Put it back within 5 days and the
 council made it right: the mood ends, half the trust comes back, and they feel grateful. A fire, a raid or a
