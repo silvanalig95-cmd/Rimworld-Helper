@@ -1139,7 +1139,7 @@
         <li>It would spare the rest of you the work, when the time comes.</li>
       </warm>
       <blunt>
-        <li>I'm old. Build me {THING} before I need it.</li>
+        <li>Build me {THING} before I need it. Not after.</li>
       </blunt>
       <cheerful>
         <li>I want a nice one, with my name carved big! I'll lie in it to try it out.</li>

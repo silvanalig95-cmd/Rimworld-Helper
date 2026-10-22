@@ -245,10 +245,10 @@
         <li>I'll make it myself, if you like. Old clothes, some hay, a friendly face.</li>
       </warm>
       <blunt>
-        <li>The animals are eating our food. Build {THING}.</li>
+        <li>The animals are eating better than we are. Put {THING} in the field.</li>
       </blunt>
       <cheerful>
-        <li>A scarecrow! I'll give it a hat and a name.</li>
+        <li>Can I name the scarecrow? I've got a name picked out already, and a hat.</li>
       </cheerful>
       <gloomy>
         <li>We grow it, they eat it. That's been the story all season.</li>

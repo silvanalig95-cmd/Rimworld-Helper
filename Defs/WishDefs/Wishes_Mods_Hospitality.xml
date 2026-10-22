@@ -36,7 +36,7 @@
         <li>[trait:Kind] A guest who has walked for weeks deserves a good bed. Could we fix up the guest room?</li>
       </plain>
       <warm><li>Every guest should leave here feeling they were wanted. Make the room {SUBJECT} and they will.</li></warm>
-      <blunt><li>The guest room is an embarrassment. Fix it.</li></blunt>
+      <blunt><li>The guest room is an embarrassment. I won't show anyone into it.</li></blunt>
       <cheerful><li>A proper guest room! Flowers by the bed and a lamp by the door. Guests will come just to sleep in it.</li></cheerful>
       <gloomy><li>Guests leave here thinking we live like animals. Maybe they're right, but they don't have to see it.</li></gloomy>
       <cold><li>A good guest room costs a few days' work and pays in goodwill and fees for years. Make it {SUBJECT}.</li></cold>

@@ -96,8 +96,8 @@
         <li>[lowmood] I need something that's on my side. A Pokémon of my own would be a start.</li>
       </plain>
       <warm><li>That {SUBJECT} needs someone to look after it properly. I'd like to be the one.</li></warm>
-      <blunt><li>Give me the {SUBJECT}. I'll make something of it.</li></blunt>
-      <cheerful><li>A Pokémon of my very own, the {SUBJECT}. We'll be the best team in the colony!</li></cheerful>
+      <blunt><li>The {SUBJECT} has no trainer. Now it has me.</li></blunt>
+      <cheerful><li>I've already worked out our first trick, the {SUBJECT} and me! It just has to agree.</li></cheerful>
       <gloomy><li>Even the Pokémon have someone. I'd settle for the {SUBJECT}, if it would have me.</li></gloomy>
       <cold><li>A Pokémon without a trainer gains nothing in a fight. Assign the {SUBJECT} to me.</li></cold>
     </request>
