@@ -28,7 +28,7 @@
         <li>The others each have a thing they're known for. I'd like {SKILL} to be mine.</li>
         <li>[old] Decades of being passable at {SKILL}. I'd like to die a master of it, and I don't have decades left.</li>
       </plain>
-      <blunt><li>Master {SKILL}. That's the plan. Laugh if you like.</li></blunt>
+      <blunt><li>Mastering {SKILL}. That's the plan. Laugh if you like.</li></blunt>
       <cheerful><li>I'm going to be amazing at {SKILL}! Starting today, right after breakfast.</li></cheerful>
       <cold><li>Mastery of {SKILL} will take years of practice. I have years.</li></cold>
       <warm><li>I'd like to be good enough at {SKILL} to teach it to the children someday.</li></warm>
@@ -147,7 +147,7 @@
     <sparks><li>thought:Council_GratefulStudent</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
-        <li>[sparked] Someone took the time to teach me. It's my turn to do that for somebody.</li>
+        <li>[sparked] Someone once took the time to teach me. It's my turn to do that for somebody.</li>
         <li>[inherited] {NAME} had so much to pass on and no one to pass it to. I'll {GOAL} and teach them what {NAME} taught me.</li>
         <li>I learned most of what I know by getting it wrong. I'd like to spare someone a few of those mistakes.</li>
         <li>I've got a head full of tricks and no one to give them to. It's time I took a student.</li>
@@ -357,7 +357,7 @@
     <achieved>
       <plain>
         <li>Twenty-five. I've stopped counting faces. I haven't stopped counting.</li>
-        <li>[trait:Brawler] Most of them up close, near enough to see their eyes. That's how it should be done.</li>
+        <li>[trait:Brawler] I took most of the twenty-five up close, near enough to see their eyes. That's how it should be done.</li>
       </plain>
       <blunt><li>Twenty-five down. They can keep sending more.</li></blunt>
       <cold><li>The count stands at twenty-five. I see no reason to stop it there.</li></cold>
@@ -413,7 +413,7 @@
       <plain>
         <li>A hundred wounds closed. I remember most of them. I remember all of the ones I lost.</li>
       </plain>
-      <warm><li>I could tell you whose every one of those wounds was, and what they said while I stitched.</li></warm>
+      <warm><li>I could tell you whose every wound was, all hundred, and what they said while I stitched.</li></warm>
       <gloomy><li>A hundred wounds, and I still wash my hands three times after the bad ones.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>

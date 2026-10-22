@@ -339,7 +339,7 @@
     <chosen>
       <plain>
         <li>My hands aren't what they were. I'd like them to make one more fine thing before they stop, something the colony keeps.</li>
-        <li>[sparked] This week set me wondering what's left of a person once they're gone. It ought to be something better than a few tools.</li>
+        <li>[sparked] I've been wondering what's left of a person once they're gone. It ought to be something better than a few tools.</li>
         <li>[inherited] {NAME} never made that last fine piece. I'll make it, and put {NAME}'s mark on it next to mine.</li>
       </plain>
       <warm><li>Something to leave behind that people will use and think, someone made this with care.</li></warm>
@@ -559,7 +559,7 @@
     <chosen>
       <plain>
         <li>I work all day and I don't know what any of it is for. There has to be something that matters.</li>
-        <li>[sparked] This week took away something that made me feel useful. I need to find something else.</li>
+        <li>[sparked] I've lost what made me feel useful here. I need to find something else.</li>
       </plain>
       <warm><li>I want my days to mean something to someone. That's all.</li></warm>
       <blunt><li>Need a reason to get up. A real one.</li></blunt>
@@ -649,7 +649,7 @@
     <chosen>
       <plain>
         <li>I have friends. What I want is one who'd know something was wrong before I said a word.</li>
-        <li>[sparked] This week showed me how few people really know me. I want one who does, all the way down.</li>
+        <li>[sparked] It's struck me lately how few people really know me. I want one who does, all the way down.</li>
       </plain>
       <warm><li>A friend I can tell anything to, and be that friend back. That's what I'm hoping for.</li></warm>
       <blunt><li>Want one real friend. The kind you keep.</li></blunt>
