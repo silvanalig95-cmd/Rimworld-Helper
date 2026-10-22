@@ -94,7 +94,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Granted_SickbedVisit</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>my friend came</label><description>I asked to see them, and they came and sat by the bed. The day went faster after that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>my friend came</label><description>I asked to see them, and they came and sat on the end of my bed and told me all the news.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_Moment2Base">
@@ -132,14 +132,14 @@
     <durationDays>6</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>kept me company</label><description>They stayed with me the whole day after I lost my patient, and didn't make me talk about it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <stages><li><label>kept me company</label><description>They took me fishing the day after I lost my patient, and let me talk when I was ready.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_LookedAfterDoctor</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>looked after our doctor</label><description>Our doctor needed someone for a change. I spent the day with them, mostly not talking.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>looked after our doctor</label><description>Our doctor needed looking after for a change. We sat with two lines in the water all day, mostly not talking.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemmas: back too soon ===================== -->
@@ -147,7 +147,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_UsefulAgain</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>useful again</label><description>I'm back at work, slowly. It's good to be useful.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>useful again</label><description>I'm back at work, on the light jobs only. I've caught myself whistling.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -162,7 +162,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_KeptInBed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>kept in bed</label><description>The council says I stay in bed. I've counted the knots in the ceiling twice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>kept in bed</label><description>The council says I stay in bed, and someone brings my meals so I've no excuse to get up.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -177,7 +177,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_WorkFromBed</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>work from my bed</label><description>They brought me something to do in bed. It isn't much, but my hands are busy.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>work from my bed</label><description>There's a board across my bed and a basket of mending on it. It isn't much, but my hands are busy.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemmas: a say in the operation ===================== -->
@@ -197,7 +197,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_Heard</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the council listened</label><description>They put off the operation so we could talk it through first. I'm glad they listened.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the council listened</label><description>They put off the operation so we could talk it through first. We sat up late, and the doctor came by to answer questions.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -212,7 +212,7 @@
     <durationDays>5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>family beside me</label><description>They'll be with me before the operation and when I wake up. That helps more than I expected.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
+    <stages><li><label>family beside me</label><description>They'll be with me before the operation and when I wake up. There's a chair by the bed already.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>6</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -226,7 +226,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_PassingItOn</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>passing it on</label><description>Someone else will know how to bring a baby into the world when I can't. That matters to me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>passing it on</label><description>Someone else will know how to bring a baby into the world when I can't. They've started by practicing on a sack of flour.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -238,7 +238,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmH_NotYet</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>not chosen</label><description>I asked to learn midwifery and was told not yet.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>not chosen</label><description>I asked to learn midwifery and was told not yet. I hang about the infirmary anyway.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
