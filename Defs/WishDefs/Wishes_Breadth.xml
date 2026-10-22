@@ -55,7 +55,7 @@
       <plain>
         <li>I've been coughing all night in the barracks, and nobody else is sleeping either. Could one bed be kept for the sick?</li>
         <li>When you're ill here, you lie wherever you usually lie and hope someone remembers you. Mark a bed for the sick.</li>
-        <li>[trigger:sick] I'm burning up. I'd like to lie down somewhere the doctor will think to look.</li>
+        <li>[trigger:sick] I'm burning up. Put me somewhere the doctor will think to look.</li>
         <li>[winter] Sick in the middle of winter, and my bed is by the door. A proper sickbed somewhere warm is all I'm asking.</li>
         <li>[lowtech] Where I grew up, the sick got the warmest corner of the house and someone to bring them broth.</li>
         <li>[night] It's the middle of the night and I can hear myself wheezing. I'd like to be where someone else can hear it too.</li>
@@ -68,7 +68,7 @@
         <li>I'm sick. Give me a bed where the doctor can find me.</li>
       </blunt>
       <cheerful>
-        <li>A bed just for being ill in! I'd almost look forward to the next cold.</li>
+        <li>Let me be ill properly, in a bed of my own with a blanket and someone bringing soup. I'd be up in no time.</li>
       </cheerful>
       <gloomy>
         <li>If this gets worse, I'd rather not die in the barracks between two snorers.</li>
@@ -86,7 +86,7 @@
       <cold><li>Separating the sick was the correct decision.</li></cold>
     </thanks>
     <expired>
-      <plain><li>I coughed my way through it in my own bed. Nobody came.</li></plain>
+      <plain><li>I'm sweating it out in my own bed, then, with people stepping over my boots all day.</li></plain>
       <blunt><li>Got better on my own. No thanks to anyone.</li></blunt>
       <gloomy><li>Next time I'll just lie down in the yard.</li></gloomy>
     </expired>
@@ -129,7 +129,7 @@
         <li>[spring] It's planting time. A row of healroot now means medicine all winter.</li>
         <li>[fall] If we don't have healroot dried and hung before the frost, we'll be sorry by midwinter.</li>
         <li>[afterraid] I used the last of the herbs on the wounded. We need more before the next raid, not after.</li>
-        <li>[tribal] My grandmother kept a pouch of healroot at her belt her whole life. I'd like a pouch for every one of us.</li>
+        <li>[tribal] My grandmother kept a pouch of healroot at her belt her whole life. Every one of us should carry one.</li>
       </plain>
       <warm>
         <li>When someone falls ill, I want to have something better than kind words to give them.</li>
@@ -141,7 +141,7 @@
         <li>Rows and rows of healroot! It smells awful and it works wonders.</li>
       </cheerful>
       <gloomy>
-        <li>Someone will get sick this season. Someone always does. I'd like to be ready.</li>
+        <li>Someone will get sick this season. Someone always does. Better to be ready this time.</li>
       </gloomy>
       <cold>
         <li>Healroot costs a patch of soil. An infection can cost a colonist.</li>
@@ -150,10 +150,10 @@
     <thanks>
       <plain><li>Healroot drying in bundles from the rafters. That's a good sight.</li></plain>
       <warm><li>Whoever falls ill next will be glad of this. I am already.</li></warm>
-      <blunt><li>Good. Don't eat it.</li></blunt>
+      <blunt><li>That'll do. Don't eat it.</li></blunt>
       <cheerful><li>Look at all that green! I've already sewn a pouch to carry some in.</li></cheerful>
       <gloomy><li>Enough for a bad winter, maybe.</li></gloomy>
-      <cold><li>Medical supply adequate for now.</li></cold>
+      <cold><li>Medical stock is adequate. Keep it that way.</li></cold>
     </thanks>
     <expired>
       <plain><li>Then we'll have to trust to luck when the fevers come.</li></plain>
@@ -200,7 +200,7 @@
         <li>Meat, meat and more meat. I'd give a lot for a handful of berries.</li>
         <li>My gums have started to bleed. I think I need something green.</li>
         <li>[trigger:scurvy] My teeth are loose and my old scars ache. The cook says it's the food, and the cook is right.</li>
-        <li>[winter] Nothing grows out there now, and we didn't put enough by. I'd like to see vegetables in the stores again.</li>
+        <li>[winter] Nothing grows out there now, and we didn't put enough by. Could we buy vegetables off the next trader?</li>
         <li>[spring] As soon as the ground thaws, can we plant something we can eat raw? I'm tired of jerky.</li>
         <li>[hurt] I'm healing slower than I should. I think I need better food than this.</li>
       </plain>
@@ -255,13 +255,13 @@
     <ways><openness>2</openness></ways>
     <envy>0.1</envy>
     <talkInteraction>Council_Talk_Fun</talkInteraction>
-    <fulfilledWhen>{FOR_nameDef} has visited the {SUBJECT}'s camp and talked with them a couple of times.</fulfilledWhen>
+    <fulfilledWhen>{FOR_nameDef} has visited the camp of the {SUBJECT} and talked with them a couple of times.</fulfilledWhen>
     <request>
       <plain>
-        <li>There's a fire burning at the {SUBJECT}'s camp every night. I'd like to go and sit at it.</li>
+        <li>There's a fire going every night at the camp of the {SUBJECT}. I'd like to go and sit at it.</li>
         <li>We haven't heard a new voice in weeks. Let me go over and ask the {SUBJECT} where they've been.</li>
-        <li>[evening] Hear that? They're singing over at the camp. Let me go, just for tonight.</li>
-        <li>[winter] Their fire looks warmer than ours. I'd like to see if they'll share it.</li>
+        <li>[evening] You can smell their cooking from here. Let me go over, just for tonight.</li>
+        <li>[winter] Their fire looks warmer than ours. Maybe they'll share it.</li>
         <li>[trait:Kind] They must be lonely out there too. I'll take them something and sit a while.</li>
         <li>[newcomer] I'm still new here myself. Strangers might be easier to talk to.</li>
         <li>[lowtech] Travelers carry news from every road they've walked. I want to hear theirs.</li>
@@ -273,7 +273,7 @@
         <li>I'm going over to the camp tonight. Don't give me work.</li>
       </blunt>
       <cheerful>
-        <li>Strangers with stories! I'll bring a bottle and they'll bring the rest.</li>
+        <li>I bet they've got stories. I'll bring a bottle and they can bring the rest.</li>
       </cheerful>
       <gloomy>
         <li>They'll be gone soon. If I don't go now, I never will.</li>
@@ -292,11 +292,11 @@
     </thanks>
     <expired>
       <plain><li>Their fire's still burning over there. I never went.</li></plain>
-      <blunt><li>Missed my chance. Thanks for nothing.</li></blunt>
+      <blunt><li>Missed my chance. There was always one more job first.</li></blunt>
       <gloomy><li>Strangers come and go, and I stay here.</li></gloomy>
     </expired>
     <reminder>
-      <plain><li>Their fire is still burning over at the {SUBJECT}'s camp.</li></plain>
+      <plain><li>Their fire is still lit over at the camp of the {SUBJECT}. There's time for one evening yet.</li></plain>
       <warm><li>If there's a quiet evening, I'd still like to go over to the camp.</li></warm>
     </reminder>
   </ColonyCouncil.WishDef>
@@ -344,17 +344,17 @@
       </cold>
     </request>
     <thanks>
-      <plain><li>Everyone at one table, saying their piece. That's what the council is for.</li></plain>
+      <plain><li>We went round the table twice, and the second time I said all of it.</li></plain>
       <warm><li>Thank you for hearing us out. All of us.</li></warm>
-      <blunt><li>Good. I said what I came to say.</li></blunt>
-      <cheerful><li>Best meeting yet. Nobody threw anything.</li></cheerful>
+      <blunt><li>I said what I came to say.</li></blunt>
+      <cheerful><li>We agreed on three whole things. I've chalked them on the wall so they stay agreed.</li></cheerful>
       <gloomy><li>We talked. That's something.</li></gloomy>
       <cold><li>The council functions.</li></cold>
     </thanks>
     <expired>
       <plain><li>I'll keep my idea to myself, then.</li></plain>
       <blunt><li>No meeting. No council, as far as I'm concerned.</li></blunt>
-      <gloomy><li>Nobody wants to hear it anyway.</li></gloomy>
+      <gloomy><li>It was probably a bad idea anyway.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still waiting for the council to sit down together.</li></plain>
@@ -383,7 +383,7 @@
     <fulfilledWhen>There are {TARGET} seats at tables indoors, one for everyone who eats.</fulfilledWhen>
     <request>
       <plain>
-        <li>We eat in turns, like soldiers. I'd like us all at one table, just once a day.</li>
+        <li>We eat in turns, like soldiers. One table, all of us, once a day. That's all.</li>
         <li>Somebody always eats standing up by the door. There should be a chair for everyone.</li>
         <li>[evening] Supper's the only time we're all in one place. It would be nice if we could all sit down for it.</li>
         <li>[large] We've grown. The table hasn't. Time we built more chairs.</li>
@@ -392,13 +392,13 @@
         <li>[lowtech] Even a long bench would do. We're one people, we ought to eat like one.</li>
       </plain>
       <warm>
-        <li>Sharing a meal makes us a family. Right now we're more like a queue.</li>
+        <li>Supper should mean passing the bread across a table, not across the room.</li>
       </warm>
       <blunt>
         <li>Build more chairs. I'm sick of eating standing up.</li>
       </blunt>
       <cheerful>
-        <li>A long table with everyone squeezed in and elbows everywhere! That's how meals should be.</li>
+        <li>One long table with everyone squeezed in and elbows everywhere. That's how meals should be.</li>
       </cheerful>
       <gloomy>
         <li>Most days I eat alone because there's nowhere to sit. It wears on you.</li>
@@ -410,15 +410,15 @@
     <thanks>
       <plain><li>Everyone at the table together. It took me a moment to place the sound.</li></plain>
       <warm><li>Look at us all. This is how it should be.</li></warm>
-      <blunt><li>Good. Now nobody takes my chair.</li></blunt>
-      <cheerful><li>There's room for everyone and the cat still sat in my lap.</li></cheerful>
-      <gloomy><li>We all fit. For now.</li></gloomy>
+      <blunt><li>About time. The end chair's mine.</li></blunt>
+      <cheerful><li>Room for everyone, and the pot made it all the way round the table.</li></cheerful>
+      <gloomy><li>We all fit, until the next one turns up at the gate.</li></gloomy>
       <cold><li>Mealtimes are shorter. Good.</li></cold>
     </thanks>
     <expired>
       <plain><li>Back to eating in shifts.</li></plain>
       <blunt><li>I'll keep standing, then.</li></blunt>
-      <gloomy><li>You can feel alone at a table when there's no place at it for you.</li></gloomy>
+      <gloomy><li>I'll eat on the step again. I'm used to it.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still eating in turns.</li></plain>
@@ -451,31 +451,31 @@
         <li>[old] I won't be here forever. Somebody should know what I know about {SUBJECT}, and {OTHER_nameDef} is the one I'd pick.</li>
         <li>[trait:Kind] {OTHER_nameDef} has a gift for {SUBJECT}. It just needs someone patient.</li>
         <li>[evening] I could teach {OTHER_nameDef} in the evenings. An hour a day would do it.</li>
-        <li>[lowtech] The old teach the young, or what they know dies with them. That's how it's always been done.</li>
+        <li>[lowtech] My teacher showed me everything I know by the fire, three winters running. I owe somebody the same.</li>
       </plain>
       <warm>
-        <li>It would be a pleasure to teach {OTHER_nameDef}. Truly.</li>
+        <li>I'd love to teach {OTHER_nameDef}. I still remember who taught me.</li>
       </warm>
       <blunt>
         <li>Give me {OTHER_nameDef} every evening. I'll make something of {OTHER_objective}.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} could be better at {SUBJECT} than me one day! I'd like to see that.</li>
+        <li>{OTHER_nameDef} could be better at {SUBJECT} than me one day! Imagine that.</li>
       </cheerful>
       <gloomy>
         <li>When I'm gone, someone should still know how to do this.</li>
       </gloomy>
       <cold>
-        <li>Knowledge held by one person is lost with one arrow. Let me train {OTHER_nameDef}.</li>
+        <li>Knowledge held by one person is lost with one fever. Let me train {OTHER_nameDef}.</li>
       </cold>
     </request>
     <thanks>
       <plain><li>{OTHER_nameDef} is a quick study. We'll get there.</li></plain>
-      <warm><li>Thank you. It means more than I can say, having someone to teach.</li></warm>
-      <blunt><li>Good. Lessons start at dawn.</li></blunt>
+      <warm><li>Thank you. My apprentice had three questions before we'd even begun.</li></warm>
+      <blunt><li>Lessons start at dawn.</li></blunt>
       <cheerful><li>My own apprentice! I've already planned the first lesson.</li></cheerful>
       <gloomy><li>At least it won't all be lost.</li></gloomy>
-      <cold><li>Training has begun.</li></cold>
+      <cold><li>The apprentice will do. We'll see if that holds.</li></cold>
     </thanks>
     <expired>
       <plain><li>I'll keep it all in my own head, then.</li></plain>
@@ -536,13 +536,13 @@
         <li>[hot,lowtech] We've no cold room and can't build one. Then we do what the desert people do: dry it, pound it, and put it by.</li>
       </plain>
       <warm>
-        <li>Nobody should go hungry here, not even in the worst of the winter.</li>
+        <li>It would be good to know there's always something on the shelf, whatever happens out there.</li>
       </warm>
       <blunt>
         <li>Put food by. Food that keeps. Before it's too late.</li>
       </blunt>
       <cheerful>
-        <li>Shelves of food that'll be just as good in spring! It's like saving silver.</li>
+        <li>Think of it as saving silver, only you can eat it in spring.</li>
       </cheerful>
       <gloomy>
         <li>Every winter someone says we'll be fine. Then we aren't.</li>
@@ -552,9 +552,9 @@
       </cold>
     </request>
     <thanks>
-      <plain><li>A shelf of food that will still be good when the snow is deepest. I sleep better.</li></plain>
-      <warm><li>Nobody's going hungry this winter. That's worth more than I can say.</li></warm>
-      <blunt><li>Good. Don't touch it until we need it.</li></blunt>
+      <plain><li>A shelf of food that will still be good months from now. I sleep better.</li></plain>
+      <warm><li>Whatever happens to the crops, we'll eat. Thank you.</li></warm>
+      <blunt><li>It stays shut until we need it.</li></blunt>
       <cheerful><li>I counted it twice. It's all there.</li></cheerful>
       <gloomy><li>Enough for a bad winter. Maybe not a very bad one.</li></gloomy>
       <cold><li>Reserve established.</li></cold>
@@ -575,7 +575,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_Fishing</defName>
     <label>a fishing spot</label>
-    <description>Only where fishing is part of the game (Odyssey, or Vanilla Fishing Expanded on its own) and the map's water holds fish: nobody is catching them. Someone who'd like an afternoon at the water's edge, and fish for supper, wants a fishing spot marked out and used.</description>
+    <description>Someone who'd like an afternoon at the water's edge, and fish for supper, wants a fishing spot marked out and used. It comes up only where fishing is part of the game (Odyssey, or Vanilla Fishing Expanded on its own), the map's water holds fish, and the colony isn't catching any.</description>
     <workerClass>ColonyCouncil.WishWorker_Fishing</workerClass>
     <forbiddenBy><li>NoFishing</li><li>NoMeat</li></forbiddenBy>
     <lasting>true</lasting>
@@ -593,7 +593,7 @@
       <plain>
         <li>There are fish in that water, and we're eating the same stew every night. Let me mark out a spot.</li>
         <li>I saw something jump out on the water this morning. A big one. We should be fishing.</li>
-        <li>[morning] Early morning is when they bite. I'd like to be down at the water at dawn.</li>
+        <li>[morning] Early morning is when they bite. Give me the dawn hours and I'll bring back breakfast.</li>
         <li>[summer] On a day like this, I'd rather be sitting on the bank with a line than anywhere else.</li>
         <li>[rain] Fish bite in the rain. Everybody knows that. We should be out there.</li>
         <li>[lowmood] An afternoon by the water, with nothing to do but wait for a bite. That's all I want.</li>
@@ -619,12 +619,12 @@
       </cold>
     </request>
     <thanks>
-      <plain><li>Caught three today. Small ones, but they count.</li></plain>
+      <plain><li>Three today, all small. I'll take it.</li></plain>
       <warm><li>Fish for supper, and I caught it. Thank you.</li></warm>
-      <blunt><li>Good. Leave me alone by the water.</li></blunt>
+      <blunt><li>Now leave me be by the water.</li></blunt>
       <cheerful><li>I caught one this long. All right, this long. It still counts.</li></cheerful>
-      <gloomy><li>The first one got away. The second didn't.</li></gloomy>
-      <cold><li>New food source established.</li></cold>
+      <gloomy><li>Two fish in a whole afternoon. Still beats the stew.</li></gloomy>
+      <cold><li>One more source of food. One less way to starve.</li></cold>
     </thanks>
     <expired>
       <plain><li>The fish will have to wait.</li></plain>
@@ -669,17 +669,17 @@
         <li>There's a whole sky up there and we only ever look at it to check for rain.</li>
         <li>[night] Look up. All of that, and we have no way to look closer. Let's build {THING}.</li>
         <li>[clear] Not a cloud tonight. It's a waste to look at the sky with bare eyes.</li>
-        <li>[spacer] Somewhere up there is where we came from. I'd like to find it.</li>
+        <li>[spacer] Somewhere up there is where we came from. I want to find it.</li>
         <li>[trait:TooSmart] I've been charting the sky by hand, and I need {THING} to check my numbers.</li>
       </plain>
       <warm>
-        <li>Anyone could use it. There's nothing like a clear night and a good look at the sky.</li>
+        <li>It wouldn't be just for me. Anyone who couldn't sleep could come out and look.</li>
       </warm>
       <blunt>
         <li>I want {THING}. The sky is the only thing here that isn't trying to kill us.</li>
       </blunt>
       <cheerful>
-        <li>Moons, comets, maybe a passing ship! Build {THING} and I'll show everyone.</li>
+        <li>Build {THING} and I'll show everyone the moons. Maybe a passing ship, if we're lucky!</li>
       </cheerful>
       <gloomy>
         <li>The stars don't care about us. I'd still like to look at them.</li>
@@ -691,15 +691,15 @@
     <thanks>
       <plain><li>I spent half the night at it. There's more up there than I thought.</li></plain>
       <warm><li>Come and look. I'll show you where to point it.</li></warm>
-      <blunt><li>Good. Don't touch the lens.</li></blunt>
+      <blunt><li>Don't touch the lens.</li></blunt>
       <cheerful><li>I found a faint red star and named it after myself.</li></cheerful>
       <gloomy><li>All those worlds, and here we are.</li></gloomy>
       <cold><li>A fine instrument.</li></cold>
     </thanks>
     <expired>
       <plain><li>I'll keep squinting, then.</li></plain>
-      <blunt><li>The sky's still there. No thanks to you.</li></blunt>
-      <gloomy><li>Nobody here looks up anyway.</li></gloomy>
+      <blunt><li>Fine. I'll keep my eyes on the ground like everyone else.</li></blunt>
+      <gloomy><li>Just as well. The sky only reminds me how far we are from anywhere.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Clear sky again last night. Still no telescope.</li></plain>
@@ -745,7 +745,7 @@
         <li>Build {THING}. My tools keep disappearing.</li>
       </blunt>
       <cheerful>
-        <li>A place for every tool and every tool in its place! I'd be so happy.</li>
+        <li>A place for every tool and every tool in its place! I'd paint an outline round each one.</li>
       </cheerful>
       <gloomy>
         <li>Someone always borrows the saw and never brings it back.</li>
@@ -757,15 +757,15 @@
     <thanks>
       <plain><li>Everything on its hook. I found a chisel I thought I'd lost a season ago.</li></plain>
       <warm><li>Everyone at the bench is working faster already. Thank you.</li></warm>
-      <blunt><li>Good. Now nobody touch my tools.</li></blunt>
-      <cheerful><li>I've labeled every hook. Twice.</li></cheerful>
+      <blunt><li>Hands off my chisels.</li></blunt>
+      <cheerful><li>I've labeled every hook and drawn the right tool beside each one.</li></cheerful>
       <gloomy><li>Now when something goes missing, I'll know exactly what.</li></gloomy>
-      <cold><li>Efficiency improved.</li></cold>
+      <cold><li>Work at the bench is faster now. I timed it.</li></cold>
     </thanks>
     <expired>
       <plain><li>Back to searching the floor.</li></plain>
       <blunt><li>Don't complain when the work is slow.</li></blunt>
-      <gloomy><li>Tools wander off. So does my patience.</li></gloomy>
+      <gloomy><li>Someone will have walked off with the saw again by tomorrow.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Lost another hour looking for a file today.</li></plain>
@@ -796,9 +796,9 @@
     </wants>
     <request>
       <plain>
-        <li>Wood burns. Stone doesn't. I'd like a good stack of blocks cut and ready.</li>
+        <li>Wood burns. Stone doesn't. Let's get a good stack of blocks cut and ready.</li>
         <li>Every time we want to build in stone, we wait a week for someone to cut it. Let's cut it ahead of time.</li>
-        <li>[afterraid] They set fire to the wooden walls again. I want stone ready to rebuild with.</li>
+        <li>[afterraid] That raid went through the wooden walls like they were reeds. I want stone ready to rebuild with.</li>
         <li>[lowtech] A wall of cut stone will outlast all of us. Let's start cutting.</li>
         <li>[work:Construction] I've got a dozen jobs planned and nothing to build them with.</li>
         <li>[summer] Summer's the time to cut stone, while the days are long and the ground is dry.</li>
@@ -810,7 +810,7 @@
         <li>Cut stone. Lots of it. Then let me build.</li>
       </blunt>
       <cheerful>
-        <li>Picture proper stone walls all over the colony! I'll need a lot of blocks.</li>
+        <li>Do you know what I could build with a proper stack of blocks? Anything at all.</li>
       </cheerful>
       <gloomy>
         <li>Everything we build out of wood ends up burned or rotten.</li>
@@ -822,7 +822,7 @@
     <thanks>
       <plain><li>A stack of blocks as tall as me. Now I can build properly.</li></plain>
       <warm><li>I'll put every block to good use. You'll see.</li></warm>
-      <blunt><li>Good. Now stay out of my way.</li></blunt>
+      <blunt><li>Right. Out of my way.</li></blunt>
       <cheerful><li>Look at that pile. I keep walking past it just to look.</li></cheerful>
       <gloomy><li>Plenty of stone. Now for the hard part.</li></gloomy>
       <cold><li>Material on hand. Construction can proceed.</li></cold>
@@ -888,7 +888,7 @@
     <thanks>
       <plain><li>Drilling since dawn. The whole ground is humming.</li></plain>
       <warm><li>I'll bring up something worth having, I promise.</li></warm>
-      <blunt><li>Good. Now let me dig.</li></blunt>
+      <blunt><li>Now we'll see.</li></blunt>
       <cheerful><li>It goes down and down. I can't wait to see what comes up.</li></cheerful>
       <gloomy><li>Found rock so far. Lots of it.</li></gloomy>
       <cold><li>Extraction underway.</li></cold>
@@ -946,19 +946,19 @@
         <li>Voices from other settlements, right here in the colony! I'll do all the talking.</li>
       </cheerful>
       <gloomy>
-        <li>If something happens to us, nobody will even know.</li>
+        <li>If we're overrun one night, it could be a season before anyone out there hears of it.</li>
       </gloomy>
       <cold>
         <li>Communication enables trade, alliances and requests for aid.</li>
       </cold>
     </request>
     <thanks>
-      <plain><li>I heard a trader's voice from three days' walk away. We're not alone out here.</li></plain>
+      <plain><li>I heard a trader's voice from three days' walk away, clear as if she were in the room.</li></plain>
       <warm><li>I've already said hello to three of the neighbors, and they said hello back.</li></warm>
-      <blunt><li>Good. Now we can ask for things.</li></blunt>
-      <cheerful><li>I called a caravan and they're coming, with goods.</li></cheerful>
+      <blunt><li>Now we can ask for things.</li></blunt>
+      <cheerful><li>I've talked to two settlements already! One of them laughed at my joke.</li></cheerful>
       <gloomy><li>Mostly static. But sometimes there's a voice.</li></gloomy>
-      <cold><li>Contact established.</li></cold>
+      <cold><li>Now we can call for help, or sell to whoever pays most.</li></cold>
     </thanks>
     <expired>
       <plain><li>We'll keep waiting for whoever wanders by.</li></plain>
@@ -1014,7 +1014,7 @@
         <li>A few years off! I'd be the youngest old person in the colony.</li>
       </cheerful>
       <gloomy>
-        <li>I can feel the end coming. I'd like to push it back a few years.</li>
+        <li>I can feel the end coming. A few more years would be something.</li>
       </gloomy>
       <cold>
         <li>Reversing my age extends my working life. The colony benefits.</li>
@@ -1023,7 +1023,7 @@
     <thanks>
       <plain><li>I came out of the first cycle and stood up without groaning. That hasn't happened in years.</li></plain>
       <warm><li>Thank you. I'll be here a while longer, it seems.</li></warm>
-      <blunt><li>Good. Now I'll outlive you all.</li></blunt>
+      <blunt><li>Now I'll outlive the lot of you.</li></blunt>
       <cheerful><li>I feel a year younger. I'm going to go and run somewhere.</li></cheerful>
       <gloomy><li>It turns the clock back. It doesn't stop it.</li></gloomy>
       <cold><li>Biological age reduced. Acceptable.</li></cold>
@@ -1088,7 +1088,7 @@
     <thanks>
       <plain><li>I sat down in it and didn't want to get up. I may not.</li></plain>
       <warm><li>Come and sit with me, there's room on the arm.</li></warm>
-      <blunt><li>Good. It's mine.</li></blunt>
+      <blunt><li>Mine.</li></blunt>
       <cheerful><li>It fits me perfectly. I think it was made for me.</li></cheerful>
       <gloomy><li>Comfortable. At last.</li></gloomy>
       <cold><li>My back is grateful.</li></cold>
@@ -1132,7 +1132,7 @@
         <li>I've buried enough people out here to know how it goes. I'd like my own resting place ready, and a good one.</li>
         <li>Don't look at me like that. Everyone dies. I'd just like to know where I'll lie.</li>
         <li>[grieving] Watching them go into the ground made me think. I want a resting place built while I can still see it.</li>
-        <li>[lowtech] In the old way, the elders chose their own stones. I'd like to choose mine.</li>
+        <li>[lowtech] In the old way, the elders chose their own stones. Let me choose mine.</li>
         <li>[winter] Every winter I wonder whether it's my last. I'd like {THING} ready, just in case.</li>
       </plain>
       <warm>
@@ -1152,17 +1152,17 @@
       </cold>
     </request>
     <thanks>
-      <plain><li>I went and looked at it today. Good stone. It'll do.</li></plain>
+      <plain><li>I went and looked at it today. Solid work. It'll do.</li></plain>
       <warm><li>Thank you. Knowing it's there, I worry less.</li></warm>
-      <blunt><li>Good. Don't put anyone else in it.</li></blunt>
-      <cheerful><li>I lay down in it to check the fit. Perfect. Then I got up.</li></cheerful>
+      <blunt><li>Don't put anyone else in it.</li></blunt>
+      <cheerful><li>It's lovely. I've already decided which end my head goes.</li></cheerful>
       <gloomy><li>There it is. Waiting.</li></gloomy>
       <cold><li>Arrangements complete.</li></cold>
     </thanks>
     <expired>
-      <plain><li>A hole in the ground will do, I suppose.</li></plain>
+      <plain><li>I'll leave it to whoever's left, then.</li></plain>
       <blunt><li>Put me wherever, then.</li></blunt>
-      <gloomy><li>Nobody plans for the old.</li></gloomy>
+      <gloomy><li>I'll end up in whatever hole is quickest to dig.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still no resting place ready.</li></plain>
@@ -1208,7 +1208,7 @@
         <li>When I grow up I'm going to be the best at {SUBJECT}! I just need someone to teach me.</li>
       </cheerful>
       <gloomy>
-        <li>Nobody here has time for kids.</li>
+        <li>I asked before. Everyone was busy.</li>
       </gloomy>
       <cold>
         <li>If {OTHER_nameDef} teaches me now, I'll be useful sooner.</li>
@@ -1224,8 +1224,8 @@
     </thanks>
     <expired>
       <plain><li>I'll just watch from the doorway, then.</li></plain>
-      <blunt><li>Grown-ups never have time.</li></blunt>
-      <gloomy><li>Nobody wanted to teach me.</li></gloomy>
+      <blunt><li>Fine. I'll teach myself.</li></blunt>
+      <gloomy><li>I don't think anyone wanted to teach me anyway.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still haven't had a lesson.</li></plain>
@@ -1260,7 +1260,7 @@
         <li>[lowmood] If I had something to look after, I wouldn't feel so lonely.</li>
       </plain>
       <warm>
-        <li>It would have a home, and I'd have a friend. Everybody wins.</li>
+        <li>It would have a home, and I'd have a friend. I'd share my supper with it.</li>
       </warm>
       <blunt>
         <li>I want a pet. That one.</li>
@@ -1284,7 +1284,7 @@
       <cold><li>I have taken responsibility for the animal.</li></cold>
     </thanks>
     <expired>
-      <plain><li>It ran away. Nobody caught it.</li></plain>
+      <plain><li>I still go and look for it by the trees.</li></plain>
       <blunt><li>Grown-ups never let me have anything.</li></blunt>
       <gloomy><li>I knew I couldn't have one.</li></gloomy>
     </expired>
@@ -1350,11 +1350,11 @@
       <blunt><li>Shh. I'm reading.</li></blunt>
       <cheerful><li>There's a map at the front, and a monster on page nine!</li></cheerful>
       <gloomy><li>It has a sad ending. I read it anyway.</li></gloomy>
-      <cold><li>Adequate reading material.</li></cold>
+      <cold><li>I've read it. It was adequate.</li></cold>
     </thanks>
     <expired>
       <plain><li>I'll read the old ones again.</li></plain>
-      <blunt><li>Nobody cares if kids read.</li></blunt>
+      <blunt><li>Fine. I'll make up my own stories.</li></blunt>
       <gloomy><li>Same stories, same endings.</li></gloomy>
     </expired>
     <reminder>
@@ -1405,13 +1405,13 @@
         <li>[old] Heat like this is dangerous at my age. I need somewhere cool to rest.</li>
       </plain>
       <warm>
-        <li>The children feel it worst. One cool room would help everyone.</li>
+        <li>I've seen people nodding off at their work in this heat. One cool room would help all of us.</li>
       </warm>
       <blunt>
         <li>Build {THING}. I'm melting.</li>
       </blunt>
       <cheerful>
-        <li>A cool room! I'll move in and you can all visit me there.</li>
+        <li>Build a cool room and I'll move in. You can all visit me there.</li>
       </cheerful>
       <gloomy>
         <li>Someone's going to faint out in the fields soon. Probably me.</li>
@@ -1423,9 +1423,9 @@
     <thanks>
       <plain><li>Cool air. I stood in it for a while and didn't think about anything at all.</li></plain>
       <warm><li>Everyone has been coming to sit in here. I don't blame them.</li></warm>
-      <blunt><li>Good. Close the door.</li></blunt>
+      <blunt><li>Close the door. You're letting the heat in.</li></blunt>
       <cheerful><li>It's lovely in here. I'm never leaving.</li></cheerful>
-      <gloomy><li>Cool for now. Until it breaks.</li></gloomy>
+      <gloomy><li>It'll give out in the worst week. Things always do.</li></gloomy>
       <cold><li>Temperature acceptable.</li></cold>
     </thanks>
     <expired>
@@ -1469,7 +1469,7 @@
         <li>I spend half the day chasing animals back home. Let's fence off a pen.</li>
         <li>[spring] The young ones will be born soon. They need somewhere safe to run.</li>
         <li>[winter] Penned together they keep each other warm. Scattered, they freeze.</li>
-        <li>[afterraid] Raiders shot two of our animals out in the open. In a pen they'd be safer.</li>
+        <li>[afterraid] The raiders came right through where the animals graze. Behind a fence they'd stand a chance.</li>
         <li>[lowtech] My family kept a pen of woven branches. The animals were calmer for it, and so were the crops.</li>
       </plain>
       <warm>
@@ -1479,7 +1479,7 @@
         <li>Fence them in. I'm tired of chasing them.</li>
       </blunt>
       <cheerful>
-        <li>A pen with a gate and a trough! The animals will love it.</li>
+        <li>I've already picked the spot for the pen, and where the gate goes, and the trough.</li>
       </cheerful>
       <gloomy>
         <li>One of them will wander off and get eaten. A pen would stop that.</li>
@@ -1491,8 +1491,8 @@
     <thanks>
       <plain><li>All of them inside the fence, eating where they should. I can finally sit down.</li></plain>
       <warm><li>Thank you. They seem happier, I think.</li></warm>
-      <blunt><li>Good. No more chasing.</li></blunt>
-      <cheerful><li>I counted them all in. Nobody missing.</li></cheerful>
+      <blunt><li>No more chasing.</li></blunt>
+      <cheerful><li>I counted them all in at dusk, every last one.</li></cheerful>
       <gloomy><li>One has already found a hole in the fence. I'll fix it.</li></gloomy>
       <cold><li>Livestock contained.</li></cold>
     </thanks>
@@ -1541,7 +1541,7 @@
         <li>My room has a mud floor. Fix it.</li>
       </blunt>
       <cheerful>
-        <li>A real floor! I'd walk around barefoot all day.</li>
+        <li>Imagine getting out of bed onto boards instead of bare ground. I'd go barefoot all day.</li>
       </cheerful>
       <gloomy>
         <li>I sleep on dirt like an animal. I'd like to stop.</li>
@@ -1553,10 +1553,10 @@
     <thanks>
       <plain><li>A proper floor. I keep walking across the room for no reason.</li></plain>
       <warm><li>It feels like a home now, not a hole in the ground.</li></warm>
-      <blunt><li>Good. Wipe your feet.</li></blunt>
-      <cheerful><li>I danced on it. Nobody saw. Probably.</li></cheerful>
+      <blunt><li>Wipe your feet.</li></blunt>
+      <cheerful><li>Boots off, first thing. It's smooth as a tabletop.</li></cheerful>
       <gloomy><li>No more mud. Something else will go wrong instead.</li></gloomy>
-      <cold><li>Room quality improved.</li></cold>
+      <cold><li>Better. The room is worth more now.</li></cold>
     </thanks>
     <expired>
       <plain><li>Dirt floor it is, then.</li></plain>
