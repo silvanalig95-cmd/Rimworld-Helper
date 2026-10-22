@@ -50,7 +50,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>we robbed a grave</label><description>We dug up a stranger's grave and kept what they were buried with. It doesn't sit right with me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>we robbed a grave</label><description>We dug up a stranger's grave and kept what they were buried with. Their bones went back in with nothing.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

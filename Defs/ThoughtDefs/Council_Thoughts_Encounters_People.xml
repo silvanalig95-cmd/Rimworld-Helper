@@ -39,7 +39,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_ArtMoved</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my work moved a stranger</label><description>A stranger stood in front of my work for a long time without saying a word.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>my work moved a stranger</label><description>A stranger stopped at my work and stood looking at it without a word, longer than anyone here ever has.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

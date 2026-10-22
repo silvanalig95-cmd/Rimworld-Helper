@@ -396,7 +396,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_CabinFever</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>cooped up indoors</label><description>We've been stuck indoors for days because of one animal. I've counted the knots in the ceiling twice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>cooped up indoors</label><description>We're all kept close to the buildings because of one animal, and the work is piling up outside the door.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -416,7 +416,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_ExecutionOrdered</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>an execution ordered</label><description>We're going to execute a prisoner in chains. I know what they did, but I don't want to watch.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>an execution ordered</label><description>We're going to execute a prisoner. I know what they did, but I don't want to watch.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

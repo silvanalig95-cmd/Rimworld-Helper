@@ -109,7 +109,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>kept the longest night</label><description>We kept the fire going all through the longest night and saw the sun come back together.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>kept the longest night</label><description>We kept the fire going all through the longest night, all of us, and watched the sun come back.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

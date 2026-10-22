@@ -76,7 +76,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_SharedDream</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>dreaming side by side</label><description>We're up late most nights now over the same bench, planning both our dreams at once.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>dreaming side by side</label><description>We're up late most nights now over the same bench, planning both our dreams.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Leaving ===================== -->
@@ -110,7 +110,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Pitied</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>pitied at the table</label><description>They all tried to cheer me up at once. It felt like my own funeral, with me in the front row.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>pitied at the table</label><description>They took turns cheering me up, all the way round the table. It felt like my own funeral, with me in the front row.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
