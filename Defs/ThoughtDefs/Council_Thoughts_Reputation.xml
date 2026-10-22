@@ -300,7 +300,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_SilverNotMercy</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>silver instead</label><description>The council sent silver instead of our own food. Not what I asked for. Still, they'll eat.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>silver instead</label><description>Silver went instead of our own food. Not what I asked for. Still, they'll eat.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -479,7 +479,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_CustomSlighted</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>the custom slighted</label><description>The council decided our customs are optional now. I wonder what else will turn out to be optional.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the custom slighted</label><description>Our customs are optional now, according to the council. I wonder what else will turn out to be optional.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Dilemma: how it used to be ===================== -->
@@ -493,7 +493,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_CustomRestored</defName>
     <durationDays>8</durationDays>
-    <stages><li><label>brought it back</label><description>The council brought back the old evening because I asked. For one night it felt like home again.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>brought it back</label><description>We kept the old evening again because I asked for it. For one night it felt like home again.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -563,7 +563,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmR_FriendLetIn</defName>
     <durationDays>6</durationDays>
-    <stages><li><label>my old friend let in</label><description>The council opened the gate for my old friend, and we sat up late talking about people from before.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>my old friend let in</label><description>The gate opened for my old friend at last, and we sat up late talking about people from before.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

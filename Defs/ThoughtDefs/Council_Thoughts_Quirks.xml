@@ -23,7 +23,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_NightPrayers</defName>
-    <stages><li><label>night prayers</label><description>I say my prayers every night now, the same words each time. I sleep better after.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>night prayers</label><description>I say my prayers every night now, the same words each time. Sleep comes easier after.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">

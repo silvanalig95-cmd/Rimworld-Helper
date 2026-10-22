@@ -177,7 +177,7 @@
     <durationDays>0.5</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>a joke at work</label><description>We joked around while we worked. It made the time go faster.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>a joke at work</label><description>We traded jokes over the work until one of us had to stop and lean on the wall.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -271,7 +271,7 @@
     <durationDays>1</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>heard all about their animal</label><description>They told me every clever thing that animal of theirs has ever done. I couldn't help smiling.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
+    <stages><li><label>heard all about their animal</label><description>I've now heard about every clever thing that animal of theirs has ever done. I couldn't help smiling.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>2</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt></li></modExtensions>
   </ThoughtDef>
 

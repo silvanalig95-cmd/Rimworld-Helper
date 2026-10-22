@@ -67,7 +67,7 @@
       </li>
       <li>
         <label>a whole field lost</label>
-        <description>A whole field I sowed, gone. I keep working out how long that food would have lasted us.</description>
+        <description>A whole field I sowed, gone. That was a season's food, near enough.</description>
         <baseMoodEffect>-4</baseMoodEffect>
       </li>
     </stages>
@@ -141,7 +141,7 @@
     <stages>
       <li>
         <label>an operation went wrong</label>
-        <description>My hand slipped during the operation. I keep seeing it.</description>
+        <description>My hand slipped during the operation. I see it every time I close my eyes.</description>
         <baseMoodEffect>-3</baseMoodEffect>
       </li>
       <li>
@@ -248,7 +248,7 @@
     <stages>
       <li>
         <label>outshone at my own craft</label>
-        <description>That was my work, the thing I was best at here. Now there's someone better at it, and they all know it.</description>
+        <description>My craft was the one thing I was best at here. Now there's someone better at it, and they all know it.</description>
         <baseMoodEffect>-2</baseMoodEffect>
         <baseOpinionOffset>-3</baseOpinionOffset>
       </li>

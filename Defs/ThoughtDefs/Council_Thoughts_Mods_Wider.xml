@@ -10,7 +10,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncH_RoomPraised</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a guest liked our room</label><description>A guest slept better in our guest room than anywhere else on the road, and made a point of telling me so.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>a guest liked our room</label><description>A guest slept better here than anywhere else on the road, and made a point of telling me so.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
