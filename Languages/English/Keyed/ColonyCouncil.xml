@@ -213,7 +213,7 @@
   <CC_Reason_AteWithoutTable>{PAWN_nameDef} had to eat without a table.</CC_Reason_AteWithoutTable>
   <CC_Reason_Bored>{PAWN_nameDef} is bored. The colony has {1} kinds of recreation, and {PAWN_pronoun} wants {2}.</CC_Reason_Bored>
   <CC_Reason_Greenery>{PAWN_nameDef} loves growing things.</CC_Reason_Greenery>
-  <CC_Reason_Passion>{SKILL} is {PAWN_nameDef}'s {PASSION}, but the colony has no proper place for it.</CC_Reason_Passion>
+  <CC_Reason_Passion>{PAWN_nameDef}'s {PASSION} is {SKILL}, but the colony has no proper place for it.</CC_Reason_Passion>
   <CC_PassionBurning>burning passion</CC_PassionBurning>
   <CC_PassionInterested>passion</CC_PassionInterested>
   <CC_Reason_WorkOff>{PAWN_nameDef} is passionate about {SKILL}, but {WORK} is switched off for {PAWN_objective}.</CC_Reason_WorkOff>
@@ -222,7 +222,7 @@
   <CC_Reason_Brawler>{PAWN_nameDef} is a brawler and hates being stuck with a ranged weapon.</CC_Reason_Brawler>
   <CC_Reason_Fighter>{PAWN_nameDef} lives to fight and wants a weapon worthy of it.</CC_Reason_Fighter>
   <CC_Reason_Chemical>{PAWN_nameDef} has a chemical interest and likes a strong drink.</CC_Reason_Chemical>
-  <CC_Reason_Gourmand>{PAWN_nameDef} is a gourmand.</CC_Reason_Gourmand>
+  <CC_Reason_Gourmand>{PAWN_nameDef} is a gourmand, and talks about food even while eating.</CC_Reason_Gourmand>
   <CC_Reason_AteRaw>{PAWN_nameDef} has been eating raw food or paste.</CC_Reason_AteRaw>
   <CC_Reason_AteRotten>{PAWN_nameDef} just ate rotten food.</CC_Reason_AteRotten>
   <CC_Reason_CookFreezer>{PAWN_nameDef} cooks, and watches the ingredients spoil.</CC_Reason_CookFreezer>
@@ -704,7 +704,7 @@
 
   <!-- Promises, refusals, reminders -->
   <CC_Promise>Promise</CC_Promise>
-  <CC_Promise_Tip>Tell them you'll see to it. They'll wait half again as long and trust the council more. If it doesn't happen in time, the promise is broken, and that hurts far more than never promising.</CC_Promise_Tip>
+  <CC_Promise_Tip>Tell them you'll see to it. They'll wait half again as long as they have left, plus two days, and trust the council more. If it doesn't happen in time, the promise is broken, and that hurts far more than never promising.</CC_Promise_Tip>
   <CC_Refuse>Refuse</CC_Refuse>
   <CC_Refuse_Tip>Say no. It hurts now (less for kind or ascetic colonists), but then it's over: no reminders, no slow souring, and they won't ask again for a long while.</CC_Refuse_Tip>
   <CC_Refuse_Confirm>Refuse {PAWN_nameDef}'s wish for {WISH}? It will disappoint {PAWN_objective}, and {PAWN_pronoun} won't ask for it again for a while.</CC_Refuse_Confirm>
@@ -944,7 +944,7 @@
   <CC_Reason_Hunt>{PAWN_nameDef} loves to shoot and has been eyeing the wildlife.</CC_Reason_Hunt>
   <CC_Reason_HuntBlood>{PAWN_nameDef} is bloodthirsty and wants something to kill. Better an animal than a colonist.</CC_Reason_HuntBlood>
   <CC_Progress_Hunt>Mark an animal for hunting and let {PAWN_nameDef} do the Hunting work.</CC_Progress_Hunt>
-  <CC_Promise_Hunt>The council marks a {SUBJECT} for {PAWN_nameDef} to hunt. Make sure {PAWN_pronoun} is allowed to hunt in the Work tab.</CC_Promise_Hunt>
+  <CC_Promise_Hunt>The council marks a wild {SUBJECT} for {PAWN_nameDef} to hunt. Make sure {PAWN_pronoun} is allowed to hunt in the Work tab.</CC_Promise_Hunt>
   <CC_SelfHelp_Hunt>{PAWN_nameDef} picked out a {SUBJECT}, marked it for hunting and set off after it.</CC_SelfHelp_Hunt>
 
   <!-- Rewards beyond mood; colonists walking out -->

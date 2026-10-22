@@ -12,7 +12,7 @@
   <CC_Reason_GuestBed>{PAWN_nameDef} wants a bed kept ready for guests, for whoever comes next.</CC_Reason_GuestBed>
   <CC_Reason_Meeting>{PAWN_nameDef} has something to put before the council, and it hasn't met in a long while.</CC_Reason_Meeting>
   <CC_Reason_MeetingMissed>{PAWN_nameDef} missed the last council meeting and still has things to say.</CC_Reason_MeetingMissed>
-  <CC_Reason_SeatsForAll>{SEATS} seats at the tables for {COUNT} people who eat. {PAWN_nameDef} wants everyone at a table at once.</CC_Reason_SeatsForAll>
+  <CC_Reason_SeatsForAll>{COUNT} people eat here, and the tables seat {SEATS}. {PAWN_nameDef} wants room for all of them at once.</CC_Reason_SeatsForAll>
   <CC_Reason_Apprentice>{PAWN_nameDef} knows {SKILL} well and wants to pass it on, and {OTHER_nameDef} is keen to learn.</CC_Reason_Apprentice>
   <CC_Reason_Fishing>{PAWN_nameDef} has seen fish in the water and wants a spot marked out to catch them.</CC_Reason_Fishing>
   <CC_Reason_ChildPet>{PAWN_nameDef} has been watching the {ANIMALS} near the colony and wants one to look after.</CC_Reason_ChildPet>
@@ -25,7 +25,7 @@
   <CC_Promise_Meeting>The council calls a meeting. {PAWN_nameDef} will have a chance to speak.</CC_Promise_Meeting>
   <CC_Promise_Apprentice>The council asks {FOR_nameDef} to teach {OTHER_nameDef} {SUBJECT}. The lessons start today.</CC_Promise_Apprentice>
   <CC_Progress_Floor>{0} of the room floored</CC_Progress_Floor>
-  <CC_Promise_Floor>The council plans a floor ({SUBJECT}) for {FOR_nameDef}'s room.</CC_Promise_Floor>
+  <CC_Promise_Floor>The council plans a floor ({SUBJECT}) over the bare ground in {FOR_nameDef}'s room.</CC_Promise_Floor>
   <CC_SelfHelp_Floor>Tired of the dirt, {PAWN_nameDef} planned a floor ({SUBJECT}) for {PAWN_possessive} room. The builders will find the blueprints; cancel them if you object.</CC_SelfHelp_Floor>
 
   <!-- ===================== Council projects ===================== -->

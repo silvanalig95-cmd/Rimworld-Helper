@@ -16,7 +16,7 @@
   <CC_Season_SummerAhead>the summer ahead</CC_Season_SummerAhead>
   <CC_Season_Hot>the hot months</CC_Season_Hot>
   <CC_Progress_SeasonClothes>Comfortable to {0} now, {1} wanted</CC_Progress_SeasonClothes>
-  <CC_Promise_SeasonClothes>{FOR_nameDef} is fetching {ITEM} from the stores to put on.</CC_Promise_SeasonClothes>
+  <CC_Promise_SeasonClothes>{FOR_nameDef} goes to the stores to put on the {ITEM}.</CC_Promise_SeasonClothes>
 
   <!-- ===================== A sauna (Wishes/WishWorkers_Seasons.cs) ===================== -->
 
