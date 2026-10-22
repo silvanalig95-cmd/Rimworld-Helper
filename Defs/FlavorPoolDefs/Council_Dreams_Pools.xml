@@ -10,6 +10,7 @@
         <li>This is going to sound silly, but I had a dream.</li>
         <li>It came to me in a dream. I know how that sounds.</li>
         <li>I keep seeing it when I close my eyes.</li>
+        <li>Last night's dream won't leave me alone.</li>
       </plain>
       <warm><li>I woke up this morning knowing what would make me happy.</li></warm>
       <blunt><li>Dreamt about it. Here's what I want.</li></blunt>
@@ -26,6 +27,7 @@
       <plain>
         <li>I had {DREAM}, and now it's happened. I don't know what to make of it.</li>
         <li>The others look at me differently since it came true.</li>
+        <li>Days ago I had {DREAM}. Today it came true, near enough.</li>
       </plain>
       <warm><li>It came true, just like the dream. Maybe someone is looking out for us.</li></warm>
       <blunt><li>Told them it would happen. It happened. Next time they'll listen.</li></blunt>
