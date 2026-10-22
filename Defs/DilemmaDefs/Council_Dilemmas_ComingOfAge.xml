@@ -20,13 +20,13 @@
     <label>a path: the workshop</label>
     <roleB><bestAt>Crafting</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
-      <li>{A_nameDef} has come of age, and it's time to settle what work {A_pronoun} takes up. {B_nameDef}, the best crafter in the workshop, has offered to take {A_objective} on.\n\n{A_nameDef} hasn't been asked what {A_pronoun} wants yet.</li>
-      <li>Now that {A_nameDef} is grown, {B_nameDef} wants {A_objective} in the workshop. {B_nameDef} has watched {A_objective} fiddle with broken things for years and says there's a crafter in there.</li>
+      <li>{B_nameDef} has already cleared a corner of the workbench. {A_nameDef} came of age this week, and {B_nameDef}, the best crafter the colony has, wants {A_objective} as an apprentice before anyone else can ask.\n\n{A_nameDef} hasn't been asked what {A_pronoun} wants.</li>
+      <li>"I've watched {A_objective} take apart every broken thing in this colony for years," {B_nameDef} told the council, now that {A_nameDef} has come of age. "There's a crafter in there."</li>
     </texts>
     <options>
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in crafting</label>
-        <outcome>{A_nameDef} starts in the workshop tomorrow. {B_nameDef} has already set aside a bench.</outcome>
+        <outcome>{A_nameDef}'s first day in the workshop was mostly sweeping shavings and handing {B_nameDef} the wrong tools. {B_nameDef} seemed pleased with it.</outcome>
         <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Crafting</skill></li>
@@ -37,7 +37,7 @@
       </li>
       <li>
         <label>Put {A_nameDef} on the defenses</label>
-        <outcome>{A_nameDef} will spend the coming weeks at target practice and on the wall. It's tiring work, but the colony is safer for it.</outcome>
+        <outcome>{A_nameDef} goes to the defenses: target practice at first light, a turn on the wall at night. {A_nameDef} says {A_pronoun} would have liked to be asked.</outcome>
         <ways><openness>-3</openness><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>3000</xp></li>
@@ -46,7 +46,7 @@
       </li>
       <li>
         <label>Let {A_nameDef} choose</label>
-        <outcome>The council asked {A_nameDef} what {A_pronoun} wanted to do. {A_nameDef} took a long time to answer, and had clearly given it some thought.</outcome>
+        <outcome>{A_nameDef} took a long time to answer the council, and when the answer came it was clearly one {A_pronoun} had been turning over for a while.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
@@ -63,13 +63,13 @@
     <label>a path: the healer</label>
     <roleB><bestAt>Medicine</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
-      <li>{A_nameDef} has come of age. {B_nameDef} says the colony will need another healer before long, and that {A_nameDef} has steady hands.\n\nIt's a hard trade, and a slow one to learn.</li>
-      <li>{B_nameDef} wants an apprentice in the infirmary, and {A_nameDef} has just come of age. "I won't live forever," {B_nameDef} told the council, "and someone has to know what I know."</li>
+      <li>Steady hands, {B_nameDef} says, and a strong stomach, which is rarer. {A_nameDef} has just come of age, and {B_nameDef} wants {A_objective} in the sickroom before anyone else can claim {A_objective}.\n\nIt's a hard trade, and slow to learn.</li>
+      <li>"I won't live forever," {B_nameDef} told the council, "and someone has to know what I know." {B_nameDef} wants {A_nameDef}, who came of age this week, as an apprentice in the sickroom.</li>
     </texts>
     <options>
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in medicine</label>
-        <outcome>{A_nameDef} now follows {B_nameDef} on every round of the sickbeds, taking notes.</outcome>
+        <outcome>{A_nameDef} follows {B_nameDef} on every round of the sickbeds now, notes in hand, and has already learned which patients play down their pain.</outcome>
         <ways><mercy>3</mercy><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Medicine</skill></li>
@@ -79,7 +79,7 @@
       </li>
       <li>
         <label>The fields need hands more</label>
-        <outcome>{A_nameDef} is sent to work the fields, which should mean a better harvest. {B_nameDef} will go on tending the sick alone.</outcome>
+        <outcome>The fields get {A_nameDef}, and the sickroom gets no one new. {B_nameDef} took the news without a word and went back to {B_possessive} patients.</outcome>
         <ways><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>3000</xp></li>
@@ -105,13 +105,13 @@
     <label>a path: the scholar</label>
     <roleB><bestAt>Intellectual</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
     <texts>
-      <li>{A_nameDef} has come of age, and {B_nameDef} wants {A_objective} at the research bench. "There's a mind in there," {B_nameDef} says, "and it's wasted hauling rocks."</li>
+      <li>"There's a mind in there," {B_nameDef} says of {A_nameDef}, who has just come of age, "and it's wasted hauling rocks." {B_nameDef} wants {A_objective} at the research bench.</li>
       <li>With {A_nameDef} grown, {B_nameDef} has offered to teach {A_objective} everything {B_pronoun} knows, starting with letters and numbers.</li>
     </texts>
     <options>
       <li>
         <label>Apprentice {A_nameDef} to {B_nameDef} in study</label>
-        <outcome>{A_nameDef} spends the evenings with {B_nameDef} and a stack of old books.</outcome>
+        <outcome>{A_nameDef} spends the evenings bent over {B_nameDef}'s notes now, and has started asking questions {B_nameDef} can't answer.</outcome>
         <ways><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Intellectual</skill></li>
@@ -121,7 +121,7 @@
       </li>
       <li>
         <label>Hands before books</label>
-        <outcome>{A_nameDef} is put to work on construction, and the walls are going up faster. {B_nameDef} is sulking about it.</outcome>
+        <outcome>{A_nameDef} is on the building crew, and the walls are going up faster. {B_nameDef} has been heard muttering about wasted minds.</outcome>
         <ways><tradition>3</tradition><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>3000</xp></li>
@@ -146,7 +146,7 @@
     <label>a path: the wall</label>
     <roleB><bestAt>Shooting</bestAt><minOpinionOfA>-20</minOpinionOfA><canFight>true</canFight></roleB>
     <texts>
-      <li>{A_nameDef} has come of age. {B_nameDef}, the colony's best shot, says {A_nameDef} has the eye for it and should start training now, before the next raid.\n\nOthers say {A_nameDef} has seen enough fighting for a lifetime already.</li>
+      <li>Before the next raid, {B_nameDef} says. The colony's best shot thinks {A_nameDef}, just come of age, has the eye for it and should start training now.\n\nOthers say {A_nameDef} has seen enough fighting for a lifetime already.</li>
       <li>{A_nameDef} is grown, and wants to stand on the wall with the others. {B_nameDef} has offered to teach. Not everyone thinks that's a good idea.</li>
     </texts>
     <options>
@@ -163,7 +163,7 @@
       </li>
       <li>
         <label>Not yet</label>
-        <outcome>{A_nameDef} is kept off the wall for now, and is furious about it. Some of the parents are relieved.</outcome>
+        <outcome>{A_nameDef} is kept off the wall another season, and is furious about it. Some of the parents are relieved.</outcome>
         <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
@@ -172,7 +172,7 @@
       </li>
       <li>
         <label>Let {A_nameDef} choose</label>
-        <outcome>The council left the choice to {A_nameDef}, and the colony is waiting to hear what {A_pronoun} decides.</outcome>
+        <outcome>The choice is {A_nameDef}'s, and the colony is waiting to hear what {A_pronoun} makes of it.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
