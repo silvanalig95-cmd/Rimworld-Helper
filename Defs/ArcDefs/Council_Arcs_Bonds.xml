@@ -22,13 +22,13 @@
         <journal>
           <plain>
             <li>[!comrades] {OTHER_nameDef} was showing off at {SKILL} again today. The annoying part is that {OTHER_pronoun} was good at it.</li>
-            <li>[!comrades] I can't stand {OTHER_nameDef}. I can stand {OTHER_possessive} way with {SKILL} even less, because it's better than mine.</li>
-            <li>[comrades] {OTHER_nameDef} and I held the same stretch of wall in the last fight. I still don't like {OTHER_objective}. I keep thinking about how steady {OTHER_pronoun} was, though.</li>
+            <li>[!comrades] Someone praised {OTHER_nameDef}'s {SKILL} at supper. I put my spoon down hard enough that people looked.</li>
+            <li>[comrades] {OTHER_nameDef} and I held the same corner in the last fight. I still don't like {OTHER_objective}. I keep thinking about how steady {OTHER_pronoun} was, though.</li>
             <li>{OTHER_nameDef} said something at supper and I said something back. Same as every night.</li>
           </plain>
           <warm><li>I wish {OTHER_nameDef} and I weren't at each other's throats. We want the same things, mostly.</li></warm>
           <blunt><li>{OTHER_nameDef}. Ugh.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} scowled at me all through breakfast, so I scowled back. It's practically a tradition now!</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} scowled at me all through breakfast, so I scowled back. It's practically a tradition now.</li></cheerful>
           <gloomy><li>Even here, at the end of the world, I've found someone to hate. {OTHER_nameDef} makes it easy.</li></gloomy>
           <cold>
             <li>[!comrades] {OTHER_nameDef} is a problem. I have been studying how {OTHER_pronoun} works at {SKILL}, to understand the problem better.</li>
@@ -36,8 +36,8 @@
           </cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} still can't stand each other.</li>
-          <li>The feud between {PAWN_nameDef} and {OTHER_nameDef} goes on.</li>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} sit at opposite ends of the table, and each of them keeps one eye on the other's work.</li>
+          <li>Between {PAWN_nameDef} and {OTHER_nameDef} it is still a remark at breakfast and a remark back at supper.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>2</minDays><timeoutDays>25</timeoutDays></gate>
       </li>
@@ -46,18 +46,18 @@
         <waiting>Next: one of them says something decent to the other.</waiting>
         <journal>
           <plain>
-            <li>[!comrades] Worked next to {OTHER_nameDef} most of the day. Watched {OTHER_objective} do something with {SKILL} I'd never have thought of. Didn't say anything.</li>
+            <li>[!comrades] Worked next to {OTHER_nameDef} most of the day. Watched {OTHER_objective} try a trick at {SKILL} I'd never have thought of. Didn't say anything.</li>
             <li>We didn't talk, {OTHER_nameDef} and I. We just worked. It was almost all right.</li>
             <li>[comrades] {OTHER_nameDef} handed me a waterskin without being asked. I took it. Neither of us made anything of it.</li>
           </plain>
           <warm><li>{OTHER_nameDef} is good at what {OTHER_pronoun} does. I can admit that here, at least.</li></warm>
           <blunt><li>Fine. {OTHER_nameDef} knows what {OTHER_pronoun}'s doing. Still don't like {OTHER_objective}.</li></blunt>
-          <cheerful><li>Spent the whole day near {OTHER_nameDef} and nobody threw anything. Progress!</li></cheerful>
+          <cheerful><li>Spent the whole day near {OTHER_nameDef} and we only argued once, about lunch.</li></cheerful>
           <gloomy><li>Worked beside {OTHER_nameDef} all afternoon and couldn't find one thing to complain about. That's almost worse.</li></gloomy>
           <cold><li>Observed {OTHER_nameDef} at close range for some hours. Competent. Annoyingly so.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} have been working side by side, mostly in silence.</li>
+          <li>Thrown together on the same work, {PAWN_nameDef} and {OTHER_nameDef} got through a whole day of it without a word.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -78,19 +78,19 @@
           </plain>
           <warm><li>I paid {OTHER_nameDef} a compliment and meant it, and got one back. I think we were both tired of fighting.</li></warm>
           <blunt><li>Said {OTHER_nameDef} was good at it. Because {OTHER_pronoun} is. Doesn't make us friends.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} laughed at one of my jokes today. By accident, I think, but it counts!</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} laughed at one of my jokes today. By accident, I think, but it counts.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} and I have called a truce. Truces don't last, in my experience.</li></gloomy>
           <cold><li>I offered {OTHER_nameDef} a measured compliment. It was returned. The arrangement may prove useful.</li></cold>
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} said something nice about my work today. I've been chewing on it ever since.</li>
+            <li>{OTHER_nameDef} told me my work was good today. I've been chewing on it ever since.</li>
             <li>Strange day. {OTHER_nameDef} and I agreed about something.</li>
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} have called a truce.</li>
-          <li>{PAWN_nameDef} gave {OTHER_nameDef} {OTHER_possessive} due, and {OTHER_nameDef} gave it back.</li>
+          <li>The remarks across the table have stopped. {PAWN_nameDef} and {OTHER_nameDef} have called a truce, and so far it holds.</li>
+          <li>{PAWN_nameDef} told {OTHER_nameDef} that {OTHER_possessive} work was good. After a long moment, {OTHER_nameDef} said the same back.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GaveMeMyDue</thought><target>AAndB</target></li>
@@ -105,21 +105,21 @@
             <li>{OTHER_nameDef} and I aren't rivals any more. I couldn't say what we are. I'd trust {OTHER_objective} at my back.</li>
             <li>[!comrades] Asked {OTHER_nameDef} how {OTHER_pronoun} does that trick with {SKILL}. {OTHER_nameDef} showed me. It took five minutes. All those weeks of glaring.</li>
           </plain>
-          <warm><li>I'm glad {OTHER_nameDef} is here. Who'd have thought I'd write that.</li></warm>
+          <warm><li>I'm glad {OTHER_nameDef} is here. I never thought I'd write that.</li></warm>
           <blunt><li>{OTHER_nameDef}'s all right. There. Said it.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} and I are practically friends now! The others don't know what to do with themselves.</li></cheerful>
-          <gloomy><li>Funny how long it took to see {OTHER_nameDef} properly. All that wasted time.</li></gloomy>
+          <cheerful><li>{OTHER_nameDef} and I are practically friends now. The others don't know what to do with themselves.</li></cheerful>
+          <gloomy><li>Funny how long it took to see {OTHER_nameDef} properly. All those weeks.</li></gloomy>
           <cold><li>{OTHER_nameDef} has earned my respect. I don't give it lightly, and I don't take it back.</li></cold>
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} and I have stopped fighting. I'd forgotten what {OTHER_pronoun}'s like when {OTHER_pronoun} isn't angry. Good company, it seems.</li>
+            <li>{OTHER_nameDef} and I have stopped fighting. I'd forgotten what {OTHER_pronoun}'s like when {OTHER_pronoun} isn't angry. Good company, it turns out.</li>
             <li>I respect {OTHER_nameDef}. I'll deny writing this.</li>
           </plain>
         </otherJournal>
         <chronicle>
           <li>{PAWN_nameDef} and {OTHER_nameDef} are rivals no longer.</li>
-          <li>Somewhere along the way, {PAWN_nameDef} and {OTHER_nameDef} stopped being rivals.</li>
+          <li>These days, when something needs doing well, {PAWN_nameDef} asks {OTHER_nameDef} how {OTHER_pronoun} would do it.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-100</amount></li>
@@ -133,12 +133,12 @@
         <li>[fight] {OTHER_nameDef} and I went at it again. So much for that.</li>
         <li>[timeout] Whatever was happening between {OTHER_nameDef} and me, it's stalled. Back to glaring.</li>
         <li>[otherdead] {OTHER_nameDef} is dead. I was going to say something to {OTHER_objective}. I don't know what, now.</li>
-        <li>[otherleft] {OTHER_nameDef} is gone. I won the argument by default. It doesn't feel like winning.</li>
+        <li>[otherleft] {OTHER_nameDef} is gone. I keep saving up remarks for supper and then remembering.</li>
         <li>Never mind {OTHER_nameDef}. Some people you just can't get along with.</li>
       </plain>
       <warm><li>[timeout] I tried to meet {OTHER_nameDef} halfway. I don't think {OTHER_nameDef} saw me coming.</li></warm>
       <blunt><li>[timeout] {OTHER_nameDef} and me. Still no.</li></blunt>
-      <cheerful><li>[timeout] {OTHER_nameDef} and I are back to scowling across the table. At least it's familiar!</li></cheerful>
+      <cheerful><li>[timeout] {OTHER_nameDef} and I are back to scowling across the table. At least it's familiar.</li></cheerful>
       <gloomy><li>[timeout] I thought {OTHER_nameDef} and I might get past it. We didn't.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
@@ -182,13 +182,13 @@
           </plain>
           <warm>
             <li>[kin] I miss {OTHER_nameDef}. The real {OTHER_nameDef}, from before. I don't know how to get back there.</li>
-            <li>I don't want to hate {OTHER_nameDef}. It's heavy to carry.</li>
+            <li>I don't want to hate {OTHER_nameDef}. It takes up too much of the day.</li>
           </warm>
           <blunt>
             <li>[betrayed] {OTHER_nameDef} knows what {OTHER_pronoun} did.</li>
             <li>Not talking to {OTHER_nameDef}. That's all there is to say.</li>
           </blunt>
-          <cheerful><li>[ex] {OTHER_nameDef} and I can be in the same room now without anyone needing to leave. Small mercies!</li></cheerful>
+          <cheerful><li>[ex] {OTHER_nameDef} and I can be in the same room now without one of us needing to leave. Small mercies.</li></cheerful>
           <gloomy><li>Some things don't heal. Whatever's between {OTHER_nameDef} and me is one of them.</li></gloomy>
           <cold><li>{OTHER_nameDef} and I have unfinished business. I prefer business finished.</li></cold>
         </journal>
@@ -196,7 +196,7 @@
           <li>[ex] Things are still raw between {PAWN_nameDef} and {OTHER_nameDef}, long after they parted.</li>
           <li>[betrayed] {PAWN_nameDef} hasn't forgiven {OTHER_nameDef} for letting {PAWN_possessive} secret out.</li>
           <li>[kin] {PAWN_nameDef} and {OTHER_nameDef} are family, and barely speaking.</li>
-          <li>There is an old hurt between {PAWN_nameDef} and {OTHER_nameDef}.</li>
+          <li>Whatever went wrong between {PAWN_nameDef} and {OTHER_nameDef}, neither of them has forgotten it.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>NoFriction</hold><hours>72</hours><minDays>3</minDays><timeoutDays>25</timeoutDays></gate>
       </li>
@@ -208,14 +208,14 @@
             <li>A few days without a cross word between {OTHER_nameDef} and me. I'm going to try talking to {OTHER_objective}. Properly.</li>
             <li>Rehearsed what I'd say to {OTHER_nameDef} while hauling stone. It sounded fine to the stone.</li>
           </plain>
-          <warm><li>Life's too short out here to stay angry at {OTHER_nameDef}. I'll find the right moment.</li></warm>
+          <warm><li>I'll go to {OTHER_nameDef} soon. I want to do it when we're both rested, not at the end of a long day.</li></warm>
           <blunt><li>Going to talk to {OTHER_nameDef}. Get it over with.</li></blunt>
           <cheerful><li>I've decided to make up with {OTHER_nameDef}! {OTHER_nameDef} doesn't know yet.</li></cheerful>
           <gloomy><li>I'll try with {OTHER_nameDef}. It'll probably go badly. I'll try anyway.</li></gloomy>
           <cold><li>I have prepared what to say to {OTHER_nameDef}, with an answer for every likely reply.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has been looking for a chance to talk to {OTHER_nameDef}.</li>
+          <li>After three quiet days in a row, {PAWN_nameDef} has started rehearsing what to say to {OTHER_nameDef}.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -238,7 +238,7 @@
           </plain>
           <warm><li>I told {OTHER_nameDef} I was sorry for my part, and {OTHER_nameDef} said the same. I cried a bit afterwards, out by the woodpile.</li></warm>
           <blunt><li>Talked to {OTHER_nameDef}. Said sorry. So did {OTHER_nameDef}. Done.</li></blunt>
-          <cheerful><li>We talked! It was horrible, and then it wasn't.</li></cheerful>
+          <cheerful><li>We talked! I said three wrong things in a row and still got a fourth try.</li></cheerful>
           <gloomy><li>We talked. It helped, maybe. Ask me in a week.</li></gloomy>
           <cold><li>The conversation with {OTHER_nameDef} went better than projected. Concessions were made on both sides.</li></cold>
         </journal>
@@ -249,8 +249,8 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} talked at last, without raised voices.</li>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} have started to make amends.</li>
+          <li>They talked at last, {PAWN_nameDef} and {OTHER_nameDef}, and kept their voices down the whole way through.</li>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} have started to make amends, a careful word at a time.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_HeardMeOut</thought><target>AAndB</target></li>
@@ -262,26 +262,26 @@
         <journal>
           <plain>
             <li>{OTHER_nameDef} and I are all right now. Not like before. Something new, and I think better.</li>
-            <li>[ex] {OTHER_nameDef} and I can talk now. We'll never be what we were, and that's the right answer.</li>
+            <li>[ex] {OTHER_nameDef} and I can talk now. About the crops, the weather, who's been snoring in the barracks.</li>
             <li>[betrayed] I've forgiven {OTHER_nameDef}. I'm careful what I tell {OTHER_objective}, but I've forgiven {OTHER_objective}.</li>
             <li>[kin] Sat with {OTHER_nameDef} after supper like we used to. Family.</li>
           </plain>
           <warm><li>I'm so glad I went to {OTHER_nameDef}. All that time we wasted.</li></warm>
           <blunt><li>{OTHER_nameDef} and I are square.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} saved me a seat at supper! Everyone noticed.</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} saved me a seat at supper, and two people actually stared.</li></cheerful>
           <gloomy><li>It's mended between {OTHER_nameDef} and me. You can still see the crack if you look.</li></gloomy>
           <cold><li>The matter with {OTHER_nameDef} is closed. Good.</li></cold>
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} and I have put it behind us. I didn't know how heavy it was until I set it down.</li>
+            <li>{OTHER_nameDef} and I have put it behind us. I slept through the night for once.</li>
             <li>[kin] {OTHER_nameDef} and I sat up talking like we did as children.</li>
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} have put the old quarrel behind them.</li>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} shared a bench at supper last night, and it was unremarkable.</li>
           <li>[kin] {PAWN_nameDef} and {OTHER_nameDef} are family again, in more than name.</li>
-          <li>[ex] {PAWN_nameDef} and {OTHER_nameDef} have made their peace.</li>
+          <li>[ex] {PAWN_nameDef} and {OTHER_nameDef} have made their peace. They'll never be what they were, and neither of them wants to be.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-100</amount></li>
@@ -299,9 +299,9 @@
         <li>[otherleft] {OTHER_nameDef} left before we sorted anything out. Maybe that's its own answer.</li>
         <li>Some things stay broken. {OTHER_nameDef} and I might be one of them.</li>
       </plain>
-      <warm><li>[timeout] I still hope {OTHER_nameDef} and I find our way back. Just not yet, it seems.</li></warm>
+      <warm><li>[timeout] I still hope {OTHER_nameDef} and I find our way back. Not yet, it seems.</li></warm>
       <blunt><li>[timeout] Tried with {OTHER_nameDef}. Didn't work. Done.</li></blunt>
-      <cheerful><li>[timeout] {OTHER_nameDef} and I aren't fixed yet, but we're not worse. That's something!</li></cheerful>
+      <cheerful><li>[timeout] {OTHER_nameDef} and I aren't fixed yet, but we're not worse. That's something.</li></cheerful>
       <gloomy><li>[timeout] The old hurt between {OTHER_nameDef} and me has dug in again.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
@@ -366,8 +366,8 @@
           <cold><li>I am in {OTHER_nameDef}'s debt. I don't like owing anyone. I will settle it.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} hasn't forgotten what {OTHER_nameDef} did for {PAWN_objective}.</li>
-          <li>{PAWN_nameDef} feels {PAWN_pronoun} owes {OTHER_nameDef} a debt.</li>
+          <li>{PAWN_nameDef} hasn't forgotten what {OTHER_nameDef} did for {PAWN_objective}, and has said so more than once.</li>
+          <li>{PAWN_nameDef} says {PAWN_pronoun} owes {OTHER_nameDef} a debt, and won't hear otherwise.</li>
         </chronicle>
         <gate><kind>Time</kind><days>2</days><minDays>2</minDays></gate>
       </li>
@@ -387,12 +387,12 @@
           </plain>
           <warm><li>Working on something for {OTHER_nameDef}. I picture {OTHER_possessive} face when I hand it over, and keep going.</li></warm>
           <blunt><li>Making {OTHER_nameDef} a thing. Don't tell {OTHER_objective}.</li></blunt>
-          <cheerful><li>The gift for {OTHER_nameDef} is coming along. I've only had to start it over twice!</li></cheerful>
+          <cheerful><li>The gift for {OTHER_nameDef} is coming along. I've only had to start it over twice.</li></cheerful>
           <gloomy><li>Whatever I make for {OTHER_nameDef}, it won't be enough. I'm making it anyway.</li></gloomy>
           <cold><li>The repayment is in progress. Quality matters; a poor gift is an insult.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} is making something for {OTHER_nameDef}, and won't say what.</li>
+          <li>In the evenings, {PAWN_nameDef} works on something for {OTHER_nameDef}, and covers it with a cloth whenever anyone comes near.</li>
         </chronicle>
         <gate><kind>Practice</kind><amount>6000</amount><minDays>2</minDays><timeoutDays>30</timeoutDays></gate>
       </li>
@@ -404,14 +404,14 @@
             <li>It's finished. Now I have to give it to {OTHER_nameDef}, which is harder than making it was.</li>
             <li>Wrapped {OTHER_nameDef}'s gift in an old cloth. Unwrapped it to check it. Wrapped it again.</li>
           </plain>
-          <warm><li>The gift's ready. I want a quiet moment with {OTHER_nameDef}, not to hand it over in front of the whole table.</li></warm>
+          <warm><li>The gift's ready. I want a quiet moment with {OTHER_nameDef} to give it, not to hand it over across the supper table.</li></warm>
           <blunt><li>Done. Giving it to {OTHER_nameDef} tomorrow.</li></blunt>
           <cheerful><li>Finished {OTHER_nameDef}'s present! I'm terrible at secrets, so it had better be soon.</li></cheerful>
           <gloomy><li>It's done. I hope {OTHER_nameDef} doesn't think it's strange.</li></gloomy>
           <cold><li>The gift is complete. Delivery remains.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has finished a gift for {OTHER_nameDef}, and has yet to hand it over.</li>
+          <li>The gift for {OTHER_nameDef} is finished, and {PAWN_nameDef} hasn't yet worked up to giving it.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -434,9 +434,9 @@
           </plain>
           <warm><li>I told {OTHER_nameDef} why I made it. We both went a bit teary and blamed the smoke.</li></warm>
           <blunt><li>Gave it over. We're square. Good.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} loved it. Or was very polite about it, which is nearly the same!</li></cheerful>
-          <gloomy><li>I gave {OTHER_nameDef} the gift. I still feel I owe {OTHER_objective}. Maybe that's how it should be.</li></gloomy>
-          <cold><li>The debt to {OTHER_nameDef} is settled. I find I'd do it again regardless.</li></cold>
+          <cheerful><li>{OTHER_nameDef} loved it. Or was very polite about it, which is nearly the same.</li></cheerful>
+          <gloomy><li>I gave {OTHER_nameDef} the gift. It looked smaller in {OTHER_possessive} hands than it did in mine.</li></gloomy>
+          <cold><li>The debt to {OTHER_nameDef} is settled. I would have made the thing anyway.</li></cold>
         </journal>
         <otherJournal>
           <plain>
@@ -445,7 +445,7 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} repaid an old kindness to {OTHER_nameDef} with a gift made by hand.</li>
+          <li>{PAWN_nameDef} gave {OTHER_nameDef} the gift at last, and called the old kindness repaid.</li>
           <li>{PAWN_nameDef} and {OTHER_nameDef} are square now, and closer for it.</li>
         </chronicle>
         <effects>
@@ -464,7 +464,7 @@
       </plain>
       <warm><li>[timeout] I still want to thank {OTHER_nameDef} properly. I'll find the right way yet.</li></warm>
       <blunt><li>[timeout] Gift's not finished. Debt's not paid. Still owe {OTHER_objective}.</li></blunt>
-      <cheerful><li>[timeout] My gift for {OTHER_nameDef} turned out lopsided! I'll try again when my hands are steadier.</li></cheerful>
+      <cheerful><li>[timeout] My gift for {OTHER_nameDef} came out lopsided. I'll try again when my hands are steadier.</li></cheerful>
       <gloomy><li>[timeout] Some debts I'll carry to the grave. This might be one.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
@@ -501,13 +501,13 @@
           </plain>
           <warm><li>I want to believe the council cares about all of us. It's getting hard.</li></warm>
           <blunt><li>Council doesn't listen. Not to me.</li></blunt>
-          <cheerful><li>Maybe the council will surprise me one day! I'm not holding my breath, though.</li></cheerful>
+          <cheerful><li>Maybe the council will surprise me one day. I won't wait up.</li></cheerful>
           <gloomy><li>I've stopped expecting anything from the council. It's easier.</li></gloomy>
           <cold><li>The council's priorities are clear, and I am not among them.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has lost faith in the council.</li>
-          <li>[bitter] {PAWN_nameDef} has given up on the council ever listening.</li>
+          <li>{PAWN_nameDef} has stopped expecting anything from the council.</li>
+          <li>[bitter] {PAWN_nameDef} says the council listens to whoever shouts loudest, and {PAWN_pronoun} has never been loud.</li>
         </chronicle>
         <gate><kind>Granted</kind><minDays>1</minDays><timeoutDays>40</timeoutDays></gate>
       </li>
@@ -526,7 +526,7 @@
           <cold><li>One point in the council's favor. I'll need more.</li></cold>
         </journal>
         <chronicle>
-          <li>The council granted {PAWN_nameDef} a wish, and {PAWN_nameDef} is wondering if {PAWN_pronoun} misjudged it.</li>
+          <li>The council granted one of {PAWN_nameDef}'s wishes, and {PAWN_nameDef} is still looking for the catch.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Trust</hold><value>-10</value><hours>72</hours><minDays>3</minDays><timeoutDays>30</timeoutDays></gate>
       </li>
@@ -539,12 +539,12 @@
           </plain>
           <warm><li>I've decided to give the council another chance. It gave me one.</li></warm>
           <blunt><li>Council's all right. Some of the time.</li></blunt>
-          <cheerful><li>I've got faith in the council again! Mostly.</li></cheerful>
-          <gloomy><li>I trust the council a bit more than I did. That will probably come back to bite me.</li></gloomy>
+          <cheerful><li>I've got faith in the council again. Mostly.</li></cheerful>
+          <gloomy><li>I trust the council a bit more than I did. I've been wrong before, both ways.</li></gloomy>
           <cold><li>I have revised my estimate of the council. Upward.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} has come to trust the council again.</li>
+          <li>{PAWN_nameDef} trusts the council again. Not blindly.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>8</amount></li>
@@ -559,7 +559,7 @@
       </plain>
       <warm><li>[timeout] I wanted to believe in the council again. I'll keep the door open a crack.</li></warm>
       <blunt><li>[timeout] Council's quiet. So am I.</li></blunt>
-      <cheerful><li>[timeout] The council's let me down again, but I'm still here, and so is the soup!</li></cheerful>
+      <cheerful><li>[timeout] The council's let me down again. I'll ask for something smaller next time!</li></cheerful>
       <gloomy><li>[timeout] I let myself hope the council was listening. I won't do that again soon.</li></gloomy>
       <cold><li>[timeout] The council had its chance to win me back. It has spent it.</li></cold>
     </fizzle>
