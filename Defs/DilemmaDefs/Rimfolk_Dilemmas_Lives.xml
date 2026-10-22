@@ -166,7 +166,7 @@
     <modExtensions><li Class="ColonyCouncil.FamilyRole"><b>Guardian</b><minOpinion>15</minOpinion></li></modExtensions>
     <texts>
       <li>Since the death, {A_nameDef} has gone very quiet: eats, works at {A_possessive} lessons, goes to bed, and doesn't say a word about it. {B_nameDef} thinks that's the worrying part.</li>
-      <li>{A_nameDef} keeps asking when the dead one is coming back, and every time someone tells {A_objective}, {A_pronoun} cries like it's the first time. {B_nameDef} has asked the council what the colony can do.</li>
+      <li>{A_nameDef} keeps asking when the dead one is coming back, and every time someone tells {A_objective}, {A_pronoun} cries like it's the first time. {B_nameDef} has run out of ways to say it.</li>
       <li>{A_nameDef} has been setting out a cup at supper for someone who isn't coming. None of the grown-ups has had the heart to take it away. {B_nameDef} wants to know if someone should.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -295,7 +295,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Person</to><whom>B</whom><hours>9~17</hours><label>playing in the den together</label></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council said they'd share it. {A_nameDef} and {B_nameDef} took turns for exactly one day, and then the shouting started again. The den is now a pile of sticks.</riskOutcome>
+        <riskOutcome>{A_nameDef} and {B_nameDef} took turns, as ordered, for exactly one day. Then the shouting started again, and the den is now a pile of sticks.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Rivals</kind><amount>5</amount></li>
         </riskEffects>
@@ -313,7 +313,7 @@
       </li>
       <li>
         <label>Let them sort it out themselves</label>
-        <outcome>The council told them to sort it out themselves. They did, eventually, after a great deal of noise. What they agreed is between the two of them.</outcome>
+        <outcome>Left to sort it out themselves, they did, eventually, after a great deal of noise. What they agreed is between the two of them.</outcome>
         <ways><tradition>-1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><skill>Social</skill><xp>200</xp></li>
@@ -357,7 +357,7 @@
       </li>
       <li>
         <label>Not this year</label>
-        <outcome>The council said not this year. {A_nameDef} took the bag back to {A_possessive} room and has been short with everyone since. {B_nameDef} looks relieved, and guilty about it.</outcome>
+        <outcome>Not this year, the council said. {A_nameDef} took the bag back to {A_possessive} room and has been short with everyone since. {B_nameDef} looks relieved, and guilty about it.</outcome>
         <ways><tradition>2</tradition><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_KeptHome</thought></li>
@@ -424,7 +424,7 @@
       </li>
       <li>
         <label>It's too far; stay where it's safe</label>
-        <outcome>The council said it was too far and too risky. {A_nameDef} said very little, went to sit by the wall, and looked at the hills all afternoon.</outcome>
+        <outcome>Too far, and too risky. {A_nameDef} heard the council out, went to sit by the wall, and looked at the hills all afternoon.</outcome>
         <ways><mercy>-1</mercy><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_KeptIn</thought></li>
@@ -571,7 +571,7 @@
       </li>
       <li>
         <label>Ask {B_nameDef}'s family first</label>
-        <outcome>The council said it was for {B_nameDef}'s family to say. They said yes, after some thought. {A_nameDef} was hurt to have been made to ask, and pleased to have been allowed.</outcome>
+        <outcome>The council sent {A_nameDef} to ask {B_nameDef}'s family first. They said yes, after some thought. {A_nameDef} was hurt to have been made to ask, and pleased to have been allowed.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Teach"><xp>200</xp></li>
@@ -600,7 +600,7 @@
     <texts>
       <li>{A_nameDef} can't get warm: sleeps in {A_possessive} coat, eats beside the stove and still shivers at night. {B_nameDef} has noticed, and come to the council about it before {A_nameDef} would.</li>
       <li>The cold has got into {A_nameDef}'s joints, and some mornings {A_pronoun} can't close {A_possessive} hands until noon. {B_nameDef} wants to know what the colony can spare to keep {A_objective} warm.</li>
-      <li>[lowtech] {A_nameDef} has taken to sleeping by the hearth, rolled in every blanket {A_pronoun} owns, and is still cold. {B_nameDef} has asked the council for more wood, or a warmer bed, or both.</li>
+      <li>[lowtech] {A_nameDef} has taken to sleeping by the hearth, rolled in every blanket {A_pronoun} owns, and is still cold. {B_nameDef} wants more wood for {A_objective}, or a warmer bed, or both.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>

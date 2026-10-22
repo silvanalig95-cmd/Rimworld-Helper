@@ -52,7 +52,7 @@
       </li>
       <li>
         <label>Snow means more work, not less</label>
-        <outcome>The council said snow means paths to clear and roofs to sweep. {A_nameDef} was given a shovel. {A_nameDef} built a very small snowman by the path, on {A_possessive} own, out of spite.</outcome>
+        <outcome>Snow means paths to clear and roofs to sweep, so {A_nameDef} was handed a shovel. {A_nameDef} built a very small snowman by the path, on {A_possessive} own, out of spite.</outcome>
         <ways><toil>3</toil><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -104,7 +104,7 @@
       </li>
       <li>
         <label>No time for races this summer</label>
-        <outcome>The council said the summer is for work. {A_nameDef} took the string down from the course and coiled it very slowly, so everyone could see.</outcome>
+        <outcome>{A_nameDef} took the string down from the course and coiled it very slowly, where the council could see.</outcome>
         <ways><toil>3</toil><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -152,7 +152,7 @@
       </li>
       <li>
         <label>The animals can have the stubble</label>
-        <outcome>The council said the stubble was for the animals. {A_nameDef} picked one perfect ear of grain on the way back and kept it on {A_possessive} windowsill.</outcome>
+        <outcome>The stubble went to the animals. {A_nameDef} picked one perfect ear of grain on the way back and kept it on {A_possessive} windowsill.</outcome>
         <ways><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
@@ -204,7 +204,7 @@
       </li>
       <li>
         <label>Trees take room from the crops</label>
-        <outcome>The council said the land is for crops. {A_nameDef} planted the sapling in a pot by {A_possessive} bed instead, and talks to it.</outcome>
+        <outcome>The land is for crops, the council said. {A_nameDef} planted the sapling in a pot by {A_possessive} bed instead, and talks to it.</outcome>
         <ways><toil>2</toil><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>

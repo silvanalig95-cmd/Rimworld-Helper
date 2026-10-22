@@ -88,7 +88,7 @@
     <texts>
       <li>[lowtech] The longest night has come, and the hall fire is the only warm place left. {A_nameDef} wants to keep it the old way: everyone in one room, extra food, and a story from each.</li>
       <li>[!lowtech] The heaters have run flat out since noon and the rooms are still cold. It's the longest night of the year, and {A_nameDef} thinks this is the night to bring everyone into one room, with extra rations and every lamp lit.</li>
-      <li>[snow] Snow has been falling since morning on the longest night of the year. {A_nameDef} has asked the council to mark it with extra food and a long evening together, before everyone scatters to their cold rooms.</li>
+      <li>[snow] Snow has been falling since morning on the longest night of the year. {A_nameDef} would like it marked with extra food and a long evening together, before everyone scatters to their cold rooms.</li>
       <li>[trait:Kind] {A_nameDef} has been going room to room all evening with blankets. It's midwinter, {A_nameDef} tells the council, and no night to spend alone. Extra food, one big fire, and all of them round it until late.</li>
       <li>[colony:Traditional] Midwinter again. The colony has its ways for the longest night, and {A_nameDef} wants to know if the council means to keep them this year: extra rations and a long evening around the fire.</li>
     </texts>
@@ -152,13 +152,13 @@
     <defName>Council_Var_Dlm_Spoils</defName>
     <dilemma>Council_Dilemma_Spoils</dilemma>
     <texts>
-      <li>[lowtech] The raiders left more than bodies: good boots, a shield with only one crack in it, a bow {A_nameDef} has already restrung. {A_nameDef} brought down more of them than anyone and wants first pick.\n\nThe others want the council to decide.</li>
+      <li>[lowtech] The raiders left more than bodies: good boots, a shield with only one crack in it, a bow {A_nameDef} has already restrung. {A_nameDef} did more of the killing than anyone and wants first pick.\n\nThe others want the council to decide.</li>
       <li>[!lowtech] There's a rifle out there with a scope that still works, and {A_nameDef} has had an eye on it since the shooting stopped. {A_nameDef} hit more raiders than anyone and says that should count when the gear is shared out.\n\nThe others haven't agreed to anything yet.</li>
       <li>[winter] The raiders came dressed for winter, and their coats are warmer than anything the colony owns. {A_nameDef}, who did most of the shooting, has asked for the best one. So has nearly everyone else.</li>
-      <li>[trait:Greedy] {A_nameDef} was out among the bodies before the smoke had cleared, sorting the gear into two piles: {A_possessive} pile and the rest. {A_nameDef} did most of the shooting and sees nothing wrong with it.\n\nThe others want the council to have a say.</li>
+      <li>[trait:Greedy] {A_nameDef} was out among the bodies before the smoke had cleared, sorting the gear into two piles: {A_possessive} pile and the rest. {A_nameDef} fought hardest and sees nothing wrong with it.\n\nThe others want the council to have a say.</li>
       <li>[past:soldier] {A_nameDef} soldiered long enough to know how a company shares its spoils: whoever did the shooting chooses first. {A_nameDef} did most of it today.\n\nMost of the colony never served, and doesn't see it that way.</li>
       <li>[past:outlaw] Where {A_nameDef} comes from, whoever drops a raider takes the raider's things. {A_nameDef} dropped more of them than anyone today and has started collecting.\n\nSome of the others want it stopped until the council has decided.</li>
-      <li>[colony:Generous] Everything taken from raiders goes into the common stores here; that's how the colony has always done it. This time {A_nameDef}, who shot more of them than anyone, wants first pick, and said so at supper.</li>
+      <li>[colony:Generous] Everything taken from raiders goes into the common stores here; that's how the colony has always done it. This time {A_nameDef}, who was on the wall from the first shot to the last, wants first pick, and said so at supper.</li>
     </texts>
     <outcomes>
       <li>
@@ -194,7 +194,7 @@
       <li>[winter] The raiders lie frozen where they fell, and the ground is too hard to dig without a long day of it. {A_nameDef} asks what the council wants done with them.</li>
       <li>[summer|hot] It's hot, and the raiders lying outside the wall won't keep. {A_nameDef} wants the council to decide today: graves, a pyre, or the treeline.</li>
       <li>[trait:Kind] {A_nameDef} has covered the dead raiders' faces with their own coats and is asking for graves. The rest of the colony isn't sure they've earned the work.</li>
-      <li>[lowtech] The old custom is that the dead get their rites, whoever they were. Not everyone here keeps the old custom. {A_nameDef} has asked the council to decide what's done with the raiders' bodies.</li>
+      <li>[lowtech] The old custom is that the dead get their rites, whoever they were. Not everyone here keeps the old custom. {A_nameDef} wants it settled before the raiders lie out another night.</li>
       <li>[colony:Harsh] The colony isn't known for mercy, and the raiders' bodies are still where they fell. {A_nameDef} wants to know whether the council means to bury them, burn them, or leave them for the animals.</li>
       <li>[rain] The raiders' bodies have been lying in the rain all night. {A_nameDef} has been out to look at them twice and wants a decision before the ground turns to mud.</li>
     </texts>

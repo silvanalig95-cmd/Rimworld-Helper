@@ -367,7 +367,7 @@
       </li>
       <li>
         <label>Make them help each other</label>
-        <outcome>The council told {A_nameDef} and {B_nameDef} to pool their time and help each other. It was awkward at first, but now they're up late most nights planning both dreams together.</outcome>
+        <outcome>Pooling their time was awkward at first. Now {A_nameDef} and {B_nameDef} are up late most nights, planning both dreams at once.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmGoal_SharedDream</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.4</chance></li>

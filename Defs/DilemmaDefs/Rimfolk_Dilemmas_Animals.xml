@@ -395,7 +395,7 @@
     </roleA>
     <texts>
       <li>{PET_nameDef} is heavy with young, and so are others of the herd. {A_nameDef} wants a watch kept in the pens these nights, the whole colony taking turns with a lantern, the way it was done where {A_pronoun} grew up.\n\nIt would cost a few nights' sleep.</li>
-      <li>"Spring's the herd's year turning," {A_nameDef} says. The young are coming any night now, and {A_nameDef} has asked the council for a lambing watch: everyone in turn, in the straw, so nothing is born alone in the dark.</li>
+      <li>"Spring's the herd's year turning," {A_nameDef} says. The young are coming any night now, and {A_nameDef} wants a lambing watch: everyone in turn, in the straw, so nothing is born alone in the dark.</li>
       <li>[colony:Traditional] Spring again, and the herd is near its time. {A_nameDef} asks for the lambing watch, the whole colony in turn at the pens through the night.</li>
     </texts>
     <traditionOption>0</traditionOption>

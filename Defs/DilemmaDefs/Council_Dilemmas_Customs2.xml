@@ -25,7 +25,7 @@
     </roleA>
     <texts>
       <li>The days are lengthening at last. {A_nameDef} wants everyone up before dawn tomorrow on the highest ground near the walls, with a fire going, to watch the sun come back after the long dark.</li>
-      <li>{A_nameDef} has been counting the minutes of daylight on a notched stick all winter, and says tomorrow the sun will clear the far ridge for the first time. {A_nameDef} wants everyone out to see it, with a fire to stand round.</li>
+      <li>A notched stick, one notch for every day's light, kept by {A_nameDef} all winter. By its count the sun clears the far ridge tomorrow for the first time since the dark, and {A_nameDef} wants everyone out to see it, with a fire to stand round.</li>
       <li>[lowtech] In {A_nameDef}'s village the first spring sunrise was met with a fire on the hill and every voice in the place shouting it up. {A_nameDef} has already started carrying wood up to the high ground.</li>
       <li>[devout] {A_nameDef} wants the colony to greet the returning sun with a fire and the faith's morning words, the way the faithful of the cold lands always have.</li>
     </texts>
@@ -205,7 +205,7 @@
     <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
     <texts>
       <li>The fever season is here, the air thick with insects every evening. {A_nameDef} wants the colony to walk the bounds after dark with torches of green wood, the smoke driving the biting things back into the wet dark beyond the fields, and the lights telling whatever lives out there that this ground is taken.</li>
-      <li>{A_nameDef} has been tying bundles of wet wood and reeds all week. Lit, they smoke like anything. {A_nameDef} wants everyone out one evening to carry them round the colony's edge.</li>
+      <li>Bundles of wet wood and reeds are stacked by {A_nameDef}'s door, a week's worth of tying. Lit, they smoke like anything. {A_nameDef} wants everyone out one evening to carry them round the colony's edge.</li>
       <li>[lowtech] The marsh villages {A_nameDef} grew up among walk their bounds with smoking torches on the longest evening of the fever season, to keep off the biting things and the fevers with them. By {A_nameDef}'s count, that evening is tonight.</li>
     </texts>
     <traditionOption>0</traditionOption>
