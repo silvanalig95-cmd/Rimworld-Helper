@@ -114,7 +114,7 @@
           <li>[partial] Part of what {PLACE} needed</li>
         </doneTitles>
         <done>
-          <li>[delivered,fire] Everything the colony had set aside went home on {FACTION}'s carts, and the drivers counted out {ITEM} silver from {DEAD} on the tailboard. The new houses at {PLACE} will have the colony's timber in their walls.</li>
+          <li>[delivered,fire] Everything the colony had set aside went home on {FACTION}'s carts, and {DEAD} sent {ITEM} silver back with the drivers. The new houses at {PLACE} will have the colony's timber in their walls.</li>
           <li>[delivered,storm] The materials went home piled high on {FACTION}'s carts. {DEAD} sent {ITEM} silver with them, and word that the roofs at {PLACE} will be on before the next storm.</li>
           <li>[delivered,flood] {FACTION}'s carts took everything the colony had set aside, and {DEAD} sent {ITEM} silver back with them. The work crews at {PLACE} are eating the colony's food while they shovel the mud out of their neighbors' houses.</li>
           <li>[partial] Only part of the list was ready when {FACTION}'s carts came. They took it, paid its plain worth, {ITEM} silver, and went on looking for the rest.</li>
@@ -244,7 +244,7 @@
         <done>
           <li>[delivered,winter] The winter stores went off to {PLACE} on {FACTION}'s carts, and {DEAD} sent {ITEM} silver without haggling over a single sack. {PLACE} will see the winter out.</li>
           <li>[delivered,drought] The food and medicine went home on {FACTION}'s carts, and {ITEM} silver stayed behind. When the rains come back, {DEAD} says, {PLACE} will still be there to see them.</li>
-          <li>[delivered,sickness] {FACTION}'s carts took the supplies straight to {DEAD}'s sickhouse at {PLACE}, and the drivers left {ITEM} silver at the gate with a note from {DEAD}: "We'll manage now. Thank you."</li>
+          <li>[delivered,sickness] {FACTION}'s carts took the supplies straight to {DEAD}'s sickhouse at {PLACE}, and the drivers left {ITEM} silver and a note from {DEAD}: "We'll manage now. Thank you."</li>
           <li>[partial] Half loaded, {FACTION}'s carts went home with what the colony had ready, and left {ITEM} silver for its plain worth. The rest will have to come from somewhere else.</li>
         </done>
         <failTitles>

@@ -81,8 +81,8 @@
           <li>[partial] Half a load for {PLACE}</li>
         </doneTitles>
         <done>
-          <li>[delivered,funeral] {FACTION}'s carts took everything the colony had set aside, and their driver counted out {ITEM} silver at the gate before turning for home.\n\nWhen {DEAD} is buried, every family of {PLACE} will be at the graveside, and there will be food enough for all of them.</li>
-          <li>[delivered,wedding] {FACTION}'s carts went home loaded to the rails with everything the colony had set aside, and {ITEM} silver was left at the gate in payment. Every guest from {PLACE} at {DEAD}'s wedding will know whose food is on the tables.</li>
+          <li>[delivered,funeral] {FACTION}'s carts took everything the colony had set aside, and their driver counted out {ITEM} silver before turning for home.\n\nWhen {DEAD} is buried, every family of {PLACE} will be at the graveside, and there will be food enough for all of them.</li>
+          <li>[delivered,wedding] {FACTION}'s carts went home loaded to the rails with everything the colony had set aside, and {ITEM} silver stayed behind in payment. Every guest from {PLACE} at {DEAD}'s wedding will know whose food is on the tables.</li>
           <li>[partial] {FACTION}'s carts came and found the list half filled. They took what there was, paid its plain worth, {ITEM} silver, and went on to the next village for the rest.</li>
         </done>
         <failTitles>
@@ -170,8 +170,8 @@
           <li>[bought] {BEAST} stays</li>
         </doneTitles>
         <done>
-          <li>[returned] {FACTION}'s herder came with the rope, and {BEAST} went home at an easy walk, as tame as a dog. {ITEM} silver was left at the gate, with the thanks of {PLACE}.</li>
-          <li>[bought] {FACTION} took the colony's silver, and {BEAST} is the colony's now, bought and paid for. The herder scratched {BEAST}'s neck one last time before going.</li>
+          <li>[returned] {BEAST} went home at an easy walk, as tame as a dog, to where {FACTION}'s herder was waiting down the road. {ITEM} silver came back the other way, with the thanks of {PLACE}.</li>
+          <li>[bought] {FACTION} took the colony's silver, and {BEAST} is the colony's now, bought and paid for. Their herder sent word asking the colony to keep {BEAST} out of the barley.</li>
         </done>
         <failTitles>
           <li>[killed] {BEAST} is dead</li>
@@ -214,9 +214,9 @@
           <li>The herder's rope</li>
         </titles>
         <texts>
-          <li>{BEAST} has been tamed, and follows the colony's handlers around the yard as if {BEAST} had always lived here. {FACTION}'s herder is waiting at the gate with a rope.\n\nHand {BEAST} back, and the {TALE} silver promised is the colony's. Or the colony could keep {BEAST}: {FACTION} would part with {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another matter.</li>
-          <li>[skill:Animals] {A_nameDef} has {BEAST} eating out of {A_possessive} hand, quite literally, and {BEAST} has stopped trying to kick the fence down. {FACTION}'s herder has come up the road with a rope and a hopeful face.\n\n{TALE} silver if {BEAST} goes home, as promised. {COUNT} silver, paid to {FACTION}, if the colony would rather keep {BEAST}. Or the colony could simply keep {BEAST}, and send the herder home with an empty rope.</li>
-          <li>Tame at last, {BEAST} has taken to following the colony's handlers to the well and back. The herder from {PLACE} is waiting at the gate.\n\nThe herder will take {BEAST} home and pay the {TALE} silver promised. If the colony has grown fond of {BEAST}, {FACTION} would sell for {COUNT} silver, and the herder added, carefully, that they'd hate to think anyone would keep {BEAST} for nothing.</li>
+          <li>{BEAST} has been tamed, and follows the colony's handlers around the yard as if {BEAST} had always lived here. {FACTION}'s herder has heard, and sent word that the rope is ready.\n\nHand {BEAST} back, and the {TALE} silver promised is the colony's. Or the colony could keep {BEAST}: {FACTION} would part with {BEAST} for {COUNT} silver. Keeping {BEAST} without paying would be another matter.</li>
+          <li>[skill:Animals] {A_nameDef} has {BEAST} eating out of {A_possessive} hand, quite literally, and {BEAST} has stopped trying to kick the fence down. {FACTION}'s herder is on the way up the road with a rope and a hopeful face.\n\n{TALE} silver if {BEAST} goes home, as promised. {COUNT} silver, paid to {FACTION}, if the colony would rather keep {BEAST}. Or the colony could simply keep {BEAST}, and send the herder home with an empty rope.</li>
+          <li>Tame at last, {BEAST} has taken to following the colony's handlers to the well and back. The herder from {PLACE} has sent to ask when to come.\n\nThe herder will take {BEAST} home and pay the {TALE} silver promised. If the colony has grown fond of {BEAST}, {FACTION} would sell for {COUNT} silver, and the herder added, carefully, that they'd hate to think anyone would keep {BEAST} for nothing.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>

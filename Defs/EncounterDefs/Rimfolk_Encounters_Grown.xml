@@ -16,7 +16,7 @@
     <colonyIs><li>Hospitable</li></colonyIs>
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
-      <li>Three times on the road, {X_nameDef} of {FACTION} had been told to stop here, by three people who had never met. "A warm fire, and nobody asks your business," {X_nameDef} said to {A_nameDef}, and left what {X_pronoun} could spare on the table for the next guest.</li>
+      <li>Three times on the road, {X_nameDef} of {FACTION} had been told to stop here, by three people who had never met. "A warm fire, and nobody asks your business," {X_nameDef} said to {A_nameDef}, and pressed what {X_pronoun} could spare into {A_possessive} hand for the next guest.</li>
       <li>A camp of drovers had sent {X_nameDef} this way. "They said you feed strangers and see them off with bread," {X_pronoun} told {A_nameDef}. {A_nameDef} said that was about right, and {X_nameDef} insisted on leaving something toward the next ones.</li>
       <li>People plan their journeys around this colony now, {X_nameDef} told {A_nameDef} over supper; its name is good on the road. {FACTION} would remember the welcome, {X_pronoun} said.</li>
     </texts>

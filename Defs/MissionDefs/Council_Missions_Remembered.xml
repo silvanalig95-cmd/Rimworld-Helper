@@ -247,8 +247,8 @@
           <li>[cancelled] The visit</li>
         </failTitles>
         <fail>
-          <li>[noroom] {DEAD} of {FACTION} arrived to find no room fit for a guest, and will leave in the morning. {FACTION} will hear how the colony keeps its word.</li>
-          <li>[slighted] {DEAD} of {FACTION} has gone home early. The room kept for {DEAD} was hardly ever ready, and {FACTION} will hear how the colony treats its guests.</li>
+          <li>[noroom] {DEAD} of {FACTION} arrived to find no room fit for a guest, spent the night sitting up in a chair, and will leave in the morning.</li>
+          <li>[slighted] {DEAD} of {FACTION} has gone home early. The room kept for {DEAD} was hardly ever ready, and {DEAD} said so, at length, to anyone in earshot on the way out.</li>
           <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
         </fail>
         <cancelled>
@@ -328,8 +328,8 @@
           <li>[cancelled] The refugees</li>
         </failTitles>
         <fail>
-          <li>[hungry] The refugees from {PLACE} have gone, hungrier than they came and tired of sleeping rough. {DEAD} thanked the colony stiffly. {FACTION} will hear about it.</li>
-          <li>[harmed] The refugees from {PLACE} came to the colony for shelter, and were hurt here instead. {FACTION} will not forget it.</li>
+          <li>[hungry] The refugees from {PLACE} have gone, hungrier than they came and tired of sleeping rough. {DEAD} thanked the colony stiffly on behalf of {FACTION}, and didn't look back.</li>
+          <li>[harmed] The refugees from {PLACE} came to the colony for shelter, and were hurt here instead. {FACTION} will remember where it happened.</li>
         </fail>
         <cancelled>
           <li>{FACTION} are no longer on terms with the colony, and their refugees will look for shelter elsewhere.</li>
