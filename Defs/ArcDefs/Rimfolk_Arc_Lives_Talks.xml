@@ -54,7 +54,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the day's work, the teacher and the student, every piece of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about whether the other student got more attention, at length and honestly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about whether the other student got more attention, at length and without dodging.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked through what the student does better than anyone, and what still needs work.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had it out about favorites at the bench, and came away agreeing there weren't any.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat over a spoiled piece of work and worked out where it went wrong, without blame.</li>
@@ -190,7 +190,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns walking the baby up and down until it slept.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] everything [INITIATOR_pronoun] knew about babies, which was less than [INITIATOR_pronoun] thought.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked in whispers by the cradle about nothing much, so as not to wake it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked under their breath by the cradle about nothing much, so as not to wake it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that the baby looks like everyone in the family and no one at all.</li>
         <li>r_logentry->While the baby slept, [INITIATOR_nameDef] and [RECIPIENT_nameDef] shared a cold supper and called it a feast.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out who would take the baby which nights, and wrote it down so nobody could argue.</li>

@@ -472,7 +472,7 @@
     </fizzleChronicle>
     <eulogy>
       <plain>
-        <li>{OTHER_nameDef} taught two of us at once, and never let either of us feel second. I don't know how {OTHER_pronoun} did it.</li>
+        <li>{OTHER_nameDef} taught two of us side by side, and never let either of us feel second. I don't know how {OTHER_pronoun} did it.</li>
         <li>{OTHER_nameDef} left two students behind. We'll keep the bench going between us.</li>
       </plain>
       <cold><li>{OTHER_nameDef}'s teaching was unfinished. The students will have to finish it themselves.</li></cold>

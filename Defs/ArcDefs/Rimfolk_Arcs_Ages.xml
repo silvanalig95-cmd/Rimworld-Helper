@@ -157,7 +157,7 @@
     <stages>
       <li>
         <label>treated like a child</label>
-        <waiting>Next: hard work at {SKILL}, to prove a point.</waiting>
+        <waiting>Next: hard work at {SKILL}, enough to be noticed.</waiting>
         <journal>
           <plain>
             <li>{OTHER_nameDef} checked my work again today, out loud, at the bench, like I'm still small. I'm not small.</li>
