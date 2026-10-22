@@ -133,7 +133,7 @@
         <li>Somebody propped up a table with a book. I know who. Build {THING} before I have words with them.</li>
       </blunt>
       <cheerful>
-        <li>A whole shelf of books, all sorted! I'd do the sorting myself, gladly.</li>
+        <li>I'd sort the books by color, then by size, then by how sad they are. I just need a shelf!</li>
       </cheerful>
       <gloomy>
         <li>[lowmood] Books are the only company here that never lets me down. They deserve better than the floor.</li>
@@ -345,7 +345,7 @@
         <li>My child is sleeping in a box. Fix that today.</li>
       </blunt>
       <cheerful>
-        <li>A tiny bed for a tiny person! It's the most important furniture we could build.</li>
+        <li>The baby kicks like a mule. A crib with high sides would be perfect!</li>
       </cheerful>
       <gloomy>
         <li>Out here a baby has enough working against it. Where it sleeps shouldn't be one of those things.</li>
@@ -416,7 +416,7 @@
         <li>[old] I've lived through a winter with the wood gone. I'm not doing it again at my age.</li>
       </plain>
       <warm>
-        <li>I'll swing the axe myself. I just don't want anyone shivering come midwinter.</li>
+        <li>I'll swing the axe till my hands blister, so long as nobody here goes cold at midwinter.</li>
       </warm>
       <blunt>
         <li>The woodpile's pathetic. Somebody grab an axe or we're burning the furniture by midwinter.</li>
@@ -490,7 +490,7 @@
       </plain>
       <warm>
         <li>[evening] I sat with the animals after feeding. They can't ask for winter feed, so I'm asking for them.</li>
-        <li>I'll do the cutting and the hauling myself. I just don't want to watch them go thin.</li>
+        <li>I'll do the cutting and the hauling. Watching them go thin would be worse than any work.</li>
       </warm>
       <blunt>
         <li>No fodder, no animals. No animals, no milk, wool or meat.</li>
@@ -898,13 +898,13 @@
         <li>[trait:Undergrounder] I don't want to leave, exactly. I want to see what's out there so I can come back and feel smug about it.</li>
       </plain>
       <warm>
-        <li>I'd carry the packs and cook for the whole caravan. I just want to see somewhere new before I die.</li>
+        <li>I'd carry the packs and cook for the whole caravan. I'd love to see somewhere new before I'm too old to walk that far.</li>
       </warm>
       <blunt>
         <li>If I look at these walls one more day I'll start punching them. Send me somewhere.</li>
       </blunt>
       <cheerful>
-        <li>A trip! New food in the next settlement, and a different sky to sleep under.</li>
+        <li>Let me go with the next caravan! New food, and a different sky to sleep under.</li>
       </cheerful>
       <gloomy>
         <li>[lowmood] I'll probably die in this colony. I'd like to see one other place first.</li>
@@ -1238,7 +1238,7 @@
         <li>I need somewhere to pray that isn't next to the latrine. Build {THING}.</li>
       </blunt>
       <cheerful>
-        <li>A small shrine where people can leave a pebble or a flower! It would be lovely.</li>
+        <li>I've been collecting pretty pebbles for people to leave at a shrine. Now we just need the shrine!</li>
       </cheerful>
       <gloomy>
         <li>There's probably no one listening. If there is, I want a proper place to complain.</li>
@@ -1380,7 +1380,7 @@
         <li>I'm sick of burying meat. Build {THING} or start eating faster.</li>
       </blunt>
       <cheerful>
-        <li>Smoked meat, jerky, smoked fish! I've been dreaming about it.</li>
+        <li>I've practiced my smoked-meat recipe in my head for weeks. It just needs somewhere to hang!</li>
       </cheerful>
       <gloomy>
         <li>Everything rots out here sooner or later. With meat, at least, we can slow it down.</li>
@@ -1517,7 +1517,7 @@
         <li>I want a fountain. Yes, it's useless. It would be pretty, which is more than I can say for this yard.</li>
       </blunt>
       <cheerful>
-        <li>A fountain splashing away in the yard! I'd sit and watch it every evening.</li>
+        <li>If we build a fountain, I'll toss a pebble in every morning and make a wish on it!</li>
       </cheerful>
       <gloomy>
         <li>We're all going to die here anyway. It might as well be somewhere with a fountain.</li>
@@ -1647,13 +1647,13 @@
         <li>[trait:Tough] I can take a hit. What I can't take is not finding my weapon when the hit's coming.</li>
       </plain>
       <warm>
-        <li>I just want each of us able to grab our gear and get to the wall in time.</li>
+        <li>If each of us could grab our gear and get to the wall in time, I'd rest easier.</li>
       </warm>
       <blunt>
         <li>Build {THING}. The next person who leaves a weapon on the dining table loses it.</li>
       </blunt>
       <cheerful>
-        <li>A rack with all our weapons on it, gleaming! It would make this place look like a real fort.</li>
+        <li>I'd polish every weapon on it each morning. It would look like a real fort in here!</li>
       </cheerful>
       <gloomy>
         <li>Last raid I lost half a minute looking for my weapon. One day that half minute will be somebody's life.</li>

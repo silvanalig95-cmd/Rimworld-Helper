@@ -197,13 +197,13 @@
         <li>[afterraid] We just survived another attack. Let me sit down for a while before the next job.</li>
       </plain>
       <warm>
-        <li>I'll work all the harder afterward, I promise. I just need some rest.</li>
+        <li>I'll work all the harder afterward, I promise. I'm only asking for an afternoon.</li>
       </warm>
       <blunt>
         <li>I'm tired. Give me time off or watch me fall asleep on the job.</li>
       </blunt>
       <cheerful>
-        <li>A whole afternoon of doing nothing! Wouldn't that be lovely?</li>
+        <li>Give me an afternoon off and I'll spend it doing absolutely nothing, beautifully!</li>
       </cheerful>
       <gloomy>
         <li>I'm running on empty. I keep making mistakes I wouldn't make rested.</li>

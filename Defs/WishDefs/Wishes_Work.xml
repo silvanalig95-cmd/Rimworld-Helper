@@ -34,7 +34,7 @@
         <li>[winter] There's little to do in winter but work. I'd rather do it somewhere set up for it.</li>
       </plain>
       <warm>
-        <li>I love this work. With {SUBJECT}, I could do it properly, for all of us, and teach anyone who asked.</li>
+        <li>I love this work. With {SUBJECT}, I could do it properly, for all of us.</li>
         <li>I've been sketching plans for {SUBJECT} at night. Could we make it real?</li>
       </warm>
       <blunt>
@@ -186,7 +186,7 @@
         <li>[rich] We're well off now. The common rooms should show it.</li>
       </plain>
       <warm>
-        <li>Something beautiful to look at over dinner would do us all good. Even a small carving.</li>
+        <li>Something beautiful to look at over dinner. Even a small carving would do.</li>
       </warm>
       <blunt>
         <li>These walls are depressing. Somebody sculpt something.</li>
@@ -257,7 +257,7 @@
         <li>I don't do my best work with a stick and a prayer.</li>
       </blunt>
       <cheerful>
-        <li>A shiny new {SUBJECT}, all my own! I'd take such good care of it.</li>
+        <li>I'd give a new {SUBJECT} a name. I'd oil it every night and tell it stories.</li>
       </cheerful>
       <gloomy>
         <li>One day this old thing will fail me in the middle of a fight. I'd rather have a better {SUBJECT} before then.</li>
@@ -324,7 +324,7 @@
         <li>I need a drink. We all need a drink. Build {THING}.</li>
       </blunt>
       <cheerful>
-        <li>Our own brewery! We could even name the beer.</li>
+        <li>We could name our own beer! I've got a list of names already, and most of them are rude.</li>
       </cheerful>
       <gloomy>
         <li>I've been dry for weeks. The days are getting very long.</li>
