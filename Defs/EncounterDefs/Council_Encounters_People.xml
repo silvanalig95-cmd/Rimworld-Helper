@@ -142,7 +142,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>"The miller's daughter went for water, and the bear went with her..." {X_nameDef} sang it all the way through, and {A_nameDef} asked for it again from the start.</li>
-      <li>Ghost stories, after dark. When a log shifted in the fire, {A_nameDef} jumped clean off the bench, and {X_nameDef} called it the best reaction yet and started another one.</li>
+      <li>Ghost stories, after dark. When a log shifted in the fire, {A_nameDef} jumped clean off the bench. {X_nameDef} called it the best reaction yet and started another one.</li>
       <li>{X_nameDef} knew a drinking song with forty verses. {A_nameDef} had the chorus by the fifth and was bellowing it by the twentieth.</li>
       <li>{X_nameDef} told how {X_possessive} caravan once crossed a frozen lake and lost two muffalo through the ice, and {A_nameDef} sat forward the whole time.</li>
     </texts>
@@ -279,7 +279,7 @@
     <stranger><kind>Visitor</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef}'s dog followed {A_nameDef} around all afternoon and leaned on {A_possessive} legs whenever {A_pronoun} stopped. {X_nameDef} said it only does that with people it likes.</li>
-      <li>A sausage went off {A_nameDef}'s plate and into {X_nameDef}'s scruffy dog, which ate it looking {A_nameDef} in the eye. {A_nameDef} gave it the crust as well.</li>
+      <li>{A_nameDef}'s sausage ended up in {X_nameDef}'s scruffy dog, which ate it looking {A_objective} straight in the eye. {A_nameDef} gave it the crust as well.</li>
       <li>{A_nameDef} spent the afternoon picking burrs out of {X_nameDef}'s dog, a shaggy old thing called Captain.</li>
     </texts>
     <effects>
@@ -597,7 +597,7 @@
     <stranger><kind>Prisoner</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} told {A_nameDef} how {X_pronoun} ended up raiding, by way of a burned farm, a debt and a cousin with a plan.</li>
-      <li>{X_nameDef} has a daughter somewhere south who thinks {X_nameDef} is a trader. {X_nameDef} asked {A_nameDef} not to tell her, if she ever came by. {A_nameDef} promised.</li>
+      <li>{X_nameDef} has a daughter somewhere south who believes {X_pronoun} is a trader, and asked {A_nameDef} not to tell her otherwise if she ever came by. {A_nameDef} promised.</li>
       <li>Through the door, {X_nameDef} described the last meal {X_pronoun} ate at home, down to the burnt crust. {A_nameDef} stayed to listen long after the bowl was collected.</li>
     </texts>
     <effects>
@@ -748,7 +748,7 @@
     <cooldownDays>5</cooldownDays>
     <stranger><kind>Fallen</kind><adult>true</adult></stranger>
     <texts>
-      <li>Over and over, {X_nameDef} prayed the same short line from where {X_pronoun} lay, until {A_nameDef} realized {A_pronoun} knew the words too.</li>
+      <li>Over and over, {X_nameDef} prayed the same short line from where {X_pronoun} lay, until {A_nameDef} found {A_pronoun} had learned the words.</li>
       <li>{X_nameDef} was praying to a god with a great many teeth, by the sound of it. {A_nameDef} hurried past and felt watched for the rest of the day.</li>
       <li>{X_nameDef} asked {A_nameDef} to pray with {X_objective}. {A_nameDef} didn't know the god or the words, but knelt in the mud for a minute anyway.</li>
     </texts>

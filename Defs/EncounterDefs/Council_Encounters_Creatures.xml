@@ -44,7 +44,7 @@
     <weight>1.0</weight>
     <cooldownDays>8</cooldownDays>
     <texts>
-      <li>{A_nameDef} woke up pinned under the blankets by {X_definite}, who had climbed onto the bed in the night and was still asleep.</li>
+      <li>Some time in the night {X_definite} climbed onto {A_nameDef}'s bed, and in the morning {A_nameDef} woke pinned under the blankets.</li>
       <li>Every night {X_definite} turns three slow circles and drops across {A_nameDef}'s feet. {A_nameDef} hasn't had warm toes this reliably in years.</li>
       <li>These days {A_nameDef} sleeps badly without {X_definite} snoring at the foot of the bed.</li>
     </texts>
@@ -134,7 +134,7 @@
     <texts>
       <li>{A_nameDef} sat behind the storehouse with {A_possessive} head in {A_possessive} hands. After a while {X_definite} came and leaned against {A_objective}, and didn't move until {A_nameDef} did.</li>
       <li>For days now {A_nameDef} has barely said a word, and in all that time {X_definite} has not left {A_possessive} side.</li>
-      <li>Out by the pens, {A_nameDef} cried into the warm side of {X_definite} until it passed.</li>
+      <li>Out by the pens, {A_nameDef} cried into the warm side of {X_definite} until the worst had passed.</li>
       <li>{A_nameDef} skipped supper and lay facing the wall. Some time later {X_definite} pushed the door open with {X_possessive} head and lay down beside the bed with a heavy sigh.</li>
     </texts>
     <effects>
@@ -235,7 +235,7 @@
     <weight>1.0</weight>
     <cooldownDays>7</cooldownDays>
     <texts>
-      <li>{A_nameDef} was overheard in the pens, telling {X_definite} everything that has gone wrong this season and scratching behind {X_possessive} ears.</li>
+      <li>Someone passing the pens heard {A_nameDef} telling {X_definite} everything that has gone wrong this season.</li>
       <li>At night, {A_nameDef} talks to {X_definite} about the things {A_pronoun} won't say at the table.</li>
       <li>"Am I doing all right out here?" {A_nameDef} asked {X_definite}, and got a long yawn back.</li>
     </texts>
@@ -618,7 +618,7 @@
     <texts>
       <li>In the long grass, {X_indefinite} came right up to {A_nameDef} and sniffed {A_possessive} hair before wandering off.</li>
       <li>The adults froze when {X_indefinite} came toward {A_nameDef}. {A_nameDef} held out half an apple, and {X_definite} took it gently and went on {X_possessive} way.</li>
-      <li>"It touched noses with me!" {A_nameDef} ran all the way up from the water to say so, and that night drew {X_definite} on the wall above {A_possessive} bed.</li>
+      <li>"It touched noses with me," {A_nameDef} kept saying, all the way up from the water, and that night {A_pronoun} drew {X_definite} on the wall above the bed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncC_WildTouchedNoses</thought></li>
@@ -781,7 +781,7 @@
       <li>Fall</li>
     </seasons>
     <texts>
-      <li>{A_nameDef} watched {X_indefinite} and a rival go at each other in the meadow for most of the morning, heads down, churning the mud to soup, until both limped off.</li>
+      <li>Heads down, churning the mud to soup, {X_indefinite} and a rival went at each other in the meadow for most of the morning. {A_nameDef} watched until both limped off.</li>
       <li>The crack of {X_definite} and a challenger colliding carried all the way from the far fields. {A_nameDef} went out to watch and stayed until it was over.</li>
       <li>{A_nameDef} bet a week of washing-up on {X_definite} against the bigger animal, and lost.</li>
     </texts>

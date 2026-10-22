@@ -79,7 +79,7 @@
     <encounter>Council_EncP_WarStories</encounter>
     <texts>
       <li>[past:soldier] {A_nameDef} and {X_nameDef} found out they had fought on opposite sides of the same war, years ago. They laughed about it, mostly.</li>
-      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} a {FACTION} shield trick for turning a spear. {A_nameDef} practiced it with a pot lid and a broom handle until it worked.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} the shield trick {FACTION} fighters use to turn a spear. {A_nameDef} practiced it with a pot lid and a broom handle until it worked.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
