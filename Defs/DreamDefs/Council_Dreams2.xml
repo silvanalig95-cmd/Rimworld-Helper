@@ -623,7 +623,7 @@
         <li>[winter] We danced so hard the snow melted.</li>
       </plain>
       <warm><li>The faces from the celebration were all in my dream last night, lit up like lanterns. I want to remember them like that.</li></warm>
-      <blunt><li>The party again. Good party.</li></blunt>
+      <blunt><li>Dreamt the party again. Good party.</li></blunt>
       <cheerful><li>Dreamt the party went on for a week! Can we do that?</li></cheerful>
       <gloomy><li>In the dream the music stopped and I was cleaning up after the party alone.</li></gloomy>
       <cold><li>The celebration came back last night. I suppose I enjoyed it more than I let on.</li></cold>
@@ -789,7 +789,7 @@
         <li>[medieval] {OTHER_nameDef} and I jousted on muffalo, and the judges were all on {OTHER_possessive} side.</li>
         <li>[again] Another duel with {OTHER_nameDef}. I'm ahead on points.</li>
       </plain>
-      <blunt><li>Beat {OTHER_nameDef} in a fight last night. Fair and square. Remember that.</li></blunt>
+      <blunt><li>Beat {OTHER_nameDef} in a fight in my dream. Fair and square. Remember that.</li></blunt>
       <cheerful><li>Beat {OTHER_nameDef} at arm wrestling in my dream. Twice, actually.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} won, in the dream. Of course {OTHER_pronoun} did.</li></gloomy>
       <cold><li>A contest with {OTHER_nameDef}, in my sleep. I lost on a technicality. That won't happen awake.</li></cold>
@@ -947,7 +947,7 @@
       <blunt><li>{OTHER_nameDef} in my dream, and the rest of the family. Wouldn't trade them.</li></blunt>
       <cheerful><li>Had a giant family picnic in my dream with {OTHER_nameDef}, and every cousin came!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} and I were the last of our family, in the dream. We are, more or less.</li></gloomy>
-      <cold><li>{OTHER_nameDef} again, last night. Shared blood apparently means more to me than I admit.</li></cold>
+      <cold><li>Dreamt of {OTHER_nameDef} again. Shared blood apparently means more to me than I admit.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -980,7 +980,7 @@
       </cheerful>
       <gloomy>
         <li>Dreamt {OTHER_nameDef} was leaving and didn't say goodbye. I don't know why that bothered me so much.</li>
-        <li>In the dream {OTHER_nameDef} looked at me like a stranger.</li>
+        <li>In the dream {OTHER_nameDef} walked right past me at supper, as if I weren't there.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} was in my dream. There must be a reason. I'll pay closer attention.</li>

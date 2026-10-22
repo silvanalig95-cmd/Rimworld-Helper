@@ -115,7 +115,7 @@
         <li>[lowmood] Dreamt they all packed up and left in the night, and didn't wake me.</li>
         <li>The stairs went down one more step than they should, every time, and I kept missing it.</li>
         <li>The walls got thinner each time I touched them.</li>
-        <li>Every chair in the dining room was taken, and not one of them would tell me who they were.</li>
+        <li>Every chair in the dining room was taken by someone I didn't know, and none of them would tell me their names.</li>
         <li>Ran all night. Couldn't tell you from what.</li>
       </plain>
       <blunt>
@@ -337,7 +337,7 @@
         <li>In my dream {OTHER_nameDef} and I sat on a hill above the colony and talked about everyone below.</li>
       </warm>
       <blunt>
-        <li>Fishing with {OTHER_nameDef}, all night. It was fine.</li>
+        <li>Fished with {OTHER_nameDef} all night in a dream. It was fine.</li>
         <li>{OTHER_nameDef} was in my dream. We were hauling. Even in my sleep.</li>
       </blunt>
     </lines>
