@@ -81,7 +81,7 @@
         <li>[again] The searching dream again. {OTHER_nameDef} was nearer this time.</li>
       </plain>
       <warm><li>Dreamt I found {OTHER_nameDef} at last, sitting by a fire, perfectly fine and wondering what the fuss was about.</li></warm>
-      <blunt><li>Dreamt about {OTHER_nameDef}. Didn't sleep much after.</li></blunt>
+      <blunt><li>{OTHER_nameDef} again. Didn't sleep much after.</li></blunt>
       <gloomy><li>Dreamt {OTHER_nameDef} didn't come back. I've told myself three times since that it was only a dream.</li></gloomy>
       <cold><li>A dream about {OTHER_nameDef}'s safety. Worry, translated into images. Unproductive.</li></cold>
     </lines>

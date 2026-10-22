@@ -118,7 +118,7 @@
       </cheerful>
       <gloomy>
         <li>Even in my dreams I'm hauling something.</li>
-        <li>Dreamt I got my work wrong, again and again, and had to start over each time.</li>
+        <li>Got my work wrong all night, again and again, and had to start over each time.</li>
       </gloomy>
       <cold>
         <li>Spent the night doing chores in my head. A poor use of sleep.</li>
@@ -149,7 +149,7 @@
       </warm>
       <blunt>
         <li>Animal dream. They were fine. I was fine.</li>
-        <li>Dreamt a muffalo stole my boots.</li>
+        <li>A muffalo stole my boots in my dream. Still annoyed.</li>
       </blunt>
       <cheerful>
         <li>Rode a giant squirrel through the treetops last night! Best dream I've had.</li>
@@ -353,7 +353,7 @@
         <li>[child] A giant was playing with us like toys, but it was being careful not to break us.</li>
         <li>[again] The watcher again. I swear it waved this time.</li>
       </plain>
-      <blunt><li>Dreamt something up there was watching us. If it's listening, it can stop.</li></blunt>
+      <blunt><li>Something up there was watching us all night. If it's listening, it can stop.</li></blunt>
       <cheerful><li>A big kind face looked down through the clouds in my dream and smiled at what we'd built!</li></cheerful>
       <gloomy><li>There's a thing up there watching us that enjoys it when the crops fail. I saw it last night.</li></gloomy>
       <cold><li>In the dream we were being observed by something that finds us entertaining. I see no reason to doubt it.</li></cold>
@@ -423,7 +423,7 @@
         <li>[again] I keep dreaming I'm on the wrong side of the wall. I always lose.</li>
       </plain>
       <warm><li>I was one of the raiders, and there were people waiting for me at home. I keep thinking about that.</li></warm>
-      <blunt><li>Dreamt I was one of the raiders. I didn't make it past the wall.</li></blunt>
+      <blunt><li>I was one of the raiders last night. Didn't make it past our wall.</li></blunt>
       <gloomy><li>I was one of the ones we killed. It wasn't hard to picture.</li></gloomy>
       <cold><li>Fought the battle from the enemy's side in my sleep. Their approach was obvious. Ours should be less so.</li></cold>
     </lines>
@@ -443,7 +443,7 @@
         <li>[again] The butcher's table again. Same table, same knife.</li>
       </plain>
       <warm><li>Dreamt we gave them a proper burial. I wish that's what we'd done.</li></warm>
-      <blunt><li>Dreamt about the butcher's table. Leave it.</li></blunt>
+      <blunt><li>The butcher's table. Leave it.</li></blunt>
       <gloomy><li>I was the one on the table in my dream, and whoever held the knife didn't hesitate.</li></gloomy>
       <cold><li>A dream about the butchering. My stomach turned on waking. Odd, since I felt nothing at the time.</li></cold>
     </lines>
@@ -489,7 +489,7 @@
         <li>[again] The trial again. I still don't know the verdict.</li>
       </plain>
       <warm><li>We found another way, in the dream. I keep thinking there must have been one.</li></warm>
-      <blunt><li>Dreamt about what we did. Was it right? It's done now, either way.</li></blunt>
+      <blunt><li>What we did came back last night. It's done now, right or wrong.</li></blunt>
       <gloomy><li>In the dream they did the same to me. I didn't argue.</li></gloomy>
       <cold><li>A dream about the decision. I still think it was correct. The dream disagreed.</li></cold>
     </lines>
@@ -553,7 +553,7 @@
         <li>[again] {OTHER_nameDef} again. I'd like my sleep back, please.</li>
       </plain>
       <warm><li>{OTHER_nameDef} was happy in my dream, just not with me. I think I can live with that, in time.</li></warm>
-      <blunt><li>Dreamt about {OTHER_nameDef}. I'm still angry.</li></blunt>
+      <blunt><li>{OTHER_nameDef}, all night. Still angry.</li></blunt>
       <gloomy><li>In the dream {OTHER_nameDef} never loved me at all. It made a terrible kind of sense.</li></gloomy>
       <cold><li>{OTHER_nameDef} appeared in a dream. I'll consider it a temporary malfunction.</li></cold>
     </lines>
@@ -576,7 +576,7 @@
         <li>[again] Talking with {OTHER_nameDef} again, in my sleep. We should do it awake more often.</li>
       </plain>
       <warm><li>{OTHER_nameDef} said the same kind thing in my dream that {OTHER_pronoun} really said to me. I didn't mind hearing it twice.</li></warm>
-      <blunt><li>Dreamt about {OTHER_nameDef}. We talked. It was good.</li></blunt>
+      <blunt><li>Talked with {OTHER_nameDef} all night in my sleep. Good talk.</li></blunt>
       <cheerful><li>{OTHER_nameDef} and I talked the whole night through! We should do that for real.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} was kind to me in my dream, the way {OTHER_pronoun} was the other day. I'm waiting for it to wear off.</li></gloomy>
       <cold><li>My conversation with {OTHER_nameDef} came back in a dream. Apparently it mattered to me. Interesting.</li></cold>
@@ -623,7 +623,7 @@
         <li>[winter] We danced so hard the snow melted.</li>
       </plain>
       <warm><li>The faces from the celebration were all in my dream last night, lit up like lanterns. I want to remember them like that.</li></warm>
-      <blunt><li>Dreamt about the party. Good party.</li></blunt>
+      <blunt><li>The party again, in my sleep. Good party.</li></blunt>
       <cheerful><li>Dreamt the party went on for a week! Can we do that?</li></cheerful>
       <gloomy><li>In the dream the music stopped and I was cleaning up after the party alone.</li></gloomy>
       <cold><li>A dream about the celebration. I suppose I enjoyed it more than I let on.</li></cold>
@@ -720,7 +720,7 @@
         <li>[again] The council dream again. Still standing at the back.</li>
       </plain>
       <warm><li>Shook hands with whoever has my seat now, in the dream. I don't know if I meant it. Maybe one day I will.</li></warm>
-      <blunt><li>Dreamt about the vote. Lost it twice. Once was enough.</li></blunt>
+      <blunt><li>Lost the vote again in my sleep. Once was enough.</li></blunt>
       <gloomy><li>They were all relieved I was gone, in the dream. They were smiling about it.</li></gloomy>
       <cold><li>Went over the vote in my sleep. The next one will go differently.</li></cold>
     </lines>
@@ -789,7 +789,7 @@
         <li>[medieval] {OTHER_nameDef} and I jousted on muffalo, and the judges were all on {OTHER_possessive} side.</li>
         <li>[again] Another duel with {OTHER_nameDef}. I'm ahead on points.</li>
       </plain>
-      <blunt><li>Dreamt I beat {OTHER_nameDef} in a fight. Fair and square. Remember that.</li></blunt>
+      <blunt><li>Beat {OTHER_nameDef} in a fight last night. Fair and square. Remember that.</li></blunt>
       <cheerful><li>Beat {OTHER_nameDef} at arm wrestling in my dream! I'll take it as a sign.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} won, in the dream. Of course {OTHER_pronoun} did.</li></gloomy>
       <cold><li>A contest with {OTHER_nameDef}, in my sleep. I lost on a technicality. That won't happen awake.</li></cold>
@@ -833,7 +833,7 @@
         <li>[tribal] Dreamt {OTHER_nameDef} and I hunted the great beast together and shared the first cut afterward.</li>
       </plain>
       <warm><li>In my dream {OTHER_nameDef} covered me while I pulled someone out of the line of fire. That's just how it is with us.</li></warm>
-      <blunt><li>Dreamt I was in a fight with {OTHER_nameDef} at my back. Good place for {OTHER_objective}.</li></blunt>
+      <blunt><li>A fight in my sleep, and {OTHER_nameDef} at my back. Good place for {OTHER_objective}.</li></blunt>
       <cheerful><li>Took on a whole army with {OTHER_nameDef} last night, and we won!</li></cheerful>
       <cold><li>Fought alongside {OTHER_nameDef} in my sleep. Our coordination was excellent. It usually is.</li></cold>
     </lines>
@@ -944,7 +944,7 @@
         <li>[old] {OTHER_nameDef} was a baby again, and I was holding {OTHER_objective}, and the house was warm.</li>
       </plain>
       <warm><li>{OTHER_nameDef} and the rest of our family were all in my dream, with no empty places at the table.</li></warm>
-      <blunt><li>Dreamt about {OTHER_nameDef}. Family. Wouldn't trade them.</li></blunt>
+      <blunt><li>{OTHER_nameDef} in my dream, and the rest of the family. Wouldn't trade them.</li></blunt>
       <cheerful><li>Had a giant family picnic in my dream with {OTHER_nameDef}, and every cousin came!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} and I were the last of our family, in the dream. We are, more or less.</li></gloomy>
       <cold><li>A dream about {OTHER_nameDef}. Shared blood apparently means more to me than I admit.</li></cold>
@@ -1028,7 +1028,7 @@
         <li>[afterraid] In my dream {PET_nameDef} was hurt in the fight and I couldn't find where. I went over every scratch this morning.</li>
       </plain>
       <warm><li>Dreamt I lost {PET_nameDef}. I've been carrying treats in my pocket all morning.</li></warm>
-      <blunt><li>Dreamt {PET_nameDef} went missing. Didn't. Checked.</li></blunt>
+      <blunt><li>{PET_nameDef} went missing in my dream. Went and checked. Asleep in the straw.</li></blunt>
       <cheerful><li>{PET_nameDef} ran off in my dream, but only to fetch me a present!</li></cheerful>
       <gloomy><li>{PET_nameDef} had forgotten me, in the dream. Animals don't hold on to much.</li></gloomy>
       <cold><li>{PET_nameDef} wandered off in my dream. I'll inspect the pens.</li></cold>
@@ -1102,7 +1102,7 @@
         <li>Fought a raider in my sleep who moved exactly like me. I learned a lot about how I move.</li>
         <li>[lowtech] In the dream I loosed arrow after arrow at a running deer, and each one went exactly where I looked.</li>
       </plain>
-      <blunt><li>Dreamt about shooting. Hit everything. Going to the range.</li></blunt>
+      <blunt><li>Shooting dream. Hit everything. Going to the range.</li></blunt>
       <cheerful><li>Shot an apple off a muffalo's head in my dream! The muffalo didn't even blink.</li></cheerful>
       <gloomy><li>Missed every shot that mattered, in the dream. Then I took them again, one by one, until I didn't.</li></gloomy>
       <cold><li>I spent the night rehearsing my aim. I expect better accuracy today.</li></cold>
@@ -1152,7 +1152,7 @@
         <li>[tribal] The elders sat in a ring and spoke for all of us, and the spirits nodded along.</li>
       </plain>
       <warm><li>The whole council decided things kindly in my dream, all of us together. We can be like that.</li></warm>
-      <blunt><li>Dreamt the council got something right. Fine. I'll give them a chance.</li></blunt>
+      <blunt><li>The council got something right in my dream. Fine. I'll give them a chance.</li></blunt>
       <cheerful><li>Had a dream our council was the best in the world! Maybe it is.</li></cheerful>
       <gloomy><li>The council was fair to everyone in my dream. Maybe that's not as far off as I think.</li></gloomy>
       <cold><li>A dream of a functional council. Unusual. I'll extend some provisional trust.</li></cold>
@@ -1200,7 +1200,7 @@
         <li>[winter] Dreamt it was spring inside my room while the snow fell outside, all from one pot by the window.</li>
       </plain>
       <warm><li>In the dream there were green things growing beside my bed. I'd like that. Something living to look after.</li></warm>
-      <blunt><li>Dreamt of plants in my room. Want one. That's all.</li></blunt>
+      <blunt><li>Plants in my room, in the dream. Want one. That's all.</li></blunt>
       <cheerful><li>My room was a jungle in my dream! I want a plant. Maybe two.</li></cheerful>
       <gloomy><li>A garden, in the dream, all around my bed. The walls look very bare this morning.</li></gloomy>
       <cold><li>Greenery in my quarters, in the dream. The preference is clear. I'll raise it.</li></cold>
@@ -1329,7 +1329,7 @@
         <li>[tribal] The great wolf swallowed the sun and wouldn't give it back for days.</li>
       </plain>
       <cheerful><li>It was night in the daytime in my dream! A whole day of bedtime stories.</li></cheerful>
-      <gloomy><li>Dreamt the sun turned its back on us. Fitting.</li></gloomy>
+      <gloomy><li>The sun turned its back on us in my dream. Fitting.</li></gloomy>
       <cold><li>Darkness at midday, in the dream. Bad for the crops, bad for solar power. I'd plan accordingly.</li></cold>
     </lines>
     <omen><incident>Eclipse</incident><days>1~3</days><good>false</good></omen>

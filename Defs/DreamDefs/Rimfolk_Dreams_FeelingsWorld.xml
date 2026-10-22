@@ -23,7 +23,7 @@
         <li>[child] The camp children and me built a fort in my dream, and nobody had to go home.</li>
       </plain>
       <warm><li>Dreamt one of their old women braided my hair by the fire and told me who I looked like.</li></warm>
-      <blunt><li>Dreamt of the camp's fire. Good people.</li></blunt>
+      <blunt><li>Sat at the camp's fire in my sleep. Good people.</li></blunt>
       <cheerful><li>Dreamt the camp threw a dance and I was very good at it. Not true. Nice dream.</li></cheerful>
       <gloomy><li>Dreamt of the camp's fire. They'll be gone soon.</li></gloomy>
       <cold><li>A dream about the camp. My mind seems to have filed them as friends.</li></cold>
@@ -47,7 +47,7 @@
       </plain>
       <blunt><li>Dreamt I left with the camp. Didn't. Thought about it.</li></blunt>
       <cheerful><li>Dreamt I joined the camp and learned to juggle and cook on a stick. Then I came back for supper.</li></cheerful>
-      <gloomy><li>Dreamt I went with them, and the colony forgot me before I reached the hill.</li></gloomy>
+      <gloomy><li>I went with them, and the colony forgot me before I reached the hill.</li></gloomy>
       <cold><li>A dream about leaving. The road has its appeal. So does the roof.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -91,7 +91,7 @@
         <li>Hungry people stood at the wall in silence, and I knew every one of their faces.</li>
       </plain>
       <warm><li>Dreamt we shared what we had with the hungry on the road, and it stretched, like bread in a story, to all of them.</li></warm>
-      <blunt><li>Dreamt our crops failed. Went and looked at them. Fine.</li></blunt>
+      <blunt><li>Crops failed in my dream. They haven't. I looked.</li></blunt>
       <gloomy><li>Dreamt the hunger in the region came here. Hard to say it won't.</li></gloomy>
       <cold><li>A dream about our stores running out. I'll count them again today.</li></cold>
     </lines>
@@ -148,7 +148,7 @@
         <li>The strangers who helped us were in my dream, and there they weren't strangers at all.</li>
       </plain>
       <warm><li>Dreamt everyone who has ever helped me stood in one room, and I had time to thank each of them.</li></warm>
-      <blunt><li>Dreamt of the help they gave. I owe them.</li></blunt>
+      <blunt><li>We owe them. Even my sleep knows it.</li></blunt>
       <gloomy><li>Dreamt I never got to thank them. I'd better, while I can.</li></gloomy>
       <cold><li>A dream about the debt of gratitude. It should be settled.</li></cold>
     </lines>
@@ -171,8 +171,8 @@
         <li>Their children looked back at the colony as they left, and in the dream I couldn't look away.</li>
       </plain>
       <warm><li>Dreamt I ran after them with food and blankets, and I got there just in time. I wish I had.</li></warm>
-      <blunt><li>Dreamt about sending them off. Not proud of it.</li></blunt>
-      <gloomy><li>Dreamt we drove them off again, and again, every night the same.</li></gloomy>
+      <blunt><li>Sent them off again, in my sleep. Not proud of it.</li></blunt>
+      <gloomy><li>We drove them off again, and again, every night the same.</li></gloomy>
       <cold><li>A dream about the decision. My conscience disagrees with the council.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>

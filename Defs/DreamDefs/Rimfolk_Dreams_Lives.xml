@@ -62,7 +62,7 @@
         <li>Dreamt I was cold, and then {OTHER_nameDef} was there, and I wasn't.</li>
       </plain>
       <warm><li>{OTHER_nameDef} was just sitting beside me, mending something. I watched {OTHER_possessive} hands the whole dream.</li></warm>
-      <blunt><li>Dreamt about {OTHER_nameDef}. Not telling you the rest.</li></blunt>
+      <blunt><li>{OTHER_nameDef} was in my dream. That's all you're getting.</li></blunt>
       <cheerful><li>Dreamt {OTHER_nameDef} and I danced at a feast, and I didn't step on anyone's feet!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} loved me back, in the dream. Now I'm afraid to find out.</li></gloomy>
     </lines>
@@ -169,7 +169,7 @@
         <li>The thunder had a voice, and it knew my name.</li>
         <li>[rain|storm] The rain on the roof was footsteps in my dream. It's only rain. I've told myself so three times.</li>
       </plain>
-      <gloomy><li>Dreamt of the storm again. Every time it's closer.</li></gloomy>
+      <gloomy><li>The storm again. Every time it's closer.</li></gloomy>
       <blunt><li>Storm dream. Hate those.</li></blunt>
       <cold><li>The storm nightmare again. I know it isn't real. My heart doesn't.</li></cold>
     </lines>
@@ -474,7 +474,7 @@
         <li>In the dream I could see across all the miles at once, and everyone out there was going about their day, all right.</li>
         <li>A traveler came to the gate with news, and opened his mouth, and the dream moved on to something about geese.</li>
       </plain>
-      <gloomy><li>Dreamt of a letter with bad news in it. I couldn't read the words. I knew what they said.</li></gloomy>
+      <gloomy><li>A letter with bad news in it. I couldn't read the words. I knew what they said.</li></gloomy>
       <warm><li>Dreamt of a letter that said: we're well, don't worry. I'm keeping that one.</li></warm>
     </lines>
   </ColonyCouncil.DreamDef>

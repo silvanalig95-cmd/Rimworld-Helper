@@ -337,7 +337,7 @@
         <li>In my dream {OTHER_nameDef} and I sat on a hill above the colony and talked about everyone below.</li>
       </warm>
       <blunt>
-        <li>Dreamt about {OTHER_nameDef}. We were fishing. It was fine.</li>
+        <li>Fishing with {OTHER_nameDef}, all night, in my sleep. It was fine.</li>
         <li>{OTHER_nameDef} was in my dream. We were hauling. Even in my sleep.</li>
       </blunt>
     </lines>

@@ -48,7 +48,7 @@
         <li>[beast] Dreamt I followed {NAME}'s tracks through the snow until they ended in my own footprints.</li>
         <li>[kin] I told {NAME} the name of the one {NAME} killed, and made {NAME} say it back.</li>
       </plain>
-      <blunt><li>Dreamt I faced {NAME}. Didn't run. Good.</li></blunt>
+      <blunt><li>Faced {NAME} in my sleep. Didn't run.</li></blunt>
       <cheerful><li>Dreamt I chased {NAME} clean off the map, shouting. Very satisfying.</li></cheerful>
       <gloomy><li>Dreamt I faced {NAME}, and it didn't end. It just went on.</li></gloomy>
       <cold><li>A dream of the next encounter with {NAME}. I took notes on my footing.</li></cold>
@@ -89,7 +89,7 @@
         <li>[kin] Dreamt the one {NAME} took from us came and sat by my bed and said it was all right now.</li>
       </plain>
       <warm><li>Dreamt of the ones who stood with me against {NAME}, out in the yard, laughing about something else entirely.</li></warm>
-      <blunt><li>Dreamt about {NAME}. Didn't care. Good dream.</li></blunt>
+      <blunt><li>{NAME} was in my dream and I didn't care. Good.</li></blunt>
       <cheerful><li>Dreamt {NAME} was a very small dog. I've decided that's how I'll remember it.</li></cheerful>
       <gloomy><li>Dreamt it was over. It is. I keep needing to be told.</li></gloomy>
       <cold><li>A dream about {NAME}, emotionally flat. The matter is closed.</li></cold>
