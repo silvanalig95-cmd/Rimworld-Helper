@@ -214,7 +214,7 @@
       <li>The merchants' camp {PLACE} has a striped awning over the stall and a smell of strange spices over everything.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the merchants {PLACE}, says {X_pronoun} is tired of roads that go nowhere {X_pronoun} wants to be, and asks whether {X_pronoun} might stay with the colony.</li>
+      <li>{X_nameDef}, who has walked with the merchants {PLACE} all the way from the far south, says {X_pronoun} is tired of roads that go nowhere {X_pronoun} wants to be, and asks whether {X_pronoun} might stay with the colony.</li>
       <li>{X_nameDef}, who translates for the merchants {PLACE}, has run out of new words to learn on the road and would like to learn the colony's. {X_nameDef} asks to stay.</li>
     </joinTexts>
     <farewell>
@@ -307,7 +307,7 @@
     </titles>
     <texts>
       <li>Drovers of {FACTION} are walking a herd to market, and the herd is resting in the long grass beyond the ridge while the drovers see about a camp. {X_nameDef}, a lean old drover with a dog that never once took its eyes off {A_nameDef}, asked for leave to camp {PLACE} a few days.</li>
-      <li>[ws:drove] {SITUATION} has brought another herd past the colony. {X_nameDef}, its head drover, asked {A_nameDef} whether {FACTION}'s drovers might camp {PLACE} a few days while the beasts graze beyond the ridge.</li>
+      <li>[ws:drove] Another herd is coming past the colony for {SITUATION}. {X_nameDef}, its head drover, asked {A_nameDef} whether {FACTION}'s drovers might camp {PLACE} a few days while the beasts graze beyond the ridge.</li>
       <li>[their:grateful] The drovers of {FACTION} know the colony as a friendly stop on the drove road. {X_nameDef} asked {A_nameDef}, with a nod as if to an old friend, for a few days' camp {PLACE}.</li>
       <li>[winter] Drovers of {FACTION}, bringing a late herd down from the high pastures, have asked to camp {PLACE} out of the wind. {X_nameDef} promised {A_nameDef} the herd won't come near the colony's fields.</li>
     </texts>
@@ -412,11 +412,11 @@
     </titles>
     <texts>
       <li>They came up the road in single file, barefoot and in plain gray, penitents of {FACTION} walking a vow to a shrine far beyond the colony. {X_nameDef}, who leads them, asked {A_nameDef} in a low voice whether they might sleep {PLACE} for a few nights. They ask for nothing else.</li>
-      <li>[ideology,otherFaith] Penitents of {IDEO}, from {FACTION}, have stopped by the colony on a long walk of atonement. Their ideoligion isn't the colony's, and {X_nameDef}, who leads them, said so at once, and asked all the same for leave to camp {PLACE}.</li>
+      <li>[ideology,otherFaith] "We don't keep your faith," {X_nameDef} said, before anything else. The penitents of {IDEO} behind {X_objective} have come from {FACTION} on a long walk of atonement, and {X_pronoun} asked all the same for leave to camp {PLACE}.</li>
       <li>[ideology,sameFaith] Penitents of {IDEO}, the colony's own ideoligion, have come up the road walking a vow. {X_nameDef} asked {A_nameDef} for a few nights' rest {PLACE}, among people who will understand why they walk.</li>
-      <li>[meme:Guilty] Penitents of {FACTION} have come barefoot to the colony's gate, carrying stones in their packs for the wrongs they mean to set down at the end of the road. {X_nameDef} asked to camp {PLACE} for a few nights, and promised they would be no trouble to anyone but themselves.</li>
+      <li>[meme:Guilty] Every stone in the penitents' packs stands for a wrong they mean to set down at the end of the road. These penitents of {FACTION} came to the colony barefoot, and {X_nameDef} asked to camp {PLACE} for a few nights, promising they would be no trouble to anyone but themselves.</li>
       <li>[meme:PainIsVirtue] Penitents of {IDEO} have come up the road with their feet bound in rags and their backs straight. The road is the point, {X_nameDef} told {A_nameDef}; the shrine is only where it ends. They ask to camp {PLACE} a few nights.</li>
-      <li>[meme:Proselytizer] Penitents of {IDEO} have stopped by the colony on their walk. {X_nameDef} asked for leave to camp {PLACE}, and warned {A_nameDef}, with a smile, that they will talk about their faith to anyone who stands still long enough.</li>
+      <li>[meme:Proselytizer] {X_nameDef} warned {A_nameDef}, with a smile, that the penitents of {IDEO} will talk about their faith to anyone who stands still long enough. Then {X_pronoun} asked for leave to camp {PLACE}.</li>
       <li>[ws:sickness] Penitents of {FACTION} are walking to the shrine to pray for the end of {SITUATION}. {X_nameDef} asked {A_nameDef} whether they might rest {PLACE} a few nights, well apart from the colony.</li>
     </texts>
     <settled>
@@ -528,8 +528,8 @@
     <texts>
       <li>Pilgrims of {IDEO}, from {FACTION}, have come to the colony's woods. They walk from grove to grove, {X_nameDef} told {A_nameDef}, singing to the old trees and listening for what the land wants. They ask to camp {PLACE} for a few days, and promise not to cut a single branch.</li>
       <li>[meme:TreeConnection] Tree-singers of {IDEO} have come up the road with their hands stained green and seeds in every pocket. {X_nameDef} told {A_nameDef} there is a tree near the colony they have come a long way to hear, and asked to camp {PLACE} near it.</li>
-      <li>[meme:Structure_Animist] Pilgrims of {FACTION}, who believe everything that grows has a spirit, have come to greet the spirits of the colony's woods. {X_nameDef} asked {A_nameDef}, very politely, for leave to camp {PLACE} and greet them properly.</li>
-      <li>[sameFaith] Pilgrims of {IDEO}, the colony's own ideoligion, have come to sing to the colony's trees. {X_nameDef} told {A_nameDef} they had heard the colony's woods were well kept, and asked to camp {PLACE} a few days.</li>
+      <li>[meme:Structure_Animist] Everything that grows has a spirit, the pilgrims of {FACTION} believe, and they have come to greet the spirits of the colony's woods. {X_nameDef} asked {A_nameDef}, very politely, for leave to camp {PLACE} and do it properly.</li>
+      <li>[sameFaith] Word on the road is that the colony keeps its woods well, and pilgrims of {IDEO}, the colony's own ideoligion, have come to sing to its trees. {X_nameDef} asked {A_nameDef} to camp {PLACE} a few days.</li>
     </texts>
     <settled>
       <li>The tree-singers from {FACTION} have made camp {PLACE} without cutting so much as a twig. They sleep on moss and keep their fire in a ring of old stones, and they pray under the biggest tree.</li>
@@ -630,9 +630,9 @@
     </titles>
     <texts>
       <li>[lowtech] An old healer of {FACTION} has come down the road with a staff, a bag of herbs and an apprentice carrying the rest. {X_nameDef} told {A_nameDef} {X_pronoun} goes where {X_pronoun} is needed, and asked to camp {PLACE} a few days in case the colony needs {X_objective}.</li>
-      <li>[!lowtech] A country doctor of {FACTION} has stopped at the colony on a long round of the outlying farms, with a battered bag and a notebook full of other people's coughs. {X_nameDef} asked to camp {PLACE} for a few days.</li>
-      <li>[ws:sickness] Every healer in the region is on the road for {SITUATION}, and {X_nameDef} of {FACTION} has stopped at the colony between one bad village and the next. {X_nameDef} asked to camp {PLACE} a few days, to rest and to see anyone who's ailing.</li>
-      <li>[their:rescued] {X_nameDef}, a healer of {FACTION}, has come to the colony on purpose, to meet the people who tended {FACTION}'s wounded when no one else would. {X_nameDef} asked to camp {PLACE} a few days.</li>
+      <li>[!lowtech] A country doctor of {FACTION} has stopped at the colony on a long round of the outlying farms, with a battered bag and a notebook full of other people's coughs. There's room in the notebook for the colony's too, {X_nameDef} says, if the doctor might camp {PLACE} a few days.</li>
+      <li>[ws:sickness] Every healer in the region is on the road for {SITUATION}, and {X_nameDef} of {FACTION} has stopped at the colony between one bad village and the next. A few days' rest {PLACE} is all {X_nameDef} asks, and anyone ailing can come by while {X_pronoun} is here.</li>
+      <li>[their:rescued] {X_nameDef}, a healer of {FACTION}, has come out of {X_possessive} way to meet the people who tended {FACTION}'s wounded when no one else would. {X_nameDef} would like to camp {PLACE} a few days, if the colony will have {X_objective}.</li>
     </texts>
     <settled>
       <li>The healer from {FACTION} has set up {PLACE}, with jars and bundles in rows on a folding table and a bench beside it for anyone who needs looking at.</li>
@@ -739,7 +739,7 @@
     <texts>
       <li>[lowtech] A band of minstrels of {FACTION} has come up the road with a fiddle, a drum, a hurdy-gurdy and a boy who sings like a bird. {X_nameDef}, who plays the fiddle and does the talking, asked {A_nameDef} whether they might camp {PLACE} a few nights. They play for their supper, and play well.</li>
       <li>[!lowtech] A little band of {FACTION}'s musicians has pulled up by the colony in a van painted with stars, guitars and an accordion in the back, and a singer whose cracked voice can quiet a room. {X_nameDef} asked {A_nameDef} for a few nights' camp {PLACE}. They'll play every evening.</li>
-      <li>[ws:songs] With {SITUATION} going round the region, every minstrel is on the road, and a band of {FACTION}'s has stopped at the colony. {X_nameDef} asked {A_nameDef} to camp {PLACE} a few nights, and promised they know all the new songs.</li>
+      <li>[ws:songs] With {SITUATION} going round the region, every minstrel is on the road, and a band of {FACTION}'s has stopped at the colony. {X_nameDef} swore to {A_nameDef} that they know all the new songs, and asked to camp {PLACE} a few nights.</li>
       <li>[their:friend] Minstrels of {FACTION} have come to the colony, and {X_nameDef}, their fiddler, asked for {A_nameDef} by name: there's a song about {A_objective} going round {FACTION}'s towns, and they'd like to play it for {A_objective}. They ask to camp {PLACE} a few nights.</li>
     </texts>
     <settled>
@@ -747,7 +747,7 @@
       <li>The minstrels' camp {PLACE} is never quiet. Someone is always tuning, practicing or arguing about a chord.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, the youngest of the minstrels, has played in every town on the road and wants, just once, to play in the same place two nights running. {X_nameDef} asks to stay.</li>
+      <li>{X_nameDef}, who sings for the minstrels, has sung in every town on the road and wants, just once, to sing in the same place two nights running. {X_nameDef} asks to stay.</li>
       <li>{X_nameDef}, who plays the drum for the minstrels, has been drumming on the colony's tables at supper all week. Tonight {X_pronoun} asked whether the colony might want a drummer for good.</li>
     </joinTexts>
     <farewell>
@@ -860,9 +860,9 @@
     <texts>
       <li>A slow party of {FACTION} has come up the road behind a covered cart. They are mourners, carrying one of their own home to be buried with their people. {X_nameDef}, who leads them, asked {A_nameDef} whether they might stop {PLACE} for a night or two. They will keep to themselves.</li>
       <li>[ws:mourning] There are mourners on every road after {SITUATION}, and a party of them has stopped near the colony. {X_nameDef} asked {A_nameDef}, in a voice worn thin, for a night or two's camp {PLACE}.</li>
-      <li>[ws:sickness] Mourners of {FACTION} are carrying one of {SITUATION}'s dead home, well wrapped and well apart. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of the living are sick.</li>
+      <li>[ws:sickness] The one in the mourners' cart died of {SITUATION}, and the living of {FACTION} walk well apart from it. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of them is sick.</li>
       <li>[their:friend] Mourners of {FACTION} have stopped by the colony with their dead. {X_nameDef} asked for {A_nameDef} by name, and said the one they carry spoke of {A_objective} often. They would like to rest {PLACE} a night or two.</li>
-      <li>[winter] Mourners of {FACTION} have come through the snow with a covered sledge. {X_nameDef} asked {A_nameDef} for a sheltered place {PLACE} to stop a night or two before the last of the road.</li>
+      <li>[winter] A covered sledge came through the snow this morning, drawn by mourners of {FACTION}. They'd like a sheltered place {PLACE} to stop a night or two, {X_nameDef} told {A_nameDef}, before the last of the road.</li>
       <li>[colony:LongMemoried] Mourners of {FACTION} have stopped by the colony with their dead because, {X_nameDef} said, it is a place that remembers. They asked {A_nameDef} whether they might stop {PLACE} a night or two, and say their words where the colony says its own.</li>
     </texts>
     <settled>

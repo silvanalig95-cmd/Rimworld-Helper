@@ -60,8 +60,8 @@
       <li>The hunters from {FACTION} have made camp {PLACE}, with a fire low enough not to spook the game and a lookout in the nearest tree.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef} from the hunters' camp has eaten at the colony's table more often than at {X_possessive} own fire lately. The colony eats better than the trail ever did, {X_pronoun} says, and {X_pronoun} would like to stay.</li>
-      <li>Most evenings this week, {X_nameDef}, the youngest of the hunters camped {PLACE}, has turned up to help with the colony's butchering. Tonight {X_pronoun} lingered after the work was done and asked whether there was a place for {X_objective} here.</li>
+      <li>"You eat better here than the trail ever fed me." {X_nameDef} from the hunters' camp has said it at the colony's table most nights this week, and tonight {X_pronoun} asked whether {X_pronoun} might stay.</li>
+      <li>Most evenings this week one of the hunters camped {PLACE} has turned up to help with the colony's butchering. Tonight {X_nameDef} lingered after the work was done, and asked whether there was a place for {X_objective} here.</li>
       <li>{X_nameDef}, who tracks for the hunters camped {PLACE}, says {X_pronoun} is tired of following the herds and would rather stay where the herds come to {X_objective}.</li>
     </joinTexts>
     <farewell>
@@ -221,7 +221,7 @@
     <joinTexts>
       <li>{X_nameDef} from the prospectors' camp is tired of digging holes for other people's fortunes, and asks whether the colony could use a steady pair of hands.</li>
       <li>{X_nameDef} from the prospectors {PLACE} says the only thing worth finding round here is the colony, and asks, only half joking, whether there's a place for {X_objective} in it.</li>
-      <li>{X_nameDef}, the prospectors' cook, has dug enough empty holes for one lifetime, {X_pronoun} says, and would rather cook for people who stay in one place.</li>
+      <li>The colony's cook asked how the prospectors make their stew. {X_nameDef}, who makes it, would rather cook for people who stay in one place, and asks whether the colony could use a second cook.</li>
     </joinTexts>
     <farewell>
       <li>The prospectors from {FACTION} filled in their last holes, packed up their camp {PLACE} and moved on, still sure the big find is over the next hill.</li>
@@ -291,7 +291,7 @@
       <li>The pilgrims from {FACTION} have laid out their sleeping places {PLACE} in a careful ring, and they sing before they eat.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, one of the pilgrims camped {PLACE}, says the road has given {X_objective} what {X_pronoun} came for, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
+      <li>The road has given {X_nameDef} what {X_pronoun} came for. Rather than walk on with the pilgrims camped {PLACE}, {X_pronoun} asks whether {X_pronoun} might stay with the colony.</li>
       <li>[sameFaith] {X_nameDef}, one of the pilgrims {PLACE}, has found people of {X_possessive} own ideoligion at the colony, and asks to end the pilgrimage here.</li>
       <li>{X_nameDef} has walked with the pilgrims {PLACE} since the first day of their road. Somewhere between the colony's gate and its table, {X_pronoun} says, it began to feel like arriving, and {X_pronoun} would like to stay.</li>
     </joinTexts>
@@ -359,7 +359,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who carries the traders' packs, has had enough of the road, and asks whether the colony would take on someone who can count and lift.</li>
-      <li>{X_nameDef} from the traders' stall {PLACE} calls the colony the best market on the road, and would like to stop moving and be part of it.</li>
+      <li>"Best market on the road," {X_nameDef} keeps calling the colony. Tonight {X_nameDef}, who minds the traders' stall {PLACE}, asked whether {X_pronoun} might stop moving and be part of it.</li>
       <li>{X_nameDef}, who keeps the traders' accounts, has decided the colony needs someone who can tell a fair price from a bad one, and would like to be that someone.</li>
     </joinTexts>
     <farewell>

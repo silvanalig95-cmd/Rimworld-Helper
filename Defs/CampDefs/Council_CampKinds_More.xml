@@ -59,7 +59,7 @@
       <li>The healers from {FACTION} have their camp up {PLACE}, with a pot of something simmering that smells like medicine and a bench for the sick to wait on.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, one of the healers camped {PLACE}, says the colony has more need of a healer than the road does, and asks whether {X_pronoun} might stay.</li>
+      <li>"You need a healer more than the road does." {X_nameDef}, one of the healers camped {PLACE}, said it plainly, and asked whether {X_pronoun} might stay.</li>
       <li>{X_nameDef} from the healers' camp has been seeing to the colonists' scrapes and coughs every evening, unasked. Tonight {X_nameDef} asked whether there might be a place for a healer here, for good.</li>
       <li>In a few days {X_nameDef}, the youngest of the healers {PLACE}, has learned every colonist's name and every colonist's complaint. {X_nameDef} asks whether a healer might be wanted here for good.</li>
     </joinTexts>
@@ -142,7 +142,7 @@
     <joinTexts>
       <li>{X_nameDef}, one of the faithful camped {PLACE}, says the road has brought {X_objective} where {X_pronoun} was meant to be, and asks whether {X_pronoun} might stay with the colony instead of walking on.</li>
       <li>[sameFaith] {X_nameDef} from the procession {PLACE} has found people of {X_possessive} own ideoligion here. After a night spent praying on it, {X_nameDef} asks to stay.</li>
-      <li>{X_nameDef}, one of the faithful camped {PLACE}, says {X_pronoun} has carried the shrine far enough, and asks whether {X_pronoun} might set down {X_possessive} load here, among the colony.</li>
+      <li>{X_nameDef} has carried the procession's shrine far enough, {X_pronoun} says, and asks whether {X_pronoun} might set down {X_possessive} load here, among the colony.</li>
     </joinTexts>
     <farewell>
       <li>The procession from {FACTION} lifted its shrine at dawn and went on singing up the road. The colony could hear them long after they'd gone out of sight.</li>
@@ -304,7 +304,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} from the surveyors' camp has walked every hill around the colony and decided {X_pronoun} likes this one best. {X_nameDef} asks whether the colony would take on someone who knows rock and distances.</li>
-      <li>{X_nameDef}, the surveyors' youngest, has been sketching the colony instead of the land, and asks whether {X_pronoun} might stay and draw it properly.</li>
+      <li>{X_nameDef}, the surveyors' draftsman, has been sketching the colony instead of the land, and asks whether {X_pronoun} might stay and draw it properly.</li>
     </joinTexts>
     <farewell>
       <li>The surveyors from {FACTION} pulled up their stakes, counted them twice and went on to map the next valley.</li>
