@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>family came to visit</label><description>Family came all this way to see me, with a few things from home. We talked all day about who married whom and whose roof finally fell in.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>family came to visit</label><description>Family came to see me, with a few things from home. We talked all day about who married whom and whose roof finally fell in.</description><baseMoodEffect>6</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

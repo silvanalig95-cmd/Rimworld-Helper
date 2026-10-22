@@ -8,7 +8,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>sent a parcel home</label><description>I packed a parcel for my family and sent it off with a trader. I keep picturing them opening it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>sent a parcel home</label><description>I packed a parcel for my family and sent it off with a trader. I put a note in the bottom, where they'll find it last.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

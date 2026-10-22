@@ -35,7 +35,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>12</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>fitted with a new limb</label><description>The limb-maker fitted me with a new one. It isn't the one I lost, but it works, and I keep finding things I can do again.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
+    <stages><li><label>fitted with a new limb</label><description>The limb-maker fitted me with a new one. It isn't the one I lost, but it works, and I can't stop trying it out.</description><baseMoodEffect>8</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -67,7 +67,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>left a wounded stranger</label><description>Someone was lying hurt out past the fields, and we walked away. I keep wondering if they made it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>left a wounded stranger</label><description>A stranger was lying hurt in the brush beyond the fields, and we walked away. I wonder if they made it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -75,7 +75,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>peace with an old enemy</label><description>We paid for peace with people who used to raid us. It cost plenty, but I'll sleep better.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>paid for peace</label><description>We paid for peace with people who used to raid us. It cost plenty, but I'll sleep better.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -196,7 +196,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>paid for someone's silence</label><description>Someone recognized me from the old days, and the colony paid them to forget. I hate that it came to that.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>paid for someone's silence</label><description>A traveler recognized me from the old days, and the colony paid them to forget. I hate that it came to that.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -228,7 +228,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>my old commander lost</label><description>The campaign went badly. I keep thinking about who was standing in the line this time.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>my old commander lost</label><description>The campaign went badly. I can't stop counting who'd have been in the line this time.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -236,7 +236,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>a patient came back to thank me</label><description>Someone I treated years ago walked all this way to thank me. I'd forgotten the face. They hadn't forgotten mine.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>a patient came back to thank me</label><description>A patient I treated years ago walked all this way to thank me. I'd forgotten the face. They hadn't forgotten mine.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

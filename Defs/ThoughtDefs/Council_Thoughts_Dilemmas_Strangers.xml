@@ -70,7 +70,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_HarshToGuests</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>guests driven off</label><description>One guest had a big mouth, so the council sent the whole party away. The others had done nothing wrong.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>guests driven off</label><description>One guest had a big mouth, so all of them were turned out. The others had done nothing wrong.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== The trader's eye ===================== -->
@@ -226,7 +226,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_TheHunt</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>the hunt is on</label><description>There's a big predator out past the fields, and we're going after it. I've had my weapon cleaned since dawn.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>the hunt is on</label><description>There's a big predator out in the brush, and we're hunting it. I've had my weapon cleaned since dawn.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Resolve</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -335,7 +335,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_WhatIfItWorked</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>what if it worked</label><description>The tonic was probably just water. I keep thinking about that little green bottle anyway.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>what if it worked</label><description>The tonic was probably just water. I'd have liked to find out for myself.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== A face from before ===================== -->
@@ -361,7 +361,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_ScaredThemOff</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>they scared my past away</label><description>A visitor from my old life tried to sell what they knew about me. A few of ours had a word with them by the woodpile, and they've kept quiet since.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>they scared my past away</label><description>A visitor who knew me before the colony tried to sell what they knew about me. A few of ours had a word with them by the woodpile, and they've kept quiet since.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -390,7 +390,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_HuntWorried</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>they're hunting the beast</label><description>They're going out after the animal that mauled one of us. I'm afraid it'll get another one.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>they're hunting the beast</label><description>They're going out after that beast. I'm afraid it'll take another one of us.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

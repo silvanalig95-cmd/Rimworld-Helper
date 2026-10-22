@@ -76,7 +76,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_StrangeDog</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a stranger's dog</label><description>A visitor's dog leaned against my legs all afternoon. Best company I've had all week.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a stranger's dog</label><description>A visitor's dog leaned against my legs all afternoon and ate half my sausage.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -104,7 +104,7 @@
     <stackLimit>5</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
-    <stages><li><label>a fellow fighter</label><description>We've both stood in a battle line and lost friends. We didn't have to explain much.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+    <stages><li><label>a fellow fighter</label><description>We've both stood in a battle line and lost friends. We were up half the night comparing scars.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -320,7 +320,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_NemesisStaredDown</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>stared them down</label><description>The one who hurt me looked up, saw me, and looked away first. I've been waiting a long time for that.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <stages><li><label>stared them down</label><description>They looked up from the cell floor, saw it was me, and looked away first. I've been waiting a long time for that.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -336,7 +336,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_BuriedStash</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a buried stash, supposedly</label><description>A prisoner told me where a chest of silver is buried. It's probably a lie, but I keep thinking about it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>a buried stash, supposedly</label><description>A prisoner told me where a chest of silver is buried. It's probably a lie. I've drawn the map out twice from memory.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><journal>true</journal><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -374,7 +374,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncP_EnemyPrayer</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an enemy's prayer</label><description>A fallen raider prayed in the mud to a god I don't know. I keep hearing the words.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>an enemy's prayer</label><description>A fallen raider prayed in the mud to a god I don't know. I've learned the words without meaning to.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -121,7 +121,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncL_ShellGift</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>a shell from the trader</label><description>The trader pressed a shell into my hand and wouldn't take anything for it. It's on my windowsill now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>a shell from the trader</label><description>The trader gave me a shell for nothing and said it brings good weather. It's on my windowsill now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -150,7 +150,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncS_Waded</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>cooled off in the water</label><description>It was so hot that my animal and I walked straight into the water and stood there. Best part of the day.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>cooled off in the water</label><description>It was so hot that my animal and I walked straight into the water and stood there up to our knees, sighing.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.15</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -166,7 +166,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncW_RainShelter</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>waited out the rain together</label><description>The rain came down in sheets, and my animal leaned against my legs, steaming, until it stopped.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>waited out the rain together</label><description>The rain came down in sheets, and my animal pressed up against me, steaming, until it stopped.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><comfort>0.1</comfort><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 

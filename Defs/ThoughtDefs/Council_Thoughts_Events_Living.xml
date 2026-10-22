@@ -10,7 +10,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>made peace with family</label><description>My family came looking for us, and we talked behind a shut door all day without raising our voices. They went home with a letter from me.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>made peace with family</label><description>My family came looking for us, and we talked all day without anyone raising their voice. They went home with a letter from me.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -43,7 +43,7 @@
     <durationDays>8</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>family came to stay</label><description>Family of mine came all this way to live here. I keep looking in on them to make sure they're settling in.</description><baseMoodEffect>8</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <stages><li><label>family came to stay</label><description>Family of mine has moved in for good. I look in on them twice a day to see they're settling.</description><baseMoodEffect>8</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Fortune, name and vengeance ===================== -->
@@ -69,7 +69,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>5</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>sought out for my skill</label><description>Someone walked a long way to ask for my help, and knew me by name before they got here.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>sought out for my skill</label><description>A stranger walked a long way to ask for my help, and knew my name before they got here.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

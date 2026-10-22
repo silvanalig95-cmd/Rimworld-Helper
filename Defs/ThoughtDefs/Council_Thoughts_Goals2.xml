@@ -57,7 +57,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmGoal_Doubted</defName>
     <durationDays>5</durationDays>
-    <stages><li><label>my dream was called foolish</label><description>One of them called my dream a joke, with the others listening. I keep hearing it.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+    <stages><li><label>my dream was called foolish</label><description>One of them called my dream a joke, with the others listening. I can still hear them laughing.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

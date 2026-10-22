@@ -123,7 +123,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.5</weight></li>
     </modExtensions>
-    <stages><li><label>no time to grieve</label><description>Someone died under my hands, and I was back at the bench the next morning because the colony needs a doctor.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>no time to grieve</label><description>A patient died under my hands, and I was back at the bench the next morning because the colony needs a doctor.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

@@ -28,7 +28,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_GourmandRobbed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>the best bite, stolen</label><description>I was saving the best piece for last, and one of the animals swallowed it without even chewing.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>the best bite, stolen</label><description>I was saving the best piece for last, and a four-legged thief swallowed it without even chewing.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -85,14 +85,14 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_ToldItEverything</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>told my troubles to an animal</label><description>I told one of the animals everything that's been bothering me. It won't repeat a word of it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>told my troubles to an animal</label><description>I told the animals in the pen everything that's been bothering me. Not one of them will repeat it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>3</felt></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HatedByAnimal</defName>
     <durationDays>2</durationDays>
-    <stages><li><label>an animal hates me</label><description>One of the animals goes for my ankles every time I pass. I've tried scraps, and I've tried being nice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>an animal hates me</label><description>There's an animal here that goes for my ankles every time I pass. I've tried scraps, and I've tried being nice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -178,7 +178,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_HerdPassed</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>watched a herd go by</label><description>A herd took most of the afternoon to pass the colony. I gave up counting at forty.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>watched a herd go by</label><description>A herd took hours to pass the colony. I gave up counting at forty.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -229,7 +229,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_TouchedTheBeast</defName>
     <durationDays>1.5</durationDays>
-    <stages><li><label>touched a wild beast</label><description>I walked right up to a wild beast and put my hand on it. My heart is still pounding.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>touched a wild beast</label><description>I walked right up to a wild beast and put my hand on it. It turned its head, very slowly, and I walked back just as slowly.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -247,7 +247,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_EncC_BeastUnease</defName>
     <durationDays>1</durationDays>
-    <stages><li><label>that beast is back</label><description>The animal that mauled one of ours was seen again. I keep a blade close and I don't walk out alone.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+    <stages><li><label>that beast is back</label><description>The beast that mauled one of ours has been seen circling the fields again. I carry a blade even to the latrine now.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

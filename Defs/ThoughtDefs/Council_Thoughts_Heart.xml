@@ -25,7 +25,7 @@
       </li>
       <li>
         <label>at the end of my rope</label>
-        <description>I snap at people and can't remember why. One more thing and I don't know what I'll do.</description>
+        <description>I snap at people over nothing and can't remember why after. One more thing could tip me over.</description>
         <baseMoodEffect>-8</baseMoodEffect>
       </li>
     </stages>
@@ -54,7 +54,7 @@
       <li><label>idle days</label><description>Everyone's lying around while the work piles up. I can't stand it.</description><baseMoodEffect>-4</baseMoodEffect></li>
       <li><label>slow days</label><description>Short days and long evenings. I'd rather be doing something.</description><baseMoodEffect>-2</baseMoodEffect></li>
       <li><label>a few easy days</label><description>Evenings that go on and no early start. I'm sleeping better already.</description><baseMoodEffect>3</baseMoodEffect></li>
-      <li><label>a real rest</label><description>No early mornings, nobody shouting for help with the stone. I slept until the sun was in my eyes.</description><baseMoodEffect>6</baseMoodEffect></li>
+      <li><label>a real rest</label><description>No early mornings, nobody shouting for help with the stone. I lay in until I got bored of lying in.</description><baseMoodEffect>6</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 

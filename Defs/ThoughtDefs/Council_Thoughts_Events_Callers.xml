@@ -129,7 +129,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>6</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>made peace with an old enemy</label><description>Someone who wronged me before I came here walked all this way to say sorry. We talked behind a closed door most of the afternoon.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>made peace with an old enemy</label><description>The one who wronged me, years before the colony, turned up at the gate to say sorry. We talked behind a closed door most of the afternoon.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -161,7 +161,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the council backed me</label><description>I had a quarrel with someone from the camp, and the council took my side. They went back with a face like thunder.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the council backed me</label><description>I had a quarrel with someone from the camp, and the council came down on my side. They went back with a face like thunder.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
