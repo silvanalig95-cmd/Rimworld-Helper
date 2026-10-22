@@ -53,7 +53,7 @@
     <defName>Council_Var_DlmR_StingyMockery</defName>
     <dilemma>Council_DlmR_StingyMockery</dilemma>
     <texts>
-      <li>[theirHightech] {X_nameDef} of {FACTION} has started a tab for the colony's goods "since you lot like counting," and reads it aloud every time {A_nameDef} passes. The caravan guards think it's the funniest thing they've heard all season.\n\n{A_nameDef} has asked the council for an answer to it.</li>
+      <li>[theirHightech] {X_nameDef} of {FACTION} has started a tab for the colony's goods "since you lot like counting," and reads it aloud every time {A_nameDef} passes. The caravan guards think it's the funniest thing they've heard all season.\n\n{A_nameDef} has stopped passing.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 
@@ -78,7 +78,7 @@
     <defName>Council_Var_DlmR_Overstay</defName>
     <dilemma>Council_DlmR_Overstay</dilemma>
     <texts>
-      <li>[winter] {X_nameDef} of {FACTION} has taken the chair closest to the stove for three days running, and won't give it up even when {A_nameDef} comes in frozen from the fields. The colony is known for its welcome. {A_nameDef} has asked the council how far it stretches.</li>
+      <li>[winter] {X_nameDef} of {FACTION} has taken the chair closest to the stove for three days running, and won't give it up even when {A_nameDef} comes in frozen from the fields. Last night {A_nameDef} ate supper standing by the door, still in {A_possessive} coat.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

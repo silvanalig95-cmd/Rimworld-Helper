@@ -13,9 +13,9 @@
     <dilemma>Council_Dilemma_Wager</dilemma>
     <texts>
       <li>[winter] The card games have gone on every night since the snow came, and last night {B_nameDef} lost {B_possessive} winter boots to {A_nameDef} on one hand. {A_nameDef} is wearing them. {B_nameDef} is wearing two pairs of socks and wants the council to rule the bet void.</li>
-      <li>[trait:Greedy] {A_nameDef} keeps a list, in a neat hand, of what {B_nameDef} has lost to {A_objective} at dice this week: a belt, two knives, seven desserts, the good blanket, and a month of {B_nameDef}'s turns at the washing.\n\n{B_nameDef} says the dice are loaded, and wants the council to see them.</li>
+      <li>[trait:Greedy] {A_nameDef} keeps a list, in a neat hand, of what {B_nameDef} has lost to {A_objective} at dice this week: a belt, two knives, seven desserts, the good blanket, and a month of {B_nameDef}'s turns at the washing.\n\n{B_nameDef} says the dice are loaded, and has brought them along to prove it.</li>
       <li>[past:trader] Caravan guards taught {A_nameDef} dice on the trade roads, years ago. {B_nameDef} learned the game last night, and it cost {B_objective} a month of desserts.\n\n"Call it the price of the lesson," {A_nameDef} said. {B_nameDef} would rather the council called it cheating.</li>
-      <li>[colony:Restless] This colony is always after the next new thing, and this month it's dice. Last night {B_nameDef} staked {B_possessive} bed on one throw and lost it to {A_nameDef} for a week.\n\n{B_nameDef} slept on the storeroom floor, and came to the council stiff in every joint.</li>
+      <li>[colony:Restless] This colony is always after the next new thing, and this month it's dice. Last night {B_nameDef} staked {B_possessive} bed on one throw and lost it to {A_nameDef} for a week.\n\n{B_nameDef} slept on the storeroom floor, and woke up stiff in every joint.</li>
     </texts>
     <outcomes>
       <li>
@@ -109,7 +109,7 @@
     <defName>Council_Var_Dlm_Watch</defName>
     <dilemma>Council_Dilemma_Watch</dilemma>
     <texts>
-      <li>[winter] {B_nameDef} had the night watch in the worst of the cold, and {A_nameDef} found {B_objective} asleep in the gatehouse with {B_possessive} feet up against the brazier. The gate was unwatched for hours.\n\n{A_nameDef} wants the council to deal with it.</li>
+      <li>[winter] {B_nameDef} had the night watch in the worst of the cold, and {A_nameDef} found {B_objective} asleep in the gatehouse with {B_possessive} feet up against the brazier. The gate went unwatched for hours.</li>
       <li>[lowtech] {A_nameDef} climbed the wall at midnight with a lantern and found the night watch, {B_nameDef}, asleep on a sack of grain. Anything could have walked through the gate.\n\n{A_nameDef} wants it dealt with before the next watch.</li>
       <li>[!lowtech] The watch log for last night has three empty hours. {A_nameDef} found out why at two in the morning, coming up the ladder to find {B_nameDef} asleep at the post with a rifle across {B_possessive} knees.\n\n{A_nameDef} wants the council to act before the next raid finds the same gap.</li>
       <li>[b:trait:Lazy] {A_nameDef} found {B_nameDef} asleep on watch again last night. It isn't the first time. {A_nameDef} has started keeping count, and is up to four.</li>

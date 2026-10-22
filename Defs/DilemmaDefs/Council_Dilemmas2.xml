@@ -23,7 +23,7 @@
     <options>
       <li>
         <label>Make {B_nameDef} pay up</label>
-        <outcome>The debt stands. {B_nameDef} handed over what was owed without a word, and {A_nameDef} said thank you in a way that didn't help.</outcome>
+        <outcome>The debt stands. {B_nameDef} paid up in silence, and {A_nameDef} said thank you in a way that didn't help.</outcome>
         <ways><mercy>-3</mercy><generosity>-2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_WonBet</thought></li>
@@ -103,7 +103,7 @@
     <things><li>Silver</li></things>
     <thingCount>60</thingCount>
     <texts>
-      <li>{B_nameDef} went into {A_nameDef}'s room for a borrowed hammer, looked under the bed, and came to the council with a list.\n\n{COUNT} {THING}, out of the stores\nThe two good kitchen knives\nFourteen spoons\nThe blanket the moths were blamed for\nThe hammer\n\n{A_nameDef} calls it a collection.</li>
+      <li>{B_nameDef} went into {A_nameDef}'s room for a borrowed hammer, looked under the bed, and came back out with a list.\n\n{COUNT} {THING}, out of the stores\nThe two good kitchen knives\nFourteen spoons\nThe blanket the moths were blamed for\nThe hammer\n\n{A_nameDef} calls it a collection.</li>
       <li>The good chair went missing from the dining room three days ago. {B_nameDef} followed the scuff marks it left across the floor to {A_nameDef}'s door, and found it inside, with a row of spoons laid out on the seat and {COUNT} {THING} under the mattress.\n\n"I was keeping them safe," {A_nameDef} said. {B_nameDef} wants all of it back in the stores by supper.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -950,7 +950,7 @@
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>By morning the story was all over the colony anyway. {A_nameDef} has been eating alone since.</riskOutcome>
+        <riskOutcome>By morning the whole story was out. {A_nameDef} has been eating alone since.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>

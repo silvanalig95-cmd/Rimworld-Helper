@@ -13,7 +13,7 @@
     <dilemma>Council_Dilemma_Thief</dilemma>
     <texts>
       <li>[winter] With the snow piled up and the stores running low, {B_nameDef} caught {A_nameDef} in the storeroom at night with a sack of food. {A_nameDef} says {A_pronoun} was cold and hungry.\n\n{B_nameDef} says so is every other colonist, and wants the council to deal with it.</li>
-      <li>[trait:Greedy] {B_nameDef} lifted the lid of {A_nameDef}'s clothes chest and found the last of the berries in it, with a sack of grain and enough dried meat for a week. "For later," {A_nameDef} said.\n\n{B_nameDef} has asked the council to decide what happens to {A_objective}.</li>
+      <li>[trait:Greedy] {B_nameDef} lifted the lid of {A_nameDef}'s clothes chest and found the last of the berries in it, with a sack of grain and enough dried meat for a week.\n\n"For later," {A_nameDef} said.</li>
       <li>[trait:Gourmand] {A_nameDef} was caught at the larder again, this time by {B_nameDef}, with jam on {A_possessive} chin and an empty jar in hand. {A_nameDef} says it was a small jar.</li>
       <li>[past:outlaw] {A_nameDef} has taken food from the stores three nights running, and {B_nameDef} finally caught {A_objective} at it. Old habits, {A_nameDef} says, from years when stealing was the only way to eat.\n\n{B_nameDef} isn't moved.</li>
       <li>[colony:Harsh] {B_nameDef} caught {A_nameDef} stealing from the stores, and the colony knows how it usually deals with thieves. {A_nameDef} has asked the council for mercy this time.</li>
@@ -129,7 +129,7 @@
       <li>[winter] {A_nameDef} hasn't been out of bed before noon in a week, and finally told the council why: the winter dark has got into {A_objective}, and {A_pronoun} can't shake it.\n\n{B_nameDef} has offered to help.</li>
       <li>[trait:Nervous] {A_nameDef} has jumped at every noise for days, and today broke down in the workshop over a dropped hammer. {A_nameDef} told the council {A_pronoun} needs a rest.\n\n{B_nameDef} has offered to look after {A_objective}.</li>
       <li>[trait:Industrious] {A_nameDef}, who never stops working, stopped this morning and couldn't start again. {A_nameDef} came to the council red-eyed, embarrassed to say {A_pronoun} is worn out.\n\n{B_nameDef} has been keeping an eye on {A_objective}.</li>
-      <li>[lowmood] {A_nameDef} hasn't eaten with the others in days. Tonight {A_nameDef} came to the council and said it plainly: {A_pronoun} isn't coping.\n\n{B_nameDef} has offered to help.</li>
+      <li>[lowmood] {A_nameDef} hasn't eaten with the others in days. Tonight {A_nameDef} sat down across from the council and said it plainly: {A_pronoun} isn't coping.\n\n{B_nameDef} has offered to help.</li>
     </texts>
     <outcomes>
       <li>

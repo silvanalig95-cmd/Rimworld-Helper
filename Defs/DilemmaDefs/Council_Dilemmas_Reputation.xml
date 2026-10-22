@@ -86,7 +86,7 @@
     </stranger>
     <texts>
       <li>{X_nameDef} has heard what travelers say about the colony, that it lets its prisoners go, and is acting like it. {X_nameDef} lies on the cell bed with {X_possessive} feet up, sends back the porridge, and tells {A_nameDef} through the bars to hurry up with the release.\n\n{A_nameDef} is tired of being laughed at by a prisoner, and has asked the council what the colony's mercy is actually for.</li>
-      <li>"You lot let everybody go," {X_nameDef} told {A_nameDef} this morning, cheerfully, through the cell door. "Might as well do it now and save the bread." {X_nameDef} has said some version of this every day since the capture, and some of the wardens have started to wonder whether {X_nameDef} is right.\n\n{A_nameDef} wants the council to settle whether the colony's mercy is a promise or a choice.</li>
+      <li>"You lot let everybody go," {X_nameDef} told {A_nameDef} this morning, cheerfully, through the cell door. "Might as well do it now and save the bread." {X_nameDef} has said some version of this every day since the capture, and some of the wardens have started to wonder whether {X_nameDef} is right.\n\n{A_nameDef} would like to know whether the colony's mercy is a promise or a choice.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -138,7 +138,7 @@
     </roleA>
     <texts>
       <li>The last caravan brought back what people say about the colony on the roads. In the villages of {FACTION}, mothers use its name to get their children indoors before dark. {A_nameDef} heard that, and hasn't let it go since.\n\n{FACTION} has had a hard season, with fever in the villages and not enough to eat. {A_nameDef} has asked the council to send them food and ask nothing for it, so that the next story told about this place is a different one.</li>
-      <li>{A_nameDef} has never liked what the colony is known for, and this week a trader said it to {A_possessive} face: hard people behind hard walls, who give nothing and spare no one. {A_nameDef} wants the council to do one merciful thing that people will hear about.\n\n{FACTION} is short of food after a bad harvest. {A_nameDef} thinks a few sacks of grain, sent with no price attached, would be talked about from one village to the next.</li>
+      <li>{A_nameDef} has never liked what the colony is known for, and this week a trader said it to {A_possessive} face: hard people behind hard walls, who give nothing and spare no one. {A_nameDef} wants one merciful thing done that people will hear about.\n\n{FACTION} is short of food after a bad harvest. {A_nameDef} thinks a few sacks of grain, sent with no price attached, would be talked about from one village to the next.</li>
       <li>{A_nameDef} found a child of {FACTION} hiding behind the woodpile, too frightened to come out. The child had heard what this colony does to strangers. {A_nameDef} walked the child back to the road, then came straight to the council.\n\nThe child's people are hungry this year. "Send them food," {A_nameDef} said. "Once. Let one of them grow up telling a different story about us."</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -253,7 +253,7 @@
     <texts>
       <li>{A_nameDef}'s tally, from the back of the storeroom door:\n\nFirst lot from {FACTION}, four. Fed.\nSecond lot, seven. Fed.\nThird lot, eleven, some of them cousins. Fed.\nFourth lot, fifteen. Fed.\n\nWord has spread that there's always a bowl at this colony's gate. {A_nameDef} wants the council to say how long that stays true.</li>
       <li>Another knock at the gate, another thin face from {FACTION} and a story about a burned granary or a lame ox. {A_nameDef}, who does the cooking and most of the counting, has started hiding the good bread.\n\n"I don't mind feeding them," {A_nameDef} told the council. "But it's every day now, and the shelves go down faster than they fill."</li>
-      <li>"They said on the road you never say no," the woman from {FACTION} told {A_nameDef} at the gate this morning, holding out her bowl. She was the sixtieth this season.\n\nThe storeroom isn't empty yet. {A_nameDef} wants the council to decide how much more goes out before it is.</li>
+      <li>"They said on the road you never say no," the woman from {FACTION} told {A_nameDef} at the gate this morning, holding out her bowl. She was the sixtieth this season.\n\nThe storeroom isn't empty yet. {A_nameDef} would like to keep it that way.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -370,7 +370,7 @@
     <texts>
       <li>Supper here follows old rules. No one eats until everyone is seated, no one leaves before the last bowl is scraped, and a full bowl is set at the head of the table for the dead. {A_nameDef} has started eating standing up by the kitchen door, and called the bowl for the dead a waste of good stew where {B_nameDef} could hear.\n\n{B_nameDef} has brought it to the council. {A_nameDef} says it's only a bowl of stew. {B_nameDef} says the bowl is for the people buried out back, and {A_nameDef} knows it.</li>
       <li>When the season turns, the colony gathers at the graves at dusk and says the names of the dead. The custom is older than most of the walls. {A_nameDef} skipped it last time to finish a job, and has said {A_pronoun} will skip it again, since the dead won't notice and the work will.\n\n{B_nameDef} is angry about it, and has asked the council to remind {A_nameDef} what kind of place this is.</li>
-      <li>Every newcomer to this colony is met at the gate with bread and salt, and all hands turn out for it. {A_nameDef} didn't come down for the last one, and told {B_nameDef} afterward that standing in a line holding bread is theater, and there was work to do.\n\n{B_nameDef} has asked the council to settle it. Either the customs here are kept, {B_nameDef} says, or there's no point in having them.</li>
+      <li>Every newcomer to this colony is met at the gate with bread and salt, and all hands turn out for it. {A_nameDef} didn't come down for the last one, and told {B_nameDef} afterward that standing in a line holding bread is theater, and there was work to do.\n\nEither the customs here are kept, {B_nameDef} says, or there's no point in having them.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
@@ -425,7 +425,7 @@
     <texts>
       <li>When the first frost came, the colony used to eat together at one long table. Somebody sang badly, and someone told the story of how the place was founded. Between the new kiln, the new fields and every other new project, it stopped happening.\n\n{A_nameDef} wants it back. The others aren't against it. They're just busy with whatever comes next.</li>
       <li>The fields go in new rows every season and the kitchen changes its bread every week. Somewhere along the way, the evenings when each person told one story stopped happening.\n\n{A_nameDef} has asked the council to bring those evenings back, and to keep them this time. "We can try new things," {A_nameDef} said. "We could also keep one old one."</li>
-      <li>Travelers call this the colony that never sits still, and {A_nameDef} is tired of it. There used to be a harvest supper here, with one long table and a toast to the first people who broke this ground. Ask around and people disagree about when the last one was.\n\n{A_nameDef} has asked the council to bring it back.</li>
+      <li>Travelers call this the colony that never sits still, and {A_nameDef} is tired of it. There used to be a harvest supper here, with one long table and a toast to the first people who broke this ground. Ask around and people disagree about when the last one was.\n\n{A_nameDef} would like to settle the question by holding one.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -454,7 +454,7 @@
       </li>
       <li>
         <label>Let the old ways rest</label>
-        <outcome>The colony has outgrown it, the council said. {A_nameDef} didn't argue, and went to bed early without a word to anyone.</outcome>
+        <outcome>The colony has outgrown it, the council said. {A_nameDef} didn't argue, and was in bed before the plates were cleared.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_OldWaysGone</thought></li>
@@ -482,7 +482,7 @@
     <texts>
       <li>The colony's gate is always open, and {X_nameDef} of {FACTION} has made the most of it. In two days {X_nameDef} has eaten at every table, borrowed {A_nameDef}'s good cloak without asking, and twice been found asleep in {A_nameDef}'s bed.\n\n{A_nameDef} isn't angry, exactly, but has asked the council where a welcome is supposed to end.</li>
       <li>{X_nameDef} came in with the {FACTION} visitors and no longer acts like a visitor. {X_nameDef} gives the cook advice, tells the haulers where to put things, and has started calling the storeroom "ours." Yesterday {A_nameDef} came back from the fields to find {X_nameDef} rearranging {A_possessive} workbench.\n\nThe colony is known for its welcome. {A_nameDef} would like to know how far it goes.</li>
-      <li>Travelers say a stranger is always welcome here, and {X_nameDef} of {FACTION} has taken them at their word. {X_nameDef} has drunk most of a cask and given a long speech at supper about how the colony ought to be run. {A_nameDef}'s boots went missing the same evening, and turned up on {X_nameDef}.\n\n{A_nameDef} has asked the council, politely, whether there's a limit.</li>
+      <li>Travelers say a stranger is always welcome here, and {X_nameDef} of {FACTION} has taken them at their word. {X_nameDef} has drunk most of a cask and given a long speech at supper about how the colony ought to be run. {A_nameDef}'s boots went missing the same evening, and turned up on {X_nameDef}.\n\n{A_nameDef} wants the boots back, and to know whether there's a limit.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
