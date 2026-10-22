@@ -19,7 +19,7 @@
     <roleA><child>true</child></roleA>
     <modExtensions><li Class="ColonyCouncil.CustomConditions"><maxTemp>0</maxTemp></li></modExtensions>
     <texts>
-      <li>There's snow on the ground, real snow, the kind that packs. {A_nameDef} has come to the council with a petition signed by every child in the colony and two of the grown-ups: a snow day. No chores, no lessons, everyone outside.</li>
+      <li>A petition, in charcoal, on the back of a feed sack:\n\n"We ask for a snow day. No chores. No lessons. Everybody outside. Signed {A_nameDef}, and also two grown-ups who said not to put their names."\n\nIt's the good kind of snow, too, the kind that packs.</li>
       <li>{A_nameDef} woke the whole colony at dawn shouting that it had snowed. Now {A_nameDef} is standing in front of the council in three coats, asking for the day off for everyone, to build the biggest snowman the colony has ever seen.</li>
       <li>[lowtech] Where {A_nameDef}'s parents came from, the first deep snow was a holiday: everyone out sliding on the hill, and a hot drink after. {A_nameDef} asks if it could be the same here.</li>
     </texts>
@@ -29,7 +29,7 @@
     <options>
       <li>
         <label>A snow day for everyone</label>
-        <outcome>The whole colony went out in the snow: a snowman as tall as the door, a battle the children won, and sliding on the slope until dark. Nobody got any work done. Nobody minded.</outcome>
+        <outcome>Out in the snow, all of them: a snowman as tall as the door, a snowball battle the children won, and sliding on the slope until dark. The work waited.</outcome>
         <outcomes>
           <li>[quirk:WrongLaugh] {A_nameDef} hit the council's sternest member square in the face with a snowball and laughed so hard {A_pronoun} fell over. The council member threw one back. It went on until dark.</li>
           <li>[lowtech] They slid down the hill on boards and sacks until the light went, and came in to something hot, and called it the snow day, and decided it should happen every year.</li>
@@ -56,7 +56,7 @@
         <ways><toil>3</toil><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shovelling</label><count>4</count><tasks><li>Snow</li><li>Haul</li><li>Clean</li></tasks><hours>8~16</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shoveling</label><count>4</count><tasks><li>Snow</li><li>Haul</li><li>Clean</li></tasks><hours>8~16</hours><duration>1.5~2</duration></li>
         </effects>
       </li>
     </options>
@@ -85,7 +85,7 @@
         <label>Everyone comes out to cheer</label>
         <outcome>The whole colony lined the course one long summer evening and cheered the children round it. {A_nameDef} came second, and argued about it until the stars were out. The prize was a honey cake, shared.</outcome>
         <outcomes>
-          <li>[quirk:Volunteers] {A_nameDef} volunteered to run, to keep the course, to hand out the prize and to tidy up afterwards. {A_nameDef} came third, and was the happiest of anyone.</li>
+          <li>[quirk:Volunteers] {A_nameDef} volunteered to run, to keep the course, to hand out the prize and to tidy up afterward. {A_nameDef} came third, and was the happiest of anyone.</li>
         </outcomes>
         <ways><tradition>3</tradition><toil>-2</toil></ways>
         <effects>
@@ -95,7 +95,7 @@
       </li>
       <li>
         <label>The children can race on their own</label>
-        <outcome>The children ran their race with only each other to cheer. {A_nameDef} won, apparently. Nobody else saw it.</outcome>
+        <outcome>The children ran their race with only each other to cheer. {A_nameDef} won, according to {A_nameDef}.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_ChildrensRace</thought></li>
@@ -123,7 +123,7 @@
     <seasons><li>Fall</li></seasons>
     <roleA><child>true</child></roleA>
     <texts>
-      <li>The harvest is in, and {A_nameDef} has noticed how much is left lying in the stubble. {A_nameDef} asks if the children could glean the fields after the harvesters, and keep what they find for a feast of their own.</li>
+      <li>The harvest is in, and {A_nameDef} has noticed how much is left lying in the stubble. {A_nameDef} asks if the children could glean the fields after the harvesters, and have what they find counted as their own.</li>
       <li>{A_nameDef} has a basket and a plan: every child in the colony walks the harvested fields, picks up what was missed, and the colony makes something with it that's the children's own. {A_nameDef} has asked the council.</li>
       <li>[lowtech] In the old days, {A_nameDef} has been told, the gleanings belonged to the children and the poor, by right. {A_nameDef} would like that to be true here too.</li>
     </texts>
@@ -133,7 +133,7 @@
     <options>
       <li>
         <label>The gleanings are the children's</label>
-        <outcome>The children walked the fields with baskets and came back with more than anyone expected. That evening the colony ate the gleanings together, and the children served, very seriously, and were thanked by everyone.</outcome>
+        <outcome>The children combed the stubble with baskets and came back with more than anyone expected. The grown-ups met them at the field's edge to look, and were told, very seriously and at length, who had found what.</outcome>
         <ways><tradition>3</tradition><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmLv_Gleaning</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -184,7 +184,7 @@
         <label>Every child plants a tree</label>
         <outcome>The colony walked out to the edge of the fields one spring morning, and every child planted a sapling and put a stone beside it. {A_nameDef} watered {A_possessive} twice before breakfast and once after.</outcome>
         <outcomes>
-          <li>[quirk:SoftSpot] {A_nameDef} planted {A_possessive} tree and then spent an hour building a little fence round it to keep the animals off, then left a pile of scraps outside the fence for them, as an apology.</li>
+          <li>[quirk:SoftSpot] {A_nameDef} planted {A_possessive} tree and then spent the rest of the morning building a little fence round it to keep the animals off, then left a pile of scraps outside the fence for them, as an apology.</li>
         </outcomes>
         <ways><tradition>4</tradition></ways>
         <effects>

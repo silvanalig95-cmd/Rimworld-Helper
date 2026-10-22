@@ -29,7 +29,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>[b:quirk:Proverbs] {B_nameDef} answered the question properly, and then summed it up in one old saying. {A_nameDef} has been repeating the saying ever since, to everyone, at every chance.</li>
+          <li>[b:quirk:Proverbs] {B_nameDef} answered the question properly, and then summed it up in one old saying. {A_nameDef} has been repeating it to the grown-ups since, usually at the wrong moment.</li>
         </lines>
       </li>
     </outcomes>
