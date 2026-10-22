@@ -20,7 +20,7 @@
       <blunt><li>[opt1] {X_nameDef} went back down the road. I'd have trusted {X_objective} over most people here.</li></blunt>
       <cheerful><li>[opt0] {X_nameDef} is staying! Years of old stories about {X_objective}, and the people here haven't heard a single one yet.</li></cheerful>
       <gloomy><li>[opt1] An old friend of mine went back out on the road today. There aren't many of those left.</li></gloomy>
-      <cold><li>[opt0] {X_nameDef} joined us. I know {X_possessive} habits and {X_possessive} weaknesses, which makes {X_objective} easy to work with.</li></cold>
+      <cold><li>[opt0] {X_nameDef} joined us. I know {X_possessive} weaknesses. Useful.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

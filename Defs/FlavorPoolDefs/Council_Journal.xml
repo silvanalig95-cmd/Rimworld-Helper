@@ -16,7 +16,7 @@
       <blunt><li>Day one. They need hands, I need a roof. Fair trade.</li></blunt>
       <cheerful><li>First day here! I've learned most of their names already, and which one makes the bread.</li></cheerful>
       <gloomy><li>Another place to start over. The last one lasted two winters.</li></gloomy>
-      <cold><li>Understaffed, badly defended, decent food. It will do.</li></cold>
+      <cold><li>Understaffed. Badly defended. It will do.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -25,7 +25,7 @@
     <lines>
       <plain>
         <li>One of the others keeps a journal, so I'm trying it. I'm not sure what goes in one.</li>
-        <li>If I die, at least whoever reads this will know what I thought of the rice. That seems worth a few pages.</li>
+        <li>Starting this so that if I die, someone will know what I thought of the rice.</li>
       </plain>
       <warm><li>I want to remember these people as they are now. Who hums at the workbench. Who always takes the heel of the loaf.</li></warm>
       <blunt><li>Started a journal. Don't expect much.</li></blunt>

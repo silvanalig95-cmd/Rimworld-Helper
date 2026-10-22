@@ -42,7 +42,7 @@
         <li>[diet:fungusinsect] The others ate at {GATHERING}. I sat with an empty bowl and felt a long way from them.</li>
       </gloomy>
       <cold>
-        <li>Attended {GATHERING}. No suitable food. Ate later.</li>
+        <li>Nothing fit to eat at {GATHERING}.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

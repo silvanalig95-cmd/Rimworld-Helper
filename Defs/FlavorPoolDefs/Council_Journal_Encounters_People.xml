@@ -24,13 +24,13 @@
         <li>[skill:Plants] {X_nameDef} pointed out three herbs I'd been pulling up as weeds. They're going in the soup now.</li>
       </plain>
       <warm>
-        <li>{X_nameDef} wouldn't leave the kitchen until I'd folded the dumplings right three times. I hope someone on the road feeds {X_objective} as well as {X_pronoun} fed me today.</li>
+        <li>{X_nameDef} stood over me, patient, until I folded the dumplings right. I hope the road feeds {X_objective} as well.</li>
         <li>I gave {X_nameDef} a bag of my flatbread for the road. It felt right to send a bit of this place along.</li>
         <li>[highmood] {X_nameDef} wrote my dumplings into {X_possessive} book of recipes from the road. Someone far from here will be eating them one day.</li>
       </warm>
       <blunt>
         <li>{X_nameDef}'s recipe is better than mine. That goes in here and nowhere else.</li>
-        <li>Told {X_nameDef} the soup was bland, then wrote the recipe down.</li>
+        <li>Told {X_nameDef} the soup was bland. Kept the recipe.</li>
       </blunt>
       <cheerful>
         <li>New recipe from {X_nameDef}! Honey and meat in the same pot. I'm making it tomorrow.</li>
@@ -133,7 +133,7 @@
     <defName>Council_Journal_EncP_Recognized</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} knew my name before I said it. Apparently they talk about me on the road. I don't know whether to be proud or start sleeping with a knife.</li>
+        <li>{X_nameDef} knew my name before I said it. I don't know whether to be proud or start sleeping with a knife.</li>
         <li>There's a story going around about me. {X_nameDef} told it. I was taller in it, and I killed more people.</li>
         <li>[afterraid] We'd barely washed the blood off when {X_nameDef} asked if I was the one from the stories. After this week, maybe I am.</li>
         <li>[trait:Wimp] {X_nameDef} says I'm famous for my bravery. I fainted at a splinter last month. I didn't correct {X_objective}.</li>

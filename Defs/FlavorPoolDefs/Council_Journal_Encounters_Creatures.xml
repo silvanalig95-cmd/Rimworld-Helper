@@ -26,7 +26,7 @@
         <li>[old] At my age you stop expecting comfort from anybody. Then {X_definite} comes over and leans on you.</li>
       </warm>
       <blunt>
-        <li>Don't need anybody. Got {X_definite}. That's plenty.</li>
+        <li>Don't need anybody. Got {X_definite}.</li>
         <li>[lowmood] People keep asking how I'm doing. Only {X_definite} gets a straight answer.</li>
       </blunt>
       <cheerful>
@@ -78,7 +78,7 @@
       </gloomy>
       <cold>
         <li>The animal brings me its kills. It considers me part of its pack, and a poor provider.</li>
-        <li>Pest control, delivered to my door. I respect the efficiency.</li>
+        <li>Pest control, delivered.</li>
         <li>[rich] The stores are full, and still the animal brings me rats. It isn't about need.</li>
       </cold>
     </lines>
@@ -113,7 +113,7 @@
       </cheerful>
       <gloomy>
         <li>Nothing I own lasts here. The animal just gets to it faster than the rest.</li>
-        <li>[lowmood] Of course it was my things. It's always my things.</li>
+        <li>[lowmood] My things. Always my things.</li>
         <li>[poor] We can't spare a single strap, and {X_definite} ate two.</li>
       </gloomy>
       <cold>
@@ -168,7 +168,7 @@
     <lines>
       <plain>
         <li>Took the long way round today so {X_definite} could keep up. Told the others it was for the view.</li>
-        <li>There's gray creeping in around {X_definite}'s face. When did that happen? Where was I?</li>
+        <li>There's gray creeping in around {X_definite}'s face. I don't know when that happened, or where I was.</li>
         <li>I remember when {X_definite} could clear a fence. Today the step was a whole decision.</li>
         <li>[winter] The cold is hard on {X_definite} this year. I've let {X_objective} have my warm corner.</li>
         <li>[night] Sometimes I wake up just to listen for {X_definite} breathing.</li>
@@ -227,7 +227,7 @@
       </blunt>
       <cheerful>
         <li>Saw {X_indefinite} and decided we're friends now. I just have to tell {X_objective}!</li>
-        <li>So big! I ran out of words and just pointed for a while.</li>
+        <li>So big! I just pointed.</li>
       </cheerful>
       <gloomy>
         <li>Something that big and that free, and here I am inside a fence, counting potatoes.</li>
@@ -313,7 +313,7 @@
       </gloomy>
       <cold>
         <li>The predator out there is doing exactly what I'd do: watching, waiting, choosing the weakest. I've started walking with the others.</li>
-        <li>Watched it watch me. Respect, of a sort. Nothing personal on either side.</li>
+        <li>Watched it watch me.</li>
         <li>[night] It came close to the fence after dark. I stood at the window and let it see me.</li>
       </cold>
     </lines>
@@ -387,7 +387,7 @@
         <li>[summer] Hot day, big animal, and me strolling straight up to it. I'll be telling this one for years!</li>
       </cheerful>
       <gloomy>
-        <li>Did something stupid today and didn't die.</li>
+        <li>Did something stupid. Didn't die.</li>
         <li>We're all getting eaten by something eventually. I just wanted to know what it felt like first.</li>
       </gloomy>
       <cold>

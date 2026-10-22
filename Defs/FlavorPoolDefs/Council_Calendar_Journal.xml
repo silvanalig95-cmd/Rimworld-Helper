@@ -76,7 +76,7 @@
         <li>[!new,child] I made the biggest snowball anyone has ever seen. Then it broke.</li>
       </plain>
       <warm><li>[!new] Watched the first snow with a hot cup and good company. I didn't want the afternoon to end.</li></warm>
-      <blunt><li>[!new] First snow. Cold feet. The games were fine.</li></blunt>
+      <blunt><li>[!new] First snow. Cold feet.</li></blunt>
       <cheerful><li>[!new] First snow day! I won the sled race. There's some dispute, but I won it.</li></cheerful>
       <gloomy><li>[!new] First snow. Pretty for a day, then months of cold.</li></gloomy>
       <cold>
@@ -103,7 +103,7 @@
         <li>[clean] Thought about the ones who stood with me that day. I'd do it again, with them.</li>
       </warm>
       <blunt>
-        <li>[clean] Anniversary of the fight with {ENEMY}. We won. That's what matters.</li>
+        <li>[clean] Beat {ENEMY} that day. Good.</li>
         <li>[fallen] {DEAD} should still be here. That's all I've got to say about today.</li>
       </blunt>
       <cheerful><li>[clean] Victory day! The story gets better every time we tell it.</li></cheerful>
@@ -181,7 +181,7 @@
       <blunt><li>[years] {OTHER_nameDef}'s been here {YEARS} years. Still owes me for that first meal.</li></blunt>
       <cheerful><li>It's the day {OTHER_nameDef} arrived! I made {OTHER_objective} sit at the head of the table.</li></cheerful>
       <gloomy><li>The day {OTHER_nameDef} came. I wonder how many more of these we'll get to mark.</li></gloomy>
-      <cold><li>{OTHER_nameDef} joined on this day. A good addition, on the whole.</li></cold>
+      <cold><li>{OTHER_nameDef}'s arrival day. A good addition.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -250,7 +250,7 @@
         <li>[tradition] Every year we stop for {NAME}, and every year I'm glad we do.</li>
       </plain>
       <warm><li>Thought about each of the ones we've lost, on {NAME}, and what they gave this place.</li></warm>
-      <blunt><li>Visited the graves for {NAME}. Back to work tomorrow.</li></blunt>
+      <blunt><li>Visited the graves for {NAME}.</li></blunt>
       <cheerful><li>We told funny stories about the dead on {NAME}. They'd have liked that better than crying.</li></cheerful>
       <gloomy><li>The list of names we read on {NAME} gets longer every year.</li></gloomy>
       <cold><li>Observed {NAME}, a day set aside to remember the dead. I remembered them.</li></cold>
