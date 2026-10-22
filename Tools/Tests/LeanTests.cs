@@ -113,7 +113,7 @@ public static class LeanTests
         C(Sched.SliceTurn(Sched.Ailments, Sched.HourTicks, Sched.Slices, Sched.RareAilments) >= 0, "the ailments' colony part rides on one of its slices");
         C(Sched.SliceTurn(Sched.Health, Sched.HourTicks, Sched.Slices, Sched.RareHealth) < 0, "the health stories' colony part has a tick of its own");
         // The passes that only run while something waits keep off the hourly passes too.
-        foreach (int o in new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory })
+        foreach (int o in new[] { Sched.RareNews, Sched.RarePlayOut, Sched.RareWeekMemory, Sched.RareCouriers })
         for (int tick = o; tick < Sched.HourTicks; tick += Sched.RareTicks)
             C(!hourly.Contains(tick), $"the 250-tick pass at {o} misses every hourly pass (tick {tick})");
 

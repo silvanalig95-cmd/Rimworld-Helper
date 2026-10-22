@@ -786,7 +786,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The pet is turned loose into the wild. Its person will not take it well (give them a thought separately).</summary>
+    /// <summary>
+    /// The pet is turned loose into the wild. Its person will not take it well (give them a thought separately). It
+    /// doesn't stay about the gate: it moves on off the land within a few hours (the game's own timed leaving).
+    /// </summary>
     public class DilemmaEffect_ReleasePet : DilemmaEffect
     {
         public override void Apply(DilemmaContext ctx)
@@ -794,7 +797,10 @@ namespace ColonyCouncil
             var pet = ctx.pet;
             if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
             if (pet.Spawned) pet.jobs?.StopAll();
+            pet.roping?.BreakAllRopes();
             pet.SetFaction(null);
+            if (pet.Spawned && pet.mindState != null && !pet.RaceProps.Humanlike)
+                pet.mindState.exitMapAfterTick = Find.TickManager.TicksGame + Rand.Range(GenDate.TicksPerHour, GenDate.TicksPerHour * 4);
         }
     }
 
