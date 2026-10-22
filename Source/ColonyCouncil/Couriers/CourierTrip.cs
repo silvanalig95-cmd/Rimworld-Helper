@@ -75,6 +75,8 @@ namespace ColonyCouncil
         public List<Thing> things = new List<Thing>();
         public string takeLabel;
         public string takeTag;
+        /// <summary>What it's called without a number ("cooked meals"), for a word on part of it.</summary>
+        public string takeNoun;
 
         /// <summary>Where the goods come from: the stores by PlayCarry's words (null), or a mission's goods ("mission": Missions.Matching).</summary>
         public string source;
@@ -205,6 +207,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref things, "things", LookMode.Reference);
             Scribe_Values.Look(ref takeLabel, "takeLabel");
             Scribe_Values.Look(ref takeTag, "takeTag");
+            Scribe_Values.Look(ref takeNoun, "takeNoun");
             Scribe_Values.Look(ref source, "source");
             Scribe_References.Look(ref fetch, "fetch");
             Scribe_Values.Look(ref fetchPrisoner, "fetchPrisoner");

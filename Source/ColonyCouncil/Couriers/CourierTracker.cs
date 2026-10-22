@@ -424,7 +424,8 @@ namespace ColonyCouncil
         /// <summary>What they bring goes in their packs, shared out by how much each can carry (the animal most).</summary>
         private static void Pack(CourierTrip t, List<Pawn> party)
         {
-            if (t.goods.Count == 0) return;
+            party = party.Where(p => p?.inventory?.innerContainer != null).ToList();
+            if (t.goods.Count == 0 || party.Count == 0) return;
             var room = party.Select(p => Mathf.Max(1f, MassUtility.Capacity(p))).ToList();
             var load = new float[party.Count];
             foreach (var thing in t.goods.OrderByDescending(x => x.GetStatValue(StatDefOf.Mass) * x.stackCount).ToList())
@@ -684,8 +685,9 @@ namespace ColonyCouncil
                 {
                     if (p == null || p.Dead || !p.Spawned || p.Map != map)
                     {
-                        // Gone with it (or lying with them): nothing to set down here.
-                        if (p != null && !p.Dead && !p.Spawned) t.goods.TryAddRangeOrTransfer(p.inventory?.innerContainer?.ToList() ?? new List<Thing>(), true, true);
+                        // Gone off the map with it: what they carried comes the old way. Dead, or carried off by
+                        // someone here: it stays with them.
+                        if (p != null && !p.Dead && p.MapHeld == null) t.goods.TryAddRangeOrTransfer(p.inventory?.innerContainer?.ToList() ?? new List<Thing>(), true, true);
                         continue;
                     }
                     // They set it down where they stand (if the colony can get to it), else where traders leave goods.
@@ -793,11 +795,12 @@ namespace ColonyCouncil
         private static void ClearGone(CourierTrip t)
         {
             if (t.bearerTrip) return;
+            // Off the map (not just carried by someone, or in a bed being tended).
             foreach (var p in t.Party)
-                if (!p.Dead && !p.Spawned && !p.Discarded && p.Faction != Faction.OfPlayer && !p.IsPrisoner) Clear(p);
+                if (!p.Dead && p.MapHeld == null && !p.Discarded && p.Faction != Faction.OfPlayer && !p.IsPrisoner) Clear(p);
         }
 
-        private static bool AllGone(CourierTrip t) => t.Party.All(p => p.Dead || p.Discarded || !p.Spawned || p.Map != t.map || p.Faction == Faction.OfPlayer);
+        private static bool AllGone(CourierTrip t) => t.Party.All(p => p.Dead || p.Discarded || p.MapHeld != t.map || p.Faction == Faction.OfPlayer);
 
         // ---------------- Saving ----------------
 

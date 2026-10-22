@@ -563,7 +563,8 @@ namespace ColonyCouncil
                     t.source = "mission";
                     t.what = g.Key;
                     t.amount = g.Value;
-                    t.takeLabel = "CC_Courier_Amount".Translate(g.Value, Missions.GoalLabel(new MissionGoal { what = g.Key, count = g.Value })).Resolve();
+                    t.takeNoun = Missions.GoalLabel(new MissionGoal { what = g.Key, count = g.Value }).UncapitalizeFirst();
+                    t.takeLabel = "CC_Courier_Amount".Translate(g.Value, t.takeNoun).Resolve();
                     t.takeTag = g.Key == "meals" || g.Key == "rawfood" ? "food" : g.Key == "medicine" ? "medicine" : "goods";
                     if (!paid)
                     {

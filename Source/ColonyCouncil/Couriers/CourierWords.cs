@@ -143,7 +143,8 @@ namespace ColonyCouncil
                 string who = People(t, true, out _);
                 string faction = FactionName(t);
                 string where = (t.atGate ? "CC_Courier_ByGate" : "CC_Courier_NearColony").Translate().Resolve();
-                string took = t.Takes ? (t.things.Count > 0 || t.taken >= t.amount ? t.takeLabel : Couriers.Amount(t.taken, t.what, t.def)) : t.takeLabel;
+                bool all = t.taken >= t.amount || CourierStock.Particular(t) || (t.def == null && t.what.NullOrEmpty());
+                string took = t.Takes && !all ? (t.takeNoun != null ? "CC_Courier_Amount".Translate(t.taken, t.takeNoun).Resolve() : Couriers.Amount(t.taken, t.what, t.def)) : t.takeLabel;
                 string text;
                 if (t.fetch != null)
                 {
