@@ -20,15 +20,15 @@
       <minOpinionOfA>-100</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{B_nameDef} caught {A_nameDef} in the storeroom in the middle of the night, still chewing, with {A_possessive} pockets stuffed full. {A_nameDef} says {A_pronoun} was hungry. {B_nameDef} says it's the third time this week.\n\nWord was out by breakfast, and {B_nameDef} wants the council to deal with it.</li>
+      <li>Still chewing, pockets stuffed full. That was how {B_nameDef} found {A_nameDef} in the storeroom in the middle of the night.\n\n"I was hungry," {A_nameDef} said.\n\n"Third time this week," said {B_nameDef}, who wants the council to deal with it.</li>
       <li>Food has been going missing from the stores for days. Last night {B_nameDef} waited in the dark between the shelves and caught {A_nameDef} filling a sack.\n\n{A_nameDef} hasn't tried to deny it.</li>
-      <li>The stores have been running short all week, and this morning {B_nameDef} found a pile of picked bones and empty sacks under {A_nameDef}'s bed.\n\n{A_nameDef} says {A_pronoun} only took what {A_pronoun} needed. {B_nameDef} says the rest of the colony has been going to bed hungry because of it.</li>
+      <li>A pile of picked bones and three empty sacks, under {A_nameDef}'s bed. {B_nameDef} found them this morning, after a week of the stores running short.\n\n{A_nameDef} says {A_pronoun} only took what {A_pronoun} needed. {B_nameDef} points out that the rest of the colony has been going to bed hungry.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
       <li>
         <label>Let {A_nameDef} off with a warning</label>
-        <outcome>{A_nameDef} got off with a warning. {B_nameDef} thinks the council has gone soft.</outcome>
+        <outcome>A warning, and nothing more. {B_nameDef} thinks the council has gone soft, and says so to anyone who stands still long enough.</outcome>
         <ways><mercy>6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Forgiven</thought></li>
@@ -40,7 +40,7 @@
       </li>
       <li>
         <label>Make {A_nameDef} work it off</label>
-        <outcome>{A_nameDef} is pulling extra shifts until the debt is paid. Most people think that's fair.</outcome>
+        <outcome>{A_nameDef} is pulling extra shifts until the stores are paid back, sack for sack. Most people think that's fair.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Penance</hediff></li>
@@ -50,7 +50,7 @@
       </li>
       <li>
         <label>Punish {A_nameDef} publicly</label>
-        <outcome>The council punished {A_nameDef} at the evening meal, with the colony looking on. Anyone tempted by the stores will think twice now. The kinder colonists found it hard to watch.</outcome>
+        <outcome>{A_nameDef} stood at the end of the table through all of supper while the council said its piece. The kinder colonists kept their eyes on their plates.</outcome>
         <ways><mercy>-8</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
@@ -84,7 +84,7 @@
     <things><li>Beer</li><li>SmokeleafJoint</li><li>Ambrosia</li></things>
     <thingCount>12</thingCount>
     <texts>
-      <li>{A_nameDef} pried up a loose board in the old shed and found {COUNT} {THING} wrapped in oilcloth. Whoever hid it hasn't been back for it in years.\n\nSome colonists want it shared out tonight. Others would rather sell it, or see it destroyed.</li>
+      <li>{A_nameDef} pried up a loose board in the old shed and found {COUNT} {THING} wrapped in oilcloth. Whoever hid it hasn't been back for it in years.\n\nThe arguing started before {A_nameDef} had the board back down.</li>
       <li>{A_nameDef} was digging a trench when {A_possessive} shovel struck a buried crate. Inside were {COUNT} {THING}, still good, probably left by smugglers long before the colony came.\n\nWord got around fast.</li>
     </texts>
     <defaultOption>0</defaultOption>
@@ -101,7 +101,7 @@
       </li>
       <li>
         <label>Lock it away for trading</label>
-        <outcome>The stash went into storage, forbidden, to be sold to the next trader. The ones who had hoped for a share are sulking.</outcome>
+        <outcome>The stash went into storage, forbidden, to be sold to the next trader. The ones who had hoped for a share keep finding reasons to be in the storeroom.</outcome>
         <ways><generosity>-4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><forbidden>true</forbidden></li>
@@ -110,7 +110,7 @@
       </li>
       <li>
         <label>Destroy it</label>
-        <outcome>The stash was destroyed. The teetotalers and ascetics approved. The colony's regular users took it hard.</outcome>
+        <outcome>The stash was destroyed before anyone could change the council's mind. The teetotalers approved. The colony's regular users are still talking about it.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Wasted</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
@@ -133,7 +133,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} and {B_nameDef} have been at each other's throats for days. Today it was about whose turn it was to clean. Yesterday it was a borrowed knife that came back dull.\n\nBoth of them want the council to settle it, and both expect to win.</li>
-      <li>{A_nameDef} and {B_nameDef} had another shouting match, this time across the dinner table, and a spoon was thrown.\n\nThey've each come to the council separately, each with a list of complaints about the other.</li>
+      <li>{A_nameDef} and {B_nameDef} had another shouting match, this time across the dinner table, and a spoon was thrown.\n\nEach has brought the council a list of complaints. {B_nameDef}'s begins with the spoon. {A_nameDef}'s begins with what {B_nameDef} said before the spoon.</li>
       <li>This morning {B_nameDef} moved {A_nameDef}'s things out of the workshop. By lunch {A_nameDef} had salted {B_nameDef}'s stew until it couldn't be eaten. It has gone on like this for days.\n\nThe others are tired of it, and {A_nameDef} and {B_nameDef} each want the council to take their side.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -149,14 +149,14 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about></li>
         </effects>
         <riskChance>0.3</riskChance>
-        <riskOutcome>The council sided with {A_nameDef}. {B_nameDef} wouldn't accept it and went for {A_objective} on the way out.</riskOutcome>
+        <riskOutcome>{B_nameDef} heard the council side with {A_nameDef}, and went for {A_objective} on the way out.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
       </li>
       <li>
         <label>Side with {B_nameDef}</label>
-        <outcome>The council sided with {B_nameDef}. {A_nameDef} took it badly.</outcome>
+        <outcome>The council sided with {B_nameDef}. {A_nameDef} took it badly, and hasn't stayed in a room with {B_nameDef} since.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>8</amount></li>
@@ -172,7 +172,7 @@
       </li>
       <li>
         <label>Make them work side by side</label>
-        <outcome>After a week of shared shifts, {A_nameDef} and {B_nameDef} have made a grudging peace.</outcome>
+        <outcome>{A_nameDef} and {B_nameDef} got through their first shift side by side with nothing worse than a few looks. There are more shifts to come.</outcome>
         <ways><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
@@ -181,7 +181,7 @@
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{A_nameDef} and {B_nameDef} lasted until lunch on the same shift before they came to blows.</riskOutcome>
+        <riskOutcome>{A_nameDef} and {B_nameDef} came to blows before the shared shift had properly started.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
@@ -189,7 +189,7 @@
       </li>
       <li>
         <label>Stay out of it</label>
-        <outcome>The council stayed out of it. {A_nameDef} and {B_nameDef} are left to stew.</outcome>
+        <outcome>Nothing from the council. {A_nameDef} and {B_nameDef} are left to stew in it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-3</amount></li>
@@ -217,13 +217,13 @@
     <thingCount>30</thingCount>
     <texts>
       <li>{A_nameDef} wants to cook a feast tonight with the best of everything in the stores. "We could all be dead next week," {A_pronoun} says.\n\nIt would use about {COUNT} raw food.</li>
-      <li>{A_nameDef} has been planning a seven-course menu for weeks and has finally brought it to the council. It would take about {COUNT} raw food from the stores, and {A_nameDef} has already worked out what goes into every course.</li>
+      <li>{A_nameDef} has been planning a seven-course menu for weeks, in the margins of the kitchen tally, and has finally brought it to the council. It would take about {COUNT} raw food from the stores. {A_nameDef} can recite every course, and did.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
         <label>Let {A_nameDef} cook the feast</label>
-        <outcome>The feast went on late into the night. People will be talking about it for weeks, and they'll expect another one before long.</outcome>
+        <outcome>The feast went on late into the night. The last plates came back scraped clean, and people are already asking when the next one is.</outcome>
         <ways><generosity>6</generosity><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
@@ -236,7 +236,7 @@
       </li>
       <li>
         <label>Save the food</label>
-        <outcome>The food stays in the stores. {A_nameDef} has gone back to plain meals, and sets each bowl down harder than it needs to.</outcome>
+        <outcome>{A_nameDef} has gone back to plain meals, and sets each bowl down harder than it needs to.</outcome>
         <ways><generosity>-5</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FeastDenied</thought></li>
@@ -245,7 +245,7 @@
       </li>
       <li>
         <label>A smaller feast</label>
-        <outcome>{A_nameDef} made a good dinner from a modest share of the stores. It wasn't the banquet {A_pronoun} had planned, but people enjoyed it.</outcome>
+        <outcome>A good supper from a modest share of the stores, smaller than {A_nameDef} had in mind. {A_nameDef} apologized for it all evening while the colony asked for seconds.</outcome>
         <ways><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>12</count></li>
@@ -267,7 +267,7 @@
       <minOpinionOfA>10</minOpinionOfA>
     </roleB>
     <texts>
-      <li>{A_nameDef} came to the council after dark, ashamed, to admit something. The nightmares haven't stopped since the last raid, and {A_pronoun} has been skipping shifts to stay in bed with the door shut.\n\n{B_nameDef} has offered to help, if the council wants.</li>
+      <li>{A_nameDef} came to the council after dark, ashamed. The nightmares haven't stopped for weeks, and {A_pronoun} has been skipping shifts to lie in bed with the door shut.\n\n{B_nameDef} has offered to help, if the council wants.</li>
       <li>{A_nameDef} sat down in the middle of hauling stone this afternoon and wouldn't get up. Later {A_pronoun} told the council, "I can't keep doing this. I'm so tired."\n\n{B_nameDef} has been keeping an eye on {A_objective}.</li>
     </texts>
     <defaultOption>1</defaultOption>
@@ -301,7 +301,7 @@
       </li>
       <li>
         <label>Ask {B_nameDef} to look after {A_objective}</label>
-        <outcome>{B_nameDef} has been sitting up with {A_nameDef} in the evenings. It seems to be helping both of them.</outcome>
+        <outcome>{B_nameDef} sat up with {A_nameDef} through the evening, and will again tomorrow. {A_nameDef} talked more than {A_pronoun} has in weeks.</outcome>
         <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
