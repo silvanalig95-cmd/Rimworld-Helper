@@ -6,12 +6,12 @@
     <defName>Council_Journal_Heirloom</defName>
     <lines>
       <plain>
-        <li>I'm keeping {OTHER_nameDef}'s {ITEM}. It still smells like {OTHER_objective}.</li>
-        <li>They gave me {OTHER_nameDef}'s {ITEM}. I'll carry it as long as I live.</li>
+        <li>I'm keeping {OTHER_nameDef}'s {ITEM}. I've cleaned it twice already, and it didn't need it either time.</li>
+        <li>They gave me {OTHER_nameDef}'s {ITEM}. I'll keep it by me as long as I live.</li>
       </plain>
       <warm><li>{OTHER_nameDef}'s {ITEM} is mine to look after now. I'll keep it the way {OTHER_nameDef} would have.</li></warm>
       <blunt><li>Took {OTHER_nameDef}'s {ITEM}. It's mine now, and I'm not discussing it.</li></blunt>
-      <gloomy><li>All that's left of {OTHER_nameDef} is a {ITEM}. I'm holding on to it anyway.</li></gloomy>
+      <gloomy><li>All I have left of {OTHER_nameDef} is this {ITEM}. I'm holding on to it anyway.</li></gloomy>
       <cold><li>I've taken custody of {OTHER_nameDef}'s {ITEM}. It's in good condition.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -21,10 +21,10 @@
     <defName>Council_Journal_HeirloomLost</defName>
     <lines>
       <plain>
-        <li>{LOST}'s things are gone, the last of {LOST} I had. I keep reaching for them.</li>
-        <li>I've looked everywhere for {LOST}'s things. They're gone, and I can't even say how.</li>
+        <li>What I had of {LOST} is gone. I keep reaching for it.</li>
+        <li>I've looked everywhere for what {LOST} left me. It's gone, and I can't even say how.</li>
       </plain>
-      <blunt><li>Lost {LOST}'s things. Don't want to talk about it.</li></blunt>
+      <blunt><li>Lost what {LOST} left me. Don't want to talk about it.</li></blunt>
       <gloomy><li>First I lost {LOST}. Now I've lost what {LOST} left me.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -33,7 +33,7 @@
     <defName>Council_Journal_ComingOfAge</defName>
     <lines>
       <plain>
-        <li>They say I'm grown now. I don't feel any different.</li>
+        <li>They say I'm grown now. I looked in the water barrel, and I look the same.</li>
         <li>I'm an adult today. I get a vote at the council. I'm going to use it.</li>
         <li>[winter] Grown up in the middle of winter. There wasn't a party, but I got extra soup at supper.</li>
       </plain>
@@ -49,7 +49,7 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} is grown. I remember {OTHER_possessive} first steps, right over there by the storeroom door.</li>
-        <li>My child is an adult today. Out here. We made it this far, the two of us.</li>
+        <li>My child is an adult today. Out here, of all places.</li>
       </plain>
       <blunt><li>{OTHER_nameDef} is grown. Did a good job, if I say so myself.</li></blunt>
       <gloomy><li>{OTHER_nameDef} is grown. I just hope this world is kinder to an adult than it was to a child.</li></gloomy>
