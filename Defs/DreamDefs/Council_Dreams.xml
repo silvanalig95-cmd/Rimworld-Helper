@@ -111,9 +111,9 @@
         <li>I was falling in my dream, for so long I stopped being afraid of it.</li>
         <li>In the dream something paced outside my door all night. It never knocked.</li>
         <li>[again] The corridor again, and the thing at the far end of it. It's closer each time.</li>
-        <li>[child] There was a monster under my bed in the dream, and it knew my name.</li>
+        <li>[child] The dark in the corner of my room was a person, and it was waiting for me to fall asleep.</li>
         <li>[lowmood] Dreamt they all packed up and left in the night, and didn't wake me.</li>
-        <li>My teeth came loose in the dream, one after another, and I kept trying to push them back in.</li>
+        <li>The stairs in the dream went down one more step than they should, every time, and I kept missing it.</li>
         <li>In the dream the walls got thinner each time I touched them.</li>
         <li>Every chair in the dining room was taken, and not one of them would tell me who they were.</li>
         <li>Ran all night. Couldn't tell you from what.</li>
@@ -371,7 +371,7 @@
       <plain>
         <li>In my dream {OTHER_nameDef} sat on the council, and the first decree was about me.</li>
         <li>In my sleep {OTHER_nameDef} followed me everywhere, never saying a word, just watching.</li>
-        <li>{OTHER_nameDef} was wearing my coat in the dream, and they all called {OTHER_objective} by my name.</li>
+        <li>{OTHER_nameDef} was sitting in my chair in the dream, eating off my plate, and when I spoke up the others shushed me.</li>
       </plain>
       <blunt><li>Even in my sleep, {OTHER_nameDef}. Can't get away from {OTHER_objective}.</li></blunt>
       <cold><li>{OTHER_nameDef} appeared in my dream. I don't care for the company.</li></cold>
