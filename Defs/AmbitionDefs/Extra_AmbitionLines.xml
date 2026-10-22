@@ -22,9 +22,9 @@
       <cold><li>Hunger is the one threat we can predict to the day. I've done the count, and we're short.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>It took me most of an afternoon to count it all.</li></plain>
+      <plain><li>The storeroom door doesn't shut properly anymore. There are too many sacks behind it.</li></plain>
       <warm><li>No one goes to bed hungry this season, and I'll sleep better for it.</li></warm>
-      <gloomy><li>Enough food for a month. Now we just have to live that long.</li></gloomy>
+      <gloomy><li>A month of food put by. I still dream about empty shelves.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -35,13 +35,13 @@
       <plain><li>I've thrown out more spoiled meat this month than we ate. A cold room with thirty meals in it, and that stops.</li></plain>
       <warm><li>I'd like to cook a big batch on a good day and know it'll still be good for you next week.</li></warm>
       <blunt><li>The flies are eating better than we are. Cold room, now.</li></blunt>
-      <cheerful><li>You open the door, a cloud of cold air rolls out, and behind it there's dinner!</li></cheerful>
+      <cheerful><li>You open the door, a cloud of cold air rolls out, and behind it there's dinner.</li></cheerful>
       <gloomy><li>Rotten food makes people sick, and out here sick people die. I'd rather keep it cold.</li></gloomy>
       <cold><li>Every spoiled meal is a cook's afternoon thrown away.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Thirty meals on the shelves and frost on the walls. I checked the door twice.</li></plain>
-      <cheerful><li>I went in just to stand in the cold for a minute! It's lovely in summer.</li></cheerful>
+      <cheerful><li>I stood in there for a minute just to feel the cold on my face!</li></cheerful>
       <cold><li>Spoilage is now negligible.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
@@ -55,15 +55,15 @@
         <li>[afterraid] Count the bandages we used this week. Now count what's left. That's why I'm asking for a hospital.</li>
       </plain>
       <warm><li>When one of us gets hurt, they should wake up somewhere clean, with someone watching over them.</li></warm>
-      <blunt><li>I'm tired of doing surgery by bad light on a dirty floor. Give me a hospital or stop bleeding.</li></blunt>
+      <blunt><li>I'm tired of doing surgery on a dirty floor. Someone has to hold the lamp and someone has to hold the patient.</li></blunt>
       <cheerful><li>Clean sheets on three beds and a whole shelf of medicine! It'll be the nicest room in the colony.</li></cheerful>
-      <gloomy><li>Everyone ends up on a sickbed sooner or later. It might as well be a clean one.</li></gloomy>
-      <cold><li>Infection kills more of our wounded than the wounds do. A clean room changes that.</li></cold>
+      <gloomy><li>Everyone ends up on a sickbed sooner or later. Mine should at least be clean.</li></gloomy>
+      <cold><li>Infection has killed more of our wounded than the wounds did. I've kept count.</li></cold>
     </pitch>
     <achieved>
       <plain><li>I've sorted the medicine by kind and put a clean sheet on every bed.</li></plain>
       <warm><li>Whoever's next in one of these beds, I hope it's only for a scratch.</li></warm>
-      <cold><li>Medical capacity is adequate. I'll be keeping track of who uses it most.</li></cold>
+      <cold><li>Three beds and fifteen doses. I'll be keeping track of who uses them most.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -74,14 +74,14 @@
       <plain><li>I haven't been alone with my own thoughts since I got here. Rooms. One each.</li></plain>
       <warm><li>Some of us cry at night and try to do it without a sound. A room each would spare them that.</li></warm>
       <blunt><li>I know what every one of you sounds like asleep. I'd like to forget. Build walls.</li></blunt>
-      <cheerful><li>A room of my own! I could finally sing in bed.</li></cheerful>
+      <cheerful><li>A room of my own, where I could sing in bed and not get a boot thrown at me.</li></cheerful>
       <gloomy><li>There's no privacy in a barracks, not even for grief. I'd like a door to close when it's bad.</li></gloomy>
-      <cold><li>Shared rooms mean shared diseases and shared grudges. Separate the beds.</li></cold>
+      <cold><li>One cough in the barracks last month became four by the end of the week. Separate the beds.</li></cold>
     </pitch>
     <achieved>
       <plain><li>I closed my door last night just to hear it click.</li></plain>
       <blunt><li>Now knock before you come in. All of you.</li></blunt>
-      <gloomy><li>My own room. Now I can be miserable in private, like a civilized person.</li></gloomy>
+      <gloomy><li>My own room. It's very quiet in there, and that takes some getting used to.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -92,14 +92,14 @@
       <plain><li>We eat together every day. Let's do it somewhere that makes us want to stay at the table.</li></plain>
       <warm><li>I want a room where we toast the good days and sit together through the bad ones.</li></warm>
       <blunt><li>Visitors walk in, look at our dining room, and pity us. I can see it on their faces.</li></blunt>
-      <cheerful><li>A long table, candles and something on the walls worth staring at! I want to eat like a lord.</li></cheerful>
-      <gloomy><li>We've eaten too many funeral suppers in that cramped little room. It could at least be a decent one.</li></gloomy>
-      <cold><li>The room we use most should be the room we invest in most.</li></cold>
+      <cheerful><li>Candles down a long table and a painting worth staring at. We'd eat like lords!</li></cheerful>
+      <gloomy><li>We've eaten too many funeral suppers in that cramped little room. The next one deserves better.</li></gloomy>
+      <cold><li>Guests judge us by where we feed them. Let them leave thinking we're stronger than we are.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Look at it. You walk in here and you sit up straighter.</li></plain>
       <blunt><li>Nobody eats with their hands in here. I mean it.</li></blunt>
-      <cheerful><li>I've eaten three meals in here today and I'm thinking about a fourth, just for the atmosphere!</li></cheerful>
+      <cheerful><li>I've eaten three meals in here today. I'm thinking about a fourth, just to sit in it a while longer.</li></cheerful>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -109,8 +109,8 @@
     <pitch>
       <plain><li>I've played the same game of horseshoes so many times I've started losing on purpose. We need more to do.</li></plain>
       <warm><li>Some of us haven't laughed in weeks. A room for games would help more than you'd think.</li></warm>
-      <blunt><li>Bored people break things, and sometimes each other. Rec room.</li></blunt>
-      <cheerful><li>I'll organize tournaments, with brackets and a prize!</li></cheerful>
+      <blunt><li>Bored people break things, and sometimes each other.</li></blunt>
+      <cheerful><li>I'll run tournaments, and the winner gets the first helping at supper.</li></cheerful>
       <gloomy><li>The days run together here. Work, eat, sleep, and then the same again.</li></gloomy>
       <cold><li>Bored colonists make trouble. Give them something harmless to do.</li></cold>
     </pitch>
@@ -126,18 +126,18 @@
     <ambition>Council_Amb_HoldTheLine</ambition>
     <pitch>
       <plain>
-        <li>Last time they came, half of us were shooting from behind the firewood pile. Let's build some real cover.</li>
+        <li>Last time they came, I was shooting from behind the firewood pile. Let's build some real cover.</li>
         <li>[afterraid] We counted the holes in the walls this morning, then we stopped counting. We need better defenses.</li>
       </plain>
-      <warm><li>I keep thinking about who we'd lose if they hit us harder. I'd rather build than grieve.</li></warm>
+      <warm><li>I keep thinking about who we'd lose if they hit us harder. I don't like the names I come up with.</li></warm>
       <blunt><li>Next raid, I want to be behind something solid, looking down a long empty field at them.</li></blunt>
-      <cheerful><li>Barricades, walls and a nice clear line of fire! It'll be like a real fort.</li></cheerful>
+      <cheerful><li>Barricades on every approach and a nice clear line of fire. It'll be like a real fort!</li></cheerful>
       <gloomy><li>The raids only get bigger. One day they'll be big enough. I'd like that day to come later.</li></gloomy>
-      <cold><li>We have things worth stealing and very little to stop anyone taking them.</li></cold>
+      <cold><li>I've walked our approaches the way a raider would. I didn't find much to stop me.</li></cold>
     </pitch>
     <achieved>
-      <warm><li>I walked the line tonight and felt, for once, that we could protect each other.</li></warm>
-      <cold><li>Our defensive position is satisfactory. I almost look forward to testing it.</li></cold>
+      <warm><li>I walked the whole line, and for once I think we could protect each other.</li></warm>
+      <cold><li>Our position is sound. I've written down where each of you will stand.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -145,16 +145,16 @@
     <defName>Council_Ext_Amb_IronRing</defName>
     <ambition>Council_Amb_IronRing</ambition>
     <pitch>
-      <plain><li>Three turrets on the approaches. They'll see raiders before we do, and they never ask for a day off.</li></plain>
+      <plain><li>Three turrets on the approaches would see raiders coming before any of us did.</li></plain>
       <warm><li>Turrets can take the first hits, so the rest of us don't have to.</li></warm>
       <blunt><li>I'm tired of being the one who stands in the open. Let a machine do it.</li></blunt>
-      <cheerful><li>Three turrets! I'm going to polish them every morning, and I'll be very sad when they explode.</li></cheerful>
+      <cheerful><li>Three turrets on the approaches, and finally a full night's sleep for whoever's on watch!</li></cheerful>
       <gloomy><li>A turret doesn't freeze up when the shooting starts. Some of us do.</li></gloomy>
-      <cold><li>A turret costs less than a colonist and complains less. Build three.</li></cold>
+      <cold><li>A turret costs less than a colonist and complains less.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Turrets are up. Keep out of their line of fire, everyone. They don't know you.</li></plain>
-      <gloomy><li>They'll blow up eventually. Hopefully next to the right people.</li></gloomy>
+      <plain><li>Turrets are up. Keep out of their line of fire when it starts.</li></plain>
+      <gloomy><li>They'll blow up one day. I've marked where not to stand when they do.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -164,13 +164,13 @@
     <pitch>
       <plain>
         <li>Six traps where the raiders like to walk. They'll be limping before they ever see our walls.</li>
-        <li>[lowtech] Sharpened stakes in the long grass. Old trick. Still works.</li>
+        <li>[lowtech] Sharpened stakes in the long grass. My grandmother's people did it, and they were raided less than most.</li>
       </plain>
       <warm><li>Every raider a trap stops is one I don't have to shoot. I'd like to shoot fewer people.</li></warm>
       <blunt><li>I want the walk to our door to be the worst walk of their lives.</li></blunt>
-      <cheerful><li>Hidden, sneaky, pointy traps! Just remember where we put them.</li></cheerful>
+      <cheerful><li>Hidden, pointy and sneaky, every one of them. We'll just have to remember where they are.</li></cheerful>
       <gloomy><li>They'll get through eventually. Let's make sure fewer of them do.</li></gloomy>
-      <cold><li>A trap works while we sleep and costs almost nothing. I see no downside.</li></cold>
+      <cold><li>A raider with a spike through the foot has to be carried home by two others. I like those numbers.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Traps are set. Learn the safe path, all of you.</li></plain>
@@ -183,15 +183,15 @@
     <defName>Council_Ext_Amb_LightsOn</defName>
     <ambition>Council_Amb_LightsOn</ambition>
     <pitch>
-      <plain><li>The lights die every night around the same time. Two batteries would carry us to morning.</li></plain>
+      <plain><li>The lights went out twice during supper last week. Two batteries would carry us through.</li></plain>
       <warm><li>I don't want anyone on the operating table when the power cuts out.</li></warm>
-      <blunt><li>I'm sick of eating dinner in the dark because the wind dropped. Batteries.</li></blunt>
-      <cheerful><li>Little boxes full of lightning! Let's build two and fill them right up.</li></cheerful>
-      <gloomy><li>One cloudy week and the heaters and the freezer go dark, and we follow soon after.</li></gloomy>
-      <cold><li>Power that stops at sundown is half a power grid. Batteries complete it.</li></cold>
+      <blunt><li>I'm sick of eating dinner in the dark because the wind dropped.</li></blunt>
+      <cheerful><li>Two little boxes full of lightning, humming away in the corner. I love that.</li></cheerful>
+      <gloomy><li>When the heaters stop at night, you find out how thin the walls really are.</li></gloomy>
+      <cold><li>Each blackout costs us spoiled food and stalled work. Two batteries cost less than the next one.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Batteries are full and humming. The lights didn't even flicker last night.</li></plain>
+      <plain><li>Batteries are full and humming. I checked them three times before bed.</li></plain>
       <gloomy><li>Now when the lights go out, it'll be because something worse happened.</li></gloomy>
       <cold><li>Power supply is now continuous.</li></cold>
     </achieved>
@@ -202,11 +202,11 @@
     <ambition>Council_Amb_Workshop</ambition>
     <pitch>
       <plain><li>Right now I sew clothes on a bench in the hallway. Give me a real workshop and watch what comes out of it.</li></plain>
-      <warm><li>With a proper workshop, nobody here would have to wear rags into winter again.</li></warm>
-      <blunt><li>I can't make good things in a bad room. Workshop.</li></blunt>
-      <cheerful><li>A workshop with the tools hung on the wall, each in its own painted outline! I've dreamed about the outlines.</li></cheerful>
-      <gloomy><li>Our gear is held together with string, and it won't hold through another winter.</li></gloomy>
-      <cold><li>Our equipment wears out faster than we replace it. That trend ends badly.</li></cold>
+      <warm><li>With a proper workshop, I could mend things before they turn to rags.</li></warm>
+      <blunt><li>I can't make good things in a bad room.</li></blunt>
+      <cheerful><li>A workshop with the tools hung on the wall, each in its own painted outline. I've dreamed about the outlines.</li></cheerful>
+      <gloomy><li>Our gear is held together with string, and it won't hold through another season.</li></gloomy>
+      <cold><li>Our gear wears out faster than we replace it. I can tell you roughly when we'll run out.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Two stations, good light, a door that shuts. I could work in here forever.</li></plain>
@@ -221,10 +221,10 @@
     <pitch>
       <plain><li>We look at bare walls all day. I want to look at something someone made on purpose, just because it was beautiful.</li></plain>
       <warm><li>A sculpture where we eat would give us something to talk about besides raids.</li></warm>
-      <blunt><li>Our walls are ugly. Our faces are ugly. Let's at least fix the walls.</li></blunt>
+      <blunt><li>Bare walls everywhere you look. Give me a block of stone and leave me alone for a week.</li></blunt>
       <cheerful><li>Three pieces of art, and one of them should be a statue of the cook!</li></cheerful>
       <gloomy><li>Someday people will dig this place up. I want them to find more than bones.</li></gloomy>
-      <cold><li>People are calmer in pleasant rooms, and calm people make fewer mistakes. Three pieces of art.</li></cold>
+      <cold><li>People are calmer in pleasant rooms, and calm people make fewer mistakes.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Someone just stood in front of one of them for five minutes without saying a word.</li></plain>
@@ -237,17 +237,17 @@
     <defName>Council_Ext_Amb_Menagerie</defName>
     <ambition>Council_Amb_Menagerie</ambition>
     <pitch>
-      <plain><li>There's a whole herd out there walking around for free. Let's bring three in and give them a barn.</li></plain>
+      <plain><li>I've watched the same herd graze past the fields all week. Three of them could be ours.</li></plain>
       <warm><li>An animal doesn't care what kind of day you've had. I think we could all use that.</li></warm>
-      <blunt><li>Animals haul, fight and never complain, which is more than I can say for some of you.</li></blunt>
-      <cheerful><li>Fluffy ones, big ones, and one with a funny face!</li></cheerful>
-      <gloomy><li>If the food ever runs out, at least we'll have options.</li></gloomy>
-      <cold><li>Tamed animals are labor that eats hay instead of meals. Three, minimum.</li></cold>
+      <blunt><li>Animals haul and never complain, which is more than I can say for some of you.</li></blunt>
+      <cheerful><li>At least one fluffy one, please, and one with a silly face.</li></cheerful>
+      <gloomy><li>Animals are always glad to see you in the morning. People here aren't.</li></gloomy>
+      <cold><li>Three animals, minimum. If one doesn't take to us, it still has meat on it.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Three new animals and a barn for them. It smells like a real farm in there.</li></plain>
+      <plain><li>Three new animals and a barn for them. It smells like a farm in there, and I like it.</li></plain>
       <warm><li>They followed me in from the field today. I think they've decided we're family.</li></warm>
-      <cold><li>Three animals tamed. I've already worked out which one is food.</li></cold>
+      <cold><li>Three animals tamed. I've put their names on the feeding rota.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -255,11 +255,11 @@
     <defName>Council_Ext_Amb_Scholars</defName>
     <ambition>Council_Amb_Scholars</ambition>
     <pitch>
-      <plain><li>There's so much we don't know how to make yet. Give me a lab and some quiet, and I'll start fixing that.</li></plain>
+      <plain><li>There's so much we don't know how to make yet, and we keep paying traders for it instead.</li></plain>
       <warm><li>Every project we finish is something nobody here has to struggle with again.</li></warm>
-      <blunt><li>We're still doing everything the hard way because nobody's bothered to learn the easy way. Let me.</li></blunt>
-      <cheerful><li>A lab with notes pinned to every wall! I can't wait to get started.</li></cheerful>
-      <gloomy><li>The raiders are getting smarter. We'd better get smarter faster.</li></gloomy>
+      <blunt><li>Everything here gets done the hard way because no one's had time to learn an easier one.</li></blunt>
+      <cheerful><li>A lab with notes pinned on every wall and a pot of tea that never goes cold. I can't wait.</li></cheerful>
+      <gloomy><li>The raiders turn up with better weapons every year. Ours are the ones we started with.</li></gloomy>
       <cold><li>A finished project keeps paying off for as long as the colony stands. Few things we buy do that.</li></cold>
     </pitch>
     <achieved>
@@ -273,18 +273,18 @@
     <defName>Council_Ext_Amb_Greenhouse</defName>
     <ambition>Council_Amb_Greenhouse</ambition>
     <pitch>
-      <plain><li>Every winter we watch the fields die and start counting days. A roof over the crops changes that.</li></plain>
+      <plain><li>Every winter we watch the fields die and start counting the days until the thaw.</li></plain>
       <warm>
-        <li>Fresh food all year round. The children would grow up thinking winter is just a word.</li>
+        <li>Think of bringing a bowl of fresh greens to whoever's sick in midwinter.</li>
         <li>[winter] Look outside. Nothing's growing. Now imagine walking into a warm room full of green.</li>
       </warm>
       <blunt><li>The weather's been deciding whether we eat for too long. Let's take its vote away.</li></blunt>
-      <cheerful><li>Strawberries in winter! Or potatoes, at least.</li></cheerful>
+      <cheerful><li>Strawberries in winter! I'm eating the first one myself.</li></cheerful>
       <gloomy><li>One cold snap at the wrong time and the whole harvest is gone. I've seen it happen.</li></gloomy>
-      <cold><li>Outdoor farming is a gamble with bad odds. Indoors, we set the odds.</li></cold>
+      <cold><li>Outdoor farming is a gamble with bad odds, and we've lost it before.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Whatever the weather does now, the crops don't care.</li></plain>
+      <plain><li>The first seedlings are up under the lamps.</li></plain>
       <warm><li>Come and stand in here for a minute. It's the best-smelling room in the colony.</li></warm>
       <cold><li>Food production no longer depends on the season.</li></cold>
     </achieved>
@@ -295,19 +295,19 @@
     <ambition>Council_Amb_WarmWinter</ambition>
     <pitch>
       <plain>
-        <li>Half of us slept in our coats last winter. Let's put heat in the bedrooms this time.</li>
+        <li>I slept in my coat most of last winter. Let's put heat in the bedrooms this time.</li>
         <li>[fall] The nights are getting colder already. Let's get heat into every bedroom before the first frost.</li>
       </plain>
       <warm><li>This winter, everyone should wake up with feeling in their fingers.</li></warm>
-      <blunt><li>Last winter someone's toes turned black. I'm not naming names. Heat in every room.</li></blunt>
-      <cheerful><li>Imagine waking up without your breath frozen to the blanket!</li></cheerful>
+      <blunt><li>I'm not losing toes to the cold so we can save on firewood.</li></blunt>
+      <cheerful><li>Imagine waking up warm, without your breath frozen to the blanket.</li></cheerful>
       <gloomy><li>I've seen people go to sleep cold and not wake up. I'd rather not see it again.</li></gloomy>
-      <cold><li>A colonist who loses toes to frostbite is a slower colonist. Heat the bedrooms.</li></cold>
+      <cold><li>A colonist who sleeps cold works slowly and falls sick. Heat costs less than either.</li></cold>
     </pitch>
     <achieved>
       <plain><li>I slept with my arms outside the blanket last night. That's how warm it is.</li></plain>
-      <cheerful><li>I took my socks off to sleep last night!</li></cheerful>
-      <gloomy><li>Warm rooms. We'll find something else to suffer about, I'm sure.</li></gloomy>
+      <cheerful><li>I'm going to sleep with my socks off tonight!</li></cheerful>
+      <gloomy><li>Warm rooms. I'll believe it when it's snowing sideways and I still can't see my breath.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -323,7 +323,7 @@
       <blunt><li>I don't care if it's a refugee or a prisoner who's changed their mind. We need hands.</li></blunt>
       <cheerful><li>A new face, with new stories, who hasn't heard all my jokes yet!</li></cheerful>
       <gloomy><li>Every time we lose someone, there are fewer of us to dig the next grave. Let's grow instead.</li></gloomy>
-      <cold><li>Our workforce is too thin to survive one bad week. Recruit.</li></cold>
+      <cold><li>One bad week and there aren't enough of us to keep both the fields and the walls. Recruit.</li></cold>
     </pitch>
     <achieved>
       <plain><li>The new arrival's settling in. Somebody show them where we keep the good meals.</li></plain>
@@ -336,17 +336,17 @@
     <defName>Council_Ext_Amb_GoodTimes</defName>
     <ambition>Council_Amb_GoodTimes</ambition>
     <pitch>
-      <plain><li>I've seen more scowls this week than smiles. Let's spend a while fixing whatever's making everyone miserable.</li></plain>
-      <warm><li>I want to hear people laughing at dinner again. Let's look after each other for a while.</li></warm>
+      <plain><li>I've seen more scowls this week than smiles. Whatever's wrong, let's find it and fix it.</li></plain>
+      <warm><li>It's been weeks since I heard anyone laugh at supper.</li></warm>
       <blunt><li>I'm sick of everybody's moods, mine included. Let's sort it out before someone throws a punch.</li></blunt>
-      <cheerful><li>Let's make this the happiest colony on the Rim! Or one of the top ten, anyway.</li></cheerful>
+      <cheerful><li>Let's make this the happiest place on the Rim, starting with a proper meal and a day off.</li></cheerful>
       <gloomy><li>I'd like to remember what this place felt like when we first got here, before it got heavy.</li></gloomy>
       <cold><li>Every breakdown costs days of work and sometimes a wall. Raise morale before it costs more.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Somebody hummed at dinner tonight. I haven't heard that in a long time.</li></plain>
+      <plain><li>Somebody hummed at supper. I haven't heard that in a long time.</li></plain>
       <cheerful><li>I asked every one of you, and you're all happy!</li></cheerful>
-      <gloomy><li>Good moods all round. It won't last, but I'm enjoying it while it does.</li></gloomy>
+      <gloomy><li>Good moods all round. I keep waiting for the catch.</li></gloomy>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -354,16 +354,16 @@
     <defName>Council_Ext_Amb_Treasury</defName>
     <ambition>Council_Amb_Treasury</ambition>
     <pitch>
-      <plain><li>Every time a trader comes through, we can't afford what we need. Let's put silver aside so that stops.</li></plain>
+      <plain><li>The last caravan had everything we needed, and we couldn't pay for any of it. Let's put silver aside.</li></plain>
       <warm><li>One day that silver might pay a ransom for one of us. It should be there when we need it.</li></warm>
       <blunt><li>Traders can smell poverty. I want them to smell silver.</li></blunt>
-      <cheerful><li>A big pile of shiny coins! I'd just like to look at it sometimes.</li></cheerful>
+      <cheerful><li>A big pile of shiny silver. I'd just like to look at it sometimes.</li></cheerful>
       <gloomy><li>The day we need something desperately is the day the trader doubles the price. Let's be ready for it.</li></gloomy>
       <cold><li>Silver turns into medicine, weapons or a ransom the moment we need one of them.</li></cold>
     </pitch>
     <achieved>
-      <plain><li>Two thousand silver in the vault. Let the next trader try to lowball us.</li></plain>
-      <cheerful><li>I sat on the pile of silver for a moment! It was very uncomfortable.</li></cheerful>
+      <plain><li>Two thousand silver put by. The next trader can name a price, and we'll name ours.</li></plain>
+      <cheerful><li>I sat on the pile of silver, just for a moment!</li></cheerful>
       <cold><li>Our reserves are sufficient. From now on we negotiate from strength.</li></cold>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
@@ -375,14 +375,14 @@
       <plain><li>Simple meals keep us alive. I want to cook something that makes people close their eyes when they eat it.</li></plain>
       <warm><li>Cooking well for someone is a way of saying you're glad they're here. Let me say it properly.</li></warm>
       <blunt><li>I can do a lot better than this slop if someone gives me a kitchen worth the name.</li></blunt>
-      <cheerful><li>Real sauces and seasoning, and meals with more than one color in them!</li></cheerful>
+      <cheerful><li>Real sauces and seasoning, and meals with more than one color in them.</li></cheerful>
       <gloomy><li>Some nights a good meal is the only thing that goes right all day. I'd like more of those nights.</li></gloomy>
-      <cold><li>A well-fed colonist works harder and complains less. Fine meals are an investment.</li></cold>
+      <cold><li>A well-fed colonist is a patient colonist. We're short on patience here.</li></cold>
     </pitch>
     <achieved>
       <plain><li>Twenty fine meals and a kitchen I'm proud of. Come and get it.</li></plain>
       <blunt><li>Eat it slowly. I didn't cook it for you to inhale it.</li></blunt>
-      <cheerful><li>Somebody cried at dinner tonight, the good kind of crying!</li></cheerful>
+      <cheerful><li>Somebody cried over their plate, the good kind of crying!</li></cheerful>
     </achieved>
   </ColonyCouncil.FlavorExtensionDef>
 
