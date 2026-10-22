@@ -26,9 +26,9 @@
       <li>Settlers found {PLACE}</li>
     </titles>
     <texts>
-      <li>[theirLowtech] Settlers of {FACTION} have founded a new town, {PLACE}, {TALE}. The first houses are up, the well is dug, and the first market has already been held.\n\nNew towns need everything, all of it now: tools, timber, cloth, people. They will be looking for neighbors to trade with.</li>
-      <li>[theirHightech] {FACTION} have put a new settlement on the map: {PLACE}, {TALE}. The first prefab walls went up last week, and someone has already painted the name over the gate.\n\nNew towns need everything, all of it now: tools, timber, fuel, people. They will be looking for neighbors to trade with.</li>
-      <li>[spring] With the snow gone, settlers of {FACTION} have walked out to found a new town, {PLACE}, {TALE}. They are mostly young, mostly hopeful, and mostly short of everything.\n\nThey will be looking for neighbors to trade with.</li>
+      <li>[theirLowtech] Settlers of {FACTION} have founded a new town, {PLACE}, {TALE}. The first houses are up and the well is dug, and they held their first market before the roofs were on.\n\nThey are short of nearly everything, timber most of all, and they will be looking for neighbors to trade with.</li>
+      <li>[theirHightech] {FACTION} have put a new settlement on the map: {PLACE}, {TALE}. The first prefab walls went up last week, and someone has already painted the name over the gate, slightly crooked.\n\nA new town needs everything at once, and {PLACE} will be looking for neighbors to trade with.</li>
+      <li>[spring] With the snow gone, settlers of {FACTION} have walked out to found a new town, {PLACE}, {TALE}. They are mostly young, mostly hopeful, and mostly short of everything.\n\nTheir first letter to the colony is already on the road.</li>
     </texts>
     <summaries>
       <li>{PLACE} is on the map to stay. Its first traders will come by soon, and caravans and visitors from {FACTION} come more often while the town finds its feet.</li>
@@ -49,13 +49,13 @@
           <li>A welcome for {PLACE}</li>
         </titles>
         <texts>
-          <li>The settlers of {PLACE} have sent word asking to be counted as friends of the colony. A neighbor's gift is the custom at times like these, and it's remembered.\n\nThey are short of timber, too, and would pay a fair price for some.</li>
+          <li>The settlers of {PLACE} have sent a runner to ask whether they may count the colony among their friends. A neighbor's gift is the custom at a time like this, and it's remembered.\n\nThey are short of timber too, and would pay a fair price for some.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Send a gift ({COUNT} silver)</label>
-            <outcome>The colony's gift goes to {PLACE} with good wishes for the new town.</outcome>
+            <outcome>The runner takes the silver back to {PLACE}, where the settlers mean to spend it on a bell for the meeting hall.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for {PLACE}</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
@@ -67,7 +67,7 @@
           </li>
           <li>
             <label>Sell them timber (100 wood)</label>
-            <outcome>A load of the colony's timber goes to {PLACE}, and the silver comes back with the cart.</outcome>
+            <outcome>Carters from {PLACE} come for the logs with an empty wagon, and pay more than the going price, since they need them now.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Sell"><thing>WoodLog</thing><count>100</count><price>1.4</price></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
@@ -78,7 +78,7 @@
           </li>
           <li>
             <label>Wish them well</label>
-            <outcome>The colony sends its good wishes, and nothing else.</outcome>
+            <outcome>The runner goes home with the colony's good wishes and an empty purse.</outcome>
           </li>
         </options>
       </li>
@@ -105,7 +105,7 @@
           <li>{PLACE} finds its feet</li>
         </titles>
         <texts>
-          <li>[gift,!timber] {PLACE} has found its feet. The fields are marked out, the walls are up, and the settlers haven't forgotten who sent the first gift.</li>
+          <li>[gift,!timber] {PLACE} has found its feet. The fields are marked out, the walls are up, and the bell bought with the colony's silver rings for market every week.</li>
           <li>[timber] {PLACE} has found its feet. There are colony timbers in half the roofs there, and the settlers say so when they come by to trade.</li>
           <li>[!gift,!timber] {PLACE} has found its feet: walls up, fields marked out, a market on the first day of every week. The colony has new neighbors, for better or worse.</li>
         </texts>
@@ -153,14 +153,14 @@
           <li>Leaving {PLACE}</li>
         </titles>
         <texts>
-          <li>A family from {PLACE} has stopped at the colony's gate instead of going on to {ITEM}. They have a handcart, a dog and a lot of questions about the colony.\n\nThey would like to stay. They've heard it's a good place.</li>
+          <li>A family from {PLACE} has stopped at the colony's gate instead of going on to {ITEM}. They have a barrow of bedding, a dog and a lot of questions about the colony.\n\nThey'd like to stay. They've heard it's a good place.</li>
           <li>[raids] A family from {PLACE} has turned up at the gate. They've been raided twice in a year and don't trust {ITEM} to be any safer.\n\nThey ask whether the colony would take them in.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>The family unloads the handcart. The dog has already found the warmest spot.</outcome>
+            <outcome>The family unloads the barrow. The dog has already found the warmest spot.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family><animal>dog</animal></li>
             </effects>
@@ -222,7 +222,7 @@
         </titles>
         <texts>
           <li>The last of {FACTION} left {PLACE} three days ago. The gates stand open, the roofs are already going, and grass is creeping in at the edges of the road.\n\nIn a year it will be a ruin, and in ten a story.</li>
-          <li>[salvaged] {PLACE} is empty. What the colony carted away is in its stores now; the rest is weather's business.\n\nIn a year it will be a ruin, and in ten a story.</li>
+          <li>[salvaged] {PLACE} is empty. What the colony carted away is in its stores now, and the rest is the weather's business.\n\nSwallows have moved into the old mill.</li>
         </texts>
         <chronicle>{FACTION} abandoned {PLACE}.</chronicle>
       </li>
@@ -258,8 +258,8 @@
       <li>A trading season</li>
     </titles>
     <texts>
-      <li>[theirLowtech] Word has spread that the roads through the region are safe this year, and the merchants have come out in force. Every inn between {PLACE} and the colony is full, and {FACTION}'s caravan masters are talking about new routes.\n\nIt won't last forever. While it does, the colony's goods are worth more to more people.</li>
-      <li>[theirHightech] Fuel is cheap and the roads are clear, and every trading house in the region knows it. {FACTION} have put three new caravans on the road out of {PLACE} this month alone.\n\nIt won't last forever. While it does, the colony's goods are worth more to more people.</li>
+      <li>[theirLowtech] The roads through the region are safe this year, or safe enough, and the merchants have come out in force. Every inn between {PLACE} and the colony is full, and {FACTION}'s caravan masters are drawing new routes on the tables in spilled beer.\n\nWhile it lasts, the colony's goods are worth more to more people.</li>
+      <li>[theirHightech] Fuel is cheap and the roads are clear, and every trading house in the region knows it. {FACTION} have put three new caravans on the road out of {PLACE} this month alone.\n\nIt won't last. Everyone on the road knows that too, which is why they're all in such a hurry.</li>
       <li>[summer] Long days and dry roads have brought the merchants out early this year. Caravans of {FACTION} and everyone else are passing the colony every few days, and the talk in {PLACE} is of nothing but prices.</li>
     </texts>
     <summaries>
@@ -417,13 +417,13 @@
           <li>A cart for {NAME}</li>
         </titles>
         <texts>
-          <li>{FACTION} have offered the colony a stall at {NAME}. The colony has {COUNT} {THING} it doesn't need, and fair prices are better than any trader's.\n\nThe silver would come back when the fair closes.</li>
+          <li>{FACTION} have offered the colony a stall at {NAME}. The colony has {COUNT} {THING} it doesn't need, and fair prices are better than any trader's.\n\nThe fair's carts are going around the villages for stall goods, and would bring the takings back when the fair closes.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Send the cart ({COUNT} {THING})</label>
-            <outcome>The cart goes to {PLACE} loaded with {THING}. The silver will come back when the fair closes.</outcome>
+            <outcome>The {THING} goes onto one of the fair's carts, bound for {PLACE}. The takings will come back the same way when the fair closes.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Sell"><price>1.3</price><later>true</later></li>
             </effects>
@@ -468,11 +468,11 @@
           <li>{NAME} closes</li>
         </titles>
         <texts>
-          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The cart came back empty and the purse full, with {COUNT} silver for the colony's goods, and {B_nameDef} won the contest in {SKILL} and brought the prize home.\n\nThe colony's name was on a lot of lips at {PLACE} this week.</li>
-          <li>[sent,noPrize] {NAME} has closed. The cart came back empty and the purse came back full: {COUNT} silver for the colony's goods.\n\n{B_nameDef} did well in the contest in {SKILL}, but not well enough. Next year, {B_nameDef} says.</li>
-          <li>[sent,!entered] {NAME} has closed. The cart came back empty and the purse came back full: {COUNT} silver for the colony's goods.</li>
+          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The fair's carter brought back the takings, {COUNT} silver for the colony's goods, and {B_nameDef} won the contest in {SKILL} and brought the prize home.\n\nThe colony's name was on a lot of lips at {PLACE} this week.</li>
+          <li>[sent,noPrize] {NAME} has closed. The colony's takings came back with the fair's carter, {COUNT} silver for its goods.\n\n{B_nameDef} did well in the contest in {SKILL}, but not well enough. Next year, {B_nameDef} says.</li>
+          <li>[sent,!entered] {NAME} has closed, and the fair's carter has been around with the colony's takings: {COUNT} silver, in a sealed bag.</li>
           <li>[!sent,prize] {NAME} has closed, and {B_nameDef} won the contest in {SKILL}. The prize came home with the news, and so did the bragging.</li>
-          <li>[!sent,noPrize] {NAME} has closed. {B_nameDef} did well in the contest in {SKILL}, but not well enough. Next year, {B_nameDef} says.</li>
+          <li>[!sent,noPrize] {NAME} has closed. {B_nameDef} came close in the contest in {SKILL}, and has been explaining the judges' mistake to anyone who will listen.</li>
           <li>[!sent,!entered] {NAME} has closed, and the travelers who went to it are drifting home with stories. The colony will hear them for weeks.</li>
         </texts>
         <chronicle>{NAME} at {PLACE} closed.</chronicle>
@@ -506,8 +506,8 @@
     </titles>
     <texts>
       <li>Once in a generation, the faithful of {FACTION} walk to the old shrine at {PLACE}, and this is that year. They are on every road, in twos and threes and in long singing columns, and many of them pass the colony.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
-      <li>[theirHightech] Once in a generation, the faithful of {FACTION} go to the old shrine at {PLACE}, some walking, some packed into the backs of trucks, all of them singing. This is that year, and the colony sits on one of their roads.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
-      <li>[colony:Devout] Once in a generation, the faithful of {FACTION} walk to the old shrine at {PLACE}, and this is that year. Word on the roads is that the colony keeps its own faith well, and more than a few of them mean to stop there on the way.\n\nMost carry little, and will ask for less.</li>
+      <li>[theirHightech] Some walk and some ride in the backs of trucks, and all of them are singing. The faithful of {FACTION} are on their way to the old shrine at {PLACE}, as they are once in a generation, and the colony sits on one of their roads.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
+      <li>[colony:Devout] The faithful of {FACTION} are walking to the old shrine at {PLACE} this year, as they do once in a generation, and the talk on the roads is that the colony keeps its own faith well. More than a few of them mean to stop there on the way.\n\nMost carry little, and will ask for less.</li>
     </texts>
     <summaries>
       <li>Pilgrims and travelers pass the colony far more often, hungry ones among them. Hosting them costs food and earns lasting goodwill with {FACTION}.</li>
@@ -548,7 +548,7 @@
           </li>
           <li>
             <label>Let them camp, for a fee (60 silver)</label>
-            <outcome>The pilgrims scrape the fee together between them and camp by the water. They sing less than they might have.</outcome>
+            <outcome>The pilgrims pass a bowl among themselves until the fee is in it, and camp by the water. They sing less than they might have.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>60</count></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
@@ -581,7 +581,7 @@
           <li>A blessing for the colony</li>
         </titles>
         <texts>
-          <li>On their way home from {PLACE}, the pilgrims stopped again at the colony's gate. Their leader said a blessing over the fields and the people in them, in the old way, and left before anyone could offer supper.\n\nEven those at the colony who don't believe in such things went to bed in a better mood.</li>
+          <li>On their way home from {PLACE}, the pilgrims stopped again at the colony's gate. Their leader said a blessing over the fields and the people in them, in the old way, and they were gone before anyone could offer supper.\n\nEven the colony's doubters kept their heads bowed until it was over.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_Blessed</thought></li>
@@ -595,7 +595,7 @@
           <li>The pilgrims go home</li>
         </titles>
         <texts>
-          <li>[hosted] The last of the pilgrims have passed on their way home from {PLACE}. A few of them left something at the gate on the way: small things from the shrine, and some that aren't so small.\n\n{FACTION} will hear about the colony's welcome from every one of them.</li>
+          <li>[hosted] The last of the pilgrims have passed on their way home from {PLACE}. A few of them left something at the gate as they went: small things from the shrine, and some that aren't so small.\n\n{FACTION} will hear about the colony's welcome from every one of them.</li>
           <li>[fee] The last of the pilgrims have passed on their way home from {PLACE}. They paid what the colony asked, and in {FACTION}'s halls they will say so.</li>
           <li>[!hosted,!fee] The roads are quiet again. The pilgrimage to {PLACE} is over for another generation.</li>
         </texts>
@@ -627,7 +627,7 @@
     </titles>
     <texts>
       <li>Someone in {PLACE} found silver in a creek bed last month, and now half the region is out with picks and pans. Prospectors have been passing the colony for days, and some of them are looking hard at the colony's own hills.\n\nMost will find nothing. A few will get rich, and a few will want to stay.</li>
-      <li>[theirHightech] A survey crew out of {PLACE} hit a silver seam last month, and the news got out before the claim was filed. Now prospectors with metal detectors and borrowed trucks are combing every hill in the region, including the colony's.\n\nMost will find nothing. A few will get rich, and a few will want to stay.</li>
+      <li>[theirHightech] A survey crew out of {PLACE} hit a silver seam last month, and the news got out before the claim was filed. Now prospectors with metal detectors and borrowed trucks are combing every hill in the region, the colony's included.\n\nThe claims office at {PLACE} has a line out the door and around the block.</li>
     </texts>
     <summaries>
       <li>Travelers and prospectors pass the colony often, and some will ask to stay. The colony can let them work its land for a share of what they find.</li>
@@ -655,7 +655,7 @@
         <options>
           <li>
             <label>Let them dig, for a share</label>
-            <outcome>The prospectors stake out the creek beds. The colony will get its share when they're done, if there's anything to share.</outcome>
+            <outcome>The prospectors stake out the creek beds. The colony's share will come when they're done, if there's anything to share.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Owe"><amount>150~700</amount></li>
             </effects>
@@ -686,7 +686,7 @@
         <message>true</message>
         <requires><li>share</li></requires>
         <texts>
-          <li>Somebody at the prospectors' camp found a nugget the size of a thumb in the colony's creek. Nobody there has slept since.</li>
+          <li>Somebody at the prospectors' camp found a nugget the size of a thumb in the colony's creek. Since then the lamps down there have burned all night.</li>
         </texts>
       </li>
       <li>

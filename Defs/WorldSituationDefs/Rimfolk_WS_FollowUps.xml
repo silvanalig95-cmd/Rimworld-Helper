@@ -38,12 +38,12 @@
     <texts>
       <li>{TALE} is over, and {FACTION} are counting what it cost them. Burned barns, broken bridges, fields trampled to mud, and at {PLACE} a wall with a hole in it the size of a house.\n\nThey are starting again. They will need timber, stone, skilled hands and a great deal of soup.</li>
       <li>[theirLowtech] The fighting of {TALE} has moved on, and {FACTION} are coming back to their villages around {PLACE}: what's left of them. The old people say it will take a generation. The young people have already started on the bridge.</li>
-      <li>[theirHightech] {FACTION} have published a rebuilding plan for {PLACE} after {TALE}: a long list of everything that was broken, and a shorter list of everything they have to mend it with. They are asking every neighbour for help with the difference.</li>
-      <li>[afterHelped] {TALE} is over, and {FACTION} have not forgotten that the colony stood by them in it. Now they are rebuilding, and they have sent to the colony first, as friends do.</li>
+      <li>[theirHightech] {FACTION} have published a rebuilding plan for {PLACE} after {TALE}: a long list of everything that was broken, and a shorter list of everything they have to mend it with. They are asking every neighbor for help with the difference.</li>
+      <li>[afterHelped] {TALE} is over, and {FACTION} have not forgotten that the colony stood by them through it. Now they are rebuilding, and the colony is the first place they've sent to.</li>
       <li>[their:friend] {FACTION} are rebuilding after {TALE}. Their message to the colony ends with a line for {FRIEND_nameDef}: there's a new house going up at {PLACE}, and they'd like {FRIEND_objective} to see it finished.</li>
     </texts>
     <summaries>
-      <li>{FACTION} will ask for timber and skilled hands, and their homeless will pass the colony on the way back to what's left. Help given now will be built into {PLACE}, and remembered there.</li>
+      <li>{FACTION} will ask for timber and skilled hands, and their homeless will pass the colony on the way back to what's left. What the colony gives now goes into the new walls of {PLACE}.</li>
     </summaries>
     <modifiers>
       <li><rimfolk>Council_Mission_Rebuild</rimfolk><factor>3</factor></li>
@@ -60,14 +60,14 @@
           <li>Timber for {PLACE}</li>
         </titles>
         <texts>
-          <li>{FACTION} have sent a carter to ask for timber: {COUNT} logs for the bridge and the barns at {PLACE}. They'll pay what they can, which isn't much after {TALE}.</li>
+          <li>{FACTION}'s carter has brought a slate with the new bridge drawn on it, and a number chalked under the drawing: {COUNT} logs, for the bridge and the barns at {PLACE}. They'll pay what they can, which after {TALE} isn't much.</li>
           <li>[afterHelped] {FACTION}'s carter has come with a list and an apology: they hate to ask again, after all the colony did during {TALE}, but {PLACE} needs {COUNT} logs to get its roofs back.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Send {COUNT} wood</label>
-            <outcome>The cart goes back to {PLACE} stacked to the rails, and {FACTION}'s builders will have their bridge by the end of the month.</outcome>
+            <outcome>The carter ropes the logs down and heads back to {PLACE}. {FACTION}'s builders will have their bridge by the end of the month.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
@@ -79,7 +79,7 @@
           </li>
           <li>
             <label>Sell it to them</label>
-            <outcome>{FACTION} pay a fair price for the timber, and are glad to have it at all.</outcome>
+            <outcome>The carter counts out a fair price from {FACTION}'s thin purse, and is glad to get the timber at all.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.1</factor></li>
@@ -90,7 +90,7 @@
           </li>
           <li>
             <label>The colony can't spare it</label>
-            <outcome>The carter goes back to {PLACE} empty. Someone else will have to find the bridge.</outcome>
+            <outcome>The carter goes back to {PLACE} with an empty wagon and the slate under his arm.</outcome>
           </li>
         </options>
       </li>
@@ -167,7 +167,7 @@
           <li>{PLACE} stands again</li>
         </titles>
         <texts>
-          <li>{PLACE} stands again: new roofs, a mended wall, and a bridge that takes laden carts. {FACTION} held a feast when the last beam went up, and the colony's name was spoken in the toasts.\n\nThey will remember who helped them stand back up long after they've forgotten {TALE}.</li>
+          <li>{PLACE} stands again: new roofs, a mended wall, and a bridge that takes laden carts. {FACTION} held a feast when the last beam went up, and the first toast was to the colony.</li>
           <li>[bridge] The new bridge at {PLACE} is finished, and {FACTION} have carved a little sign on it with the colony's name. Children run across it to hear their feet drum on the boards.</li>
         </texts>
         <chronicle>{FACTION} rebuilt {PLACE} after {TALE}, with the colony's help.</chronicle>
@@ -183,7 +183,7 @@
           <li>{PLACE} rebuilds</li>
         </titles>
         <texts>
-          <li>{FACTION} are rebuilding {PLACE} a house at a time. It will take years. They'll manage; people always do.</li>
+          <li>{FACTION} are rebuilding {PLACE} a house at a time. It will take years, and they have started with the bakery.</li>
           <li>[helped] {FACTION} are rebuilding {PLACE} slowly, with the colony's timber in some of the new walls. They know where it came from.</li>
         </texts>
         <chronicle>{FACTION} began rebuilding {PLACE} after {TALE}.</chronicle>
@@ -266,7 +266,7 @@
           <li>A standing order</li>
         </titles>
         <texts>
-          <li>A merchant house that uses the reopened road has sent an agent to the colony. They want a regular supplier along the way: {COUNT} cooked meals now, for the next caravan's journey, at half again what they're worth, and the same again next season if the meals are good.\n\nIt would make the colony a stop on the road, in more ways than one.</li>
+          <li>A merchant house that uses the reopened road has sent an agent to the colony. They want a regular supplier along the way: {COUNT} cooked meals now, for the next caravan's journey, at half again what they're worth, and the same again next season if the meals are good.\n\nThe agent has a covered wagon waiting on the road, and a list of the other places that have tried.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -321,7 +321,7 @@
         <texts>
           <li>The first rush on the reopened road is over. Caravans still come, but at their usual pace again, and the dust has settled.</li>
           <li>[waystop] The rush is over, but the colony's well has become a known stop on the road. Caravans stop to water their animals and trade a little, and the colony hears the news of the region before anyone else.</li>
-          <li>[contract] The rush is over. The merchant house has written to say the colony's meals were the best of the journey, and that its caravans will be stopping again.</li>
+          <li>[contract] The rush is over. The merchant house's last caravan of the season brought a note saying the colony's meals were the best of the journey, and a purse of silver to say so properly.</li>
         </texts>
         <chronicle>The road reopened after {TALE}.</chronicle>
         <effects>
