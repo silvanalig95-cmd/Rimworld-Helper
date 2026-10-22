@@ -18,12 +18,12 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_StormDread</defName>
-    <stages><li><label>storms mean death</label><description>The last time there was a storm like this, someone died. I can't stop thinking about it.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <stages><li><label>storms mean death</label><description>There was thunder like this the night we lost them. I've counted every flash since it started.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_NightPrayers</defName>
-    <stages><li><label>night prayers</label><description>I say my prayers every night now. It helps me sleep.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <stages><li><label>night prayers</label><description>I say my prayers every night now, the same words each time. I sleep better after.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
@@ -43,7 +43,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_RainCleanses</defName>
-    <stages><li><label>the rain washes it away</label><description>When it rains, I stand outside for a while and let it wash over me. I feel cleaner afterward.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>the rain washes it away</label><description>It's raining, so I went out and stood in it until I was soaked to the skin. That's better.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
@@ -53,7 +53,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_WinterGrief</defName>
-    <stages><li><label>winter remembers</label><description>We lost someone in winter. I think of them every time the snow comes.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>winter remembers</label><description>Snow on the ground, and I'm thinking about them again. It'll be like this until the thaw.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
 </Defs>
