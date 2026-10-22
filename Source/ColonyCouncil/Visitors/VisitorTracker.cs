@@ -186,7 +186,8 @@ namespace ColonyCouncil
                     StepHere(t, now);
                     return;
                 case VisitState.Leaving:
-                    if (AllGone(t))
+                    // Gone, or (stuck somewhere on the way out) a day on: the record goes.
+                    if (AllGone(t) || t.endTick >= 0 && now - t.endTick > VisitorMath.MaxKeepTicks)
                     {
                         t.state = VisitState.Done;
                         if (t.endTick < 0) t.endTick = now;
@@ -270,11 +271,12 @@ namespace ColonyCouncil
                     if (t.letterId == -1) FindLetter(t);
                     bool hasLetter = t.letterId >= 0;
                     bool open = hasLetter && Visitors.LetterOpen(t.letterId);
-                    if (hasLetter && !open && t.answeredAt < 0)
+                    if (hasLetter && !open && t.answeredAt < 0) t.answeredAt = now;
+                    // Given a bed for the night: they stay (or, if a night out there would hurt them, go on).
+                    if (t.stayNights > 0 && t.answeredAt >= 0)
                     {
-                        t.answeredAt = now;
-                        // Given a bed for the night: they stay.
-                        if (t.stayNights > 0 && BeginStay(t, now)) return;
+                        if (BeginStay(t, now)) return;
+                        t.stayNights = 0;
                     }
                     if (!t.saidWait && now - t.arrived > VisitorMath.TicksPerHour * 2 && (open || !hasLetter))
                     {
@@ -327,8 +329,8 @@ namespace ColonyCouncil
             if (t == null) return;
             t.stayNights = Mathf.Clamp(nights, 1, VisitorMath.MaxNights);
             t.staySpot = spot;
-            // Already answered (the letter was found closed): they stay from now.
-            if (t.state == VisitState.Here && t.answeredAt >= 0 && t.kind == VisitKind.Wait) BeginStay(t, Now);
+            // This is the answer (it comes while the letter is being closed): they stay from their next turn.
+            if (t.answeredAt < 0 && !(t.letterId >= 0 && Visitors.LetterOpen(t.letterId))) t.answeredAt = Now;
         }
 
         /// <summary>

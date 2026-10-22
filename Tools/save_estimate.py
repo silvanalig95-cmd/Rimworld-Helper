@@ -70,6 +70,9 @@ C = {
     "PlayResults": const("PlayOut/PlayOutTracker.cs", "MaxResults", 30),
     "CourierTrips": const("Couriers/CourierMath.cs", "MaxTrips", 12),
     "CourierPeople": const("Couriers/CourierMath.cs", "MaxPeople", 3),
+    "VisitorTrips": const("Visitors/VisitorMath.cs", "MaxTrips", 8),
+    "VisitorPeople": const("Visitors/VisitorMath.cs", "MaxPeople", 6),
+    "VisitorAnimals": const("Visitors/VisitorMath.cs", "MaxAnimals", 8),
     "KinNoteDays": const("World/MemoryMath.cs", "NoteDays", 30),
 }
 
@@ -299,6 +302,10 @@ MODEL = {
     "Couriers/CourierTrip.cs:people": ("while", C["CourierPeople"], P, "a trip's people, while it lasts"),
     "Couriers/CourierTrip.cs:things": ("while", 8, P, "particular things a trip came for (a neighbour's cargo), while it lasts"),
     "Couriers/CourierTrip.cs:toUnload": ("while", C["CourierPeople"] + 1, P, "who still carries the colony's goods, while the trip lasts"),
+    # Visitors: visits waiting or on the map (VisitorMath.MaxTrips), each dropped a day after it ends at most
+    "Visitors/VisitorTracker.cs:trips": ("cap", (C["VisitorTrips"], 0.4), 700, "visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day"),
+    "Visitors/VisitorTrip.cs:people": ("while", C["VisitorPeople"], P, "a visit's people, while it lasts"),
+    "Visitors/VisitorTrip.cs:animals": ("while", C["VisitorAnimals"], P, "a visit's animals (a pack beast, a family's dog, a herd), while it lasts"),
     "PlayOut/PlayOuts.cs:invited": ("fixed", 8, P, "per play-out (counted under plays)"),
     "PlayOut/PlayOuts.cs:spots": ("fixed", 2, 60, "per play-out"),
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),
