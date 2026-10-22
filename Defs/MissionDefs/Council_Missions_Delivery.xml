@@ -128,7 +128,7 @@
           <li>[missed,fire] {FACTION}'s carts came for the timber and left with almost nothing. The burned street at {PLACE} will stand empty a while longer, and {DEAD} has said so, in a letter the colony would rather not have received.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony, and the order for {PLACE} is off.</li>
+          <li>{FACTION} want nothing more to do with the colony, and have cancelled the order for {PLACE}.</li>
           <li>{FACTION} have broken with the colony. {PLACE} will have to rebuild with someone else's help.</li>
         </cancelled>
       </li>
@@ -256,7 +256,7 @@
           <li>[missed,sickness] There was almost nothing for {FACTION}'s carts to take. {DEAD} sent one line back with the drivers: the sickhouse would manage without the colony, as it always had.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony, and the order for {PLACE} is off.</li>
+          <li>{FACTION} have turned their backs on the colony, and the order for {PLACE} is off.</li>
           <li>{FACTION} have broken with the colony, and {PLACE} will have to find its provisions elsewhere.</li>
         </cancelled>
       </li>

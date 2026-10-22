@@ -121,11 +121,11 @@
           <li>[Cooking] {DEAD} keeps the kitchen at {PLACE}, and {FACTION} say nobody in the region cooks better. {DEAD} has offered to take {A_nameDef} into that kitchen for a few days and show {A_objective} what to do with a pot.</li>
           <li>[Medicine] {FACTION}'s healer at {PLACE}, {DEAD}, would teach one of the colony's people for a few days, if the colony asks. {A_nameDef} has already started a list of questions.</li>
           <li>[Artistic] {DEAD}, whose carvings stand in every hall of {FACTION}, has offered to take {A_nameDef} as an apprentice for a few days at {PLACE}.</li>
-          <li>[Plants] {FACTION} grow the best crops for miles around, and {DEAD}, who taught most of them how, has offered to take {A_nameDef} into the fields at {PLACE} for a few days.</li>
+          <li>[Plants] {FACTION} grow the best crops for miles around, and {DEAD}, who taught most of them how, has offered to take {A_nameDef} into the fields at {PLACE} for a spell.</li>
           <li>[Animals] {DEAD} breeds and trains animals at {PLACE}. Word came through {FACTION} that {A_nameDef} could work at {DEAD}'s side for a few days, if {A_pronoun} doesn't mind being kicked now and then.</li>
-          <li>[Construction] {DEAD} built half of {PLACE}, and the other half needs fixing. {FACTION} say {A_nameDef} can come and learn from {DEAD} for a few days, if the colony can spare {A_objective}.</li>
+          <li>[Construction] {DEAD} built half of {PLACE}, and the other half needs fixing. {FACTION} say {A_nameDef} can come and learn from {DEAD} for a while, if the colony can spare {A_objective}.</li>
           <li>[Crafting] The best maker at {PLACE} is {DEAD}, and {FACTION} say {DEAD} has room at the workbench for {A_nameDef}, for a few days.</li>
-          <li>[Intellectual] {DEAD} keeps the books and the instruments at {PLACE}, and has offered through {FACTION} to teach {A_nameDef} for a few days. The message came with a reading list.</li>
+          <li>[Intellectual] {DEAD} keeps the books and the instruments at {PLACE}, and has offered through {FACTION} to teach {A_nameDef} for as long as the colony can spare {A_objective}. The message came with a reading list.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -226,7 +226,7 @@
           <li>The colony will host {DEAD} of {FACTION}. Have a bedroom ready: at least {TALE}, with one bed nobody else uses.</li>
         </accepted>
         <ready>
-          <li>{DEAD} of {FACTION} has arrived and been shown the room set aside for the visit. The stay ends in {DAYS}.</li>
+          <li>{DEAD} has arrived, and been shown to the room the colony set aside for {FACTION}'s guest. The stay ends in {DAYS}.</li>
         </ready>
         <reminder>
           <li>{DEAD} of {FACTION} arrives in {DAYS}. The room needs to be at least {TALE}, with one bed nobody else uses.</li>
@@ -236,9 +236,9 @@
           <li>[fair] {DEAD}'s visit</li>
         </doneTitles>
         <done>
-          <li>[honored] {DEAD} of {FACTION} has gone home after a comfortable stay, leaving {ITEM} silver behind as thanks. {FACTION} will hear that the colony knows how to treat a guest.</li>
+          <li>[honored] {DEAD} has gone home after a comfortable stay, leaving {ITEM} silver behind as thanks. {FACTION} will hear that the colony knows how to treat a guest.</li>
           <li>[honored,elder] {DEAD} slept well, ate well, and spent the afternoons on a bench in the sun telling anyone who'd listen about the old days. {DEAD} left {ITEM} silver as thanks, and {FACTION} will hear that the colony honors its elders.</li>
-          <li>[fair] {DEAD} of {FACTION} has gone home. The room wasn't always ready during the stay, and {DEAD} noticed, but the visit went well enough.</li>
+          <li>[fair] {DEAD} has gone home to {FACTION}. The room wasn't always ready during the stay, and {DEAD} noticed, but the visit went well enough.</li>
         </done>
         <failTitles>
           <li>[noroom] No room for {DEAD}</li>
@@ -252,7 +252,7 @@
           <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony, and {DEAD}'s visit is off.</li>
+          <li>{DEAD} won't be coming now that {FACTION} have broken with the colony.</li>
         </cancelled>
       </li>
     </modExtensions>

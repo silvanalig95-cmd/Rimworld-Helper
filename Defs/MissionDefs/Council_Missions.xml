@@ -187,7 +187,7 @@
           <li>[kept] The colony tamed {BEAST} and kept {BEAST} without paying a thing. {FACTION} will be telling that story at every market for years.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony. Whatever becomes of {BEAST} now is the colony's own business.</li>
+          <li>{FACTION} have turned against the colony. Whatever becomes of {BEAST} now is the colony's own business.</li>
           <li>Word came that {FACTION} want nothing more to do with the colony. {BEAST} is the colony's own problem now.</li>
         </cancelled>
       </li>
@@ -312,7 +312,7 @@
           <li>[gone] The pilgrims of {FACTION} came to pray at the colony's shrine and found only the place where it had stood. They walked on, puzzled, and the elders of {PLACE} will hear of that too.</li>
         </fail>
         <cancelled>
-          <li>{FACTION} are no longer on terms with the colony, and their pilgrims will take another road.</li>
+          <li>With {FACTION} at odds with the colony, their pilgrims will take another road.</li>
           <li>Word came that {FACTION} want nothing more to do with the colony. The pilgrims of {PLACE} will walk another road this year.</li>
         </cancelled>
       </li>
