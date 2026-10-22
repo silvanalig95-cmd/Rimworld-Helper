@@ -18,7 +18,7 @@
     <stages>
       <li>
         <label>spoke up for someone</label>
-        <description>I asked the council to help someone who needed it, and they did. I'm glad I spoke up.</description>
+        <description>I put in a word for someone who wouldn't ask for themselves. The council listened.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -45,7 +45,7 @@
     <stages>
       <li>
         <label>my request was ignored</label>
-        <description>I asked the council for one thing, and they ignored it.</description>
+        <description>I asked the council for one thing. They let it sit until it didn't matter anymore.</description>
         <baseMoodEffect>-3</baseMoodEffect>
       </li>
     </stages>
@@ -57,7 +57,7 @@
     <stages>
       <li>
         <label>reached our goal together</label>
-        <description>We had a goal, and we all worked at it until it was done. Not bad for a bunch of castaways.</description>
+        <description>We set the colony a goal at the council and saw it through. Every one of us had a hand in it.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -93,7 +93,7 @@
     <stages>
       <li>
         <label>made my room my own</label>
-        <description>It's a small thing, but now my room feels like mine.</description>
+        <description>The little thing I planned for my room got built. It stands right where I pictured it.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -105,7 +105,7 @@
     <stages>
       <li>
         <label>had my say at the council</label>
-        <description>We sat down together and talked about what the colony should do next. I got to say my piece.</description>
+        <description>We sat down and argued over what the colony should do next. I got my piece in.</description>
         <baseMoodEffect>0</baseMoodEffect>
       </li>
     </stages>
@@ -122,22 +122,22 @@
     <stages>
       <li>
         <label>the council never listens</label>
-        <description>I've asked the council for things again and again, and they never come through. I don't know why I bother.</description>
+        <description>I've asked the council for things over and over, and none of it came. I've about given up asking.</description>
         <baseMoodEffect>-5</baseMoodEffect>
       </li>
       <li>
         <label>doubts about the council</label>
-        <description>I'm starting to wonder if it's worth asking the council for anything.</description>
+        <description>The last few things I asked for went nowhere. I'm starting to wonder if it's worth asking.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
       <li>
         <label>the council listens</label>
-        <description>When I bring a problem to the council, they listen.</description>
+        <description>When I bring a problem to the council, they hear me out, and usually it gets dealt with.</description>
         <baseMoodEffect>2</baseMoodEffect>
       </li>
       <li>
         <label>faith in the council</label>
-        <description>I know the council will hear me out, whatever I bring to them. I trust them.</description>
+        <description>Whatever I bring to the council, they take it seriously. I don't lie awake rehearsing how to ask anymore.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -162,7 +162,7 @@
     <stages>
       <li>
         <label>had to do it myself</label>
-        <description>I sorted it out myself, because the council wouldn't. It shouldn't have come to that.</description>
+        <description>The council wasn't going to do it, so I did it myself, on my own time.</description>
         <baseMoodEffect>-2</baseMoodEffect>
       </li>
     </stages>
@@ -232,7 +232,7 @@
     <stages>
       <li>
         <label>happy for a friend</label>
-        <description>A friend of mine finally got what they asked the council for.</description>
+        <description>A friend of mine finally got what they'd been asking the council for. I was nearly as pleased as they were.</description>
         <baseMoodEffect>0</baseMoodEffect>
         <baseOpinionOffset>3</baseOpinionOffset>
       </li>
@@ -258,7 +258,7 @@
     <stages>
       <li>
         <label>laid to rest properly</label>
-        <description>We buried them properly, in a real grave, and said a few words over them.</description>
+        <description>They're laid to rest now, properly, not left lying out in the weather.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -308,7 +308,7 @@
     <stages>
       <li>
         <label>together at night</label>
-        <description>We finally share a bed. I sleep better with my love beside me.</description>
+        <description>We finally share a bed. I fall asleep listening to them breathe.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -320,7 +320,7 @@
     <stages>
       <li>
         <label>a nicer room</label>
-        <description>The furniture I wanted for my room has been built. It's much more comfortable in there now.</description>
+        <description>The piece I wanted for my room is built and in its place. I've already moved everything else around it.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -332,7 +332,7 @@
     <stages>
       <li>
         <label>a light in my room</label>
-        <description>I have a light in my room now. I don't have to lie there in the dark.</description>
+        <description>There's a light in my room now. I can find my boots without crawling around on the floor.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -344,7 +344,7 @@
     <stages>
       <li>
         <label>comfortable nights</label>
-        <description>My room stays at a decent temperature now. I can sleep without shivering or sweating.</description>
+        <description>My room holds a decent temperature through the night. No more waking up to kick the blankets off, or to pile them on.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -380,7 +380,7 @@
     <stages>
       <li>
         <label>something green</label>
-        <description>There's a potted plant in my room now. I talk to it when no one's listening.</description>
+        <description>There's a potted plant by my bed now. I've caught myself talking to it.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -392,7 +392,7 @@
     <stages>
       <li>
         <label>a place for my craft</label>
-        <description>They gave me a proper space for the work I love. I want to make something great in there.</description>
+        <description>I have a proper place for my work now, with everything in reach. I mean to do my best work in there.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -404,7 +404,7 @@
     <stages>
       <li>
         <label>doing what I love</label>
-        <description>I finally get to spend my days on the work I love.</description>
+        <description>They let me back at the work I actually care about. The days go faster.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -416,7 +416,7 @@
     <stages>
       <li>
         <label>art where we gather</label>
-        <description>There's art in the common rooms now. It makes the place feel like more than a shelter.</description>
+        <description>There's new art in the room where we gather. It's the first thing I look at when I walk in.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -428,7 +428,7 @@
     <stages>
       <li>
         <label>a weapon worth carrying</label>
-        <description>I have a good weapon now, one I can trust when the raiders come.</description>
+        <description>I've got a weapon I can trust now. I check it over every evening anyway.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -487,8 +487,8 @@
     <durationDays>8</durationDays>
     <stages>
       <li>
-        <label>laid to rest</label>
-        <description>Our dead have a proper resting place now, not a patch of dirt out past the fields.</description>
+        <label>the burial I asked for</label>
+        <description>I asked that they be laid to rest, and now they are. I know where to go when I want to talk to them.</description>
         <baseMoodEffect>5</baseMoodEffect>
       </li>
     </stages>
@@ -500,7 +500,7 @@
     <stages>
       <li>
         <label>whole again</label>
-        <description>It's not the body I was born with, but it works. I can get on with my life.</description>
+        <description>It's not the body I was born with, but it works. I've caught myself using it without thinking.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -511,7 +511,7 @@
     <durationDays>6</durationDays>
     <stages>
       <li>
-        <label>a new friend with fur</label>
+        <label>a new animal friend</label>
         <description>We took in a new animal. I already have a name picked out.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
@@ -523,8 +523,8 @@
     <durationDays>5</durationDays>
     <stages>
       <li>
-        <label>safer behind our defenses</label>
-        <description>Our defenses are stronger now. Next time they come, we'll be ready.</description>
+        <label>the defenses I asked for</label>
+        <description>I asked for stronger defenses, and they're built. I've walked the whole line twice just to look.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -571,8 +571,8 @@
     <durationDays>4</durationDays>
     <stages>
       <li>
-        <label>a birthday to remember</label>
-        <description>They made a fuss over my birthday, with a song and a second helping at dinner.</description>
+        <label>a proper birthday</label>
+        <description>They made a fuss over my birthday. Dinner was the best I've had in a season.</description>
         <baseMoodEffect>6</baseMoodEffect>
       </li>
     </stages>
@@ -596,7 +596,7 @@
     <stages>
       <li>
         <label>finally some rest</label>
-        <description>I asked for time to rest, and I got it.</description>
+        <description>I have proper hours off now. I spent the first of them lying on my back doing nothing at all.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -608,7 +608,7 @@
     <stages>
       <li>
         <label>something to take the edge off</label>
-        <description>We have drink in the stores again. I can unwind in the evenings.</description>
+        <description>There's drink and smoke in the stores again. The evenings go down easier.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -632,7 +632,7 @@
     <stages>
       <li>
         <label>a clean home again</label>
-        <description>The place has finally been cleaned. I can walk through without stepping in filth.</description>
+        <description>Someone finally scrubbed the floors. I can cross the room without watching where I step.</description>
         <baseMoodEffect>3</baseMoodEffect>
       </li>
     </stages>
@@ -656,7 +656,7 @@
     <stages>
       <li>
         <label>properly armored</label>
-        <description>I asked for armor and I got it. I'll feel safer in the next fight.</description>
+        <description>My new armor is heavy, but I'll take the weight over a hole in me.</description>
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
@@ -671,7 +671,7 @@
     <stages>
       <li>
         <label>got their way over my objection</label>
-        <description>I told the council it was a bad idea, and they did it anyway to please this one.</description>
+        <description>I told the council it was a bad idea. They did it anyway, because this one asked.</description>
         <baseMoodEffect>-2</baseMoodEffect>
         <baseOpinionOffset>-6</baseOpinionOffset>
       </li>
@@ -683,8 +683,8 @@
     <durationDays>3</durationDays>
     <stages>
       <li>
-        <label>common sense prevailed</label>
-        <description>I spoke against it, and the council listened.</description>
+        <label>my objection was heard</label>
+        <description>I told the council why it was a bad idea, and they agreed with me.</description>
         <baseMoodEffect>2</baseMoodEffect>
       </li>
     </stages>
