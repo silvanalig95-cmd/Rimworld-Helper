@@ -288,7 +288,7 @@
       <plain>
         <li>We're not going after {OTHER_nameDef}. Say it out loud, so I know whose voice it was.</li>
       </plain>
-      <gloomy><li>So that's it. {OTHER_nameDef} belongs to {SUBJECT} now. I hope they forgive us. I won't.</li></gloomy>
+      <gloomy><li>{OTHER_nameDef} belongs to {SUBJECT} now, and we let it happen. I hope they forgive us. I won't.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Every night, I wonder if {OTHER_nameDef} is looking at the same stars.</li></plain>

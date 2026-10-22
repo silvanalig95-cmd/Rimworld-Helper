@@ -996,7 +996,7 @@
     </expired>
     <reminder>
       <plain><li>{OTHER_nameDef} hasn't left yet, and neither has the {THINGBARE}.</li></plain>
-      <blunt><li>The trader. The thing. Today.</li></blunt>
+      <blunt><li>Buy the thing before the trader goes. Today.</li></blunt>
     </reminder>
   </ColonyCouncil.WishDef>
 
@@ -1335,7 +1335,7 @@
         <li>Still washing out of a bucket. Someone drank from it again.</li>
         <li>[promised] You promised a bath. I've been looking forward to it every day since.</li>
       </plain>
-      <blunt><li>The bath. You remember. The thing that would make you smell better.</li></blunt>
+      <blunt><li>The bath, remember? The thing that would make you all smell better.</li></blunt>
     </reminder>
   </ColonyCouncil.WishDef>
 
@@ -1540,7 +1540,7 @@
     </expired>
     <reminder>
       <plain><li>I keep thinking about the fountain, and the sound it would make.</li></plain>
-      <blunt><li>That fountain. Still useless, and I still want it.</li></blunt>
+      <blunt><li>That fountain's still useless, and I still want it.</li></blunt>
     </reminder>
   </ColonyCouncil.WishDef>
 
