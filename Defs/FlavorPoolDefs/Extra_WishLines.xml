@@ -74,7 +74,7 @@
         <li>From now on, people knock.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to move everything around at least four times!</li>
+        <li>My own room! I don't even know where to put my boots first.</li>
         <li>[night] Tonight I'm singing myself to sleep, as loud as I like!</li>
       </cheerful>
       <gloomy>
@@ -166,7 +166,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I'm going to give the cook a tour of my bedroom. I've never given anyone a tour of anything.</li>
+        <li>Somebody fetch the cook, I'm giving a tour of my bedroom. I've never given anyone a tour of anything.</li>
         <li>[morning] I won't want to get up in the mornings now.</li>
         <li>[promised] I didn't really believe the promise. I'm glad I was wrong.</li>
       </plain>
@@ -485,7 +485,7 @@
         <li>I've arranged and rearranged everything on it six times!</li>
       </cheerful>
       <gloomy>
-        <li>It's only furniture. I'm going to dust it every day.</li>
+        <li>It's only furniture. I've already dusted it twice.</li>
       </gloomy>
       <cold>
         <li>Order restored. My things are where I left them, and I'll know if they aren't.</li>
@@ -680,7 +680,7 @@
     </requestForOther>
     <thanks>
       <plain>
-        <li>Tonight I'll actually sleep.</li>
+        <li>A room I can actually sleep in.</li>
         <li>[trigger:cold] I'll sleep with my feet out from under the blanket tonight.</li>
         <li>[forother] I hear {PAWN_nameDef} spoke up about my room. I'll thank {PAWN_objective} myself.</li>
         <li>[promised] You said you'd fix my room, and you did.</li>
@@ -692,7 +692,7 @@
         <li>[trigger:cold] The kitchen is safe from me now.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to sleep like a happy little boomrat!</li>
+        <li>Comfortable at last, like a boomrat in its burrow!</li>
       </cheerful>
       <gloomy>
         <li>One less thing keeping me awake. There are plenty of others.</li>
@@ -882,7 +882,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I'm going to play until my eyes hurt.</li>
+        <li>Out of my way, I'm playing until my eyes hurt.</li>
         <li>[trigger:cabin] I was close to cracking, and now I've got something to do with my hands.</li>
         <li>[promised] You kept your word, and I'm about to lose a lot of games on it.</li>
       </plain>
@@ -899,7 +899,7 @@
         <li>I might forget to be miserable for a whole evening.</li>
       </gloomy>
       <cold>
-        <li>It should mean fewer arguments at meals. I'll be counting.</li>
+        <li>It should mean fewer arguments at meals.</li>
       </cold>
     </thanks>
     <expired>
@@ -993,7 +993,7 @@
       </blunt>
       <cheerful>
         <li>I've put it by the window where it gets the morning sun!</li>
-        <li>[spring] I'm going to plant it today, and it'll sprout in no time!</li>
+        <li>[spring] Seeds in today, and it'll sprout in no time!</li>
       </cheerful>
       <gloomy>
         <li>I'll probably kill it, but I'll try.</li>
@@ -1311,7 +1311,7 @@
         <li>[trigger:injury] Next time it'll be them missing a piece.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to show it off to anyone who'll stand still long enough!</li>
+        <li>Anyone who stands still long enough is getting a look at it!</li>
       </cheerful>
       <gloomy>
         <li>Part of me is a made thing now, and I'll have to get used to that.</li>
@@ -1504,7 +1504,7 @@
         <li>[trait:Bloodlust] Now they'll die in a nice neat row.</li>
       </blunt>
       <cheerful>
-        <li>[night] I'm going to sleep tonight! Let them try us now.</li>
+        <li>[night] Let them try us now, I'm sleeping like a baby tonight!</li>
       </cheerful>
       <gloomy>
         <li>It won't stop them, but it'll slow them down. That might be enough.</li>
@@ -1602,7 +1602,7 @@
         <li>Now it looks like a noble lives here, not a muffalo.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to spend all afternoon in it, being noble at people!</li>
+        <li>Come in, come in, and let me be noble at you!</li>
       </cheerful>
       <gloomy>
         <li>It's grand. I still feel small in it, but it's grand.</li>
@@ -2001,7 +2001,7 @@
         <li>It's the only thing here that isn't trying to survive. It just stands there being nice to look at.</li>
       </gloomy>
       <cold>
-        <li>Morale should rise measurably. I'll be watching to see if it does.</li>
+        <li>Morale should rise measurably.</li>
       </cold>
     </thanks>
     <expired>
@@ -2092,7 +2092,7 @@
         <li>[trait:Bloodlust] Oh, they're going to hate this. I'm going to love it.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to carry it around the perimeter twice, just to carry it!</li>
+        <li>I'm carrying it around the perimeter twice, just to carry it!</li>
       </cheerful>
       <gloomy>
         <li>I might survive the next raid now.</li>
@@ -2178,7 +2178,7 @@
     </request>
     <thanks>
       <plain>
-        <li>Beer at last. I'm going to fuss over it like a newborn.</li>
+        <li>Beer at last, and I'm fussing over it like a newborn.</li>
         <li>[petition] The ones who asked for it get the first mugs. That's only fair.</li>
         <li>[promised] Beer, like you promised. The first mug's named after the council.</li>
       </plain>
@@ -2195,7 +2195,7 @@
         <li>Something to look forward to that isn't a raid.</li>
       </gloomy>
       <cold>
-        <li>I'll be keeping count of the beer per colonist.</li>
+        <li>Beer keeps people pliable. Good.</li>
       </cold>
     </thanks>
     <expired>
@@ -2275,18 +2275,18 @@
     </request>
     <thanks>
       <plain>
-        <li>I'm going to eat it slowly, so it lasts.</li>
+        <li>This one I'm eating slowly, so it lasts.</li>
         <li>[trigger:rawfood] Something cooked at last. My jaw thanks you.</li>
         <li>[promised] You promised {SUBJECT}, and I'm having two.</li>
       </plain>
       <warm>
-        <li>I'm going to find the cook and say thank you myself.</li>
+        <li>Where's the cook? I want to say thank you myself.</li>
       </warm>
       <blunt>
         <li>[trait:Gourmand] Real food, and don't stop now.</li>
       </blunt>
       <cheerful>
-        <li>[evening] I'm going to lick my plate clean at supper and I won't be sorry!</li>
+        <li>[evening] Supper tonight, and I'm licking the plate clean!</li>
       </cheerful>
       <gloomy>
         <li>[trigger:sick] Food that won't make me sick. I'd forgotten that was an option.</li>
@@ -2665,7 +2665,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I'm going to sit and look at it until the light goes.</li>
+        <li>I could sit and look at it until the light goes.</li>
         <li>[morning] I'll be late to breakfast tomorrow, looking at it.</li>
         <li>[promised] I'd stopped believing it would come, and now it's standing by my bed. Thank you.</li>
       </plain>
@@ -2676,7 +2676,7 @@
         <li>Don't touch it, and don't even breathe on it.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to keep popping back to my room just to say hello to it!</li>
+        <li>Every time I pass my room now, I'm stopping to say hello to it!</li>
       </cheerful>
       <gloomy>
         <li>It's lovely. I don't know what I did to deserve something lovely.</li>
@@ -2762,7 +2762,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I'm going to sit in the sun and do nothing, and then do it again tomorrow.</li>
+        <li>Sitting in the sun doing nothing, starting now.</li>
         <li>[evening] A whole evening to myself, and I don't know what to do with it.</li>
         <li>[promised] Time to myself, as promised. I'll probably sleep through all of it.</li>
       </plain>
@@ -2773,7 +2773,7 @@
         <li>Don't come looking for me during my hours.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to nap until I forget what year it is!</li>
+        <li>Nap first, everything else later!</li>
       </cheerful>
       <gloomy>
         <li>Maybe I'll wake up tomorrow and not dread it.</li>
@@ -2876,7 +2876,7 @@
         <li>Tonight the edges can blur for a while.</li>
       </gloomy>
       <cold>
-        <li>Stock replenished. Tensions should drop. I'll be watching who drinks the most.</li>
+        <li>Stock replenished. Tensions should drop.</li>
       </cold>
     </thanks>
     <expired>
