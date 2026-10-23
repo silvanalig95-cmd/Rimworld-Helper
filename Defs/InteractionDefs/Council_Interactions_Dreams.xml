@@ -28,7 +28,7 @@
         <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] had dreamt of [sweet], and asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] ever had dreams like that.</li>
         <li>r_logentry->[INITIATOR_nameDef] tried to describe [INITIATOR_possessive] dream to [RECIPIENT_nameDef] and kept losing the details as [INITIATOR_pronoun] went.</li>
         <li>r_logentry->[INITIATOR_nameDef] hummed a tune from [INITIATOR_possessive] dream for [RECIPIENT_nameDef], who said [RECIPIENT_pronoun] didn't know it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] could do with one like that.</li>
+        <li>r_logentry->[INITIATOR_nameDef]'s dream of [sweet] made [RECIPIENT_nameDef] wish [RECIPIENT_pronoun] had slept as well.</li>
         <li>sweet->a meadow full of tall grass</li>
         <li>sweet->being small again in [INITIATOR_possessive] mother's house</li>
         <li>sweet->a bath that never went cold</li>
@@ -41,7 +41,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet] and said [INITIATOR_pronoun] had tried to go back to sleep to finish it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the best dreams they could remember, and [INITIATOR_nameDef]'s was of [sweet].</li>
         <li>r_logentry->[RECIPIENT_nameDef] noticed [INITIATOR_nameDef] smiling at nothing, and heard about a dream of [sweet].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt of [sweet], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] hoped it came true.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] heard all about [INITIATOR_nameDef]'s dream of [sweet], and said [RECIPIENT_pronoun] hoped it came true.</li>
         <li>r_logentry->[INITIATOR_nameDef] kept a dream of [sweet] to [INITIATOR_objective]self for a while, then told [RECIPIENT_nameDef].</li>
         <li>sweet->a feast where nobody had to wash up</li>
         <li>sweet->snow falling past the window, seen from a warm bed</li>
