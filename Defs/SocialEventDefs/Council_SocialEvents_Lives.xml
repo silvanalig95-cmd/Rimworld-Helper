@@ -13,9 +13,9 @@
     <tone>warm</tone>
     <bKeepsSecretOfA>true</bKeepsSecretOfA>
     <texts>
-      <li>Someone at dinner came close to a sore subject. {B_nameDef} changed it, smoothly, without looking at {A_nameDef}.</li>
-      <li>{B_nameDef} sat down beside {A_nameDef} when the questions started, and answered most of them for {A_objective}.</li>
-      <li>When the talk turned to where everyone came from, {B_nameDef} caught {A_nameDef}'s eye and steered it somewhere else.</li>
+      <li>When the talk came close to a sore subject, {B_nameDef} changed it smoothly, without a glance at {A_nameDef}.</li>
+      <li>When the questions came {A_nameDef}'s way, {B_nameDef} stepped in and answered most of them.</li>
+      <li>{B_nameDef} caught {A_nameDef}'s eye as the talk turned to where people came from, and steered it elsewhere.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_HadMyBack</thought></li>
@@ -27,21 +27,21 @@
 
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_SecretStrain</defName>
-    <label>the weight of a secret</label>
+    <label>a secret wearing thin</label>
     <tone>friction</tone>
     <weight>0.6</weight>
     <bKeepsSecretOfA>true</bKeepsSecretOfA>
     <maxOpinion>30</maxOpinion>
     <texts>
-      <li>{B_nameDef} snapped at {A_nameDef} over nothing, then muttered something about "what I know." {A_nameDef} went pale.</li>
-      <li>{B_nameDef} told {A_nameDef}, under {B_possessive} breath, that keeping {A_possessive} secret was getting heavy, and it sounded more like a warning than a complaint.</li>
+      <li>{B_nameDef} snapped at {A_nameDef} over nothing, muttering about "what I know," and {A_nameDef} went pale.</li>
+      <li>{B_nameDef} told {A_nameDef}, under {B_possessive} breath, that keeping {A_possessive} secret was getting hard, in a voice that sounded like a warning.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
     </effects>
     <changeTie>Rivals</changeTie>
     <change>5</change>
-    <note>a secret weighing on them</note>
+    <note>a secret wearing on them</note>
     <notable>true</notable>
   </ColonyCouncil.SocialEventDef>
 
@@ -51,8 +51,8 @@
     <tone>warm</tone>
     <sharedVendetta>true</sharedVendetta>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} sat by the graves and talked about {FACTION} until the fire went out. They made each other a promise.</li>
-      <li>{A_nameDef} carved a mark into the wall for every one of {FACTION} that has fallen. {B_nameDef} handed over the knife for the next one.</li>
+      <li>{A_nameDef} and {B_nameDef} talked about {FACTION} in low voices and made each other a promise.</li>
+      <li>{A_nameDef} counted off on {A_possessive} fingers what {FACTION} owes them, and {B_nameDef} added the ones {A_pronoun} had missed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
@@ -69,34 +69,34 @@
     <aHasQuirk>true</aHasQuirk>
     <maxOpinion>25</maxOpinion>
     <texts>
-      <li>{B_nameDef} made fun of {A_nameDef}'s habit ({QUIRK}) at supper, and {A_nameDef} didn't laugh.</li>
-      <li>{B_nameDef} asked {A_nameDef}, loudly, whether {QUIRK} actually works, and got a laugh from the table.</li>
+      <li>{B_nameDef} made fun of {A_nameDef}'s habit ({QUIRK}), and {A_nameDef} didn't laugh.</li>
+      <li>{B_nameDef} did an impression of {A_nameDef} ({QUIRK}) for anyone who would watch.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Pranked</thought></li>
     </effects>
     <changeTie>Rivals</changeTie>
     <change>4</change>
-    <note>mocked a superstition</note>
+    <note>mocked a quirk</note>
   </ColonyCouncil.SocialEventDef>
 
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocLife_SharedQuirk</defName>
-    <label>a superstition shared</label>
+    <label>a quirk shared</label>
     <tone>warm</tone>
     <aHasQuirk>true</aHasQuirk>
     <minOpinion>10</minOpinion>
     <texts>
-      <li>{B_nameDef} asked {A_nameDef} about {A_possessive} habit ({QUIRK}), expecting a joke, and got a real story instead. They talked a long time.</li>
+      <li>{B_nameDef} asked {A_nameDef} about {A_possessive} habit ({QUIRK}), expecting a joke, and got a real story instead.</li>
       <li>{B_nameDef} caught {A_nameDef} at it ({QUIRK}) and, instead of laughing, joined in.</li>
-      <li>{B_nameDef} has started doing it too ({QUIRK}), just in case {A_nameDef} is right.</li>
+      <li>{B_nameDef} told {A_nameDef} that {B_pronoun} understands it now ({QUIRK}), more than {B_pronoun} expected to.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
     </effects>
     <changeTie>Friends</changeTie>
     <change>5</change>
-    <note>shared a superstition</note>
+    <note>a quirk shared</note>
   </ColonyCouncil.SocialEventDef>
 
   <ColonyCouncil.SocialEventDef>
@@ -106,8 +106,8 @@
     <aHasGoal>true</aHasGoal>
     <minOpinion>15</minOpinion>
     <texts>
-      <li>{A_nameDef} admitted to {B_nameDef} wanting to {GOAL}, and {B_nameDef} didn't laugh. "Then do it," {B_nameDef} said.</li>
-      <li>Every evening {B_nameDef} asks {A_nameDef} how the plan to {GOAL} is coming along, and listens to the whole answer.</li>
+      <li>{A_nameDef} admitted to {B_nameDef} that {A_pronoun} wants to {GOAL}, and {B_nameDef} just said, "Then do it."</li>
+      <li>{B_nameDef} asked {A_nameDef} how the plan to {GOAL} is coming along, and listened to the whole answer.</li>
       <li>{B_nameDef} told {A_nameDef} that if anyone here could {GOAL}, it was {A_objective}.</li>
     </texts>
     <effects>
@@ -129,7 +129,7 @@
     <maxOpinion>0</maxOpinion>
     <texts>
       <li>{B_nameDef} found out {A_nameDef} wants to {GOAL}, and laughed in {A_possessive} face.</li>
-      <li>"You want to {GOAL}?" {B_nameDef} asked {A_nameDef}, loud enough for the whole table to hear, and a few of them laughed.</li>
+      <li>"You want to {GOAL}?" {B_nameDef} asked {A_nameDef}, loud enough to carry, and didn't wait for an answer.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Snubbed</thought></li>
@@ -147,9 +147,9 @@
     <tie>Friends</tie>
     <minStrength>40</minStrength>
     <texts>
-      <li>{B_nameDef} spent a free evening helping {A_nameDef}, who means to {GOAL} one day.</li>
-      <li>{B_nameDef} gave up a rest day to help {A_nameDef} with the plan to {GOAL}. {A_nameDef} didn't know what to say.</li>
-      <li>{B_nameDef} spent the afternoon helping {A_nameDef} toward {A_possessive} plan to {GOAL}, and wouldn't take thanks for it.</li>
+      <li>{B_nameDef} gave up {B_possessive} free time to help {A_nameDef}, who means to {GOAL} one day.</li>
+      <li>{B_nameDef} offered to help {A_nameDef} with the plan to {GOAL}, and meant it.</li>
+      <li>{B_nameDef} talked through the next step of {A_nameDef}'s plan to {GOAL} with {A_objective}, and wouldn't take thanks for it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_Gift</thought></li>

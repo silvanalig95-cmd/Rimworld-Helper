@@ -18,9 +18,9 @@
     <roleA><tags>xeno:AG_Helixien</tags></roleA>
     <roleB><tags>!xeno:AG_Helixien</tags></roleB>
     <texts>
-      <li>{B_nameDef} asked {A_nameDef}, as kindly as {B_pronoun} could manage, whether {A_pronoun} might sit downwind at supper. {A_nameDef} took {A_possessive} bowl outside and didn't come back.</li>
-      <li>{B_nameDef} opened every window in the room the moment {A_nameDef} walked in. {A_nameDef} noticed. Everyone noticed.</li>
-      <li>{A_nameDef} told {B_nameDef} that a helixan can smell rot under a floor from across the room, and that {B_nameDef}'s bedroll needed burning. {B_nameDef} did not take it well.</li>
+      <li>{B_nameDef} asked {A_nameDef}, as kindly as {B_pronoun} could manage, whether {A_pronoun} might keep downwind.</li>
+      <li>{B_nameDef} held {B_possessive} breath the moment {A_nameDef} came near, and made sure {A_nameDef} saw it.</li>
+      <li>{A_nameDef} told {B_nameDef} that {A_possessive} kind can smell rot from across a room, and that {B_nameDef}'s bedroll needed burning.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -35,9 +35,9 @@
     <roleA><tags>xeno:AG_Wretch</tags></roleA>
     <roleB><tags>!xeno:AG_Wretch</tags></roleB>
     <texts>
-      <li>{B_nameDef} sat down next to {A_nameDef} at supper, where nobody else ever sits, and talked to {A_objective} about the harvest as if it were the most ordinary thing in the world. It was, to {B_nameDef}.</li>
-      <li>{B_nameDef} asked {A_nameDef} about the day {A_pronoun} came here, and listened to the whole answer without once looking away.</li>
-      <li>{A_nameDef} flinched when {B_nameDef} reached for {A_possessive} hand. {B_nameDef} waited, and {A_nameDef} gave it.</li>
+      <li>{B_nameDef} talked with {A_nameDef} about the weather and the work as if it were the most ordinary thing in the world.</li>
+      <li>{B_nameDef} asked {A_nameDef} about the day {A_pronoun} came here, and looked {A_objective} in the face the whole time {A_pronoun} answered.</li>
+      <li>{A_nameDef} flinched when {B_nameDef} reached for {A_possessive} hand, and {B_nameDef} waited until {A_nameDef} gave it.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -52,9 +52,9 @@
     <roleA><tags>xeno:AG_MindDevourer</tags></roleA>
     <roleB><tags>!xeno:AG_MindDevourer,!trait:Psychopath</tags></roleB>
     <texts>
-      <li>{B_nameDef} couldn't meet {A_nameDef}'s eyes across the table, and said afterwards it felt like being read from the inside.</li>
-      <li>{A_nameDef} answered a question {B_nameDef} had only been thinking about. {B_nameDef} has been keeping to the far side of the colony since.</li>
-      <li>{B_nameDef} asked {A_nameDef}, very politely, to stop doing whatever it was {A_pronoun} was doing. {A_nameDef} said {A_pronoun} wasn't doing anything. That was worse.</li>
+      <li>{B_nameDef} couldn't meet {A_nameDef}'s eyes, and said it felt like being read from the inside.</li>
+      <li>{A_nameDef} answered a question {B_nameDef} hadn't asked out loud, and {B_nameDef} took a step back.</li>
+      <li>Very politely, {B_nameDef} asked {A_nameDef} to stop whatever {A_pronoun} was doing, and {A_nameDef} said {A_pronoun} wasn't doing anything.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -65,19 +65,19 @@
 
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocA_IconoclastCarving</defName>
-    <label>an obscene little figure</label>
+    <label>art called obscene</label>
     <tone>friction</tone>
     <maxOpinion>30</maxOpinion>
     <roleA><tags>meme:AM_Iconoclast</tags></roleA>
     <roleB><tags>!meme:AM_Iconoclast</tags></roleB>
     <texts>
-      <li>{A_nameDef} told {B_nameDef} that the little carved figure by {B_possessive} bed was an obscenity and ought to be burned. {B_nameDef} moved it to a higher shelf and stopped speaking to {A_nameDef}.</li>
-      <li>{A_nameDef} turned the painting in the hall to face the wall. {B_nameDef} turned it back. This went on all afternoon.</li>
-      <li>{B_nameDef} wore {B_possessive} lucky charm to supper. {A_nameDef} looked at it the whole meal, and said one word about it afterwards, which was one too many.</li>
+      <li>{A_nameDef} told {B_nameDef} that every carved face in the colony was an obscenity and ought to be burned.</li>
+      <li>{A_nameDef} and {B_nameDef} argued over whether art has any place in a decent home, and neither gave ground.</li>
+      <li>{A_nameDef} called {B_nameDef}'s keepsakes idols, to {B_possessive} face.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>3</change>
-    <note>the carving</note>
+    <note>art called obscene</note>
   </ColonyCouncil.SocialEventDef>
 
   <ColonyCouncil.SocialEventDef>
@@ -88,8 +88,8 @@
     <roleA><tags>meme:AM_Gladiator</tags></roleA>
     <roleB><tags>skill:Shooting,!meme:AM_Gladiator</tags></roleB>
     <texts>
-      <li>{A_nameDef} told {B_nameDef} that a bow is a coward's weapon, and that real glory is had close enough to smell the other fellow's breath. {B_nameDef} said {B_pronoun} would keep {B_possessive} distance, thanks, from both.</li>
-      <li>{A_nameDef} wouldn't eat at the same table as {B_nameDef} after the last fight, because {B_nameDef} had done all of {B_possessive} fighting from behind the wall.</li>
+      <li>{A_nameDef} told {B_nameDef} that anything fired from a distance is a coward's weapon, and that real glory is had close enough to smell the other fellow's breath.</li>
+      <li>With open contempt, {A_nameDef} wanted to know whether {B_nameDef} had ever once looked an enemy in the eye.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -98,18 +98,18 @@
 
   <ColonyCouncil.SocialEventDef>
     <defName>Council_SocA_BulwarkWatch</defName>
-    <label>walking the walls</label>
+    <label>minding the defenses</label>
     <tone>warm</tone>
     <minOpinion>0</minOpinion>
     <roleA><tags>meme:AM_Bulwark</tags></roleA>
     <texts>
-      <li>{A_nameDef} walked the walls with {B_nameDef} after dark and showed {B_objective} every weak spot, and which ones {A_pronoun} meant to mend first.</li>
-      <li>{A_nameDef} taught {B_nameDef} where to stand in a doorway so a whole raid has to come at you one at a time. {B_nameDef} said it was the most comforting thing anyone had told {B_objective} all year.</li>
-      <li>{A_nameDef} and {B_nameDef} sat up late going over the colony's defences on a scrap of hide, and only stopped when the candle ran out.</li>
+      <li>{A_nameDef} pointed out every weak spot in the colony's defenses to {B_nameDef}, and which ones {A_pronoun} meant to mend first.</li>
+      <li>{A_nameDef} taught {B_nameDef} where to stand in a doorway so that a whole raid has to come at you one at a time.</li>
+      <li>{A_nameDef} and {B_nameDef} went over the colony's defenses point by point, as if the next raid were already on its way.</li>
     </texts>
     <changeTie>Comrades</changeTie>
     <change>3</change>
-    <note>walked the walls</note>
+    <note>went over the defenses</note>
   </ColonyCouncil.SocialEventDef>
 
 </Defs>

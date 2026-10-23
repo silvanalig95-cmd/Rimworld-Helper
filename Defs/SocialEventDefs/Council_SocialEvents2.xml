@@ -17,11 +17,11 @@
     <tie>Friends</tie>
     <minStrength>20</minStrength>
     <texts>
-      <li>{A_nameDef} finally confessed to eating the chocolate {B_nameDef} had been saving since spring. {B_nameDef} took a long breath and let it go.</li>
+      <li>{A_nameDef} owned up to eating the chocolate {B_nameDef} had been saving, and {B_nameDef} took a long breath and let it go.</li>
       <li>{A_nameDef} admitted to {B_nameDef} that {A_pronoun} had broken {B_nameDef}'s good mug a month ago and hidden the pieces.</li>
-      <li>{A_nameDef} owned up to {B_nameDef} that it was {A_objective}, not the wind, who knocked over {B_nameDef}'s drying rack. {B_nameDef} had known for weeks.</li>
-      <li>{A_nameDef} admitted to {B_nameDef} that the wobbly leg on {B_possessive} chair was {A_possessive} doing. {B_nameDef} laughed and fixed it.</li>
-      <li>{A_nameDef} finally told {B_nameDef} that it was {A_objective} who had used up the last of the good soap. {B_nameDef} said {B_pronoun} had guessed.</li>
+      <li>{A_nameDef} confessed to knocking {B_nameDef}'s washing into the dirt and blaming it on the wind.</li>
+      <li>{B_nameDef} finally learned why {B_possessive} chair wobbles: {A_nameDef} had stood on it to reach a shelf.</li>
+      <li>{A_nameDef} told {B_nameDef} who had used up the last of the good soap, and {B_nameDef} said {B_pronoun} had guessed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_Forgiven</thought></li>
@@ -40,8 +40,8 @@
     <minStrength>50</minStrength>
     <texts>
       <li>{A_nameDef} told {B_nameDef} {A_possessive} real name, the one from before, and {B_nameDef} promised never to use it.</li>
-      <li>Late at night, {A_nameDef} showed {B_nameDef} the old letter sewn into the lining of {A_possessive} coat, and let {B_objective} read it.</li>
-      <li>{A_nameDef} told {B_nameDef} why {A_pronoun} really left home. It was not the story {A_nameDef} tells at dinner.</li>
+      <li>{A_nameDef} showed {B_nameDef} the lock of hair sewn into the lining of {A_possessive} coat, and told {B_objective} whose it was.</li>
+      <li>{A_nameDef} told {B_nameDef} why {A_pronoun} really left home, and it was not the story {A_nameDef} usually tells.</li>
       <li>{A_nameDef} showed {B_nameDef} a scar {A_pronoun} keeps covered, and told {B_objective} how it happened.</li>
       <li>{A_nameDef} told {B_nameDef} about the child {A_pronoun} left behind, and asked {B_objective} never to mention it.</li>
     </texts>
@@ -63,11 +63,11 @@
     <tie>Friends</tie>
     <minStrength>15</minStrength>
     <texts>
-      <li>{B_nameDef} was dead on {B_possessive} feet, so {A_nameDef} took {B_possessive} night watch and sent {B_objective} to bed.</li>
-      <li>{A_nameDef} finished {B_nameDef}'s hauling while {B_nameDef} napped behind the granary, and never mentioned it.</li>
-      <li>When {B_nameDef} came down with the shakes, {A_nameDef} worked both their shifts without being asked.</li>
-      <li>{A_nameDef} saw {B_nameDef} limping and took over {B_possessive} hauling for the rest of the day without a word.</li>
-      <li>{B_nameDef} overslept and found {B_possessive} morning chores already done. {A_nameDef} only shrugged.</li>
+      <li>{B_nameDef} was dead on {B_possessive} feet, so {A_nameDef} took {B_possessive} night watch and sent {B_objective} off to rest.</li>
+      <li>{A_nameDef} took over {B_nameDef}'s hauling and told {B_objective} to sit down for a while.</li>
+      <li>Unasked, {A_nameDef} took on {B_nameDef}'s share of the work along with {A_possessive} own.</li>
+      <li>{A_nameDef} saw how tired {B_nameDef} looked and took the next job off {B_possessive} hands.</li>
+      <li>{B_nameDef} went to do {B_possessive} chores and found that {A_nameDef} had already done them.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc2_CoveredForMe</thought></li>
@@ -87,10 +87,10 @@
     <tie>Friends</tie>
     <minStrength>20</minStrength>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} had a shouting match over three smokeleaf joints owed since last winter, and dragged up every old grievance along the way.</li>
-      <li>{B_nameDef} repeated what {A_nameDef} had told {B_objective} in confidence, and {A_nameDef} heard it back at dinner from someone else.</li>
-      <li>{A_nameDef} and {B_nameDef} argued about the last raid until one of them brought up the dead, and neither has spoken to the other since.</li>
-      <li>{A_nameDef} and {B_nameDef} argued over one broken promise until it was about every promise either of them had ever broken.</li>
+      <li>{A_nameDef} and {B_nameDef} came to shouting over three smokeleaf joints owed since last winter.</li>
+      <li>{A_nameDef} found out that {B_nameDef} had repeated a confidence, and said so, loudly.</li>
+      <li>{A_nameDef} and {B_nameDef} argued until one of them said the thing that can't be taken back.</li>
+      <li>{A_nameDef} brought up one broken promise of {B_nameDef}'s, and it turned into every promise either of them had ever broken.</li>
       <li>{B_nameDef} laughed at {A_nameDef} at the wrong moment, and {A_nameDef} hasn't let it go.</li>
     </texts>
     <effects>
@@ -111,10 +111,10 @@
     <tie>Friends</tie>
     <minStrength>25</minStrength>
     <texts>
-      <li>{B_nameDef} spent another evening laughing by the fire with someone else. {A_nameDef} sat across the room, mending a sock that was not torn.</li>
-      <li>{B_nameDef} has a new favorite person to eat with these days, and {A_nameDef} eats alone at the end of the table.</li>
-      <li>{B_nameDef} went fishing without {A_nameDef}, with someone {A_nameDef} has decided not to like.</li>
-      <li>{B_nameDef} sat with someone else at supper again, and {A_nameDef} ate in silence, watching them.</li>
+      <li>{A_nameDef} asked {B_nameDef}, too lightly, whether {B_pronoun} still had time for old friends.</li>
+      <li>{B_nameDef} has a new favorite person to eat with these days, and {A_nameDef} has started eating alone.</li>
+      <li>{B_nameDef} mentioned a new friend once too often, and {A_nameDef} has decided not to like this person.</li>
+      <li>{A_nameDef} made a sharp remark about {B_nameDef}'s new friend, then looked sorry {A_pronoun} had.</li>
       <li>{B_nameDef} has been spending {B_possessive} evenings with someone new, and {A_nameDef} has started going to bed early.</li>
     </texts>
     <effects>
@@ -136,11 +136,11 @@
     <tie>Rivals</tie>
     <minStrength>20</minStrength>
     <texts>
-      <li>{A_nameDef}'s favorite hammer snapped clean in half, and {A_nameDef} is sure {B_nameDef} sawed through the handle.</li>
-      <li>{A_nameDef} found {A_possessive} workbench set a hair too low, and is certain {B_nameDef} did it in the night.</li>
-      <li>A whole row of {A_nameDef}'s seedlings died overnight, right where {B_nameDef} was seen walking. {B_nameDef} swears it was only a shortcut.</li>
-      <li>{A_nameDef}'s neat stack of firewood was found scattered across the yard, and {A_nameDef} has blamed {B_nameDef}, loudly.</li>
-      <li>Someone salted {A_nameDef}'s porridge until it was inedible, and {A_nameDef} is sure it was {B_nameDef}.</li>
+      <li>{A_nameDef}'s favorite hammer snapped at the handle, and {A_nameDef} is sure {B_nameDef} had sawn it half through.</li>
+      <li>{A_nameDef} is certain {B_nameDef} has been moving {A_possessive} tools around on purpose.</li>
+      <li>{A_nameDef} blamed {B_nameDef} for a row of trampled seedlings, and {B_nameDef} swears it was only a shortcut.</li>
+      <li>{A_nameDef}'s blanket turned up in the dirt, and {A_nameDef} has blamed {B_nameDef} for it, loudly.</li>
+      <li>{A_nameDef} found dirt caked on {A_possessive} good knife and is sure {B_nameDef} has been digging with it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_Suspicious</thought></li>
@@ -160,11 +160,11 @@
     <tie>Rivals</tie>
     <minStrength>10</minStrength>
     <texts>
-      <li>{A_nameDef} told the table about killing a warg with a frying pan. {B_nameDef} said {B_pronoun} once killed two, with the lid.</li>
-      <li>{A_nameDef} and {B_nameDef} spent supper comparing old injuries, each one worse than the last, until the others moved down the table.</li>
-      <li>Every time {A_nameDef} finished a story at dinner, {B_nameDef} had a bigger one ready, and it went on like that until the fire was out.</li>
-      <li>{A_nameDef} mentioned that {A_pronoun} had once crossed a desert on foot. {B_nameDef} said {B_pronoun} had crossed two, barefoot.</li>
-      <li>{A_nameDef} and {B_nameDef} argued over supper about which of them had nearly died more often.</li>
+      <li>{A_nameDef} bragged of killing a warg with a frying pan, and {B_nameDef} said {B_pronoun} had once killed two, with the lid.</li>
+      <li>{A_nameDef} and {B_nameDef} compared old injuries, each one worse than the last, until anyone nearby had moved away.</li>
+      <li>For every story {A_nameDef} told, {B_nameDef} had a bigger one ready, and neither would be the first to stop.</li>
+      <li>{A_nameDef} brought up the time {A_pronoun} crossed a desert on foot, and {B_nameDef} talked straight over {A_objective} about a worse one.</li>
+      <li>{A_nameDef} and {B_nameDef} argued about which of them had nearly died more often.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc2_OneUpped</thought></li>
@@ -182,11 +182,11 @@
     <tie>Rivals</tie>
     <minStrength>15</minStrength>
     <texts>
-      <li>{B_nameDef} watched {A_nameDef} patch the wall under fire, and afterward came over and nodded to {A_objective}.</li>
-      <li>{B_nameDef} tasted {A_nameDef}'s stew, paused, and went back for a second bowl.</li>
-      <li>{B_nameDef} admitted, through clenched teeth, that {A_nameDef}'s work on the new barn was the best in the colony.</li>
-      <li>{B_nameDef} watched {A_nameDef} talk a trader down and said afterward that it had been well done, and nothing more.</li>
-      <li>{B_nameDef} borrowed one of {A_nameDef}'s tools without complaining about how it was kept, which for {B_nameDef} counts as praise.</li>
+      <li>{B_nameDef} looked over {A_nameDef}'s work, said nothing at all, and nodded once.</li>
+      <li>{B_nameDef} tasted {A_nameDef}'s cooking, paused, and asked if there was more.</li>
+      <li>Through clenched teeth, {B_nameDef} admitted that {A_nameDef} had done the job better than {B_pronoun} could have.</li>
+      <li>{B_nameDef} conceded that {A_nameDef} had been right, and changed the subject quickly.</li>
+      <li>{B_nameDef} borrowed a tool from {A_nameDef} and didn't complain about how it was kept, which counts as praise.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_GrudgingRespect</thought></li>
@@ -207,9 +207,9 @@
     <minStrength>25</minStrength>
     <texts>
       <li>At dinner, {A_nameDef} asked {B_nameDef}, loudly, whether {B_pronoun} had cooked the stew or just sat in it.</li>
-      <li>{A_nameDef} raised a toast at dinner "to {B_nameDef}, who has never once been the reason we won a fight", and drank alone.</li>
-      <li>{A_nameDef} told the whole table that {B_nameDef} snores like a dying muffalo. {B_nameDef} left without finishing {B_possessive} meal.</li>
-      <li>At supper {A_nameDef} offered {B_nameDef} the smallest bowl, "since {B_pronoun} does the least work."</li>
+      <li>{A_nameDef} raised a cup at dinner "to {B_nameDef}, who has never once been the reason we won a fight."</li>
+      <li>{A_nameDef} told the whole table that {B_nameDef} snores like a dying muffalo, and {B_nameDef} left {B_possessive} meal half eaten.</li>
+      <li>{A_nameDef} pushed the smallest bowl across to {B_nameDef}, "since {B_pronoun} does the least work."</li>
       <li>{A_nameDef} asked the table whether anyone else could smell {B_nameDef} from where they sat.</li>
     </texts>
     <effects>
@@ -229,11 +229,11 @@
     <tie>Rivals</tie>
     <minStrength>40</minStrength>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} ended up nose to nose over the last seat by the fire. The whole room went quiet.</li>
-      <li>{B_nameDef} jostled {A_nameDef}'s arm in the mess hall and the soup went everywhere. Both of them stood up with their fists clenched.</li>
+      <li>{A_nameDef} and {B_nameDef} ended up nose to nose, and for a long moment neither of them backed off.</li>
+      <li>{B_nameDef} knocked {A_nameDef}'s arm, maybe on purpose, and both of them squared up with their fists clenched.</li>
       <li>{A_nameDef} told {B_nameDef} to say it again. {B_nameDef} said it again.</li>
-      <li>{A_nameDef} and {B_nameDef} reached for the same bucket at the well, and neither let go until someone stepped between them.</li>
-      <li>{B_nameDef} laughed at {A_nameDef}'s mistake one time too many, and {A_nameDef} stood up slowly. The room held its breath.</li>
+      <li>{A_nameDef} and {B_nameDef} grabbed for the same tool, and neither would let go.</li>
+      <li>{B_nameDef} laughed at {A_nameDef}'s mistake one time too many, and {A_nameDef} turned round slowly with {A_possessive} fists closed.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc2_SquaredUp</thought></li>
@@ -255,10 +255,10 @@
     <tie>Comrades</tie>
     <minStrength>10</minStrength>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} spent the evening sparring with sticks behind the barracks. Both limped to dinner, grinning.</li>
-      <li>{A_nameDef} showed {B_nameDef} the move that saved {A_possessive} life in the last raid, slowly at first and then at full speed.</li>
-      <li>{A_nameDef} and {B_nameDef} wrestled in the yard until both were covered in dirt and neither would admit defeat.</li>
-      <li>{A_nameDef} and {B_nameDef} practiced blocking with padded sticks until supper, counting each hit.</li>
+      <li>{A_nameDef} and {B_nameDef} sparred with sticks until both of them were limping and grinning.</li>
+      <li>{A_nameDef} showed {B_nameDef} the move that saved {A_possessive} life in the last fight, slowly at first and then at full speed.</li>
+      <li>A wrestling match between {A_nameDef} and {B_nameDef} ended with both of them in the dirt and neither admitting defeat.</li>
+      <li>Counting every hit, {A_nameDef} and {B_nameDef} practiced blocks with padded sticks.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><skill>Melee</skill><xp>300</xp></li>
@@ -278,9 +278,9 @@
     <tie>Comrades</tie>
     <minStrength>20</minStrength>
     <texts>
-      <li>{A_nameDef} woke up shouting, back in the last fight. {B_nameDef} sat with {A_objective} until dawn and never asked a single question.</li>
-      <li>{B_nameDef} found {A_nameDef} at the wall in the small hours, weapon in hand, staring into the dark, and stayed with {A_objective} until the sun came up.</li>
-      <li>{B_nameDef} heard {A_nameDef} muttering orders in {A_possessive} sleep, back in the last fight, and woke {A_objective} gently before it got worse.</li>
+      <li>{A_nameDef} woke shouting in the night, back in the last fight, and {B_nameDef} sat with {A_objective} until it was light.</li>
+      <li>{B_nameDef} found {A_nameDef} awake in the small hours, weapon in hand, and stayed with {A_objective} until sunrise.</li>
+      <li>{B_nameDef} heard {A_nameDef} giving orders in {A_possessive} sleep, back in the last fight, and woke {A_objective} gently.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_SatWithMe</thought></li>
@@ -300,8 +300,8 @@
     <tie>Comrades</tie>
     <minStrength>15</minStrength>
     <texts>
-      <li>A cut from the last raid reopened on {B_nameDef}'s arm. {A_nameDef} stitched it shut by candlelight, badly, telling terrible jokes the whole time.</li>
-      <li>{B_nameDef} had been hiding a graze since the fight. {A_nameDef} noticed, swore at {B_objective}, and cleaned it properly.</li>
+      <li>{A_nameDef} stitched the reopened cut on {B_nameDef}'s arm, not very neatly, telling terrible jokes the whole time.</li>
+      <li>{A_nameDef} spotted the graze {B_nameDef} had been hiding since the fight, swore at {B_objective}, and cleaned it properly.</li>
       <li>{A_nameDef} changed the dressing on {B_nameDef}'s leg and told {B_objective} off for walking on it.</li>
     </texts>
     <effects>
@@ -324,9 +324,9 @@
     <tie>Mentor</tie>
     <children>true</children>
     <texts>
-      <li>{B_nameDef} got the same step of {SKILL} wrong all afternoon. Eventually {A_nameDef} put down the tools and went to stare at a wall.</li>
-      <li>{A_nameDef} tried to explain {SKILL} to {B_nameDef} five different ways, and none of them worked. Both went to bed annoyed.</li>
-      <li>{A_nameDef} explained the same piece of {SKILL} until {A_possessive} voice gave out, and {B_nameDef} still did it backward.</li>
+      <li>{B_nameDef} kept getting one step of {SKILL} wrong until {A_nameDef} had to walk off and stare at a wall.</li>
+      <li>{A_nameDef} tried five different ways to explain {SKILL} to {B_nameDef}, and none of them took.</li>
+      <li>{A_nameDef} went over the same point of {SKILL} until {A_possessive} voice gave out, and {B_nameDef} still did it backward.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc2_FrustratingLesson</thought></li>
@@ -346,9 +346,9 @@
     <minStrength>40</minStrength>
     <children>true</children>
     <texts>
-      <li>{B_nameDef} turned out a piece of {SKILL} work better than {A_nameDef} could have done. {A_nameDef} said so out loud, then went off to practice.</li>
-      <li>{A_nameDef} went over {B_nameDef}'s {SKILL} work twice looking for mistakes, and found none.</li>
-      <li>{B_nameDef} finished a {SKILL} job before {A_nameDef} had started {A_possessive} own, and did it well.</li>
+      <li>{B_nameDef} did work in {SKILL} better than {A_nameDef} could have, and {A_nameDef} said so out loud.</li>
+      <li>{A_nameDef} went over {B_nameDef}'s work in {SKILL} twice, looking for mistakes, and found none.</li>
+      <li>{B_nameDef} solved a problem in {SKILL} that {A_nameDef} had given up on long ago, and showed {A_objective} how.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_StudentBetter</thought></li>
@@ -371,9 +371,9 @@
     <minStrength>20</minStrength>
     <children>true</children>
     <texts>
-      <li>{B_nameDef} asked {A_nameDef} a question about {SKILL} that {A_nameDef} couldn't answer, and they spent the evening working it out together.</li>
-      <li>{B_nameDef} tried a {SKILL} trick {B_pronoun} had worked out alone. {A_nameDef} watched, frowned, and started doing it too.</li>
-      <li>{B_nameDef} found a faster way through a {SKILL} job, and {A_nameDef} asked {B_objective} to show it twice.</li>
+      <li>{B_nameDef} asked a question about {SKILL} that {A_nameDef} couldn't answer, so they worked it out together.</li>
+      <li>{B_nameDef} showed {A_nameDef} a trick in {SKILL} of {B_possessive} own, and {A_nameDef} frowned, then took it up too.</li>
+      <li>{B_nameDef} found a quicker way round a problem in {SKILL}, and {A_nameDef} asked {B_objective} to show it twice.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><xp>400</xp></li>
@@ -392,10 +392,10 @@
     <tie>Mentor</tie>
     <children>true</children>
     <texts>
-      <li>{B_nameDef}'s lesson in {SKILL} ended with a small fire and {A_nameDef} missing an eyebrow.</li>
-      <li>Halfway through the {SKILL} lesson, {B_nameDef} did exactly what {A_nameDef} had said not to do. The cleanup took longer than the lesson.</li>
-      <li>{A_nameDef} demonstrated some {SKILL} for {B_nameDef} with great confidence, and got it completely wrong. They agreed not to tell anyone.</li>
-      <li>{A_nameDef} and {B_nameDef} spent the {SKILL} lesson chasing a goat that had wandered in and eaten half the materials.</li>
+      <li>{B_nameDef}'s lesson in {SKILL} went so badly that {A_nameDef} called it off halfway through.</li>
+      <li>{B_nameDef} did exactly what {A_nameDef} had said not to do, and the lesson in {SKILL} turned into a cleanup.</li>
+      <li>{A_nameDef} confidently showed {B_nameDef} how it's done in {SKILL}, got it all wrong, and swore {B_objective} to secrecy.</li>
+      <li>{A_nameDef} lost the thread halfway through a lesson in {SKILL}, and {B_nameDef} had to remind {A_objective} where they were.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc2_LessonGoneWrong</thought></li>
@@ -418,9 +418,9 @@
     <roleA><passion>Animals</passion></roleA>
     <roleB><passion>Animals</passion><notTie>Friends</notTie></roleB>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} barely knew each other until they got into an argument about the right way to tame a boomalope. They've talked animals at every meal since.</li>
-      <li>{A_nameDef} caught {B_nameDef} naming the chickens, and {A_nameDef} had names for them already. They compared lists until dark.</li>
-      <li>{A_nameDef} and {B_nameDef} spent an evening watching a pair of wild birds build a nest, and agreed on names for both.</li>
+      <li>An argument about the right way to tame a boomalope kept {A_nameDef} and {B_nameDef} talking long after it stopped being one.</li>
+      <li>{A_nameDef} and {B_nameDef} found they had both been naming the wild animals that wander past, and compared names.</li>
+      <li>{A_nameDef} and {B_nameDef} traded stories of the worst animal bites they had ever had.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
@@ -440,10 +440,10 @@
     <roleB><notTie>Friends</notTie></roleB>
     <texts>
       <li>{A_nameDef} complimented {B_nameDef}'s new haircut, but {B_nameDef} had not had a haircut, and took it as a dig.</li>
-      <li>{A_nameDef} waved at {B_nameDef} across the field. {B_nameDef} took it for a rude gesture and has been cold ever since.</li>
-      <li>{B_nameDef} thought {A_nameDef} was asking {B_objective} out, when {A_nameDef} had only been asking for the salt.</li>
-      <li>{B_nameDef} heard {A_nameDef} laughing just after {B_nameDef} tripped, and took it personally. {A_nameDef} had been laughing at something else.</li>
-      <li>{A_nameDef} called {B_nameDef}'s stew "interesting" and meant it kindly. {B_nameDef} didn't take it that way.</li>
+      <li>{A_nameDef} waved at {B_nameDef}, and {B_nameDef} took it for a rude gesture.</li>
+      <li>{B_nameDef} thought {A_nameDef} was asking {B_objective} out, when {A_nameDef} had only wanted to borrow a knife.</li>
+      <li>{B_nameDef} tripped just as {A_nameDef} burst out laughing at something else, and took it personally.</li>
+      <li>{A_nameDef} called {B_nameDef}'s cooking "interesting" and meant it kindly, but {B_nameDef} didn't hear it that way.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc2_Awkward</thought></li>
@@ -460,9 +460,9 @@
     <roleB><notTie>Friends</notTie></roleB>
     <texts>
       <li>{A_nameDef} borrowed {B_nameDef}'s good knife without asking and gave it back with a chip in the blade.</li>
-      <li>{B_nameDef} caught {A_nameDef} wearing {B_possessive} coat, and {A_nameDef} said it had just been lying there.</li>
-      <li>{A_nameDef} borrowed {B_nameDef}'s bedroll for a hunting trip, and it came back smelling of smoke and blood.</li>
-      <li>{A_nameDef} borrowed {B_nameDef}'s comb and gave it back with someone else's hair in it.</li>
+      <li>{A_nameDef} admitted to wearing {B_nameDef}'s coat while {B_pronoun} was busy, and said it had just been lying there.</li>
+      <li>The bedroll {A_nameDef} borrowed from {B_nameDef} for a hunt came back smelling of smoke and blood.</li>
+      <li>{B_nameDef}'s comb came back from {A_nameDef} with someone else's hair in it.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc2_BorrowedMyThings</thought></li>
@@ -482,10 +482,10 @@
     <roleA><anyTrait><li>Kind</li></anyTrait></roleA>
     <roleB><maxMood>0.45</maxMood></roleB>
     <texts>
-      <li>{A_nameDef} noticed {B_nameDef} eating alone and looking grim, so {A_nameDef} sat down and talked about nothing until {B_nameDef} smiled.</li>
-      <li>{B_nameDef} found {B_possessive} torn boots mended and waiting by the door. {A_nameDef} claims to know nothing about it.</li>
+      <li>{A_nameDef} noticed {B_nameDef} looking grim and talked to {B_objective} about nothing in particular until {B_pronoun} smiled.</li>
+      <li>{A_nameDef} handed {B_nameDef} back {B_possessive} torn boots, mended.</li>
       <li>{A_nameDef} brought {B_nameDef} a hot drink in the middle of a bad day, and left before {B_nameDef} could say thanks.</li>
-      <li>{A_nameDef} noticed {B_nameDef} had skipped supper and brought a bowl to {B_possessive} room.</li>
+      <li>{A_nameDef} noticed {B_nameDef} hadn't eaten and pressed a piece of bread into {B_possessive} hand.</li>
       <li>{A_nameDef} took {B_nameDef}'s turn at the worst job of the day and wouldn't hear a word about it.</li>
     </texts>
     <effects>
@@ -504,11 +504,11 @@
     <maxOpinion>60</maxOpinion>
     <roleA><anyTrait><li>Abrasive</li></anyTrait></roleA>
     <texts>
-      <li>{A_nameDef} studied {B_nameDef}'s sculpture for a long moment and asked whether it was meant to be a tumor.</li>
+      <li>{A_nameDef} studied {B_nameDef}'s haircut for a long moment and asked whether it had been done in the dark.</li>
       <li>{A_nameDef} told {B_nameDef} that {B_possessive} cooking was proof the colony could survive anything.</li>
       <li>{A_nameDef} informed {B_nameDef}, at the top of {A_possessive} voice, that {B_pronoun} walks like a lame goat.</li>
       <li>{A_nameDef} looked at {B_nameDef}'s patched coat and asked whether {B_pronoun} had lost a fight with a dog.</li>
-      <li>{A_nameDef} told {B_nameDef} that {B_possessive} singing had cleared the animals out of the yard.</li>
+      <li>According to {A_nameDef}, {B_nameDef}'s singing is the reason the animals keep their distance.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc2_CuttingRemark</thought></li>
@@ -526,9 +526,9 @@
     <roleA><anyTrait><li>Psychopath</li></anyTrait></roleA>
     <roleB><notTrait><li>Psychopath</li></notTrait></roleB>
     <texts>
-      <li>{A_nameDef} watched {B_nameDef} butcher a muffalo and remarked, pleasantly, that people come apart much the same way.</li>
-      <li>{B_nameDef} asked {A_nameDef} whether {A_pronoun} missed anyone from before. {A_nameDef} gave it honest thought, said no, and smiled.</li>
-      <li>Over breakfast, {A_nameDef} told {B_nameDef} exactly how long a body takes to stop smelling in this climate.</li>
+      <li>{A_nameDef} remarked to {B_nameDef}, pleasantly, that people come apart much the same way muffalo do.</li>
+      <li>{B_nameDef} asked whether {A_nameDef} missed anyone from before, and {A_nameDef} gave it honest thought, said no, and smiled.</li>
+      <li>{A_nameDef} told {B_nameDef}, in some detail, how long a body takes to stop smelling in this climate.</li>
       <li>{A_nameDef} asked {B_nameDef}, with real interest, what {B_pronoun} would do if the food ran out and only one of them could eat.</li>
     </texts>
     <effects>
@@ -552,7 +552,7 @@
     <roleB><child>true</child></roleB>
     <texts>
       <li>{A_nameDef} and {B_nameDef} have invented a secret language, mostly clicks and whistles, with a very rude word for grown-ups.</li>
-      <li>{A_nameDef} and {B_nameDef} buried a bolt, a bird skull and a silver coin in a box behind the barn, and drew a map so they could find it again.</li>
+      <li>A box of treasures is buried somewhere, and only {A_nameDef} and {B_nameDef} have the map.</li>
       <li>{A_nameDef} and {B_nameDef} have a secret signal for when a grown-up is coming, and use it constantly.</li>
     </texts>
     <effects>
@@ -571,9 +571,9 @@
     <roleA><child>true</child></roleA>
     <roleB><child>true</child></roleB>
     <texts>
-      <li>{A_nameDef} dared {B_nameDef} to walk out to the far fence after dark. {B_nameDef} did it, and they both ran back shrieking.</li>
-      <li>{A_nameDef} dared {B_nameDef} to sneak into the barn and touch the biggest animal there while it slept, and {B_nameDef} did.</li>
-      <li>{A_nameDef} dared {B_nameDef} to eat a whole raw onion. {B_nameDef} did, crying the entire time.</li>
+      <li>{A_nameDef} dared {B_nameDef} to hold {B_possessive} breath for a count of a hundred, and {B_nameDef} got to ninety.</li>
+      <li>On a dare from {A_nameDef}, {B_nameDef} said a rude word to a grown-up's face.</li>
+      <li>{A_nameDef} dared {B_nameDef} to eat a worm, and {B_nameDef} did, pulling faces the whole time.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc2_Daredevils</thought></li>
@@ -592,10 +592,10 @@
     <roleA><child>true</child></roleA>
     <roleB><minOpinionOfA>0</minOpinionOfA></roleB>
     <texts>
-      <li>{A_nameDef} followed {B_nameDef} around all day asking why the sky is that color, why the raiders come and why the doctor kept the leg. {B_nameDef} answered every one, mostly truthfully.</li>
-      <li>{A_nameDef} begged {B_nameDef} for a story until {B_nameDef} gave in and told a long one about a giant squirrel, and then begged for another.</li>
-      <li>{A_nameDef} insisted on helping {B_nameDef} with the chores, which made them take three times as long. {B_nameDef} let {A_objective} help anyway.</li>
-      <li>{A_nameDef} asked {B_nameDef} so many questions about the stars that {B_nameDef} took {A_objective} up on the wall after dark to show {A_objective}.</li>
+      <li>{A_nameDef} asked {B_nameDef} why the sky is that color and what the council is for, and got answers that were mostly true.</li>
+      <li>{A_nameDef} begged {B_nameDef} for a story until {B_nameDef} gave in with a long one about a giant squirrel.</li>
+      <li>{A_nameDef} insisted on helping {B_nameDef} with {B_possessive} work, and {B_nameDef} let {A_objective}, though it took three times as long.</li>
+      <li>{A_nameDef} asked {B_nameDef} so many questions about the stars that {B_nameDef} promised to point them out to {A_objective} after dark.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_Indulged</thought></li>
@@ -616,9 +616,9 @@
     <weight>0.6</weight>
     <roleA><anyTrait><li>Jealous</li></anyTrait></roleA>
     <texts>
-      <li>{A_nameDef} paced out {B_nameDef}'s bedroom while {B_nameDef} was at work, and found it a full step longer than {A_possessive} own.</li>
-      <li>{A_nameDef} complimented {B_nameDef}'s room through gritted teeth, then spent the evening glaring at {A_possessive} own ceiling.</li>
-      <li>{A_nameDef} asked {B_nameDef} how {B_pronoun} had ended up with the room by the warm wall, in a voice that wasn't really asking.</li>
+      <li>{A_nameDef} has paced out the space where {B_nameDef} sleeps and found it a full step longer than {A_possessive} own.</li>
+      <li>{A_nameDef} praised {B_nameDef}'s bed through gritted teeth, then went and glared at {A_possessive} own.</li>
+      <li>{A_nameDef} asked {B_nameDef} how {B_pronoun} had ended up with the better place to sleep, in a voice that wasn't really asking.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc2_Envious</thought></li>
@@ -637,9 +637,9 @@
     <roleA><anyTrait><li>Bloodlust</li></anyTrait></roleA>
     <roleB><notTrait><li>Bloodlust</li><li>Psychopath</li></notTrait></roleB>
     <texts>
-      <li>{A_nameDef} described the last raid to {B_nameDef} over dinner, wound by wound, with gestures. {B_nameDef} pushed {B_possessive} bowl away.</li>
+      <li>{A_nameDef} described an old fight to {B_nameDef} over dinner, wound by wound, until {B_nameDef} pushed {B_possessive} bowl away.</li>
       <li>While {B_nameDef} was eating stew, {A_nameDef} explained what an axe does to a skull, sounds and all.</li>
-      <li>Over breakfast, {A_nameDef} explained to {B_nameDef} which wounds bleed the most and why, in more detail than {B_nameDef} wanted.</li>
+      <li>Between mouthfuls, {A_nameDef} explained to {B_nameDef} which wounds bleed most, in more detail than {B_nameDef} wanted.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc2_GoryStory</thought></li>
@@ -658,9 +658,9 @@
     <weight>0.6</weight>
     <roleA><anyTrait><li>TooSmart</li></anyTrait></roleA>
     <texts>
-      <li>{A_nameDef} explained {B_nameDef}'s own job to {B_objective}, slowly, with diagrams scratched in the dirt, and {B_nameDef} had to admit some of it was right.</li>
-      <li>{A_nameDef} corrected {B_nameDef}'s grammar in the middle of a raid warning, and {B_nameDef} hasn't forgiven it.</li>
-      <li>{A_nameDef} told {B_nameDef} how many stones it had taken to build the wall {B_nameDef} had just built, and how many it should have taken.</li>
+      <li>{A_nameDef} explained {B_nameDef}'s own job to {B_objective}, slowly, and {B_nameDef} had to admit some of it was right.</li>
+      <li>{A_nameDef} corrected {B_nameDef}'s grammar halfway through a sentence, and {B_nameDef} forgot what {B_pronoun} had been saying.</li>
+      <li>{A_nameDef} told {B_nameDef} how long {B_possessive} last job had taken, and how long it should have taken.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc2_Lectured</thought></li>
@@ -673,14 +673,14 @@
 
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_LittleFire</defName>
-    <label>a little fire</label>
+    <label>too fond of fire</label>
     <weight>0.5</weight>
     <roleA><anyTrait><li>Pyromaniac</li></anyTrait></roleA>
     <roleB><notTrait><li>Pyromaniac</li></notTrait></roleB>
     <texts>
-      <li>{A_nameDef} invited {B_nameDef} to admire a fire {A_pronoun} had built behind the workshop, out of what used to be a bench.</li>
-      <li>{A_nameDef} spent dinner telling {B_nameDef} about every fire {A_pronoun} had ever seen, eyes shining, and that night {B_nameDef} moved {B_possessive} bed nearer the door.</li>
-      <li>{A_nameDef} showed {B_nameDef} how to judge a fire's heat from the color of the flame, and kept {B_objective} there long after {B_nameDef} wanted to leave.</li>
+      <li>{A_nameDef} asked {B_nameDef}, a bit too eagerly, which of the colony's buildings would burn best.</li>
+      <li>{A_nameDef} told {B_nameDef} about every fire {A_pronoun} had ever seen, eyes shining, and {B_nameDef} began edging toward the door.</li>
+      <li>{A_nameDef} explained to {B_nameDef} how to read a fire's heat from the color of its flame, and wouldn't let {B_objective} leave.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc2_FireUneasy</thought></li>

@@ -17,41 +17,41 @@
       <plain>
         <li>Same seats as always.</li>
         <li>Shift up, there's room for one more.</li>
-        <li>Pass the kettle round, would you?</li>
+        <li>Pass the cup round, would you?</li>
         <li>Somebody put another log on.</li>
-        <li>That's the best part of the day, this.</li>
+        <li>This is the hour I wait for all day.</li>
         <li>Where were we last night? The bit about the river.</li>
         <li>Tell the one about the boomalope again.</li>
         <li>Hear that? Just the wind.</li>
         <li>My feet have finally stopped aching.</li>
-        <li>Nobody talk about work for an hour.</li>
+        <li>No talk of work, not tonight.</li>
         <li>Look at those sparks go up.</li>
         <li>I saved you the warm side.</li>
         <li>[winter] Closer in, it's bitter tonight.</li>
         <li>[winter] I can't feel my toes, and I don't care.</li>
         <li>[summer] Too hot for a fire, and here we all are.</li>
-        <li>[rain] Under the eaves, everyone, the rain's coming in sideways.</li>
+        <li>[rain] Let it pour out there.</li>
         <li>[afterraid] We made it through another one.</li>
-        <li>[afterraid] Nobody sleeps much after a day like that.</li>
+        <li>[afterraid] I won't sleep much after a day like that.</li>
         <li>[child] Can I stay up a bit longer? Just till the fire's low.</li>
-        <li>[grouprole:anchor] Good. Everyone's here.</li>
+        <li>[grouprole:anchor] Good, you came.</li>
         <li>[grouprole:anchor] Sit down, you've earned it.</li>
         <li>[grouprole:joker] I was going to tell a story, but you've all heard it.</li>
         <li>[grouprole:joker] Who let the cook near the stew again?</li>
         <li>[grouprole:joker] Don't look at me like that, the smoke follows me.</li>
         <li>[grouprole:peacemaker] Let's leave today's quarrels outside the circle.</li>
         <li>[grouprole:firebrand] You know what I'd change about this place?</li>
-        <li>[grouprole:worrier] Did anyone check the gate before we sat down?</li>
-        <li>[grouprole:quiet] Yes. Together.</li>
+        <li>[grouprole:worrier] Did anyone bar the door before we sat down?</li>
+        <li>[grouprole:quiet] Warm.</li>
         <li>[grouprole:quiet] This is enough.</li>
         <li>[grouprole:newcomer] Is this anyone's seat?</li>
         <li>[grouprole:newcomer] Do you do this every night?</li>
-        <li>[groupkind:hunters] Three days on that trail, and the beast walks past the wall.</li>
+        <li>[groupkind:hunters] Three days on that trail, and it doubled back behind us.</li>
         <li>[groupkind:hunters] I'll find its tracks again tomorrow.</li>
         <li>[groupkind:comrades] I still hear it, some nights.</li>
         <li>[groupkind:comrades] To the ones who aren't sitting here.</li>
         <li>[groupkind:elders] When I was your age there was no fire, just stars.</li>
-        <li>[groupkind:founders] Remember the first night, with nothing but a blanket between us?</li>
+        <li>[groupkind:founders] Remember the first night, with no roof at all?</li>
         <li>[groupkind:tribeborn] This is how a fire should burn.</li>
         <li>[groupnorm:brave] Next time they come, I'm at the front.</li>
         <li>[groupnorm:gloomy] Enjoy it while it lasts.</li>
@@ -94,20 +94,20 @@
         <li>Is that seconds you've got there?</li>
         <li>Who made this? It's good.</li>
         <li>Same again tomorrow, then.</li>
-        <li>Budge up, there's room on the bench.</li>
+        <li>Budge up, there's room.</li>
         <li>Anyone want the crust?</li>
         <li>Finish yours before you look at mine.</li>
-        <li>That's better. I could eat a muffalo.</li>
-        <li>[morning] Nobody talks before they've eaten.</li>
-        <li>[evening] Long day. Good soup.</li>
+        <li>I could eat a whole muffalo.</li>
+        <li>[morning] No talking till I've eaten.</li>
+        <li>[evening] Long day. Good food.</li>
         <li>[winter] Hot food and full bowls, that's all I ask.</li>
         <li>[poor] It's thin, but it's hot.</li>
         <li>[child] I don't like the green bits.</li>
         <li>[grouprole:anchor] Wait for the others before you start.</li>
         <li>[grouprole:anchor] Save some for whoever's still at work.</li>
-        <li>[grouprole:joker] I've counted the beans, and I got fewer than you.</li>
+        <li>[grouprole:joker] I've counted, and you got more than me.</li>
         <li>[grouprole:joker] If this is the cook's best, I'd hate to taste the worst.</li>
-        <li>[grouprole:peacemaker] Half each. There, nobody's cheated.</li>
+        <li>[grouprole:peacemaker] Half each. There, fair's fair.</li>
         <li>[grouprole:firebrand] Who decided we eat this three days running?</li>
         <li>[grouprole:worrier] Are you sure this meat's all right?</li>
         <li>[grouprole:worrier] You're not eating enough, you know.</li>
@@ -119,7 +119,7 @@
         <li>[groupkind:kitchen] Next time, less fire under it.</li>
         <li>[groupkind:fields] We grew these, you know.</li>
         <li>[groupkind:miners] I've still got rock dust in my teeth.</li>
-        <li>[groupkind:nightshift] Breakfast for us, supper for everyone else.</li>
+        <li>[groupkind:nightshift] Breakfast for us, supper for the rest.</li>
         <li>[groupnorm:hardworkers] Eat quick, there's daylight left.</li>
         <li>[groupnorm:merry] Who's telling the story tonight?</li>
         <li>[groupnorm:aloof] Our end of the table.</li>
@@ -163,19 +163,19 @@
         <li>[lowtech] Throw the bones, let's see.</li>
         <li>[!lowtech] Shuffle them properly this time.</li>
         <li>[child] Can I play? I know the rules.</li>
-        <li>[child] I won! Did everyone see?</li>
+        <li>[child] I won! Did you see?</li>
         <li>[grouprole:anchor] Everyone gets a turn, and that means you.</li>
         <li>[grouprole:joker] I wasn't cheating. I was improvising.</li>
         <li>[grouprole:joker] That's the third time I've lost on purpose.</li>
-        <li>[grouprole:peacemaker] It's a game. Nobody owes anybody anything.</li>
+        <li>[grouprole:peacemaker] It's only a game. Shake hands.</li>
         <li>[grouprole:firebrand] Rematch. Now.</li>
         <li>[grouprole:firebrand] Those rules are rubbish and you know it.</li>
         <li>[grouprole:worrier] We should stop before someone gets cross.</li>
         <li>[grouprole:quiet] Your move.</li>
         <li>[grouprole:newcomer] How do you win at this, exactly?</li>
         <li>[groupnorm:merry] Loser sings.</li>
-        <li>[groupnorm:merry] Louder, so the whole colony knows who won.</li>
-        <li>[groupnorm:proud] Nobody here beats me twice.</li>
+        <li>[groupnorm:merry] Say it louder, I want to hear who won.</li>
+        <li>[groupnorm:proud] You won't beat me twice.</li>
         <li>[groupkind:young] Last one to bed has to tidy.</li>
         <li>[groupkind:scholars] There's a better strategy, I've worked it out.</li>
         <li>[persona:hothead] Who moved my piece?</li>
@@ -213,7 +213,7 @@
         <li>That'll hold.</li>
         <li>Slow down, you'll ruin it.</li>
         <li>We make a good pair at this.</li>
-        <li>[rain] Wet through, and still not done.</li>
+        <li>[rain] Rain or no rain, this gets done.</li>
         <li>[hot] Water break, before we drop.</li>
         <li>[grouprole:anchor] Good work, all of you.</li>
         <li>[grouprole:anchor] Show the new hands how it's done.</li>
@@ -265,7 +265,7 @@
       <plain>
         <li>Downwind. Always downwind.</li>
         <li>Tracks, fresh ones.</li>
-        <li>Quiet, it's just past those trees.</li>
+        <li>Quiet, it's just over there.</li>
         <li>Your shot.</li>
         <li>Wait for it to turn.</li>
         <li>That one's big enough for both of us.</li>
@@ -274,10 +274,10 @@
         <li>[lowtech] Keep your spear low.</li>
         <li>[lowtech] Nock it and wait.</li>
         <li>[!lowtech] Steady. Breathe out, then squeeze.</li>
-        <li>[winter] Easy tracking in the snow, at least.</li>
+        <li>[winter] Cold hands make for bad aim.</li>
         <li>[rain] Rain's washing the trail away.</li>
-        <li>[grouprole:anchor] Stay together, nobody goes off alone.</li>
-        <li>[grouprole:joker] That's the one that got away last time. I recognise its smirk.</li>
+        <li>[grouprole:anchor] Stay close, and don't go off alone.</li>
+        <li>[grouprole:joker] That's the one that got away last time. I know that smirk.</li>
         <li>[grouprole:firebrand] I'm not going home with nothing.</li>
         <li>[grouprole:worrier] What if it charges?</li>
         <li>[grouprole:quiet] There.</li>
@@ -302,16 +302,16 @@
     <lines>
       <plain>
         <li>Still up? Me too.</li>
-        <li>Everyone else is snoring.</li>
+        <li>The rest of them are snoring.</li>
         <li>Best time of the day, the middle of the night.</li>
         <li>Listen to how quiet it is.</li>
-        <li>Another hour and the sky starts going grey.</li>
+        <li>A few more hours and the sky starts going gray.</li>
         <li>Want something hot?</li>
-        <li>I'll take the next round of the walls.</li>
+        <li>I'll take the next look round outside.</li>
         <li>Did you hear that, or was it me?</li>
-        <li>Stars are sharp tonight.</li>
+        <li>Hard to believe it's the same place by daylight.</li>
         <li>[winter] Cold enough to freeze your thoughts.</li>
-        <li>[rain] Rain on the roof, nobody else awake to hear it.</li>
+        <li>[rain] Rain on the roof, and only us awake to hear it.</li>
         <li>[grouprole:anchor] Wake me if anything moves.</li>
         <li>[grouprole:joker] The day lot don't know what they're missing.</li>
         <li>[grouprole:worrier] Something's out there, I'm sure of it.</li>
@@ -339,14 +339,14 @@
       <plain>
         <li>Together, then.</li>
         <li>Let's sit a moment before we start.</li>
-        <li>For the ones we lost.</li>
-        <li>For the harvest.</li>
+        <li>For the ones who came before us.</li>
+        <li>For full stores.</li>
         <li>For the ones still out there.</li>
         <li>Quiet now.</li>
         <li>I always feel better after.</li>
         <li>[afterraid] For those who held, and those who didn't.</li>
         <li>[winter] For the stores, and the spring.</li>
-        <li>[grouprole:anchor] Hands together. Everyone.</li>
+        <li>[grouprole:anchor] Hands together, all of us.</li>
         <li>[grouprole:peacemaker] Let's ask for patience, all of us.</li>
         <li>[grouprole:worrier] I hope it's listening.</li>
         <li>[grouprole:quiet] Yes. Together.</li>
@@ -357,7 +357,7 @@
         <li>I said one for you too.</li>
       </warm>
       <gloomy>
-        <li>We could all use a little more faith right now.</li>
+        <li>We could all use more faith right now.</li>
       </gloomy>
       <cold>
         <li>Words don't fill the stores. But still.</li>
@@ -370,17 +370,17 @@
     <defName>Rimfolk_Pool_Group_Talk</defName>
     <lines>
       <plain>
-        <li>So, what did you think of the council today?</li>
+        <li>So, what do you make of the council lately?</li>
         <li>One more cup and then bed.</li>
-        <li>Have you noticed how quiet the new one is?</li>
+        <li>Have you noticed how quiet the place gets this late?</li>
         <li>You never finished that story.</li>
         <li>I've been thinking about what you said.</li>
         <li>Where do you think we'll all be in a year?</li>
         <li>Tell me about where you grew up.</li>
         <li>That's the trouble with this place, and the best of it.</li>
         <li>I don't agree, but go on.</li>
-        <li>Is it just me, or is everyone tired lately?</li>
-        <li>[afterraid] We need to talk about the wall.</li>
+        <li>Is it just me, or are we all tired lately?</li>
+        <li>[afterraid] We need to talk about the raid.</li>
         <li>[winter] Long nights for talking, at least.</li>
         <li>[grouprole:anchor] Right, what's everyone's news?</li>
         <li>[grouprole:joker] I've got gossip, but you'll have to bribe me.</li>
@@ -389,13 +389,13 @@
         <li>[grouprole:worrier] I can't stop thinking about the stores.</li>
         <li>[grouprole:quiet] I'm listening.</li>
         <li>[grouprole:newcomer] Is it always like this here?</li>
-        <li>[groupkind:healers] Three patients this week, and all of them walked out.</li>
+        <li>[groupkind:healers] If every patient this week walks out on their own feet, I'll be happy.</li>
         <li>[groupkind:scholars] I nearly had it today. Nearly.</li>
         <li>[groupkind:offworlders] Do you miss the stars? The other ones, I mean.</li>
-        <li>[groupkind:curious] What's past the hills, do you think?</li>
+        <li>[groupkind:curious] What do you think is out past where we've walked?</li>
         <li>[groupkind:grumblers] Mark my words, it'll go wrong.</li>
         <li>[groupnorm:curious] I heard of a new way of doing it.</li>
-        <li>[groupnorm:wary] I don't trust the new arrivals yet.</li>
+        <li>[groupnorm:wary] I don't trust strangers, and I won't start now.</li>
       </plain>
       <warm>
         <li>I'm glad we have these evenings.</li>
@@ -423,24 +423,24 @@
         <li>The usual way round?</li>
         <li>Slow down, it's not a race.</li>
         <li>Look at that sky.</li>
-        <li>The fields are coming on.</li>
+        <li>The place looks different from out here.</li>
         <li>Good air out here.</li>
-        <li>Let's go as far as the old tree.</li>
-        <li>Mind the mud there.</li>
-        <li>Hear the birds settling?</li>
+        <li>Let's go a bit further than yesterday.</li>
+        <li>Mind your step there.</li>
+        <li>Hear how quiet it's gone?</li>
         <li>[winter] Short walk tonight.</li>
-        <li>[rain] Nobody else would walk in this.</li>
+        <li>[rain] Only us would walk in this.</li>
         <li>[spring] Everything's green again.</li>
-        <li>[fall] The leaves are turning.</li>
+        <li>[fall] There's a chill in the evenings now.</li>
         <li>[grouprole:anchor] Wait for the slow ones.</li>
         <li>[grouprole:joker] If we walk far enough, maybe the chores will forget us.</li>
-        <li>[grouprole:worrier] Not too far from the walls.</li>
+        <li>[grouprole:worrier] Not too far from home.</li>
         <li>[grouprole:quiet] Lovely.</li>
         <li>[groupkind:elders] My knees aren't what they were. Keep up anyway.</li>
         <li>[groupkind:elders] I remember when all this was bush.</li>
-        <li>[groupkind:keepers] The herd's restless tonight.</li>
+        <li>[groupkind:keepers] The animals are restless tonight.</li>
         <li>[groupkind:tribeborn] The land talks, if you walk it slow enough.</li>
-        <li>[groupkind:young] Race you to the fence.</li>
+        <li>[groupkind:young] Race you back.</li>
       </plain>
       <warm>
         <li>Take my arm, the path's rough here.</li>

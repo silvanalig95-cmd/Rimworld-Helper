@@ -15,9 +15,9 @@
     <roleA><tags>quirk:Hums</tags></roleA>
     <roleB><tags>trait:Abrasive|trait:Nervous|trait:Volatile|trait:TooSmart</tags></roleB>
     <texts>
-      <li>{A_nameDef} hummed the same four notes all afternoon at work, and {B_nameDef}, a few paces off, finally threw down {B_possessive} tools and asked whether {A_pronoun} knew any others.</li>
-      <li>{B_nameDef} asked {A_nameDef} to stop humming. {A_nameDef} said {A_pronoun} wasn't. {A_nameDef} was.</li>
-      <li>{B_nameDef} has started working at the far end of the room, as far from {A_nameDef}'s humming as the walls allow.</li>
+      <li>{A_nameDef} hummed the same four notes over and over until {B_nameDef} asked whether {A_pronoun} knew any others.</li>
+      <li>{B_nameDef} asked {A_nameDef} to stop humming, and {A_nameDef}, still humming, said {A_pronoun} wasn't.</li>
+      <li>{B_nameDef} snapped at {A_nameDef} that one more hum and {B_pronoun} would go and work somewhere else.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>3</change>
@@ -31,8 +31,8 @@
     <minOpinion>10</minOpinion>
     <roleA><tags>quirk:Hums</tags></roleA>
     <texts>
-      <li>{B_nameDef} started humming along with {A_nameDef} at work, badly, and they finished the job as a duet.</li>
-      <li>{B_nameDef} caught {A_nameDef}'s tune and couldn't get rid of it all day. By evening they were both humming it.</li>
+      <li>{B_nameDef} started humming along with {A_nameDef}, badly, and it turned into a duet.</li>
+      <li>{B_nameDef} caught {A_nameDef}'s tune and can't get rid of it, so now they hum it together.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>3</change>
@@ -46,8 +46,8 @@
     <maxOpinion>20</maxOpinion>
     <roleA><tags>quirk:SleepTalker</tags></roleA>
     <texts>
-      <li>At breakfast {B_nameDef} repeated, word for word, what {A_nameDef} had said in {A_possessive} sleep. {A_nameDef} wanted to know how {B_nameDef} had come to hear it.</li>
-      <li>{B_nameDef} told the table that {A_nameDef} argues with someone called Vera in {A_possessive} sleep, and loses. {A_nameDef} didn't think it was funny.</li>
+      <li>{B_nameDef} repeated word for word what {A_nameDef} had said in {A_possessive} sleep, and {A_nameDef} went red.</li>
+      <li>{B_nameDef} told {A_nameDef}, grinning, that {A_pronoun} argues in {A_possessive} sleep with someone called Vera, and loses.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -62,8 +62,8 @@
     <roleA><tags>quirk:EarlyRiser</tags></roleA>
     <roleB><tags>trait:NightOwl</tags></roleB>
     <texts>
-      <li>{A_nameDef} was up before dawn and cheerful about it, and said so to {B_nameDef}, who had gone to bed an hour before.</li>
-      <li>{A_nameDef} asked {B_nameDef} at noon whether {B_pronoun} was only just up. {B_nameDef} asked {A_nameDef} whether {A_pronoun} ever stopped talking about mornings.</li>
+      <li>{A_nameDef} told {B_nameDef}, cheerfully, how much of the day {B_pronoun} misses by sleeping through the dawn.</li>
+      <li>{A_nameDef} asked {B_nameDef} whether {B_pronoun} was only just up, and got asked if {A_pronoun} ever talks about anything but mornings.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -78,8 +78,8 @@
     <roleA><tags>quirk:SingsAtStove</tags></roleA>
     <roleB><tags>trait:Gourmand|skill:Cooking</tags></roleB>
     <texts>
-      <li>{B_nameDef} has taken to eating in the kitchen doorway, because {A_nameDef} sings while {A_pronoun} cooks, and the food tastes better for it, {B_nameDef} says.</li>
-      <li>{B_nameDef} asked {A_nameDef} for the song along with the recipe. {A_nameDef} said they only work together.</li>
+      <li>{B_nameDef} told {A_nameDef} that the food tastes better on the days {A_pronoun} sings while {A_pronoun} cooks.</li>
+      <li>{B_nameDef} asked {A_nameDef} for a recipe, and {A_nameDef} said it only works with the song.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -93,8 +93,8 @@
     <maxOpinion>20</maxOpinion>
     <roleA><tags>quirk:TidyTable</tags></roleA>
     <texts>
-      <li>{A_nameDef} cleared {B_nameDef}'s things off the table while {B_nameDef} was still using them, and stacked them very neatly somewhere {B_nameDef} couldn't find.</li>
-      <li>{B_nameDef} left a cup on the table for a moment. When {B_pronoun} came back {A_nameDef} had washed it, dried it and put it away, and was waiting to say something about it.</li>
+      <li>{A_nameDef} tidied {B_nameDef}'s things away while {B_pronoun} was still using them, and stacked them where {B_pronoun} couldn't find them.</li>
+      <li>{B_nameDef} set a cup down for a moment, and {A_nameDef} had it washed and put away before {B_pronoun} turned round.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>3</change>
@@ -108,8 +108,8 @@
     <minOpinion>15</minOpinion>
     <roleA><tags>quirk:Whittler</tags></roleA>
     <texts>
-      <li>{A_nameDef} gave {B_nameDef} a little carved bird, made out of an offcut over a few evenings. {B_nameDef} has put it by {B_possessive} bed.</li>
-      <li>{A_nameDef} had been whittling something for days without saying what. It turned out to be for {B_nameDef}: a small, careful likeness of {B_possessive} favourite animal.</li>
+      <li>{A_nameDef} gave {B_nameDef} a carved spoon, whittled from an offcut over a few evenings.</li>
+      <li>{A_nameDef} handed {B_nameDef} what {A_pronoun} had been whittling for days, a careful likeness of {B_nameDef}'s favorite animal.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>5</change>
@@ -123,7 +123,7 @@
     <minOpinion>5</minOpinion>
     <roleA><tags>quirk:Birthdays</tags></roleA>
     <texts>
-      <li>{A_nameDef} remembered that today was the day {B_nameDef} first came to the colony, and was the only one who did. {B_nameDef} was more touched than {B_pronoun} let on.</li>
+      <li>{A_nameDef} knew to the season when {B_nameDef} first came to the colony, and {B_nameDef} was more touched than {B_pronoun} let on.</li>
       <li>{A_nameDef} wished {B_nameDef} well for a day that mattered to {B_objective}, and {B_nameDef} had no idea anyone knew.</li>
     </texts>
     <changeTie>Friends</changeTie>
@@ -138,8 +138,8 @@
     <minOpinion>10</minOpinion>
     <roleA><tags>quirk:Stargazer</tags></roleA>
     <texts>
-      <li>{A_nameDef} took {B_nameDef} out past the lamps last night and named the stars for {B_objective}, one by one. {B_nameDef} suspects {A_nameDef} made half of them up.</li>
-      <li>{B_nameDef} found {A_nameDef} lying on the cold ground looking up, and lay down beside {A_objective}. They stayed until the dew came.</li>
+      <li>Last night {A_nameDef} named the stars for {B_nameDef} one by one, and {B_nameDef} suspects half the names were made up.</li>
+      <li>{A_nameDef} promised to show {B_nameDef} which star is which once it gets dark.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>4</change>
@@ -154,8 +154,8 @@
     <roleA><tags>quirk:CountsThings</tags></roleA>
     <roleB><tags>trait:Abrasive|trait:Volatile|trait:Nervous|skill:Intellectual</tags></roleB>
     <texts>
-      <li>{A_nameDef} counted the steps to the storeroom out loud while {B_nameDef} was trying to think, and then counted them again on the way back.</li>
-      <li>{B_nameDef} lost {B_possessive} place three times because {A_nameDef} was counting something under {A_possessive} breath. {B_nameDef} asked what. {A_nameDef} said it was best not to stop now.</li>
+      <li>{A_nameDef} counted out loud while {B_nameDef} was trying to think, and started over when {B_nameDef} asked {A_objective} to stop.</li>
+      <li>{B_nameDef} lost {B_possessive} place three times to {A_nameDef}'s counting, and {A_nameDef} wouldn't stop or say what {A_pronoun} was counting.</li>
     </texts>
     <changeTie>Rivals</changeTie>
     <change>2</change>
@@ -170,8 +170,8 @@
     <roleA><tags>quirk:KnocksWood|quirk:RedLuck|quirk:SaltsDoor</tags></roleA>
     <roleB><tags>quirk:KnocksWood|quirk:RedLuck|quirk:SaltsDoor|quirk:LuckyItem</tags></roleB>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} have discovered they are both superstitious, and spent the evening comparing notes and topping up each other's precautions.</li>
-      <li>{B_nameDef} caught {A_nameDef} at {A_possessive} little ritual and, instead of laughing, showed {A_objective} {B_possessive} own.</li>
+      <li>{A_nameDef} and {B_nameDef} found out they are both superstitious, and compared their precautions at length.</li>
+      <li>{B_nameDef} saw {A_nameDef}'s ritual and, rather than laugh, showed {A_objective} {B_possessive} own.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>5</change>
@@ -185,8 +185,8 @@
     <roleA><tags>quirk:NamesAnimals</tags></roleA>
     <roleB><tags>skill:Animals</tags></roleB>
     <texts>
-      <li>{A_nameDef} and {B_nameDef} argued for an hour over what to name the newest animal in the pens. They settled on two names, and use one each.</li>
-      <li>{A_nameDef} has given every animal in the colony a name. {B_nameDef}, who looks after them, has started using them, and pretends it was {B_possessive} idea.</li>
+      <li>{A_nameDef} and {B_nameDef} argued over names for the next animal the colony takes in, and settled on two, one each.</li>
+      <li>{B_nameDef} has started using the names {A_nameDef} gives the animals, though {B_pronoun} won't admit where they came from.</li>
     </texts>
     <changeTie>Friends</changeTie>
     <change>3</change>
