@@ -505,9 +505,10 @@ namespace ColonyCouncil
                     string kind = null, label = null;
                     if (lj is LordJob_Ritual ritual)
                     {
-                        string name = ritual.Ritual?.def?.defName ?? "";
+                        string name = (ritual.Ritual?.def?.defName ?? "") + "|" + (ritual.Ritual?.sourcePattern?.defName ?? "");
                         if (name.IndexOf("Funeral", StringComparison.OrdinalIgnoreCase) >= 0) kind = "funeral";
-                        else
+                        // Only a celebration is remembered as one; an execution, a sacrifice or a scarring isn't a feast.
+                        else if (Celebration(name))
                         {
                             kind = "feast";
                             label = The(ritual.RitualLabel);
@@ -552,6 +553,12 @@ namespace ColonyCouncil
             }
             if (gatherings.Count > 40) gatherings.Clear();
         }
+
+        private static readonly string[] Celebrations = { "Feast", "Party", "Dance", "Drum", "Festival", "Celebrat", "Lantern", "Wedding", "Birthday", "Bonfire" };
+
+        /// <summary>A ritual of the joyful kind (a feast, a dance or drum party, sky lanterns, a festival), by its def's name.</summary>
+        private static bool Celebration(string name) =>
+            Celebrations.Any(c => name.IndexOf(c, StringComparison.OrdinalIgnoreCase) >= 0);
 
         /// <summary>Two or more beating out a small fire together: once all is well, it's "the little fire".</summary>
         private static void Fires(Map map)
