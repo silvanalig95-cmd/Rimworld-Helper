@@ -78,7 +78,7 @@
       <plain>
         <li>Fancy some stew, {OTHER}?</li>
         <li>If anyone makes stew again, I'm keeping my distance.</li>
-        <li>Every pot I smell now, I think of {LABEL}.</li>
+        <li>One sniff of a cooking pot and I'm back at {LABEL}.</li>
         <li>[byme] I still can't look at a bowl of stew.</li>
         <li>[byother] Is your stomach talking to you again yet?</li>
         <li>[byother] Remember how green you went, after {LABEL}?</li>
@@ -140,7 +140,7 @@
       <plain>
         <li>Remember {LABEL}, and the bang?</li>
         <li>My eyebrows have only just grown back since {LABEL}.</li>
-        <li>Every time I see one of those beasts, I think of {LABEL}.</li>
+        <li>I can't look at one of those beasts now without flinching.</li>
         <li>I can still hear {LABEL} going up.</li>
         <li>You've never run so fast as when {LABEL} went off.</li>
       </plain>
@@ -201,7 +201,7 @@
         <li>[byme] I was only being friendly to {LABEL}.</li>
         <li>[byother] I'll never forget you running from {LABEL}.</li>
         <li>[byother] Fancy taming another one like {LABEL}?</li>
-        <li>Every time a wild one wanders near the fields, I think of {LABEL}.</li>
+        <li>I keep well back from the wild ones now, thanks to {LABEL}.</li>
         <li>[worn] Shall we go and make friends with {LABEL} again?</li>
       </plain>
       <cheerful>

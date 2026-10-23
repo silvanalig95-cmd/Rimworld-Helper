@@ -98,9 +98,9 @@
         <li>Some nights the noise of {LABEL} comes back to me.</li>
         <li>You saved my skin in {LABEL}, you know that?</li>
         <li>We held in {LABEL}, didn't we, the two of us.</li>
-        <li>[first] I keep thinking about {LABEL}, the way you stood your ground.</li>
-        <li>Every time I clean my weapon, I think of {LABEL}.</li>
-        <li>[first] I was glad it was you next to me, in {LABEL}.</li>
+        <li>[first] The way you stood your ground in {LABEL}, I think about it a lot.</li>
+        <li>Cleaning my weapon brings {LABEL} straight back.</li>
+        <li>[first] I was lucky to have you next to me in {LABEL}.</li>
       </plain>
       <warm>
         <li>After {LABEL}, I'd stand next to you any day.</li>
@@ -182,7 +182,7 @@
         <li>[byme] How are you feeling, since {LABEL}?</li>
         <li>[byme] You gave me a fright, after {LABEL}.</li>
         <li>[byme] I still remember you lying there, after {LABEL}.</li>
-        <li>[byother] Every time I see the scar from {LABEL}, I think of you.</li>
+        <li>[byother] I look at the scar from {LABEL} and think of you.</li>
         <li>[byme] Promise me you'll be more careful.</li>
       </plain>
       <warm>
@@ -248,7 +248,7 @@
     <outcomes><li>Reminisce</li></outcomes>
     <lines>
       <plain>
-        <li>I keep thinking about {LABEL}.</li>
+        <li>I've had {LABEL} on my mind all day.</li>
         <li>Hardly anyone mentions {LABEL} any more.</li>
         <li>Do you still think of {LABEL}?</li>
         <li>Some days I forget about {LABEL}, and then it all comes back.</li>
@@ -273,7 +273,7 @@
     <outcomes><li>Reminisce</li></outcomes>
     <lines>
       <plain>
-        <li>Me too, all the time.</li>
+        <li>So do I, more than I say.</li>
         <li>I still can't believe it.</li>
         <li>I miss them every day.</li>
         <li>They'd be glad we still think of them.</li>
@@ -882,7 +882,7 @@
         <li>Feels like a long time ago.</li>
         <li>I'd do it all again.</li>
         <li>We built something there, didn't we.</li>
-        <li>I'm glad it was you I started it with.</li>
+        <li>I wouldn't have started it with anyone else.</li>
       </plain>
       <cheerful>
         <li>We should have a sign made, with our names on it.</li>
