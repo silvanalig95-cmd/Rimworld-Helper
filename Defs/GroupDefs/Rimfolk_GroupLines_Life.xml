@@ -15,18 +15,18 @@
     <lines>
       <plain>
         <li>People have started calling us {GROUP}. I suppose that's what we are now.</li>
-        <li>Somewhere along the way we became {GROUP}. Nobody decided it. It just happened.</li>
-        <li>We have our own seats now, and our own jokes. {GROUP}, the others call us.</li>
-        <li>I heard someone say "{GROUP}" today and realised they meant me too.</li>
+        <li>We became {GROUP} without anyone deciding it. I couldn't tell you which day it happened.</li>
+        <li>{GROUP}, the others call us now. We've had our own jokes for a while.</li>
+        <li>I heard someone say "{GROUP}" and realized they meant me too.</li>
         <li>It's good to belong to something here. {GROUP}. I like the sound of it.</li>
-        <li>[groupkind:hunters] We go out together, we come back together. That's what {GROUP} means.</li>
-        <li>[groupkind:comrades] You don't forget the people who stood beside you. We've become {GROUP} because of it.</li>
-        <li>[groupkind:nightshift] The night is ours. {GROUP}, they call us, and they're not wrong.</li>
-        <li>[groupkind:faithful] We pray together now, every day. {GROUP}, the others say, half joking.</li>
-        <li>[groupkind:founders] We were here first, and we've stayed close. {GROUP}. It fits.</li>
+        <li>[groupkind:hunters] We've been out after game together so often that the others have started calling us {GROUP}.</li>
+        <li>[groupkind:comrades] The ones who stood beside me in the fighting have stayed beside me since. People call us {GROUP}.</li>
+        <li>[groupkind:nightshift] We're awake while the rest of the colony sleeps, so of course we ended up as {GROUP}.</li>
+        <li>[groupkind:faithful] We pray side by side most days, and the others have started calling us {GROUP}, half joking.</li>
+        <li>[groupkind:founders] We were here first, and we've stayed close. {GROUP} is as good a name as any.</li>
       </plain>
       <warm>
-        <li>I have people here now. {GROUP}. I didn't know how much I needed that.</li>
+        <li>I have people here now: {GROUP}. I'd forgotten what that was like.</li>
       </warm>
       <blunt>
         <li>Apparently I'm one of {GROUP} now. Fine. They're the only ones here worth talking to.</li>
@@ -48,10 +48,10 @@
     <defName>Rimfolk_Journal_Group_Joined</defName>
     <lines>
       <plain>
-        <li>I sat with {GROUP} tonight and nobody told me to move. I think I'm one of them now.</li>
-        <li>{GROUP} have made room for me. I'm still learning the jokes.</li>
+        <li>I'm one of {GROUP} now, as far as anyone can tell, me included.</li>
+        <li>I'm with {GROUP} now. Still learning the jokes.</li>
         <li>I've been spending my evenings with {GROUP}. It feels like the right place.</li>
-        <li>Someone counted me in when they counted {GROUP} today. I noticed.</li>
+        <li>Someone counted me in with {GROUP}. I noticed.</li>
         <li>[grouprole:newcomer] I'm the new one in {GROUP}. They'll get used to me.</li>
       </plain>
       <warm>
@@ -74,15 +74,15 @@
     <defName>Rimfolk_Journal_Group_Accepted</defName>
     <lines>
       <plain>
-        <li>{GROUP} have taken me in. I'm not the new one any more, not really.</li>
-        <li>Tonight {GROUP} saved me a seat without being asked. That's when I knew.</li>
+        <li>I'm not the new one in {GROUP} anymore, not really.</li>
+        <li>One of {GROUP} asked what I thought and waited for the answer. I think I'm in.</li>
         <li>It took a while, but I'm one of {GROUP} now.</li>
-        <li>They told me one of their old stories tonight, the kind they only tell each other. I'm in.</li>
-        <li>[lowtech] {GROUP} shared their fire with me tonight, and their bread. I'm one of them.</li>
-        <li>[groupnorm:wary] {GROUP} don't trust easily. They trust me now. I won't let them down.</li>
+        <li>They've started telling me the old stories, the ones they only tell each other.</li>
+        <li>[lowtech] There's a place for me at the fire with {GROUP} now, and a share of the bread.</li>
+        <li>[groupnorm:wary] It took {GROUP} a long time to trust me. I won't give them reason to regret it.</li>
       </plain>
       <warm>
-        <li>I came here with nothing and no one. Now I have {GROUP}.</li>
+        <li>I came here knowing no one. Now I have {GROUP}.</li>
       </warm>
       <blunt>
         <li>{GROUP} finally stopped treating me like a stranger. Took them long enough.</li>
@@ -91,10 +91,10 @@
         <li>Officially one of {GROUP}! Well, as official as these things get.</li>
       </cheerful>
       <gloomy>
-        <li>{GROUP} have let me in. I hope I don't disappoint them.</li>
+        <li>{GROUP} let me in at last. Now there's something to lose.</li>
       </gloomy>
       <cold>
-        <li>{GROUP} accept me now. It makes things easier.</li>
+        <li>{GROUP} have accepted me. It will make things easier.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -106,7 +106,7 @@
       <plain>
         <li>I spoke up for {OTHER_nameDef} with {GROUP}, and now {OTHER_pronoun}'s one of us. Good.</li>
         <li>{OTHER_nameDef} is one of {GROUP} now. I told them {OTHER_pronoun} would fit.</li>
-        <li>I knew {OTHER_nameDef} would settle in with {GROUP}. I just had to get them to see it.</li>
+        <li>I knew {OTHER_nameDef} would settle in with {GROUP}. I just had to get the rest of them to see it.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} looked so lost those first days. Now {OTHER_pronoun} has {GROUP}, and I had a hand in it.</li>
@@ -122,13 +122,13 @@
     <defName>Rimfolk_Journal_Group_ShutOut</defName>
     <lines>
       <plain>
-        <li>{GROUP} go quiet when I sit down. I've stopped sitting down.</li>
-        <li>I tried to join {GROUP} at the fire. Nobody moved up.</li>
-        <li>{GROUP} have their own jokes and their own seats, and none of them are mine.</li>
+        <li>The talk dies when I sit down with {GROUP}. I've stopped sitting down.</li>
+        <li>I tried to join {GROUP} again and got short answers for my trouble.</li>
+        <li>Every joke among {GROUP} needs a story I wasn't there for.</li>
         <li>They're polite, {GROUP}. Polite the way you are with a stranger.</li>
-        <li>I don't know what I did to {GROUP}. Maybe nothing. Maybe that's the trouble.</li>
-        <li>[groupnorm:wary] {GROUP} don't trust anyone new. I'm going to be new for a long time, it seems.</li>
-        <li>[groupnorm:aloof] {GROUP} keep to themselves, and they mean it.</li>
+        <li>I've gone over everything I've said to {GROUP} and can't find the mistake.</li>
+        <li>[groupnorm:wary] I'm slow to trust new people myself, so I can hardly blame {GROUP}.</li>
+        <li>[groupnorm:aloof] I'd usually rather keep to myself. It's different when you're the one kept out.</li>
       </plain>
       <warm>
         <li>I keep trying with {GROUP}. One day, maybe.</li>
@@ -137,13 +137,13 @@
         <li>{GROUP} can keep their little club. I don't need it.</li>
       </blunt>
       <cheerful>
-        <li>{GROUP} are a tough crowd. I'll win them round, see if I don't.</li>
+        <li>Tough crowd, {GROUP}. I'll win them over, see if I don't.</li>
       </cheerful>
       <gloomy>
         <li>I knew it would be like this. It always is, being new.</li>
       </gloomy>
       <cold>
-        <li>{GROUP} have made their feelings clear. So be it.</li>
+        <li>{GROUP} made their feelings clear. So be it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -153,16 +153,16 @@
     <defName>Rimfolk_Journal_Group_DriftedOff</defName>
     <lines>
       <plain>
-        <li>I don't sit with {GROUP} much any more. I couldn't say when that changed.</li>
-        <li>{GROUP} have their evenings without me now. I don't think anyone minds, least of all me.</li>
+        <li>I don't sit with {GROUP} much anymore. I couldn't say when that changed.</li>
+        <li>Evenings with {GROUP} happen without me now. I don't think anyone minds, least of all me.</li>
         <li>I've drifted away from {GROUP}. We still nod to each other.</li>
         <li>Somewhere along the way I stopped being one of {GROUP}.</li>
       </plain>
       <warm>
-        <li>I miss {GROUP}, a little. But I'd stopped fitting.</li>
+        <li>I miss {GROUP}. But I'd stopped fitting, and we all knew it.</li>
       </warm>
       <blunt>
-        <li>Done with {GROUP}. We'd nothing left to say to each other.</li>
+        <li>Done with {GROUP}. We had nothing left to say to each other.</li>
       </blunt>
       <gloomy>
         <li>{GROUP} went on without me, the way things do.</li>
@@ -175,26 +175,26 @@
     <defName>Rimfolk_Journal_Group_Split</defName>
     <lines>
       <plain>
-        <li>{GROUP} have split. I'm on one side and {OTHER_nameDef} is on the other, and that's that.</li>
-        <li>We used to be {GROUP}. Now there are two tables where there was one.</li>
-        <li>It was coming for weeks, and now it's happened: {GROUP} are in two halves.</li>
-        <li>I don't sit with {OTHER_nameDef} any more. None of us do, on this side.</li>
+        <li>{GROUP} split down the middle. I'm on one side and {OTHER_nameDef} is on the other.</li>
+        <li>What used to be {GROUP} is two crowds now, and they don't mix.</li>
+        <li>It had been coming for a while, and now it's done. {GROUP} split.</li>
+        <li>I don't sit with {OTHER_nameDef} anymore. None of us do, on this side.</li>
         <li>Everyone in {GROUP} has had to pick a side. I hate it.</li>
       </plain>
       <warm>
-        <li>I keep hoping {GROUP} will mend. I said hello to {OTHER_nameDef} today, at least.</li>
+        <li>I still hope {GROUP} will mend. {OTHER_nameDef} and I can say good morning, at least.</li>
       </warm>
       <blunt>
-        <li>{GROUP} split, and good riddance to the half that left.</li>
+        <li>{GROUP} split. Good riddance to the other half.</li>
       </blunt>
       <cheerful>
-        <li>{GROUP} broke apart, but we'll find our feet. We always do.</li>
+        <li>{GROUP} broke apart, but I've still got friends on my side of it.</li>
       </cheerful>
       <gloomy>
-        <li>I knew {GROUP} couldn't last. Nothing here does.</li>
+        <li>I knew {GROUP} wouldn't last. I just thought we'd get another season out of it.</li>
       </gloomy>
       <cold>
-        <li>{GROUP} have split. It was inevitable, given who was in it.</li>
+        <li>{GROUP} split. Given who was in it, that was always going to happen.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -204,16 +204,16 @@
     <defName>Rimfolk_Journal_Group_Merged</defName>
     <lines>
       <plain>
-        <li>{OLD} and {GROUP} are one crowd now. The fire's bigger, and so is the noise.</li>
-        <li>We were sitting with {OLD} most evenings anyway. Now it's official: we're all {GROUP}.</li>
-        <li>{GROUP} have taken in {OLD}, or the other way round. Nobody can remember which.</li>
-        <li>More faces round the table now that {OLD} have joined {GROUP}.</li>
+        <li>{OLD} and {GROUP} are one crowd now, and twice as loud.</li>
+        <li>We were half the same people anyway. Now it's official, and we're all {GROUP}.</li>
+        <li>The name {OLD} is gone. We're all {GROUP} now.</li>
+        <li>Our crowd is a lot bigger, now that {OLD} and {GROUP} are one.</li>
       </plain>
       <warm>
-        <li>{OLD} and {GROUP} together. It feels right, like it should always have been this way.</li>
+        <li>{OLD} and {GROUP}, together. It should have been this way from the start.</li>
       </warm>
       <blunt>
-        <li>{OLD} are part of {GROUP} now. Fine, as long as they pull their weight.</li>
+        <li>{OLD}, {GROUP}, whatever. Same people, one name.</li>
       </blunt>
       <cheerful>
         <li>Double the stories, double the songs! {OLD} and {GROUP} are one lot now.</li>
@@ -229,23 +229,23 @@
     <defName>Rimfolk_Journal_Group_Remembered</defName>
     <lines>
       <plain>
-        <li>There's no {GROUP} any more. I walked past our old place by the fire and nobody was there.</li>
+        <li>There's no {GROUP} anymore. I keep using the name anyway.</li>
         <li>I keep thinking about {GROUP}, the way it was at the start.</li>
-        <li>{GROUP} are no more. Someone should remember us, so I'm writing it down.</li>
-        <li>We were {GROUP} once. I wonder if anyone else remembers.</li>
+        <li>Someone should remember {GROUP}, so I'm writing it down.</li>
+        <li>I wonder who else remembers {GROUP}.</li>
         <li>[afterraid] So many gone, and {GROUP} with them.</li>
       </plain>
       <warm>
-        <li>I was happy with {GROUP}. I hope the others were too.</li>
+        <li>I was happy around {GROUP}. I hope they were too.</li>
       </warm>
       <blunt>
         <li>That's the end of {GROUP}. It was good while it lasted.</li>
       </blunt>
       <gloomy>
-        <li>{GROUP} came apart the way everything does. I'll miss us anyway.</li>
+        <li>{GROUP} went the way everything goes out here. I'll miss it anyway.</li>
       </gloomy>
       <cold>
-        <li>It's over for {GROUP}. I find I mind more than I expected.</li>
+        <li>It's over for {GROUP}. I had not expected to mind.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -255,20 +255,20 @@
     <defName>Rimfolk_Journal_Group_LostOne</defName>
     <lines>
       <plain>
-        <li>There's an empty seat in {GROUP} tonight. {NAME}'s seat. Nobody will sit in it.</li>
-        <li>{GROUP} won't be the same without {NAME}. We all know it.</li>
-        <li>We kept {NAME}'s place at the fire tonight. It seemed right.</li>
+        <li>There's a gap in {GROUP} where {NAME} used to be.</li>
+        <li>{GROUP} won't be the same without {NAME}.</li>
+        <li>Someone will have to tell {NAME}'s stories now. I suppose it'll be me.</li>
         <li>{NAME} was the heart of {GROUP} in ways none of us said out loud.</li>
-        <li>One of {GROUP} is gone. {NAME}. I keep looking round for them.</li>
+        <li>{NAME} is gone. I keep counting {GROUP} and coming up one short.</li>
       </plain>
       <warm>
-        <li>We told stories about {NAME} until late. {GROUP} needed that.</li>
+        <li>I hope {NAME} knew what {GROUP} thought of them. We never said it enough.</li>
       </warm>
       <blunt>
-        <li>Lost {NAME}. {GROUP} will carry on. That's what you do.</li>
+        <li>Lost {NAME}. The rest of {GROUP} will carry on.</li>
       </blunt>
       <gloomy>
-        <li>First {NAME}. Who's next? {GROUP} gets smaller every season.</li>
+        <li>First {NAME}. I've started wondering which of {GROUP} goes next.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -278,26 +278,26 @@
     <defName>Rimfolk_Journal_Group_Rivalry</defName>
     <lines>
       <plain>
-        <li>{GROUP} think they run this colony. They don't.</li>
-        <li>Nobody on our side talks to {GROUP} any more, not if we can help it.</li>
-        <li>There's bad blood with {GROUP} now. Everyone can feel it at supper.</li>
-        <li>I don't know who started it with {GROUP}. I know who's going to finish it.</li>
-        <li>{GROUP} sit at their end and we sit at ours. That's how it is now.</li>
+        <li>To hear {GROUP} talk, they run this colony. They don't.</li>
+        <li>On our side, we talk to {GROUP} as little as we can help.</li>
+        <li>There's bad blood with {GROUP} now. You can feel it at supper.</li>
+        <li>I don't know who started it with {GROUP}, and I've stopped caring.</li>
+        <li>We keep to our end of the table, and {GROUP} can keep to theirs.</li>
       </plain>
       <warm>
-        <li>I wish it weren't like this with {GROUP}. We used to get on.</li>
+        <li>I wish it weren't like this with {GROUP}. I like some of them.</li>
       </warm>
       <blunt>
         <li>{GROUP} can say it to my face, if they've got something to say.</li>
       </blunt>
       <cheerful>
-        <li>{GROUP} are sore at us. We'll beat them at cards and see if it helps.</li>
+        <li>There's a feud on with {GROUP}. I'll talk them around eventually, or wear them down trying.</li>
       </cheerful>
       <gloomy>
         <li>Two crowds glaring at each other across one colony. It'll end badly.</li>
       </gloomy>
       <cold>
-        <li>{GROUP} are a nuisance. I've stopped pretending otherwise.</li>
+        <li>I've stopped being polite about {GROUP}.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -307,10 +307,10 @@
     <defName>Rimfolk_Journal_Group_Gathered</defName>
     <lines>
       <plain>
-        <li>All of {GROUP} together tonight, every one of us. It doesn't happen often enough.</li>
-        <li>{GROUP} sat up late tonight, all of us. I'll remember it.</li>
+        <li>{GROUP} got together tonight. It doesn't happen often enough.</li>
+        <li>Sat up late with {GROUP}. I'll remember it.</li>
         <li>We made an evening of it, {GROUP} and I. I'm tired and happy.</li>
-        <li>Somebody called {GROUP} together and everyone came. That says something.</li>
+        <li>Someone called {GROUP} together, and I'm glad I went.</li>
       </plain>
       <warm>
         <li>An evening with {GROUP}. Exactly what I needed.</li>
@@ -330,17 +330,17 @@
     <lines>
       <plain>
         <li>Not between us. Not over this.</li>
-        <li>You two sit at the same fire every night. Act like it.</li>
+        <li>You'll still have to live with each other tomorrow. Settle it now.</li>
         <li>Let it go. You'll laugh about it next week.</li>
-        <li>Both of you are right, which means both of you are wrong.</li>
+        <li>Whoever's right, it isn't worth this.</li>
         <li>Come on, we're all on the same side here.</li>
         <li>Say sorry now and it costs you nothing.</li>
         <li>Shake on it, and we'll say no more.</li>
-        <li>[persona:calm] Slowly. One of you, then the other.</li>
+        <li>[persona:calm] Slowly. Tell me what happened, from the start.</li>
       </plain>
       <warm>
-        <li>I hate seeing you two like this. Talk to me.</li>
-        <li>Nobody here wants this. Least of all you two.</li>
+        <li>I hate seeing you like this. Talk to me.</li>
+        <li>You don't really want this. I know you don't.</li>
       </warm>
       <blunt>
         <li>Enough. Save it for the raiders.</li>
@@ -352,7 +352,7 @@
         <li>We've got enough troubles without this.</li>
       </gloomy>
       <cold>
-        <li>This is beneath both of you.</li>
+        <li>This is beneath you.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -362,15 +362,15 @@
     <defName>Rimfolk_Pool_Group_PeacemakerSteps</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} got between {A_nameDef} and {B_nameDef} before it went any further. Nobody quarrels for long in {GROUP}.</li>
-        <li>{PAWN_nameDef} sat {A_nameDef} and {B_nameDef} down together and made them hear each other out.</li>
-        <li>{A_nameDef} and {B_nameDef} were at it again until {PAWN_nameDef} came over. It blew over sooner than usual.</li>
+        <li>{PAWN_nameDef} stepped in between {A_nameDef} and {B_nameDef} before their quarrel could go any further.</li>
+        <li>{PAWN_nameDef} made {A_nameDef} and {B_nameDef} hear each other out.</li>
+        <li>{A_nameDef} and {B_nameDef} were at it again until {PAWN_nameDef} had a word with them.</li>
         <li>{PAWN_nameDef} reminded {A_nameDef} and {B_nameDef} of the last time they fell out, and how silly it seemed after.</li>
-        <li>{PAWN_nameDef}, as always in {GROUP}, smoothed things over between {A_nameDef} and {B_nameDef}.</li>
-        <li>{PAWN_nameDef} put a cup in each of their hands and waited until {A_nameDef} and {B_nameDef} had calmed down.</li>
+        <li>{PAWN_nameDef} smoothed things over between {A_nameDef} and {B_nameDef}, as the peacemaker of {GROUP}.</li>
+        <li>{PAWN_nameDef} kept {A_nameDef} and {B_nameDef} talking about other things until both had cooled off.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} talked {A_nameDef} and {B_nameDef} round, gently, until they were both a little ashamed of themselves.</li>
+        <li>{PAWN_nameDef} gently talked {A_nameDef} and {B_nameDef} around until each was ready to apologize.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to drop it, and they did.</li>
@@ -379,7 +379,7 @@
         <li>{PAWN_nameDef} made a joke of the whole thing, and {A_nameDef} and {B_nameDef} couldn't keep a straight face.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} sighed and stepped between {A_nameDef} and {B_nameDef}, as {PAWN_pronoun} so often has to.</li>
+        <li>{PAWN_nameDef} sighed and asked {A_nameDef} and {B_nameDef} whether this was really worth it.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} pointed out to {A_nameDef} and {B_nameDef} exactly how little their quarrel was worth.</li>
