@@ -1384,7 +1384,7 @@
         <li>r_logentry->[INITIATOR_nameDef] picked up a handful of pebbles and challenged [RECIPIENT_nameDef] to hit [pebbletarget] from ten paces.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns throwing pebbles at [pebbletarget], keeping score out loud.</li>
         <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] [pebblestakes] that [INITIATOR_pronoun] could hit [pebbletarget] more often.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over where the throwing line should be before they started pitching pebbles at [pebbletarget].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over where to draw the throwing line before pitching pebbles at [pebbletarget].</li>
         <li>pebbletarget->a stick pushed upright in the ground</li>
         <li>pebbletarget->a ring scratched in the dirt</li>
         <li>pebbletarget->a cup set on a rock</li>
