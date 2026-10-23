@@ -32,7 +32,7 @@
     <label>went down and was shaken</label>
     <shifts><nerve>-8</nerve><outlook>-5</outlook><trust>3</trust></shifts>
     <keepDays>90</keepDays>
-    <shaped>{PAWN_nameDef} has flinched at sudden noises since going down in {LABEL}.</shaped>
+    <shaped>Going down in {LABEL} left {PAWN_nameDef} flinching at sudden noises.</shaped>
     <defaultLabel>a fight at home</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -59,7 +59,7 @@
           <plain>
             <li>The others keep telling me I held the line in {LABEL}. I only remember the noise, and not wanting to move.</li>
             <li>I didn't run in {LABEL}. I thought I might, right up until I didn't.</li>
-            <li>Someone left an extra helping on my plate after {LABEL}. Nobody said why. I know why.</li>
+            <li>Two of them went down to me in {LABEL}, maybe more. I keep counting.</li>
             <li>[persona:humble] They say I was the one who held in {LABEL}. Anyone would have, standing where I stood.</li>
           </plain>
           <warm><li>I held my ground in {LABEL} because the people behind me were worth it. I'd do it again tomorrow.</li></warm>
@@ -105,9 +105,9 @@
             <li>In the middle of {LABEL} something in me gave way. The others had to manage without me.</li>
             <li>I keep going back over {LABEL}, to the moment I stopped being any use.</li>
           </plain>
-          <warm><li>Nobody has said a hard word to me about {LABEL}. That almost makes it worse.</li></warm>
+          <warm><li>Not one person has said a hard word to me about {LABEL}. That almost makes it worse.</li></warm>
           <blunt><li>I broke during {LABEL}. That's the truth of it.</li></blunt>
-          <gloomy><li>So now everyone knows what I'm like when it counts. {LABEL} settled that.</li></gloomy>
+          <gloomy><li>So now everyone knows what I'm like when it counts. I showed them in {LABEL}.</li></gloomy>
           <cold><li>My nerve failed in {LABEL}. A weakness, noted. I'll have to account for it.</li></cold>
         </journal>
       </li>
@@ -120,7 +120,7 @@
     <shifts><trust>10</trust><warmth>6</warmth></shifts>
     <major>true</major>
     <keepDays>180</keepDays>
-    <shaped>{PAWN_nameDef} has trusted people more readily since {OTHER} carried {PAWN_objective} out of {LABEL}.</shaped>
+    <shaped>Since {OTHER} carried {PAWN_objective} to safety in {LABEL}, {PAWN_nameDef} has trusted people more readily.</shaped>
     <defaultLabel>a fight at home</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -128,7 +128,7 @@
         <thoughts><li>RescuedMe</li></thoughts>
         <needsOther>true</needsOther>
         <lean>trust:-0.2</lean>
-        <news>{OTHER_nameDef} carried {PAWN_nameDef} out of {LABEL} while the fighting was still on.</news>
+        <news>{OTHER_nameDef} carried {PAWN_nameDef} to safety in {LABEL}.</news>
         <journal>
           <plain>
             <li>I was on the ground in {LABEL}, and then {OTHER_nameDef} was there, dragging me out. I owe {OTHER_objective} everything after that.</li>
