@@ -19,16 +19,16 @@
       </plain>
       <warm>
         <li>Never mind me, I'll be right by supper.</li>
-        <li>It happens to everyone, I know, it still smarts.</li>
+        <li>It happens to all of us, I know, but it still smarts.</li>
         <li>I'm all right, really, it was just a knock.</li>
       </warm>
       <blunt>
         <li>Great, just great.</li>
         <li>Leave it, I'll fix it.</li>
-        <li>Don't say anything.</li>
+        <li>Not a word, from anyone.</li>
       </blunt>
       <cheerful>
-        <li>Ah well, that's what tomorrow is for!</li>
+        <li>Ah well, I've had worse weeks than this!</li>
         <li>Could have been worse, could have been raining too.</li>
         <li>Bad day, good story later.</li>
       </cheerful>
@@ -51,33 +51,33 @@
     <lines>
       <plain>
         <li>Don't forget, it's {NAME} tomorrow.</li>
-        <li>I've been looking forward to {NAME} all week.</li>
-        <li>{NAME} tomorrow, so get your chores done tonight.</li>
+        <li>I've had {NAME} on my mind all week.</li>
+        <li>It's {NAME} tomorrow, so get your chores done tonight.</li>
       </plain>
       <warm>
-        <li>{NAME} tomorrow, it'll be good to have everyone together.</li>
-        <li>I've got a little something put by for {NAME} tomorrow.</li>
-        <li>Make sure the little ones know it's {NAME} tomorrow.</li>
+        <li>It'll be good to have everyone together tomorrow, for {NAME}.</li>
+        <li>I've put something by for {NAME} tomorrow.</li>
+        <li>Make sure the newer ones know what {NAME} is, before tomorrow.</li>
       </warm>
       <blunt>
-        <li>{NAME} tomorrow, don't be late.</li>
-        <li>Tomorrow's {NAME}, plan for it.</li>
+        <li>Don't be late tomorrow, it's {NAME}.</li>
+        <li>Plan your day around {NAME} tomorrow.</li>
         <li>Big day tomorrow, early night tonight.</li>
       </blunt>
       <cheerful>
-        <li>Only one more sleep till {NAME}!</li>
-        <li>{NAME} tomorrow, I've been counting the days.</li>
-        <li>Who's excited for tomorrow, because I am.</li>
+        <li>One more sleep till {NAME}, and I've laid out my good shirt.</li>
+        <li>Not long now till {NAME}, I've been counting.</li>
+        <li>I'm baking for tomorrow, so stay out of the kitchen!</li>
       </cheerful>
       <gloomy>
-        <li>{NAME} again, the year's gone so fast.</li>
+        <li>I always sleep badly the night before {NAME}.</li>
         <li>Tomorrow's {NAME}, and I don't feel much like it.</li>
-        <li>Another {NAME} with fewer of us than the last.</li>
+        <li>Fewer of us for {NAME} this year than last.</li>
       </gloomy>
       <cold>
-        <li>{NAME} tomorrow, so the hauling gets done today.</li>
+        <li>The hauling gets done today, because tomorrow's {NAME}.</li>
         <li>Tomorrow's {NAME}; the work won't wait for it.</li>
-        <li>We lose a day of work tomorrow for {NAME}, and that's fine.</li>
+        <li>I've moved my own work to the evening, for {NAME} tomorrow.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -88,13 +88,13 @@
     <lines>
       <plain>
         <li>I'd only just got used to having it.</li>
-        <li>Nobody even told me why.</li>
+        <li>Not a word about why, either.</li>
         <li>So "{WISH}" was only for a while, was it.</li>
       </plain>
       <warm>
         <li>I suppose someone needed it more, I hope so.</li>
         <li>I'll ask what happened, gently.</li>
-        <li>It was lovely while I had it, thank you for that much.</li>
+        <li>I'm grateful I had it at all, I suppose.</li>
       </warm>
       <blunt>
         <li>Given, then taken, typical.</li>
@@ -107,12 +107,12 @@
         <li>At least I got to enjoy it for a bit!</li>
       </cheerful>
       <gloomy>
-        <li>I knew it wouldn't last.</li>
+        <li>Taken back, like I half expected.</li>
         <li>Nothing good stays long here.</li>
         <li>Back to how it was, then.</li>
       </gloomy>
       <cold>
-        <li>Taken back without a word, I'll remember that.</li>
+        <li>Taken back without a word of explanation, and noted.</li>
         <li>A promise broken is a debt, and I collect debts.</li>
         <li>So the council's word lasts about a season.</li>
       </cold>
@@ -125,33 +125,33 @@
     <lines>
       <plain>
         <li>I still think about {ENEMY} more than I'd like.</li>
-        <li>Every stranger on the road could be {ENEMY}.</li>
-        <li>If you see {ENEMY}, come and get me first.</li>
+        <li>Every stranger on the road looks like trouble to me now.</li>
+        <li>If that {ENEMY} turns up, come and get me first.</li>
       </plain>
       <warm>
         <li>Thank you all for watching my back, with {ENEMY} still about.</li>
-        <li>I sleep better knowing you're all here, with {ENEMY} out there.</li>
-        <li>Don't worry about me and {ENEMY}, I'm all right.</li>
+        <li>I sleep better knowing you're all here.</li>
+        <li>Don't worry about me, I'm all right, really.</li>
       </warm>
       <blunt>
-        <li>{ENEMY} owes me.</li>
-        <li>I'm not done with {ENEMY}.</li>
-        <li>Next time, {ENEMY} won't walk away.</li>
+        <li>That {ENEMY} owes me.</li>
+        <li>I'm not done with {ENEMY}, not by a long way.</li>
+        <li>Next time it ends differently.</li>
       </blunt>
       <cheerful>
-        <li>{ENEMY} won't catch me napping twice!</li>
+        <li>I won't be caught napping twice!</li>
         <li>I've been training, so {ENEMY} had better watch out.</li>
-        <li>One day I'll laugh about {ENEMY}, just not today.</li>
+        <li>One day I'll laugh about all this, just not today.</li>
       </cheerful>
       <gloomy>
-        <li>{ENEMY} is out there, and I'm in here waiting.</li>
-        <li>I see {ENEMY} every time I shut my eyes.</li>
-        <li>Some things you don't get over, {ENEMY} is one.</li>
+        <li>Somewhere out there is {ENEMY}, and here's me, waiting.</li>
+        <li>I still flinch at sudden noises.</li>
+        <li>There are days I can't stop going over it.</li>
       </gloomy>
       <cold>
-        <li>I know how {ENEMY} moves now, and that's an advantage.</li>
-        <li>{ENEMY} made one mistake: leaving me alive.</li>
-        <li>I've been patient with {ENEMY}, patience runs out.</li>
+        <li>I know how that {ENEMY} moves now, and that's an advantage.</li>
+        <li>Next time, I'll be the one choosing the ground.</li>
+        <li>I've been patient, and patience runs out.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -161,8 +161,8 @@
     <pool>Council_Pool_SayStory</pool>
     <lines>
       <warm>
-        <li>Things are getting better for me here, slowly.</li>
-        <li>I've been thinking about where I'm headed, and it's somewhere good.</li>
+        <li>I've been thinking things over, and I feel better for it.</li>
+        <li>I know where I'm headed now, and it's somewhere good.</li>
       </warm>
       <blunt>
         <li>I've got something to finish, so don't hold me up.</li>
@@ -188,14 +188,14 @@
     <pool>Council_Pool_SayWish</pool>
     <lines>
       <plain>
-        <li>It would make all the difference, "{WISH}".</li>
-        <li>I walked past the spot for "{WISH}" again today.</li>
+        <li>Everything would be easier with "{WISH}".</li>
+        <li>I keep thinking how "{WISH}" would change my days.</li>
         <li>Has anyone said anything about "{WISH}"?</li>
       </plain>
       <warm>
         <li>No hurry, but I do still think about "{WISH}".</li>
-        <li>Whenever there's time, "{WISH}" would be such a kindness.</li>
-        <li>I'd help build "{WISH}" myself, if someone showed me how.</li>
+        <li>If "{WISH}" ever happens, I'll thank everyone twice.</li>
+        <li>I'd help with "{WISH}" myself, if someone showed me how.</li>
       </warm>
       <blunt>
         <li>Any time now, "{WISH}".</li>
@@ -204,13 +204,13 @@
       </blunt>
       <cheerful>
         <li>Just imagine "{WISH}", wouldn't that be grand?</li>
-        <li>I've already picked where "{WISH}" goes.</li>
+        <li>I've already decided what I'll do first once "{WISH}" happens.</li>
         <li>I've decided "{WISH}" is coming soon.</li>
       </cheerful>
       <gloomy>
         <li>If we last the winter, maybe "{WISH}" will happen.</li>
         <li>I've stopped expecting "{WISH}", mostly.</li>
-        <li>Everyone else gets theirs before "{WISH}".</li>
+        <li>Other people's wishes come first, it seems.</li>
       </gloomy>
       <cold>
         <li>I've noticed how overdue "{WISH}" is.</li>
@@ -226,23 +226,23 @@
     <lines>
       <plain>
         <li>I've got a dream to tell, if anyone's awake enough to listen.</li>
-        <li>[dream:Strange] I dreamt the bell rang by itself and everyone came with spoons.</li>
-        <li>[dream:Sweet] I dreamt of a warm kitchen and nowhere I had to be.</li>
+        <li>[dream:Strange] In my dream the bell rang by itself and we all came running with spoons.</li>
+        <li>[dream:Sweet] A warm kitchen, in my dream, and nowhere I had to be.</li>
       </plain>
       <warm>
         <li>I dreamt about all of you last night, it was a good one.</li>
         <li>Sit down, I want to tell you a dream while I still remember it.</li>
-        <li>Such a gentle dream, I've been smiling since I woke.</li>
+        <li>That dream had me smiling before I was even up.</li>
       </warm>
       <blunt>
         <li>Had a dream, it was stupid, pass the bread.</li>
         <li>Weird dream, don't ask.</li>
-        <li>Dreamt something, already forgot it.</li>
+        <li>Bad sleep, strange dream, that's all.</li>
       </blunt>
       <cheerful>
         <li>I had the best dream, and you're all in it!</li>
         <li>Wait till you hear what I dreamt about the cook.</li>
-        <li>My dream last night had a talking goat in it, honestly.</li>
+        <li>My dream last night had a talking goat in it, and it was rude.</li>
       </cheerful>
       <gloomy>
         <li>I didn't sleep well, the dreams were bad.</li>
@@ -251,8 +251,8 @@
       </gloomy>
       <cold>
         <li>An odd dream, I'll think about what it meant later.</li>
-        <li>I dreamt in great detail last night, I must be overtired.</li>
-        <li>Dreams are noise, but that one was interesting noise.</li>
+        <li>So much detail in last night's dream, I must be overtired.</li>
+        <li>I remember every part of that dream, which is unusual for me.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -268,18 +268,18 @@
       </plain>
       <warm>
         <li>Stay close, all of you, it'll pass.</li>
-        <li>Come in by the fire till it blows over.</li>
+        <li>Come in and sit with us till it blows over.</li>
         <li>Has everyone got in, is anyone still out there?</li>
       </warm>
       <blunt>
         <li>Inside, quick.</li>
         <li>Shut that door.</li>
-        <li>Not a night to be out.</li>
+        <li>Not weather to be out in.</li>
       </blunt>
       <cheerful>
-        <li>Listen to it howl, what a night!</li>
+        <li>Listen to it howl!</li>
         <li>Let's tell stories till it stops.</li>
-        <li>I'll count the thunder, you count the lightning.</li>
+        <li>I'll make us something hot while we wait it out.</li>
       </cheerful>
       <gloomy>
         <li>The roof won't hold if it gets any worse.</li>
@@ -288,8 +288,8 @@
       </gloomy>
       <cold>
         <li>Check the roof and the stores once it's passed.</li>
-        <li>Nobody goes out until it's over.</li>
-        <li>We'll count the damage in the morning.</li>
+        <li>Doors stay shut until it's over.</li>
+        <li>We'll count the damage afterward, not before.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -319,8 +319,8 @@
         <li>The cold months start now.</li>
       </gloomy>
       <cold>
-        <li>First snow, so the stores have to last from here.</li>
-        <li>Snow, count the firewood again tonight.</li>
+        <li>Snow, so anything left in the fields is lost now.</li>
+        <li>Count the firewood again tonight, now the snow's here.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -336,16 +336,16 @@
       </plain>
       <warm>
         <li>Here, have my water, I've had plenty.</li>
-        <li>Take a rest in the shade, nobody will mind.</li>
+        <li>Take a rest in the shade, I'll cover for you.</li>
         <li>Wet your hair, it helps, trust me.</li>
       </warm>
       <blunt>
         <li>Too hot to work, too hot to talk.</li>
         <li>Shade, now.</li>
-        <li>This heat is ridiculous.</li>
+        <li>Who ordered this heat?</li>
       </blunt>
       <cheerful>
-        <li>Who's for a dip in the river after this?</li>
+        <li>Who's for a bucket of cold water over the head after this?</li>
         <li>I've never sweated so much in my life!</li>
         <li>Hot enough to cook supper on the roof.</li>
       </cheerful>
@@ -356,7 +356,7 @@
       </gloomy>
       <cold>
         <li>Water rations go up while this lasts.</li>
-        <li>Rest at noon, work at dusk.</li>
+        <li>Anyone who faints out there is a hand we lose for the day.</li>
         <li>Heat like this kills the careless.</li>
       </cold>
     </lines>
@@ -368,16 +368,16 @@
     <lines>
       <plain>
         <li>The water bucket's frozen solid.</li>
-        <li>Nobody stand still too long out here.</li>
+        <li>Don't stand still too long out here.</li>
         <li>[work:Growing] Cover what you can in the fields tonight.</li>
       </plain>
       <warm>
-        <li>Come and stand by the fire a minute.</li>
+        <li>Come in and warm your hands a minute.</li>
         <li>Here, take my spare scarf.</li>
         <li>Check on the old ones tonight, would you?</li>
       </warm>
       <blunt>
-        <li>Freezing, absolutely freezing.</li>
+        <li>My fingers have quit on me.</li>
         <li>Shut the door, you're letting the cold in.</li>
         <li>Cold, and getting colder.</li>
       </blunt>
@@ -387,12 +387,12 @@
         <li>Hot soup tonight, I'm sure of it.</li>
       </cheerful>
       <gloomy>
-        <li>Not everyone will get through a winter like this.</li>
+        <li>Not everyone gets through cold like this.</li>
         <li>The cold's in my bones now, it won't leave.</li>
         <li>I can't remember being warm.</li>
       </gloomy>
       <cold>
-        <li>Nobody works outside alone until this lifts.</li>
+        <li>Anyone working outside comes in to warm up every hour.</li>
         <li>Count the firewood and halve the estimate.</li>
         <li>Frostbite costs fingers, so keep your gloves on.</li>
       </cold>
@@ -448,7 +448,7 @@
       <warm>
         <li>Someone put some water on, they'll be thirsty.</li>
         <li>They look tired, poor things.</li>
-        <li>Let's give them a proper hello.</li>
+        <li>Let's wave, so they know they're welcome.</li>
       </warm>
       <blunt>
         <li>Strangers, watch your things.</li>
@@ -457,7 +457,7 @@
       </blunt>
       <cheerful>
         <li>Visitors, I wonder what news they've got!</li>
-        <li>Someone new to talk to, finally.</li>
+        <li>I wonder if any of them play cards.</li>
         <li>I hope they've brought music.</li>
       </cheerful>
       <gloomy>
@@ -480,7 +480,7 @@
       <plain>
         <li>A wedding, and the council's own bell for it.</li>
         <li>Here's to {A_nameDef} and {B_nameDef}, long may it last.</li>
-        <li>The whole colony turned out for {A_nameDef} and {B_nameDef}.</li>
+        <li>Good to see so many out for {A_nameDef} and {B_nameDef}.</li>
       </plain>
       <warm>
         <li>They're so happy, look at them.</li>
@@ -494,7 +494,7 @@
       </blunt>
       <cheerful>
         <li>A wedding, I love a wedding!</li>
-        <li>Dance with me, everyone's dancing.</li>
+        <li>Somebody fetch an instrument, this needs music.</li>
         <li>I'm going to cry and I don't care.</li>
       </cheerful>
       <gloomy>
@@ -579,11 +579,11 @@
     <pool>Council_Pool_HabitFire</pool>
     <lines>
       <plain>
-        <li>Everyone here, everyone accounted for.</li>
+        <li>Pass the water round, my throat's still raw.</li>
         <li>Put another log on, I'm not ready to go in.</li>
       </plain>
       <warm>
-        <li>Sit closer, there's room for everyone.</li>
+        <li>Sit closer, there's room.</li>
         <li>I'm glad you're all still here.</li>
       </warm>
       <blunt>
@@ -619,7 +619,7 @@
       </warm>
       <blunt>
         <li>{OTHER_nameDef} should have stayed.</li>
-        <li>Gone, but not forgotten.</li>
+        <li>Gone, and I'm still annoyed about it.</li>
       </blunt>
       <cheerful>
         <li>I bet {OTHER_nameDef} is telling stories about us somewhere.</li>
@@ -627,7 +627,7 @@
       </cheerful>
       <gloomy>
         <li>I never said goodbye to {OTHER_nameDef} properly.</li>
-        <li>People come and go, and they mostly go.</li>
+        <li>The ones I like best always seem to leave.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} was useful, and I miss that.</li>
@@ -676,7 +676,7 @@
         <li>A bit more sun for you, and you'll be fine.</li>
       </plain>
       <warm>
-        <li>You're doing so well, all of you.</li>
+        <li>You're coming along nicely, all of you.</li>
         <li>I'll be back tomorrow, don't worry.</li>
       </warm>
       <blunt>
@@ -755,7 +755,7 @@
       </gloomy>
       <cold>
         <li>Tell me what's said about the council, I'm curious.</li>
-        <li>A little company keeps the mind sharp.</li>
+        <li>Company keeps the mind sharp.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

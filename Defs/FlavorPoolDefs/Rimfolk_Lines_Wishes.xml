@@ -12,13 +12,13 @@
     <wish>Council_Wish_Apprentice</wish>
     <reminder>
       <warm><li>I'd still love to teach {OTHER_nameDef}, whenever an evening comes free.</li></warm>
-      <blunt><li>{OTHER_nameDef} needs a teacher. I'm right here.</li></blunt>
-      <cold><li>Every week without lessons, {OTHER_nameDef} learns {SUBJECT} slower than {OTHER_pronoun} could.</li></cold>
+      <blunt><li>{OTHER_nameDef} needs a teacher, and I'm standing right here.</li></blunt>
+      <cold><li>Every week without lessons is a week {OTHER_nameDef} falls behind in {SUBJECT}.</li></cold>
     </reminder>
     <expired>
-      <warm><li>Maybe {OTHER_nameDef} will come and ask me one day. I'll be glad to show {OTHER_objective}.</li></warm>
-      <cheerful><li>No apprentice, then! I'll write it all down instead, and someone will find it.</li></cheerful>
-      <cold><li>What I know about {SUBJECT} stays with me. That's the colony's loss more than mine.</li></cold>
+      <warm><li>If {OTHER_nameDef} ever comes and asks, I'll still be glad to show {OTHER_objective}.</li></warm>
+      <cheerful><li>I'll write it all down instead, for whoever finds it first!</li></cheerful>
+      <cold><li>What I know about {SUBJECT} stays with me, and that's the colony's loss more than mine.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -26,13 +26,13 @@
     <defName>Council_Lines_Wish_Armchair</defName>
     <wish>Council_Wish_Armchair</wish>
     <reminder>
-      <warm><li>If there's a spare evening, I'd still love that chair. My back would thank you.</li></warm>
-      <blunt><li>Stool. Still. Back. Still sore.</li></blunt>
-      <gloomy><li>My back gets worse on that stool every day. I'm not asking for much.</li></gloomy>
+      <warm><li>If there's a spare evening, I'd still love that chair, and so would my back.</li></warm>
+      <blunt><li>Still on the stool, and my back's still sore.</li></blunt>
+      <gloomy><li>My back gets worse on that stool every day, and it's not much I'm asking.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>Never mind. Someone found me a cushion for the stool, which was kind of them.</li></warm>
-      <cheerful><li>No soft chair, then! I've folded my blanket into a cushion, and it's nearly as good.</li></cheerful>
+      <cheerful><li>My blanket folds into a cushion that's nearly as good as a soft chair!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -40,14 +40,14 @@
     <defName>Council_Lines_Wish_Armor</defName>
     <wish>Council_Wish_Armor</wish>
     <thanks>
-      <warm><li>It fits as if it were made for me. Thank you, whoever made it.</li></warm>
+      <warm><li>It fits as if it were made for me, thank you.</li></warm>
       <cheerful><li>Look at me! I clank when I walk, and I love it.</li></cheerful>
-      <gloomy><li>It won't stop everything. It might stop the one that matters.</li></gloomy>
+      <gloomy><li>It won't stop everything, but it might stop the one that matters.</li></gloomy>
       <cold><li>Good armor. My odds just improved.</li></cold>
     </thanks>
     <expired>
       <blunt><li>No armor. Next raid, I'm standing at the back.</li></blunt>
-      <gloomy><li>Without armor I'm just meat on the wall. Remember that when you bury me.</li></gloomy>
+      <gloomy><li>Without armor I'm just meat on the wall; remember that when you bury me.</li></gloomy>
       <cold><li>No armor. I'll take fewer risks, and the colony will get less from me in a fight.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -56,12 +56,12 @@
     <defName>Council_Lines_Wish_Banner</defName>
     <wish>Council_Wish_Banner</wish>
     <reminder>
-      <blunt><li>Still no banner. Raise one.</li></blunt>
-      <cheerful><li>I've got the colors picked! I just need the cloth and a pole.</li></cheerful>
-      <gloomy><li>Our gate's as bare as the day we came.</li></gloomy>
+      <blunt><li>Raise a banner already.</li></blunt>
+      <cheerful><li>I've got the colors picked, and all I need now is cloth and a pole!</li></cheerful>
+      <gloomy><li>Not a scrap of color over the gate, same as the day we came.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>No banner, but people still know this is home. That'll have to do.</li></warm>
+      <warm><li>No banner, but people still know this is home, and that will do.</li></warm>
       <cheerful><li>No banner? I'll hang my brightest shirt over the gate instead!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -70,8 +70,8 @@
     <defName>Council_Lines_Wish_Bath</defName>
     <wish>Council_Wish_Bath</wish>
     <reminder>
-      <warm><li>I'd still love that bath, whenever there's time. I'll heat the water myself.</li></warm>
-      <cheerful><li>Any news on the bath? I've been practicing my soaking.</li></cheerful>
+      <warm><li>I'd still love that bath whenever there's time, and I'll heat the water myself.</li></warm>
+      <cheerful><li>I've been practicing my soaking, in case the bath ever comes!</li></cheerful>
       <gloomy><li>Another cold wash out of a bucket.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -80,14 +80,14 @@
     <defName>Council_Lines_Wish_Beast</defName>
     <wish>Council_Wish_Beast</wish>
     <reminder>
-      <warm><li>I don't like asking again, but {OTHER_nameDef} is still out there, and I'm worried for whoever goes out next.</li></warm>
-      <blunt><li>{OTHER_nameDef}. Alive. Why?</li></blunt>
-      <cold><li>{OTHER_nameDef} was seen again. Every day it lives, it learns more of our habits.</li></cold>
+      <warm><li>I worry for whoever goes out next, with {OTHER_nameDef} still out there.</li></warm>
+      <blunt><li>Why is {OTHER_nameDef} still alive?</li></blunt>
+      <cold><li>Every day {OTHER_nameDef} lives, it learns more of our habits.</li></cold>
     </reminder>
     <expired>
       <warm><li>Please, everyone, go out in pairs while {OTHER_nameDef} is still around.</li></warm>
-      <cheerful><li>Well, {OTHER_nameDef} got away! I'm carrying a big stick everywhere now.</li></cheerful>
-      <cold><li>{OTHER_nameDef} lives. I'll be the one who deals with it when it comes back.</li></cold>
+      <cheerful><li>Well, {OTHER_nameDef} got away, so I'm carrying a big stick everywhere now!</li></cheerful>
+      <cold><li>When {OTHER_nameDef} comes back, I'll be the one who deals with it.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -95,12 +95,12 @@
     <defName>Council_Lines_Wish_Beehive</defName>
     <wish>Council_Wish_Beehive</wish>
     <reminder>
-      <warm><li>The bees are still out there with nowhere to go. I'd look after them, I promise.</li></warm>
-      <blunt><li>Where's my hive? The bees won't wait forever.</li></blunt>
+      <warm><li>I'd look after the bees myself, every day, if we had a hive for them.</li></warm>
+      <blunt><li>Where's my hive, before the bees give up on us?</li></blunt>
       <gloomy><li>The wild bees will be gone before we get round to it.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>The wild bees found a hollow tree in the end. I hope they do well.</li></warm>
+      <warm><li>The wild bees found a hollow tree in the end, and I hope they do well there.</li></warm>
       <gloomy><li>No hive. The wild bees moved on, like everything does.</li></gloomy>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -114,7 +114,7 @@
       <gloomy><li>Another birthday's coming, and still no pod.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll grow old among friends, then. There are worse ways.</li></warm>
+      <warm><li>I'll grow old among friends, then, and there are worse ways.</li></warm>
       <cheerful><li>No pod, so I'll just be the most cheerful old wreck in the colony!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -123,9 +123,9 @@
     <defName>Council_Lines_Wish_Bookcase</defName>
     <wish>Council_Wish_Bookcase</wish>
     <reminder>
-      <warm><li>The books are still on the floor. I'd build the shelf myself if someone showed me how.</li></warm>
-      <blunt><li>Shelf. Books. Floor. You see the problem.</li></blunt>
-      <cold><li>Another book damaged today. A shelf would have prevented it.</li></cold>
+      <warm><li>If someone showed me how, I'd build the shelf myself and get the books off the floor.</li></warm>
+      <blunt><li>Books on the floor and no shelf, and you can see the problem.</li></blunt>
+      <cold><li>Another book damaged today, which a shelf would have prevented.</li></cold>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -134,8 +134,8 @@
     <wish>Council_Wish_Books</wish>
     <reminder>
       <warm><li>If a trader comes with books, I'd be so grateful for even one.</li></warm>
-      <blunt><li>Still no new books. I've memorized the old ones.</li></blunt>
-      <gloomy><li>I'm reading the same pages again. They haven't changed.</li></gloomy>
+      <blunt><li>Still no new books, and I've memorized the old ones.</li></blunt>
+      <gloomy><li>I'm reading the same pages again, and they haven't improved.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -143,13 +143,13 @@
     <defName>Council_Lines_Wish_CampEvening</defName>
     <wish>Council_Wish_CampEvening</wish>
     <reminder>
-      <blunt><li>The camp's still there. So am I. Let me go.</li></blunt>
-      <cheerful><li>They were singing again last night! I'd love to join in before they leave.</li></cheerful>
+      <blunt><li>Let me go over to the camp while it's still there.</li></blunt>
+      <cheerful><li>I could hear them singing over at the camp, and I want to join in before they go!</li></cheerful>
       <gloomy><li>The {SUBJECT} will pack up soon, and I'll have missed it.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>I hope the {SUBJECT} had a good time here, even without me at their fire.</li></warm>
-      <cheerful><li>Missed the camp! I'll make my own fire and sing badly at it.</li></cheerful>
+      <cheerful><li>I'll make my own fire and sing badly at it instead!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -157,13 +157,13 @@
     <defName>Council_Lines_Wish_ChildLessons</defName>
     <wish>Council_Wish_ChildLessons</wish>
     <reminder>
-      <warm><li>I've been extra good. Can I have my lesson with {OTHER_nameDef} now?</li></warm>
+      <warm><li>I've been extra good, so can I have my lesson with {OTHER_nameDef} now?</li></warm>
       <blunt><li>Lesson. When?</li></blunt>
-      <gloomy><li>Nobody's said anything about my lesson. I think they forgot.</li></gloomy>
+      <gloomy><li>Not a word about my lesson yet, so I think they forgot.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>That's all right. {OTHER_nameDef} is busy. Maybe when I'm bigger.</li></warm>
-      <cheerful><li>I'll teach myself {SUBJECT}! How hard can it be?</li></cheerful>
+      <warm><li>That's all right, {OTHER_nameDef} is busy, maybe when I'm bigger.</li></warm>
+      <cheerful><li>I'm going to get good at {SUBJECT} on my own, and it can't be that hard!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -171,8 +171,8 @@
     <defName>Council_Lines_Wish_ChildPet</defName>
     <wish>Council_Wish_ChildPet</wish>
     <reminder>
-      <warm><li>I left some food out for the {SUBJECT}. Can we catch it now?</li></warm>
-      <cheerful><li>The {SUBJECT} looked at me again! It wants to live here, I know it.</li></cheerful>
+      <warm><li>I left some food out for the {SUBJECT}, so can we catch it now?</li></warm>
+      <cheerful><li>I just know the {SUBJECT} wants to live here with us!</li></cheerful>
       <gloomy><li>The {SUBJECT} will go away if nobody catches it soon.</li></gloomy>
     </reminder>
     <expired>
@@ -186,11 +186,11 @@
     <wish>Council_Wish_CommsConsole</wish>
     <reminder>
       <warm><li>There must be people out there wanting to hear from us too.</li></warm>
-      <blunt><li>Comms console. Still nothing.</li></blunt>
+      <blunt><li>Still no comms console, and still no word from anyone.</li></blunt>
       <cold><li>Every day without comms is a day of trade and help we can't call on.</li></cold>
     </reminder>
     <expired>
-      <warm><li>Maybe one day we'll hear from the others out there. I hope they're well.</li></warm>
+      <warm><li>Maybe one day we'll hear from the others out there, and I hope they're well.</li></warm>
       <cheerful><li>No console! I'll just shout really loudly from the roof.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -199,13 +199,13 @@
     <defName>Council_Lines_Wish_CoolRoom</defName>
     <wish>Council_Wish_CoolRoom</wish>
     <reminder>
-      <warm><li>It's still so hot. A cool room would help the little ones most of all.</li></warm>
+      <warm><li>A cool room would help the young and the old most of all, in this heat.</li></warm>
       <blunt><li>Still hot. Still no cool room.</li></blunt>
-      <gloomy><li>Another day like an oven. I can barely think.</li></gloomy>
+      <gloomy><li>Another day like an oven, and I can barely think.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I've been soaking cloths in water for whoever's flagging. It's something.</li></warm>
-      <cheerful><li>No cool room! I'll lie in the shade and pretend it's a breeze.</li></cheerful>
+      <warm><li>I've been soaking cloths in water for whoever's flagging, which is something.</li></warm>
+      <cheerful><li>I'll lie in the shade and imagine a breeze, then!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -213,8 +213,8 @@
     <defName>Council_Lines_Wish_Crib</defName>
     <wish>Council_Wish_Crib</wish>
     <reminder>
-      <blunt><li>Crib. Baby. Crate. Still.</li></blunt>
-      <cheerful><li>The little one's getting bigger every day! The crate isn't.</li></cheerful>
+      <blunt><li>Crib, please, before the baby outgrows the crate.</li></blunt>
+      <cheerful><li>The little one's getting bigger every day, and the crate isn't!</li></cheerful>
       <gloomy><li>I watch the baby sleep in that crate and worry every night.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -223,13 +223,13 @@
     <defName>Council_Lines_Wish_DeepDrill</defName>
     <wish>Council_Wish_DeepDrill</wish>
     <reminder>
-      <warm><li>I'd still like to see what's down there. I'd run the drill myself.</li></warm>
-      <blunt><li>The ore's down there. The drill isn't. Fix that.</li></blunt>
-      <cheerful><li>Still dreaming about what's under our feet! Maybe steel, maybe treasure.</li></cheerful>
+      <warm><li>I'd love to see what's down there, if the drill ever gets built.</li></warm>
+      <blunt><li>The ore's down there, and the drill isn't.</li></blunt>
+      <cheerful><li>Steel, silver, maybe treasure, all of it right under our feet!</li></cheerful>
     </reminder>
     <expired>
-      <warm><li>Maybe another season. The ore isn't going anywhere.</li></warm>
-      <cheerful><li>The treasure stays buried, for now! It'll keep.</li></cheerful>
+      <warm><li>Maybe another season, since the ore isn't going anywhere.</li></warm>
+      <cheerful><li>The treasure stays buried, and it'll keep!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -238,8 +238,8 @@
     <wish>Council_Wish_FineClothes</wish>
     <reminder>
       <warm><li>I don't want to make a fuss, but I'm still hoping for something fine to wear.</li></warm>
-      <cheerful><li>I've picked out exactly where I'd wear it first! Supper, obviously.</li></cheerful>
-      <gloomy><li>Another patch on the elbow today. Something fine was always a long shot.</li></gloomy>
+      <cheerful><li>I've already decided where I'd wear it first, which is supper, obviously!</li></cheerful>
+      <gloomy><li>Another patch on the elbow today, and something fine still feels a long way off.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -247,9 +247,9 @@
     <defName>Council_Lines_Wish_Firewood</defName>
     <wish>Council_Wish_Firewood</wish>
     <reminder>
-      <warm><li>I'll chop if someone else hauls. We just need more wood before the cold.</li></warm>
-      <cheerful><li>Woodpile check! It's still small. Let's make it big.</li></cheerful>
-      <gloomy><li>The woodpile isn't growing, and winter isn't waiting.</li></gloomy>
+      <warm><li>I'll chop if someone else hauls, so long as we get more wood in before the cold.</li></warm>
+      <cheerful><li>The woodpile's still small, so let's make it big!</li></cheerful>
+      <gloomy><li>Every night we burn more wood than we cut.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -257,13 +257,13 @@
     <defName>Council_Lines_Wish_Fishing</defName>
     <wish>Council_Wish_Fishing</wish>
     <reminder>
-      <warm><li>I'd still love a fishing spot. I'd bring back enough for everyone.</li></warm>
-      <blunt><li>Fishing spot. Still no.</li></blunt>
+      <warm><li>I'd still love a fishing spot, and I'd bring back enough for the whole table.</li></warm>
+      <blunt><li>Still no fishing spot.</li></blunt>
       <gloomy><li>Stew again tonight, while the fish swim by.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>Maybe next season. The water will still be there.</li></warm>
-      <cheerful><li>No fishing spot? I'll catch them with my hands!</li></cheerful>
+      <warm><li>The water will still be there next season, I suppose.</li></warm>
+      <cheerful><li>Fine, I'll catch the fish with my bare hands!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -271,13 +271,13 @@
     <defName>Council_Lines_Wish_Floor</defName>
     <wish>Council_Wish_Floor</wish>
     <reminder>
-      <blunt><li>Dirt floor. Still. My room.</li></blunt>
-      <cheerful><li>Still dreaming of a real floor! I've already picked the boards I want.</li></cheerful>
+      <blunt><li>Still dirt under my bed.</li></blunt>
+      <cheerful><li>I've already picked out the boards I want for my floor!</li></cheerful>
       <gloomy><li>It rained again, and my room's mud again.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I've laid a rug over the worst of the dirt. It's homely, in its way.</li></warm>
-      <cheerful><li>Dirt floor forever! I'll call it rustic.</li></cheerful>
+      <warm><li>I've laid a rug over the worst of the dirt, and it's homely, in its way.</li></warm>
+      <cheerful><li>Dirt floor forever, and I'll call it rustic!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -285,12 +285,12 @@
     <defName>Council_Lines_Wish_Flowers</defName>
     <wish>Council_Wish_Flowers</wish>
     <reminder>
-      <warm><li>Just a few flowers, whenever someone has a moment. It would cheer everyone.</li></warm>
-      <blunt><li>Still a quarry. Still no flowers.</li></blunt>
-      <gloomy><li>The beds by the door are still bare. They'll stay bare, I expect.</li></gloomy>
+      <warm><li>Just a few flowers, whenever someone has a moment, to cheer the place up.</li></warm>
+      <blunt><li>Plant some flowers, this place still looks like a quarry.</li></blunt>
+      <gloomy><li>The beds by the door are still bare, and I expect they'll stay that way.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I found one wildflower by the wall and left it be. It'll have to do.</li></warm>
+      <warm><li>I found one wildflower by the wall and left it be, so that will have to do.</li></warm>
       <cheerful><li>No flowers? I'll paint some on the door instead!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -300,11 +300,11 @@
     <wish>Council_Wish_FoodThatKeeps</wish>
     <reminder>
       <warm><li>I'd feel so much better with something put by for the lean days.</li></warm>
-      <blunt><li>Nothing put by. Still.</li></blunt>
+      <blunt><li>Still nothing put by.</li></blunt>
       <gloomy><li>Every day without a reserve is a day closer to a hungry one.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>We'll share what we have if it comes to it. We always have.</li></warm>
+      <warm><li>We'll share what we have if it comes to it, as we always have.</li></warm>
       <cheerful><li>No reserve! I'll just have to eat very slowly this winter.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -314,11 +314,11 @@
     <wish>Council_Wish_Fountain</wish>
     <reminder>
       <warm><li>Whenever there's stone to spare, I'd still love that fountain.</li></warm>
-      <cheerful><li>Still dreaming of a fountain! I've picked the spot for it in the yard.</li></cheerful>
-      <gloomy><li>Still no fountain. I knew it was a long shot.</li></gloomy>
+      <cheerful><li>I've already picked the spot in the yard where the fountain would go!</li></cheerful>
+      <gloomy><li>I knew the fountain was a long shot, and it still is.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>Maybe one day. It would have been lovely.</li></warm>
+      <warm><li>It would have been lovely, the fountain, maybe one day.</li></warm>
       <cheerful><li>No fountain! I'll splash a bucket about and call it one.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -327,12 +327,12 @@
     <defName>Council_Lines_Wish_FreshFood</defName>
     <wish>Council_Wish_FreshFood</wish>
     <reminder>
-      <warm><li>Even a few berries would do us all good. The children have started looking pale.</li></warm>
-      <blunt><li>Still eating meat. Still need greens.</li></blunt>
-      <gloomy><li>My teeth ache. Still nothing fresh.</li></gloomy>
+      <warm><li>Even a few berries would do us good, before we all start looking pale.</li></warm>
+      <blunt><li>Meat again, and I'd give anything for something green.</li></blunt>
+      <gloomy><li>My teeth ache, and still nothing fresh.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll keep an eye out for wild berries. Maybe there are some past the fields.</li></warm>
+      <warm><li>I'll keep an eye out for wild berries past the fields.</li></warm>
       <cheerful><li>More meat! I'll pretend it's a vegetable.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -343,7 +343,7 @@
     <reminder>
       <warm><li>A bench outside would be lovely, whenever there's wood to spare.</li></warm>
       <blunt><li>Still sitting on the rock.</li></blunt>
-      <cheerful><li>I'm still dreaming of that bench! Me, a bench and a sunset.</li></cheerful>
+      <cheerful><li>Me, a bench and a sunset, that's all I'm dreaming of!</li></cheerful>
     </reminder>
     <expired>
       <warm><li>I'll share the rock with whoever wants to sit a while.</li></warm>
@@ -355,9 +355,9 @@
     <defName>Council_Lines_Wish_Grill</defName>
     <wish>Council_Wish_Grill</wish>
     <reminder>
-      <warm><li>Summer won't last. A grill would give us a few good evenings together.</li></warm>
-      <blunt><li>Grill. Summer. Now.</li></blunt>
-      <cheerful><li>I can almost smell the grill already! Any news?</li></cheerful>
+      <warm><li>Summer won't last, and a grill would give us a few good evenings together.</li></warm>
+      <blunt><li>Grill, while it's still summer.</li></blunt>
+      <cheerful><li>Any news on the grill, because I can almost smell it already!</li></cheerful>
     </reminder>
     <expired>
       <warm><li>We'll have our grilled supper next summer, I'm sure of it.</li></warm>
@@ -369,13 +369,13 @@
     <defName>Council_Lines_Wish_GuestBed</defName>
     <wish>Council_Wish_GuestBed</wish>
     <reminder>
-      <warm><li>The next visitors will be here soon. I'd love them to have somewhere proper to sleep.</li></warm>
+      <warm><li>I'd love the next visitors to have somewhere proper to sleep.</li></warm>
       <blunt><li>Guests still sleeping on the floor.</li></blunt>
-      <cold><li>Visitors remember how they're treated. Right now they remember the floor.</li></cold>
+      <cold><li>Visitors remember how they're treated, and right now they remember the floor.</li></cold>
     </reminder>
     <expired>
       <warm><li>I'll give up my bed to the next guest myself, if it comes to that.</li></warm>
-      <cheerful><li>No guest bed! I'll lend them my best blanket instead.</li></cheerful>
+      <cheerful><li>The next guest gets my best blanket, then!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -383,13 +383,13 @@
     <defName>Council_Lines_Wish_GuestRoom</defName>
     <wish>Council_Wish_GuestRoom</wish>
     <reminder>
-      <warm><li>I'd still love the guest room fixed up. Our visitors deserve better.</li></warm>
-      <blunt><li>Guest room's still bad. Fix it.</li></blunt>
+      <warm><li>I'd still love the guest room fixed up, for our visitors' sake.</li></warm>
+      <blunt><li>The guest room's still a disgrace.</li></blunt>
       <gloomy><li>Another guest, another apology for the room.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll put a flower in the guest room myself. It's a start.</li></warm>
-      <cheerful><li>The guest room stays rough! We'll call it charming.</li></cheerful>
+      <warm><li>I'll put a flower in the guest room myself, as a start.</li></warm>
+      <cheerful><li>The guest room stays rough, and we'll call it charming!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -398,11 +398,11 @@
     <wish>Council_Wish_Hat</wish>
     <reminder>
       <warm><li>Still hoping for a hat, if anyone has a moment at the tailor's bench.</li></warm>
-      <blunt><li>Hat. Still none.</li></blunt>
+      <blunt><li>My head's still bare.</li></blunt>
       <gloomy><li>The sun's still burning my scalp.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll tie a cloth round my head for now. It does the job.</li></warm>
+      <warm><li>A cloth tied round my head does the job, more or less.</li></warm>
       <gloomy><li>No hat. My head and the weather will just have to fight it out.</li></gloomy>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -411,7 +411,7 @@
     <defName>Council_Lines_Wish_Hay</defName>
     <wish>Council_Wish_Hay</wish>
     <reminder>
-      <blunt><li>Fodder. Winter. Short. Fix it.</li></blunt>
+      <blunt><li>Winter's coming and the fodder's short.</li></blunt>
       <cheerful><li>The animals and I are still hoping for a full barn!</li></cheerful>
       <gloomy><li>The grass is going brown, and the barn's still half empty.</li></gloomy>
     </reminder>
@@ -421,13 +421,13 @@
     <defName>Council_Lines_Wish_Healroot</defName>
     <wish>Council_Wish_Healroot</wish>
     <reminder>
-      <warm><li>I'd feel better with a few rows of healroot in. I'll tend them myself.</li></warm>
+      <warm><li>A few rows of healroot would let me sleep easier.</li></warm>
       <blunt><li>No healroot. Still.</li></blunt>
       <gloomy><li>Fever season's coming, and we've nothing to meet it with.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>We'll look after each other as best we can, herbs or no herbs.</li></warm>
-      <cheerful><li>No healroot! I'll just have to stay very healthy.</li></cheerful>
+      <cheerful><li>No healroot, so it's clean living and early nights for me!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -436,8 +436,8 @@
     <wish>Council_Wish_Hearth</wish>
     <reminder>
       <warm><li>I'd still be so grateful for a fire in my room, when there's time.</li></warm>
-      <cheerful><li>I've been imagining the fire in my room every night! It's a warm thought, at least.</li></cheerful>
-      <gloomy><li>Still cold in my room. Still waiting.</li></gloomy>
+      <cheerful><li>I've been imagining a fire in my room every night, and it's a warm thought at least!</li></cheerful>
+      <gloomy><li>My room's as cold as the yard.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -445,9 +445,9 @@
     <defName>Council_Lines_Wish_Honey</defName>
     <wish>Council_Wish_Honey</wish>
     <reminder>
-      <warm><li>A bit more honey would sweeten everyone's day. I'd share mine round, I promise.</li></warm>
-      <blunt><li>The honey jar's empty. Someone fill it.</li></blunt>
-      <gloomy><li>Plain bread again. No honey.</li></gloomy>
+      <warm><li>A bit more honey would sweeten everyone's day, and I'd share mine round.</li></warm>
+      <blunt><li>Somebody fill the honey jar.</li></blunt>
+      <gloomy><li>Plain bread again, and no honey for it.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -455,14 +455,14 @@
     <defName>Council_Lines_Wish_HotWater</defName>
     <wish>Council_Wish_HotWater</wish>
     <reminder>
-      <warm><li>Hot water would do all of us good, the old ones most of all. Their hands go white in the cold wash.</li></warm>
+      <warm><li>The old ones' hands go white in the cold wash, so hot water would help them most.</li></warm>
       <blunt><li>Water. Still cold.</li></blunt>
-      <gloomy><li>Another icy wash this morning.</li></gloomy>
+      <gloomy><li>My teeth were chattering through the whole wash again.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll warm a pot on the stove for whoever needs it. It's slower, but it works.</li></warm>
-      <cheerful><li>Cold water it is! Very bracing. Very, very bracing.</li></cheerful>
-      <gloomy><li>Cold water forever, then. My teeth will never stop chattering.</li></gloomy>
+      <warm><li>I'll warm a pot on the stove for whoever needs it, slow as that is.</li></warm>
+      <cheerful><li>Cold water it is, and very bracing it'll be!</li></cheerful>
+      <gloomy><li>Cold water forever, then, and cold hands with it.</li></gloomy>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -470,9 +470,9 @@
     <defName>Council_Lines_Wish_Hunt</defName>
     <wish>Council_Wish_Hunt</wish>
     <reminder>
-      <warm><li>The cooks are still making do. Let me bring them something fresh.</li></warm>
+      <warm><li>Let me bring the cooks something fresh, they're still making do.</li></warm>
       <gloomy><li>The deer are fat and we're eating porridge.</li></gloomy>
-      <cold><li>The herd is still in range. Every day we wait, it moves further off.</li></cold>
+      <cold><li>The herd is still in range, though every day we wait it moves further off.</li></cold>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -480,15 +480,15 @@
     <defName>Council_Lines_Wish_HurtAnimal</defName>
     <wish>Council_Wish_HurtAnimal</wish>
     <thanks>
-      <blunt><li>{OTHER_nameDef}'s patched up. Good.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} is back on {OTHER_possessive} feet and eating again! Thank you.</li></cheerful>
-      <cold><li>{OTHER_nameDef} will recover. The training wasn't wasted.</li></cold>
+      <blunt><li>Good, {OTHER_nameDef}'s patched up.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} is back on {OTHER_possessive} feet and eating again, thank you!</li></cheerful>
+      <cold><li>{OTHER_nameDef} will recover, and the training won't go to waste.</li></cold>
     </thanks>
     <expired>
-      <warm><li>Nobody came, so I did the best I could for {OTHER_nameDef}. I hope it was enough.</li></warm>
-      <blunt><li>No doctor came. I bandaged {OTHER_nameDef} myself.</li></blunt>
-      <gloomy><li>{OTHER_nameDef} waited, and nobody came. I'll remember that.</li></gloomy>
-      <cold><li>{OTHER_nameDef} went untreated. If {OTHER_pronoun} dies of it, that was a choice.</li></cold>
+      <warm><li>I did what I could for {OTHER_nameDef} myself, and hoped it was enough.</li></warm>
+      <blunt><li>No doctor came, so I bandaged {OTHER_nameDef} myself.</li></blunt>
+      <gloomy><li>{OTHER_nameDef} waited, and no one came, and I'll remember that.</li></gloomy>
+      <cold><li>If {OTHER_nameDef} dies of this, it was a choice the council made.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -496,9 +496,9 @@
     <defName>Council_Lines_Wish_Infirmary</defName>
     <wish>Council_Wish_Infirmary</wish>
     <reminder>
-      <warm><li>I'm still hoping for more medicine. I want to be ready for whoever's next.</li></warm>
-      <cheerful><li>The medicine shelf is very tidy! Because it's very empty.</li></cheerful>
-      <gloomy><li>I checked the medicine shelf again. Nothing's grown back on it.</li></gloomy>
+      <warm><li>I'm still hoping for more medicine, to be ready for whoever's next.</li></warm>
+      <cheerful><li>The medicine shelf is very tidy, because it's very empty!</li></cheerful>
+      <gloomy><li>I checked the medicine shelf again, and nothing's grown back on it.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -506,13 +506,13 @@
     <defName>Council_Lines_Wish_Jewelry</defName>
     <wish>Council_Wish_Jewelry</wish>
     <reminder>
-      <warm><li>I know it's a small, silly thing to want. I'd still treasure it.</li></warm>
-      <cheerful><li>Still dreaming of something shiny! A ring, a pin, anything at all.</li></cheerful>
-      <gloomy><li>Still nothing pretty. I didn't really expect it.</li></gloomy>
+      <warm><li>I know it's a small, silly thing to want, but I'd treasure it.</li></warm>
+      <cheerful><li>A ring, a pin, anything shiny at all would make my day!</li></cheerful>
+      <gloomy><li>Still nothing pretty, not that I really expected it.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>It's all right. There are more important things than jewelry. I'll be fine.</li></warm>
-      <blunt><li>No jewelry. Fine. Didn't need it.</li></blunt>
+      <warm><li>There are more important things than jewelry, and I'll be fine.</li></warm>
+      <blunt><li>No jewelry, fine, didn't need it.</li></blunt>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -520,12 +520,12 @@
     <defName>Council_Lines_Wish_Lessons</defName>
     <wish>Council_Wish_Lessons</wish>
     <reminder>
-      <blunt><li>Lessons. {OTHER_nameDef}. Still waiting.</li></blunt>
-      <cheerful><li>I'm still ready to learn from {OTHER_nameDef}! Any day now.</li></cheerful>
-      <gloomy><li>Still teaching myself {SUBJECT}, badly.</li></gloomy>
+      <blunt><li>Still waiting on those lessons from {OTHER_nameDef}.</li></blunt>
+      <cheerful><li>Any day now, I'm ready to learn from {OTHER_nameDef}!</li></cheerful>
+      <gloomy><li>Still fumbling through {SUBJECT} on my own.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>Maybe {OTHER_nameDef} will have time another day. I'll keep practicing.</li></warm>
+      <warm><li>Maybe {OTHER_nameDef} will have time another day, and I'll keep practicing.</li></warm>
       <cheerful><li>I'll watch {OTHER_nameDef} from the corner and learn by spying!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -534,12 +534,12 @@
     <defName>Council_Lines_Wish_Meeting</defName>
     <wish>Council_Wish_Meeting</wish>
     <reminder>
-      <warm><li>It would do us all good to sit down together. A meeting, when there's an evening free.</li></warm>
-      <cheerful><li>Meeting soon? I've got a list of ideas and they're all brilliant!</li></cheerful>
-      <gloomy><li>Still no meeting. Things keep getting decided without us.</li></gloomy>
+      <warm><li>It would do us all good to sit down together for a meeting, when there's an evening free.</li></warm>
+      <cheerful><li>I've got a list of ideas for the next meeting, and they're all brilliant!</li></cheerful>
+      <gloomy><li>Things keep getting decided without us, and still no meeting.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll just say what I wanted to say over supper, then. Gently.</li></warm>
+      <warm><li>I'll say what I wanted to say over supper, then, gently.</li></warm>
       <cheerful><li>No meeting! I'll hold my own and invite the chickens.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -548,13 +548,13 @@
     <defName>Council_Lines_Wish_MoreArt</defName>
     <wish>Council_Wish_MoreArt</wish>
     <reminder>
-      <warm><li>A sculpture would brighten the place for everyone. I'd help carry the stone.</li></warm>
-      <blunt><li>Still ugly in here. Still no sculpture.</li></blunt>
+      <warm><li>A sculpture would brighten the place, and I'd help carry the stone.</li></warm>
+      <blunt><li>This place is ugly, and one sculpture would fix most of it.</li></blunt>
       <gloomy><li>Blank walls again today.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>Perhaps someone will carve something in their free time. I'd love that.</li></warm>
-      <cheerful><li>No sculpture! I'll stack some pretty rocks and call it art.</li></cheerful>
+      <warm><li>Perhaps someone will carve something in their free time, and I'd love that.</li></warm>
+      <cheerful><li>A pile of pretty rocks, then, and I'm calling it art!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -562,18 +562,18 @@
     <defName>Council_Lines_Wish_Music</defName>
     <wish>Council_Wish_Music</wish>
     <thanks>
-      <warm><li>Music again, in this place. Thank you for that.</li></warm>
-      <blunt><li>Good. Now nobody whistle.</li></blunt>
-      <gloomy><li>A sad song, finally. It suits us.</li></gloomy>
-      <cold><li>The instrument is adequate. Morale will follow.</li></cold>
+      <warm><li>Music again, in this place, and thank you for it.</li></warm>
+      <blunt><li>Good, and now no more whistling.</li></blunt>
+      <gloomy><li>A sad song, finally, and it suits us.</li></gloomy>
+      <cold><li>The instrument is adequate, and morale will follow.</li></cold>
     </thanks>
     <expired>
-      <plain><li>Still no music. The evenings are as quiet as ever.</li></plain>
-      <warm><li>I'll hum for anyone who wants a tune. It's not the same, but it's something.</li></warm>
+      <plain><li>The evenings are as quiet as ever, without music.</li></plain>
+      <warm><li>I'll hum for anyone who wants a tune, though it's not the same.</li></warm>
       <blunt><li>No music. Just silence and whistling.</li></blunt>
-      <cheerful><li>No instrument? I'll drum on the table instead!</li></cheerful>
-      <gloomy><li>No music. The quiet suits this place, I suppose.</li></gloomy>
-      <cold><li>The council has chosen silence. Morale will show it.</li></cold>
+      <cheerful><li>I'll drum on the table instead, and the rest of you can hum!</li></cheerful>
+      <gloomy><li>No music. The quiet's the only tune we get.</li></gloomy>
+      <cold><li>The council has chosen silence, and morale will show it.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -581,9 +581,9 @@
     <defName>Council_Lines_Wish_NestEgg</defName>
     <wish>Council_Wish_NestEgg</wish>
     <reminder>
-      <warm><li>A bit put by would help us all sleep easier. Even a small chest of silver would do.</li></warm>
-      <cheerful><li>The treasury is still a drawer! A drawer with dreams.</li></cheerful>
-      <gloomy><li>Still nothing saved. One bad season and we're done.</li></gloomy>
+      <warm><li>Even a small chest of silver put by would help us all sleep easier.</li></warm>
+      <cheerful><li>The treasury is still a drawer, but a drawer with dreams!</li></cheerful>
+      <gloomy><li>Nothing saved, and one bad season would finish us.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -592,8 +592,8 @@
     <wish>Council_Wish_Outside</wish>
     <reminder>
       <warm><li>If there's any outdoor work going, I'd still love it.</li></warm>
-      <blunt><li>Still inside. Still want out.</li></blunt>
-      <cold><li>My work is slipping, and the walls are the cause. I'm still asking to go outside.</li></cold>
+      <blunt><li>Let me out of these walls for a day.</li></blunt>
+      <cold><li>My work is slipping because of these walls, and I'm still asking to go outside.</li></cold>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -601,9 +601,9 @@
     <defName>Council_Lines_Wish_Party</defName>
     <wish>Council_Wish_Party</wish>
     <reminder>
-      <warm><li>One evening together would do everyone so much good. I'd cook for it, if that helps.</li></warm>
-      <blunt><li>Party. People are snapping. Soon.</li></blunt>
-      <cold><li>Morale hasn't improved. A party would still be the cheapest fix.</li></cold>
+      <warm><li>One evening together would do us all good, and I'd cook for it.</li></warm>
+      <blunt><li>People are snapping at each other, so throw a party soon.</li></blunt>
+      <cold><li>Morale hasn't improved, and a party would still be the cheapest fix.</li></cold>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -612,7 +612,7 @@
     <wish>Council_Wish_PM_MagicCircle</wish>
     <reminder>
       <blunt><li>Build the circle before I set the table on fire.</li></blunt>
-      <cheerful><li>I've drawn the circle in chalk on the floor! It's not the same, though.</li></cheerful>
+      <cheerful><li>I've drawn the circle in chalk on the floor, though it's not quite the same!</li></cheerful>
       <gloomy><li>Still working magic between the bread and the salt.</li></gloomy>
     </reminder>
     <expired>
@@ -625,8 +625,8 @@
     <defName>Council_Lines_Wish_PW_NewSpecies</defName>
     <wish>Council_Wish_PW_NewSpecies</wish>
     <reminder>
-      <blunt><li>The {SUBJECT}. Still out there. Let me go.</li></blunt>
-      <cheerful><li>The {SUBJECT} is still hanging about! I think it likes us.</li></cheerful>
+      <blunt><li>Let me go after the {SUBJECT} while it's still out there.</li></blunt>
+      <cheerful><li>The {SUBJECT} is still hanging about, and I think it likes us!</li></cheerful>
       <gloomy><li>The {SUBJECT} will be gone any day now.</li></gloomy>
     </reminder>
     <expired>
@@ -639,8 +639,8 @@
     <defName>Council_Lines_Wish_PenMarker</defName>
     <wish>Council_Wish_PenMarker</wish>
     <reminder>
-      <warm><li>The animals would be safer in a pen, and the crops too. I'd mend the fences myself.</li></warm>
-      <blunt><li>Animals in the crops again. Pen.</li></blunt>
+      <warm><li>The animals would be safer in a pen, and I'd mend the fences myself.</li></warm>
+      <blunt><li>Animals in the crops again; build the pen.</li></blunt>
       <gloomy><li>Another day chasing animals out of the fields.</li></gloomy>
     </reminder>
     <expired>
@@ -653,15 +653,15 @@
     <defName>Council_Lines_Wish_PetBed</defName>
     <wish>Council_Wish_PetBed</wish>
     <thanks>
-      <blunt><li>{OTHER_nameDef}'s bed's in. Good.</li></blunt>
-      <gloomy><li>{OTHER_nameDef} sleeps by me now. It's the best I've slept in a while.</li></gloomy>
-      <cold><li>{OTHER_nameDef} sleeps in my room now. We'll both rest better.</li></cold>
+      <blunt><li>{OTHER_nameDef}'s bed is in, and so is {OTHER_nameDef}.</li></blunt>
+      <gloomy><li>{OTHER_nameDef} sleeps by me now, and it's the best I've slept in a while.</li></gloomy>
+      <cold><li>{OTHER_nameDef} sleeps in my room now, so we'll both rest better.</li></cold>
     </thanks>
     <expired>
-      <warm><li>I put a blanket out for {OTHER_nameDef} by the pen. It's the best I could do.</li></warm>
+      <warm><li>I put a blanket out for {OTHER_nameDef} by the pen, the best I could do.</li></warm>
       <blunt><li>No bed. {OTHER_nameDef} sleeps outside, I guess.</li></blunt>
       <gloomy><li>{OTHER_nameDef} sleeps out in the cold, and I lie awake listening for {OTHER_objective}.</li></gloomy>
-      <cold><li>{OTHER_nameDef} sleeps with the herd. My handling will suffer for it.</li></cold>
+      <cold><li>{OTHER_nameDef} sleeps with the herd, and my handling will suffer for it.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -670,12 +670,12 @@
     <wish>Council_Wish_Sarcophagus</wish>
     <reminder>
       <warm><li>I'd like it ready before I need it, so nobody has to rush when the time comes.</li></warm>
-      <blunt><li>Still no resting place. I'm not getting younger.</li></blunt>
-      <cold><li>My resting place remains unbuilt. Time is not on my side.</li></cold>
+      <blunt><li>Still no resting place, and the years aren't stopping for it.</li></blunt>
+      <cold><li>My resting place remains unbuilt, and time is not on my side.</li></cold>
     </reminder>
     <expired>
-      <warm><li>Wherever you put me, put me near the others. That's what matters.</li></warm>
-      <cheerful><li>No sarcophagus! I'll just have to keep living, then.</li></cheerful>
+      <warm><li>Wherever you put me, put me near the others.</li></warm>
+      <cheerful><li>I'll just have to keep living, then!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -683,12 +683,12 @@
     <defName>Council_Lines_Wish_Sauna</defName>
     <wish>Council_Wish_Sauna</wish>
     <reminder>
-      <warm><li>A sauna would warm all of us through. I'd keep the stones hot for everyone.</li></warm>
-      <blunt><li>Cold. No sauna. Still.</li></blunt>
-      <gloomy><li>Another frozen day. Still no sauna.</li></gloomy>
+      <warm><li>A sauna would warm us all through, and I'd keep the stones hot.</li></warm>
+      <blunt><li>Cold, and still no sauna.</li></blunt>
+      <gloomy><li>My fingers haven't been warm since the first frost.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll warm some stones in the fire and sit by them. It's a start.</li></warm>
+      <warm><li>I'll heat a few stones in the fire and sit by them instead.</li></warm>
       <cheerful><li>No sauna? I'll sit very close to the stove and sweat anyway!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -698,12 +698,12 @@
     <wish>Council_Wish_Scarecrow</wish>
     <reminder>
       <warm><li>I'd still make the scarecrow myself, if someone could spare the wood.</li></warm>
-      <blunt><li>Something's eating the crops. Still.</li></blunt>
+      <blunt><li>Something's still eating the crops.</li></blunt>
       <gloomy><li>More of the field gone last night.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>I'll walk the rows at dawn myself and shoo them off.</li></warm>
-      <cheerful><li>No scarecrow? I'll stand out there and wave my arms!</li></cheerful>
+      <cheerful><li>I'll stand in the field and wave my arms at them myself!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -712,12 +712,12 @@
     <wish>Council_Wish_SeatsForAll</wish>
     <reminder>
       <blunt><li>Still eating standing up.</li></blunt>
-      <cheerful><li>One day we'll all fit at the table! I'm saving a seat for that day.</li></cheerful>
+      <cheerful><li>One day we'll all fit at the table, and I'm saving a seat for it!</li></cheerful>
       <gloomy><li>Ate standing by the door again.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>I'll take my bowl outside and leave the chair for someone else.</li></warm>
-      <cheerful><li>No more chairs! I'll eat sitting on the woodpile, like a king on a throne.</li></cheerful>
+      <cheerful><li>I'll eat on the woodpile, then, like a king on a throne!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -725,12 +725,12 @@
     <defName>Council_Lines_Wish_Shrine</defName>
     <wish>Council_Wish_Shrine</wish>
     <reminder>
-      <blunt><li>Still praying behind the storeroom. Still smells.</li></blunt>
-      <cheerful><li>I've found the perfect spot for a shrine! It's just waiting.</li></cheerful>
-      <gloomy><li>Still no shrine. The prayers smell of rot.</li></gloomy>
+      <blunt><li>The storeroom still smells, and I'm still praying behind it.</li></blunt>
+      <cheerful><li>I've found the perfect spot for a shrine, and it's just waiting!</li></cheerful>
+      <gloomy><li>My prayers still smell of rot, without a shrine.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll pray where I can. I'm sure I'm still heard.</li></warm>
+      <warm><li>I'll pray where I can, and I'm sure I'm still heard.</li></warm>
       <cheerful><li>No shrine! I'll pray under the open sky, which is the biggest shrine there is.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -740,12 +740,12 @@
     <wish>Council_Wish_Sickbed</wish>
     <reminder>
       <blunt><li>Still sick. Still no sickbed.</li></blunt>
-      <cheerful><li>Still coughing, still hoping! A sickbed would be lovely.</li></cheerful>
+      <cheerful><li>I've coughed so much I've got a rhythm going, but a sickbed would be nicer!</li></cheerful>
       <gloomy><li>I'm getting worse, and there's still nowhere for the sick.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'm better now. I hope whoever's ill next has somewhere to lie.</li></warm>
-      <cheerful><li>I got better anyway! Coughing in the barracks builds character.</li></cheerful>
+      <warm><li>I'm better now, and I hope whoever's ill next has somewhere to lie.</li></warm>
+      <cheerful><li>I got better anyway, and coughing in the barracks builds character!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -753,10 +753,10 @@
     <defName>Council_Lines_Wish_SickbedVisit</defName>
     <wish>Council_Wish_SickbedVisit</wish>
     <expired>
-      <warm><li>{OTHER_nameDef} must be busy. I'll be glad to see {OTHER_objective} when I'm up.</li></warm>
-      <cheerful><li>No visit, but I counted every crack in the ceiling. There are forty!</li></cheerful>
-      <gloomy><li>I waited for {OTHER_nameDef} all week. Nobody comes in here.</li></gloomy>
-      <cold><li>{OTHER_nameDef} didn't come. I've noted it.</li></cold>
+      <warm><li>{OTHER_nameDef} must be busy, and I'll be glad to see {OTHER_objective} when I'm up.</li></warm>
+      <cheerful><li>No visit, but I counted every crack in the ceiling, and there are forty!</li></cheerful>
+      <gloomy><li>I waited for {OTHER_nameDef} all week, and no one comes in here.</li></gloomy>
+      <cold><li>{OTHER_nameDef} didn't come, and I've noted it.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -764,13 +764,13 @@
     <defName>Council_Lines_Wish_Smokehouse</defName>
     <wish>Council_Wish_Smokehouse</wish>
     <reminder>
-      <warm><li>I hate seeing good meat wasted. A smokehouse would save so much.</li></warm>
-      <blunt><li>More rotten meat. Build the smokehouse.</li></blunt>
+      <warm><li>I hate seeing good meat wasted, and a smokehouse would save so much of it.</li></warm>
+      <blunt><li>More rotten meat today, and still no smokehouse.</li></blunt>
       <gloomy><li>The flies ate better than we did this week.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll salt what I can by hand. It's slow, but it helps.</li></warm>
-      <cheerful><li>No smokehouse! I'll just eat faster.</li></cheerful>
+      <warm><li>I'll salt what meat I can by hand.</li></warm>
+      <cheerful><li>We'll just have to eat the meat faster!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -779,11 +779,11 @@
     <wish>Council_Wish_StoneBlocks</wish>
     <reminder>
       <warm><li>I'd cut the blocks myself if someone could spare me from other work.</li></warm>
-      <blunt><li>Blocks. None cut. Still.</li></blunt>
+      <blunt><li>Cut some blocks before we need them, not after.</li></blunt>
       <gloomy><li>Still building with wood that'll burn.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>We'll build with what we've got. It'll hold, I hope.</li></warm>
+      <warm><li>We'll build with what we've got, and I hope it holds.</li></warm>
       <cheerful><li>No blocks! Wood is lovely too, as long as nobody brings a torch.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -793,12 +793,12 @@
     <wish>Council_Wish_Storybook</wish>
     <reminder>
       <warm><li>I'd share any new book with the others, I promise.</li></warm>
-      <cheerful><li>Any new books yet? I've finished the old ones again!</li></cheerful>
-      <gloomy><li>Same books again. I know all the endings.</li></gloomy>
+      <cheerful><li>I've finished the old books again, so any new ones yet?</li></cheerful>
+      <gloomy><li>I know how every one of our books ends now.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>That's all right. I'll ask someone to tell me a story instead.</li></warm>
-      <cheerful><li>No new books! I'll write my own, with dragons.</li></cheerful>
+      <warm><li>I'll ask someone to tell me a story instead, that's all right.</li></warm>
+      <cheerful><li>I'll write my own book, then, with dragons in it!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -806,12 +806,12 @@
     <defName>Council_Lines_Wish_Tea</defName>
     <wish>Council_Wish_Tea</wish>
     <reminder>
-      <warm><li>A cup of tea would help so much, and I'd share the pot with the others who are coughing.</li></warm>
-      <blunt><li>Tea. Still none. Still coughing.</li></blunt>
-      <gloomy><li>Still sick. Still no tea.</li></gloomy>
+      <warm><li>A pot of tea would help, and I'd share it with the others who are coughing.</li></warm>
+      <blunt><li>No tea, and still coughing.</li></blunt>
+      <gloomy><li>Still sick, and the tea never came.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'm getting better anyway. Thank you all for the blankets.</li></warm>
+      <warm><li>I'm getting better anyway, and thank you all for the blankets.</li></warm>
       <cheerful><li>No tea! Hot water with a leaf in it is nearly the same.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -820,13 +820,13 @@
     <defName>Council_Lines_Wish_Telescope</defName>
     <wish>Council_Wish_Telescope</wish>
     <reminder>
-      <warm><li>The sky's beautiful tonight. A telescope would let everyone see it closer.</li></warm>
-      <cheerful><li>Clear skies again! Perfect telescope weather, if we had one.</li></cheerful>
+      <warm><li>A telescope would let everyone see the sky up close, and it's worth seeing.</li></warm>
+      <cheerful><li>Perfect telescope weather again, if only we had one!</li></cheerful>
       <gloomy><li>Another clear night wasted, squinting.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>I'll still show anyone who asks the stars I know, telescope or not.</li></warm>
-      <cheerful><li>No telescope! I'll stand on the roof and get a bit closer.</li></cheerful>
+      <cheerful><li>I'll climb on the roof and get a bit closer to the stars instead!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -834,17 +834,17 @@
     <defName>Council_Lines_Wish_Tidy</defName>
     <wish>Council_Wish_Tidy</wish>
     <thanks>
-      <warm><li>The whole place is clean. Thank you, everyone who scrubbed.</li></warm>
+      <warm><li>The whole place is clean, and thank you, everyone who scrubbed.</li></warm>
       <blunt><li>Clean. Keep it that way.</li></blunt>
-      <cheerful><li>Everything's sparkling! I could eat off the floor, and I might.</li></cheerful>
-      <gloomy><li>Clean, for now. Enjoy it while it lasts.</li></gloomy>
+      <cheerful><li>Everything's sparkling, and I could eat off the floor, and I might!</li></cheerful>
+      <gloomy><li>It's clean, and it won't stay that way long.</li></gloomy>
     </thanks>
     <expired>
-      <warm><li>I'll clean a corner every day myself. It's a start.</li></warm>
-      <blunt><li>Still filthy. I'm done asking.</li></blunt>
-      <cheerful><li>The mess wins this round! I'll start on my corner tomorrow.</li></cheerful>
+      <warm><li>I'll scrub one corner a day on my own.</li></warm>
+      <blunt><li>Still filthy, and I'm done asking.</li></blunt>
+      <cheerful><li>The mess wins this round, but I'll start on my corner tomorrow!</li></cheerful>
       <gloomy><li>The dirt's here to stay, like the rest of us.</li></gloomy>
-      <cold><li>The filth remains. The sickness it brings will be the council's responsibility.</li></cold>
+      <cold><li>The filth remains, and the sickness it brings will be the council's to answer for.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -853,7 +853,7 @@
     <wish>Council_Wish_Toilet</wish>
     <reminder>
       <warm><li>I know it's not glamorous, but {THING} would help us all.</li></warm>
-      <cheerful><li>Still going outside! I've got to know the bushes very well.</li></cheerful>
+      <cheerful><li>Still going outside, and I've got to know the bushes very well!</li></cheerful>
       <gloomy><li>Another cold morning behind the woodpile.</li></gloomy>
     </reminder>
     <expired>
@@ -866,12 +866,12 @@
     <defName>Council_Lines_Wish_ToolCabinet</defName>
     <wish>Council_Wish_ToolCabinet</wish>
     <reminder>
-      <warm><li>A tool cabinet would help everyone at the bench, not just me. I'd sort the tools into it myself.</li></warm>
+      <warm><li>A tool cabinet would help everyone at the bench, and I'd sort the tools into it myself.</li></warm>
       <blunt><li>Lost the chisel again.</li></blunt>
-      <cheerful><li>I've drawn where every tool would hang! I just need the cabinet.</li></cheerful>
+      <cheerful><li>I've drawn where every tool would hang, and all I need is the cabinet!</li></cheerful>
     </reminder>
     <expired>
-      <warm><li>I'll put pegs on the wall for the tools for now. It helps.</li></warm>
+      <warm><li>I'll put pegs on the wall for the tools instead.</li></warm>
       <cheerful><li>No cabinet! I'll just carry all the tools in my pockets.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -881,7 +881,7 @@
     <wish>Council_Wish_TraderGoods</wish>
     <reminder>
       <warm><li>I'd take good care of that {THINGBARE}, if there's any chance.</li></warm>
-      <cheerful><li>The {THINGBARE} is still in {OTHER_nameDef}'s pack! It's waiting for me.</li></cheerful>
+      <cheerful><li>The {THINGBARE} is still in {OTHER_nameDef}'s pack, waiting for me!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} will pack up soon, and the {THINGBARE} will go too.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -891,7 +891,7 @@
     <wish>Council_Wish_TrainingDummy</wish>
     <reminder>
       <warm><li>I'd train the others too, if we had somewhere to practice.</li></warm>
-      <cheerful><li>Still punching fence posts! The fence posts are losing.</li></cheerful>
+      <cheerful><li>Still punching fence posts, and the fence posts are losing!</li></cheerful>
       <gloomy><li>I'm getting slower every day, and the next raid won't wait.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -901,8 +901,8 @@
     <wish>Council_Wish_Travel</wish>
     <reminder>
       <warm><li>If a caravan goes out, I'd love to go along and help.</li></warm>
-      <blunt><li>Caravan. Me on it. When?</li></blunt>
-      <gloomy><li>Same hills out the window again today. I've stopped looking at them.</li></gloomy>
+      <blunt><li>When's the next caravan, and am I on it?</li></blunt>
+      <gloomy><li>Same hills out the window again, and I've stopped looking at them.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -910,9 +910,9 @@
     <defName>Council_Lines_Wish_WarmCloak</defName>
     <wish>Council_Wish_WarmCloak</wish>
     <reminder>
-      <warm><li>Something warm to wear would see me through the cold. I'd mend it myself whenever it tears.</li></warm>
+      <warm><li>Something warm to wear would see me through the cold, if anyone can spare the cloth.</li></warm>
       <blunt><li>Still cold. Still no coat.</li></blunt>
-      <cheerful><li>I've been wearing my blanket as a cape! It's not ideal.</li></cheerful>
+      <cheerful><li>I've been wearing my blanket as a cape, which is not ideal!</li></cheerful>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -920,13 +920,13 @@
     <defName>Council_Lines_Wish_WashPlace</defName>
     <wish>Council_Wish_WashPlace</wish>
     <reminder>
-      <warm><li>Somewhere to wash would make everyone's day better. I'd fill the tub for whoever goes first.</li></warm>
+      <warm><li>Somewhere to wash would freshen us all up, and I'd fill the tub for whoever goes first.</li></warm>
       <blunt><li>Still nowhere to wash.</li></blunt>
       <gloomy><li>I smell worse every day.</li></gloomy>
     </reminder>
     <expired>
-      <warm><li>I'll fetch a bucket from the river and share it round.</li></warm>
-      <blunt><li>No wash place. Everyone stinks. Fine.</li></blunt>
+      <warm><li>I'll fetch a bucket of water and share it round.</li></warm>
+      <blunt><li>We'll all go on stinking, then, fine.</li></blunt>
       <cheerful><li>No tub! I'll wait for the next rain and dance in it.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -935,8 +935,8 @@
     <defName>Council_Lines_Wish_WeaponRack</defName>
     <wish>Council_Wish_WeaponRack</wish>
     <reminder>
-      <warm><li>A rack would help us all get to the wall quicker. I'd keep it tidy, every piece in its place.</li></warm>
-      <blunt><li>Weapons on the floor. Still.</li></blunt>
+      <warm><li>A rack would get us all to the wall quicker, and I'd keep every piece in its place.</li></warm>
+      <blunt><li>Weapons still on the floor.</li></blunt>
       <gloomy><li>The next raid will find our weapons under someone's bed again.</li></gloomy>
     </reminder>
     <expired>

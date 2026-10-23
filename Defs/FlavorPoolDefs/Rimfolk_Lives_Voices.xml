@@ -15,13 +15,13 @@
     <lines>
       <plain>
         <li>When I was small I wanted to {OLDGOAL}. I still do, only bigger now: I want to {GOAL}.</li>
-        <li>I used to tell everyone I'd {OLDGOAL}. I'm grown now, and the wish grew with me. I want to {GOAL}.</li>
-        <li>[child] I'm not little any more, so I want a big person's thing now. I'm going to {GOAL}.</li>
+        <li>I used to tell everyone I'd {OLDGOAL}. Now I'm grown, I mean to {GOAL}.</li>
+        <li>[child] I'm not little anymore, so I want a big person's thing now. I'm going to {GOAL}.</li>
       </plain>
       <warm><li>The child I was wanted to {OLDGOAL}. I'd like to make that child proud: I'm going to {GOAL}.</li></warm>
       <blunt><li>Wanted to {OLDGOAL} as a kid. Now I want to {GOAL}. Same thing, grown up.</li></blunt>
-      <cheerful><li>Remember when I wanted to {OLDGOAL}? I still do! Except now it's to {GOAL}, which is the same but more.</li></cheerful>
-      <gloomy><li>I wanted to {OLDGOAL} when I was young. Now I want to {GOAL}. The world has a way of making wishes harder.</li></gloomy>
+      <cheerful><li>Remember when I wanted to {OLDGOAL}? Now it's to {GOAL}, which is the same thing but bigger!</li></cheerful>
+      <gloomy><li>I wanted to {OLDGOAL} when I was young. Now it's to {GOAL}, and it looks a lot further off.</li></gloomy>
       <cold><li>My childhood aim, to {OLDGOAL}, has matured into a more serious one: to {GOAL}.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -33,10 +33,10 @@
         <li>I wanted to {OLDGOAL} so badly when I was younger. I found the old wish today, like a toy in a box, and smiled at it.</li>
         <li>I've outgrown wanting to {OLDGOAL}. I don't know what I want instead yet. I'll know it when I see it.</li>
       </plain>
-      <warm><li>I used to want to {OLDGOAL}. I'm keeping the memory of wanting it. It was a good wish for a young person.</li></warm>
-      <blunt><li>Used to want to {OLDGOAL}. Not any more. Moving on.</li></blunt>
+      <warm><li>I used to want to {OLDGOAL}. It was a good wish for a young person, and I'm glad I had it.</li></warm>
+      <blunt><li>Used to want to {OLDGOAL}. Not anymore. Moving on.</li></blunt>
       <cheerful><li>I've outgrown wanting to {OLDGOAL}! Now I get to pick a brand new dream.</li></cheerful>
-      <gloomy><li>I wanted to {OLDGOAL} once. Growing up seems to be mostly letting go of things.</li></gloomy>
+      <gloomy><li>Once I'd have given anything to {OLDGOAL}. I can't remember now why it mattered so much.</li></gloomy>
       <cold><li>My youthful aim, to {OLDGOAL}, no longer applies. I will choose another.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -45,14 +45,14 @@
     <defName>Council_Journal_LastWishUnmet</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef}'s last wish was to {GOAL}. {OTHER_nameDef} told me so, more than once. It didn't happen in time.</li>
+        <li>{OTHER_nameDef}'s last wish was to {GOAL}, and {OTHER_pronoun} told me so more than once. We ran out of time.</li>
         <li>{OTHER_nameDef} only wanted one more thing: to {GOAL}. I keep thinking we could have helped.</li>
         <li>Someone should still {GOAL}, for {OTHER_nameDef}. I think it might have to be me.</li>
       </plain>
       <warm><li>{OTHER_nameDef} wanted to {GOAL} before the end. I'm sorry we didn't get there together. I'll try to get there for {OTHER_objective}.</li></warm>
       <blunt><li>{OTHER_nameDef} wanted to {GOAL}. Ran out of time. It's not right.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} had one last wish, to {GOAL}. I'm going to see it done. It'll be a good thing to do.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} died still wishing to {GOAL}. The old always run out of time. So will we.</li></gloomy>
+      <cheerful><li>{OTHER_nameDef} had one last wish, to {GOAL}. I'm going to see it done, and raise a cup to {OTHER_objective} when I do.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} died still wishing to {GOAL}. I keep thinking of all the days we spent on other things.</li></gloomy>
       <cold><li>{OTHER_nameDef}'s last wish, to {GOAL}, went unmet. It remains possible for someone else.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -75,7 +75,7 @@
         <li>[story:Siblings,stage:2] Three days and not a cross word between my children.</li>
         <li>[story:Between] I'm not taking sides, I've told them both.</li>
         <li>[story:Between,stage:2] No more messages, they can talk to each other.</li>
-        <li>[story:RoadCalls] The camp's fire is lit again tonight.</li>
+        <li>[story:RoadCalls] The camp's fire was lit again last night.</li>
         <li>[story:RoadCalls,stage:1] There's a bag under my bed I keep looking at.</li>
         <li>[story:WeightOfOffice] Being {NAME} is harder than it looks.</li>
         <li>[story:WeightOfOffice,stage:2] I made the call, and I'd make it again.</li>
@@ -103,11 +103,11 @@
     <pool>Council_Pool_MeetingSupport</pool>
     <lines>
       <plain>
-        <li>[quirk:Proverbs] Many hands make light work. Yes to "{AMBITION}".</li>
+        <li>[quirk:Proverbs] Many hands make light work, so yes to "{AMBITION}".</li>
         <li>[quirk:Proverbs] A tree is best planted twenty years ago, and second best today.</li>
-        <li>[quirk:Volunteers] Put me down for "{AMBITION}". First shift, whatever it is.</li>
-        <li>[quirk:KeepsRecords] I'll keep the tally for "{AMBITION}". Someone has to.</li>
-        <li>[quirk:Worrier] Yes, as long as someone checks it twice. I'll check it three times.</li>
+        <li>[quirk:Volunteers] Put me down for the first shift of "{AMBITION}", whatever it is.</li>
+        <li>[quirk:KeepsRecords] I'll keep the tally for "{AMBITION}", since someone has to.</li>
+        <li>[quirk:Worrier] Yes, as long as someone checks it twice, and I'll check it three times.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -118,10 +118,10 @@
     <lines>
       <plain>
         <li>[quirk:Proverbs] Don't build the barn before you've bought the cow.</li>
-        <li>[quirk:Proverbs] Measure twice, cut once. We haven't measured once.</li>
-        <li>[quirk:KeepsRecords] I've written down the last three plans like this. Shall I read you how they ended?</li>
-        <li>[quirk:Worrier] What if it rains? What if we're raided halfway through? What if it falls down?</li>
-        <li>[quirk:WrongLaugh] Sorry. I'm not laughing at the idea. I'm laughing at how much work it is.</li>
+        <li>[quirk:Proverbs] Measure twice, cut once, and we haven't measured even once.</li>
+        <li>[quirk:KeepsRecords] I wrote down the last three plans like this, if you'd like to hear how they ended.</li>
+        <li>[quirk:Worrier] What if it rains, or we're raided halfway through, or the whole thing falls down?</li>
+        <li>[quirk:WrongLaugh] Sorry, I'm not laughing at the idea, only at how much work it is.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -131,7 +131,7 @@
     <pool>Council_Pool_Objection</pool>
     <lines>
       <plain>
-        <li>[quirk:Proverbs] A hungry belly has no ears. Food first, "{WISH}" after.</li>
+        <li>[quirk:Proverbs] A hungry belly has no ears, so food first and "{WISH}" after.</li>
         <li>[quirk:KeepsRecords] By my notes this is the third thing {OTHER_nameDef} has asked for this season.</li>
         <li>[quirk:Worrier] What happens if we give {OTHER_nameDef} "{WISH}" and then the winter's a hard one?</li>
       </plain>
@@ -157,7 +157,7 @@
     <pool>Council_Journal_Day_BadNight</pool>
     <lines>
       <plain>
-        <li>[quirk:Proverbs] Bad night. Things look better in the morning, my mother always said. We'll see.</li>
+        <li>[quirk:Proverbs] Bad night. Things look better in the morning, they say, so I'm waiting on the morning.</li>
         <li>[quirk:Worrier] Lay awake sure something terrible would happen. Nothing did. I'm exhausted anyway.</li>
         <li>[quirk:NightLight] My light went out in the night and I woke up in the dark and didn't sleep again.</li>
       </plain>

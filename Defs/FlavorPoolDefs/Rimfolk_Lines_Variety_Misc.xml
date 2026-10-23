@@ -14,7 +14,7 @@
     <lines>
       <plain>
         <li>Shirtsleeves weather, out of nowhere.</li>
-        <li>[winter] Warm enough to melt the eaves, in the middle of winter.</li>
+        <li>[winter] Warm enough for the icicles to drip, in the middle of winter.</li>
       </plain>
       <warm>
         <li>Let's eat outside while it lasts.</li>
@@ -34,7 +34,7 @@
       </gloomy>
       <cold>
         <li>Use the warm days for the outside work.</li>
-        <li>The wood pile lasts longer in weather like this.</li>
+        <li>The woodpile lasts longer in weather like this.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -44,19 +44,19 @@
     <pool>Council_Pool_ObjectMercy</pool>
     <lines>
       <plain>
-        <li>{ABOUT_nameDef} has seen our walls from the inside. I'd rather {ABOUT_pronoun} didn't take that home.</li>
-        <li>Mercy is a fine thing, {OTHER_nameDef}. I'd like it pointed at someone who hasn't shot at us.</li>
+        <li>{ABOUT_nameDef} has seen our walls from the inside, and I'd rather that didn't go home with {ABOUT_objective}.</li>
+        <li>Mercy's a fine thing, {OTHER_nameDef}, but point it at someone who hasn't shot at us.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef}, I understand the kindness. I'm afraid of what it'll cost the rest of us.</li>
-        <li>I don't want {ABOUT_nameDef} hurt. I don't want {ABOUT_objective} free, either. Not yet.</li>
+        <li>I understand the kindness, {OTHER_nameDef}, but I'm afraid of what it'll cost the rest of us.</li>
+        <li>I don't want {ABOUT_nameDef} hurt, but I don't want {ABOUT_objective} free yet, either.</li>
       </warm>
       <blunt>
         <li>Let {ABOUT_nameDef} go and we'll be fighting {ABOUT_objective} again by spring.</li>
         <li>No. {ABOUT_nameDef} stays where {ABOUT_pronoun} is.</li>
       </blunt>
       <cheerful>
-        <li>I like {OTHER_nameDef}'s big heart, truly. I'd just like to keep my own heart beating too.</li>
+        <li>I like {OTHER_nameDef}'s big heart, but I'd like to keep mine beating too.</li>
         <li>Can we at least wait until {ABOUT_nameDef} stops glaring at everyone?</li>
       </cheerful>
       <gloomy>
@@ -107,24 +107,24 @@
     <pool>Council_Pool_TouchTradition</pool>
     <lines>
       <plain>
-        <li>{TRADITION} again, it comes round quicker every year.</li>
+        <li>Here's {TRADITION} again, and it comes round quicker every year.</li>
         <li>It wouldn't be the year without {TRADITION}.</li>
       </plain>
       <warm>
-        <li>{TRADITION} is my favorite day, I think.</li>
+        <li>I think {TRADITION} is my favorite day of the year.</li>
         <li>It's good to do the old things together.</li>
       </warm>
       <blunt>
-        <li>{TRADITION}, right, let's do it properly.</li>
+        <li>Right, it's {TRADITION}, so let's do it properly.</li>
         <li>Tradition's tradition.</li>
       </blunt>
       <cheerful>
-        <li>{TRADITION}, my favorite!</li>
+        <li>It's {TRADITION}, my favorite!</li>
         <li>I've been practicing for {TRADITION} all week.</li>
       </cheerful>
       <gloomy>
         <li>We keep {TRADITION} for the ones who can't.</li>
-        <li>{TRADITION}, and fewer of us than last year.</li>
+        <li>Fewer of us for {TRADITION} than last year.</li>
       </gloomy>
       <cold>
         <li>Keeping {TRADITION} costs a day and buys a season of goodwill.</li>
@@ -139,7 +139,7 @@
     <lines>
       <plain>
         <li>It was mine for a while. I'd like it to be mine again.</li>
-        <li>I got used to having it. Now I notice it gone every day.</li>
+        <li>I got used to having it, and now I notice it gone every day.</li>
       </plain>
       <warm>
         <li>I don't want to be ungrateful. I'd just love to have it back.</li>
@@ -151,7 +151,7 @@
       </blunt>
       <cheerful>
         <li>Second time asking, and I'm just as hopeful as the first!</li>
-        <li>It was lovely while I had it. More of that, please.</li>
+        <li>Loved it while I had it. More of that, please.</li>
       </cheerful>
       <gloomy>
         <li>I'll ask, though I know how it went last time.</li>
@@ -171,28 +171,28 @@
     <pool>Council_Pool_Interplay_ChaplainRite</pool>
     <lines>
       <plain>
-        <li>{NAME} came round again. I said the words, and the others said them back.</li>
+        <li>It was {NAME} again. I said the words, and the others said them back.</li>
         <li>Kept {NAME} today. Fewer words than last year, and better ones.</li>
       </plain>
       <warm>
-        <li>{NAME}. Everyone came, even the ones who don't believe a word of it. That was a gift.</li>
-        <li>Led {NAME} and held a few hands afterward. That's as much a part of it as the words.</li>
+        <li>They all came for {NAME}, even the ones who don't believe a word of it.</li>
+        <li>Led the rite for {NAME} and held a few hands afterward.</li>
       </warm>
       <blunt>
-        <li>{NAME}. Kept it. Good.</li>
-        <li>Said the words for {NAME}. Short and true.</li>
+        <li>Rite for {NAME}, done properly.</li>
+        <li>Short words for {NAME}, and true ones.</li>
       </blunt>
       <cheerful>
-        <li>{NAME} today. Somebody sang, and everyone joined in, and that was the rite done better than I could.</li>
-        <li>A good {NAME}, with full bellies afterward and nobody in a hurry to leave.</li>
+        <li>Somebody started a song for {NAME}, and everyone joined in, which was better than anything I'd planned.</li>
+        <li>A good remembrance for {NAME}, with full bellies afterward and no one in a hurry to leave.</li>
       </cheerful>
       <gloomy>
-        <li>{NAME}. I said the words, and I'll say them next year, and the year after.</li>
-        <li>Led {NAME} with a cold in my chest and a heavier heart.</li>
+        <li>I'll say the same words for {NAME} next year, and the year after.</li>
+        <li>Got through {NAME} with a cold in my chest and a heavier heart.</li>
       </gloomy>
       <cold>
-        <li>{NAME} was observed correctly. People need the form as much as the feeling.</li>
-        <li>Conducted {NAME}. The colony is steadier for it, as always.</li>
+        <li>Observed {NAME} correctly, every part in its proper order.</li>
+        <li>Conducted the rite for {NAME}. The colony is steadier for it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -202,27 +202,27 @@
     <pool>Council_Pool_Interplay_ElderStories</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} about the first winter {PAWN_pronoun} could remember, and how they got through it.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} talked about the first winter {PAWN_nameDef} could remember, and how {PAWN_possessive} people got through it.</li>
         <li>{PAWN_nameDef} and {OTHER_nameDef} sat with the old maps and talked about the places on them.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} about someone {PAWN_pronoun} once loved, and {OTHER_nameDef} listened to every word.</li>
+        <li>{PAWN_nameDef} spoke to {OTHER_nameDef} of someone {PAWN_pronoun} once loved, long ago and far from here.</li>
         <li>{PAWN_nameDef} gave {OTHER_nameDef} some advice {PAWN_pronoun} wished someone had given {PAWN_objective} at that age.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} exactly where {PAWN_pronoun} had gone wrong in life, so {OTHER_nameDef} wouldn't.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} a hard truth about the rim. {OTHER_nameDef} thanked {PAWN_objective} for it.</li>
+        <li>{PAWN_nameDef} warned {OTHER_nameDef} about raiders, and didn't soften any of it.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} about the most ridiculous thing {PAWN_pronoun} ever did when young, and they both laughed until they wheezed.</li>
-        <li>{PAWN_nameDef} taught {OTHER_nameDef} a song nobody else in the colony knew.</li>
+        <li>{PAWN_nameDef} confessed to {OTHER_nameDef} the most ridiculous thing {PAWN_pronoun} ever did when young, and they both laughed until they wheezed.</li>
+        <li>{PAWN_nameDef} taught {OTHER_nameDef} a song from {PAWN_possessive} childhood that no one else here knew.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} told {OTHER_nameDef} about a place that isn't there anymore.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} told {OTHER_nameDef} what {PAWN_pronoun} had learned about people, which was mostly to watch their hands.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} how the old settlements failed, so this one wouldn't.</li>
+        <li>{PAWN_nameDef} walked {OTHER_nameDef} through how the old settlements failed, so this one wouldn't.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -232,26 +232,26 @@
     <pool>Council_Pool_Interplay_ChaplainComforts</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef}, the chaplain, asked {OTHER_nameDef} to tell {PAWN_objective} about the one {OTHER_pronoun} lost, and stayed for the whole story.</li>
+        <li>{PAWN_nameDef}, the chaplain, asked {OTHER_nameDef} for {OTHER_possessive} best memory of the one {OTHER_pronoun} lost, and then for another.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} held {OTHER_nameDef}'s hands and said nothing at all, and it helped.</li>
-        <li>{PAWN_nameDef} sat with {OTHER_nameDef} until {OTHER_pronoun} fell asleep.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} through the worst of it, saying nothing much.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} it was all right to be angry about it. {OTHER_nameDef} was, for a while.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} to eat something first, then talk. Both helped.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} it was all right to be angry, and let {OTHER_objective} shout.</li>
+        <li>{PAWN_nameDef} put a bowl in front of {OTHER_nameDef} and said they'd talk once it was empty.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} got {OTHER_nameDef} to tell a funny story about the one {OTHER_pronoun} lost, and {OTHER_nameDef} smiled for the first time in days.</li>
-        <li>{PAWN_nameDef} walked {OTHER_nameDef} to the garden, where something new had come up.</li>
+        <li>{PAWN_nameDef} got {OTHER_nameDef} to tell a funny story about the one {OTHER_pronoun} lost, and got a smile out of {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} got {OTHER_nameDef} talking about the spring planting, and what {OTHER_pronoun} would grow.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} didn't pretend it would get better soon, and {OTHER_nameDef} seemed grateful for that.</li>
-        <li>{PAWN_nameDef} and {OTHER_nameDef} sat at the grave together until the light went.</li>
+        <li>{PAWN_nameDef} admitted to {OTHER_nameDef} that {PAWN_pronoun} still missed people {PAWN_pronoun} had lost years ago.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} said the names of the dead together, one by one.</li>
       </gloomy>
       <cold>
-        <li>{PAWN_nameDef} gave {OTHER_nameDef} a task to do with {OTHER_possessive} hands. Grief settles better with work in it.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} something to do with {OTHER_possessive} hands and stayed while {OTHER_pronoun} did it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -261,16 +261,16 @@
     <pool>Council_Pool_PeacemakerMediates</pool>
     <lines>
       <warm>
-        <li>{PAWN_nameDef} asked {A_nameDef} and {B_nameDef} what each of them liked about the other. It took a while, but they both came up with something.</li>
+        <li>{PAWN_nameDef} asked {A_nameDef} and {B_nameDef} what each of them liked about the other, and waited until both had an answer.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} the next one to start it would be hauling for a week. It has been quiet since.</li>
+        <li>{PAWN_nameDef} warned {A_nameDef} and {B_nameDef} that whoever started it next would be hauling for a week.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} made {A_nameDef} and {B_nameDef} cook supper together. It was terrible, and they laughed about it all evening.</li>
+        <li>{PAWN_nameDef} got {A_nameDef} and {B_nameDef} to agree on one thing, that last night's stew was terrible, and they laughed about it.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} about a feud {PAWN_pronoun} once watched end badly. They listened.</li>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} about a feud {PAWN_pronoun} once watched end in a grave.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} wrote down what {A_nameDef} and {B_nameDef} each wanted, read both lists aloud, and pointed out they were nearly the same.</li>
@@ -284,11 +284,11 @@
     <lines>
       <plain>
         <li>One at a time, please.</li>
-        <li>Nobody leaves until this is sorted.</li>
+        <li>We're not leaving until this is sorted.</li>
       </plain>
       <warm>
         <li>I know you both mean well, underneath.</li>
-        <li>Sit, both of you, I'll put the kettle on.</li>
+        <li>Sit down, both of you, and I'll fetch us something to drink.</li>
       </warm>
       <blunt>
         <li>Quiet, the pair of you.</li>
@@ -314,10 +314,10 @@
     <pool>Council_Pool_Interplay_ReeveDelivered</pool>
     <lines>
       <plain>
-        <li>Loaded every sack bound for {PLACE} myself. I could tell you where each one sat on the cart.</li>
+        <li>Counted out every sack for {PLACE} myself, and could tell you what's in each.</li>
       </plain>
       <warm>
-        <li>The carts left for {PLACE} full. I hope it gets them through.</li>
+        <li>Filled {PLACE}'s order to the last sack. I hope it gets them through.</li>
         <li>We had enough to share with {PLACE}, and we shared it. That's a good season.</li>
       </warm>
       <blunt>
@@ -325,16 +325,16 @@
         <li>{PLACE} got its order. Done.</li>
       </blunt>
       <cheerful>
-        <li>Off went the carts to {PLACE}, and I waved until they were out of sight.</li>
+        <li>{PLACE} will eat well this season thanks to us, and I'm proud of every sack.</li>
         <li>Full order for {PLACE}, on time, and not one sack split.</li>
       </cheerful>
       <gloomy>
-        <li>The carts to {PLACE} were fuller than our own stores look now.</li>
+        <li>What went to {PLACE} would have filled our own stores nicely.</li>
         <li>Sent it all to {PLACE}. I counted twice and still worried.</li>
       </gloomy>
       <cold>
-        <li>The {PLACE} order was filled exactly. Exactly is how trust gets built.</li>
-        <li>Delivered to {PLACE}. {FACTION} owes us a little for the speed.</li>
+        <li>Filled the order for {PLACE} exactly, to the unit.</li>
+        <li>Delivered to {PLACE}. {FACTION} owes us a favor for the speed.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -348,7 +348,7 @@
       </plain>
       <warm>
         <li>The others kept checking whether I was comfortable. I was, the whole evening.</li>
-        <li>Sat with friends at the gathering and forgot I was ill for an hour.</li>
+        <li>Sat with friends at the gathering and forgot I was ill for most of it.</li>
       </warm>
       <blunt>
         <li>Got out of bed for the gathering. Worth it.</li>
@@ -381,7 +381,7 @@
         <li>{OTHER_nameDef} said doubt is part of faith. I'd never heard it put that way.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} asked about my faith. I answered. Honestly, for once.</li>
+        <li>{OTHER_nameDef} asked about my faith. I answered truthfully, for once.</li>
         <li>Good talk with {OTHER_nameDef}. Still doubting. Less.</li>
       </blunt>
       <cheerful>
@@ -434,24 +434,24 @@
     <pool>Council_Pool_Interplay_WardenCamp</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef}, the warden of guests, sat down at the camp's fire with the {PLACE} and asked what they needed before they had to ask.</li>
+        <li>{PAWN_nameDef}, the warden of guests, asked the {PLACE} what they were short of before they had to come and ask.</li>
       </plain>
       <cheerful>
-        <li>{PAWN_nameDef} went over to the camp with a basket of bread and came back with three new songs from the {PLACE}.</li>
-        <li>{PAWN_nameDef} spent the evening at the camp, and the {PLACE} were laughing by the end of it.</li>
+        <li>{PAWN_nameDef} went over to the camp and came back with three new songs from the {PLACE}.</li>
+        <li>{PAWN_nameDef} traded jokes with the {PLACE} until both sides ran out.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} heard out the {PLACE}'s worries about the winter and didn't pretend they were small.</li>
-        <li>{PAWN_nameDef} sat with the {PLACE} for an hour. They'd had a hard road, and said so.</li>
+        <li>{PAWN_nameDef} heard out the {PLACE}'s worries about the winter and agreed they were real.</li>
+        <li>{PAWN_nameDef} sat with the {PLACE} while they talked about the hard road behind them.</li>
       </gloomy>
       <warm>
         <li>{PAWN_nameDef} made sure the {PLACE} had dry wood and a fair share of water.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told the {PLACE} where they could cut wood and where they couldn't. They thanked {PAWN_objective} for being plain.</li>
+        <li>{PAWN_nameDef} told the {PLACE} where they could cut wood and where they couldn't, and they thanked {PAWN_objective} for being plain.</li>
       </blunt>
       <cold>
-        <li>{PAWN_nameDef} walked the camp's edge with the {PLACE} and marked it out with stones.</li>
+        <li>{PAWN_nameDef} went over with the {PLACE} where the camp ended and the colony began, twice.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -463,7 +463,7 @@
     <pool>Council_Journal_NothingFit</pool>
     <lines>
       <plain>
-        <li>The whole colony ate at {GATHERING}. I held a cup and talked, which isn't the same.</li>
+        <li>I held a cup and talked all through {GATHERING}, which isn't the same as eating.</li>
         <li>[diet:vegetarian] Meat in the stew, meat in the pie. I ate bread at {GATHERING} and kept quiet.</li>
         <li>[diet:vegan] Even the bread at {GATHERING} had butter in it. I ate a raw carrot afterward.</li>
         <li>[diet:carnivore] All greens and grain at {GATHERING}. My stomach growled through the toasts.</li>
@@ -471,23 +471,23 @@
         <li>[diet:fine] Plain stew at {GATHERING}. I have standards, even here, and I kept them.</li>
       </plain>
       <warm>
-        <li>Couldn't eat at {GATHERING}, but someone sat by me and shared their water. That was kind.</li>
+        <li>Couldn't eat at {GATHERING}, but someone sat by me and shared their water.</li>
         <li>I didn't eat at {GATHERING}, and that's all right. I was there, and they were glad I came.</li>
       </warm>
       <blunt>
         <li>Nothing to eat at {GATHERING}. Again. I'll say something next time.</li>
-        <li>Empty plate at {GATHERING}. Nobody asked.</li>
+        <li>Empty plate at {GATHERING}, and not one question about it.</li>
       </blunt>
       <cheerful>
         <li>Nothing fit to eat at {GATHERING}, so I ate twice as much at breakfast.</li>
         <li>I went to {GATHERING} for the company, and the company was excellent.</li>
       </cheerful>
       <gloomy>
-        <li>Everyone toasted the cook at {GATHERING}. I'd eaten nothing to toast.</li>
+        <li>They all toasted the cook at {GATHERING}. I'd eaten nothing to toast.</li>
         <li>I sat at {GATHERING} like a guest at someone else's table.</li>
       </gloomy>
       <cold>
-        <li>{GATHERING} made no provision for my diet. I'll raise it with whoever plans the next one.</li>
+        <li>No provision for my diet at {GATHERING}. I'll raise it with whoever plans the next one.</li>
         <li>Attended {GATHERING} without eating. Noted, for the next planning.</li>
       </cold>
     </lines>
@@ -509,7 +509,7 @@
         <li>We'll be done by supper at this rate!</li>
       </cheerful>
       <gloomy>
-        <li>My back will never forgive me.</li>
+        <li>There's always more of it than we thought.</li>
         <li>We'll be doing this again next month.</li>
       </gloomy>
       <cold>
@@ -524,16 +524,16 @@
     <pool>Council_Pool_PlayToast</pool>
     <lines>
       <warm>
-        <li>To all of you, every one.</li>
+        <li>To the cooks, and the ones who carried the wood.</li>
       </warm>
       <blunt>
         <li>Drink up.</li>
       </blunt>
       <cheerful>
-        <li>To us, and to the next one!</li>
+        <li>Here's to a full table and no raiders!</li>
       </cheerful>
       <gloomy>
-        <li>To the empty places at the table.</li>
+        <li>To another year of it, I suppose.</li>
       </gloomy>
       <cold>
         <li>To the colony, and its continued survival.</li>
