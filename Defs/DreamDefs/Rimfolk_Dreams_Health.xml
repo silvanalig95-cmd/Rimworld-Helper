@@ -17,14 +17,14 @@
     <lines>
       <plain>
         <li>In the dream I was running across the fields, and my legs did everything I asked of them.</li>
-        <li>Dreamt I carried a whole load of stone up the hill and wasn't even out of breath. I woke up and checked my arms.</li>
-        <li>I dreamt it was the first warm day of spring and I walked all the way to the river and back.</li>
-        <li>[child] I dreamt I could run faster than anyone, even the dogs.</li>
+        <li>Dreamt I carried a whole load of stone up the hill, and set it down, and went back for another.</li>
+        <li>Dreamt it was the first warm day of spring, and I walked out past the last field just to see what was there.</li>
+        <li>[child] I could run faster than anyone, even the dogs.</li>
       </plain>
-      <warm><li>Dreamt I was well again, and everyone who'd brought me soup was sitting at one table, and I served them.</li></warm>
-      <blunt><li>Dreamt I was strong again. Soon.</li></blunt>
+      <warm><li>Dreamt I was well again and went around to each of their doors with something I'd made.</li></warm>
+      <blunt><li>Running dream. Legs aren't ready. Will be.</li></blunt>
       <cheerful><li>In the dream I climbed onto the roof just because I could. Can't wait to do it awake.</li></cheerful>
-      <gloomy><li>Dreamt I was well. Woke up and I'm not, yet. That's a hard way to start a morning.</li></gloomy>
+      <gloomy><li>I was well in the dream, and the others had already forgotten I'd been ill. I wasn't sure I liked that.</li></gloomy>
       <cold><li>A dream of full strength. A reasonable forecast, given the rate of recovery.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
@@ -37,15 +37,15 @@
     <hediffs><li>Council_Ail_Convalescent</li></hediffs>
     <lines>
       <plain>
-        <li>In the dream my bed was in the middle of the yard, and the whole colony went about its day around me.</li>
-        <li>Dreamt the bed went on and on, longer every time I tried to reach the end of it.</li>
-        <li>I dreamt the seasons changed outside the window while I lay there, spring, summer, snow, and nobody seemed to mind.</li>
-        <li>[child] I dreamt my bed was a boat and I could steer it anywhere I liked.</li>
+        <li>My bed was in the middle of the yard, and the whole colony went about its day around me.</li>
+        <li>The bed went on and on, longer every time I tried to reach the end of it.</li>
+        <li>The seasons changed outside the window while I lay there, spring, summer, snow, all in one night.</li>
+        <li>[child] My bed grew legs and walked me all around the colony to say hello.</li>
       </plain>
       <warm><li>Dreamt that everyone took turns sitting by my bed, all night, and none of them were tired.</li></warm>
-      <blunt><li>Dreamt about the bed. Strange. Done with the bed.</li></blunt>
+      <blunt><li>Bed dream. Done with the bed.</li></blunt>
       <gloomy><li>In the dream they forgot I was there, and went on without me.</li></gloomy>
-      <cold><li>A dream about convalescence. My mind is bored.</li></cold>
+      <cold><li>Lay in bed in my dream, too. My mind is as bored as the rest of me.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -58,7 +58,7 @@
     <lines>
       <plain>
         <li>In the dream the work piled up at the foot of my bed, higher every hour, and nobody would let me touch it.</li>
-        <li>I dreamt I was at my bench and my hands wouldn't close round the tools. I woke up with them clenched.</li>
+        <li>At my bench in the dream, and my hands wouldn't close around the tools. They were clenched when I woke.</li>
         <li>Dreamt everyone else was doing my work, badly, and smiling at me about it.</li>
       </plain>
       <blunt><li>Dreamt about work. Can't do it yet. Hate that.</li></blunt>
@@ -77,7 +77,7 @@
       <plain>
         <li>Dreamt my patient got up from the bed, folded the blanket and walked out into the sun. I stood in the doorway and watched.</li>
         <li>In the dream every bed in the sickroom was empty and made up, and I could finally sit down.</li>
-        <li>I dreamt the fever broke in my own hands, like a stick snapping, and the room went cool.</li>
+        <li>The fever broke in my own hands, like a stick snapping, and the room went cool.</li>
       </plain>
       <warm><li>Dreamt everyone I've ever pulled through came to supper, and nobody said a word about being ill.</li></warm>
       <blunt><li>Dreamt the patient lived. Did. Good dream.</li></blunt>
@@ -99,11 +99,11 @@
     <lines>
       <plain>
         <li>In the dream I was still tending them, and they kept asking for something I couldn't find on any shelf.</li>
-        <li>Dreamt I could see what I should have done, all of it, clear as day. Then I woke up and it was gone again.</li>
-        <li>I dreamt the bed was empty and still warm, and I kept laying out the medicine anyway.</li>
+        <li>Dreamt I could see what I should have done, all of it, clear as day. By morning it had gone muddy again.</li>
+        <li>The bed was empty and still warm, and I kept laying out the medicine anyway.</li>
       </plain>
       <warm><li>Dreamt they told me it wasn't my fault. I wanted to believe them more than anything.</li></warm>
-      <blunt><li>Dreamt about the one I lost. Again.</li></blunt>
+      <blunt><li>The one I lost. Again.</li></blunt>
       <gloomy><li>Every patient I've lost was in the dream, waiting quietly in a line.</li></gloomy>
       <cold><li>The dream went through every step of the treatment. I still can't find the mistake. Perhaps there wasn't one.</li></cold>
     </lines>
@@ -117,14 +117,14 @@
     <withinDays>4</withinDays>
     <lines>
       <plain>
-        <li>All night in the dream I counted the medicine on the shelf, and the number came out different every time.</li>
-        <li>Dreamt I was reading a book that explained exactly how to cure it, and the pages were blank when I turned them.</li>
-        <li>In the dream my patient's fever was a fire in the hearth, and I kept carrying water to it.</li>
+        <li>All night I counted the medicine on the shelf, and the number came out different every time.</li>
+        <li>A book that explained exactly how to cure it, and the pages went blank as I turned them.</li>
+        <li>My patient's fever was a fire in the hearth, and I kept carrying water to it.</li>
       </plain>
-      <warm><li>Dreamt my old teacher stood behind me at the bedside and said nothing, which meant I was doing it right.</li></warm>
-      <blunt><li>Dreamt about the case. Woke up thinking about the case.</li></blunt>
-      <gloomy><li>Dreamt I ran out of medicine. Woke up and went to check the shelf.</li></gloomy>
-      <cold><li>A dream about the dosing. It suggested nothing useful.</li></cold>
+      <warm><li>Dreamt the patient's mother sat at the foot of the bed knitting, and with every row she finished the fever went down.</li></warm>
+      <blunt><li>The case, all night. Still the case.</li></blunt>
+      <gloomy><li>Dreamt I ran out of medicine. Went to count the shelf before breakfast.</li></gloomy>
+      <cold><li>Dosing tables, all night. Nothing new in them.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -138,7 +138,7 @@
       <plain>
         <li>Dreamt of the first cry again, the one that means everything is all right. I heard it right through the night.</li>
         <li>In the dream the baby looked straight at me, as if it knew who I was.</li>
-        <li>I dreamt of all the babies I've delivered, grown up, walking past me in the yard, and none of them knew.</li>
+        <li>All the babies I've delivered, grown, walking past me in the yard, and not one of them knew.</li>
       </plain>
       <warm><li>Dreamt I held the baby while the mother slept, and the whole colony was quiet so as not to wake them.</li></warm>
       <blunt><li>Dreamt about the birth. Went well, both times.</li></blunt>

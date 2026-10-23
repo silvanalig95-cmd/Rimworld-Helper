@@ -19,15 +19,15 @@
         <li>In the dream the power ran out of me like water from a split bucket, and I couldn't find the hole.</li>
         <li>Dreamt I was working something enormous, a spell the size of the valley, and every word of it was right.</li>
         <li>[again] The same working again in my sleep. I get further each time before I wake.</li>
-        <li>[trait:InnerFire] Everything I touched in the dream caught light, gently, like candles. Nothing burned.</li>
-        <li>[trait:HeartOfFrost] I dreamt the river froze under my feet, one step at a time, all the way across.</li>
-        <li>[trait:Druid|trait:TM_Shaman] The trees were talking in my dream, slowly, about the weather. I understood most of it.</li>
+        <li>[trait:InnerFire] Everything I touched caught light, gently, like candles. Nothing burned.</li>
+        <li>[trait:HeartOfFrost] The river froze under my feet, one step at a time, all the way across.</li>
+        <li>[trait:Druid|trait:TM_Shaman] The trees were talking, slowly, about the weather. I understood most of it.</li>
         <li>[trait:Necromancer] The dead lined up in my dream to tell me their names. I wrote every one of them down.</li>
-        <li>[storm] The lightning in my dream came down to my hand when I called it, and waited there.</li>
+        <li>[storm] The lightning came down to my hand when I called it, and waited there.</li>
       </plain>
-      <cheerful><li>In the dream I lifted the whole storeroom with one finger and set it down on the hill, where the light is better!</li></cheerful>
+      <cheerful><li>I lifted the whole storeroom with one finger and set it down on the hill, where the light is better.</li></cheerful>
       <gloomy><li>Dreamt the power was gone and nobody noticed. They just went on eating.</li></gloomy>
-      <cold><li>I dreamt in sigils again. Three of them were new. I've drawn them on the wall before they fade.</li></cold>
+      <cold><li>Dreamt in sigils again. Three of them were new. I've drawn them on the wall before they fade.</li></cold>
     </lines>
   </ColonyCouncil.DreamDef>
 
@@ -40,7 +40,7 @@
     <lines>
       <plain>
         <li>There was a book in my dream, open on a table, and the words kept moving just before I could read them.</li>
-        <li>I dreamt I had a power I'd never been taught. It felt like remembering, not learning.</li>
+        <li>A power I'd never been taught, in the dream. It felt like remembering, not learning.</li>
         <li>[again] The book again. This time I read the first line, and I've forgotten it already.</li>
         <li>[trait:PhysicalProdigy] In the dream I fought in a way I've never been taught, and every move was right.</li>
       </plain>
