@@ -31,8 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.9</version>
+        <date>23 October 2026</date>
+        <title>Diaries and dreams</title>
+        <points>
+          <li>Every dream was reread and many retold: some are a bare image, some a half-memory or a feeling that stays into the morning, fewer start with "I dreamt" or end with waking up, and a dream of a raid or an evolution never reads as if it really happened.</li>
+          <li>Every journal line was reread on its own. Entries are shorter and uneven, in each colonist's own voice, and true to the moment they're written: no funeral before anyone is buried, a blessing told by the one who received it, no snow promised in a dry winter.</li>
+          <li>Journal entries go by the hour the moment happened (a loss, a fight, an arrival, an everyday thing), so night and morning lines show when they should, instead of always or never depending on where the colony lies.</li>
+          <li>Comrades from a fight who drift apart now each write a line about it; before, nothing was written at all. Two lines about kept promises now show, and the yearly day of a fight where an old enemy came back is remembered as such.</li>
+          <li>When a nemesis dies to a trap, a turret or an illness, the one they hurt no longer writes about thanking themselves for it.</li>
+          <li>The dates on this page are corrected: rounds from 0.8.0 on had drifted up to a week ahead of when they came out.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.8</version>
-        <date>30 October 2026, later</date>
+        <date>23 October 2026</date>
         <title>Plain materials</title>
         <points>
           <li>What colonists plan on their own (a light or a bed for themselves, a personal touch in their room, a floor, a grave, the thing a wish of theirs asks for) is only ever of plain materials: wood, stone blocks or bone. They no longer spend the colony's steel, silver, gold, plasteel, cloth or components; something that needs those isn't planned at all.</li>
@@ -42,7 +56,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.7</version>
-        <date>30 October 2026</date>
+        <date>22 October 2026</date>
         <title>Moods in their own words</title>
         <points>
           <li>About 1,600 moods were reread one at a time. Each now says what happened in this colony with one concrete thing from the moment ("I still get up at feeding time"), and holds for every answer, variant or risk that gives it, including half-hearted customs and verdicts the council reuses.</li>
@@ -53,7 +67,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.6</version>
-        <date>29 October 2026, later</date>
+        <date>22 October 2026</date>
         <title>A health panel at a glance</title>
         <points>
           <li>The health panel speaks the Health tab's language: each condition carries the game's own icon (tended well, tended poorly, needs tending, the blood drop), a tiny bar for how far a wound has healed or how an illness's immunity race stands, and its tending in red, yellow or green.</li>
@@ -63,7 +77,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.5</version>
-        <date>29 October 2026</date>
+        <date>22 October 2026</date>
         <title>Panels that stay on the screen</title>
         <points>
           <li>A panel taller than the screen (the inventory with every row shown) now stops at the game's button bar and scrolls: the mouse wheel over it, or the thin bar at its right edge, which you can drag or click above and below. The inventory's search box scrolls with it.</li>
@@ -74,7 +88,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.4</version>
-        <date>28 October 2026, later</date>
+        <date>22 October 2026</date>
         <title>Turn the line</title>
         <points>
           <li>Picking a spot for a new defense line by hand can now turn the line: the rotate keys (or the game's rotate buttons above the menu) turn which way it faces from the way the helper worked out, and the cursor says which way it faces and how to turn it.</li>
@@ -84,7 +98,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.3</version>
-        <date>28 October 2026</date>
+        <date>22 October 2026</date>
         <title>Wishes in their own words</title>
         <points>
           <li>Every wish, life goal, decree and council ambition was reread line by line. Colonists ask in more ways (a hint, a demand, a bargain, a complaint), the cold voice bargains or unsettles instead of reciting costs, and thanks can be a single word.</li>
@@ -96,7 +110,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.2</version>
-        <date>27 October 2026, later</date>
+        <date>22 October 2026</date>
         <title>The people in the letters</title>
         <points>
           <li>The people a world event's letter speaks of are there. The rider waits by the gate until you answer and takes what you send; the family asking for shelter waits with their dog or goat, and the ones you take in are the ones you met. Only people at peace with the colony come, only when it's safe, and they go home if the weather turns on them.</li>
@@ -109,7 +123,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.1</version>
-        <date>27 October 2026</date>
+        <date>22 October 2026</date>
         <title>Goods carried by hand</title>
         <points>
           <li>Goods that events move between the colony and the world now move on the map. Sell corn to a village and their porters walk in some hours later, go to your stockpile and carry it off; the silver comes back with a runner. A big load brings one of their pack animals. Gifts, payments, rewards and bought goods are carried in and set down by the gate.</li>
@@ -120,7 +134,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.10.0</version>
-        <date>26 October 2026, later</date>
+        <date>22 October 2026</date>
         <title>Every event in its own voice</title>
         <points>
           <li>About 1,250 events, questions and stories were rewritten one at a time: storyteller events, world situations, council dilemmas, encounters, personal stories, missions, camps and secrets. Each now has the length its moment deserves, from a single line for a passing sight to a full letter for a disaster, and opens its own way.</li>
@@ -134,7 +148,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.9</version>
-        <date>26 October 2026</date>
+        <date>22 October 2026</date>
         <title>Panels that read right</title>
         <points>
           <li>The health panel's summary line no longer runs words together ("Bruisetended 27%"): each condition and how it stands are spaced apart again, and so are the pieces of the mood line in the Needs tab. Something that can kill but isn't a wound or an illness (a gene's chemical dependency, hypothermia) shows once it's a tenth of the way, not from the first hour, and says "towards deadly".</li>
@@ -144,7 +158,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.8</version>
-        <date>25 October 2026, evening</date>
+        <date>21 October 2026</date>
         <title>The game's own words</title>
         <points>
           <li>Rimfolk now calls the game's belief system what the game does: the ideoligion, and how firmly someone holds it, their certainty. The People page shows "Ideoligions", the setting is "Ideoligions in the colony", the council calls an ideoligion evening or names one the colony's ideoligion, and the colonist bar warns of wavering certainty. It was always the game's own Ideology system, not a religion of Rimfolk's.</li>
@@ -154,7 +168,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.7</version>
-        <date>25 October 2026, later</date>
+        <date>21 October 2026</date>
         <title>A defense helper that reads your line</title>
         <points>
           <li>The defense helper knows a pass your line already holds: a gap just in front of it, or the same pass measured further out, now reads "covered by the south-west pass" and is no longer offered as a new line. Your gate, the doors in the line's wall and a door across its gap count as its way through even when shut, so a closed gate never makes it look for another way in; the line's card says to hold the gate open during a raid.</li>
@@ -165,7 +179,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.6</version>
-        <date>25 October 2026</date>
+        <date>21 October 2026</date>
         <title>Panels in the background</title>
         <points>
           <li>The on-screen panels now sit beneath the game's own interface: windows, the colonist bar, letters, alerts and the inspect tabs draw over them, and your hover and clicks reach the game there. They stay visible behind open windows instead of disappearing ("hide them under big windows" is off now, still there as an option).</li>
@@ -176,7 +190,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.5</version>
-        <date>24 October 2026, later</date>
+        <date>21 October 2026</date>
         <title>Fungus that lasts</title>
         <points>
           <li>The fungus meal is part fungus again, the rest any raw food, so the fungus lasts longer: a meal with some fungus in it is all a fungus diet asks. Stoves get a "cook 4 fungus meals" bill too, like the game's own.</li>
@@ -186,7 +200,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.4</version>
-        <date>24 October 2026</date>
+        <date>21 October 2026</date>
         <title>A wedding you can call</title>
         <points>
           <li>The wedding wish no longer depends on the game choosing a day. Promise it and the council holds the wedding, the game's own ceremony, as soon as both are ready and the day is calm, trying again every few hours until it happens.</li>
@@ -196,7 +210,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.3</version>
-        <date>23 October 2026, later</date>
+        <date>20 October 2026</date>
         <title>Alerts, health and work on screen</title>
         <points>
           <li>Your alerts in a panel you can move: the game's and every mod's, coloured by urgency, with the game's explanation on hover and its click to jump to them. The game's own list steps aside while the panel shows (a setting keeps both).</li>
@@ -207,7 +221,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.2</version>
-        <date>23 October 2026</date>
+        <date>20 October 2026</date>
         <title>A fungus diet that holds</title>
         <points>
           <li>The fungus meal is now made from fungus and nothing else. When a colonist's faith requires fungus, Rimfolk makes a "Fungus diet" food policy once (fungus meals, raw fungus, insect jelly and insect meat only) and tells you who needs it. A policy that still allows simple meals or raw vegetables is what keeps such a colonist throwing up.</li>
@@ -217,7 +231,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.1</version>
-        <date>22 October 2026, later</date>
+        <date>20 October 2026</date>
         <title>Families that really come</title>
         <points>
           <li>World events that bring a family now bring one: a couple who share a name, sometimes with a child, and the dog or goat the text speaks of, tame and the colony's. Before, "the family" could be one person, and the dog never came. "The exiles" are always more than one, and no line assumes the colony already has a dog.</li>
@@ -227,7 +241,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.9.0</version>
-        <date>22 October 2026</date>
+        <date>20 October 2026</date>
         <title>What matters, on screen</title>
         <points>
           <li>On-screen panels: a mood board (every colonist's mood with their own break lines, where it's heading and the biggest thing dragging them down, most at risk first), a mood trend graph over 3 or 7 days, the colony's vitals (food days, medicine, power, the weather ahead, days since a raid, research) and the council at a glance (wishes, promises, questions, decrees, the next day or meeting, trust). Click through to the right place.</li>
@@ -240,7 +254,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.8.2</version>
-        <date>21 October 2026, evening</date>
+        <date>20 October 2026</date>
         <title>Moods at a glance</title>
         <points>
           <li>The Mood tab opens compact: moods sorted into "You can fix", "Will pass", "Faith and who they are" and "Lifting", with chips for each group's total. Each mood is one line with its size and what helps ("Build a dining table") or how long it has left. Hover for the full explanation, click for its card with the advisor, council and Almanac buttons. "Details" brings back the old cards.</li>
@@ -251,7 +265,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.8.1</version>
-        <date>21 October 2026, later</date>
+        <date>20 October 2026</date>
         <title>Social and Culture in the colonist's tabs</title>
         <points>
           <li>Rimfolk now sits in the game's own Social tab: a column beside the relations list with a colonist's bonds, groups and role, what people say about them, shared memories and in-jokes, recent talks and the secrets the colony knows. Hovering someone in the list adds a line on what is between the two of them. The "Rimfolk in the Social tab" setting turns it off.</li>
@@ -262,7 +276,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.8.0</version>
-        <date>21 October 2026</date>
+        <date>20 October 2026</date>
         <title>Faith in the colony</title>
         <points>
           <li>People → Faiths (with Ideology): every faith in the colony on one page. It shows who believes what and how firmly, which faiths have no leader or moral guide here, what each faith asks that is weighing on someone right now, and who could sway whom. Each faith's card can call an evening of faith or name it the colony's faith, and the page explains the game's own tools.</li>
@@ -278,7 +292,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.7.2</version>
-        <date>20 October 2026, evening</date>
+        <date>20 October 2026</date>
         <title>Easier to keep spirits up</title>
         <points>
           <li>Hard times: as a colonist nears breaking, Rimfolk's own small letdowns (a joke that fell flat, being talked about, a sticking door) weigh less, down to half at their break line, and its everyday pressures down to three quarters. It eases back as they recover. Low spirits no longer double the nightmares (sweet dreams still come rarely).</li>
@@ -290,7 +304,7 @@ When you load a save after an update, a letter lists the newest round once. The 
 
       <li>
         <version>0.7.1</version>
-        <date>20 October 2026, later</date>
+        <date>20 October 2026</date>
         <title>Eating well is no rut, and lean saves</title>
         <points>
           <li>Fine and lavish meals no longer count towards "the same meal again". A colonist who eats a fine meal every day enjoys it, and doesn't sour on it. Simple meals, pemmican and the like still count, and a varied table is still rewarded.</li>

@@ -5,16 +5,27 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Diaries and dreams
+
+*23 October 2026, version 0.10.9*
+
+- Every dream was reread and many retold: some are a bare image, some a half-memory or a feeling that stays into the morning, fewer start with "I dreamt" or end with waking up, and a dream of a raid or an evolution never reads as if it really happened.
+- Every journal line was reread on its own. Entries are shorter and uneven, in each colonist's own voice, and true to the moment they're written: no funeral before anyone is buried, a blessing told by the one who received it, no snow promised in a dry winter.
+- Journal entries go by the hour the moment happened (a loss, a fight, an arrival, an everyday thing), so night and morning lines show when they should, instead of always or never depending on where the colony lies.
+- Comrades from a fight who drift apart now each write a line about it; before, nothing was written at all. Two lines about kept promises now show, and the yearly day of a fight where an old enemy came back is remembered as such.
+- When a nemesis dies to a trap, a turret or an illness, the one they hurt no longer writes about thanking themselves for it.
+- The dates on this page are corrected: rounds from 0.8.0 on had drifted up to a week ahead of when they came out.
+
 ## Plain materials
 
-*30 October 2026, later, version 0.10.8*
+*23 October 2026, version 0.10.8*
 
 - What colonists plan on their own (a light or a bed for themselves, a personal touch in their room, a floor, a grave, the thing a wish of theirs asks for) is only ever of plain materials: wood, stone blocks or bone. They no longer spend the colony's steel, silver, gold, plasteel, cloth or components; something that needs those isn't planned at all.
 - What the council plans for a promised wish is made of wood or stone blocks too when it can be, and of the colony's finer materials only when nothing plainer will do.
 
 ## Moods in their own words
 
-*30 October 2026, version 0.10.7*
+*22 October 2026, version 0.10.7*
 
 - About 1,600 moods were reread one at a time. Each now says what happened in this colony with one concrete thing from the moment ("I still get up at feeding time"), and holds for every answer, variant or risk that gives it, including half-hearted customs and verdicts the council reuses.
 - Moods no longer claim what the game didn't do: a sold animal leaves with its buyer instead of running loose, a reburied grave doesn't moralize, and a story's mood fits however the story went. About 35 mood names were clarified or shortened to fit the mood list.
@@ -22,14 +33,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## A health panel at a glance
 
-*29 October 2026, later, version 0.10.6*
+*22 October 2026, version 0.10.6*
 
 - The health panel speaks the Health tab's language: each condition carries the game's own icon (tended well, tended poorly, needs tending, the blood drop), a tiny bar for how far a wound has healed or how an illness's immunity race stands, and its tending in red, yellow or green.
 - Conditions are small chips that wrap onto a second line instead of being cut off ("Bruise ×2", then "+N"), each with its own tooltip. Each colonist gets a small health bar by the name, a coloured word (healing green, getting worse orange, bleeding red) and their pain on hover. "Icons and bars" in the panel's options gives the plain look back.
 
 ## Panels that stay on the screen
 
-*29 October 2026, version 0.10.5*
+*22 October 2026, version 0.10.5*
 
 - A panel taller than the screen (the inventory with every row shown) now stops at the game's button bar and scrolls: the mouse wheel over it, or the thin bar at its right edge, which you can drag or click above and below. The inventory's search box scrolls with it.
 - The panels' options show all of their settings again. The inventory's were cut off after its first look, so its rows, order, pins and the rest couldn't be set.
@@ -37,14 +48,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Turn the line
 
-*28 October 2026, later, version 0.10.4*
+*22 October 2026, version 0.10.4*
 
 - Picking a spot for a new defense line by hand can now turn the line: the rotate keys (or the game's rotate buttons above the menu) turn which way it faces from the way the helper worked out, and the cursor says which way it faces and how to turn it.
 - Placing a defense plan by hand ("Place it myself") shows the same rotate buttons beside its keys.
 
 ## Wishes in their own words
 
-*28 October 2026, version 0.10.3*
+*22 October 2026, version 0.10.3*
 
 - Every wish, life goal, decree and council ambition was reread line by line. Colonists ask in more ways (a hint, a demand, a bargain, a complaint), the cold voice bargains or unsettles instead of reciting costs, and thanks can be a single word.
 - Wish lines fit every way a wish comes true: thanks are said the moment it's granted, a lapsed wish no longer claims the trouble passed or that the council said no, and a room of one's own fits someone with no bed as well as someone in the barracks.
@@ -53,7 +64,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## The people in the letters
 
-*27 October 2026, later, version 0.10.2*
+*22 October 2026, version 0.10.2*
 
 - The people a world event's letter speaks of are there. The rider waits by the gate until you answer and takes what you send; the family asking for shelter waits with their dog or goat, and the ones you take in are the ones you met. Only people at peace with the colony come, only when it's safe, and they go home if the weather turns on them.
 - Guests given a night stay it, by the wall or in a corner of the dining room on a bitter night, and go on at first light. Drovers graze their herd on the far meadow overnight, and mourners, a clan's band or a lord's progress pass along the road.
@@ -63,7 +74,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Goods carried by hand
 
-*27 October 2026, version 0.10.1*
+*22 October 2026, version 0.10.1*
 
 - Goods that events move between the colony and the world now move on the map. Sell corn to a village and their porters walk in some hours later, go to your stockpile and carry it off; the silver comes back with a runner. A big load brings one of their pack animals. Gifts, payments, rewards and bought goods are carried in and set down by the gate.
 - Errands to the gate are handed to someone who really waits there. A prisoner you sell is led off by the buyer's riders, a runaway animal by its owners' herder, lost cargo and a crashed drone by their owners, who pay the finder's fee on the spot.
@@ -71,7 +82,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Every event in its own voice
 
-*26 October 2026, later, version 0.10.0*
+*22 October 2026, version 0.10.0*
 
 - About 1,250 events, questions and stories were rewritten one at a time: storyteller events, world situations, council dilemmas, encounters, personal stories, missions, camps and secrets. Each now has the length its moment deserves, from a single line for a passing sight to a full letter for a disaster, and opens its own way.
 - Where the story gives a reason, people speak for themselves: a burned town's shaky message, a toll-keeper's terms chalked on a board, a plague doctor's printed form passed through the gate, an officer's summons, a hermit's six words, a reeve's hurried letter, a child's petition in charcoal.
@@ -82,21 +93,21 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Panels that read right
 
-*26 October 2026, version 0.9.9*
+*22 October 2026, version 0.9.9*
 
 - The health panel's summary line no longer runs words together ("Bruisetended 27%"): each condition and how it stands are spaced apart again, and so are the pieces of the mood line in the Needs tab. Something that can kill but isn't a wound or an illness (a gene's chemical dependency, hypothermia) shows once it's a tenth of the way, not from the first hour, and says "towards deadly".
 - Click "and 15 more" under any panel to show every row; "Rows before 'and more'" in the panel's options sets the limit again.
 
 ## The game's own words
 
-*25 October 2026, evening, version 0.9.8*
+*21 October 2026, version 0.9.8*
 
 - Rimfolk now calls the game's belief system what the game does: the ideoligion, and how firmly someone holds it, their certainty. The People page shows "Ideoligions", the setting is "Ideoligions in the colony", the council calls an ideoligion evening or names one the colony's ideoligion, and the colonist bar warns of wavering certainty. It was always the game's own Ideology system, not a religion of Rimfolk's.
 - Colonists still speak of their faith in their own voice: in what they say, in their journals and in a crisis of faith. The council's buttons on an ideoligion's card take a second row when they don't fit side by side.
 
 ## A defense helper that reads your line
 
-*25 October 2026, later, version 0.9.7*
+*21 October 2026, version 0.9.7*
 
 - The defense helper knows a pass your line already holds: a gap just in front of it, or the same pass measured further out, now reads "covered by the south-west pass" and is no longer offered as a new line. Your gate, the doors in the line's wall and a door across its gap count as its way through even when shut, so a closed gate never makes it look for another way in; the line's card says to hold the gate open during a raid.
 - "Plan this step" lays the trap corridor on the raiders' own route to your gate, in front of the line, using the rock for its sides where it can, and says why it chose that spot, or why nothing fits and what would make room.
@@ -104,7 +115,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Panels in the background
 
-*25 October 2026, version 0.9.6*
+*21 October 2026, version 0.9.6*
 
 - The on-screen panels now sit beneath the game's own interface: windows, the colonist bar, letters, alerts and the inspect tabs draw over them, and your hover and clicks reach the game there. They stay visible behind open windows instead of disappearing ("hide them under big windows" is off now, still there as an option).
 - An Inventory panel shows what you have with the game's own icons, in four looks to try: classic, grouped by category, an icon grid and essentials only. Pin what matters, search, see the change since about this time yesterday, and click to jump to the stacks. The game's own resource list steps aside while it shows (a setting keeps both).
@@ -112,21 +123,21 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Fungus that lasts
 
-*24 October 2026, later, version 0.9.5*
+*21 October 2026, version 0.9.5*
 
 - The fungus meal is part fungus again, the rest any raw food, so the fungus lasts longer: a meal with some fungus in it is all a fungus diet asks. Stoves get a "cook 4 fungus meals" bill too, like the game's own.
 - Someone whose faith allows only one kind of food (a fungus or insect diet) no longer tires of the same meal: they have no choice to tire of.
 
 ## A wedding you can call
 
-*24 October 2026, version 0.9.4*
+*21 October 2026, version 0.9.4*
 
 - The wedding wish no longer depends on the game choosing a day. Promise it and the council holds the wedding, the game's own ceremony, as soon as both are ready and the day is calm, trying again every few hours until it happens.
 - The wish says so: the game still marries an engaged couple on its own sooner or later, and a marriage spot gives the ceremony a place.
 
 ## Alerts, health and work on screen
 
-*23 October 2026, later, version 0.9.3*
+*20 October 2026, version 0.9.3*
 
 - Your alerts in a panel you can move: the game's and every mod's, coloured by urgency, with the game's explanation on hover and its click to jump to them. The game's own list steps aside while the panel shows (a setting keeps both).
 - Health panel: only what will pass or needs seeing to (wounds, bleeding with the time left, anything untended, illnesses and whether they're winning), never scars, implants, chronic conditions, lost limbs or magical effects. Work and idle panel: what everyone is doing, who's idle and for how long, food, rest and recreation bars, and work nobody is set to do.
@@ -134,21 +145,21 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## A fungus diet that holds
 
-*23 October 2026, version 0.9.2*
+*20 October 2026, version 0.9.2*
 
 - The fungus meal is now made from fungus and nothing else. When a colonist's faith requires fungus, Rimfolk makes a "Fungus diet" food policy once (fungus meals, raw fungus, insect jelly and insect meat only) and tells you who needs it. A policy that still allows simple meals or raw vegetables is what keeps such a colonist throwing up.
 - The small frictions between colonists (a borrowed thing not returned, a taken seat, a joke that fell flat) now say what they are and that they fade in a day or so, instead of pointing to the council.
 
 ## Families that really come
 
-*22 October 2026, later, version 0.9.1*
+*20 October 2026, version 0.9.1*
 
 - World events that bring a family now bring one: a couple who share a name, sometimes with a child, and the dog or goat the text speaks of, tame and the colony's. Before, "the family" could be one person, and the dog never came. "The exiles" are always more than one, and no line assumes the colony already has a dog.
 - "The favorite" only comes when the same colonist has had a second wish granted since the other's own last one, within 30 days, while the other's request still waits. One wish granted is just good news.
 
 ## What matters, on screen
 
-*22 October 2026, version 0.9.0*
+*20 October 2026, version 0.9.0*
 
 - On-screen panels: a mood board (every colonist's mood with their own break lines, where it's heading and the biggest thing dragging them down, most at risk first), a mood trend graph over 3 or 7 days, the colony's vitals (food days, medicine, power, the weather ahead, days since a raid, research) and the council at a glance (wishes, promises, questions, decrees, the next day or meeting, trust). Click through to the right place.
 - Every panel can be dragged, snaps to edges and other panels, and has its own options: rows and columns, sort, who's listed, compact or full, size and background. Toggle all of them with the button among the game's icons at the bottom right or a key, and find every option under Interface → On-screen panels.
@@ -158,7 +169,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Moods at a glance
 
-*21 October 2026, evening, version 0.8.2*
+*20 October 2026, version 0.8.2*
 
 - The Mood tab opens compact: moods sorted into "You can fix", "Will pass", "Faith and who they are" and "Lifting", with chips for each group's total. Each mood is one line with its size and what helps ("Build a dining table") or how long it has left. Hover for the full explanation, click for its card with the advisor, council and Almanac buttons. "Details" brings back the old cards.
 - The game's own Needs tab gets one line above the moods with the same totals, so you can see how much is in your hands and how much will pass. Click it to open the Mood tab.
@@ -166,7 +177,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Social and Culture in the colonist's tabs
 
-*21 October 2026, later, version 0.8.1*
+*20 October 2026, version 0.8.1*
 
 - Rimfolk now sits in the game's own Social tab: a column beside the relations list with a colonist's bonds, groups and role, what people say about them, shared memories and in-jokes, recent talks and the secrets the colony knows. Hovering someone in the list adds a line on what is between the two of them. The "Rimfolk in the Social tab" setting turns it off.
 - A new Culture tab next to Social: faith with a certainty bar and any role, the views they hold, how they feel about the colony's ways, what they think of each decree in force, and where they come from.
@@ -174,7 +185,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Faith in the colony
 
-*21 October 2026, version 0.8.0*
+*20 October 2026, version 0.8.0*
 
 - People → Faiths (with Ideology): every faith in the colony on one page. It shows who believes what and how firmly, which faiths have no leader or moral guide here, what each faith asks that is weighing on someone right now, and who could sway whom. Each faith's card can call an evening of faith or name it the colony's faith, and the page explains the game's own tools.
 - Talks about faith matter: a devout, well-liked colonist who comes out of a friendly talk well sways someone of another faith a little. The open-minded and friends are swayed more, the proud less. An argument makes both dig in, two of one faith steady each other, and a faith that dislikes preaching takes it badly.
@@ -187,7 +198,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Easier to keep spirits up
 
-*20 October 2026, evening, version 0.7.2*
+*20 October 2026, version 0.7.2*
 
 - Hard times: as a colonist nears breaking, Rimfolk's own small letdowns (a joke that fell flat, being talked about, a sticking door) weigh less, down to half at their break line, and its everyday pressures down to three quarters. It eases back as they recover. Low spirits no longer double the nightmares (sweet dreams still come rarely).
 - On the normal setting, everyday pressures and the colony's small frictions press at 85% of their old strength. The same work starts to wear after 4 days instead of 3, and a passion for the work takes it a step lighter.
@@ -196,7 +207,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 ## Eating well is no rut, and lean saves
 
-*20 October 2026, later, version 0.7.1*
+*20 October 2026, version 0.7.1*
 
 - Fine and lavish meals no longer count towards "the same meal again". A colonist who eats a fine meal every day enjoys it, and doesn't sour on it. Simple meals, pemmican and the like still count, and a varied table is still rewarded.
 - Saves stay lean: everything Rimfolk keeps now has a limit, about 2 MB after five years in a large colony. Curfews no longer keep notes on people the game has forgotten, and a removed map is no longer held on to for the defense line shown on it.

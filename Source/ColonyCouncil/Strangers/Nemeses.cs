@@ -457,7 +457,8 @@ namespace ColonyCouncil
             if (VictimCanFeel(n))
             {
                 CouncilGameComponent.GiveThought(n.victim, revenge ? CouncilDefOf.Council_Nemesis_Revenge : CouncilDefOf.Council_Nemesis_Avenged);
-                comp.journals.Write(n.victim, revenge ? "Council_Journal_NemesisRevenge" : "Council_Journal_NemesisAvenged", null, x.Named("X"), (slayer ?? n.victim).Named("OTHER"));
+                // Lines that thank whoever struck the blow are tagged [slayer]: a trap, a turret or an illness has nobody to thank.
+                comp.journals.WriteTagged(n.victim, revenge ? "Council_Journal_NemesisRevenge" : "Council_Journal_NemesisAvenged", slayer != null ? new[] { "slayer" } : null, null, x.Named("X"), (slayer ?? n.victim).Named("OTHER"));
                 comp.aspirations.Notify(n.victim, "nemesis");
             }
             if (slayer != null && !revenge && slayer.IsColonist && People.HasInnerLife(slayer))

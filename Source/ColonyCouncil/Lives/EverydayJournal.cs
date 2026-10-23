@@ -164,7 +164,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>The local hour, where the colonist is, of a moment <paramref name="age"/> ticks ago; -1 when it can't be said (now).</summary>
-        private static int HourOf(Pawn p, int age)
+        internal static int HourOf(Pawn p, int age)
         {
             try
             {

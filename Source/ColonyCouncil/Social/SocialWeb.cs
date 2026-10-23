@@ -315,8 +315,9 @@ namespace ColonyCouncil
             // apart: news of a bond ending; a mentorship's end comes with its word of thanks, face to face (Mentor).
             if (ties.Remove(t)) TiesChanged();
             if (!t.announced || t.a == null || t.b == null || t.a.Dead || t.b.Dead) return;
-            // Comradeship fades without ceremony; so do bonds with people who left.
-            if (!graduated && (t.kind == TieKind.Comrades || !t.a.IsColonist || !t.b.IsColonist)) quiet = true;
+            // Bonds with people who left end without a word; comradeship fades without ceremony, only a line in each journal.
+            if (!graduated && (!t.a.IsColonist || !t.b.IsColonist)) quiet = true;
+            bool fades = !graduated && t.kind == TieKind.Comrades;
             var aspirations = CouncilGameComponent.Instance?.aspirations;
             if (graduated) aspirations?.Notify(t.a, "graduated");
             else if (t.kind == TieKind.Rivals && t.a.IsColonist && t.b.IsColonist)
@@ -325,11 +326,14 @@ namespace ColonyCouncil
                 aspirations?.Notify(t.b, "peace");
             }
             if (quiet) return;
-            string key = graduated ? "CC_Tie_Graduated" : "CC_Tie_Ended_" + t.kind;
-            if (!key.CanTranslate()) return;
             var comp = CouncilGameComponent.Instance;
-            News.Post(key.Translate(t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL")).Resolve(), new LookTargets(t.a, t.b), NewsKind.People, MessageTypeDefOf.NeutralEvent, graduated ? Importance.Notable : Importance.Flavor);
-            comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, key.Translate(t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL")).Resolve(), t.a));
+            string key = graduated ? "CC_Tie_Graduated" : "CC_Tie_Ended_" + t.kind;
+            if (!fades && !key.CanTranslate()) return;
+            if (!fades)
+            {
+                News.Post(key.Translate(t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL")).Resolve(), new LookTargets(t.a, t.b), NewsKind.People, MessageTypeDefOf.NeutralEvent, graduated ? Importance.Notable : Importance.Flavor);
+                comp?.AddChronicle(new ChronicleEntry(ChronicleKind.Bond, key.Translate(t.a.Named("A"), t.b.Named("B"), (t.skill?.label ?? "").Named("SKILL")).Resolve(), t.a));
+            }
             string prefix = graduated ? "Council_Journal_TieGraduated_" : "Council_Journal_TieEnded_";
             comp?.journals.Write(t.a, JournalPool(prefix, t, t.a), null, t.b.Named("OTHER"), (t.skill?.label ?? "").Named("SKILL"));
             comp?.journals.Write(t.b, JournalPool(prefix, t, t.b), null, t.a.Named("OTHER"), (t.skill?.label ?? "").Named("SKILL"));

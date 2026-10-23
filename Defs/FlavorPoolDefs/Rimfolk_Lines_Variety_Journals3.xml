@@ -187,8 +187,6 @@
         <li>[clear] Not a cloud in the sky, and the council came through. Good day.</li>
         <li>[highmood] I was already in a good mood, and then "{WISH}" happened. Now I'm unbearable.</li>
         <li>[highmood] "{WISH}" on top of a good week. I've run out of things to grumble about.</li>
-        <li>[promised] They promised "{WISH}", and here it is. I'll trust the next promise sooner.</li>
-        <li>[promised] A promise kept, and on time. I'm writing that down twice.</li>
         <li>[petition] We asked together, and together we got it. All of us who signed went to have a look.</li>
         <li>[petition] The others who asked for "{WISH}" with me are as pleased as I am. More, maybe.</li>
         <li>[forother] Someone asked for this on my behalf. I've got a short list of who it might be.</li>
@@ -284,6 +282,8 @@
         <li>[doubtful] Maybe I've been too hard on the council.</li>
         <li>[trusting] They said they would, and they did. That's the council I know.</li>
         <li>[trusting] I never doubted it. Well, once. Briefly.</li>
+        <li>They promised "{WISH}", and here it is. I'll trust the next promise sooner.</li>
+        <li>A promise kept, and on time. I'm writing that down twice.</li>
       </plain>
       <warm>
         <li>[winter] Even in the worst of the cold, they kept their promise. I won't forget it.</li>

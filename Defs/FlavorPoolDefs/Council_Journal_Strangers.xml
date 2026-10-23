@@ -208,12 +208,12 @@
     <defName>Council_Journal_NemesisAvenged</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} is dead. {OTHER_nameDef} did it. I should thank {OTHER_objective}. I will, when I can say it without shaking.</li>
+        <li>[slayer] {X_nameDef} is dead. {OTHER_nameDef} did it. I should thank {OTHER_objective}. I will, when I can say it without shaking.</li>
         <li>They told me {X_nameDef} is dead and I asked them to say it again, slower.</li>
         <li>I want to see the body. I need to be sure it's {X_nameDef}.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} ended it for me. I'm cooking {OTHER_objective} dinner every night this week whether {OTHER_pronoun} likes it or not.</li>
+        <li>[slayer] {OTHER_nameDef} ended it for me. I'm cooking {OTHER_objective} dinner every night this week whether {OTHER_pronoun} likes it or not.</li>
       </warm>
       <blunt>
         <li>Wanted to do it myself. Dead is dead, though.</li>

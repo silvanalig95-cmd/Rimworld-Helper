@@ -163,6 +163,23 @@ namespace ColonyCouncil
             Caps.TrimByAge(journals, ours + Caps.DepartedJournals, LastTick, j => !here.Contains(j.pawnId));
         }
 
+        /// <summary>
+        /// Like <see cref="Write"/>, with the hour tags ([night], [morning]) of when the moment happened, <paramref name="age"/>
+        /// ticks ago, rather than of the daily pass, which comes at the same hour every day.
+        /// </summary>
+        private void WriteAt(Pawn p, int age, string pool, params NamedArgument[] args)
+        {
+            Flavor.AtHour = EverydayJournal.HourOf(p, age);
+            try
+            {
+                Write(p, pool, null, args);
+            }
+            finally
+            {
+                Flavor.AtHour = -1;
+            }
+        }
+
         /// <summary>Once a day: first entries, raids survived, and losses they haven't written about yet.</summary>
         public void Daily()
         {
@@ -173,7 +190,9 @@ namespace ColonyCouncil
             {
                 if (For(p) != null || p.records == null) continue;
                 bool newcomer = p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) < GenDate.TicksPerDay * 3;
-                Write(p, newcomer ? "Council_Journal_Arrival" : "Council_Journal_Begin");
+                // A newcomer's first entry goes by the hour they came; an old hand's by some hour of the past day.
+                int age = newcomer ? (int)p.records.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) : Rand.Range(1, GenDate.TicksPerDay);
+                WriteAt(p, age, newcomer ? "Council_Journal_Arrival" : "Council_Journal_Begin");
             }
             var map = Find.AnyPlayerHomeMap;
             int threat = map?.storyState.LastThreatBigTick ?? 0;
@@ -184,7 +203,7 @@ namespace ColonyCouncil
                 var writers = colonists.Where(p => p.MapHeld == map && !WroteWithin(p, GenDate.TicksPerDay))
                     .OrderByDescending(p => (p.health.hediffSet.hediffs.Any(h => h is Hediff_Injury) ? 2f : 0f) + Rand.Value)
                     .Take(2);
-                foreach (var p in writers) Write(p, "Council_Journal_Raid");
+                foreach (var p in writers) WriteAt(p, Find.TickManager.TicksGame - threat, "Council_Journal_Raid");
             }
             foreach (var p in colonists)
             {
@@ -195,7 +214,7 @@ namespace ColonyCouncil
                     if (!Flavor.GriefThoughts.Contains(m.def.defName) || m.otherPawn == null || m.age > GenDate.TicksPerDay * 2) continue;
                     string key = p.ThingID + "|" + m.def.defName + "|" + m.otherPawn.ThingID;
                     if (!griefSeen.Add(key) || !FirstOnLoss(p, m.otherPawn)) continue;
-                    Write(p, "Council_Journal_Grief", null, m.otherPawn.Named("OTHER"));
+                    WriteAt(p, m.age, "Council_Journal_Grief", m.otherPawn.Named("OTHER"));
                 }
             }
             if (griefSeen.Count > 500) griefSeen.Clear();
