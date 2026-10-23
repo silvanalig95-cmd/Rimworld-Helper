@@ -11,14 +11,14 @@
       <plain>
         <li>Argued with {OTHER_nameDef} about the pots. I've scrubbed them three days running and I'm not doing it again tomorrow.</li>
         <li>{OTHER_nameDef} says it was my turn to sweep. It wasn't.</li>
-        <li>Swept the hall after {OTHER_nameDef} said {OTHER_pronoun} would. It's easier than arguing.</li>
+        <li>After all that arguing with {OTHER_nameDef}, I swept the hall myself. Quicker.</li>
         <li>{OTHER_nameDef} and I had words over the slop bucket. Neither of us carried it out.</li>
         <li>Did my chores and half of {OTHER_nameDef}'s. I'll be bringing that up.</li>
       </plain>
       <warm>
         <li>Snapped at {OTHER_nameDef} over the dishes. I'll do them tomorrow without being asked, and we'll call it even.</li>
         <li>{OTHER_nameDef} and I sorted out the chores in the end. I took the pots, and {OTHER_nameDef} took the floor.</li>
-        <li>Argued with {OTHER_nameDef} over the sweeping. I'll make it up to {OTHER_objective}.</li>
+        <li>Argued with {OTHER_nameDef} over the sweeping. We were both too tired to be right, and I'll say so tomorrow.</li>
       </warm>
       <blunt>
         <li>Dishes. {OTHER_nameDef}. Again.</li>
@@ -44,21 +44,21 @@
       <plain>
         <li>{OTHER_nameDef} kept me up again. I lay there till the small hours, staring at the ceiling.</li>
         <li>Woke three times in the night because of {OTHER_nameDef}. I'll be asleep in my soup at this rate.</li>
-        <li>{OTHER_nameDef} snored like a saw all night. I've moved my pillow to the other end of the bed.</li>
-        <li>{OTHER_nameDef} came in late and dropped everything on the way to bed. Every single thing.</li>
-        <li>Woken at dawn by {OTHER_nameDef} hunting for {OTHER_possessive} boots in the dark.</li>
+        <li>Moved my pillow to the far end of the bed to get away from {OTHER_nameDef}'s noise. It didn't help.</li>
+        <li>{OTHER_nameDef} has no idea how loud {OTHER_pronoun} is at night.</li>
+        <li>Lay awake listening to {OTHER_nameDef} and counting. I got into the hundreds.</li>
       </plain>
       <blunt>
         <li>{OTHER_nameDef}. Every night. I need a room of my own.</li>
-        <li>{OTHER_nameDef} snores. I'm moving.</li>
+        <li>{OTHER_nameDef} again. I'm moving my bed.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} had me up before the birds, so I got first pick at breakfast!</li>
-        <li>Lay awake working out what {OTHER_nameDef}'s snoring sounds like. A goat with a cold, I've decided!</li>
+        <li>Lay awake working out what {OTHER_nameDef}'s racket sounds like. A goat in a cupboard, I've decided.</li>
       </cheerful>
       <gloomy>
         <li>Another night of {OTHER_nameDef} and the noise. I don't remember what real sleep feels like.</li>
-        <li>{OTHER_nameDef} sleeps like a stone, and I don't sleep at all.</li>
+        <li>{OTHER_nameDef} was fresh as anything at breakfast. I could barely hold my spoon.</li>
         <li>Woke at every sound {OTHER_nameDef} made. I'm too tired to be angry.</li>
       </gloomy>
     </lines>
@@ -83,7 +83,7 @@
       </blunt>
       <cold>
         <li>Noted what {OTHER_nameDef} said behind my back. I'll remember it the next time {OTHER_pronoun} needs a favor.</li>
-        <li>{OTHER_nameDef} repeats things. Useful to know, and I'll use it.</li>
+        <li>{OTHER_nameDef} repeats things. I'll make sure what {OTHER_pronoun} hears from me next is worth repeating.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -94,16 +94,16 @@
       <plain>
         <li>Asked {OTHER_nameDef} for my knife back. Third time. Tomorrow, {OTHER_pronoun} said.</li>
         <li>Saw my good gloves on {OTHER_nameDef}'s hands today. I lent them out last week.</li>
-        <li>{OTHER_nameDef} still has my good knife. I've been cutting rope with a sharp stone.</li>
+        <li>{OTHER_nameDef} still has my needle. I've been mending with a thorn.</li>
         <li>Found my spare blanket on {OTHER_nameDef}'s bed. {OTHER_nameDef} said {OTHER_pronoun} thought it was spare.</li>
       </plain>
       <cheerful>
         <li>{OTHER_nameDef} still has my comb, so I've been doing my hair with my fingers. It looks about the same!</li>
-        <li>{OTHER_nameDef} has my cup, so I've been drinking out of a bowl. Twice as much tea!</li>
+        <li>{OTHER_nameDef} has my cup, so I've been drinking out of a bowl. Holds more.</li>
       </cheerful>
       <gloomy>
         <li>Lent {OTHER_nameDef} my blanket on a cold night. Haven't seen it since, and the nights haven't gotten any warmer.</li>
-        <li>Lent {OTHER_nameDef} my hat. It's been raining ever since.</li>
+        <li>Lent {OTHER_nameDef} my good hat. I've stopped expecting it back.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} has had my whetstone for a week. I've stopped lending {OTHER_objective} things.</li>
@@ -118,11 +118,11 @@
       <plain>
         <li>{OTHER_nameDef} walked right past me today. Not a word.</li>
         <li>Said good morning to {OTHER_nameDef} and got a grunt back.</li>
-        <li>{OTHER_nameDef} sat at the far end of the table again tonight.</li>
+        <li>Far end of the table again tonight, as far from me as {OTHER_nameDef} could get.</li>
         <li>I asked {OTHER_nameDef} to pass the bread, and {OTHER_pronoun} handed it to someone else to pass to me.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} is still cross with me. I'll bring {OTHER_objective} something hot to drink tomorrow and see if that helps.</li>
+        <li>{OTHER_nameDef} is still cross with me. I saved {OTHER_objective} a seat at supper anyway.</li>
         <li>I don't know what I did to {OTHER_nameDef}, but I'd like to fix it.</li>
       </warm>
       <blunt>
@@ -131,7 +131,7 @@
       </blunt>
       <gloomy>
         <li>{OTHER_nameDef} won't look at me. I keep going over what I said.</li>
-        <li>{OTHER_nameDef} looks straight through me. It's worse than shouting.</li>
+        <li>I'd rather {OTHER_nameDef} shouted. The way {OTHER_pronoun} looks straight through me is worse.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -140,20 +140,20 @@
     <defName>Council_Journal_Day_Teased</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} made another crack about my singing. I'm not going to stop singing.</li>
+        <li>Another crack about my singing from {OTHER_nameDef}. I'm not going to stop singing.</li>
         <li>The others laughed at {OTHER_nameDef}'s joke. I didn't. It was about me.</li>
         <li>[teen] {OTHER_nameDef} keeps calling me that name. I hate it.</li>
-        <li>{OTHER_nameDef} told the story about me and the river again. The others laughed again.</li>
+        <li>Heard {OTHER_nameDef} telling the story about me and the river again. The others laughed again.</li>
         <li>{OTHER_nameDef} copied the way I walk when {OTHER_pronoun} thought I wasn't looking.</li>
         <li>[teen] {OTHER_nameDef} made fun of my voice cracking. I didn't say anything back, and I wish I had.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} teased me again today. I don't think {OTHER_pronoun} knows it lands harder than {OTHER_pronoun} means it to.</li>
+        <li>Teased again by {OTHER_nameDef}. I don't think {OTHER_pronoun} knows it lands harder than {OTHER_pronoun} means it to.</li>
         <li>{OTHER_nameDef} doesn't mean anything by it. I'm going to tell {OTHER_objective} it hurts anyway.</li>
       </warm>
       <cold>
         <li>{OTHER_nameDef} thinks {OTHER_pronoun}'s funny. I've started a list.</li>
-        <li>{OTHER_nameDef} enjoys making me the joke. I'll find out what {OTHER_pronoun} is sensitive about.</li>
+        <li>Making me the joke seems to please {OTHER_nameDef}. I'll find out what {OTHER_pronoun} is sensitive about.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

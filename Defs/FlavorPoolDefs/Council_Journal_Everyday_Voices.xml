@@ -12,7 +12,7 @@
     <pool>Council_Journal_Day_Bedroom</pool>
     <lines>
       <plain>
-        <li>[trait:Ascetic] A bed, a blanket and a hook for my coat. I don't need more than that, and I've asked for nothing else.</li>
+        <li>[trait:Ascetic] A bed, a blanket and a hook for my coat. I don't need more.</li>
         <li>[good,trait:Greedy] My room has the best rug in the colony. I checked the others to be sure.</li>
         <li>[bad,trait:Greedy] I've seen the room down the hall. Mine has less in it, and I'm not letting that go.</li>
         <li>[bad,trait:Jealous] Walked past the others' rooms on the way to bed. Every one of them is nicer than mine.</li>
@@ -62,14 +62,14 @@
     <pool>Council_Journal_Day_DeepTalk</pool>
     <lines>
       <plain>
-        <li>[winter] Snowed in all day, so {OTHER_nameDef} and I talked for hours over the stove.</li>
+        <li>[winter] Long winter evening. {OTHER_nameDef} and I talked for hours with our feet to the stove.</li>
         <li>[spring] {OTHER_nameDef} and I sat on the wall in the spring sun and talked about the people we used to be.</li>
         <li>[rain] Rain all evening, so {OTHER_nameDef} and I sat in the doorway and talked until it stopped.</li>
         <li>[child] {OTHER_nameDef} talked to me like a grown-up today and asked what I want to be.</li>
         <li>[old] {OTHER_nameDef} wanted to hear about the old days. I told {OTHER_objective} more than I meant to.</li>
         <li>[trait:Recluse] I don't usually talk to anyone for this long. {OTHER_nameDef} made it easy.</li>
         <li>[trait:TooSmart] {OTHER_nameDef} is sharper than I gave {OTHER_objective} credit for. We argued about the stars until the candle went out.</li>
-        <li>[skill:Social] Got {OTHER_nameDef} talking about {OTHER_possessive} old life tonight. It came easily once the ice was broken.</li>
+        <li>[skill:Social] Got {OTHER_nameDef} talking about {OTHER_possessive} old life tonight. All it took was one good question.</li>
         <li>[grieving] Talked with {OTHER_nameDef} about the one we lost. It's the first time I've said the name out loud in days.</li>
         <li>[newcomer] {OTHER_nameDef} sat with me tonight and told me how things work here, and who to watch out for.</li>
         <li>[afterraid] After the fight, {OTHER_nameDef} and I talked about how close it was. We kept our voices down.</li>
@@ -92,7 +92,7 @@
         <li>[skill:Cooking] Ate someone else's cooking tonight. Not bad. I'd have used less salt.</li>
         <li>[old] My teeth aren't what they were, so a soft hot supper is a kindness. This was a kind one.</li>
         <li>[teen] Ate three helpings and was hungry again by bedtime.</li>
-        <li>[hurt] Ate supper in bed. Good food makes a sore body easier to put up with.</li>
+        <li>[hurt] Ate supper in bed. Someone had cut the meat up small for me.</li>
         <li>[afterraid] The first proper meal since the attack. We ate it without saying much.</li>
         <li>[lowtech] Roast meat and flatbread off the fire tonight. The fat ran down my wrist.</li>
         <li>[spacer] Real cooked food again, not ration packs. I ate slowly.</li>

@@ -13,28 +13,28 @@
     <defName>Council_Journal_TakenBack</defName>
     <lines>
       <plain>
-        <li>The council gave me "{WISH}", and now it's gone again. Nobody said a word to me about it.</li>
+        <li>The council gave me "{WISH}", and now it's gone again. Not one of them said a word to me about it.</li>
         <li>I had it for {DAYS}. I'm writing that down, because they seem to have forgotten.</li>
         <li>Crossed "{WISH}" off this page when I got it. Now I'm writing it back in.</li>
         <li>[kept:ownroom] They put me back in with the others today. I had that room for {DAYS}.</li>
-        <li>[kept:ownroom] My room isn't just mine any more. I'm sharing again, and I wasn't asked first.</li>
+        <li>[kept:ownroom] My room isn't just mine anymore. I'm sharing again, and I wasn't asked first.</li>
         <li>[kept:ownroom, winter] Back in shared quarters, in the middle of winter. More breathing in the dark, less sleep.</li>
         <li>[kept:room] My room isn't what it was when they gave it to me. I keep looking at the empty corner.</li>
-        <li>[kept:bed] The bed they gave us isn't ours any more. I'd only just got used to it.</li>
-        <li>[kept:thing] It stood there for {DAYS}. Then one morning it was gone, and nobody would say why.</li>
-        <li>[kept:stock] The stores they filled for me are nearly empty again, and nobody seems in a hurry.</li>
-        <li>[kept:assignment] They let me do what I asked for {DAYS}, and then quietly changed it back.</li>
+        <li>[kept:bed] The bed they gave us isn't ours anymore. I'd only just gotten used to it.</li>
+        <li>[kept:thing] It stood there for {DAYS}. Then one morning it was gone, and when I asked why, I got shrugs.</li>
+        <li>[kept:stock] The stores they filled for me are nearly empty again, and the haulers walk right past.</li>
+        <li>[kept:assignment] They let me do what I asked for {DAYS}, and then changed it back without a word.</li>
         <li>[kept:pet] I'd only just learned all its habits. Now someone else will.</li>
         <li>[kept:decree] I asked the council for that decree, and they lifted it before its time.</li>
       </plain>
       <warm>
         <li>I suppose it was needed somewhere else. I wish someone had told me.</li>
         <li>[kept:ownroom] I suppose the room was needed for someone. I still miss it.</li>
-        <li>[kept:pet] I keep saving scraps from supper out of habit. There's nobody to give them to.</li>
+        <li>[kept:pet] I keep saving scraps from supper out of habit, and then I eat them myself.</li>
       </warm>
       <blunt>
         <li>They gave it and they took it back. I won't forget that.</li>
-        <li>[kept:ownroom] They gave me a room and took it back. I won't forget that.</li>
+        <li>[kept:ownroom] Room's gone. Back to sharing.</li>
         <li>[kept:assignment] Gave me the work I wanted, then took it off me again. Make up your minds.</li>
       </blunt>
       <cheerful>
@@ -63,19 +63,19 @@
         <li>They put it right. I'm crossing out what I wrote the other day.</li>
         <li>[kept:ownroom] My room is mine again. I slept with the door shut and didn't wake once.</li>
         <li>[kept:pet] Back where it belongs, curled up by my feet as if it never left.</li>
-        <li>[kept:assignment] They've let me get back to it. I didn't know how much I'd missed it until today.</li>
+        <li>[kept:assignment] They've let me get back to it. I was at it before breakfast.</li>
       </plain>
       <warm>
-        <li>They made it right, and quickly. That matters more to me than the thing itself.</li>
+        <li>They made it right, and quickly. I'll say so at the next council.</li>
       </warm>
       <blunt>
         <li>It's back. Good. Don't do that again.</li>
       </blunt>
       <cheerful>
-        <li>It's back. I'll pretend it was all a misunderstanding. Maybe it even was.</li>
+        <li>It's back. I'm calling it a misunderstanding. Maybe it even was.</li>
       </cheerful>
       <gloomy>
-        <li>They put it back. For now, anyway.</li>
+        <li>They put it back. I'll believe it when it's still there next month.</li>
       </gloomy>
       <cold>
         <li>Restored. The council corrected its mistake. I'll keep the earlier entry anyway.</li>

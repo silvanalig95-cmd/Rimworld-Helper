@@ -19,7 +19,7 @@
       <blunt><li>Imperial visitor. Lots of manners. Ate well, though.</li></blunt>
       <cheerful><li>I practiced my imperial bow on the chickens all afternoon. They were not impressed.</li></cheerful>
       <gloomy><li>{X_nameDef} talks about the Empire as if it will last forever. Nothing does.</li></gloomy>
-      <cold><li>Learned a good deal about how the Empire's titles work from {X_nameDef}. That kind of thing is worth knowing.</li></cold>
+      <cold><li>Got {X_nameDef} to explain who outranks whom in the Empire. I wrote it all down.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -50,7 +50,7 @@
       </plain>
       <warm><li>{X_nameDef} was good company. Loud, a liar in every story, and good company.</li></warm>
       <blunt><li>The settler talks too much. Knows horses, though.</li></blunt>
-      <cheerful><li>I'm going to learn to throw a rope like {X_nameDef}! The chickens should be worried.</li></cheerful>
+      <cheerful><li>I'm going to learn to throw a rope like {X_nameDef}! No fence post is safe.</li></cheerful>
       <gloomy><li>{X_nameDef}'s stories all have the same ending: somebody ends up in the dirt. I suppose that's the frontier.</li></gloomy>
       <cold><li>The settlers trade fairly and drink hard. Useful to know both.</li></cold>
     </lines>

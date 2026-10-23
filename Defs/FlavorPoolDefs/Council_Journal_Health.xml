@@ -21,8 +21,8 @@
         <li>Weak as a newborn foal. They say it passes in a week or two.</li>
         <li>My legs have forgotten what they're for. Walked to the table for supper anyway.</li>
         <li>[bed] So many days in bed that the floor feels strange under my feet.</li>
-        <li>[bed] I know every crack in the ceiling over that bed. I'm glad to be looking at a different one.</li>
-        <li>[bed,winter] Out of bed at last, in the middle of winter. Even the cold air smells good.</li>
+        <li>[bed] I could draw the ceiling over that bed from memory. I'm glad to be looking at a different one.</li>
+        <li>[bed,winter] Out of bed at last, and it's winter out there. Even the cold air smells good.</li>
         <li>[limb] I keep reaching with the hand that isn't there. Then I remember.</li>
         <li>[limb] Learning to do everything a new way. Buttons are the worst.</li>
         <li>[limb] I lost part of myself out there. The rest of me is still here, and it's tired.</li>
@@ -65,14 +65,14 @@
         <li>Went back to work too soon. By midday I was sitting in the dirt, shaking. More days of rest, they say.</li>
         <li>I thought I was ready. My body disagreed, loudly, in front of the others.</li>
         <li>Overdid it. Back to taking it slow.</li>
-        <li>[impatient] I only meant to do a little. A little turned into the whole afternoon, and now I'm paying for it.</li>
+        <li>[impatient] I only meant to carry one load. One turned into the whole afternoon, and now I'm paying for it.</li>
         <li>[impatient] The doctor said a week. I gave it four days. Now it's going to be longer than a week.</li>
         <li>[winter] Carried firewood before I should have. My arms gave out halfway to the stove.</li>
       </plain>
       <warm><li>Someone found me sitting by the path and walked me home without a word of told-you-so. I'll rest now.</li></warm>
       <blunt><li>Too soon. Again.</li></blunt>
       <cheerful><li>Lesson learned: rest first, heroics later.</li></cheerful>
-      <gloomy><li>Every time I think I'm better, it turns out I'm not.</li></gloomy>
+      <gloomy><li>Every time I think I'm better, I'm not.</li></gloomy>
       <cold><li>Returned to work prematurely. Recovery extended by a few days.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -102,18 +102,18 @@
     <defName>Council_Journal_Health_Visited</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} came by and sat with me. We talked about the harvest and who's feuding with whom.</li>
+        <li>Company today. {OTHER_nameDef} came by, and we talked about the harvest and who's feuding with whom.</li>
         <li>{OTHER_nameDef} pulled up a chair and stayed most of the afternoon. I hadn't realized how long the days in bed had been.</li>
-        <li>{OTHER_nameDef} brought the news, and a cup of something hot, and a bad joke. All three helped.</li>
-        <li>{OTHER_nameDef} sat by the bed and read to me until I fell asleep.</li>
-        <li>[convalescing] {OTHER_nameDef} looked in on me today and said I'm looking less like a ghost. High praise.</li>
+        <li>The news, a cup of something hot and a bad joke, all from {OTHER_nameDef}. All three helped.</li>
+        <li>Fell asleep while {OTHER_nameDef} was reading to me. I'll have to ask how it ended.</li>
+        <li>[convalescing] Less like a ghost today, says {OTHER_nameDef}. High praise.</li>
         <li>[winter] {OTHER_nameDef} came in stamping snow off {OTHER_possessive} boots and stayed until the candle burned down.</li>
         <li>[child] {OTHER_nameDef} came to see me and told me a story. It was a good one.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} sat with me today. I'm lucky in my friends.</li></warm>
+      <warm><li>I'm lucky in my friends. {OTHER_nameDef} sat with me half the day.</li></warm>
       <blunt><li>{OTHER_nameDef} visited. Good.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} came to cheer me up, and it worked.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} sat with me a while. It's easier being ill with company.</li></gloomy>
+      <cheerful><li>{OTHER_nameDef} did impressions of the whole council until my sides hurt.</li></cheerful>
+      <gloomy><li>It's easier being ill with someone in the chair by the bed. Today it was {OTHER_nameDef}.</li></gloomy>
       <cold><li>{OTHER_nameDef} visited. A courtesy I'll remember.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -127,11 +127,11 @@
         <li>[patient] {OTHER_nameDef} tended me today. I'd trust no one else with a knife.</li>
         <li>[patient] When {OTHER_nameDef} says it'll mend, it mends. I've stopped worrying.</li>
         <li>[patient] {OTHER_nameDef} looked at the wound, nodded once and got to work. I relaxed the moment I saw that nod.</li>
-        <li>[patient,renowned] Half the colony owes its life to {OTHER_nameDef}. Now I'm one of them.</li>
+        <li>[patient,renowned] I've lost count of the people {OTHER_nameDef} has patched up. Now I'm one more.</li>
         <li>[surgery] {OTHER_nameDef} opened me up and put me back together. I keep looking at the scar. It's very neat.</li>
         <li>[surgery,first] I was frightened of the operation. {OTHER_nameDef} explained every step and then did exactly that.</li>
-        <li>[surgery,trusted] Everyone told me I'd be fine with {OTHER_nameDef} doing it. Everyone was right.</li>
-        <li>[word] If I'm ever badly hurt, I want {OTHER_nameDef}. Nobody else.</li>
+        <li>[surgery,trusted] The others told me I'd be fine with {OTHER_nameDef} doing it. They were right, and I've stopped shaking.</li>
+        <li>[word] If I'm ever badly hurt, I want {OTHER_nameDef}, and I've told the others so.</li>
         <li>[word] {OTHER_nameDef} has steady hands and a steadier head. I've seen both at work.</li>
         <li>[word,renowned] People here say "{OTHER_nameDef} will see to it" the way others say "it'll be fine".</li>
         <li>[word,lowtech] The old ones say {OTHER_nameDef} has a healer's hands. I believe them.</li>
@@ -153,14 +153,14 @@
       <plain>
         <li>Operated on {OTHER_nameDef} today. It went the way it was supposed to, which is the best thing you can say about an operation.</li>
         <li>Finished with {OTHER_nameDef} by lamplight. My hands didn't start shaking until it was over.</li>
-        <li>{OTHER_nameDef} came through the operation. I washed up for a long time afterwards.</li>
+        <li>{OTHER_nameDef} came through the operation. I stood at the basin washing my hands long after they were clean.</li>
         <li>Three hours on {OTHER_nameDef}. Every stitch where it should be.</li>
         <li>[brain] Operated inside {OTHER_nameDef}'s skull today. I didn't breathe properly until {OTHER_pronoun} woke and said my name.</li>
         <li>[lowtech] A sharp knife, boiled cloths and a steady hand. {OTHER_nameDef} will mend.</li>
       </plain>
       <warm><li>{OTHER_nameDef} squeezed my hand before going under. I'm glad I could give {OTHER_objective} good news when {OTHER_pronoun} woke.</li></warm>
       <blunt><li>Operated on {OTHER_nameDef}. Clean.</li></blunt>
-      <cheerful><li>{OTHER_nameDef}'s operation went perfectly. I could get used to days like this.</li></cheerful>
+      <cheerful><li>{OTHER_nameDef}'s operation went perfectly. I'd like more days like this one.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} lived through the knife. Not everyone does.</li></gloomy>
       <cold><li>Procedure on {OTHER_nameDef} completed without complications.</li></cold>
     </lines>
@@ -171,7 +171,7 @@
     <lines>
       <plain>
         <li>[trusted] People have started coming to me first when something's wrong. I didn't ask for that, but I'll try to deserve it.</li>
-        <li>[trusted] Someone called me "the doctor" today, not "the one who does the bandages". It felt different.</li>
+        <li>[trusted] Someone called me "the doctor" today, not "the one who does the bandages". I answered to it before I noticed.</li>
         <li>[trusted] Wrote down everyone I've pulled through so far. It's a longer list than I thought.</li>
         <li>[renowned] They trust me with their lives now, every one of them. Some nights that's a heavy thing to carry.</li>
         <li>[renowned] I've kept more people alive than I can easily count. I still remember each of the ones I couldn't.</li>
@@ -227,7 +227,7 @@
         <li>Delivered {OTHER_nameDef}'s baby today. {BABY_nameDef} came out red-faced and furious, which is exactly how it should be.</li>
         <li>{BABY_nameDef} was born in the small hours. {OTHER_nameDef} did the hard part; I mostly caught.</li>
         <li>Long labor, but {OTHER_nameDef} and the baby are both fine. {BABY_nameDef}. Good name.</li>
-        <li>Washed {BABY_nameDef}, wrapped {BABY_objective} and handed {BABY_objective} to {OTHER_nameDef}. Then I sat down for the first time in nine hours.</li>
+        <li>Washed {BABY_nameDef}, wrapped {BABY_objective} and handed {BABY_objective} to {OTHER_nameDef}. Then I sat down. Nine hours on my feet.</li>
         <li>[first] My first birth. I read everything I could find beforehand and still felt like I knew nothing. {BABY_nameDef} didn't seem to mind.</li>
         <li>[first] Brought a child into the world today. My hands are still shaking, in a good way.</li>
         <li>[winter] {BABY_nameDef} was born on a cold night, with the stove roaring and every blanket we have.</li>
@@ -250,7 +250,7 @@
         <li>{OTHER_nameDef} stayed with me the whole night. I'll never forget that.</li>
         <li>[experienced] {OTHER_nameDef} has done this before, many times. I could tell from the first minute.</li>
       </plain>
-      <warm><li>My child came into the world in {OTHER_nameDef}'s hands. I'm so grateful.</li></warm>
+      <warm><li>My child came into the world in {OTHER_nameDef}'s hands. I'll make sure the child knows it, one day.</li></warm>
       <blunt><li>{OTHER_nameDef} delivered the baby. Did it well.</li></blunt>
       <cheerful><li>{OTHER_nameDef} was wonderful. My baby is wonderful. Everything is wonderful and I need to sleep.</li></cheerful>
       <gloomy><li>It could have gone badly. With {OTHER_nameDef} there, it didn't.</li></gloomy>
@@ -262,7 +262,7 @@
     <defName>Council_Journal_Health_Stillborn</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef}'s baby never breathed. I did everything I know. I sat with {OTHER_objective} afterwards, because there was nothing else to do.</li>
+        <li>{OTHER_nameDef}'s baby never breathed. I did everything I know. I sat with {OTHER_objective} afterward, because there was nothing else to do.</li>
         <li>A still birth today. I keep my voice steady in the room and lose it outside.</li>
         <li>I wrapped the child and put it in {OTHER_nameDef}'s arms. There are no words for that, so I didn't try any.</li>
       </plain>

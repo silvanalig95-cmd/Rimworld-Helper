@@ -53,7 +53,7 @@
         <li>Talked shop with {OTHER_nameDef} until the candle went out.</li>
         <li>[afterraid] Went over the raid with {OTHER_nameDef}, step by step, while it was still fresh.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} and I work well together. I want to keep it that way.</li></warm>
+      <warm><li>{OTHER_nameDef} and I worked out a signal for when one of us needs cover. Two taps on the shoulder.</li></warm>
       <blunt><li>{OTHER_nameDef} has it wrong about the flank. Told {OTHER_objective} so.</li></blunt>
       <cheerful><li>[mage] {OTHER_nameDef} and I are going to make a terrible, wonderful team.</li></cheerful>
       <gloomy><li>We planned the next fight with {OTHER_nameDef} as if there will always be a next one.</li></gloomy>
@@ -66,14 +66,14 @@
     <defName>Council_Journal_Day_Magic_Wonder</defName>
     <lines>
       <plain>
-        <li>[!mage] {OTHER_nameDef} showed me a little light between {OTHER_possessive} hands. I keep looking at my own hands now.</li>
+        <li>[!mage] {OTHER_nameDef} showed me a light no bigger than a coin, cupped between {OTHER_possessive} hands. I keep looking at my own hands now.</li>
         <li>[!mage] Asked {OTHER_nameDef} what magic feels like. I didn't understand the answer, and I liked it anyway.</li>
         <li>[mage] {OTHER_nameDef} asked me what the gift feels like. I tried to explain and couldn't. I've never had to put it in words before.</li>
         <li>[child] {OTHER_nameDef} made a tiny light dance on {OTHER_possessive} finger for me! I want to learn.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} uses the gift for small kind things. That says more than any battle.</li></warm>
+      <warm><li>{OTHER_nameDef} uses the gift for small kind things, like lighting the stove for whoever's up first.</li></warm>
       <blunt><li>Magic. Still don't trust it. That was nice, though.</li></blunt>
-      <cheerful><li>Magic! Real magic! Just for me!</li></cheerful>
+      <cheerful><li>Real magic, just for me!</li></cheerful>
       <gloomy><li>{OTHER_nameDef} can do wonders. I can mend fences. Good for {OTHER_objective}.</li></gloomy>
       <cold><li>{OTHER_nameDef}'s gift is more useful than I thought. Worth knowing.</li></cold>
     </lines>
@@ -85,15 +85,15 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} put a hand on my bad shoulder and the ache just went. I don't know how, and I don't need to.</li>
-        <li>[old] {OTHER_nameDef} eased my knees with a touch. First morning in a year I've come down the stairs without counting them.</li>
+        <li>[old] {OTHER_nameDef} eased my knees with a touch. First morning in a year I've gotten out of bed without groaning.</li>
         <li>The old scar stopped itching after {OTHER_nameDef} looked at it. It had itched since the year it happened.</li>
         <li>[work:Mining] {OTHER_nameDef} took the ache out of my back after a day in the mine. I could have wept.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} noticed I was hurting before I'd said a word. That's the real gift.</li></warm>
+      <warm><li>{OTHER_nameDef} noticed I was hurting before I'd said a word, and came over without being asked.</li></warm>
       <blunt><li>{OTHER_nameDef} fixed my knee. Didn't ask. Good.</li></blunt>
-      <cheerful><li>No more headache! {OTHER_nameDef} is a marvel.</li></cheerful>
+      <cheerful><li>The ache's gone! {OTHER_nameDef} is a marvel.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} eased the pain. It'll be back, but I had a good day without it.</li></gloomy>
-      <cold><li>A healer who keeps the workers on their feet is worth two more workers.</li></cold>
+      <cold><li>Had an ache taken away with a touch. Cheaper than a day in bed, and quicker.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -103,7 +103,7 @@
     <lines>
       <plain>
         <li>A traveling mage, {X_nameDef}, stopped with us today and showed me a working. I'm still thinking about it.</li>
-        <li>[mage] Met {X_nameDef}, a mage of another school. We swapped workings like recipes. {X_possessive} are strange.</li>
+        <li>[mage] Met {X_nameDef}, a mage of another school. We swapped workings like recipes, and the ones from {X_possessive} school are strange.</li>
         <li>[!mage] {X_nameDef} has the gift. I asked a hundred questions and {X_pronoun} answered most of them.</li>
         <li>[fighter] {X_nameDef} fights for a living and moves like water. I copied {X_possessive} footwork until dark.</li>
       </plain>

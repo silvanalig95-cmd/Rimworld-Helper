@@ -15,7 +15,7 @@
         <li>[winter] {X_nameDef} said the guest room was warmer than anywhere on the road. Good. I fought for that stove.</li>
         <li>{X_nameDef} asked who made the bed in the guest room. I said all of us, which is nearly true.</li>
       </plain>
-      <warm><li>We gave {X_nameDef} a good bed and a quiet night, and {X_pronoun} noticed. That's what a home is for.</li></warm>
+      <warm><li>We gave {X_nameDef} a good bed and a quiet night, and {X_pronoun} noticed. I've been smiling about it over my work.</li></warm>
       <blunt><li>The guest liked the room. Told you it was worth the wood.</li></blunt>
       <cheerful><li>{X_nameDef} called our guest room "a little palace"! I'm going to put flowers in it.</li></cheerful>
       <gloomy><li>{X_nameDef} slept better here than I do. I've started eyeing the guest bed.</li></gloomy>
@@ -29,13 +29,13 @@
       <plain>
         <li>Took {X_nameDef} round the colony today. Seeing it through a stranger's eyes, it looks bigger than I thought.</li>
         <li>{X_nameDef} wanted to see everything. I showed {X_objective} the fields, the pens and the wall. I left out the midden.</li>
-        <li>Showed {X_nameDef} where the first shelter stood. {X_pronoun} asked how many of us there were then. Fewer.</li>
+        <li>Showed {X_nameDef} where the first shelter stood, and {X_pronoun} asked how many of us there were then. Fewer.</li>
         <li>[skill:Plants] {X_nameDef} knew three of our weeds by name and what they cure. I've stopped pulling one of them.</li>
       </plain>
       <warm><li>I liked walking {X_nameDef} round. I'm proud of this place, and I don't get to say that often.</li></warm>
       <blunt><li>Gave the guest the tour. Too many questions, but good ones.</li></blunt>
-      <cheerful><li>I showed {X_nameDef} the whole colony and {X_pronoun} loved the pigs. Everyone loves the pigs.</li></cheerful>
-      <gloomy><li>{X_nameDef} asked what we do when raiders come. I showed {X_objective} the graves.</li></gloomy>
+      <cheerful><li>I showed {X_nameDef} round, and {X_pronoun} spent half the tour making friends with the animals.</li></cheerful>
+      <gloomy><li>{X_nameDef} asked what we do when raiders come. I said we hold the wall and count heads after.</li></gloomy>
       <cold><li>I showed the guest only what I wanted seen. The stores stayed shut.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -44,8 +44,8 @@
     <defName>Council_Journal_EncH_HomeStories</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} talked about home at supper: bees, a flooding river, a brother who owes money. I could have listened all night.</li>
-        <li>Everyone has a home somewhere. {X_nameDef}'s has a market every tenth day and a bridge that sways.</li>
+        <li>{X_nameDef} talked about home at supper, mostly about a brother who owes {X_objective} money. I could have listened all night.</li>
+        <li>{X_nameDef}'s home has a market every tenth day and a bridge that sways when you cross it.</li>
         <li>[newcomer] {X_nameDef} asked where I'm from. I said here now, and was surprised to mean it.</li>
         <li>[old] {X_nameDef}'s stories reminded me of my own village, and of how long ago that was.</li>
       </plain>
@@ -53,7 +53,7 @@
       <blunt><li>The guest talks a lot about home. If it's that good, why leave?</li></blunt>
       <cheerful><li>{X_nameDef}'s people dance on the tables at weddings. On the tables! I want to go.</li></cheerful>
       <gloomy><li>{X_nameDef}'s home sounds lovely. Most places do, from far enough away.</li></gloomy>
-      <cold><li>Learned a good deal about {X_nameDef}'s people tonight: their roads, their harvest, their quarrels. Useful.</li></cold>
+      <cold><li>Learned a good deal about {X_nameDef}'s people tonight, most of all who they quarrel with. Useful.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -63,11 +63,11 @@
       <plain>
         <li>Sat up with {X_nameDef}, who couldn't sleep. We talked until the fire was embers. I'm tired and I don't mind.</li>
         <li>Found {X_nameDef} outside in the dark, homesick. Sat with {X_objective}. Didn't say much.</li>
-        <li>[clear] {X_nameDef} has different names for all our stars. The plough is a goat, apparently.</li>
+        <li>[clear] {X_nameDef} has different names for all our stars. The one we call the Ladle is a goat, apparently.</li>
       </plain>
-      <warm><li>Nobody should be lonely in a strange bed. I kept {X_nameDef} company until {X_pronoun} yawned.</li></warm>
+      <warm><li>Kept {X_nameDef} company in the dark until {X_pronoun} started yawning, then left my candle with {X_objective}.</li></warm>
       <blunt><li>Up half the night with the guest. Worth it, but I'll be useless tomorrow.</li></blunt>
-      <cheerful><li>Midnight tea with {X_nameDef}! We've decided we're friends now.</li></cheerful>
+      <cheerful><li>Shared a midnight bowl of stew with {X_nameDef}! We've decided we're friends now.</li></cheerful>
       <gloomy><li>{X_nameDef} and I talked about the people we've lost. It was easier with a stranger.</li></gloomy>
       <cold><li>{X_nameDef} says more at night than in the day. I'll remember what was said.</li></cold>
     </lines>
@@ -77,7 +77,7 @@
     <defName>Council_Journal_EncH_Thanks</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} thanked me for the stay with a little carved bird. It's on my shelf now.</li>
+        <li>{X_nameDef} thanked me for the stay with a carved wooden bird. It's on my shelf now.</li>
         <li>{X_nameDef} said ours was the best stop on the whole road. I'll take that.</li>
         <li>[skill:Plants] {X_nameDef} left me seeds from home. They're going in the sunny corner by the wall.</li>
       </plain>

@@ -110,12 +110,12 @@
     <defName>Council_Journal_EncM_Hearth</defName>
     <lines>
       <plain>
-        <li>Sat by the hearth with {X_nameDef} tonight. Neither of us said much. Didn't need to.</li>
+        <li>Sat by the hearth with {X_nameDef} tonight. We passed the poker back and forth and hardly spoke.</li>
         <li>{X_nameDef} says {X_possessive} people keep one fire going all winter and never let it out. I banked ours extra carefully tonight.</li>
         <li>[cold] {X_nameDef} came in frozen. By the time {X_possessive} boots stopped steaming, we were friends.</li>
         <li>[rain] Chestnuts by the hearth with {X_nameDef} while it poured. A good night.</li>
       </plain>
-      <warm><li>Our hearth warmed a stranger tonight. That's what it's there for.</li></warm>
+      <warm><li>Gave the visitor the seat nearest the fire and the thickest blanket we had.</li></warm>
       <blunt><li>Hearth, a visitor, a quiet evening. Fine.</li></blunt>
       <cheerful><li>{X_nameDef} and I roasted chestnuts and burned most of them! Still good.</li></cheerful>
       <gloomy><li>{X_nameDef} stared into the fire like someone who'd lost a lot. I didn't ask.</li></gloomy>
@@ -129,18 +129,18 @@
     <defName>Council_Journal_Day_MO_Sweet</defName>
     <lines>
       <plain>
-        <li>Apple pie after supper. The crust cracked like thin ice.</li>
-        <li>Somebody made a pie today and it lasted about as long as it took to cut it.</li>
-        <li>[fall] Pumpkin pie. The first one of the season, and the kitchen smelled of it all afternoon.</li>
-        <li>Cake. On an ordinary day, for no reason anyone would tell me.</li>
-        <li>[child] I had pancakes with honey and I didn't share.</li>
-        <li>[winter] Hot pie on a cold night. I ate it standing by the oven.</li>
-        <li>[work:Cooking] Baked today. Burned my wrist on the oven door and didn't care, the pie came out right.</li>
+        <li>Dessert after supper. I ate it slowly and licked the plate.</li>
+        <li>Somebody baked today, and it was gone about as fast as it was served.</li>
+        <li>[fall] Sweets from the new harvest. The kitchen smelled of it all afternoon.</li>
+        <li>Sweets on an ordinary day, for no reason anyone would tell me.</li>
+        <li>[child] I had dessert and got it all over my face and I didn't share.</li>
+        <li>[winter] Hot dessert on a cold night. I ate it standing by the oven.</li>
+        <li>[work:Cooking] Baked today. Burned my wrist on the oven door and didn't care. It came out right.</li>
       </plain>
-      <warm><li>Saved the last slice of pie for whoever came in late. It was the right thing to do, and I regret it a little.</li></warm>
-      <blunt><li>Pie. Good pie.</li></blunt>
-      <cheerful><li>Griffon berry pie! I didn't know a pie could make you that happy.</li></cheerful>
-      <gloomy><li>A good pie. One good thing in a long week.</li></gloomy>
+      <warm><li>Saved the last slice for whoever came in late. I thought about it the whole evening.</li></warm>
+      <blunt><li>Dessert. Good dessert.</li></blunt>
+      <cheerful><li>Dessert tonight! I'd forgotten how much I missed sugar.</li></cheerful>
+      <gloomy><li>Dessert. The one good thing in a long week.</li></gloomy>
       <cold><li>Sweets lift everyone's mood for the price of some flour and fruit. We should bake more often.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -149,18 +149,18 @@
     <defName>Council_Journal_Day_MO_Pot</defName>
     <lines>
       <plain>
-        <li>Stew from the big pot. Thick enough to stand a spoon in.</li>
+        <li>Supper from the big pot, thick enough to stand a spoon in.</li>
         <li>Soup and bread for supper. Not fancy, and I had two bowls.</li>
-        <li>[winter] Lentil soup, hot enough to burn. The best thing about winter is the soup.</li>
+        <li>[winter] Soup hot enough to burn. The best thing about winter is the soup.</li>
         <li>[bad] Weak stew again. More water than stew.</li>
-        <li>[work:Hunting] Hunter's stew tonight, with meat I brought in myself. Tastes better that way.</li>
+        <li>[work:Hunting] Meat in the pot tonight that I brought in myself. Tastes better that way.</li>
         <li>[rain] Rain all day, and the soup pot going all day. Everybody came in wet and went out warm.</li>
-        <li>Cheese soup. I didn't know you could make soup out of cheese and now I don't want anything else.</li>
+        <li>Whatever went in the pot today, there was plenty of it, and I had two bowls.</li>
       </plain>
-      <warm><li>Somebody kept the stew pot going all day so whoever came in could eat. That's the kind of place this is.</li></warm>
-      <blunt><li>Stew. Filling. Fine.</li></blunt>
-      <cheerful><li>Hearty stew tonight! I scraped the pot.</li></cheerful>
-      <gloomy><li>Stew again. It's warm, at least.</li></gloomy>
+      <warm><li>Somebody kept the pot going all day so whoever came in could eat. I came in at dusk and it was still hot.</li></warm>
+      <blunt><li>Hot. Filling. Fine.</li></blunt>
+      <cheerful><li>Scraped the pot clean tonight!</li></cheerful>
+      <gloomy><li>Same pot, same supper. It's warm, at least.</li></gloomy>
       <cold><li>One pot feeds everyone and wastes nothing. Sensible cooking.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -169,15 +169,15 @@
     <defName>Council_Journal_Day_MO_Slop</defName>
     <lines>
       <plain>
-        <li>Slop from the slop pot. Grey, warm, and not something I'd describe to anyone.</li>
+        <li>Slop from the slop pot. Gray, warm, and not something I'd describe to anyone.</li>
         <li>A bowl of slop for supper. I ate it fast so I wouldn't have to look at it.</li>
-        <li>[afterraid] Slop the day after the raid. Nobody had the heart to cook.</li>
-        <li>[child] The grey stuff again. I gave half of mine to the dog.</li>
+        <li>[afterraid] The day after the raid, slop. The cooks didn't have it in them.</li>
+        <li>[child] The gray stuff again. I hid half of mine under the table.</li>
       </plain>
       <warm><li>Slop for supper. The cook looked so tired I said it was fine.</li></warm>
-      <blunt><li>Slop. Again.</li></blunt>
-      <cheerful><li>Slop for supper! Well. It's food.</li></cheerful>
-      <gloomy><li>Slop. This is what we've come to.</li></gloomy>
+      <blunt><li>Slop. I ate it.</li></blunt>
+      <cheerful><li>Supper was slop! Well. It's food.</li></cheerful>
+      <gloomy><li>Slop. I ate it all and didn't notice until the bowl was empty.</li></gloomy>
       <cold><li>The slop keeps us alive. That's all it's for.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -190,10 +190,10 @@
         <li>[good] Grilled cheese on bread. I could live on that.</li>
         <li>[bad] Tried the new cheese. It needed more time, or less of whatever went into it.</li>
         <li>[bad] The cheese has gone wrong somewhere. It smells like the pens.</li>
-        <li>[good,winter] Cheese and bread by the fire. Winter food.</li>
+        <li>[good,winter] Cheese and bread at the hearth. Winter food.</li>
         <li>[good,skill:Cooking] The cheese I pressed in spring is ready, and it's good. I may have bragged.</li>
       </plain>
-      <warm><li>[good] Shared a wedge of cheese with whoever was nearest. Some things are better shared.</li></warm>
+      <warm><li>[good] Cut a wedge of cheese for whoever was nearest, and then one for whoever was next.</li></warm>
       <blunt><li>[bad] Bad cheese. Somebody should learn to make it properly.</li></blunt>
       <cheerful><li>[good] The cheese is ready! It's the best thing we've ever made.</li></cheerful>
       <gloomy><li>[bad] Even the cheese is against me today.</li></gloomy>
@@ -224,15 +224,15 @@
     <defName>Council_Journal_Day_MO_Ale</defName>
     <lines>
       <plain>
-        <li>A mug of ale at the end of the day. I'd earned it.</li>
-        <li>Mead tonight. It tastes the way summer smells.</li>
-        <li>[evening] Ale, the long table, and nobody in a hurry to go to bed.</li>
+        <li>A full mug at the end of the day. I'd earned it.</li>
+        <li>A drink with supper. It tasted the way summer smells.</li>
+        <li>[evening] A full mug, the long table, and nobody in a hurry to go to bed.</li>
         <li>[work:Growing] Brought in the barley this morning and drank last year's barley tonight. That's how it should go.</li>
-        <li>[winter] Hot mead with spice in it. My hands finally warmed up.</li>
+        <li>[winter] Drank it warmed, with spice in it. My hands finally warmed up.</li>
       </plain>
-      <warm><li>Bought the next round, so to speak. Nobody here pays for ale, but the gesture counts.</li></warm>
-      <blunt><li>Good ale. One mug. Then bed.</li></blunt>
-      <cheerful><li>Mead night! Somebody started singing and I think it was me.</li></cheerful>
+      <warm><li>Bought the next round, so to speak. Ale's free here, but the gesture counts.</li></warm>
+      <blunt><li>One mug. Then bed.</li></blunt>
+      <cheerful><li>Somebody started singing over the mugs tonight, and I think it was me.</li></cheerful>
       <gloomy><li>Ale helps. Not much, and not for long.</li></gloomy>
       <cold><li>One mug of ale, no more. A clear head in the morning matters more.</li></cold>
     </lines>
@@ -242,15 +242,15 @@
     <defName>Council_Journal_Day_MO_Smoked</defName>
     <lines>
       <plain>
-        <li>Smoked meat for lunch. My fingers still smell of the smokehouse.</li>
-        <li>Grilled sausages tonight. Burnt at the ends, which is the best part.</li>
+        <li>Meat with char on it for lunch. My fingers still smell of smoke.</li>
+        <li>Meat off the fire tonight, burnt at the ends, which is the best part.</li>
         <li>[bad] Dried meat again. Like chewing a boot.</li>
-        <li>[winter] Smoked meat from the autumn hanging. That's what it was for.</li>
-        <li>Skewers off the grill, eaten standing up in the yard.</li>
+        <li>[winter] Meat from the fall hanging. That's what it was for.</li>
+        <li>Ate it off a stick, standing up in the yard.</li>
       </plain>
-      <warm><li>Shared my sausages with the youngest at the table. Growing children need it more.</li></warm>
-      <blunt><li>Sausages. Good.</li></blunt>
-      <cheerful><li>Sausage night! The best night.</li></cheerful>
+      <warm><li>Gave half my meat to the one beside me, who'd missed lunch.</li></warm>
+      <blunt><li>Good meat.</li></blunt>
+      <cheerful><li>Meat off the fire! The best kind of night.</li></cheerful>
       <gloomy><li>Dried meat and water. Supper of kings.</li></gloomy>
       <cold><li>Smoked meat keeps all winter. Worth every hour at the smoker.</li></cold>
     </lines>
@@ -263,14 +263,14 @@
         <li>An hour in the library with a candle and a book about rivers. I don't care about rivers. I read the whole thing.</li>
         <li>Read in the library today. Quiet, and it smells of paper and wax.</li>
         <li>[skill:Intellectual] Found a book in the library I'd missed. Copied out a page of it.</li>
-        <li>[rain] Rain on the roof and a book in the library. A perfect afternoon.</li>
+        <li>[rain] Rain drumming outside, and a book in the library. Perfect.</li>
         <li>[child] I read a book in the library all by myself. It had pictures of a dragon.</li>
       </plain>
       <warm><li>Read aloud in the library to whoever wanted to listen. Two stayed until the end.</li></warm>
       <blunt><li>Read. Quiet. Good.</li></blunt>
-      <cheerful><li>The library is my favorite room! Nobody shouts in it.</li></cheerful>
+      <cheerful><li>The library is my favorite room! You're not allowed to shout in it.</li></cheerful>
       <gloomy><li>The library is the only room where nobody needs anything from me.</li></gloomy>
-      <cold><li>The library is worth what it cost. People read, and people who read make fewer mistakes.</li></cold>
+      <cold><li>I've noted who uses the library and who never sets foot in it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
