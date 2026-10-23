@@ -14,9 +14,9 @@
         <li>Pass the salt down this end.</li>
         <li>Is there more of this?</li>
         <li>Who cooked? Somebody thank them.</li>
-        <li>I'll do the washing-up. Tomorrow.</li>
+        <li>I'll do the washing-up tomorrow, I swear.</li>
         <li>Save some for whoever's on watch.</li>
-        <li>[winter] Warm food and a full table. That's the winter beaten.</li>
+        <li>[winter] Shut the door, you're letting the snow in.</li>
         <li>[lowtech] Bread still warm from the stones.</li>
         <li>[child] Can I have the last one?</li>
       </plain>
@@ -32,7 +32,7 @@
         <li>I'm not moving until morning.</li>
       </cheerful>
       <gloomy>
-        <li>Make it last. You never know.</li>
+        <li>Enjoy it. It's simple meals again tomorrow.</li>
       </gloomy>
       <cold>
         <li>Adequate. Better than adequate, in fact.</li>
@@ -46,11 +46,11 @@
     <lines>
       <plain>
         <li>Tell the one about the boar again.</li>
-        <li>Who's got the cards?</li>
+        <li>Who's got the dice?</li>
         <li>I haven't laughed like this in a while.</li>
         <li>Your turn. Go on.</li>
-        <li>Remember the first winter?</li>
-        <li>[child] I'm not tired. I'm not.</li>
+        <li>Who remembers the day we got here?</li>
+        <li>[child] Just one more game, then bed.</li>
       </plain>
       <warm>
         <li>We should do this more often.</li>
@@ -62,7 +62,7 @@
         <li>Again, again!</li>
       </cheerful>
       <gloomy>
-        <li>Enjoy it while it lasts.</li>
+        <li>We'll all pay for this tomorrow.</li>
       </gloomy>
       <cold>
         <li>I suppose this is good for morale.</li>
@@ -83,7 +83,7 @@
         <li>[child] Can I poke it with a stick?</li>
       </plain>
       <warm>
-        <li>This is what home is.</li>
+        <li>Sit closer, there's room.</li>
       </warm>
       <blunt>
         <li>Don't let it die down.</li>
@@ -92,10 +92,10 @@
         <li>Let's keep it going till dawn.</li>
       </cheerful>
       <gloomy>
-        <li>Everything burns down in the end.</li>
+        <li>The smoke always finds me.</li>
       </gloomy>
       <cold>
-        <li>A waste of wood. A good waste.</li>
+        <li>That's a day's chopping gone up in smoke.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -115,7 +115,7 @@
         <li>To the ones who aren't here to drink with us.</li>
       </warm>
       <blunt>
-        <li>Short speech. Then we drink.</li>
+        <li>Keep it short, we're thirsty.</li>
       </blunt>
       <cheerful>
         <li>To us, and to many more of these.</li>
@@ -124,7 +124,7 @@
         <li>To getting through the next one.</li>
       </gloomy>
       <cold>
-        <li>Noted. Now, the cups.</li>
+        <li>One cup. I'm on watch later.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -134,7 +134,7 @@
     <defName>Council_Pool_PlayWords</defName>
     <lines>
       <plain>
-        <li>Quiet, everyone. Let them speak.</li>
+        <li>Hush, let them speak.</li>
         <li>Go on.</li>
         <li>I never knew that.</li>
         <li>Can you say that last part again?</li>
@@ -147,10 +147,10 @@
         <li>Get to the point.</li>
       </blunt>
       <cheerful>
-        <li>Better than any story I know.</li>
+        <li>I could listen to this all night.</li>
       </cheerful>
       <gloomy>
-        <li>Some things are better left unsaid.</li>
+        <li>That's going to keep me up tonight.</li>
       </gloomy>
       <cold>
         <li>Noted.</li>
@@ -163,7 +163,7 @@
     <defName>Council_Pool_PlaySong</defName>
     <lines>
       <plain>
-        <li>Everyone knows this one.</li>
+        <li>You all know this one.</li>
         <li>Faster. No, slower.</li>
         <li>That's not how the second verse goes.</li>
         <li>Clap along, then.</li>
@@ -173,7 +173,7 @@
         <li>My mother used to sing this.</li>
       </warm>
       <blunt>
-        <li>I'm not singing. Fine, one.</li>
+        <li>I'm not singing, so don't ask.</li>
       </blunt>
       <cheerful>
         <li>Up you get. Dance.</li>
@@ -192,10 +192,10 @@
     <defName>Council_Pool_PlayRemembrance</defName>
     <lines>
       <plain>
-        <li>I still set out a cup for them.</li>
+        <li>I still save them a place.</li>
         <li>They'd have hated all this fuss.</li>
-        <li>Do you remember how they laughed?</li>
-        <li>The flowers came up again this year.</li>
+        <li>Do you remember the day they first came?</li>
+        <li>I keep going to call them in for supper.</li>
       </plain>
       <warm>
         <li>We haven't forgotten you.</li>
@@ -210,7 +210,7 @@
         <li>It doesn't get easier.</li>
       </gloomy>
       <cold>
-        <li>A good worker. A good friend.</li>
+        <li>They always pulled their weight.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -229,35 +229,35 @@
     <defName>Council_Pool_PlayWorkInvite</defName>
     <lines>
       <plain>
-        <li>Right, everyone. Many hands.</li>
+        <li>All hands, please, this won't take long.</li>
         <li>Grab whatever's nearest and come on.</li>
-        <li>[clean] Buckets and brushes. Let's get this place clean.</li>
-        <li>[clean] Every corner, mind. Not just the middle of the floor.</li>
-        <li>[haul] Everything lying about goes where it belongs. Come on.</li>
-        <li>[repair] Bring your hammers. We're mending what got broken.</li>
+        <li>[clean] Fetch buckets and brushes, we're scrubbing the floors.</li>
+        <li>[clean] Every corner this time, not just the middle of the floor.</li>
+        <li>[haul] Everything lying about goes into the stores.</li>
+        <li>[repair] Bring a hammer, we're mending what got broken.</li>
         <li>[build] Materials to the frames, then we build.</li>
         <li>[corpses] Gloves on. Let's see to the dead.</li>
-        <li>[snow] Shovels, everyone. The paths won't clear themselves.</li>
-        <li>[sow] Seed baskets and hoes. Out to the fields.</li>
+        <li>[snow] Grab a shovel, we're digging out the paths.</li>
+        <li>[sow] Seed baskets and hoes, and out to the fields.</li>
         <li>[harvest] It's ripe. Let's bring it in before it spoils.</li>
-        <li>[cut] The marked ones come down today. Axes.</li>
-        <li>[lowtech,harvest] Sickles and baskets. Everyone who can walk.</li>
+        <li>[cut] Axes, everyone, the marked ones come down today.</li>
+        <li>[lowtech,harvest] Sickles and baskets, everyone who can walk.</li>
       </plain>
       <warm>
-        <li>If we all pitch in, we'll be done by supper.</li>
+        <li>If we all pitch in, it's an easy job.</li>
         <li>Come on, it goes quicker together.</li>
       </warm>
       <blunt>
         <li>Work. Now. All of you.</li>
-        <li>No sitting about. There's work.</li>
+        <li>Up. Bring your own tools.</li>
       </blunt>
       <cheerful>
         <li>Last one finished washes the pots!</li>
-        <li>Come on, it'll be fun. Mostly.</li>
+        <li>Come on, I'll make it fun, I promise.</li>
       </cheerful>
       <gloomy>
         <li>It won't do itself, more's the pity.</li>
-        <li>[corpses] Nobody wants this job. So we all do it.</li>
+        <li>[corpses] It's a grim job, so we'll share it out.</li>
       </gloomy>
       <cold>
         <li>Split it up and we'll be done faster.</li>
@@ -275,19 +275,19 @@
         <li>[clean] There's more under here.</li>
         <li>[clean] Who tracked mud all the way in here?</li>
         <li>[haul] Heavier than it looks.</li>
-        <li>[haul] Where does this one go?</li>
+        <li>[haul] Take the other end of this.</li>
         <li>[repair] Hold it steady while I nail it.</li>
         <li>[build] Hand me the next one.</li>
-        <li>[corpses] Lift on three. One, two...</li>
+        <li>[corpses] Lift on three, and keep it level.</li>
         <li>[snow] My back's going to hate me tomorrow.</li>
-        <li>[sow] Two seeds to a hole. Two.</li>
+        <li>[sow] Two seeds to a hole, not three.</li>
         <li>[harvest] Look at the size of this one.</li>
         <li>[winter] Can't feel my fingers.</li>
         <li>[hot] Somebody bring water.</li>
-        <li>[child] I'm helping! Look!</li>
+        <li>[child] Look, I'm helping!</li>
       </plain>
       <warm>
-        <li>Nearly there. Good work, all of you.</li>
+        <li>Good work, all of you, we're nearly there.</li>
         <li>Take a breather if you need one.</li>
       </warm>
       <blunt>
@@ -311,29 +311,29 @@
     <defName>Council_Journal_PlayWork</defName>
     <lines>
       <plain>
-        <li>Spent the afternoon on {NAME} with the others. My arms are sore and the place looks better for it.</li>
-        <li>[clean] We scrubbed half the colony today. You could eat off the floors, though nobody should.</li>
-        <li>[haul] Carried things from one end of the colony to the other all day. Everything has a place now, more or less.</li>
+        <li>Spent a few hours on {NAME} with the others. My arms are sore and the place looks better for it.</li>
+        <li>[clean] Scrubbed floors with the others until my knees were raw. The whole place smells of soap.</li>
+        <li>[haul] Hauled from one end of the colony to the other with the others. Everything has a place now, more or less.</li>
         <li>[repair] We mended what was broken. The walls look like walls again.</li>
-        <li>[build] We worked on the building together today. It's coming along, and it feels like ours.</li>
-        <li>[corpses] We saw to the dead today. Nobody talked much. It needed doing.</li>
+        <li>[build] Worked on the new building with the others. Splinters in both hands, and the walls are going up.</li>
+        <li>[corpses] We saw to the bodies today. I've washed my hands three times since and they still don't feel clean.</li>
         <li>[snow] Dug out the paths with the others. By the time we finished, it had started snowing again.</li>
-        <li>[sow] The seed is in the ground. Now we wait, and hope.</li>
-        <li>[harvest] We brought the harvest in together. My back aches and the stores are full.</li>
+        <li>[sow] Got the seed in the ground with the others, row after row. Dirt under every nail.</li>
+        <li>[harvest] We brought the harvest in together. My back aches and there's chaff in my hair.</li>
       </plain>
       <warm>
-        <li>Worked side by side with the others today. It's good to be part of something.</li>
-        <li>We got more done together in an afternoon than I'd have managed alone in a week.</li>
+        <li>Worked side by side with the others today. We talked the whole time, about nothing much.</li>
+        <li>We got more done together in a few hours than I'd have managed alone in a week.</li>
       </warm>
       <blunt>
-        <li>Work party. Work done. Bed.</li>
-        <li>Hard day. Good day.</li>
+        <li>Work party. Work done. Feet up.</li>
+        <li>Sore all over. The work's done, at least.</li>
       </blunt>
       <cheerful>
-        <li>We made a game of it and still finished early. Best afternoon in a while.</li>
+        <li>We made a game of it and still finished early. Best few hours I've had in a while.</li>
       </cheerful>
       <gloomy>
-        <li>Did the work. It'll need doing again before long. It always does.</li>
+        <li>Did my share. Blisters on both palms to show for it.</li>
       </gloomy>
       <cold>
         <li>The work was done. Some of the others were slower than they ought to have been.</li>
@@ -345,11 +345,11 @@
     <defName>Council_Journal_PlayWorkMissed</defName>
     <lines>
       <plain>
-        <li>We never got round to {NAME}. Something always came up.</li>
+        <li>We never got round to {NAME}. There was always another job first.</li>
         <li>We were all meant to pitch in on {NAME}. It never came to anything.</li>
       </plain>
       <warm>
-        <li>I'd been looking forward to working alongside everyone. Maybe next time.</li>
+        <li>I'd been looking forward to working alongside everyone. I'd even dug out my old gloves.</li>
       </warm>
       <blunt>
         <li>No work party after all. I did my own share anyway.</li>
@@ -358,10 +358,10 @@
         <li>The work party fell through. I'm not going to pretend I minded.</li>
       </cheerful>
       <gloomy>
-        <li>Nobody turned up for {NAME}. That says something.</li>
+        <li>So much for {NAME}. I waited by the tools for a while, then put them away.</li>
       </gloomy>
       <cold>
-        <li>We never got to {NAME}. Poorly organized.</li>
+        <li>Nothing came of {NAME}. Poorly organized.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -371,15 +371,15 @@
     <defName>Council_Pool_PlayWalkInvite</defName>
     <lines>
       <plain>
-        <li>Everyone here? Then let's go.</li>
+        <li>If everyone's here, let's go.</li>
         <li>Slowly. We'll stay together.</li>
         <li>[grave] We'll walk out to the grave together.</li>
         <li>[gate] Out to the gate, all of us.</li>
-        <li>[fields] Out to the fields, then. Together.</li>
-        <li>[water] Down to the water. Come on.</li>
+        <li>[fields] Let's go and look at the fields.</li>
+        <li>[water] Come on, down to the water.</li>
       </plain>
       <warm>
-        <li>Walk with me. It's better together.</li>
+        <li>Walk next to me, if you like.</li>
       </warm>
       <blunt>
         <li>Line up. We're going.</li>
@@ -389,7 +389,7 @@
       </cheerful>
       <gloomy>
         <li>[grave] Let's go and see them.</li>
-        <li>Let's get it done.</li>
+        <li>My knees won't thank me for this.</li>
       </gloomy>
       <cold>
         <li>Keep pace. Don't straggle.</li>
@@ -402,13 +402,13 @@
     <lines>
       <plain>
         <li>Not far now.</li>
-        <li>Mind the ditch.</li>
+        <li>Watch your step, it's uneven here.</li>
         <li>[grave] Here we are.</li>
         <li>[grave] Somebody say something.</li>
-        <li>[fields] Look at it all. That's ours.</li>
+        <li>[fields] Look how far the rows go.</li>
         <li>[gate] The road goes a long way from here.</li>
         <li>[water] Listen to the water.</li>
-        <li>[walkout] You can see the whole colony from up here.</li>
+        <li>[walkout] You can see the whole colony from out here.</li>
         <li>[winter] Watch the ice.</li>
         <li>[rain] We'll be soaked through.</li>
       </plain>
@@ -420,10 +420,10 @@
         <li>Keep walking.</li>
       </blunt>
       <cheerful>
-        <li>Lovely day for it!</li>
+        <li>I could walk all day!</li>
       </cheerful>
       <gloomy>
-        <li>Quiet out here. Too quiet.</li>
+        <li>These boots were never meant for walking.</li>
       </gloomy>
       <cold>
         <li>We're behind time.</li>
@@ -435,14 +435,14 @@
     <defName>Council_Journal_PlayWalk</defName>
     <lines>
       <plain>
-        <li>We all walked out together today, and back again. It felt right to go together.</li>
+        <li>We all walked out together today and back again, slower than we needed to.</li>
         <li>[grave] We walked out to the grave together. Stood there a while. Walked home without saying much.</li>
         <li>[fields] We walked out to the fields and stood looking at them for a while. It all looks different from out there.</li>
         <li>[gate] We walked to the gate together. The road looked very long from there.</li>
         <li>[water] Walked down to the water with the others and back again. My boots are still wet.</li>
       </plain>
       <warm>
-        <li>Walking with the others today, I felt like we were one people.</li>
+        <li>Walked out with the others today. On the way back someone took my arm and didn't let go.</li>
       </warm>
       <blunt>
         <li>Walked out. Walked back. My feet hurt.</li>
@@ -466,16 +466,16 @@
         <li>We never did walk out together for {NAME}. The day got away from us.</li>
       </plain>
       <warm>
-        <li>I wish we'd walked out together. It would have meant something.</li>
+        <li>I wish we'd made that walk together. I'd been thinking about what I'd say on the way.</li>
       </warm>
       <blunt>
         <li>The walk was called off. Saved my feet.</li>
       </blunt>
       <cheerful>
-        <li>We never went on the walk. We'll find another day.</li>
+        <li>No walk after all. There'll be other days for it.</li>
       </cheerful>
       <gloomy>
-        <li>Nobody came for {NAME}. Maybe it didn't matter to them.</li>
+        <li>Maybe {NAME} mattered more to me than to the others. We never went.</li>
       </gloomy>
       <cold>
         <li>The walk came to nothing.</li>
@@ -488,26 +488,26 @@
     <defName>Council_Pool_PlayVigilInvite</defName>
     <lines>
       <plain>
-        <li>We'll keep watch tonight. Bring a blanket.</li>
-        <li>[grave] We'll sit with them tonight.</li>
-        <li>[gate] We'll watch the gate till morning.</li>
-        <li>[beside] Someone should sit up with {OTHER_nameDef}. I will.</li>
-        <li>[fields] We'll watch the fields tonight.</li>
+        <li>Bring a blanket, we'll be here a while.</li>
+        <li>[grave] We'll sit with them a while.</li>
+        <li>[gate] We'll keep an eye on the gate, all of us.</li>
+        <li>[beside] I'll sit up with {OTHER_nameDef}.</li>
+        <li>[fields] Spread out along the fields and keep your eyes open.</li>
       </plain>
       <warm>
-        <li>Come and sit. Nobody should keep watch alone.</li>
+        <li>Come and sit by me, it's warmer with two.</li>
       </warm>
       <blunt>
         <li>Watch starts now.</li>
       </blunt>
       <cheerful>
-        <li>I'll bring the tea. It'll be a long night.</li>
+        <li>I'll bring the tea!</li>
       </cheerful>
       <gloomy>
-        <li>It's going to be a long, cold night.</li>
+        <li>This is going to be a long one.</li>
       </gloomy>
       <cold>
-        <li>Take your places. Stay awake.</li>
+        <li>Take your places, and stay awake.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -518,7 +518,7 @@
       <plain>
         <li>Quiet now.</li>
         <li>Still here.</li>
-        <li>[night] Look at the stars.</li>
+        <li>[night] Can't see a thing out there.</li>
         <li>[grave] Rest easy.</li>
         <li>[gate] Anything out there?</li>
         <li>[gate] Nothing on the road yet.</li>
@@ -535,7 +535,7 @@
         <li>Eyes open.</li>
       </blunt>
       <cheerful>
-        <li>Not long till dawn. We'll see it in.</li>
+        <li>Not long now, we'll see it through.</li>
       </cheerful>
       <gloomy>
         <li>The nights are longer than they used to be.</li>
@@ -550,23 +550,23 @@
     <defName>Council_Journal_PlayVigil</defName>
     <lines>
       <plain>
-        <li>Kept watch most of the night. I can barely keep my eyes open, but I'm glad I did.</li>
-        <li>[grave] Sat up by the grave most of the night. It's strange how quiet it is out there.</li>
-        <li>[gate] Watched the gate through the night. Every shadow on the road looked like someone coming.</li>
-        <li>[beside] Sat up through the night at {OTHER_nameDef}'s side. {OTHER_nameDef} slept, mostly. I didn't.</li>
+        <li>Kept watch for hours. I can barely keep my eyes open, but I'm glad I did.</li>
+        <li>[grave] Sat by the grave for hours. It's strange how quiet it is out there.</li>
+        <li>[gate] Watched the gate with the others for hours. Every shadow on the road looked like someone coming.</li>
+        <li>[beside] Sat up late at {OTHER_nameDef}'s side. {OTHER_nameDef} slept, mostly. I didn't.</li>
         <li>[fields] Watched the fields through the dark. Nothing came, which is what we hoped.</li>
       </plain>
       <warm>
-        <li>We kept watch together. Nobody had to be alone with it.</li>
+        <li>We kept watch together and passed one blanket back and forth the whole time.</li>
       </warm>
       <blunt>
-        <li>Up all night. Worth it.</li>
+        <li>Long watch. Worth it.</li>
       </blunt>
       <cheerful>
-        <li>We saw the dawn come up from the watch. Beautiful, tired as I was.</li>
+        <li>The watch went quicker than I feared. We told stories the whole time, under our breath.</li>
       </cheerful>
       <gloomy>
-        <li>A long night of waiting. I don't know what I expected.</li>
+        <li>Hours of waiting. I don't know what I expected.</li>
       </gloomy>
       <cold>
         <li>The watch was kept. I'll sleep now.</li>
@@ -591,10 +591,10 @@
         <li>The vigil fell through and I got a full night's sleep. I feel guilty about how good that was.</li>
       </cheerful>
       <gloomy>
-        <li>Nobody kept watch in the end. Nobody ever does.</li>
+        <li>The watch was never kept. I lay awake anyway, listening.</li>
       </gloomy>
       <cold>
-        <li>The watch wasn't kept. It should have been.</li>
+        <li>No watch was kept. A poor decision, and not mine.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -604,13 +604,13 @@
     <defName>Council_Pool_PlaySearchInvite</defName>
     <lines>
       <plain>
-        <li>I'll take this way. You take the other.</li>
+        <li>I'll take this side, you take the other.</li>
         <li>Spread out. Shout if you find anything.</li>
         <li>[fields] I'll go through the fields.</li>
         <li>[water] I'll go along the water.</li>
       </plain>
       <warm>
-        <li>Be careful out there. Come back safe.</li>
+        <li>Be careful out there, and come back safe.</li>
       </warm>
       <blunt>
         <li>Let's go. Daylight's wasting.</li>
@@ -622,7 +622,7 @@
         <li>We probably won't find anything, but let's look.</li>
       </gloomy>
       <cold>
-        <li>Search properly. Don't skip anything.</li>
+        <li>Search properly, and don't skip anything.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -636,7 +636,7 @@
         <li>I'll check over there.</li>
         <li>[fields] Not in these rows.</li>
         <li>[water] Just reeds.</li>
-        <li>[winter] All buried under the snow.</li>
+        <li>[winter] Too cold to be out here long.</li>
         <li>[night] Can't see my own feet.</li>
       </plain>
       <warm>
@@ -661,21 +661,21 @@
     <defName>Council_Journal_PlaySearch</defName>
     <lines>
       <plain>
-        <li>Out searching most of the day. Walked further than I have in weeks.</li>
+        <li>Out searching for hours. Walked further than I have in weeks.</li>
         <li>[fields] Searched up and down the fields. I know every furrow by heart now.</li>
         <li>[water] Walked the water's edge for hours. Wet to the knees.</li>
       </plain>
       <warm>
-        <li>We searched each our own way and came home together. That's what matters.</li>
+        <li>We split up to search, and I was glad to see every one of them come back.</li>
       </warm>
       <blunt>
         <li>Searched. Done. Tired.</li>
       </blunt>
       <cheerful>
-        <li>Spent the day searching, and saw a lot of country I hadn't seen before.</li>
+        <li>Spent hours searching, and saw a lot of country I hadn't seen before.</li>
       </cheerful>
       <gloomy>
-        <li>Searched until my feet gave out. The land is big, and we're very small.</li>
+        <li>Searched until my feet gave out. I'll be limping tomorrow.</li>
       </gloomy>
       <cold>
         <li>The search was done in good order.</li>
@@ -699,7 +699,7 @@
         <li>The search never happened. Maybe it'll turn up on its own.</li>
       </cheerful>
       <gloomy>
-        <li>Nobody went looking. Some things stay lost.</li>
+        <li>I keep wondering what we'd have found, if we'd gone looking.</li>
       </gloomy>
       <cold>
         <li>The search was never carried out.</li>
@@ -721,7 +721,7 @@
         <li>It isn't much, but it's given gladly.</li>
       </warm>
       <blunt>
-        <li>Out of the way. Heavy.</li>
+        <li>Out of the way, this is heavy.</li>
       </blunt>
       <cheerful>
         <li>Delivery coming through!</li>
@@ -769,11 +769,11 @@
     <lines>
       <plain>
         <li>Carried the colony's gift out myself today. It was heavier than it looked.</li>
-        <li>[gate] Carried it out to the gate and handed it over. The rider didn't stay to talk.</li>
+        <li>[gate] Carried it out to the gate and handed it over. They didn't stay to talk.</li>
         <li>[other] Handed it to {OTHER_nameDef} myself, and got a look of surprise, then thanks.</li>
       </plain>
       <warm>
-        <li>It felt good to hand it over. Somewhere it'll make a difference.</li>
+        <li>Handed it over myself, and was thanked twice for it.</li>
       </warm>
       <blunt>
         <li>Carried it out. Handed it over. Back to work.</li>
@@ -782,7 +782,7 @@
         <li>I got to be the one to hand it over. I like being the bearer of good things.</li>
       </cheerful>
       <gloomy>
-        <li>Watched our stores go out the gate. I hope we don't miss them come winter.</li>
+        <li>Watched it leave our stores. I hope we don't miss it come winter.</li>
       </gloomy>
       <cold>
         <li>Delivered, as the council decided.</li>
@@ -819,7 +819,7 @@
     <defName>Council_Pool_PlayHuntInvite</defName>
     <lines>
       <plain>
-        <li>I'll go after it. Keep the fire in.</li>
+        <li>Keep the fire in till I'm back.</li>
         <li>Downwind, and quiet.</li>
         <li>[lowtech] Fetch my bow.</li>
       </plain>
@@ -836,7 +836,7 @@
         <li>It'll probably hear me coming.</li>
       </gloomy>
       <cold>
-        <li>One clean shot. No more.</li>
+        <li>One clean shot, no more.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -845,7 +845,7 @@
     <defName>Council_Pool_PlayHunt</defName>
     <lines>
       <plain>
-        <li>There. By the trees.</li>
+        <li>There, see it?</li>
         <li>Easy now...</li>
         <li>Fresh tracks.</li>
       </plain>
@@ -872,13 +872,13 @@
     <lines>
       <plain>
         <li>Went out on the hunt today. We brought it down, and there's meat for the pot.</li>
-        <li>[lowtech] Tracked it half the afternoon. A clean kill, and I thanked it, the way I was taught.</li>
+        <li>[lowtech] Tracked it for hours. A clean kill, and I thanked it, the way I was taught.</li>
       </plain>
       <warm>
-        <li>Brought something home for everyone tonight. That's a good feeling.</li>
+        <li>Brought meat home for everyone. I like being the one who does that.</li>
       </warm>
       <blunt>
-        <li>Hunted. Killed. Butchered.</li>
+        <li>Hunted. Clean kill. Done.</li>
       </blunt>
       <cheerful>
         <li>Good hunt today! Everyone will eat well.</li>
@@ -896,19 +896,19 @@
     <defName>Council_Journal_PlayHuntMissed</defName>
     <lines>
       <plain>
-        <li>The game got away. We'll make do.</li>
+        <li>No meat from the hunt in the end. We'll make do.</li>
       </plain>
       <warm>
-        <li>The animal got away. Part of me is glad.</li>
+        <li>Nothing came of the hunt. Part of me is glad.</li>
       </warm>
       <blunt>
         <li>No kill. Wasted day.</li>
       </blunt>
       <cheerful>
-        <li>Didn't catch anything, but it was a nice walk.</li>
+        <li>No meat this time. There'll be other hunts.</li>
       </cheerful>
       <gloomy>
-        <li>Came home empty-handed. Story of my life.</li>
+        <li>Empty-handed again, as usual.</li>
       </gloomy>
       <cold>
         <li>The hunt failed.</li>

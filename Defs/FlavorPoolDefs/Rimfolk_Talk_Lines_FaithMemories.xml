@@ -16,9 +16,11 @@
     <lines>
       <plain>
         <li>[byother] I keep thinking about what you said at {LABEL}.</li>
-        <li>[byother] Where's that bit about the long road from, the one you told at {LABEL}?</li>
+        <li>[byother] Where does it come from, that story you told at {LABEL}?</li>
         <li>[byme] I didn't think you'd come to {LABEL}, and I was glad you did.</li>
         <li>[byme] Thank you for sitting through {LABEL}, when it isn't even your faith.</li>
+        <li>[byother] I didn't expect to enjoy {LABEL} as much as I did.</li>
+        <li>[byme] Was I too long-winded at {LABEL}?</li>
       </plain>
       <blunt><li>[byother] You went on a bit at {LABEL}, and I didn't mind.</li></blunt>
     </lines>
@@ -35,6 +37,8 @@
         <li>[byme] I'll tell you the rest of it some time.</li>
         <li>[byother] It was a good evening, whatever I believe.</li>
         <li>[byother] I came for the company, mostly.</li>
+        <li>[byme] You'd be welcome any evening, not just that one.</li>
+        <li>[byother] I remember how quiet it went at the end.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -49,6 +53,7 @@
         <li>[byme] The next one's yours too, if you want it.</li>
         <li>[byother] Save me a seat at the next one.</li>
         <li>That was a good evening.</li>
+        <li>[byother] I'll come again, I think.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -64,6 +69,8 @@
         <li>[byother] You never told me how the old story ends, that night.</li>
         <li>[byme] Have you thought any more since {LABEL}?</li>
         <li>[byme] You asked good questions that night, and I've been turning some of them over myself.</li>
+        <li>[byother] You never did answer my last question.</li>
+        <li>[byme] I hope I didn't put you off with all my talk.</li>
       </plain>
       <warm><li>[byme] I'm glad you asked me, of everyone.</li></warm>
     </lines>
@@ -80,6 +87,8 @@
         <li>[byme] No hurry, an ideoligion isn't a coat you change in a day.</li>
         <li>[byother] I haven't made up my mind, but I'm listening.</li>
         <li>[byother] I still don't know what I believe, but that evening helped.</li>
+        <li>[byme] Ask me again when you're ready, I won't push.</li>
+        <li>[byother] Some of it stuck with me, more than I expected.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -94,6 +103,7 @@
         <li>[byme] Ask me anything, any time.</li>
         <li>[byother] Thank you for that evening.</li>
         <li>We should do it again some time.</li>
+        <li>[byme] My door's open, you know that.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>

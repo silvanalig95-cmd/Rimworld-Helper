@@ -11,21 +11,21 @@
     <outcomes><li>Comfort</li></outcomes>
     <lines>
       <plain>
-        <li>You've been quiet all day.</li>
+        <li>You've been very quiet.</li>
         <li>You don't seem yourself today, are you all right?</li>
         <li>Come and sit with me a while.</li>
-        <li>I saw your face at supper; what's wrong?</li>
+        <li>I saw your face earlier, what's wrong?</li>
         <li>I'm not going anywhere, if you want to talk.</li>
         <li>You don't have to say anything, I'll just sit here.</li>
         <li>[grief,subject] I know how much {SUBJECT} meant to you.</li>
         <li>[grief,subject] I miss {SUBJECT} too, every day.</li>
-        <li>[grief] I'm so sorry; I don't know what else to say.</li>
+        <li>[grief] I'm so sorry, I don't know what else to say.</li>
         <li>[grief] Grief's a heavy thing to carry on your own.</li>
         <li>[despair] It feels hopeless, doesn't it.</li>
         <li>[despair] I know it looks bad, but we're still here.</li>
         <li>[lonely] You don't have to be on your own, you know.</li>
         <li>[lonely] I've noticed you keeping to yourself lately.</li>
-        <li>[fear] You're shaking; come here.</li>
+        <li>[fear] You're shaking, come here.</li>
         <li>[fear] It's all right to be frightened, we all are.</li>
         <li>[worry] Something's on your mind, isn't it.</li>
         <li>[worry] You've been worrying at something for days.</li>
@@ -38,12 +38,12 @@
         <li>[samegroup] The others have been asking after you, you know.</li>
         <li>[grouprole:peacemaker] Whatever it is, we'll sort it out together.</li>
         <li>[tooutsider] It's hard, being new, I remember.</li>
-        <li>[grief] I keep thinking of you, since the funeral.</li>
+        <li>[grief] I've been thinking about you ever since it happened.</li>
         <li>[despair] We've been through worse, and we got through it.</li>
         <li>[worry] Want to tell me what's going round in your head?</li>
-        <li>[otherrep:kind] You're always the one looking after everyone; let someone look after you.</li>
+        <li>[otherrep:kind] You're always the one looking after everyone, so let someone look after you.</li>
         <li>[otherrep:brave] Even the brave get frightened, you know.</li>
-        <li>[otherrep:reliable] You carry everyone; you're allowed to put it down sometimes.</li>
+        <li>[otherrep:reliable] You carry all of us, and you're allowed to put it down sometimes.</li>
       </plain>
       <warm>
         <li>Oh, come here, you look like you need a hug.</li>
@@ -59,11 +59,11 @@
         <li>Out with it, what's eating you?</li>
         <li>You look terrible, what's wrong?</li>
         <li>[grief] It's rotten, all of it, and you're allowed to say so.</li>
-        <li>[fear] Fear's just your body telling you you're alive, now breathe.</li>
+        <li>[fear] Fear won't kill you, now breathe.</li>
         <li>[shame] Stop punishing yourself, it's done.</li>
       </blunt>
       <cheerful>
-        <li>I've come to cheer you up, resistance is useless.</li>
+        <li>I've come to cheer you up, and I won't leave until I have.</li>
         <li>I've got a terrible joke and a biscuit, which do you want first?</li>
         <li>[lowmood] Bad day? Mine too, let's be miserable together.</li>
         <li>[lonely] You, me, and the worst game of cards ever played, tonight.</li>
@@ -75,10 +75,10 @@
       </gloomy>
       <cold>
         <li>You're not well, sit down.</li>
-        <li>[grief] Grief passes, eventually; eat something in the meantime.</li>
-        <li>[fear] We have walls and we have weapons; you're safe tonight.</li>
+        <li>[grief] Grief passes eventually, so eat something in the meantime.</li>
+        <li>[fear] We have weapons and people who can use them, so you're safe tonight.</li>
         <li>[worry] Worrying won't change it, so tell me what it is.</li>
-        <li>[lowmood] You've not eaten; eat, then talk.</li>
+        <li>[lowmood] Eat first, then talk.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -102,7 +102,7 @@
         <li>[despair] Some mornings I can't make myself get up.</li>
         <li>[lonely] I feel like nobody would notice if I left.</li>
         <li>[lonely] It's been a while since anyone asked.</li>
-        <li>[fear] I keep hearing them, every time the wind moves.</li>
+        <li>[fear] I keep thinking it'll happen again.</li>
         <li>[fear] I'm scared all the time now, and I hate it.</li>
         <li>[worry] I can't stop thinking about what could go wrong.</li>
         <li>[worry] I just keep going over it, again and again.</li>
@@ -111,12 +111,12 @@
         <li>[homesick] I miss my mother's voice.</li>
         <li>[homesick] Sometimes I forget where I am when I wake up.</li>
         <li>[lowmood] Everything's just a bit much right now.</li>
-        <li>[samegroup] I didn't think anyone would notice.</li>
+        <li>[samegroup] Tell the others I'm all right, will you?</li>
         <li>[tooutsider] I don't know anyone here yet, not really.</li>
         <li>[grief] I keep seeing their face.</li>
         <li>[fear] I can't sleep, every noise wakes me.</li>
         <li>[despair] I don't know how to keep going.</li>
-        <li>[shame] I don't know how to face everyone.</li>
+        <li>[shame] I'd take it back if I could.</li>
       </plain>
       <warm>
         <li>You're kind to sit with me.</li>
@@ -153,16 +153,16 @@
         <li>Find me if it gets bad again.</li>
         <li>We'll get through this.</li>
         <li>[grief] They wouldn't want you carrying this alone.</li>
-        <li>[grief] Sit with us tonight; you shouldn't be alone with it.</li>
+        <li>[grief] Sit with us tonight, you shouldn't be alone with it.</li>
         <li>[fear] I'll take the watch tonight, you get some sleep.</li>
         <li>[lonely] Sit with me at supper, I mean it.</li>
         <li>[worry] Let's worry about it tomorrow, together.</li>
-        <li>[shame] We all make mistakes; it's what you do next that counts.</li>
+        <li>[shame] I've done worse, and I'm still here, aren't I?</li>
         <li>[homesick] This can be home too, give it time.</li>
-        <li>[samegroup] Come to the fire tonight; we'll all be there.</li>
+        <li>[samegroup] Come and sit with the rest of us tonight, we'd all like that.</li>
         <li>[tooutsider] Come and sit with us, we're not as frightening as we look.</li>
         <li>[despair] Tomorrow we'll find one good thing, I promise.</li>
-        <li>[otherrep:kind] You've been kind to all of us; let us be kind back.</li>
+        <li>[otherrep:kind] You've been kind to all of us, so let us be kind back.</li>
       </plain>
       <warm>
         <li>I'm always here, you know that.</li>
@@ -180,7 +180,7 @@
         <li>It's bad, but it'd be worse alone.</li>
       </gloomy>
       <cold>
-        <li>Get some rest; you'll think more clearly.</li>
+        <li>Get some rest, you'll think more clearly.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>

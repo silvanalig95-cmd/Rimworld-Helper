@@ -15,13 +15,13 @@
     <defName>Council_Journal_PW_Evolved</defName>
     <lines>
       <plain>
-        <li>My {OLD} glowed this morning, bright enough to make me shut my eyes, and when I opened them it had become {NEW}, looking back at me as if nothing had happened.</li>
-        <li>It happened in the middle of the afternoon, with no warning. One moment it was my {OLD}, the next it had evolved into {NEW}, a head taller and very proud of it.</li>
-        <li>All that training, and today it came good. The {OLD} I caught has evolved into {NEW}. I keep looking at it.</li>
-        <li>[named] {PET_nameDef} evolved today. Same eyes. Everything else is new, and it's still getting used to its legs.</li>
+        <li>My {OLD} glowed today, bright enough to make me shut my eyes, and when I opened them there was my {NEW}, looking back at me as if nothing had happened.</li>
+        <li>It happened with no warning. One moment it was my {OLD}, the next it had evolved into {NEW}, a head taller and very pleased with itself.</li>
+        <li>All that training came good today, and my {OLD} has evolved into {NEW}. I keep looking at it.</li>
+        <li>[named] {PET_nameDef} evolved today. Same eyes. Everything else is new, and it's still getting used to its size.</li>
         <li>[named] {PET_nameDef} has evolved into {NEW}. I had to sit down afterwards.</li>
-        <li>[shiny] It kept its strange colours through the change, and shines brighter than ever. People came from the far end of the colony to see.</li>
-        <li>[night] It evolved in the night, by the fire. Lit up the whole room. Half the colony thought it was a raid.</li>
+        <li>[shiny] It kept its strange colors through the change, and shines brighter than ever. People came from the far end of the colony to see.</li>
+        <li>[night] It evolved after dark, and for a moment the light of it showed everything around us as plain as noon.</li>
         <li>[child] My {OLD} turned into {NEW}! It was all glowy and then it was bigger. It still likes me.</li>
       </plain>
       <warm>
@@ -32,7 +32,7 @@
         <li>Evolved. {OLD} to {NEW}. About time.</li>
       </blunt>
       <cheerful>
-        <li>My very own {NEW}! I danced. Nobody saw. Probably.</li>
+        <li>My very own {NEW}! I danced a jig on the spot.</li>
       </cheerful>
       <gloomy>
         <li>My {OLD} is gone, and the {NEW} is in its place. It's the same one, I know it is. I'll miss the small one anyway.</li>
@@ -51,10 +51,10 @@
         <li>Look at you. Just look at you.</li>
         <li>You did it. You actually did it.</li>
         <li>You're bigger than me now, aren't you?</li>
-        <li>[named] {PET_nameDef}! Is that still you in there?</li>
-        <li>[shiny] Still shining. Good.</li>
+        <li>[named] Is that still you in there, {PET_nameDef}?</li>
+        <li>[shiny] You're still shining, good.</li>
       </plain>
-      <warm><li>I'm so proud of you. So proud.</li></warm>
+      <warm><li>I'm so proud of you.</li></warm>
       <blunt><li>Finally.</li></blunt>
       <cheerful><li>Yes, yes, look at you!</li></cheerful>
       <gloomy><li>You'll still let me carry you sometimes, won't you?</li></gloomy>
@@ -68,15 +68,15 @@
     <lines>
       <plain>
         <li>Was that it? Did it just evolve?</li>
-        <li>Evolved into {NEW}! Well done, the both of you.</li>
+        <li>Look at your {NEW}, well done, the both of you!</li>
         <li>All that training paid off, then.</li>
         <li>[named] {PET_nameDef} looks half a head taller already.</li>
-        <li>[shiny] It kept its colours. That's rare, that is.</li>
+        <li>[shiny] It kept its colors, and that's rare.</li>
       </plain>
-      <warm><li>You've done well with it. Anyone can see it.</li></warm>
+      <warm><li>You've done well with it, anyone can see that.</li></warm>
       <blunt><li>Bigger. Good.</li></blunt>
-      <cheerful><li>That was amazing. Do it again!</li></cheerful>
-      <gloomy><li>Don't let it get too big for the barracks.</li></gloomy>
+      <cheerful><li>That was amazing, do it again!</li></cheerful>
+      <gloomy><li>It'll eat twice as much now, you know.</li></gloomy>
       <cold><li>Useful. It'll fight better now.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -90,18 +90,18 @@
         <li>[level:25,named] {PET_nameDef} reached level {LEVEL}. I marked it on the wall by my bed.</li>
         <li>[level:50] Level {LEVEL}. Half the way to what the old trainers called mastery, and it got there here, of all places.</li>
         <li>[level:50,named] {PET_nameDef} is level {LEVEL} today. The others stop to watch when we train now.</li>
-        <li>[level:75] Level {LEVEL}. I don't think I'm teaching it anything any more. I think it's teaching me.</li>
-        <li>[level:100] Level {LEVEL}. As far as any of them go. I sat with it a long time tonight and didn't say much.</li>
+        <li>[level:75] Level {LEVEL}. Most days now it knows what I'm going to ask before I ask it.</li>
+        <li>[level:100] Level {LEVEL}. As far as any of them go. I sat with it a long while afterwards and didn't say much.</li>
         <li>[level:100,named] {PET_nameDef} reached level {LEVEL} today. There's nothing left to train for, and I don't mind at all.</li>
       </plain>
       <warm>
-        <li>Another milestone for us both. Level {LEVEL}. Every one of them was earned together.</li>
+        <li>Level {LEVEL}, for both of us really. I gave it the best berries I had.</li>
       </warm>
       <blunt>
         <li>Level {LEVEL}. Next.</li>
       </blunt>
       <cheerful>
-        <li>Level {LEVEL}! We had a little party. Berries for everyone with four legs.</li>
+        <li>Level {LEVEL}! I shared out the good berries to celebrate.</li>
       </cheerful>
       <gloomy>
         <li>Level {LEVEL}. It's grown so much stronger than I have.</li>
@@ -117,8 +117,8 @@
     <defName>Council_Journal_PW_Bonded</defName>
     <lines>
       <plain>
-        <li>Something has changed between my Pokémon and me. It doesn't go back in its ball unless I ask it twice, and it sleeps at my door.</li>
-        <li>It came to find me today when I was nowhere near the pens, just to be near me. The others say that's a bond. I think they're right.</li>
+        <li>My Pokémon won't go back in its ball now unless I ask twice, and it sleeps at my door.</li>
+        <li>It came all the way across the colony today just to sit by me. The others say that's a bond.</li>
         <li>[named] {PET_nameDef} won't leave my side any more. I didn't train it to. It decided.</li>
         <li>[child] My Pokémon is my best friend now. Properly. It said so. Not in words.</li>
       </plain>
@@ -136,13 +136,13 @@
     <lines>
       <plain>
         <li>My Pokémon went down in the fighting today. I couldn't get to it until it was over. It's resting now, and I'm sitting with it.</li>
-        <li>It fainted in front of me and I couldn't do a thing. It's awake again, and it ate. I haven't eaten.</li>
-        <li>[named] {PET_nameDef} took a blow meant for one of us and went down. The doctor says it'll be fine. I'm not leaving until it is.</li>
-        <li>[night] Kept watch by my Pokémon all night after the fight. It woke once, saw me, and went back to sleep.</li>
+        <li>It fainted in front of me and I couldn't do a thing. I haven't been able to eat since.</li>
+        <li>[named] {PET_nameDef} took a blow meant for one of us and went down. I'm staying with it until it's on its feet.</li>
+        <li>[night] Sitting up with my Pokémon after the fight. It woke once, saw me, and went back to sleep.</li>
       </plain>
-      <warm><li>It fought for us and it fell. When it woke, I told it how brave it had been.</li></warm>
-      <blunt><li>It went down. It got up. That's what matters.</li></blunt>
-      <cheerful><li>It's awake! Grumpy and hungry, but awake. Best sound I've heard all week.</li></cheerful>
+      <warm><li>It fought for us and it fell. When it wakes, I'll tell it how brave it was.</li></warm>
+      <blunt><li>Went down in the fight. Still breathing.</li></blunt>
+      <cheerful><li>It's going to be fine! Grumpy, but fine.</li></cheerful>
       <gloomy><li>It fainted today. Next time it might not get up. I keep thinking about next time.</li></gloomy>
       <cold><li>My Pokémon fainted in the fight. It needs rest and more training before the next one.</li></cold>
     </lines>
@@ -153,9 +153,9 @@
     <defName>Council_Journal_PW_RareCaught</defName>
     <lines>
       <plain>
-        <li>The {SPECIES} is ours. Two days of following it, and it went into the ball on the last throw I had.</li>
+        <li>The {SPECIES} is ours. It went into the ball on the last throw I had.</li>
         <li>I caught the {SPECIES}. People will be telling this story long after I'm gone, and they'll get it wrong.</li>
-        <li>[winter] Caught the {SPECIES} in the snow, both of us half frozen. It's warming up by the fire now and looking at me as if I'm the strange one.</li>
+        <li>[winter] Caught the {SPECIES} in the cold, both of us half frozen. Now it's looking at me as if I'm the strange one.</li>
       </plain>
       <warm><li>The {SPECIES} is ours now, and I promised it a good life. I mean to keep that promise.</li></warm>
       <blunt><li>Got the {SPECIES}. Told you I would.</li></blunt>
@@ -170,13 +170,13 @@
     <defName>Council_Journal_EncPW_Watching</defName>
     <lines>
       <plain>
-        <li>A wild one watched me work all afternoon. I think it was trying to learn how. I hope it learns faster than the new hands.</li>
-        <li>Every time I looked up, there it was, a little closer. Wild Pokémon are curious things.</li>
+        <li>A wild one watched me work for hours. Every time I stopped, it tilted its head.</li>
+        <li>Every time I looked up, there it was, a little closer than before.</li>
         <li>[child] A wild Pokémon was watching me! I waved and it did a funny thing with its head.</li>
       </plain>
       <warm><li>A wild one kept me company today. It never came close, but it never left.</li></warm>
       <blunt><li>Got watched by a wild one. Didn't mind.</li></blunt>
-      <cheerful><li>I had an audience today! A very small, very serious audience.</li></cheerful>
+      <cheerful><li>I had an audience today! A very serious one.</li></cheerful>
       <gloomy><li>A wild one watched me all day. I couldn't tell whether it was curious or waiting.</li></gloomy>
       <cold><li>A wild Pokémon observed the work today. It showed no fear of people. Worth remembering.</li></cold>
     </lines>
@@ -186,8 +186,8 @@
     <defName>Council_Journal_EncPW_Shiny</defName>
     <lines>
       <plain>
-        <li>I saw one in the wrong colours today. A shining one. I've heard the stories all my life, and today I saw it.</li>
-        <li>It caught the light like a coin. Nobody believed me until they went to look themselves.</li>
+        <li>I saw one in the wrong colors today, a shining one. I've heard the stories all my life.</li>
+        <li>It caught the light like a coin. The others didn't believe me until they'd seen it.</li>
       </plain>
       <warm><li>Saw a shining one today. I'll never forget it, and I don't want to.</li></warm>
       <blunt><li>Saw a shiny. Couldn't catch it. Still saw it.</li></blunt>
@@ -201,13 +201,13 @@
     <defName>Council_Journal_EncPW_Rare</defName>
     <lines>
       <plain>
-        <li>A rare one crossed our land today, unhurried, as if it owned it. Maybe it does.</li>
+        <li>A rare one crossed our land today, unhurried, as if it owned the place.</li>
         <li>I watched a rare one go by at the edge of the land. My hands are still shaking.</li>
       </plain>
-      <warm><li>A rare one came through today. It looked at me once, and I felt honoured.</li></warm>
+      <warm><li>A rare one came through today. It looked at me once, and I felt honored.</li></warm>
       <blunt><li>Rare one went by. Gone now.</li></blunt>
       <cheerful><li>I saw a rare one, close enough to see its eyes!</li></cheerful>
-      <gloomy><li>A rare one passed by today. Things like that don't stay anywhere long.</li></gloomy>
+      <gloomy><li>A rare one passed by today, and was gone before I could call anyone.</li></gloomy>
       <cold><li>A rare species was seen today. Its range must reach this far.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -216,12 +216,12 @@
     <defName>Council_Journal_EncPW_ChildAndWild</defName>
     <lines>
       <plain>
-        <li>A wild Pokémon took a berry from my hand today! It had a tiny tongue. I'm not washing my hand.</li>
-        <li>I made a friend at the fence today. It's wild, so I can't keep it, but I can visit.</li>
-        <li>We played chase all afternoon, me and a wild one. It won. I think it always wins.</li>
+        <li>A wild Pokémon took a berry from my hand today! Its tongue tickled. I'm not washing my hand.</li>
+        <li>I made a friend today. It's wild, so I can't keep it, but I can visit.</li>
+        <li>We played chase for ages, me and a wild one. It won every time.</li>
       </plain>
       <cheerful><li>I have a secret friend and it's a Pokémon and it's the best secret ever.</li></cheerful>
-      <gloomy><li>My friend at the fence didn't come today. Maybe tomorrow.</li></gloomy>
+      <gloomy><li>My wild friend ran off before I could say goodbye.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -229,13 +229,13 @@
     <defName>Council_Journal_EncPW_Partner</defName>
     <lines>
       <plain>
-        <li>{X_nameDef} came to sit with me today for no reason at all. Those are the best days.</li>
+        <li>For no reason at all, {X_nameDef} came to sit with me today. Those are the best days.</li>
         <li>I sat down after work and {X_nameDef} was there before I'd got comfortable. It always knows.</li>
-        <li>[night] Quiet evening with my Pokémon. Neither of us said anything. Neither of us needed to.</li>
+        <li>[night] A quiet night, with my Pokémon curled up beside me.</li>
       </plain>
       <warm><li>Whatever else goes wrong here, {X_nameDef} is glad to see me. Every single day.</li></warm>
       <blunt><li>Good day. Spent the end of it with my Pokémon.</li></blunt>
-      <cheerful><li>{X_nameDef} climbed into my lap again. It's far too big. I love it.</li></cheerful>
+      <cheerful><li>And who climbed into my lap again but {X_nameDef}!</li></cheerful>
       <gloomy><li>On the bad days it's my Pokémon that keeps me going. I don't say that out loud.</li></gloomy>
       <cold><li>Time with my Pokémon today. It keeps it calm, and me.</li></cold>
     </lines>
@@ -246,15 +246,15 @@
     <defName>Council_Journal_Evt_PW_RareSighting</defName>
     <lines>
       <plain>
-        <li>[opt0] Half the colony lay in the grass on the ridge to watch the rare one. Nobody said a word. I'll remember the quiet as much as the animal.</li>
-        <li>[opt1] I followed the rare one for two days to learn its ways. I know where it drinks and where it sleeps. Whether I can catch it is another matter.</li>
-        <li>[opt1] Out after the rare one since dawn. It let me get close once. Only once.</li>
-        <li>[opt2] We let the rare one go by. It was the right thing, probably. I keep looking at the ridge anyway.</li>
+        <li>[opt0] We lay flat on our bellies to watch the rare one go by, hardly breathing. I'll remember the quiet as much as the animal.</li>
+        <li>[opt1] I followed the rare one for hours to learn its ways. I know where it drinks now. Whether I can catch it is another matter.</li>
+        <li>[opt1] Out after the rare one. It let me get close once, and only once.</li>
+        <li>[opt2] We let the rare one go by. It was the right thing, probably. I keep looking out the way it went anyway.</li>
       </plain>
-      <warm><li>[opt0] We all went to see it together. That's the bit I'll keep: all of us in the grass, holding our breath.</li></warm>
+      <warm><li>[opt0] A few of us went out to see it together. That's the part I'll keep, the lot of us lying still and holding our breath.</li></warm>
       <blunt><li>[opt2] Let the rare one pass. Plenty to do here.</li></blunt>
-      <cheerful><li>[opt1] I'm on the trail of a rare one. Me! Wish me luck, journal.</li></cheerful>
-      <gloomy><li>[opt2] The rare one went over the ridge and that was that. We'll never see one again.</li></gloomy>
+      <cheerful><li>[opt1] I got to go after a rare one, me of all people!</li></cheerful>
+      <gloomy><li>[opt2] The rare one wandered off and that was that. We'll never see one like it again.</li></gloomy>
       <cold><li>[opt1] Tracked the rare one. Its habits are noted, for next time.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
