@@ -93,6 +93,8 @@ namespace ColonyCouncil
         /// comes to anyone who fits, at its chance, and sooner to those at its work.
         /// </summary>
         public bool onlyFromPractice;
+        /// <summary>Days lived before it takes root; fewer for a habit lived only on rare days (a birthday).</summary>
+        public int deepDays = PracticeMath.DeepDays;
         /// <summary>
         /// What else it does, beyond its mood and its knack, in a few words for its line ("warns you when food runs
         /// low"); empty when that's all.
@@ -147,7 +149,7 @@ namespace ColonyCouncil
         public string cause;
 
         /// <summary>Lived long enough to be deep-rooted: its knack and its good mood a little stronger.</summary>
-        public bool Deep => PracticeMath.Deep(livedDays);
+        public bool Deep => PracticeMath.Deep(livedDays, def?.deepDays ?? PracticeMath.DeepDays);
 
         public string Label => def.label.Formatted((item?.label ?? "").Named("ITEM")).Resolve();
 
@@ -222,10 +224,11 @@ namespace ColonyCouncil
             return null;
         }
 
-        public void Notify_Fought(Pawn p)
+        /// <summary>A fight they took part in is over; it began at <paramref name="since"/> (-1: not known).</summary>
+        public void Notify_Fought(Pawn p, int since = -1)
         {
             battleTick[p] = Find.TickManager.TicksGame;
-            QuirkMoments.Fought(p);
+            QuirkMoments.Fought(p, since);
         }
 
         // ---------------- Practice, and habits lived ----------------
@@ -292,7 +295,7 @@ namespace ColonyCouncil
             bool wasDeep = q.Deep;
             q.lastLivedDay = day;
             q.livedDays++;
-            q.expiresTick = PracticeMath.KeptUntil(q.expiresTick, now, GenDate.TicksPerDay);
+            q.expiresTick = PracticeMath.KeptUntil(q.expiresTick, now, GenDate.TicksPerDay, q.Deep);
             if (!wasDeep && q.Deep)
             {
                 SyncKnacks();
@@ -315,6 +318,8 @@ namespace ColonyCouncil
             foreach (var l in practice) l.Fade();
             practice.RemoveAll(l => l.Empty);
             practiceById = null;
+            // Kept for trait changes even with quirks off, but nobody's hidden habits live on then.
+            if (!S.quirks) return;
             foreach (var q in quirks.ToList())
             {
                 if (q?.def == null || !q.def.Practised || q.pawn == null) continue;
@@ -508,7 +513,7 @@ namespace ColonyCouncil
         {
             Scribe_Collections.Look(ref quirks, "quirks", LookMode.Deep);
             Scribe_Collections.Look(ref luckyPast, "luckyPast", LookMode.Deep);
-            if (Scribe.mode == LoadSaveMode.Saving) practice.RemoveAll(l => l?.pawn == null || l.pawn.Dead || l.pawn.Discarded);
+            if (Scribe.mode == LoadSaveMode.Saving) practice.RemoveAll(l => l?.pawn == null || l.pawn.Dead || l.pawn.Destroyed || l.pawn.Discarded);
             Scribe_Collections.Look(ref practice, "practice", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.Saving)
             {

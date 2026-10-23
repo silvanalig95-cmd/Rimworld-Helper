@@ -41,6 +41,9 @@ public static class PracticeTests
         Check(PracticeMath.KeptUntil(day0 + 200 * 60000, day0, 60000) == day0 + 200 * 60000, "and never sooner than it would have");
         Check(PracticeMath.KeptUntil(0, day0, 60000) == 0, "a habit for good stays for good");
         Check(!PracticeMath.Deep(PracticeMath.DeepDays - 1) && PracticeMath.Deep(PracticeMath.DeepDays), "deep-rooted after its days lived");
+        Check(PracticeMath.Deep(4, 4) && !PracticeMath.Deep(3, 4), "a habit lived only on rare days takes root sooner");
+        Check(PracticeMath.KeptUntil(day0 + 5 * 60000, day0, 60000, true) == day0 + PracticeMath.DeepKeepDays * 60000 && PracticeMath.DeepKeepDays > PracticeMath.KeepDays,
+            "a deep-rooted habit, lived, lasts longer once they stop");
         Check(PracticeMath.Mood(2f, true) == 3f && PracticeMath.Mood(2f, false) == 2f && PracticeMath.Mood(-2f, true) == -2f,
             "a deep-rooted habit's good mood grows; a bad one never does");
         return cases;

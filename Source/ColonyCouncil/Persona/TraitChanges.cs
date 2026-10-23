@@ -743,7 +743,7 @@ namespace ColonyCouncil
             t.changes.Add(record);
             t.lastChange = now;
             // A habit that grew into the trait is the trait now.
-            if (def.Habit != null && def.endsHabit && step.hasAfter) CouncilGameComponent.Instance?.quirks?.EndHabit(p, def.Habit);
+            if (def.Habit != null && def.endsHabit) CouncilGameComponent.Instance?.quirks?.EndHabit(p, def.Habit);
             if (!def.onceKey.NullOrEmpty()) t.once.Add(def.onceKey);
             try
             {

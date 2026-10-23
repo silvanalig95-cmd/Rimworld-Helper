@@ -206,6 +206,8 @@
     <trait>Kind</trait>
     <change>Gain</change>
     <habit>Council_Quirk_Birthdays</habit>
+    <!-- Lived only on someone's birthday: four birthdays remembered in the habit's months is a lot. -->
+    <habitLived>4</habitLived>
     <blockedBy><li>Psychopath</li><li>Abrasive</li></blockedBy>
     <chance>0.1</chance>
     <tone>1</tone>

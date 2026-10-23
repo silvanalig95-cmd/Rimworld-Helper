@@ -418,6 +418,7 @@
     <who><tags>trait:Kind|skill:Social</tags></who>
     <chance>0.004</chance>
     <days>360</days>
+    <deepDays>4</deepDays>
     <effect>seeks out whoever has a birthday, who is glad to be remembered</effect>
     <hediff>Council_Quirk_Birthdays</hediff>
     <gained>

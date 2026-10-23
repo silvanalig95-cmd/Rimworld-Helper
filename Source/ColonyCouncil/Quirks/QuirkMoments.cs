@@ -36,18 +36,23 @@ namespace ColonyCouncil
 
         private static bool Has(Pawn p, QuirkDef q) => q != null && p != null && CouncilGameComponent.Instance?.quirks?.Get(p, q) != null;
 
-        /// <summary>A fight they took part in is over (SocialWeb): one who knocks on wood and came through it unhurt is glad of it.</summary>
-        public static void Fought(Pawn p)
+        /// <summary>
+        /// A fight they took part in is over (SocialWeb; it began at <paramref name="since"/>, -1 when not known): one who
+        /// knocks on wood and came through it unhurt is glad of it.
+        /// </summary>
+        public static void Fought(Pawn p, int since)
         {
             try
             {
                 Look();
-                if (!On || knocked == null || !Has(p, knocksWood) || p.Dead || p.Downed || p.needs?.mood == null) return;
+                if (!On || !ColonyCouncilMod.Settings.MoodEffects || knocked == null || !Has(p, knocksWood) || p.Dead || p.Downed || p.needs?.mood == null) return;
                 var hediffs = p.health?.hediffSet?.hediffs;
                 if (hediffs == null) return;
-                // Unhurt: no wound from the last six hours.
+                // Unhurt: no wound since the fight began (an hour before it was noticed), or from the last day when that isn't known.
+                int now = Find.TickManager.TicksGame;
+                int window = since >= 0 && since <= now ? now - since + GenDate.TicksPerHour : GenDate.TicksPerDay;
                 foreach (var h in hediffs)
-                    if ((h is Hediff_Injury || h is Hediff_MissingPart) && h.ageTicks < GenDate.TicksPerHour * 6) return;
+                    if ((h is Hediff_Injury || h is Hediff_MissingPart) && h.ageTicks <= window) return;
                 p.needs.mood.thoughts.memories.TryGainMemory(knocked);
             }
             catch (Exception e)
@@ -66,7 +71,7 @@ namespace ColonyCouncil
                 var stage = m.CurStage;
                 if (stage == null || stage.baseMoodEffect <= 0f) return;
                 Look();
-                if (!On || bestBiteThought == null || !Has(p, bestBite)) return;
+                if (!On || !ColonyCouncilMod.Settings.MoodEffects || bestBiteThought == null || !Has(p, bestBite)) return;
                 p.needs?.mood?.thoughts?.memories?.TryGainMemory(bestBiteThought);
             }
             catch (Exception e)

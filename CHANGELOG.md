@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Habits, mended
+
+*23 October 2026, version 0.11.1*
+
+- Remembering every birthday could never take root or grow into kindness: it's lived only on someone's birthday, and asked for sixty. Four birthdays remembered now do it.
+- Knocking on wood gladdened colonists wounded early in a long fight: now only those with no wound since the fight began. That mood and the best bite's follow the setting for moods, like every other, and with quirks switched off, nobody's hidden habits live on, take root or make news.
+- A deep-rooted habit now lasts four months after they stop, as its line says, and one habit leads to one trait change: humming that steadies the lazy is spent on it.
+- Wishes talk about what they are: a fountain, a sculpture or flowers about making the colony beautiful, a guest bed or a comms console about guests and neighbours, recruiting or freeing a prisoner about the prisoner, a council meeting about the council. A promised wish that lapses says its own words for the broken promise first, and a first anniversary's "it still feels new here" can come at last.
+
 ## Habits that grow from a life
 
 *23 October 2026, version 0.11.0*

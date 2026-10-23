@@ -552,7 +552,7 @@ namespace ColonyCouncil
             ResetCount();
             foreach (var p in list)
             {
-                comp.quirks.Notify_Fought(p);
+                comp.quirks.Notify_Fought(p, battleCountStart);
                 comp.aspirations.Notify_Event(p, "battle");
             }
             TalkHooks.Battle(list, foe);

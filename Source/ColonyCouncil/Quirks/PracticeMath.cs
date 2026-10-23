@@ -21,6 +21,9 @@ namespace ColonyCouncil
         /// <summary>A habit lived doesn't fade sooner than this many days from the last day it was lived.</summary>
         public const int KeepDays = 60;
 
+        /// <summary>A deep-rooted one, not sooner than this many.</summary>
+        public const int DeepKeepDays = 120;
+
         /// <summary>Lived this many days, a habit is deep-rooted: its knack and its good mood a little stronger.</summary>
         public const int DeepDays = 60;
 
@@ -45,12 +48,13 @@ namespace ColonyCouncil
         public static bool Lived(float hours, float full) => full > 0f && hours >= full * LivedShare;
 
         /// <summary>
-        /// When a habit lived today fades: no sooner than <see cref="KeepDays"/> from now, and never sooner than it would
-        /// have anyway. A habit kept for good (0) stays so.
+        /// When a habit lived today fades: no sooner than <see cref="KeepDays"/> from now (<see cref="DeepKeepDays"/> for a
+        /// deep-rooted one), and never sooner than it would have anyway. A habit kept for good (0) stays so.
         /// </summary>
-        public static int KeptUntil(int expires, int now, int ticksPerDay) => expires <= 0 ? expires : Math.Max(expires, now + KeepDays * ticksPerDay);
+        public static int KeptUntil(int expires, int now, int ticksPerDay, bool deep = false) =>
+            expires <= 0 ? expires : Math.Max(expires, now + (deep ? DeepKeepDays : KeepDays) * ticksPerDay);
 
-        public static bool Deep(int livedDays) => livedDays >= DeepDays;
+        public static bool Deep(int livedDays, int deepDays = DeepDays) => livedDays >= Math.Max(1, deepDays);
 
         /// <summary>A good mood of a habit, deepened when it's deep-rooted (bad ones never grow).</summary>
         public static float Mood(float mood, bool deep) => deep && mood > 0f ? (float)Math.Round(mood * DeepMood) : mood;
