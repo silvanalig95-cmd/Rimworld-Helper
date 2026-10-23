@@ -33,6 +33,46 @@
   </JobDef>
 
   <!--
+    Words said to a gathering (a lesson, a story, a letter read out; PlayOut/PlayListen.cs): the speaker stands at the
+    head of the table, the listeners take the chairs round it or stand close by, all facing each other.
+  -->
+  <JobDef>
+    <defName>Council_PlayOutListen</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutListen</driverClass>
+    <reportString>listening.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_PlayOutSpeak</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutSpeak</driverClass>
+    <reportString>speaking to those gathered.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <DutyDef>
+    <defName>Council_PlayOutListenDuty</defName>
+    <hook>MediumPriority</hook>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_PlayOutListen" />
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <DutyDef>
+    <defName>Council_PlayOutSpeakDuty</defName>
+    <hook>MediumPriority</hook>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_PlayOutSpeak" />
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!--
     Work parties, walks together, vigils, searches and errands an answer called (PlayOut/PlayGroups.cs). Each person is
     on a job of their own, never in a lord, so the game's own gatherings and rituals can always take them.
   -->

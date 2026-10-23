@@ -19,6 +19,10 @@ namespace ColonyCouncil
         public static JobDef Council_PlayOutSearch;
         public static JobDef Council_PlayOutCarry;
         public static JobDef Council_PlayOutWorkNext;
+        public static JobDef Council_PlayOutListen;
+        public static JobDef Council_PlayOutSpeak;
+        public static DutyDef Council_PlayOutListenDuty;
+        public static DutyDef Council_PlayOutSpeakDuty;
 
         static PlayOutDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(PlayOutDefOf));
     }
@@ -42,6 +46,8 @@ namespace ColonyCouncil
         public Thing laidFire;
         public bool music;
         public bool words;
+        /// <summary>Words said by the event's stranger (a visiting scholar's lesson), who is a guest, not one of the gathering.</summary>
+        public Pawn stranger;
         public string pool;
         public List<string> lines = new List<string>();
         private List<Pawn> served = new List<Pawn>();
@@ -81,8 +87,16 @@ namespace ColonyCouncil
 
         public override bool OrganizerIsStartingPawn => true;
 
+        // Words are listened to at a table, facing the speaker (PlayListen.cs); anything else is the game's party.
         protected override LordToil CreateGatheringToil(IntVec3 spot, Pawn organizer, GatheringDef gatheringDef) =>
-            new LordToil_Party(spot, gatheringDef, kind == PlayKind.Toast ? 2.5E-05f : LordToil_Party.DefaultJoyPerTick);
+            words ? new LordToil_PlayOutListen(spot, gatheringDef)
+                : new LordToil_Party(spot, gatheringDef, kind == PlayKind.Toast ? 2.5E-05f : LordToil_Party.DefaultJoyPerTick);
+
+        /// <summary>The colonist who speaks at words (the organizer), or null when the stranger does.</summary>
+        public Pawn ColonistSpeaker => words && stranger == null ? organizer : null;
+
+        /// <summary>Whoever speaks at words: the stranger, else the organizer.</summary>
+        private Pawn Speaker => stranger ?? organizer;
 
         public override StateGraph CreateGraph()
         {
@@ -162,12 +176,29 @@ namespace ColonyCouncil
                 if (serve && kind == PlayKind.Feast) Serve();
                 // A drink from the stores to raise (Integrations/ToastDrinks.cs: beer, Vanilla Brewing Expanded's wines and teas).
                 if (kind == PlayKind.Toast) ToastDrinks.Pour(lord, Map, spot, words);
+                if (words) KeepStrangerAtHead();
                 Touches();
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("gathering tick", e);
             }
+        }
+
+        /// <summary>
+        /// The stranger who speaks isn't one of the gathering (they're a guest with their own plans), so they're walked
+        /// to the head of the table and kept there while it lasts, unless they're leaving or can't.
+        /// </summary>
+        private void KeepStrangerAtHead()
+        {
+            var x = stranger;
+            if (x == null || x.Dead || !x.Spawned || x.Map != Map || x.Downed || x.InMentalState || x.HostileTo(Faction.OfPlayer)) return;
+            if (x.CurJobDef == PlayOutDefOf.Council_PlayOutSpeak) return;
+            var duty = x.mindState?.duty?.def;
+            if (duty != null && duty.defName.StartsWith("ExitMap")) return;
+            if (!(party is LordToil_PlayOutListen listen) || !listen.Head.IsValid) return;
+            if (!x.CanReach(listen.Head, PathEndMode.OnCell, Danger.Some)) return;
+            x.jobs.StartJob(PlayListen.SpeakJob(listen.Head, listen.Stage.CenterCell), JobCondition.InterruptForced, null, false, true);
         }
 
         /// <summary>
@@ -231,7 +262,10 @@ namespace ColonyCouncil
                         FleckMaker.ThrowMetaIcon(p.Position, map, musicFleck);
             }
             if (!Rand.Chance(0.3f)) return;
-            var speaker = GatheringTouches.Speaker(kind, here);
+            // At words, the one speaking says the lines when they're there.
+            var talker = words ? Speaker : null;
+            var speaker = talker != null && talker.Spawned && talker.Awake() && talker.Map == map && GatheringsUtility.InGatheringArea(talker.Position, spot, map)
+                ? talker : GatheringTouches.Speaker(kind, here);
             string line = null;
             if (!lines.NullOrEmpty() && Rand.Chance(0.5f)) line = lines.RandomElement();
             if (line.NullOrEmpty() && !pool.NullOrEmpty()) line = Flavor.FromPool(pool, speaker);
@@ -260,6 +294,15 @@ namespace ColonyCouncil
         {
             if (ended) return;
             ended = true;
+            try
+            {
+                if (stranger != null && stranger.Spawned && stranger.CurJobDef == PlayOutDefOf.Council_PlayOutSpeak)
+                    stranger.jobs.EndCurrentJob(JobCondition.InterruptForced);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("gathering speaker", e);
+            }
             try
             {
                 var attended = new List<Pawn>();
@@ -313,6 +356,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref laidFire, "laidFire");
             Scribe_Values.Look(ref music, "music");
             Scribe_Values.Look(ref words, "words");
+            Scribe_References.Look(ref stranger, "stranger");
             Scribe_Values.Look(ref pool, "pool");
             Scribe_Collections.Look(ref lines, "lines", LookMode.Value);
             Scribe_Collections.Look(ref served, "served", LookMode.Reference);

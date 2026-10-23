@@ -157,6 +157,9 @@ namespace ColonyCouncil
         public ThoughtDef thought;
         public Pawn about;
         public string cause;
+        /// <summary>Or, instead of a memory, what they learn there: this much of a skill (a lesson's).</summary>
+        public SkillDef skill;
+        public float xp;
 
         public void ExposeData()
         {
@@ -164,12 +167,21 @@ namespace ColonyCouncil
             Scribe_Defs.Look(ref thought, "thought");
             Scribe_References.Look(ref about, "about");
             Scribe_Values.Look(ref cause, "cause");
+            Scribe_Defs.Look(ref skill, "skill");
+            Scribe_Values.Look(ref xp, "xp");
         }
 
-        /// <summary>The memory, now (if they're still here to have it).</summary>
+        /// <summary>The memory or the learning, now (if they're still here to have it).</summary>
         public void Give()
         {
-            if (pawn == null || pawn.Dead || thought == null) return;
+            if (pawn == null || pawn.Dead) return;
+            if (skill != null)
+            {
+                var rec = pawn.skills?.GetSkill(skill);
+                if (rec != null && !rec.TotallyDisabled) rec.Learn(xp, true);
+                return;
+            }
+            if (thought == null) return;
             using (Causes.Push(cause)) CouncilGameComponent.GiveThought(pawn, thought, about == pawn ? null : about, -1f, cause);
         }
     }
@@ -346,7 +358,7 @@ namespace ColonyCouncil
                 if (spots == null) spots = new List<PlaySpot>();
                 if (lines == null) lines = new List<string>();
                 if (moods == null) moods = new List<HeldMood>();
-                moods.RemoveAll(m => m == null || m.pawn == null || m.thought == null);
+                moods.RemoveAll(m => m == null || m.pawn == null || m.thought == null && m.skill == null);
             }
         }
     }
@@ -454,6 +466,20 @@ namespace ColonyCouncil
             var play = scope.plays.FirstOrDefault(x => x.state != PlayState.Done && x.TakesPart(p));
             if (play == null) return false;
             play.moods.Add(new HeldMood { pawn = p, thought = thought, about = about, cause = Causes.Current });
+            return true;
+        }
+
+        /// <summary>
+        /// What someone learns from an answer that sets something going they take part in (a lesson): kept with the plan
+        /// and given when it's over to those who were there, like a held mood. False: give it now.
+        /// </summary>
+        public static bool HoldLearning(Pawn p, SkillDef skill, float xp)
+        {
+            if (scopes.Count == 0 || p == null || skill == null || xp <= 0f) return false;
+            var scope = scopes[scopes.Count - 1];
+            var play = scope.plays.FirstOrDefault(x => x.state != PlayState.Done && x.TakesPart(p));
+            if (play == null) return false;
+            play.moods.Add(new HeldMood { pawn = p, skill = skill, xp = xp, cause = Causes.Current });
             return true;
         }
 

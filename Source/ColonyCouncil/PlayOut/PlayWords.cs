@@ -61,6 +61,25 @@ namespace ColonyCouncil
             return "CC_Play_NamesAndMore".Translate(string.Join(", ", named.Take(2)), named.Count - 2).Resolve();
         }
 
+        /// <summary>
+        /// What those who were there learned from it, a sentence per skill ("Hector and Stace learned from it: intellectual
+        /// +800 xp each."), or null when it taught nothing.
+        /// </summary>
+        public static string Learned(PlayOut p, List<Pawn> took)
+        {
+            if (p?.moods == null || took == null) return null;
+            var parts = new List<string>();
+            var taught = p.moods.Where(m => m?.skill != null && m.pawn != null && !m.pawn.Dead && took.Contains(m.pawn)
+                                            && m.pawn.skills?.GetSkill(m.skill) is SkillRecord rec && !rec.TotallyDisabled);
+            foreach (var g in taught.GroupBy(m => (m.skill, xp: Mathf.RoundToInt(m.xp))))
+            {
+                var who = g.Select(m => m.pawn).Distinct().ToList();
+                string key = who.Count == 1 ? "CC_Play_End_LearnedOne" : "CC_Play_End_Learned";
+                parts.Add(key.Translate(Names(who), g.Key.skill.label, g.Key.xp).Resolve());
+            }
+            return parts.Count == 0 ? null : string.Join(" ", parts);
+        }
+
         /// <summary>What a work party does, in words ("cleaning and hauling").</summary>
         public static string TaskWords(PlayOut p) =>
             TextUtil.JoinAnd(p.tasks.Distinct().Select(t => ("CC_Play_Task_" + t).Translate().ToString()).ToList());

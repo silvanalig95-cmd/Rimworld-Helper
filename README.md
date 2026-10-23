@@ -415,7 +415,8 @@ dilemmas and 125 Rimfolk events, stories and world events, plus calendar days, s
 stages of personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
-after), a toast is raised, an apology or a reading is heard round the table, a friend sits with someone who is ill, a
+after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
+at its head, the listeners in the chairs round it), a friend sits with someone who is ill, a
 colonist sits by a grave or at the camp's fire, an apprentice works at the teacher's side, a worn-out doctor is sent
 to bed. A work party cleans, hauls, mends, builds, sows or brings in the harvest with the game's own jobs, on work the
 colony really has; the colony walks out together to the graves or the gate and back; a few keep a vigil into the
@@ -426,7 +427,8 @@ sits at the bedside with the last dose, the snow is shovelled, the bees are smok
 and the envoy's price go out to the gate by hand. The answer's own words are told once it's over. None of them
 holds anyone in a gathering, so the game's own parties and rituals can always take them. Nobody is called from
 danger, sleep, a meal or a sickbed, nothing starts with enemies about, and danger, drafting, hunger or exhaustion ends
-it. The answer's good moods come to those who were there once it's over; if it never happens within a few hours,
+it. The answer's good moods, and what it teaches, come to those who were there once it's over (the closing message
+names who learned what); if it never happens within a few hours,
 everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
 who took part write about it. A setting (Events & world) turns it off.
 

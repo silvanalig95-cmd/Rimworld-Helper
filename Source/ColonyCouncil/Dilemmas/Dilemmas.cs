@@ -628,7 +628,9 @@ namespace ColonyCouncil
             foreach (var p in Targets(ctx))
             {
                 var rec = p.skills?.GetSkill(sk);
-                if (rec != null && !rec.TotallyDisabled) rec.Learn(xp, true);
+                if (rec == null || rec.TotallyDisabled) continue;
+                // At a lesson the answer set going, learned by those who are there, when it's over (PlayOut/).
+                if (!PlayOuts.HoldLearning(p, sk, xp)) rec.Learn(xp, true);
             }
         }
     }

@@ -251,7 +251,11 @@ namespace ColonyCouncil
                 return;
             }
             var gd = PlayOutDefOf.Council_PlayOutGathering;
-            var job = new LordJob_PlayOut(spot, organizer, gd, p) { laidFire = laid };
+            // Words nobody of ours was named to say (a visiting scholar's lesson) are said by the event's stranger.
+            var x = p.other;
+            bool strangerSpeaks = p.words && p.organizer == null && x != null && x.Spawned && x.Map == map && !x.Dead && x.RaceProps.Humanlike
+                                  && x.Faction != Faction.OfPlayer;
+            var job = new LordJob_PlayOut(spot, organizer, gd, p) { laidFire = laid, stranger = strangerSpeaks ? x : null };
             int meals = -1;
             if (p.kind == PlayKind.Feast)
             {
@@ -494,6 +498,7 @@ namespace ColonyCouncil
                 Fallback(p, early ? "CC_Play_Why_CutShort".Translate() : "CC_Play_Why_Busy".Translate(), false);
                 return;
             }
+            string learned = PlayWords.Learned(p, attended);
             Done(p, attended, true);
             string name = (label ?? p.label ?? "").CapitalizeFirst();
             string text = early ? "CC_Play_End_Early".Translate(name).Resolve()
@@ -502,6 +507,7 @@ namespace ColonyCouncil
             // The answer's own words for it, now that it has happened (a feast says how many meals in brackets).
             if (!early) text = PlayWords.EndWords(p, text, ate >= 0 ? "CC_Play_End_Ate".Translate(ate).Resolve() : null);
             if (fire) text += " " + "CC_Play_End_Fire".Translate().Resolve();
+            if (!learned.NullOrEmpty()) text += " " + learned;
             News.Post(text, new LookTargets(attended.Where(x => x != null && x.Spawned)), NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Flavor);
         }
 
@@ -516,7 +522,8 @@ namespace ColonyCouncil
             if (!gathering && !p.IsGroup && !p.outcome.NullOrEmpty())
             {
                 var look = (took ?? new List<Pawn> { p.visitor, p.other }).Where(x => x != null && x.Spawned).ToList();
-                News.Post(p.outcome, look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                string learned = took != null ? PlayWords.Learned(p, took) : null;
+                News.Post(learned.NullOrEmpty() ? p.outcome : p.outcome + " " + learned, look.Count > 0 ? new LookTargets(look) : LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Notable);
             }
             if (took == null)
             {

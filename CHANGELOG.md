@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A lesson at the table
+
+*23 October 2026, version 0.10.12*
+
+- Words said to a gathering (a lesson, a story, an apology, a letter read out) are no longer a party where everyone wanders about. The speaker stands at the head of the table, the listeners sit in the chairs round it facing them, and the rest stand close by; with no table near, they stand in a ring round the speaker.
+- A visiting scholar who is asked to teach now comes to the table and gives the lesson there, instead of walking about while the colony follows, and the lesson is held at the dining table when there is one.
+- What a lesson teaches goes to those who sat through it, when it's over, and the closing message says who learned what ("Hector, Harper and 3 others learned from it: intellectual +800 xp each"). The scholar's lesson teaches 800 xp instead of 350, since it no longer goes to everyone.
+
 ## A clean sweep that cleans
 
 *23 October 2026, version 0.10.11*

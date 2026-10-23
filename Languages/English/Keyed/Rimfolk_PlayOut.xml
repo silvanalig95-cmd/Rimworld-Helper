@@ -23,6 +23,8 @@
   <CC_Play_Report_Bonfire>round the fire.</CC_Play_Report_Bonfire>
   <CC_Play_Report_Toast>raising a cup with the others.</CC_Play_Report_Toast>
   <CC_Play_Report_Words>listening with the others.</CC_Play_Report_Words>
+  <CC_Play_Report_Listen>listening.</CC_Play_Report_Listen>
+  <CC_Play_Report_Speak>speaking to those gathered.</CC_Play_Report_Speak>
   <CC_Play_Report_Visit>keeping {OTHER_nameDef} company.</CC_Play_Report_Visit>
   <CC_Play_Report_Lesson>learning at {OTHER_nameDef}'s side.</CC_Play_Report_Lesson>
   <CC_Play_Report_Grave>sitting by a grave.</CC_Play_Report_Grave>
@@ -67,6 +69,8 @@
   <CC_Play_End_Feast>{0} is over: {1} ate at the table.</CC_Play_End_Feast>
   <CC_Play_End_Early>{0} broke up early.</CC_Play_End_Early>
   <CC_Play_End_Fire>The fire has burned down to ash.</CC_Play_End_Fire>
+  <CC_Play_End_Learned>{0} learned from it: {1} +{2} xp each.</CC_Play_End_Learned>
+  <CC_Play_End_LearnedOne>{0} learned from it: {1} +{2} xp.</CC_Play_End_LearnedOne>
 
   <!-- When it never happens -->
   <CC_Play_Fallback>{0} never quite happened ({1}). People took heart from it all the same.</CC_Play_Fallback>
