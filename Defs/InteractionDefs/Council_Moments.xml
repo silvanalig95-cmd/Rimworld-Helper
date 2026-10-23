@@ -1662,19 +1662,19 @@
   <!-- ===================== A little light: fire mage, brightmage, paladin, priest ===================== -->
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_MagicLight</defName>
-    <label>showed a little magic</label>
+    <label>showed some magic</label>
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <recipientThought>Council_Moment_SawMagic</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] cupped [INITIATOR_possessive] hands and showed [RECIPIENT_nameDef] a small, warm light floating between [INITIATOR_possessive] palms.</li>
-        <li>r_logentry->[INITIATOR_nameDef] lit a candle for [RECIPIENT_nameDef] with a whispered word and a wink.</li>
-        <li>r_logentry->[INITIATOR_nameDef] warmed [RECIPIENT_nameDef]'s cold hands with a touch of magic, gentle as a hearth.</li>
-        <li>r_logentry->[INITIATOR_nameDef] made a tiny sun dance above [INITIATOR_possessive] fingertip for [RECIPIENT_nameDef]. [RECIPIENT_nameDef] [lightreaction].</li>
-        <li>r_logentry->[INITIATOR_nameDef] lit the way for [RECIPIENT_nameDef] with a soft glow from [INITIATOR_possessive] hand, and explained that it was the easiest thing [INITIATOR_pronoun] knew.</li>
+        <li>r_logentry->[INITIATOR_nameDef] spoke a single word, and a small flame sat on [INITIATOR_possessive] thumb for [RECIPIENT_nameDef] to see.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to warm [RECIPIENT_nameDef]'s hands with a touch of magic, gentle as a hearth.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a tiny sun dance above [INITIATOR_possessive] fingertip for [RECIPIENT_nameDef], and [RECIPIENT_nameDef] [lightreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [INITIATOR_possessive] palm glow softly and told [RECIPIENT_nameDef] it was the easiest thing [INITIATOR_pronoun] knew.</li>
         <li>lightreaction->clapped like a child</li>
         <li>lightreaction->asked to see it again</li>
-        <li>lightreaction->went very quiet, then smiled</li>
+        <li>lightreaction->said it was the prettiest thing [RECIPIENT_pronoun] had seen in months</li>
         <li>lightreaction->reached out to touch it and found it only warm</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -1695,17 +1695,17 @@
   <!-- ===================== A little frost: ice mage ===================== -->
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_MagicFrost</defName>
-    <label>showed a little frost magic</label>
+    <label>showed some frost magic</label>
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <recipientThought>Council_Moment_SawMagic</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] breathed on a cup of water and handed [RECIPIENT_nameDef] a cup of ice.</li>
-        <li>r_logentry->[INITIATOR_nameDef] drew frost ferns across a cup with one fingertip while [RECIPIENT_nameDef] watched, delighted.</li>
-        <li>r_logentry->[INITIATOR_nameDef] chilled [RECIPIENT_nameDef]'s drink with a touch, and refused all payment.</li>
+        <li>r_logentry->[INITIATOR_nameDef] breathed on [INITIATOR_possessive] palm and showed [RECIPIENT_nameDef] the frost that grew there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] drew frost ferns across the back of [INITIATOR_possessive] hand with one fingertip while [RECIPIENT_nameDef] watched.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to chill [RECIPIENT_nameDef]'s next drink with a touch, free of charge.</li>
         <li>r_logentry->[INITIATOR_nameDef] made a single perfect snowflake for [RECIPIENT_nameDef], big as a coin, and let it melt in [RECIPIENT_possessive] palm.</li>
-        <li>r_logentry->[INITIATOR_nameDef] cooled the air around [RECIPIENT_nameDef] for a moment. [RECIPIENT_nameDef] [frostreaction].</li>
-        <li>frostreaction->sighed with pure relief</li>
+        <li>r_logentry->[INITIATOR_nameDef] cooled the air around [RECIPIENT_nameDef] for a moment, and [RECIPIENT_nameDef] [frostreaction].</li>
+        <li>frostreaction->asked how long it would last</li>
         <li>frostreaction->shivered and laughed</li>
         <li>frostreaction->asked whether [INITIATOR_pronoun] could do that all summer</li>
         <li>frostreaction->said it smelled like the first day of winter</li>
@@ -1728,16 +1728,16 @@
   <!-- ===================== A little green: druid, shaman ===================== -->
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_MagicGreen</defName>
-    <label>showed a little nature magic</label>
+    <label>showed some nature magic</label>
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <recipientThought>Council_Moment_SawMagic</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] pressed a seed into [RECIPIENT_nameDef]'s palm and whispered to it until it sprouted.</li>
-        <li>r_logentry->[INITIATOR_nameDef] coaxed a closed flower into blooming for [RECIPIENT_nameDef], hours early.</li>
-        <li>r_logentry->[INITIATOR_nameDef] called a small bird down to [INITIATOR_possessive] hand so [RECIPIENT_nameDef] could see it up close.</li>
-        <li>r_logentry->[INITIATOR_nameDef] laid a hand on a tired plant, and [RECIPIENT_nameDef] watched it lift its leaves.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] how [INITIATOR_pronoun] listens to the land. [RECIPIENT_nameDef] [greenreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] put a seed in [RECIPIENT_nameDef]'s palm and spoke to it until a green shoot showed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what the land had been saying lately.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] which birds would come down to [INITIATOR_possessive] hand, and which never would.</li>
+        <li>r_logentry->[INITIATOR_nameDef] laid a hand on the ground and told [RECIPIENT_nameDef] it would be a good year for growing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] how [INITIATOR_pronoun] listens to the land, and [RECIPIENT_nameDef] [greenreaction].</li>
         <li>greenreaction->swore [RECIPIENT_pronoun] had heard something too</li>
         <li>greenreaction->heard only the wind, and loved it anyway</li>
         <li>greenreaction->asked to learn</li>
@@ -1766,21 +1766,21 @@
     <recipientThought>Council_Moment_TalkedMagic</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what magic feels like. [RECIPIENT_nameDef] said it was [magicfeel].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone could learn magic. [RECIPIENT_nameDef] said [canlearn].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] when [RECIPIENT_pronoun] first knew [RECIPIENT_pronoun] had the gift. The story took a while.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether magic ever gets tiring. [RECIPIENT_nameDef] admitted that [magictired].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether it hurts. [RECIPIENT_nameDef] laughed and said [magichurt].</li>
+        <li>r_logentry->When [INITIATOR_nameDef] asked what magic feels like, [RECIPIENT_nameDef] said it was [magicfeel].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone could learn magic, and [RECIPIENT_nameDef] said [canlearn].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] when [RECIPIENT_pronoun] first knew [RECIPIENT_pronoun] had the gift, and the story took a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether magic ever wears [RECIPIENT_objective] out, and [RECIPIENT_nameDef] admitted that [magictired].</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know whether it hurts, and [RECIPIENT_nameDef] laughed and said [magichurt].</li>
         <li>magicfeel->like remembering a word that was on the tip of your tongue</li>
         <li>magicfeel->like warm water running through the hands</li>
         <li>magicfeel->like music only [RECIPIENT_pronoun] could hear</li>
         <li>magicfeel->like holding a breath and letting it go all at once</li>
         <li>canlearn->some can, if the gift is there</li>
-        <li>canlearn->it takes years, and patience, and some luck</li>
+        <li>canlearn->it takes years, and luck besides</li>
         <li>canlearn->anyone can try, though most give up</li>
         <li>canlearn->no one really knows</li>
         <li>magictired->some days it's like carrying water uphill</li>
-        <li>magictired->it's tiring, like any work, and worth it</li>
+        <li>magictired->a long day of it leaves [RECIPIENT_objective] hungry as a wolf</li>
         <li>magictired->rest matters as much as practice</li>
         <li>magichurt->only [RECIPIENT_possessive] pride, when it goes wrong</li>
         <li>magichurt->no, it tickles</li>
@@ -1816,19 +1816,19 @@
     <initiatorThought>Council_Moment_ToldToWash</initiatorThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] sat down next to [RECIPIENT_nameDef], who very kindly suggested that [INITIATOR_pronoun] [washhint].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] very kindly suggested to [INITIATOR_nameDef] that [INITIATOR_pronoun] [washhint].</li>
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef], as a friend, that the animals had started avoiding [INITIATOR_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] leaned in to tell [RECIPIENT_nameDef] something, and [RECIPIENT_nameDef] leaned away and pointed toward the water.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef], kindly but firmly, that a wash was overdue.</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef], with great tact, whether [INITIATOR_pronoun] was [smellguess].</li>
-        <li>r_logentry->[INITIATOR_nameDef] wondered aloud why the others were keeping their distance today. [RECIPIENT_nameDef] [washanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud why people kept their distance lately, and [RECIPIENT_nameDef] [washanswer].</li>
         <li>washhint->might enjoy a nice long wash</li>
-        <li>washhint->pay the wash tub a visit, today if possible</li>
-        <li>washhint->could use some soap and a quiet hour</li>
+        <li>washhint->should find some soap and water, today if possible</li>
+        <li>washhint->could use a good scrub</li>
         <li>smellguess->growing a new kind of cheese somewhere</li>
         <li>smellguess->trying to keep the flies company</li>
         <li>smellguess->storing something in [INITIATOR_possessive] boots</li>
-        <li>washanswer->handed [INITIATOR_objective] a bar of soap without a word</li>
-        <li>washanswer->explained, gently, with a lot of pointing at the water</li>
+        <li>washanswer->told [INITIATOR_objective], holding [RECIPIENT_possessive] nose</li>
+        <li>washanswer->explained, gently, and at some length</li>
         <li>washanswer->suggested a wash, and the sooner the better</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -1855,10 +1855,10 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] felt human again after a proper wash.</li>
-        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] smell [INITIATOR_possessive] clean hair. [RECIPIENT_nameDef] [cleanreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] smell [INITIATOR_possessive] clean hair, and [RECIPIENT_nameDef] [cleanreaction].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a good wash is [washpraise].</li>
         <li>r_logentry->[INITIATOR_nameDef] walked past [RECIPIENT_nameDef] looking scrubbed pink and very pleased with [INITIATOR_objective]self.</li>
-        <li>r_logentry->[INITIATOR_nameDef] urged [RECIPIENT_nameDef] to go and wash too, while the water was still warm.</li>
+        <li>r_logentry->[INITIATOR_nameDef] urged [RECIPIENT_nameDef] to go and wash too.</li>
         <li>cleanreaction->agreed it was a big improvement</li>
         <li>cleanreaction->said [INITIATOR_pronoun] smelled of soap and smugness</li>
         <li>cleanreaction->was impressed, and slightly jealous</li>
@@ -1901,7 +1901,7 @@
         <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] promise to try [newdish] next time it came around.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had tasted [newdish] and was now ruined for ordinary food forever.</li>
         <li>newdish->the new dish</li>
-        <li>newdish->today's special</li>
+        <li>newdish->the cook's experiment</li>
         <li>newdish->the cook's latest creation</li>
         <li>newdish->the new recipe</li>
         <li>dishpraise->a new dish, and a wonderful one</li>
