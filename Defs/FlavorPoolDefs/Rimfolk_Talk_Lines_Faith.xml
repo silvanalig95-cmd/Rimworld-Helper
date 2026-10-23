@@ -43,7 +43,7 @@
         <li>[faith:majority,otherideo] I hope you never feel shut out, keeping a different ideoligion from most of us.</li>
         <li>[faith:devout,sameideo] I'm glad of you at the rites, it's easier to hold on with someone beside me.</li>
         <li>[steadied,faith:devout] Nothing out here is certain except this, and I'm glad we share it.</li>
-        <li>[steadied] I said the old words this morning and thought of you saying them too.</li>
+        <li>[steadied] I said the old words today and thought of you saying them too.</li>
         <li>[nopreaching,otherideo] I'll tell you what I believe if you ask, but I won't push it on you.</li>
         <li>[nopreaching] Where I come from, you keep your faith and let others keep theirs.</li>
         <li>[digin,faith:devout] I'll say it plainly: I'm not ashamed of what I believe.</li>
@@ -63,10 +63,10 @@
       <cheerful>
         <li>[persuading] Come to one rite with us, and if you hate it I'll do your laundry for a week.</li>
         <li>[faith:alone] Being the only one of my ideoligion here means I always get the best seat at the rites.</li>
-        <li>[steadied,sameideo] Good rite this morning, and I only nodded off once.</li>
+        <li>[steadied,sameideo] Good rite last time, and I only nodded off once.</li>
       </cheerful>
       <gloomy>
-        <li>[faith:wavering] Some days the faith holds me up, and some days it holds me down.</li>
+        <li>[faith:wavering] Some days the faith is all that gets me up, and some days I can't feel it at all.</li>
         <li>[persuading] Out here, faith is the only thing that doesn't run out, think about it.</li>
       </gloomy>
       <cold>
@@ -89,13 +89,13 @@
         <li>[persuaded,friends] Coming from you, I'll listen, so go on.</li>
         <li>[persuaded] You say it like you've never doubted it once, and I envy that.</li>
         <li>[persuaded,agree] Funny, I've thought the same and never said it.</li>
-        <li>[unmoved] I hear you, but I'm staying where I am.</li>
+        <li>[unmoved] I've listened, but I'm staying where I am.</li>
         <li>[unmoved,faith:devout] That's well said, but it isn't enough.</li>
         <li>[unmoved] I'll grant you that one point, and just the one.</li>
         <li>[preachedat] Where I come from we don't press our faith on people, so don't press yours.</li>
         <li>[preachedat] I didn't ask to be preached at.</li>
         <li>[preachedat,theirfaith] I know what {SUBJECT} teaches without hearing it over supper.</li>
-        <li>[persuading,otherfaith:wavering] Doubt isn't the end of faith, sometimes it's the door to it.</li>
+        <li>[persuading,otherfaith:wavering] I doubted for a whole year once, and came back to it stronger.</li>
         <li>[persuading] What I have, I'd share with anyone who asked, and you're asking in your way.</li>
         <li>[persuading,otherfaith:wavering] Whatever you lost hold of, you can find again, I did.</li>
         <li>[persuading,debate] You make a fair point, so let me make a better one.</li>
@@ -122,7 +122,7 @@
         <li>[persuaded] Fine, you've got a point, don't let it go to your head.</li>
       </blunt>
       <cheerful>
-        <li>[persuaded] Keep talking like that and I'll be at your rites by spring.</li>
+        <li>[persuaded] Keep talking like that and I'll be at your rites before long.</li>
         <li>[unmoved] Very convincing, and I'll think it over in the next life.</li>
         <li>[steadied] Between the two of us, we've nearly got the whole thing worked out.</li>
       </cheerful>
@@ -152,7 +152,7 @@
         <li>[persuaded,faith:wavering] I'll sleep on it, and I might even sleep, for once.</li>
         <li>[unmoved] I'll think about it, but don't wait up.</li>
         <li>[preachedat] Let's leave it there, before one of us says something.</li>
-        <li>[digin] Well, neither of us is moving tonight.</li>
+        <li>[digin] Well, neither of us is moving today.</li>
         <li>[digin] We'll each keep our own, then.</li>
         <li>[steadied] Same time at the next rite, then.</li>
         <li>[steadied,faith:devout] Hold fast, and so will I.</li>
@@ -183,7 +183,7 @@
         <li>[persuaded] I'll think on it, and I mean that.</li>
         <li>[persuaded,theirfaith] Maybe I'll come and see one of your rites, just to see.</li>
         <li>[persuaded] Nobody's ever put it to me like that before.</li>
-        <li>[unmoved] Good night, and I'm keeping my own faith, thank you.</li>
+        <li>[unmoved] Thanks all the same, but I'm keeping my own faith.</li>
         <li>[preachedat] Next time, ask before you start.</li>
         <li>[persuading] You know where to find me.</li>
         <li>[persuading,otherfaith:wavering] Don't be afraid of the doubt, just don't be alone with it.</li>
