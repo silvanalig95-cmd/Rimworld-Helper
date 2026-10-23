@@ -148,10 +148,10 @@
     <interaction>Council_Friction_Habit</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] kept a tally of [RECIPIENT_nameDef] [habit] all morning, and read out the total at lunch.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had kept a tally of [RECIPIENT_nameDef] [habit], and read [RECIPIENT_objective] the total.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] nicely to stop [habit], and then less nicely.</li>
-        <li>r_logentry->[INITIATOR_nameDef] stood in the doorway and asked whether [RECIPIENT_nameDef] was going to keep [habit] all day.</li>
-        <li>r_logentry->[INITIATOR_nameDef] gave up on the job and went to do it somewhere [RECIPIENT_nameDef] wasn't [habit].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked whether [RECIPIENT_nameDef] was going to keep [habit] all day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that nobody could work with [RECIPIENT_objective] [habit] like that.</li>
         <li>r_logentry->[INITIATOR_nameDef] put a hand on [RECIPIENT_nameDef]'s shoulder and said, very calmly, that the humming had to stop.</li>
         <li>habit->drumming [RECIPIENT_possessive] fingers on the table</li>
         <li>habit->humming the same tune over and over</li>
