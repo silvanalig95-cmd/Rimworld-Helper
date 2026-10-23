@@ -19,7 +19,7 @@
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
-    <chance>0.003</chance>
+    <chance>0.0015</chance>
     <days>300</days>
     <practice><li>work</li></practice>
     <practiceHours>180</practiceHours>
@@ -380,7 +380,7 @@
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
-    <chance>0.003</chance>
+    <chance>0.0015</chance>
     <days>300</days>
     <practice><li>outdoors</li></practice>
     <practiceHours>120</practiceHours>
