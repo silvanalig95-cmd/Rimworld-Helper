@@ -570,11 +570,11 @@
 
   <InteractionDef ParentName="Council_FrictionMomentBase">
     <defName>Council_Friction_Corrected</defName>
-    <label>corrected them with others listening</label>
+    <label>picked holes in what they said</label>
     <recipientThought>Council_Friction_Corrected</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] corrected [RECIPIENT_nameDef]'s [corrected] at the table, with the others listening.</li>
+        <li>r_logentry->[INITIATOR_nameDef] corrected [RECIPIENT_nameDef]'s [corrected], loudly enough for anyone nearby to hear.</li>
         <li>r_logentry->[INITIATOR_nameDef] stopped [RECIPIENT_nameDef] halfway through a story to point out [storyflaw].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had been [mistake] all this time.</li>
         <li>r_logentry->[INITIATOR_nameDef] waited until [RECIPIENT_nameDef] had finished, then explained what [RECIPIENT_pronoun] had gotten wrong.</li>
@@ -592,10 +592,10 @@
         <li>mistake->calling the wrong bird by that name</li>
         <li>r_logentry->[INITIATOR_nameDef] interrupted [RECIPIENT_nameDef] to fix [RECIPIENT_possessive] [corrected], then told [RECIPIENT_objective] to go on.</li>
         <li>r_logentry->[INITIATOR_nameDef] sighed and told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had been [mistake] for as long as [INITIATOR_pronoun] had known [RECIPIENT_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] corrected [RECIPIENT_nameDef] in front of the cook, who agreed with [INITIATOR_objective].</li>
-        <li>mistake->pronouncing the name of the river wrong</li>
-        <li>corrected->directions to the river</li>
-        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] finish, then told the table what had really happened.</li>
+        <li>r_logentry->[INITIATOR_nameDef] corrected [RECIPIENT_nameDef] on something [RECIPIENT_pronoun] had been sure of all [RECIPIENT_possessive] life.</li>
+        <li>mistake->getting the cook's name wrong</li>
+        <li>corrected->directions to the far field</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] finish, then told [RECIPIENT_objective] what had really happened.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -617,9 +617,9 @@
     <recipientThought>Council_Friction_BadJoke</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] made a joke about [RECIPIENT_nameDef]'s [jokesubject]. [RECIPIENT_nameDef] did not laugh.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a joke about [RECIPIENT_nameDef]'s [jokesubject], and [RECIPIENT_nameDef] did not laugh.</li>
         <li>r_logentry->[INITIATOR_nameDef] made a crack about [RECIPIENT_nameDef]'s [jokesubject], and the silence afterward went on too long.</li>
-        <li>r_logentry->[INITIATOR_nameDef] laughed at [INITIATOR_possessive] own joke. [RECIPIENT_nameDef] didn't, because it was about [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] laughed at [INITIATOR_possessive] own joke, which had been about [RECIPIENT_nameDef], and [RECIPIENT_nameDef] didn't.</li>
         <li>r_logentry->[INITIATOR_nameDef] tried to make [RECIPIENT_nameDef] laugh and only made [RECIPIENT_objective] cross.</li>
         <li>jokesubject->cooking</li>
         <li>jokesubject->haircut</li>
@@ -628,7 +628,7 @@
         <li>jokesubject->sense of direction</li>
         <li>jokesubject->dancing</li>
         <li>r_logentry->[INITIATOR_nameDef] said something about [RECIPIENT_nameDef]'s [jokesubject] that [INITIATOR_pronoun] thought was funny.</li>
-        <li>r_logentry->[INITIATOR_nameDef] made a joke at [RECIPIENT_nameDef]'s expense, and the table went quiet.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a joke at [RECIPIENT_nameDef]'s expense, and [RECIPIENT_nameDef] went quiet.</li>
         <li>r_logentry->[INITIATOR_nameDef] repeated the joke about [RECIPIENT_nameDef]'s [jokesubject] in case [RECIPIENT_pronoun] hadn't heard it the first time.</li>
         <li>jokesubject->snoring</li>
         <li>jokesubject->way of walking</li>
@@ -656,7 +656,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] kept teasing [RECIPIENT_nameDef] about [teasesubject] long after it had stopped being funny.</li>
-        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a new nickname. [RECIPIENT_nameDef] hated it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a new nickname, and [RECIPIENT_nameDef] hated it.</li>
         <li>r_logentry->[INITIATOR_nameDef] brought up [teasesubject] again, and this time [RECIPIENT_nameDef] walked away.</li>
         <li>r_logentry->[INITIATOR_nameDef] teased [RECIPIENT_nameDef] until [RECIPIENT_nameDef] said, flatly, that that was enough.</li>
         <li>teasesubject->the time [RECIPIENT_pronoun] fell in the river</li>
@@ -664,11 +664,11 @@
         <li>teasesubject->the stew [RECIPIENT_pronoun] burned</li>
         <li>teasesubject->[RECIPIENT_possessive] fear of chickens</li>
         <li>teasesubject->the time [RECIPIENT_pronoun] got lost on the way to the latrine</li>
-        <li>r_logentry->[INITIATOR_nameDef] told the others about [teasesubject], with [RECIPIENT_nameDef] standing right there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told the story of [teasesubject] again for [RECIPIENT_nameDef]'s benefit, with a few things added.</li>
         <li>r_logentry->[INITIATOR_nameDef] made a face behind [RECIPIENT_nameDef]'s back, and [RECIPIENT_nameDef] turned around in time to see it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] hummed a song about [teasesubject] every time [RECIPIENT_nameDef] walked past.</li>
+        <li>r_logentry->[INITIATOR_nameDef] hummed the song [INITIATOR_pronoun] had made up about [teasesubject] until [RECIPIENT_nameDef] asked [INITIATOR_objective] to stop.</li>
         <li>teasesubject->the time [RECIPIENT_pronoun] fell asleep standing up</li>
-        <li>r_logentry->[INITIATOR_nameDef] kept bringing up [teasesubject] at supper until [RECIPIENT_nameDef] left the table.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept bringing up [teasesubject] until [RECIPIENT_nameDef] got up and left.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -697,21 +697,21 @@
         <li>r_logentry->[INITIATOR_nameDef] found out that [RECIPIENT_nameDef] had passed on something told in confidence, and let [RECIPIENT_objective] know it.</li>
         <li>secretthing->about [INITIATOR_possessive] bad dreams</li>
         <li>secretthing->about [INITIATOR_possessive] old flame</li>
-        <li>secretthing->what [INITIATOR_pronoun] really thought of the cooking</li>
-        <li>secretthing->how old [INITIATOR_pronoun] really was</li>
+        <li>secretthing->about what [INITIATOR_pronoun] really thought of the cooking</li>
+        <li>secretthing->about how old [INITIATOR_pronoun] really was</li>
         <li>r_logentry->[INITIATOR_nameDef] walked in on [RECIPIENT_nameDef] mid-sentence, and the sentence was about [INITIATOR_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if [RECIPIENT_pronoun] had something to say, [RECIPIENT_pronoun] could say it to [INITIATOR_possessive] face.</li>
-        <li>r_logentry->[INITIATOR_nameDef] heard secondhand what [RECIPIENT_nameDef] had been saying [secretthing], and went to have it out.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had it out with [RECIPIENT_nameDef] over what [RECIPIENT_pronoun] had been saying [secretthing].</li>
         <li>secretthing->about [INITIATOR_possessive] family</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to keep [INITIATOR_possessive] name out of [RECIPIENT_possessive] mouth.</li>
-        <li>r_logentry->[INITIATOR_nameDef] stopped talking to [RECIPIENT_nameDef] mid-sentence, having heard what [RECIPIENT_pronoun] had been saying at supper.</li>
-        <li>r_logentry->[INITIATOR_nameDef] learned that [RECIPIENT_nameDef] had been telling the others [secretthing], and asked [RECIPIENT_objective] why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] stopped talking to [RECIPIENT_nameDef] mid-sentence, having heard what [RECIPIENT_pronoun] had been saying behind [INITIATOR_possessive] back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know how many people [RECIPIENT_nameDef] had told [secretthing].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the walls were thin, and that [INITIATOR_pronoun] had heard every word.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], in front of the cook, what exactly [RECIPIENT_pronoun] had been saying [secretthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what exactly [RECIPIENT_pronoun] had been saying [secretthing], and waited.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would remember who had been talking [secretthing].</li>
-        <li>r_logentry->[INITIATOR_nameDef] heard [INITIATOR_possessive] own words come back to [INITIATOR_objective] in someone else's mouth, and went looking for [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had heard [INITIATOR_possessive] own words come back in someone else's mouth.</li>
         <li>secretthing->about [INITIATOR_possessive] snoring</li>
-        <li>secretthing->about the mistake [INITIATOR_pronoun] made in the last fight</li>
+        <li>secretthing->about the mistake [INITIATOR_pronoun] made last season</li>
         <li>secretthing->about who [INITIATOR_pronoun] was sweet on</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -735,20 +735,20 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] found out that [RECIPIENT_nameDef] and the others had planned [plan] without asking [INITIATOR_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why nobody had mentioned [plan]. [RECIPIENT_nameDef] said [RECIPIENT_pronoun] thought someone had.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why nobody had mentioned [plan], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] thought someone had.</li>
         <li>r_logentry->[INITIATOR_nameDef] heard about [plan] from [RECIPIENT_nameDef], after it was all settled.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that it would have been nice to be asked along to [plan].</li>
         <li>plan->the evening's dice game</li>
-        <li>plan->a walk down to the river</li>
+        <li>plan->a walk out past the fields</li>
         <li>plan->a supper of their own</li>
         <li>plan->a trip to gather berries</li>
         <li>plan->a game of horseshoes</li>
-        <li>r_logentry->[INITIATOR_nameDef] saw [RECIPIENT_nameDef] and the others heading off to [plan], and realized [INITIATOR_pronoun] hadn't been asked.</li>
+        <li>r_logentry->[INITIATOR_nameDef] worked out from what [RECIPIENT_nameDef] said that [INITIATOR_pronoun] was the only one not asked to [plan].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [plan] had gone, in a tone that said [INITIATOR_pronoun] would have liked to know beforehand.</li>
-        <li>plan->a swim at the pond</li>
+        <li>plan->a swim on the first hot day</li>
         <li>plan->a night of stories</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why no one had saved [INITIATOR_objective] a place at [plan].</li>
-        <li>r_logentry->[INITIATOR_nameDef] heard about [plan] from [RECIPIENT_nameDef] at breakfast and went quiet.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went quiet when [RECIPIENT_nameDef] mentioned [plan].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
