@@ -1099,8 +1099,8 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that, whatever anyone else said, this colony [colonyvirtue].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that the way things are done here is [waysverdict].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [oldplace], and how much better it is here.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people would tell stories about this colony someday. [RECIPIENT_nameDef] said [storyreply].</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched the colony at work for a while and told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was proud to be part of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said people would tell stories about this colony someday, and [RECIPIENT_nameDef] said [storyreply].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was proud to be part of the colony.</li>
         <li>colonyvirtue->knows what it stands for</li>
         <li>colonyvirtue->does right by its people</li>
         <li>colonyvirtue->keeps its word</li>
@@ -1118,7 +1118,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had finally found a place that [colonyvirtue].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] explained the colony's ways to each other as if to a newcomer, and found they agreed on all of it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] wanted to be buried here, among people like these.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the colony's ways were [waysverdict], and meant it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] why [INITIATOR_pronoun] stayed, and [INITIATOR_nameDef] said the colony's ways were [waysverdict].</li>
         <li>colonyvirtue->looks after its weakest</li>
         <li>waysverdict->hard, but fair</li>
       </rulesStrings>
@@ -1144,10 +1144,10 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got into a heated debate about how the colony does things, and both of them raised their voices.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the colony's ways [waysclaim]. [RECIPIENT_nameDef] disagreed, at length.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about [debatetopic] until supper, and on through it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how anyone could [debatequestion]. [RECIPIENT_nameDef] had an answer, a long one.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to disagree about the colony's ways, at least until supper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the colony's ways [waysclaim], and [RECIPIENT_nameDef] disagreed at length.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about [debatetopic] and got nowhere.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how anyone could [debatequestion], and [RECIPIENT_nameDef] had a long answer ready.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to disagree about the colony's ways, for today.</li>
         <li>waysclaim->were exactly right</li>
         <li>waysclaim->needed changing, and soon</li>
         <li>waysclaim->had made the colony what it is</li>
@@ -1161,9 +1161,9 @@
         <li>debatequestion->live with the way things are done here</li>
         <li>debatequestion->want to change something that works</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that someone had to say it: the colony's ways [waysclaim].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about [debatetopic] while they worked, and got very little work done.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about [debatetopic], each sure the other was being stubborn.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] could really [debatequestion].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about the colony's ways, and both went to bed sure they had won.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] argued about the colony's ways, and both walked away sure they had won.</li>
         <li>debatetopic->how the council should decide things</li>
         <li>debatetopic->what to do with prisoners</li>
       </rulesStrings>
@@ -1195,41 +1195,41 @@
     <recipientThought>Council_Moment_SharedFaith</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said a blessing together over [blessedthing].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to pray with [INITIATOR_objective] for a moment, and [RECIPIENT_nameDef] knelt beside [INITIATOR_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said a blessing together for [blessedthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to pray with [INITIATOR_objective] for a moment, and [RECIPIENT_nameDef] did.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spoke the old words of their faith together, the way they had been taught.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [faithline].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [faithact], and both felt steadier for it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [faithact].</li>
         <li>blessedthing->the day's meal</li>
-        <li>blessedthing->the fields</li>
+        <li>blessedthing->the next harvest</li>
         <li>blessedthing->those away from the colony</li>
-        <li>blessedthing->the colony's newest arrivals</li>
+        <li>blessedthing->whoever comes to the colony next</li>
         <li>blessedthing->the ones they had lost</li>
         <li>faithline->their faith had carried [INITIATOR_objective] through worse than this</li>
         <li>faithline->it helped to hear the words in another voice</li>
         <li>faithline->the old words still held true, even out here</li>
         <li>faithline->[INITIATOR_pronoun] was glad not to believe alone out here</li>
-        <li>faithact->shared a quiet prayer before work</li>
+        <li>faithact->shared a short prayer</li>
         <li>faithact->recited a verse they both knew by heart</li>
         <li>faithact->gave thanks for the day</li>
         <li>faithact->asked a blessing on the season ahead</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] bowed their heads together before the meal.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] bowed their heads together for a moment.</li>
         <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] a prayer from where [INITIATOR_pronoun] grew up, and [RECIPIENT_nameDef] taught [INITIATOR_objective] one back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] marked the start of the day with the old words.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the words of a prayer neither could quite remember, until they had it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to remember [blessedthing] in [RECIPIENT_possessive] prayers.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat together in silence for a while, as their faith asks.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept a moment of silence together, as their faith asks.</li>
         <li>blessedthing->the sick and the hurt</li>
-        <li>blessedthing->the new walls</li>
+        <li>blessedthing->the roof over their heads</li>
         <li>faithact->touched foreheads and said the old blessing</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept a small rite of their faith together, away from the others.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept a small rite of their faith together.</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of a holy day coming up, and they planned how to keep it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said the old words over [blessedthing] before the work began.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted [blessedthing] remembered, and [RECIPIENT_nameDef] said the words with [INITIATOR_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about a part of their faith [INITIATOR_pronoun] had never understood, and [RECIPIENT_nameDef] did [RECIPIENT_possessive] best to explain.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [faithact] at first light, before the others were up.</li>
+        <li>r_logentry->Side by side, [INITIATOR_nameDef] and [RECIPIENT_nameDef] [faithact].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [faithline], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] felt the same.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] put aside a share of the meal as an offering, the way their faith asks.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sang a hymn under their breath while they worked.</li>
-        <li>blessedthing->the animals in the barn</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to set aside a share of the next meal as an offering, the way their faith asks.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] hummed a hymn together under their breath.</li>
+        <li>blessedthing->the travelers out on the roads</li>
         <li>faithline->a hard season is easier to bear with the old words</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -1267,12 +1267,12 @@
         <li>faithresponse->said they would have to talk about it again</li>
         <li>faithcommon->more than either of them expected</li>
         <li>faithcommon->how to treat a stranger</li>
-        <li>faithcommon->what really matters at the end of the day</li>
+        <li>faithcommon->what a person owes the dead</li>
         <li>faithcommon->the important parts</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about a ritual [INITIATOR_pronoun] had seen [RECIPIENT_objective] keep, and listened to the whole explanation.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the holy days they keep and found two that fell close together.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_possessive] faith says about [faithquestion], and [RECIPIENT_nameDef] [faithresponse].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about faith over supper, politely, then less politely, then politely again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about faith politely, then less politely, then politely again.</li>
         <li>faithquestion->what people owe each other</li>
         <li>faithresponse->took it more seriously than [INITIATOR_nameDef] expected</li>
       </rulesStrings>
