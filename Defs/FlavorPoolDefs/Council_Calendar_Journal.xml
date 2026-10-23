@@ -97,19 +97,23 @@
         <li>[fallen,first] A year since {DEAD} fell. I've gone over it a hundred times, what I could have done differently.</li>
         <li>[fallen,years] {YEARS} years since the battle with {ENEMY}. It doesn't get any further away, only quieter.</li>
         <li>[nemesis] The day {ENEMY} fell. I remember sleeping right through that night.</li>
+        <li>[nemesisreturn] The day {ENEMY} came back for us, and didn't get what they came for.</li>
       </plain>
       <warm>
         <li>[fallen] Told the newer ones about {DEAD}, and what that day cost us. They should know.</li>
         <li>[clean] Thought about the ones who stood with me that day. I'd do it again, with them.</li>
+        <li>[nemesisreturn] They came back, and we were ready for them. Raised a cup to everyone who held.</li>
       </warm>
       <blunt>
         <li>[clean] Beat {ENEMY} that day. Good.</li>
         <li>[fallen] {DEAD} should still be here. That's all I've got to say about today.</li>
+        <li>[nemesisreturn] Second time they tried. Second time they left.</li>
       </blunt>
       <cheerful><li>[clean] Victory day! The story gets better every time we tell it.</li></cheerful>
       <gloomy>
         <li>[fallen] The battle day again. I can still smell the smoke when I think about it.</li>
         <li>[clean] We beat {ENEMY} once. They'll be back one day. They always are.</li>
+        <li>[nemesisreturn] They came back once. I check the tree line every evening now.</li>
       </gloomy>
       <cold>
         <li>[clean] Anniversary of the defense against {ENEMY}. {COUNT} of theirs, none of ours. A good exchange.</li>
