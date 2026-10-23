@@ -1313,21 +1313,21 @@
         <li>riddletext->what can be broken without being touched</li>
         <li>riddletext->what walks on four legs in the morning, two at noon and three in the evening</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a riddle [INITIATOR_pronoun] had been saving for weeks.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded riddles over supper, and the rest of the table started guessing too.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded riddles and kept a tally.</li>
         <li>r_logentry->[RECIPIENT_nameDef] dared [INITIATOR_nameDef] to stump [RECIPIENT_objective], and [INITIATOR_nameDef] asked [riddletext].</li>
         <li>r_logentry->[INITIATOR_nameDef] made up a riddle on the spot for [RECIPIENT_nameDef] and wasn't sure of the answer [INITIATOR_objective]self.</li>
         <li>riddletext->what has a neck but no head</li>
         <li>riddletext->what runs but never walks, and has a bed but never sleeps</li>
         <li>riddletext->what you can keep after giving it to someone</li>
         <li>riddletext->what goes up and never comes down</li>
-        <li>r_logentry->[INITIATOR_nameDef] stumped [RECIPIENT_nameDef] with a riddle, and [RECIPIENT_nameDef] spent the rest of the day muttering guesses.</li>
+        <li>r_logentry->[INITIATOR_nameDef] tried a riddle on [RECIPIENT_nameDef] that had once stumped [INITIATOR_possessive] whole family.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [riddletext], and [RECIPIENT_nameDef] got it in one.</li>
         <li>riddletext->what has teeth but never bites</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent the walk to work asking each other riddles, and both got the last one wrong.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns with riddles, the harder the better.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [riddletext], and [RECIPIENT_nameDef] answered with a riddle of [RECIPIENT_possessive] own.</li>
-        <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] a riddle from where [INITIATOR_pronoun] grew up, and the answer turned out to be different there.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [riddletext], and [RECIPIENT_nameDef] gave up only after supper.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept score of riddles through the day and called it a draw at bedtime.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] a riddle from where [INITIATOR_pronoun] grew up, and they argued over whether the answer still worked here.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [riddletext], and [RECIPIENT_nameDef] asked for a moment to think.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept score of riddles on their fingers.</li>
         <li>r_logentry->[RECIPIENT_nameDef] finally solved a riddle [INITIATOR_nameDef] had asked [RECIPIENT_objective] days ago, and came to say so.</li>
         <li>riddletext->what has an eye but cannot see</li>
         <li>riddletext->what is full of holes and still holds water</li>
@@ -1356,7 +1356,7 @@
     <defName>Council_Sent_Riddles_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef] won with a riddle so twisted that [RECIPIENT_nameDef] is still thinking about it.</li>
+        <li>sent->[INITIATOR_nameDef] won with a riddle [RECIPIENT_nameDef] had never heard before.</li>
         <li>sent->[INITIATOR_nameDef] won, and refused to tell [RECIPIENT_nameDef] the last answer.</li>
         <li>sent->[RECIPIENT_nameDef] was stumped by the final riddle, and [INITIATOR_nameDef] took the win.</li>
       </rulesStrings>
@@ -1368,8 +1368,8 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[RECIPIENT_nameDef] answered every riddle and stumped [INITIATOR_nameDef] with the last one.</li>
-        <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] insisted the last riddle had two answers.</li>
-        <li>sent->[RECIPIENT_nameDef] won, and was smug about it for the rest of the hour.</li>
+        <li>sent->[RECIPIENT_nameDef] won, though [INITIATOR_nameDef] insisted the last riddle had two answers.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and was smug about it.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -1382,13 +1382,13 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] picked up a handful of pebbles and challenged [RECIPIENT_nameDef] to hit [pebbletarget] from ten paces.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns throwing pebbles at [pebbletarget], keeping score in the dirt.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns throwing pebbles at [pebbletarget], keeping score out loud.</li>
         <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] [pebblestakes] that [INITIATOR_pronoun] could hit [pebbletarget] more often.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stood well back and pitched pebbles at [pebbletarget], with a small audience offering advice.</li>
-        <li>pebbletarget->an old fence post</li>
-        <li>pebbletarget->a knot on a tree</li>
-        <li>pebbletarget->a cup balanced on a stump</li>
-        <li>pebbletarget->a chalk mark on a wall</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over where the throwing line should be before they started pitching pebbles at [pebbletarget].</li>
+        <li>pebbletarget->a stick pushed upright in the ground</li>
+        <li>pebbletarget->a ring scratched in the dirt</li>
+        <li>pebbletarget->a cup set on a rock</li>
+        <li>pebbletarget->a mark scratched on a stone</li>
         <li>pebblestakes->a day of dish duty</li>
         <li>pebblestakes->the best seat at supper</li>
         <li>pebblestakes->bragging rights</li>
@@ -1396,9 +1396,9 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent their break pitching pebbles at [pebbletarget].</li>
         <li>r_logentry->[INITIATOR_nameDef] dared [RECIPIENT_nameDef] to hit [pebbletarget] with [RECIPIENT_possessive] eyes closed.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whether a pebble that hit [pebbletarget] and bounced off counted.</li>
-        <li>pebbletarget->an upturned bucket</li>
+        <li>pebbletarget->an old boot</li>
         <li>pebblestakes->the last slice of bread</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] kept score of their throws at [pebbletarget] with marks on a plank, and argued over every one.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] kept score of their throws at [pebbletarget] and argued over every point.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1423,9 +1423,9 @@
     <defName>Council_Sent_Pebbles_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef] hit the mark seven times out of ten and wouldn't stop talking about the seventh.</li>
+        <li>sent->[INITIATOR_nameDef] hit the mark seven times out of ten.</li>
         <li>sent->[INITIATOR_nameDef] won by a single pebble.</li>
-        <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] blamed the wind.</li>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] blamed the wind.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -1435,7 +1435,7 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[RECIPIENT_nameDef] won without seeming to try, which annoyed [INITIATOR_nameDef] most of all.</li>
-        <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] blamed the pebbles.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] said [INITIATOR_possessive] pebbles had been the wrong shape.</li>
         <li>sent->[RECIPIENT_nameDef] hit the mark on the very last throw and took the win.</li>
       </rulesStrings>
     </rulePack>
@@ -1448,10 +1448,10 @@
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] held a storytelling contest, with whoever was nearby as the judges.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] held a storytelling contest and swore to judge each other honestly.</li>
         <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to beat [INITIATOR_possessive] story about [contesttale].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each took a turn telling the same old tale, to see who could tell it best.</li>
-        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_pronoun] could make the listeners [storygoal] first.</li>
+        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_pronoun] could make [RECIPIENT_objective] [storygoal] with a single story.</li>
         <li>contesttale->a clever goat and a greedy trader</li>
         <li>contesttale->the night the stars went out</li>
         <li>contesttale->a cook who outwitted a king</li>
@@ -1462,15 +1462,15 @@
         <li>storygoal->beg for more</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took turns adding one sentence each to a story until it made no sense at all.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a story about [contesttale], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] could tell it better, and tried.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each told the scariest story they knew, and the listeners voted by a show of hands.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each told the scariest story they knew.</li>
         <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to tell a whole story without using the word "and".</li>
         <li>contesttale->a stubborn mule that saved a village</li>
         <li>contesttale->the trader who sold the same horse three times</li>
         <li>storygoal->go quiet</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] told the same story from two sides, and the listeners argued about which was true.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told a story about [contesttale] so well that [RECIPIENT_nameDef] conceded before starting [RECIPIENT_possessive] own.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each told a story from their childhood, and the judges called it a tie.</li>
-        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to make the listeners [storygoal], and they both tried at once.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] told the same story from two sides, and argued about which was true.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told a story about [contesttale] and dared [RECIPIENT_nameDef] to top it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] each told a story from their childhood and argued over whose was better.</li>
+        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to make [INITIATOR_objective] [storygoal], and [RECIPIENT_nameDef] took the challenge.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1495,9 +1495,9 @@
     <defName>Council_Sent_Story_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef] won, and the listeners asked to hear the ending again.</li>
-        <li>sent->[INITIATOR_nameDef] won by a show of hands, though [RECIPIENT_nameDef] counted twice.</li>
-        <li>sent->[INITIATOR_nameDef] won with an ending no one saw coming.</li>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] asked to hear the ending again.</li>
+        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef] wanted it known that it was close.</li>
+        <li>sent->[INITIATOR_nameDef] won with an ending [RECIPIENT_nameDef] never saw coming.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -1507,7 +1507,7 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[RECIPIENT_nameDef] won, and even [INITIATOR_nameDef] admitted it was the better story.</li>
-        <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] claimed the judges had been bribed with biscuits.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] called it beginner's luck.</li>
         <li>sent->[RECIPIENT_nameDef] won with a different voice for every character.</li>
       </rulesStrings>
     </rulePack>
@@ -1522,21 +1522,21 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each whittled a small figure from a scrap of wood, to see whose looked more like [whittlesubject].</li>
         <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to a knot-tying race, ten knots with no mistakes.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] raced to weave a basket from scraps, with [craftjudge] as the judge.</li>
-        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_pronoun] could carve a better spoon in the time it takes to eat supper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] raced to plait a length of cord from scraps, with [craftjudge] as the judge.</li>
+        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_pronoun] could carve a better spoon, and faster.</li>
         <li>whittlesubject->a muffalo</li>
         <li>whittlesubject->the colony's grumpiest animal</li>
         <li>whittlesubject->each other</li>
         <li>whittlesubject->a bird, any bird</li>
-        <li>craftjudge->the nearest animal</li>
+        <li>craftjudge->anyone who wandered past</li>
         <li>craftjudge->the first person to walk past</li>
-        <li>craftjudge->a very stern passerby</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] raced to mend a torn sack, and the stitches were counted at the end.</li>
+        <li>craftjudge->whoever happened by</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] raced to mend a torn sack, and counted each other's stitches.</li>
         <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_pronoun] could whittle [whittlesubject] faster.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each braided a length of rope and tested them with [craftjudge] watching.</li>
-        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to carve the neatest wooden peg before the bell for supper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to see who could carve the neatest wooden peg.</li>
         <li>whittlesubject->a boat</li>
-        <li>craftjudge->whoever was cooking</li>
+        <li>craftjudge->whoever could be talked into it</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1561,8 +1561,8 @@
     <defName>Council_Sent_Craft_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef]'s work was neater, and [INITIATOR_pronoun] showed it round the table.</li>
-        <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] kept [RECIPIENT_possessive] attempt anyway, and said it had character.</li>
+        <li>sent->[INITIATOR_nameDef]'s was the neater work, and [RECIPIENT_nameDef] said so.</li>
+        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef] kept [RECIPIENT_possessive] attempt anyway and said it had character.</li>
         <li>sent->[INITIATOR_nameDef] finished first, and best.</li>
       </rulesStrings>
     </rulePack>
@@ -1572,7 +1572,7 @@
     <defName>Council_Sent_Craft_RecipientWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] insisted [INITIATOR_possessive] own attempt was rustic on purpose.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] insisted [INITIATOR_possessive] own attempt was rustic on purpose.</li>
         <li>sent->[RECIPIENT_nameDef]'s work was so good that [INITIATOR_nameDef] asked to keep it.</li>
         <li>sent->[RECIPIENT_nameDef] won with time to spare.</li>
       </rulesStrings>
@@ -1586,10 +1586,10 @@
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each brought out the biggest [prizecrop] they had grown this season for a solemn weigh-in.</li>
-        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] that [INITIATOR_possessive] best [prizecrop] was bigger, with [growstakes] on the line, and they fetched the scales to settle it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the biggest [prizecrop] each of them had grown this season.</li>
+        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] [growstakes] that [INITIATOR_possessive] best [prizecrop] was bigger than [RECIPIENT_possessive].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the best of their harvest with the seriousness of judges at a fair.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [INITIATOR_possessive] prize [prizecrop], nearly the size of [INITIATOR_possessive] head. [RECIPIENT_nameDef] went to fetch [RECIPIENT_possessive] own.</li>
+        <li>r_logentry->[INITIATOR_nameDef] claimed [INITIATOR_possessive] best [prizecrop] was nearly the size of [INITIATOR_possessive] head, and [RECIPIENT_nameDef] said [RECIPIENT_possessive] was bigger.</li>
         <li>prizecrop->turnip</li>
         <li>prizecrop->onion</li>
         <li>prizecrop->potato</li>
@@ -1599,17 +1599,17 @@
         <li>growstakes->the first slice of the harvest pie</li>
         <li>growstakes->the right to name the next field</li>
         <li>growstakes->a week of somebody else doing the weeding</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] laid their best [prizecrop] side by side and asked the cook to judge.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whose [prizecrop] had come up better this year.</li>
         <li>r_logentry->[INITIATOR_nameDef] accused [RECIPIENT_nameDef] of watering [RECIPIENT_possessive] [prizecrop] in the night, and [RECIPIENT_nameDef] did not deny it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] measured [INITIATOR_possessive] best [prizecrop] against [RECIPIENT_nameDef]'s with a length of string.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] with both hands exactly how big [INITIATOR_possessive] best [prizecrop] was.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whether the prize for the best [prizecrop] should go to size or to taste.</li>
         <li>prizecrop->ear of corn</li>
         <li>prizecrop->carrot</li>
         <li>growstakes->the loser's share of dessert</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each claimed the other's best [prizecrop] had been grown with help.</li>
-        <li>r_logentry->[INITIATOR_nameDef] carried [INITIATOR_possessive] best [prizecrop] around the colony so [RECIPIENT_nameDef] could not avoid seeing it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] would not stop talking about [INITIATOR_possessive] best [prizecrop] until [RECIPIENT_nameDef] agreed to a contest.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to judge their [prizecrop] again next season, with stricter rules.</li>
-        <li>r_logentry->[INITIATOR_nameDef] lost the contest over the biggest [prizecrop] to [RECIPIENT_nameDef] and demanded a recount.</li>
+        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to say, honestly, whose [prizecrop] had done better this year.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1634,9 +1634,9 @@
     <defName>Council_Sent_Vegetable_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef]'s was bigger, and [INITIATOR_pronoun] is talking about keeping it forever.</li>
+        <li>sent->[INITIATOR_nameDef]'s was bigger, by a clear margin.</li>
         <li>sent->[INITIATOR_nameDef] won by a whisker.</li>
-        <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] demanded a second weighing.</li>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] wanted a second look.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -1646,8 +1646,8 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[RECIPIENT_nameDef]'s was bigger, and [RECIPIENT_pronoun] was gracious about it.</li>
-        <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] blamed the soil.</li>
-        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] has started talking to [INITIATOR_possessive] plants.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] blamed the soil.</li>
+        <li>sent->[RECIPIENT_nameDef] won by a hand's width, and [INITIATOR_nameDef] conceded.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
