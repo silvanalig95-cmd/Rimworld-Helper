@@ -21,13 +21,13 @@
         <li>[touch:plantpot] My room smells like boots and old sweat. A plant might help.</li>
         <li>[touch:light] Every night I find my bed by memory and bruised shins. I'd like a light.</li>
         <li>[touch:endtable] I keep putting my things on the floor and then stepping on them. I've marked a spot by the bed.</li>
-        <li>[touch:dresser] Everything I own lives in a heap at the foot of my bed. I've planned {THING} for it.</li>
-        <li>[skill:Plants,touch:plantpot] I grow food for everyone all day. This one's just for me.</li>
+        <li>[touch:dresser] Everything I own lives in a heap at the foot of my bed, and {THING} would give it somewhere to go.</li>
+        <li>[skill:Plants,touch:plantpot] I grow food for the rest of you all day. This one's just for me.</li>
         <li>[trait:NightOwl,touch:light] I'm up all night anyway. I'd like to see what I'm doing.</li>
         <li>[winter] Long winter ahead, and I'll spend half of it in that room. It's getting {THING}.</li>
         <li>[afterraid] We nearly lost everything this week. I want something in my room that's worth keeping.</li>
         <li>[poor] I know we're scraping by, but {THING} barely costs anything. I checked.</li>
-        <li>[newcomer] If I'm staying, my room should look like somebody lives there. I've planned {THING}.</li>
+        <li>[newcomer] If I'm staying, my room should look lived in, and {THING} is a start.</li>
         <li>[trait:Greedy] I've seen the other rooms. Mine's getting {THING}, to start with.</li>
         <li>[skill:Artistic] My room's a blank canvas. I'm starting with {THING} and working outward.</li>
         <li>[lowmood] I need something in that room besides four walls and bad dreams.</li>
@@ -40,9 +40,9 @@
         <li>I've planned {THING} for my room, whenever someone has a spare hour. There's no rush.</li>
         <li>[touch:plantpot] I'd like to look after something small for a change. A plant seems like a good start.</li>
         <li>[touch:light] I like to read before sleep when there's time. A light would save my eyes.</li>
-        <li>[touch:endtable] Somewhere beside the bed for a cup of water and a keepsake or two. I've marked the spot.</li>
+        <li>[touch:endtable] Somewhere beside the bed for a cup of water and a keepsake or two, if someone has the time.</li>
         <li>[touch:dresser] I'd love a place to fold things properly. It's how I was raised.</li>
-        <li>[touch:plantpot] I'd like something green by my window, if no one minds.</li>
+        <li>[touch:plantpot] Something green by my window would be lovely, if no one minds.</li>
         <li>[touch:light] A light by my bed, so I can mend things in the evening without keeping anyone up.</li>
         <li>[touch:endtable] Just a table by my bed, since I've been keeping my cup on the windowsill.</li>
         <li>[touch:dresser] I'd like a dresser, so my things stop spilling out into the hall.</li>
@@ -66,7 +66,7 @@
         <li>[touch:light] A light in my room! I'll finally see what color the walls are.</li>
         <li>[touch:endtable] A bedside table! Somewhere to put my cup at night, like a civilized person.</li>
         <li>[touch:dresser] Real drawers! I can lose my socks in an organized way now.</li>
-        <li>[touch:plantpot] I'm going to name my plant before it's even planted!</li>
+        <li>[touch:plantpot] My plant's getting a name before it's even in the soil!</li>
         <li>[touch:light] My very own light! I'll read in bed every night.</li>
         <li>[touch:endtable] A table for my bedside, for my cup and my lucky stone!</li>
         <li>[touch:dresser] A dresser! My good shirt finally gets a drawer of its own.</li>
@@ -80,7 +80,7 @@
         <li>[touch:dresser] Somewhere to keep my things. It'll be easier for whoever clears out my room.</li>
         <li>[touch:plantpot] Something green in my room. It might outlast me.</li>
         <li>[touch:light] A light, for the nights when I can't sleep.</li>
-        <li>[touch:endtable] A table for the cup of water I reach for when I wake in the night, which is most nights.</li>
+        <li>[touch:endtable] A table by the bed, since I'm awake in the night often enough to need one.</li>
         <li>[touch:dresser] My clothes on the floor make the room feel like a cell. A dresser might help.</li>
       </gloomy>
       <cold>
