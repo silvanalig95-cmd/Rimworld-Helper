@@ -47,7 +47,7 @@
     </thanks>
     <expired>
       <blunt><li>No armor. Next raid, I'm standing at the back.</li></blunt>
-      <gloomy><li>Without armor I'm just meat on the wall, so remember that when you bury me.</li></gloomy>
+      <gloomy><li>Without armor I'm just meat on the wall; remember that when you bury me.</li></gloomy>
       <cold><li>No armor. I'll take fewer risks, and the colony will get less from me in a fight.</li></cold>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
@@ -96,7 +96,7 @@
     <wish>Council_Wish_Beehive</wish>
     <reminder>
       <warm><li>I'd look after the bees myself, every day, if we had a hive for them.</li></warm>
-      <blunt><li>The bees won't wait forever, so where's my hive?</li></blunt>
+      <blunt><li>Where's my hive, before the bees give up on us?</li></blunt>
       <gloomy><li>The wild bees will be gone before we get round to it.</li></gloomy>
     </reminder>
     <expired>
@@ -143,7 +143,7 @@
     <defName>Council_Lines_Wish_CampEvening</defName>
     <wish>Council_Wish_CampEvening</wish>
     <reminder>
-      <blunt><li>The camp's still there and so am I, so let me go.</li></blunt>
+      <blunt><li>Let me go over to the camp while it's still there.</li></blunt>
       <cheerful><li>I could hear them singing over at the camp, and I want to join in before they go!</li></cheerful>
       <gloomy><li>The {SUBJECT} will pack up soon, and I'll have missed it.</li></gloomy>
     </reminder>
@@ -224,7 +224,7 @@
     <wish>Council_Wish_DeepDrill</wish>
     <reminder>
       <warm><li>I'd love to see what's down there, if the drill ever gets built.</li></warm>
-      <blunt><li>The ore's down there and the drill isn't, so fix that.</li></blunt>
+      <blunt><li>The ore's down there, and the drill isn't.</li></blunt>
       <cheerful><li>Steel, silver, maybe treasure, all of it right under our feet!</li></cheerful>
     </reminder>
     <expired>
@@ -286,7 +286,7 @@
     <wish>Council_Wish_Flowers</wish>
     <reminder>
       <warm><li>Just a few flowers, whenever someone has a moment, to cheer the place up.</li></warm>
-      <blunt><li>This place still looks like a quarry, so plant some flowers.</li></blunt>
+      <blunt><li>Plant some flowers, this place still looks like a quarry.</li></blunt>
       <gloomy><li>The beds by the door are still bare, and I expect they'll stay that way.</li></gloomy>
     </reminder>
     <expired>
@@ -470,7 +470,7 @@
     <defName>Council_Lines_Wish_Hunt</defName>
     <wish>Council_Wish_Hunt</wish>
     <reminder>
-      <warm><li>The cooks are still making do, so let me bring them something fresh.</li></warm>
+      <warm><li>Let me bring the cooks something fresh, they're still making do.</li></warm>
       <gloomy><li>The deer are fat and we're eating porridge.</li></gloomy>
       <cold><li>The herd is still in range, though every day we wait it moves further off.</li></cold>
     </reminder>
@@ -482,7 +482,7 @@
     <thanks>
       <blunt><li>Good, {OTHER_nameDef}'s patched up.</li></blunt>
       <cheerful><li>{OTHER_nameDef} is back on {OTHER_possessive} feet and eating again, thank you!</li></cheerful>
-      <cold><li>{OTHER_nameDef} will recover, so the training wasn't wasted.</li></cold>
+      <cold><li>{OTHER_nameDef} will recover, and the training won't go to waste.</li></cold>
     </thanks>
     <expired>
       <warm><li>I did what I could for {OTHER_nameDef} myself, and hoped it was enough.</li></warm>
@@ -583,7 +583,7 @@
     <reminder>
       <warm><li>Even a small chest of silver put by would help us all sleep easier.</li></warm>
       <cheerful><li>The treasury is still a drawer, but a drawer with dreams!</li></cheerful>
-      <gloomy><li>Nothing saved, so one bad season and we're done.</li></gloomy>
+      <gloomy><li>Nothing saved, and one bad season would finish us.</li></gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -593,7 +593,7 @@
     <reminder>
       <warm><li>If there's any outdoor work going, I'd still love it.</li></warm>
       <blunt><li>Let me out of these walls for a day.</li></blunt>
-      <cold><li>My work is slipping, and the walls are the cause, so I'm still asking to go outside.</li></cold>
+      <cold><li>My work is slipping because of these walls, and I'm still asking to go outside.</li></cold>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -625,7 +625,7 @@
     <defName>Council_Lines_Wish_PW_NewSpecies</defName>
     <wish>Council_Wish_PW_NewSpecies</wish>
     <reminder>
-      <blunt><li>The {SUBJECT} is still out there, so let me go.</li></blunt>
+      <blunt><li>Let me go after the {SUBJECT} while it's still out there.</li></blunt>
       <cheerful><li>The {SUBJECT} is still hanging about, and I think it likes us!</li></cheerful>
       <gloomy><li>The {SUBJECT} will be gone any day now.</li></gloomy>
     </reminder>
@@ -640,7 +640,7 @@
     <wish>Council_Wish_PenMarker</wish>
     <reminder>
       <warm><li>The animals would be safer in a pen, and I'd mend the fences myself.</li></warm>
-      <blunt><li>Animals in the crops again, so build the pen.</li></blunt>
+      <blunt><li>Animals in the crops again; build the pen.</li></blunt>
       <gloomy><li>Another day chasing animals out of the fields.</li></gloomy>
     </reminder>
     <expired>
@@ -717,7 +717,7 @@
     </reminder>
     <expired>
       <warm><li>I'll take my bowl outside and leave the chair for someone else.</li></warm>
-      <cheerful><li>No more chairs, so I'll eat on the woodpile like a king on a throne!</li></cheerful>
+      <cheerful><li>I'll eat on the woodpile, then, like a king on a throne!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -926,7 +926,7 @@
     </reminder>
     <expired>
       <warm><li>I'll fetch a bucket of water and share it round.</li></warm>
-      <blunt><li>No wash place, so we all stink, fine.</li></blunt>
+      <blunt><li>We'll all go on stinking, then, fine.</li></blunt>
       <cheerful><li>No tub! I'll wait for the next rain and dance in it.</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>

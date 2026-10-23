@@ -123,10 +123,10 @@
         <li>Put my name next to {OTHER_nameDef}'s, and thank you for listening to both of us.</li>
       </warm>
       <blunt>
-        <li>Same as {OTHER_nameDef}, so that's two of us.</li>
+        <li>Make that two of us, with {OTHER_nameDef}.</li>
         <li>Me as well. Don't make us ask twice.</li>
-        <li>{OTHER_nameDef}'s right, so do it.</li>
-        <li>Two votes for "{WISH}" now, so get on with it.</li>
+        <li>Do what {OTHER_nameDef} asked.</li>
+        <li>That's two votes for "{WISH}" now; get on with it.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} and I are Team "{WISH}" now!</li>
@@ -142,7 +142,7 @@
       </gloomy>
       <cold>
         <li>I'm co-signing; it's more efficient than asking separately.</li>
-        <li>{OTHER_nameDef}'s request benefits me, so I'll support it.</li>
+        <li>I'll support {OTHER_nameDef}'s request; it benefits me too.</li>
         <li>Two requests for "{WISH}" make it a priority, by any fair measure.</li>
         <li>Add my name. I'll be watching how long it takes.</li>
       </cold>
@@ -198,13 +198,13 @@
       <plain>
         <li>[spring] It's spring. If we start "{AMBITION}" now, we'll see it done before the cold.</li>
         <li>[spring] Fresh season, fresh start, and "{AMBITION}" has my vote.</li>
-        <li>[spring] The ground's soft and the days are long, so it's a good time for "{AMBITION}".</li>
-        <li>[summer] We've got the light and the hands, so let's do "{AMBITION}".</li>
+        <li>[spring] The ground's soft and the days are long, a good time for "{AMBITION}".</li>
+        <li>[summer] We've got the light and the hands for "{AMBITION}" right now.</li>
         <li>[summer] Summer's the time for big work, and I'm for it.</li>
         <li>[summer] Better to sweat over "{AMBITION}" now than freeze over it later.</li>
         <li>[fall] If we're doing "{AMBITION}", let's get it done before the snow.</li>
         <li>[fall] Once the harvest's in, I'm all for "{AMBITION}".</li>
-        <li>[fall] We'll want "{AMBITION}" before winter, so I'm voting yes.</li>
+        <li>[fall] I'm voting yes, because we'll want "{AMBITION}" before winter.</li>
         <li>[winter] We're stuck indoors anyway, so we might as well plan "{AMBITION}" properly.</li>
         <li>[winter] A job to work toward would get us through the cold, and "{AMBITION}" is a good one.</li>
         <li>[night] It's late and I'm tired, and I still think {OTHER_nameDef} is right.</li>
@@ -216,7 +216,7 @@
       </plain>
       <warm>
         <li>{OTHER_nameDef} has worked hard on this, and the least I can do is vote for it.</li>
-        <li>It would mean a lot to some of us, so I'm for it.</li>
+        <li>I'm for it, because it would mean a lot to some of us.</li>
       </warm>
       <blunt>
         <li>Good idea. Vote yes and move on.</li>
@@ -227,7 +227,7 @@
         <li>I've been waiting for someone to suggest this, so count me in from the first day.</li>
       </cheerful>
       <gloomy>
-        <li>It's the least bad idea I've heard all season, so I'll vote for it.</li>
+        <li>I'll vote for it; it's the least bad idea I've heard all season.</li>
         <li>We'll regret plenty this year, so let's not make skipping "{AMBITION}" one of them.</li>
       </gloomy>
       <cold>
@@ -247,7 +247,7 @@
         <li>[spring] Every spring we plan something big, and every summer we're too tired to finish it.</li>
         <li>[summer] I'd like to see {OTHER_nameDef} haul the first load in this heat.</li>
         <li>[summer] Half of us are already worn out from the fields.</li>
-        <li>[fall] The harvest isn't in yet, so can this wait?</li>
+        <li>[fall] Can this wait until the harvest's in?</li>
         <li>[fall] We need to be thinking about winter, not "{AMBITION}".</li>
         <li>[fall] Every hand on "{AMBITION}" is a hand not bringing in the crops.</li>
         <li>[winter] With what light, when the days are four hours long?</li>
@@ -261,7 +261,7 @@
       </warm>
       <blunt>
         <li>No. Too big, too soon.</li>
-        <li>We can't afford it, so no.</li>
+        <li>We can't afford it, simple as that.</li>
       </blunt>
       <cheerful>
         <li>It's a lovely idea, but we'll need about twice as many of us!</li>
@@ -272,7 +272,7 @@
         <li>Big plans tend to end with someone hurt.</li>
       </gloomy>
       <cold>
-        <li>The cost of "{AMBITION}" outweighs what it brings, so I'm against it.</li>
+        <li>I'm against it, since "{AMBITION}" costs more than it brings.</li>
         <li>I'd like {OTHER_nameDef} to show the work before I vote for it.</li>
       </cold>
     </lines>
@@ -285,7 +285,7 @@
       <plain>
         <li>[spring] Somebody's tracked mud in from the planting.</li>
         <li>[spring] The seedlings need watering, so can we keep this short?</li>
-        <li>[spring] I can smell rain coming, so let's be quick.</li>
+        <li>[spring] Let's be quick, I can smell rain coming.</li>
         <li>[summer] Whoever's sitting by the door, prop it open.</li>
         <li>[summer] It's too hot to think, so someone tell me how I voted.</li>
         <li>[summer] Is there any water left in that jug?</li>
