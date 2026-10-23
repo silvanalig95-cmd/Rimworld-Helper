@@ -171,7 +171,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_GroupOutOfStep</defName>
     <thoughts><li>Council_Grp_OutOfStep</li></thoughts>
-    <fix>They go against their group's ways. In time they either come around a little or drift off to people more like them; work and evenings with others who share their nature help them find their own crowd.</fix>
+    <fix>They go against their group's ways. In time they either come around or drift off to people more like them; work and evenings with others who share their nature help them find their own crowd.</fix>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
