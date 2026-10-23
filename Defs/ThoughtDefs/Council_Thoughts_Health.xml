@@ -99,7 +99,7 @@
 
   <ThoughtDef ParentName="Council_Moment2Base">
     <defName>Council_Moment_SlowWalk</defName>
-    <stages><li><label>a slow walk</label><description>They walked with me at my pace while I'm still weak, and didn't once hurry me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>a slow walk</label><description>They offered to walk with me at my pace while I'm still weak, and said there was no hurry.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
