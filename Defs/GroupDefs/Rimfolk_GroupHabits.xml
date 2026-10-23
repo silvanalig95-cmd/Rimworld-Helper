@@ -18,7 +18,7 @@
   <ColonyCouncil.GroupHabitDef>
     <defName>Rimfolk_Habit_Fire</defName>
     <label>an evening at the fire</label>
-    <description>Of an evening they sit round the fire together: the day talked over, the same seats, the same stories.</description>
+    <description>When the day's done they sit round the fire together, in the same seats, and talk it over.</description>
     <where>fire</where>
     <hourFrom>18</hourFrom>
     <hourTo>23</hourTo>
@@ -40,7 +40,7 @@
   <ColonyCouncil.GroupHabitDef>
     <defName>Rimfolk_Habit_Games</defName>
     <label>a game night</label>
-    <description>Dice, cards, a board or whatever the rec room holds: they play of an evening, and argue about the rules.</description>
+    <description>They play whatever the rec room holds, and argue about the rules.</description>
     <where>rec</where>
     <hourFrom>16</hourFrom>
     <hourTo>23</hourTo>
@@ -95,7 +95,7 @@
   <ColonyCouncil.GroupHabitDef>
     <defName>Rimfolk_Habit_Talk</defName>
     <label>talking late</label>
-    <description>They sit up of an evening and talk, about the work, about the colony, about nothing much.</description>
+    <description>They sit up of an evening and talk, mostly about nothing much.</description>
     <where>any</where>
     <hourFrom>19</hourFrom>
     <hourTo>23</hourTo>
@@ -107,7 +107,7 @@
   <ColonyCouncil.GroupHabitDef>
     <defName>Rimfolk_Habit_Walk</defName>
     <label>a walk at dusk</label>
-    <description>Of an evening they take the same slow walk round the colony, in the open.</description>
+    <description>Toward dusk they go out under the open sky together and take the same slow way round.</description>
     <where>outdoors</where>
     <hourFrom>16</hourFrom>
     <hourTo>20</hourTo>

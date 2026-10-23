@@ -133,7 +133,7 @@
       <li>the miners</li>
       <li>the dust-eaters</li>
     </names>
-    <why>They dig the rock together, and come up grey with it.</why>
+    <why>They dig the rock together, and come up gray with it.</why>
     <habits><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Table</li></habits>
     <tag>miners</tag>
     <order>15</order>
@@ -201,7 +201,7 @@
       <li>the carvers</li>
       <li>the dreamers at the bench</li>
     </names>
-    <why>They make beautiful things side by side.</why>
+    <why>They work at their art side by side, and judge each other's.</why>
     <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li></habits>
     <tag>artists</tag>
     <order>19</order>
@@ -216,7 +216,7 @@
     <minShare>0.67</minShare>
     <names>
       <li>the ones who held the line</li>
-      <li>the wall's own</li>
+      <li>the battle-tried</li>
       <li>the veterans</li>
       <li>the old comrades</li>
       <li>[lowtech] the shield-line</li>
@@ -329,7 +329,7 @@
     <names>
       <li>the old hands</li>
       <li>the elders</li>
-      <li>the grey heads</li>
+      <li>the gray heads</li>
       <li>the old guard</li>
     </names>
     <why>They have the most years behind them.</why>
