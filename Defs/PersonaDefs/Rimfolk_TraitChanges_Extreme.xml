@@ -36,11 +36,11 @@
     <chance>0.1</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become a psychopath.</news>
-    <meaning>{PAWN_nameDef} has done the colony's killing by hand, more than once, after the people closest to {PAWN_objective} were lost or turned on {PAWN_objective}. Somewhere along the way {PAWN_pronoun} stopped feeling for anyone. It won't come back by itself.</meaning>
+    <meaning>{PAWN_nameDef} has done the colony's coldest work with {PAWN_possessive} own hands, more than once, after the people closest to {PAWN_objective} were lost or turned on {PAWN_objective}. Somewhere along the way {PAWN_pronoun} stopped feeling for anyone. It won't come back by itself.</meaning>
     <journal>
       <plain>
-        <li>They looked at me oddly at supper. I couldn't think why. Then I remembered what I did this morning, and I still couldn't.</li>
-        <li>I used to lie awake after an execution. Last night I slept fine.</li>
+        <li>They looked at me oddly at supper. I couldn't think why. Then I remembered what I'd done, and I still couldn't.</li>
+        <li>I used to lie awake after an execution. Now I sleep fine.</li>
       </plain>
       <warm><li>People keep telling me how sorry they are. I nod. I've learned when to nod.</li></warm>
       <blunt><li>Someone has to do it. I don't mind. That's the difference now.</li></blunt>
@@ -76,15 +76,15 @@
     <chance>0.05</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become a psychopath.</news>
-    <meaning>Sixty lives and more, an execution by {PAWN_possessive} own hand, and a grudge or a betrayal that soured everything after: {PAWN_nameDef} no longer feels for anyone. It won't come back by itself.</meaning>
+    <meaning>Sixty lives and more have gone by {PAWN_nameDef}'s hand, and a grudge or a betrayal soured whatever feeling was left. Nothing will bring it back by itself.</meaning>
     <journal>
       <plain>
-        <li>Counted again tonight. I've lost track of the faces. I haven't lost any sleep over it.</li>
+        <li>I've lost track of the faces. I haven't lost a night's sleep over any of them.</li>
         <li>The others flinch at a death now and then. I watch them do it, like watching rain.</li>
       </plain>
       <warm><li>I say the right words at funerals. I know them well by now. They don't mean anything going out.</li></warm>
       <blunt><li>They die, we live. It's that simple. It always was.</li></blunt>
-      <cheerful><li>Quiet week. No raids. I almost miss them, which is funny if you think about it.</li></cheerful>
+      <cheerful><li>I almost miss the raids when they stay away. An odd thing to miss, I suppose.</li></cheerful>
       <gloomy><li>Too many of them. Somewhere in the count I stopped being someone who minds.</li></gloomy>
       <cold><li>I have stopped weighing lives. It saves a great deal of time.</li></cold>
     </journal>
@@ -117,8 +117,8 @@
     <meaning>Starving, {PAWN_pronoun} ate human flesh, and then again, and again. The horror of it has worn off, and what's left is a taste for it.</meaning>
     <journal>
       <plain>
-        <li>The first time I was sick afterwards. The third time I wasn't. I've been trying to decide what that means.</li>
-        <li>I walked past the freezer today and thought about what's in the back of it. Not with horror.</li>
+        <li>The first time I was sick afterward. The third time I wasn't. I've been trying to decide what that means.</li>
+        <li>I catch myself thinking about that meat. Not with horror anymore.</li>
       </plain>
       <warm><li>We did what we had to, to keep each other alive. I can't make myself regret it, or the taste.</li></warm>
       <blunt><li>Meat is meat. Hunger taught me that.</li></blunt>
@@ -148,15 +148,15 @@
     <chance>0.08</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become a cannibal.</news>
-    <meaning>The ideoligion {PAWN_pronoun} follows holds that human flesh is good to eat, and {PAWN_pronoun} has eaten it again and again. It isn't only belief anymore: it's appetite.</meaning>
+    <meaning>The faith {PAWN_nameDef} follows holds that human flesh is good to eat, and {PAWN_pronoun} has eaten it often enough now to want it for its own sake.</meaning>
     <journal>
       <plain>
-        <li>The faith says it's right. My stomach agrees now, and it didn't used to.</li>
-        <li>I look forward to the feast days for the meat. I didn't expect to admit that.</li>
+        <li>The faith says it's right. My stomach agrees now, and it didn't use to.</li>
+        <li>I look forward to that meat now for its own sake. I didn't expect to admit that.</li>
       </plain>
       <warm><li>We share the flesh as the faith asks, and I feel closer to everyone at the table for it.</li></warm>
       <blunt><li>I like it. The faith was right.</li></blunt>
-      <cheerful><li>Second helpings at the ritual meal. The cook gave me a look. I gave the cook a bigger look.</li></cheerful>
+      <cheerful><li>Second helpings, please. The faith says it's good, and so does my stomach.</li></cheerful>
       <gloomy><li>I don't think I could go back to plain meat. I don't think I want to.</li></gloomy>
       <cold><li>Belief became habit, and habit became preference. A natural progression.</li></cold>
     </journal>
