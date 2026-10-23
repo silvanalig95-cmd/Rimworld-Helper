@@ -165,10 +165,10 @@
     <rulePack>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] meant to return the [lentthing] before winter.</li>
-        <li>r_logentry->[INITIATOR_nameDef] had lent [RECIPIENT_nameDef] [INITIATOR_possessive] [lentthing] for an hour and got it back three days later.</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] use [INITIATOR_possessive] [lentthing] at supper as if it had always been [RECIPIENT_possessive].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked around for [INITIATOR_possessive] [lentthing], and every answer led back to [RECIPIENT_nameDef].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for the [lentthing], and [RECIPIENT_nameDef] said [lentanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [INITIATOR_pronoun] had lent [RECIPIENT_objective] the [lentthing] for an hour, three days ago.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_pronoun] used [INITIATOR_possessive] [lentthing] as if it had always been [RECIPIENT_possessive].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that every answer about [INITIATOR_possessive] missing [lentthing] had led back to [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] held out [INITIATOR_possessive] hand for the [lentthing], and [RECIPIENT_nameDef] said [lentanswer].</li>
         <li>r_logentry->[INITIATOR_nameDef] started keeping [INITIATOR_possessive] [lentthing] under [INITIATOR_possessive] pillow, and told [RECIPIENT_nameDef] why.</li>
         <li>lentthing->whittling knife</li>
         <li>lentanswer->[RECIPIENT_pronoun] had never touched it</li>

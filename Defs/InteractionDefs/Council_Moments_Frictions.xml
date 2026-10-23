@@ -418,15 +418,15 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] noticed that [RECIPIENT_nameDef] had taken the last of the good meals, and brought it up more than once.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had been saving that last good meal for [INITIATOR_objective]self, in [INITIATOR_possessive] head at least.</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] finish the good food while [INITIATOR_pronoun] [badfood].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how the meal had been. [RECIPIENT_nameDef] said it was wonderful, which did not help.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had eaten the good food while [INITIATOR_pronoun] [badfood].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how the meal had been, and [RECIPIENT_nameDef], not thinking, said it was wonderful.</li>
         <li>badfood->chewed on something plain</li>
         <li>badfood->ate yesterday's leftovers</li>
         <li>badfood->made do with cold scraps</li>
         <li>badfood->picked at the plain stuff</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] scrape the last of the good meal into [RECIPIENT_possessive] bowl.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether there was any of the good food left. There wasn't, and [RECIPIENT_nameDef] knew why.</li>
-        <li>r_logentry->[INITIATOR_nameDef] [badfood] at the next table and made sure [RECIPIENT_nameDef] saw it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had scraped the pot clean of the good stuff, or only most of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether there was any of the good food left, knowing full well there wasn't.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that [INITIATOR_pronoun] [badfood] instead.</li>
         <li>badfood->ate a cold potato</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -451,19 +451,19 @@
     <initiatorThought>Council_Friction_TookMySeat</initiatorThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] in [INITIATOR_possessive] usual seat and stood there until [RECIPIENT_nameDef] moved.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] was sitting in [INITIATOR_possessive] seat. [RECIPIENT_nameDef] said [seatanswer].</li>
-        <li>r_logentry->[INITIATOR_nameDef] sat down hard next to [RECIPIENT_nameDef], who had taken the good seat again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] was in [INITIATOR_possessive] usual seat, as if [RECIPIENT_nameDef] might not have known.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was comfortable in [INITIATOR_possessive] seat, and [RECIPIENT_nameDef] said [seatanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] that the good seat had gone again, and to whom.</li>
         <li>r_logentry->[INITIATOR_nameDef] made a point of telling [RECIPIENT_nameDef] which seat had the wobbly leg, after [RECIPIENT_nameDef] had taken the other one.</li>
         <li>seatanswer->it didn't have [INITIATOR_possessive] name on it</li>
         <li>seatanswer->[RECIPIENT_pronoun] had been there first</li>
         <li>seatanswer->seats belong to whoever sits in them</li>
         <li>seatanswer->nothing, and stayed put</li>
-        <li>r_logentry->[INITIATOR_nameDef] stood behind [RECIPIENT_nameDef]'s chair and cleared [INITIATOR_possessive] throat.</li>
+        <li>r_logentry->[INITIATOR_nameDef] cleared [INITIATOR_possessive] throat behind [RECIPIENT_nameDef]'s chair until [RECIPIENT_nameDef] looked round.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had sat in that seat every night since the colony began.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] reached the good seat at the same moment, and neither gave way.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over who had reached the good seat first.</li>
         <li>seatanswer->first come, first seated</li>
-        <li>r_logentry->[INITIATOR_nameDef] set [INITIATOR_possessive] bowl down in front of the seat [RECIPIENT_nameDef] was in, and waited.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how long [RECIPIENT_pronoun] meant to keep [INITIATOR_possessive] seat warm.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -486,14 +486,14 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for [INITIATOR_possessive] [lentthing] back, for the third time.</li>
-        <li>r_logentry->[INITIATOR_nameDef] spotted [INITIATOR_possessive] [lentthing] among [RECIPIENT_nameDef]'s things and took it back without a word.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had seen [INITIATOR_possessive] [lentthing] among [RECIPIENT_possessive] things, and wanted it back.</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that borrowing usually ends with giving back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [INITIATOR_possessive] [lentthing] had gone. [RECIPIENT_nameDef] said [lentanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [INITIATOR_possessive] [lentthing] had gone, and [RECIPIENT_nameDef] said [lentanswer].</li>
         <li>lentthing->good knife</li>
         <li>lentthing->whetstone</li>
         <li>lentthing->comb</li>
         <li>lentthing->sewing needle</li>
-        <li>lentthing->spare gloves</li>
+        <li>lentthing->pair of spare gloves</li>
         <li>lentthing->warm hat</li>
         <li>lentthing->favorite cup</li>
         <li>lentthing->blanket</li>
@@ -502,15 +502,15 @@
         <li>lentanswer->[RECIPIENT_pronoun] had thought it was a gift</li>
         <li>lentanswer->to ask again tomorrow</li>
         <li>r_logentry->[INITIATOR_nameDef] found [INITIATOR_possessive] [lentthing] in [RECIPIENT_nameDef]'s room and asked how it had gotten there.</li>
-        <li>r_logentry->[INITIATOR_nameDef] got [INITIATOR_possessive] [lentthing] back from [RECIPIENT_nameDef] in worse shape than it left.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [INITIATOR_possessive] [lentthing] had come back in worse shape than it left.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that next time [RECIPIENT_pronoun] could ask before borrowing.</li>
         <li>lentthing->best spoon</li>
         <li>lentanswer->[RECIPIENT_pronoun] had lent it to someone else</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], politely and then less politely, for [INITIATOR_possessive] [lentthing].</li>
-        <li>r_logentry->[INITIATOR_nameDef] had to borrow [INITIATOR_possessive] own [lentthing] back from [RECIPIENT_nameDef] to use it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [INITIATOR_possessive] [lentthing], and [RECIPIENT_nameDef] said [lentanswer].</li>
-        <li>r_logentry->[INITIATOR_nameDef] put a mark on [INITIATOR_possessive] [lentthing] after getting it back from [RECIPIENT_nameDef], so there would be no more confusion.</li>
-        <li>r_logentry->[INITIATOR_nameDef] went through [RECIPIENT_nameDef]'s things looking for [INITIATOR_possessive] [lentthing], and [RECIPIENT_nameDef] did not like it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had to ask [RECIPIENT_nameDef] whether [INITIATOR_pronoun] might borrow [INITIATOR_possessive] own [lentthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up [INITIATOR_possessive] [lentthing] again, and [RECIPIENT_nameDef] said [lentanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] would be putting a mark on [INITIATOR_possessive] [lentthing] from now on, so there would be no more confusion.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked whether [INITIATOR_pronoun] could look through [RECIPIENT_nameDef]'s things for [INITIATOR_possessive] [lentthing], and [RECIPIENT_nameDef] said no.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -532,23 +532,23 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had been through [INITIATOR_possessive] things, because [hoardsign].</li>
-        <li>r_logentry->[INITIATOR_nameDef] counted [INITIATOR_possessive] belongings while [RECIPIENT_nameDef] watched, slowly, twice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] exactly what [INITIATOR_pronoun] kept in [INITIATOR_possessive] chest, in case anything went missing.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to keep [RECIPIENT_possessive] hands off [INITIATOR_possessive] shelf.</li>
-        <li>r_logentry->[INITIATOR_nameDef] accused [RECIPIENT_nameDef] of moving [INITIATOR_possessive] [hoardthing]. [RECIPIENT_nameDef] said it had been in the same place all week.</li>
+        <li>r_logentry->[INITIATOR_nameDef] accused [RECIPIENT_nameDef] of moving [INITIATOR_possessive] [hoardthing], and [RECIPIENT_nameDef] said it had been in the same place all week.</li>
         <li>hoardsign->the pile looked smaller</li>
         <li>hoardsign->something had been moved an inch</li>
         <li>hoardsign->the lid was on the wrong way round</li>
         <li>hoardsign->the knot was tied differently</li>
-        <li>hoardthing->good boots</li>
+        <li>hoardthing->best pair of boots</li>
         <li>hoardthing->spare coat</li>
         <li>hoardthing->box of keepsakes</li>
         <li>hoardthing->coin purse</li>
         <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] looking at [INITIATOR_possessive] [hoardthing] and asked what [RECIPIENT_pronoun] wanted.</li>
-        <li>r_logentry->[INITIATOR_nameDef] moved [INITIATOR_possessive] [hoardthing] somewhere [RECIPIENT_nameDef] couldn't see it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] would be keeping [INITIATOR_possessive] [hoardthing] somewhere [RECIPIENT_pronoun] couldn't see it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] knew exactly how many of everything [INITIATOR_pronoun] owned.</li>
         <li>hoardthing->good knife</li>
         <li>hoardsign->the dust on the box had been disturbed</li>
-        <li>r_logentry->[INITIATOR_nameDef] scratched a mark into [INITIATOR_possessive] [hoardthing] while [RECIPIENT_nameDef] watched.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had marked [INITIATOR_possessive] [hoardthing], so [INITIATOR_pronoun] would know it anywhere.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
