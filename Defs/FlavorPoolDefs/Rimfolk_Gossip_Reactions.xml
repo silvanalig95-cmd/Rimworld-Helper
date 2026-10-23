@@ -25,7 +25,7 @@
         <li>[persona:proud,deed:masterwork|deed:contestwon] Hm, I could do as well, given the time.</li>
         <li>[persona:wary] If it's true, good for {SUBJECT_objective}.</li>
         <li>[persona:curious,deed:masterwork] I want to see it for myself.</li>
-        <li>[persona:joker] Next {SUBJECT_pronoun}'ll want a statue.</li>
+        <li>[persona:joker] Next {SUBJECT_pronoun}'ll be wanting the best chair at supper.</li>
         <li>[deed:keptsecret] I'll remember that the next time I need to talk.</li>
         <li>[deed:elected] Well, it was a fair vote.</li>
         <li>[deed:tended] I hope I never need it, but it's good to know.</li>
@@ -72,14 +72,14 @@
         <li>[persona:bold,deed:fled] Running, with the rest of us out there, I won't forget it.</li>
         <li>[persona:hothead] If {SUBJECT_nameDef} tries that near me, there'll be trouble.</li>
         <li>[persona:wary] I knew there was something off about {SUBJECT_objective}.</li>
-        <li>[persona:wary,deed:betrayed] Well, nobody's telling {SUBJECT_objective} anything now.</li>
+        <li>[persona:wary,deed:betrayed] Well, I won't be telling {SUBJECT_objective} anything now.</li>
         <li>[persona:calm] Hm, that's a pity.</li>
         <li>[persona:traditional,deed:cheated|deed:breakup] In my day people kept their promises.</li>
         <li>[deed:idle] Typical, and the rest of us running ourselves ragged.</li>
         <li>[deed:cheated,hasvictim] {VICTIM} deserved better than that.</li>
         <li>[deed:breakup] These things happen, I suppose.</li>
         <li>[deed:tantrum|deed:berserk] I'll be keeping my door shut.</li>
-        <li>[deed:skipped] The council's for all of us, you'd think people would come.</li>
+        <li>[deed:skipped] The council's for all of us, the least you can do is turn up.</li>
         <li>[deed:botched] I'm not letting that one near me with a knife.</li>
       </plain>
       <warm>
@@ -126,7 +126,7 @@
         <li>Ha.</li>
       </blunt>
       <cheerful>
-        <li>Oh, that's brilliant!</li>
+        <li>Oh, that's priceless!</li>
         <li>Stop, my sides hurt!</li>
       </cheerful>
       <gloomy>
