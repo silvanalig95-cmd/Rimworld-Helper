@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.13</version>
+        <date>23 October 2026</date>
+        <title>Talk in their own voices</title>
+        <points>
+          <li>Everything colonists say over their heads was reread one line at a time: council talk, wish asks and reminders, everyday talk, gossip, visitors' lines and group talk. Each makes its point in its first sentence, and a speech bubble now shows the whole line when it fits instead of only its first sentence.</li>
+          <li>The social log reads like the game's own. Moments, frictions, conversations and small social events are one sentence about what was said, at any hour and wherever the two stand. Nobody tidies a grave, fetches a meal or walks the walls when the game shows no such thing, and a friendly contest's opening line no longer gives away a different result from the winner's.</li>
+          <li>Conversations hang together: replies answer whatever was said, closing lines fit either side, and wish talk fits every wish it serves (health and healing, the lost and the dead, animals, safety, what children need).</li>
+          <li>Calendar letters, eulogies, the annals, group journals, personality marks, trait changes and quirks are written for the moment they come: no grave before a burial, no rite claimed that wasn't held, no children, pens or walls the colony may not have, and no sentence opening on a lower-case name.</li>
+          <li>A beast or pet nobody named is "the warg", not "warg", and talk about a disaster says "the cold snap" instead of "Cold snap" in the middle of a sentence.</li>
+          <li>Only a joyful ritual (a feast, a dance, a festival) is talked about afterwards as a party; an execution or a sacrifice no longer is. A Pokémon's evolution is congratulated aloud instead of turning up as a quote with no speaker in the log.</li>
+          <li>Moods from small social events hold for every event that gives them ("made fun of", "made to feel small"), and British spellings that had slipped in are American now.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.12</version>
         <date>23 October 2026</date>
         <title>A lesson at the table</title>
