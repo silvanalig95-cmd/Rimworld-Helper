@@ -43,6 +43,11 @@ namespace ColonyCouncil
 
         public string Name => pawn != null && !pawn.Discarded ? pawn.LabelShort : name ?? "?";
 
+        /// <summary>Their name in a sentence: a beast nobody named is "the warg", not "warg".</summary>
+        public string Called => pawn?.RaceProps != null && pawn.RaceProps.Animal && pawn.Name == null
+            ? Find.ActiveLanguageWorker.WithDefiniteArticle(Name, pawn.gender)
+            : Name;
+
         public string DeedText => ("CC_Nemesis_Deed_" + (deed ?? "downed")).Translate(victimName ?? "?").Resolve();
 
         /// <summary>"still out there", "here, now", "our prisoner", or how it ended.</summary>

@@ -292,7 +292,7 @@ namespace ColonyCouncil
             {
                 if (n == null || n.ended || n.captured) continue;
                 var said = Add("Council_Pool_SayNemesis", 0.7f, n.IsBeast ? "beast" : null, "deed:" + (n.deed ?? "downed"), n.Sworn ? "sworn" : null);
-                said.args.Add(n.Name.Named("ENEMY"));
+                said.args.Add(n.Called.Named("ENEMY"));
                 return;
             }
         }
@@ -338,7 +338,8 @@ namespace ColonyCouncil
                 if (s.arc != null) return raw.Formatted(ArcText.Args(s.arc, p, s.arc.other)).Resolve();
                 var args = new List<NamedArgument> { p.Named("PAWN") };
                 args.AddRange(s.args);
-                return raw.Formatted(args.ToArray()).Resolve();
+                // A line may open on a name given as plain text ("the warg").
+                return raw.Formatted(args.ToArray()).Resolve().CapitalizeFirst();
             }
             catch (Exception e)
             {
