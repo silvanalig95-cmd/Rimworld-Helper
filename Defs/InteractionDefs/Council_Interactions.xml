@@ -90,7 +90,7 @@
         <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] about [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [gripe] was no way to live.</li>
         <li>r_logentry->[INITIATOR_nameDef] announced to [RECIPIENT_nameDef] that [gripe] was the last straw.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up next time [INITIATOR_pronoun] raised [gripe] with the council.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up when [INITIATOR_pronoun] went to the council about [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] tried to laugh off [gripe].</li>
         <li>gripe->eating meals off [INITIATOR_possessive] knees</li>
         <li>gripe->shivering through the nights</li>
@@ -99,7 +99,7 @@
         <li>gripe->the clothes [INITIATOR_pronoun] pulled off a dead raider</li>
         <li>gripe->the draft that got in everywhere</li>
         <li>gripe->never having anywhere comfortable to sit</li>
-        <li>gripe->how drab and bare everything looked</li>
+        <li>gripe->the bare, drab rooms</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [gripe] was wearing [INITIATOR_objective] down.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] put up with [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] listed for [RECIPIENT_nameDef] everything wrong with [gripe], counting on [INITIATOR_possessive] fingers.</li>
@@ -135,7 +135,7 @@
         <li>fun->a night of music and bad singing</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] when [RECIPIENT_pronoun] had last done anything just for fun.</li>
         <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] that all work and no rest was making them all short-tempered.</li>
-        <li>r_logentry->[INITIATOR_nameDef] described [fun] to [RECIPIENT_nameDef] as if it were a feast.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [fun] sound like a feast, the way [INITIATOR_pronoun] described it to [RECIPIENT_nameDef].</li>
         <li>fun->a set of dice and a quiet corner</li>
         <li>fun->a game of cards after supper</li>
         <li>fun->a proper party</li>
@@ -163,7 +163,7 @@
         <li>gripe->eating berries raw off the bush</li>
         <li>gripe->watching the harvest rot</li>
         <li>gripe->the smell coming from the food stockpile</li>
-        <li>gripe->the same plain meal, day after day</li>
+        <li>gripe->the same plain meal day after day</li>
         <li>gripe->last night's mystery meat</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] remembered the taste of [food].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] swapped recipes they had no way of cooking here.</li>
@@ -400,8 +400,8 @@
         <li>r_logentry->[INITIATOR_nameDef] counted down the days left of [decree] with [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] did an impression of the council announcing [decree], and [RECIPIENT_nameDef] laughed despite [RECIPIENT_objective]self.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone actually voted for [decree].</li>
-        <li>decree->the council's latest decree</li>
-        <li>decree->the new rules</li>
+        <li>decree->the latest decree</li>
+        <li>decree->the latest ruling</li>
         <li>decree->this decree business</li>
         <li>decree->what the council calls policy</li>
         <li>verdict->a terrible idea</li>
@@ -430,8 +430,8 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about [decree], and neither gave an inch.</li>
         <li>r_logentry->[INITIATOR_nameDef] suggested [RECIPIENT_nameDef] stop complaining about [decree] and get on with it.</li>
         <li>r_logentry->[INITIATOR_nameDef] defended [decree] to [RECIPIENT_nameDef], who made it very clear what [RECIPIENT_pronoun] thought of that.</li>
-        <li>decree->the council's decree</li>
-        <li>decree->the new rules</li>
+        <li>decree->this decree</li>
+        <li>decree->the new ruling</li>
         <li>decree->the decree</li>
         <li>defense->the best thing the council has done all year</li>
         <li>defense->exactly what the colony needed</li>

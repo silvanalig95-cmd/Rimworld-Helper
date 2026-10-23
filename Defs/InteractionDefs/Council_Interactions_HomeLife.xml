@@ -15,7 +15,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [gripe] was getting to be too much.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up when [INITIATOR_pronoun] took [gripe] to the council.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] would complain to the council about [gripe] too.</li>
         <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef], in more detail than [RECIPIENT_pronoun] wanted, [gripe].</li>
         <li>gripe->the walk out to the bushes every morning</li>
         <li>gripe->the line outside the latrine</li>
