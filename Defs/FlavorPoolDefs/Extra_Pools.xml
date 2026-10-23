@@ -51,7 +51,7 @@
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
-  <!-- Narration when an event set the wish off. {OTHER} is the dead for death, {ENVIED} the lucky one for envy, {SUBJECT} the lost part for injury. -->
+  <!-- Narration when an event set the wish off. {ENVIED} is the lucky one for envy, {SUBJECT} the lost part for injury. A death sets off a burial or a call for justice, where {OTHER} is the prisoner, so death lines name nobody. -->
   <ColonyCouncil.FlavorExtensionDef>
     <defName>Council_Ext_Pool_Scene_Trigger</defName>
     <pool>Council_Pool_Scene_Trigger</pool>
@@ -60,9 +60,9 @@
         <li>[trigger:raid] {PAWN_nameDef} still has {PAWN_possessive} weapon in hand when {PAWN_pronoun} starts talking.</li>
         <li>[trigger:raid] {PAWN_nameDef} has to step over a dead raider to reach the door.</li>
         <li>[trigger:raid,hurt] Bleeding through a fresh bandage, {PAWN_nameDef} refuses to lie down until this is said.</li>
-        <li>[trigger:death] Someone has laid a blanket over {OTHER_nameDef}. {PAWN_nameDef} keeps straightening the corners.</li>
-        <li>[trigger:death] {PAWN_nameDef} hasn't eaten since {OTHER_nameDef} died. The bowl beside {PAWN_objective} has gone cold twice.</li>
-        <li>[trigger:death,afterraid] The raid cost the colony {OTHER_nameDef}. {PAWN_nameDef} wants this last part done right.</li>
+        <li>[trigger:death] Someone has laid a blanket over the body. {PAWN_nameDef} keeps straightening the corners.</li>
+        <li>[trigger:death] {PAWN_nameDef} hasn't eaten since the death. The bowl beside {PAWN_objective} has gone cold twice.</li>
+        <li>[trigger:death,afterraid] The raid cost the colony one of its own. {PAWN_nameDef} wants this last part done right.</li>
         <li>[trigger:cold] {PAWN_nameDef} slept in every piece of clothing {PAWN_pronoun} owns and still woke up with numb fingers.</li>
         <li>[trigger:cold] {PAWN_nameDef} woke with frost in {PAWN_possessive} eyebrows and hasn't warmed up since.</li>
         <li>[trigger:cold,lowtech] {PAWN_nameDef} spent the night curled against the dying embers, and there's soot on {PAWN_possessive} face.</li>
@@ -306,7 +306,7 @@
         <li>I've started it myself, so stay out of my way.</li>
       </blunt>
       <cheerful>
-        <li>I'm taking care of it myself, and I feel very handy!</li>
+        <li>Who needs a council? I've got two hands and a plan!</li>
         <li>I'm doing it myself, and I've got a plan and everything!</li>
       </cheerful>
       <gloomy>
@@ -410,7 +410,7 @@
       </gloomy>
       <cold>
         <li>The council has demonstrated its priorities, and I am not among them.</li>
-        <li>I've stopped putting anything into the council, it pays nothing back.</li>
+        <li>I've stopped putting anything into the council, since it pays nothing back.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
