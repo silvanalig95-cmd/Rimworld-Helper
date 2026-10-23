@@ -35,7 +35,7 @@
         <li>[renowned] They say the sick come a long way to us now. I counted the beds again tonight. We'll need more.</li>
         <li>[renowned] Our hospital has a name across the region. I remember when it was one cot and a bucket.</li>
       </plain>
-      <warm><li>[known] Everyone who has lain in those beds and walked out again: that's what the name is made of.</li></warm>
+      <warm><li>[known] I think of the ones who lay in those beds and walked out again. They're the ones spreading the word.</li></warm>
       <blunt><li>The hospital has a name now. Good. More work.</li></blunt>
       <gloomy><li>A good name means more patients, and more of the ones nobody else could help.</li></gloomy>
       <cold><li>Our hospital's reputation is an asset. I intend to keep it.</li></cold>
@@ -52,7 +52,7 @@
         <li>[opt2] Sent {X_nameDef} on with a few words and no medicine. We need what we have. I keep telling myself that.</li>
       </plain>
       <warm><li>[opt0] {X_nameDef} thanked me three times on the way out. Once would have been plenty.</li></warm>
-      <blunt><li>[opt0] Treated a traveller's {TALE}. Done.</li></blunt>
+      <blunt><li>[opt0] Treated a traveler's {TALE}. Done.</li></blunt>
       <cheerful><li>[opt0] Somebody walked days to see me! I tried to be worth it.</li></cheerful>
       <gloomy><li>[opt2] {X_nameDef} came all this way and got a few words from me. That will stay with me.</li></gloomy>
       <cold><li>[opt0] Treated an outsider. Their people will remember it; that is worth one dose.</li></cold>
