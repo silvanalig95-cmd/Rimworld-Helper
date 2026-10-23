@@ -91,7 +91,7 @@
         <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the snuggest room [INITIATOR_pronoun] had ever slept in, and [RECIPIENT_nameDef] described a snugger one.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about where the colony should dig next, and how deep.</li>
         <li>r_logentry->[INITIATOR_nameDef] said a good thick wall sounded like home when you knocked on it, and [RECIPIENT_nameDef] agreed.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] agreed that a quiet room with no windows was worth more than any view.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that a quiet room with no windows was worth more than any view.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
