@@ -21,7 +21,7 @@
         <li>[land:forest|land:boreal] A strip of cloth is tied round the stump of the first tree the colony felled. {A_nameDef} put it there at dawn, for founding day.</li>
         <li>[land:mountains|land:hills] {A_nameDef} climbed to the high ledge above the colony at sunrise and waved down until someone waved back.</li>
         <li>[land:swamp|land:jungle] Founding day in the damp. {A_nameDef} says the insects kept the founders awake all that first night, and scratches an old bite while {A_pronoun} tells it.</li>
-        <li>[land:river] At dawn {A_nameDef} set a little bark boat on the river, the way the colony counts its years.</li>
+        <li>[land:river] At dawn {A_nameDef} set a small bark boat on the river, the way the colony counts its years.</li>
         <li>[faith] {A_nameDef} gave thanks at first light for the colony and the people in it, and hopes the day will be kept well.</li>
         <li>[devout] {A_nameDef} spent the dawn praying for the ones who founded this place, the living and the dead.</li>
       </plain>

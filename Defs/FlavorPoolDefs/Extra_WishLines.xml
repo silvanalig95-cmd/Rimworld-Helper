@@ -111,7 +111,7 @@
     </expired>
     <reminder>
       <plain>
-        <li>I still don't have a door of my own, in case anyone's wondering.</li>
+        <li>Still no door of my own to shut.</li>
         <li>[trigger:barracks] Someone sneezed on me in my sleep last night, and I'm bringing it up because of the room.</li>
       </plain>
       <warm>
@@ -215,7 +215,7 @@
     <reminder>
       <plain>
         <li>My room still isn't what you'd call {SUBJECT}, not even close.</li>
-        <li>[morning] Woke up to the same bare walls again, just so you know.</li>
+        <li>[morning] Woke up to the same bare walls again.</li>
       </plain>
       <blunt>
         <li>Has anybody even looked at my room since I asked?</li>
@@ -313,7 +313,7 @@
     </expired>
     <reminder>
       <plain>
-        <li>Hit my head on the wall getting up again, in case anyone's counting.</li>
+        <li>Hit my head on the wall getting up again, the third time this week.</li>
       </plain>
       <warm>
         <li>My room could still use another few feet, when someone has a spare afternoon.</li>
@@ -928,7 +928,7 @@
     <reminder>
       <plain>
         <li>[trigger:cabin] Still nothing new to do, so I've started arguing with the furniture.</li>
-        <li>[winter] It's still winter, and I'm still waiting on "{WISH}".</li>
+        <li>[winter] Winter drags on, and so does the wait for "{WISH}".</li>
       </plain>
       <warm>
         <li>[petition] A lot of us are hoping for "{WISH}", not only me.</li>
@@ -1004,7 +1004,7 @@
     </thanks>
     <expired>
       <plain>
-        <li>No plant. I'll keep some soil in a bowl and pretend.</li>
+        <li>No plant. I'll keep a bowl of soil by the bed and water that.</li>
         <li>[promised] I'd already picked out the seeds, but never mind.</li>
         <li>[skill:Plants] I'll spend more time in the fields, where the plants are mine to look after.</li>
       </plain>
@@ -1280,7 +1280,7 @@
       </cheerful>
       <gloomy>
         <li>People look at the gap first, and at me second. I'd like it the other way around again.</li>
-        <li>[lowmood] I can't do half the things I used to, and I've stopped pretending I can.</li>
+        <li>[lowmood] I can't do half the things I used to, and I've stopped telling people I can.</li>
       </gloomy>
       <cold>
         <li>People have started being careful around me, as if I'll break. Install {THING} and they can stop.</li>
@@ -1768,7 +1768,7 @@
       </warm>
       <blunt>
         <li>Every time I get going, somebody walks through my work to reach the stockpile. I need {SUBJECT} with a door on it.</li>
-        <li>[trait:Abrasive] I'm good at this, and I'm done pretending a dirt floor will do instead of {SUBJECT}.</li>
+        <li>[trait:Abrasive] I'm good at this, and I'm done making do with a dirt floor instead of {SUBJECT}.</li>
         <li>[afterraid] We nearly died yesterday. If I go, I want some good work behind me, done in {SUBJECT}.</li>
       </blunt>
       <cheerful>
@@ -2028,7 +2028,7 @@
     </expired>
     <reminder>
       <plain>
-        <li>We're still eating in front of blank walls, still hoping for "{WISH}".</li>
+        <li>We still eat facing blank walls, and "{WISH}" seems no nearer.</li>
       </plain>
       <warm>
         <li>[petition] A few of us keep eyeing that empty corner of the dining room and thinking the same thing.</li>
@@ -2201,7 +2201,7 @@
     <expired>
       <plain>
         <li>[promised] A promised brewery. I'll just drink the promise, then.</li>
-        <li>I'll drink muddy water and pretend it's aged.</li>
+        <li>I'll drink muddy water and call it aged.</li>
         <li>[evening] Another evening, another cup of water, and I toast it out of spite.</li>
       </plain>
       <warm>
@@ -2416,7 +2416,7 @@
     </expired>
     <reminder>
       <plain>
-        <li>[summer] More food went off this morning, and I'm still hoping for "{WISH}".</li>
+        <li>[summer] More food went off this morning while we wait on "{WISH}".</li>
       </plain>
       <warm>
         <li>[petition] All of us in the kitchen are still asking, and the food's still spoiling.</li>
@@ -2709,7 +2709,7 @@
     </expired>
     <reminder>
       <plain>
-        <li>My walls are still bare, in case anyone's thinking about sculptures.</li>
+        <li>My walls are as bare as the day I asked.</li>
       </plain>
       <warm>
         <li>If there's ever a spare piece in the storeroom, my room would give it a good home.</li>
@@ -2815,7 +2815,7 @@
         <li>I've planned my time off in detail! It's mostly lying down.</li>
       </cheerful>
       <gloomy>
-        <li>[night] Still awake, and up again in a few hours, still waiting on "{WISH}".</li>
+        <li>[night] Awake again, with work in a few hours and no sign of "{WISH}".</li>
       </gloomy>
       <warm>
         <li>I'm still running on very little. A few hours off, whenever you can manage it.</li>
@@ -2912,7 +2912,7 @@
         <li>My mug's been empty so long a spider moved in!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] It's getting harder to wind down at night, just so you know.</li>
+        <li>[lowmood] It's getting harder to wind down at night.</li>
       </gloomy>
       <warm>
         <li>[trusting] Not trying to nag, just still hoping for a little something in the stockpile.</li>
