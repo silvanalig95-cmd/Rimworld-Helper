@@ -1762,14 +1762,14 @@
         <li>[repeat] I'll keep bringing up {SUBJECT} until it's built.</li>
       </plain>
       <warm>
-        <li>I'd teach anyone who wants to learn, if we had {SUBJECT}. It isn't just for me.</li>
+        <li>I'd teach anyone who wants to learn, if we had {SUBJECT}.</li>
         <li>[old] I've got a few good working years left in me. I want to spend them in {SUBJECT}.</li>
-        <li>[trusting] I've never asked for much. I'm asking for {SUBJECT} because I think we'd all be better off for it.</li>
+        <li>[trusting] I've never asked for much, so you know I mean it about {SUBJECT}.</li>
       </warm>
       <blunt>
-        <li>Every time I get going, somebody walks through my work to reach the stockpile. I want {SUBJECT}.</li>
-        <li>[trait:Abrasive] I'm good at this, and I'm done pretending a dirt floor is fine. Build {SUBJECT}.</li>
-        <li>[afterraid] We nearly died yesterday. If I go, I want to have done some good work first. Build {SUBJECT}.</li>
+        <li>Every time I get going, somebody walks through my work to reach the stockpile. I want {SUBJECT} with a door on it.</li>
+        <li>[trait:Abrasive] I'm good at this, and I'm done pretending a dirt floor will do instead of {SUBJECT}.</li>
+        <li>[afterraid] We nearly died yesterday. If I go, I want some good work behind me, done in {SUBJECT}.</li>
       </blunt>
       <cheerful>
         <li>I dreamed about {SUBJECT} last night and woke up grinning! Let's build it.</li>
@@ -1787,7 +1787,7 @@
     </request>
     <thanks>
       <plain>
-        <li>I spent the whole night in there. I'd have stayed longer if they hadn't called me for breakfast.</li>
+        <li>I'll be in there all night, so someone call me for breakfast.</li>
         <li>[petition] All of you who backed this, come and see it. You'll be the first to benefit.</li>
         <li>[promised] I half thought you'd forget. I'll make every stone of it worth the trouble.</li>
       </plain>
@@ -1795,13 +1795,13 @@
         <li>Come by whenever you like. I've already set aside a stool for visitors.</li>
       </warm>
       <blunt>
-        <li>Good. Now stay out of my way and let me work.</li>
+        <li>Don't expect to see me at supper.</li>
       </blunt>
       <cheerful>
-        <li>[morning] I was up before anyone else this morning, working in the best room in the colony!</li>
+        <li>[morning] Tomorrow I'll be up before anyone else, working in the best room in the colony!</li>
       </cheerful>
       <gloomy>
-        <li>I made something today and I was proud of it. I'd forgotten that feeling.</li>
+        <li>Maybe I'll make something I'm proud of again.</li>
       </gloomy>
       <cold>
         <li>This will pay for itself within the season. Mark the date.</li>
@@ -1810,7 +1810,7 @@
     <expired>
       <plain>
         <li>[promised] I've been sketching {SUBJECT} in the dirt. The dirt's all I was given.</li>
-        <li>So it's whatever free corner I can find, between the stockpile and the door.</li>
+        <li>So I'll keep working wherever there's a gap, and moving when someone needs it.</li>
       </plain>
       <warm>
         <li>I'll teach someone what I know instead, in case I never get to do it properly.</li>
@@ -1831,13 +1831,13 @@
     </expired>
     <reminder>
       <plain>
-        <li>Still waiting on {SUBJECT}. Every day I lose half an hour just finding my tools.</li>
+        <li>Still waiting on {SUBJECT}, and losing half an hour a day just finding my tools.</li>
       </plain>
       <warm>
         <li>[petition] A few of us are still hoping for {SUBJECT}. We'd all use it, I promise.</li>
       </warm>
       <blunt>
-        <li>You know what I asked for. It isn't built. I'm still asking.</li>
+        <li>You know what I asked for, and it still isn't built.</li>
       </blunt>
       <cheerful>
         <li>I've added three more rooms to my plans for {SUBJECT}! Maybe we could build the first one?</li>
@@ -1887,21 +1887,21 @@
     </request>
     <thanks>
       <plain>
-        <li>I've been doing {SUBJECT} all day. I'm tired, but it's the good kind.</li>
-        <li>[morning] Woke up knowing what I'd be doing today. Best feeling there is.</li>
+        <li>I'll be tired tonight from {SUBJECT}, and it'll be the good kind.</li>
+        <li>[morning] I know what I'll be doing today. Best feeling there is.</li>
         <li>[promised] Back on {SUBJECT}, just like you said. I didn't think you'd remember.</li>
       </plain>
       <warm>
-        <li>Thank you for trusting me with it. I won't let anyone down.</li>
+        <li>You won't be sorry you trusted me with it.</li>
       </warm>
       <blunt>
         <li>About time. Now watch how it's done.</li>
       </blunt>
       <cheerful>
-        <li>I'm on {SUBJECT} now! I've hardly stopped to eat.</li>
+        <li>I'm on {SUBJECT} now! I might forget to eat!</li>
       </cheerful>
       <gloomy>
-        <li>For a few hours I wasn't thinking about anything else.</li>
+        <li>Maybe for a few hours I'll stop thinking about everything else.</li>
       </gloomy>
       <cold>
         <li>Correct allocation. You'll see the results.</li>
@@ -1910,37 +1910,37 @@
     <expired>
       <plain>
         <li>[promised] I was supposed to be doing {SUBJECT} by now. I'm still sweeping floors.</li>
-        <li>Somebody else is still on {SUBJECT}. I'll stop offering.</li>
+        <li>Somebody else is still on {SUBJECT}, so I'll stop offering.</li>
       </plain>
       <warm>
         <li>Whoever's doing {SUBJECT} instead, I hope they're enjoying it as much as I would have.</li>
         <li>[trusting] I'm sure there's a good reason I'm not on {SUBJECT}. I'd still like to hear it someday.</li>
       </warm>
       <blunt>
-        <li>Fine. Enjoy whatever mess the others make of {SUBJECT}.</li>
+        <li>Enjoy whatever mess the others make of {SUBJECT}.</li>
       </blunt>
       <cheerful>
-        <li>I'll just be the best hauler in the colony, then!</li>
+        <li>I'll just be the best hauler in the colony instead!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] Right. Back to being useless, then.</li>
+        <li>[lowmood] Back to being useless.</li>
       </gloomy>
       <cold>
-        <li>Then my skills will rot. That's your loss, not mine.</li>
+        <li>Then my skills will rot, and that's your loss, not mine.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>Still not on {SUBJECT}. I think about it every day.</li>
+        <li>Still not on {SUBJECT}, and I think about it every day.</li>
       </plain>
       <blunt>
-        <li>Just watched {SUBJECT} get done wrong again. Put me on it.</li>
+        <li>Just watched {SUBJECT} get done wrong again.</li>
       </blunt>
       <cheerful>
         <li>Still ready for {SUBJECT} whenever you are!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] I've stopped watching them do {SUBJECT}. It hurts to watch.</li>
+        <li>[lowmood] I've stopped watching them do {SUBJECT} because it hurts too much.</li>
       </gloomy>
       <warm>
         <li>Whenever you're shuffling the work around, I'd still love a turn at {SUBJECT}.</li>
@@ -1955,47 +1955,47 @@
       <plain>
         <li>We eat every meal staring at the same blank wall. A statue would help the food go down.</li>
         <li>[skill:Artistic] I've got a block of stone and an idea. Give me a place where people will actually see it.</li>
-        <li>[afterraid] After a day like today, I'd like to look up at supper and see something that isn't a bloodstain.</li>
+        <li>[afterraid] After today, I'd like to look up at supper and see something that isn't a bloodstain.</li>
         <li>[repeat] The walls haven't gotten any less blank since I last brought it up.</li>
       </plain>
       <warm>
-        <li>I'd love something beautiful in the dining room, something we can point at and say we made out here.</li>
+        <li>I'd love something beautiful in the dining room, something we made out here.</li>
         <li>[winter] The winter is gray enough. Our dining room doesn't need to be.</li>
         <li>[grieving] A carving in the dining room would help us remember the ones who used to eat with us.</li>
       </warm>
       <blunt>
-        <li>The rec room looks like a prison. I've been in prison. Our rec room is worse.</li>
-        <li>[trait:Greedy] Other settlements have statues in their halls, and we have bare stone. It's embarrassing.</li>
+        <li>Our rec room looks worse than some prisons I've seen.</li>
+        <li>[trait:Greedy] Other settlements have statues in their halls, and we have bare walls. It's embarrassing.</li>
         <li>[trait:Abrasive] I don't care about art. I care that the dining room is so ugly it ruins my appetite.</li>
       </blunt>
       <cheerful>
         <li>We need a statue! I don't mind of what, as long as it has a big nose.</li>
-        <li>[highmood] Let's make the dining room so fancy that raiders stop to admire it before they start shooting!</li>
+        <li>[highmood] Let's make the dining room so fancy that raiders stop to admire it!</li>
       </cheerful>
       <gloomy>
-        <li>When we're all dead, whoever finds this place should find something here worth finding.</li>
+        <li>Someday someone will find this place, and there should be something here worth finding.</li>
         <li>[lowmood] Blank walls and gray faces at every meal. A statue won't fix that, but it might help.</li>
       </gloomy>
       <cold>
         <li>Visitors judge us by our common rooms, and right now they'd judge us poor.</li>
         <li>[trait:Psychopath] I don't feel much looking at art. Other people do. That's useful, so let's have some.</li>
-        <li>[rich] We're wealthy, and it doesn't show. Spend some of it where visitors can see.</li>
+        <li>[rich] Our wealth sits in the storeroom where no visitor ever sees it.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>Someone stopped mid-bite at supper just to look at it. That's what I wanted.</li>
+        <li>People will stop mid-bite at supper just to look at it.</li>
         <li>[petition] We all asked for it. Now we all get to argue about what it means.</li>
         <li>[promised] The art's up, just as you said. The dining room looks like somewhere people live now.</li>
       </plain>
       <warm>
-        <li>It's lovely. I've caught people smiling at it on their way past.</li>
+        <li>It's lovely, and people will smile at it on their way past.</li>
       </warm>
       <blunt>
-        <li>Fine. It's good. Don't ask me to explain why.</li>
+        <li>It's good, so don't ask me to explain why.</li>
       </blunt>
       <cheerful>
-        <li>[evening] I named it at supper tonight! The others hate the name, but it's staying.</li>
+        <li>[evening] I'm naming it at supper tonight! The others will hate the name.</li>
       </cheerful>
       <gloomy>
         <li>It's the only thing here that isn't trying to survive. It just stands there being nice to look at.</li>
@@ -2007,20 +2007,20 @@
     <expired>
       <plain>
         <li>[promised] The wall's still bare, and it was supposed to have art on it by now.</li>
-        <li>I'll scratch something into the dining table, then. Don't look.</li>
-        <li>[skill:Artistic] I'll carve something myself, then. Don't blame me if it comes out angry.</li>
+        <li>I'll scratch a face into the dining table.</li>
+        <li>[skill:Artistic] I'll carve something myself, and don't blame me if it comes out angry.</li>
       </plain>
       <warm>
         <li>The people are the nicest thing in that room anyway. I'll look at them.</li>
       </warm>
       <blunt>
-        <li>So we keep eating in a gray box. Lovely.</li>
+        <li>So we keep eating in a gray box.</li>
       </blunt>
       <cheerful>
         <li>I'll stand very still in the corner of the dining room. I'm the art now!</li>
       </cheerful>
       <gloomy>
-        <li>Nothing beautiful lasts out here. I don't know why I thought this would.</li>
+        <li>I don't know why I thought anything beautiful would happen out here.</li>
       </gloomy>
       <cold>
         <li>Unfortunate. The cheapest morale improvement available, ignored.</li>
@@ -2028,19 +2028,19 @@
     </expired>
     <reminder>
       <plain>
-        <li>We're still eating in front of blank walls. I'd love to see {WISH} soon.</li>
+        <li>We're still eating in front of blank walls, still hoping for "{WISH}".</li>
       </plain>
       <warm>
-        <li>[petition] A few of us keep looking at that empty corner of the dining room and thinking the same thing.</li>
+        <li>[petition] A few of us keep eyeing that empty corner of the dining room and thinking the same thing.</li>
       </warm>
       <cheerful>
         <li>I've picked the perfect spot for the statue, right in front of the blank wall!</li>
       </cheerful>
       <gloomy>
-        <li>[evening] Another supper with the bare walls. I've started seeing faces in the stone.</li>
+        <li>[evening] Another supper with the bare walls, and I've started seeing faces in them.</li>
       </gloomy>
       <blunt>
-        <li>Dining room's still ugly. In case anyone's forgotten.</li>
+        <li>Dining room's still ugly, in case anyone's forgotten.</li>
       </blunt>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -2062,7 +2062,7 @@
       </warm>
       <blunt>
         <li>This thing I carry is an insult to the person I took it from.</li>
-        <li>[trait:Bloodlust] I want something that makes them scream. Get me one.</li>
+        <li>[trait:Bloodlust] Get me something that finishes the job the first time.</li>
       </blunt>
       <cheerful>
         <li>I've been practicing my battle cry, and it deserves a better {SUBJECT}!</li>
@@ -2075,24 +2075,24 @@
         <li>[afterraid] A raider's weapon outclassed mine all through that fight. I won't be so lucky twice.</li>
       </gloomy>
       <cold>
-        <li>The raiders carry better equipment than I do. That should be the other way around. Arrange it.</li>
+        <li>The raiders carry better equipment than I do, and that should be the other way around.</li>
         <li>[trigger:raid] One of them got away today because of this weapon. I don't like leaving things unfinished.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>It sits right in my hands. I've taken it out to practice twice already.</li>
-        <li>[afterraid] Next time they come, they'll meet this. Good.</li>
+        <li>I'll be out practicing with it before supper.</li>
+        <li>[afterraid] I wish I'd had this yesterday.</li>
         <li>[promised] Next raid, you'll see exactly what keeping your promise bought.</li>
       </plain>
       <warm>
-        <li>I'll keep it clean, and I'll keep the rest of you safe. Thank you.</li>
+        <li>I'll keep it clean, and I'll keep the rest of you safe.</li>
       </warm>
       <blunt>
         <li>[trait:Bloodlust] Oh, they're going to hate this. I'm going to love it.</li>
       </blunt>
       <cheerful>
-        <li>I took it for a walk around the perimeter twice, just to carry it!</li>
+        <li>I'm going to carry it around the perimeter twice, just to carry it!</li>
       </cheerful>
       <gloomy>
         <li>I might survive the next raid now.</li>
@@ -2125,10 +2125,10 @@
     </expired>
     <reminder>
       <plain>
-        <li>[trigger:raid] Still carrying the junk I fought with last time. About that {SUBJECT}...</li>
+        <li>[trigger:raid] Still carrying the junk I fought with last time, so about that {SUBJECT}.</li>
       </plain>
       <blunt>
-        <li>This won't hold up in the next fight. Get me a decent {SUBJECT}.</li>
+        <li>This won't hold up in the next fight, so where's my {SUBJECT}?</li>
       </blunt>
       <cheerful>
         <li>My battle cry is ready, but my weapon isn't!</li>
@@ -2147,19 +2147,19 @@
     <wish>Council_Wish_Brewery</wish>
     <request>
       <plain>
-        <li>We grow food, we make clothes, we bury our dead. We don't brew. Feels like we skipped a step.</li>
+        <li>We grow our own food and sew our own clothes, but we don't brew. Feels like we skipped a step.</li>
         <li>[trait:ChemicalInterest|trait:ChemicalFascination] It's been a long time since I had anything at all. Beer is the gentle option. Think about it.</li>
         <li>[fall] The harvest's in. It'd be a shame not to turn some of it into something worth drinking.</li>
         <li>[repeat] The harvests keep coming in and none of it is becoming beer. I'm bringing it up again.</li>
       </plain>
       <warm>
-        <li>A barrel of our own beer would be something to share. With traders, with guests, with each other.</li>
-        <li>[evening] Imagine us all sitting outside after supper with a mug each, talking about anything but raids.</li>
+        <li>A barrel of our own beer would be something to share, with guests or with each other.</li>
+        <li>[evening] I'd love to sit outside after supper with a mug each, talking about anything but raids.</li>
         <li>[winter] A mug of our own beer on a winter night would carry a lot of us through to spring.</li>
       </warm>
       <blunt>
         <li>I'm not asking for anything strong. I'm asking for beer. Be glad it's only beer.</li>
-        <li>[afterraid] We survived that raid and toasted with water. Build {THING}.</li>
+        <li>[afterraid] We survived that raid and toasted with water. I want {THING} before the next one.</li>
       </blunt>
       <cheerful>
         <li>I've already drawn the mark for our barrels, a winking muffalo! Please build {THING}.</li>
@@ -2167,74 +2167,74 @@
         <li>[highmood] Days like this deserve a toast, and we've got nothing to toast with!</li>
       </cheerful>
       <gloomy>
-        <li>We'll all be dead one day. I'd like to have had a drink first.</li>
+        <li>It's been a dry year in every sense. I'd like one drink before it's out.</li>
         <li>[lowmood] One beer and one evening where things feel far away. Is that so much to ask?</li>
       </gloomy>
       <cold>
-        <li>Traders pay well for beer, and colonists pay for it in good behavior.</li>
+        <li>A colony with beer complains less. I've noticed.</li>
         <li>[trait:Psychopath] Drunk people are easier to read. I like a colony I can read. Let's brew.</li>
         <li>[trait:ChemicalInterest|trait:ChemicalFascination] I can control myself. A barrel here at home keeps me from looking elsewhere.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>First batch is in the barrel. I keep checking on it like it's a newborn.</li>
+        <li>Beer at last. I'm going to fuss over it like a newborn.</li>
         <li>[petition] The ones who asked for it get the first mugs. That's only fair.</li>
-        <li>[promised] A barrel, like you promised. I'll name the first batch after the council.</li>
+        <li>[promised] Beer, like you promised. The first mug's named after the council.</li>
       </plain>
       <warm>
-        <li>I'll pour the first round myself when it's ready, starting with whoever built the barrel.</li>
+        <li>Come and find me tonight, the first mug's on me.</li>
       </warm>
       <blunt>
-        <li>That barrel stays shut until it's ready, even to me.</li>
+        <li>Hands off the beer until supper, mine included.</li>
       </blunt>
       <cheerful>
-        <li>[evening] I've been sitting next to the barrel all evening, telling it it's doing great!</li>
+        <li>[evening] Tonight we toast! I've been practicing mine all week!</li>
       </cheerful>
       <gloomy>
-        <li>For once we're waiting on something other than a raid.</li>
+        <li>Something to look forward to that isn't a raid.</li>
       </gloomy>
       <cold>
-        <li>Production has begun. I'll be calculating the yield per colonist.</li>
+        <li>I'll be keeping count of the beer per colonist.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
         <li>[promised] A promised brewery. I'll just drink the promise, then.</li>
-        <li>No beer. Back to muddy water, and pretending it's aged.</li>
-        <li>[evening] Another evening, another cup of water. I've started making toasts to it out of spite.</li>
+        <li>I'll drink muddy water and pretend it's aged.</li>
+        <li>[evening] Another evening, another cup of water, and I toast it out of spite.</li>
       </plain>
       <warm>
-        <li>We'll toast with whatever's in the cup. It's the toasting that counts.</li>
+        <li>We'll toast with whatever's in the cup.</li>
       </warm>
       <blunt>
-        <li>[bitter] Can't even manage a barrel. Is there anything this council can build?</li>
+        <li>[bitter] This council can't even manage a barrel.</li>
       </blunt>
       <cheerful>
         <li>Fine by me! I'm going to try fermenting berries in a bucket.</li>
       </cheerful>
       <gloomy>
-        <li>A long dry season ahead, then. They're all long and dry here.</li>
+        <li>Another long dry season ahead, like all of them here.</li>
       </gloomy>
       <cold>
-        <li>Disappointing. Morale will fall faster than it needed to. I'll watch it happen.</li>
+        <li>Morale will fall faster than it needed to, and I'll watch it happen.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>Still no beer. A barrel would take one afternoon. I've measured.</li>
+        <li>Still no beer, and a barrel would take one afternoon.</li>
       </plain>
       <blunt>
-        <li>We still don't have a brewery. You remember, the thing that makes beer?</li>
+        <li>We still don't have a brewery, you know, the thing that makes beer.</li>
       </blunt>
       <cheerful>
         <li>[evening] Every evening I think how perfect a beer would be right now!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] Still dry. Some evenings that's harder than others.</li>
+        <li>[lowmood] Still dry, and some evenings that's harder than others.</li>
       </gloomy>
       <warm>
-        <li>[petition] A few of us are still dreaming about that first mug. Just saying.</li>
+        <li>[petition] A few of us are still dreaming about that first mug.</li>
       </warm>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -2252,10 +2252,10 @@
       <warm>
         <li>The cooks work so hard. If they had time for {SUBJECT}, I think it would cheer them up too.</li>
         <li>[old] A warm meal that doesn't fight back, that's all I want. My teeth aren't what they were.</li>
-        <li>[grieving] Food is the only thing that's comforted me lately. A good meal would mean a lot.</li>
+        <li>[grieving] Food's the one thing that's comforted me lately. A good meal would help.</li>
       </warm>
       <blunt>
-        <li>[trigger:rawfood] Raw again. I'm not a muffalo. Cook something.</li>
+        <li>[trigger:rawfood] Raw again, and I'm not a muffalo.</li>
         <li>[trait:Gourmand] I'll cook it myself if I have to, and nobody wants that. Get the cooks making {SUBJECT}.</li>
       </blunt>
       <cheerful>
@@ -2275,18 +2275,18 @@
     </request>
     <thanks>
       <plain>
-        <li>I ate slowly for once. I didn't want it to end.</li>
-        <li>[trigger:rawfood] Hot, cooked and seasoned. My jaw thanks you.</li>
-        <li>[promised] You promised {SUBJECT}, and I ate two of them.</li>
+        <li>I'm going to eat it slowly, so it lasts.</li>
+        <li>[trigger:rawfood] Something cooked at last. My jaw thanks you.</li>
+        <li>[promised] You promised {SUBJECT}, and I'm having two.</li>
       </plain>
       <warm>
-        <li>Tell the cook it was wonderful. Actually, I'll tell them myself.</li>
+        <li>I'm going to find the cook and say thank you myself.</li>
       </warm>
       <blunt>
-        <li>[trait:Gourmand] Finally. Real food. Don't stop now.</li>
+        <li>[trait:Gourmand] Real food, and don't stop now.</li>
       </blunt>
       <cheerful>
-        <li>[evening] I licked my plate clean at supper and I'm not sorry!</li>
+        <li>[evening] I'm going to lick my plate clean at supper and I won't be sorry!</li>
       </cheerful>
       <gloomy>
         <li>[trigger:sick] Food that won't make me sick. I'd forgotten that was an option.</li>
@@ -2302,7 +2302,7 @@
       </plain>
       <warm>
         <li>The cooks have enough on their plates already. I'll manage.</li>
-        <li>[trigger:rawfood] I'll ask the cook to teach me something simple. Better than chewing it raw.</li>
+        <li>[trigger:rawfood] I'll ask the cook to teach me something simple, which beats chewing it raw.</li>
       </warm>
       <blunt>
         <li>[trigger:sick] So I go on guessing which meal will make me sick.</li>
@@ -2311,7 +2311,7 @@
         <li>Raw food is just food that's very shy!</li>
       </cheerful>
       <gloomy>
-        <li>Same food tomorrow, and the day after. That's how it'll be until the end.</li>
+        <li>Same food tomorrow, and the day after, and the day after that.</li>
       </gloomy>
       <cold>
         <li>Then morale will keep falling at mealtimes. I've stopped expecting otherwise.</li>
@@ -2319,19 +2319,19 @@
     </expired>
     <reminder>
       <plain>
-        <li>[trigger:rawfood] Ate raw again today. Any news on {SUBJECT}?</li>
+        <li>[trigger:rawfood] Ate raw again today, so any news on {SUBJECT}?</li>
       </plain>
       <warm>
         <li>[petition] A lot of us would love {SUBJECT}, even just once.</li>
       </warm>
       <blunt>
-        <li>[trait:Gourmand] Still eating slop. I've nearly forgotten what flavor is.</li>
+        <li>[trait:Gourmand] Still eating slop, and I've nearly forgotten what flavor is.</li>
       </blunt>
       <cheerful>
         <li>I keep imagining {SUBJECT} in great detail. Please hurry!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] Another meal I didn't taste. I've stopped noticing.</li>
+        <li>[lowmood] Another meal I didn't taste.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -2347,12 +2347,12 @@
         <li>[repeat] Since I last asked, we've thrown out enough food to feed a caravan.</li>
       </plain>
       <warm>
-        <li>[skill:Plants] I grew all that food with my own hands. I'd hate to watch it rot. A freezer, please?</li>
+        <li>[skill:Plants] I'd love to see what I grow make it all the way to the table. A freezer, please?</li>
         <li>If we lose the harvest to spoilage, we'll go hungry by winter. I'd rather none of us did.</li>
         <li>[skill:Cooking] I'd love to cook with fresh ingredients for once. It's the difference between a meal and a ration.</li>
       </warm>
       <blunt>
-        <li>[summer] Something in the storeroom is moving, and it isn't a squirrel. Build a freezer.</li>
+        <li>[summer] Something in the storeroom is moving, and it isn't a squirrel.</li>
         <li>I'm done picking maggots out of my dinner. We need a freezer, today.</li>
       </blunt>
       <cheerful>
@@ -2372,15 +2372,15 @@
     </request>
     <thanks>
       <plain>
-        <li>I walked into the freezer and the meat was just meat. No smell, no flies.</li>
-        <li>[summer] Midsummer and the food's still good. That's never happened here before.</li>
+        <li>The meat in there is just meat now, and it'll stay that way.</li>
+        <li>[summer] Midsummer, and the food will keep.</li>
         <li>[promised] The food's fresh and the flies are furious. Thank you for keeping your word.</li>
       </plain>
       <warm>
-        <li>Nothing we grow will go to waste now. Thank you.</li>
+        <li>Next harvest, every basket makes it to the table.</li>
       </warm>
       <blunt>
-        <li>Keep that door shut. I'll know if someone doesn't.</li>
+        <li>Anyone who leaves the freezer door open answers to me.</li>
       </blunt>
       <cheerful>
         <li>[hot] The freezer is my new favorite place to stand. Don't mind me!</li>
@@ -2389,20 +2389,20 @@
         <li>We might actually make it through the winter now.</li>
       </gloomy>
       <cold>
-        <li>Spoilage eliminated. I'll be taking inventory, so don't take extra.</li>
+        <li>I'll be taking inventory, so don't take extra.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
         <li>[promised] We were meant to have a freezer. The meat didn't wait for it.</li>
         <li>I'll eat the oldest food first and pray.</li>
-        <li>[summer] I threw out another crate this morning. I'm too tired to be angry about it.</li>
+        <li>[summer] I threw out another crate this morning, and I'm too tired to be angry.</li>
       </plain>
       <warm>
-        <li>I'll dry what I can, then. Every bit saved helps.</li>
+        <li>I'll dry what I can, and every bit saved helps.</li>
       </warm>
       <blunt>
-        <li>[summer] Enjoy the smell, then. I'm eating outside.</li>
+        <li>[summer] I'm eating outside from now on, away from that storeroom.</li>
       </blunt>
       <cheerful>
         <li>Fresh food tastes best anyway, so we'll all just eat faster!</li>
@@ -2411,12 +2411,12 @@
         <li>So we watch it rot, and then we go hungry.</li>
       </gloomy>
       <cold>
-        <li>Then we'll lose food, and after that we'll lose people. In that order.</li>
+        <li>Then we'll lose food, and after that we'll lose people.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>[summer] More food went off this morning. Still hoping for {WISH}.</li>
+        <li>[summer] More food went off this morning, and I'm still hoping for "{WISH}".</li>
       </plain>
       <warm>
         <li>[petition] All of us in the kitchen are still asking, and the food's still spoiling.</li>
