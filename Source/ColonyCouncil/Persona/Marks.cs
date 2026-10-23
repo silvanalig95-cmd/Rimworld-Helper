@@ -382,8 +382,10 @@ namespace ColonyCouncil
             if (x == null) return;
             if (fam == "LostPet")
             {
-                // The animal is named in the label: {OTHER} is for people.
-                Give(p, fam, null, other?.LabelShort ?? first.defaultLabel);
+                // The animal is named in the label: {OTHER} is for people. One nobody named is "the warg".
+                string name = other == null ? first.defaultLabel
+                    : other.Name == null ? Find.ActiveLanguageWorker.WithDefiniteArticle(other.LabelShort, other.gender) : other.LabelShort;
+                Give(p, fam, null, name);
                 return;
             }
             if (other != null && (other.RaceProps == null || !other.RaceProps.Humanlike)) other = null;
