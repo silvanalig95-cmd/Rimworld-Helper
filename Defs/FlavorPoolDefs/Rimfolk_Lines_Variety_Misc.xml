@@ -222,7 +222,7 @@
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} told {OTHER_nameDef} what {PAWN_pronoun} had learned about people, which was mostly to watch their hands.</li>
-        <li>{PAWN_nameDef} went through how the old settlements failed with {OTHER_nameDef}, so this one wouldn't.</li>
+        <li>{PAWN_nameDef} walked {OTHER_nameDef} through how the old settlements failed, so this one wouldn't.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -236,7 +236,7 @@
       </plain>
       <warm>
         <li>{PAWN_nameDef} held {OTHER_nameDef}'s hands and said nothing at all, and it helped.</li>
-        <li>{PAWN_nameDef} sat with {OTHER_nameDef} until {OTHER_pronoun} fell asleep.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} through the worst of it, saying nothing much.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} it was all right to be angry, and let {OTHER_objective} shout.</li>

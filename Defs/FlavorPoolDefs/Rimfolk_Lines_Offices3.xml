@@ -21,7 +21,7 @@
       <warm><li>After the rite for {NAME}, people stayed by the graves and told the good stories. I stood at the back and let them.</li></warm>
       <blunt><li>Kept {NAME}. Short words, every one of them meant.</li></blunt>
       <gloomy><li>A year on, and {NAME} again. I wonder whose name I'll be saying next.</li></gloomy>
-      <cold><li>Led the rite for {NAME}. Eleven came and two wept. I've noted both, to visit later in the week.</li></cold>
+      <cold><li>Led the rite for {NAME}. Two of them wept; I've noted which, to visit later in the week.</li></cold>
       <cheerful><li>For {NAME} we told the old stories instead of crying through it, and people laughed. A good day, all told.</li></cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -31,7 +31,7 @@
     <defName>Council_Pool_Interplay_ChaplainComforts</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef}, the chaplain, sat down beside {OTHER_nameDef} and let {OTHER_objective} talk about the one {OTHER_pronoun} lost, without hurrying {OTHER_objective}.</li>
+        <li>{PAWN_nameDef}, the chaplain, sat down beside {OTHER_nameDef} and let {OTHER_objective} talk about the one {OTHER_pronoun} lost, for as long as it took.</li>
         <li>{PAWN_nameDef} found {OTHER_nameDef} alone and walked with {OTHER_objective} round the walls, talking about whatever {OTHER_pronoun} liked.</li>
         <li>[devout] {PAWN_nameDef} knelt with {OTHER_nameDef} and prayed for the one {OTHER_pronoun} lost, slowly, so that {OTHER_nameDef} could say the words too.</li>
       </plain>
@@ -85,7 +85,7 @@
         <li>{PAWN_nameDef} settled an argument between the {PLACE} and the colony's woodcutters before anyone raised their voice.</li>
         <li>[rain] {PAWN_nameDef} sat out the rain under the camp's awning with the {PLACE}, swapping stories about the road.</li>
       </plain>
-      <warm><li>{PAWN_nameDef} went over to the camp to ask how they were getting on there, and stayed long after the question was answered.</li></warm>
+      <warm><li>{PAWN_nameDef} went over to the camp to ask how they were getting on, and stayed long after the question was answered.</li></warm>
       <blunt><li>{PAWN_nameDef} went to the camp, said the colony's piece, heard the {PLACE} out and came back.</li></blunt>
       <cold><li>{PAWN_nameDef} reminded the {PLACE} of the terms they had agreed to, one by one.</li></cold>
     </lines>
