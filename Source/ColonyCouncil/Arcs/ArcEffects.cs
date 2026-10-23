@@ -136,7 +136,7 @@ namespace ColonyCouncil
             foreach (var p in Targets(ctx).ToList())
             {
                 if (comp.quirks.Get(p, quirk) != null || comp.quirks.Of(p).Count() >= QuirkTracker.MaxPerPawn) continue;
-                comp.quirks.Gain(comp, p, quirk);
+                comp.quirks.Gain(comp, p, quirk, QuirkCause.Story);
             }
         }
     }

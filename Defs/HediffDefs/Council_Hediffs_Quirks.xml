@@ -3,7 +3,9 @@
 
   <!--
     Knacks: the small lasting effects some habits bring (Defs/QuirkDefs/Council_Quirks_Habits.xml, the quirk's hediff).
-    Added when the habit is picked up and removed when it fades, kept in step once a day.
+    Added when the habit is picked up and removed when it fades, kept in step once a day. Each has two stages: the
+    habit (severity 0.5, the default) and the habit deep-rooted after two months lived (severity 1, set by
+    Quirks.cs SyncKnacks), a little stronger.
   -->
 
   <HediffDef Name="Council_QuirkKnackBase" Abstract="True">
@@ -11,6 +13,8 @@
     <defaultLabelColor>(0.75, 0.8, 0.65)</defaultLabelColor>
     <isBad>false</isBad>
     <everCurableByItem>false</everCurableByItem>
+    <initialSeverity>0.5</initialSeverity>
+    <maxSeverity>1</maxSeverity>
   </HediffDef>
 
   <HediffDef ParentName="Council_QuirkKnackBase">
@@ -19,6 +23,7 @@
     <description>Talks to the plants while tending them. Whatever the plants make of it, the work goes faster.</description>
     <stages>
       <li><statOffsets><PlantWorkSpeed>0.03</PlantWorkSpeed></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><PlantWorkSpeed>0.05</PlantWorkSpeed></statOffsets></li>
     </stages>
   </HediffDef>
 
@@ -28,6 +33,7 @@
     <description>Has a name for every animal in the colony and uses it. The animals seem to take to them sooner.</description>
     <stages>
       <li><statOffsets><TameAnimalChance>0.03</TameAnimalChance><TrainAnimalChance>0.03</TrainAnimalChance></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><TameAnimalChance>0.05</TameAnimalChance><TrainAnimalChance>0.05</TrainAnimalChance></statOffsets></li>
     </stages>
   </HediffDef>
 
@@ -37,6 +43,7 @@
     <description>Can't leave a mess alone. Cleans faster than most, out of sheer irritation.</description>
     <stages>
       <li><statOffsets><CleaningSpeed>0.1</CleaningSpeed></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><CleaningSpeed>0.15</CleaningSpeed></statOffsets></li>
     </stages>
   </HediffDef>
 
@@ -46,6 +53,7 @@
     <description>Sings while cooking, and keeps time by scrubbing hands and pots between songs. Food poisoning is rarer from this cook.</description>
     <stages>
       <li><statFactors><FoodPoisonChance>0.85</FoodPoisonChance></statFactors></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statFactors><FoodPoisonChance>0.75</FoodPoisonChance></statFactors></li>
     </stages>
   </HediffDef>
 
@@ -55,6 +63,7 @@
     <description>Hums the same tune at any work, mostly without noticing. The hours go by easier, and the work a little quicker.</description>
     <stages>
       <li><statOffsets><WorkSpeedGlobal>0.02</WorkSpeedGlobal></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><WorkSpeedGlobal>0.03</WorkSpeedGlobal></statOffsets></li>
     </stages>
   </HediffDef>
 
@@ -64,6 +73,7 @@
     <description>Knows everyone's birthday and never forgets one. People warm to that.</description>
     <stages>
       <li><statOffsets><SocialImpact>0.03</SocialImpact></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><SocialImpact>0.05</SocialImpact></statOffsets></li>
     </stages>
   </HediffDef>
 
@@ -73,6 +83,67 @@
     <description>Always has a knife and a bit of wood on the go in idle moments, so is seldom bored.</description>
     <stages>
       <li><statFactors><JoyFallRateFactor>0.95</JoyFallRateFactor></statFactors></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statFactors><JoyFallRateFactor>0.92</JoyFallRateFactor></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_SteadyHands</defName>
+    <label>steady hands (habit)</label>
+    <description>Has tended enough wounds that the hands no longer shake. Tends a little better than before.</description>
+    <stages>
+      <li><statOffsets><MedicalTendQuality>0.03</MedicalTendQuality></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><MedicalTendQuality>0.05</MedicalTendQuality></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_MeasuresTwice</defName>
+    <label>measures twice (habit)</label>
+    <description>Checks every line before cutting. Fewer builds fail.</description>
+    <stages>
+      <li><statOffsets><ConstructSuccessChance>0.02</ConstructSuccessChance></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><ConstructSuccessChance>0.04</ConstructSuccessChance></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_SharpensBlades</defName>
+    <label>sharpens every blade (habit)</label>
+    <description>Keeps every edge keen. Blows land a little more often.</description>
+    <stages>
+      <li><statOffsets><MeleeHitChance>0.02</MeleeHitChance></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><MeleeHitChance>0.03</MeleeHitChance></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_KnowsTrails</defName>
+    <label>knows every trail (habit)</label>
+    <description>Knows where the game goes and how to come at it unseen.</description>
+    <stages>
+      <li><statOffsets><HuntingStealth>0.05</HuntingStealth></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><HuntingStealth>0.08</HuntingStealth></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_StrongBack</defName>
+    <label>carries more than they should (habit)</label>
+    <description>Used to heavy loads, and takes more on each trip.</description>
+    <stages>
+      <li><statOffsets><CarryingCapacity>5</CarryingCapacity></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><CarryingCapacity>8</CarryingCapacity></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_Fidgets</defName>
+    <label>can't sit still (habit)</label>
+    <description>Always on the move, and a little quicker on their feet for it.</description>
+    <stages>
+      <li><statOffsets><MoveSpeed>0.1</MoveSpeed></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><MoveSpeed>0.15</MoveSpeed></statOffsets></li>
     </stages>
   </HediffDef>
 

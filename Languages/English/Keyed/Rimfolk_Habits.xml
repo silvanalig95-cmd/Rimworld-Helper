@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Habits and quirks: what each does, how it came and how long it lasts (Quirks/QuirkEffects.cs), practice (Quirks/Practice.cs). -->
+
+  <CC_Practice_Work>hard work</CC_Practice_Work>
+  <CC_Practice_Night>late nights</CC_Practice_Night>
+  <CC_Practice_Morning>early mornings</CC_Practice_Morning>
+  <CC_Practice_Outdoors>time outdoors</CC_Practice_Outdoors>
+
+  <CC_Quirk_Deep>{QUIRK}: it has become second nature to {PAWN_nameDef}.</CC_Quirk_Deep>
+
+  <CC_QuirkFx_Line>Quirk: {0}. {1}. {2}.</CC_QuirkFx_Line>
+  <CC_QuirkFx_NameFrom>{0} ({1})</CC_QuirkFx_NameFrom>
+  <CC_QuirkFx_None>No effect on play: part of who they are</CC_QuirkFx_None>
+  <CC_QuirkFx_Mood>mood {0} {1}</CC_QuirkFx_Mood>
+  <CC_QuirkFx_MoodElse>{0}, {1} {2}</CC_QuirkFx_MoodElse>
+  <CC_QuirkFx_MoodLucky>mood {0} with it, {1} without</CC_QuirkFx_MoodLucky>
+  <CC_QuirkFx_ForGood>for good</CC_QuirkFx_ForGood>
+  <CC_QuirkFx_Fades>fades with time</CC_QuirkFx_Fades>
+  <CC_QuirkFx_Deep>deep-rooted, and fades only slowly</CC_QuirkFx_Deep>
+  <CC_QuirkFx_DeepKept>deep-rooted; {0}</CC_QuirkFx_DeepKept>
+  <CC_QuirkFx_Kept>stays while they keep at {0}</CC_QuirkFx_Kept>
+  <CC_QuirkFx_Kept_work>stays while they keep working hard</CC_QuirkFx_Kept_work>
+  <CC_QuirkFx_Kept_night>stays while they keep late hours</CC_QuirkFx_Kept_night>
+  <CC_QuirkFx_Kept_morning>stays while they keep rising early</CC_QuirkFx_Kept_morning>
+  <CC_QuirkFx_Kept_outdoors>stays while they keep spending time outdoors</CC_QuirkFx_Kept_outdoors>
+
+  <CC_QuirkFrom_practice>from all the {0}</CC_QuirkFrom_practice>
+  <CC_QuirkFrom_practice_work>from all the hard work</CC_QuirkFrom_practice_work>
+  <CC_QuirkFrom_practice_night>from the late nights</CC_QuirkFrom_practice_night>
+  <CC_QuirkFrom_practice_morning>from all the early mornings</CC_QuirkFrom_practice_morning>
+  <CC_QuirkFrom_practice_outdoors>from all the time outdoors</CC_QuirkFrom_practice_outdoors>
+  <CC_QuirkFrom_nature>simply who they are</CC_QuirkFrom_nature>
+  <CC_QuirkFrom_battle>after a fight</CC_QuirkFrom_battle>
+  <CC_QuirkFrom_downed>after being downed</CC_QuirkFrom_downed>
+  <CC_QuirkFrom_omen>after a dream came true</CC_QuirkFrom_omen>
+  <CC_QuirkFrom_lived>from something they lived through</CC_QuirkFrom_lived>
+  <CC_QuirkFrom_story>from their story</CC_QuirkFrom_story>
+
+  <CC_QuirkWhen_Always>always</CC_QuirkWhen_Always>
+  <CC_QuirkWhen_Storm>in storms</CC_QuirkWhen_Storm>
+  <CC_QuirkWhen_Rain>in the rain</CC_QuirkWhen_Rain>
+  <CC_QuirkWhen_Night>at night</CC_QuirkWhen_Night>
+  <CC_QuirkWhen_Dark>in the dark</CC_QuirkWhen_Dark>
+  <CC_QuirkWhen_Outdoors>outdoors</CC_QuirkWhen_Outdoors>
+  <CC_QuirkWhen_Drafted>when drafted</CC_QuirkWhen_Drafted>
+  <CC_QuirkWhen_Eclipse>during an eclipse</CC_QuirkWhen_Eclipse>
+  <CC_QuirkWhen_Winter>in winter</CC_QuirkWhen_Winter>
+  <CC_QuirkWhen_Working>at work</CC_QuirkWhen_Working>
+  <CC_QuirkWhen_WorkingAt>while {0}</CC_QuirkWhen_WorkingAt>
+  <CC_QuirkWhen_Morning>in the morning</CC_QuirkWhen_Morning>
+  <CC_QuirkWhen_InOwnRoom>in their own room</CC_QuirkWhen_InOwnRoom>
+  <CC_QuirkWhen_WearingRed>wearing red</CC_QuirkWhen_WearingRed>
+  <CC_QuirkWhen_MessyRoom>in a messy room</CC_QuirkWhen_MessyRoom>
+  <CC_QuirkWhen_NightSky>under the night sky</CC_QuirkWhen_NightSky>
+  <CC_QuirkWhen_Cold>in the cold</CC_QuirkWhen_Cold>
+  <CC_QuirkWhen_LateNight>up late</CC_QuirkWhen_LateNight>
+  <CC_QuirkWhen_NearGrave>near the graves of the dead</CC_QuirkWhen_NearGrave>
+  <CC_QuirkWhen_Sickbed>stuck in bed</CC_QuirkWhen_Sickbed>
+
+</LanguageData>

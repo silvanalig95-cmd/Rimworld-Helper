@@ -242,7 +242,7 @@
     </faded>
   </ColonyCouncil.QuirkDef>
 
-  <!-- Flavour only -->
+  <!-- Small superstitions and comforts: each with one small effect of its own (Quirks/QuirkMoments.cs). -->
 
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_KnocksWood</defName>
@@ -251,6 +251,7 @@
     <afterDowned>true</afterDowned>
     <chance>0.08</chance>
     <children>true</children>
+    <effect>glad after a fight they came through unhurt</effect>
     <gained>
       <plain><li>When someone says things are going well, I knock on wood. You can laugh. We're still alive.</li></plain>
       <warm><li>I knock on wood when anyone says something hopeful. I want their hopes to last.</li></warm>
@@ -267,6 +268,8 @@
     <afterThoughts><li>WitnessedDeathFamily</li><li>PawnWithGoodOpinionDied</li><li>BondedAnimalDied</li></afterThoughts>
     <withinDays>4</withinDays>
     <chance>0.06</chance>
+    <condition>NearGrave</condition>
+    <thought>Council_Quirk_TalksToDead</thought>
     <gained>
       <plain>
         <li>I've started telling the ones we lost about my day. Someone should keep them up to date.</li>
@@ -285,6 +288,7 @@
     <afterThoughts><li>Council_Dream_CameTrue</li><li>Council_Secret_Exposed</li></afterThoughts>
     <withinDays>4</withinDays>
     <chance>0.08</chance>
+    <effect>goes over the food stores in their free time, and tells you when the food won't last the week</effect>
     <gained>
       <plain><li>Seven steps from my bed to the door. Twelve to the table. I don't know why I count now. It helps.</li></plain>
       <warm><li>I count the people at supper every night. Everyone's there. I count again anyway.</li></warm>
@@ -302,6 +306,7 @@
     <afterOmen>true</afterOmen>
     <chance>0.05</chance>
     <who><notTrait><li>TooSmart</li></notTrait></who>
+    <effect>has nightmares less often</effect>
     <gained>
       <plain><li>My grandmother salted the doorstep to keep bad things out. I've started doing the same.</li></plain>
       <warm><li>I salt the doors of the ones I care about too. They don't have to believe in it.</li></warm>

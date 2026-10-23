@@ -242,7 +242,7 @@ namespace ColonyCouncil
             var heart = new Section { key = "heart", header = "CC_Story_Heart".Translate(), icon = Icons.Heart };
             if (s.quirks)
                 foreach (var q in comp.quirks.Of(p))
-                    heart.lines.Add(("CC_Story_Quirk".Translate(q.Label).Resolve(), Color.white));
+                    heart.lines.Add((QuirkEffects.Line(q), Color.white));
             if (s.heirlooms)
                 foreach (var h in comp.legacy.heirlooms.Where(h => h.heir == p && h.thing != null && !h.thing.Destroyed))
                     heart.lines.Add(("CC_Story_Heirloom".Translate(h.ofName, h.thing.def.label).Resolve(), Color.white));

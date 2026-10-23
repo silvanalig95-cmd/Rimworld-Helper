@@ -2,12 +2,15 @@
 <Defs>
 
   <!--
-    Small personal habits. Most come simply from who someone is (byNature: any day, for someone who fits who, at
-    chance per day), a few from something that happened (afterThoughts, afterBattle, afterDowned). Their moods come at
-    the right moments (condition; elseCondition for a second stage): at any work (Working), at one kind of work
-    (WorkingAt + workType), in the morning, late at night, in their own room, wearing red, in a messy room, under the
-    night sky, in the cold. Some bring a small knack (hediff, Council_Hediffs_Quirks.xml) for as long as they last.
-    At most two quirks per colonist, so habits fade after most of a year to make room.
+    Small personal habits, each with an origin of its own. Most grow out of what someone does (practice: the work tab's
+    kinds of work, or "work", "night", "morning" and "outdoors"; onlyFromPractice: never out of the blue, and the more
+    of it lately, the likelier, up to ten times its chance). A few are simply who someone is (byNature without a
+    practice: any day, for someone who fits who, at its chance per day), and a few come from something that happened
+    (afterThoughts, afterBattle, afterDowned). A habit with a practice is lived on the days they're at it, and doesn't
+    fade while it is; lived two months it is deep-rooted, its knack and good mood a little stronger (Quirks/Practice.cs).
+    Their moods come at the right moments (condition; elseCondition for a second stage), some bring a small knack
+    (hediff, Council_Hediffs_Quirks.xml), and effect says in a few words what else they do. At most two quirks per
+    colonist.
   -->
 
   <ColonyCouncil.QuirkDef>
@@ -18,6 +21,10 @@
     <children>true</children>
     <chance>0.003</chance>
     <days>300</days>
+    <practice><li>work</li></practice>
+    <practiceHours>180</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>hums at work</effect>
     <!-- No mood any more: the knack carries it (the thought Council_Quirk_Hums stays defined for old saves). -->
     <hediff>Council_Quirk_Humming</hediff>
     <gained>
@@ -47,6 +54,10 @@
     <children>true</children>
     <chance>0.003</chance>
     <days>300</days>
+    <practice><li>Mining</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>looks for pretty stones in their free time</effect>
     <condition>InOwnRoom</condition>
     <thought>Council_Quirk_PrettyStones</thought>
     <gained>
@@ -77,6 +88,10 @@
     <who><notTrait><li>NightOwl</li></notTrait></who>
     <chance>0.003</chance>
     <days>300</days>
+    <practice><li>morning</li></practice>
+    <practiceHours>30</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>watches the sun come up</effect>
     <condition>Morning</condition>
     <elseCondition>LateNight</elseCondition>
     <thought>Council_Quirk_EarlyRiser</thought>
@@ -105,9 +120,13 @@
     <defName>Council_Quirk_TalksToPlants</defName>
     <label>talks to the plants</label>
     <byNature>true</byNature>
-    <who><passion>Plants</passion></who>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.004</chance>
     <days>360</days>
+    <practice><li>Growing</li><li>PlantCutting</li></practice>
+    <practiceHours>50</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>talks to the crops in their free time</effect>
     <!-- No mood any more: the knack carries it (the thought Council_Quirk_TalksToPlants stays defined for old saves). -->
     <hediff>Council_Quirk_GreenThumb</hediff>
     <gained>
@@ -166,10 +185,14 @@
     <defName>Council_Quirk_NamesAnimals</defName>
     <label>names every animal</label>
     <byNature>true</byNature>
-    <who><passion>Animals</passion></who>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
     <chance>0.004</chance>
     <days>360</days>
+    <practice><li>Handling</li></practice>
+    <practiceHours>25</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>sits with the colony's animals in their free time</effect>
     <!-- No mood any more: the knack carries it (the thought Council_Quirk_NamesAnimals stays defined for old saves). -->
     <hediff>Council_Quirk_AnimalNames</hediff>
     <gained>
@@ -200,6 +223,10 @@
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
     <days>300</days>
+    <practice><li>Cleaning</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>tidies up in their free time</effect>
     <condition>MessyRoom</condition>
     <thought>Council_Quirk_TidyTable</thought>
     <hediff>Council_Quirk_Tidy</hediff>
@@ -227,9 +254,13 @@
     <defName>Council_Quirk_SingsAtStove</defName>
     <label>sings at the stove</label>
     <byNature>true</byNature>
-    <who><passion>Cooking</passion></who>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.004</chance>
     <days>360</days>
+    <practice><li>Cooking</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>sings while cooking</effect>
     <!-- No mood any more: the knack carries it (the thought Council_Quirk_SingsAtStove stays defined for old saves). -->
     <hediff>Council_Quirk_StoveSongs</hediff>
     <gained>
@@ -260,6 +291,7 @@
     <children>true</children>
     <chance>0.06</chance>
     <days>240</days>
+    <effect>goes out to watch the stars</effect>
     <condition>NightSky</condition>
     <thought>Council_Quirk_Stargazer</thought>
     <gained>
@@ -350,6 +382,10 @@
     <children>true</children>
     <chance>0.003</chance>
     <days>300</days>
+    <practice><li>outdoors</li></practice>
+    <practiceHours>120</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>feeds the birds in their free time</effect>
     <condition>Outdoors</condition>
     <thought>Council_Quirk_FeedsBirds</thought>
     <gained>
@@ -382,6 +418,7 @@
     <who><tags>trait:Kind|skill:Social</tags></who>
     <chance>0.004</chance>
     <days>360</days>
+    <effect>seeks out whoever has a birthday, who is glad to be remembered</effect>
     <hediff>Council_Quirk_Birthdays</hediff>
     <gained>
       <plain>
@@ -406,9 +443,13 @@
     <defName>Council_Quirk_Whittler</defName>
     <label>always whittling</label>
     <byNature>true</byNature>
-    <who><tags>skill:Crafting|skill:Artistic</tags></who>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.004</chance>
     <days>300</days>
+    <practice><li>Crafting</li><li>Smithing</li><li>Tailoring</li><li>Art</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>whittles in their free time</effect>
     <hediff>Council_Quirk_Whittling</hediff>
     <gained>
       <plain>
@@ -439,6 +480,7 @@
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.002</chance>
     <days>200</days>
+    <effect>a roommate sleeps a little worse for it (a lover finds it endearing)</effect>
     <gained>
       <plain>
         <li>Apparently I talk in my sleep. Whole conversations, they say. I've asked them not to tell me what about.</li>
@@ -466,6 +508,7 @@
     <children>true</children>
     <chance>0.002</chance>
     <days>200</days>
+    <effect>a good meal lifts them a while longer</effect>
     <gained>
       <plain>
         <li>I've started saving the best bite of every meal for last. It makes the rest of the meal a kind of waiting. I like that.</li>
@@ -482,6 +525,216 @@
       <blunt><li>Ate it all in order. Doesn't matter.</li></blunt>
       <cheerful><li>I ate the best bite first today, and then the whole meal was a celebration!</li></cheerful>
       <gloomy><li>I stopped saving the best bite. Too many times it got cold.</li></gloomy>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SteadyHands</defName>
+    <label>steady hands</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Doctor</li></practice>
+    <practiceHours>20</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>looks in on the sick and wounded in their free time</effect>
+    <hediff>Council_Quirk_SteadyHands</hediff>
+    <gained>
+      <plain><li>Stitched a cut today without my hands shaking once. I've done enough of them now that they don't.</li></plain>
+      <warm><li>I've tended so many of us that I know whose hands go cold when they're scared. I hold those a little longer.</li></warm>
+      <blunt><li>Hands don't shake anymore. Good. Nobody needs a doctor who shakes.</li></blunt>
+      <cheerful><li>Not a tremble! I could thread a needle in a gale now.</li></cheerful>
+      <gloomy><li>My hands are steady now. They got that way on too many bad nights.</li></gloomy>
+      <cold><li>Practice has removed the tremor. Tending is faster and cleaner for it.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Haven't tended anyone in a while. My hands have forgotten some of it.</li></plain>
+      <warm><li>Nobody's needed patching up lately. I'll take the shaky hands for that.</li></warm>
+      <blunt><li>Out of practice. Hands show it.</li></blunt>
+      <cheerful><li>My hands are out of practice, which means nobody's been hurt. I'll take it!</li></cheerful>
+      <gloomy><li>The steadiness is going. It'll come back the next time someone bleeds.</li></gloomy>
+      <cold><li>Without regular tending the precision has declined. Expected.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_MeasuresTwice</defName>
+    <label>measures twice</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Construction</li></practice>
+    <practiceHours>50</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <hediff>Council_Quirk_MeasuresTwice</hediff>
+    <gained>
+      <plain><li>I measure everything twice now before I cut. A wall I've built has never come down twice.</li></plain>
+      <warm><li>Every wall I put up, I think of who'll sleep behind it. So I check the line again.</li></warm>
+      <blunt><li>Measure twice. Cut once. Fewer wasted boards.</li></blunt>
+      <cheerful><li>Twice measured, once cut, and the beam fit first time! I love it when that happens.</li></cheerful>
+      <gloomy><li>I check every joint twice. Things here fall down if you let them.</li></gloomy>
+      <cold><li>A second measurement costs seconds. A failed build costs hours. I take the seconds.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Caught myself cutting without checking the line. It's been a while since I built anything.</li></plain>
+      <warm><li>The walls are up and holding. I don't stand over them anymore.</li></warm>
+      <blunt><li>Not building much lately. Stopped measuring twice.</li></blunt>
+      <cheerful><li>Haven't held a measuring cord in ages. The colony's built!</li></cheerful>
+      <gloomy><li>Out of the habit. The next thing I build will lean, you'll see.</li></gloomy>
+      <cold><li>Construction work has ended for now, and the routine with it.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SharpensBlades</defName>
+    <label>sharpens every blade</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Smithing</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>sharpens a blade in their free time</effect>
+    <hediff>Council_Quirk_SharpensBlades</hediff>
+    <gained>
+      <plain><li>I can't see a dull edge without reaching for the whetstone. Knives, axes, the cook's cleaver. All of them.</li></plain>
+      <warm><li>I sharpened everyone's knives tonight. A sharp knife is a safe knife, and I'd like them safe.</li></warm>
+      <blunt><li>Dull blades are a waste of iron. I sharpen them.</li></blunt>
+      <cheerful><li>Found a whetstone that sings when you use it right. Everything in this colony is getting an edge!</li></cheerful>
+      <gloomy><li>I keep the blades sharp. The next fight won't wait for me to find the stone.</li></gloomy>
+      <cold><li>An edge kept keen needs less force. I keep them keen.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Lost my whetstone somewhere and didn't go looking. Not at the forge much these days.</li></plain>
+      <warm><li>The knives are someone else's job now. I hope they keep them sharp.</li></warm>
+      <blunt><li>Stopped sharpening. Nobody died.</li></blunt>
+      <cheerful><li>My whetstone's retired, and so am I, mostly!</li></cheerful>
+      <gloomy><li>The blades are going dull and I don't much care. That worries me more than the blades.</li></gloomy>
+      <cold><li>Away from the forge, the habit has lapsed.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_KnowsTrails</defName>
+    <label>knows every trail</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Hunting</li></practice>
+    <practiceHours>30</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>watches the tree line in their free time</effect>
+    <hediff>Council_Quirk_KnowsTrails</hediff>
+    <gained>
+      <plain><li>I know where the deer drink and where the trail forks by the split rock. I could walk it with my eyes shut.</li></plain>
+      <warm><li>I know every trail out there now. When someone's late back, I know where to look.</li></warm>
+      <blunt><li>Know the trails. Know where the game goes. That's the job.</li></blunt>
+      <cheerful><li>Every path, every burrow, every place a deer likes to stand! The land and I are on speaking terms.</li></cheerful>
+      <gloomy><li>I know the trails now, and the places where things go to die.</li></gloomy>
+      <cold><li>The animals here keep to their paths. I've learned them. It makes the hunt efficient.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Haven't been out after game in a long while. The trails will have moved on without me.</li></plain>
+      <warm><li>Someone else hunts now. I hope they find the drinking place by the split rock.</li></warm>
+      <blunt><li>Out of practice. Trails change.</li></blunt>
+      <cheerful><li>I'll have to learn the land all over again someday. Something to look forward to!</li></cheerful>
+      <gloomy><li>The land's forgotten me. I suppose that's fair.</li></gloomy>
+      <cold><li>My knowledge of the trails is out of date.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_StrongBack</defName>
+    <label>carries more than they should</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Hauling</li></practice>
+    <practiceHours>60</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <hediff>Council_Quirk_StrongBack</hediff>
+    <gained>
+      <plain><li>Took two loads at once again. My back says no. My back can wait.</li></plain>
+      <warm><li>I carry what the others can't. Someone has to, and I don't mind it being me.</li></warm>
+      <blunt><li>Carry more, walk less. Simple.</li></blunt>
+      <cheerful><li>Two sacks on each shoulder and a sack under each arm! I'm a walking stockpile.</li></cheerful>
+      <gloomy><li>I always carry too much. One day my back will give out and nobody will notice until the stockpile's empty.</li></gloomy>
+      <cold><li>Fewer trips is more efficient. I take the heavier load.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I carry one load at a time now, like a sensible person.</li></plain>
+      <warm><li>Someone told me to let them take the other half. I let them.</li></warm>
+      <blunt><li>Back hurts. One load at a time now.</li></blunt>
+      <cheerful><li>Retired from the double loads. My shoulders are throwing a party.</li></cheerful>
+      <gloomy><li>Can't carry like I used to. Didn't take long.</li></gloomy>
+      <cold><li>I no longer overload. The marginal gain was not worth the strain.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_LateHours</defName>
+    <label>keeps late hours</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>NightOwl</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>240</days>
+    <practice><li>night</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <condition>Night</condition>
+    <thought>Council_Quirk_LateHours</thought>
+    <gained>
+      <plain><li>I've come to like the hours after midnight. The colony's quiet and nobody needs anything from me.</li></plain>
+      <warm><li>I like the late hours. I check on the sleepers and keep the fire going.</li></warm>
+      <blunt><li>Night's for working. Fewer people in the way.</li></blunt>
+      <cheerful><li>The night shift is my shift now! The stars keep me company.</li></cheerful>
+      <gloomy><li>I don't sleep when the others do anymore. The dark's easier to think in.</li></gloomy>
+      <cold><li>My best hours are now after midnight. I've adjusted.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Slept through the night for once. Then again the next one. I think I'm back on the day.</li></plain>
+      <warm><li>Back to sleeping with everyone else. It's nice, hearing them in the morning.</li></warm>
+      <blunt><li>Days again. Fine.</li></blunt>
+      <cheerful><li>I saw a sunrise from the right side for once!</li></cheerful>
+      <gloomy><li>The nights belong to someone else now.</li></gloomy>
+      <cold><li>My schedule has returned to daylight hours.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Fidgets</defName>
+    <label>can't sit still</label>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.002</chance>
+    <days>200</days>
+    <condition>Sickbed</condition>
+    <thought>Council_Quirk_Fidgets</thought>
+    <hediff>Council_Quirk_Fidgets</hediff>
+    <gained>
+      <plain>
+        <li>Someone asked me today to stop tapping my foot. I didn't know I was. I'm always moving now.</li>
+        <li>[child] I can't sit still at supper. My legs want to run even when I'm eating.</li>
+      </plain>
+      <warm><li>I'm always on my feet. If anyone needs something fetched, I'm already halfway there.</li></warm>
+      <blunt><li>Can't sit still. Never could, now it's worse.</li></blunt>
+      <cheerful><li>Up, down, across the room and back! Sitting still is for statues.</li></cheerful>
+      <gloomy><li>If I stop moving I start thinking, and I'd rather not.</li></gloomy>
+      <cold><li>Idle time is wasted time. I've stopped wasting it.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Sat through a whole meal today without getting up once. Maybe I'm settling down.</li></plain>
+      <warm><li>I've learned to sit with people instead of running about for them.</li></warm>
+      <blunt><li>Can sit still now. Wonders.</li></blunt>
+      <cheerful><li>I sat in a chair for an entire hour and it was lovely!</li></cheerful>
+      <gloomy><li>I don't feel the need to run anymore. I'm not sure that's better.</li></gloomy>
+      <cold><li>The restlessness has passed.</li></cold>
     </faded>
   </ColonyCouncil.QuirkDef>
 

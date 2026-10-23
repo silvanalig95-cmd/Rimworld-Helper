@@ -66,4 +66,19 @@
     <stages><li><label>the birds know me</label><description>I keep crusts in my pocket for the birds. They come when they see me now.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_LateHours</defName>
+    <stages><li><label>the quiet hours</label><description>Everyone's asleep and the colony is mine for a while. I get more done, and I think better.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_Fidgets</defName>
+    <stages><li><label>stuck in bed</label><description>I can't sit still at the best of times, and they want me lying here all day.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_TalksToDead</defName>
+    <stages><li><label>talking to the dead</label><description>I told them how the harvest went and who's been quarrelling. They're good listeners.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>
