@@ -13,7 +13,7 @@
     <reminder>
       <warm><li>I'd still love to teach {OTHER_nameDef}, whenever an evening comes free.</li></warm>
       <blunt><li>{OTHER_nameDef} needs a teacher, and I'm standing right here.</li></blunt>
-      <cold><li>Every week without lessons, {OTHER_nameDef} learns {SUBJECT} slower than {OTHER_pronoun} could.</li></cold>
+      <cold><li>Every week without lessons is a week {OTHER_nameDef} falls behind in {SUBJECT}.</li></cold>
     </reminder>
     <expired>
       <warm><li>If {OTHER_nameDef} ever comes and asks, I'll still be glad to show {OTHER_objective}.</li></warm>
@@ -163,7 +163,7 @@
     </reminder>
     <expired>
       <warm><li>That's all right, {OTHER_nameDef} is busy, maybe when I'm bigger.</li></warm>
-      <cheerful><li>I'm going to teach myself {SUBJECT}, and it can't be that hard!</li></cheerful>
+      <cheerful><li>I'm going to get good at {SUBJECT} on my own, and it can't be that hard!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -522,7 +522,7 @@
     <reminder>
       <blunt><li>Still waiting on those lessons from {OTHER_nameDef}.</li></blunt>
       <cheerful><li>Any day now, I'm ready to learn from {OTHER_nameDef}!</li></cheerful>
-      <gloomy><li>Still teaching myself {SUBJECT}, badly.</li></gloomy>
+      <gloomy><li>Still fumbling through {SUBJECT} on my own.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>Maybe {OTHER_nameDef} will have time another day, and I'll keep practicing.</li></warm>

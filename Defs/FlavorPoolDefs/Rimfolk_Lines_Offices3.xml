@@ -107,19 +107,20 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- News: an elder passes on what they know best. {SKILL}: the skill. -->
+  <!-- News: an elder passes on what they know best. {SKILL}: the skill's label, which can be an adjective ("social",
+       "artistic"), so it reads as a subject: "a lesson in {SKILL}", never "an afternoon of {SKILL}". -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Interplay_ElderCounsel</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef}, one of the colony's elders, spent the afternoon showing {OTHER_nameDef} what {PAWN_pronoun} knows of {SKILL}, the slow way, by doing it together.</li>
-        <li>{PAWN_nameDef} watched {OTHER_nameDef} at {SKILL} for a while without a word, then took over and showed {OTHER_objective} the trick of it.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} how {PAWN_pronoun} learned {SKILL}, mistakes and all, and then made {OTHER_objective} make the same mistakes on purpose.</li>
-        <li>[lowtech] {PAWN_nameDef} taught {OTHER_nameDef} the old way of {SKILL}, the way {PAWN_pronoun} was taught it as a child.</li>
+        <li>{PAWN_nameDef}, one of the colony's elders, spent the afternoon giving {OTHER_nameDef} a lesson in {SKILL}, the slow way, by doing it together.</li>
+        <li>{PAWN_nameDef} watched {OTHER_nameDef} at work for a while without a word, then took over and showed {OTHER_objective} the trick of it.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} how {PAWN_pronoun} learned the trade, mistakes and all, and then made {OTHER_objective} make the same mistakes on purpose.</li>
+        <li>[lowtech] {PAWN_nameDef} taught {OTHER_nameDef} the finer points of {SKILL} the old way, as {PAWN_pronoun} was taught as a child.</li>
       </plain>
-      <warm><li>{PAWN_nameDef} took {OTHER_nameDef} under {PAWN_possessive} wing for an afternoon of {SKILL}, and said "again" as kindly the tenth time as the first.</li></warm>
-      <blunt><li>{PAWN_nameDef} showed {OTHER_nameDef} how {SKILL} is really done, twice, and then left {OTHER_objective} to get on with it.</li></blunt>
-      <cold><li>{PAWN_nameDef} stood over {OTHER_nameDef} through an afternoon of {SKILL} and corrected every mistake, without once raising {PAWN_possessive} voice.</li></cold>
+      <warm><li>{PAWN_nameDef} took {OTHER_nameDef} under {PAWN_possessive} wing for a lesson in {SKILL}, and said "again" as kindly the tenth time as the first.</li></warm>
+      <blunt><li>{PAWN_nameDef} gave {OTHER_nameDef} one short lesson in {SKILL}, twice over, and then left {OTHER_objective} to get on with it.</li></blunt>
+      <cold><li>{PAWN_nameDef} drilled {OTHER_nameDef} in {SKILL} and corrected every mistake, without once raising {PAWN_possessive} voice.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
