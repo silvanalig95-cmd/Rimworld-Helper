@@ -11,12 +11,12 @@
     <pool>Council_Pool_SayStory</pool>
     <lines>
       <plain>
-        <li>[story:FearLaid,stage:0] Everyone keeps telling me it's over.</li>
+        <li>[story:FearLaid,stage:0] They all keep telling me it's over, and I nod.</li>
         <li>[story:FearLaid,stage:0,captured] I don't go down to the cells, not while {NAME} is there.</li>
         <li>[story:FearLaid,stage:0,dead] {NAME} is dead, so why am I still checking the doors?</li>
         <li>[story:FearLaid,stage:1] There's something about {NAME} I've never told anyone.</li>
         <li>[story:FearLaid,stage:2] I told it all, start to finish, and I'm still standing.</li>
-        <li>[story:FearLaid,stage:2] I slept a little better last night.</li>
+        <li>[story:FearLaid,stage:2] I slept through till dawn last night.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

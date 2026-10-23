@@ -51,10 +51,10 @@
     <defName>Council_Lines_Journal_Health_Strong</defName>
     <pool>Council_Journal_Health_Strong</pool>
     <lines>
-      <plain><li>Hauled stone with the others today and kept up. Nobody fussed over me once.</li></plain>
-      <warm><li>Back to full strength. I went round and helped everyone who'd covered my work.</li></warm>
+      <plain><li>Hauled stone with the others today and kept up, and they let me.</li></plain>
+      <warm><li>Back to full strength. I'm taking on the chores of the ones who covered mine.</li></warm>
       <blunt><li>Strong again. Good.</li></blunt>
-      <cheerful><li>I'm back! I did a little jump in the yard and nobody even saw.</li></cheerful>
+      <cheerful><li>I'm back! I took the long way round the fields today just because I could.</li></cheerful>
       <gloomy><li>All better. My body remembers what happened even if the others forget.</li></gloomy>
       <cold><li>Full strength restored. I've taken back my old duties.</li></cold>
     </lines>
@@ -64,7 +64,7 @@
     <defName>Council_Lines_Journal_Health_Visited</defName>
     <pool>Council_Journal_Health_Visited</pool>
     <lines>
-      <plain><li>{OTHER_nameDef} came by with a handful of berries and the latest gossip. Both were sweet.</li></plain>
+      <plain><li>{OTHER_nameDef} came by with a handful of berries and all the news I'd missed.</li></plain>
       <warm><li>{OTHER_nameDef} sat with me and held my hand when the pain was bad. I won't forget it.</li></warm>
       <blunt><li>{OTHER_nameDef} came. Talked. Left. Helped.</li></blunt>
       <cheerful><li>{OTHER_nameDef} visited and we played a game of guessing what's for supper. I won twice!</li></cheerful>
@@ -78,7 +78,7 @@
     <pool>Council_Journal_Health_Surgery</pool>
     <lines>
       <plain><li>Spent the whole afternoon on {OTHER_nameDef}. Afterward I ate standing up and couldn't taste a thing.</li></plain>
-      <warm><li>{OTHER_nameDef} thanked me before I'd even finished washing my hands. It's the patients that keep me going.</li></warm>
+      <warm><li>{OTHER_nameDef} thanked me before I'd even finished washing my hands.</li></warm>
       <blunt><li>{OTHER_nameDef}'s operation. Done. Good.</li></blunt>
       <cheerful><li>Another one put back together! {OTHER_nameDef} is going to be fine.</li></cheerful>
       <gloomy><li>{OTHER_nameDef} made it through. I keep going over every cut anyway.</li></gloomy>
@@ -141,7 +141,7 @@
     <defName>Council_Lines_Journal_Health_Stillborn</defName>
     <pool>Council_Journal_Health_Stillborn</pool>
     <lines>
-      <plain><li>{OTHER_nameDef} asked me to name the baby anyway. We did, together, quietly.</li></plain>
+      <plain><li>{OTHER_nameDef} asked me to name the baby anyway. We chose it together, at the bedside.</li></plain>
       <warm><li>I helped {OTHER_nameDef} choose a place for the little grave. We picked the sunniest spot.</li></warm>
       <blunt><li>Couldn't save the baby. I'll carry that.</li></blunt>
       <cheerful><li>There's nothing bright to write today. I'll sit with {OTHER_nameDef} again tomorrow.</li></cheerful>
@@ -156,7 +156,7 @@
     <lines>
       <plain><li>[trusted] A child brought me a scraped knee today because "you're the one who fixes things".</li></plain>
       <warm><li>[trusted] People leave little gifts at the infirmary door now. I don't know what to say to them.</li></warm>
-      <blunt><li>[renowned] Everyone trusts me with their lives. I'd better keep earning it.</li></blunt>
+      <blunt><li>[renowned] They all trust me with their lives now. I'd better keep earning it.</li></blunt>
       <cheerful><li>[renowned] Someone called me the best doctor on the rim! A huge exaggeration, but I'll take it.</li></cheerful>
       <gloomy><li>[renowned] They all look at me as if I can't fail. I can. I have.</li></gloomy>
       <cold><li>[renowned] My record speaks for itself. People defer to me on matters of health now.</li></cold>

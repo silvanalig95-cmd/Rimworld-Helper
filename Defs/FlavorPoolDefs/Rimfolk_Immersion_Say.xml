@@ -23,19 +23,19 @@
         <li>[feeling:Grief,about] I still look for {OTHER_nameDef} at supper.</li>
         <li>[feeling:Grief,child] When is everyone going to stop being sad?</li>
         <li>[feeling:Fear] I jump at every noise past the wall.</li>
-        <li>[feeling:Fear] I keep checking where the nearest door is.</li>
+        <li>[feeling:Fear] Every room I walk into, I check where the door is.</li>
         <li>[feeling:Fear,!lowtech] I've slept with my rifle in reach all week.</li>
-        <li>[feeling:Fear,lowtech] I sleep with a knife under the straw now.</li>
+        <li>[feeling:Fear,lowtech] There's a knife under my straw now, every night.</li>
         <li>[feeling:Fear,night] Leave a light burning tonight, would you?</li>
         <li>[feeling:Dread] Something bad is coming, I can feel it in my teeth.</li>
         <li>[feeling:Dread] It's too quiet out there.</li>
-        <li>[feeling:Dread] I keep waiting for the next thing to go wrong.</li>
+        <li>[feeling:Dread] Any day now, the next thing goes wrong.</li>
         <li>[feeling:Anger] Don't talk to me right now.</li>
         <li>[feeling:Anger] I'm so angry my jaw hurts.</li>
         <li>[feeling:Anger,about] If {OTHER_nameDef} says one more word to me, I'm walking out.</li>
         <li>[feeling:Anger,about] I can't even look at {OTHER_nameDef} today.</li>
         <li>[feeling:Shame] I can't look anyone in the eye today.</li>
-        <li>[feeling:Shame] I keep going over what I did.</li>
+        <li>[feeling:Shame] What I did keeps going round and round in my head.</li>
         <li>[feeling:Shame] I'll eat on my own tonight.</li>
         <li>[feeling:Envy] Must be nice, having what some people have.</li>
         <li>[feeling:Envy] Some of us work just as hard and get half as much.</li>
@@ -45,8 +45,8 @@
         <li>[feeling:Disgust] This place needs scrubbing from top to bottom.</li>
         <li>[feeling:Loneliness] Two words to me all day, that's all I've had.</li>
         <li>[feeling:Loneliness] I could use someone to talk to.</li>
-        <li>[feeling:Loneliness] Everyone's always busy, all the time.</li>
-        <li>[feeling:Homesick] I keep thinking about the house I grew up in.</li>
+        <li>[feeling:Loneliness] People are always too busy to stop and talk.</li>
+        <li>[feeling:Homesick] The house I grew up in had a blue door, I keep seeing it.</li>
         <li>[feeling:Homesick] The bread here never tastes the way it should.</li>
         <li>[feeling:Homesick] Back home the river would be up by now.</li>
         <li>[feeling:Homesick,night] Same moon as at home, at least.</li>
@@ -86,23 +86,23 @@
         <li>[feeling:Curiosity,child] Why is the sky that color?</li>
         <li>[feeling:Restless] I can't sit still today.</li>
         <li>[feeling:Restless] Same walls, same faces, every day.</li>
-        <li>[feeling:Restless] I need to get out of here for a while.</li>
+        <li>[feeling:Restless] Need to get out of here a while, even just to the river and back.</li>
         <li>[feeling:Nostalgia] Remember when this was all one room and a fire?</li>
         <li>[feeling:Nostalgia] Those first days were hard, but they were good.</li>
         <li>[feeling:Nostalgia,old] When I was young we sang on the way to the fields.</li>
         <li>[feeling:Relief] I can breathe again.</li>
         <li>[feeling:Relief] That was close, too close.</li>
         <li>[feeling:Relief] All that worrying, and it came out fine.</li>
-        <li>[feeling:Tenderness] It's the little things, a warm cup, a kind word.</li>
+        <li>[feeling:Tenderness] Someone left a warm cup by my bed this morning.</li>
         <li>[feeling:Tenderness,about] I saved the best piece for {OTHER_nameDef}.</li>
         <li>[feeling:Tenderness,about] Let {OTHER_nameDef} sleep a bit longer, I'll cover the work.</li>
         <li>[feeling:Worry] I hope they're all right out there.</li>
         <li>[feeling:Worry] We should check the stores again.</li>
         <li>[feeling:Worry,about] Has anyone seen {OTHER_nameDef} today?</li>
-        <li>[feeling:Worry,about] I keep thinking about {OTHER_nameDef}.</li>
+        <li>[feeling:Worry,about] {OTHER_nameDef} hasn't been right lately, and it's on my mind.</li>
         <li>[feeling:Fellowship] We're a good crew, aren't we?</li>
         <li>[feeling:Fellowship] I'd trust any of you with my life.</li>
-        <li>[feeling:Fellowship] Whatever comes, we'll face it side by side.</li>
+        <li>[feeling:Fellowship] Whatever comes over that wall, it'll find all of us waiting.</li>
         <li>[feeling:Resolve] We're not going anywhere.</li>
         <li>[feeling:Resolve] Let them come.</li>
         <li>[feeling:Resolve] I'm going to finish this, whatever it takes.</li>
@@ -473,14 +473,14 @@
       </plain>
       <warm>
         <li>It's all right, I'll get over it.</li>
-        <li>[setback:CropLost] We'll plant again, it's not the end of the world.</li>
+        <li>[setback:CropLost] We'll plant again, there's seed left.</li>
       </warm>
       <blunt>
         <li>Don't ask.</li>
         <li>[setback:WorkTornDown] Next time ask me before you tear it down.</li>
       </blunt>
       <cheerful>
-        <li>Bad luck, but tomorrow's another day.</li>
+        <li>Ah well, I'll do better tomorrow!</li>
       </cheerful>
       <gloomy>
         <li>Why does it always happen to me?</li>
@@ -589,7 +589,7 @@
         <li>[night] I lay awake thinking about "{WISH}" again.</li>
       </plain>
       <warm>
-        <li>Whenever there's time, "{WISH}" would mean the world to me.</li>
+        <li>No hurry, but "{WISH}" would make me very happy.</li>
       </warm>
       <blunt>
         <li>Still no "{WISH}".</li>

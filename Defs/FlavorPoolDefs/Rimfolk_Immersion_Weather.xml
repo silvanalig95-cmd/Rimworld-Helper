@@ -47,7 +47,7 @@
     <defName>Council_Pool_SayHeatWave</defName>
     <lines>
       <plain>
-        <li>This heat is something else.</li>
+        <li>This heat is no joke.</li>
         <li>I can hardly breathe out here.</li>
         <li>Drink some water, all of you, before you need it.</li>
         <li>[work:Growing] The crops are wilting where they stand.</li>
@@ -152,7 +152,7 @@
         <li>[old] Another winter starting. I've seen enough of them to know this one will be long.</li>
       </plain>
       <warm>
-        <li>The first snow, and someone had the kettle on before I was even up. Small kindnesses.</li>
+        <li>The first snow, and someone had the kettle on before I was even up.</li>
       </warm>
       <blunt>
         <li>Snow. Cleared the paths twice today.</li>

@@ -19,7 +19,7 @@
     <defName>Council_Pool_HabitStars</defName>
     <lines>
       <plain>
-        <li>There's the one that looks like a plough.</li>
+        <li>There's the one that looks like a plow.</li>
         <li>I could stay out here half the night.</li>
         <li>You forget how many there are until you look up.</li>
         <li>That bright one wasn't there last week, was it?</li>
@@ -31,7 +31,7 @@
         <li>Come and look, if you're still awake.</li>
       </warm>
       <blunt>
-        <li>Clear night, good, nobody talk.</li>
+        <li>Clear night, good, now hush.</li>
       </blunt>
       <cheerful>
         <li>I counted forty before I lost my place, and started over!</li>
@@ -128,7 +128,7 @@
         <li>Not enough, never enough.</li>
       </blunt>
       <cheerful>
-        <li>More than last month, and that's something!</li>
+        <li>More than last month, that's a start!</li>
       </cheerful>
       <gloomy>
         <li>One bad harvest and this is all gone.</li>
@@ -166,7 +166,7 @@
         <li>Sorry, I just didn't want to be on my own.</li>
       </gloomy>
       <cold>
-        <li>I find a little talk helps; you needn't say much.</li>
+        <li>Talk helps, I find; you needn't say much.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -210,13 +210,13 @@
       <plain>
         <li>I had the oddest dream last night, let me tell you.</li>
         <li>Pass the salt, and let me tell you what I dreamt.</li>
-        <li>[dream:Sweet] I dreamt we had a whole orchard, and all of it ripe.</li>
+        <li>[dream:Sweet] In my dream we had a whole orchard, and all of it ripe.</li>
         <li>[dream:Sweet] I dreamt about home last night, only the good parts.</li>
-        <li>[dream:Strange] I dreamt the river ran uphill, and nobody minded.</li>
+        <li>[dream:Strange] The river ran uphill in my dream, and we all just watched it go.</li>
         <li>[dream:Strange] I dreamt I was a door, of all things.</li>
         <li>[dream:Nightmare] Bad dream last night, I won't tell it over breakfast.</li>
-        <li>[dream:Nightmare] I dreamt the walls were gone and something was out there.</li>
-        <li>[dream:Omen] I dreamt of a black bird on the roof, and I didn't like it.</li>
+        <li>[dream:Nightmare] Dreamt the walls were gone and there was a thing out there, waiting.</li>
+        <li>[dream:Omen] A black bird sat on our roof in my dream, and I didn't like it.</li>
         <li>[dream:Omen] I had a dream I think means something, so don't laugh.</li>
         <li>[dream:Lost] I saw them again last night, in the dream, just as they were.</li>
         <li>[dream:Lost] They were sitting at this table in my dream, laughing.</li>
@@ -245,7 +245,7 @@
     <lines>
       <plain>
         <li>Someone's coming up the road with packs on.</li>
-        <li>Looks like we'll have neighbours for a while.</li>
+        <li>Looks like we'll have neighbors for a while.</li>
         <li>Strangers on the track, and they're not hurrying.</li>
         <li>[camp:Hunters] Hunters, by the look of them, and hungry ones.</li>
         <li>[camp:Refugees] They've got everything they own on their backs.</li>
@@ -312,7 +312,7 @@
     <lines>
       <plain>
         <li>Nice place, smaller than I expected.</li>
-        <li>Everyone here seems to know what they're doing.</li>
+        <li>Your people all seem to know what they're doing.</li>
         <li>[happy] I could get used to this place.</li>
         <li>[happy] Good food, and nobody's tried to rob me yet.</li>
         <li>[unhappy] I've had warmer welcomes in a bandit camp.</li>
@@ -371,7 +371,7 @@
         <li>[bigger] I can reach the top shelf now, and I've been asked to reach a great many things.</li>
       </cheerful>
       <gloomy>
-        <li>[race] I don't recognise myself. I don't know if the others do either.</li>
+        <li>[race] I don't recognize myself. I don't know if the others do either.</li>
         <li>[xeno] They say I'll get used to it. I'm not sure I want to.</li>
       </gloomy>
       <cold>
