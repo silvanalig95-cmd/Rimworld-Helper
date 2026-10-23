@@ -11,8 +11,8 @@
     <defName>Council_Journal_EncL_Shape</defName>
     <lines>
       <plain>
-        <li>The land around here is a strange shape. I keep finding new corners of it, and something is usually living in each one.</li>
-        <li>Walked out past the last field today to see how the land lies. Steeper than I thought, and older.</li>
+        <li>Every odd corner of this land has a creature living in it. Found another one today.</li>
+        <li>Walked out past the last field to see how the land lies. Steeper than I thought, and older.</li>
         <li>Rock on every side here. It makes the place feel safe one day and shut in the next.</li>
         <li>[morning] Got up early to see the light come into the low places. Worth the cold feet.</li>
         <li>[evening] Watched the shadows climb the rock until the whole place went blue.</li>
@@ -31,7 +31,7 @@
         <li>All this rock around us. Some days it feels like the bottom of a bowl someone could tip.</li>
       </gloomy>
       <cold>
-        <li>Mapped the approaches in my head today. Few ways in, fewer ways out.</li>
+        <li>Mapped the approaches in my head. Few ways in, fewer ways out.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -40,9 +40,9 @@
     <defName>Council_Journal_EncL_Water</defName>
     <lines>
       <plain>
-        <li>Water is what everything here comes back to, people and animals alike. I sat by it for a while today and watched them come.</li>
-        <li>Went down to the water in the evening. Something had been there before me and left tracks all along the edge.</li>
-        <li>[hot] The water is the only cool thing for miles. Everyone who can find it does.</li>
+        <li>Water is what everything here comes back to, people and animals alike. I sat by it a while and watched them come.</li>
+        <li>Went down to the water. Some animal had been there before me and left tracks all along the edge.</li>
+        <li>[hot] The water is the only cool thing for miles. Every creature that can find it comes.</li>
         <li>[storm] The water was wild today. Stayed well back from it and watched.</li>
         <li>[night] You hear the water more at night. I fell asleep listening to it.</li>
       </plain>
@@ -81,7 +81,7 @@
         <li>Odd weather. Got the work done anyway.</li>
       </blunt>
       <cheerful>
-        <li>The sky put on a show today and I had the best seat in the colony.</li>
+        <li>The sky put on a show, and I had the best seat in the colony.</li>
       </cheerful>
       <gloomy>
         <li>Weather like this always feels like it's about to turn into something worse.</li>

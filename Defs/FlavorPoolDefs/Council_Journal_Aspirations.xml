@@ -7,11 +7,11 @@
     <lines>
       <plain>
         <li>I wanted to {GOAL}. That isn't going to happen now, and I've been lying awake over it.</li>
-        <li>Crossed it off the list today, the hard way. I'll never {GOAL}.</li>
+        <li>Crossed it off the list. I won't {GOAL}, not here and not now.</li>
       </plain>
       <warm><li>I won't {GOAL} after all. Maybe someone else will. I'd like to help them.</li></warm>
       <blunt><li>Can't {GOAL} anymore. Fine. Next.</li></blunt>
-      <cheerful><li>So I can't {GOAL}. I'll find something else to aim for!</li></cheerful>
+      <cheerful><li>So I can't {GOAL}. Fine! There's plenty else worth wanting.</li></cheerful>
       <gloomy><li>I was going to {GOAL}. I should have known better.</li></gloomy>
       <cold><li>Objective abandoned: {GOAL}. Circumstances changed.</li></cold>
     </lines>
@@ -23,8 +23,8 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} always said {OTHER_pronoun} would {GOAL} one day. One day isn't coming now.</li>
-        <li>{OTHER_nameDef} wanted to {GOAL}. I keep thinking about how close {OTHER_pronoun} got.</li>
-        <li>I'm going to try to {GOAL}, for {OTHER_nameDef}.</li>
+        <li>{OTHER_nameDef} wanted to {GOAL}. I wish I'd helped more.</li>
+        <li>Writing it here so it isn't lost: {OTHER_nameDef} wanted to {GOAL}.</li>
       </plain>
       <warm><li>{OTHER_nameDef} never got to {GOAL}. I hope wherever {OTHER_pronoun} is now, it doesn't matter anymore.</li></warm>
       <blunt><li>{OTHER_nameDef} wanted to {GOAL}. Didn't get the chance. That's the rim.</li></blunt>

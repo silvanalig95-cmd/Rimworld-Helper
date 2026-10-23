@@ -14,15 +14,15 @@
       <plain>
         <li>[opt0,safe] Mushrooms came up after the rain. Two baskets of the good kind are drying in the storeroom.</li>
         <li>[opt0,risk] Half the mushrooms we brought in were the bitter kind. The other half were good. I've learned which is which now, the hard way.</li>
-        <li>[opt1] Wild mushrooms for supper, fried in fat. I found them, so I got the first plate.</li>
-        <li>[opt2] Found a ring of mushrooms out past the fields. We left them be. Probably wise.</li>
-        <li>Mushrooms everywhere after the rain. The whole hollow smells of them.</li>
+        <li>[opt1] Wild mushrooms for supper. I found them, so I got the first plate.</li>
+        <li>[opt2] Found a ring of mushrooms after the rain. We left them be. Probably wise.</li>
+        <li>Mushrooms everywhere after the rain. The whole place smells of them.</li>
       </plain>
-      <warm><li>[opt1] Everyone ate the mushrooms I found. Small thing, but I liked watching them eat.</li></warm>
+      <warm><li>[opt1] The others ate the mushrooms I found. Small thing, but I liked watching them eat.</li></warm>
       <blunt><li>[opt2] Food growing out of the ground and we left it there.</li></blunt>
       <cheerful><li>[opt1] Mushroom supper! I'd go out in the rain every day for that.</li></cheerful>
-      <gloomy><li>[opt2] The mushrooms will rot where they stand. So it goes.</li></gloomy>
-      <cold><li>[opt0] Forty-odd pounds of edible fungus, cataloged. A useful morning.</li></cold>
+      <gloomy><li>[opt2] The mushrooms will rot where they stand.</li></gloomy>
+      <cold><li>[opt0] Two baskets of edible fungus, sorted and checked. A useful morning.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -32,14 +32,14 @@
       <plain>
         <li>[opt0] Stayed up all night with everyone. The sun went down behind the hill and came straight back up.</li>
         <li>[opt1] Blankets over the windows. It's still light behind them. I counted the threads until I slept.</li>
-        <li>[opt2] Slept until the sun was high. It was high all night too, but that's not the point.</li>
+        <li>[opt2] We get to sleep late tomorrow. Just as well. The sun hasn't gone down, and neither have I.</li>
         <li>Midnight, and I can read this page without a candle.</li>
       </plain>
       <warm><li>[opt0] Sat up with everyone through the bright night. The best night we've had here.</li></warm>
       <blunt><li>[opt1] Can't sleep. Sun won't go down.</li></blunt>
       <cheerful><li>[opt0] We danced at midnight in broad daylight. I'm still giddy.</li></cheerful>
       <gloomy><li>Three nights without dark. I'm so tired I could weep.</li></gloomy>
-      <cold><li>[opt1] Kept the usual hours. The others stayed up. They're slower today.</li></cold>
+      <cold><li>[opt1] Usual hours kept. The work will not suffer for a bright sky.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -70,7 +70,7 @@
         <li>[lowtech,opt0] Fed the fire till dawn the way my people do. The sun came back. It always does, but you have to help.</li>
       </plain>
       <warm><li>[opt0] Sat up all night with all of them round the fire. I'd do it every winter.</li></warm>
-      <blunt><li>[opt0] Burned forty logs to stay awake. Worth it, I suppose.</li></blunt>
+      <blunt><li>[opt0] Fed the fire all night. Worth the wood, I suppose.</li></blunt>
       <cheerful><li>[opt0] We cheered when the sky went gray! It felt like we'd done it ourselves.</li></cheerful>
       <gloomy><li>The longest night. It felt longer than that.</li></gloomy>
       <cold><li>[opt2] The longest night passed like any other. It is only a night.</li></cold>
@@ -81,7 +81,7 @@
     <defName>Council_Journal_Evt_Scribe</defName>
     <lines>
       <plain>
-        <li>[opt0] A scribe wrote my letter home today. I said more than I meant to, and {X_nameDef} wrote all of it down.</li>
+        <li>[opt0] A scribe wrote my letter home. I said more than I meant to, and {X_nameDef} wrote all of it down.</li>
         <li>[opt1] Told the colony's story to a scribe, from the first day on. It sounded bigger told out loud.</li>
         <li>[opt2] The scribe taught us our letters. I can write my name now. I wrote it four times on the table.</li>
         <li>[opt3] A scribe came and went. I'd have liked to send a letter.</li>
@@ -90,7 +90,7 @@
       <blunt><li>[opt0] Paid a stranger to write my business down. Strange times.</li></blunt>
       <cheerful><li>[opt2] I can write now. Badly, but I can!</li></cheerful>
       <gloomy><li>[opt0] Wrote home. I don't know who's left there to read it.</li></gloomy>
-      <cold><li>[opt1] Our story is on paper now. Paper outlasts people.</li></cold>
+      <cold><li>[opt1] The colony's history is written down at last. Useful, the next time there's a dispute about who did what.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -101,7 +101,7 @@
         <li>[opt0] {X_nameDef} from the glitterworld asked me where the water comes from. Then again at supper. Then again at breakfast.</li>
         <li>[opt1,safe] Watched {X_nameDef} muck out the barn in a silk shirt. Paid us extra for the privilege.</li>
         <li>[opt1,risk] The tourist lasted half a day of real work and asked for a refund. Got half. Still more than I make.</li>
-        <li>[opt2] A tourist came to see how we live. We said no. We're not a zoo.</li>
+        <li>[opt2] A tourist came to look at how we live, took pictures of the gate and left. We're not a zoo.</li>
       </plain>
       <warm><li>[opt0] {X_nameDef} was hopeless at everything and very sweet about it. I'll miss the questions.</li></warm>
       <blunt><li>[opt0] Rich fool paid good silver to sleep on our floor. Fine by me.</li></blunt>
@@ -132,7 +132,7 @@
     <defName>Council_Journal_Evt_Fiddler</defName>
     <lines>
       <plain>
-        <li>[opt0] A musician played just for me last night, out by the woodpile. I fell asleep sitting up. First real sleep in days.</li>
+        <li>[opt0] A musician played just for me, out by the woodpile after dark. I fell asleep sitting up. First real sleep in days.</li>
         <li>[opt1] Music after supper for everyone. I sat near the front. It helped more than I expected.</li>
         <li>[opt2] A musician offered to play for me. I said no. I don't want to be the one who needs it.</li>
         <li>[opt0] {X_nameDef} didn't ask me anything, just played. That was exactly right.</li>
@@ -140,7 +140,7 @@
       <warm><li>[opt0] Someone I'd never met sat with me half the night and played. People can be very kind.</li></warm>
       <blunt><li>[opt0] Didn't want a song. Got one anyway. Slept like the dead.</li></blunt>
       <cheerful><li>[opt1] Music and dancing. I'd forgotten I could dance!</li></cheerful>
-      <gloomy><li>[opt0] The music helped tonight. Tomorrow it'll be the same old weight.</li></gloomy>
+      <gloomy><li>[opt0] The music helped tonight. Tomorrow it'll be the same as before.</li></gloomy>
       <cold><li>[opt0] A stranger played for me because I looked tired. I did not know it showed.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -149,14 +149,14 @@
     <defName>Council_Journal_Evt_Peacemaker</defName>
     <lines>
       <plain>
-        <li>[opt0,safe] A peacemaker sat me down across from someone I can't stand. We talked until midnight. I can stand them a little now.</li>
+        <li>[opt0,safe] A peacemaker sat me down across from someone I can't stand. We talked until midnight. I can stand them now, nearly.</li>
         <li>[opt0,risk] A peacemaker tried to patch things up between me and someone here. It didn't take. At least we both tried.</li>
         <li>[opt1] The council has us rebuilding the woodpile together. We argued about every log.</li>
-        <li>[opt2] A peacemaker offered to sort out my quarrel. The council said no. Fine. It's mine to sort.</li>
+        <li>[opt2] A peacemaker offered to sort out my quarrel, and went on without doing it. Fine. It's mine to sort.</li>
       </plain>
       <warm><li>[opt0,safe] We shook hands at the end. I think we both meant it.</li></warm>
       <blunt><li>[opt1] Made to work beside someone I don't like. We stacked wood. Badly.</li></blunt>
-      <cheerful><li>[opt0,safe] Who knew a pot of tea could do all that?</li></cheerful>
+      <cheerful><li>[opt0,safe] Half a night at that table with the peacemaker, and we came out of it laughing!</li></cheerful>
       <gloomy><li>[opt0,risk] Some things don't mend. I knew that before the peacemaker came.</li></gloomy>
       <cold><li>[opt0] A stranger arbitrated my grievances. It was efficient, I'll give {X_objective} that.</li></cold>
     </lines>
@@ -172,7 +172,7 @@
         <li>[opt0] I'm rationing it. One a day. It has to last.</li>
       </plain>
       <warm><li>[opt1] Fed everyone the food I grew up on and told them where it came from. It felt like having them over.</li></warm>
-      <blunt><li>[opt2] Couldn't afford a taste of home. Fine. It wasn't that good anyway.</li></blunt>
+      <blunt><li>[opt2] No taste of home for me. Fine. It wasn't that good anyway.</li></blunt>
       <cheerful><li>[opt0] It tastes exactly the way I remember. I could cry.</li></cheerful>
       <gloomy><li>[opt0] It tastes like home. That's the trouble with it.</li></gloomy>
       <cold><li>[opt0] Purchased a nostalgic foodstuff. Effective on morale. Mine, at least.</li></cold>
@@ -201,8 +201,8 @@
     <lines>
       <plain>
         <li>[opt0] Had it out with {X_nameDef} from the camp. The council backed me. The camp isn't speaking to me now.</li>
-        <li>[opt1] The council let the camp have it. To keep the peace, they said. My peace wasn't asked about.</li>
-        <li>[opt2,safe] Someone talked me and {X_nameDef} round to splitting it. We shook on it in front of the whole camp.</li>
+        <li>[opt1] The camp gets to keep it, to keep the peace. My peace wasn't asked about.</li>
+        <li>[opt2,safe] One of ours talked me and {X_nameDef} round to splitting it. We shook on it in front of the whole camp.</li>
         <li>[opt2,risk] They tried to settle it between me and {X_nameDef}. Went round in circles until dark.</li>
       </plain>
       <warm><li>[opt1] Let the camp have it. They've less than we do, I suppose.</li></warm>

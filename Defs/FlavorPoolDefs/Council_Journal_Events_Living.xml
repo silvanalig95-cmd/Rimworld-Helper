@@ -12,7 +12,7 @@
     <defName>Council_Journal_Evt_LoversKin</defName>
     <lines>
       <plain>
-        <li>[opt0,safe] {X_nameDef} came all the way from home to find me. We talked until supper, and nobody shouted. We're going to write to each other now.</li>
+        <li>[opt0,safe] {X_nameDef} came all the way from home to find me. We talked until supper, and not one of us shouted. We're going to write to each other now.</li>
         <li>[opt0,risk] {X_nameDef} came to talk, and we ended up shouting the same things we shouted the night I left.</li>
         <li>[opt1] The council sent a gift home with {X_nameDef}. I don't know if it helps. It can't hurt.</li>
         <li>[opt2] The council sent {X_nameDef} away. I didn't argue. I'm not sure I'm glad.</li>
@@ -33,7 +33,7 @@
       </plain>
       <warm><li>[opt0] {X_nameDef} wrote. The handwriting hasn't changed at all.</li></warm>
       <cheerful><li>[opt1] {X_nameDef} might come and live here! I've already picked out a spot for {X_possessive} bed.</li></cheerful>
-      <gloomy><li>[opt0] Letters from home make me miss it more, not less.</li></gloomy>
+      <gloomy><li>[opt0] A letter from home. I read it once and put it away. I'll read it again when I can stand to.</li></gloomy>
       <blunt><li>[opt1] Told {X_nameDef} to come. We'll see.</li></blunt>
       <cold><li>[opt0] Letter from {X_nameDef}. Answered it.</li></cold>
     </lines>
@@ -58,9 +58,9 @@
       <plain>
         <li>[opt0] {X_nameDef} walked all the way from {FACTION} to ask for me by name. I gave {X_objective} the whole day.</li>
         <li>[opt0] They call me {TALE} on the roads now. I'm not sure when that started.</li>
-        <li>[opt1] Someone came a long way to see me, and I couldn't spare the day. I keep thinking about it.</li>
+        <li>[opt1] Someone came a long way to see me, and I couldn't spare the day. It's bothered me all evening.</li>
       </plain>
-      <warm><li>[opt0] I helped {X_nameDef} today. It's good to be of use to someone outside these walls.</li></warm>
+      <warm><li>[opt0] Helped {X_nameDef}. It's good to be of use to someone outside these walls.</li></warm>
       <cheerful><li>[opt0] People come from other villages to ask for me now! Today it was {X_nameDef}.</li></cheerful>
       <gloomy><li>[opt0] Known as {TALE}. There are worse things to be known for.</li></gloomy>
       <blunt><li>[opt1] Told the stranger no. Too much to do here.</li></blunt>
@@ -73,7 +73,7 @@
     <lines>
       <plain>
         <li>[opt0] {ENEMY} are coming. I asked for this.</li>
-        <li>[opt1] {ENEMY} were camped a few hours away, and the council let them go. I'll get another chance.</li>
+        <li>[opt1] {ENEMY} were camped a few hours away, and now they've moved on. I'll get another chance.</li>
       </plain>
       <blunt><li>[opt0] They're coming. Good.</li></blunt>
       <gloomy><li>[opt1] They were right there, and they walked away.</li></gloomy>
@@ -85,8 +85,8 @@
     <defName>Council_Journal_Evt_Founding</defName>
     <lines>
       <plain>
-        <li>[opt0] Founding day. We ate until we couldn't, and somebody told the story of the first night again. It gets longer every year.</li>
-        <li>[opt1] Founding day. A quiet supper. I thought about the first night here, and how cold it was.</li>
+        <li>[opt0] Founding day. We ate until we couldn't, and somebody told the story of the first night again. It gets longer every time.</li>
+        <li>[opt1] Founding day. A quiet supper. I thought about the first night here, and how little we had.</li>
       </plain>
       <warm><li>[opt0] We raised a cup to everyone who built this place, and then another.</li></warm>
       <cheerful><li>[opt0] Founding day feast! Three helpings, and I regret nothing.</li></cheerful>
@@ -113,7 +113,7 @@
     <lines>
       <plain>
         <li>[opt0] A stranger came in out of the cold tonight. We talked until the fire was embers.</li>
-        <li>[opt1] We sent a traveler back out into the snow with bread. I hope {X_nameDef} found somewhere warm.</li>
+        <li>[opt1] We sent a traveler back out into the cold with bread. I hope {X_nameDef} found somewhere warm.</li>
         <li>[opt2] We kept the gate shut on a traveler tonight. I listened to the knocking until it stopped.</li>
       </plain>
       <warm><li>[opt0] Shared the fire with {X_nameDef} tonight. Good company, cold feet.</li></warm>
@@ -126,9 +126,9 @@
     <defName>Council_Journal_Evt_RareCreature</defName>
     <lines>
       <plain>
-        <li>[opt0,safe] I won over the strange creature by the fields today. It was eating out of my hand by sundown.</li>
+        <li>[opt0,safe] I won over the strange creature by the fields. It was eating out of my hand by sundown.</li>
         <li>[opt0,risk] I got close to the strange creature, a few steps away, and then it bolted.</li>
-        <li>[opt1] There was a strange creature grazing near the fields. We let it be. I'd have liked to try.</li>
+        <li>[opt1] There was a strange creature grazing near the fields. We let it be. I wanted to try.</li>
       </plain>
       <warm><li>[opt0,safe] It nuzzled my hand once it trusted me. I'm going to remember that.</li></warm>
       <cheerful><li>[opt0,safe] The strange creature from the fields follows me everywhere now! It needs a name.</li></cheerful>

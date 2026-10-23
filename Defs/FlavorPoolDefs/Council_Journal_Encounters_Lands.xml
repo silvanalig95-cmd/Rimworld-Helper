@@ -11,10 +11,10 @@
     <defName>Council_Journal_EncL_Desert</defName>
     <lines>
       <plain>
-        <li>Sand in my bread, sand in my boots, sand in my bed. Saw something worth seeing today, though.</li>
+        <li>Sand in my bread and sand in my boots. Saw something worth seeing today, though.</li>
         <li>The heat broke at sundown and I sat on the wall until the stars came out. They come out fast here.</li>
-        <li>[hot] Too hot to work after noon. Too hot to sleep. Too hot to write much.</li>
-        <li>Learned something about living out here today. The dry country has its own rules, and I'm still learning them.</li>
+        <li>[hot] Too hot to work after noon and too hot to sleep after dark. This is all I'm writing.</li>
+        <li>The dry country has its own rules. Today I learned one more.</li>
         <li>[night] Cold enough at night to see my breath, in the same place that nearly cooked me at noon.</li>
       </plain>
       <warm>
@@ -41,12 +41,12 @@
       <plain>
         <li>Snow up to my knees and still coming. Saw tracks I didn't know, and followed them.</li>
         <li>[morning] Everything frozen and quiet this morning. My breath hung in the air like smoke.</li>
-        <li>Learned a trick against the cold today. My feet have been warm all day.</li>
+        <li>Learned a trick against the cold. My feet have been warm since noon.</li>
         <li>The cold out here gets into your teeth. The animals manage. I'm working on it.</li>
         <li>[snow] Snowed all day. The world went white and small.</li>
       </plain>
       <warm>
-        <li>Somebody showed me how to keep warm today, for nothing. I'll pass it on.</li>
+        <li>Somebody showed me how to keep warm, and wanted nothing for it. I'll pass it on.</li>
       </warm>
       <blunt>
         <li>Cold. Colder tomorrow.</li>
@@ -73,7 +73,7 @@
         <li>My boots haven't been dry since we came here. My feet have given up hoping.</li>
       </plain>
       <warm>
-        <li>The green out here is full of life. Every time I look closely, something is looking back.</li>
+        <li>There's more alive in one patch of this green than in whole towns I've lived in.</li>
       </warm>
       <blunt>
         <li>Wet. Muddy. Bitten. Fine.</li>
@@ -94,7 +94,7 @@
     <defName>Council_Journal_EncL_Heights</defName>
     <lines>
       <plain>
-        <li>Looked up from my work today and there was something on the ridge, watching the valley. Then it was gone over the top.</li>
+        <li>Looked up from my work and there was something on the ridge, watching the valley. Then it was gone over the top.</li>
         <li>Heard about the high passes today. I'd like to see the top of these mountains one day.</li>
         <li>[morning] The sun hits the peaks an hour before it reaches us. I watched it come down the slope.</li>
         <li>Found a crack in the rock with cold air coming out of it. Didn't go in. Thought about it all day.</li>
@@ -106,7 +106,7 @@
         <li>Steep. Rocky. Good view.</li>
       </blunt>
       <cheerful>
-        <li>Shouted across the valley today and the mountain shouted back!</li>
+        <li>Shouted across the valley, and the mountain shouted back!</li>
       </cheerful>
       <gloomy>
         <li>The mountains were here long before us and won't notice when we're gone.</li>
@@ -122,7 +122,7 @@
     <lines>
       <plain>
         <li>Walked the shore at low tide. The sea leaves something different on the sand every day.</li>
-        <li>Got a shell today. It's on the sill by my bed now, and I keep picking it up.</li>
+        <li>Got a shell. It's on the sill by my bed, and I pick it up every time I pass.</li>
         <li>[storm] Watched the sea in the storm. The waves came up the rocks higher than the roof.</li>
         <li>[fog] Sea fog all morning. I could hear the waves and nothing else.</li>
       </plain>
@@ -149,8 +149,8 @@
     <lines>
       <plain>
         <li>[rain] Sat out the rain in a doorway with my animal and watched the yard turn into a pond.</li>
-        <li>[storm] Thunder all night. Neither of us slept, my animal and me, so we kept each other company.</li>
-        <li>[snow] My animal had never seen snow come down this hard. Neither had I. It was wonderful.</li>
+        <li>[storm] Thunder rolling over us for hours. Neither of us could settle, my animal and me, so we kept each other company.</li>
+        <li>[snow] Snow coming down hard, and the animals going daft in it. I joined in for a while.</li>
         <li>[fog] Something came at me out of the fog today. Only an animal. My heart took the rest of the morning to settle.</li>
       </plain>
       <warm>

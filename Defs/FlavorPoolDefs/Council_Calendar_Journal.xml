@@ -22,11 +22,11 @@
         <li>[tradition] Founding day, done the way we always do it. I like knowing what comes next, for once.</li>
         <li>[winter] Founding day in the snow. I thought about the first winter and put another log on.</li>
       </plain>
-      <warm><li>Founding day. I looked round the table and thought: we made this, all of us.</li></warm>
+      <warm><li>Looked round the table at supper and thought: we made this place, all of us.</li></warm>
       <blunt><li>Founding day. Good food. Same stories.</li></blunt>
       <cheerful><li>Founding day! I ate until I had to lie down on the bench.</li></cheerful>
       <gloomy><li>Another founding day. Fewer of the first faces at the table every year.</li></gloomy>
-      <cold><li>Founding day. A useful ritual. People work harder for a place they've celebrated.</li></cold>
+      <cold><li>A useful ritual, founding day. People work harder for a place they've celebrated.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -37,9 +37,9 @@
         <li>[new] Brought the first real harvest in today. My back hurts and the bins are full.</li>
         <li>[new] We've got a harvest in, the first one that was all ours: sown, grown and cut.</li>
         <li>[!new,first] A year since the first harvest. Hard to believe how worried we were about that one field.</li>
-        <li>[!new,years] Harvest day again, {YEARS} years on. Fresh bread at supper, and nobody had to ration it.</li>
-        <li>[!new] Harvest day. Ate well. The fields will want me again tomorrow.</li>
-        <li>[!new,tradition] Harvest day, kept the old way. I hung a sheaf over my door like everyone else.</li>
+        <li>[!new,years] Harvest day again, {YEARS} years on. Fresh bread at supper, and no one counted the slices.</li>
+        <li>[!new] Full bowls at supper and full bins in the storeroom. Harvest day suits me.</li>
+        <li>[!new,tradition] Harvest day, kept the old way. I hung a sheaf over my door like the others.</li>
       </plain>
       <warm>
         <li>[!new] Harvest day. Thanked the ones who worked the fields with me, and meant every word.</li>
@@ -50,7 +50,7 @@
         <li>[new] Harvest's in. Finally.</li>
       </blunt>
       <cheerful>
-        <li>[!new] Harvest day! I had thirds and nobody stopped me.</li>
+        <li>[!new] Harvest day! Thirds, and not a word from the cook.</li>
         <li>[new] Our first harvest! I danced in the field and I'm not sorry.</li>
       </cheerful>
       <gloomy>
@@ -58,7 +58,7 @@
         <li>[new] A harvest at last. Now we find out whether it lasts the winter.</li>
       </gloomy>
       <cold>
-        <li>[!new] Harvest day. The stores are adequate, which is worth marking.</li>
+        <li>[!new] The stores are adequate. On harvest day that is worth marking.</li>
         <li>[new] First harvest in. Yield acceptable. Morale noticeably better.</li>
       </cold>
     </lines>
@@ -76,8 +76,8 @@
         <li>[!new,child] I made the biggest snowball anyone has ever seen. Then it broke.</li>
       </plain>
       <warm><li>[!new] Watched the first snow with a hot cup and good company. I didn't want the afternoon to end.</li></warm>
-      <blunt><li>[!new] First snow. Cold feet. The games were fine.</li></blunt>
-      <cheerful><li>[!new] First snow day! I won the sled race, or at least nobody can prove I didn't.</li></cheerful>
+      <blunt><li>[!new] First snow. Cold feet.</li></blunt>
+      <cheerful><li>[!new] First snow day! I won the sled race. There's some dispute, but I won it.</li></cheerful>
       <gloomy><li>[!new] First snow. Pretty for a day, then months of cold.</li></gloomy>
       <cold>
         <li>[!new] First snow. The games kept spirits up ahead of a hard season. Worth the lost afternoon.</li>
@@ -94,22 +94,22 @@
         <li>[clean,years] {YEARS} years since {ENEMY} came. We feasted, and someone told it as if we were never scared.</li>
         <li>[clean] The day we beat {ENEMY}. I still hear it sometimes when I'm falling asleep.</li>
         <li>[fallen] The day we fought {ENEMY} and lost {DEAD}. I went out to the graves after supper.</li>
-        <li>[fallen,first] A year since {DEAD} fell. I keep going over what I could have done differently.</li>
+        <li>[fallen,first] A year since {DEAD} fell. I've gone over it a hundred times, what I could have done differently.</li>
         <li>[fallen,years] {YEARS} years since the battle with {ENEMY}. It doesn't get any further away, only quieter.</li>
         <li>[nemesis] The day {ENEMY} fell. I remember sleeping right through that night.</li>
       </plain>
       <warm>
-        <li>[fallen] Told the young ones about {DEAD} today, and how brave {DEAD} was. They should know.</li>
-        <li>[clean] Thought about everyone who stood with me that day. I'd do it again, with them.</li>
+        <li>[fallen] Told the newer ones about {DEAD}, and what that day cost us. They should know.</li>
+        <li>[clean] Thought about the ones who stood with me that day. I'd do it again, with them.</li>
       </warm>
       <blunt>
-        <li>[clean] Anniversary of the fight with {ENEMY}. We won. That's what matters.</li>
+        <li>[clean] Beat {ENEMY} that day. Good.</li>
         <li>[fallen] {DEAD} should still be here. That's all I've got to say about today.</li>
       </blunt>
       <cheerful><li>[clean] Victory day! The story gets better every time we tell it.</li></cheerful>
       <gloomy>
         <li>[fallen] The battle day again. I can still smell the smoke when I think about it.</li>
-        <li>[clean] The day we beat {ENEMY}. They'll be back one day. They always are.</li>
+        <li>[clean] We beat {ENEMY} once. They'll be back one day. They always are.</li>
       </gloomy>
       <cold>
         <li>[clean] Anniversary of the defense against {ENEMY}. {COUNT} of theirs, none of ours. A good exchange.</li>
@@ -124,9 +124,9 @@
       <plain>
         <li>[first] A year since {DEAD} died. I kept expecting to hear {DEAD} at supper.</li>
         <li>[years] {YEARS} years without {DEAD}. Some days I can't remember the voice. Today I could.</li>
-        <li>Went to {DEAD}'s grave today and told {DEAD} what's happened since. It took a while.</li>
+        <li>Went to {DEAD}'s grave and told {DEAD} what's happened since. It took a while.</li>
         <li>We kept the day for {DEAD}. Someone told the story about the burnt stew and the whole table laughed.</li>
-        <li>[kin] It's the day {DEAD} died. I didn't get much work done. Nobody asked me to.</li>
+        <li>[kin] It's the day {DEAD} died. I didn't get much work done, and no one pushed me.</li>
         <li>[kin,years] {YEARS} years. I still keep some of {DEAD}'s things in a box under my bed.</li>
       </plain>
       <warm>
@@ -139,7 +139,7 @@
       </blunt>
       <cheerful><li>We remembered {DEAD} today with stories instead of tears, mostly.</li></cheerful>
       <gloomy>
-        <li>Remembered {DEAD} today. Remembering doesn't bring anyone back.</li>
+        <li>{DEAD}'s day again. I went through the motions.</li>
         <li>[kin] The day {DEAD} died. I stayed at the grave until it got dark.</li>
       </gloomy>
       <cold><li>The day {DEAD} died. I observed it. The others seemed to need me to.</li></cold>
@@ -151,7 +151,7 @@
     <defName>Council_Journal_Cal_Wedding</defName>
     <lines>
       <plain>
-        <li>[first] A year married to {OTHER_nameDef}. It feels shorter and longer at once.</li>
+        <li>[first] A year married to {OTHER_nameDef}. Some days it feels like a month, some days like ten years.</li>
         <li>[years] {YEARS} years with {OTHER_nameDef}. We sat up late and talked about the wedding.</li>
         <li>Our wedding day. {OTHER_nameDef} made me laugh at the feast, the same way as the first time.</li>
         <li>Wedding day. The others made more of it than we did, and I didn't mind.</li>
@@ -175,13 +175,13 @@
       <plain>
         <li>[first] A year since {OTHER_nameDef} turned up. I can't picture the place without {OTHER_objective} now.</li>
         <li>[years] {YEARS} years since {OTHER_nameDef} came. I remember the first thing {OTHER_nameDef} said to me, and I won't write it down.</li>
-        <li>{OTHER_nameDef} came here on this day, back when we had almost nothing. I'm glad {OTHER_pronoun} stayed.</li>
+        <li>{OTHER_nameDef} came here on this day. I still remember the state of the boots {OTHER_pronoun} turned up in.</li>
       </plain>
-      <warm><li>Told {OTHER_nameDef} today that I'm glad {OTHER_pronoun} came. {OTHER_nameDef} pretended not to be pleased.</li></warm>
+      <warm><li>Told {OTHER_nameDef} today that I'm glad {OTHER_pronoun} came. {OTHER_nameDef} went red and changed the subject.</li></warm>
       <blunt><li>[years] {OTHER_nameDef}'s been here {YEARS} years. Still owes me for that first meal.</li></blunt>
       <cheerful><li>It's the day {OTHER_nameDef} arrived! I made {OTHER_objective} sit at the head of the table.</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} came here the same week we nearly starved. Strange, what sticks.</li></gloomy>
-      <cold><li>{OTHER_nameDef} joined on this day. A good addition, on the whole.</li></cold>
+      <gloomy><li>The day {OTHER_nameDef} came. I wonder how many more of these we'll get to mark.</li></gloomy>
+      <cold><li>{OTHER_nameDef}'s arrival day. A good addition.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -190,16 +190,16 @@
     <defName>Council_Journal_Cal_Birthday</defName>
     <lines>
       <plain>
-        <li>[self] My birthday. Someone remembered, and then everyone did.</li>
+        <li>[self] My birthday. One of them remembered and told the rest.</li>
         <li>[self] Another year older. They saved me the best seat at supper.</li>
         <li>[self,old] My birthday. I asked them not to count, and they counted anyway.</li>
         <li>[self,child] It's my birthday! I'm older now. I checked.</li>
-        <li>[friend] It's {OTHER_nameDef}'s birthday. I gave {OTHER_objective} something I made.</li>
+        <li>[friend] It's {OTHER_nameDef}'s birthday. I gave {OTHER_objective} the good knife I'd been saving.</li>
         <li>[friend] {OTHER_nameDef}'s birthday today. We sang, badly.</li>
-        <li>[friend,lowtech] Carved a little figure for {OTHER_nameDef}'s birthday. It's meant to be a muffalo.</li>
+        <li>[friend,lowtech] Carved a figure for {OTHER_nameDef}'s birthday. It's meant to be a muffalo.</li>
       </plain>
       <warm>
-        <li>[self] My birthday, and everyone was so kind I didn't know where to look.</li>
+        <li>[self] My birthday, and they were all so kind I didn't know where to look.</li>
         <li>[friend] {OTHER_nameDef}'s birthday. I told {OTHER_objective} what a difference {OTHER_pronoun} makes here.</li>
       </warm>
       <blunt>
@@ -227,16 +227,16 @@
     <lines>
       <plain>
         <li>[first,named] The first {NAME}. We didn't know how it's done yet, so we ate.</li>
-        <li>{NAME} today. A feast, and nobody had to stand watch through supper.</li>
-        <li>[years] {NAME} again. Same songs as last year, and I still don't know the words.</li>
-        <li>{NAME}. I ate too much and talked too long, and I'd do both again.</li>
-        <li>[tradition] {NAME}, kept like every year. It's starting to feel like ours.</li>
+        <li>Feasted for {NAME}. For once the watch ate with the rest of us.</li>
+        <li>[years] We kept {NAME} again, with the same songs as last year. I still don't know the words.</li>
+        <li>Ate too much and talked too long at the feast for {NAME}. I'd do both again.</li>
+        <li>[tradition] Kept {NAME} the way we do every year. It's starting to feel like ours.</li>
       </plain>
-      <warm><li>{NAME}. Sat with people I don't usually talk to. Glad I did.</li></warm>
-      <blunt><li>{NAME}. Feast. Full.</li></blunt>
-      <cheerful><li>{NAME}! Best supper in months.</li></cheerful>
-      <gloomy><li>{NAME}. Feasting while the stores go down. Someone has to worry about it.</li></gloomy>
-      <cold><li>{NAME}. A feast is an efficient way to keep people content.</li></cold>
+      <warm><li>Sat with people I don't usually talk to, at supper for {NAME}. Glad I did.</li></warm>
+      <blunt><li>Feast for {NAME}. Full.</li></blunt>
+      <cheerful><li>Best supper in months, all for {NAME}!</li></cheerful>
+      <gloomy><li>Feasting for {NAME}, and the stores go down another notch. Somebody has to keep count.</li></gloomy>
+      <cold><li>A feast for {NAME}. An efficient way to keep people content.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -244,16 +244,16 @@
     <defName>Council_Journal_Cal_Remembrance</defName>
     <lines>
       <plain>
-        <li>{NAME} today. We named the dead one by one at supper. It took longer than last year.</li>
+        <li>We named our dead one by one at supper for {NAME}, and took our time over it.</li>
         <li>[first,named] The first {NAME}. I didn't know what to say at the graves, so I stood there with the others.</li>
-        <li>{NAME}. Work went slowly and nobody minded.</li>
-        <li>[tradition] {NAME}. Every year we stop for this, and every year I'm glad we do.</li>
+        <li>Work went slowly on {NAME}, and that was allowed.</li>
+        <li>[tradition] Every year we stop for {NAME}, and every year I'm glad we do.</li>
       </plain>
-      <warm><li>{NAME}. Thought about everyone we've lost and what each of them gave this place.</li></warm>
-      <blunt><li>{NAME}. Visited the graves. Back to work tomorrow.</li></blunt>
-      <cheerful><li>{NAME}. We told funny stories about the dead. They'd have wanted that.</li></cheerful>
-      <gloomy><li>{NAME}. The list of names gets longer every year.</li></gloomy>
-      <cold><li>{NAME}. A day to remember the dead. I remembered them.</li></cold>
+      <warm><li>Thought about each of the ones we've lost, on {NAME}, and what they gave this place.</li></warm>
+      <blunt><li>Visited the graves for {NAME}.</li></blunt>
+      <cheerful><li>We told funny stories about the dead on {NAME}. They'd have liked that better than crying.</li></cheerful>
+      <gloomy><li>The list of names we read on {NAME} gets longer every year.</li></gloomy>
+      <cold><li>Observed {NAME}, a day set aside to remember the dead. I remembered them.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -261,19 +261,19 @@
     <defName>Council_Journal_Cal_Rest</defName>
     <lines>
       <plain>
-        <li>{NAME}. Didn't lift a hand all afternoon. Strange feeling.</li>
+        <li>Didn't lift a hand all afternoon, for {NAME}. Strange feeling.</li>
         <li>[first,named] Our first {NAME}. I didn't know what to do with myself until about noon, and then I did nothing very well.</li>
-        <li>[years] {NAME} again. I slept until the sun was high and nobody shouted.</li>
-        <li>[!winter] {NAME}. Spent the afternoon lying in the grass.</li>
-        <li>[winter] {NAME}. Stayed by the fire all afternoon with my boots off.</li>
-        <li>[tradition] {NAME}, the one day a year the colony stops. Everyone needs it.</li>
-        <li>[trait:Industrious] {NAME}. Everyone else rested. I fixed the gate.</li>
+        <li>[years] Rested for {NAME} again. Slept until the sun was high, and no one shouted me awake.</li>
+        <li>[!winter] Spent the afternoon of {NAME} lying on my back outside, watching the clouds go over.</li>
+        <li>[winter] Kept my boots off and my feet to the hearth all through {NAME}.</li>
+        <li>[tradition] The one day a year the colony stops is {NAME}. I'd forgotten how much I needed it.</li>
+        <li>[trait:Industrious] The others rested for {NAME}. I mended two chairs.</li>
       </plain>
-      <warm><li>{NAME}. Spent the afternoon talking with friends, with nothing to rush off to.</li></warm>
-      <blunt><li>{NAME}. Rested. About time.</li></blunt>
-      <cheerful><li>{NAME}! I took two naps and I'm calling it an accomplishment.</li></cheerful>
-      <gloomy><li>{NAME}. Rested, which only gave me time to think.</li></gloomy>
-      <cold><li>{NAME}. Lost work today, offset by rested workers tomorrow.</li></cold>
+      <warm><li>Talked with friends all afternoon on {NAME}, with nothing to rush off to.</li></warm>
+      <blunt><li>Rested for {NAME}. About time.</li></blunt>
+      <cheerful><li>Two naps on {NAME}! I'm calling that an accomplishment.</li></cheerful>
+      <gloomy><li>Rested for {NAME}, which only gave me time to think.</li></gloomy>
+      <cold><li>A day's work lost to {NAME}, offset by rested workers tomorrow.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -281,18 +281,18 @@
     <defName>Council_Journal_Cal_Games</defName>
     <lines>
       <plain>
-        <li>{NAME}. Ran in the footrace and came in near the back, where I usually am.</li>
+        <li>Ran in the footrace on {NAME} and came in near the back, where I usually am.</li>
         <li>[first,named] The first {NAME}. We made up most of the rules as we went.</li>
-        <li>[years] {NAME} again. Same games, same arguments over the rules.</li>
-        <li>{NAME}. I won the throwing contest. Nobody believes me, so I'm writing it down.</li>
-        <li>[winter] {NAME} in the snow. The snowball fight went on until it was too dark to aim.</li>
-        <li>[tradition] {NAME}. Last year's champion lost, and we may never hear the end of it.</li>
+        <li>[years] Games for {NAME} again, and the same arguments over the rules.</li>
+        <li>I won the throwing contest on {NAME}. Writing it down, since the others won't believe me.</li>
+        <li>[winter] The snowball fight on {NAME} went on until it was too dark to aim.</li>
+        <li>[tradition] Last year's champion lost on {NAME}, and we may never hear the end of it.</li>
       </plain>
-      <warm><li>{NAME}. Cheered for everyone, even the ones who beat me.</li></warm>
-      <blunt><li>{NAME}. Lost. Fun anyway.</li></blunt>
-      <cheerful><li>{NAME}! I won something, though nobody agrees on what.</li></cheerful>
-      <gloomy><li>{NAME}. Pulled something in the races. Worth it, maybe.</li></gloomy>
-      <cold><li>{NAME}. I won by watching the others. The games are mostly about that.</li></cold>
+      <warm><li>Cheered for all of them on {NAME}, even the ones who beat me.</li></warm>
+      <blunt><li>Games for {NAME}. Lost. Fun anyway.</li></blunt>
+      <cheerful><li>I won on {NAME}! We're still arguing about what.</li></cheerful>
+      <gloomy><li>Pulled a muscle in the races on {NAME}. Worth it, maybe.</li></gloomy>
+      <cold><li>Won on {NAME} by watching how the others played first. That's most of any game.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

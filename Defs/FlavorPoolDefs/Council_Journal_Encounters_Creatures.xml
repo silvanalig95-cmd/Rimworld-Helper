@@ -26,7 +26,7 @@
         <li>[old] At my age you stop expecting comfort from anybody. Then {X_definite} comes over and leans on you.</li>
       </warm>
       <blunt>
-        <li>Don't need anybody. Got {X_definite}. That's plenty.</li>
+        <li>Don't need anybody. Got {X_definite}.</li>
         <li>[lowmood] People keep asking how I'm doing. Only {X_definite} gets a straight answer.</li>
       </blunt>
       <cheerful>
@@ -36,7 +36,7 @@
       <gloomy>
         <li>The only one here who never needs me to be fine is {X_definite}.</li>
         <li>[lowmood] One day I'll have to bury {X_definite}. Tonight I'm not thinking about that.</li>
-        <li>[grieving] The ones I've lost here all went fast. I keep a close eye on {X_definite} now.</li>
+        <li>[grieving] The ones I've lost here all went fast. I watch {X_definite} closely now.</li>
       </gloomy>
       <cold>
         <li>My mood recovers faster in the animal's company. I've decided not to examine that too closely.</li>
@@ -53,9 +53,9 @@
         <li>Woke up to a dead rat on my pillow, a present from {X_definite}.</li>
         <li>Found half a squirrel laid out on my boot like a medal.</li>
         <li>[child] Today {X_definite} gave me a dead mouse. I'm keeping it in a box under my bed.</li>
-        <li>[trait:Gourmand] Another gift from {X_definite}. I'll admit I looked at it and thought about seasoning. Not proud of that.</li>
-        <li>[night] Something crunched under my bare foot on the way to the latrine. A gift from {X_definite}. I don't want to talk about which part.</li>
-        <li>[winter] Food's scarce, and {X_definite} has started sharing. Generous. Disgusting, but generous.</li>
+        <li>[trait:Gourmand] Another gift from {X_definite}. I looked at it longer than I should have and thought about seasoning.</li>
+        <li>[night] Something crunched under my bare foot on the way to the latrine. A gift from {X_definite}. I washed my foot twice.</li>
+        <li>[winter] Food's scarce, and {X_definite} has started sharing {X_possessive} kills with me.</li>
         <li>[skill:Animals] I know what the gifts mean. I'm family, and as far as the animal can tell, a hopeless hunter who needs feeding.</li>
         <li>[hot] It's far too hot for what {X_definite} left on my pillow. I've opened every shutter in the place.</li>
       </plain>
@@ -78,7 +78,7 @@
       </gloomy>
       <cold>
         <li>The animal brings me its kills. It considers me part of its pack, and a poor provider.</li>
-        <li>Pest control, delivered to my door. I respect the efficiency.</li>
+        <li>Pest control, delivered.</li>
         <li>[rich] The stores are full, and still the animal brings me rats. It isn't about need.</li>
       </cold>
     </lines>
@@ -89,10 +89,10 @@
     <defName>Council_Journal_EncC_PetMischief</defName>
     <lines>
       <plain>
-        <li>My good hat is in pieces, and {X_definite} is asleep on the pieces.</li>
+        <li>My things are in pieces, and {X_definite} is asleep on the pieces.</li>
         <li>Hung my things on a higher peg, and {X_definite} got to them anyway.</li>
         <li>I've started keeping my belongings in a locked chest, like a miser. All because of one animal.</li>
-        <li>[winter] My good gloves are chewed through, in the middle of winter. I'm sure {X_definite} planned it.</li>
+        <li>[winter] Chewed to bits in the middle of winter, when I can least spare a thing. I'm sure {X_definite} planned it.</li>
         <li>[child] Today {X_definite} ate my best stick. It was the best one. I will never find another stick like it.</li>
         <li>[trait:Greedy] I'm keeping a list of everything {X_definite} has destroyed. Someday, somebody is paying me back for all of it.</li>
         <li>[rain] Stuck indoors with {X_definite} all day. Lost a sandal, a belt and most of my patience.</li>
@@ -100,7 +100,7 @@
       </plain>
       <warm>
         <li>I can't stay angry at an animal that looks that pleased with itself. I tried.</li>
-        <li>It's only leather. I've said so three times today.</li>
+        <li>They're only things. I've said so three times today.</li>
       </warm>
       <blunt>
         <li>One more chewed boot and that animal sleeps outside. I mean it this time.</li>
@@ -113,7 +113,7 @@
       </cheerful>
       <gloomy>
         <li>Nothing I own lasts here. The animal just gets to it faster than the rest.</li>
-        <li>[lowmood] Of course it was my things. It's always my things.</li>
+        <li>[lowmood] My things. Always my things.</li>
         <li>[poor] We can't spare a single strap, and {X_definite} ate two.</li>
       </gloomy>
       <cold>
@@ -168,7 +168,7 @@
     <lines>
       <plain>
         <li>Took the long way round today so {X_definite} could keep up. Told the others it was for the view.</li>
-        <li>There's gray creeping in around {X_definite}'s face. When did that happen? Where was I?</li>
+        <li>There's gray creeping in around {X_definite}'s face. I don't know when that happened, or where I was.</li>
         <li>I remember when {X_definite} could clear a fence. Today the step was a whole decision.</li>
         <li>[winter] The cold is hard on {X_definite} this year. I've let {X_objective} have my warm corner.</li>
         <li>[night] Sometimes I wake up just to listen for {X_definite} breathing.</li>
@@ -206,14 +206,14 @@
     <defName>Council_Journal_EncC_Majestic</defName>
     <lines>
       <plain>
-        <li>Saw {X_indefinite} today. Really saw one, close. I keep holding my arms out to show people the size, and my arms aren't long enough.</li>
+        <li>Saw {X_indefinite}. Really saw one, close. I hold my arms out to show people the size, and my arms aren't long enough.</li>
         <li>Plenty of things out here have wanted to kill me. Today I saw {X_indefinite} that didn't care either way, and it was the most beautiful thing I've seen in years.</li>
         <li>[skill:Animals] I've spent my whole life with animals. None of them prepared me for {X_definite}.</li>
         <li>[morning] Before breakfast I saw {X_indefinite} among the trees, steam rising off {X_possessive} back. I forgot I was hungry.</li>
         <li>[winter] Watched {X_indefinite} wade through the drifts like they weren't there. I can barely get across the yard.</li>
         <li>[child] I saw {X_indefinite}! Bigger than a house, maybe two houses.</li>
         <li>[trait:Bloodlust] Spent half the day watching {X_indefinite} and thinking about what a fight that would be.</li>
-        <li>[trait:Greedy] I keep thinking about what that hide would fetch from a trader. Then I remember the size of {X_possessive} feet.</li>
+        <li>[trait:Greedy] Can't stop thinking about what that hide would fetch from a trader. Then I remember the size of {X_possessive} feet.</li>
         <li>[evening] At sunset {X_indefinite} crossed the ridge, dark against the red sky. We stood and watched until the light was gone.</li>
       </plain>
       <warm>
@@ -226,8 +226,8 @@
         <li>The others stood around gawking at {X_definite} like they'd never seen an animal. I gawked too.</li>
       </blunt>
       <cheerful>
-        <li>I saw {X_indefinite} today and I've decided we're friends now. I just have to tell {X_objective}!</li>
-        <li>So big! I ran out of words and just pointed for a while.</li>
+        <li>Saw {X_indefinite} and decided we're friends now. I just have to tell {X_objective}!</li>
+        <li>So big! I just pointed.</li>
       </cheerful>
       <gloomy>
         <li>Something that big and that free, and here I am inside a fence, counting potatoes.</li>
@@ -251,7 +251,7 @@
         <li>[fog] Fog so thick I heard {X_indefinite} before I saw {X_objective}. Then I saw {X_objective}, and stood there until my hands went numb on the bucket.</li>
         <li>[spring] New grass, and {X_indefinite} nibbling at it by the fence. I took my time with the water buckets.</li>
         <li>[fall] Leaves coming down, {X_indefinite} picking through them. Neither of us in any hurry.</li>
-        <li>[afterraid] Two days ago there was blood on that field. This morning {X_indefinite} was eating clover there like nothing happened. I needed to see that.</li>
+        <li>[afterraid] There was blood on that field after the fight. This morning {X_indefinite} was eating clover there like nothing happened. I needed to see that.</li>
         <li>[trait:NightOwl] I was going to bed as the sun came up, and there was {X_indefinite} down by the water. Worth staying up for.</li>
         <li>[rain] Soft rain at dawn, and {X_indefinite} standing in it, not caring at all. I stood in it too, for a bit.</li>
       </plain>
@@ -295,7 +295,7 @@
         <li>[fog] Fog all day. I couldn't see {X_definite}, but the back of my neck knew where {X_pronoun} was.</li>
       </plain>
       <warm>
-        <li>I brought the children in early today and told them it was for supper. It was because of {X_definite}.</li>
+        <li>Called the others in early and said it was for supper. It was because of {X_definite}.</li>
         <li>I hope {X_definite} finds easier prey and moves on, for both our sakes.</li>
       </warm>
       <blunt>
@@ -304,8 +304,8 @@
         <li>[trait:Tough] Let it watch. I've been looked at by worse, and they're dead.</li>
       </blunt>
       <cheerful>
-        <li>Had company all day, {X_indefinite} trailing me from the trees. It hasn't eaten me yet!</li>
-        <li>Being stalked is good exercise. I've never fetched water so fast!</li>
+        <li>Had company all day, {X_indefinite} trailing me from the trees. I waved at it once!</li>
+        <li>Had a predator watching me all day, and I still got my work done. Proud of that!</li>
       </cheerful>
       <gloomy>
         <li>It's out there being patient, and it's more patient than we are.</li>
@@ -313,7 +313,7 @@
       </gloomy>
       <cold>
         <li>The predator out there is doing exactly what I'd do: watching, waiting, choosing the weakest. I've started walking with the others.</li>
-        <li>Watched it watch me. Respect, of a sort. Nothing personal on either side.</li>
+        <li>Watched it watch me.</li>
         <li>[night] It came close to the fence after dark. I stood at the window and let it see me.</li>
       </cold>
     </lines>
@@ -363,36 +363,36 @@
     <defName>Council_Journal_EncC_BadIdea</defName>
     <lines>
       <plain>
-        <li>I touched {X_definite}. Actually touched {X_objective}. My hand is still shaking and I can't stop grinning.</li>
+        <li>Went right up to {X_definite}, close enough to touch. My hands are still shaking and I can't stop grinning.</li>
         <li>The others keep telling me what an idiot I was. They're right.</li>
         <li>Note for whoever reads this after I'm gone: it was worth it.</li>
         <li>[hurt] Writing this one-handed, for reasons I'd rather not go into. For the record, {X_definite} is perfectly fine.</li>
-        <li>[trait:Bloodlust] Poked {X_definite} to see what {X_pronoun} would do. I was hoping for more.</li>
+        <li>[trait:Bloodlust] Walked up to {X_definite} to see what {X_pronoun} would do. I was hoping for more.</li>
         <li>[trait:TooSmart] I had a theory about how close you can get to {X_indefinite} before {X_pronoun} reacts. I have data now.</li>
-        <li>[child] I poked {X_indefinite} with a stick and all the grown-ups went white. I'm not allowed outside for a week.</li>
-        <li>[afterraid] We'd just come through a raid, and I went and laid a hand on the biggest animal in the valley. I wasn't thinking straight.</li>
+        <li>[child] I went right up to {X_indefinite} and all the grown-ups went white. I'm not allowed outside for a week.</li>
+        <li>[afterraid] We'd just come through a raid, and I went and walked up to the biggest animal for miles. I wasn't thinking straight.</li>
       </plain>
       <warm>
         <li>I only wanted {X_definite} to know we mean no harm. I'm not sure that's how {X_pronoun} took it.</li>
         <li>I owe {X_definite} an apology. The others too, for the fright.</li>
       </warm>
       <blunt>
-        <li>Yes, I poked it. Stop asking. It was there and I had a stick.</li>
-        <li>Everybody's very brave until it's time to actually go and poke the thing.</li>
+        <li>Yes, I went right up to it. Stop asking. It was there and so was I.</li>
+        <li>Everybody's very brave until it's time to actually walk up to the thing.</li>
         <li>[highmood] I was in a good mood and felt like I could do anything. So I did.</li>
       </blunt>
       <cheerful>
-        <li>I touched it! It was warm and it smelled awful, and I'm still alive.</li>
-        <li>New rule for myself: only poke the small ones. Learned that today!</li>
-        <li>[summer] Hot day, big animal, long stick. I'll be telling this one for years!</li>
+        <li>Close enough to smell it! Warm and awful, and I'm still alive.</li>
+        <li>New rule for myself: only walk up to the small ones. Learned that today!</li>
+        <li>[summer] Hot day, big animal, and me strolling straight up to it. I'll be telling this one for years!</li>
       </cheerful>
       <gloomy>
-        <li>Did something stupid today and didn't die.</li>
+        <li>Did something stupid. Didn't die.</li>
         <li>We're all getting eaten by something eventually. I just wanted to know what it felt like first.</li>
       </gloomy>
       <cold>
         <li>Approached {X_definite} to test {X_possessive} temper. Results inconclusive. Further testing advised, ideally by someone else.</li>
-        <li>The others called it reckless. It was a measured risk. I measured it afterward.</li>
+        <li>Its breath was warm and smelled of grass. I'd like to know how close I could get to a hungry one.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

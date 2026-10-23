@@ -9,8 +9,8 @@
     <pool>Council_Journal_Evt_KinLetter</pool>
     <lines>
       <plain>
-        <li>[opt2] Sent a parcel home today, coin sewn into a sock the way my mother taught me. I hope it gets there before winter.</li>
-        <li>[opt3] I read {X_nameDef}'s letter out at supper. Now everyone here asks after people they've never met, and I love them for it.</li>
+        <li>[opt2] Sent a parcel home, the coin sewn in where no thief would look. I hope it gets there before winter.</li>
+        <li>[opt3] I read {X_nameDef}'s letter out at supper. Now the others ask after people they've never met, and I love them for it.</li>
         <li>[winter] A letter from {X_nameDef}, with frost on the wrapping. I read it close to the fire to make it last.</li>
         <li>[opt0] Wrote back to {X_nameDef} by lamplight. It took me three tries to stop it sounding like a report.</li>
       </plain>
@@ -18,7 +18,7 @@
         <li>[opt2] Whatever I sent home, it isn't enough. But it's something with my hands on it.</li>
         <li>[opt3] They laughed at {X_nameDef}'s jokes. Out loud, at the table. I'll write and tell {X_objective}.</li>
       </warm>
-      <cheerful><li>[opt3] Everyone wants to know how the goats are doing now. I've created a colony of goat enthusiasts.</li></cheerful>
+      <cheerful><li>[opt3] They all want to know how the goats back home are doing now. I've made a colony of goat enthusiasts!</li></cheerful>
       <gloomy><li>[opt2] A parcel for home. It felt like sending a piece of myself somewhere I can't follow.</li></gloomy>
       <blunt><li>[opt2] Parcel's gone. Family will eat well for once.</li></blunt>
       <cold><li>[opt3] Read the letter out. They wanted to hear it.</li></cold>
@@ -32,9 +32,9 @@
       <plain>
         <li>[winter] Went down on the ice today and got up again. The cards said bad luck. I say that was it.</li>
         <li>[trait:Nervous] I've been jumping at every noise since the fortune teller came. Today something nearly happened, and didn't. I can breathe again.</li>
-        <li>Missed by a hand's width today. If that was the bad fortune, it was a poor one.</li>
+        <li>Missed by a hand's width. If that was the bad fortune, it was a poor one.</li>
       </plain>
-      <warm><li>The others made me sit down and have something hot after my fright. The fortune said bad luck. It didn't say anything about good friends.</li></warm>
+      <warm><li>The others made me sit down with something hot after my fright, and wouldn't let me up until I'd drunk all of it.</li></warm>
       <cheerful><li>Bad fortune: used up. I'm walking under every ladder in the colony tomorrow.</li></cheerful>
       <cold><li>Near miss. The cards were wrong, or right. It doesn't matter now.</li></cold>
     </lines>
@@ -47,7 +47,7 @@
       <plain>
         <li>[opt2] {X_nameDef} went home with gifts for the family that searched for {X_objective} all those years ago. I hope they remember us at their table.</li>
         <li>[opt3] {X_nameDef} spent the day at our workbench and went home with a trade. The lost child, learning a craft. I keep shaking my head over it.</li>
-        <li>[opt0] There's a bed in the colony with {X_nameDef} in it. I keep checking, as if {X_pronoun} might wander off again.</li>
+        <li>[opt0] There's a bed in the colony with {X_nameDef} in it. I've looked in twice, as if {X_pronoun} might wander off again.</li>
       </plain>
       <cheerful><li>[opt0] {X_nameDef} is staying! I found {X_objective} once, and now {X_pronoun} found us.</li></cheerful>
       <gloomy><li>[opt1] {X_nameDef} came and went in a day. They grow up and they leave, even the ones who were never ours.</li></gloomy>
