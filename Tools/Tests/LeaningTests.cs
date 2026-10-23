@@ -59,6 +59,44 @@ public static class LeaningTests
         Check(friendsOnly > 40 && friendsOnly <= 120, $"four friends and no decree: slowly, over seasons ({friendsOnly} days)");
         Check(Days(0.5f, false, 0f, Content) == -1, "a lone believer of a minority never pulls a content colonist over");
         Check(Days(4f, true, 0f, Unhappy) < decreeFriends, "the unhappy come round sooner");
+
+        // ---------------- Torn between two ----------------
+        Check(LeaningMath.ReturnPull(1f) <= LeaningMath.ReturnMax && LeaningMath.ReturnPull(0.2f) < LeaningMath.ReturnPull(0.4f), "the ideoligion left behind stays only a small leaning");
+        Check(!LeaningMath.Settled(0, 10 * 60000, 60000) && LeaningMath.Settled(0, LeaningMath.SettleDays * 60000, 60000) && LeaningMath.Settled(-1, 0, 60000),
+            "a year to settle into a new ideoligion");
+        Check(!LeaningMath.Overtakes(0.6f, 0.4f, -1) && LeaningMath.Overtakes(0.6f, 0.4f, 0), "a fading leaning never takes over");
+        // Friends on both sides, as close: the days they switch over ten years, playing the day's pass (FaithLeanings.Day).
+        List<int> Switches(float closeness, float recovery)
+        {
+            var days = new List<int>();
+            float certainty = 1f, toward = 0f;
+            int trend = 0, last = -1;
+            for (int day = 1; day <= 600; day++)
+            {
+                float before = toward;
+                toward = LeaningMath.Day(toward, LeaningMath.Feed(closeness, false, 1f, false));
+                trend = LeaningMath.Trend(before, toward);
+                bool settled = LeaningMath.Settled(last, day, 1);
+                float wear = settled ? LeaningMath.Erosion(toward, certainty >= 0.85f) : 0f;
+                certainty = Math.Min(1f, Math.Max(0.01f, certainty - wear + recovery));
+                if (settled && LeaningMath.Overtakes(toward, certainty, trend))
+                {
+                    float left = certainty;
+                    certainty = Math.Max(toward, LeaningMath.MinSwitch);
+                    toward = LeaningMath.ReturnPull(left);
+                    last = day;
+                    days.Add(day);
+                }
+            }
+            return days;
+        }
+        foreach (var (recovery, who) in new[] { (Content, "content"), (Unhappy, "unhappy") })
+        {
+            var torn = Switches(3f, recovery);
+            bool spaced = true;
+            for (int i = 1; i < torn.Count; i++) spaced &= torn[i] - torn[i - 1] >= LeaningMath.SettleDays;
+            Check(spaced && torn.Count <= 10, $"a {who} colonist torn between friends of two ideoligions switches at most once a year, not back and forth ({torn.Count} times in ten years)");
+        }
         return cases;
     }
 }

@@ -37,8 +37,10 @@ namespace ColonyCouncil
         public List<FaithNote> notes = new List<FaithNote>();
         /// <summary>How strongly they're drawn to other ideoligions (Faith/FaithLeanings.cs).</summary>
         public List<FaithLeaning> leanings = new List<FaithLeaning>();
+        /// <summary>When a leaning last took them over (-1: never, or settled since): they settle into it a while.</summary>
+        public int lastSwitch = -1;
 
-        public bool Empty => notes.Count == 0 && leanings.Count == 0 && burden == null && lastSwayed < 0 && lastSteadied < 0 && lastCrisis < 0;
+        public bool Empty => notes.Count == 0 && leanings.Count == 0 && burden == null && lastSwayed < 0 && lastSteadied < 0 && lastCrisis < 0 && lastSwitch < 0;
 
         public void ExposeData()
         {
@@ -46,6 +48,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastSwayed, "lastSwayed", -1);
             Scribe_Values.Look(ref lastSteadied, "lastSteadied", -1);
             Scribe_Values.Look(ref lastCrisis, "lastCrisis", -1);
+            Scribe_Values.Look(ref lastSwitch, "lastSwitch", -1);
             Scribe_Values.Look(ref burden, "burden");
             Scribe_Values.Look(ref burdenDays, "burdenDays");
             Scribe_Collections.Look(ref notes, "notes", LookMode.Deep);
@@ -173,6 +176,9 @@ namespace ColonyCouncil
                 if (r.lastSteadied >= 0 && now - r.lastSteadied > FaithPeopleMath.DayTicks * 3) r.lastSteadied = -1;
                 // The last crisis only matters while the gap after it lasts.
                 if (r.lastCrisis >= 0 && FaithPeopleMath.CrisisReady(r.lastCrisis, now)) r.lastCrisis = -1;
+                if (r.lastSwitch >= 0 && LeaningMath.Settled(r.lastSwitch, now, FaithPeopleMath.DayTicks)) r.lastSwitch = -1;
+                // An ideoligion the game has let go of draws nobody.
+                r.leanings.RemoveAll(l => !FaithLeanings.Alive(l?.ideo));
             }
             people.RemoveAll(r => r == null || !known.Contains(r.id) || r.Empty);
             waiting.RemoveAll(w => w == null || !known.Contains(w.pawn) || now - w.tick > FaithPeopleMath.WaitingDays * FaithPeopleMath.DayTicks);

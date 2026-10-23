@@ -17,7 +17,7 @@ The council has four ways to work with the colony's ideoligions: an ideoligion e
     <sections>
       <li>
         <heading>Leanings</heading>
-        <text>Once a day each leaning fades a little and is fed by what draws them. The strongest wears on their certainty, against the game's own daily recovery, which gives a content colonist about three points a day and an unhappy one less. When a leaning passes their certainty by 5 points (and is at least 30%), they take that ideoligion up, as firmly as they had leaned, and the one they leave becomes a leaning of its own, so they may drift back. A leaning passing 50% is told once.</text>
+        <text>Once a day each leaning fades a little and is fed by what draws them. The strongest wears on their certainty, against the game's own daily recovery, which gives a content colonist about three points a day and an unhappy one less. When a growing leaning passes their certainty by 5 points (and is at least 30%), they take that ideoligion up, as firmly as they had leaned, and settle into it for a year: meanwhile no leaning wears on them or takes over. The one they leave stays with them as a small leaning (at most 10%), so they may drift back if it grows again; someone with dear friends on both sides may change once in a long while, never back and forth. A leaning passing 50% is told once, and an ideoligion the game has let go of (its last believers gone) is forgotten.</text>
         <table>
           <li>What | Each day</li>
           <li>Its believers in the colony | Up to 4%, more the more there are and the closer they are: a rival adds nothing, a stranger half, a friend a whole, the dearest one and a half, a lover or family half again</li>

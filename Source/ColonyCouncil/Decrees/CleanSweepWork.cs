@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RimWorld;
 using Verse;
@@ -24,6 +25,7 @@ namespace ColonyCouncil
         private static bool looked;
         private static int checkedTick = -1;
         private static bool on;
+        private static Game game;
         // One list per colonist, refilled on each look for work, so the sweep allocates nothing while it lasts.
         private static readonly Dictionary<Pawn, List<WorkGiver>> lists = new Dictionary<Pawn, List<WorkGiver>>();
         private static readonly List<WorkGiver> cleaners = new List<WorkGiver>();
@@ -35,6 +37,13 @@ namespace ColonyCouncil
             {
                 var ticks = Find.TickManager;
                 if (ticks == null) return false;
+                // Another game (a load): its colonists' lists start afresh.
+                if (game != Current.Game)
+                {
+                    game = Current.Game;
+                    lists.Clear();
+                    checkedTick = -1;
+                }
                 int now = ticks.TicksGame;
                 if (now == checkedTick) return on;
                 checkedTick = now;
@@ -47,6 +56,22 @@ namespace ColonyCouncil
                 if (!on && lists.Count > 0) lists.Clear();
                 return on;
             }
+        }
+
+        // The tests as fields, not lambdas over locals: the look for work runs for every colonist many times a second, and
+        // a lambda capturing a local allocates on every call, sweep or no sweep.
+        private static readonly Func<WorkGiver, bool> IsEssential = g => g?.def?.workType != null && Essential.Contains(g.def.workType.defName);
+        private static readonly Func<WorkGiver, bool> IsCleaning = g => g?.def?.workType != null && g.def.workType == WorkTypeDefOf.Cleaning;
+
+        /// <summary>The sweep's order for one colonist, in their own list (refilled each time).</summary>
+        private static List<WorkGiver> Swept(Pawn pawn, List<WorkGiver> source, WorkTypeDef cleaning)
+        {
+            if (!lists.TryGetValue(pawn, out var list)) lists[pawn] = list = new List<WorkGiver>(source.Count + 4);
+            cleaners.Clear();
+            foreach (var gd in cleaning.workGiversByPriority)
+                if (gd?.Worker != null && !pawn.WorkTagIsDisabled(gd.workTags)) cleaners.Add(gd.Worker);
+            DecreeMath.SweepOrder(source, cleaners, IsEssential, IsCleaning, list);
+            return list;
         }
 
         /// <summary>
@@ -63,13 +88,7 @@ namespace ColonyCouncil
                 var cleaning = WorkTypeDefOf.Cleaning;
                 if (pawn == null || cleaning == null || !pawn.RaceProps.Humanlike || !pawn.IsColonist || pawn.IsQuestLodger()
                     || pawn.WorkTypeIsDisabled(cleaning)) return source;
-                if (!lists.TryGetValue(pawn, out var list)) lists[pawn] = list = new List<WorkGiver>(source.Count + 4);
-                cleaners.Clear();
-                foreach (var gd in cleaning.workGiversByPriority)
-                    if (gd?.Worker != null && !pawn.WorkTagIsDisabled(gd.workTags)) cleaners.Add(gd.Worker);
-                DecreeMath.SweepOrder(source, cleaners, g => g?.def?.workType != null && Essential.Contains(g.def.workType.defName),
-                    g => g?.def?.workType == cleaning, list);
-                return list;
+                return Swept(pawn, source, cleaning);
             }
             catch (System.Exception e)
             {

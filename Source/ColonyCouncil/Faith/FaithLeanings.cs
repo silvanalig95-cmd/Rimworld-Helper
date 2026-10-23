@@ -33,8 +33,9 @@ namespace ColonyCouncil
     /// believers in the colony, the more the closer they are (friends, lovers, family), and by the council's decree
     /// naming it; the strongest wears on their certainty, against the game's own daily recovery for the content. A sway
     /// toward an ideoligion (a talk, a crisis, a council answer) feeds the leaning too. When a leaning passes their
-    /// certainty they take that ideoligion up, through the game's own conversion, as firmly as they had leaned; the one
-    /// they leave becomes a leaning of its own, so they may drift back. The game only ever sees one ideoligion and a
+    /// certainty they take that ideoligion up, through the game's own conversion, as firmly as they had leaned, and
+    /// settle into it for a year (LeaningMath.SettleDays); the one they leave stays a small leaning of its own, so they
+    /// may drift back if it grows again. An ideoligion the game has let go of is forgotten. The game only ever sees one ideoligion and a
     /// certainty, as always. Nothing here without Ideology, in classic mode or with "Faith in the colony" off.
     /// </summary>
     public static class FaithLeanings
@@ -46,12 +47,15 @@ namespace ColonyCouncil
 
         /// <summary>Their leanings worth showing, strongest first, at most three.</summary>
         public static List<FaithLeaning> Shown(Pawn p) =>
-            Of(p).Where(l => l?.ideo != null && l.ideo != Faiths.Of(p) && l.pull >= 0.05f).OrderByDescending(l => l.pull).Take(3).ToList();
+            Of(p).Where(l => Alive(l?.ideo) && l.ideo != Faiths.Of(p) && l.pull >= 0.05f).OrderByDescending(l => l.pull).Take(3).ToList();
+
+        /// <summary>An ideoligion the game still has (one whose last believers are gone is removed from the game).</summary>
+        public static bool Alive(Ideo ideo) => ideo != null && Find.IdeoManager?.IdeosListForReading != null && Find.IdeoManager.IdeosListForReading.Contains(ideo);
 
         /// <summary>A sway toward an ideoligion (Faiths.SwayToward) draws them toward it as well: the same amount on their leaning.</summary>
         public static void Feed(Pawn p, Ideo toward, float amount)
         {
-            if (!Faiths.Holds(p) || toward == null || toward == Faiths.Of(p) || amount <= 0f) return;
+            if (!Faiths.Holds(p) || !Alive(toward) || toward == Faiths.Of(p) || amount <= 0f) return;
             var r = FaithPeople.Tracker?.Of(p, true);
             if (r == null) return;
             var l = r.leanings.FirstOrDefault(x => x.ideo == toward);
@@ -86,9 +90,10 @@ namespace ColonyCouncil
             bool devout = Faiths.Devout(p);
             float ready = LeaningMath.Readiness(Persona.Get(p, PersonaAxis.Openness));
             bool dislikes = Faiths.DislikesPreaching(p);
-            var ideos = new HashSet<Ideo>(look.census.Select(f => f.ideo));
-            if (look.decree != null) ideos.Add(look.decree);
-            foreach (var l in r.leanings) if (l?.ideo != null) ideos.Add(l.ideo);
+            r.leanings.RemoveAll(l => !Alive(l?.ideo));
+            var ideos = new HashSet<Ideo>(look.census.Select(f => f.ideo).Where(Alive));
+            if (Alive(look.decree)) ideos.Add(look.decree);
+            foreach (var l in r.leanings) ideos.Add(l.ideo);
             ideos.Remove(own);
             foreach (var ideo in ideos)
             {
@@ -117,8 +122,10 @@ namespace ColonyCouncil
             Trim(r);
             var strongest = r.leanings.OrderByDescending(l => l.pull).FirstOrDefault();
             if (strongest == null) return;
+            // Just taken up an ideoligion: they settle into it a year before anything wears on them again.
+            if (!LeaningMath.Settled(r.lastSwitch, Find.TickManager.TicksGame, GenDate.TicksPerDay)) return;
             Faiths.Shake(p, LeaningMath.Erosion(strongest.pull, devout));
-            if (LeaningMath.Overtakes(strongest.pull, p.ideo.Certainty)) TakeUp(p, r, strongest);
+            if (LeaningMath.Overtakes(strongest.pull, p.ideo.Certainty, strongest.trend)) TakeUp(p, r, strongest);
         }
 
         /// <summary>A lover or family by blood: their faith pulls half again as hard.</summary>
@@ -134,12 +141,13 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The leaning overtook: they take that ideoligion up, as firmly as they had leaned, and the one they leave becomes a leaning.</summary>
+        /// <summary>The leaning overtook: they take that ideoligion up, as firmly as they had leaned, and the one they leave becomes a small leaning.</summary>
         private static void TakeUp(Pawn p, FaithPerson r, FaithLeaning l)
         {
             var old = Faiths.Of(p);
             float left = p.ideo.Certainty;
             var to = l.ideo;
+            if (!Alive(to)) return;
             float firm = Mathf.Clamp(l.pull, LeaningMath.MinSwitch, 1f);
             string cause = to == DecreeFaith.FaithOfColony
                 ? "CC_FaithDecree_Cause".Translate(to.name.Named("FAITH")).Resolve()
@@ -147,8 +155,9 @@ namespace ColonyCouncil
             if (!Faiths.TakeUp(p, to, cause)) return;
             p.ideo.OffsetCertainty(firm - p.ideo.Certainty);
             r.leanings.Remove(l);
-            if (old != null && Find.IdeoManager.IdeosListForReading.Contains(old))
-                r.leanings.Add(new FaithLeaning { ideo = old, pull = Mathf.Clamp(Mathf.Min(left, firm - LeaningMath.Margin), 0f, 1f), told = true });
+            r.lastSwitch = Find.TickManager.TicksGame;
+            // The one they left stays with them a little; it has to grow again to draw them back.
+            if (Alive(old)) r.leanings.Add(new FaithLeaning { ideo = old, pull = LeaningMath.ReturnPull(left), told = true });
             FaithPeople.Note(p, "CC_Leaning_Note".Translate(to.name.Named("FAITH")).Resolve(), 0f);
         }
     }

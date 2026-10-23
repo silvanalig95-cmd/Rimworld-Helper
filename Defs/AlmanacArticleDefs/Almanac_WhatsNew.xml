@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.11.2</version>
+        <date>23 October 2026</date>
+        <title>Faith that settles</title>
+        <points>
+          <li>A colonist who took up another ideoligion could flip back to the old one within days and back again, losing their role each time. Now they settle into it for a year, during which no leaning wears on them or takes over; the one they left stays only a small leaning, and a fading leaning never takes over. Someone with dear friends on both sides may still change in a long while, never back and forth.</li>
+          <li>An ideoligion the game has let go of, its last believers gone, is forgotten: nobody leans toward it, shows it on the Culture tab or takes it up.</li>
+          <li>A visiting scholar who speaks at a gathering is no longer woken, called away from a meal or a sickbed, or walked out of a cell to the table. Choosing what to work on costs a little less while a clean sweep isn't on.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.11.1</version>
         <date>23 October 2026</date>
         <title>Habits, mended</title>

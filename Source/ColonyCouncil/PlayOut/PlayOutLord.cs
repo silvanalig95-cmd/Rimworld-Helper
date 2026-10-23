@@ -187,13 +187,17 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The stranger who speaks isn't one of the gathering (they're a guest with their own plans), so they're walked
-        /// to the head of the table and kept there while it lasts, unless they're leaving or can't.
+        /// to the head of the table and kept there while it lasts, unless they're leaving or can't: never a prisoner, and
+        /// never woken, pulled from a meal or kept from medical rest.
         /// </summary>
         private void KeepStrangerAtHead()
         {
             var x = stranger;
             if (x == null || x.Dead || !x.Spawned || x.Map != Map || x.Downed || x.InMentalState || x.HostileTo(Faction.OfPlayer)) return;
-            if (x.CurJobDef == PlayOutDefOf.Council_PlayOutSpeak) return;
+            if (x.IsPrisoner || x.IsSlave || !x.Awake() || x.InBed()) return;
+            if (x.CurJobDef == PlayOutDefOf.Council_PlayOutSpeak || x.CurJobDef == JobDefOf.Ingest) return;
+            if (x.needs?.food != null && x.needs.food.CurCategory >= HungerCategory.UrgentlyHungry) return;
+            if (HealthAIUtility.ShouldSeekMedicalRest(x)) return;
             var duty = x.mindState?.duty?.def;
             if (duty != null && duty.defName.StartsWith("ExitMap")) return;
             if (!(party is LordToil_PlayOutListen listen) || !listen.Head.IsValid) return;

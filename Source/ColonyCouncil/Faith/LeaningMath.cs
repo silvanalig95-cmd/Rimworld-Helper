@@ -51,6 +51,21 @@ namespace ColonyCouncil
         public const float TellAt = 0.5f;
 
         /// <summary>
+        /// After taking an ideoligion up, someone settles into it for this many days (a year): no leaning wears on them
+        /// or takes over meanwhile, so nobody flips back and forth.
+        /// </summary>
+        public const int SettleDays = 60;
+
+        /// <summary>The ideoligion they left stays with them as a leaning of this share of their certainty in it, at most <see cref="ReturnMax"/>.</summary>
+        public const float ReturnShare = 0.25f, ReturnMax = 0.1f;
+
+        /// <summary>How strongly they're still drawn to the ideoligion they just left.</summary>
+        public static float ReturnPull(float leftCertainty) => Clamp(Math.Min(ReturnMax, leftCertainty * ReturnShare), 0f, 1f);
+
+        /// <summary>Whether they've settled since their last switch (-1: never switched).</summary>
+        public static bool Settled(int lastSwitch, int now, int dayTicks) => lastSwitch < 0 || now - lastSwitch >= SettleDays * dayTicks;
+
+        /// <summary>
         /// How much one believer's faith pulls on someone: by their opinion of them (-100 to 100: a rival nothing, a
         /// stranger half, a friend one, the dearest one and a half), half again for a lover or family.
         /// </summary>
@@ -79,8 +94,8 @@ namespace ColonyCouncil
         /// <summary>What the strongest leaning takes off certainty in a day (less from the devout).</summary>
         public static float Erosion(float strongest, bool devout) => Erode * Clamp(strongest, 0f, 1f) * (devout ? DevoutWear : 1f);
 
-        /// <summary>Whether a leaning has overtaken their certainty, and they take that ideoligion up.</summary>
-        public static bool Overtakes(float pull, float certainty) => pull >= MinSwitch && pull > certainty + Margin;
+        /// <summary>Whether a leaning has overtaken their certainty, and they take that ideoligion up: past it, and not fading.</summary>
+        public static bool Overtakes(float pull, float certainty, int trend = 1) => pull >= MinSwitch && pull > certainty + Margin && trend >= 0;
 
         /// <summary>Which way a leaning went today: 1 growing, -1 fading, 0 about the same.</summary>
         public static int Trend(float before, float after) => after - before > 0.002f ? 1 : before - after > 0.002f ? -1 : 0;

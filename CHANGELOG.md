@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Faith that settles
+
+*23 October 2026, version 0.11.2*
+
+- A colonist who took up another ideoligion could flip back to the old one within days and back again, losing their role each time. Now they settle into it for a year, during which no leaning wears on them or takes over; the one they left stays only a small leaning, and a fading leaning never takes over. Someone with dear friends on both sides may still change in a long while, never back and forth.
+- An ideoligion the game has let go of, its last believers gone, is forgotten: nobody leans toward it, shows it on the Culture tab or takes it up.
+- A visiting scholar who speaks at a gathering is no longer woken, called away from a meal or a sickbed, or walked out of a cell to the table. Choosing what to work on costs a little less while a clean sweep isn't on.
+
 ## Habits, mended
 
 *23 October 2026, version 0.11.1*
