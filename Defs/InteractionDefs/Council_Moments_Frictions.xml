@@ -990,12 +990,12 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] was still barely speaking to [RECIPIENT_nameDef] after their argument.</li>
         <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] in single words, still sore from their last spat.</li>
-        <li>r_logentry->[INITIATOR_nameDef] passed [RECIPIENT_nameDef] the salt without looking at [RECIPIENT_objective]. Things were still frosty between them.</li>
-        <li>r_logentry->[INITIATOR_nameDef] laughed at every joke at the table except [RECIPIENT_nameDef]'s.</li>
-        <li>r_logentry->[INITIATOR_nameDef] took the long way around to avoid passing [RECIPIENT_nameDef].</li>
-        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s question by speaking to the person next to [RECIPIENT_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] nodded at [RECIPIENT_nameDef] across the table and nothing more. Things hadn't thawed yet.</li>
-        <li>r_logentry->[INITIATOR_nameDef] left the room when [RECIPIENT_nameDef] came in, still sore from their last spat.</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] without once looking at [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef]'s joke fall without a smile.</li>
+        <li>r_logentry->[INITIATOR_nameDef] cut the talk with [RECIPIENT_nameDef] short and turned back to [INITIATOR_possessive] work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s question as if someone else had asked it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a nod and nothing more, since things hadn't thawed yet.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said what had to be said to [RECIPIENT_nameDef] and left it there, still sore from their last spat.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1016,27 +1016,27 @@
     <recipientThought>Council_Friction_ColdShoulder</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] walked past [RECIPIENT_nameDef] without a word.</li>
-        <li>r_logentry->[INITIATOR_nameDef] found somewhere else to sit when [RECIPIENT_nameDef] sat down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef]'s greeting go by without a word.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] do all the talking and gave nothing back.</li>
         <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s greeting with a grunt.</li>
-        <li>r_logentry->[INITIATOR_nameDef] chatted with the others at the table and left [RECIPIENT_nameDef] out of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] talked past [RECIPIENT_nameDef] as if [RECIPIENT_pronoun] weren't there.</li>
         <li>r_logentry->[INITIATOR_nameDef] heard [RECIPIENT_nameDef] calling and kept walking.</li>
-        <li>r_logentry->[INITIATOR_nameDef] turned [INITIATOR_possessive] back when [RECIPIENT_nameDef] joined the group.</li>
-        <li>r_logentry->[INITIATOR_nameDef] handed around the bread and skipped [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] turned [INITIATOR_possessive] back on [RECIPIENT_nameDef] halfway through [RECIPIENT_possessive] question.</li>
+        <li>r_logentry->[INITIATOR_nameDef] didn't bother to answer when [RECIPIENT_nameDef] asked how [INITIATOR_pronoun] was.</li>
         <li>r_logentry->[INITIATOR_nameDef] went quiet the moment [RECIPIENT_nameDef] came in.</li>
-        <li>r_logentry->[INITIATOR_nameDef] passed [RECIPIENT_nameDef] in the doorway and looked at the wall instead.</li>
-        <li>r_logentry->[INITIATOR_nameDef] took [INITIATOR_possessive] bowl outside when [RECIPIENT_nameDef] sat down at the table.</li>
+        <li>r_logentry->[INITIATOR_nameDef] looked at the wall rather than at [RECIPIENT_nameDef] while [RECIPIENT_pronoun] spoke.</li>
+        <li>r_logentry->[INITIATOR_nameDef] informed [RECIPIENT_nameDef] that [INITIATOR_pronoun] would rather eat alone.</li>
         <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] a one-word answer, then nothing at all.</li>
-        <li>r_logentry->[INITIATOR_nameDef] made a point of thanking everyone at the table except [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a point of not thanking [RECIPIENT_nameDef] for [RECIPIENT_possessive] help.</li>
         <li>r_logentry->[INITIATOR_nameDef] stopped humming the moment [RECIPIENT_nameDef] came within earshot.</li>
         <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s question with a shrug and walked off.</li>
-        <li>r_logentry->[INITIATOR_nameDef] moved to the other side of the room when [RECIPIENT_nameDef] sat down.</li>
-        <li>r_logentry->[INITIATOR_nameDef] let the door swing shut in [RECIPIENT_nameDef]'s face.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked someone else to pass the salt, though [RECIPIENT_nameDef] was sitting right next to it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] laughed at everyone's jokes at supper except [RECIPIENT_nameDef]'s.</li>
-        <li>r_logentry->[INITIATOR_nameDef] picked up [INITIATOR_possessive] work and moved it rather than share a bench with [RECIPIENT_nameDef].</li>
-        <li>r_logentry->[INITIATOR_nameDef] said good night to everyone but [RECIPIENT_nameDef].</li>
-        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] by talking to the person next to [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] over [INITIATOR_possessive] shoulder without turning round.</li>
+        <li>r_logentry->[INITIATOR_nameDef] cut [RECIPIENT_nameDef] off mid-sentence and went back to what [INITIATOR_pronoun] was doing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] spoke to [RECIPIENT_nameDef] only to correct [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] heard [RECIPIENT_nameDef] out with a blank face and said nothing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to find another bench.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said hello to [RECIPIENT_nameDef] as if it cost [INITIATOR_objective] something.</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] with a look and no words.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1060,23 +1060,23 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] made a pointed remark about [RECIPIENT_nameDef]'s beliefs.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], not very seriously, what [RECIPIENT_possessive] faith had to say about [faithtopic].</li>
-        <li>r_logentry->[INITIATOR_nameDef] rolled [INITIATOR_possessive] eyes while [RECIPIENT_nameDef] [faithpractice].</li>
+        <li>r_logentry->[INITIATOR_nameDef] rolled [INITIATOR_possessive] eyes at [RECIPIENT_nameDef] [faithpractice].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_possessive] own faith [faithclaim].</li>
         <li>faithtopic->doing the dishes</li>
         <li>faithtopic->the weather</li>
         <li>faithtopic->the burnt stew</li>
         <li>faithtopic->getting out of bed on time</li>
-        <li>faithpractice->said a blessing over [RECIPIENT_possessive] food</li>
-        <li>faithpractice->spoke the morning words</li>
-        <li>faithpractice->kept to [RECIPIENT_possessive] customs at supper</li>
+        <li>faithpractice->saying a blessing over [RECIPIENT_possessive] food</li>
+        <li>faithpractice->speaking the morning words</li>
+        <li>faithpractice->holding to [RECIPIENT_possessive] customs at supper</li>
         <li>faithclaim->made a lot more sense</li>
         <li>faithclaim->had better holidays</li>
         <li>faithclaim->at least didn't ask so much of a person</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_possessive] faith let [RECIPIENT_objective] have any fun at all.</li>
         <li>r_logentry->[INITIATOR_nameDef] joked about [RECIPIENT_nameDef]'s holy days, and [RECIPIENT_nameDef] did not find it funny.</li>
-        <li>faithtopic->the snoring in the barracks</li>
+        <li>faithtopic->the snoring at night</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_possessive] faith had a blessing for [faithtopic], and laughed at [INITIATOR_possessive] own joke.</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] as [RECIPIENT_pronoun] [faithpractice], and made a show of yawning.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how long [RECIPIENT_pronoun] meant to keep on [faithpractice], and yawned.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -1103,17 +1103,17 @@
     <initiatorThought>Council_Friction_Washroom</initiatorThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] waited outside the washroom while [RECIPIENT_nameDef] took [RECIPIENT_possessive] time, and had words with [RECIPIENT_objective] afterward.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had words with [RECIPIENT_nameDef] about how long [RECIPIENT_pronoun] took in the washroom.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why [RECIPIENT_pronoun] had left the wash water [washstate].</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about the state of the latrine after [RECIPIENT_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef]'s [washleft] in the washroom, again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] who [INITIATOR_pronoun] should thank for the [washleft] in the washroom.</li>
         <li>washstate->gray and cold</li>
         <li>washstate->full of hair</li>
         <li>washstate->for someone else to empty</li>
         <li>washleft->wet towel on the floor</li>
         <li>washleft->dirty clothes</li>
         <li>washleft->comb full of hair</li>
-        <li>r_logentry->[INITIATOR_nameDef] knocked on the washroom door until [RECIPIENT_nameDef] came out.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that some people had been waiting outside the washroom a long time.</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that the wash water was meant for more than one person.</li>
         <li>washleft->muddy boots</li>
       </rulesStrings>
@@ -1152,27 +1152,27 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over their spat and agreed it hadn't been worth it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was sorry about earlier, and [RECIPIENT_nameDef] [apologyreply].</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [peaceoffering] by way of an apology.</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] [peaceoffering] by way of an apology.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] ended up laughing about their squabble.</li>
         <li>apologyreply->said [RECIPIENT_pronoun] was sorry too</li>
         <li>apologyreply->said it was already forgotten</li>
         <li>apologyreply->accepted, after making [INITIATOR_objective] wait a moment</li>
-        <li>apologyreply->shrugged and handed [INITIATOR_objective] a cup</li>
+        <li>apologyreply->shrugged and told [INITIATOR_objective] it was nothing</li>
         <li>peaceoffering->a hot drink</li>
         <li>peaceoffering->the last of the berries</li>
         <li>peaceoffering->the better half of [INITIATOR_possessive] supper</li>
-        <li>peaceoffering->a small carving</li>
-        <li>r_logentry->[INITIATOR_nameDef] sat down next to [RECIPIENT_nameDef] at supper, and by the end of the meal they were talking again.</li>
+        <li>peaceoffering->the last of the honey</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [RECIPIENT_possessive] day as if nothing had happened, and [RECIPIENT_nameDef] went along with it.</li>
         <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] a hand with [RECIPIENT_possessive] work, and the quarrel ended there.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] had been in a foul mood, and [RECIPIENT_nameDef] [apologyreply].</li>
         <li>peaceoffering->a warm roll from the oven</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shook hands over the woodpile and went back to work side by side.</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [peaceoffering] and sat with [RECIPIENT_objective] until the air was clear.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shook hands on it and went back to work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had saved [RECIPIENT_objective] [peaceoffering], and that did more than an apology would have.</li>
         <li>r_logentry->[INITIATOR_nameDef] went looking for [RECIPIENT_nameDef] to say sorry, and found [RECIPIENT_objective] already on the way to do the same.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] split [peaceoffering] and agreed to start the day over.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to start the day over, and to split [peaceoffering] on it.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] couldn't remember what the argument had been about, and [RECIPIENT_nameDef] [apologyreply].</li>
-        <li>r_logentry->[INITIATOR_nameDef] fixed something of [RECIPIENT_nameDef]'s that had been broken for weeks, and that was the apology.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help with a two-person job, and by the end of it the quarrel was gone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to fix something of [RECIPIENT_nameDef]'s that had been broken for weeks, and [RECIPIENT_nameDef] took that as the apology.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help with a two-person job, which was as near to an apology as [INITIATOR_pronoun] came.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had been wrong, which took some doing, and [RECIPIENT_nameDef] [apologyreply].</li>
         <li>apologyreply->said they had both been tired</li>
         <li>peaceoffering->a handful of roasted nuts</li>
@@ -1198,8 +1198,8 @@
         <li>r_logentry->[INITIATOR_nameDef] noticed [RECIPIENT_nameDef] was still stewing over a squabble and let [RECIPIENT_objective] talk it out.</li>
         <li>r_logentry->[INITIATOR_nameDef] listened to [RECIPIENT_nameDef] complain about [RECIPIENT_possessive] spat, then pointed out the funny side of it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that whoever it was had probably just had a bad day.</li>
-        <li>r_logentry->[INITIATOR_nameDef] talked [RECIPIENT_nameDef] out of [RECIPIENT_possessive] grudge over a cup of something warm.</li>
-        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] grumble about [RECIPIENT_possessive] squabble all the way to the fields and back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] talked [RECIPIENT_nameDef] out of [RECIPIENT_possessive] grudge, one complaint at a time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] grumble about [RECIPIENT_possessive] squabble for as long as [RECIPIENT_pronoun] needed.</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of a time [INITIATOR_pronoun] had been just as cross over less.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the squabble would matter in a week, and [RECIPIENT_nameDef] admitted it wouldn't.</li>
       </rulesStrings>
