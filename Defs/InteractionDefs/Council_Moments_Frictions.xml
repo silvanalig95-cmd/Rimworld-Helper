@@ -87,9 +87,9 @@
         <li>choreanswer->that [RECIPIENT_pronoun] had been busy, which was true of all of them</li>
         <li>r_logentry->[INITIATOR_nameDef] pointed out [dirtything] to [RECIPIENT_nameDef] and waited for an answer.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each claimed to have been the last one to [chore].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [dirtything] had one more day before [INITIATOR_pronoun] did something about it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was not going to [chore] again until somebody else did.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how many more times [RECIPIENT_pronoun] meant to walk past [dirtything].</li>
+        <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that [dirtything] had one more day before [INITIATOR_pronoun] did something about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] swore to [RECIPIENT_nameDef] that [INITIATOR_pronoun] was not going to [chore] again until somebody else did.</li>
+        <li>r_logentry->[INITIATOR_nameDef] demanded to know how many more times [RECIPIENT_nameDef] meant to walk past [dirtything].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to [chore], and [RECIPIENT_nameDef] said [choreanswer].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about who had left [dirtything].</li>
         <li>r_logentry->[INITIATOR_nameDef] sighed to [RECIPIENT_nameDef] that [INITIATOR_pronoun] would [chore] [INITIATOR_objective]self, then, as usual.</li>
@@ -135,8 +135,8 @@
         <li>missingtool->the small hammer</li>
         <li>missingtool->the whetstone</li>
         <li>missingtool->the measuring cord</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why [missingtool] had turned up under a pile of [workmess].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] which half of the [workspot] was whose, and where the line ran.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know why [missingtool] had turned up under a pile of [workmess], and [RECIPIENT_nameDef] had no good answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made it clear to [RECIPIENT_nameDef] which half of the [workspot] was whose, and where the line ran.</li>
         <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that the next lot of [workmess] would end up in a bucket on [RECIPIENT_possessive] bed.</li>
         <li>missingtool->the good saw</li>
         <li>workmess->shavings</li>
@@ -162,18 +162,18 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] pointed out the trail of muddy footprints to [RECIPIENT_nameDef], who was standing at the end of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had only just swept that floor before [RECIPIENT_pronoun] came through in [RECIPIENT_possessive] [boots].</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [INITIATOR_pronoun] had only just swept that floor before [RECIPIENT_pronoun] came through in [RECIPIENT_possessive] [boots].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had been raised in a barn, and pointed at [RECIPIENT_possessive] feet.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to go back and wipe [RECIPIENT_possessive] feet, and properly this time.</li>
         <li>boots->wet boots</li>
         <li>boots->muddy boots</li>
         <li>boots->dripping boots</li>
         <li>boots->filthy boots</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [RECIPIENT_pronoun] thought the broom was kept, with a look at the floor behind [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] hinted to [RECIPIENT_nameDef] that the broom was kept by the door, with a look at the floor behind [RECIPIENT_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] there was a mat by the door for a reason.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [INITIATOR_pronoun] would have to scrub the floor again after [RECIPIENT_possessive] [boots].</li>
         <li>boots->clay-caked boots</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_possessive] [boots] stayed at the door from now on.</li>
+        <li>r_logentry->[INITIATOR_nameDef] informed [RECIPIENT_nameDef] that [RECIPIENT_possessive] [boots] would stay at the door from now on.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -205,7 +205,7 @@
         <li>lazyjab->guarding that spot from thieves</li>
         <li>lazyjab->waiting for the work to finish itself</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], very politely, whether [RECIPIENT_pronoun] needed a pillow.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] there was work enough for two, and only one of them doing it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] pointed out to [RECIPIENT_nameDef] that there was work enough for two, and only one of them doing it.</li>
         <li>r_logentry->[INITIATOR_nameDef] listed for [RECIPIENT_nameDef] every trip [INITIATOR_pronoun] had made while [RECIPIENT_pronoun] sat.</li>
         <li>lazyjab->saving [RECIPIENT_possessive] strength for supper</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was [lazyjab], and didn't wait for an answer.</li>
@@ -284,8 +284,8 @@
         <li>snorewhen->until the small hours</li>
         <li>snorewhen->from the moment the light went out</li>
         <li>snorewhen->through two separate dreams</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] snored like a saw going through a knot.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] knew [RECIPIENT_pronoun] snored, and how loudly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] assured [RECIPIENT_nameDef] that [RECIPIENT_pronoun] snored like a saw going through a knot.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know whether [RECIPIENT_nameDef] knew [RECIPIENT_pronoun] snored, and how loudly.</li>
         <li>r_logentry->[INITIATOR_nameDef] pointed at the bags under [INITIATOR_possessive] eyes and told [RECIPIENT_nameDef] exactly who to thank for them.</li>
         <li>snorewhen->every time [INITIATOR_pronoun] was nearly asleep</li>
         <li>r_logentry->[INITIATOR_nameDef] owned up to [RECIPIENT_nameDef] about the sock thrown in the night, and said it had been meant to stop the snoring.</li>
@@ -313,16 +313,16 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had [wakenoise] and woken [INITIATOR_objective] up.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about being woken before dawn by someone hunting for [RECIPIENT_possessive] boots in the dark.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] could come to bed earlier, or at least with fewer bangs.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that whistling at first light ought to be against the rules.</li>
+        <li>r_logentry->[INITIATOR_nameDef] suggested to [RECIPIENT_nameDef] that whistling at first light ought to be against the rules.</li>
         <li>wakenoise->dropped [RECIPIENT_possessive] boots twice getting up</li>
         <li>wakenoise->tripped over the same chair coming to bed</li>
         <li>wakenoise->hummed while getting dressed in the dark</li>
         <li>wakenoise->let the door bang on the way out</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that some people were still asleep when [RECIPIENT_pronoun] [wakenoise].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to lay out [RECIPIENT_possessive] things the night before, so [RECIPIENT_pronoun] wouldn't need to hunt for them in the dark.</li>
+        <li>r_logentry->[INITIATOR_nameDef] begged [RECIPIENT_nameDef] to lay out [RECIPIENT_possessive] things the night before, so [RECIPIENT_pronoun] wouldn't need to hunt for them in the dark.</li>
         <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] about losing the last hour of sleep to [RECIPIENT_possessive] clattering.</li>
         <li>wakenoise->knocked over the water jug</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had [wakenoise], and that [INITIATOR_pronoun] had been awake ever since.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that [RECIPIENT_pronoun] had [wakenoise], and that [INITIATOR_pronoun] had been awake ever since.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -387,7 +387,7 @@
         <li>latenoise->kept sighing</li>
         <li>r_logentry->[INITIATOR_nameDef] pulled the blanket over [INITIATOR_possessive] head and told [RECIPIENT_nameDef] to put out the light.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued under their breath about [bedtimetopic].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how much longer [RECIPIENT_pronoun] meant to stay up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained that [RECIPIENT_nameDef] meant to stay up all night, by the look of it.</li>
         <li>latenoise->read out the funny parts of a book to no one in particular</li>
         <li>r_logentry->[INITIATOR_nameDef] threatened to blow out the candle whether [RECIPIENT_nameDef] was finished or not.</li>
       </rulesStrings>
@@ -424,7 +424,7 @@
         <li>badfood->ate yesterday's leftovers</li>
         <li>badfood->made do with cold scraps</li>
         <li>badfood->picked at the plain stuff</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had scraped the pot clean of the good stuff, or only most of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered whether [RECIPIENT_nameDef] had scraped the pot clean of the good stuff, or only most of it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether there was any of the good food left, knowing full well there wasn't.</li>
         <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that [INITIATOR_pronoun] [badfood] instead.</li>
         <li>badfood->ate a cold potato</li>
@@ -460,10 +460,10 @@
         <li>seatanswer->seats belong to whoever sits in them</li>
         <li>seatanswer->nothing, and stayed put</li>
         <li>r_logentry->[INITIATOR_nameDef] cleared [INITIATOR_possessive] throat behind [RECIPIENT_nameDef]'s chair until [RECIPIENT_nameDef] looked round.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had sat in that seat every night since the colony began.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [INITIATOR_pronoun] had sat in that seat every night since the colony began.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over who had reached the good seat first.</li>
         <li>seatanswer->first come, first seated</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how long [RECIPIENT_pronoun] meant to keep [INITIATOR_possessive] seat warm.</li>
+        <li>r_logentry->[INITIATOR_nameDef] inquired how long [RECIPIENT_nameDef] meant to keep [INITIATOR_possessive] seat warm.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -503,7 +503,7 @@
         <li>lentanswer->to ask again tomorrow</li>
         <li>r_logentry->[INITIATOR_nameDef] found [INITIATOR_possessive] [lentthing] in [RECIPIENT_nameDef]'s room and asked how it had gotten there.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [INITIATOR_possessive] [lentthing] had come back in worse shape than it left.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that next time [RECIPIENT_pronoun] could ask before borrowing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] suggested that next time [RECIPIENT_nameDef] might ask before borrowing.</li>
         <li>lentthing->best spoon</li>
         <li>lentanswer->[RECIPIENT_pronoun] had lent it to someone else</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], politely and then less politely, for [INITIATOR_possessive] [lentthing].</li>
@@ -545,7 +545,7 @@
         <li>hoardthing->coin purse</li>
         <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] looking at [INITIATOR_possessive] [hoardthing] and asked what [RECIPIENT_pronoun] wanted.</li>
         <li>r_logentry->[INITIATOR_nameDef] made it clear to [RECIPIENT_nameDef] that [INITIATOR_possessive] [hoardthing] would be kept where [RECIPIENT_pronoun] couldn't see it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] knew exactly how many of everything [INITIATOR_pronoun] owned.</li>
+        <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that [INITIATOR_pronoun] knew exactly how many of everything [INITIATOR_pronoun] owned.</li>
         <li>hoardthing->good knife</li>
         <li>hoardsign->the dust on the box had been disturbed</li>
         <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that [INITIATOR_pronoun] had marked [INITIATOR_possessive] [hoardthing], so [INITIATOR_pronoun] would know it anywhere.</li>
@@ -737,7 +737,7 @@
         <li>r_logentry->[INITIATOR_nameDef] found out that [RECIPIENT_nameDef] and the others had planned [plan] without asking [INITIATOR_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why nobody had mentioned [plan], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] thought someone had.</li>
         <li>r_logentry->[INITIATOR_nameDef] heard about [plan] from [RECIPIENT_nameDef], after it was all settled.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that it would have been nice to be asked along to [plan].</li>
+        <li>r_logentry->[INITIATOR_nameDef] remarked to [RECIPIENT_nameDef] that it would have been nice to be asked along to [plan].</li>
         <li>plan->the evening's dice game</li>
         <li>plan->a walk out past the fields</li>
         <li>plan->a supper of their own</li>
@@ -747,7 +747,7 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [plan] had gone, in a tone that said [INITIATOR_pronoun] would have liked to know beforehand.</li>
         <li>plan->a swim on the first hot day</li>
         <li>plan->a night of stories</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] why no one had saved [INITIATOR_objective] a place at [plan].</li>
+        <li>r_logentry->[INITIATOR_nameDef] couldn't see why no one had saved [INITIATOR_objective] a place at [plan], and said so to [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] went quiet when [RECIPIENT_nameDef] mentioned [plan].</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -783,7 +783,7 @@
         <li>habit->cracking [RECIPIENT_possessive] knuckles</li>
         <li>habit->sniffing</li>
         <li>habit->talking to the tools</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] knew [RECIPIENT_pronoun] kept [habit].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made sure [RECIPIENT_nameDef] knew that [RECIPIENT_pronoun] kept [habit].</li>
         <li>r_logentry->[INITIATOR_nameDef] threatened to take [INITIATOR_possessive] work to the far side of the room, away from [RECIPIENT_nameDef].</li>
         <li>habit->clicking [RECIPIENT_possessive] tongue</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], for the third time that day, to stop [habit].</li>
@@ -886,7 +886,7 @@
         <li>tempcrime->propping the door open again</li>
         <li>tempcrime->wearing three layers and complaining anyway</li>
         <li>r_logentry->[INITIATOR_nameDef] wanted the window open and [RECIPIENT_nameDef] wanted it shut, and they went back and forth over it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] must have lizard blood, the way [RECIPIENT_pronoun] went on about the cold.</li>
+        <li>r_logentry->[INITIATOR_nameDef] decided aloud that [RECIPIENT_nameDef] must have lizard blood, the way [RECIPIENT_pronoun] went on about the cold.</li>
         <li>tempcrime->standing in front of the fire</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over the shutters, open or closed, and settled nothing.</li>
         <li>r_logentry->[INITIATOR_nameDef] blamed [RECIPIENT_nameDef] for [tempcrime], and [RECIPIENT_nameDef] blamed the weather.</li>
@@ -924,11 +924,11 @@
         <li>samefood->plain rice</li>
         <li>samefood->the same porridge</li>
         <li>samefood->boiled roots</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had ever heard of herbs.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had eaten [samefood] four days running and could describe every mouthful.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud whether [RECIPIENT_nameDef] had ever heard of herbs.</li>
+        <li>r_logentry->[INITIATOR_nameDef] informed [RECIPIENT_nameDef] that [INITIATOR_pronoun] had eaten [samefood] four days running and could describe every mouthful.</li>
         <li>menugripe->had a burned taste all the way through</li>
         <li>samefood->the same gray soup</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that half of [INITIATOR_possessive] last bowl had gone in the slop bucket.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that half of [INITIATOR_possessive] last bowl had gone in the slop bucket.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the last meal [menugripe], and that [INITIATOR_pronoun] wasn't the only one who thought so.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -958,7 +958,7 @@
         <li>vicejab->was going to end up pickled</li>
         <li>vicejab->smelled like a brewery</li>
         <li>vicejab->had been keeping the drink stores very busy</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how many empty bottles [INITIATOR_pronoun] had counted by [RECIPIENT_possessive] bed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reported to [RECIPIENT_nameDef] how many empty bottles [INITIATOR_pronoun] had counted by [RECIPIENT_possessive] bed.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] remembered last night, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] remembered enough.</li>
         <li>vicejab->would wake up with a head like a drum</li>
         <li>r_logentry->[INITIATOR_nameDef] owned up to watering down [RECIPIENT_nameDef]'s drink, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] had noticed.</li>
@@ -1113,7 +1113,7 @@
         <li>washleft->wet towel on the floor</li>
         <li>washleft->dirty clothes</li>
         <li>washleft->comb full of hair</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that some people had been waiting outside the washroom a long time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] pointed out to [RECIPIENT_nameDef] that some people had been waiting outside the washroom a long time.</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that the wash water was meant for more than one person.</li>
         <li>washleft->muddy boots</li>
       </rulesStrings>
@@ -1167,7 +1167,7 @@
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] had been in a foul mood, and [RECIPIENT_nameDef] [apologyreply].</li>
         <li>peaceoffering->a warm roll from the oven</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shook hands on it and went back to work.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had saved [RECIPIENT_objective] [peaceoffering], and that did more than an apology would have.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know [INITIATOR_pronoun] had saved [RECIPIENT_objective] [peaceoffering], and that did more than an apology would have.</li>
         <li>r_logentry->[INITIATOR_nameDef] went looking for [RECIPIENT_nameDef] to say sorry, and found [RECIPIENT_objective] already on the way to do the same.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to start the day over, and to split [peaceoffering] on it.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] couldn't remember what the argument had been about, and [RECIPIENT_nameDef] [apologyreply].</li>
