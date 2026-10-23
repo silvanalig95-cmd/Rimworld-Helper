@@ -576,15 +576,21 @@ where they are now (hover for every trait and mark that moved it), and "what sha
 The Almanac pages "character" and "what shapes a person" explain it.
 
 #### Traits that change
-Rarely, a long stretch of the same kind of life reaches the game's own traits. 36 rules: nerves steady to steadfast
+Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
 and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
 pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
 weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a melee fighter, rare
 bloodlust in a cold killer, an undergrounder who hardly sees the sky; harder work after two seasons of barely
 stopping (by the game's record of time at recreation) and idleness after the opposite; an addiction beaten makes a
-teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic drawn deeper into their ideoligion (Ideology); six for Vanilla
-Traits Expanded and RimTraits. A psychopath or a cannibal comes only from an extreme history (executions by their own
+teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic drawn deeper into their ideoligion (Ideology); eight for Vanilla
+Traits Expanded and RimTraits. Two traits of the body can be earned, never lost: tough after being downed or laid up
+again and again, and a fast walker after a season of hauling. A habit lived for months grows into a trait: harder work
+from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and six
+traits of Rimfolk's own that are only ever earned, never on a new arrival (tidy, green thumb, born cook, animal friend,
+healer's hands, trail-wise); Vanilla Traits Expanded's neat and animal lover take the place of two of them when it's
+loaded. The character page shows "where life is taking them": the changes a colonist is heading toward, with how many
+of the things that lead there have happened, and hovering one lists them. A psychopath or a cannibal comes only from an extreme history (executions by their own
 hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
 once in a colony's life each. Every change brings a letter that tells what led to it, with the dates of the marks and
 deeds behind it, a journal line in the colonist's voice and a chronicle entry, and it stays on the character page
@@ -805,15 +811,25 @@ fade after a season or two. A lucky thing says so: the helmet itself reads "Macy
 info card and its tooltip in the gear tab, and once the quirk fades or Macy dies it remembers her: "Once Macy's lucky
 charm", with how long and how it ended, for as long as the helmet lasts.
 
-Others simply grow out of who someone is: a grower who talks to the plants, a handler who names every animal, a cook
-who sings at the stove, an early riser, someone who hums at work, collects pretty stones, can't stand a mess, feeds
-the birds or remembers every birthday, and after a night in the cold or under the stars, someone who is always cold
-or goes out to watch the stars. Some bring a small knack while they last instead of a mood (slightly faster plant work,
-fewer food poisonings from that cook, animals tamed and trained more easily, a hummer's work a little quicker). Some change how someone speaks and answers: one speaks in proverbs, one laughs
+Habits come each in its own way. Most grow out of what someone does: Rimfolk notes once an hour what each colonist is
+doing (their kind of work, early mornings, late nights, time outdoors) and remembers about three weeks of it, and a
+habit of work never comes without its work: one who cleans a lot comes to be unable to stand a mess, a cook to sing at
+the stove, a grower to talk to the plants, a handler to name every animal, a miner to collect pretty stones, a crafter
+to whittle, a doctor to have steady hands, a builder to measure twice, a smith to sharpen every blade, a hunter to know
+every trail, a hauler to carry more than they should, someone up before six to rise early, someone up late to keep late
+hours. A few are simply who someone is: remembering every birthday, talking in their sleep, saving the best bite for
+last, being unable to sit still. Most bring a small knack (slightly faster plant work or cleaning, fewer food
+poisonings, steadier tending) or a mood at the right moment, and each shows on the map: a moment of its own in their
+free time (tidying a dirty room, watching the sun come up, looking in on the sick, sharpening a blade) or a word now and
+then at the work. A habit lived doesn't fade while it is; lived two months, it takes root and its knack grows a little.
+The colonist's Story tab says of each quirk how it came, what it does and how long it lasts. The superstitions that were
+only flavour do something small now too: knocking on wood gladdens after a fight come through unhurt, talking to the
+dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps
+nightmares away, and a sleep talker's roommate sleeps a little worse (a lover finds it endearing). Some change how someone speaks and answers: one speaks in proverbs, one laughs
 at the wrong moments, a worrier frets aloud at the council table and asks to keep watch, someone who writes
 everything down reads back what was said; others tell the old stories, are first to volunteer, have a soft
 spot for strays or sleep with a light burning after bad nights. Dilemmas and letters ask for them too: a worrier's
-watch, the colony's record kept by the one who writes everything down. 37 quirks in all. Picking one up and letting it
+watch, the colony's record kept by the one who writes everything down. 44 quirks in all. Picking one up and letting it
 fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a
 nervous neighbor or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
 the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions,

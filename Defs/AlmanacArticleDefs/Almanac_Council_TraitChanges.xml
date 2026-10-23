@@ -24,11 +24,33 @@ Only marks and deeds since that trait last changed count, so one stretch of life
         <heading>What never changes</heading>
         <points>
           <li>who someone loves: gay, bisexual and asexual, and the dislike of men or women;</li>
-          <li>the body and inborn gifts: tough, nimble, beauty, speed, immunity, delicate, psychic sensitivity, an annoying voice, creepy breathing, quick sleeper, fast or slow learner, memory, too smart, body mastery, a careful or trigger-happy shot, and their equivalents from trait mods;</li>
+          <li>the body and inborn gifts: nimble, beauty, immunity, delicate, psychic sensitivity, an annoying voice, creepy breathing, quick sleeper, fast or slow learner, memory, too smart, body mastery, a careful or trigger-happy shot, and their equivalents from trait mods;</li>
           <li>a trait a gene gives or suppresses, one the backstory forces or rules out, one the scenario gave, and the traits of anyone holding an ideoligion role whose requirements speak of traits;</li>
           <li>a trait the game says conflicts with one they have, shares an exclusion tag with one, or clashes with a passion of theirs (a brawler never loves shooting);</li>
           <li>a fifth trait: nobody gains a trait past four.</li>
         </points>
+        <after>Two traits of the body can be earned by its own history, never lost to it: tough, after being downed, laid up or nursed back from the brink three times, and quicker on their feet after a season of hauling.</after>
+      </li>
+      <li>
+        <heading>Where life is taking them</heading>
+        <text>The character page shows, under "Where life is taking them", up to three changes a colonist is heading toward, the furthest along first, each with how many of the things that lead there have happened ("2 of 4"). Hover one for the list: what has happened is in green, what hasn't yet in grey, with how far along each is (marks, deeds, days without a breakdown, hours at a kind of work, a habit and how long it's been lived). Only changes nothing else stands in the way of are shown, once a third of what leads there has happened. When all of it has, the change can come on any day.</text>
+      </li>
+      <li>
+        <heading>From habits</heading>
+        <text>A habit lived for months grows into a trait (see "quirks" for habits and how they're lived): held 90 days or more and lived on 60 of them, it has a 10% chance a day. The habit ends with the change; the trait is what it became. Some of these traits are Rimfolk's own: never on a new arrival, only ever earned. Where Vanilla Traits Expanded has the same trait, it gives that one instead (neat, animal lover), and where any other mod has a trait of the same name, Rimfolk's stays out of the game.</text>
+        <table>
+          <li>Habit | Trait | What the trait does</li>
+          <li>can't stand a mess | tidy (Rimfolk; with Vanilla Traits Expanded: neat) | cleaning 25% faster; -3 in a filthy room</li>
+          <li>talks to the plants | green thumb (Rimfolk) | plant work 15% faster, harvests 5% bigger</li>
+          <li>sings at the stove | born cook (Rimfolk) | cooking 15% faster, 30% fewer food poisonings</li>
+          <li>names every animal | animal friend (Rimfolk; with Vanilla Traits Expanded: animal lover) | taming and training 8% likelier</li>
+          <li>steady hands | healer's hands (Rimfolk) | tending quality +8%, tending 10% faster</li>
+          <li>knows every trail | trail-wise (Rimfolk) | hunting stealth +15%</li>
+          <li>hums while working | one step harder working (lazy to none, none to industrious, industrious to hard worker) | the game's own</li>
+          <li>remembers every birthday | kind | the game's own</li>
+          <li>keeps late hours | night owl | the game's own: glad at night, unhappy up by day</li>
+        </table>
+        <after>Like any trait, one of Rimfolk's own stays with the colonist. With Rimfolk taken out of a game, the game drops those traits when the save loads.</after>
       </li>
       <li>
         <heading>Their character stays where it was</heading>
@@ -58,6 +80,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
           <li>Industriousness | industrious to none, none to lazy | 20% or more of their time at recreation over the last 60 days, no masterwork, mastery or legendary work in 60 days, and 60 days in the colony | 8%</li>
           <li>Drug desire | chemical interest to none, none to teetotaler | an addiction overcome in the last 120 days; pride moved +3 | 15%</li>
           <li>Drug desire | chemical fascination to chemical interest | an addiction overcome in the last 120 days; pride moved +3 | 15%</li>
+          <li>Speed | slowpoke to none, none to fast walker | about four hours a day of hauling lately (80 hours or more in the practice kept for habits), and 60 days in the colony; never taken away | 8%</li>
         </table>
         <after>Time at recreation is the game's own record of it, measured from a snapshot every ten days; someone away for most of the stretch isn't measured. An idle colony gives its colonists a lot of recreation, and so do long recreation hours in the schedule.</after>
       </li>
@@ -77,6 +100,7 @@ Only marks and deeds since that trait last changed count, so one stretch of life
           <li>Ascetic (Ideology) | appears | 2 moving rituals or a new ideoligion; openness moved -3, pride 5 or less; not greedy or jealous | 6%</li>
           <li>Recluse (Biotech) | appears | heartbreak or a secret given away, and one more such hurt (a love or friend lost, a broken promise); trust -30 or less and warmth -10 or less | 6%</li>
           <li>Void fascination (Anomaly) | appears | 2 marks of wanting to know more after touching the unknown; openness moved +8 and now 40 or more | 8%</li>
+          <li>Tough | appears | 3 marks of being downed, a long illness or being nursed back from the brink; nerve moved +10; never a wimp; never taken away | 10%</li>
         </table>
       </li>
       <li>
@@ -101,6 +125,8 @@ Only marks and deeds since that trait last changed count, so one stretch of life
           <li>Rebel (Vanilla Traits Expanded) | appears | 3 broken promises, elections lost or seats lost; trust moved -12 | 8%</li>
           <li>Workaholic (Vanilla Traits Expanded) | appears | 4% or less of their time at recreation over the last 60 days, and 2 masterworks, masteries, legendary works or students taught in 180 days | 6%</li>
           <li>Craven (RimTraits) | fades | 2 marks of danger held; nerve moved +12 | 12%</li>
+          <li>Neat (Vanilla Traits Expanded) | appears | the habit "can't stand a mess", held 90 days and lived on 60 | 10%</li>
+          <li>Animal lover (Vanilla Traits Expanded) | appears | the habit "names every animal", held 90 days and lived on 60 | 10%</li>
         </table>
         <after>A rule for a DLC's or a mod's trait does nothing without it.</after>
       </li>

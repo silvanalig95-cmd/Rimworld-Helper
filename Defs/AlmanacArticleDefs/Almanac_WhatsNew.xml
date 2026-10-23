@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.11.0</version>
+        <date>23 October 2026</date>
+        <title>Habits that grow from a life</title>
+        <points>
+          <li>Each quirk on a colonist's Story tab, under Heart, now says how it came, what it does and how long it lasts: "can't stand a mess (from all the cleaning). Cleaning speed +10%, mood -2 in a messy room, tidies up in their free time. Stays while they keep at cleaning." One that does nothing to play says so.</li>
+          <li>Habits come each in their own way. Most grow out of what someone does: Rimfolk notes once an hour what each colonist is doing (their kind of work, early mornings, late nights, time outdoors) and remembers about three weeks of it. A habit of work never comes without its work, and the more of it, the likelier. A few are simply who someone is and come to anyone they fit.</li>
+          <li>Seven new habits: steady hands (doctoring), measures twice (building), sharpens every blade (smithing), knows every trail (hunting), carries more than they should (hauling), keeps late hours (being up after eleven), and can't sit still (by nature).</li>
+          <li>A habit lived doesn't fade while it is. Lived on sixty days, it takes root and its knack and good mood grow a little (cleaning 15% faster instead of 10%, say).</li>
+          <li>Every habit shows on the map: a moment of its own in their free time (tidying a dirty room, watching the sun come up, looking for pretty stones, looking in on the sick, wishing someone a happy birthday) or a word now and then at the work.</li>
+          <li>The superstitions that were only flavour do something small: knocking on wood gladdens after a fight come through unhurt, talking to the dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps nightmares away, and a sleep talker's roommate sleeps a little worse (a lover finds it endearing).</li>
+          <li>A habit lived for months grows into a trait: harder work, kindness, night owl, or one of six traits of Rimfolk's own that are only ever earned (tidy, green thumb, born cook, animal friend, healer's hands, trail-wise). With Vanilla Traits Expanded, its neat and animal lover are given instead. Tough and fast walker can now be earned too, never lost.</li>
+          <li>The character page shows "where life is taking them": the trait changes a colonist is heading toward, with how many of the things that lead there have happened. Hover one for the list.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.16</version>
         <date>23 October 2026</date>
         <title>Sandbags further from the gate</title>

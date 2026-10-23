@@ -635,20 +635,46 @@ Those who swore vengeance take peace with the killers as a betrayal at first, th
           <li>night prayers after a dream came true</li>
           <li>a fear of the dark after lying downed</li>
           <li>grief that returns every winter</li>
-          <li>harmless habits like knocking on wood or talking to the dead</li>
+          <li>knocking on wood, after a fight or a fall: glad of it (+3) after a fight they came through unhurt</li>
+          <li>talking to the dead, after a loss: comforted (+2) near the graves</li>
+          <li>counting everything, after a dream came true or a secret came out: goes over the food stores in their free time, and tells you when the food won't last the week</li>
+          <li>salting the doorway, after a fight or a dream that came true: nightmares half as often</li>
           <li>red is bad luck, after a bad fight (uneasy when wearing red)</li>
           <li>checking the gate every night, after a fight</li>
           <li>always cold, after a night spent freezing; watching the stars, after a night slept outside</li>
         </points>
-        <after>Most fade after a season or two. They're listed in the trust tooltip.
+        <after>Most fade after a season or two. Each is on the colonist's Story tab, under Heart, with how it came, what it does and how long it lasts; a quirk that does nothing to play says so.
 
 A lucky thing says so: look at it on the map, open its info card or hover it in the gear tab, and it reads "Macy's lucky charm". It remembers, too. When the quirk fades or its owner dies, it becomes "Once Hector's lucky charm", for as long as the thing itself lasts, and a charm that has passed through several hands names them all.</after>
       </li>
       <li>
         <heading>Habits</heading>
-        <text>Other quirks simply grow out of who someone is, now and then: a grower who talks to the plants (plant work 3% faster), a handler who names every animal (taming and training 3% likelier), a cook who sings at the stove (15% fewer food poisonings), an early riser (glad in the morning, sorry when kept up late), someone who hums at work (work 2% quicker), collects pretty stones for their room, can't stand a mess (unhappy in a dirty room, cleans 10% faster), feeds the birds, remembers every birthday (social impact up 3%), is always whittling (bored more slowly), talks in their sleep or saves the best bite for last. A habit's knack lasts as long as the habit, which fades after most of a year.
+        <text>Habits come in their own ways. Most grow out of what someone does: Rimfolk notes once an hour what each colonist is doing (their kind of work, the hours before six in the morning, the hours after eleven at night, time out under the sky) and keeps about the last three weeks of it. A habit that grows out of work never comes out of the blue: without its work it doesn't come at all, and the more of it lately, the likelier, up to ten times its usual chance. A few habits are simply who someone is and come now and then to anyone they fit, whatever they do. A colonist holds two quirks at most, habits included.</text>
+        <table>
+          <li>Habit | Comes from | What it does | On the map</li>
+          <li>hums while working | working most of the day | work 2% faster | hums at work</li>
+          <li>talks to the plants | growing and cutting plants | plant work 3% faster | talks to the crops in their free time</li>
+          <li>names every animal | handling | taming and training 3% likelier | sits with the colony's animals</li>
+          <li>sings at the stove | cooking | 15% fewer food poisonings | sings while cooking</li>
+          <li>can't stand a mess | cleaning | cleaning 10% faster; -2 in a messy room | tidies up a dirty room in their free time</li>
+          <li>collects pretty stones | mining | +2 in their own room | looks for pretty stones</li>
+          <li>an early riser | being up before six | +2 in the morning, -1 up late | watches the sun come up</li>
+          <li>feeds the birds | time outdoors | +1 outdoors | feeds the birds</li>
+          <li>always whittling | crafting, smithing, tailoring, art | recreation drains 5% slower | whittles in a chair</li>
+          <li>steady hands | doctoring | tending quality +3% | looks in on the sick and wounded</li>
+          <li>measures twice | construction | builds 2% likelier to succeed | a word at the work</li>
+          <li>sharpens every blade | smithing | melee hits 2% likelier | sharpens a blade in a chair</li>
+          <li>knows every trail | hunting | hunting stealth +5% | watches the tree line</li>
+          <li>carries more than they should | hauling | carries 5 more | a word while hauling</li>
+          <li>keeps late hours | being up and busy after eleven | +2 at night | a word in the small hours</li>
+          <li>remembers every birthday | who they are (the kind and the sociable) | social impact +3% | seeks out whoever has a birthday, who is glad of it</li>
+          <li>talks in their sleep | who they are | a roommate -1, a lover +1 | mumbles in their sleep</li>
+          <li>saves the best bite for last | who they are | +2 for a few hours after a good meal | a word at meals</li>
+          <li>can't sit still | who they are | moves a little faster; -2 stuck in bed | a word when stuck in bed</li>
+        </table>
+        <after>A habit with work behind it is lived on each day they're at that work enough, and any habit on each day they do its moment in their free time (with the small habits setting on). While it's lived it doesn't fade; once they stop, it lasts a couple of months more at least. Lived on sixty days, it takes root: its knack and its good mood grow a little (cleaning 15% faster instead of 10%, say), and the colony hears of it. Lived on longer still, it can become a trait for good (see "traits that change").
 
-Some show in how they spend their free time, with the small habits setting on: one who watches the stars goes out under the night sky, one who talks to the plants stands by the crops doing exactly that, one who names every animal sits a while with the colony's animals, and one who counts everything goes over the food stores.</text>
+A watcher of the stars, the dread of storms and the other quirks born of something that happened come as they always did.</after>
       </li>
       <li>
         <heading>Quirks in people's lives</heading>
