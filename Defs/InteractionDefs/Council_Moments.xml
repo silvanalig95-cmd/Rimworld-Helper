@@ -23,29 +23,29 @@
     <initiatorThought>Council_Moment_NotAlone</initiatorThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] sat with [RECIPIENT_nameDef] for a while, and neither of them said much.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept [RECIPIENT_nameDef] company, and neither of them said much.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories about the one they lost, and somewhere in the middle one of them laughed.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether it gets easier. [RECIPIENT_nameDef] said [answer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether it was getting any easier, and [RECIPIENT_nameDef] said [answer].</li>
         <li>answer->[RECIPIENT_pronoun] would let [INITIATOR_objective] know</li>
         <li>answer->not easier, just quieter</li>
-        <li>answer->it does, slowly</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] walked out past the walls together and stood there a while without talking.</li>
+        <li>answer->it was, slowly</li>
+        <li>r_logentry->[INITIATOR_nameDef] confessed to [RECIPIENT_nameDef] that [INITIATOR_pronoun] still turned to say something to the one they lost.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the last thing the one they lost had said to [INITIATOR_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] crying behind the storeroom and sat down beside [RECIPIENT_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sorted through the belongings of the one they lost, and each kept one small thing.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] set out an extra bowl at supper without thinking, and left it there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saw that [RECIPIENT_nameDef] had been crying and asked whether [RECIPIENT_pronoun] wanted to talk.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what should be done with the things the one they lost had left behind.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] both still caught themselves calling out for the one they lost.</li>
         <li>answer->some days more than others</li>
         <li>answer->[RECIPIENT_pronoun] hoped so</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said the name of the one they lost out loud together, and it was easier with two.</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] a cup of something warm and stayed while [RECIPIENT_pronoun] drank it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] visited the grave together and tidied it without being asked.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the first time [INITIATOR_pronoun] met the one they lost.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] still heard the one they lost in the quiet, and [RECIPIENT_nameDef] said [answer].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] did a job the one they lost used to do, and did it the way they remembered it being done.</li>
-        <li>r_logentry->[INITIATOR_nameDef] sat up with [RECIPIENT_nameDef] when neither of them could sleep, and they talked about the one they lost until morning.</li>
-        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] something the one they lost had made, and said [RECIPIENT_pronoun] should keep it.</li>
-        <li>answer->every day</li>
-        <li>answer->less than [RECIPIENT_pronoun] would like</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the things the one they lost used to say, and each remembered ones the other had forgotten.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had eaten anything today.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what the one they lost had wanted to do and never got to.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] had first met the one they lost.</li>
+        <li>r_logentry->When [INITIATOR_nameDef] asked whether the grief was easing yet, [RECIPIENT_nameDef] said [answer].</li>
+        <li>r_logentry->Between them, [INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out who would take on the jobs the one they lost used to do.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] wasn't sleeping, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] wasn't either.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a kindness from the one they lost that [INITIATOR_pronoun] had never thanked them for.</li>
+        <li>answer->not yet</li>
+        <li>answer->not as fast as [RECIPIENT_pronoun] would like</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -69,12 +69,12 @@
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] slapped an elbow on the table and dared [RECIPIENT_nameDef] to an arm-wrestling match.</li>
+        <li>r_logentry->[INITIATOR_nameDef] dared [RECIPIENT_nameDef] to an arm-wrestling match.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] settled an old argument with a best-of-three arm-wrestling match.</li>
-        <li>r_logentry->A small crowd gathered as [INITIATOR_nameDef] and [RECIPIENT_nameDef] locked hands across the table.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] arm-wrestled across a barrel while the others called out bets.</li>
-        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to arm-wrestle, left hands this time, to make it fair.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] strained across the table, red in the face, while someone held the cups out of the way.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] locked hands to arm-wrestle, and both were red in the face before long.</li>
+        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] a day's chores on an arm-wrestling match.</li>
+        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to arm-wrestle left-handed this time, to make it fair.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_pronoun] had gone soft, and [RECIPIENT_nameDef] held out an arm to prove otherwise.</li>
         <li>r_logentry->[INITIATOR_nameDef] rolled up a sleeve and asked [RECIPIENT_nameDef] if [RECIPIENT_pronoun] wanted a rematch.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -101,8 +101,8 @@
     <defName>Council_Sent_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef] won, and was insufferable about it for the rest of the day.</li>
-        <li>sent->[INITIATOR_nameDef] won. [RECIPIENT_nameDef] demanded a rematch.</li>
+        <li>sent->[INITIATOR_nameDef] won, and rubbed it in.</li>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] shook out [RECIPIENT_possessive] arm and called it luck.</li>
         <li>sent->[INITIATOR_nameDef] came out on top, barely.</li>
       </rulesStrings>
     </rulePack>
@@ -113,8 +113,8 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[RECIPIENT_nameDef] won, and was gracious about it.</li>
-        <li>sent->[RECIPIENT_nameDef] won. [INITIATOR_nameDef] blamed the table.</li>
-        <li>sent->[RECIPIENT_nameDef] came out on top, to [INITIATOR_nameDef]'s loud disbelief.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] said [INITIATOR_pronoun] hadn't been ready.</li>
+        <li>sent->[RECIPIENT_nameDef] pinned [INITIATOR_nameDef]'s arm in one go.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -134,11 +134,11 @@
     <recipientThought>Council_Moment_KindredCraft</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked shop long after the others at the table had lost interest.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] would [shopquestion], and got a much longer answer than expected.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked shop.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] would [shopquestion], and [RECIPIENT_nameDef] explained it step by step.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued happily about [shoptopic].</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] a trick [INITIATOR_pronoun] had worked out. [RECIPIENT_nameDef] [shopreaction].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] owned up to each other about mistakes they had been making for years.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a shortcut [INITIATOR_pronoun] had worked out, and [RECIPIENT_nameDef] [shopreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] owned up to mistakes they had been making for years.</li>
         <li>shopquestion->do it with half the usual tools</li>
         <li>shopquestion->handle the tricky part</li>
         <li>shopquestion->start over from nothing</li>
@@ -151,30 +151,30 @@
         <li>shopreaction->had a better one</li>
         <li>shopreaction->stole it on the spot</li>
         <li>shopreaction->claimed to have known it all along</li>
-        <li>shopreaction->nodded slowly, then asked to see it again</li>
+        <li>shopreaction->asked to go through it again, slower</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared calluses and worked out which of them had been at it longer.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for an honest opinion of [INITIATOR_possessive] latest work, and got one.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent supper drawing diagrams in spilled water on the table.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out a better way to [shopquestion] between them.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the best teacher [INITIATOR_pronoun] ever had, and [RECIPIENT_nameDef] told [INITIATOR_objective] about the worst.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [shoptopic] and took the answer seriously.</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] work for a while, then asked how [RECIPIENT_pronoun] would [shopquestion].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] disagreed about how to [shopquestion], and neither gave an inch.</li>
         <li>shoptopic->how to tell good work from work that only looks good</li>
         <li>shoptopic->the job [INITIATOR_pronoun] was proudest of</li>
         <li>shopquestion->fix a mistake without starting over</li>
-        <li>shopreaction->tried it on the spot and got it wrong twice</li>
+        <li>shopreaction->said [RECIPIENT_pronoun] would try it on the next job</li>
         <li>shopreaction->asked where [INITIATOR_pronoun] had learned that</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent their break arguing over [shoptopic], and both came away with something.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went round and round on [shoptopic].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to look over [INITIATOR_possessive] work before anyone else saw it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded the worst advice they had ever been given about their craft.</li>
         <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] a piece of work [INITIATOR_pronoun] had seen years ago and still thought about.</li>
         <li>shoptopic->what to do when the work goes wrong halfway through</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent a whole meal on [shoptopic] and forgot to eat.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] would [shopquestion], then argued with the answer.</li>
-        <li>r_logentry->[INITIATOR_nameDef] lent [RECIPIENT_nameDef] a favorite tool for the afternoon, which is not something [INITIATOR_pronoun] does lightly.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over a piece of each other's work and found one thing to praise and one to fix.</li>
+        <li>r_logentry->[INITIATOR_nameDef] put a question about [shoptopic] to [RECIPIENT_nameDef] and got a whole lecture back.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] explained to [INITIATOR_nameDef] how [RECIPIENT_pronoun] would [shopquestion], and [INITIATOR_nameDef] argued every step.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to lend [RECIPIENT_nameDef] [INITIATOR_possessive] good tools the next time [RECIPIENT_pronoun] needed them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over each other's last piece of work and found one thing to praise and one to fix.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a job that went wrong years ago, and [RECIPIENT_nameDef] said where [RECIPIENT_pronoun] thought it had gone wrong.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed on [shoptopic], which surprised them both.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] how [INITIATOR_pronoun] would [shopquestion], and [RECIPIENT_nameDef] [shopreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] how [INITIATOR_pronoun] would [shopquestion], and [RECIPIENT_nameDef] [shopreaction].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] made a list of everything they would do with better tools.</li>
         <li>shopquestion->work faster without cutting corners</li>
         <li>shopquestion->tell when a piece is finished</li>
@@ -203,23 +203,23 @@
     <recipientThought>Council_Moment_CookingPraised</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] and told [RECIPIENT_objective] that the last meal was [cookpraise].</li>
-        <li>r_logentry->[INITIATOR_nameDef] thanked [RECIPIENT_nameDef] for the meal, twice.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] had put in that meal. [RECIPIENT_nameDef] [cooksecret].</li>
+        <li>r_logentry->[INITIATOR_nameDef] stopped [RECIPIENT_nameDef] to say the last meal had been [cookpraise].</li>
+        <li>r_logentry->[INITIATOR_nameDef] thanked [RECIPIENT_nameDef] for the meal.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what had gone into that meal, and [RECIPIENT_nameDef] [cooksecret].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would happily haul stone all day for another plate like that.</li>
-        <li>r_logentry->[INITIATOR_nameDef] declared [RECIPIENT_nameDef] the best thing that ever happened to the kitchen, loudly enough for the whole table to hear.</li>
+        <li>r_logentry->[INITIATOR_nameDef] declared [RECIPIENT_nameDef] the best thing that had ever happened to the kitchen.</li>
         <li>cookpraise->the best thing [INITIATOR_pronoun] had eaten in a season</li>
         <li>cookpraise->worth getting out of bed for</li>
         <li>cookpraise->too good to hurry</li>
         <li>cookpraise->the kind of meal you remember</li>
-        <li>cookpraise->proof that the colony was going to make it</li>
+        <li>cookpraise->better than it had any right to be</li>
         <li>cooksecret->said it was patience, mostly</li>
         <li>cooksecret->said it was a secret and would stay one</li>
-        <li>cooksecret->just smiled and said time, salt and stubbornness</li>
+        <li>cooksecret->said the trick was letting it sit</li>
         <li>cooksecret->admitted [RECIPIENT_pronoun] wasn't entirely sure</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] [INITIATOR_possessive] empty bowl and asked if there was any more.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether there was any of that meal left.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the meal was [cookpraise], and asked for the recipe.</li>
-        <li>r_logentry->[INITIATOR_nameDef] helped [RECIPIENT_nameDef] scrub the pots, as thanks for the meal.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to scrub the pots for [RECIPIENT_nameDef] next time, as thanks for the meal.</li>
         <li>cookpraise->better than anything [INITIATOR_pronoun] had eaten at home</li>
       </rulesStrings>
     </logRulesInitiator>
