@@ -19,34 +19,34 @@
     <defName>Council_Pool_Together_Confided</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} walked out past the fields with {OTHER_nameDef} and talked low for a long while.</li>
-        <li>{PAWN_nameDef} waited for the room to empty, then told {OTHER_nameDef} what {PAWN_pronoun} had kept back.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} something in confidence, and {OTHER_nameDef} has been thoughtful since.</li>
-        <li>{PAWN_nameDef} and {OTHER_nameDef} talked in whispers by the wall, and {OTHER_nameDef} isn't saying what about.</li>
+        <li>{PAWN_nameDef} drew {OTHER_nameDef} aside and talked low for a long while.</li>
+        <li>{PAWN_nameDef} waited until they were alone, then told {OTHER_nameDef} what {PAWN_pronoun} had kept back.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} something in confidence, and {OTHER_nameDef} went very quiet.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} talked in whispers, and stopped whenever anyone came near.</li>
         <li>{PAWN_nameDef} trusted {OTHER_nameDef} with something very few people know.</li>
-        <li>{PAWN_nameDef} found {OTHER_nameDef} alone at the end of the day and told {OTHER_objective} a secret.</li>
-        <li>[goodsecret] {PAWN_nameDef} told {OTHER_nameDef} something that kept {OTHER_objective} smiling all evening.</li>
-        <li>[goodsecret] {PAWN_nameDef} shared a happy secret with {OTHER_nameDef}, who has looked pleased with it since.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} alone and told {OTHER_objective} a secret.</li>
+        <li>[goodsecret] {PAWN_nameDef} told {OTHER_nameDef} a secret that made {OTHER_objective} laugh out loud.</li>
+        <li>[goodsecret] {PAWN_nameDef} shared a happy secret with {OTHER_nameDef}, who promised not to tell a soul.</li>
         <li>[goodsecret] {PAWN_nameDef} whispered something to {OTHER_nameDef}, and they both laughed and wouldn't explain.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} told {OTHER_nameDef} something hard to say, and {OTHER_nameDef} simply took {PAWN_possessive} hand.</li>
-        <li>{PAWN_nameDef} trusted {OTHER_nameDef} with what {PAWN_pronoun} had carried alone, and felt lighter for it.</li>
+        <li>{PAWN_nameDef} trusted {OTHER_nameDef} with what {PAWN_pronoun} had carried alone, and let out a long breath when it was said.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} straight out what {PAWN_pronoun} had kept quiet, and asked for silence.</li>
         <li>{PAWN_nameDef} said it once, plainly, to {OTHER_nameDef}, and made {OTHER_objective} promise to keep it.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} a secret and laughed, a little nervously, once it was out.</li>
+        <li>{PAWN_nameDef} laughed nervously once the secret was out, and made {OTHER_nameDef} swear to keep it.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} a secret and said it felt better already, just having said it.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} a secret, and said {PAWN_pronoun} hadn't known who else to tell.</li>
+        <li>Not knowing who else to tell, {PAWN_nameDef} told {OTHER_nameDef} a secret.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} something {PAWN_pronoun} had kept a long time, and sighed when it was done.</li>
       </gloomy>
       <cold>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} a secret, briefly, and said what should be done with it: nothing.</li>
+        <li>Briefly, and without much feeling, {PAWN_nameDef} told {OTHER_nameDef} a secret and asked {OTHER_objective} to do nothing with it.</li>
         <li>{PAWN_nameDef} judged {OTHER_nameDef} safe to tell, and told {OTHER_objective}.</li>
       </cold>
     </lines>
@@ -69,7 +69,7 @@
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} what {ABOUT_nameDef} had been hiding, and didn't seem sorry.</li>
-        <li>{PAWN_nameDef} blurted out {ABOUT_nameDef}'s secret to {OTHER_nameDef} in the middle of an argument.</li>
+        <li>{PAWN_nameDef} blurted out {ABOUT_nameDef}'s secret to {OTHER_nameDef} without even lowering {PAWN_possessive} voice.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} was in a chatty mood and told {OTHER_nameDef} more about {ABOUT_nameDef} than {PAWN_pronoun} should.</li>
@@ -91,30 +91,30 @@
     <defName>Council_Pool_Together_SecretConfessed</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} stopped in the middle of the day and told {OTHER_nameDef} everything.</li>
+        <li>{PAWN_nameDef} stopped what {PAWN_pronoun} was doing and told {OTHER_nameDef} everything.</li>
         <li>{PAWN_nameDef} couldn't carry it any longer and told {OTHER_nameDef}, all of it.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} what {PAWN_pronoun} had kept so long, and didn't ask {OTHER_objective} to keep it.</li>
+        <li>{PAWN_nameDef} gave up {PAWN_possessive} secret to {OTHER_nameDef} and didn't ask {OTHER_objective} to keep it.</li>
         <li>{PAWN_nameDef} sat down beside {OTHER_nameDef} and said, quite calmly, what {PAWN_pronoun} had been hiding.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} the truth, and asked {OTHER_objective} to be gentle with it.</li>
+        <li>{PAWN_nameDef} asked {OTHER_nameDef} to be gentle with what {PAWN_pronoun} was about to say, and then said it.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the whole of it, and said {PAWN_pronoun} was tired of hiding from friends.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} flat out what {PAWN_pronoun} had been hiding, and walked off.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} flat out what {PAWN_pronoun} had been hiding, and didn't wait for an answer.</li>
         <li>{PAWN_nameDef} said it to {OTHER_nameDef} in one breath and didn't take any of it back.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} laughed, not happily, and told {OTHER_nameDef} the whole thing.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} the secret, and said it was almost funny how long {PAWN_pronoun} had kept it.</li>
+        <li>It was almost funny, {PAWN_nameDef} told {OTHER_nameDef}, how long {PAWN_pronoun} had kept that secret.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} the truth, too tired to keep it in any longer.</li>
+        <li>Too tired to keep it in any longer, {PAWN_nameDef} told {OTHER_nameDef} the truth.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the secret, and said {PAWN_pronoun} no longer cared who knew.</li>
         <li>{PAWN_nameDef} broke down in front of {OTHER_nameDef}, and the whole secret came out with the tears.</li>
       </gloomy>
       <cold>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} the truth in a level voice, as if reading out a list.</li>
+        <li>In a level voice, as if reading out a list, {PAWN_nameDef} told {OTHER_nameDef} the truth.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the secret, and said keeping it had cost more than it was worth.</li>
       </cold>
     </lines>
@@ -129,13 +129,13 @@
       <plain>
         <li>{PAWN_nameDef} thanked {OTHER_nameDef} for every lesson in {SKILL}, the bad days included.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the lessons in {SKILL} had done their work, and thanked {OTHER_objective}.</li>
-        <li>{PAWN_nameDef} found {OTHER_nameDef} after work to say thank you for all the lessons in {SKILL}.</li>
+        <li>{PAWN_nameDef} sought out {OTHER_nameDef} to say thank you for all the lessons in {SKILL}.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} that most of what {PAWN_pronoun} knew of {SKILL} had come from {OTHER_objective}.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the lessons in {SKILL} were over, and that {PAWN_pronoun} would miss them.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} hugged {OTHER_nameDef} and thanked {OTHER_objective} for every lesson in {SKILL}.</li>
-        <li>{PAWN_nameDef} gave {OTHER_nameDef} something {PAWN_pronoun} had made, as thanks for the lessons in {SKILL}.</li>
+        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL} and asked if {PAWN_pronoun} might still come with questions.</li>
         <li>{PAWN_nameDef} promised {OTHER_nameDef} to teach {SKILL} one day with the same patience.</li>
       </warm>
       <blunt>
@@ -144,11 +144,11 @@
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL} and promised to outdo {OTHER_objective} one day.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} the lessons in {SKILL} had been the best part of {PAWN_possessive} days.</li>
+        <li>The lessons in {SKILL} had been the best part of {PAWN_nameDef}'s days, {PAWN_pronoun} told {OTHER_nameDef}.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL}, sorry that they were over.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had never thought {PAWN_pronoun} would be good at {SKILL}.</li>
+        <li>{PAWN_nameDef} admitted to {OTHER_nameDef} that {PAWN_pronoun} had never expected to be any good at {SKILL}.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} needed no more lessons in {SKILL}, and thanked {OTHER_objective}.</li>
@@ -165,7 +165,7 @@
     <lines>
       <plain>
         <li>{PAWN_nameDef} looked in on {OTHER_nameDef}, checked the healing and changed the dressing.</li>
-        <li>{PAWN_nameDef} came by on the rounds and made {OTHER_nameDef} walk to the door and back.</li>
+        <li>{PAWN_nameDef} came by on the rounds and asked {OTHER_nameDef} where it still hurt.</li>
         <li>{PAWN_nameDef} sat with {OTHER_nameDef} a few minutes and asked how the nights had been.</li>
         <li>{PAWN_nameDef} looked {OTHER_nameDef} over on the rounds and said another day or two of rest.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the healing was coming on, and to keep off the heavy work.</li>
@@ -202,14 +202,14 @@
       <plain>
         <li>{PAWN_nameDef} found {OTHER_nameDef} after the fight and told {OTHER_objective} {OTHER_pronoun} had held well.</li>
         <li>{PAWN_nameDef} went over the fight with {OTHER_nameDef}, what went right first.</li>
-        <li>{PAWN_nameDef} asked {OTHER_nameDef} how {OTHER_pronoun} was sleeping since the fight, and listened.</li>
+        <li>{PAWN_nameDef} asked {OTHER_nameDef} how {OTHER_pronoun} was holding up after the fight, and listened.</li>
         <li>{PAWN_nameDef} sat down beside {OTHER_nameDef} and talked the fight through until it felt finished.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the colony was still standing because of people like {OTHER_objective}.</li>
         <li>[lowtech] {PAWN_nameDef} clasped {OTHER_nameDef}'s arm after the fight and named what {OTHER_pronoun} had done.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} checked {OTHER_nameDef} for hurts the doctor might have missed, and thanked {OTHER_objective}.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} it was all right to be shaken, and that {PAWN_pronoun} was too.</li>
+        <li>{PAWN_nameDef} looked {OTHER_nameDef} over for hurts {OTHER_pronoun} hadn't noticed, and thanked {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} admitted to {OTHER_nameDef} that {PAWN_pronoun} was shaken too, and that it was all right to be.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} had done well, and to go and eat something.</li>
@@ -217,10 +217,10 @@
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} had fought like three people, and clapped {OTHER_objective} on the back.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} that whoever came next would find the colony ready for them.</li>
+        <li>{PAWN_nameDef} promised {OTHER_nameDef} that whoever came next would find the colony ready for them.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} they had come through it this time, and that was what mattered.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} they had come through it this time, and wouldn't promise more than that.</li>
         <li>{PAWN_nameDef} sat with {OTHER_nameDef} after the fight, neither of them saying much for a while.</li>
       </gloomy>
       <cold>
@@ -237,14 +237,14 @@
     <defName>Council_Pool_Together_GladBack</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} met {OTHER_nameDef} by the door and asked about the road.</li>
+        <li>{PAWN_nameDef} wanted to hear all about {OTHER_nameDef}'s time on the road.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the place had been too quiet without {OTHER_objective}.</li>
         <li>{PAWN_nameDef} caught {OTHER_nameDef} up on everything that had happened while {OTHER_pronoun} was away.</li>
         <li>{PAWN_nameDef} had kept {OTHER_nameDef}'s seat at the table, and said so.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} hugged {OTHER_nameDef} hard and said welcome home.</li>
-        <li>{PAWN_nameDef} had something warm ready for {OTHER_nameDef} after the long road.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} to sit down and rest, and asked if {OTHER_pronoun} had eaten.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} had taken {OTHER_possessive} time, and was glad of {OTHER_objective} anyway.</li>
@@ -252,10 +252,10 @@
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} spotted {OTHER_nameDef} and came over at a run to say welcome home.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} everything had gone wrong while {OTHER_pronoun} was gone, and laughed.</li>
+        <li>Laughing, {PAWN_nameDef} told {OTHER_nameDef} that everything had gone wrong while {OTHER_pronoun} was gone.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had half thought {OTHER_pronoun} wasn't coming back.</li>
+        <li>{PAWN_nameDef} confessed to {OTHER_nameDef} that {PAWN_pronoun} had half given {OTHER_objective} up.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} the days had been long without {OTHER_objective}.</li>
       </gloomy>
       <cold>
@@ -273,16 +273,16 @@
       <plain>
         <li>{PAWN_nameDef} told {OTHER_nameDef} what it had taken to {GOAL}, start to finish.</li>
         <li>{OTHER_nameDef} asked {PAWN_nameDef} how it felt to {GOAL}, and got the whole story.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} the hardest part of trying to {GOAL} was the first step.</li>
-        <li>{PAWN_nameDef} and {OTHER_nameDef} sat up late talking about what it meant to {GOAL}.</li>
+        <li>{PAWN_nameDef} admitted to {OTHER_nameDef} that {PAWN_pronoun} had nearly given up trying to {GOAL}.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} talked for a long time about what it meant to {GOAL}.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} couldn't have managed to {GOAL} without {OTHER_objective}.</li>
+        <li>{PAWN_nameDef} thanked {OTHER_nameDef}, and said {PAWN_pronoun} couldn't have managed to {GOAL} alone.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} it was {OTHER_possessive} turn now to want something that much.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} it had been hard work to {GOAL}, and worth it.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had said {PAWN_pronoun} would {GOAL}, and now {PAWN_pronoun} had.</li>
+        <li>{PAWN_nameDef} reminded {OTHER_nameDef} that {PAWN_pronoun} had always said {PAWN_pronoun} would {GOAL}.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} couldn't stop telling {OTHER_nameDef} how it felt to {GOAL} at last.</li>
@@ -290,7 +290,7 @@
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} hardly knew what to do now {PAWN_pronoun} had managed to {GOAL}.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} {PAWN_pronoun} had doubted, most days, that {PAWN_pronoun} would ever {GOAL}.</li>
+        <li>{PAWN_nameDef} confessed to {OTHER_nameDef} that most days {PAWN_pronoun} had doubted {PAWN_pronoun} would ever {GOAL}.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} told {OTHER_nameDef} how long it had taken to {GOAL}, to the day.</li>
@@ -308,10 +308,10 @@
     <lines>
       <plain>
         <li>{PAWN_nameDef} helped {OTHER_nameDef} choose a place for {PET_nameDef}'s grave, somewhere with sun.</li>
-        <li>{PAWN_nameDef} sat with {OTHER_nameDef} at the pens and talked about {PET_nameDef}'s first days.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} and talked about {PET_nameDef}'s first days in the colony.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} brought {OTHER_nameDef} something of {PET_nameDef}'s to keep, cleaned and wrapped in cloth.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} what a good life {PET_nameDef} had had, and meant every word.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} had been a good animal, and stayed while {OTHER_pronoun} cried.</li>
@@ -340,11 +340,11 @@
         <li>{PAWN_nameDef} handed {PET_nameDef} back to {OTHER_nameDef}, well fed and very pleased to see {OTHER_objective}.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} had slept by {OTHER_possessive} bed every night {OTHER_pronoun} was gone.</li>
+        <li>According to {PAWN_nameDef}, {PET_nameDef} had slept by {OTHER_nameDef}'s bed every night {OTHER_pronoun} was gone.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had been good company while {OTHER_pronoun} was away.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had been fed, watered and no trouble, mostly.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had eaten well and given no trouble.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} was all {OTHER_possessive} again now, and good luck.</li>
       </blunt>
       <cheerful>
@@ -352,10 +352,10 @@
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {PET_nameDef} had moped by the door the whole time {OTHER_pronoun} was away.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had watched the road every evening.</li>
+        <li>{PAWN_nameDef} said {PET_nameDef} had watched the road for {OTHER_nameDef} every evening.</li>
       </gloomy>
       <cold>
-        <li>{PAWN_nameDef} gave {OTHER_nameDef} an account of {PET_nameDef}'s days: fed, healthy, restless.</li>
+        <li>{PAWN_nameDef} gave {OTHER_nameDef} an account of {PET_nameDef}'s days, down to what it ate.</li>
         <li>{PAWN_nameDef} returned {PET_nameDef} to {OTHER_nameDef} in good health, with nothing to report.</li>
       </cold>
     </lines>
@@ -370,7 +370,7 @@
         <li>[night] {PAWN_nameDef} sat up with {A_nameDef} and {B_nameDef} until both had said everything twice.</li>
         <li>[night] {PAWN_nameDef} kept the lamp lit for {A_nameDef} and {B_nameDef} until the worst of it was out.</li>
         <li>[winter] {PAWN_nameDef} sat {A_nameDef} and {B_nameDef} by the one warm fire and let neither of them leave it.</li>
-        <li>[winter] {PAWN_nameDef} had {A_nameDef} and {B_nameDef} clear the snow from the same path, side by side.</li>
+        <li>[winter] {PAWN_nameDef} made {A_nameDef} and {B_nameDef} share one blanket until they were talking again.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -381,7 +381,7 @@
     <pool>Council_Pool_Interplay_ChaplainTends</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} walked with {OTHER_nameDef} after supper and let {OTHER_objective} ask whatever {OTHER_pronoun} liked.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} and let {OTHER_objective} ask whatever {OTHER_pronoun} liked.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} an old story from the faith, and asked what {OTHER_pronoun} made of it.</li>
       </plain>
       <warm>
@@ -395,7 +395,7 @@
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} admitted to {OTHER_nameDef} that faith was hard out here, and worth the trouble.</li>
-        <li>{PAWN_nameDef} sat with {OTHER_nameDef} through a long silence, then said the one thing that helped.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} through a long silence, and didn't try to fill it.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} gave {OTHER_nameDef} the faith's answer to each question, then asked for the next.</li>
@@ -409,8 +409,8 @@
     <pool>Council_Pool_Interplay_WardenGuests</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} walked {OTHER_nameDef} of {FACTION} round the colony and answered every question.</li>
-        <li>{PAWN_nameDef} saw that the visitors from {FACTION} had water, food and a place to rest.</li>
+        <li>{PAWN_nameDef} answered every question {OTHER_nameDef} of {FACTION} had about the colony.</li>
+        <li>{PAWN_nameDef} made sure the visitors from {FACTION} had food and somewhere to rest.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} asked {OTHER_nameDef} of {FACTION} about home, and listened as if it mattered.</li>
@@ -419,7 +419,7 @@
         <li>{PAWN_nameDef} showed {OTHER_nameDef} of {FACTION} where to eat and sleep, and no more.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} had {OTHER_nameDef} of {FACTION} trading stories with {PAWN_objective} half the afternoon.</li>
+        <li>{PAWN_nameDef} had {OTHER_nameDef} of {FACTION} trading stories with {PAWN_objective} like an old friend.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} welcomed {OTHER_nameDef} of {FACTION}, and hoped the road home would be kinder.</li>
@@ -437,11 +437,11 @@
     <pool>Council_Pool_Interplay_ElderCounsel</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} showed {OTHER_nameDef} the slow way of {SKILL}, which {PAWN_pronoun} says is the fast way.</li>
-        <li>{PAWN_nameDef} named the three mistakes everyone makes in {SKILL}, and {OTHER_nameDef} made two.</li>
+        <li>{PAWN_nameDef} showed {OTHER_nameDef} the slow, careful way of {SKILL}.</li>
+        <li>{PAWN_nameDef} named the mistakes everyone makes at {SKILL}, and watched {OTHER_nameDef} for them.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} spent the afternoon on {SKILL} with {OTHER_nameDef}, praising every small improvement.</li>
+        <li>{PAWN_nameDef} went over {SKILL} with {OTHER_nameDef}, praising every small improvement.</li>
       </warm>
       <blunt>
         <li>{PAWN_nameDef} told {OTHER_nameDef} {OTHER_pronoun} was going about {SKILL} the hard way, and showed {OTHER_objective} why.</li>
