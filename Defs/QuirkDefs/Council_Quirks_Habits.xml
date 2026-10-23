@@ -83,7 +83,7 @@
     <gained>
       <plain>
         <li>I've been waking before dawn every day, without meaning to. I've decided to like it. The first hour is mine.</li>
-        <li>[winter] Up before the sun again, in the dark and the cold, with the stove to myself. I've started to look forward to it.</li>
+        <li>[winter] Up before the sun again, in the dark and the cold, with the place to myself. I've started to look forward to it.</li>
       </plain>
       <cheerful><li>Up before everyone again! I get the whole sunrise to myself.</li></cheerful>
       <gloomy><li>I can't sleep past dawn anymore. So I get up, and sit, and watch the light come.</li></gloomy>
@@ -113,7 +113,7 @@
     <gained>
       <plain>
         <li>I talk to the plants while I work now, mostly about what the weather's going to do.</li>
-        <li>[lowtech] The old women at home said plants grow better if you talk to them. I've started doing it, and I think they were right.</li>
+        <li>[lowtech] The old women at home said plants grow better if you talk to them. I think they were right.</li>
       </plain>
       <warm><li>I tell the seedlings good morning now. It costs nothing, and they're coming up beautifully.</li></warm>
       <cheerful><li>I talk to the plants now! They're excellent listeners.</li></cheerful>
@@ -266,7 +266,7 @@
       <plain>
         <li>Sleeping out under the open sky, I lay awake looking up for hours. Now I want to go out every night, just to look.</li>
         <li>[skill:Intellectual] I've started mapping the stars on the back of an old page. Some of them move. I want to know why.</li>
-        <li>[child] I counted the stars last night and got to two hundred and eleven before I fell asleep.</li>
+        <li>[child] I counted the stars and got to two hundred and eleven before I fell asleep.</li>
       </plain>
       <warm><li>I sleep better after an hour under the stars. I've stopped explaining why I go out.</li></warm>
       <gloomy><li>The stars were here before us and they'll be here after. I find that comforting.</li></gloomy>
