@@ -9,13 +9,13 @@
   <!-- ===================== PokéWorld: a friendly spar between two trainers' Pokémon ===================== -->
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_MomentA_PW_Spar</defName>
-    <label>sparred with their Pokémon</label>
+    <label>had a Pokémon spar</label>
     <symbol>ColonyCouncil/Symbols/Star</symbol>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to a friendly spar, Pokémon against Pokémon, out in the yard, moves pulled and nobody hurt.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] let their Pokémon spar in the yard while half the colony leaned on the fence and called out advice.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] set their Pokémon to a gentle practice bout, three exchanges each, and argued about it all through supper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to a friendly spar between their Pokémon, with every move pulled.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] let their Pokémon spar, calling out moves to them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] set their Pokémon to a gentle practice bout, three exchanges each, and argued over every one.</li>
         <li>r_logentry->[RECIPIENT_nameDef] said [RECIPIENT_possessive] Pokémon was the quicker, and [INITIATOR_nameDef] said there was one way to find out.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -43,9 +43,9 @@
     <label>asked about Pokémon</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_possessive] Pokémon could do a move, and [RECIPIENT_nameDef] had it show off a little.</li>
-        <li>r_logentry->[INITIATOR_nameDef] wanted to know from [RECIPIENT_nameDef] what it's like inside a Poké Ball. [RECIPIENT_nameDef] admitted [RECIPIENT_pronoun] didn't know either.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how to become a trainer, and got a long answer about patience that wasn't the one [INITIATOR_pronoun] wanted.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what moves [RECIPIENT_possessive] Pokémon knew, and listened to the whole list.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know from [RECIPIENT_nameDef] what it's like inside a Poké Ball, and [RECIPIENT_nameDef] admitted [RECIPIENT_pronoun] had no idea.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how to become a trainer, and got a long answer about patience.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -65,9 +65,9 @@
     <defName>Council_Sent_PW_InitiatorWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon came out on top, and both of them strutted about it all afternoon.</li>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon won, and [RECIPIENT_nameDef] is already planning the rematch.</li>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon took it, by a whisker.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon came out on top, and [INITIATOR_nameDef] praised it for every move.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon won, and [RECIPIENT_nameDef] was already planning the rematch.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon took it by a whisker.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -76,9 +76,9 @@
     <defName>Council_Sent_PW_RecipientWon</defName>
     <rulePack>
       <rulesStrings>
-        <li>sent->[RECIPIENT_nameDef]'s Pokémon won, and [INITIATOR_nameDef] took it gracefully, mostly.</li>
-        <li>sent->[RECIPIENT_nameDef]'s Pokémon had the better of it, and [INITIATOR_nameDef] went off to train.</li>
-        <li>sent->[RECIPIENT_nameDef]'s Pokémon won the spar, and then the two Pokémon shared a bowl of berries as if nothing had happened.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won, and [INITIATOR_nameDef] took it gracefully.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon had the better of it, and [INITIATOR_nameDef] said [INITIATOR_pronoun] would train harder.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won the spar, and the two Pokémon seemed to bear each other no grudge.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
