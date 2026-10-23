@@ -16,12 +16,12 @@
       <rulesStrings>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whose animal had been at [RECIPIENT_possessive] supper, though [RECIPIENT_pronoun] already knew.</li>
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime], and [INITIATOR_nameDef] [ownerexcuse].</li>
-        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] about waking up with [INITIATOR_possessive] animal standing on [RECIPIENT_possessive] chest.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] described to [INITIATOR_nameDef] waking up with [INITIATOR_possessive] animal standing on [RECIPIENT_possessive] chest.</li>
         <li>r_logentry->[RECIPIENT_nameDef] complained to [INITIATOR_nameDef] about the tooth marks in [RECIPIENT_possessive] hat, and [INITIATOR_nameDef] [ownerexcuse].</li>
         <li>r_logentry->[RECIPIENT_nameDef] gave [INITIATOR_nameDef] a full account of the cleaning up after [INITIATOR_possessive] animal.</li>
         <li>r_logentry->[RECIPIENT_nameDef] said that [INITIATOR_nameDef]'s animal had [petcrime] twice this week, and that [RECIPIENT_pronoun] had been counting.</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether [INITIATOR_possessive] animal would ever learn what no meant, and [INITIATOR_nameDef] [ownerexcuse].</li>
-        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] about catching [INITIATOR_possessive] animal with its head in the berry basket.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] reported to [INITIATOR_nameDef] that [INITIATOR_possessive] animal had been caught with its head in the berry basket.</li>
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef], in some detail, what [INITIATOR_possessive] animal had left by the door.</li>
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime], and [INITIATOR_nameDef] laughed before [INITIATOR_pronoun] could stop [INITIATOR_objective]self.</li>
         <li>r_logentry->[RECIPIENT_nameDef] complained to [INITIATOR_nameDef] that [INITIATOR_possessive] animal sat and stared at [RECIPIENT_objective] all through every meal.</li>

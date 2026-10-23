@@ -87,7 +87,7 @@
         <li>choreanswer->that [RECIPIENT_pronoun] had been busy, which was true of all of them</li>
         <li>r_logentry->[INITIATOR_nameDef] pointed out [dirtything] to [RECIPIENT_nameDef] and waited for an answer.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each claimed to have been the last one to [chore].</li>
-        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] until supper to deal with [dirtything].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [dirtything] had one more day before [INITIATOR_pronoun] did something about it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] was not going to [chore] again until somebody else did.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how many more times [RECIPIENT_pronoun] meant to walk past [dirtything].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to [chore], and [RECIPIENT_nameDef] said [choreanswer].</li>
@@ -532,7 +532,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had been through [INITIATOR_possessive] things, because [hoardsign].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] exactly what [INITIATOR_pronoun] kept in [INITIATOR_possessive] chest, in case anything went missing.</li>
+        <li>r_logentry->[INITIATOR_nameDef] listed for [RECIPIENT_nameDef] exactly what [INITIATOR_pronoun] kept in [INITIATOR_possessive] chest, in case anything went missing.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to keep [RECIPIENT_possessive] hands off [INITIATOR_possessive] shelf.</li>
         <li>r_logentry->[INITIATOR_nameDef] accused [RECIPIENT_nameDef] of moving [INITIATOR_possessive] [hoardthing], and [RECIPIENT_nameDef] said it had been in the same place all week.</li>
         <li>hoardsign->the pile looked smaller</li>
@@ -544,11 +544,11 @@
         <li>hoardthing->box of keepsakes</li>
         <li>hoardthing->coin purse</li>
         <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] looking at [INITIATOR_possessive] [hoardthing] and asked what [RECIPIENT_pronoun] wanted.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] would be keeping [INITIATOR_possessive] [hoardthing] somewhere [RECIPIENT_pronoun] couldn't see it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made it clear to [RECIPIENT_nameDef] that [INITIATOR_possessive] [hoardthing] would be kept where [RECIPIENT_pronoun] couldn't see it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] knew exactly how many of everything [INITIATOR_pronoun] owned.</li>
         <li>hoardthing->good knife</li>
         <li>hoardsign->the dust on the box had been disturbed</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had marked [INITIATOR_possessive] [hoardthing], so [INITIATOR_pronoun] would know it anywhere.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that [INITIATOR_pronoun] had marked [INITIATOR_possessive] [hoardthing], so [INITIATOR_pronoun] would know it anywhere.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -706,10 +706,10 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to keep [INITIATOR_possessive] name out of [RECIPIENT_possessive] mouth.</li>
         <li>r_logentry->[INITIATOR_nameDef] stopped talking to [RECIPIENT_nameDef] mid-sentence, having heard what [RECIPIENT_pronoun] had been saying behind [INITIATOR_possessive] back.</li>
         <li>r_logentry->[INITIATOR_nameDef] wanted to know how many people [RECIPIENT_nameDef] had told [secretthing].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the walls were thin, and that [INITIATOR_pronoun] had heard every word.</li>
+        <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that the walls were thin, and that [INITIATOR_pronoun] had heard every word.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what exactly [RECIPIENT_pronoun] had been saying [secretthing], and waited.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would remember who had been talking [secretthing].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had heard [INITIATOR_possessive] own words come back in someone else's mouth.</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] that [INITIATOR_pronoun] would remember who had been talking [secretthing].</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [INITIATOR_possessive] own words had come back to [INITIATOR_objective] in someone else's mouth.</li>
         <li>secretthing->about [INITIATOR_possessive] snoring</li>
         <li>secretthing->about the mistake [INITIATOR_pronoun] made last season</li>
         <li>secretthing->about who [INITIATOR_pronoun] was sweet on</li>

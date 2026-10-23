@@ -137,14 +137,14 @@
     <interaction>Council_Moment_WaysProud</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a choice the council had made that [INITIATOR_pronoun] would have made the same way.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up a choice the council had made that [INITIATOR_pronoun] would have made the same way, and [RECIPIENT_nameDef] agreed.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that a colony that [colonyvirtue] was worth the hard times.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that newcomers should hear how things are done here on their first day, and offered to be the one to tell them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] suggested to [RECIPIENT_nameDef] that newcomers should hear how things are done here on their first day, and offered to be the one to tell them.</li>
         <li>r_logentry->[INITIATOR_nameDef] compared the colony with [oldplace], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] wouldn't go back to anywhere like that either.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the colony's ways were [waysverdict], and that [INITIATOR_pronoun] would say so to the council's face.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the hard choices the colony had made and agreed that most of them had been right.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had stopped feeling like a guest here, and couldn't say when it had happened.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] could still name everyone who had worked on the colony's first roof.</li>
+        <li>r_logentry->[INITIATOR_nameDef] could still name for [RECIPIENT_nameDef] everyone who had worked on the colony's first roof.</li>
         <li>colonyvirtue->shares what it has</li>
         <li>colonyvirtue->doesn't leave anyone behind</li>
         <li>waysverdict->better than anywhere [INITIATOR_pronoun] had lived before</li>
@@ -177,18 +177,18 @@
     <interaction>Council_Moment_Lessons</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over a lesson that had taken three days to stick.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of a lesson that had taken three days to stick.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [lessonline], and made [RECIPIENT_objective] say it back.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to swap places for the next lesson, the student teaching and the teacher trying to keep up.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] knew about the extra practice after dark, and was glad of it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each told their own version of [lessonmishap].</li>
         <li>r_logentry->[INITIATOR_nameDef] set [RECIPIENT_nameDef] a harder task for next time, and [RECIPIENT_nameDef] looked pleased and worried at once.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about where to hold the next lesson, and settled on somewhere with more light.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether the next lesson could be somewhere with more light, and [INITIATOR_nameDef] agreed.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] had learned something new from the questions [RECIPIENT_pronoun] kept asking.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that a short lesson when they were tired beat a long one.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [lessonline], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would remember that one.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went back over the very first thing they had practiced, to see how far they had come.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the lesson they had never finished, and when to finish it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up the lesson they had never finished, and [RECIPIENT_nameDef] wanted to finish it.</li>
         <li>lessonmishap->the morning they practiced the wrong thing entirely</li>
         <li>lessonline->a good teacher is mostly a patient one</li>
       </rulesStrings>
@@ -243,16 +243,16 @@
     <interaction>Council_Moment_SharedBlessing</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] said a short blessing over [blessedthing], and that was enough.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said a short blessing over [blessedthing], and [RECIPIENT_nameDef] said the last words with [INITIATOR_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to say the old words with [INITIATOR_objective] before the day's work.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] [faithact], keeping their voices low.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [faithline], and they said a short prayer together.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about setting up a small shrine, even if it was only a few stones.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to keep the next fast together.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to keep the next fast with [INITIATOR_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to bless [blessedthing] with [INITIATOR_objective], since two voices carry further.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over a teaching of their faith that they had always read differently.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] gave thanks together for a quiet week, which was rarer than it should be.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] remembered [blessedthing] in their prayers.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] would remember [blessedthing] in [INITIATOR_possessive] prayers, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would too.</li>
         <li>blessedthing->the water they drink</li>
         <li>blessedthing->the season's first harvest</li>
         <li>faithact->spoke a grace in the old way</li>

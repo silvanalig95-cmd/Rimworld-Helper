@@ -109,7 +109,7 @@
         <li>r_logentry->[INITIATOR_nameDef] mentioned to [RECIPIENT_nameDef] where the broom was kept, in case [RECIPIENT_pronoun] had been wondering.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was planning to do anything today, or just watch.</li>
         <li>r_logentry->[INITIATOR_nameDef] counted out loud the hours [INITIATOR_pronoun] had worked since dawn, for [RECIPIENT_nameDef]'s benefit.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the sacks by the door had been waiting for [RECIPIENT_objective] all day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the sacks by the door had been waiting for [RECIPIENT_objective] a good while.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [chore], in case [RECIPIENT_pronoun] was waiting for that.</li>
         <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] a chair, since [RECIPIENT_pronoun] seemed to like sitting so much.</li>
         <li>chore->the dishes wouldn't wash themselves</li>
