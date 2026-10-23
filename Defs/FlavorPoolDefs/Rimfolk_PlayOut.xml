@@ -489,8 +489,8 @@
     <lines>
       <plain>
         <li>Bring a blanket, we'll be here a while.</li>
-        <li>[grave] We'll sit with them tonight.</li>
-        <li>[gate] We'll watch the gate till morning.</li>
+        <li>[grave] We'll sit with them a while.</li>
+        <li>[gate] We'll keep an eye on the gate, all of us.</li>
         <li>[beside] I'll sit up with {OTHER_nameDef}.</li>
         <li>[fields] Spread out along the fields and keep your eyes open.</li>
       </plain>
@@ -550,9 +550,9 @@
     <defName>Council_Journal_PlayVigil</defName>
     <lines>
       <plain>
-        <li>Kept watch most of the night. I can barely keep my eyes open, but I'm glad I did.</li>
-        <li>[grave] Sat up by the grave most of the night. It's strange how quiet it is out there.</li>
-        <li>[gate] Watched the gate through the night. Every shadow on the road looked like someone coming.</li>
+        <li>Kept watch for hours. I can barely keep my eyes open, but I'm glad I did.</li>
+        <li>[grave] Sat by the grave for hours. It's strange how quiet it is out there.</li>
+        <li>[gate] Watched the gate with the others for hours. Every shadow on the road looked like someone coming.</li>
         <li>[beside] Sat up through the night at {OTHER_nameDef}'s side. {OTHER_nameDef} slept, mostly. I didn't.</li>
         <li>[fields] Watched the fields through the dark. Nothing came, which is what we hoped.</li>
       </plain>
@@ -563,7 +563,7 @@
         <li>Up all night. Worth it.</li>
       </blunt>
       <cheerful>
-        <li>We saw the dawn come up from the watch. Beautiful, tired as I was.</li>
+        <li>The watch went quicker than I feared. We told stories the whole time, under our breath.</li>
       </cheerful>
       <gloomy>
         <li>A long night of waiting. I don't know what I expected.</li>

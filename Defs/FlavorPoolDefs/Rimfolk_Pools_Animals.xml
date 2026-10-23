@@ -15,52 +15,52 @@
     <lines>
       <plain>
         <li>Easy now. Easy.</li>
-        <li>There you go. That's it.</li>
+        <li>There you go, that's it.</li>
         <li>Hold still, you great lump.</li>
-        <li>[job:milk] Steady, girl. Nearly done.</li>
+        <li>[job:milk] Steady, girl, nearly done.</li>
         <li>[job:milk] Don't you dare kick that bucket.</li>
-        <li>[job:milk] Warm hands, I promise. Mostly.</li>
+        <li>[job:milk] My hands are warm, I promise.</li>
         <li>[job:shear] You'll feel lighter, I swear it.</li>
         <li>[job:shear] Stop wriggling or you'll get a haircut you'll regret.</li>
         <li>[job:shear,summer] There. Cooler already, aren't you?</li>
-        <li>[job:tame] Nobody's going to hurt you. Look, I've got food.</li>
+        <li>[job:tame] I won't hurt you, look, I've got food.</li>
         <li>[job:tame] Come on. Just a little closer.</li>
-        <li>[job:tame,wild] I know. I know. I'd be wary too.</li>
-        <li>[job:train] Again. And again. Good!</li>
-        <li>[job:train] Sit. No. Sit. Sit! ... Close enough.</li>
-        <li>[job:train,named] {PET_nameDef}, look at me. Look. Good.</li>
-        <li>[job:tend] This will sting. Sorry. Sorry.</li>
+        <li>[job:tame,wild] I know, I'd be wary of me too.</li>
+        <li>[job:train] Once more, from the top.</li>
+        <li>[job:train] Sit. No. Sit!</li>
+        <li>[job:train,named] Look at me, {PET_nameDef}, not at my pocket.</li>
+        <li>[job:tend] This will sting, sorry.</li>
         <li>[job:tend] Brave thing. Nearly done.</li>
         <li>[job:feed] Slowly. It isn't going anywhere.</li>
         <li>[job:rescue] Up you come. I've got you.</li>
-        <li>[job:rope] Come on, home. This way. Home.</li>
-        <li>[job:rope] No, the other way. The pen's the other way.</li>
-        <li>[childplay] Do you want to be my friend? You can be my friend.</li>
-        <li>[childplay] Shh. Stay still. I'm going to pat you very gently.</li>
-        <li>[childplay] Want to hear a secret? It's about the cook.</li>
-        <li>[childplay,young] You're just a baby. Like me. Well. Not like me.</li>
-        <li>[bonded,named] Who's my best friend? You are, {PET_nameDef}. Don't tell the others.</li>
+        <li>[job:rope] Come on, this way, home.</li>
+        <li>[job:rope] No, the pen's the other way.</li>
+        <li>[childplay] Do you want to be my friend?</li>
+        <li>[childplay] Stay still, I'm going to pat you very gently.</li>
+        <li>[childplay] I'll tell you a secret about the cook, but you can't tell.</li>
+        <li>[childplay,young] You're only little, like me.</li>
+        <li>[bonded,named] You're my best friend, {PET_nameDef}, but don't tell the others.</li>
         <li>[bonded] I'm here. I'm always here.</li>
-        <li>[young] Look at those legs. You'll grow into them.</li>
-        <li>[oldanimal] Slow and steady, old friend. No hurry.</li>
+        <li>[young] You'll grow into those legs one day.</li>
+        <li>[oldanimal] No hurry, old friend, take your time.</li>
         <li>[oldanimal,named] Still the best of them, aren't you, {PET_nameDef}?</li>
         <li>[pokemon] Ready? Good. Let's work on that move again.</li>
-        <li>[pokemon] Back in the ball after this, all right? Then berries.</li>
-        <li>[pokemon,job:tend] A potion would be better. You'll have to make do with me.</li>
-        <li>[winter] Cold hands, sorry. Cold everything.</li>
-        <li>[rain] I know, I'm wet too. Nearly done.</li>
-        <li>[night] Shh. Everyone's asleep. Just us.</li>
+        <li>[pokemon] Back in the ball after this, then berries.</li>
+        <li>[pokemon,job:tend] No potion, sorry, you'll have to make do with me.</li>
+        <li>[winter] Sorry, my hands are freezing.</li>
+        <li>[rain] I know, I'm wet too, nearly done.</li>
+        <li>[night] Shh, the others are asleep.</li>
       </plain>
       <warm>
         <li>Good animal. You're such a good animal.</li>
-        <li>[bonded] There's nobody I'd rather spend the morning with.</li>
+        <li>[bonded] You're the best of the lot, you know that.</li>
       </warm>
       <blunt>
         <li>Stop that.</li>
         <li>[job:milk] Hold. Still.</li>
       </blunt>
       <cheerful>
-        <li>Who's a clever one? You're a clever one!</li>
+        <li>Who's a clever one, then?</li>
         <li>[job:shear] Look at you. All fluffy, and then not!</li>
       </cheerful>
       <gloomy>
@@ -80,18 +80,18 @@
     <defName>Council_Pool_AnimalFollows</defName>
     <lines>
       <plain>
-        <li>Come on then, {PET_nameDef}. You can help.</li>
+        <li>Come on then, {PET_nameDef}, you can help.</li>
         <li>Where I go, you go, is that it?</li>
-        <li>All right, {PET_nameDef}. Keep up.</li>
-        <li>You're underfoot again. I don't mind.</li>
-        <li>[night] Bedtime, {PET_nameDef}? All right. Me too.</li>
-        <li>[rain] You'll be soaked. Come on, then.</li>
-        <li>[pokemon] Out of the ball and straight to my heels. Good.</li>
-        <li>[working] I've got work to do. Fine. You can watch.</li>
+        <li>Keep up, then, {PET_nameDef}.</li>
+        <li>You're underfoot again, not that I mind.</li>
+        <li>[night] Bedtime for both of us, {PET_nameDef}?</li>
+        <li>[rain] You'll get soaked following me about.</li>
+        <li>[pokemon] Out of the ball and straight to my heels, good.</li>
+        <li>[working] I've got work to do, but you can watch.</li>
       </plain>
-      <warm><li>There you are. I was wondering where you'd got to.</li></warm>
+      <warm><li>There you are, I wondered where you'd got to.</li></warm>
       <blunt><li>Heel.</li></blunt>
-      <cheerful><li>Adventure time, {PET_nameDef}! Probably to the storeroom.</li></cheerful>
+      <cheerful><li>Off we go, {PET_nameDef}!</li></cheerful>
       <gloomy><li>At least somebody wants my company.</li></gloomy>
       <cold><li>You may accompany me.</li></cold>
     </lines>
@@ -105,18 +105,18 @@
     <lines>
       <plain>
         <li>There. That's the best sound in the colony.</li>
-        <li>One, two, three... they're all here.</li>
-        <li>Just sitting. Just watching them eat.</li>
-        <li>[child] Can I name that one? I'm naming that one.</li>
-        <li>[evening] They always settle down at dusk. So do I.</li>
-        <li>[spring] Look at the young ones go.</li>
-        <li>[winter] Huddled up, all of them. Sensible.</li>
+        <li>They're all here, every one.</li>
+        <li>I'll just sit and watch them eat a while.</li>
+        <li>[child] I'm naming that one, it's mine now.</li>
+        <li>[evening] They're settling down for the night, look.</li>
+        <li>[spring] Fresh grass, and they know it.</li>
+        <li>[winter] All huddled up together, sensible things.</li>
       </plain>
-      <warm><li>Hello, all of you. Did you have a good day?</li></warm>
+      <warm><li>Hello, all of you, have you had a good day?</li></warm>
       <blunt><li>Herd's fine.</li></blunt>
       <cheerful><li>Best seats in the colony, right here.</li></cheerful>
-      <gloomy><li>They don't worry about anything. I'd like to learn how.</li></gloomy>
-      <cold><li>Counting. Checking coats. Nothing amiss.</li></cold>
+      <gloomy><li>They don't worry about a thing, lucky beasts.</li></gloomy>
+      <cold><li>All accounted for, coats in order.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -126,17 +126,17 @@
     <lines>
       <plain>
         <li>Stand still and I'll get the burrs out.</li>
-        <li>Look at the state of you. Rolled in something, did you?</li>
-        <li>[named] Hold still, {OTHER_nameDef}. Nearly there.</li>
-        <li>[bonded] There's my favourite. Let's get you shining.</li>
-        <li>[winter] Thick coat this year. Good. You'll need it.</li>
-        <li>[summer] Shedding everywhere. On me, mostly.</li>
+        <li>Rolled in something again, did you?</li>
+        <li>[named] Hold still, {OTHER_nameDef}, nearly there.</li>
+        <li>[bonded] Let's get you shining, my favorite.</li>
+        <li>[winter] Good thick coat this year, you'll need it.</li>
+        <li>[summer] You're shedding all over me.</li>
       </plain>
-      <warm><li>You like that, don't you? Behind the ears. I know.</li></warm>
+      <warm><li>You like it behind the ears, don't you?</li></warm>
       <blunt><li>Brush. Then food.</li></blunt>
       <cheerful><li>Who's going to be the handsomest animal in the colony?</li></cheerful>
-      <gloomy><li>Somebody should look after you properly. Might as well be me.</li></gloomy>
-      <cold><li>Grooming reduces skin trouble. Hold still.</li></cold>
+      <gloomy><li>Somebody has to look after you properly, so it'll be me.</li></gloomy>
+      <cold><li>Grooming keeps the skin healthy, so hold still.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -149,14 +149,14 @@
     <lines>
       <plain>
         <li>[named] Welcome to the herd, {PET_nameDef}.</li>
-        <li>[named] {PET_nameDef}. Yes. You look like a {PET_nameDef}.</li>
-        <li>[named] There. You've a name now, {PET_nameDef}. Look after your mother.</li>
-        <li>[nonamed] Hello, little one. Welcome.</li>
-        <li>[nonamed] Already on your feet. Good.</li>
+        <li>[named] You look like a {PET_nameDef}, so that's your name.</li>
+        <li>[named] You've a name now, {PET_nameDef}, so stay close to your mother.</li>
+        <li>[nonamed] Hello, little one, welcome.</li>
+        <li>[nonamed] There you are, and all in one piece.</li>
       </plain>
-      <warm><li>[named] Hello, {PET_nameDef}. We're all very glad you're here.</li></warm>
-      <cheerful><li>[named] {PET_nameDef}. Best name I've thought of all year!</li></cheerful>
-      <cold><li>[named] {PET_nameDef}. Healthy, by the look of you.</li></cold>
+      <warm><li>[named] We're all glad you're here, {PET_nameDef}.</li></warm>
+      <cheerful><li>[named] Best name I've thought of all year, {PET_nameDef}!</li></cheerful>
+      <cold><li>[named] You'll do, {PET_nameDef}, you look healthy enough.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -164,12 +164,12 @@
     <defName>Council_Journal_Herd_Newborn</defName>
     <lines>
       <plain>
-        <li>[named] A young {KIND} born to {OTHER_nameDef} last night. I went down at first light and named it {PET_nameDef}.</li>
-        <li>[named] New in the herd: {PET_nameDef}, all legs. {OTHER_nameDef} wouldn't let me near for an hour.</li>
-        <li>[nonamed] A young one born to {OTHER_nameDef}. On its feet within the hour, which is how it should be.</li>
+        <li>[named] A young {KIND} born to {OTHER_nameDef}. I went down and named it {PET_nameDef} before anyone else could.</li>
+        <li>[named] New in the herd: {PET_nameDef}, all legs. Its mother, {OTHER_nameDef}, wouldn't let me near at first.</li>
+        <li>[nonamed] A young one born to {OTHER_nameDef}, already named by someone quicker than me.</li>
         <li>[winter,named] Born in the cold, {PET_nameDef}. I put extra straw down and stayed until it was feeding.</li>
       </plain>
-      <warm><li>[named] {PET_nameDef}, the newest of us. I sat in the straw a long time just watching it breathe.</li></warm>
+      <warm><li>[named] {PET_nameDef}, the newest of us. I sat a long while just watching it breathe.</li></warm>
       <blunt><li>[named] New one. Called it {PET_nameDef}. Healthy.</li></blunt>
       <cheerful><li>[named] Welcome, {PET_nameDef}. The herd keeps growing and I keep running out of names!</li></cheerful>
       <cold><li>[named] One birth in the herd, a young {KIND}, named {PET_nameDef}. Mother and young both well.</li></cold>
@@ -182,15 +182,15 @@
     <defName>Council_Pool_Herd_Rounds</defName>
     <lines>
       <plain>
-        <li>[sick] {PAWN_nameDef}, the herdmaster, found {OTHER_nameDef} after work to say that {PET_nameDef} was eating again, a little.</li>
-        <li>[sick] {PAWN_nameDef} told {OTHER_nameDef} what {PET_nameDef}'s illness was and what to watch for, and promised to look in at night.</li>
+        <li>[sick] {PAWN_nameDef}, the herdmaster, told {OTHER_nameDef} that {PET_nameDef} was resting and taking water.</li>
+        <li>[sick] {PAWN_nameDef} told {OTHER_nameDef} what {PET_nameDef}'s illness was and what to watch for.</li>
         <li>[hurt] {PAWN_nameDef} came by to tell {OTHER_nameDef} that {PET_nameDef}'s wound was clean and closing.</li>
         <li>[hurt] {PAWN_nameDef} showed {OTHER_nameDef} how to change {PET_nameDef}'s dressing, and stayed while {OTHER_pronoun} tried.</li>
-        <li>{PAWN_nameDef} and {OTHER_nameDef} went down to see {PET_nameDef} together, and {PAWN_nameDef} said it would mend.</li>
+        <li>{PAWN_nameDef} talked {OTHER_nameDef} through {PET_nameDef}'s care, step by step.</li>
       </plain>
-      <warm><li>{PAWN_nameDef} found {OTHER_nameDef} worrying by the pens and stayed until {OTHER_pronoun} stopped, talking about {PET_nameDef} the whole time.</li></warm>
+      <warm><li>{PAWN_nameDef} saw how worried {OTHER_nameDef} was about {PET_nameDef} and stayed to talk until {OTHER_pronoun} was calmer.</li></warm>
       <blunt><li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} would live, and to go and get some sleep.</li></blunt>
-      <cold><li>{PAWN_nameDef} gave {OTHER_nameDef} a plain account of {PET_nameDef}'s condition. It was better than {OTHER_nameDef} had feared.</li></cold>
+      <cold><li>{PAWN_nameDef} gave {OTHER_nameDef} a plain account of {PET_nameDef}'s condition, without softening any of it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -201,14 +201,14 @@
     <defName>Council_Cal_Letter_Foal</defName>
     <lines>
       <plain>
-        <li>[first] A year ago today the colony's first young {SUBJECT} was born, and {A_nameDef} sat up all night with it. {A_nameDef} wants the day marked.</li>
-        <li>[years] {YEARS} years since the first young {SUBJECT} was born to the herd. There have been many since. {A_nameDef} still remembers the first.</li>
-        <li>The day of the first foal. {A_nameDef} has hung a wreath on the gate of the pens.</li>
-        <li>[tradition] The first foal's day, and the herd gets an extra measure of feed, as every year. So do the people.</li>
-        <li>[spring] The first foal's day, with young ones in the pens again. {A_nameDef} says the herd remembers too.</li>
+        <li>[first] A year ago today the first young {SUBJECT} was born to the colony's herd. {A_nameDef} remembers how long it took to stand, and wants the day marked.</li>
+        <li>[years] {YEARS} years now since the herd's first young {SUBJECT}. {A_nameDef} still tells the story of that birth to anyone who'll listen.</li>
+        <li>The first foal's day. {A_nameDef} has been out with the animals since first light, brushing every one of them.</li>
+        <li>[tradition] The first foal's day comes round again. As every year, the herd gets an extra measure of feed before anyone else eats.</li>
+        <li>[spring] The first foal's day, in the season of births. {A_nameDef} has been round the herd counting swollen bellies.</li>
       </plain>
-      <cheerful><li>The first foal's day! {A_nameDef} has baked something in the shape of the first {SUBJECT}. It looks like a loaf.</li></cheerful>
-      <cold><li>The anniversary of the herd's first birth. {A_nameDef} notes the herd has grown since. A meal seems in order.</li></cold>
+      <cheerful><li>It's the first foal's day! {A_nameDef} has been round the herd with treats in both pockets.</li></cheerful>
+      <cold><li>The anniversary of the herd's first birth. {A_nameDef} has noted the date, and the size of the herd then and now.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -216,16 +216,16 @@
     <defName>Council_Journal_Cal_Foal</defName>
     <lines>
       <plain>
-        <li>[new] The first young {SUBJECT} born to our herd. I was there. Wet, wobbling, alive. The herd is a real herd now.</li>
-        <li>[new] Something born here, to animals we keep. It feels like the colony took root a little deeper today.</li>
-        <li>[!new,first] A year since our first foal. It's grown, and so have we.</li>
-        <li>[!new,years] {YEARS} years since the first foal. I went down to the pens at dawn, as I do on this day.</li>
-        <li>[!new,tradition] The first foal's day, kept as always: a wreath on the gate, a feast in the evening.</li>
+        <li>[new] Our herd's first young one, a {SUBJECT}. I keep going back to look at it.</li>
+        <li>[new] Born here, to animals we raised ourselves. I can't stop grinning about it.</li>
+        <li>[!new,first] A year since our first foal. I went to look at the herd and couldn't tell which one it was any more.</li>
+        <li>[!new,years] {YEARS} years since the first foal. I went out to the animals at dawn, as I do on this day.</li>
+        <li>[!new,tradition] The first foal's day, kept as always. The herd got its extra feed before we got ours.</li>
       </plain>
-      <warm><li>[new] I held it while it found its legs. I'll remember that for the rest of my life.</li></warm>
+      <warm><li>[new] Our first foal. I could watch it for hours, and nearly did.</li></warm>
       <blunt><li>[new] First foal. Healthy. Good day.</li></blunt>
       <cheerful><li>[new] Our first baby animal. I want to name it everything!</li></cheerful>
-      <gloomy><li>[new] A new life in the pens. I hope this place is kind to it.</li></gloomy>
+      <gloomy><li>[new] A new life in the herd. I hope this place is kinder to it than it's been to us.</li></gloomy>
       <cold><li>[new] The herd has bred for the first time. The colony's food is a little more secure.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -234,9 +234,9 @@
     <defName>Council_Cal_Talk_Foal</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} told {B_nameDef} about the night the first foal was born, and how long it took to stand.</li>
-        <li>{A_nameDef} and {B_nameDef} went to look at the herd together and tried to work out which of them came from the first foal.</li>
-        <li>{A_nameDef} asked {B_nameDef} what {B_pronoun} remembered of the first foal's night.</li>
+        <li>{A_nameDef} told {B_nameDef} how long the first foal took to stand.</li>
+        <li>{A_nameDef} and {B_nameDef} tried to work out which of the herd came from the first foal.</li>
+        <li>{A_nameDef} asked {B_nameDef} what {B_pronoun} remembered of the day the first foal was born.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -247,14 +247,14 @@
     <defName>Council_Cal_Letter_Companion</defName>
     <lines>
       <plain>
-        <li>[first] A year ago today {DEAD} died. {A_nameDef} has been quiet since breakfast, and went out to the place where {DEAD} used to sleep in the sun.</li>
+        <li>[first] A year ago today {DEAD} died. {A_nameDef} has hardly said a word since breakfast.</li>
         <li>[years] It's {YEARS} years since {DEAD} died. {A_nameDef} still keeps the old collar on a nail by the bed.</li>
-        <li>{DEAD}'s day. {A_nameDef} saved the best scraps from supper and left them on the grave, the way {DEAD} would have wanted.</li>
+        <li>{DEAD}'s day. {A_nameDef} saved the best scraps from last night's supper and set them out where {DEAD} used to sleep.</li>
         <li>[tradition] Every year on this day the colony remembers {DEAD}, the best {SUBJECT} there ever was, and {A_nameDef} tells the story of how they met.</li>
-        <li>[winter] {DEAD}'s day, and snow on the grave. {A_nameDef} cleared it by hand.</li>
+        <li>[winter] It was cold like this the day {DEAD} died. {A_nameDef} sat out in it a long while anyway.</li>
       </plain>
-      <warm><li>It's {DEAD}'s day. {A_nameDef} has been telling the children what kind of {SUBJECT} {DEAD} was, so that someone new remembers.</li></warm>
-      <blunt><li>{DEAD}'s day. {A_nameDef} went to the grave and came back without a word.</li></blunt>
+      <warm><li>It's {DEAD}'s day. {A_nameDef} has been telling anyone who never knew {DEAD} what kind of {SUBJECT} {DEAD} was.</li></warm>
+      <blunt><li>{A_nameDef} went for a walk alone on {DEAD}'s day and came back without a word.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -264,13 +264,13 @@
       <plain>
         <li>[first] A year since {DEAD} died. I still look down for {DEAD} at the door.</li>
         <li>[years] {YEARS} years without {DEAD}. Some days it feels like a lot longer, some days like last week.</li>
-        <li>{DEAD}'s day. I sat where {DEAD} used to sleep and told {DEAD} about the year. It's silly. I did it anyway.</li>
-        <li>[tradition] {DEAD}'s day, kept as always. There's a new {SUBJECT} in the colony now, and it came and sat with me.</li>
+        <li>{DEAD}'s day. I sat where {DEAD} used to sleep and told {DEAD} about the year. Silly, I know.</li>
+        <li>[tradition] {DEAD}'s day, kept as always. The others let me tell the old stories again.</li>
       </plain>
-      <warm><li>{DEAD}'s day. I'm grateful for every year we had. I wish we'd had more.</li></warm>
-      <blunt><li>{DEAD}'s day. Visited the grave.</li></blunt>
-      <cheerful><li>{DEAD}'s day. I told all the {DEAD} stories at supper and everyone laughed in the right places.</li></cheerful>
-      <gloomy><li>{DEAD}'s day. Nothing has been quite as good since.</li></gloomy>
+      <warm><li>I'm grateful for every year I had with {DEAD}. I wish there'd been more.</li></warm>
+      <blunt><li>{DEAD}'s day. Didn't feel like talking.</li></blunt>
+      <cheerful><li>{DEAD}'s day. I told the old {DEAD} stories, and the others laughed in the right places.</li></cheerful>
+      <gloomy><li>Nothing has been quite as good since {DEAD}.</li></gloomy>
       <cold><li>{DEAD}'s day. I marked it. I find I still miss {DEAD} more than I expected.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -280,8 +280,8 @@
     <lines>
       <plain>
         <li>{A_nameDef} told {B_nameDef} about {DEAD}, and the time {DEAD} stole a whole ham off the table.</li>
-        <li>{A_nameDef} and {B_nameDef} walked out to {DEAD}'s grave together and stood there a while.</li>
-        <li>{A_nameDef} asked {B_nameDef} if {B_pronoun} remembered {DEAD}, and {B_nameDef} did, every bit of it.</li>
+        <li>{A_nameDef} told {B_nameDef} where {DEAD} used to like to sleep.</li>
+        <li>{A_nameDef} asked {B_nameDef} what {B_pronoun} remembered of {DEAD}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
