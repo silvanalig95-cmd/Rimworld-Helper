@@ -37,7 +37,7 @@
       </cheerful>
       <gloomy>
         <li>[touch:light] There's a light in my room now, so I can see how small it is.</li>
-        <li>[touch:dresser] Everything I own fits in two drawers, and that tells you something.</li>
+        <li>[touch:dresser] Everything I own fits in two drawers.</li>
       </gloomy>
       <cold>
         <li>[touch:plantpot] The plant is in place, and we'll see whether it survives.</li>
