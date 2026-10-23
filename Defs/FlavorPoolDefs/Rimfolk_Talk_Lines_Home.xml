@@ -13,29 +13,29 @@
     <lines>
       <plain>
         <li>[for] That was a decent meal, you know.</li>
-        <li>[for] I don't know what people complain about; we eat well here.</li>
-        <li>[for] Hot food, every day, and a roof over it; I'm not complaining.</li>
+        <li>[for] I don't know what people complain about, we eat well here.</li>
+        <li>[for] Hot food every day and a roof over it, so I'm not complaining.</li>
         <li>[for,subject] {SUBJECT} did something good with the stew today.</li>
         <li>[for,harvest] With the harvest in, we'll eat like kings for a while.</li>
-        <li>[for,finemeal] That meal tonight was proper food, that was.</li>
-        <li>[for,iscook] I put a lot into tonight's meal, I hope people noticed.</li>
+        <li>[for,finemeal] That last meal was proper food, that was.</li>
+        <li>[for,iscook] I put a lot into that last meal, and I hope people noticed.</li>
         <li>[for,lowfood] It's not much, but it's food, and that's what matters.</li>
         <li>[for,strong] I'll eat anything that's hot and doesn't move.</li>
         <li>[against] If I see that grey mush one more time, I'll scream.</li>
-        <li>[against] What was that, tonight, exactly?</li>
-        <li>[against] I'd give a day's work for something with flavour.</li>
+        <li>[against] What was that last meal, exactly?</li>
+        <li>[against] I'd give a day's work for something with flavor.</li>
         <li>[against,raw] I ate it raw again, because nobody had cooked.</li>
-        <li>[against,paste] The paste again, it tastes of nothing and regret.</li>
+        <li>[against,paste] The paste again, and it tastes of nothing at all.</li>
         <li>[against,lowfood] We're going to run out, you know, and soon.</li>
         <li>[against,subject] I don't want to be rude about {SUBJECT}'s cooking, but I will be.</li>
-        <li>[against,strong] I'm sure the cook is a lovely person, but the stew is a war crime.</li>
+        <li>[against,strong] I'm sure the cook means well, but that stew should be buried.</li>
         <li>[mixed] It's food, I suppose, and that's about all I can say for it.</li>
         <li>[mixed,harvest] At least we won't starve this winter, whatever it tastes like.</li>
         <li>[for] I don't care what it is, as long as there's enough of it.</li>
         <li>[for] Someone should thank the cook today, properly.</li>
         <li>[for,iscook] I'm trying something new with the stew tomorrow.</li>
         <li>[for,raw] Even raw, it beats going hungry.</li>
-        <li>[against] My stomach's been complaining since lunch.</li>
+        <li>[against] My stomach hasn't forgiven that last meal.</li>
         <li>[against] We grow good food and then do terrible things to it.</li>
         <li>[against,iscook] I know my cooking isn't great, I'm doing my best.</li>
         <li>[against,finemeal] One good meal, and now everything else tastes worse.</li>
@@ -45,28 +45,28 @@
         <li>[for,subject] We should tell {SUBJECT} how much we appreciate the cooking.</li>
         <li>[against] I don't mind for myself, but the others deserve better food.</li>
         <li>[for] Food's better when you eat it together, I always think.</li>
-        <li>[against] I worry the young ones aren't eating well enough.</li>
+        <li>[against] I worry some of us aren't eating well enough.</li>
       </warm>
       <blunt>
         <li>[for] People who complain about the food can cook it themselves.</li>
         <li>[against] That meal was a disgrace.</li>
         <li>[against] I've eaten better in a cell.</li>
-        <li>[against,raw] Raw again; does anyone in this colony know how to light a stove?</li>
+        <li>[against,raw] Raw again, does anyone in this colony know how to light a fire?</li>
         <li>[for] Eat what's in front of you and be glad of it.</li>
         <li>[against] Whoever made today's stew owes me an apology.</li>
       </blunt>
       <cheerful>
-        <li>[for] Tonight's stew had a vegetable in it, I counted.</li>
-        <li>[for] I'd marry tonight's soup if it asked.</li>
-        <li>[against] I think the stew looked at me tonight.</li>
+        <li>[for] The last stew had a vegetable in it, I counted.</li>
+        <li>[for] I'd marry that soup if it asked.</li>
+        <li>[against] I think the stew looked back at me.</li>
         <li>[against] Good news, I've found a use for the leftovers: they make a fine glue.</li>
-        <li>[for] The stew tonight was so good I nearly proposed to the pot.</li>
+        <li>[for] I went back for thirds, and I'm not even sorry.</li>
         <li>[against] Today's mystery meal is still a mystery to my stomach.</li>
       </cheerful>
       <gloomy>
-        <li>[for] Enjoy it while it lasts, the food won't last forever.</li>
+        <li>[for] Eat up, there's no saying what we'll have next month.</li>
         <li>[against] Same meal every day until we die, I suppose.</li>
-        <li>[against,lowfood] We'll be eating bark by spring.</li>
+        <li>[against,lowfood] We'll be eating bark before long.</li>
         <li>[for] It's not much, but it might be all we get.</li>
         <li>[against] I can't remember the last meal I actually enjoyed.</li>
       </gloomy>
@@ -74,7 +74,7 @@
         <li>[for] The food is adequate.</li>
         <li>[against] The cooking is inefficient and the results are poor.</li>
         <li>[against,lowfood] At this rate the stores are gone within the week.</li>
-        <li>[for] The food keeps us working; that's its purpose.</li>
+        <li>[for] The food keeps us working, which is its purpose.</li>
         <li>[against] The kitchen wastes half of what it's given.</li>
       </cold>
     </lines>
@@ -98,11 +98,11 @@
         <li>[debate,for] It's hot and there's plenty, what more do you want?</li>
         <li>[debate,for] You should try eating raw roots for a month, then complain.</li>
         <li>[debate,for,tocook] I'll have you know I worked hard on that.</li>
-        <li>[argue,against] You'd eat a boot if someone put salt on it.</li>
+        <li>[argue,against] You've got no taste, and I mean that both ways.</li>
         <li>[argue,for] Then cook it yourself, if you're so particular.</li>
         <li>[argue,for,tocook] Next time you can make it, and I'll watch you burn it.</li>
         <li>[argue,against,tocook] Then learn to cook, because that was dreadful.</li>
-        <li>[agree,for] You won't hear me complaining, I had two bowls.</li>
+        <li>[agree,for] Best thing I've eaten all week.</li>
         <li>[agree,against] Something has to change in that kitchen.</li>
         <li>[debate,for] It's not a feast, but it's food, and it's hot.</li>
         <li>[debate,against] Grateful, yes, but I'd still like some salt.</li>
@@ -150,13 +150,13 @@
         <li>[argue,against] Enjoy your slop, then.</li>
         <li>[agree] We'll see what's for supper, then.</li>
         <li>[debate] Tell you what, you cook tomorrow and we'll see.</li>
-        <li>[argue,iscook] Cook it yourself tomorrow, then.</li>
+        <li>[argue,iscook] Fine, you can have the burnt end from now on.</li>
       </plain>
       <warm>
         <li>[agree] Let's eat together tonight.</li>
       </warm>
       <cheerful>
-        <li>[debate] Loser washes the pots.</li>
+        <li>[debate] Whoever's right gets the bigger bowl.</li>
         <li>[agree] Seconds for both of us.</li>
       </cheerful>
     </lines>
@@ -169,12 +169,12 @@
     <outcomes><li>Tease</li></outcomes>
     <lines>
       <plain>
-        <li>[otherfor] {OTHER} would call a boiled boot "rustic".</li>
-        <li>[otheragainst] Look out, {OTHER} has a new complaint about the stew.</li>
-        <li>[otheragainst] {OTHER} sniffs every bowl like it owes money.</li>
+        <li>[otherfor] Is there anything you won't call delicious, {OTHER}?</li>
+        <li>[otheragainst] Go on, {OTHER}, what's wrong with the stew today?</li>
+        <li>[otheragainst] You sniff every bowl like it owes you money, {OTHER}.</li>
       </plain>
       <cheerful>
-        <li>[otherfor] I've seen {OTHER} lick the pot, I'm not saying a word.</li>
+        <li>[otherfor] I've seen you lick the pot, {OTHER}, so don't pretend.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -189,19 +189,19 @@
         <li>[for] Everyone's working hard, I'll give us that.</li>
         <li>[for] We get more done here than anywhere I've lived.</li>
         <li>[for] It's honest work, and there's plenty of it.</li>
-        <li>[for,subject] Leave {SUBJECT} alone; everyone does what they can.</li>
-        <li>[for,strong] I like a hard day; you sleep better for it.</li>
+        <li>[for,subject] Leave {SUBJECT} alone, everyone does what they can.</li>
+        <li>[for,strong] I like a hard day, you sleep better for it.</li>
         <li>[against] Some people here do a lot less than others.</li>
         <li>[against] I've been at it since dawn, and some people are only just getting up.</li>
         <li>[against] Have you noticed who's always resting when there's hauling to do?</li>
         <li>[against,subject] Has anyone seen {SUBJECT} lift a finger today?</li>
         <li>[against,strained] I can't keep this up, there's too much to do and too few doing it.</li>
-        <li>[against,strong] If one more person sits down while I'm carrying stone, I'll lose it.</li>
+        <li>[against,strong] If one more person sits down while I'm carrying stone, I'll drop it on their feet.</li>
         <li>[mixed] Some days I think we work too hard, and some days not hard enough.</li>
-        <li>[for] I don't mind the work; it keeps my mind off things.</li>
+        <li>[for] I don't mind the work, it keeps my mind off things.</li>
         <li>[for] Look at everything we've built, all of us together.</li>
         <li>[for] Everyone's tired, but everyone's trying.</li>
-        <li>[against] I carried stone all morning and nobody lifted a finger.</li>
+        <li>[against] I've hauled more than my share this week, and nobody's said a word.</li>
         <li>[against] There's too much work and not enough hands.</li>
         <li>[against,slacker,subject] I'm not saying {SUBJECT} is lazy, but I am thinking it.</li>
         <li>[mixed,strained] I don't know how much longer we can all keep going like this.</li>
@@ -209,7 +209,7 @@
       <warm>
         <li>[for] I'm proud of how hard everyone works, I really am.</li>
         <li>[against,strained] I'm worried about everyone, we're all so tired.</li>
-        <li>[for,subject] {SUBJECT} has their own troubles, I'm sure; let's not judge.</li>
+        <li>[for,subject] I'm sure {SUBJECT} has troubles of their own, so let's not judge.</li>
         <li>[for] You've worked so hard this week, you should rest.</li>
         <li>[against] It's not fair on the ones who carry the most.</li>
       </warm>
@@ -254,23 +254,23 @@
         <li>[agree,against,strained] I've been dead on my feet for days.</li>
         <li>[debate,against] Most, maybe, but not all.</li>
         <li>[debate,against] I'd say some work harder than others, that's all.</li>
-        <li>[debate,for] People have their reasons; not everyone's built for hauling.</li>
+        <li>[debate,for] People have their reasons, and not everyone's built for hauling.</li>
         <li>[debate,for] Everyone pulls in their own way, you just don't see it.</li>
         <li>[argue,against] Easy to say when you don't do any.</li>
         <li>[argue,for] Maybe if you spent less time counting other people's work.</li>
         <li>[argue,for,toslacker] I heard that, and I work as hard as anyone.</li>
         <li>[argue,against,toslacker] Look who's talking.</li>
-        <li>[agree,for] We're a hard-working lot, I'll give us that.</li>
+        <li>[agree,for] We're a hard-working lot, no question.</li>
         <li>[agree,against] I've noticed it too, believe me.</li>
         <li>[debate,for] Some people are just slower, it's not the same as lazy.</li>
         <li>[debate,against] Maybe, but some of us are carrying the rest.</li>
         <li>[argue,for] Do your own work and stop watching everyone else's.</li>
         <li>[argue,against] You'd say that, you're always on a break.</li>
         <li>[agree,for] Nobody here's afraid of hard work, that's true.</li>
-        <li>[agree,for] I've never seen a harder-working lot.</li>
+        <li>[agree,for] I'd put this crew up against anyone's.</li>
         <li>[debate,for] You're tired, that's all, it makes everyone look lazy.</li>
-        <li>[debate,against] Most of us, yes, but not quite all.</li>
-        <li>[argue,for] Keep your nose out of other people's work.</li>
+        <li>[debate,against] Not all of us, and you know who I mean.</li>
+        <li>[argue,for] You'd get more done if you talked less.</li>
         <li>[argue,against] Open your eyes, half of them are leaning on shovels.</li>
         <li>[argue,against,otherrep:idle] Funny, that, coming from you.</li>
         <li>[agree,for,otherrep:reliable] You'd know, you never let anyone down.</li>
@@ -315,7 +315,7 @@
         <li>[agree,against] I'll say something at the next meeting.</li>
         <li>[debate] Let's just get through today.</li>
         <li>[agree,against] We'll keep an eye on them.</li>
-        <li>[argue,for] Mind your own work.</li>
+        <li>[argue,for] You keep your tally, I'll keep working.</li>
       </plain>
       <warm>
         <li>[agree] Get some rest tonight, both of us.</li>
@@ -333,11 +333,11 @@
     <outcomes><li>Tease</li></outcomes>
     <lines>
       <plain>
-        <li>[otheragainst] {OTHER} has a list of everyone's breaks, with times.</li>
-        <li>[otherfor] {OTHER} thinks a nap counts as a shift.</li>
+        <li>[otheragainst] I hear you keep a list of everyone's breaks, {OTHER}, with times.</li>
+        <li>[otherfor] Does a nap count as a shift now, {OTHER}?</li>
       </plain>
       <cheerful>
-        <li>[otheragainst] Careful, {OTHER} is keeping score again.</li>
+        <li>[otheragainst] Keeping score again, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -349,32 +349,32 @@
     <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
     <lines>
       <plain>
-        <li>[for] The animals are the best thing about this place, honestly.</li>
+        <li>[for] The animals are the best thing about this place.</li>
         <li>[for] I talk to the animals more than to people, some days.</li>
         <li>[for] An animal never lies to you, or asks for anything it doesn't need.</li>
-        <li>[for,bonded,subject] {SUBJECT} slept on my feet last night, every last bit of them.</li>
-        <li>[for,bonded] I'd go back into a fire for my animal, you know.</li>
+        <li>[for,bonded,subject] Last night {SUBJECT} slept on my feet, every last bit of them.</li>
+        <li>[for,bonded] I'd walk into a fire for my animal, you know.</li>
         <li>[for,noanimals] We should get some animals, it'd make this feel like a home.</li>
         <li>[for,strong] Anyone who hurts an animal answers to me.</li>
         <li>[against] Animals eat more than they're worth, if you ask me.</li>
         <li>[against] I've cleaned up after the animals three times today.</li>
         <li>[against] An animal's an animal, it's food or it's work.</li>
-        <li>[against,bonded] I don't see why people get so attached.</li>
+        <li>[against,bonded] Mine's different, but most of these beasts are just livestock.</li>
         <li>[against,strong] Every beast in this colony is one bad day from the cooking pot.</li>
         <li>[mixed] I like the animals, I just don't like cleaning up after them.</li>
         <li>[for] I could watch the animals for hours.</li>
         <li>[for] The animals know when you're sad, I swear they do.</li>
-        <li>[for,bonded,subject] {SUBJECT} followed me all the way to the fields today.</li>
+        <li>[for,bonded,subject] You should have seen {SUBJECT} following me about today.</li>
         <li>[against] The animals got into the stores again.</li>
         <li>[against] One of those beasts bit me yesterday, I'm not sentimental about them.</li>
         <li>[against,noanimals] I'm glad we don't have animals, they're nothing but trouble.</li>
         <li>[mixed,bonded] I didn't mean to get attached, it just happened.</li>
       </plain>
       <warm>
-        <li>[for] The little one this morning, I could have cried.</li>
+        <li>[for] The way they come running when you call, I could cry.</li>
         <li>[for,bonded] I don't know what I'd do without my animal.</li>
-        <li>[for] The new little one is so small, have you seen?</li>
-        <li>[for,bonded,subject] I'd be lost without {SUBJECT}, honestly.</li>
+        <li>[for] I sat with the animals for a while today, and it did me good.</li>
+        <li>[for,bonded,subject] I'd be lost without {SUBJECT}, I really would.</li>
       </warm>
       <blunt>
         <li>[against] Too many animals, not enough sense.</li>
@@ -382,9 +382,9 @@
         <li>[against] If one more animal eats my seedlings, it's dinner.</li>
       </blunt>
       <cheerful>
-        <li>[for] I've named every chicken; one of them is named after you.</li>
-        <li>[against] The goat ate my hat again, I'm declaring war.</li>
-        <li>[for,bonded,subject] {SUBJECT} is the cleverest creature in this colony, me included.</li>
+        <li>[for] I've named every animal here, and one of them is named after you.</li>
+        <li>[against] One of the animals ate my hat again, and I'm declaring war.</li>
+        <li>[for,bonded,subject] I swear {SUBJECT} is the cleverest creature in this colony, me included.</li>
       </cheerful>
       <gloomy>
         <li>[against] We'll grow fond of them, and then they'll die.</li>
@@ -416,14 +416,14 @@
         <li>[agree,for] They're better company than most people.</li>
         <li>[agree,against] I'd be happy never to clean a pen again.</li>
         <li>[debate,for] Messy, yes, but they give back more than they cost.</li>
-        <li>[debate,against] Kind to them, sure, but they're still animals.</li>
+        <li>[debate,against] I'll feed them and muck them out, but don't ask me to love them.</li>
         <li>[argue,for] I don't trust anyone who doesn't like animals.</li>
         <li>[argue,against] You care more about that animal than about people.</li>
-        <li>[agree,for] I'd trust an animal over most people.</li>
+        <li>[agree,for] They never hold a grudge, which is more than I can say for us.</li>
         <li>[agree,against] I'm tired of mucking out, I'll say that.</li>
         <li>[debate,for] They're worth their keep, every one.</li>
-        <li>[debate,against] Fond of them, sure, but they're not people.</li>
-        <li>[argue,for] You've got no heart, honestly.</li>
+        <li>[debate,against] Fond of them, fine, but I won't go hungry for them.</li>
+        <li>[argue,for] I hope no animal ever has to rely on you.</li>
         <li>[argue,against] They're animals, for goodness' sake.</li>
       </plain>
       <warm>
@@ -434,8 +434,8 @@
         <li>[argue,against] Sentimental rubbish.</li>
       </blunt>
       <cheerful>
-        <li>[debate,for] The goat disagrees with you, and so do I.</li>
-        <li>[agree,for] The goat agrees with you, I asked.</li>
+        <li>[debate,for] The animals disagree with you, and so do I.</li>
+        <li>[agree,for] I asked the animals, and they're with you.</li>
       </cheerful>
       <cold>
         <li>[agree,against] Livestock is livestock.</li>
@@ -453,14 +453,14 @@
         <li>[agree] I'll go and see to them, then.</li>
         <li>[debate] Come and meet them properly, you'll change your mind.</li>
         <li>[argue,for] Keep away from the animals, then.</li>
-        <li>[argue,against] Kiss your goat goodnight for me.</li>
+        <li>[argue,against] Go and kiss your animals goodnight, then.</li>
         <li>[agree] I'll bring them some scraps later.</li>
-        <li>[debate] We'll agree to disagree, and the goat will judge us both.</li>
-        <li>[agree,for] I'll take them some apples.</li>
-        <li>[argue,against] Kiss the chickens goodnight, then.</li>
+        <li>[debate] We'll agree to disagree, and let the animals judge us both.</li>
+        <li>[agree,for] I'll take them something nice from the kitchen.</li>
+        <li>[argue,against] Go and talk to your animals, then, they might listen.</li>
       </plain>
       <cheerful>
-        <li>[agree] Animal appreciation meeting, tonight, by the pens.</li>
+        <li>[agree] Animal appreciation meeting tonight, and you're invited.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -472,8 +472,8 @@
     <outcomes><li>Tease</li></outcomes>
     <lines>
       <plain>
-        <li>[otherfor] Did {OTHER} just say goodnight to a chicken?</li>
-        <li>[otheragainst] {OTHER} and the goat have a feud, it's very serious.</li>
+        <li>[otherfor] Did I just hear you say goodnight to the animals, {OTHER}?</li>
+        <li>[otheragainst] How's the feud with the animals going, {OTHER}?</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -486,34 +486,34 @@
     <lines>
       <plain>
         <li>[for] Weather's weather, there's no sense fretting about it.</li>
-        <li>[for,rain] I don't mind the rain; the fields need it.</li>
+        <li>[for,rain] I don't mind the rain, the fields need it.</li>
         <li>[for,snow] There's something peaceful about the snow, isn't there.</li>
         <li>[for,clear] What a day, look at that sky.</li>
         <li>[for,winter] Winter's not so bad when there's a fire and a full store.</li>
         <li>[for,summer] I love the long evenings this time of year.</li>
-        <li>[for,disaster,subject] We'll get through {SUBJECT}; we've got through worse.</li>
+        <li>[for,disaster,subject] We'll get through {SUBJECT}, we've come through worse.</li>
         <li>[against] I hate this weather, I hate it.</li>
-        <li>[against,rain] It's rained for days, and I'm wet to the bone.</li>
+        <li>[against,rain] This rain gets into everything, I'm wet to the bone.</li>
         <li>[against,snow] I can't feel my feet, and the snow just keeps coming.</li>
-        <li>[against,cold] It's so cold my teeth won't stop.</li>
+        <li>[against,cold] It's so cold my teeth won't stop chattering.</li>
         <li>[against,hot] It's too hot to think, let alone work.</li>
         <li>[against,storm] This storm is going to take the roof off, you watch.</li>
         <li>[against,disaster,subject] {SUBJECT} is going to be the end of us.</li>
         <li>[against,winter] I hate winter, I hate every day of it.</li>
         <li>[mixed] I can't decide if I like this season or not.</li>
         <li>[for] Rain or shine, we've a roof and a fire.</li>
-        <li>[for,fall] I love this time of year, the colours.</li>
-        <li>[for,spring] Smell that, spring's coming.</li>
+        <li>[for,fall] I love this time of year, the colors.</li>
+        <li>[for,spring] Smell that, it's spring.</li>
         <li>[against,fall] Days getting shorter, and I hate it.</li>
         <li>[against,spring] Mud everywhere, I'm sick of spring already.</li>
         <li>[against,summer] This heat is going to kill someone.</li>
-        <li>[against,fog] I can't see the fields in this fog, it gives me the creeps.</li>
+        <li>[against,fog] I can't see ten paces in this fog, it gives me the creeps.</li>
         <li>[mixed] I can never tell what the weather's going to do here.</li>
       </plain>
       <warm>
         <li>[for] Come and sit by the fire, the weather can wait.</li>
         <li>[against,cold] It's bitter out there, are you warm enough?</li>
-        <li>[for,snow] The snow makes everything look so peaceful.</li>
+        <li>[for,snow] Let's go out in the snow later, just for a bit.</li>
         <li>[against] I hope everyone's got warm clothes for this.</li>
       </warm>
       <blunt>
@@ -534,7 +534,7 @@
         <li>[against,clear] Lovely day, it'll rain tomorrow.</li>
         <li>[for,disaster] It's bad, but at least it's the same for all of us.</li>
         <li>[against,summer] It'll be winter again before we know it.</li>
-        <li>[for,rain] At least the rain hides the tears.</li>
+        <li>[for,rain] I like the rain, it suits my mood.</li>
       </gloomy>
       <cold>
         <li>[against] This weather costs us work days.</li>
@@ -553,24 +553,24 @@
     <lines>
       <plain>
         <li>[agree,for] It'll pass, it always does.</li>
-        <li>[agree,for] I like it, to be honest.</li>
+        <li>[agree,for] Suits me fine.</li>
         <li>[agree,against] Worst I've known it.</li>
         <li>[agree,against,disaster] I don't like it either, it feels wrong.</li>
         <li>[debate,against] Easy to say when you're inside all day.</li>
-        <li>[debate,for] Could be worse; could be raining fire.</li>
+        <li>[debate,for] Could be worse, it could be raining fire.</li>
         <li>[argue,against] You'd say that in a blizzard.</li>
         <li>[argue,for] Moaning won't make the sun come out.</li>
         <li>[agree,for] I like it too, there's something in the air.</li>
         <li>[agree,against] I'll be glad when it's over.</li>
         <li>[debate,for] You'd complain about the sun for being too bright.</li>
-        <li>[debate,against] Easy to love the weather from beside the fire.</li>
+        <li>[debate,against] Try saying that after a day in the fields.</li>
         <li>[argue,for] Stop complaining about things you can't change.</li>
-        <li>[argue,against] You'd call a flood refreshing.</li>
+        <li>[argue,against] Wait till it's your roof leaking.</li>
         <li>[agree,for] There's nothing to be done about it, so why fret.</li>
         <li>[agree,against] I can't wait for this season to end.</li>
         <li>[debate,for] It's the same sky for everyone, at least.</li>
-        <li>[debate,against] Easy to be calm about the cold in a thick coat.</li>
-        <li>[argue,for] You'd moan about a perfect day.</li>
+        <li>[debate,against] Lend me your coat and I might agree.</li>
+        <li>[argue,for] There's no pleasing you, is there?</li>
         <li>[argue,against] Go and stand in it, then, if you love it so much.</li>
       </plain>
       <warm>
@@ -578,14 +578,14 @@
         <li>[agree,against] Let's get you somewhere warm.</li>
       </warm>
       <cheerful>
-        <li>[debate,for] Weather's the only thing in this colony that never asks for a raise.</li>
+        <li>[debate,for] Weather's the only thing in this colony that never complains back.</li>
         <li>[agree,for] Perfect weather for a nap.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] It'll get worse before it gets better.</li>
       </gloomy>
       <cold>
-        <li>[debate,against] It's costing us work hours.</li>
+        <li>[debate,against] Every lost hour shows in the stores.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -609,7 +609,7 @@
         <li>[agree] I'll put the kettle on.</li>
       </cheerful>
       <gloomy>
-        <li>[argue] Enjoy it while it lasts, then.</li>
+        <li>[argue] Have it your way, it'll be worse tomorrow.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -621,8 +621,8 @@
     <outcomes><li>Tease</li></outcomes>
     <lines>
       <plain>
-        <li>[otheragainst] {OTHER} takes the weather personally, have you noticed?</li>
-        <li>[otherfor] {OTHER} would call a hurricane "brisk".</li>
+        <li>[otheragainst] You take the weather personally, {OTHER}, have you noticed?</li>
+        <li>[otherfor] You'd call a hurricane "brisk", {OTHER}.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
