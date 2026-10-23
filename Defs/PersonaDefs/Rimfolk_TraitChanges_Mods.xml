@@ -23,7 +23,7 @@
     <chance>0.12</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} is no longer a coward.</news>
-    <meaning>{PAWN_nameDef} stood when it counted, more than once, and the habit of running has gone with it.</meaning>
+    <meaning>{PAWN_nameDef} stood when it counted, more than once, and has lost the habit of running.</meaning>
     <journal>
       <plain>
         <li>When the shooting started my legs wanted to run. I told them no, and they listened.</li>
@@ -31,7 +31,7 @@
       </plain>
       <warm><li>The others were counting on me. That turned out to matter more than being scared.</li></warm>
       <blunt><li>I don't run anymore.</li></blunt>
-      <cheerful><li>Stood my ground in the raid. Then I went and had a good shake behind the barn. Still counts.</li></cheerful>
+      <cheerful><li>Stood my ground in the last fight and only shook afterward. That still counts.</li></cheerful>
       <gloomy><li>Running never saved anyone here. Standing did, sometimes.</li></gloomy>
       <cold><li>Flight was an inefficient reflex. I've trained it out.</li></cold>
     </journal>
@@ -53,7 +53,7 @@
     <chance>0.08</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become vengeful.</news>
-    <meaning>After the loss and the oath that followed it, spite has taken root in {PAWN_objective}: {PAWN_pronoun} can't stand a rival under the same roof.</meaning>
+    <meaning>After the loss and the oath that followed it, spite has taken root in {PAWN_nameDef}, and {PAWN_pronoun} can't bear a rival under the same roof.</meaning>
     <journal>
       <plain>
         <li>I remember every one of them. Every face, every name. I'm keeping a list.</li>
@@ -61,7 +61,7 @@
       </plain>
       <warm><li>I loved them. That's why I can't forgive the ones who took them.</li></warm>
       <blunt><li>They'll pay. All of them.</li></blunt>
-      <cheerful><li>I've started sharpening things when I'm upset. I have very sharp things now.</li></cheerful>
+      <cheerful><li>I'm cheerful about most things. Not about them. Them, I'll see to.</li></cheerful>
       <gloomy><li>The anger is all that's left of them that I can hold on to.</li></gloomy>
       <cold><li>Debts are meant to be settled. I intend to settle mine.</li></cold>
     </journal>
@@ -81,11 +81,11 @@
     <chance>0.06</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has grown world weary.</news>
-    <meaning>Too many years, too many graves: bleak thoughts come easily to {PAWN_objective} now, and {PAWN_pronoun} is harder to get close to.</meaning>
+    <meaning>Too many years and too many hard seasons have worn {PAWN_nameDef} down. Bleak thoughts come easily to {PAWN_objective} now, and {PAWN_pronoun} is harder to get close to.</meaning>
     <journal>
       <plain>
-        <li>Another season. The same work, the same worries, fewer of us to share them.</li>
-        <li>The young ones ask what it was like before. I tell them it was the same, only with more people.</li>
+        <li>Another season. The same work, the same worries. I'm tired in a way sleep doesn't fix.</li>
+        <li>Someone asked me what I hope for. I had to think about it, and I'm still thinking.</li>
       </plain>
       <warm><li>I still care. I'm just tired of everything I care about being taken away.</li></warm>
       <blunt><li>I'm tired. Of all of it.</li></blunt>
@@ -108,16 +108,16 @@
     <chance>0.08</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become a rebel.</news>
-    <meaning>Broken promises and lost votes have taught {PAWN_objective} not to take orders kindly: {PAWN_pronoun} plays by {PAWN_possessive} own rules now, and drags {PAWN_possessive} feet when pushed.</meaning>
+    <meaning>Broken promises and lost votes have taught {PAWN_nameDef} to take orders badly. These days {PAWN_pronoun} goes by {PAWN_possessive} own rules, and drags {PAWN_possessive} feet when pushed.</meaning>
     <journal>
       <plain>
-        <li>The council says we're all digging the new cellar tomorrow. We'll see.</li>
-        <li>I listened to the speaker's whole speech today. Then I went and did what I was going to do anyway.</li>
+        <li>The council says, and then I decide. That's the order of things now.</li>
+        <li>I heard the council out, every word. Then I did what I was going to do anyway.</li>
       </plain>
       <warm><li>I'd do anything for the people here. Just don't call it an order.</li></warm>
       <blunt><li>They broke their word. I don't owe them mine.</li></blunt>
-      <cheerful><li>They put me on hauling. I've decided to haul in my own, very scenic, order.</li></cheerful>
-      <gloomy><li>Promises from the council are worth the paper. And we're short on paper.</li></gloomy>
+      <cheerful><li>They can put me on whatever they like. I'll get to it gladly, in my own order.</li></cheerful>
+      <gloomy><li>The council has promised me things before. I remember how that went.</li></gloomy>
       <cold><li>Authority here has proven unreliable. I'll defer to it only when it suits me.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
@@ -137,15 +137,15 @@
     <chance>0.06</chance>
     <tone>0</tone>
     <news>{PAWN_nameDef} has become a workaholic.</news>
-    <meaning>Two seasons of hardly a break, and fine work to show for it: {PAWN_pronoun} can't put a job down now, even when {PAWN_pronoun} should rest.</meaning>
+    <meaning>A year with hardly a break, and fine work to show for it, has left {PAWN_nameDef} unable to put a job down, even when {PAWN_pronoun} should rest.</meaning>
     <journal>
       <plain>
-        <li>They called me to supper three times. I finished the joint first. It needed finishing.</li>
-        <li>Went to bed, lay there, got up and went back to the bench.</li>
+        <li>They called me to supper three times. I finished what I was doing first. It needed finishing.</li>
+        <li>Went to bed and lay there going over the work, wishing it were morning.</li>
       </plain>
       <warm><li>The work is how I look after everyone. Stopping feels like letting them down.</li></warm>
       <blunt><li>Rest later. Work now.</li></blunt>
-      <cheerful><li>Someone hid my tools to make me take a day off. I found them by lunch. Good day.</li></cheerful>
+      <cheerful><li>Worked all day and there's still a list for tomorrow. Lovely.</li></cheerful>
       <gloomy><li>If I stop, I'll have to think. So I don't stop.</li></gloomy>
       <cold><li>Breaks are an inefficiency I no longer indulge.</li></cold>
     </journal>
@@ -166,15 +166,15 @@
     <chance>0.12</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} is no longer craven.</news>
-    <meaning>When the fighting came, {PAWN_pronoun} stayed, and then stayed again; the first to run is somebody else now.</meaning>
+    <meaning>When the fighting came, {PAWN_nameDef} stayed, and then stayed again, and no longer bolts at the first sign of danger.</meaning>
     <journal>
       <plain>
-        <li>The raid came and I didn't run. I didn't even think about it until after.</li>
-        <li>I picked up a spear and went to the gate with the others. My hands shook. I went anyway.</li>
+        <li>When they came, I didn't run. I didn't even think about it until after.</li>
+        <li>My hands shook from start to finish. I stayed anyway.</li>
       </plain>
       <warm><li>I couldn't leave them out there alone. Not again.</li></warm>
       <blunt><li>Done running.</li></blunt>
-      <cheerful><li>Faced down a raider today. Both of us looked surprised.</li></cheerful>
+      <cheerful><li>I held my ground with the others. I keep telling myself it was really me.</li></cheerful>
       <gloomy><li>There's nowhere to run to anyway. Might as well stand.</li></gloomy>
       <cold><li>Running made me a liability. I've corrected that.</li></cold>
     </journal>

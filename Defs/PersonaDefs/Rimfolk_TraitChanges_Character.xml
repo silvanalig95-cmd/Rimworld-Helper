@@ -22,18 +22,18 @@
     <chance>0.1</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become kind.</news>
-    <meaning>So much kindness given and taken has settled in {PAWN_objective}: {PAWN_pronoun} looks for the good in people now, and says so.</meaning>
+    <meaning>Kindness given and kindness shown to {PAWN_objective} have added up. These days {PAWN_pronoun} has a good word for most people, and never an insult.</meaning>
     <journal>
       <plain>
-        <li>Took the late watch so the new one could sleep. I didn't think about it until after.</li>
+        <li>Caught myself asking after someone's bad back. I used to only keep track of my own.</li>
         <li>I've started noticing who's had a bad day before they say anything.</li>
-        <li>Brought the cook a cup of something hot. The look on their face was worth the walk.</li>
+        <li>Thanked the cook and meant it. I don't think anyone had said it in a while.</li>
       </plain>
-      <warm><li>People have been good to me here, more than I earned. It's easy to pass it on.</li></warm>
-      <blunt><li>Helped where I could today. That's what you do.</li></blunt>
-      <cheerful><li>Left a carved bird on everyone's pillow. Some of them look more like potatoes. It's the thought.</li></cheerful>
+      <warm><li>People have been good to me here, better than I earned. I'd like to be that for someone else.</li></warm>
+      <blunt><li>Helped where I could. Didn't need asking.</li></blunt>
+      <cheerful><li>I've been handing out compliments all day and I'm nowhere near running out.</li></cheerful>
       <gloomy><li>Life here is hard enough. I'd rather not add to it for anyone.</li></gloomy>
-      <cold><li>I find I want the others to be well. I didn't use to. I'm not sure when it changed.</li></cold>
+      <cold><li>I find I want the others to be well. I didn't use to. I can't say when it changed.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
@@ -49,15 +49,15 @@
     <chance>0.1</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} is no longer abrasive.</news>
-    <meaning>Too many people have been decent to {PAWN_objective} for {PAWN_objective} to keep snapping at them: the edge has gone out of how {PAWN_pronoun} speaks.</meaning>
+    <meaning>People kept being decent to {PAWN_nameDef} however sharp {PAWN_pronoun} was with them, and the edge has gone out of {PAWN_possessive} voice.</meaning>
     <journal>
       <plain>
-        <li>I held my tongue today when I'd normally have had something to say. Then I said something kind instead.</li>
-        <li>Someone asked my advice instead of avoiding me. I gave it nicely, too.</li>
+        <li>Had something cutting ready today and kept it behind my teeth.</li>
+        <li>Someone asked my advice instead of going round me. I gave it without a single dig.</li>
       </plain>
       <warm><li>They kept being kind to me even when I was a misery. I think I owe them a gentler voice.</li></warm>
       <blunt><li>I still say what I think. I just don't make it hurt.</li></blunt>
-      <cheerful><li>I complimented someone's stew today and meant it. They checked my forehead for fever.</li></cheerful>
+      <cheerful><li>Being pleasant is so much less work. I can't think why I made everything a fight.</li></cheerful>
       <gloomy><li>Being sharp with people never made anything better. I suppose I've finally noticed.</li></gloomy>
       <cold><li>Unpleasantness costs more than it gains. I have revised my manner.</li></cold>
     </journal>
@@ -75,15 +75,15 @@
     <chance>0.12</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} is no longer a wimp.</news>
-    <meaning>After standing in the fight and carrying the others through it, {PAWN_pronoun} no longer goes down at the first wound.</meaning>
+    <meaning>Enough fights stood through have taught {PAWN_nameDef} to take a wound and stay on {PAWN_possessive} feet.</meaning>
     <journal>
       <plain>
-        <li>Took a cut on the arm in the raid and kept going. I only noticed it afterwards.</li>
-        <li>I used to fold at the first scratch. Not anymore. I don't quite know what changed.</li>
+        <li>Pain still hurts. It just doesn't put me on the ground anymore.</li>
+        <li>I used to fold at the first scratch. I'd like to know what changed, but I won't argue with it.</li>
       </plain>
-      <warm><li>Someone needed carrying, and I carried them. After that, a cut or two didn't seem worth stopping for.</li></warm>
+      <warm><li>The others needed me standing. Somewhere in all that, I stopped going down at every cut.</li></warm>
       <blunt><li>Pain's just pain. I can work through it now.</li></blunt>
-      <cheerful><li>Stubbed my toe on the bed frame and kept walking. Growth.</li></cheerful>
+      <cheerful><li>Barked my shin today and walked it off like it was nothing.</li></cheerful>
       <gloomy><li>I suppose you toughen up or you don't last. I've lasted.</li></gloomy>
       <cold><li>My tolerance for injury has improved. A useful adaptation.</li></cold>
     </journal>
@@ -105,17 +105,17 @@
     <chance>0.08</chance>
     <tone>0</tone>
     <news>{PAWN_nameDef} has become a brawler.</news>
-    <meaning>Fight after fight up close, blade in hand, has made {PAWN_objective} a fighter who wants to be in reach of the enemy, and who minds being handed a gun.</meaning>
+    <meaning>Fight after fight at arm's length has made {PAWN_nameDef} want to be close to the enemy, and unhappy with any weapon that keeps {PAWN_objective} back.</meaning>
     <journal>
       <plain>
-        <li>They gave me a rifle for the wall today. I gave it back and went to stand by the gate.</li>
+        <li>Whatever they hand me, I want it to have an edge, or at least a good heavy end.</li>
         <li>When it comes to it, I want to see their faces. Shooting from a distance feels like cheating.</li>
       </plain>
       <warm><li>If I'm close, I can put myself between them and the others. That's where I want to be.</li></warm>
       <blunt><li>Give me something with an edge and point me at them.</li></blunt>
-      <cheerful><li>Practised on the training dummy until it fell apart. Then I practised on its pieces.</li></cheerful>
+      <cheerful><li>My feet know where to go in a close fight now, before I've even thought it.</li></cheerful>
       <gloomy><li>Up close is where I'm any use. I don't much like what that says about me.</li></gloomy>
-      <cold><li>Melee is efficient and certain. Ranged weapons leave too much to chance.</li></cold>
+      <cold><li>Close fighting is certain. Anything at range leaves too much to chance.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
@@ -134,17 +134,17 @@
     <chance>0.08</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become jealous.</news>
-    <meaning>Passed over at vote after vote, {PAWN_pronoun} keeps a close eye now on what everyone else has, starting with their rooms.</meaning>
+    <meaning>Passed over at vote after vote, {PAWN_nameDef} keeps a close eye on what the others have, and a bedroom finer than {PAWN_possessive} own sours {PAWN_possessive} mood.</meaning>
     <journal>
       <plain>
-        <li>Walked past the new speaker's room today. Bigger window than mine. Of course it is.</li>
+        <li>Every room I walk past has something mine doesn't.</li>
         <li>They vote for the same faces every time. I mind more than I let on.</li>
-        <li>I counted the furniture in everyone's rooms tonight. I'm not proud of it. I did it anyway.</li>
+        <li>I know how many chairs are in each of their rooms. I'm not proud of that.</li>
       </plain>
       <warm><li>I want to be glad for them. Most days I manage. Today I didn't.</li></warm>
       <blunt><li>Others get the say and the good rooms. I get the leftovers.</li></blunt>
-      <cheerful><li>Lost another vote. I'm going to take it out on my bedroom, by asking for a nicer one.</li></cheerful>
-      <gloomy><li>They never pick me. They never will. They'll keep the best for themselves, too.</li></gloomy>
+      <cheerful><li>Lost another vote! Fine. If I can't have the say, I'll have the nicest bedroom in the place.</li></cheerful>
+      <gloomy><li>They never pick me and they never will. They keep the best rooms for themselves, too.</li></gloomy>
       <cold><li>I've noted who has what. The distribution is not fair, and I will remember it.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
@@ -163,15 +163,15 @@
     <chance>0.08</chance>
     <tone>0</tone>
     <news>{PAWN_nameDef} has become an ascetic.</news>
-    <meaning>After going without for so long, comfort means little to {PAWN_objective}: a bare room suits {PAWN_objective} better than a fine one.</meaning>
+    <meaning>After so long going without, {PAWN_nameDef} wants very little, and a grand room now sits worse with {PAWN_objective} than a bare one.</meaning>
     <journal>
       <plain>
-        <li>Took the rug out of my room. I don't need it. I kept tripping over it anyway.</li>
-        <li>A bowl, a blanket, a roof. When you've been without, you learn how little the rest matters.</li>
+        <li>I'd like my room to stay the plainest in the colony. Leave it as it is.</li>
+        <li>A bowl, a blanket, a roof. When you've gone without, the rest starts to look like clutter.</li>
       </plain>
       <warm><li>Give the good bed to someone who'll enjoy it. I'm fine on the plain one, truly.</li></warm>
       <blunt><li>I don't need a nice room. Spend the wood on walls.</li></blunt>
-      <cheerful><li>My room has one chair and I'm very fond of it. We understand each other.</li></cheerful>
+      <cheerful><li>My room has one chair in it, and I'm very fond of that chair.</li></cheerful>
       <gloomy><li>Fine things only remind me how quickly they can be taken.</li></gloomy>
       <cold><li>Comfort is a dependency. I have reduced mine.</li></cold>
     </journal>
@@ -192,17 +192,17 @@
     <chance>0.06</chance>
     <tone>0</tone>
     <news>{PAWN_nameDef} has become an ascetic.</news>
-    <meaning>The colony's rites have taken hold of {PAWN_objective}: what {PAWN_pronoun} owns matters less to {PAWN_objective} now than what {PAWN_pronoun} believes.</meaning>
+    <meaning>The rites have drawn {PAWN_nameDef} deeper into the faith. What {PAWN_pronoun} owns matters little to {PAWN_objective} beside what {PAWN_pronoun} believes, and a plain room suits {PAWN_objective} best.</meaning>
     <journal>
       <plain>
-        <li>After the ceremony I gave away my good boots. They felt like too much to be wearing.</li>
-        <li>I've started sitting with the faith in the mornings instead of eating. I don't miss breakfast.</li>
+        <li>Since the ritual, my good boots feel like too much to be wearing.</li>
+        <li>The things in my room don't feel like mine anymore. I'm only looking after them.</li>
       </plain>
       <warm><li>The rite showed me what I have here, and none of it is furniture.</li></warm>
-      <blunt><li>Belief first. Things second. Things a distant second.</li></blunt>
-      <cheerful><li>I've decluttered my soul and my shelf on the same day. The shelf was harder.</li></cheerful>
+      <blunt><li>Belief first. Things a long way second.</li></blunt>
+      <cheerful><li>I feel so light since the rite. I could give away everything I own and whistle while I did it.</li></cheerful>
       <gloomy><li>Everything I own will rot. What I believe might not.</li></gloomy>
-      <cold><li>Possessions distract from the practice. I've let most of mine go.</li></cold>
+      <cold><li>Possessions distract from the practice. I've stopped wanting more of them.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
@@ -218,15 +218,15 @@
     <chance>0.1</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} is no longer greedy.</news>
-    <meaning>The people around {PAWN_objective} have come to matter more than what {PAWN_pronoun} owns: a plain room no longer feels like an insult.</meaning>
+    <meaning>The people around {PAWN_nameDef} have come to matter more to {PAWN_objective} than what {PAWN_pronoun} owns, and a plain bedroom no longer spoils {PAWN_possessive} mood.</meaning>
     <journal>
       <plain>
-        <li>Gave my share of the silver to the kitchen fund. Didn't even haggle over it.</li>
+        <li>Someone else has the better room, and I don't grudge it. I keep waiting to.</li>
         <li>My room is no grander than anyone's. I keep forgetting to mind.</li>
       </plain>
       <warm><li>I have people now. Next to that, a bigger room seems a silly thing to want.</li></warm>
       <blunt><li>Keep the fancy furniture. I'm fine.</li></blunt>
-      <cheerful><li>Someone admired my lamp and I gave it to them. I don't know who I am anymore and I love it.</li></cheerful>
+      <cheerful><li>Not wanting the best of everything is like setting down a heavy pack.</li></cheerful>
       <gloomy><li>All the things I wanted wouldn't have kept anyone alive. People do that, sometimes.</li></gloomy>
       <cold><li>Accumulation has lost its appeal. My priorities have been recalculated.</li></cold>
     </journal>
@@ -247,15 +247,15 @@
     <chance>0.03</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has developed a taste for blood.</news>
-    <meaning>So many kills, and a heart that has cooled with each one: {PAWN_nameDef} enjoys the fighting now, and the killing, and others have noticed.</meaning>
+    <meaning>Somewhere among so many kills, {PAWN_nameDef} stopped minding the killing and began to enjoy it. The sight of the dead no longer troubles {PAWN_objective}.</meaning>
     <journal>
       <plain>
-        <li>The raid ended and I was sorry it was over. I wrote that down to see how it looked. It looks bad.</li>
+        <li>When the last fight ended I was sorry it was over. I've written that down to see how it looks. It looks bad.</li>
         <li>I keep the count of them in my head. I'm not sure when I started.</li>
       </plain>
-      <warm><li>I tell myself I fight for the others. Today I fought because I wanted to.</li></warm>
+      <warm><li>I tell myself I fight for the others. Lately I fight because I want to.</li></warm>
       <blunt><li>I like the fighting. There, I said it.</li></blunt>
-      <cheerful><li>Another raid! Something in me lit up at the alarm, and I'm choosing not to think about it.</li></cheerful>
+      <cheerful><li>I catch myself hoping for the next raid. I'm choosing not to think too hard about that.</li></cheerful>
       <gloomy><li>Something in me has gone wrong out there. I can feel it smiling.</li></gloomy>
       <cold><li>Killing has become satisfying. I see no reason to pretend otherwise.</li></cold>
     </journal>
@@ -274,16 +274,16 @@
     <chance>0.03</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become an undergrounder.</news>
-    <meaning>Two seasons hardly ever under the open sky, and {PAWN_pronoun} has stopped missing it: walls and a roof feel like home now.</meaning>
+    <meaning>A whole year almost never out under the sky, and {PAWN_nameDef} has stopped missing it. Walls and a roof feel like home to {PAWN_objective} now, even with rock overhead.</meaning>
     <journal>
       <plain>
-        <li>Went outside for the harvest and the sky was too big. I was glad to get back in.</li>
+        <li>Stepped out today and the sky was too big. I was glad to get back in.</li>
         <li>I like the sound of rain on the roof better than the rain itself.</li>
       </plain>
-      <warm><li>Inside is where everyone is. Why would I want to be anywhere else?</li></warm>
+      <warm><li>Inside is where everyone is, so inside is where I'd rather be.</li></warm>
       <blunt><li>Don't need the sky. Got a ceiling.</li></blunt>
-      <cheerful><li>Someone said I'm turning into a mole. Moles are very contented animals.</li></cheerful>
-      <gloomy><li>Nothing good ever came out of the open sky. Raiders, mostly.</li></gloomy>
+      <cheerful><li>A good solid roof over me all day is like being tucked in. I don't know why I ever wanted more sky.</li></cheerful>
+      <gloomy><li>Nothing good ever came down out of that sky. I'm happier with a roof between us.</li></gloomy>
       <cold><li>The outdoors offers nothing a roof doesn't improve on.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
@@ -302,15 +302,15 @@
     <chance>0.06</chance>
     <tone>0</tone>
     <news>{PAWN_nameDef} has become a recluse.</news>
-    <meaning>Hurt by the people closest to {PAWN_objective}, {PAWN_pronoun} would rather live among few: a small colony suits {PAWN_objective}, a crowded one wears on {PAWN_objective}.</meaning>
+    <meaning>Hurt by the people closest to {PAWN_objective}, {PAWN_nameDef} would rather live among few. A small colony suits {PAWN_objective} now, and a crowded one wears on {PAWN_objective}.</meaning>
     <journal>
       <plain>
-        <li>Ate supper on the step outside. Fewer voices. Fewer people to explain myself to.</li>
-        <li>Another newcomer today. I learned their name and then went for a long walk.</li>
+        <li>Fewer voices would suit me. Fewer people to explain myself to.</li>
+        <li>Each new face here is one more name to learn and one more person to keep at arm's length.</li>
       </plain>
       <warm><li>I care about the few I have left. I don't think I have room for more.</li></warm>
       <blunt><li>Too many people here. Not enough quiet.</li></blunt>
-      <cheerful><li>Found a spot behind the storehouse nobody else knows about. It's mine now. Don't tell anyone.</li></cheerful>
+      <cheerful><li>I'm happiest with only a handful of faces around me. Fewer names to remember, too.</li></cheerful>
       <gloomy><li>Every new face is someone else who can let me down.</li></gloomy>
       <cold><li>Fewer people, fewer complications. I prefer the arithmetic.</li></cold>
     </journal>
@@ -330,15 +330,15 @@
     <chance>0.08</chance>
     <tone>0</tone>
     <news>{PAWN_nameDef} has developed a void fascination.</news>
-    <meaning>Each brush with the dark has drawn {PAWN_objective} closer instead of driving {PAWN_objective} off: {PAWN_pronoun} wants to know what's on the other side.</meaning>
+    <meaning>Each brush with the dark has drawn {PAWN_nameDef} closer instead of driving {PAWN_objective} off, and {PAWN_pronoun} wants to know what lies on the other side of it.</meaning>
     <journal>
       <plain>
-        <li>I went and stood by the containment cell again tonight. Just to listen.</li>
+        <li>I keep going back over what we saw. Not afraid of it. Full of questions.</li>
         <li>The others look away from it. I can't. I don't want to.</li>
       </plain>
       <warm><li>I'd never let it hurt anyone here. But I want to understand it. Someone should.</li></warm>
       <blunt><li>It's out there. I want to know what it is.</li></blunt>
-      <cheerful><li>Sketched the strange thing in the cell today. It sat very still for me. Good subject.</li></cheerful>
+      <cheerful><li>There's a reason behind every strange thing out there, and I mean to find it.</li></cheerful>
       <gloomy><li>It calls, and I'm the only one who answers. That can't end well.</li></gloomy>
       <cold><li>The unknown is the only thing here that still interests me.</li></cold>
     </journal>

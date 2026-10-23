@@ -33,17 +33,17 @@
     <chance>0.15</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become {TRAIT}.</news>
-    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: the fights {PAWN_pronoun} came through have steadied {PAWN_objective}.</newsLost>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. The fights {PAWN_pronoun} came through have steadied {PAWN_objective}.</newsLost>
     <meaning>After the fights {PAWN_pronoun} has stood through, it takes more than a raid to shake {PAWN_objective} now.</meaning>
     <journal>
       <plain>
-        <li>The alarm went today and my hands stayed still. I noticed that before I noticed the alarm.</li>
-        <li>Someone asked me how I keep so calm when they come. I don't know. It used to be different.</li>
+        <li>When the alarm goes now, my hands stay still. It used to be the shaking I noticed first.</li>
+        <li>Someone asked how I keep so calm when they come. I couldn't tell them. I wasn't always.</li>
         <li>I slept through the night after the last fight. A year ago I'd have been up till dawn.</li>
       </plain>
-      <warm><li>I've stood next to these people enough times now that I trust the ground under me. That's what it is.</li></warm>
+      <warm><li>I've stood next to these people enough times now that I trust the ground under me.</li></warm>
       <blunt><li>Fights don't rattle me anymore. Good.</li></blunt>
-      <cheerful><li>I caught myself whistling while I cleaned my weapon after the raid. Who is this person?</li></cheerful>
+      <cheerful><li>I whistled while I cleaned my weapon after the last fight. My hands used to shake too hard for that.</li></cheerful>
       <gloomy><li>I'm calm in a fight now. I suppose that's what happens when you've seen enough of them.</li></gloomy>
       <cold><li>Fear is less useful than I thought. I seem to have stopped spending it.</li></cold>
     </journal>
@@ -65,15 +65,15 @@
     <chance>0.1</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become {TRAIT}.</news>
-    <meaning>{PAWN_nameDef} was steady before; after holding the line again and again, very little reaches {PAWN_objective} at all.</meaning>
+    <meaning>Steady already, {PAWN_nameDef} has held the line so many times that very little reaches {PAWN_objective} now.</meaning>
     <journal>
       <plain>
-        <li>They hit the wall hard tonight. I counted shots and waited. It was almost peaceful.</li>
+        <li>In the last fight I counted their shots and waited for my moment. It was almost peaceful.</li>
         <li>The others look at me before they look at the raiders now. I keep my face still for them.</li>
       </plain>
-      <warm><li>When it gets loud, the young ones stand close to me. I won't move while they're there.</li></warm>
+      <warm><li>When it gets loud, the others stand close to me. I won't move while they're there.</li></warm>
       <blunt><li>I don't break. Not anymore.</li></blunt>
-      <cheerful><li>Raid this morning, stew this evening. Both handled.</li></cheerful>
+      <cheerful><li>A raid's one more job of work to me now, and I sleep fine after it.</li></cheerful>
       <gloomy><li>Nothing frightens me now. I'm not sure that's the gift people think it is.</li></gloomy>
       <cold><li>I have stopped feeling the fear before a fight. I note the change and keep working.</li></cold>
     </journal>
@@ -93,19 +93,19 @@
     <chance>0.12</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become {TRAIT}.</news>
-    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: too many frights have worn the steadiness out of {PAWN_objective}.</newsLost>
-    <meaning>Too many frights in too short a time: {PAWN_nameDef} startles easily now, and a bad day can tip {PAWN_objective} over.</meaning>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. Too many frights have worn the steadiness out of {PAWN_objective}.</newsLost>
+    <meaning>After too many frights too close together, {PAWN_nameDef} startles easily, and a bad day can tip {PAWN_objective} into a breakdown.</meaning>
     <journal>
       <plain>
         <li>A door banged in the wind and I was on the floor before I knew why.</li>
         <li>I don't sleep with my back to the door anymore. I don't sleep much at all.</li>
-        <li>Everyone else seems to forget the last raid after a few days. I'm still in it.</li>
+        <li>The others put a bad day behind them in a night or two. I carry mine around for weeks.</li>
       </plain>
       <warm><li>The others are patient with me when I jump at nothing. I wish I could be patient with myself.</li></warm>
-      <blunt><li>My nerves are shot. That's all there is to say.</li></blunt>
-      <cheerful><li>I've decided my new hobby is flinching. I'm getting very good at it.</li></cheerful>
+      <blunt><li>My nerves are shot. Don't make me talk about it.</li></blunt>
+      <cheerful><li>I jump at every bang now. I try to laugh about it, and some days I manage.</li></cheerful>
       <gloomy><li>Every noise is the next attack. One day one of them will be.</li></gloomy>
-      <cold><li>My reactions have become unreliable. I would not put myself on the wall.</li></cold>
+      <cold><li>My reactions have become unreliable. I would not trust myself in a fight.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
@@ -125,15 +125,15 @@
     <chance>0.08</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become {TRAIT}.</news>
-    <meaning>{PAWN_nameDef} was nervous before; after breaking under fire and the losses since, {PAWN_pronoun} is close to the edge most days.</meaning>
+    <meaning>Since breaking under fire, {PAWN_nameDef} has had no peace from {PAWN_possessive} nerves, and the smallest thing can set {PAWN_objective} off.</meaning>
     <journal>
       <plain>
-        <li>I shouted at the cook today over nothing. Over a spoon. I could hear myself and couldn't stop.</li>
+        <li>The smallest thing sets me off. A spoon in the wrong place. I can hear myself and I can't stop.</li>
         <li>Something in me is wound too tight. I can feel it humming when I try to sleep.</li>
       </plain>
-      <warm><li>I keep apologising to people. They keep saying it's all right. It isn't, and they're kind to say it.</li></warm>
+      <warm><li>I keep apologizing to people. They keep saying it's all right. It isn't, and they're kind to say it.</li></warm>
       <blunt><li>Leave me be for a while. I mean it.</li></blunt>
-      <cheerful><li>I'm told I'm "a lot" lately. Fair. I'd steer clear of me too.</li></cheerful>
+      <cheerful><li>I'm still me under all this snapping, I promise. I'm just harder to find.</li></cheerful>
       <gloomy><li>I can feel the next breakdown coming the way you feel weather in a bad knee.</li></gloomy>
       <cold><li>My temper has become a hazard. The others have started planning around it.</li></cold>
     </journal>
@@ -153,7 +153,7 @@
     <chance>0.12</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has softened from volatile to {TRAIT}.</news>
-    <meaning>Two years without a breakdown, and a reason to stay steady: {PAWN_nameDef} still frays, but no longer snaps.</meaning>
+    <meaning>Two years without a breakdown, and something worth staying steady for, have taken the snap out of {PAWN_nameDef}, though {PAWN_pronoun} still frays.</meaning>
     <journal>
       <plain>
         <li>I got angry today and then it passed, like weather. I stood there waiting for the rest of it and it didn't come.</li>
@@ -161,7 +161,7 @@
       </plain>
       <warm><li>I think having people who'd forgive me made it easier not to need forgiving so often.</li></warm>
       <blunt><li>I'm calmer. Took long enough.</li></blunt>
-      <cheerful><li>Two whole years and not one smashed bowl. Someone should carve me a medal. A small one.</li></cheerful>
+      <cheerful><li>Two whole years and not one smashed bowl. I'm prouder of that than of anything I've made.</li></cheerful>
       <gloomy><li>Calmer, they say. I still feel it. I just don't let it out.</li></gloomy>
       <cold><li>My outbursts have stopped. Peace suits my temperament better than I expected.</li></cold>
     </journal>
@@ -184,13 +184,13 @@
     <chance>0.1</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become a {TRAIT}.</news>
-    <newsLost>{PAWN_nameDef} is no longer an {TRAIT}: the graves of the last seasons took it out of {PAWN_objective}.</newsLost>
-    <meaning>After the graves of the last seasons, {PAWN_pronoun} expects the worst, and it weighs on {PAWN_possessive} mood every day.</meaning>
+    <newsLost>{PAWN_nameDef} is no longer an {TRAIT}. Too much has been lost these last seasons for {PAWN_objective} to keep looking on the bright side.</newsLost>
+    <meaning>After the losses of the last seasons, {PAWN_nameDef} expects the worst, and it drags on {PAWN_possessive} mood every day.</meaning>
     <journal>
       <plain>
-        <li>Planted the beans today and caught myself thinking about who won't be here to eat them.</li>
+        <li>Every time I plan ahead, I catch myself counting who won't be here for it.</li>
         <li>I used to wake up and wonder what the day would bring. Now I already know.</li>
-        <li>Walked past the graves on the way to the fields. There's a path worn there now.</li>
+        <li>I've stopped saying "next year" out loud. It feels like asking for trouble.</li>
       </plain>
       <warm><li>I love these people, and I've started bracing for losing each of them. I wish I could stop.</li></warm>
       <blunt><li>Good things end. Bad things come. That's the whole of it.</li></blunt>
@@ -216,14 +216,14 @@
     <chance>0.06</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become {TRAIT}.</news>
-    <meaning>{PAWN_nameDef} already expected the worst; after loss on loss {PAWN_pronoun} has sunk under it, and good days barely reach {PAWN_objective}.</meaning>
+    <meaning>Loss on loss has taken {PAWN_nameDef} from expecting the worst to sinking under it, and good days barely reach {PAWN_objective} now.</meaning>
     <journal>
       <plain>
         <li>Got up. Ate. Worked. Came back. I keep writing it down so I know the days happened.</li>
-        <li>They had a party tonight. I could hear it through the wall. I lay there and listened.</li>
+        <li>I hear the others laughing sometimes. I remember what that was like. I can't get back to it.</li>
       </plain>
-      <warm><li>Someone left flowers on my bed. I sat with them a long time. I couldn't feel anything about them and that frightened me.</li></warm>
-      <blunt><li>Everything's grey.</li></blunt>
+      <warm><li>People are kind to me, and I can see that they are. I just can't feel it, and that frightens me.</li></warm>
+      <blunt><li>Everything's gray.</li></blunt>
       <cheerful><li>I used to be the one who cheered people up. I remember how. I just can't find the start of it.</li></cheerful>
       <gloomy><li>I don't think I'll feel better. I think this is what I am now.</li></gloomy>
       <cold><li>The days have stopped meaning anything in particular. I continue them anyway.</li></cold>
@@ -246,17 +246,17 @@
     <chance>0.1</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become an {TRAIT}.</news>
-    <newsLost>{PAWN_nameDef} is no longer a {TRAIT}: a good stretch here has lifted {PAWN_objective}.</newsLost>
-    <meaning>A good stretch of life here has lifted {PAWN_objective}: {PAWN_pronoun} expects tomorrow to be all right, and it shows in {PAWN_possessive} mood.</meaning>
+    <newsLost>{PAWN_nameDef} is no longer a {TRAIT}. A good stretch here has lifted {PAWN_objective} out of it.</newsLost>
+    <meaning>After a good stretch of life here, {PAWN_nameDef} expects tomorrow to be all right, and it shows in {PAWN_possessive} mood every day.</meaning>
     <journal>
       <plain>
-        <li>Woke up before the bell and went out to see the sun come up over the fields. No reason. Just wanted to.</li>
+        <li>Caught myself looking forward to tomorrow. No reason. Just did.</li>
         <li>I've started making plans for next year. Real ones, with seeds and wood counted.</li>
         <li>Things are good. I keep waiting for the catch and it keeps not coming.</li>
       </plain>
-      <warm><li>I look around the table at supper and I'm grateful, every night. I didn't used to be like this.</li></warm>
+      <warm><li>I look around the table at supper and I'm grateful, every time. I didn't use to be like this.</li></warm>
       <blunt><li>Life's decent here. I'll say it.</li></blunt>
-      <cheerful><li>I hummed all the way through hauling today. Someone threw a turnip at me. Worth it.</li></cheerful>
+      <cheerful><li>Hummed my way through a whole day's hauling, and I'd gladly do it again tomorrow.</li></cheerful>
       <gloomy><li>I'm almost hopeful lately. Don't tell anyone.</li></gloomy>
       <cold><li>The odds here have improved. I find I enjoy that more than I expected to.</li></cold>
     </journal>
@@ -280,15 +280,15 @@
     <chance>0.07</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become {TRAIT}.</news>
-    <meaning>{PAWN_nameDef} was hopeful before; a long run of good years has made {PAWN_objective} hard to bring down at all.</meaning>
+    <meaning>A long run of good years has made {PAWN_nameDef}'s hope hard to shake, and bad days barely touch {PAWN_possessive} mood.</meaning>
     <journal>
       <plain>
-        <li>Rain all day. I went out in it anyway. It was lovely.</li>
-        <li>I've stopped keeping a list of what could go wrong. I keep one of what went right instead. It's longer.</li>
+        <li>Even a wet gray day looks lovely to me now.</li>
+        <li>I've stopped keeping a list of what could go wrong and started one of what went right.</li>
       </plain>
       <warm><li>Every face at this table is someone I'm glad of. I tell them so, and they roll their eyes, and I don't mind.</li></warm>
       <blunt><li>I'm happy. Get used to it.</li></blunt>
-      <cheerful><li>Burnt the porridge, laughed until I cried, ate it anyway. Best morning in ages.</li></cheerful>
+      <cheerful><li>Even my worst days have a good hour in them now, and I always find it.</li></cheerful>
       <gloomy><li>I keep trying to worry like I used to. It won't stick.</li></gloomy>
       <cold><li>My mood no longer tracks circumstances closely. A strange and convenient development.</li></cold>
     </journal>
@@ -310,15 +310,15 @@
     <chance>0.1</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} is no longer depressive, only a {TRAIT}.</news>
-    <meaning>The worst of it has lifted: {PAWN_nameDef} still expects little of the world, but good days reach {PAWN_objective} again.</meaning>
+    <meaning>The worst of it has lifted. {PAWN_nameDef} still expects little of the world, but good days reach {PAWN_objective} again.</meaning>
     <journal>
       <plain>
-        <li>I laughed today. Someone dropped a pie and I laughed, and then I had to sit down because I'd forgotten I could.</li>
-        <li>The grey is thinner lately. I can see shapes through it.</li>
+        <li>I laughed today, properly, and then had to sit down, because I'd forgotten I could.</li>
+        <li>The gray is thinner lately. I can see shapes through it.</li>
       </plain>
       <warm><li>They never gave up on me. I don't know how to repay that, but I'd like to be around long enough to try.</li></warm>
       <blunt><li>Better. Not good. Better.</li></blunt>
-      <cheerful><li>I had a second helping tonight because I wanted it. Small victories.</li></cheerful>
+      <cheerful><li>Wanted a second helping today, had one, and enjoyed every spoonful.</li></cheerful>
       <gloomy><li>It's lighter. I don't trust it yet, but it's lighter.</li></gloomy>
       <cold><li>The heaviness has receded somewhat. I will take the improvement without asking where it came from.</li></cold>
     </journal>
@@ -343,18 +343,18 @@
     <chance>0.08</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} works harder now ({TRAIT}).</news>
-    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: a long stretch of work that came out well has changed {PAWN_possessive} habits.</newsLost>
-    <meaning>Two seasons of barely stopping, and work {PAWN_pronoun} is proud of to show for it: {PAWN_pronoun} works faster now, and likes it.</meaning>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. A long stretch of work that came out well has changed {PAWN_possessive} habits.</newsLost>
+    <meaning>After a year of barely stopping, with work {PAWN_pronoun} can be proud of to show for it, {PAWN_nameDef} works faster now, and likes it.</meaning>
     <journal>
       <plain>
         <li>Finished early and started the next job before anyone could hand me one.</li>
         <li>I sat down for a break today and got up again after a minute. My hands wanted something to do.</li>
         <li>There's a rhythm to a long day now. I fall into it before breakfast.</li>
       </plain>
-      <warm><li>I like knowing the others can lean on me to get things done. It's a good feeling, being that person.</li></warm>
+      <warm><li>I like knowing the others can lean on me to get things done.</li></warm>
       <blunt><li>Work's there. I do it. Simple.</li></blunt>
-      <cheerful><li>I've started racing the sun to the end of each job. The sun's winning, but it's close.</li></cheerful>
-      <gloomy><li>If I stop working I start thinking. So I don't stop.</li></gloomy>
+      <cheerful><li>I race the sun to the end of every job now, and some days I win.</li></cheerful>
+      <gloomy><li>Work is the one thing here that comes out the way I meant it to.</li></gloomy>
       <cold><li>My output has improved considerably. Idle time no longer interests me.</li></cold>
     </journal>
   </ColonyCouncil.TraitChangeDef>
@@ -375,17 +375,17 @@
     <chance>0.08</chance>
     <tone>-1</tone>
     <news>{PAWN_nameDef} has become {TRAIT}.</news>
-    <newsLost>{PAWN_nameDef} is no longer {TRAIT}: two seasons with more leisure than work have slowed {PAWN_objective} down.</newsLost>
-    <meaning>Two seasons with more leisure than work have slowed {PAWN_objective} down: {PAWN_nameDef} works more slowly now.</meaning>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. Long hours at leisure, a year of them, have slowed {PAWN_objective} down.</newsLost>
+    <meaning>A year of long hours at leisure has taken the hurry out of {PAWN_nameDef}, and {PAWN_pronoun} works more slowly now.</meaning>
     <journal>
       <plain>
-        <li>Played horseshoes most of the afternoon. No one handed me a job, and I didn't go looking.</li>
-        <li>Started on the stockpile and then the sun was so nice. Tomorrow, then.</li>
+        <li>Took most of the afternoon to myself. No one handed me a job, and I didn't go looking.</li>
+        <li>Started on a job, sat down for a moment, and the moment got longer. Tomorrow, then.</li>
         <li>I've got very good at looking busy. It takes less effort than being busy.</li>
       </plain>
       <warm><li>There's no rush here anymore. I like that about us. Maybe I like it a bit too much.</li></warm>
       <blunt><li>Why hurry? It'll still be there.</li></blunt>
-      <cheerful><li>Took a nap in the hay today. Then a nap after the nap. Excellent day.</li></cheerful>
+      <cheerful><li>Had a nap today, then a nap after the nap. Excellent day.</li></cheerful>
       <gloomy><li>It's hard to care about the work when it never ends anyway.</li></gloomy>
       <cold><li>Effort has diminishing returns. I've adjusted mine accordingly.</li></cold>
     </journal>
@@ -407,17 +407,17 @@
     <chance>0.15</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef} has become a {TRAIT}.</news>
-    <newsLost>{PAWN_nameDef} no longer has a {TRAIT}: getting free of an addiction cured {PAWN_objective} of it.</newsLost>
-    <meaning>Having fought free of an addiction, {PAWN_nameDef} wants nothing more to do with drugs, and minds seeing others take them.</meaning>
+    <newsLost>{PAWN_nameDef} no longer has a {TRAIT}. Getting free of an addiction cured {PAWN_objective} of it.</newsLost>
+    <meaning>Having fought free of an addiction, {PAWN_nameDef} wants nothing more to do with drugs of any kind.</meaning>
     <journal>
       <plain>
-        <li>Someone offered me a drink at the party. I said no and it was easy. It didn't used to be.</li>
-        <li>I poured the last of my stash into the river. Watched it go.</li>
+        <li>If anyone offers me a drink now, the no comes easy. It never used to.</li>
+        <li>The clean days are adding up. I count them before I sleep.</li>
         <li>I remember the shakes. I'm not going back there. Not for anything.</li>
       </plain>
       <warm><li>I owe the people who sat with me through the worst of it. The least I can do is stay clean.</li></warm>
       <blunt><li>No more. Not a sip, not a puff. Done.</li></blunt>
-      <cheerful><li>Clear head, steady hands, and I remember every evening now. Highly recommended.</li></cheerful>
+      <cheerful><li>Clear head, steady hands, and I remember every evening now. I'd forgotten how good that feels.</li></cheerful>
       <gloomy><li>I still think about it sometimes. That's why I don't keep any near me.</li></gloomy>
       <cold><li>The chemical dependency was a weakness. I've removed it, and I intend to keep it removed.</li></cold>
     </journal>
@@ -437,15 +437,15 @@
     <chance>0.15</chance>
     <tone>1</tone>
     <news>{PAWN_nameDef}'s chemical fascination has eased to a {TRAIT}.</news>
-    <meaning>Fighting free of an addiction has cooled {PAWN_possessive} hunger for drugs: {PAWN_pronoun} still likes them, but no longer needs them close.</meaning>
+    <meaning>Fighting free of an addiction has cooled {PAWN_nameDef}'s hunger for drugs, and though {PAWN_pronoun} still likes them, {PAWN_pronoun} no longer needs them close.</meaning>
     <journal>
       <plain>
-        <li>I walked past the drug shelf today without stopping. Then I went back and looked, but I didn't take anything.</li>
+        <li>A whole day went by without me thinking about a dose. I only noticed at the end of it.</li>
         <li>I used to plan my day around the next dose. Now I plan it around work and supper, like everyone else.</li>
       </plain>
       <warm><li>The others kept me busy through the worst weeks. I think they knew exactly what they were doing.</li></warm>
       <blunt><li>I can take it or leave it now. Mostly leave it.</li></blunt>
-      <cheerful><li>I had one smoke at the party and then just danced. I remember the whole night. Novel.</li></cheerful>
+      <cheerful><li>I can have one now and stop at one. I remember whole evenings again.</li></cheerful>
       <gloomy><li>The want is quieter. It hasn't gone anywhere. I just hear it less.</li></gloomy>
       <cold><li>My cravings are manageable now. I find the control satisfying.</li></cold>
     </journal>
