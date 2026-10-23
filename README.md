@@ -804,7 +804,7 @@ the birds or remembers every birthday, and after a night in the cold or under th
 or goes out to watch the stars. Some bring a small knack while they last instead of a mood (slightly faster plant work,
 fewer food poisonings from that cook, animals tamed and trained more easily, a hummer's work a little quicker). Some change how someone speaks and answers: one speaks in proverbs, one laughs
 at the wrong moments, a worrier frets aloud at the council table and asks to keep watch, someone who writes
-everything down reads back what was said; others tell the little ones stories, are first to volunteer, have a soft
+everything down reads back what was said; others tell the old stories, are first to volunteer, have a soft
 spot for strays or sleep with a light burning after bad nights. Dilemmas and letters ask for them too: a worrier's
 watch, the colony's record kept by the one who writes everything down. 37 quirks in all. Picking one up and letting it
 fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a

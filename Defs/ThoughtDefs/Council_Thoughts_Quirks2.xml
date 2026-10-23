@@ -53,7 +53,7 @@
 
   <ThoughtDef ParentName="Council_QuirkBase">
     <defName>Council_Quirk_WalksTheWalls</defName>
-    <stages><li><label>checked the gate</label><description>I walk the walls before I sleep and check the gate twice. Then I can sleep.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+    <stages><li><label>checked the doors</label><description>I check every door before I sleep, twice. Then I can sleep.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_QuirkBase">
