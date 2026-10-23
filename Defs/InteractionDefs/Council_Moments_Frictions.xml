@@ -277,7 +277,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_possessive] snoring had kept [INITIATOR_objective] up [snorewhen].</li>
-        <li>r_logentry->[INITIATOR_nameDef] did an impression of [RECIPIENT_nameDef]'s snoring. [RECIPIENT_nameDef] said [RECIPIENT_pronoun] sounded nothing like that.</li>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression of [RECIPIENT_nameDef]'s snoring, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] sounded nothing like that.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to sleep on [RECIPIENT_possessive] side, or outside, or anywhere else.</li>
         <li>r_logentry->[INITIATOR_nameDef] had counted [RECIPIENT_nameDef]'s snores in the night, and told [RECIPIENT_objective] the number.</li>
         <li>snorewhen->most of the night</li>
@@ -286,9 +286,9 @@
         <li>snorewhen->through two separate dreams</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] snored like a saw going through a knot.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] knew [RECIPIENT_pronoun] snored, and how loudly.</li>
-        <li>r_logentry->[INITIATOR_nameDef] came to breakfast with bags under [INITIATOR_possessive] eyes and told [RECIPIENT_nameDef] exactly why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] pointed at the bags under [INITIATOR_possessive] eyes and told [RECIPIENT_nameDef] exactly who to thank for them.</li>
         <li>snorewhen->every time [INITIATOR_pronoun] was nearly asleep</li>
-        <li>r_logentry->[INITIATOR_nameDef] threw a sock at [RECIPIENT_nameDef] in the night to stop the snoring, and owned up to it in the morning.</li>
+        <li>r_logentry->[INITIATOR_nameDef] owned up to [RECIPIENT_nameDef] about the sock thrown in the night, and said it had been meant to stop the snoring.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -313,7 +313,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had [wakenoise] and woken [INITIATOR_objective] up.</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about being woken before dawn by someone hunting for [RECIPIENT_possessive] boots in the dark.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] could come to bed earlier, or at least with fewer bangs.</li>
-        <li>r_logentry->[INITIATOR_nameDef] grumbled at [RECIPIENT_nameDef] about the door, the floorboards and the whistling, all before sunrise.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that whistling at first light ought to be against the rules.</li>
         <li>wakenoise->dropped [RECIPIENT_possessive] boots twice getting up</li>
         <li>wakenoise->tripped over the same chair coming to bed</li>
         <li>wakenoise->hummed while getting dressed in the dark</li>
@@ -346,12 +346,12 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whose turn it was to take the bed by the drafty door.</li>
         <li>r_logentry->[INITIATOR_nameDef] accused [RECIPIENT_nameDef] of taking the warmest blanket, and [RECIPIENT_nameDef] did not deny it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to stop leaving the door open at night. [RECIPIENT_nameDef] said the room needed air.</li>
-        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about the cold coming off the wall by [INITIATOR_possessive] bed, and asked to swap. [RECIPIENT_nameDef] said no.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to stop leaving the door open at night, and [RECIPIENT_nameDef] said the room needed air.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about the cold coming off the wall by [INITIATOR_possessive] bed, and asked to swap, which [RECIPIENT_nameDef] would not.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about who had stuffed the gap under the door with whose shirt.</li>
-        <li>r_logentry->[INITIATOR_nameDef] dragged [INITIATOR_possessive] bed away from the cold wall and into [RECIPIENT_nameDef]'s space.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know why [RECIPIENT_nameDef]'s bed got the warm wall and [INITIATOR_possessive] own the cold one.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to close the shutters, and [RECIPIENT_nameDef] said they were already closed.</li>
-        <li>r_logentry->[INITIATOR_nameDef] hung a blanket over the door, and [RECIPIENT_nameDef] took it down again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted a blanket hung over the door, and [RECIPIENT_nameDef] said it would make the room smell.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -373,10 +373,10 @@
     <recipientThought>Council_Friction_LightsOut</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to put out the light. [RECIPIENT_nameDef] asked for five more minutes.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to put out the light, and [RECIPIENT_nameDef] asked for five more minutes.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] disagreed about [bedtimetopic].</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that some people had to get up in the morning.</li>
-        <li>r_logentry->[INITIATOR_nameDef] lay awake while [RECIPIENT_nameDef] [latenoise], and said so.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] couldn't sleep while [RECIPIENT_pronoun] [latenoise].</li>
         <li>bedtimetopic->when the light should go out</li>
         <li>bedtimetopic->whether talking in bed counts as noise</li>
         <li>bedtimetopic->how early is too early to go to bed</li>
@@ -386,10 +386,10 @@
         <li>latenoise->talked in [RECIPIENT_possessive] sleep</li>
         <li>latenoise->kept sighing</li>
         <li>r_logentry->[INITIATOR_nameDef] pulled the blanket over [INITIATOR_possessive] head and told [RECIPIENT_nameDef] to put out the light.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] whispered an argument about [bedtimetopic] until someone else told them both to be quiet.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued in whispers about [bedtimetopic].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how much longer [RECIPIENT_pronoun] meant to stay up.</li>
         <li>latenoise->read out the funny parts of a book to no one in particular</li>
-        <li>r_logentry->[INITIATOR_nameDef] blew out the candle while [RECIPIENT_nameDef] was still using it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] threatened to blow out the candle whether [RECIPIENT_nameDef] was finished or not.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>

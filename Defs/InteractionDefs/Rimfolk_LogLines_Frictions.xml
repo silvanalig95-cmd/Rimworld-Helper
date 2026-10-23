@@ -118,8 +118,8 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] could at least snore in a steady rhythm.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had snored [snorewhen], loud enough to rattle the shutters.</li>
         <li>r_logentry->[INITIATOR_nameDef] had stuffed wool in [INITIATOR_possessive] ears last night, and told [RECIPIENT_nameDef] it hadn't helped.</li>
-        <li>r_logentry->[INITIATOR_nameDef] dragged [INITIATOR_possessive] bedding to the far wall and told [RECIPIENT_nameDef] exactly why.</li>
-        <li>r_logentry->[INITIATOR_nameDef] woke [RECIPIENT_nameDef] in the night to say [RECIPIENT_pronoun] was snoring, and [RECIPIENT_nameDef] denied it half asleep.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] was moving [INITIATOR_possessive] bedding to the far wall, and exactly why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [INITIATOR_pronoun] had woken [RECIPIENT_objective] in the night about the snoring, and [RECIPIENT_nameDef] still denied it.</li>
         <li>snorewhen->until the birds started</li>
       </rulesStrings>
     </rulePack>
@@ -182,8 +182,8 @@
     <rulePack>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to grease the door hinge, or failing that, to stop using the door.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had [wakenoise], and that the whole room had heard it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] met [RECIPIENT_nameDef] at breakfast with a long yawn and a longer look.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know why [RECIPIENT_nameDef] had [wakenoise], and whether it would happen again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] yawned at [RECIPIENT_nameDef], long and pointedly, and said nothing else.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
