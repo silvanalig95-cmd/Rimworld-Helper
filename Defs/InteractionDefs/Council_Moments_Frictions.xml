@@ -386,7 +386,7 @@
         <li>latenoise->talked in [RECIPIENT_possessive] sleep</li>
         <li>latenoise->kept sighing</li>
         <li>r_logentry->[INITIATOR_nameDef] pulled the blanket over [INITIATOR_possessive] head and told [RECIPIENT_nameDef] to put out the light.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued in whispers about [bedtimetopic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued under their breath about [bedtimetopic].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how much longer [RECIPIENT_pronoun] meant to stay up.</li>
         <li>latenoise->read out the funny parts of a book to no one in particular</li>
         <li>r_logentry->[INITIATOR_nameDef] threatened to blow out the candle whether [RECIPIENT_nameDef] was finished or not.</li>

@@ -26,7 +26,7 @@
         <li>laugh->be heard across the valley</li>
         <li>laugh->scare the animals off their feed</li>
         <li>r_logentry->[INITIATOR_nameDef] covered [INITIATOR_possessive] ears, only half joking, when [RECIPIENT_nameDef] started to sing.</li>
-        <li>r_logentry->[INITIATOR_nameDef] begged [RECIPIENT_nameDef] to stop whistling, and not for the first time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] begged [RECIPIENT_nameDef] to stop whistling, again.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to tell the rest of the story some other time, preferably next year.</li>
       </rulesStrings>
     </logRulesInitiator>

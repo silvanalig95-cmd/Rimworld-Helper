@@ -268,7 +268,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each told how they came to the colony, to see whose was the stranger story.</li>
         <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to tell, in under a minute, a story about [contesttale].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to judge each other's stories by how hard the other laughed.</li>
-        <li>r_logentry->[INITIATOR_nameDef] gave every part a voice in [INITIATOR_possessive] story about [contesttale], and [RECIPIENT_nameDef] answered with a story told in a whisper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave every part a voice in [INITIATOR_possessive] story about [contesttale], and [RECIPIENT_nameDef] answered with one told so low that [INITIATOR_nameDef] had to lean in.</li>
         <li>r_logentry->[INITIATOR_nameDef] dared [RECIPIENT_nameDef] to make [INITIATOR_objective] [storygoal] with a story about [contesttale].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] retold the colony's own worst day as a legend, and argued over who got to be the hero.</li>
         <li>contesttale->a hermit who kept a bear as a lodger</li>
@@ -299,7 +299,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [workjoke], and they both had to stop work to laugh.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] planned a mock ceremony, with speeches, for the end of the dull job.</li>
-        <li>r_logentry->[INITIATOR_nameDef] described [RECIPIENT_nameDef]'s every move in a whisper, as if [RECIPIENT_pronoun] were a rare animal being watched.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described [RECIPIENT_nameDef]'s every move in a hushed voice, as if [RECIPIENT_pronoun] were a rare animal being watched.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] decided the job had a personality, and that it did not like them.</li>
         <li>r_logentry->[INITIATOR_nameDef] did [impression] until [RECIPIENT_nameDef] was too weak with laughing to lift anything.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] dared each other to keep a straight face about the job, and neither could.</li>
