@@ -175,7 +175,7 @@
         <li>Kept {NAME} today. Fewer words than last year, and better ones.</li>
       </plain>
       <warm>
-        <li>Everyone came for {NAME}, even the ones who don't believe a word of it.</li>
+        <li>They all came for {NAME}, even the ones who don't believe a word of it.</li>
         <li>Led the rite for {NAME} and held a few hands afterward.</li>
       </warm>
       <blunt>
@@ -284,7 +284,7 @@
     <lines>
       <plain>
         <li>One at a time, please.</li>
-        <li>No one leaves until this is sorted.</li>
+        <li>We're not leaving until this is sorted.</li>
       </plain>
       <warm>
         <li>I know you both mean well, underneath.</li>

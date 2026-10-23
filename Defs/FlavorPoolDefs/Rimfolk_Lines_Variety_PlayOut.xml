@@ -482,7 +482,7 @@
         <li>[repair] Anything that's cracked, we fix today.</li>
       </plain>
       <blunt>
-        <li>Everyone, now, no excuses.</li>
+        <li>All hands, now, no excuses.</li>
       </blunt>
       <cheerful>
         <li>Work party, I'll bring the songs!</li>
@@ -530,7 +530,7 @@
     <pool>Council_Journal_PlayWalkMissed</pool>
     <lines>
       <plain>
-        <li>We never got round to {NAME}. Everyone was busy, or said they were.</li>
+        <li>We never got round to {NAME}. They were all busy, or said they were.</li>
         <li>I waited by the gate for the others until the light changed, then walked back in.</li>
       </plain>
       <warm>
@@ -769,7 +769,7 @@
         <li>I was the only one who turned up, and I'm not surprised.</li>
       </gloomy>
       <cold>
-        <li>The work party didn't form. Everyone had a reason, none of them good.</li>
+        <li>The work party didn't form. They all had reasons, none of them good.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

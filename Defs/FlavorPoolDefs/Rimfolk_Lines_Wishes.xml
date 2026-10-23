@@ -159,7 +159,7 @@
     <reminder>
       <warm><li>I've been extra good, so can I have my lesson with {OTHER_nameDef} now?</li></warm>
       <blunt><li>Lesson. When?</li></blunt>
-      <gloomy><li>No one's said anything about my lesson, so I think they forgot.</li></gloomy>
+      <gloomy><li>Not a word about my lesson yet, so I think they forgot.</li></gloomy>
     </reminder>
     <expired>
       <warm><li>That's all right, {OTHER_nameDef} is busy, maybe when I'm bigger.</li></warm>
@@ -485,7 +485,7 @@
       <cold><li>{OTHER_nameDef} will recover, so the training wasn't wasted.</li></cold>
     </thanks>
     <expired>
-      <warm><li>No one came, so I did what I could for {OTHER_nameDef} and hoped it was enough.</li></warm>
+      <warm><li>I did what I could for {OTHER_nameDef} myself, and hoped it was enough.</li></warm>
       <blunt><li>No doctor came, so I bandaged {OTHER_nameDef} myself.</li></blunt>
       <gloomy><li>{OTHER_nameDef} waited, and no one came, and I'll remember that.</li></gloomy>
       <cold><li>If {OTHER_nameDef} dies of this, it was a choice the council made.</li></cold>
