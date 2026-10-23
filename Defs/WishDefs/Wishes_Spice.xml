@@ -106,7 +106,7 @@
     <ways><mercy>5</mercy></ways>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
-    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <talkInteraction>Council_Talk_Prisoner</talkInteraction>
     <objectionChance>0.5</objectionChance>
     <objectorTraits><li>Bloodlust</li><li>Psychopath</li></objectorTraits>
     <objectByOpinionOfOther>-1</objectByOpinionOfOther>

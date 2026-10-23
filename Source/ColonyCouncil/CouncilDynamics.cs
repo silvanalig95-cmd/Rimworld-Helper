@@ -555,7 +555,10 @@ namespace ColonyCouncil
             string line = w.Format(w.def.expired.Pick(tone, tags));
             if (w.promised)
             {
-                string broken = PoolLine("Council_Pool_BrokenPromise", w.pawn, w);
+                // The wish's own words for a promise broken (its [promised] lines) first, then the colony's general ones.
+                var own = w.def.expired.AllLines().Where(l => { var t = LineTags.Of(l)?.tags; return t != null && Array.IndexOf(t, "promised") >= 0; });
+                string ownLine = Flavor.PickTagged(own, tags);
+                string broken = !ownLine.NullOrEmpty() ? w.Format(ownLine) : PoolLine("Council_Pool_BrokenPromise", w.pawn, w);
                 if (!broken.NullOrEmpty()) line = broken;
             }
             if (line.NullOrEmpty()) line = "CC_ExpiredFallback".Translate();
@@ -906,7 +909,9 @@ namespace ColonyCouncil
                 if (years <= st.yearsMarked) continue;
                 st.yearsMarked = years;
                 string key = years == 1 ? "CC_Anniversary_One" : years >= 5 ? "CC_Anniversary_Old" : "CC_Anniversary_Many";
-                string line = Scene("Council_Pool_Anniversary", p, null);
+                // A first year has lines of its own ([firstyear]): it still feels new.
+                string raw = Flavor.FromPool("Council_Pool_Anniversary", p, null, null, years == 1 ? "firstyear" : null);
+                string line = raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN")).Resolve();
                 News.Post(key.Translate(p.Named("PAWN"), years.Named("YEARS")).Resolve() + (line != null ? " \"" + TextUtil.ShortSpeech(line, 120) + "\"" : ""),
                     new LookTargets(p), NewsKind.People, MessageTypeDefOf.PositiveEvent);
                 Speak(p, line, SpeechGood);

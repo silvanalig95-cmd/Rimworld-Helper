@@ -341,10 +341,9 @@ things stand:
   personality marks, trait changes and quirks were reread one at a time by writers working to
   `docs/briefs/text-pass.md`, and fixed where they contradicted the code. Along the way: speech shows whole lines
   that fit (SpeechMath.Shorten), journals go by the hour of their moment, unnamed beasts are "the warg", only joyful
-  rituals become feast talk. Still open from the writers' notes: a few wishes borrow talk that doesn't fit them (a
-  fountain, a sculpture or a guest bed on room talk; recruiting or freeing a prisoner on comfort talk; a council
-  meeting or a comms console on status talk), and promised wishes' lapse lines in the wish extensions never show
-  (CouncilDynamics swaps in the broken-promise pool). Things only told that could be played out on the map are
+  rituals become feast talk. The writers' notes since closed (0.11.1): wishes that borrowed talk that didn't fit them
+  have talk of their own (beauty, guests and neighbours, a prisoner, the council), a promised wish that lapses says its
+  own broken-promise line before the shared pool's, and a first anniversary's line can show. Things only told that could be played out on the map are
   listed for a later on-map round.
 - Done: a defense planner (Colony → Defenses). The council reads the map: the edges raiders can reach home from
   and the ways they walk (the easiest path from a sample of edge cells, doors costing extra), the narrow places on

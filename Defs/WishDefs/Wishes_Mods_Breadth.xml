@@ -164,7 +164,7 @@
     <ways><openness>3</openness><generosity>2</generosity></ways>
     <envy>0</envy>
     <template>Council_GuestRoom</template>
-    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <talkInteraction>Council_Talk_Neighbours</talkInteraction>
     <fulfilledWhen>A bed in the colony is set aside for guests.</fulfilledWhen>
     <request>
       <plain>

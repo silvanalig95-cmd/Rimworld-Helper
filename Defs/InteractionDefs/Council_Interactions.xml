@@ -292,6 +292,85 @@
   </InteractionDef>
 
   <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Beauty</defName>
+    <label>talked about making the colony beautiful</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the colony needed [beauty].</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] the spot where [beauty] would look best.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether a place could be safe and ugly at the same time, and decided it could.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] was tired of looking at nothing but walls and work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] imagined the yard with [beauty] in it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] argued to [RECIPIENT_nameDef] that people work better when there's [beauty] to look at.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that visitors remember a colony by [beauty], not by its stockpile.</li>
+        <li>beauty->something beautiful</li>
+        <li>beauty->a fountain splashing in the yard</li>
+        <li>beauty->a sculpture by the door</li>
+        <li>beauty->flowers along the paths</li>
+        <li>beauty->one thing made just to be looked at</li>
+        <li>beauty->a little color among the stone</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Neighbours</defName>
+    <label>talked about guests and neighbours</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the colony should be ready for [visitors].</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud to [RECIPIENT_nameDef] what [visitors] said about the colony when they left.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that the last guests had slept on the floor.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how anyone beyond the hills would even know the colony was here.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a colony with friends is a colony that gets help when it needs it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] tried to remember the names of the last travelers through.</li>
+        <li>visitors->guests</li>
+        <li>visitors->the next caravan</li>
+        <li>visitors->the neighbours</li>
+        <li>visitors->travelers passing through</li>
+        <li>visitors->people from beyond the hills</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Prisoner</defName>
+    <label>talked about a prisoner</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the prisoner deserved [chance].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had ever talked to the prisoner properly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] what the prisoner had said through the door that morning.</li>
+        <li>r_logentry->[INITIATOR_nameDef] argued with [RECIPIENT_nameDef] about what the colony owed the prisoner.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that keeping someone locked up forever was not who they were.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up when [INITIATOR_pronoun] spoke to the council about the prisoner.</li>
+        <li>chance->a second chance</li>
+        <li>chance->a place at the table</li>
+        <li>chance->better than a cell</li>
+        <li>chance->to go home</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
+    <defName>Council_Talk_Meeting</defName>
+    <label>talked about calling the council together</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] when the council had last sat down together.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that there was [business] the council should hear.</li>
+        <li>r_logentry->[INITIATOR_nameDef] listed for [RECIPIENT_nameDef] everything [INITIATOR_pronoun] meant to raise at the next meeting.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that decisions were being made in corridors instead of around the table.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] would come if the council were called.</li>
+        <li>business->a matter or two</li>
+        <li>business->things that can't wait</li>
+        <li>business->the season's troubles</li>
+        <li>business->what everyone is saying anyway</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_WishTalkBase">
     <defName>Council_Talk_Child</defName>
     <label>talked about what the children need</label>
     <logRulesInitiator>

@@ -315,7 +315,7 @@
     <grantedThought>Council_Granted_Meeting</grantedThought>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
-    <talkInteraction>Council_Talk_Status</talkInteraction>
+    <talkInteraction>Council_Talk_Meeting</talkInteraction>
     <fulfilledWhen>The council holds a meeting.</fulfilledWhen>
     <request>
       <plain>
@@ -920,7 +920,7 @@
     <allowPetition>true</allowPetition>
     <ways><openness>2</openness></ways>
     <envy>0</envy>
-    <talkInteraction>Council_Talk_Status</talkInteraction>
+    <talkInteraction>Council_Talk_Neighbours</talkInteraction>
     <fulfilledWhen>The colony has {THING}, or another comms console.</fulfilledWhen>
     <wants>
       <roles><li>comms</li></roles>

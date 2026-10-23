@@ -1146,7 +1146,7 @@
     <grantedThought>Council_Granted_Flowers</grantedThought>
     <allowPetition>true</allowPetition>
     <envy>0</envy>
-    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <talkInteraction>Council_Talk_Beauty</talkInteraction>
     <fulfilledWhen>At least {TARGET} decorative flowers are growing in the home area. Sow them in pots, flowerbeds or a growing zone.</fulfilledWhen>
     <wants>
       <count>10</count>
@@ -1493,7 +1493,7 @@
     <allowPetition>true</allowPetition>
     <inspirationChance>0.1</inspirationChance>
     <envy>0</envy>
-    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <talkInteraction>Council_Talk_Beauty</talkInteraction>
     <fulfilledWhen>The colony has {THING}, or any other fountain.</fulfilledWhen>
     <wants>
       <nameContains><li>fountain</li></nameContains>
@@ -1695,7 +1695,7 @@
     <allowPetition>true</allowPetition>
     <inspirationChance>0.1</inspirationChance>
     <envy>0</envy>
-    <talkInteraction>Council_Talk_Room</talkInteraction>
+    <talkInteraction>Council_Talk_Beauty</talkInteraction>
     <fulfilledWhen>The colony has {TARGET} sculptures or statues. Have an artist make {THING}, or buy one from a trader.</fulfilledWhen>
     <wants>
       <nameContains><li>sculpture</li><li>statue</li></nameContains>

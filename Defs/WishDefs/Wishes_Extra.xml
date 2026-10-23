@@ -289,7 +289,7 @@
     <grantedThought>Council_Granted_Recruit</grantedThought>
     <ways><mercy>2</mercy><openness>4</openness></ways>
     <envy>0</envy>
-    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <talkInteraction>Council_Talk_Prisoner</talkInteraction>
     <fulfilledWhen>{OTHER_nameDef} joins the colony.</fulfilledWhen>
     <request>
       <plain>
