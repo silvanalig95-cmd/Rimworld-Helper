@@ -40,7 +40,25 @@ namespace ColonyCouncil
         /// <summary>One who loves animals, or is bonded to a big one: a while brushing down a horse or another big animal.</summary>
         Groom,
         /// <summary>On a cold day: a while in the colony's sauna, warming through (Wishes/WishWorkers_Seasons.cs).</summary>
-        Sauna
+        Sauna,
+        /// <summary>One who can't stand a mess: a while tidying a room at home (Immersion/QuirkHabits.cs).</summary>
+        Tidy,
+        /// <summary>An early riser: out under the open sky at dawn, facing east.</summary>
+        Sunrise,
+        /// <summary>One who collects pretty stones: a while by a stone chunk or the rock face, by day.</summary>
+        Stones,
+        /// <summary>One who feeds the birds: a while out by a tree or on open ground, by day.</summary>
+        Birds,
+        /// <summary>One who is always whittling: a while in a chair with a knife and a bit of wood.</summary>
+        Whittle,
+        /// <summary>One who sharpens every blade: a while in a chair with a whetstone.</summary>
+        Whetstone,
+        /// <summary>One who knows every trail: a while just outside the colony, watching the tree line.</summary>
+        TreeLine,
+        /// <summary>Steady hands: a while at the bedside of someone in a sickbed.</summary>
+        Patient,
+        /// <summary>One who remembers every birthday: they seek out whoever has one today.</summary>
+        Birthday
     }
 
     /// <summary>On a small habit's JobDef: which habit it is, what's said on arriving, and whether they chat with whoever is near.</summary>
@@ -50,6 +68,8 @@ namespace ColonyCouncil
         /// <summary>The flavour pool of the line said on arriving ({OTHER} is whom it's about: the dead, the friend who left).</summary>
         public string pool;
         public bool social;
+        /// <summary>The quirk whose moment this is: arriving lives it, for one who has it (Quirks/Quirks.cs, Notify_Lived).</summary>
+        public QuirkDef quirk;
     }
 
     /// <summary>
@@ -58,7 +78,7 @@ namespace ColonyCouncil
     /// looking out; a convalescent takes slow walks; after a hard fight, those who fought sit round the fire if one is lit;
     /// someone whose friend left talks about them with whoever is free; and after the first snow, children go out to build
     /// snowmen. Six more come from the heart's feelings and quirks (<see cref="MoreHabits"/>): stars, plants, animals,
-    /// the stores, company and old stories by the fire.
+    /// the stores, company and old stories by the fire; and nine more are the moments of quirks (<see cref="QuirkHabits"/>).
     /// </summary>
     /// <remarks>
     /// Each is a joy giver (Defs/Misc/Rimfolk_SmallHabits.xml), so it only ever comes up when the game itself looks for
@@ -109,10 +129,15 @@ namespace ColonyCouncil
                 case HabitKind.Animals:
                 case HabitKind.Herd:
                 case HabitKind.Groom:
+                case HabitKind.Tidy:
+                case HabitKind.Patient:
                 case HabitKind.Company: return GenDate.TicksPerDay / 2;
                 case HabitKind.Fire:
                 case HabitKind.Plants:
                 case HabitKind.Sauna:
+                case HabitKind.Birds:
+                case HabitKind.Whittle:
+                case HabitKind.Whetstone:
                 case HabitKind.Stories: return GenDate.TicksPerDay * 3 / 5;
                 default: return GenDate.TicksPerDay;
             }
@@ -265,6 +290,23 @@ namespace ColonyCouncil
             return IntVec3.Invalid;
         }
 
+        /// <summary>
+        /// A spot just outside the colony, under the open sky and near enough to walk to, and the cell a few steps further
+        /// out to face (away from the colony's middle). Invalid when there's none.
+        /// </summary>
+        public static IntVec3 LookOutSpot(Pawn p, out IntVec3 face)
+        {
+            face = IntVec3.Invalid;
+            var map = p.Map;
+            if (!RCellFinder.TryFindRandomSpotJustOutsideColony(p, out var c)) return IntVec3.Invalid;
+            if (!c.InHorDistOf(p.Position, 70f) || c.Roofed(map) || !PlaySpots.Ok(c, map, p)) return IntVec3.Invalid;
+            var center = TemplatePlanner.ColonyCenter(map);
+            var away = (c - center).ToVector3();
+            if (away.sqrMagnitude < 1f) away = new Vector3(0f, 0f, 1f);
+            face = (c.ToVector3Shifted() + away.normalized * 6f).ToIntVec3().ClampInsideMap(map);
+            return c;
+        }
+
         /// <summary>Someone nearby with time to listen: at their leisure or idle, awake and able to talk; one who knew the friend first.</summary>
         public static Pawn ListenerFor(Pawn p, Pawn friend)
         {
@@ -321,10 +363,12 @@ namespace ColonyCouncil
             string line = Flavor.FromPool(ext.pool, p, null, null, tags.ToArray());
             if (line.NullOrEmpty()) return;
             line = line.Formatted(p.Named("PAWN"), (about ?? p).Named("OTHER")).Resolve();
-            // together: keeping someone company, the line is said to them through Speech.Say, which shows it only when
-            // the two are really together; the other habits' lines are about someone absent (the dead, a friend gone) or
-            // said to an animal or to nobody.
-            bool said = ext.kind == HabitKind.Company && about != null ? Speech.Say(p, line, about, SpeechColor) : Speech.Say(p, line, null, SpeechColor);
+            // together: keeping someone company or wishing them a happy birthday, the line is said to them through
+            // Speech.Say, which shows it only when the two are really together; the other habits' lines are about someone
+            // absent (the dead, a friend gone), said at a bedside (the patient may not be up to an answer), or said to an
+            // animal or to nobody.
+            bool to = about != null && (ext.kind == HabitKind.Company || ext.kind == HabitKind.Birthday);
+            bool said = to ? Speech.Say(p, line, about, SpeechColor) : Speech.Say(p, line, null, SpeechColor);
             if (said) vt.Spoke(p, now + GenDate.TicksPerDay / 2);
         }
     }
@@ -396,14 +440,9 @@ namespace ColonyCouncil
 
         protected override Job Give(Pawn p)
         {
-            var map = p.Map;
-            if (!JoyUtility.EnjoyableOutsideNow(p) || !RCellFinder.TryFindRandomSpotJustOutsideColony(p, out var c)) return null;
-            if (!c.InHorDistOf(p.Position, 70f) || c.Roofed(map) || !PlaySpots.Ok(c, map, p)) return null;
-            var center = TemplatePlanner.ColonyCenter(map);
-            var away = (c - center).ToVector3();
-            if (away.sqrMagnitude < 1f) away = new Vector3(0f, 0f, 1f);
-            var face = (c.ToVector3Shifted() + away.normalized * 6f).ToIntVec3().ClampInsideMap(map);
-            return Make(c, face, new IntRange(1500, 2400));
+            if (!JoyUtility.EnjoyableOutsideNow(p)) return null;
+            var c = SmallHabits.LookOutSpot(p, out var face);
+            return c.IsValid ? Make(c, face, new IntRange(1500, 2400)) : null;
         }
     }
 
@@ -489,6 +528,8 @@ namespace ColonyCouncil
         private int stayed;
         /// <summary>Whom it's about, by name, for the report (the dead, the friend who left).</summary>
         private string about;
+        /// <summary>How much filth a tidy one has wiped up this while.</summary>
+        private int tidied;
 
         private HabitExtension Ext => job.def.GetModExtension<HabitExtension>();
 
@@ -497,11 +538,18 @@ namespace ColonyCouncil
         /// <summary>Whom they keep company, or the animal they sit with: they stand beside them, on a cell of their own.</summary>
         private Pawn Partner => job.targetB.Thing as Pawn;
 
+        /// <summary>Whittling or sharpening a blade: sitting in a chair (target A is the chair's cell, B the chair).</summary>
+        private bool Seated => Ext?.kind == HabitKind.Whittle || Ext?.kind == HabitKind.Whetstone;
+
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
             // The spot by the grave or the fire is theirs while they stay, so whoever comes next stands beside them.
             if (!job.targetA.HasThing && job.targetA.IsValid && pawn.Map != null)
+            {
+                // The chair they whittle in too, so nobody else sits down in it meanwhile.
+                if (Seated && !pawn.ReserveSittableOrSpot(job.targetA.Cell, job, errorOnFailed)) return false;
                 pawn.Map.pawnDestinationReservationManager.Reserve(pawn, job, job.targetA.Cell);
+            }
             return true;
         }
 
@@ -527,6 +575,8 @@ namespace ColonyCouncil
                 case HabitKind.Remember: return SmallHabits.FriendWhoLeft(pawn);
                 case HabitKind.Animals:
                 case HabitKind.Groom:
+                case HabitKind.Patient:
+                case HabitKind.Birthday:
                 case HabitKind.Company: return Partner;
                 default: return null;
             }
@@ -537,7 +587,7 @@ namespace ColonyCouncil
             var ext = Ext;
             // Whom it's about may be unknown (a grave whose body was moved): then the job's own words.
             bool needsName = ext?.kind == HabitKind.Grave || ext?.kind == HabitKind.Remember || ext?.kind == HabitKind.Animals || ext?.kind == HabitKind.Company
-                             || ext?.kind == HabitKind.Groom;
+                             || ext?.kind == HabitKind.Groom || ext?.kind == HabitKind.Patient || ext?.kind == HabitKind.Birthday;
             if (ext != null && !(needsName && about.NullOrEmpty()))
             {
                 string key = "CC_Habit_Report_" + ext.kind;
@@ -557,8 +607,9 @@ namespace ColonyCouncil
             }
             if (job.targetB.HasThing) this.FailOnDespawnedOrNull(TargetIndex.B);
             if (ext?.kind == HabitKind.Fire || ext?.kind == HabitKind.Stories) this.FailOn(() => !Lit(job.targetB.Thing));
-            if (ext?.kind == HabitKind.Company) this.FailOn(() => !MoreHabits.StillCompany(Partner));
+            if (ext?.kind == HabitKind.Company || ext?.kind == HabitKind.Birthday) this.FailOn(() => !MoreHabits.StillCompany(Partner));
             if (ext?.kind == HabitKind.Animals || ext?.kind == HabitKind.Groom) this.FailOn(() => !MoreHabits.Calm(Partner));
+            if (ext?.kind == HabitKind.Patient) this.FailOn(() => !QuirkHabits.StillPatient(Partner));
             if (job.targetA.HasThing) yield return Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
             else yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             var stay = ToilMaker.MakeToil("SmallHabit");
@@ -591,6 +642,11 @@ namespace ColonyCouncil
                     pawn.interactions?.TryInteractWith(Partner, InteractionDefOf.Chitchat);
                 // In the sauna: warmed through, and a word with whoever else is in there.
                 if (ext.kind == HabitKind.Sauna) Sauna.Arrived(pawn);
+                // At a bedside, or with a birthday wish: the one they came to is glad of it.
+                if (ext.kind == HabitKind.Patient) QuirkHabits.LookedIn(pawn, Partner);
+                if (ext.kind == HabitKind.Birthday) QuirkHabits.Remembered(pawn, Partner);
+                // Their quirk's moment, lived: the habit stays with them a while longer.
+                if (ext.quirk != null && MoreHabits.HasQuirk(pawn, ext.quirk)) CouncilGameComponent.Instance?.quirks?.Notify_Lived(pawn, ext.quirk);
                 SmallHabits.Say(pawn, ext, subject);
             }
             catch (Exception e)
@@ -623,11 +679,16 @@ namespace ColonyCouncil
                 }
                 pawn.rotationTracker.FaceTarget(Partner);
             }
+            // In a chair: the way the chair faces.
+            else if (Seated && job.targetB.Thing is Building seat) pawn.rotationTracker.FaceCell(seat.Position + seat.Rotation.FacingCell);
             else if (job.targetB.IsValid) pawn.rotationTracker.FaceCell(job.targetB.Cell);
             if (Ext?.kind == HabitKind.Grave && job.targetB.HasThing)
                 VisualTouches.Candle(pawn.Map, job.targetB.Thing.Position, Find.TickManager.TicksGame + 300);
             // Brushing an animal down is handling practice too, a little.
             if (Ext?.kind == HabitKind.Groom) AnimalHabits.Practice(pawn, Partner, delta);
+            // Tidying: a bit of the mess at their feet wiped up now and then, the game's own way, a few times at most.
+            if (Ext?.kind == HabitKind.Tidy && tidied < QuirkHabits.MaxTidied && stayed / QuirkHabits.TidyTicks != (stayed - delta) / QuirkHabits.TidyTicks
+                && QuirkHabits.WipeNear(pawn)) tidied++;
             if (pawn.needs?.joy != null) JoyUtility.JoyTickCheckEnd(pawn, delta, JoyTickFullJoyAction.EndJob);
         }
 
@@ -636,6 +697,7 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Values.Look(ref stayed, "stayed");
             Scribe_Values.Look(ref about, "about");
+            Scribe_Values.Look(ref tidied, "tidied");
         }
     }
 }

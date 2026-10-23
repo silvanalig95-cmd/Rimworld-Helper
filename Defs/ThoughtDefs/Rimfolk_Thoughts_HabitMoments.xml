@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What two of the quirks' small habits leave with the other one (Source/ColonyCouncil/Immersion/QuirkHabits.cs): a
+    patient someone with steady hands looked in on, and someone whose birthday was remembered, face to face.
+  -->
+
+  <!-- Awake in a sickbed, and someone came to the bedside. Held once; a second visit only renews it. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Habit_LookedInOn</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>someone looked in on me</label><description>Someone came by my bed to see how I was getting on, and straightened the blanket before they left.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- A happy birthday wished by someone who remembered it: once from each of them. -->
+  <ThoughtDef>
+    <defName>Council_Habit_BirthdayRemembered</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>remembered my birthday</label><description>They came to find me today just to wish me a happy birthday. I hadn't told anyone.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

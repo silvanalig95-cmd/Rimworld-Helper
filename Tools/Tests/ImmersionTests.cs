@@ -18,7 +18,12 @@ public static class ImmersionTests
         "Council_Pool_SayHeatWave", "Council_Pool_SayColdSnap", "Council_Pool_SayStorm", "Council_Pool_HabitGrave", "Council_Pool_HabitLookOut",
         "Council_Pool_HabitFire", "Council_Pool_HabitRemember", "Council_Pool_HabitStars", "Council_Pool_HabitPlants", "Council_Pool_HabitAnimals",
         "Council_Pool_HabitStores", "Council_Pool_HabitCompany", "Council_Pool_HabitStories", "Council_Pool_SayDream", "Council_Pool_TouchCampComing",
-        "Council_Pool_TouchCouncilWedding", "Council_Pool_GuestSays"
+        "Council_Pool_TouchCouncilWedding", "Council_Pool_GuestSays",
+        // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).
+        "Council_Pool_HabitTidy", "Council_Pool_HabitSunrise", "Council_Pool_HabitStones", "Council_Pool_HabitBirds", "Council_Pool_HabitWhittle",
+        "Council_Pool_HabitWhetstone", "Council_Pool_HabitTreeLine", "Council_Pool_HabitPatient", "Council_Pool_HabitBirthday",
+        "Council_Pool_BubbleHums", "Council_Pool_BubbleStove", "Council_Pool_BubbleSleepTalk", "Council_Pool_BubbleBestBite", "Council_Pool_BubbleMeasure",
+        "Council_Pool_BubbleHaul", "Council_Pool_BubbleLateHours", "Council_Pool_BubbleFidgets"
     };
 
     private static readonly string[] JournalPools =

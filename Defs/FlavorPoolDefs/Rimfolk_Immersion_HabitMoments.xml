@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines said over a head (one sentence each, 90 characters at most) for the quirks' habits. First, what's said on
+    arriving at the nine small habits that are a quirk's moment (Source/ColonyCouncil/Immersion/QuirkHabits.cs): {OTHER}
+    is whom it's about (the patient, the one with a birthday), with [partner], [kin], [young] and [guest] as in the
+    other habits' pools. Then the bubbles of the habits without a moment of their own
+    (Source/ColonyCouncil/Immersion/HabitBubbles.cs), said now and then while the habit fits what they're doing.
+    Said only with speech showing (Immersion/Speech.cs), by someone in view.
+  -->
+
+  <!-- ===================== A quirk's moment, on arriving ===================== -->
+
+  <!-- One who can't stand a mess, by the mess in a room at home. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitTidy</defName>
+    <lines>
+      <plain>
+        <li>Who walks mud across here and doesn't see it?</li>
+        <li>There, that's one corner I can stop looking at.</li>
+        <li>Somebody's been eating standing up again.</li>
+        <li>[winter] Snow off the boots at the door, that's all I ask.</li>
+        <li>I'll just get this bit, then I'll sit down.</li>
+      </plain>
+      <warm><li>A clean floor for them to come home to.</li></warm>
+      <blunt><li>Mess again, and I know whose.</li></blunt>
+      <gloomy><li>It'll be dirty again by supper.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- An early riser, out under the open sky at dawn. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitSunrise</defName>
+    <lines>
+      <plain>
+        <li>There it comes, right where it should.</li>
+        <li>Best part of the day, and the rest of them asleep for it.</li>
+        <li>[winter] Late again this morning, the sun.</li>
+        <li>[summer] Up before me today, the sun.</li>
+        <li>Red sky this morning, so rain by evening.</li>
+      </plain>
+      <warm><li>I'll have something warm going before the others wake.</li></warm>
+      <gloomy><li>Another day, whether I'm ready for it or not.</li></gloomy>
+      <cold><li>Light enough to work by soon.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who collects pretty stones, by a stone chunk or the rock face. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitStones</defName>
+    <lines>
+      <plain>
+        <li>There's always one worth keeping if you look long enough.</li>
+        <li>This one's got a white stripe right through it.</li>
+        <li>[rain] They shine when they're wet, that's the trick.</li>
+        <li>Too gray, too plain, ah, now that one.</li>
+        <li>[child] This one's going in my best pile.</li>
+      </plain>
+      <warm><li>I'll find one for whoever's had a bad week.</li></warm>
+      <blunt><li>Found it first, so it's mine.</li></blunt>
+      <gloomy><li>Just rocks, really, but they're my rocks.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who feeds the birds, by a tree or on open ground. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitBirds</defName>
+    <lines>
+      <plain>
+        <li>Come on then, I know you're up there.</li>
+        <li>Same three as yesterday, and a new one.</li>
+        <li>[winter] Hard times for you lot in this cold.</li>
+        <li>[spring] Building nests already, are you?</li>
+        <li>Come closer, I won't bite.</li>
+      </plain>
+      <warm><li>There you are, little one, I saved you a crust.</li></warm>
+      <cheerful><li>The fat one's back, and he's brought a friend!</li></cheerful>
+      <gloomy><li>At least you lot are always glad to see me.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who is always whittling, sitting down to it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitWhittle</defName>
+    <lines>
+      <plain>
+        <li>Let's see what's hiding in this one.</li>
+        <li>It wants to be a bird, I think.</li>
+        <li>Thin shavings, slow, that's the way.</li>
+        <li>[child] I'm making a horse, it's got three legs so far.</li>
+        <li>Mind your feet, there's shavings everywhere.</li>
+      </plain>
+      <warm><li>This one's for whoever wants it when it's done.</li></warm>
+      <blunt><li>Don't talk, I'm carving.</li></blunt>
+      <cheerful><li>A spoon, or a duck, we'll see which!</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who sharpens every blade, sitting down with the whetstone. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitWhetstone</defName>
+    <lines>
+      <plain>
+        <li>Hear that sound, that's a proper edge coming.</li>
+        <li>Somebody's been opening crates with this knife again.</li>
+        <li>Twenty strokes a side, no fewer.</li>
+        <li>Dull as a spoon, this one.</li>
+        <li>[lowtech] Water on the stone, and patience.</li>
+      </plain>
+      <blunt><li>A dull blade is a dangerous blade.</li></blunt>
+      <cold><li>Same angle every stroke, that's all there is to it.</li></cold>
+      <gloomy><li>It'll need doing again after the next fight.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who knows every trail, just outside the colony, looking out. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitTreeLine</defName>
+    <lines>
+      <plain>
+        <li>Deer came through there last night, see the gap?</li>
+        <li>Quiet out there, the good kind of quiet.</li>
+        <li>[winter] Fox tracks along the edge, fresh ones.</li>
+        <li>Birds are loud by the ridge, so nothing big is moving.</li>
+        <li>That trail's grown over since I last walked it.</li>
+      </plain>
+      <warm><li>I like knowing what's out there.</li></warm>
+      <blunt><li>Nothing moving, good.</li></blunt>
+      <gloomy><li>Something in there is always watching back.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Steady hands, at a bedside ({OTHER} is the patient). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitPatient</defName>
+    <lines>
+      <plain>
+        <li>How are you feeling, {OTHER_nameDef}?</li>
+        <li>Let's have a look at that dressing.</li>
+        <li>Still warm, but better than yesterday.</li>
+        <li>You're mending faster than you think.</li>
+        <li>Drink some water, then try to sleep.</li>
+      </plain>
+      <warm><li>I'll sit a while, if you'd like the company.</li></warm>
+      <blunt><li>Stay in that bed, {OTHER_nameDef}.</li></blunt>
+      <cheerful><li>You'll be up and about before you know it!</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who remembers every birthday, to the one who has one today ({OTHER}). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitBirthday</defName>
+    <lines>
+      <plain>
+        <li>Happy birthday, {OTHER_nameDef}.</li>
+        <li>Another year, {OTHER_nameDef}, and none the worse for it.</li>
+        <li>[young] Look how tall you've got this year.</li>
+        <li>[partner] Happy birthday, love.</li>
+        <li>I didn't forget, {OTHER_nameDef}, I never do.</li>
+      </plain>
+      <warm><li>Happy birthday, {OTHER_nameDef}, we're lucky to have you.</li></warm>
+      <blunt><li>It's your birthday, so happy birthday.</li></blunt>
+      <cheerful><li>Happy birthday, {OTHER_nameDef}, I've been waiting all day to say it!</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Habits that show over a head ===================== -->
+
+  <!-- Hums while working: at any work. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleHums</defName>
+    <lines>
+      <plain>
+        <li>Hm hm hmm, hm hm…</li>
+        <li>Dum de dum, de dum…</li>
+        <li>Hmm hm, hmm hm, hmmm…</li>
+        <li>La la, la la la…</li>
+        <li>Da da dum, da dum…</li>
+        <li>Dee dum, dee dum, dee dee dum…</li>
+        <li>Mm hm hm, mm hm…</li>
+        <li>[winter] Hm hm, brr, hm hm…</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Sings at the stove: while cooking, snatches of song. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleStove</defName>
+    <lines>
+      <plain>
+        <li>Oh the barley's in the field and the river's running high…</li>
+        <li>Stir it slow and stir it round, the best stew's never rushed…</li>
+        <li>Onions in the pot, my love, onions in the pot…</li>
+        <li>Salt for the sorrow and pepper for the cold…</li>
+        <li>Down by the mill where the water turns the wheel…</li>
+        <li>[winter] Snow upon the roof and a fire down below…</li>
+        <li>Three good turnips and a bone, that's a supper fit for kings…</li>
+        <li>Bake it brown and bake it high, la la la…</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Talks in their sleep: asleep at night, mumbling. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleSleepTalk</defName>
+    <lines>
+      <plain>
+        <li>Mm, not the blue one…</li>
+        <li>Five sacks, no, six…</li>
+        <li>Mmph, tell Fen to shut the gate…</li>
+        <li>No, the other way, the other way…</li>
+        <li>Mm, not yet, not yet…</li>
+        <li>Zzz, mm, potatoes…</li>
+        <li>Who's there, mm, oh, it's you…</li>
+        <li>Mmh, put it back where you found it…</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Saves the best bite for last: while eating. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleBestBite</defName>
+    <lines>
+      <plain>
+        <li>And I'm saving that bit for last.</li>
+        <li>Don't even look at that piece, it's spoken for.</li>
+        <li>The crust first, then the good part.</li>
+        <li>[child] The soft bit's last, that's the rule.</li>
+        <li>Nearly there, and the best bit still waiting.</li>
+      </plain>
+      <warm><li>Best bite last, that's how my mother did it.</li></warm>
+      <blunt><li>Hands off the last bite.</li></blunt>
+      <cheerful><li>Here it comes, the best bite of the day!</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Measures twice: at construction. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleMeasure</defName>
+    <lines>
+      <plain>
+        <li>Measure twice, cut once.</li>
+        <li>Hang on, let me check that line again.</li>
+        <li>A finger off is a finger too many.</li>
+        <li>Square, level, and once more to be sure.</li>
+        <li>That's a hair off true, I'll redo it.</li>
+        <li>[lowtech] String's taut, peg's in, now check it again.</li>
+        <li>Now the other way round, to be certain.</li>
+        <li>I don't rush a wall, it stands longer for it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Carries more than they should: at hauling. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleHaul</defName>
+    <lines>
+      <plain>
+        <li>I can take one more on top.</li>
+        <li>Two at once saves a trip.</li>
+        <li>Hup, and the other one.</li>
+        <li>My back will thank me later, or it won't.</li>
+        <li>Stack it higher, I've got it.</li>
+        <li>Heavy load coming through, mind your toes!</li>
+        <li>[winter] Warm work, this, at least.</li>
+        <li>Easy, easy, nearly there.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Keeps late hours: awake and busy after eleven at night. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleLateHours</defName>
+    <lines>
+      <plain>
+        <li>Quiet as anything, this time of night.</li>
+        <li>Everyone's asleep, so I can hear myself think.</li>
+        <li>[winter] Frost on everything out there already.</li>
+        <li>Just me and the night shift.</li>
+        <li>I'll sleep when this is done.</li>
+        <li>The best work gets done after midnight.</li>
+        <li>Somebody's snoring loud enough to wake the dead.</li>
+        <li>I'll finish this, then I'll think about bed.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Can't sit still: awake in a sickbed. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleFidgets</defName>
+    <lines>
+      <plain>
+        <li>How long do I have to lie here?</li>
+        <li>I could at least sort the seeds from here.</li>
+        <li>My legs want to go for a walk without me.</li>
+        <li>If I count the ceiling cracks again I'll scream.</li>
+        <li>Can't someone bring me something to do?</li>
+        <li>I'm fine, really, I could get up now.</li>
+        <li>Lying still is harder than a day's work.</li>
+        <li>[child] I'm bored, bored, bored.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
