@@ -12,7 +12,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>heard about the old days</label><description>They told me how this place looked before the walls went up, with a name for every corner of it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>heard about the old days</label><description>They told me how this place looked when they first came, with a name for every corner of it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.05</joy><feelings><li>Nostalgia</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -22,7 +22,7 @@
     <durationDays>3</durationDays>
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>remembered the old days</label><description>We sat on the bench by the wall and talked about the old days, aches and all, and names no one else here would know.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+    <stages><li><label>remembered the old days</label><description>We talked about the old days, aches and all, and names no one else here would know.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>5</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.06</joy><feelings><li>Nostalgia</li><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 

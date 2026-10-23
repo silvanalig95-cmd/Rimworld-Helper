@@ -238,7 +238,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_SocA_ShownTheAnimals</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>shown how to handle the animals</label><description>I spent the day at the pens learning the animals' names and how to come up on one without spooking it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>shown how to handle the animals</label><description>They taught me the animals' names and how to come up on one without spooking it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skill>Animals</skill><xp>250</xp></li></modExtensions>
   </ThoughtDef>
 
