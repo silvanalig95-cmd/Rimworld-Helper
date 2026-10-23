@@ -14,7 +14,7 @@
     <lines>
       <plain>
         <li>I had {NAME} marked on the calendar for weeks. Today I got to watch it kept properly, every bench where it should be.</li>
-        <li>Organised {NAME} today. Counted the plates twice and still came up one short. Nobody noticed but me.</li>
+        <li>Organized {NAME} today. Counted the plates twice and still came up one short, so I ate off a board.</li>
         <li>It's my job to remember what {NAME} means. Today I got to watch everyone else remember it too.</li>
         <li>Up before dawn to get {NAME} ready. By supper it looked as if it had arranged itself, which is the idea.</li>
         <li>[lowtech] Walked round the whole settlement this morning telling people it was {NAME}. Most of them knew already. I told them anyway.</li>
@@ -23,7 +23,7 @@
         <li>Watching everyone sit down together for {NAME} was worth every hour I spent getting it ready.</li>
       </warm>
       <blunt>
-        <li>{NAME}. Organised it. Went well.</li>
+        <li>{NAME}. Organized it. Went well.</li>
       </blunt>
       <cheerful>
         <li>{NAME}! I've been looking forward to it since the last one, and this one was better.</li>
@@ -42,22 +42,22 @@
     <defName>Council_Pool_Interplay_PeacemakerSteps</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} stepped in between {A_nameDef} and {B_nameDef} before their words got any sharper, and sent them off to different ends of the colony.</li>
-        <li>{A_nameDef} and {B_nameDef} were at it again until {PAWN_nameDef} put a hand on each of their shoulders. It blew over sooner than usual.</li>
-        <li>{PAWN_nameDef} heard {A_nameDef} and {B_nameDef} raising their voices and came over with two cups of something hot. The argument didn't outlast the cups.</li>
-        <li>{PAWN_nameDef} made {A_nameDef} and {B_nameDef} each say what was really bothering them. It turned out to be smaller than the shouting.</li>
+        <li>{PAWN_nameDef} stepped in between {A_nameDef} and {B_nameDef} before their words got any sharper.</li>
+        <li>{PAWN_nameDef} put a hand on {A_nameDef}'s shoulder and one on {B_nameDef}'s, and the quarrel went no further.</li>
+        <li>{PAWN_nameDef} heard {A_nameDef} and {B_nameDef} raising their voices and made them both sit down before another word was said.</li>
+        <li>{PAWN_nameDef} had {A_nameDef} and {B_nameDef} each say what was really bothering them, one at a time.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} talked {A_nameDef} and {B_nameDef} down from a quarrel, gently, without taking either side.</li>
+        <li>{PAWN_nameDef} talked {A_nameDef} and {B_nameDef} down from a quarrel without taking either side.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to stop. They stopped.</li>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to stop, and they did.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} broke up a spat between {A_nameDef} and {B_nameDef} by making them both laugh, which neither of them wanted to do.</li>
+        <li>{PAWN_nameDef} broke up a spat between {A_nameDef} and {B_nameDef} by getting them both to laugh.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} got between {A_nameDef} and {B_nameDef} again. A peacemaker's work is never done, {PAWN_pronoun} says.</li>
+        <li>{PAWN_nameDef} got between {A_nameDef} and {B_nameDef} again, and told them both {PAWN_pronoun} was tired of doing it.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} separated {A_nameDef} and {B_nameDef} and heard each of them out in turn.</li>
@@ -71,18 +71,18 @@
     <lines>
       <plain>
         <li>Enough. Both of you, sit down.</li>
-        <li>Say it to me first. Then decide if it's worth saying to each other.</li>
+        <li>Say it to me first, then see if it's worth saying to each other.</li>
         <li>This isn't worth a grudge.</li>
         <li>Breathe. Then talk.</li>
       </plain>
       <warm>
-        <li>Come on, you two. You're better than this.</li>
+        <li>Come on, you two, sit down and have a cup with me.</li>
       </warm>
       <blunt>
         <li>Stop. Now.</li>
       </blunt>
       <cheerful>
-        <li>Who wants something hot to drink? Everyone does.</li>
+        <li>Who wants something hot to drink, you two?</li>
       </cheerful>
       <gloomy>
         <li>Again? Really?</li>
@@ -101,7 +101,7 @@
         <li>{OTHER_nameDef} came by on the morning rounds, looked at the healing and said "better". I'll take it.</li>
         <li>{OTHER_nameDef} asked how I was sleeping and wrote the answer down. It's a strange comfort, being written down.</li>
         <li>{OTHER_nameDef} made me walk to the door and back while {OTHER_pronoun} watched. Further than yesterday.</li>
-        <li>{OTHER_nameDef} says another few days of taking it slowly. I asked about work. {OTHER_nameDef} pretended not to hear.</li>
+        <li>{OTHER_nameDef} says another few days of taking it slowly. I asked about work and got a look.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} sat with me a while on the rounds. I think I mend faster when someone is paying attention.</li>
@@ -110,7 +110,7 @@
         <li>Rounds. {OTHER_nameDef} says I'm mending.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} says I'm the best patient on the rounds! I'm also the only one awake for them.</li>
+        <li>{OTHER_nameDef} says I'm healing nicely! I showed off how far I can bend my arm now.</li>
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} keeps telling me I'm getting better. I keep waiting to feel it.</li>
@@ -126,9 +126,9 @@
     <defName>Council_Pool_Interplay_ReeveDelivered</defName>
     <lines>
       <plain>
-        <li>Their carts came for everything on the list, and it was all there, counted and stacked. {PLACE} will be ready before the weather turns.</li>
-        <li>Saw the last of the load onto the carts from {PLACE} today. I knew where every sack was, because I put it there.</li>
-        <li>The goods went to {PLACE} today, all of them. The fields gave us enough to spare. That's the whole of the job.</li>
+        <li>Everything on the list for {PLACE} was there, counted and stacked for their people. They'll be ready before the weather turns.</li>
+        <li>The order for {PLACE} is filled. I knew where every sack of it was, because I put it there.</li>
+        <li>All of {PLACE}'s order, filled to the last bundle. We had enough to spare, this time.</li>
       </plain>
       <warm>
         <li>I hope they sleep easier in {PLACE} tonight. We sent them everything they asked for.</li>
@@ -137,7 +137,7 @@
         <li>The order for {PLACE}. All of it. Done.</li>
       </blunt>
       <cheerful>
-        <li>Every last sack, on time! The drivers from {PLACE} were very impressed with my stacking.</li>
+        <li>Every last sack for {PLACE}, on time! I stacked it so neatly it seemed a shame to let it go.</li>
       </cheerful>
       <gloomy>
         <li>Sent {PLACE} what they needed. I hope we don't need it ourselves come winter.</li>
@@ -153,18 +153,18 @@
     <defName>Council_Pool_Interplay_HerdmasterComforts</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef}, who keeps the colony's animals, helped {OTHER_nameDef} bury {PET_nameDef}, and had a story about the animal that {OTHER_nameDef} had never heard.</li>
-        <li>{PAWN_nameDef} sat with {OTHER_nameDef} by the pens that evening. Neither of them said much. {PET_nameDef}'s place in the straw was still warm.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had as good a life as any animal could have here, and meant it.</li>
+        <li>{PAWN_nameDef}, who keeps the colony's animals, told {OTHER_nameDef} a story about {PET_nameDef} that {OTHER_nameDef} had never heard.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} a while after {PET_nameDef} died, and neither of them said much.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had a good life here, better than most animals get.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} came to find {OTHER_nameDef} as soon as {PAWN_pronoun} heard about {PET_nameDef}, and stayed until it was dark.</li>
+        <li>{PAWN_nameDef} came looking for {OTHER_nameDef} as soon as {PAWN_pronoun} heard about {PET_nameDef}.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} dug the grave for {PET_nameDef} with {OTHER_nameDef}. Didn't need to be asked.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} and said {PET_nameDef} was a good animal, which from {PAWN_objective} is high praise.</li>
       </blunt>
       <cold>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} plainly that nothing could have been done for {PET_nameDef}. It seemed to help.</li>
+        <li>{PAWN_nameDef} was plain with {OTHER_nameDef}: nothing could have been done for {PET_nameDef}.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -174,12 +174,12 @@
     <defName>Council_Pool_Interplay_HerdmasterMinded</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} came home to find {PET_nameDef} fed, brushed and fatter than before. {PAWN_nameDef} had been looking after it.</li>
-        <li>{PAWN_nameDef} kept an eye on {PET_nameDef} while {OTHER_nameDef} was away, and handed it back with a list of everything it had got up to.</li>
-        <li>{PET_nameDef} ran to meet {OTHER_nameDef} at the edge of the colony. {PAWN_nameDef} says it waited by the door every evening.</li>
+        <li>{OTHER_nameDef} heard that {PAWN_nameDef} had fed and brushed {PET_nameDef} every day while {OTHER_nameDef} was away.</li>
+        <li>{PAWN_nameDef} had a long list for {OTHER_nameDef} of everything {PET_nameDef} got up to while {OTHER_nameDef} was away.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} waited by the door every evening while {OTHER_nameDef} was gone.</li>
       </plain>
       <cheerful>
-        <li>{PAWN_nameDef} says {PET_nameDef} behaved perfectly while {OTHER_nameDef} was away. {PET_nameDef} looks as if that isn't the whole story.</li>
+        <li>{PAWN_nameDef} swore to {OTHER_nameDef} that {PET_nameDef} behaved perfectly the whole time {OTHER_nameDef} was away.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -195,7 +195,7 @@
         <li>[lowtech] After the fight {PAWN_nameDef} passed a waterskin down the line and named each of them, one by one, for what they had done.</li>
       </plain>
       <blunt>
-        <li>{PAWN_nameDef} checked on every fighter after the battle. Short words. They helped.</li>
+        <li>{PAWN_nameDef} checked on every fighter after the battle, a few short words for each.</li>
       </blunt>
       <cold>
         <li>{PAWN_nameDef} went over the fight with each of those who stood in it: what went well, what to do next time.</li>
@@ -211,7 +211,7 @@
     <lines>
       <plain>
         <li>They kept {NAME} today. I couldn't face it. I sat on my bed and listened to them through the wall.</li>
-        <li>Everyone went to {NAME}. Nobody made me go, and I was grateful for that.</li>
+        <li>They all went to {NAME} and didn't push me to come. I was grateful for that.</li>
         <li>I'm not ready for feasts. Maybe next year.</li>
         <li>Someone brought me a plate from {NAME} and left it by the door without a word.</li>
       </plain>
@@ -239,12 +239,12 @@
     <lines>
       <plain>
         <li>{PET_nameDef} wouldn't leave {PAWN_nameDef}'s side all afternoon, and {PAWN_nameDef} didn't want it to.</li>
-        <li>{PAWN_nameDef} spent an hour with {PET_nameDef}, saying nothing at all, and came back a little steadier.</li>
+        <li>{PAWN_nameDef} spent an hour with {PET_nameDef}, saying nothing at all, and was steadier for it.</li>
         <li>{PET_nameDef} found {PAWN_nameDef} sitting alone and lay down across {PAWN_possessive} feet.</li>
-        <li>Grief is quieter with an animal leaning against you, {PAWN_nameDef} says. {PET_nameDef} has been doing a lot of leaning.</li>
+        <li>{PET_nameDef} has taken to leaning against {PAWN_nameDef}'s legs wherever {PAWN_nameDef} sits.</li>
       </plain>
       <cold>
-        <li>{PAWN_nameDef} has been spending time with {PET_nameDef}, who asks no questions, which is the point.</li>
+        <li>{PAWN_nameDef} has been spending time with {PET_nameDef}, who asks no questions.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -255,11 +255,11 @@
     <lines>
       <plain>
         <li>Still not strong, but they found me a seat near the middle and I stayed to the end. Better medicine than the bed.</li>
-        <li>First gathering since I took ill. I sat the whole time and nobody minded.</li>
+        <li>First gathering since I took ill. I sat the whole time, and people came to me.</li>
         <li>They brought the food to me so I didn't have to stand. I laughed more than I have in weeks.</li>
       </plain>
       <warm>
-        <li>Everyone came over to my chair at some point. I felt like the guest of honour, which I suppose I was.</li>
+        <li>They all came over to my chair at some point. I felt like the guest of honor.</li>
       </warm>
       <blunt>
         <li>Went to the gathering. Sat. Good.</li>
@@ -290,15 +290,15 @@
         <li>[day] {NAME} helped more than I expected. For an evening the rest of it went quiet.</li>
         <li>[day] We kept {NAME} together, and somewhere in the middle of it I stopped feeling so far from everyone.</li>
         <li>[day] I almost didn't go to {NAME}. I'm glad I did.</li>
-        <li>[favour] {FACTION} came back to repay what we once did for them. Kindness comes round after all. I needed to see that.</li>
-        <li>[favour] An envoy from {FACTION}, to settle an old debt. It made me think the world isn't as cold as I'd decided.</li>
+        <li>[favour] {FACTION} came to repay what we once did for them. I'd stopped expecting that from anyone.</li>
+        <li>[favour] {FACTION} settled an old debt with us today. Maybe the world isn't as cold as I'd decided.</li>
         <li>[camp] {NAME} has gone on with the camp. We talked most nights by their fire. I feel more like myself for it.</li>
-        <li>[camp] I'll miss {NAME}. Strange, how a stranger can say exactly what you needed to hear.</li>
+        <li>[camp] I'll miss {NAME}, who said the right thing to me at the right time.</li>
         <li>[recovered] Back on my feet properly today. Lying in bed I had a lot of time to think. Now I can do something about it.</li>
         <li>[recovered] Strong again. Being laid up made a few things clearer.</li>
       </plain>
       <warm>
-        <li>[day] Everyone together for {NAME}. I needed that more than I knew.</li>
+        <li>[day] All of us at one table for {NAME}. I needed that.</li>
         <li>[recovered] Everyone was so kind while I was ill. I mean to pay it back, starting now.</li>
         <li>[camp] I hope {NAME}'s road is a kind one. {NAME} was kind to me.</li>
       </warm>
@@ -317,7 +317,7 @@
         <li>[recovered] Well again. I suppose that's something.</li>
       </gloomy>
       <cold>
-        <li>[favour] {FACTION} honoured their debt. That is worth noting.</li>
+        <li>[favour] {FACTION} honored their debt. That is worth noting.</li>
         <li>[camp] {NAME} was good company. The conversations were useful.</li>
       </cold>
     </lines>
@@ -330,22 +330,22 @@
     <defName>Council_Pool_Interplay_MeetingSecret</defName>
     <lines>
       <plain>
-        <li>Some of us have more to answer for than others. Isn't that right, {OTHER_nameDef}?</li>
+        <li>Some of us have more to answer for than others, isn't that right, {OTHER_nameDef}?</li>
         <li>I'd trust that idea more if everyone at this table were honest about where they come from.</li>
         <li>{OTHER_nameDef} knows exactly what I mean.</li>
         <li>Funny who talks loudest about trust.</li>
       </plain>
       <warm>
-        <li>I won't say it here, {OTHER_nameDef}. But you should.</li>
+        <li>I won't say it here, {OTHER_nameDef}, but you should.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} should tell them. Not me.</li>
+        <li>{OTHER_nameDef} should be the one to tell them, not me.</li>
       </blunt>
       <cheerful>
-        <li>Shall we all say one true thing about ourselves? {OTHER_nameDef} can go first.</li>
+        <li>Let's all say one true thing about ourselves, and {OTHER_nameDef} can go first!</li>
       </cheerful>
       <gloomy>
-        <li>Everyone here has something they aren't saying. Some more than others.</li>
+        <li>We all keep things from this table, some more than most.</li>
       </gloomy>
       <cold>
         <li>Before we vote, perhaps {OTHER_nameDef} has something to tell the council.</li>
