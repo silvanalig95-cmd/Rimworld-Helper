@@ -227,7 +227,8 @@ namespace ColonyCouncil
                 if (with != null && S.colonistMoments)
                 {
                     string said = Interplay.Line("Council_Pool_PW_Congratulate", with, Tags(p), trainer.Named("OTHER"), p.Named("PET"), oldKind.Named("OLD"), newKind.Named("NEW"));
-                    if (!said.NullOrEmpty()) Speech.Logged(with, trainer, said);
+                    // Said to the trainer, over their head; the log keeps moments told about people, not their words.
+                    if (!said.NullOrEmpty()) Speech.Say(with, said, trainer);
                 }
             }
         }

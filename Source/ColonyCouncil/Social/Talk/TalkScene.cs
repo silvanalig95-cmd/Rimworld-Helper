@@ -123,7 +123,8 @@ namespace ColonyCouncil
             {
                 if (c?.def != null && TalkHooks.IsDisaster(c.def))
                 {
-                    disaster = c.LabelCap;
+                    // Said in a sentence ("we'll get through the cold snap"): lower case, with its article.
+                    disaster = Find.ActiveLanguageWorker.WithDefiniteArticle(c.Label);
                     break;
                 }
             }

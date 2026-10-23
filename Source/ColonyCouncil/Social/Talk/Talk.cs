@@ -512,7 +512,8 @@ namespace ColonyCouncil
             string label = FightNames.Spoken(c.memory?.label ?? "");
             string subject = FightNames.Spoken(c.subject?.name ?? "");
             string topic = About(c.topic, c.subject) ?? "";
-            return raw.Formatted(speaker.Named("PAWN"), listener.Named("OTHER"), subject.Named("SUBJECT"), label.Named("LABEL"), topic.Named("TOPIC")).Resolve();
+            // A subject may be a lower-case name ("cold snap") and open the line.
+            return raw.Formatted(speaker.Named("PAWN"), listener.Named("OTHER"), subject.Named("SUBJECT"), label.Named("LABEL"), topic.Named("TOPIC")).Resolve().CapitalizeFirst();
         }
 
         private static (string line, TalkLinesDef pool) PickLine(List<TalkLinesDef> specific, List<TalkLinesDef> generic, Tone tone, HashSet<string> tags, bool hasSubject, bool hasLabel)
