@@ -14,7 +14,7 @@
         <li>Do you remember {LABEL}?</li>
         <li>I was thinking about {LABEL} today.</li>
         <li>Funny, I dreamt about {LABEL} last night.</li>
-        <li>Remember {LABEL}? Feels like years ago now.</li>
+        <li>It feels like years since {LABEL}, doesn't it?</li>
         <li>[bad] I keep thinking about {LABEL}.</li>
         <li>[good] Thinking about {LABEL} always cheers me up.</li>
         <li>[mixed] Strange, how {LABEL} feels now.</li>
@@ -44,7 +44,7 @@
         <li>[first] I didn't know you thought about it too.</li>
         <li>[good] I go back to that one when I can't sleep.</li>
         <li>[bad] I try not to think about it, but I do.</li>
-        <li>[mixed] It was awful and wonderful at once, wasn't it.</li>
+        <li>[mixed] It was awful and wonderful both, wasn't it.</li>
       </plain>
       <warm>
         <li>I couldn't have had better company for it.</li>
@@ -691,7 +691,7 @@
         <li>I'd hate to lose you over something like {LABEL} again.</li>
       </warm>
       <cheerful>
-        <li>Remember {LABEL}? We were both ridiculous.</li>
+        <li>We were both ridiculous over {LABEL}, remember?</li>
       </cheerful>
       <gloomy>
         <li>I thought we'd never speak again, after {LABEL}.</li>

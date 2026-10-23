@@ -80,7 +80,7 @@
         <li>[agree,for,sameideo] We're lucky to have each other in it.</li>
         <li>[agree,against] I've wondered the same, more than once.</li>
         <li>[debate,against] I'm glad it helps you, but it doesn't help me.</li>
-        <li>[debate,against,otherideo] We'll have to see whose turns out right.</li>
+        <li>[debate,against,otherideo] We'll have to see whose faith holds up.</li>
         <li>[debate,for] Doubt is part of faith, my teacher used to say.</li>
         <li>[debate,for,otherideo] Our ways are different, but I think we want the same things.</li>
         <li>[argue,against] You'd believe anything you were told.</li>
@@ -90,7 +90,7 @@
         <li>[agree,against] Praying never fed anyone.</li>
         <li>[debate,for] Faith isn't something you prove.</li>
         <li>[debate,against] I respect it, I just can't feel it.</li>
-        <li>[argue,for] One bad winter and you'll be praying with the rest of us.</li>
+        <li>[argue,for] One bad winter and you'll be praying alongside me.</li>
         <li>[argue,against] Blind faith is still blind.</li>
         <li>[agree,against] I've stopped expecting answers.</li>
         <li>[argue,for] Have some respect, at least.</li>
@@ -301,7 +301,7 @@
         <li>[mixed] Some of it I like, and some of it looks like a pile of rocks.</li>
         <li>[for] I put a flower by my bed, and it changed the whole room.</li>
         <li>[for] We should make this place beautiful, not just safe.</li>
-        <li>[for,subject] Have you ever watched {SUBJECT} work? It's like magic.</li>
+        <li>[for,subject] Watching {SUBJECT} work is like watching magic.</li>
         <li>[against] I don't see the point of a statue when the roof leaks.</li>
         <li>[against] People spend days on art and then nobody looks at it.</li>
         <li>[against,isartist] I'm not sure my work is worth the stone it's made of.</li>
