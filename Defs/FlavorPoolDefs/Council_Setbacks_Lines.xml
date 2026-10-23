@@ -16,13 +16,13 @@
       <plain>
         <li>That was my {THING}.</li>
         <li>Days of work on that {THING}, and look at it.</li>
-        <li>I'll build it again. Not today.</li>
+        <li>I'll build it again, only not today.</li>
         <li>That took me the better part of a week.</li>
         <li>I can still see where I fixed the joint.</li>
         <li>[afterraid] They came all this way to break that?</li>
       </plain>
       <warm>
-        <li>At least nobody was standing next to it.</li>
+        <li>At least none of us was standing under it.</li>
       </warm>
       <blunt>
         <li>Who's paying for my {THING}?</li>
@@ -36,7 +36,7 @@
         <li>I knew that {THING} wouldn't last.</li>
       </gloomy>
       <cold>
-        <li>Note the damage. I'll want the materials to rebuild.</li>
+        <li>Note the damage, because I'll want the materials to rebuild.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -53,20 +53,20 @@
         <li>Back to the seed sacks, then.</li>
       </plain>
       <warm>
-        <li>We'll sow again. The soil's still good.</li>
+        <li>We'll sow again; the soil's still good.</li>
       </warm>
       <blunt>
-        <li>Lost the {THING}. Again.</li>
+        <li>Lost the {THING} again.</li>
       </blunt>
       <cheerful>
-        <li>Next year's {THING} will be twice the size. You'll see.</li>
+        <li>Next year's {THING} will be twice the size, you'll see.</li>
       </cheerful>
       <gloomy>
         <li>We'll be hungry for this later.</li>
         <li>Weeks of weeding, for nothing.</li>
       </gloomy>
       <cold>
-        <li>Count what's left. We'll need to buy food.</li>
+        <li>Count what's left, because we'll need to buy food.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -76,23 +76,23 @@
     <lines>
       <plain>
         <li>I'm sorry. I'm so sorry.</li>
-        <li>My hand slipped. It shouldn't have.</li>
+        <li>My hand slipped, and it shouldn't have.</li>
         <li>Somebody else should look at {OTHER_nameDef} next time.</li>
         <li>I need to sit down.</li>
-        <li>I did everything right. I thought I did.</li>
+        <li>I did everything right, or I thought I did.</li>
         <li>Fetch someone steadier than me.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef}, I'll make this right. I promise.</li>
+        <li>{OTHER_nameDef}, I'll make this right, I promise.</li>
       </warm>
       <blunt>
-        <li>That went wrong. My fault.</li>
+        <li>That went wrong, and it's my fault.</li>
       </blunt>
       <gloomy>
         <li>I shouldn't be the one holding the knife.</li>
       </gloomy>
       <cold>
-        <li>A complication. It happens.</li>
+        <li>A complication, and they happen.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -101,25 +101,25 @@
     <defName>Council_Pool_Setback_IdeaPassed</defName>
     <lines>
       <plain>
-        <li>So it's {AMBITION}, then. Fine.</li>
-        <li>I still think {MINE} was the better plan.</li>
+        <li>So it's "{AMBITION}", then.</li>
+        <li>I still think "{MINE}" was the better plan.</li>
         <li>Next meeting, I'm bringing it up again.</li>
         <li>I thought I'd made my case.</li>
         <li>Half of them weren't listening anyway.</li>
-        <li>We'll see how {AMBITION} goes.</li>
+        <li>We'll see how "{AMBITION}" goes.</li>
       </plain>
       <warm>
-        <li>{AMBITION} it is. I'll help, even so.</li>
+        <li>Fine, "{AMBITION}" it is, and I'll still help.</li>
       </warm>
       <blunt>
-        <li>Wrong choice. You'll see.</li>
+        <li>Wrong choice, you'll see.</li>
         <li>Why do I bother standing up at these things?</li>
       </blunt>
       <cheerful>
-        <li>Next time, {MINE}. I can wait!</li>
+        <li>Next time it'll be "{MINE}", I can wait!</li>
       </cheerful>
       <gloomy>
-        <li>Nobody ever listens to me at these meetings.</li>
+        <li>I might as well talk to the wall at these meetings.</li>
       </gloomy>
       <cold>
         <li>Noted. I won't forget who voted how.</li>
@@ -134,7 +134,7 @@
         <li>Is there really nothing left?</li>
         <li>Some feast. I got the smell of it.</li>
         <li>Next time I'm going to the table first.</li>
-        <li>Someone ate two. I saw it.</li>
+        <li>Someone ate two, I saw it.</li>
         <li>I set the tables and got nothing.</li>
         <li>Bread and water at a feast.</li>
       </plain>
@@ -142,7 +142,7 @@
         <li>Empty pot. Wonderful.</li>
       </blunt>
       <cheerful>
-        <li>I'll just eat the crumbs, then. Very festive.</li>
+        <li>Crumbs for me, then, very festive!</li>
       </cheerful>
       <gloomy>
         <li>Of course it ran out before I got there.</li>
@@ -162,7 +162,7 @@
         <li>[child] Can we go inside now?</li>
       </plain>
       <cheerful>
-        <li>Dancing in the rain! Well, standing in it.</li>
+        <li>Dancing in the rain, or standing in it, anyway!</li>
       </cheerful>
       <gloomy>
         <li>Even the sky didn't want this to happen.</li>
@@ -182,10 +182,10 @@
         <li>The {THING} I built is gone. I went to look at the spot this evening. There isn't much left.</li>
         <li>Somebody asked me if I'd rebuild the {THING}. I said yes. I didn't mean it yet.</li>
         <li>Picked through what was left of my {THING}. Kept one piece.</li>
-        <li>All that work on the {THING}, and it came down in a morning.</li>
+        <li>All that work on the {THING}, and it came down in moments.</li>
       </plain>
       <warm>
-        <li>Lost the {THING} today. Everyone's alive, so I'm trying to keep it in proportion.</li>
+        <li>Lost the {THING} today. We're all alive, so I'm trying to keep it in proportion.</li>
       </warm>
       <blunt>
         <li>The {THING} is wrecked. I'm furious.</li>
@@ -210,7 +210,7 @@
         <li>We'll have to sow the {THING} again. If there's still time.</li>
       </plain>
       <warm>
-        <li>Lost the {THING}. We'll manage. We always do.</li>
+        <li>Lost the {THING}. There's seed left, at least.</li>
       </warm>
       <blunt>
         <li>Lost the {THING} to {SUBJECT}. {COUNT} plants.</li>
@@ -252,21 +252,21 @@
     <defName>Council_Journal_Setback_IdeaPassed</defName>
     <lines>
       <plain>
-        <li>The council went with {AMBITION}. I argued for {MINE}. I still think I was right.</li>
-        <li>Lost at the meeting. {MINE} will have to wait.</li>
-        <li>They chose {AMBITION}. I'll do my share of it, but I won't pretend I'm pleased.</li>
+        <li>The council went with "{AMBITION}". I argued for "{MINE}", and I still think I was right.</li>
+        <li>Lost at the meeting. "{MINE}" will have to wait.</li>
+        <li>They chose "{AMBITION}". I'll do my share of it, but I won't pretend I'm pleased.</li>
       </plain>
       <warm>
-        <li>{AMBITION} won. It's a good idea too, I suppose. Mine was better.</li>
+        <li>The vote went to "{AMBITION}". It's a good idea too, I suppose. Mine was better.</li>
       </warm>
       <blunt>
-        <li>Turned down: {MINE}. Again.</li>
+        <li>Turned down again: "{MINE}".</li>
       </blunt>
       <gloomy>
         <li>I don't know why I stand up at those meetings.</li>
       </gloomy>
       <cold>
-        <li>They turned down {MINE}. I'll bring it back when they've seen {AMBITION} fail.</li>
+        <li>They turned down "{MINE}". I'll bring it back when they've seen "{AMBITION}" fail.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -295,7 +295,7 @@
     <defName>Council_Journal_Setback_Outshone</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} is better at {SKILL} than I am now. Everyone noticed before I did.</li>
+        <li>{OTHER_nameDef} is better at {SKILL} than I am now. The others noticed before I did.</li>
         <li>I used to be the one they asked about {SKILL}. Now they ask {OTHER_nameDef}.</li>
         <li>Watched {OTHER_nameDef} work today. It was good. I hated that it was good.</li>
       </plain>
@@ -309,7 +309,7 @@
         <li>I was the best at {SKILL} here. Not any more.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} has overtaken me at {SKILL}. I'll practise until that changes.</li>
+        <li>{OTHER_nameDef} has overtaken me at {SKILL}. I'll practice until that changes.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -329,7 +329,7 @@
         <li>{OTHER_nameDef} and I are done being close, apparently.</li>
       </blunt>
       <gloomy>
-        <li>Friends drift. {OTHER_nameDef} has drifted a long way.</li>
+        <li>{OTHER_nameDef} used to save me a seat at supper. Not lately.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} and I no longer have much to say to each other. It's simpler.</li>
@@ -480,7 +480,7 @@
     <defName>Council_Journal_Day_Setback_Missed</defName>
     <lines>
       <plain>
-        <li>Missed the gathering. Everyone was talking about it at supper.</li>
+        <li>Missed the gathering. It was all they talked about at supper.</li>
         <li>Heard the music from where I was. Wished I'd been there.</li>
         <li>They saved me nothing from the gathering. I wasn't expecting them to.</li>
       </plain>
@@ -515,8 +515,8 @@
     <lines>
       <plain>
         <li>It rained on the gathering. We stayed out longer than we should have.</li>
-        <li>Everyone stood under the one bit of shelter, shoulder to shoulder, dripping.</li>
-        <li>Rain on the day we'd planned to be outside. My boots are still drying by the fire.</li>
+        <li>We all crowded under the one bit of shelter, shoulder to shoulder, dripping.</li>
+        <li>Rain on the day we'd planned to be outside. My boots are still drying.</li>
       </plain>
       <cheerful>
         <li>Rained the whole gathering long. Somebody started singing anyway, and it helped.</li>
@@ -585,7 +585,7 @@
     <defName>Council_Journal_Day_Setback_TornDown</defName>
     <lines>
       <plain>
-        <li>They took down something I built. Nobody asked me first.</li>
+        <li>They took down something I built, without asking me first.</li>
         <li>Watched them pull apart what I put up. It came down a lot faster than it went up.</li>
         <li>I suppose it wasn't needed any more. I still liked it.</li>
       </plain>
@@ -605,7 +605,7 @@
         <li>The council decided against me again. I said my piece. That's all I can do.</li>
         <li>I don't agree with what the council's doing. I'm writing it down so I remember I said so.</li>
         <li>Still waiting on the council. They seem to get round to everyone else.</li>
-        <li>Another day under that decree. Another day nobody asked us.</li>
+        <li>Another day under that decree, and I never got a say in it.</li>
       </plain>
       <warm>
         <li>I don't agree with the council this time, but they're trying. I'll give them that.</li>
@@ -648,7 +648,7 @@
       <plain>
         <li>Couldn't settle to anything today. I kept thinking about someone I care about.</li>
         <li>Checked on them three times. Nothing's changed.</li>
-        <li>Worry is a tiring thing. I'm going to bed early.</li>
+        <li>Too worn out from worrying to do anything else. Going to bed early.</li>
       </plain>
       <warm>
         <li>I'll take them something warm tomorrow, and sit a while.</li>
@@ -668,7 +668,7 @@
         <li>We need more than one person here who can doctor.</li>
       </plain>
       <blunt>
-        <li>Hurt. Waited. Nobody came.</li>
+        <li>Hurt. Waited. Waited some more.</li>
       </blunt>
       <gloomy>
         <li>I wondered for a while if anyone would come at all.</li>
@@ -708,7 +708,7 @@
         <li>{OTHER_nameDef} needs to watch {OTHER_possessive} mouth.</li>
       </blunt>
       <cold>
-        <li>{OTHER_nameDef} has made an enemy, if {OTHER_pronoun} isn't careful.</li>
+        <li>{OTHER_nameDef} is close to making an enemy of me.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
