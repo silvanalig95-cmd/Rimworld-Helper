@@ -39,7 +39,7 @@
         <li>[trigger:raid] We won the fight! There's one raider left over, sitting in our cell, and I say we finish the job.</li>
       </cheerful>
       <gloomy>
-        <li>[trigger:death] There's an empty chair at supper now, and every night a full bowl still goes down to {OTHER_nameDef}.</li>
+        <li>[trigger:death] There's an empty chair at supper, and every night a full bowl still goes down to {OTHER_nameDef}.</li>
         <li>I keep dreaming that {OTHER_nameDef} gets out. I hear the cell door in the dream and can't make myself get up.</li>
       </gloomy>
       <cold>
@@ -49,7 +49,7 @@
     </request>
     <thanks>
       <plain>
-        <li>[trigger:death] I went out to the grave this morning and told them it was done.</li>
+        <li>[trigger:death] I'll go out to the grave and tell them it's done.</li>
       </plain>
       <warm>
         <li>[grieving] It doesn't bring anyone back, I know. I just needed to stop seeing that face every day.</li>
@@ -58,10 +58,10 @@
         <li>[trait:Bloodlust] Over too quick. It'll do.</li>
       </blunt>
       <cheerful>
-        <li>I'm going to scrub that cell out this afternoon! It's had a smell for weeks.</li>
+        <li>Now we can get the smell out of that cell!</li>
       </cheerful>
       <gloomy>
-        <li>[promised] You kept your word about {OTHER_nameDef}. I thought I'd sleep better afterward, and I don't.</li>
+        <li>[promised] You kept your word about {OTHER_nameDef}, and now there's one less thing to dream about.</li>
       </gloomy>
       <cold>
         <li>One less mouth and a warden with free hours. I've already reassigned them in my head.</li>
@@ -72,13 +72,13 @@
         <li>[trigger:raid] Then I'll sit outside {OTHER_nameDef}'s cell at night with a weapon across my knees.</li>
       </plain>
       <warm>
-        <li>[trusting] You've been right before. I hope this is one of those times, because I really don't think it is.</li>
+        <li>[trusting] You've been right before, and I hope this is one of those times.</li>
       </warm>
       <blunt>
         <li>[bitter] So the raider in the cell counts for more than the ones we buried.</li>
       </blunt>
       <gloomy>
-        <li>[grieving] I'll take the long way to the graves from now on. The short way goes past the cell.</li>
+        <li>[grieving] I'll take the long way to the graves now, so I don't pass the cell.</li>
       </gloomy>
       <cold>
         <li>Noted. When {OTHER_nameDef} escapes, I'd like the record to show who argued for what.</li>
@@ -114,11 +114,11 @@
         <li>[grieving] I've buried enough people this year. I'd like to send one home instead.</li>
       </warm>
       <blunt>
-        <li>We're not running a zoo. Open the door or recruit {OTHER_nameDef}. I don't care which.</li>
+        <li>We're not running a zoo. That cell has held {OTHER_nameDef} long enough.</li>
         <li>[afterraid] I know what just happened. {OTHER_nameDef} wasn't in that raid, {OTHER_pronoun} was in a cell. Let {OTHER_objective} go.</li>
       </blunt>
       <cheerful>
-        <li>If we let {OTHER_nameDef} go, {OTHER_pronoun} can tell {OTHER_possessive} people how well we treated {OTHER_objective}! They might even come to trade.</li>
+        <li>Let's see {OTHER_nameDef} walk out of there smiling! I'll pack {OTHER_objective} a lunch.</li>
         <li>I've been playing pebbles with {OTHER_nameDef} through the bars, and I lose every game! I'd rather lose to {OTHER_objective} somewhere without bars.</li>
       </cheerful>
       <gloomy>
@@ -126,8 +126,8 @@
         <li>{OTHER_nameDef} talks less every day in there. By winter there won't be much of {OTHER_objective} left to let go.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} costs us a warden, a bed and a meal a day and gives nothing back. Releasing {OTHER_objective} is the cheapest thing we can do.</li>
-        <li>Send the prisoner home and their faction will think better of us. Keeping them only costs us food.</li>
+        <li>{OTHER_nameDef} costs us a warden and a meal a day and gives nothing back.</li>
+        <li>I don't like a locked room full of resentment next to where I sleep.</li>
       </cold>
     </request>
     <thanks>
@@ -135,19 +135,19 @@
         <li>The cell's empty and there's no new grave. A good day.</li>
       </plain>
       <warm>
-        <li>[trait:Kind] I gave {OTHER_nameDef} my spare coat and some bread for the road. I hope {OTHER_pronoun} makes it home.</li>
+        <li>[trait:Kind] Whatever comes next for {OTHER_nameDef}, it isn't a cell.</li>
       </warm>
       <blunt>
-        <li>Good. We let one walk out alive for a change.</li>
+        <li>One prisoner out of that cell alive, for a change.</li>
       </blunt>
       <cheerful>
-        <li>[promised] You promised, and you did it! I waved until the prisoner was out of sight.</li>
+        <li>[promised] You promised, and you did it! The prisoner's out of that cell.</li>
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef}'s people will probably shoot at us again someday. I'll still be glad we did this.</li>
       </gloomy>
       <cold>
-        <li>Released alive. Once word gets back to the prisoner's faction, that's worth more to us than a grave.</li>
+        <li>Alive and out of the cell, which is worth more to us than a grave.</li>
       </cold>
     </thanks>
     <expired>
@@ -169,14 +169,14 @@
     </expired>
     <reminder>
       <plain>
-        <li>{OTHER_nameDef} asked after the council today. I said you were thinking it over. Are you?</li>
+        <li>{OTHER_nameDef} asked after the council today, and I said you were thinking it over.</li>
         <li>{OTHER_nameDef} has stopped asking me when {OTHER_pronoun} can go home.</li>
       </plain>
       <warm>
         <li>[trusting] I know you'll do right by {OTHER_nameDef}. I'm only bringing it up because the cell is so cold.</li>
       </warm>
       <gloomy>
-        <li>[winter] The cell gets colder every week. {OTHER_nameDef} has started sleeping sitting up.</li>
+        <li>[winter] The cell gets colder every week, and {OTHER_nameDef} has started sleeping sitting up.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -197,7 +197,7 @@
         <li>[grieving] We should all sit down together one evening and talk about them. I don't want to do it alone.</li>
       </warm>
       <blunt>
-        <li>People have been glaring at each other for a week. Either we have a party or somebody gets hit.</li>
+        <li>People have been glaring at each other for a week. Let them glare over a drink instead.</li>
         <li>[trait:Abrasive] I don't like most of you. I like you better drunk, though, so throw a party.</li>
         <li>[poor] We're broke, I know. A fire and some noise don't cost anything.</li>
       </blunt>
@@ -210,7 +210,7 @@
         <li>[night] The nights here are so quiet you start listening for things. I'd like one night loud enough to drown them out.</li>
       </gloomy>
       <cold>
-        <li>Three people have snapped at me this week. A party costs a few meals and some beer. A mental break costs more.</li>
+        <li>Three people have snapped at me this week. I'd rather they danced it off.</li>
         <li>[trait:Psychopath] People say things at a party they'd never say sober. I'd like to hear those things.</li>
       </cold>
     </request>
@@ -222,7 +222,7 @@
         <li>I saw people talking tonight who haven't said a word to each other all season. That's worth a sore head.</li>
       </warm>
       <blunt>
-        <li>Fine. It was fun. Don't tell anyone I danced.</li>
+        <li>Don't tell anyone I danced.</li>
       </blunt>
       <cheerful>
         <li>[promised] You promised a party, and it was a good one! I danced until my feet gave out.</li>
@@ -236,16 +236,16 @@
     </thanks>
     <expired>
       <plain>
-        <li>I'd put my good shirt aside for it. It can go back in the chest.</li>
+        <li>My good shirt can go back in the chest.</li>
       </plain>
       <warm>
-        <li>Never mind. I'll go round and sit with people one at a time instead. It takes longer.</li>
+        <li>Never mind, I'll go round and sit with people one at a time instead.</li>
       </warm>
       <blunt>
         <li>[bitter] The council doesn't do fun. The council does lists.</li>
       </blunt>
       <cheerful>
-        <li>No party, then. I'll sing while I work, and people can join in if they like!</li>
+        <li>I'll sing while I work instead, and people can join in if they like!</li>
       </cheerful>
       <gloomy>
         <li>[lowmood] I'd only have stood in a corner anyway.</li>
@@ -253,13 +253,13 @@
     </expired>
     <reminder>
       <plain>
-        <li>[evening] Another evening of eating fast and going straight to bed. About that party.</li>
+        <li>[evening] Another evening of eating fast and going straight to bed, so about that party.</li>
       </plain>
       <cheerful>
         <li>I've hung ribbons in the dining room! They'd look better with a party under them.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] The mood around here keeps getting worse. I'm bringing up the party again.</li>
+        <li>[lowmood] The mood around here keeps getting worse, so I'm bringing up the party again.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -280,7 +280,7 @@
         <li>[child] {OTHER_nameDef} said {OTHER_pronoun} would teach me to whistle. When is {OTHER_pronoun} coming back?</li>
       </warm>
       <blunt>
-        <li>They've got {OTHER_nameDef}. Go to {SUBJECT} and take {OTHER_objective} back.</li>
+        <li>Every day we sit here is a day {SUBJECT} keeps {OTHER_nameDef}.</li>
         <li>[afterraid] They dragged {OTHER_nameDef} out of our own yard. We go after {OTHER_objective} now, while the trail's fresh.</li>
         <li>[skill:Shooting] I can hit a squirrel across the valley. Get me within range of {SUBJECT}'s camp and I'll do the rest.</li>
       </blunt>
@@ -299,7 +299,7 @@
     </request>
     <thanks>
       <plain>
-        <li>[night] I checked on {OTHER_nameDef} three times last night. There every time.</li>
+        <li>[night] I'll be checking on {OTHER_nameDef} all night, just to see {OTHER_pronoun}'s there.</li>
       </plain>
       <warm>
         <li>[promised] You said we'd bring {OTHER_nameDef} home, and you did. I won't forget it.</li>
@@ -308,10 +308,10 @@
         <li>Next time {SUBJECT} takes one of ours, we do this again.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} is home! I've been following {OTHER_objective} around all day and I'm not stopping.</li>
+        <li>Somebody pinch me, {OTHER_nameDef} is really here!</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} doesn't talk about what happened over there, and I don't ask.</li>
+        <li>Whatever happened over there, {OTHER_nameDef} can tell it when {OTHER_pronoun}'s ready.</li>
       </gloomy>
       <cold>
         <li>Recovered, mostly intact. Now let's discuss what {SUBJECT} owes us.</li>
@@ -322,7 +322,7 @@
         <li>[promised] I told {OTHER_nameDef} we'd come. Wherever {OTHER_nameDef} is now, I hope {OTHER_pronoun} stopped waiting.</li>
       </plain>
       <warm>
-        <li>I'll keep {OTHER_nameDef}'s things in a box under my bed. If {OTHER_nameDef} ever finds a way home alone, nothing will be missing.</li>
+        <li>I'll keep {OTHER_nameDef}'s things in a box under my bed, in case {OTHER_pronoun} finds a way home.</li>
       </warm>
       <blunt>
         <li>[bitter] {OTHER_nameDef} would have come for any one of you. Remember that the next time you need someone.</li>
@@ -336,13 +336,13 @@
     </expired>
     <reminder>
       <plain>
-        <li>[snow] It's snowing. {OTHER_nameDef} hates the cold. I hope {SUBJECT} gave {OTHER_objective} a coat, at least.</li>
+        <li>[snow] It's snowing, and {OTHER_nameDef} hates the cold. I hope {SUBJECT} gave {OTHER_objective} a coat.</li>
       </plain>
       <warm>
         <li>[trusting] I know a rescue takes planning. I'd just like to hear that the plan exists.</li>
       </warm>
       <blunt>
-        <li>[bitter] Still waiting on {OTHER_nameDef}. Or has the council forgotten {OTHER_objective} too?</li>
+        <li>[bitter] Still waiting on {OTHER_nameDef}, unless the council has forgotten {OTHER_objective} too.</li>
       </blunt>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -354,9 +354,9 @@
     <wish>Council_Wish_Hunt</wish>
     <request>
       <plain>
-        <li>[skill:Shooting] Lately the only thing I shoot at is raiders. A deer would make a nice change.</li>
-        <li>[poor] The stores are thin, and there's a herd grazing just past the fields. I don't see what we're waiting for.</li>
-        <li>[fog] Low fog and the wind in my face. I could walk right up to a deer in this.</li>
+        <li>[skill:Shooting] Lately the only thing I shoot at is raiders. An animal that doesn't shoot back would make a nice change.</li>
+        <li>[poor] The stores are thin, and there's game out past the fields. I don't see what we're waiting for.</li>
+        <li>[fog] Low fog and the wind in my face. I could walk right up to anything in this.</li>
       </plain>
       <warm>
         <li>The cooks have been making the same meal out of the same sack for a week. Let me bring them something to work with.</li>
@@ -365,14 +365,14 @@
       <blunt>
         <li>I've cleaned this weapon three times this week. It's time it got used.</li>
         <li>[trait:Bloodlust] It's been quiet too long. Send me after an animal before I start a fight in here.</li>
-        <li>[winter] Muffalo keep walking right past our walls, fat and slow in the snow. I'll take one down.</li>
+        <li>[winter] The game's fat and slow in the snow, right past our walls. I'll take one down.</li>
       </blunt>
       <cheerful>
         <li>Let me go hunting! I'll bring back the biggest thing I can drag home.</li>
-        <li>[spring] There are hares all over the place this spring! Give me a day out and I'll bring a few back.</li>
+        <li>[spring] Everything's out and about this spring! Give me a day and I'll bring a few back.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] I want to sit out in the brush all day and wait for a deer. It's the only time my head goes quiet.</li>
+        <li>[lowmood] I want to sit out in the brush all day and wait for game to wander past. It's the only time my head goes quiet.</li>
         <li>Everything out there dies of something, hunger or wolves or the winter. A clean kill is kinder than any of those.</li>
       </gloomy>
       <cold>
@@ -382,10 +382,10 @@
     </request>
     <thanks>
       <plain>
-        <li>[morning] Out before dawn and back by breakfast with a deer over my shoulders.</li>
+        <li>[morning] Dawn, a still field, and one clean shot.</li>
       </plain>
       <warm>
-        <li>I told the cook to give the best cut to whoever's been working hardest this week.</li>
+        <li>The best cut goes to whoever's been working hardest this week. I'll tell the cook.</li>
       </warm>
       <blunt>
         <li>[trait:Bloodlust] That helped. I'm calmer now.</li>
@@ -402,27 +402,27 @@
     </thanks>
     <expired>
       <plain>
-        <li>The deer get another week, then.</li>
+        <li>The game out there gets another week.</li>
       </plain>
       <blunt>
         <li>[bitter] So I go back to cleaning a weapon I never get to use.</li>
       </blunt>
       <cheerful>
-        <li>No hunt, then. I'll practice on fence posts until you change your mind!</li>
+        <li>I'll practice on fence posts until you change your mind!</li>
       </cheerful>
       <gloomy>
-        <li>I'll watch them graze from the wall, then, and eat rice.</li>
+        <li>I'll watch them graze from the wall and eat rice.</li>
       </gloomy>
       <cold>
-        <li>[trait:Psychopath] Unfortunate. The urge doesn't leave because the council said no. It just goes somewhere else.</li>
+        <li>[trait:Psychopath] Unfortunate. The urge doesn't leave just because the hunt never came.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>[outside] That deer is back by the far fence again. Just pointing it out.</li>
+        <li>[outside] That animal's back by the far fence again, just pointing it out.</li>
       </plain>
       <blunt>
-        <li>My weapon's clean. My boots are on. I'm still standing here.</li>
+        <li>My weapon's clean and my boots are on, and I'm still standing here.</li>
       </blunt>
       <cheerful>
         <li>I've picked out the one I want, the big one with the torn ear! Just say when.</li>
@@ -438,7 +438,7 @@
     <request>
       <plain>
         <li>I've lost track of the weather. I have to ask whoever comes in from the fields.</li>
-        <li>[rain] I can hear the rain on the rock above us. I'd like to feel it instead.</li>
+        <li>[rain] I can hear the rain on the roof. I'd like to feel it instead.</li>
         <li>[skill:Plants] Put me on the fields for a day. I don't mind what's planted, I just want dirt under my nails.</li>
       </plain>
       <warm>
@@ -447,7 +447,7 @@
         <li>[old] Let me sit in the sun for an afternoon, while my legs can still get me out there.</li>
       </warm>
       <blunt>
-        <li>I've stared at these walls for weeks. Let me out.</li>
+        <li>I've stared at these walls for weeks. Any job with a sky over it, I'll take.</li>
         <li>[winter] I don't care how cold it is. Give me a shovel and send me out to clear the paths.</li>
       </blunt>
       <cheerful>
@@ -456,7 +456,7 @@
       </cheerful>
       <gloomy>
         <li>[night] I dreamed about the sky last night. Woke up, and the ceiling was still there.</li>
-        <li>We dug into the rock to stay safe, and I haven't seen the sun in nine days.</li>
+        <li>I haven't seen the sun in nine days. I counted.</li>
       </gloomy>
       <cold>
         <li>People who never see daylight start making mistakes. I've noticed mine. You'll notice them soon.</li>
@@ -471,7 +471,7 @@
         <li>[old] I sat on a rock and let the sun find me. Thank you for giving me the time.</li>
       </warm>
       <blunt>
-        <li>Better. Don't put me back underground for a while.</li>
+        <li>Don't keep me shut in like that again.</li>
       </blunt>
       <cheerful>
         <li>I saw a bird, a real one, sitting on the fence! It didn't care about me at all.</li>
@@ -488,13 +488,13 @@
         <li>[indoors] I've started drawing windows on the wall with charcoal.</li>
       </plain>
       <warm>
-        <li>[trusting] I'll wait. I know there's work that needs doing first.</li>
+        <li>[trusting] I'll wait, I know there's work that needs doing first.</li>
       </warm>
       <blunt>
-        <li>[bitter] Keep me in the hole, then. I'll be pale and angry, and it'll be your fault.</li>
+        <li>[bitter] Keep me shut in, then, and I'll be pale and angry and it'll be your fault.</li>
       </blunt>
       <gloomy>
-        <li>So I stay down here. I'm getting used to the dark.</li>
+        <li>So I stay in, and the walls stay where they are.</li>
       </gloomy>
       <cold>
         <li>Very well. When I break, remember that I asked.</li>
@@ -502,13 +502,13 @@
     </expired>
     <reminder>
       <plain>
-        <li>[indoors,day] Is it sunny out? Someone said it might be. I wouldn't know.</li>
+        <li>[indoors,day] Someone said it might be sunny out, not that I'd know.</li>
       </plain>
       <cheerful>
-        <li>Still inside! I keep asking the haulers what the sky's doing today.</li>
+        <li>I keep asking the haulers what the sky's doing today!</li>
       </cheerful>
       <gloomy>
-        <li>[winter] Another week indoors. My skin's the color of the walls now.</li>
+        <li>[winter] Another week indoors, and my skin's the color of the walls.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -521,11 +521,11 @@
     <request>
       <plain>
         <li>I check the {SUBJECT} in the storeroom every morning. There's less each time.</li>
-        <li>[morning] Woke up shaking again. Not badly. Just enough that I couldn't hold the spoon.</li>
+        <li>[morning] Woke up shaking again, just enough that I couldn't hold the spoon.</li>
         <li>[repeat] I'm asking about the {SUBJECT} again, and I'm still asking politely.</li>
       </plain>
       <warm>
-        <li>I'm not proud of it. But I'm a better friend on {SUBJECT} than off it, and you've all seen me off it.</li>
+        <li>I'm not proud of it, but I'm a better friend on {SUBJECT} than off it. You've all seen me off it.</li>
         <li>[trusting] Lock it up and hand it out fairly, I trust you with that. I just need there to be something to hand out.</li>
       </warm>
       <blunt>
@@ -548,19 +548,19 @@
     </request>
     <thanks>
       <plain>
-        <li>The shelf's stocked. I slept through the night.</li>
+        <li>The shelf's stocked. I might sleep through the night.</li>
       </plain>
       <warm>
         <li>[promised] You kept your word on something most people would have lectured me about. Thank you for not lecturing.</li>
       </warm>
       <blunt>
-        <li>Good. Now stop watching me take it.</li>
+        <li>Now stop watching me take it.</li>
       </blunt>
       <cheerful>
         <li>Look at my hands! Steady enough to thread a needle.</li>
       </cheerful>
       <gloomy>
-        <li>The shaking's stopped. That'll do for now.</li>
+        <li>The shaking will stop, and that's as much as I hope for.</li>
       </gloomy>
       <cold>
         <li>Stock is adequate. I'll ration it myself. I'm better at it than anyone you'd assign.</li>
@@ -571,13 +571,13 @@
         <li>[promised] I was told there'd be {SUBJECT} on the shelf. There's dust on the shelf.</li>
       </plain>
       <blunt>
-        <li>[bitter] So I sweat it out with the whole place watching. Thanks for that.</li>
+        <li>[bitter] So I sweat it out with the whole place watching.</li>
       </blunt>
       <cheerful>
         <li>Well, I'm getting clean whether I like it or not! Somebody keep an eye on me this week.</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] It's coming. The shakes, the sweats, the rest of it. I'll try not to be too loud.</li>
+        <li>[lowmood] The shakes are coming, and I'll try not to be too loud.</li>
       </gloomy>
       <cold>
         <li>Withdrawal begins shortly. I'd suggest assigning someone you don't like to supervise me.</li>
@@ -592,7 +592,7 @@
         <li>I'm being patient. You can tell because nothing's broken yet.</li>
       </blunt>
       <gloomy>
-        <li>[night] Another bad night. I'm not asking for sympathy. I'm asking about the {SUBJECT}.</li>
+        <li>[night] After another bad night, I'm asking about the {SUBJECT} again.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -638,7 +638,7 @@
         <li>[promised] You said you'd see me through it, and you did, even the night I said those things. Sorry about those things.</li>
       </warm>
       <blunt>
-        <li>Done. Clean. The next person who offers me {SUBJECT} gets hit.</li>
+        <li>The next person who offers me {SUBJECT} gets hit.</li>
       </blunt>
       <cheerful>
         <li>I can taste food again! Even the rice is good.</li>
@@ -647,7 +647,7 @@
         <li>The craving's gone. It left a quiet behind that I don't quite know what to do with yet.</li>
       </gloomy>
       <cold>
-        <li>Clean. My hands are steady, and my decisions are my own again.</li>
+        <li>My hands are steady, and my decisions are my own again.</li>
       </cold>
     </thanks>
     <expired>
@@ -655,13 +655,13 @@
         <li>[promised] Someone handed me {SUBJECT} again, and I took it. I'm not blaming anyone. I'm just telling you.</li>
       </plain>
       <warm>
-        <li>[trusting] I'll try again on my own. It's harder alone, but you've all got enough on your plates.</li>
+        <li>[trusting] I'll try again on my own, since you've all got enough on your plates.</li>
       </warm>
       <blunt>
         <li>[bitter] The next time someone asks why I'm still hooked, I'm sending them to the council.</li>
       </blunt>
       <gloomy>
-        <li>Still hooked. I think it's what people will remember about me.</li>
+        <li>I think being hooked is what people will remember about me.</li>
       </gloomy>
       <cold>
         <li>The attempt failed. I'll stop asking the colony to help with things it won't help with.</li>
@@ -669,13 +669,13 @@
     </expired>
     <reminder>
       <plain>
-        <li>[repeat] It still has its hooks in me. I'm still trying. Keep it out of my hands.</li>
+        <li>[repeat] It still has its hooks in me, so keep it out of my hands.</li>
       </plain>
       <warm>
         <li>[trusting] Every day I don't take it is partly thanks to you lot. Please keep it that way.</li>
       </warm>
       <gloomy>
-        <li>[night] Bad night. Didn't give in. Don't make it easy for me tomorrow.</li>
+        <li>[night] Bad night, but I didn't give in.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -697,7 +697,7 @@
       </warm>
       <blunt>
         <li>[trait:Abrasive] Either {OTHER_nameDef} moves out or I throw {OTHER_possessive} things in the mud.</li>
-        <li>{OTHER_nameDef} grinds {OTHER_possessive} teeth all night. Get {OTHER_objective} out of my room.</li>
+        <li>{OTHER_nameDef} cracks {OTHER_possessive} knuckles in bed every night. Get {OTHER_objective} out of my room.</li>
         <li>[repeat] I asked nicely last time. This is me asking less nicely.</li>
       </blunt>
       <cheerful>
@@ -715,19 +715,19 @@
     </request>
     <thanks>
       <plain>
-        <li>[morning] I opened my eyes this morning and {OTHER_nameDef} wasn't the first thing I saw.</li>
+        <li>[morning] Tomorrow morning {OTHER_nameDef} won't be the first thing I see.</li>
       </plain>
       <warm>
-        <li>Now that we have our own rooms, I said good morning to {OTHER_nameDef} and meant it.</li>
+        <li>Now that we have our own rooms, I might even say good morning to {OTHER_nameDef} and mean it.</li>
       </warm>
       <blunt>
         <li>[trait:Abrasive] About time. {OTHER_nameDef} doesn't set foot in my room again.</li>
       </blunt>
       <cheerful>
-        <li>[promised] Separate rooms, just like you said! {OTHER_nameDef} and I even ate lunch together today.</li>
+        <li>[promised] Separate rooms, just like you said! Maybe {OTHER_nameDef} and I can even eat lunch together now.</li>
       </cheerful>
       <gloomy>
-        <li>I still can't sleep. But at least it's my own thoughts keeping me up now, not {OTHER_nameDef}.</li>
+        <li>I'll still lie awake, but it'll be my own thoughts keeping me up, not {OTHER_nameDef}.</li>
       </gloomy>
       <cold>
         <li>Separated. The odds of an incident have dropped considerably.</li>
@@ -735,16 +735,16 @@
     </thanks>
     <expired>
       <plain>
-        <li>[night] Still sharing with {OTHER_nameDef}. I've started sleeping with one boot on.</li>
+        <li>[night] Still sharing with {OTHER_nameDef}, so I sleep with one boot on.</li>
       </plain>
       <warm>
-        <li>I'll try harder with {OTHER_nameDef}. Someone has to, and I suppose it's me.</li>
+        <li>I'll try harder with {OTHER_nameDef}, since someone has to.</li>
       </warm>
       <blunt>
         <li>[bitter] Don't ask me about it when one of us turns up with a black eye.</li>
       </blunt>
       <gloomy>
-        <li>So it's {OTHER_nameDef} and me in that room until one of us dies.</li>
+        <li>So it's {OTHER_nameDef} and me in that room, night after night.</li>
       </gloomy>
       <cold>
         <li>[trait:Psychopath] Understood. I'll handle the problem myself. You won't need to do anything.</li>
@@ -752,14 +752,14 @@
     </expired>
     <reminder>
       <plain>
-        <li>[night] {OTHER_nameDef} talked in {OTHER_possessive} sleep again. I heard my name, and some words after it.</li>
+        <li>[night] {OTHER_nameDef} talked in {OTHER_possessive} sleep again, and I heard my name.</li>
         <li>[night] {OTHER_nameDef} left the door open again last night, and the cold came in until morning.</li>
       </plain>
       <blunt>
         <li>[repeat] Still sharing a room with {OTHER_nameDef}, and still not happy about it.</li>
       </blunt>
       <gloomy>
-        <li>[winter] Long nights in a small room with {OTHER_nameDef}. Spring is a long way off.</li>
+        <li>[winter] Long nights in a small room with {OTHER_nameDef}, and spring a long way off.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -782,11 +782,11 @@
       <blunt>
         <li>Everybody here gets hurt sooner or later. Stock up on medicine.</li>
         <li>[trigger:raid] I'm out. Properly out. The next one who gets shot can bite down on a stick.</li>
-        <li>[poor] Sell the rug if you have to. Buy medicine.</li>
+        <li>[poor] Sell the spare furniture if you have to, and buy medicine.</li>
       </blunt>
       <cheerful>
         <li>A full medicine shelf would be wonderful! I'd sleep so much better knowing it's there.</li>
-        <li>I sorted the shelf this morning! It didn't take long, since there's hardly anything on it.</li>
+        <li>Fill the shelf and I'll label every jar on it!</li>
       </cheerful>
       <gloomy>
         <li>[night] I keep dreaming I run out of medicine halfway through an operation. Then I get up and check the shelf.</li>
@@ -805,7 +805,7 @@
         <li>I'll sleep tonight. Whatever comes through the door tomorrow, I can do something about it.</li>
       </warm>
       <blunt>
-        <li>Good. Go get shot, if you have to. I'm ready now.</li>
+        <li>Go get shot, if you have to. I'm ready now.</li>
       </blunt>
       <cheerful>
         <li>[promised] Full shelves, like you promised! Hands off unless you're bleeding.</li>
@@ -822,10 +822,10 @@
         <li>[trigger:raid] Next time I'll be patching people up with rags and boiled water.</li>
       </plain>
       <warm>
-        <li>I'll make do. I just hate making do when someone's bleeding on the table.</li>
+        <li>I'll make do, I just hate making do with someone bleeding on the table.</li>
       </warm>
       <blunt>
-        <li>[bitter] Fine. When you bleed, don't come to me. Go bleed on the council.</li>
+        <li>[bitter] When you bleed, don't come to me, go bleed on the council.</li>
       </blunt>
       <gloomy>
         <li>I'll keep the empty shelf dusted. It's the only thing in the infirmary I can take care of.</li>
@@ -836,10 +836,10 @@
     </expired>
     <reminder>
       <plain>
-        <li>[repeat] The shelf's still thin. I'm still the one who has to look at it.</li>
+        <li>[repeat] The shelf's still thin, and I'm still the one who has to look at it.</li>
       </plain>
       <blunt>
-        <li>[trigger:raid] They'll be back. The medicine won't, unless someone goes and gets some.</li>
+        <li>[trigger:raid] They'll be back, and the medicine won't, unless someone goes and gets some.</li>
       </blunt>
       <cold>
         <li>I've started working out who I'd treat first. I'd prefer to stop.</li>

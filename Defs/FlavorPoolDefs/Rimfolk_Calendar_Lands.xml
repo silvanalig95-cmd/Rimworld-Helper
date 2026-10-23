@@ -15,15 +15,15 @@
     <pool>Council_Cal_Letter_Founding</pool>
     <lines>
       <plain>
-        <li>[land:desert] Founding day. {A_nameDef} has filled a jar with sand from where the first tent stood, which is how the day begins here now.</li>
-        <li>[land:tundra] Founding day, and {A_nameDef} has been telling the young ones how cold the first night was. Colder than this, apparently. It is always colder than this.</li>
-        <li>[land:coast] Founding day. {A_nameDef} went down to the shore at dawn, where the colony first came ashore, and walked back up the way they came.</li>
-        <li>[land:forest|land:boreal] Founding day. {A_nameDef} has tied a ribbon round the stump of the first tree the colony felled; it's still there by the gate.</li>
-        <li>[land:mountains|land:hills] Founding day. {A_nameDef} climbed to the ledge where the first lookout stood, and waved down at everyone.</li>
-        <li>[land:swamp|land:jungle] Founding day. {A_nameDef} says nobody slept the first night for the insects, and everyone laughs because it's still true.</li>
-        <li>[land:river] Founding day. {A_nameDef} set a little boat of bark on the river at dawn, the way the colony counts its years.</li>
-        <li>[faith] Founding day. {A_nameDef} gave thanks at first light for the colony and everyone in it, and wants the day kept well.</li>
-        <li>[devout] Founding day. {A_nameDef} spent the dawn at prayer for the ones who founded this place, the living and the dead.</li>
+        <li>[land:desert] A jar of sand stands on the table this morning, scooped by {A_nameDef} from where the first tent stood. That's how founding day begins here now.</li>
+        <li>[land:tundra] {A_nameDef} has been telling the newer people about the first night here, when it was colder than this and three of them shared one blanket.</li>
+        <li>[land:coast] {A_nameDef} walked down to the shore and back before breakfast, the way the first of the colony walked it on their first morning here.</li>
+        <li>[land:forest|land:boreal] A strip of cloth is tied round the stump of the first tree the colony felled. {A_nameDef} put it there at dawn, for founding day.</li>
+        <li>[land:mountains|land:hills] {A_nameDef} climbed to the high ledge above the colony at sunrise and waved down until someone waved back.</li>
+        <li>[land:swamp|land:jungle] Founding day in the damp. {A_nameDef} says the insects kept the founders awake all that first night, and scratches an old bite while {A_pronoun} tells it.</li>
+        <li>[land:river] At dawn {A_nameDef} set a small bark boat on the river, the way the colony counts its years.</li>
+        <li>[faith] {A_nameDef} gave thanks at first light for the colony and the people in it, and hopes the day will be kept well.</li>
+        <li>[devout] {A_nameDef} spent the dawn praying for the ones who founded this place, the living and the dead.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -33,11 +33,11 @@
     <pool>Council_Cal_Letter_Harvest</pool>
     <lines>
       <plain>
-        <li>[land:desert] Harvest day. Every green thing in the {PLACE} is hard won, and {A_nameDef} wants the first sheaf on the table where everyone can see it.</li>
-        <li>[land:tundra] Harvest day. In a land this cold a harvest at all is a small wonder, and {A_nameDef} says so to anyone who'll listen.</li>
-        <li>[land:jungle|land:swamp] Harvest day. {A_nameDef} has hung the first of the crop over the door before the damp can get at it.</li>
-        <li>[land:river] Harvest day. {A_nameDef} says the river gave the colony its first crop, and has thrown a handful of grain into it by way of thanks.</li>
-        <li>[devout] Harvest day. {A_nameDef} set the first of the grain at the altar before anyone ate.</li>
+        <li>[land:desert] Every green thing in the {PLACE} is hard won. {A_nameDef} wants the first sheaf of the harvest on the table, where it can be seen.</li>
+        <li>[land:tundra] In land this cold, any harvest is worth a day of its own. {A_nameDef} has been saying so since breakfast.</li>
+        <li>[land:jungle|land:swamp] {A_nameDef} has hung the first of the crop up high, out of the damp, where everyone who passes can see it.</li>
+        <li>[land:river] A handful of grain went into the river this morning. {A_nameDef} says the river watered the colony's first crop, and it's only fair.</li>
+        <li>[devout] {A_nameDef} set aside the first of the grain as an offering before anyone was allowed to eat.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -47,9 +47,9 @@
     <pool>Council_Cal_Letter_FirstSnow</pool>
     <lines>
       <plain>
-        <li>[land:desert] Snow in the {PLACE}: rare enough here that {A_nameDef} is out in it with both hands held up, laughing.</li>
-        <li>[land:tundra|land:boreal] The first snow, which here means the long white has truly begun. {A_nameDef} has the games ready anyway.</li>
-        <li>[land:mountains] The first snow came down off the peaks overnight. {A_nameDef} watched it come, line by line, down the slopes.</li>
+        <li>[land:desert] Snow, in the {PLACE}. {A_nameDef} is out in it with both hands held up, laughing.</li>
+        <li>[land:tundra|land:boreal] First snow, and in this country that means months of it. {A_nameDef} has the games ready all the same.</li>
+        <li>[land:mountains] The peaks went white days ago, and overnight the snow finally came down to the colony. {A_nameDef} was up early to see it.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -59,9 +59,9 @@
     <pool>Council_Cal_Letter_Feast</pool>
     <lines>
       <plain>
-        <li>[land:coast|land:lake] {NAME}, and {A_nameDef} wants the feast down by the water, with whatever the water gave this week.</li>
-        <li>[land:desert] {NAME}. {A_nameDef} has set the tables in the shade, with a water jar at every place.</li>
-        <li>[faith] {NAME}. {A_nameDef} will say the faith's blessing before the feast, as it's always said.</li>
+        <li>[land:coast|land:lake] It's {NAME}, and {A_nameDef} wants the feast down by the water, with whatever the water gave this week.</li>
+        <li>[land:desert] The tables for {NAME} are set in the shade, with a water jar at every place. {A_nameDef} saw to it before the heat came up.</li>
+        <li>[faith] Before the feast for {NAME}, {A_nameDef} will say the faith's blessing over the food.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -71,10 +71,10 @@
     <pool>Council_Cal_Letter_Remembrance</pool>
     <lines>
       <plain>
-        <li>[devout] {NAME}. {A_nameDef} has kept a lamp lit at the altar since dawn, and asks that everyone keep a quiet hour.</li>
-        <li>[faith] {NAME}, and {A_nameDef} has the faith's words for the dead ready for this evening.</li>
-        <li>[land:tundra|land:boreal] {NAME}. {A_nameDef} cleared the snow from every stone at dawn.</li>
-        <li>[land:desert] {NAME}. {A_nameDef} poured a cup of water on the ground for the remembered, the way it's done here.</li>
+        <li>[devout] For {NAME}, {A_nameDef} has been praying since dawn, naming each of the colony's dead in turn.</li>
+        <li>[faith] {A_nameDef} will say the faith's words for the dead this evening, for {NAME}.</li>
+        <li>[land:tundra|land:boreal] {A_nameDef} lit a fire by the graves at dawn for {NAME}, the way it's done where the winters are long.</li>
+        <li>[land:desert] {A_nameDef} poured water into the sand at dawn for the ones remembered on {NAME}, a mouthful at each grave.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -84,10 +84,10 @@
     <pool>Council_Cal_Letter_Death</pool>
     <lines>
       <plain>
-        <li>[devout] {A_nameDef} has kept a lamp burning at the altar since dawn for {DEAD}, who died on this day.</li>
-        <li>[faith] Today the colony remembers {DEAD}. {A_nameDef} will say the faith's words at the grave this evening.</li>
-        <li>[land:desert] Today the colony remembers {DEAD}. {A_nameDef} has poured water at the grave, the way it's done in the {PLACE}.</li>
-        <li>[land:coast] Today the colony remembers {DEAD}. {A_nameDef} went down to the shore at dawn and left a stone there for {DEAD}.</li>
+        <li>[devout] {A_nameDef} has kept a lamp burning since dawn for {DEAD}, who died on this day, and prays beside it between chores.</li>
+        <li>[faith] This evening {A_nameDef} will say the faith's words at {DEAD}'s grave, on the day {DEAD} died.</li>
+        <li>[land:desert] Water is scarce in the {PLACE}, and {A_nameDef} poured a full cup of it on {DEAD}'s grave this morning.</li>
+        <li>[land:coast] {A_nameDef} went down to the shore at dawn and left a smooth stone above the tideline for {DEAD}, who died on this day.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -97,11 +97,11 @@
     <pool>Council_Journal_Cal_Founding</pool>
     <lines>
       <plain>
-        <li>[land:desert] Founding day. I walked out to where the first tent stood. The sand has covered every trace, and we're still here.</li>
-        <li>[land:coast] Founding day. Walked the shore at dawn where we first came up. The sea doesn't remember us. We remember it.</li>
-        <li>[land:mountains|land:hills] Founding day. From the ledge the colony looks small, and like it belongs.</li>
+        <li>[land:desert] Walked out to where the first tent stood. The sand has covered every trace of it.</li>
+        <li>[land:coast] Down to the shore at dawn. Wet boots all day, worth it.</li>
+        <li>[land:mountains|land:hills] Climbed up above the colony this morning. From up there it looks small, and like it belongs.</li>
         <li>[land:tundra] Founding day. Another year the cold didn't win.</li>
-        <li>[devout] Founding day. I gave thanks for every year we've had here, and asked for one more.</li>
+        <li>[devout] Gave thanks for every year we've had here, and asked for one more.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -111,9 +111,9 @@
     <pool>Council_Journal_Cal_Harvest</pool>
     <lines>
       <plain>
-        <li>[!new,land:desert] Harvest day. Every grain of it fought the sun for us.</li>
-        <li>[!new,land:tundra|land:boreal] Harvest day. Short summer, long winter, and still a harvest. I'll take it.</li>
-        <li>[!new,devout] Harvest day. The first grain went to the altar and the rest to the table.</li>
+        <li>[!new,land:desert] Harvest day. I hauled water for every one of those rows, all summer.</li>
+        <li>[!new,land:tundra|land:boreal] Short summer, and we still got a harvest in.</li>
+        <li>[!new,devout] First grain set aside as an offering, the rest to the table.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -124,7 +124,7 @@
     <lines>
       <plain>
         <li>[devout] I lit a lamp for {DEAD} today. I believe {DEAD} is kept, wherever that is.</li>
-        <li>[faith] Said the faith's words at {DEAD}'s grave. They helped more than I expected.</li>
+        <li>[faith] Said the faith's words at {DEAD}'s grave. My voice held up until the last line.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -134,8 +134,8 @@
     <pool>Council_Journal_Cal_Remembrance</pool>
     <lines>
       <plain>
-        <li>[devout] {NAME}. I prayed for them at the altar, and felt they heard.</li>
-        <li>[land:tundra|land:boreal] {NAME}. We cleared the snow from the stones together and said the names into the cold.</li>
+        <li>[devout] Prayed for our dead today, for {NAME}. I felt they heard.</li>
+        <li>[land:tundra|land:boreal] Kept the fire going by the graves all day for {NAME}. We took turns fetching wood.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -145,10 +145,10 @@
     <pool>Council_Cal_Talk_Founding</pool>
     <lines>
       <plain>
-        <li>[land:coast] {A_nameDef} and {B_nameDef} walked down to the shore where the colony first landed.</li>
+        <li>[land:coast] {A_nameDef} and {B_nameDef} talked about the colony's first morning on the coast.</li>
         <li>[land:desert] {A_nameDef} told {B_nameDef} how the colony found its first water in the {PLACE}.</li>
-        <li>[land:forest|land:boreal] {A_nameDef} showed {B_nameDef} the stump of the first tree the colony felled.</li>
-        <li>[land:river] {A_nameDef} and {B_nameDef} watched the bark boats go down the river for founding day.</li>
+        <li>[land:forest|land:boreal] {A_nameDef} told {B_nameDef} which stump was the first tree the colony ever felled.</li>
+        <li>[land:river] {A_nameDef} and {B_nameDef} argued over where on the river the colony first drew water.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -158,7 +158,7 @@
     <pool>Council_Cal_Talk_Remembrance</pool>
     <lines>
       <plain>
-        <li>[devout] {A_nameDef} and {B_nameDef} prayed together for the colony's dead on {NAME}.</li>
+        <li>[devout] {A_nameDef} told {B_nameDef} the prayer {A_pronoun} says for the dead on {NAME}.</li>
         <li>[faith] {A_nameDef} asked {B_nameDef} what the faith says becomes of the dead.</li>
       </plain>
     </lines>

@@ -12,13 +12,13 @@
     <pool>Council_Journal_Cal_Battle</pool>
     <lines>
       <plain>
-        <li>[nemesisreturn,first] A year since {ENEMY} came back for us, and found the gate shut. I stood on the wall at dusk, to remember how it looked.</li>
-        <li>[nemesisreturn,years] {YEARS} years since {ENEMY} came back. We tell it at supper now, and nobody's voice shakes any more.</li>
-        <li>[nemesisreturn] The day {ENEMY} came back. I remember thinking it would never end, and then it did.</li>
+        <li>[nemesisreturn,first] A year since {ENEMY} came back. Stood at my old spot at dusk and looked out the way they came.</li>
+        <li>[nemesisreturn,years] {YEARS} years since {ENEMY} came back. We tell it at supper now like any other story.</li>
+        <li>[nemesisreturn] The day {ENEMY} came back. What I remember most is the noise.</li>
       </plain>
-      <blunt><li>[nemesisreturn] {ENEMY} came back on this day. We held. Still here.</li></blunt>
-      <gloomy><li>[nemesisreturn] The day {ENEMY} came back. Every year I wonder if this is the year {ENEMY} tries again.</li></gloomy>
-      <cold><li>[nemesisreturn] Anniversary of {ENEMY}'s return. The defenses were adequate. They are better now.</li></cold>
+      <blunt><li>[nemesisreturn] {ENEMY} came back on this day, and we held.</li></blunt>
+      <gloomy><li>[nemesisreturn] Every year on this day I wonder if {ENEMY} will try again.</li></gloomy>
+      <cold><li>[nemesisreturn] Marked the date {ENEMY} returned. Our defenses were adequate then. They are better now.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -27,9 +27,9 @@
     <pool>Council_Cal_Letter_Battle</pool>
     <lines>
       <plain>
-        <li>[nemesisreturn,first] A year ago today {ENEMY}, the one who got away, came back to the colony with a raid, and the colony held. {A_nameDef} says it should never be forgotten what that felt like.</li>
-        <li>[nemesisreturn,years] It's {YEARS} years since {ENEMY} came back and was seen off. The newer people know the name only from the story, and {A_nameDef} means to keep it that way.</li>
-        <li>[nemesisreturn] On this day {ENEMY} came back for the colony and went away with nothing. {A_nameDef} walked the old line this morning.</li>
+        <li>[nemesisreturn,first] A year ago today {ENEMY}, who had got away once before, came back with a raid. The colony held, and {A_nameDef} hasn't forgotten a minute of it.</li>
+        <li>[nemesisreturn,years] {YEARS} years ago today, {ENEMY} came back and was seen off again. {A_nameDef} still shows anyone who asks where {A_pronoun} stood that day.</li>
+        <li>[nemesisreturn] On this day {ENEMY} came back for the colony and went away with nothing. {A_nameDef} walked the old defensive line at first light.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -39,8 +39,8 @@
     <pool>Council_Cal_Talk_Battle</pool>
     <lines>
       <plain>
-        <li>[nemesisreturn] {A_nameDef} told {B_nameDef} about the day {ENEMY} came back, and where everyone stood.</li>
-        <li>[nemesisreturn] {A_nameDef} and {B_nameDef} wondered aloud where {ENEMY} is now, and agreed it didn't matter as much as it used to.</li>
+        <li>[nemesisreturn] {A_nameDef} told {B_nameDef} about the day {ENEMY} came back, and where each of them stood.</li>
+        <li>[nemesisreturn] {A_nameDef} and {B_nameDef} wondered where {ENEMY} is now.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
