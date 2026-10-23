@@ -17,20 +17,20 @@
       <plain>
         <li>Days go by, and "{WISH}" still hasn't happened. Just saying.</li>
         <li>I was thinking about "{WISH}" again today, so I'm saying it out loud.</li>
-        <li>I know there's a lot on. When things settle, "{WISH}" is still waiting.</li>
+        <li>I know there's a lot on, but "{WISH}" is still waiting for when things settle.</li>
         <li>I'll help with "{WISH}" myself if someone shows me where to start.</li>
         <li>I don't want to push, but I did ask for "{WISH}" a while back.</li>
         <li>I asked about "{WISH}" days ago. Did anyone actually write it down?</li>
-        <li>I saw the list of jobs this morning. "{WISH}" wasn't on it.</li>
+        <li>"{WISH}" wasn't on the list of jobs this morning, I looked.</li>
         <li>Half the time's gone and "{WISH}" hasn't moved, so I'm asking again.</li>
-        <li>[poor] I know things are tight. "{WISH}" doesn't need much, if anyone looks.</li>
+        <li>[poor] I know things are tight, but "{WISH}" doesn't need much.</li>
         <li>[trusting] The council's always been fair with me, so I'll just mention "{WISH}" again.</li>
         <li>[trusting] I know "{WISH}" is on someone's list. I'm only nudging it up.</li>
         <li>[trusting] No complaints, just a reminder about "{WISH}".</li>
         <li>[winter] Long evenings indoors make me think about "{WISH}" more, not less.</li>
         <li>[winter] Snow on the sill, and "{WISH}" still on my mind.</li>
         <li>[night] Couldn't sleep, so I'm asking about "{WISH}" while I'm up.</li>
-        <li>[night] Sorry to bring it up this late. "{WISH}", though.</li>
+        <li>[night] Sorry it's late, but I lie here thinking about "{WISH}".</li>
         <li>[doubtful] I'll ask about "{WISH}" again, though I'm not sure anyone's listening.</li>
         <li>[doubtful] Every time I mention "{WISH}", people find something else to do.</li>
       </plain>
@@ -44,7 +44,7 @@
         <li>Days now. "{WISH}". Remember?</li>
         <li>I didn't ask for "{WISH}" to hear myself talk.</li>
         <li>Tell me when "{WISH}" is happening, or tell me it isn't.</li>
-        <li>"{WISH}". Half the time's gone.</li>
+        <li>Half the time's gone, and still no "{WISH}".</li>
       </blunt>
       <cheerful>
         <li>Hello again! "{WISH}" is still the thing I want most.</li>
@@ -74,13 +74,13 @@
       <plain>
         <li>Another week gone, and still no "{WISH}". I've nearly stopped expecting it.</li>
         <li>I've tried to be understanding about "{WISH}". I'm running out of ways to be.</li>
-        <li>I've watched everyone else get theirs. This is my last word on "{WISH}".</li>
-        <li>I'd like to keep trusting the council. "{WISH}" would help with that.</li>
+        <li>I've watched the others get theirs, and this is my last word on "{WISH}".</li>
+        <li>I'd like to keep trusting the council, and "{WISH}" would help with that.</li>
         <li>I'm asking once more about "{WISH}", mostly to see what happens.</li>
-        <li>I'm not asking for much. "{WISH}", please, while there's still time.</li>
-        <li>Everyone keeps telling me to be patient. I've been patient. "{WISH}", please.</li>
-        <li>In a few days I'll stop asking about "{WISH}" and start remembering that nobody answered.</li>
-        <li>[old] I've waited on a lot of things in my life. "{WISH}" won't be one I wait on forever.</li>
+        <li>I'm not asking for much, only "{WISH}", while there's still time.</li>
+        <li>I've been as patient about "{WISH}" as anyone could ask.</li>
+        <li>In a few days I'll stop asking about "{WISH}" and start remembering who didn't answer.</li>
+        <li>[old] I've waited on a lot of things in my life, and I won't wait on "{WISH}" forever.</li>
         <li>[bitter] I knew how this would go when I asked for "{WISH}". I'm asking anyway, one last time.</li>
       </plain>
       <warm>
@@ -89,7 +89,7 @@
         <li>I won't hold it against anyone, but I'd be lying if I said "{WISH}" didn't matter.</li>
       </warm>
       <blunt>
-        <li>Last time. "{WISH}". After this I'm done.</li>
+        <li>Last time I ask about "{WISH}", then I'm done.</li>
         <li>You've had plenty of warning about "{WISH}".</li>
         <li>Do it or say no. I'm tired of waiting.</li>
       </blunt>
@@ -123,14 +123,14 @@
         <li>[newcomer] I'm new here, but "{AMBITION}" sounds right to me.</li>
         <li>[rich] We can afford "{AMBITION}" now. Let's not sit on it.</li>
         <li>[spring] Spring's the time to start "{AMBITION}". I'm for it.</li>
-        <li>[spring] The ground's soft and the days are getting longer. "{AMBITION}", yes.</li>
+        <li>[spring] The ground's soft and the days are getting longer, so yes to "{AMBITION}".</li>
         <li>[spring] Start "{AMBITION}" now and it'll be finished by summer.</li>
-        <li>[summer] Warm nights, long days. We'll never have a better season for "{AMBITION}".</li>
+        <li>[summer] We'll never have a better season for "{AMBITION}" than these long days.</li>
         <li>[summer] Better we start "{AMBITION}" in the heat than in the snow.</li>
         <li>[fall] If we start "{AMBITION}" now, it'll be done before the snow.</li>
-        <li>[fall] The harvest's mostly in. That frees hands for "{AMBITION}".</li>
-        <li>[fall] One push before the cold. "{AMBITION}" gets my vote.</li>
-        <li>[winter] There's not much else to do while the fields sleep. Let's do "{AMBITION}".</li>
+        <li>[fall] The harvest's mostly in, which frees hands for "{AMBITION}".</li>
+        <li>[fall] "{AMBITION}" gets my vote, one last push before the cold.</li>
+        <li>[winter] There's little else to do while the fields sleep, so let's do "{AMBITION}".</li>
         <li>[trusting] {OTHER_nameDef} has thought this through. I'm happy to follow.</li>
         <li>[trusting] When {OTHER_nameDef} says something's worth doing, it usually is.</li>
       </plain>
@@ -178,7 +178,7 @@
         <li>Crossed "{WISH}" off the list I keep at the back of this book.</li>
         <li>[doubtful] I'd half given up on the council. Then they said yes to "{WISH}". I'm reconsidering.</li>
         <li>[doubtful] I didn't think they'd bother with "{WISH}". I was wrong, and I don't mind.</li>
-        <li>[doubtful] One yes doesn't make up for everything, but "{WISH}" is a start.</li>
+        <li>[doubtful] One yes doesn't make up for everything, but I'll take "{WISH}".</li>
         <li>[trusting] I asked, and they came through, the way they usually do.</li>
         <li>[trusting] They said yes to "{WISH}". I'm not surprised, but I'm glad.</li>
         <li>[winter] Midwinter, and the council still found the time for "{WISH}".</li>
@@ -200,8 +200,8 @@
       </blunt>
       <cheerful>
         <li>They said yes to "{WISH}"! I keep going back to check it's real.</li>
-        <li>I got my wish! I told everyone at supper, some of them twice.</li>
-        <li>Sunshine or not, the council said yes. Can't ask for more!</li>
+        <li>I got my wish! I told anyone at supper who'd listen.</li>
+        <li>The council said yes, and I've been smiling since breakfast!</li>
         <li>Best news all season: "{WISH}" is mine!</li>
         <li>[cold] My nose is frozen and I'm grinning anyway. They came through!</li>
         <li>[cold] Cold enough to see my breath, and I've been humming all afternoon.</li>
@@ -217,7 +217,7 @@
       </gloomy>
       <cold>
         <li>"{WISH}" granted. I'll factor that into how I deal with the council.</li>
-        <li>They did what I asked. Reliability is worth noting.</li>
+        <li>They did what I asked. I'll weigh that next time I need something.</li>
         <li>The council kept its word on "{WISH}". I'll keep mine.</li>
         <li>Granted in good time. I'd assumed they'd make me wait longer.</li>
       </cold>
