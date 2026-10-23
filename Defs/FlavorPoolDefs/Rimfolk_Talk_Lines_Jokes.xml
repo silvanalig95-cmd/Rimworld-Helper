@@ -13,14 +13,14 @@
       <plain>
         <li>Two words, {OTHER}: {LABEL}.</li>
         <li>I was telling someone about {LABEL} today.</li>
-        <li>I thought of {LABEL} this morning and laughed out loud on my own.</li>
+        <li>I laughed out loud at work today, thinking about {LABEL}.</li>
         <li>[worn] Remember {LABEL}?</li>
         <li>[worn] I know, I know, but {LABEL}, though.</li>
         <li>[told] Still makes me laugh, {LABEL}.</li>
       </plain>
       <cheerful>
-        <li>Guess what I was thinking about, {LABEL}.</li>
-        <li>[fresh] I was thinking about {LABEL} and nearly fell over.</li>
+        <li>I've been grinning about {LABEL} all day.</li>
+        <li>[fresh] I got the giggles over {LABEL} in the middle of work.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -37,11 +37,12 @@
         <li>[told] You promised you wouldn't bring that up.</li>
         <li>[worn] Yes, {LABEL}, we know.</li>
         <li>[worn] You've told that one, {OTHER}.</li>
-        <li>[worn] It was funnier the first nine times.</li>
+        <li>[worn] That one's wearing thin.</li>
+        <li>[told] I tell it better than you do.</li>
       </plain>
       <cheerful>
-        <li>[fresh] I'm still laughing about it, honestly.</li>
-        <li>[told] Every time, every single time.</li>
+        <li>[fresh] Ha, I'd nearly forgotten, and now I can't stop.</li>
+        <li>[told] Gets me every time, that one.</li>
       </cheerful>
       <cold>
         <li>[worn] Again.</li>
@@ -56,9 +57,9 @@
     <lines>
       <plain>
         <li>Worth it, for the story.</li>
-        <li>We'll be telling that one when we're old.</li>
+        <li>Someone should write that one down.</li>
         <li>[worn] All right, I'll find a new one.</li>
-        <li>[worn] Fine, fine, I'll retire it.</li>
+        <li>[worn] Last time, I promise.</li>
         <li>[fresh] We'll be telling that one for years.</li>
         <li>[told] Never gets old, never.</li>
       </plain>
@@ -75,19 +76,19 @@
     <outcomes><li>Joke</li></outcomes>
     <lines>
       <plain>
-        <li>Fancy some stew tonight, {OTHER}?</li>
-        <li>They're making stew again, I'm keeping my distance.</li>
-        <li>I saw a pot on the fire and thought of {LABEL}.</li>
+        <li>Fancy some stew, {OTHER}?</li>
+        <li>If anyone makes stew again, I'm keeping my distance.</li>
+        <li>Every pot I smell now, I think of {LABEL}.</li>
         <li>[byme] I still can't look at a bowl of stew.</li>
-        <li>[byother] Feeling brave enough for stew tonight?</li>
+        <li>[byother] Is your stomach talking to you again yet?</li>
         <li>[byother] Remember how green you went, after {LABEL}?</li>
-        <li>[worn] I know, I know, but the stew, though.</li>
+        <li>[worn] I'm only saying the word stew, that's all.</li>
       </plain>
       <cheerful>
         <li>I've written a song about {LABEL}, it's mostly groaning.</li>
       </cheerful>
       <gloomy>
-        <li>Every meal since {LABEL}, I've wondered.</li>
+        <li>I've sniffed every meal since {LABEL}.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -101,16 +102,16 @@
       <plain>
         <li>[fresh] Don't, I can still taste it.</li>
         <li>[fresh] Never again, not as long as I live.</li>
-        <li>[told] Please, not the stew, not again.</li>
-        <li>[told] I'm eating bread for the rest of my life.</li>
+        <li>[told] I've gone off stew for life, you know that.</li>
+        <li>[told] I look in every pot now before I eat from it.</li>
         <li>[worn] Yes, yes, the stew, very good.</li>
         <li>[byme] I was greener than a cabbage.</li>
-        <li>[byother] You were the colour of the pot, honestly.</li>
+        <li>[byother] You went the color of pond water.</li>
         <li>[told] I'm still not sure what was in it.</li>
       </plain>
       <cheerful>
         <li>[fresh] I'll never trust a carrot again.</li>
-        <li>[told] I'd have rated it highly, before.</li>
+        <li>[told] The first bowl was lovely, to be fair.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -122,9 +123,10 @@
     <outcomes><li>Joke</li></outcomes>
     <lines>
       <plain>
-        <li>I'll cook tonight, then, shall I?</li>
+        <li>I'll do the cooking next time, shall I?</li>
         <li>Bread and water for us, then.</li>
         <li>[worn] All right, the stew can rest in peace.</li>
+        <li>We'll ask what's in it next time.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -146,7 +148,7 @@
         <li>I'd like to thank {LABEL} for the free haircut.</li>
       </cheerful>
       <gloomy>
-        <li>We could have died, at {LABEL}, you know.</li>
+        <li>We could have died next to {LABEL}, you know.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -163,12 +165,12 @@
         <li>[told] We are never getting that close to one again.</li>
         <li>[told] I've seen you flinch at a cough since.</li>
         <li>[worn] Boom, yes, very good.</li>
-        <li>[told] I've stopped standing near anything with horns.</li>
+        <li>[told] I give anything with a swollen belly a wide berth now.</li>
         <li>[byme] I still have a ringing in one ear.</li>
       </plain>
       <cheerful>
         <li>[fresh] Best fireworks we've ever had.</li>
-        <li>[told] My eyebrows have never forgiven me.</li>
+        <li>[told] The bang gets bigger every time you tell it.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -182,6 +184,7 @@
       <plain>
         <li>From a distance next time, please.</li>
         <li>Long sticks, that's the lesson.</li>
+        <li>The next one we see, we deal with from the wall.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -193,13 +196,13 @@
     <outcomes><li>Joke</li></outcomes>
     <lines>
       <plain>
-        <li>How's your new friend, {LABEL}?</li>
+        <li>Seen any more like {LABEL} about?</li>
         <li>[byme] I think {LABEL} still holds a grudge.</li>
-        <li>[byme] I was only being friendly, with {LABEL}.</li>
+        <li>[byme] I was only being friendly to {LABEL}.</li>
         <li>[byother] I'll never forget you running from {LABEL}.</li>
         <li>[byother] Fancy taming another one like {LABEL}?</li>
-        <li>I saw a wild one at the edge of the fields and thought of {LABEL}.</li>
-        <li>[worn] Remember {LABEL}, though?</li>
+        <li>Every time a wild one wanders near the fields, I think of {LABEL}.</li>
+        <li>[worn] Shall we go and make friends with {LABEL} again?</li>
       </plain>
       <cheerful>
         <li>[byother] You and {LABEL}, a love story for the ages.</li>
@@ -236,7 +239,8 @@
     <lines>
       <plain>
         <li>Next time, take a carrot.</li>
-        <li>Leave the wild ones to the wild, that's my motto now.</li>
+        <li>Leave the wild ones wild, I say.</li>
+        <li>Let the handler try next time.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -252,7 +256,7 @@
         <li>I still think of you beating out {LABEL} with your shirt.</li>
         <li>Whenever someone lights a candle, I think of {LABEL}.</li>
         <li>[byme] I was very calm during {LABEL}, I'll have you know.</li>
-        <li>Somebody lit the stove and I thought of {LABEL}.</li>
+        <li>I keep a bucket by my bed now, since {LABEL}.</li>
       </plain>
       <cheerful>
         <li>I've never seen anyone dance like you did at {LABEL}.</li>
@@ -267,12 +271,12 @@
     <outcomes><li>Joke</li></outcomes>
     <lines>
       <plain>
-        <li>[fresh] My shirt never recovered.</li>
+        <li>[fresh] My hands still smell of smoke.</li>
         <li>[fresh] You screamed louder than I did.</li>
         <li>[told] I was not screaming, I was giving orders.</li>
         <li>[told] It was a very small fire and I was very brave.</li>
-        <li>[worn] Yes, the fire, and the shirt, we know.</li>
-        <li>[told] We used half the well on a fire the size of a hat.</li>
+        <li>[worn] Yes, the fire, the buckets, we know.</li>
+        <li>[told] All that water for a fire the size of a hat.</li>
         <li>[byme] I panicked, all right, I admit it.</li>
       </plain>
       <cheerful>
@@ -290,6 +294,7 @@
       <plain>
         <li>Buckets by the door from now on.</li>
         <li>Next time, less shouting and more water.</li>
+        <li>I'll stamp on the next one sooner.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -302,9 +307,9 @@
     <lines>
       <plain>
         <li>Mind the mud, {OTHER}.</li>
-        <li>It's raining, shall we go for a walk in the yard?</li>
-        <li>I found more of {LABEL} in my boot this morning.</li>
-        <li>I was telling them about {LABEL}, and I did the noise you made.</li>
+        <li>Fancy a walk round the yard? You can go first.</li>
+        <li>I've still got {LABEL} under my nails.</li>
+        <li>I told the others about {LABEL}, and I did the noise you made.</li>
         <li>[rain] Looks like good weather for {LABEL}, doesn't it.</li>
       </plain>
       <cheerful>
@@ -343,6 +348,7 @@
       <plain>
         <li>I'll hold your hand next time, for balance.</li>
         <li>Boots off at the door, I've learned my lesson.</li>
+        <li>We stay on the path from now on, the pair of us.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -356,13 +362,13 @@
       <plain>
         <li>[byme] Don't say it, I know what you're going to say.</li>
         <li>[byme] I'm never living down {LABEL}, am I.</li>
-        <li>[byother] How's the head, since {LABEL}?</li>
+        <li>[byother] Recovered from {LABEL} yet?</li>
         <li>[byother] I've got a story about {LABEL} for anyone who'll listen.</li>
-        <li>[byother] Remember the singing, during {LABEL}?</li>
-        <li>Big night tonight, {OTHER}, or have you learned your lesson?</li>
+        <li>[byother] You were singing by the end of {LABEL}, you know.</li>
+        <li>Another big night soon, {OTHER}, or have we learned our lesson?</li>
       </plain>
       <cheerful>
-        <li>[byother] Encore performance tonight, {OTHER}?</li>
+        <li>[byother] When's the encore, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -374,11 +380,11 @@
     <outcomes><li>Joke</li></outcomes>
     <lines>
       <plain>
-        <li>[fresh] I don't remember any singing.</li>
+        <li>[fresh] I don't remember most of it.</li>
         <li>[fresh] My head still hurts thinking about it.</li>
         <li>[told] That was a different person, a very different person.</li>
         <li>[told] One night, and you'll never let me forget it.</li>
-        <li>[worn] Yes, I know, I sang, everybody knows.</li>
+        <li>[worn] Yes, yes, I made a fool of myself, we know.</li>
         <li>[byother] You were there too, don't forget.</li>
         <li>[byme] I'd like it known that I was celebrating.</li>
       </plain>
@@ -395,8 +401,9 @@
     <outcomes><li>Joke</li></outcomes>
     <lines>
       <plain>
-        <li>Water tonight, then, both of us.</li>
+        <li>Water for both of us, then.</li>
         <li>Your secret's safe with me, mostly.</li>
+        <li>Next time I'm hiding the good stuff.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
