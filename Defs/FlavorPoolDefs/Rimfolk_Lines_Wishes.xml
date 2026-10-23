@@ -427,7 +427,7 @@
     </reminder>
     <expired>
       <warm><li>We'll look after each other as best we can, herbs or no herbs.</li></warm>
-      <cheerful><li>No healroot! I'll just have to stay very healthy.</li></cheerful>
+      <cheerful><li>No healroot, so it's clean living and early nights for me!</li></cheerful>
     </expired>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -920,7 +920,7 @@
     <defName>Council_Lines_Wish_WashPlace</defName>
     <wish>Council_Wish_WashPlace</wish>
     <reminder>
-      <warm><li>Somewhere to wash would do us all good, and I'd fill the tub for whoever goes first.</li></warm>
+      <warm><li>Somewhere to wash would freshen us all up, and I'd fill the tub for whoever goes first.</li></warm>
       <blunt><li>Still nowhere to wash.</li></blunt>
       <gloomy><li>I smell worse every day.</li></gloomy>
     </reminder>

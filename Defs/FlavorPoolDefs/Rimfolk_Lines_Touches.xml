@@ -85,11 +85,11 @@
         <li>[touch:light] A light by the bed. The dark gets into my head at night.</li>
         <li>[touch:light] I've planned a lamp. Lying awake is worse when you can't see the walls.</li>
         <li>[touch:light] Some light in the room, so I can at least see the ceiling I keep staring at.</li>
-        <li>[touch:endtable] A table by the bed, so my cup stops ending up on the floor with everything else.</li>
+        <li>[touch:endtable] Something to keep my cup off the floor, where everything else I own ends up.</li>
         <li>[touch:endtable] A bedside table. Not much, but it would be mine.</li>
         <li>[touch:endtable] Somewhere for my few things at night, off the floor.</li>
         <li>[touch:dresser] My clothes are most of what I own, so they might as well have a dresser.</li>
-        <li>[touch:dresser] I've marked a spot for drawers. I might as well keep things tidy while I'm here.</li>
+        <li>[touch:dresser] I might as well keep my things tidy while I'm here, drawers and all.</li>
         <li>[touch:dresser] A dresser, so I stop living out of a heap as if I'm about to run.</li>
       </gloomy>
       <cold>
@@ -192,9 +192,9 @@
         <li>[touch:light] I left the light on all night and slept a bit better for it.</li>
         <li>[touch:endtable] The table's in; my cup has a place, even if I don't always.</li>
         <li>[touch:endtable] It's a good table, better than the room around it.</li>
-        <li>[touch:endtable] A table by the bed, and one less thing on the floor.</li>
+        <li>[touch:endtable] One less thing on the floor, now the table's in.</li>
         <li>[touch:dresser] The dresser is in, and the room looks less like I'm about to leave.</li>
-        <li>[touch:dresser] I folded my clothes into the new drawers, and there weren't many to fold.</li>
+        <li>[touch:dresser] There weren't many clothes to fold into the new drawers.</li>
         <li>[touch:dresser] Tidy drawers, at least, even if the rest of my life isn't.</li>
       </gloomy>
       <cold>

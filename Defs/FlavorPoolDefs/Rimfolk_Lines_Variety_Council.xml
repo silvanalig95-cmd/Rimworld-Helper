@@ -224,7 +224,7 @@
       </blunt>
       <cheerful>
         <li>Yes to "{AMBITION}", and I'll be first in line to start!</li>
-        <li>I've been waiting for someone to suggest this, so put me down for the first shift.</li>
+        <li>I've been waiting for someone to suggest this, so count me in from the first day.</li>
       </cheerful>
       <gloomy>
         <li>It's the least bad idea I've heard all season, so I'll vote for it.</li>
@@ -283,7 +283,7 @@
     <pool>Council_Pool_MeetingAside</pool>
     <lines>
       <plain>
-        <li>[spring] Somebody's tracked half the field in on their boots.</li>
+        <li>[spring] Somebody's tracked mud in from the planting.</li>
         <li>[spring] The seedlings need watering, so can we keep this short?</li>
         <li>[spring] I can smell rain coming, so let's be quick.</li>
         <li>[summer] Whoever's sitting by the door, prop it open.</li>
@@ -292,7 +292,7 @@
         <li>[fall] I've still got baskets to carry before dark.</li>
         <li>[fall] Who brought apples, and can I have one?</li>
         <li>[fall] Somebody check the shutters after this, the wind's picking up.</li>
-        <li>[winter] Pass the blanket, no, the other one.</li>
+        <li>[winter] Pass me the blanket, the thick one.</li>
         <li>[winter] Has anyone seen my other glove?</li>
         <li>[winter] Sit closer to the fire, it's free.</li>
         <li>[night] I'm going to be useless tomorrow.</li>

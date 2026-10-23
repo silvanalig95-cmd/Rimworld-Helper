@@ -14,7 +14,7 @@
     <lines>
       <plain>
         <li>[touch:plantpot] There's a sunny corner in my room going to waste. A plant pot would fix that.</li>
-        <li>[touch:plantpot] A few flowers by the bed, nothing to eat. I've marked a spot for the pot.</li>
+        <li>[touch:plantpot] A few flowers by the bed, nothing to eat, if someone builds the pot.</li>
         <li>[touch:plantpot] The room needs a living thing in it besides me and the spiders.</li>
         <li>[touch:light] My light goes low on the wall, where it won't glare in my eyes.</li>
         <li>[touch:light] I dropped my only needle in the dark last week and I'm still looking. A light, please.</li>
@@ -75,7 +75,7 @@
         <li>[touch:light] A light, so the dark doesn't win every night.</li>
         <li>[touch:light] I've planned a lamp. I don't sleep much, so I might as well see.</li>
         <li>[touch:light] Some light, for the hours before dawn when I lie there thinking.</li>
-        <li>[touch:endtable] A table by the bed. Somewhere to put things down, at least.</li>
+        <li>[touch:endtable] A bedside table, to put things down on, if nothing else.</li>
         <li>[touch:endtable] I've marked out a small table. It'll hold what little I have.</li>
         <li>[touch:endtable] An end table for my room. Not much of a comfort, but I'll take it.</li>
         <li>[touch:dresser] A dresser. My clothes keep getting damp on the floor, like everything else here.</li>
@@ -111,7 +111,7 @@
         <li>[touch:light] I lit the new lamp and sat there for a while, doing nothing in particular.</li>
         <li>[touch:light] With the light in, I found two things I'd lost under the bed.</li>
         <li>[touch:endtable] My cup has a home now, on the new end table.</li>
-        <li>[touch:endtable] Everything I care about fits on the new table, with room to spare.</li>
+        <li>[touch:endtable] Everything I care about fits on that table, with room to spare.</li>
         <li>[touch:endtable] I put a candle on the new table and lay there looking at it.</li>
         <li>[touch:dresser] The dresser is in, and my clothes are off the floor at last.</li>
         <li>[touch:dresser] I spent the evening putting things in drawers and taking them out again.</li>
@@ -126,7 +126,7 @@
         <li>[touch:light] The new lamp means I can sit up with a friend without bumping into things.</li>
         <li>[touch:light] I left the light on late and read a letter from home, slowly.</li>
         <li>[touch:light] Whoever made the lamp did it beautifully, and I mean to tell them so.</li>
-        <li>[touch:endtable] The carving my friend made me sits on the new table now, where it belongs.</li>
+        <li>[touch:endtable] The carving my friend made me finally has a proper place to sit.</li>
         <li>[touch:endtable] The table's just where I wanted it, so thank you to whoever built it.</li>
         <li>[touch:endtable] A cup of water within reach at night, and I'm grateful for it.</li>
         <li>[touch:endtable] The new table holds my few treasures, and my room feels like mine now.</li>
@@ -180,7 +180,7 @@
         <li>[touch:light] I lit the lamp, and the room looked a bit less like a cell.</li>
         <li>[touch:light] Some light to lie awake by, which helps more than I expected.</li>
         <li>[touch:light] Better a lamp than the dark, I suppose.</li>
-        <li>[touch:endtable] I put my one keepsake on the new table, and it looked lonely there.</li>
+        <li>[touch:endtable] My one keepsake looks lonely on a whole table to itself.</li>
         <li>[touch:endtable] My cup won't end up on the floor in the night anymore, at least.</li>
         <li>[touch:endtable] Somewhere to put things down, and I hadn't known I missed it.</li>
         <li>[touch:endtable] The end table makes the room look lived in, which is half of it.</li>

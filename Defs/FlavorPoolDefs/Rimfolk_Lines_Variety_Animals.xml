@@ -158,7 +158,7 @@
         <li>{PAWN_nameDef} stopped {OTHER_nameDef} to say {PET_nameDef} was resting easy and would be up soon.</li>
         <li>{PAWN_nameDef} said {PET_nameDef} had lifted its head and looked round for {OTHER_nameDef} during the rounds.</li>
         <li>{PAWN_nameDef} sought out {OTHER_nameDef} to say {PET_nameDef} had had a good day.</li>
-        <li>[sick] {PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had slept through the night, which was a good sign.</li>
+        <li>[sick] {PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had slept the night through without a whimper.</li>
         <li>[sick] {PAWN_nameDef} let {OTHER_nameDef} know that {PET_nameDef} had kept its food down at last.</li>
         <li>[hurt] {PAWN_nameDef} let {OTHER_nameDef} know that {PET_nameDef} had stopped worrying at the dressing, so it must hurt less.</li>
         <li>[hurt] {PAWN_nameDef} was pleased with how {PET_nameDef} was moving today, and said so to {OTHER_nameDef}.</li>

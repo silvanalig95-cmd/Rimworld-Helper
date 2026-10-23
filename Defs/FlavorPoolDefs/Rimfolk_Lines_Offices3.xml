@@ -32,12 +32,12 @@
     <lines>
       <plain>
         <li>{PAWN_nameDef}, the chaplain, sat down beside {OTHER_nameDef} and let {OTHER_objective} talk about the one {OTHER_pronoun} lost, without hurrying {OTHER_objective}.</li>
-        <li>{PAWN_nameDef} found {OTHER_nameDef} alone and walked with {OTHER_objective} round the walls, talking about the one {OTHER_pronoun} lost.</li>
+        <li>{PAWN_nameDef} found {OTHER_nameDef} alone and walked with {OTHER_objective} round the walls, talking about whatever {OTHER_pronoun} liked.</li>
         <li>[devout] {PAWN_nameDef} knelt with {OTHER_nameDef} and prayed for the one {OTHER_pronoun} lost, slowly, so that {OTHER_nameDef} could say the words too.</li>
       </plain>
       <warm><li>{PAWN_nameDef} brought {OTHER_nameDef} a cup of broth and stayed beside {OTHER_objective} until it was finished, saying very little.</li></warm>
       <blunt><li>{PAWN_nameDef} made {OTHER_nameDef} no promise that the hurt would pass soon, only that {PAWN_pronoun} would be around for all of it.</li></blunt>
-      <cold><li>{PAWN_nameDef} asked {OTHER_nameDef} three questions about the one {OTHER_pronoun} lost and listened to every answer without a word.</li></cold>
+      <cold><li>{PAWN_nameDef} asked {OTHER_nameDef} three plain questions about {OTHER_possessive} grief and listened to every answer without a word.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
