@@ -18,22 +18,22 @@
     <lines>
       <plain>
         <li>[faith:devout] I'll tell it the way it was told to me, when I was small and the nights were long.</li>
-        <li>[faith:devout] It isn't a list of rules. It's how we try to live, and why.</li>
-        <li>[faith:devout] Ask whatever you like. I'd rather have a hard question than a polite silence.</li>
-        <li>[faith:devout] When things were at their worst last season, this is what I held on to.</li>
-        <li>[faith:devout] There's a story about the first of us to walk this road. It goes like this.</li>
-        <li>[faith:devout,lowtech] My grandmother said these words over every harvest. I'll say them now.</li>
-        <li>[faith:devout,!lowtech] Some of it is written down. Most of it you only learn by living it.</li>
-        <li>[!faith:devout] So that's why you never work at dawn.</li>
+        <li>[faith:devout] This is how we try to live, and why.</li>
+        <li>[faith:devout] Ask me anything, the harder the better.</li>
+        <li>[faith:devout] When things were at their worst, this is what I held on to.</li>
+        <li>[faith:devout] There's a story about the first of us to walk this road.</li>
+        <li>[faith:devout,lowtech] My grandmother said these words over every harvest, and now I'll say them.</li>
+        <li>[faith:devout,!lowtech] Some of it's written down, but most you learn by living it.</li>
+        <li>[!faith:devout] I always wondered why you do that.</li>
         <li>[!faith:devout] Mine says something like that too, in other words.</li>
         <li>[!faith:devout] Can I ask something without it sounding rude?</li>
-        <li>[!faith:devout] Say that last part again?</li>
-        <li>[faith:wavering] I used to be as sure of mine as you are of yours. Go on.</li>
+        <li>[!faith:devout] Wait, go back a bit.</li>
+        <li>[faith:wavering] I used to be as sure of mine as you are of yours.</li>
       </plain>
-      <warm><li>[faith:devout] Thank you for coming, all of you. It means more than you'd think.</li></warm>
-      <blunt><li>[!faith:devout] I came for the warm seat. The talk's not bad either.</li></blunt>
-      <cheerful><li>[!faith:devout] Is there singing after? There should be singing.</li></cheerful>
-      <gloomy><li>[faith:devout] The world takes a great deal from us. It doesn't get to take this.</li></gloomy>
+      <warm><li>[faith:devout] Thank you for coming, all of you.</li></warm>
+      <blunt><li>[!faith:devout] I came for the warm seat, but the talk's not bad.</li></blunt>
+      <cheerful><li>[!faith:devout] Is there singing after?</li></cheerful>
+      <gloomy><li>[faith:devout] I've lost nearly everything once already, but never this.</li></gloomy>
       <cold><li>[!faith:devout] It hangs together better than I expected.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -43,14 +43,14 @@
     <defName>Council_Pool_FaithEveningAway</defName>
     <lines>
       <plain>
-        <li>My faith doesn't hold with being preached at. I'll be in my room.</li>
+        <li>My faith doesn't hold with being preached at, so I'll stay away.</li>
         <li>I'll leave {FAITH} to those who hold it.</li>
-        <li>[faith:devout] We don't sit through other people's sermons. It's nothing against anyone.</li>
-        <li>They can have their evening. I know what I believe.</li>
+        <li>[faith:devout] We don't sit through other people's sermons, but it's nothing personal.</li>
+        <li>They can have their evening, I know what I believe.</li>
       </plain>
       <blunt><li>Not for me.</li></blunt>
-      <gloomy><li>Every ideoligion wants one more believer. Not this one.</li></gloomy>
-      <cold><li>Two hours of being told what to think. No, thank you.</li></cold>
+      <gloomy><li>Every faith wants one more believer, and it won't be me.</li></gloomy>
+      <cold><li>I don't need two hours of being told what to think.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -60,7 +60,7 @@
     <lines>
       <plain>
         <li>[poor] {PAWN_nameDef} spoke for {FAITH}, but the words wouldn't come right, and one by one the listeners found reasons to leave.</li>
-        <li>[poor] The evening of {FAITH} came to very little. {PAWN_nameDef} lost the thread halfway, and the fire was more interesting.</li>
+        <li>[poor] The evening of {FAITH} came to very little. {PAWN_nameDef} lost the thread halfway and never found it again.</li>
         <li>[poor,believers] Only the faithful came to hear {PAWN_nameDef}, and they had heard it all before.</li>
         <li>[good] {PAWN_nameDef} spoke for {FAITH}, plainly and without hurry, and answered every question put to {PAWN_objective}.</li>
         <li>[good] An evening of {FAITH}: {PAWN_nameDef} told the old stories, and the listeners stayed to the end.</li>
@@ -71,7 +71,7 @@
         <li>[fine,!believers] Those who came to hear {PAWN_nameDef} speak for {FAITH} stayed late, even the doubters.</li>
         <li>[fine,believers] The faithful of {FAITH} heard {PAWN_nameDef} out to the last word, and sat on together long after.</li>
         <li>[fine,altar] At the {PLACE}, {PAWN_nameDef} spoke for {FAITH} as if to each of them alone. It was very still afterwards.</li>
-        <li>[fine,moved] {PAWN_nameDef} spoke for {FAITH}, and those of other ideoligions who came walked home very thoughtful.</li>
+        <li>[fine,moved] {PAWN_nameDef} spoke for {FAITH}, and some of those of other faiths left with a great deal to think about.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -82,14 +82,14 @@
     <lines>
       <plain>
         <li>[speaker,poor] Spoke for {FAITH} tonight and made a mess of it. I'll do better next time.</li>
-        <li>[speaker,good] Spoke for {FAITH} this evening. They listened, and some of them stayed to ask questions.</li>
+        <li>[speaker,good] They listened to me tonight, and some stayed behind with questions about {FAITH}.</li>
         <li>[speaker,fine] Tonight I spoke for {FAITH} and every word came out right. I'm still too awake to sleep.</li>
         <li>[listener,unmoved] Went to hear {OTHER_nameDef} speak for {FAITH}. I see why it matters to {OTHER_objective}. It isn't mine.</li>
         <li>[listener,poor] {OTHER_nameDef} tried to speak for {FAITH}. It didn't go well, and I felt for {OTHER_objective}.</li>
         <li>[listener,moved] {OTHER_nameDef} spoke for {FAITH} tonight. I keep going over what was said.</li>
         <li>[listener,fine,moved] I went to {OTHER_nameDef}'s evening out of curiosity and came back with more questions about my own faith than I took.</li>
       </plain>
-      <blunt><li>[listener,unmoved] {FAITH} evening. Good stew after. That's my review.</li></blunt>
+      <blunt><li>[listener,unmoved] {FAITH} evening. Long. The chairs were hard.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -100,11 +100,11 @@
     <defName>Council_Pool_FaithShare</defName>
     <lines>
       <plain>
-        <li>[faith:devout] Ours after supper, theirs at first light. That's fair.</li>
+        <li>[faith:devout] Ours after supper, theirs at first light, and that's fair.</li>
         <li>[faith:devout] We'll leave it tidy for them, the way we'd want it left for us.</li>
-        <li>[!faith:devout] I didn't know they sang at theirs.</li>
-        <li>[!faith:devout] Two ideoligions, one roof. We'll manage.</li>
-        <li>[!faith:devout] Strange, hearing someone else's words in this place. Not bad. Strange.</li>
+        <li>[!faith:devout] I'd never heard their words said out loud before.</li>
+        <li>[!faith:devout] Two faiths and one altar, but we'll manage.</li>
+        <li>[!faith:devout] It's strange, hearing someone else's words in this place.</li>
       </plain>
       <blunt><li>[!faith:devout] As long as nobody sits in my seat.</li></blunt>
     </lines>
@@ -119,7 +119,7 @@
         <li>So {FAITH} is the colony's ideoligion now. Nobody asked me, and I won't forget that.</li>
         <li>[faith:alone] One ideoligion for the colony, and I'm the only one left holding mine.</li>
       </plain>
-      <gloomy><li>One ideoligion for the colony, and it isn't mine. Some home this is.</li></gloomy>
+      <gloomy><li>The council chose one faith for the whole colony, and it isn't mine. I've never felt more like a guest here.</li></gloomy>
       <cold><li>{FAITH} is the colony's ideoligion by the council's word. Noted.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -131,14 +131,14 @@
     <defName>Council_Pool_FaithDecreeWords</defName>
     <lines>
       <plain>
-        <li>[faith:devout] From today our faith is the colony's. We'll carry it gently.</li>
-        <li>[faith:devout] Nobody will be made to believe anything. But the door is open.</li>
+        <li>[faith:devout] From today our faith is the colony's, and we'll carry it gently.</li>
+        <li>[faith:devout] You needn't believe a thing, but the door is open.</li>
         <li>[!faith:devout] So that's that, then.</li>
-        <li>[!faith:devout] I'll believe what I believe, decree or no decree.</li>
-        <li>[!faith:devout] Does this change who does the cooking? No? Then fine.</li>
+        <li>[!faith:devout] I'll believe what I believe, whatever the council says.</li>
+        <li>[!faith:devout] Does this change who does the cooking?</li>
       </plain>
-      <warm><li>[faith:devout] Whatever you hold to, you're one of us. That hasn't changed.</li></warm>
-      <gloomy><li>[!faith:devout] One faith for everyone. It never ends well in the stories.</li></gloomy>
+      <warm><li>[faith:devout] Whatever you hold to, you're still one of us.</li></warm>
+      <gloomy><li>[!faith:devout] One faith for everyone never ends well in the stories.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -150,10 +150,10 @@
         <li>Before we start: a word from {FAITH}, as the council asked.</li>
         <li>Let's begin as {FAITH} teaches, with a moment's quiet.</li>
         <li>[faith:devout] A blessing on this meeting, in the way of {FAITH}. Now, to business.</li>
-        <li>May we choose well tonight. {FAITH} asks no more of us than that.</li>
+        <li>May we choose well today. {FAITH} asks no more of us than that.</li>
       </plain>
       <cheerful><li>A word from {FAITH} first, and I promise it's a short one.</li></cheerful>
-      <cold><li>The decree asks for a word from {FAITH}. Here it is: be honest in what you say tonight.</li></cold>
+      <cold><li>Say only what you mean today, as {FAITH} asks of us.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -163,12 +163,12 @@
     <defName>Council_Cal_Letter_Faith</defName>
     <lines>
       <plain>
-        <li>{NAME}, and {A_nameDef} reminds the council that the evening belongs to {SUBJECT}.</li>
-        <li>[first] {NAME} comes round for the first time. Those of {SUBJECT} have the chairs out already.</li>
-        <li>[years] {NAME} again, {YEARS} years on. {SUBJECT} keeps its evening.</li>
-        <li>[tradition] {NAME}: the evening of {SUBJECT}, as every year, and everyone welcome.</li>
+        <li>{A_nameDef} reminds the council that today is {NAME}, and the evening belongs to {SUBJECT}.</li>
+        <li>[first] It's the first {NAME}, and those of {SUBJECT} have the chairs out already.</li>
+        <li>[years] {YEARS} years on, {NAME} comes round again, and {SUBJECT} keeps its evening.</li>
+        <li>[tradition] As every year, {NAME} is the evening of {SUBJECT}, and anyone may come.</li>
       </plain>
-      <gloomy><li>{NAME}. {A_nameDef} says a hard year is when the colony needs its evenings most.</li></gloomy>
+      <gloomy><li>It's {NAME}. {A_nameDef} says a hard year is when the colony needs its evenings most.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -176,12 +176,12 @@
     <defName>Council_Journal_Cal_Faith</defName>
     <lines>
       <plain>
-        <li>{NAME}: the evening of {SUBJECT}. I sat at the back and listened.</li>
+        <li>Today is {NAME}, the evening of {SUBJECT}. I mean to sit at the back and listen.</li>
         <li>[first] The first {NAME}. We'll see if it lasts.</li>
-        <li>[tradition] {NAME} again. The same words every year, and I find I like that.</li>
-        <li>[faith:devout] {NAME}. The faith spoken for, as it should be every year.</li>
+        <li>[tradition] It's {NAME} again. The same words every year, and I find I like that.</li>
+        <li>[faith:devout] It's {NAME}, and tonight the faith gets its evening, as it should every year.</li>
       </plain>
-      <blunt><li>{NAME}. Long evening. Good company.</li></blunt>
+      <blunt><li>Long evening ahead for {NAME}. Good company, at least.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -189,9 +189,9 @@
     <defName>Council_Cal_Talk_Faith</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} and {B_nameDef} talked about {SUBJECT} on {NAME}.</li>
-        <li>{A_nameDef} asked {B_nameDef} what {B_pronoun} believes, on {NAME}.</li>
-        <li>{A_nameDef} told {B_nameDef} the story {A_pronoun} likes best from {NAME}.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about what {SUBJECT} asks of a person.</li>
+        <li>{A_nameDef} asked {B_nameDef} what {B_pronoun} believed in, and why.</li>
+        <li>{A_nameDef} told {B_nameDef} the story {A_pronoun} always tells on {NAME}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -201,7 +201,7 @@
     <pool>Council_Cal_Talk_Eve</pool>
     <lines>
       <plain>
-        <li>[way:faith] {A_nameDef} and {B_nameDef} set out chairs for tomorrow's ideoligion evening.</li>
+        <li>[way:faith] {A_nameDef} reminded {B_nameDef} about tomorrow's ideoligion evening.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
