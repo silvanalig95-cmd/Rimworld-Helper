@@ -110,11 +110,18 @@
         <li>[argue,against] You'd eat anything that sat still long enough.</li>
         <li>[argue,for] Starve, then, and see how fussy you are.</li>
         <li>[argue,against] You'd praise the cook if they served you gravel.</li>
+        <li>[agree,for] Can't fault it, and I've tried.</li>
+        <li>[agree,against] I've been eating mine with my eyes shut.</li>
+        <li>[debate,for] It's better than what we had when we first got here.</li>
+        <li>[debate,against] It fills you up, I'll give it that much.</li>
+        <li>[argue,for] You ate every bite, I watched you.</li>
+        <li>[argue,against] Don't tell me you actually liked that.</li>
       </plain>
       <warm>
         <li>[agree,for] It's the company that makes it, really.</li>
         <li>[debate,against] I'm sure the cook tries, I just wish it tasted of something.</li>
         <li>[agree,against] I'll help in the kitchen, if that helps.</li>
+        <li>[debate,against] I'll eat it gladly, I'd just like it hotter.</li>
       </warm>
       <blunt>
         <li>[agree,against] It was slop.</li>
@@ -128,10 +135,12 @@
       <gloomy>
         <li>[agree,against] It's never going to get better, either.</li>
         <li>[debate,for] At least there is some, that's more than many have.</li>
+        <li>[agree,against] And there's nothing better coming, is there.</li>
       </gloomy>
       <cold>
         <li>[debate,against] Nutritious, perhaps, but not good.</li>
         <li>[agree,for] It's sufficient.</li>
+        <li>[agree,for] It's enough, and it comes on time.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>

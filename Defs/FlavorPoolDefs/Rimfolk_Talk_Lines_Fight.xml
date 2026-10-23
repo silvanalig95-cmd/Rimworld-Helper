@@ -144,6 +144,10 @@
         <li>[debate,against,otherrep:brave] You're brave, everyone knows it, but brave isn't the same as right.</li>
         <li>[argue,for,otherrep:coward] Says the one everyone saw running for the storeroom.</li>
         <li>[debate,for,otherrep:levelheaded] You're always the calm one, so I'll listen, but no.</li>
+        <li>[agree,for] Count me in, whenever it is.</li>
+        <li>[agree,against] Walls first, and then we'll talk about anything else.</li>
+        <li>[debate,for] A wall's no use if nobody's willing to stand on it.</li>
+        <li>[debate,against] Brave is fine, but it doesn't make you any harder to hit.</li>
       </plain>
       <warm>
         <li>[agree,for] I feel safer knowing you'll be out there.</li>
@@ -336,11 +340,18 @@
         <li>[agree,for] I'd put my name to most of what they've done.</li>
         <li>[argue,against] They've got you fooled, and you can't even see it.</li>
         <li>[argue,for] Ungrateful, after everything they've done.</li>
+        <li>[agree,for] They've never once lied to me.</li>
+        <li>[agree,against] I stopped asking them for anything a while ago.</li>
+        <li>[debate,for] They get more right than wrong, by my count.</li>
+        <li>[debate,against] Maybe, but who decided they get to decide?</li>
+        <li>[argue,for] Name one thing you'd have done better.</li>
+        <li>[argue,against] You'd agree with them if they said the sky was green.</li>
       </plain>
       <warm>
         <li>[agree,for] I think they're doing their best for all of us.</li>
         <li>[debate,against] I hope you're right, I really do.</li>
         <li>[debate,against] I want to believe in them, but it gets harder.</li>
+        <li>[debate,against] I'd love to be wrong about them.</li>
       </warm>
       <blunt>
         <li>[agree,against] Bunch of clowns, the lot of them.</li>
@@ -354,6 +365,7 @@
       <gloomy>
         <li>[agree,against] It'll never change, either.</li>
         <li>[argue,against] They'll lead us all into the ground.</li>
+        <li>[agree,against] Nothing we say changes anything up there.</li>
       </gloomy>
       <cold>
         <li>[argue,against] Your trust is misplaced.</li>
