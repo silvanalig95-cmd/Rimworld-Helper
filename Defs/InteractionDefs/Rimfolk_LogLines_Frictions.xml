@@ -193,7 +193,7 @@
     <interaction>Council_Friction_ReturnedBroken</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] laid the [tool] on the table in front of [RECIPIENT_nameDef] and waited.</li>
+        <li>r_logentry->[INITIATOR_nameDef] mentioned the [tool], and then waited for [RECIPIENT_nameDef] to explain.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] had been using the [tool] for, and the answer explained the [damage].</li>
       </rulesStrings>
     </rulePack>

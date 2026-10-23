@@ -15,12 +15,12 @@
     <recipientThought>Council_Friction_CookingCriticised</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef], still green from food poisoning, told the table that [RECIPIENT_nameDef]'s cooking had done it. [RECIPIENT_nameDef] was at the table.</li>
+        <li>r_logentry->[INITIATOR_nameDef], still green from food poisoning, told [RECIPIENT_nameDef] to [RECIPIENT_possessive] face that [RECIPIENT_possessive] cooking had done it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] [washthing].</li>
-        <li>r_logentry->[INITIATOR_nameDef] pushed [INITIATOR_possessive] bowl away and said loudly that [INITIATOR_pronoun] wasn't trusting [RECIPIENT_nameDef]'s cooking again.</li>
-        <li>r_logentry->[INITIATOR_nameDef] spent most of the morning telling anyone nearby what [RECIPIENT_nameDef]'s [dish] had done to [INITIATOR_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] said [RECIPIENT_nameDef]'s kitchen was the reason [INITIATOR_pronoun] had been up all night. [RECIPIENT_nameDef] said [cookanswer].</li>
-        <li>r_logentry->[INITIATOR_nameDef] sniffed [INITIATOR_possessive] supper for a long time before eating it, and made sure [RECIPIENT_nameDef] saw.</li>
+        <li>r_logentry->[INITIATOR_nameDef] announced to [RECIPIENT_nameDef], loudly, that [INITIATOR_pronoun] wasn't trusting [RECIPIENT_possessive] cooking again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] exactly what [RECIPIENT_possessive] [dish] had done to [INITIATOR_objective], leaving nothing out.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [RECIPIENT_nameDef]'s kitchen was the reason [INITIATOR_pronoun] had been up all night, and [RECIPIENT_nameDef] said [cookanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what was going into the next meal, and whether anyone had sniffed it first.</li>
         <li>r_logentry->[INITIATOR_nameDef] suggested someone other than [RECIPIENT_nameDef] might take a turn at the cooking for a while.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the [dish] had tasted off, and that [INITIATOR_pronoun] had paid for it since.</li>
         <li>washthing->ever washed [RECIPIENT_possessive] hands</li>
@@ -59,13 +59,13 @@
     <recipientThought>Council_Friction_Mocked</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] did an impression of [RECIPIENT_nameDef]'s [breakdown] for the others. [RECIPIENT_nameDef] walked in halfway through.</li>
+        <li>r_logentry->[INITIATOR_nameDef] did an impression of [RECIPIENT_nameDef]'s [breakdown] to [RECIPIENT_possessive] face.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was planning another [breakdown] soon, so everyone could get out of the way.</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought up [RECIPIENT_nameDef]'s [breakdown] at supper, and laughed alone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] brought up [RECIPIENT_nameDef]'s [breakdown] as if it were a funny story.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to try not to [breakthing] this time.</li>
-        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef]'s [breakdown] a name, and the name stuck for a day.</li>
-        <li>r_logentry->[INITIATOR_nameDef] kept tiptoeing around [RECIPIENT_nameDef] and saying it was for everyone's safety.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told the story of [RECIPIENT_nameDef]'s [breakdown] again, with more in it than happened.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had a name for [RECIPIENT_nameDef]'s [breakdown], and used it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] tiptoed round [RECIPIENT_nameDef] with great care and said it was for everyone's safety.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the story of [RECIPIENT_possessive] own [breakdown], with more in it than had happened.</li>
         <li>breakdown->bad spell</li>
         <li>breakdown->outburst</li>
         <li>breakdown->bad day</li>
@@ -98,12 +98,12 @@
     <recipientThought>Council_Friction_CreditTaken</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] talked about the council's project as though [INITIATOR_pronoun] had done it alone. [RECIPIENT_nameDef] had [didpart].</li>
-        <li>r_logentry->[INITIATOR_nameDef] accepted the colony's thanks for the project. [RECIPIENT_nameDef], who had [didpart], stood at the back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told the story of the project with [INITIATOR_objective]self in every part of it. [RECIPIENT_nameDef] corrected [INITIATOR_objective] twice.</li>
-        <li>r_logentry->[INITIATOR_nameDef] said "my project" once too often in front of [RECIPIENT_nameDef].</li>
-        <li>r_logentry->[INITIATOR_nameDef] went on about how hard the project had been. [RECIPIENT_nameDef] reminded [INITIATOR_objective] who had [didpart].</li>
-        <li>r_logentry->[INITIATOR_nameDef] proposed the idea, and to hear [INITIATOR_objective] tell it, [INITIATOR_pronoun] had finished it too. [RECIPIENT_nameDef] had [didpart].</li>
+        <li>r_logentry->[INITIATOR_nameDef] talked to [RECIPIENT_nameDef] about the council's project as though [INITIATOR_pronoun] had done it alone, when [RECIPIENT_nameDef] had [didpart].</li>
+        <li>r_logentry->[INITIATOR_nameDef] went on to [RECIPIENT_nameDef] about the thanks [INITIATOR_pronoun] had had for the project, never mind that [RECIPIENT_nameDef] had [didpart].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the story of the project with [INITIATOR_objective]self in every part of it, and [RECIPIENT_nameDef] corrected [INITIATOR_objective] twice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said "my project" once too often for [RECIPIENT_nameDef]'s liking.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went on about how hard the project had been, and [RECIPIENT_nameDef] reminded [INITIATOR_objective] who had [didpart].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the project had been [INITIATOR_possessive] doing from start to finish, though [RECIPIENT_nameDef] had [didpart].</li>
         <li>didpart->hauled most of the stone</li>
         <li>didpart->worked through two nights on it</li>
         <li>didpart->done the dull half of it</li>
@@ -138,12 +138,12 @@
     <recipientThought>Council_Friction_Nagged</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] held up the [tool] [RECIPIENT_nameDef] had borrowed and pointed at the [damage].</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how the [tool] had come by its [damage]. [RECIPIENT_nameDef] said [toolanswer].</li>
-        <li>r_logentry->[INITIATOR_nameDef] found the [tool] back on the bench with a [damage], and [RECIPIENT_nameDef] the last to use it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the [tool] had been fine that morning.</li>
-        <li>r_logentry->[INITIATOR_nameDef] spent an hour mending the [tool] and made sure [RECIPIENT_nameDef] heard every minute of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] stopped lending [RECIPIENT_nameDef] the good [tool], and said why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about the [tool] [RECIPIENT_pronoun] had borrowed, and the [damage] it came back with.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how the [tool] had come by its [damage], and [RECIPIENT_nameDef] said [toolanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the [tool] had come back to the bench with a [damage], and [RECIPIENT_nameDef] had been the last to use it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] insisted to [RECIPIENT_nameDef] that the [tool] had been fine the day before.</li>
+        <li>r_logentry->[INITIATOR_nameDef] worked out aloud for [RECIPIENT_nameDef] how long it would take to mend the [tool], and whose fault that was.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said that was the last time [RECIPIENT_nameDef] borrowed the good [tool].</li>
         <li>tool->saw</li>
         <li>tool->chisel</li>
         <li>tool->trowel</li>
