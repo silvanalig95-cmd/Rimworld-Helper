@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.11.3</version>
+        <date>23 October 2026</date>
+        <title>Couriers home, panels fresh</title>
+        <points>
+          <li>A courier who never reached the colony gives up a day after setting out, not a day after you sent for them, and a trip whose courier was captured, enslaved or stuck at the edge now ends instead of waiting forever.</li>
+          <li>A courier's pack animal leaves with them when the courier goes, instead of staying behind on the map.</li>
+          <li>A courier whose drop spot was walled off or built over leaves the goods where they stand rather than trying to reach it.</li>
+          <li>Loading another save no longer shows the last game's alerts, wounds or idle times in the on-screen panels, and the inventory's yesterday column now works with up to eight home maps.</li>
+          <li>The hover card lets go of a colonist who died or left the map while the mouse rested on it, and a panel's options window redraws the panel when you reset it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.11.2</version>
         <date>23 October 2026</date>
         <title>Faith that settles</title>

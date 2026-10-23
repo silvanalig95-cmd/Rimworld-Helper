@@ -137,6 +137,13 @@ namespace ColonyCouncil
         /// <summary>Each wound's severity at its worst while the panel has watched it (not saved), and those seen from the start.</summary>
         private static readonly Dictionary<Hediff, float> worst = new Dictionary<Hediff, float>();
         private static readonly HashSet<Hediff> seenFresh = new HashSet<Hediff>();
+
+        /// <summary>A new or loaded game: the last one's wounds are let go.</summary>
+        public static void Reset()
+        {
+            worst.Clear();
+            seenFresh.Clear();
+        }
         private static readonly HashSet<Hediff> seenNow = new HashSet<Hediff>();
         private static readonly List<Hediff> gone = new List<Hediff>();
 

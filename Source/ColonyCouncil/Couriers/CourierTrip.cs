@@ -43,6 +43,8 @@ namespace ColonyCouncil
         public int giveUp;
         /// <summary>When they reached the gate, and when their business was done (-1: not yet).</summary>
         public int arrived = -1;
+        /// <summary>When they set out from the edge (-1: not yet, or an older save); the walk in is timed from it, not from <see cref="due"/>.</summary>
+        public int setOut = -1;
         public int doneTick = -1;
         public int endTick = -1;
         /// <summary>Where they hand over and wait: the colony's gate, else where traders leave their goods.</summary>
@@ -190,6 +192,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref due, "due");
             Scribe_Values.Look(ref giveUp, "giveUp");
             Scribe_Values.Look(ref arrived, "arrived", -1);
+            Scribe_Values.Look(ref setOut, "setOut", -1);
             Scribe_Values.Look(ref doneTick, "doneTick", -1);
             Scribe_Values.Look(ref endTick, "endTick", -1);
             Scribe_Values.Look(ref spot, "spot", IntVec3.Invalid);

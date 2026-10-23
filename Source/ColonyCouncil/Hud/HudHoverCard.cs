@@ -128,7 +128,7 @@ namespace ColonyCouncil
             if (Find.PlaySettings != null && Find.PlaySettings.showColonistBar && Find.ColonistBar != null && Find.ColonistBar.AnyColonistOrCorpseAt(mouse))
                 return null;
             // In the corner, the card itself may be under the mouse: keep showing whom it was showing.
-            if (under != null) return target;
+            if (under != null) return target != null && target.Map == map && Fits(target) ? target : null;
             var cell = UI.MouseCell();
             float now = Time.realtimeSinceStartup;
             if (cell == lastCell && now - pickedAt < 0.1f) return lastPicked;

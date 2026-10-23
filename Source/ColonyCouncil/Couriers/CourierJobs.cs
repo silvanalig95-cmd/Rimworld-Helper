@@ -45,8 +45,9 @@ namespace ColonyCouncil
                 fetch.locomotionUrgency = LocomotionUrgency.Walk;
                 return fetch;
             }
+            // Unloading at the drop spot, or where they stand if they can't get there (built over, or never arrived).
             if (t.toUnload.Contains(pawn))
-                return Drop(new LocalTargetInfo(t.spot));
+                return Drop(new LocalTargetInfo(t.spot.IsValid && pawn.CanReach(t.spot, PathEndMode.OnCell, Danger.Some) ? t.spot : pawn.Position));
             // The pack animal's load: the first of them still about unloads it, wherever it stands.
             var beast = t.animal;
             if (beast != null && t.toUnload.Contains(beast) && beast.Spawned && !beast.Dead && beast.Map == map && t.Bearers.FirstOrDefault() == pawn

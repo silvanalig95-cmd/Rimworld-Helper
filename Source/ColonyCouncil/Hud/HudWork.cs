@@ -53,6 +53,9 @@ namespace ColonyCouncil
         /// <summary>When each colonist was first seen idle (ticks), by ID; gone when they work again.</summary>
         private static readonly Dictionary<int, int> idleSince = new Dictionary<int, int>();
 
+        /// <summary>A new or loaded game: idle times start afresh (an earlier save's ticks would read as no time at all).</summary>
+        public static void Reset() => idleSince.Clear();
+
         // Work waiting that nobody does: looked for at most every five seconds.
         private float unmannedAt = -100f;
         private readonly List<(string label, string why)> unmanned = new List<(string, string)>();

@@ -59,6 +59,9 @@ namespace ColonyCouncil
 
         private static readonly Dictionary<Alert, (float at, string text)> explanations = new Dictionary<Alert, (float, string)>();
 
+        /// <summary>A new or loaded game: the last one's alerts are let go.</summary>
+        public static void Reset() => explanations.Clear();
+
         /// <summary>The alerts' labels seen this session, by class, for the options' list of hidden alerts.</summary>
         private static readonly Dictionary<string, string> labelsByClass = new Dictionary<string, string>();
 

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Couriers home, panels fresh
+
+*23 October 2026, version 0.11.3*
+
+- A courier who never reached the colony gives up a day after setting out, not a day after you sent for them, and a trip whose courier was captured, enslaved or stuck at the edge now ends instead of waiting forever.
+- A courier's pack animal leaves with them when the courier goes, instead of staying behind on the map.
+- A courier whose drop spot was walled off or built over leaves the goods where they stand rather than trying to reach it.
+- Loading another save no longer shows the last game's alerts, wounds or idle times in the on-screen panels, and the inventory's yesterday column now works with up to eight home maps.
+- The hover card lets go of a colonist who died or left the map while the mouse rested on it, and a panel's options window redraws the panel when you reset it.
+
 ## Faith that settles
 
 *23 October 2026, version 0.11.2*

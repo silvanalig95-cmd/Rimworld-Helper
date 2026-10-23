@@ -161,7 +161,10 @@ namespace ColonyCouncil
                         && (t.lord.CurLordToil is LordToil_CourierWork || t.lord.CurLordToil is LordToil_Travel))
                         t.lord.ReceiveMemo(LordJob_Courier.MemoLeave);
                     ClearGone(t);
-                    if (t.state == CourierState.Leaving && AllGone(t))
+                    // A group whose lord is gone (they all left, or it was lost) is no longer theirs to keep.
+                    if (t.lord != null && (!t.MapThere || !t.map.lordManager.lords.Contains(t.lord))) t.lord = null;
+                    // Gone, or kept on the map long after leaving (one of them held prisoner): done either way.
+                    if (t.state == CourierState.Leaving && (AllGone(t) || (t.endTick >= 0 && now - t.endTick > CourierMath.MaxKeepTicks)))
                     {
                         t.state = CourierState.Done;
                         if (t.endTick < 0) t.endTick = now;
@@ -228,9 +231,11 @@ namespace ColonyCouncil
                     var first = t.Bearers.FirstOrDefault();
                     if (first != null) CourierWords.Say(first, t, t.kind == CourierKind.Await ? "await" : "arrive");
                 }
-                else if (now - t.due > CourierMath.TicksPerDay)
+                else
                 {
-                    End(t, CourierEnd.TimedOut);
+                    // A day's walk at most from when they set out (a trip that waited for better weather set out late).
+                    if (t.setOut < 0) t.setOut = now;
+                    if (now - t.setOut > CourierMath.TicksPerDay) End(t, CourierEnd.TimedOut);
                 }
                 return;
             }
@@ -390,12 +395,14 @@ namespace ColonyCouncil
                 foreach (var p in party) DropAll(t, p, p.Position);
                 t.goods.TryDropAll(spot, map, ThingPlaceMode.Near);
                 Arrivals.SendAway(people);
+                SendAway(t);
                 t.settled = true;
                 t.state = CourierState.Done;
                 t.endTick = Now;
                 return true;
             }
             t.state = CourierState.Coming;
+            t.setOut = Now;
             CourierWords.Arrive(t);
             return true;
         }
@@ -638,7 +645,7 @@ namespace ColonyCouncil
             try
             {
                 if (t.lord != null && t.MapThere && t.map.lordManager.lords.Contains(t.lord)) t.lord.ReceiveMemo(LordJob_Courier.MemoLeave);
-                else Arrivals.SendAway(t.people);
+                else SendAway(t);
             }
             catch (Exception e)
             {
@@ -800,7 +807,19 @@ namespace ColonyCouncil
                 if (!p.Dead && p.MapHeld == null && !p.Discarded && p.Faction != Faction.OfPlayer && !p.IsPrisoner) Clear(p);
         }
 
-        private static bool AllGone(CourierTrip t) => t.Party.All(p => p.Dead || p.Discarded || p.MapHeld != t.map || p.Faction == Faction.OfPlayer);
+        /// <summary>None of them left on the map as theirs: dead, gone, joined the colony, or held as its prisoner or slave.</summary>
+        private static bool AllGone(CourierTrip t) =>
+            t.Party.All(p => p.Dead || p.Discarded || p.MapHeld != t.map || p.Faction == Faction.OfPlayer || p.IsPrisonerOfColony || p.IsSlaveOfColony);
+
+        /// <summary>Sends the group off the map without their lord: the people, and their pack animal with them.</summary>
+        private static void SendAway(CourierTrip t)
+        {
+            Arrivals.SendAway(t.people);
+            var a = t.animal;
+            if (a == null || !a.Spawned || a.Dead || a.Downed || a.Faction == null || a.Faction == Faction.OfPlayer) return;
+            a.GetLord()?.RemovePawn(a);
+            LordMaker.MakeNewLord(a.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), a.Map, new List<Pawn> { a });
+        }
 
         // ---------------- Saving ----------------
 

@@ -25,8 +25,8 @@ namespace ColonyCouncil
         /// <summary>Snapshots of a home map's stock kept for each map (HudInventoryMath: every six hours, so a day and a quarter).</summary>
         public const int MaxStockPerMap = 5;
 
-        /// <summary>Snapshots kept in all (a few home maps at most).</summary>
-        public const int MaxStock = 15;
+        /// <summary>Snapshots kept in all: eight home maps' worth, so each keeps a full day (yesterday's column needs one).</summary>
+        public const int MaxStock = MaxStockPerMap * 8;
 
         /// <summary>The stock snapshots, packed (HudInventoryMath.Pack: map, hour, and what there was of each item).</summary>
         private List<string> stock = new List<string>();
@@ -74,6 +74,10 @@ namespace ColonyCouncil
                 HudManager.NewGame();
                 HudHoverCard.Reset();
                 HudMood.Reset();
+                // What the last game's panels kept (its alerts, wounds, idle times) means nothing in this one.
+                HudAlerts.Reset();
+                HudHealth.Reset();
+                HudWork.Reset();
             }
             catch (Exception e)
             {

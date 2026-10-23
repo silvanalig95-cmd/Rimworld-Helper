@@ -73,7 +73,9 @@ namespace ColonyCouncil
         public override void DoWindowContents(Rect inRect)
         {
             var st = HudLayout.State(id);
-            var before = st.Copy();
+            // Only a click, drag or key can change an option: the copy to compare against isn't made for every repaint.
+            var ev = Event.current?.type ?? EventType.Repaint;
+            var before = ev == EventType.Repaint || ev == EventType.Layout ? null : st.Copy();
             UiKit.LabelFit(new Rect(inRect.x, inRect.y, inRect.width - 30f, 32f), "CC_Pnl_OptionsTitle".Translate(HudLayout.Label(id)), Color.white, GameFont.Medium);
             var outRect = new Rect(inRect.x, inRect.y + 38f, inRect.width, inRect.height - 38f - 40f);
             var view = new Rect(0f, 0f, outRect.width - 16f, viewHeight);
@@ -157,7 +159,12 @@ namespace ColonyCouncil
                     var d = HudLayout.Default(id);
                     d.on = st.on;
                     int i = ColonyCouncilMod.Settings.hudPanels.IndexOf(st);
-                    if (i >= 0) ColonyCouncilMod.Settings.hudPanels[i] = d;
+                    if (i >= 0)
+                    {
+                        ColonyCouncilMod.Settings.hudPanels[i] = d;
+                        // The panel redraws as reset (it compares against the new state below).
+                        st = d;
+                    }
                 }
                 viewHeight = l.CurHeight + 12f;
             }
@@ -166,8 +173,11 @@ namespace ColonyCouncil
                 l.End();
                 Widgets.EndScrollView();
             }
-            if (st.on && !before.on) ColonyCouncilMod.Settings.hudShown = true;
-            if (Changed(before, st)) HudManager.Window(id)?.MarkDirty();
+            if (before != null)
+            {
+                if (st.on && !before.on) ColonyCouncilMod.Settings.hudShown = true;
+                if (Changed(before, st)) HudManager.Window(id)?.MarkDirty();
+            }
             // Rimfolk's settings, unless this was opened from there.
             if (!Find.WindowStack.IsOpen(typeof(RimWorld.Dialog_ModSettings)) &&
                 Widgets.ButtonText(new Rect(inRect.x, inRect.yMax - 32f, 200f, 32f), HudKit.T("CC_Pnl_AllOptions")))
