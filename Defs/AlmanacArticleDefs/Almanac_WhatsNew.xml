@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.10</version>
+        <date>23 October 2026</date>
+        <title>Rest for the wounded</title>
+        <points>
+          <li>Colonists still healing from a wound or an illness now like a clean sweep (unless they're lazy) and resting when ill (unless they're industrious or tough), and the Decrees page shows them among those who like it.</li>
+          <li>When many are hurt (two colonists or more, and at least a third of the colony, with real wounds still healing, not a scratch), colonists petition the council for either decree. Before, resting when ill was only asked for when someone was ill, and a clean sweep only when the colony was dirty.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.9</version>
         <date>23 October 2026</date>
         <title>Diaries and dreams</title>

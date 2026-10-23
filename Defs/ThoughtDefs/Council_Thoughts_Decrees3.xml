@@ -34,8 +34,8 @@
     <stages>
       <li><label>ordered to lie down</label><description>The council would put me to bed over a sniffle. There's work to do and I'm being made to watch it pile up.</description><baseMoodEffect>-6</baseMoodEffect></li>
       <li><label>the sick-bay rule</label><description>Too many of us are in bed with something, and the rest are covering for them.</description><baseMoodEffect>-2</baseMoodEffect></li>
-      <li><label>looking after the sick</label><description>The sick rest and the well cover for them. I'd want the same, if it were me in that bed.</description><baseMoodEffect>2</baseMoodEffect></li>
-      <li><label>allowed to get better</label><description>When I'm ill, I'm allowed to stay in bed until I'm well, and not a word said about it.</description><baseMoodEffect>4</baseMoodEffect></li>
+      <li><label>looking after the sick</label><description>The sick and the hurt get to rest, and the rest of us cover for them. That's how it should be.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>allowed to get better</label><description>When I'm ill or hurt, I'm allowed to stay in bed until I'm well, and not a word said about it.</description><baseMoodEffect>4</baseMoodEffect></li>
     </stages>
   </ThoughtDef>
 

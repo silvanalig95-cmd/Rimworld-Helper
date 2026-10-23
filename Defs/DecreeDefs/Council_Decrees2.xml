@@ -189,8 +189,8 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_CleanSweep</defName>
     <label>clean sweep</label>
-    <description>Scrub everything: floors, tables, bedding, the hospital twice. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors like it.</description>
-    <requestWhen><li>Dirty</li></requestWhen>
+    <description>Scrub everything: floors, tables, bedding, the hospital twice. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors and anyone still healing from a wound or an illness like it, and ask for it when many are hurt.</description>
+    <requestWhen><li>Dirty</li><li>Wounded</li></requestWhen>
     <order>12</order>
     <strainPerDay>1</strainPerDay>
     <durationDays>3</durationDays>
@@ -204,14 +204,18 @@
       <li><passion>Medicine</passion><reaction>Like</reaction></li>
       <li><trait>Industriousness</trait><degree>-1</degree><reaction>Hate</reaction></li>
       <li><trait>Industriousness</trait><degree>-2</degree><reaction>Hate</reaction></li>
+      <li><healing>true</healing><reaction>Like</reaction></li>
     </reactions>
     <effects>
       <li>Cleaning is 50% faster.</li>
       <li>Wounds are tended better and immunity builds faster.</li>
-      <li>Doctors like it; the lazy hate it.</li>
+      <li>Doctors and the wounded or ill like it; the lazy hate it.</li>
     </effects>
     <support>
-      <plain><li>About time. The hospital floor was a disgrace.</li></plain>
+      <plain>
+        <li>About time. The hospital floor was a disgrace.</li>
+        <li>[hurt] Half of us are bandaged and the beds haven't been aired in a week. Scrub the place.</li>
+      </plain>
       <cold><li>Fewer infections means fewer graves to dig.</li></cold>
     </support>
     <oppose>

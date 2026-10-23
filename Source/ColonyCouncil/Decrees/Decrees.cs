@@ -38,7 +38,9 @@ namespace ColonyCouncil
         /// <summary>Good times: food for twenty days or more and the colony in a good mood.</summary>
         Plenty,
         /// <summary>The world event the decree is for is running (its <see cref="DecreeDef.situationKinds"/>).</summary>
-        Situation
+        Situation,
+        /// <summary>Many are hurt: two colonists or more, and at least a third of them, with wounds still healing (<see cref="LifeChecks.HurtFrom"/>).</summary>
+        Wounded
     }
 
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
@@ -53,6 +55,8 @@ namespace ColonyCouncil
         public bool nonViolent;
         /// <summary>Someone who lost a friend or family member lately.</summary>
         public bool grieving;
+        /// <summary>Someone hurt or ill and still healing (<see cref="LifeChecks.Healing"/>).</summary>
+        public bool healing;
         /// <summary>
         /// Who they are, by name (see PeopleTags): "devout", "meme:NaturePrimacy", "trait:VTE_Workaholic". The way to
         /// name a mod's trait or a faith's meme: it simply never matches when that mod or DLC is missing.
@@ -104,6 +108,7 @@ namespace ColonyCouncil
             }
             if (nonViolent) return p.WorkTagIsDisabled(WorkTags.Violent);
             if (grieving) return Flavor.IsGrieving(p);
+            if (healing) return LifeChecks.Healing(p);
             if (!tags.NullOrEmpty()) return PeopleTags.Matches(p, tags);
             if (sameFaith) return DecreeWork.Believer(p);
             if (otherFaith) return DecreeWork.OtherFaith(p);
@@ -608,6 +613,11 @@ namespace ColonyCouncil
                     return AdvisorWorker_Food.DaysOfFood(map) >= 20f && pawns.Average(p => p.needs?.mood?.CurLevelPercentage ?? 0.5f) > 0.6f;
                 case DecreeMoment.Situation:
                     return def != null && DecreeWork.SituationRunning(def) != null;
+                case DecreeMoment.Wounded:
+                {
+                    int hurt = pawns.Count(p => LifeChecks.WoundSeverity(p) >= LifeChecks.HurtFrom);
+                    return hurt >= 2 && hurt * 3 >= pawns.Count;
+                }
                 default:
                     return false;
             }

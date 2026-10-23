@@ -70,7 +70,7 @@
     <stages>
       <li><label>endless scrubbing</label><description>My hands are raw from scrubbing floors that were already clean.</description><baseMoodEffect>-7</baseMoodEffect></li>
       <li><label>clean sweep</label><description>It's mops and buckets all day. I'd rather be doing real work.</description><baseMoodEffect>-3</baseMoodEffect></li>
-      <li><label>a clean colony</label><description>The place is clean, and fewer of us are getting sick.</description><baseMoodEffect>3</baseMoodEffect></li>
+      <li><label>a clean colony</label><description>The place is clean. Fewer of us get sick, and wounds don't go bad.</description><baseMoodEffect>3</baseMoodEffect></li>
       <li><label>spotless</label><description>Every floor is spotless, and the bedding smells of soap. I can finally relax.</description><baseMoodEffect>5</baseMoodEffect></li>
     </stages>
   </ThoughtDef>

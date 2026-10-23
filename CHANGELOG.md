@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rest for the wounded
+
+*23 October 2026, version 0.10.10*
+
+- Colonists still healing from a wound or an illness now like a clean sweep (unless they're lazy) and resting when ill (unless they're industrious or tough), and the Decrees page shows them among those who like it.
+- When many are hurt (two colonists or more, and at least a third of the colony, with real wounds still healing, not a scratch), colonists petition the council for either decree. Before, resting when ill was only asked for when someone was ill, and a clean sweep only when the colony was dirty.
+
 ## Diaries and dreams
 
 *23 October 2026, version 0.10.9*

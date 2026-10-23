@@ -30,6 +30,23 @@ namespace ColonyCouncil
             return best;
         }
 
+        /// <summary>Wounds still healing worth about a gunshot or a few cuts: enough to notice, more than a scratch.</summary>
+        public const float HurtFrom = 6f;
+
+        /// <summary>The severity of their wounds still healing: not scars, not lost limbs.</summary>
+        public static float WoundSeverity(Pawn p)
+        {
+            var hediffs = p?.health?.hediffSet?.hediffs;
+            if (hediffs == null) return 0f;
+            float sum = 0f;
+            for (int i = 0; i < hediffs.Count; i++)
+                if (hediffs[i] is Hediff_Injury injury && !injury.IsPermanent()) sum += injury.Severity;
+            return sum;
+        }
+
+        /// <summary>Hurt (wounds of <see cref="HurtFrom"/> or more) or ill, and still healing.</summary>
+        public static bool Healing(Pawn p) => WoundSeverity(p) >= HurtFrom || Illness(p) != null;
+
         private static bool IsIllness(Hediff h)
         {
             var info = AilmentTracker.InfoOf(h.def);

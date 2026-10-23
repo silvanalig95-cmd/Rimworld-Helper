@@ -92,8 +92,8 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_SickBay</defName>
     <label>rest when ill</label>
-    <description>Anyone ill or hurt goes to bed and stays there, and the rest cover for them. Wounds heal and illnesses pass faster, and the colony works short-handed while it lasts. Doctors and the sickly approve; the industrious and the tough hate being told to lie down.</description>
-    <requestWhen><li>Illness</li></requestWhen>
+    <description>Anyone ill or hurt goes to bed and stays there, and the rest cover for them. Wounds heal and illnesses pass faster, and the colony works short-handed while it lasts. Doctors, the sickly and anyone still healing approve, and they ask for it when someone is ill or many are hurt; the industrious and the tough hate being told to lie down.</description>
+    <requestWhen><li>Illness</li><li>Wounded</li></requestWhen>
     <order>16</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>
@@ -107,16 +107,20 @@
       <li><trait>Industriousness</trait><degree>2</degree><reaction>Hate</reaction></li>
       <li><trait>Industriousness</trait><degree>1</degree><reaction>Dislike</reaction></li>
       <li><trait>Tough</trait><reaction>Dislike</reaction></li>
+      <li><healing>true</healing><reaction>Like</reaction></li>
       <li><trait>Industriousness</trait><degree>-1</degree><reaction>Like</reaction></li>
       <li><trait>Industriousness</trait><degree>-2</degree><reaction>Like</reaction></li>
     </reactions>
     <effects>
       <li>Wounds heal 20% faster and immunity builds faster.</li>
       <li>Everyone works 5% slower, covering for the sick.</li>
-      <li>Doctors and the sickly approve, and the lazy don't mind; the industrious and the tough dislike it.</li>
+      <li>Doctors, the sickly and the wounded approve, and the lazy don't mind; the industrious and the tough dislike it.</li>
     </effects>
     <support>
-      <plain><li>People keep working through fevers and making everyone else sick. Bed. Now.</li></plain>
+      <plain>
+        <li>People keep working through fevers and making everyone else sick. Bed. Now.</li>
+        <li>[hurt] Half of us are limping. A few days in bed and we'll be worth something again.</li>
+      </plain>
       <warm><li>Let them rest. I'll carry their share of the stone, if that's what it takes.</li></warm>
       <cold><li>A sick worker infects two more. Isolation is cheaper.</li></cold>
     </support>
