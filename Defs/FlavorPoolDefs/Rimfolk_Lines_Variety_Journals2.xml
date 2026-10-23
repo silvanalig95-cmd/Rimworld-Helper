@@ -213,7 +213,7 @@
       </blunt>
       <cheerful>
         <li>"{WISH}" happened. I've told everyone, and the animals too.</li>
-        <li>They said yes! I hugged the doorframe.</li>
+        <li>They said yes. I hugged the doorframe.</li>
       </cheerful>
       <gloomy>
         <li>They came through on "{WISH}". I'll enjoy it before something comes along to take it.</li>
@@ -251,7 +251,7 @@
         <li>Fought. Won. Need sleep.</li>
       </blunt>
       <cheerful>
-        <li>The stew survived, and so did I!</li>
+        <li>The stew survived, and so did I.</li>
       </cheerful>
       <gloomy>
         <li>We won today. I don't feel like it.</li>
