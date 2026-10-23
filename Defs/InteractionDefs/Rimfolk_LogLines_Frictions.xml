@@ -33,14 +33,14 @@
     <interaction>Council_Friction_UnaskedAdvice</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] reached past [RECIPIENT_nameDef] to straighten something [RECIPIENT_pronoun] had just finished.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the piece [RECIPIENT_pronoun] had just finished was crooked, and by how much.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [advice], and then stayed to see whether [RECIPIENT_pronoun] would take it.</li>
         <li>r_logentry->[INITIATOR_nameDef] explained how [INITIATOR_pronoun] would have done it, which was exactly how [RECIPIENT_nameDef] was already doing it.</li>
         <li>r_logentry->[INITIATOR_nameDef] stood over [RECIPIENT_nameDef] with folded arms and offered tips until [RECIPIENT_nameDef] [adviceend].</li>
         <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef], slowly, a job [RECIPIENT_pronoun] had done a hundred times.</li>
-        <li>r_logentry->[INITIATOR_nameDef] corrected the way [RECIPIENT_nameDef] stacked the wood, and then the way [RECIPIENT_pronoun] carried it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] found two things wrong with [RECIPIENT_nameDef]'s work and a third with the way [RECIPIENT_pronoun] was going about it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] wanted a tip, and gave it before [RECIPIENT_pronoun] could answer.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [advice], then went off and did it [INITIATOR_possessive] own way somewhere else.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [advice], and added that [INITIATOR_pronoun] had learned it the hard way.</li>
         <li>advice->that the old way was slower but better</li>
         <li>advice->that [RECIPIENT_pronoun] was holding it wrong</li>
       </rulesStrings>
@@ -93,17 +93,17 @@
     <interaction>Council_Friction_Chores</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] stuck a scrap of bark on [dirtything] with [RECIPIENT_nameDef]'s name scratched on it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] split the washing-up down the middle, then argued about where the middle was.</li>
+        <li>r_logentry->[INITIATOR_nameDef] suggested to [RECIPIENT_nameDef] that [dirtything] ought to have [RECIPIENT_possessive] name scratched on it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed to split the washing-up down the middle, then argued about where the middle was.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had noticed [dirtything], in a voice that said [INITIATOR_pronoun] knew [RECIPIENT_pronoun] had.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had [choredone] while [RECIPIENT_nameDef] slept in.</li>
-        <li>r_logentry->[INITIATOR_nameDef] counted out loud how many times [INITIATOR_pronoun] had had to [chore] this week. [RECIPIENT_nameDef] said [choreanswer].</li>
-        <li>r_logentry->[INITIATOR_nameDef] set [RECIPIENT_nameDef]'s bowl on top of [dirtything] and walked away.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each waited for the other to [chore] until the cook did it and told them both off.</li>
-        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had promised to [chore] yesterday. [RECIPIENT_nameDef] said [choreanswer].</li>
-        <li>r_logentry->[INITIATOR_nameDef] found [dirtything] again and asked [RECIPIENT_nameDef] whether it was meant to be a decoration.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted out loud how many times [INITIATOR_pronoun] had had to [chore] this week, and [RECIPIENT_nameDef] said [choreanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know that [dirtything] was still waiting for [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the cook had complained about them both, and that it was [RECIPIENT_possessive] turn to [chore].</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] that [RECIPIENT_pronoun] had promised to [chore] yesterday, and [RECIPIENT_nameDef] said [choreanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [dirtything] was meant to be a decoration.</li>
         <li>r_logentry->[INITIATOR_nameDef] offered to [chore] if [RECIPIENT_nameDef] would do it the next three times, and [RECIPIENT_nameDef] haggled it down to two.</li>
-        <li>r_logentry->[INITIATOR_nameDef] scrubbed the pots as loudly as pots can be scrubbed, right behind [RECIPIENT_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], very loudly, whether anyone else in the colony knew how to scrub a pot.</li>
         <li>chore->wipe down the benches</li>
         <li>dirtything->a cup with something growing in it</li>
       </rulesStrings>
