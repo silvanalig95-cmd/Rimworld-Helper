@@ -14,7 +14,7 @@
     <lines>
       <plain>
         <li>I miss you, {OTHER_nameDef}.</li>
-        <li>I just wanted to sit here a while.</li>
+        <li>I just wanted to sit with you a bit.</li>
         <li>It's too quiet without you.</li>
         <li>I should have brought flowers, I'll bring some next time.</li>
         <li>[partner] I still sleep on my side of the bed.</li>
@@ -24,7 +24,7 @@
         <li>[winter] The snow's covered you over, so I swept it off.</li>
       </plain>
       <warm>
-        <li>I tell everyone about you, you know.</li>
+        <li>I tell the new ones about you, you know.</li>
       </warm>
       <blunt>
         <li>Still not fair.</li>
@@ -124,7 +124,7 @@
         <li>{OTHER_nameDef} will turn up again one day, you'll see!</li>
       </cheerful>
       <gloomy>
-        <li>Everyone leaves, sooner or later.</li>
+        <li>They all leave, sooner or later.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} made a choice, and so did we.</li>
