@@ -24,15 +24,15 @@
         <lean>warmth:0.3</lean>
         <journal>
           <plain>
-            <li>I set out two bowls this morning without thinking. {OTHER_nameDef} has been gone a day.</li>
-            <li>{OTHER_nameDef}'s side of the bed is cold. I can't make myself sleep on it.</li>
+            <li>Today I lost {OTHER_nameDef}. I don't know how to write the rest of this.</li>
+            <li>I can't think about tonight, or any night after it, without {OTHER_nameDef}.</li>
             <li>I keep saving things up to tell {OTHER_nameDef}. Then I remember.</li>
           </plain>
           <warm><li>{OTHER_nameDef} made this place home. I don't know what it is now.</li></warm>
           <blunt><li>{OTHER_nameDef} is dead. I don't want to talk about it.</li></blunt>
           <cheerful><li>Everyone keeps waiting for me to make a joke about it. I haven't got one. {OTHER_nameDef} would have.</li></cheerful>
           <gloomy><li>Everything I had, I had with {OTHER_nameDef}. Now I don't.</li></gloomy>
-          <cold><li>{OTHER_nameDef} died today. I have been told to rest. I keep working instead.</li></cold>
+          <cold><li>{OTHER_nameDef} died today. I find I would rather work than think.</li></cold>
         </journal>
       </li>
     </modExtensions>
@@ -55,13 +55,13 @@
         <journal>
           <plain>
             <li>A parent shouldn't outlive a child. {OTHER_nameDef} was mine, and I have.</li>
-            <li>I folded {OTHER_nameDef}'s clothes today. It took most of the afternoon.</li>
-            <li>People keep telling me they're sorry about {OTHER_nameDef}. I nod. I can't do much else.</li>
+            <li>Everything of {OTHER_nameDef}'s is still where {OTHER_pronoun} left it. I can't touch any of it.</li>
+            <li>People will tell me they're sorry about {OTHER_nameDef}. I'll nod. I can't do much else.</li>
           </plain>
           <warm><li>I keep seeing {OTHER_nameDef} small, running ahead of me. I hope someone carries {OTHER_objective} now.</li></warm>
           <blunt><li>My child is dead. {OTHER_nameDef}. Leave me be.</li></blunt>
           <gloomy><li>Whatever I was going to be, after {OTHER_nameDef}, I'm not going to be it now.</li></gloomy>
-          <cold><li>{OTHER_nameDef} is gone. I find I can't feel my hands properly. That will pass, I'm told.</li></cold>
+          <cold><li>{OTHER_nameDef} is gone. I find I can't feel my hands properly. I assume that will pass.</li></cold>
         </journal>
       </li>
     </modExtensions>
@@ -86,10 +86,10 @@
         <journal>
           <plain>
             <li>{OTHER_nameDef} isn't coming back. The grown-ups keep saying it like I didn't hear the first time.</li>
-            <li>I slept in {OTHER_nameDef}'s blanket last night. It still smells right.</li>
-            <li>Somebody else walked me to bed tonight. It should have been {OTHER_nameDef}.</li>
+            <li>I want {OTHER_nameDef}'s blanket. It still smells right.</li>
+            <li>Somebody else will have to walk me to bed now. It should be {OTHER_nameDef}.</li>
           </plain>
-          <warm><li>I put flowers where we buried {OTHER_nameDef}. The yellow ones, because they were {OTHER_possessive} favourite.</li></warm>
+          <warm><li>I'm going to find flowers for {OTHER_nameDef}. Yellow ones, because they were {OTHER_possessive} favorite.</li></warm>
           <blunt><li>{OTHER_nameDef} died. I don't want to play today.</li></blunt>
           <cheerful><li>I'm trying to be brave about {OTHER_nameDef}. Brave is what {OTHER_pronoun} always called me.</li></cheerful>
           <gloomy><li>Everybody dies. I know that now. {OTHER_nameDef} did.</li></gloomy>
@@ -104,7 +104,7 @@
     <shifts><outlook>-7</outlook><warmth>4</warmth><pride>3</pride></shifts>
     <major>true</major>
     <keepDays>240</keepDays>
-    <shaped>{PAWN_nameDef} has held the rest of {PAWN_possessive} people closer since {OTHER} died.</shaped>
+    <shaped>Losing {OTHER} made {PAWN_nameDef} hold the rest of {PAWN_possessive} people closer.</shaped>
     <defaultLabel>a death</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -115,9 +115,9 @@
         <needsOther>true</needsOther>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} is gone, and I'm the one the others look to now. I didn't ask for that.</li>
-            <li>I found myself telling the young ones one of {OTHER_nameDef}'s old stories. I got most of it right.</li>
-            <li>We buried {OTHER_nameDef}. I kept {OTHER_possessive} knife. It's the only thing I could carry.</li>
+            <li>{OTHER_nameDef} is gone, and half of what I remember of home went with {OTHER_objective}.</li>
+            <li>One of {OTHER_nameDef}'s old stories came back to me today. I got most of it right.</li>
+            <li>I want to keep something of {OTHER_nameDef}'s. Just one thing, small enough to carry.</li>
           </plain>
           <warm><li>{OTHER_nameDef} would want us to look after each other. So I will.</li></warm>
           <blunt><li>{OTHER_nameDef} died. We go on. That's what {OTHER_pronoun} taught me.</li></blunt>
@@ -134,7 +134,7 @@
     <shifts><warmth>-6</warmth><nerve>3</nerve><trust>-3</trust></shifts>
     <major>true</major>
     <keepDays>180</keepDays>
-    <shaped>{PAWN_nameDef} has let fewer people close since {OTHER} died.</shaped>
+    <shaped>Since {OTHER} died, {PAWN_nameDef} has let fewer people close.</shaped>
     <defaultLabel>a death</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -149,7 +149,7 @@
           <plain>
             <li>{OTHER_nameDef} died. That's what comes of getting attached to people out here.</li>
             <li>I liked {OTHER_nameDef}. I'll be more careful about liking people.</li>
-            <li>The others are gathering to talk about {OTHER_nameDef}. I went for a walk instead.</li>
+            <li>The others will want to talk about {OTHER_nameDef}. I won't.</li>
           </plain>
           <blunt><li>{OTHER_nameDef} is dead. I'm not going through that again.</li></blunt>
           <gloomy><li>Everyone I let in ends up like {OTHER_nameDef}. I'll stop letting them in.</li></gloomy>
@@ -178,14 +178,14 @@
         <lean>warmth:0.25</lean>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} is gone. The work went on today as if nothing happened, and I hated it for that.</li>
-            <li>I walked past {OTHER_nameDef}'s spot at the table three times before I sat down somewhere else.</li>
+            <li>{OTHER_nameDef} is gone, and the work goes on as if nothing happened. I hate it for that.</li>
+            <li>I keep expecting {OTHER_nameDef} at supper.</li>
             <li>{OTHER_nameDef} owed me a game of horseshoes. I'll never collect.</li>
           </plain>
           <warm><li>I hope {OTHER_nameDef} knew how glad I was of {OTHER_objective}. I think {OTHER_pronoun} did.</li></warm>
-          <blunt><li>Lost {OTHER_nameDef} today. Good friend. Bad day.</li></blunt>
-          <cheerful><li>[persona:joker] {OTHER_nameDef} laughed at all my worst jokes. I told one at the grave. Nobody laughed.</li></cheerful>
-          <gloomy><li>{OTHER_nameDef} today. Someone else tomorrow, probably.</li></gloomy>
+          <blunt><li>Lost {OTHER_nameDef}. Good friend. Bad day.</li></blunt>
+          <cheerful><li>[persona:joker] {OTHER_nameDef} laughed at all my worst jokes. The new ones will have to go untested.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} now. Someone else soon enough.</li></gloomy>
           <cold><li>{OTHER_nameDef} died. I find I mind more than I expected to.</li></cold>
         </journal>
       </li>
