@@ -13,7 +13,7 @@
     <defName>Council_Pool_TouchComet</defName>
     <lines>
       <plain>
-        <li>The comet's moved since last night.</li>
+        <li>The tail's longer than it was.</li>
         <li>You can see the tail without squinting tonight.</li>
         <li>I keep looking up to check it's still there.</li>
         <li>[lowtech] My grandmother said a comet means a hard winter.</li>
@@ -80,7 +80,7 @@
     <lines>
       <plain>
         <li>That one hit me right on the ear.</li>
-        <li>The crops are taking a beating out there.</li>
+        <li>The crops are taking a beating.</li>
         <li>Get under a roof, it's hailing.</li>
         <li>[lowtech] Get the seed baskets under cover.</li>
       </plain>
@@ -126,7 +126,7 @@
         <li>It won't last.</li>
       </gloomy>
       <cold>
-        <li>The crops will like this warm air.</li>
+        <li>We'll get a few extra days of growing out of this.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -140,7 +140,7 @@
         <li>Anyone hurt? Shout if you are.</li>
         <li>My hands won't stop shaking.</li>
         <li>[!lowtech] Check your ammo, then check the wounded.</li>
-        <li>[lowtech] Gather up the arrows before dark.</li>
+        <li>[lowtech] Gather up the arrows while we can still find them.</li>
       </plain>
       <warm>
         <li>Thank you for standing with me.</li>
