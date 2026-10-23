@@ -23,19 +23,19 @@
         <li>[feeling:Grief,about] I still look for {OTHER_nameDef} at supper.</li>
         <li>[feeling:Grief,child] When is everyone going to stop being sad?</li>
         <li>[feeling:Fear] I jump at every noise past the wall.</li>
-        <li>[feeling:Fear] I keep checking where the nearest door is.</li>
+        <li>[feeling:Fear] Every room I walk into, I check where the door is.</li>
         <li>[feeling:Fear,!lowtech] I've slept with my rifle in reach all week.</li>
-        <li>[feeling:Fear,lowtech] I sleep with a knife under the straw now.</li>
+        <li>[feeling:Fear,lowtech] There's a knife under my straw now, every night.</li>
         <li>[feeling:Fear,night] Leave a light burning tonight, would you?</li>
         <li>[feeling:Dread] Something bad is coming, I can feel it in my teeth.</li>
         <li>[feeling:Dread] It's too quiet out there.</li>
-        <li>[feeling:Dread] I keep waiting for the next thing to go wrong.</li>
+        <li>[feeling:Dread] Any day now, the next thing goes wrong.</li>
         <li>[feeling:Anger] Don't talk to me right now.</li>
         <li>[feeling:Anger] I'm so angry my jaw hurts.</li>
         <li>[feeling:Anger,about] If {OTHER_nameDef} says one more word to me, I'm walking out.</li>
         <li>[feeling:Anger,about] I can't even look at {OTHER_nameDef} today.</li>
         <li>[feeling:Shame] I can't look anyone in the eye today.</li>
-        <li>[feeling:Shame] I keep going over what I did.</li>
+        <li>[feeling:Shame] What I did keeps going round and round in my head.</li>
         <li>[feeling:Shame] I'll eat on my own tonight.</li>
         <li>[feeling:Envy] Must be nice, having what some people have.</li>
         <li>[feeling:Envy] Some of us work just as hard and get half as much.</li>
@@ -46,7 +46,7 @@
         <li>[feeling:Loneliness] Two words to me all day, that's all I've had.</li>
         <li>[feeling:Loneliness] I could use someone to talk to.</li>
         <li>[feeling:Loneliness] People are always too busy to stop and talk.</li>
-        <li>[feeling:Homesick] I keep thinking about the house I grew up in.</li>
+        <li>[feeling:Homesick] The house I grew up in had a blue door, I keep seeing it.</li>
         <li>[feeling:Homesick] The bread here never tastes the way it should.</li>
         <li>[feeling:Homesick] Back home the river would be up by now.</li>
         <li>[feeling:Homesick,night] Same moon as at home, at least.</li>
@@ -86,7 +86,7 @@
         <li>[feeling:Curiosity,child] Why is the sky that color?</li>
         <li>[feeling:Restless] I can't sit still today.</li>
         <li>[feeling:Restless] Same walls, same faces, every day.</li>
-        <li>[feeling:Restless] I need to get out of here for a while.</li>
+        <li>[feeling:Restless] Need to get out of here a while, even just to the river and back.</li>
         <li>[feeling:Nostalgia] Remember when this was all one room and a fire?</li>
         <li>[feeling:Nostalgia] Those first days were hard, but they were good.</li>
         <li>[feeling:Nostalgia,old] When I was young we sang on the way to the fields.</li>

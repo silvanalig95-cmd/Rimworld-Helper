@@ -35,7 +35,7 @@
         <li>[deed:rescue] {SUBJECT_nameDef} dragged someone clear while I kept my head down.</li>
         <li>[deed:rescue,hasvictim] {VICTIM} would be dead if {SUBJECT_nameDef} hadn't gone back out.</li>
         <li>[deed:rescue] Did you see {SUBJECT_nameDef} run into the open to pull someone back?</li>
-        <li>[deed:heldline] {SUBJECT_nameDef} didn't give an inch when they hit the wall.</li>
+        <li>[deed:heldline] When they hit the wall, {SUBJECT_nameDef} didn't give an inch.</li>
         <li>[deed:heldline] {SUBJECT_nameDef} stayed put when it got bad, I saw it myself.</li>
         <li>[deed:heldline] {SUBJECT_nameDef} was still standing there at the end of it.</li>
         <li>[deed:kills] {SUBJECT_nameDef} brought down {DETAIL} of them in that last fight.</li>
@@ -240,7 +240,7 @@
         <li>[deed:fled] {SUBJECT_nameDef} was gone the moment the first shots came in.</li>
         <li>[deed:fled] I looked round for {SUBJECT_nameDef} in that fight and saw an empty spot.</li>
         <li>[deed:fled] {SUBJECT_nameDef} hid in {SUBJECT_possessive} room until the fighting was over.</li>
-        <li>[deed:tantrum] {SUBJECT_nameDef} smashed a table and two chairs the other day, over nothing.</li>
+        <li>[deed:tantrum] A table and two chairs, smashed over nothing, that was {SUBJECT_nameDef}.</li>
         <li>[deed:tantrum] {SUBJECT_nameDef} lost {SUBJECT_possessive} temper and broke whatever was nearest.</li>
         <li>[deed:tantrum,again] {SUBJECT_nameDef} has had another one of {SUBJECT_possessive} rages.</li>
         <li>[deed:insults,hasvictim] {SUBJECT_nameDef} called {VICTIM} things I won't repeat, all day long.</li>
