@@ -62,7 +62,7 @@
         <li>Again, again!</li>
       </cheerful>
       <gloomy>
-        <li>We'll all pay for this in the morning.</li>
+        <li>We'll all pay for this tomorrow.</li>
       </gloomy>
       <cold>
         <li>I suppose this is good for morale.</li>
@@ -192,9 +192,9 @@
     <defName>Council_Pool_PlayRemembrance</defName>
     <lines>
       <plain>
-        <li>I still set out a cup for them.</li>
+        <li>I still save them a place.</li>
         <li>They'd have hated all this fuss.</li>
-        <li>Do you remember how they laughed?</li>
+        <li>Do you remember the day they first came?</li>
         <li>I keep going to call them in for supper.</li>
       </plain>
       <warm>
@@ -313,7 +313,7 @@
       <plain>
         <li>Spent a few hours on {NAME} with the others. My arms are sore and the place looks better for it.</li>
         <li>[clean] Scrubbed floors with the others until my knees were raw. The whole place smells of soap.</li>
-        <li>[haul] Carried things from one end of the colony to the other all day. Everything has a place now, more or less.</li>
+        <li>[haul] Hauled from one end of the colony to the other with the others. Everything has a place now, more or less.</li>
         <li>[repair] We mended what was broken. The walls look like walls again.</li>
         <li>[build] Worked on the new building with the others. Splinters in both hands, and the walls are going up.</li>
         <li>[corpses] We saw to the bodies today. I've washed my hands three times since and they still don't feel clean.</li>
@@ -326,11 +326,11 @@
         <li>We got more done together in a few hours than I'd have managed alone in a week.</li>
       </warm>
       <blunt>
-        <li>Work party. Work done. Bed.</li>
+        <li>Work party. Work done. Feet up.</li>
         <li>Sore all over. The work's done, at least.</li>
       </blunt>
       <cheerful>
-        <li>We made a game of it and still finished early. Best afternoon in a while.</li>
+        <li>We made a game of it and still finished early. Best few hours I've had in a while.</li>
       </cheerful>
       <gloomy>
         <li>Did my share. Blisters on both palms to show for it.</li>
@@ -553,20 +553,20 @@
         <li>Kept watch for hours. I can barely keep my eyes open, but I'm glad I did.</li>
         <li>[grave] Sat by the grave for hours. It's strange how quiet it is out there.</li>
         <li>[gate] Watched the gate with the others for hours. Every shadow on the road looked like someone coming.</li>
-        <li>[beside] Sat up through the night at {OTHER_nameDef}'s side. {OTHER_nameDef} slept, mostly. I didn't.</li>
+        <li>[beside] Sat up late at {OTHER_nameDef}'s side. {OTHER_nameDef} slept, mostly. I didn't.</li>
         <li>[fields] Watched the fields through the dark. Nothing came, which is what we hoped.</li>
       </plain>
       <warm>
         <li>We kept watch together and passed one blanket back and forth the whole time.</li>
       </warm>
       <blunt>
-        <li>Up all night. Worth it.</li>
+        <li>Long watch. Worth it.</li>
       </blunt>
       <cheerful>
         <li>The watch went quicker than I feared. We told stories the whole time, under our breath.</li>
       </cheerful>
       <gloomy>
-        <li>A long night of waiting. I don't know what I expected.</li>
+        <li>Hours of waiting. I don't know what I expected.</li>
       </gloomy>
       <cold>
         <li>The watch was kept. I'll sleep now.</li>
@@ -661,7 +661,7 @@
     <defName>Council_Journal_PlaySearch</defName>
     <lines>
       <plain>
-        <li>Out searching most of the day. Walked further than I have in weeks.</li>
+        <li>Out searching for hours. Walked further than I have in weeks.</li>
         <li>[fields] Searched up and down the fields. I know every furrow by heart now.</li>
         <li>[water] Walked the water's edge for hours. Wet to the knees.</li>
       </plain>
@@ -672,7 +672,7 @@
         <li>Searched. Done. Tired.</li>
       </blunt>
       <cheerful>
-        <li>Spent the day searching, and saw a lot of country I hadn't seen before.</li>
+        <li>Spent hours searching, and saw a lot of country I hadn't seen before.</li>
       </cheerful>
       <gloomy>
         <li>Searched until my feet gave out. I'll be limping tomorrow.</li>
@@ -845,7 +845,7 @@
     <defName>Council_Pool_PlayHunt</defName>
     <lines>
       <plain>
-        <li>There. By the trees.</li>
+        <li>There, see it?</li>
         <li>Easy now...</li>
         <li>Fresh tracks.</li>
       </plain>
@@ -872,13 +872,13 @@
     <lines>
       <plain>
         <li>Went out on the hunt today. We brought it down, and there's meat for the pot.</li>
-        <li>[lowtech] Tracked it half the afternoon. A clean kill, and I thanked it, the way I was taught.</li>
+        <li>[lowtech] Tracked it for hours. A clean kill, and I thanked it, the way I was taught.</li>
       </plain>
       <warm>
         <li>Brought meat home for everyone. I like being the one who does that.</li>
       </warm>
       <blunt>
-        <li>Hunted. Killed. Butchered.</li>
+        <li>Hunted. Clean kill. Done.</li>
       </blunt>
       <cheerful>
         <li>Good hunt today! Everyone will eat well.</li>
@@ -896,19 +896,19 @@
     <defName>Council_Journal_PlayHuntMissed</defName>
     <lines>
       <plain>
-        <li>The game got away. We'll make do.</li>
+        <li>No meat from the hunt in the end. We'll make do.</li>
       </plain>
       <warm>
-        <li>The animal got away. Part of me is glad.</li>
+        <li>Nothing came of the hunt. Part of me is glad.</li>
       </warm>
       <blunt>
         <li>No kill. Wasted day.</li>
       </blunt>
       <cheerful>
-        <li>Didn't catch anything, but it was a nice walk.</li>
+        <li>No meat this time. There'll be other hunts.</li>
       </cheerful>
       <gloomy>
-        <li>Came home empty-handed, as usual.</li>
+        <li>Empty-handed again, as usual.</li>
       </gloomy>
       <cold>
         <li>The hunt failed.</li>
