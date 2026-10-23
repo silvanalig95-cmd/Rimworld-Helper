@@ -70,7 +70,7 @@
       <blunt><li>Talked with {OTHER_nameDef} about the faith. Fair answers. I'll think about them.</li></blunt>
       <gloomy><li>{OTHER_nameDef} tried to talk me round. About half of it took.</li></gloomy>
       <cold><li>{OTHER_nameDef} made a reasonable case for the faith. I'm less sure of my doubts than I was this morning.</li></cold>
-      <cheerful><li>{OTHER_nameDef} makes the faith sound like good news again. I came away humming!</li></cheerful>
+      <cheerful><li>{OTHER_nameDef} answered every question I had about the faith, even the silly ones!</li></cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -87,7 +87,7 @@
       </plain>
       <warm><li>{PAWN_nameDef} went over to the camp to ask how they were getting on there, and stayed long after the question was answered.</li></warm>
       <blunt><li>{PAWN_nameDef} went to the camp, said the colony's piece, heard the {PLACE} out and came back.</li></blunt>
-      <cold><li>{PAWN_nameDef} reminded the {PLACE} of the terms, where they may cut wood and where they may not.</li></cold>
+      <cold><li>{PAWN_nameDef} reminded the {PLACE} of the terms they had agreed to, one by one.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
