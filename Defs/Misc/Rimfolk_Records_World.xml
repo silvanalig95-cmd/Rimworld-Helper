@@ -32,8 +32,8 @@
 
   <RecordDef>
     <defName>Council_WorldCallsAnswered</defName>
-    <label>neighbours' calls answered</label>
-    <description>Times this colonist answered a neighbour's call for help during a world event: a plague, a fire, a feud, a hard winter.</description>
+    <label>neighbors' calls answered</label>
+    <description>Times this colonist answered a neighbor's call for help during a world event: a plague, a fire, a feud, a hard winter.</description>
     <type>Int</type>
     <displayOrder>1619</displayOrder>
   </RecordDef>

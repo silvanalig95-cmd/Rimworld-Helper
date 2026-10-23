@@ -11,7 +11,7 @@
   <CC_Scen_Foe_feud>{FACTION} and the tribe have been at feud since before anyone here was born, and {FOE_nameDef}, who leads their war bands, has sworn to finish it with {VICTIM_nameDef}.</CC_Scen_Foe_feud>
   <CC_Scen_Foe_Vendetta>{VICTIM_nameDef} has sworn vengeance on {FACTION} for {KIN}, killed in the last raid on the old camp.</CC_Scen_Foe_Vendetta>
   <CC_Scen_Kinsman>a kinsman</CC_Scen_Kinsman>
-  <CC_ScenPart_Foe_feud>Rimfolk: a neighbouring people the colonists have been at feud with for generations.</CC_ScenPart_Foe_feud>
+  <CC_ScenPart_Foe_feud>Rimfolk: a neighboring people the colonists have been at feud with for generations.</CC_ScenPart_Foe_feud>
   <CC_Scen_Hunt_feud_Label>{FACTION}'s war band</CC_Scen_Hunt_feud_Label>
   <CC_Scen_Hunt_feud_Text>{FACTION} have come for the colony again. The old feud goes on, on {FOE}'s word.</CC_Scen_Hunt_feud_Text>
   <CC_Scen_Hunt_feud_Led_Label>{FOE} comes for the feud</CC_Scen_Hunt_feud_Led_Label>

@@ -54,7 +54,7 @@
   <ScenarioDef ParentName="ScenarioBase">
     <defName>Council_Scenario_EldersFire</defName>
     <label>The Elders' Fire</label>
-    <description>Five of the tribe, sent out with fire carried in a clay pot to make a new camp where the hunting is better. The eldest walks at the front and sits by the fire at night, as the eldest always has, and the old days come with you: the Night of Embers and the Day of the Lost.\n\nSo does the feud. A neighbouring people and the tribe have been killing each other's sons for longer than anyone remembers, and one of you has sworn to make them pay for a kinsman. Their war band will come, once in a few weeks and again later, unless the one who leads it falls first.</description>
+    <description>Five of the tribe, sent out with fire carried in a clay pot to make a new camp where the hunting is better. The eldest walks at the front and sits by the fire at night, as the eldest always has, and the old days come with you: the Night of Embers and the Day of the Lost.\n\nSo does the feud. A neighboring people and the tribe have been killing each other's sons for longer than anyone remembers, and one of you has sworn to make them pay for a kinsman. Their war band will come, once in a few weeks and again later, unless the one who leads it falls first.</description>
     <scenario>
       <summary>Five of a tribe, an elder at the fire, the old days kept, and a blood feud that followed them. (Rimfolk · moderate)</summary>
       <playerFaction>

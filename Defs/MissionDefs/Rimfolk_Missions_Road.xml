@@ -2,10 +2,10 @@
 <Defs>
 
   <!-- Missions of the road (Source/ColonyCouncil/Missions/Workers_MissionRoad.cs): escort an old pilgrim to the
-       people's town, carry word to a far settlement of another people, find a neighbour's child lost on the colony's
-       land, and send hands to bring in a neighbour's harvest. Each tells the people's memory who did it
+       people's town, carry word to a far settlement of another people, find a neighbor's child lost on the colony's
+       land, and send hands to bring in a neighbor's harvest. Each tells the people's memory who did it
        (World/KinMemory.cs), and their people greet that colonist by name afterwards.
-       Texts may use {A} (who dealt with the neighbour; for the lost child, whoever found them), {FACTION}, {PLACE} (the
+       Texts may use {A} (who dealt with the neighbor; for the lost child, whoever found them), {FACTION}, {PLACE} (the
        town: their town, or the far town the word goes to), {DEAD} (the pilgrim, the one the word is for, the lost child)
        and {TALE} (how far the town is by caravan). In the offer, {X} is the pilgrim or the child and {ENEMY} the far
        town's people. {COUNT} is the reward. In terms, reminders and accepted lines, {DAYS} is the time; in endings,
@@ -161,7 +161,7 @@
     </modExtensions>
   </IncidentDef>
 
-  <!-- ===================== A neighbour's lost child ===================== -->
+  <!-- ===================== A neighbor's lost child ===================== -->
 
   <IncidentDef ParentName="Council_EventBase">
     <defName>Council_Mission_LostChild</defName>

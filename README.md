@@ -355,7 +355,7 @@ Thirty-one decrees in all. The newest come from a village's own year and do some
 of the silver each morning to a people of the colony's ideoligion or the nearest village, for goodwill and, with Ideology,
 the faithful's certainty), **a curfew** (everyone's night hours turned to sleep and put back after; night owls keep
 the watch), **militia drills** (twelve days of light practice for everyone who can fight), **alms for the poor** (a
-little food at the gate each morning, and the neighbours remember it), **holy days** (with Ideology: three days for
+little food at the gate each morning, and the neighbors remember it), **holy days** (with Ideology: three days for
 the colony's ideoligion), **a market day** (a trade caravan comes that day), **a fast**, **a work song** (recreation while working,
 slower research), and **open gates** (more visitors). Two answer the region's hard times and can only be declared
 while they last: a **quarantine** while sickness goes round (illness passes between roommates a fifth as often, and
@@ -808,7 +808,7 @@ everything down reads back what was said; others tell the little ones stories, a
 spot for strays or sleep with a light burning after bad nights. Dilemmas and letters ask for them too: a worrier's
 watch, the colony's record kept by the one who writes everything down. 37 quirks in all. Picking one up and letting it
 fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a
-nervous neighbour or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
+nervous neighbor or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
 the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions,
 a proverb helps or grates, the storyteller gathers the children, a worrier is reassured, a night light keeps a
 roommate up (21 social events and a handful of moments, which change the bond between the two rather than anyone's
@@ -913,9 +913,9 @@ holder. You can appoint and dismiss from the Decrees tab, but whoever the colony
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.
 
-The offices also do their jobs in the colony's life: the keeper of days organises the calendar's feasts and games,
+The offices also do their jobs in the colony's life: the keeper of days organizes the calendar's feasts and games,
 the peacemaker steps into spats nearby (they're over in half the time), the physician does the rounds of the
-convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbours who need goods
+convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbors who need goods
 (and they remember it), the herdmaster sits with those whose animal died and minds the animals of those away, the
 marshal has a word with everyone who fought beside them, and the steward's company at a gathering eases strain. The
 chaplain sits with the grieving, has a word with whoever is losing faith (their certainty rises) and leads the
@@ -1205,7 +1205,7 @@ less flattering ones (*the Broom*, *the Mule*, *the Kindling* for whoever keeps 
 lost the day they break or take a scratch. Four come from deeds Rimfolk counts in the Records tab: *the Mender*
 (quarrels mended), *the Haggler* (trade deals struck), *the Vault* (secrets kept) and *the Mourner* (eulogies
 given). Out in the world, a colonist can be *Friend of the Road* (evenings at the camps' fires), *the Gatekeeper*
-(camps met at the gate), *Daykeeper* (the colony's days kept) or *Good Neighbour* (world events' calls answered), and
+(camps met at the gate), *Daykeeper* (the colony's days kept) or *Good Neighbor* (world events' calls answered), and
 for one deed *Roof-Raiser*, *Feud-Breaker*, *Bridge-Builder*, *the Finder* or *Road-Warden*. Years in a seat, in
 the ideoligion and in the colony bring more: *Old Doc* and *Old Iron* (two years as physician or marshal), *the Unbeaten*
 (three terms as speaker without ever losing a vote), *the Celebrant* and *the Shepherd* (rituals led and years as
@@ -1401,9 +1401,9 @@ the mod's own def names (the tests hold the list):
   every nation pack counts.
 - **Two world events for them:** a lord's progress (a Vathun, Eastborn or Medieval Total Rim lord passes by: host the
   retinue for a night or send a gift, for their goodwill), and the clans gather (the Redburn Pact's moot or the
-  khaganate's gathering: pay the envoy's token, refuse, or warn the neighbours, and watch the warbands go by).
+  khaganate's gathering: pay the envoy's token, refuse, or warn the neighbors, and watch the warbands go by).
 - **Alpha Genes and Alpha Memes:** seven moments between colonists (a nereid talks of the deep, the warm-blooded warm
-  frozen hands, a lapis reads the stone; an artist sketches a neighbour, a blessing with water, ranch talk, a
+  frozen hands, a lapis reads the stone; an artist sketches a neighbor, a blessing with water, ranch talk, a
   monastic's silence), each giving practice, comfort, rest or a feeling instead of mood and coming back in the
   journal; and six social events (a helixan's smell, a wretch seen past the face, a mind devourer's stare, an
   iconoclast and a carved figure, a gladiator's scorn for a bow, a bulwark walking the walls).
@@ -1720,7 +1720,7 @@ something already in motion, and a few seconds in, a letter says how things stan
   prisoner, out cold for a few hours (build a cell fast), and every colonist loathes them. Their loyalists come in
   a week or so, and twice more after that unless the warlord is dead or one of you by then.
 - **The Elders' Fire** (moderate). Five of a tribe: the eldest sits as the colony's elder from day one, two of the
-  tribe's days are traditions from the first year, and a neighbouring people's war band comes twice for an old feud.
+  tribe's days are traditions from the first year, and a neighboring people's war band comes twice for an old feud.
   One of you has sworn vengeance on them, and set their heart on it.
 - **What the Ship Carried** (moderate). Three survivors of a ship that broke up in orbit, sharing one secret only those
   who join later can learn, and only if one of the three lets it slip. The wreck comes down as a world event two or

@@ -4,7 +4,7 @@
   <!--
     Names earned beyond the walls (same rules as Council_Epithets.xml). Some are given for a deed in a world event or a
     mission (no record: ArcEffect_Epithet bestows them, and they stay with their holder): raising roofs after a great
-    fire, ending a blood feud, building a bridge after a war, finding a neighbour's lost child, walking a pilgrim home.
+    fire, ending a blood feud, building a bridge after a war, finding a neighbor's lost child, walking a pilgrim home.
     Others count Rimfolk's own records (Defs/Misc/Rimfolk_Records_World.xml): evenings at the camps' fires, camps
     met at the gate, the colony's days kept, and world events' calls answered.
   -->
@@ -26,13 +26,13 @@
   <ColonyCouncil.EpithetDef>
     <defName>Council_Epithet_BridgeBuilder</defName>
     <label>Bridge-Builder</label>
-    <earned>There's a bridge in a neighbour's town that takes laden carts again, because {PAWN_nameDef} spent a week up to {PAWN_possessive} knees in the river. They named the bridge after the colony, and the colony named {PAWN_nameDef} Bridge-Builder.</earned>
+    <earned>There's a bridge in a neighbor's town that takes laden carts again, because {PAWN_nameDef} spent a week up to {PAWN_possessive} knees in the river. They named the bridge after the colony, and the colony named {PAWN_nameDef} Bridge-Builder.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
     <defName>Council_Epithet_Finder</defName>
     <label>the Finder</label>
-    <earned>{PAWN_nameDef} found a neighbour's lost child out in the hills when the child's own people couldn't. The neighbours call {PAWN_objective} the Finder, and they say it the way people say a blessing.</earned>
+    <earned>{PAWN_nameDef} found a neighbor's lost child out in the hills when the child's own people couldn't. The neighbors call {PAWN_objective} the Finder, and they say it the way people say a blessing.</earned>
   </ColonyCouncil.EpithetDef>
 
   <ColonyCouncil.EpithetDef>
@@ -69,10 +69,10 @@
 
   <ColonyCouncil.EpithetDef>
     <defName>Council_Epithet_GoodNeighbour</defName>
-    <label>Good Neighbour</label>
+    <label>Good Neighbor</label>
     <record>Council_WorldCallsAnswered</record>
     <threshold>3</threshold>
-    <earned>When a neighbour is in trouble, a plague, a fire, a feud, it's {PAWN_nameDef} the colony sends, and {PAWN_nameDef} who goes without complaint. The region calls {PAWN_objective} the Good Neighbour, and means it.</earned>
+    <earned>When a neighbor is in trouble, a plague, a fire, a feud, it's {PAWN_nameDef} the colony sends, and {PAWN_nameDef} who goes without complaint. The region calls {PAWN_objective} the Good Neighbor, and means it.</earned>
   </ColonyCouncil.EpithetDef>
 
 </Defs>

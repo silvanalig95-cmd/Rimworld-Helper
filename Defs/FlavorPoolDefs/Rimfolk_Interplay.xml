@@ -8,7 +8,7 @@
 
   <!-- ===================== Offices at work ===================== -->
 
-  <!-- The keeper of days organised a calendar day's feast or games (journal). {NAME}: the day's name. -->
+  <!-- The keeper of days organized a calendar day's feast or games (journal). {NAME}: the day's name. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Interplay_KeeperOrganised</defName>
     <lines>
@@ -121,7 +121,7 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- The reeve saw a neighbour's order through in full (journal). {PLACE}: their town; {FACTION}: their people. -->
+  <!-- The reeve saw a neighbor's order through in full (journal). {PLACE}: their town; {FACTION}: their people. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_Interplay_ReeveDelivered</defName>
     <lines>

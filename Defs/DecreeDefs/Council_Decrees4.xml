@@ -4,7 +4,7 @@
   <!--
     Decrees of a settled people, from a village's own year: tithes, a curfew, the militia's drills, alms at the gate,
     the faith's holy days (Ideology), a market day, a fast, a work song; decrees for hard times in the region (a
-    quarantine while sickness goes round, famine bread while the neighbours go hungry); and open gates.
+    quarantine while sickness goes round, famine bread while the neighbors go hungry); and open gates.
 
     What they do that a hediff can't is read from their fields by Decrees/DecreeWork.cs: when they can be declared at
     all (eras, research, needsIdeology, memes, situationKinds or orWhen, mods, minColonists; a decree for another era or

@@ -2,7 +2,7 @@
 <Defs>
 
   <!-- World events of the region, a further batch (same format as Council_WS_Hardship.xml): a great fire in a
-       neighbour's town, a blood feud between two peoples' families, a comet over the region, a bumper harvest, and the
+       neighbor's town, a blood feud between two peoples' families, a comet over the region, a bumper harvest, and the
        drove roads full of herds. Lines can also ask what the people remember of the colony ([their:grateful],
        [their:grudge], [their:friend] with {FRIEND}: World/KinMemory.cs). None brings a fight. -->
 

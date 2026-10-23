@@ -298,9 +298,9 @@ Rimfolk also counts a few deeds the game doesn't, and shows them in the Records 
       </li>
       <li>
         <heading>Names from beyond the walls</heading>
-        <text>Some names are earned out in the world. Four more records count what a colonist does beyond the colony's own work: evenings spent at the fires of camps on the colony's land (Friend of the Road, from 10), camps met at the gate (the Gatekeeper, from 3), the colony's days kept by them on the calendar (Daykeeper, from 4) and world events' calls answered by them in person (Good Neighbour, from 3).
+        <text>Some names are earned out in the world. Four more records count what a colonist does beyond the colony's own work: evenings spent at the fires of camps on the colony's land (Friend of the Road, from 10), camps met at the gate (the Gatekeeper, from 3), the colony's days kept by them on the calendar (Daykeeper, from 4) and world events' calls answered by them in person (Good Neighbor, from 3).
 
-Others are given once, for one deed, and stay with their holder: the builder lent to raise the roofs of a burned town may be called Roof-Raiser, the one who carried the last of the blood price that ended a feud Feud-Breaker, the one who built the bridge after a war Bridge-Builder, the one who found a neighbour's lost child the Finder, and the one who walked an old pilgrim home Road-Warden.</text>
+Others are given once, for one deed, and stay with their holder: the builder lent to raise the roofs of a burned town may be called Roof-Raiser, the one who carried the last of the blood price that ended a feud Feud-Breaker, the one who built the bridge after a war Bridge-Builder, the one who found a neighbor's lost child the Finder, and the one who walked an old pilgrim home Road-Warden.</text>
       </li>
       <li>
         <heading>Names that come with time</heading>
@@ -314,7 +314,7 @@ Others are given once, for one deed, and stay with their holder: the builder len
           <li>Old Doc | two years in the physician's seat | sick travelers come asking for them by name</li>
           <li>Old Iron | two years as marshal | villages that were raided come to ask how to hold out</li>
           <li>The Unbeaten | three terms as speaker, and never a vote lost in any election | the election letter says so when they keep the chair</li>
-          <li>The Celebrant | leading six of the ideoligion's rituals to their end (Ideology) | neighbours come asking for a blessing</li>
+          <li>The Celebrant | leading six of the ideoligion's rituals to their end (Ideology) | neighbors come asking for a blessing</li>
           <li>The Shepherd | two years as the ideoligion's moral guide (Ideology) | the doubting come to sit with them</li>
           <li>The Founder | ten years here, as one of those who came in the first two days | the founding day's letter, their death letter</li>
           <li>The Last of the First | being the only founder still here, of two or more, a year on | the founding day's letter, their death letter</li>
@@ -328,7 +328,7 @@ Others are given once, for one deed, and stay with their holder: the builder len
         <text>The annals cover who joined, died, left or walked out, raids, wealth, wishes, ambitions, decrees, dilemmas, friendships, feuds, trust and names. Past years can be reread from the Chronicle page.</text>
       </li>
     </sections>
-    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li><li>Gatekeeper</li><li>Daykeeper</li><li>Good Neighbour</li><li>Road-Warden</li><li>Old Doc</li><li>Unbeaten</li><li>Celebrant</li><li>Shepherd</li><li>Founder</li><li>Annalist</li><li>Firstborn</li></keywords>
+    <keywords><li>epithet</li><li>name</li><li>title</li><li>annals</li><li>anniversary</li><li>chronicle</li><li>Gatekeeper</li><li>Daykeeper</li><li>Good Neighbor</li><li>Road-Warden</li><li>Old Doc</li><li>Unbeaten</li><li>Celebrant</li><li>Shepherd</li><li>Founder</li><li>Annalist</li><li>Firstborn</li></keywords>
     <seeAlso><li>Council_Alm_C_Wishes</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
@@ -375,10 +375,10 @@ Two more things weigh on a ballot. Someone whose granted wish the council took b
         <text>With "Systems talk to each other" on, the offices also do their jobs where you can see them:</text>
         <table>
           <li>Office | Also</li>
-          <li>Keeper of days | Organises the calendar's feasts and games days (not the days about one person, which belong to them).</li>
+          <li>Keeper of days | Organizes the calendar's feasts and games days (not the days about one person, which belong to them).</li>
           <li>Peacemaker | Steps into a spat nearby, now and then: the two are sore at each other half as long.</li>
           <li>Physician | Does the rounds of everyone convalescing each morning, taking about two thirds of a day off each recovery, and the office counts for two patients pulled through toward a doctor's good name.</li>
-          <li>Reeve | Deals with neighbours who ask the colony for goods; an order filled in full under the reeve brings 3 more goodwill.</li>
+          <li>Reeve | Deals with neighbors who ask the colony for goods; an order filled in full under the reeve brings 3 more goodwill.</li>
           <li>Herdmaster | Sits with anyone whose named animal dies, and minds the animals of those away two days or more (they come home grateful). Goes down to name each newborn in the herd, brings word face to face to anyone whose animal is sick or hurt (their strain eases), and about once a week takes someone keen on animals, four levels or more behind, along for the day's work.</li>
           <li>Marshal | After a fight at home, has a word with everyone who fought beside them, easing their strain.</li>
           <li>Steward | At a gathering, eases the strain of everyone else there a little.</li>
@@ -605,7 +605,7 @@ A secret the colonist never told anyone dies with them. If they told someone, it
       </li>
       <li>
         <heading>Secrets from beyond the walls</heading>
-        <text>A few secrets are born of what goes on out in the world, and only come while it does: medicine slipped to a neighbour's sick in a plague year, a verse given to the minstrels, bread left out for the exiles, a vow made under the comet, a letter given to the mourners for someone they'll pass, grain hidden under the floor in a famine or a drought, something seen at the market during a blood feud, a debt run up at a caravan's dice, letters sent off with a camp. While such a world event runs or such a camp is settled, one may come to a colonist it fits who keeps no secret yet, at most one a day. More than half of them are kindnesses, and come out as such.</text>
+        <text>A few secrets are born of what goes on out in the world, and only come while it does: medicine slipped to a neighbor's sick in a plague year, a verse given to the minstrels, bread left out for the exiles, a vow made under the comet, a letter given to the mourners for someone they'll pass, grain hidden under the floor in a famine or a drought, something seen at the market during a blood feud, a debt run up at a caravan's dice, letters sent off with a camp. While such a world event runs or such a camp is settled, one may come to a colonist it fits who keeps no secret yet, at most one a day. More than half of them are kindnesses, and come out as such.</text>
       </li>
       <li>
         <heading>Vendettas</heading>
@@ -960,7 +960,7 @@ The peoples that think best of the colony ask for other things: guests at their 
           <li>The Players' Cart | Four players and a muffalo. Visiting performers come first, then a fair or a talent scout. One of the company isn't who they say they are.</li>
           <li>The Quiet House | Three of a quiet order, a mentor and a novice among them, known from the start as merciful, generous and traditional. Pilgrims and holy folk come soon after; one of the three broke a vow once.</li>
           <li>The Homestead | A married couple and an old friend, with cows, chickens and seed potatoes. Family visits or writes within the month, and a buyer or a fair comes after the first harvest.</li>
-          <li>The Elders' Fire | Five of a tribe. The eldest who can holds the elder's seat from the first day, and two of the tribe's days are traditions from the first year: keep them, or the colony feels it. A neighbouring people's war band comes twice for the old feud, and one of you has sworn vengeance on them (three of theirs to fall) with a life goal to match.</li>
+          <li>The Elders' Fire | Five of a tribe. The eldest who can holds the elder's seat from the first day, and two of the tribe's days are traditions from the first year: keep them, or the colony feels it. A neighboring people's war band comes twice for the old feud, and one of you has sworn vengeance on them (three of theirs to fall) with a life goal to match.</li>
           <li>What the Ship Carried | Three survivors and one secret, carried by one and known by all three. It can only come out to people who join later, when one of the three lets it slip, so friendships with newcomers cut both ways. The wreck comes down as a world event two or three weeks in, with salvagers, cheap steel and maybe pirates.</li>
           <li>The Orphanage | Biotech only; without it the scenario isn't there. Two carers and three or four children, all fond of each other from the start, and one carer has set their heart on seeing a child grown. Nobody comes to attack; a storyteller, players or a lost child come instead.</li>
           <li>The Land Grant | A medieval holding: the colony counts as one of the old ways until it researches past them, and the lord's reeve comes asking for a tithe. The speaker, the marshal and the reeve are named in the charter and sit until the year turns. The lord's people remember the grant as a debt, and in time ask for it back as a favour: answer kindly and the debt is settled.</li>
@@ -999,7 +999,7 @@ Someone from the past, a visiting scholar or a great beast arriving "around a se
           <li>Children in the colony's care (Biotech): children who arrive with the colonists, with nobody else.</li>
           <li>A world event set in motion: one starts around a set day if it can, and waits for a quiet moment. Not with world events switched off.</li>
         </points>
-        <after>A secret can be shared: one carries it and every grown-up who came knows it, so only those who join later can hear it let slip. A sworn enemy can be a neighbouring people of the old ways, with a vendetta sworn against them.</after>
+        <after>A secret can be shared: one carries it and every grown-up who came knows it, so only those who join later can hear it let slip. A sworn enemy can be a neighboring people of the old ways, with a vendetta sworn against them.</after>
       </li>
     </sections>
     <keywords><li>scenario</li><li>start</li><li>debt</li><li>loan</li><li>heist</li><li>mutiny</li><li>deserter</li><li>family</li><li>feud</li><li>tyrant</li><li>prisoner</li><li>hunt</li><li>gentle</li><li>mentor</li><li>lovers</li><li>small start</li><li>players</li><li>monastery</li><li>homestead</li><li>farm</li><li>tribe</li><li>elder</li><li>crash</li><li>orphanage</li><li>children</li><li>land grant</li><li>medieval</li><li>charter</li></keywords>
@@ -1065,7 +1065,7 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
           <li>Fear | danger here and now | defenses and weapons, nightmares, strain</li>
           <li>Dread | what's coming: a promised fight, a warband, a lean winter | stores, medicine and defenses, a trickle of strain</li>
           <li>Anger | insults, fights, unfair decisions, a rival, strangers camped on our land, a warlord who got away | frictions, wishes for justice</li>
-          <li>Shame | a prisoner executed or sold, a break they regret, a camp driven off, neighbours turned away in a hard year | fewer warm moments, wishes that make amends</li>
+          <li>Shame | a prisoner executed or sold, a break they regret, a camp driven off, neighbors turned away in a hard year | fewer warm moments, wishes that make amends</li>
           <li>Envy | someone else's room or things, the council's favorite | frictions with them, the same things</li>
           <li>Disgust | raw food, corpses, rot, filth | a clean colony, better food</li>
           <li>Loneliness | no friends here, a partner away, left out, a friend gone on with the camp | warm moments, a party, a companion</li>
@@ -1073,7 +1073,7 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
           <li>Frustration | refusals, lapsed wishes, work they love turned off, crops lost to the locusts, a prize lost at the fair | less patience, frictions</li>
           <li>Despair | long low spirits, loss after loss, a colony losing | slower recovery, a day off likelier</li>
           <li>Joy | good meals, parties, wishes granted | faster recovery, warm moments, sweet dreams</li>
-          <li>Pride | good work, victories, a seat, a name, a prize at the region's fair, a peace made at our table, neighbours helped | faster recovery, art and fine things</li>
+          <li>Pride | good work, victories, a seat, a name, a prize at the region's fair, a peace made at our table, neighbors helped | faster recovery, art and fine things</li>
           <li>Love | a partner or children close by | warm moments, sweet dreams, less loneliness</li>
           <li>Gratitude | rescued, tended, helped, a wish granted, a camp's good turn, a famous healer's cure, a stranger's blessing | warm moments with the one who helped, trust in the council</li>
           <li>Hope | spring, a newcomer, healing, strain lifting, good news from the region (a fair, a new road, a peace) | faster recovery, less despair</li>
@@ -1085,10 +1085,10 @@ To head it off, use days of rest: a decree that slows everyone's work by 10% for
           <li>Relief | a fight survived, a hunt or debt over, someone brought home, the warlord fallen or the warband broken up | faster recovery, less fear, a day off</li>
           <li>Tenderness | a baby, a patient, a little one learning, a bonded animal, a lost child seen home | warm moments, less anger, a crib or a pet bed</li>
           <li>Worry | someone loved downed, ill, carried off or away; a sickness in the region for parents and healers, hunger in the region for growers | a sickbed visit, an infirmary, a trickle of strain</li>
-          <li>Fellowship | feasts and customs kept together, a group, friends close by, friends made at a camp, good neighbours to a camp, its music at night | warm moments, less loneliness, parties and music</li>
+          <li>Fellowship | feasts and customs kept together, a group, friends close by, friends made at a camp, good neighbors to a camp, its music at night | warm moments, less loneliness, parties and music</li>
           <li>Resolve | a score to settle, drills, a steady nerve, a goal half won | less despair, fewer episodes, training and weapons</li>
         </table>
-        <after>The world beyond the walls reaches the heart too: what passes between the colony and a camp or a neighbour feeds the feelings above, and while a camp is on the map or a world event runs, a feeling that fits brings dreams and moments of its own (the camp's fire in a dream, friends at the camp talked about, worries about the region shared with a friend, plans made on good news, a camp sent away regretted).</after>
+        <after>The world beyond the walls reaches the heart too: what passes between the colony and a camp or a neighbor feeds the feelings above, and while a camp is on the map or a world event runs, a feeling that fits brings dreams and moments of its own (the camp's fire in a dream, friends at the camp talked about, worries about the region shared with a friend, plans made on good news, a camp sent away regretted).</after>
       </li>
       <li>
         <heading>The heart's needs</heading>
