@@ -45,7 +45,7 @@
         <li>[feeling:Disgust] This place needs scrubbing from top to bottom.</li>
         <li>[feeling:Loneliness] Two words to me all day, that's all I've had.</li>
         <li>[feeling:Loneliness] I could use someone to talk to.</li>
-        <li>[feeling:Loneliness] Everyone's always busy, all the time.</li>
+        <li>[feeling:Loneliness] People are always too busy to stop and talk.</li>
         <li>[feeling:Homesick] I keep thinking about the house I grew up in.</li>
         <li>[feeling:Homesick] The bread here never tastes the way it should.</li>
         <li>[feeling:Homesick] Back home the river would be up by now.</li>
@@ -93,7 +93,7 @@
         <li>[feeling:Relief] I can breathe again.</li>
         <li>[feeling:Relief] That was close, too close.</li>
         <li>[feeling:Relief] All that worrying, and it came out fine.</li>
-        <li>[feeling:Tenderness] It's the little things, a warm cup, a kind word.</li>
+        <li>[feeling:Tenderness] Someone left a warm cup by my bed this morning.</li>
         <li>[feeling:Tenderness,about] I saved the best piece for {OTHER_nameDef}.</li>
         <li>[feeling:Tenderness,about] Let {OTHER_nameDef} sleep a bit longer, I'll cover the work.</li>
         <li>[feeling:Worry] I hope they're all right out there.</li>
@@ -102,7 +102,7 @@
         <li>[feeling:Worry,about] I keep thinking about {OTHER_nameDef}.</li>
         <li>[feeling:Fellowship] We're a good crew, aren't we?</li>
         <li>[feeling:Fellowship] I'd trust any of you with my life.</li>
-        <li>[feeling:Fellowship] Whatever comes, we'll face it side by side.</li>
+        <li>[feeling:Fellowship] Whatever comes over that wall, it'll find all of us waiting.</li>
         <li>[feeling:Resolve] We're not going anywhere.</li>
         <li>[feeling:Resolve] Let them come.</li>
         <li>[feeling:Resolve] I'm going to finish this, whatever it takes.</li>
@@ -473,14 +473,14 @@
       </plain>
       <warm>
         <li>It's all right, I'll get over it.</li>
-        <li>[setback:CropLost] We'll plant again, it's not the end of the world.</li>
+        <li>[setback:CropLost] We'll plant again, there's seed left.</li>
       </warm>
       <blunt>
         <li>Don't ask.</li>
         <li>[setback:WorkTornDown] Next time ask me before you tear it down.</li>
       </blunt>
       <cheerful>
-        <li>Bad luck, but tomorrow's another day.</li>
+        <li>Ah well, I'll do better tomorrow!</li>
       </cheerful>
       <gloomy>
         <li>Why does it always happen to me?</li>
@@ -589,7 +589,7 @@
         <li>[night] I lay awake thinking about "{WISH}" again.</li>
       </plain>
       <warm>
-        <li>Whenever there's time, "{WISH}" would mean the world to me.</li>
+        <li>No hurry, but "{WISH}" would make me very happy.</li>
       </warm>
       <blunt>
         <li>Still no "{WISH}".</li>
