@@ -17,7 +17,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>1</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>among my own</label><description>An evening with my own people, doing what we always do. It's good to have a place.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <stages><li><label>among my own</label><description>Time with my own people, doing what we always do. It's good to have a place.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><felt>2</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
   </ThoughtDef>
 
@@ -37,7 +37,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>made me laugh when I needed it</label><description>I was in a black mood, and somehow they got a laugh out of me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>made me laugh when I needed it</label><description>I was in a black mood, and they still got a laugh out of me.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -57,7 +57,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>looked in on me</label><description>They noticed I'd gone quiet, and came to see how I was. That's what they're like.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+    <stages><li><label>looked in on me</label><description>They noticed I'd gone quiet and asked how I was, and waited for a real answer.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -67,7 +67,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>our crowd's old joke</label><description>Nobody outside our crowd would understand why it's funny. That's half of why it is.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
+    <stages><li><label>our crowd's old joke</label><description>It's still funny, every time. I couldn't explain it to anyone outside our crowd.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>3</baseOpinionOffset></li></stages>
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.04</joy><felt>2</felt></li></modExtensions>
   </ThoughtDef>
 
@@ -88,7 +88,7 @@
     <durationDays>2</durationDays>
     <stackLimit>2</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
-    <stages><li><label>not their sort</label><description>They let me know, not unkindly, that I'm not doing it the way they do it. I'm not sure I want to.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <stages><li><label>not their sort</label><description>They let me know I'm not doing things the way their crowd does. I'm not sure I want to.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -105,7 +105,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>4</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>our circle broke apart</label><description>We used to have our evenings, our jokes, our seats. Now it's all sides and silences.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <stages><li><label>our circle broke apart</label><description>We had our own jokes and our own evenings. Now there's a gap where they used to be.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <!-- ===================== Opinion from groups (no mood) ===================== -->
@@ -165,13 +165,13 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_GroupColdShoulder</defName>
     <thoughts><li>Council_Grp_ColdShoulder</li></thoughts>
-    <fix>A group that closes ranks opens up slowly: give the newcomer work alongside its people, let them sit at the same table, and a member who likes them will start speaking for them. A group of warm, trusting people takes newcomers in far sooner.</fix>
+    <fix>A group that closes ranks opens up slowly. Work alongside its people, their good opinion and memories made together win the newcomer in, and a member who likes them will start speaking for them. A group of warm, trusting people takes newcomers in far sooner.</fix>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_GroupOutOfStep</defName>
     <thoughts><li>Council_Grp_OutOfStep</li></thoughts>
-    <fix>They go against their group's ways. In time they either come round a little or drift off to people more like them; work and evenings with others who share their temper help them find their own crowd.</fix>
+    <fix>They go against their group's ways. In time they either come around or drift off to people more like them; work and evenings with others who share their nature help them find their own crowd.</fix>
   </ColonyCouncil.MoodHintDef>
 
   <ColonyCouncil.MoodHintDef>
@@ -183,7 +183,7 @@
   <ColonyCouncil.MoodHintDef>
     <defName>Rimfolk_Mood_GroupCircleBroke</defName>
     <thoughts><li>Council_Grp_CircleBroke</li></thoughts>
-    <fix>It passes in a few days. Those on each side may well find their way into a new group, or back together once the quarrel that split them is over.</fix>
+    <fix>It passes in a few days. They may find their way into another group in time, and the two halves of a split can still become one again once the quarrel behind it has cooled.</fix>
   </ColonyCouncil.MoodHintDef>
 
 </Defs>

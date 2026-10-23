@@ -16,7 +16,7 @@
     <shifts><pride>7</pride><nerve>4</nerve><outlook>3</outlook></shifts>
     <major>true</major>
     <keepDays>120</keepDays>
-    <shaped>{PAWN_nameDef} has spoken up more since the colony made {PAWN_objective} its {LABEL}.</shaped>
+    <shaped>{PAWN_nameDef} has spoken up more since the colony chose {PAWN_objective} as {LABEL}.</shaped>
     <defaultLabel>councillor</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -24,9 +24,9 @@
         <lean>pride:-0.3</lean>
         <journal>
           <plain>
-            <li>They chose me as {LABEL}. I keep looking round to see who they meant.</li>
-            <li>So I'm {LABEL} now. I've a list of things to put right already, and I've only been at it an hour.</li>
-            <li>I went for a walk after the vote to think about being {LABEL}. I came back with more questions than I left with.</li>
+            <li>They chose me as {LABEL}. I keep looking around to see who they meant.</li>
+            <li>So I'm {LABEL} now. I have a list of things to put right already, and I've only been at it an hour.</li>
+            <li>Being {LABEL} sounded simpler before the vote. I have more questions now than I did then.</li>
             <li>[persona:proud] They made me {LABEL}. About time somebody noticed.</li>
           </plain>
           <warm><li>The colony trusts me enough to make me {LABEL}. I won't let them down.</li></warm>
@@ -45,24 +45,24 @@
     <shifts><pride>9</pride><outlook>4</outlook><openness>-3</openness></shifts>
     <major>true</major>
     <keepDays>300</keepDays>
-    <shaped>{PAWN_nameDef} has spoken with a master's certainty since mastering {LABEL}.</shaped>
+    <shaped>{PAWN_nameDef} has spoken with new certainty since becoming a master in {LABEL}.</shaped>
     <defaultLabel>a craft</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
         <family>Mastered</family>
-        <news>{PAWN_nameDef} has mastered {LABEL}: there is nothing left anyone here could teach {PAWN_objective}.</news>
+        <news>{PAWN_nameDef} is now a master in {LABEL}.</news>
         <chronicle>true</chronicle>
         <journal>
           <plain>
-            <li>I've gone as far with {LABEL} as anyone can go. I thought it would feel like arriving. It feels like starting.</li>
-            <li>The others come to me now with questions about {LABEL}, and I have the answers. Most of them.</li>
-            <li>Years of {LABEL}, and today I did it without thinking at all. That's what it was for.</li>
+            <li>I've gone as far in {LABEL} as anyone can go. I thought it would feel like arriving. It feels like starting.</li>
+            <li>The others come to me now with their questions, and I have the answers. Most of them.</li>
+            <li>Today the work came without my thinking about it at all. That's what all the practice was for.</li>
           </plain>
-          <warm><li>I mastered {LABEL}. I'd like to teach someone. It's no good keeping it all in one head.</li></warm>
-          <blunt><li>Mastered {LABEL}. Took long enough.</li></blunt>
-          <cheerful><li>Nobody in this colony is better at {LABEL} than me. I've checked. Twice.</li></cheerful>
-          <gloomy><li>I've mastered {LABEL}. Nowhere left to go with it but down.</li></gloomy>
-          <cold><li>My work in {LABEL} has reached its limit. Efficient. I'll find another field to improve.</li></cold>
+          <warm><li>I'm a master in {LABEL} now. I'd like to teach someone. It's no good keeping it all in one head.</li></warm>
+          <blunt><li>Reached the top in {LABEL}. Took long enough.</li></blunt>
+          <cheerful><li>There's no one in this colony better at {LABEL} than me, and I may mention it once or twice.</li></cheerful>
+          <gloomy><li>I'm a master in {LABEL}. Nowhere left to go but down.</li></gloomy>
+          <cold><li>My work in {LABEL} has reached its limit. I'll find another field to improve.</li></cold>
         </journal>
       </li>
     </modExtensions>
@@ -90,7 +90,7 @@
     <shifts><pride>12</pride><outlook>5</outlook></shifts>
     <major>true</major>
     <keepDays>240</keepDays>
-    <shaped>{PAWN_nameDef} has carried {PAWN_objective}self like a master since making a legendary {LABEL}.</shaped>
+    <shaped>Since making a legendary {LABEL}, {PAWN_nameDef} has had a master's pride in every piece.</shaped>
     <defaultLabel>piece</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -99,13 +99,13 @@
         <news>{PAWN_nameDef} made a legendary {LABEL}, and knows it.</news>
         <journal>
           <plain>
-            <li>I made a {LABEL} today that I'll never better. My hands were steadier than they've ever been.</li>
-            <li>The {LABEL} came off the bench and the room went quiet. People will remember who made it.</li>
-            <li>I keep going back to look at the {LABEL}. I'm not sure I made it so much as let it out.</li>
+            <li>The {LABEL} I made today is the best I'll ever do. My hands were steadier than they've ever been.</li>
+            <li>Whoever owns that {LABEL} a hundred years from now will still know who made it.</li>
+            <li>I'm not sure I made that {LABEL} so much as let it out.</li>
           </plain>
           <warm><li>The {LABEL} is the best thing I'll ever make. I hope it goes to someone who'll love it.</li></warm>
           <blunt><li>Made a legendary {LABEL}. Back to work tomorrow.</li></blunt>
-          <cheerful><li>A legendary {LABEL}! By my own hands! I may need a lie down.</li></cheerful>
+          <cheerful><li>A legendary {LABEL}, by my own hands! I may need a lie-down.</li></cheerful>
           <gloomy><li>That {LABEL} is the best I'll ever do. Everything after it will be a disappointment.</li></gloomy>
           <cold><li>The {LABEL} is flawless. I have finally met my own standards.</li></cold>
         </journal>
@@ -129,12 +129,12 @@
         <journal>
           <plain>
             <li>{OTHER_nameDef} is grown. I keep wanting to tie {OTHER_possessive} boots for {OTHER_objective}.</li>
-            <li>I watched {OTHER_nameDef} walk off to work this morning like any grown-up. I had to sit down for a moment.</li>
-            <li>{OTHER_nameDef} asked my advice today, as one adult to another. I think I gave good advice.</li>
+            <li>{OTHER_nameDef} will go off to work like any grown-up now. I'm not ready for that.</li>
+            <li>Next time {OTHER_nameDef} asks my advice, it'll be one adult to another.</li>
           </plain>
           <warm><li>{OTHER_nameDef} has grown up kind. Whatever else I've done wrong, I did that right.</li></warm>
           <blunt><li>{OTHER_nameDef}'s grown. Turned out well.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} is all grown up and taller than me. When did that happen?</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} is all grown up! When did that happen?</li></cheerful>
           <gloomy><li>{OTHER_nameDef} is grown, and won't need me much now. That's how it's meant to go, I suppose.</li></gloomy>
           <cold><li>{OTHER_nameDef} has reached adulthood capable and sound. A good outcome.</li></cold>
         </journal>
@@ -155,12 +155,12 @@
         <family>BecameParent</family>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} is here. Small, loud and furious about everything. I'd die for {OTHER_objective} already.</li>
-            <li>I held {OTHER_nameDef} all afternoon and didn't notice the light go. I've never done that before.</li>
-            <li>I'm a parent. I keep checking that {OTHER_nameDef} is still breathing, every few minutes.</li>
+            <li>{OTHER_nameDef} is here, small and furious about everything. I'd die for {OTHER_objective} already.</li>
+            <li>I've never looked at anything as long as I've looked at {OTHER_nameDef} today.</li>
+            <li>I'm a parent. Every small sound {OTHER_nameDef} makes, I hear it.</li>
           </plain>
-          <warm><li>{OTHER_nameDef} grabbed my finger and wouldn't let go. Neither will I.</li></warm>
-          <blunt><li>{OTHER_nameDef} was born today. Healthy. Loud.</li></blunt>
+          <warm><li>I'll never let anything happen to {OTHER_nameDef}. I know nobody can promise that, and I'm promising it anyway.</li></warm>
+          <blunt><li>{OTHER_nameDef} was born today. Loud.</li></blunt>
           <cheerful><li>{OTHER_nameDef} is the most beautiful thing in this colony and I will fight anyone who says otherwise.</li></cheerful>
           <gloomy><li>{OTHER_nameDef}, born into this. I'll do what I can to make it worth it.</li></gloomy>
           <cold><li>{OTHER_nameDef} is born. I find I am not as detached as I expected.</li></cold>
@@ -175,7 +175,7 @@
     <shifts><warmth>5</warmth><outlook>6</outlook><trust>4</trust></shifts>
     <major>true</major>
     <keepDays>300</keepDays>
-    <shaped>{PAWN_nameDef} has had someone to come home to since marrying {OTHER}.</shaped>
+    <shaped>Marrying {OTHER} gave {PAWN_nameDef} someone to come home to.</shaped>
     <defaultLabel>a wedding</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -186,11 +186,11 @@
           <plain>
             <li>Married to {OTHER_nameDef}. I said my words without stumbling, which surprised us both.</li>
             <li>{OTHER_nameDef} and I are married. I keep turning the word over. It fits better than I thought.</li>
-            <li>The wedding's done and the others have gone to bed. {OTHER_nameDef} is asleep beside me. Good day.</li>
+            <li>The wedding's done, and {OTHER_nameDef} and I belong to each other now. Good day.</li>
           </plain>
           <warm><li>I married {OTHER_nameDef} today. Whatever comes, we'll meet it together.</li></warm>
           <blunt><li>Married {OTHER_nameDef}. Good choice.</li></blunt>
-          <cheerful><li>I married {OTHER_nameDef}! There was dancing. I'm told I was the worst at it.</li></cheerful>
+          <cheerful><li>I married {OTHER_nameDef}! I don't remember half of what I said, and I don't care.</li></cheerful>
           <gloomy><li>Married {OTHER_nameDef}. Out here, I'd better make the most of every day of it.</li></gloomy>
           <cold><li>{OTHER_nameDef} and I are married. A sensible arrangement, and I find I'm glad of it.</li></cold>
         </journal>
@@ -236,7 +236,7 @@
     <label>a long illness</label>
     <shifts><outlook>-4</outlook><warmth>3</warmth><nerve>-2</nerve></shifts>
     <keepDays>90</keepDays>
-    <shaped>{PAWN_nameDef} has had more patience with the sick since a long bout of {LABEL}.</shaped>
+    <shaped>A long bout of {LABEL} left {PAWN_nameDef} more patient with the sick.</shaped>
     <defaultLabel>illness</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -260,15 +260,15 @@
         <news>{PAWN_nameDef} is free of {LABEL}.</news>
         <journal>
           <plain>
-            <li>It's gone. The {LABEL} that had me by the throat is gone. I woke up this morning and didn't want it.</li>
-            <li>I'm free of {LABEL}. The shakes, the bad nights, the begging: all behind me now.</li>
-            <li>I walked past the drug shelf today and only noticed afterwards. That's how I know the {LABEL} is over.</li>
+            <li>It's gone. The craving that had me by the throat is gone, and I hardly noticed it leave.</li>
+            <li>I'm free of {LABEL}. The shakes and the bad nights are behind me now.</li>
+            <li>Whole days go by now without a thought of it. That's how I know I'm free of {LABEL}.</li>
           </plain>
-          <warm><li>I beat the {LABEL}, with a lot of help. I'm going to thank every one of them.</li></warm>
+          <warm><li>I beat {LABEL}, with a lot of help. I'm going to thank every one of them.</li></warm>
           <blunt><li>Clean of {LABEL}. Staying that way.</li></blunt>
           <cheerful><li>No more {LABEL}! I feel like I could carry a muffalo.</li></cheerful>
-          <gloomy><li>Free of {LABEL}, for now. I'll keep watching myself.</li></gloomy>
-          <cold><li>The {LABEL} has run its course. My judgement is my own again.</li></cold>
+          <gloomy><li>Free of {LABEL}. I'll keep watching myself, all the same.</li></gloomy>
+          <cold><li>I am free of {LABEL}. My judgment is my own again.</li></cold>
         </journal>
       </li>
     </modExtensions>
@@ -290,7 +290,7 @@
           <plain>
             <li>They made me a slave today. I've decided not to give them the rest of me.</li>
             <li>I'm a slave now. I can still think what I like, and I do.</li>
-            <li>Work, eat, sleep, work. Nobody asks what I want any more. I remember, though.</li>
+            <li>Work, eat, sleep, work. Nobody asks what I want anymore. I remember, though.</li>
           </plain>
           <blunt><li>Enslaved. I'll wait.</li></blunt>
           <gloomy><li>So this is what the rest of my life looks like.</li></gloomy>
@@ -313,16 +313,16 @@
         <family>Freed</family>
         <thoughts><li>FreedFromSlavery</li></thoughts>
         <labelDay>true</labelDay>
-        <news>{PAWN_nameDef} is free, and walks like it.</news>
+        <news>{PAWN_nameDef} is a slave no longer.</news>
         <journal>
           <plain>
-            <li>Free. I said it out loud three times in the empty storeroom, just to hear it.</li>
-            <li>I'm not a slave any more. My shoulders don't know what to do with themselves.</li>
+            <li>Free. I keep saying the word to myself, just to hear it.</li>
+            <li>I'm not a slave anymore. My shoulders don't know what to do with themselves.</li>
             <li>I'm free, and I've decided to stay. That's the first choice I've made in a long time.</li>
           </plain>
           <warm><li>They freed me. I'll work twice as hard now, because now it's mine to give.</li></warm>
           <blunt><li>Free. Finally.</li></blunt>
-          <cheerful><li>I'm free! I walked the long way round to supper just because I could.</li></cheerful>
+          <cheerful><li>I'm free! Tomorrow I'm taking the long way to supper, just because I can.</li></cheerful>
           <gloomy><li>Free, they say. I'll believe it when it's been a year.</li></gloomy>
           <cold><li>My freedom has been returned. I will not hand it back.</li></cold>
         </journal>
@@ -335,7 +335,7 @@
     <label>a long peace</label>
     <shifts><outlook>7</outlook><nerve>-4</nerve><humour>3</humour></shifts>
     <keepDays>60</keepDays>
-    <shaped>{PAWN_nameDef} has let {PAWN_possessive} guard down after {LABEL}.</shaped>
+    <shaped>After {LABEL}, {PAWN_nameDef} has let {PAWN_possessive} guard down.</shaped>
     <defaultLabel>a year without a raid</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -369,7 +369,7 @@
           </plain>
           <warm><li>Those who keep {LABEL} took me in, and now their faith is mine too. It feels like coming home.</li></warm>
           <blunt><li>I follow {LABEL} now. My business.</li></blunt>
-          <cheerful><li>I'm of {LABEL} now! There's so much I didn't know. I've been asking questions all day.</li></cheerful>
+          <cheerful><li>I'm of {LABEL} now! There's so much I didn't know, and I want to hear all of it.</li></cheerful>
           <gloomy><li>I've given up the old faith for {LABEL}. I hope this one holds up better.</li></gloomy>
           <cold><li>The arguments of {LABEL} were better. I have changed my position accordingly.</li></cold>
         </journal>
@@ -402,7 +402,7 @@
     <label>drawn to what lies beyond</label>
     <shifts><openness>6</openness><warmth>-2</warmth><outlook>-2</outlook></shifts>
     <keepDays>120</keepDays>
-    <shaped>{PAWN_nameDef} has wanted to know more about what lies past the world since what happened on {LABEL}.</shaped>
+    <shaped>Whatever happened on {LABEL} left {PAWN_nameDef} wanting to know more about what lies past the world.</shaped>
     <defaultLabel>a strange day</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">

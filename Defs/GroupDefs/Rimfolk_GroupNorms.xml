@@ -13,7 +13,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Merry</defName>
     <label>loud and merry</label>
-    <description>They laugh a lot, and loudly, and expect the rest of the table to join in.</description>
+    <description>They laugh a lot, and loudly, and expect the rest of the table to join in. They take newcomers in sooner and keep game nights; a dour member is out of step, and a serious-minded group easily falls out with them.</description>
     <axis>Humour</axis>
     <above>25</above>
     <breakAt>25</breakAt>
@@ -26,7 +26,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Serious</defName>
     <label>serious-minded</label>
-    <description>They have little time for jokes, and less for people who tell them at the wrong moment.</description>
+    <description>They have little time for jokes, and less for people who tell them at the wrong moment. A joker among them is out of step, and they clash with a loud and merry group.</description>
     <axis>Humour</axis>
     <below>-25</below>
     <breakAt>35</breakAt>
@@ -37,7 +37,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Aloof</defName>
     <label>keep to themselves</label>
-    <description>They don't go out of their way for anyone outside their own, and they don't expect anyone to go out of theirs.</description>
+    <description>They don't go out of their way for anyone outside their own, and they don't expect anyone to go out of theirs. Newcomers wait longer to be taken in. A warm-hearted member is out of step, and a group that looks after its own is quick to fall out with them.</description>
     <axis>Warmth</axis>
     <below>-20</below>
     <breakAt>35</breakAt>
@@ -49,7 +49,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Warm</defName>
     <label>look after their own</label>
-    <description>Nobody among them goes hungry, cold or unthanked. A newcomer is fed before they're asked their name.</description>
+    <description>They look out for one another, and a newcomer is made welcome before anyone asks a name. Newcomers are taken in sooner; a cold, distant member is out of step, and they clash with a group that keeps to itself.</description>
     <axis>Warmth</axis>
     <above>30</above>
     <breakAt>30</breakAt>
@@ -61,7 +61,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Wary</defName>
     <label>suspicious of outsiders</label>
-    <description>Trust is earned among them, slowly, and newcomers wait a long while to earn it.</description>
+    <description>Trust is earned among them, slowly, and newcomers wait a long while to be taken in. A trusting soul among them is out of step, and a group open to anyone easily falls out with them.</description>
     <axis>Trust</axis>
     <below>-20</below>
     <breakAt>35</breakAt>
@@ -73,7 +73,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Open</defName>
     <label>open to anyone</label>
-    <description>Anyone who sits down with them is one of them by the end of the evening.</description>
+    <description>Anyone who sits down with them is one of them by the end of the evening, so newcomers are taken in much sooner. A suspicious member is out of step, and they clash with a group suspicious of outsiders.</description>
     <axis>Trust</axis>
     <above>25</above>
     <breakAt>30</breakAt>
@@ -85,7 +85,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Brave</defName>
     <label>brave to a fault</label>
-    <description>They are first to the wall when the alarm goes, and think a little less of whoever is last.</description>
+    <description>They are first into any fight, and think less of whoever hangs back. A timid member is out of step, and a group that keeps its head down easily falls out with them.</description>
     <axis>Nerve</axis>
     <above>30</above>
     <breakAt>25</breakAt>
@@ -96,7 +96,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Careful</defName>
     <label>keep their heads down</label>
-    <description>They don't take chances, and look sideways at those who do.</description>
+    <description>They don't take chances, and look sideways at those who do. A reckless member is out of step, and they clash with a group that's brave to a fault.</description>
     <axis>Nerve</axis>
     <below>-25</below>
     <breakAt>40</breakAt>
@@ -106,8 +106,8 @@
 
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Touchy</defName>
-    <label>quick to take offence</label>
-    <description>A careless word to one of them is a careless word to all of them.</description>
+    <label>quick to take offense</label>
+    <description>A careless word to one of them is a careless word to all of them. Newcomers wait longer to be taken in, and a group slow to anger easily falls out with them.</description>
     <axis>Temper</axis>
     <above>30</above>
     <welcome>-0.1</welcome>
@@ -118,7 +118,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Calm</defName>
     <label>slow to anger</label>
-    <description>Shouting gets you nowhere with them. They wait until you've finished, then carry on.</description>
+    <description>Shouting gets you nowhere with them. They wait until you've finished, then carry on. A hothead among them is out of step, and they clash with a group quick to take offense.</description>
     <axis>Temper</axis>
     <below>-30</below>
     <breakAt>40</breakAt>
@@ -130,7 +130,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Proud</defName>
     <label>think well of themselves</label>
-    <description>They are sure they do things best, and say so, often.</description>
+    <description>They are sure they do things best, and say so, often. It takes newcomers longer to win them over.</description>
     <axis>Pride</axis>
     <above>30</above>
     <welcome>-0.1</welcome>
@@ -140,7 +140,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Hopeful</defName>
     <label>always look on the bright side</label>
-    <description>Whatever happens, they find a reason it could have been worse, and drink to that.</description>
+    <description>Whatever happens, they find a reason it could have been worse, and drink to that. A gloomy member is out of step, and a group that expects the worst easily falls out with them.</description>
     <axis>Outlook</axis>
     <above>30</above>
     <breakAt>30</breakAt>
@@ -152,7 +152,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Gloomy</defName>
     <label>expect the worst</label>
-    <description>They have seen how things go, and they are seldom wrong about it.</description>
+    <description>They have seen how things go, and they are seldom wrong about it. A cheerful member is out of step, and they clash with a group that always looks on the bright side.</description>
     <axis>Outlook</axis>
     <below>-25</below>
     <breakAt>40</breakAt>
@@ -163,7 +163,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_OldWays</defName>
     <label>set in their ways</label>
-    <description>Things are done the way they've always been done, and newcomers learn that first.</description>
+    <description>Things are done the way they've always been done, and newcomers must learn that before they're taken in, which takes longer here. Someone restless for new ideas is out of step, and a curious group easily falls out with them.</description>
     <axis>Openness</axis>
     <below>-25</below>
     <breakAt>35</breakAt>
@@ -175,7 +175,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Curious</defName>
     <label>always after something new</label>
-    <description>A new idea, a new face, a new way of doing it: they want to hear about all of them.</description>
+    <description>They want to hear every new idea and meet every new face, so newcomers are taken in sooner. A stick-in-the-mud among them is out of step, and they clash with a group set in its ways.</description>
     <axis>Openness</axis>
     <above>30</above>
     <breakAt>35</breakAt>
@@ -187,7 +187,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_HardWorkers</defName>
     <label>hard workers</label>
-    <description>The day's work comes first with them, and anyone who slacks hears about it.</description>
+    <description>The day's work comes first with them, and anyone who slacks hears about it. It holds while at least half of them are industrious by nature.</description>
     <tags>trait:Industrious|trait:HardWorker</tags>
     <tagShare>0.5</tagShare>
     <tag>hardworkers</tag>
@@ -196,7 +196,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_NightOwls</defName>
     <label>keep late hours</label>
-    <description>Their evenings run long into the night, and their mornings start late.</description>
+    <description>Their evenings run long into the night, and their mornings start late. It holds while at least half of them are night owls, and they keep the small hours together.</description>
     <tags>trait:NightOwl</tags>
     <tagShare>0.5</tagShare>
     <habit>Rimfolk_Habit_Night</habit>
@@ -206,7 +206,7 @@
   <ColonyCouncil.GroupNormDef>
     <defName>Rimfolk_Norm_Devout</defName>
     <label>devout</label>
-    <description>Their ideoligion is the centre of their days, and they keep its rites together.</description>
+    <description>Their ideoligion is the center of their days, and they keep its rites together. Only a group of the faithful has this way.</description>
     <kinds><li>Rimfolk_Group_Faithful</li></kinds>
     <welcome>-0.05</welcome>
     <tag>devout</tag>

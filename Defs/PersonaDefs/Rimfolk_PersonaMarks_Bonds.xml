@@ -20,9 +20,9 @@
         <family>NursedBack</family>
         <journal>
           <plain>
-            <li>I'm on my feet again after {LABEL}. {OTHER_nameDef} sat up with me more nights than I can count.</li>
-            <li>{OTHER_nameDef} changed my dressings every day through {LABEL} and never once made me feel like a nuisance.</li>
-            <li>First day outside since {LABEL}. I went to find {OTHER_nameDef} before I did anything else.</li>
+            <li>I'm over {LABEL} at last. {OTHER_nameDef} saw me through every day of it.</li>
+            <li>{OTHER_nameDef} tended me every day through {LABEL} and never once made me feel like a nuisance.</li>
+            <li>I'm well enough now to thank {OTHER_nameDef} properly for getting me through {LABEL}.</li>
           </plain>
           <warm><li>I wouldn't have come through {LABEL} without {OTHER_nameDef}. I want to be that for someone one day.</li></warm>
           <blunt><li>{OTHER_nameDef} kept me alive through {LABEL}. Noted. Owed.</li></blunt>
@@ -59,7 +59,7 @@
     <label>a promise kept to them</label>
     <shifts><trust>5</trust><outlook>2</outlook></shifts>
     <keepDays>90</keepDays>
-    <shaped>{PAWN_nameDef} has taken the council at its word since it kept its promise on {LABEL}.</shaped>
+    <shaped>{PAWN_nameDef} has taken the council at its word since it kept faith with {PAWN_objective} on {LABEL}.</shaped>
     <defaultLabel>a good day</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -78,7 +78,7 @@
     <shifts><warmth>6</warmth><pride>-5</pride><trust>5</trust><temper>-3</temper></shifts>
     <major>true</major>
     <keepDays>180</keepDays>
-    <shaped>{PAWN_nameDef} has been slower to judge others since {OTHER} forgave {PAWN_objective} for what {PAWN_pronoun} did on {LABEL}.</shaped>
+    <shaped>Forgiven by {OTHER} for what {PAWN_pronoun} did on {LABEL}, {PAWN_nameDef} has been slower to judge others.</shaped>
     <defaultLabel>a bad day</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -89,12 +89,12 @@
         <journal>
           <plain>
             <li>I was sure {OTHER_nameDef} would never speak to me again after what I did on {LABEL}. Today {OTHER_pronoun} did, and kindly.</li>
-            <li>{OTHER_nameDef} told me to stop apologising for what happened on {LABEL}. I don't think I will, but it helped.</li>
-            <li>After what I did on {LABEL}, {OTHER_nameDef} brought me tea. Just tea. I nearly cried into it.</li>
+            <li>{OTHER_nameDef} told me to stop apologizing for what happened on {LABEL}. I don't think I will, but it helped.</li>
+            <li>After what I did on {LABEL}, I didn't expect a kind word from anyone, least of all {OTHER_nameDef}.</li>
           </plain>
           <warm><li>{OTHER_nameDef} has forgiven me for what I did on {LABEL}. I'm going to try to deserve it.</li></warm>
           <blunt><li>I lost my head on {LABEL}. {OTHER_nameDef} let it go. I won't forget that.</li></blunt>
-          <cheerful><li>{OTHER_nameDef} forgave me for the business on {LABEL}! I think. There was a hug, so I'm counting it.</li></cheerful>
+          <cheerful><li>{OTHER_nameDef} forgave me for the business on {LABEL}! At least, I'm choosing to take it that way.</li></cheerful>
           <gloomy><li>{OTHER_nameDef} forgave me for what I did on {LABEL}, which is more than I've managed.</li></gloomy>
           <cold><li>{OTHER_nameDef} chose not to hold what happened on {LABEL} against me. An unusual choice. I'll return it.</li></cold>
         </journal>
@@ -119,9 +119,9 @@
         <lean>trust:0.3</lean>
         <journal>
           <plain>
-            <li>I told {OTHER_nameDef} the one thing I'd never told anyone. Now everyone knows it.</li>
-            <li>{OTHER_nameDef} said it out loud, in company, like it was nothing. It was everything.</li>
-            <li>I keep going over the night I told {OTHER_nameDef}. I should have kept my mouth shut.</li>
+            <li>I trusted {OTHER_nameDef} with my secret. Now it's everyone's business.</li>
+            <li>{OTHER_nameDef} said it out loud, in company, as if it were nothing.</li>
+            <li>I think about the day I told {OTHER_nameDef}, and how sure I was of {OTHER_objective}.</li>
           </plain>
           <warm><li>I thought {OTHER_nameDef} cared about me. Maybe {OTHER_pronoun} does, and it slipped. It doesn't matter much now.</li></warm>
           <blunt><li>{OTHER_nameDef} told. Never again.</li></blunt>
@@ -168,7 +168,7 @@
     <label>lost the vote</label>
     <shifts><pride>-4</pride><temper>4</temper><trust>-3</trust></shifts>
     <keepDays>90</keepDays>
-    <shaped>{PAWN_nameDef} has been touchy about the council since losing the vote to {OTHER}.</shaped>
+    <shaped>Losing the vote to {OTHER} left {PAWN_nameDef} touchy about the council.</shaped>
     <defaultLabel>an election</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -202,7 +202,7 @@
     <label>a promise the council broke</label>
     <shifts><trust>-8</trust><outlook>-2</outlook></shifts>
     <keepDays>90</keepDays>
-    <shaped>{PAWN_nameDef} has taken the council's word with a pinch of salt since it went back on it on {LABEL}.</shaped>
+    <shaped>Since the council went back on its word on {LABEL}, {PAWN_nameDef} has taken its promises with a pinch of salt.</shaped>
     <defaultLabel>a bad day</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -231,15 +231,15 @@
         <lean>warmth:0.3</lean>
         <journal>
           <plain>
-            <li>{OTHER_nameDef} and I are finished. I moved my things out of our room this evening. There weren't many.</li>
-            <li>I saw {OTHER_nameDef} at supper and turned straight round. I'll eat later.</li>
-            <li>It's over with {OTHER_nameDef}. Everyone is being very careful around me, which is worse.</li>
+            <li>I keep going over every day with {OTHER_nameDef}, looking for the moment it went wrong.</li>
+            <li>I can't sit across from {OTHER_nameDef} at supper. Not yet.</li>
+            <li>The others know about {OTHER_nameDef} and me. They're being very careful around me, which is worse.</li>
           </plain>
           <warm><li>I gave {OTHER_nameDef} everything I had. I don't know if I have it to give again.</li></warm>
-          <blunt><li>{OTHER_nameDef} and me: done. Don't ask.</li></blunt>
-          <cheerful><li>Single again. I'm fine. I'm writing it down so it becomes true.</li></cheerful>
-          <gloomy><li>I knew it wouldn't last with {OTHER_nameDef}. Nothing does. I just hoped.</li></gloomy>
-          <cold><li>{OTHER_nameDef} has ended things. I'll spend the time on work. Work doesn't leave.</li></cold>
+          <blunt><li>Don't ask me about {OTHER_nameDef}.</li></blunt>
+          <cheerful><li>I'm fine. I'm writing it down so it becomes true.</li></cheerful>
+          <gloomy><li>I knew something would go wrong with {OTHER_nameDef}. I just hoped I was wrong.</li></gloomy>
+          <cold><li>What {OTHER_nameDef} did is noted. I'll put the hours into work. Work doesn't betray anyone.</li></cold>
         </journal>
       </li>
     </modExtensions>
