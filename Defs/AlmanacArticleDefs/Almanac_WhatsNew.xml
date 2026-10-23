@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.11.4</version>
+        <date>23 October 2026</date>
+        <title>Plans that hold, guests who go</title>
+        <points>
+          <li>Hovering a trap plan near the top or bottom of the map no longer throws an error every frame.</li>
+          <li>A cooler that can't go into a room's wall (something of yours in the way, or the ground) no longer leaves a hole there: the wall goes up in its place, and with "replace your own" on, what stands there is taken down for it like on the rest of the wall.</li>
+          <li>A defense piece that lies partly in unexplored ground has the rock in its visible part mined too, and the build queue waits until all of it has come to light before giving up on it.</li>
+          <li>A raid's lessons count raiders who arrive late or are seen again after loading a save, and removing a line during a raid no longer credits raiders to the wrong line.</li>
+          <li>A visit or lesson never calls a colonist away from a meal, their bed, a rescue or another plan, nor anyone urgently hungry or very tired, and it ends once they need to eat or sleep.</li>
+          <li>When you arrest one of a group of visitors, the rest leave at once instead of standing at the gate for a day; visitors walled in on their way out leave after a day.</li>
+          <li>A camp no longer stops hunting or felling trees for a day or more after you load an earlier save or another colony.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.11.3</version>
         <date>23 October 2026</date>
         <title>Couriers home, panels fresh</title>

@@ -318,7 +318,8 @@ namespace ColonyCouncil
             }
             // One thing at a time: a second visit for the same colonist waits for the first.
             if (RunningFor(v) != null) return;
-            if (!PlayOuts.CanTakePart(v, map))
+            // Never from a meal, a bed or a rescue, nor hungry or tired enough to need seeing to, nor from another plan.
+            if (!PlayOuts.CanTakePart(v, map) || !PlayOuts.Interruptible(v) || PlayOuts.NeedsPress(v) || BusyWith(v, p))
             {
                 p.waitReason = "CC_Play_Why_NotFree".Translate(v.Named("PAWN")).Resolve();
                 return;

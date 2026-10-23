@@ -47,6 +47,8 @@ namespace ColonyCouncil
         protected override IEnumerable<Toil> MakeNewToils()
         {
             this.FailOn(() => pawn.Map == null || pawn.Map.dangerWatcher.DangerRating != StoryDanger.None);
+            // Hunger, tiredness, a wound or being called to arms end it: they see to that first.
+            this.FailOn(() => !PlayOuts.CanJoin(pawn) || PlayOuts.NeedsPress(pawn));
             AddFinishAction(_ =>
             {
                 try

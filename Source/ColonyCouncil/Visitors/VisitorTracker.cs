@@ -189,6 +189,7 @@ namespace ColonyCouncil
                     // Gone, or (stuck somewhere on the way out) a day on: the record goes.
                     if (AllGone(t) || t.endTick >= 0 && now - t.endTick > VisitorMath.MaxKeepTicks)
                     {
+                        if (!AllGone(t) && t.MapThere) SendOff(t);
                         t.state = VisitState.Done;
                         if (t.endTick < 0) t.endTick = now;
                     }
@@ -471,6 +472,34 @@ namespace ColonyCouncil
             t.state = VisitState.Leaving;
             t.endTick = Now;
             Visitors.Forget(t);
+            // Hurt, the group is on its way out already; one of them taken, the rest are told here.
+            if (end == VisitEnd.Harmed && t.lord != null && t.map?.lordManager != null && t.map.lordManager.lords.Contains(t.lord))
+                t.lord.ReceiveMemo(LordJob_RimfolkVisit.MemoFlee);
+        }
+
+        /// <summary>
+        /// A day after they set off home and still on the map (walled in, a door that won't open for them): those who
+        /// can reach the edge are sent again, the rest leave the map at once. The downed are left to the colony's care.
+        /// </summary>
+        private static void SendOff(VisitorTrip t)
+        {
+            var walkers = new List<Pawn>();
+            foreach (var p in t.Here)
+            {
+                if (p.Downed) continue;
+                try
+                {
+                    t.lord.RemovePawn(p);
+                    if (p.CanReachMapEdge()) walkers.Add(p);
+                    else p.ExitMap(false, Rot4.Invalid);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("visitor send-off", e);
+                }
+            }
+            foreach (var g in walkers.Where(p => p.Spawned).GroupBy(p => p.Faction))
+                LordMaker.MakeNewLord(g.Key, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), t.map, g.ToList());
         }
 
         /// <summary>It's over without anyone (left) on the map: never came, the map gone.</summary>

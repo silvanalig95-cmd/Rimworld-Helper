@@ -27,7 +27,8 @@ namespace ColonyCouncil
         private class Track
         {
             public IntVec3 last;
-            public long outMask, countedMask;
+            /// <summary>The lines (by id) it has been out in front of, and those its way past was already counted for.</summary>
+            public readonly HashSet<int> outside = new HashSet<int>(), counted = new HashSet<int>();
         }
 
         private readonly Dictionary<int, Track> tracks = new Dictionary<int, Track>();
@@ -131,32 +132,33 @@ namespace ColonyCouncil
                 tracks[p.thingIDNumber] = tr;
             }
             var home = map.areaManager.Home;
-            for (int i = 0; i < lines.Count && i < 60; i++)
+            // First seen after the raid's landing (a late band, or the raid followed again after a load): one still in
+            // front of a line, however close, came from outside.
+            bool late = fresh && now - raidStart > LandedWithin;
+            foreach (var line in lines)
             {
-                var line = lines[i];
-                long bit = 1L << i;
-                if ((tr.countedMask & bit) != 0) continue;
+                if (tr.counted.Contains(line.id)) continue;
                 int ahead = line.Ahead(pos), lat = line.Lateral(pos);
-                if (ahead >= 2)
+                if (ahead >= 2 || (late && ahead >= 0))
                 {
-                    tr.outMask |= bit;
+                    tr.outside.Add(line.id);
                     continue;
                 }
                 bool behind = ahead <= -1 && (Mathf.Abs(lat) <= 30 || home[pos]);
                 if (!behind) continue;
                 var raid = RaidFor(line);
-                if ((tr.outMask & bit) != 0)
+                if (tr.outside.Contains(line.id))
                 {
                     if (DefenseLineMath.PassedNear(tr.last.x, tr.last.z, pos.x, pos.z, line.gate.x, line.gate.z, 3.5f) || pos.DistanceTo(line.gate) <= 4f) raid.through++;
                     else if (Breaching(p)) raid.broke++;
                     else if (lat < 0) raid.roundLeft++;
                     else raid.roundRight++;
-                    tr.countedMask |= bit;
+                    tr.counted.Add(line.id);
                 }
                 else if (fresh && now - raidStart <= LandedWithin && home[pos])
                 {
                     raid.inside++;
-                    tr.countedMask |= bit;
+                    tr.counted.Add(line.id);
                 }
             }
             tr.last = pos;

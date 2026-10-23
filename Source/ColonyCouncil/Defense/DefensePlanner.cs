@@ -266,6 +266,27 @@ namespace ColonyCouncil
                 }
                 foreach (var c in pt.rect)
                     if (c.Fogged(map) && plan.mineSet.Add(c)) plan.mine.Add(c);
+                // The part of it in the light is cleared as it would be for any piece: rock mined, the colony's own taken down.
+                foreach (var c in pt.rect)
+                {
+                    if (c.Fogged(map)) continue;
+                    var ed = c.GetEdifice(map);
+                    if (ed == null) continue;
+                    if (ed.def.mineable)
+                    {
+                        if (plan.mineSet.Add(c)) plan.mine.Add(c);
+                    }
+                    else if (IsOwn(ed) && replace && CanTakeDown(ed))
+                    {
+                        if (!plan.deconstruct.Contains(ed)) plan.deconstruct.Add(ed);
+                        plan.deconstructCells.Add(c);
+                    }
+                    else
+                    {
+                        reason = "CC_Plan_Block_Thing".Translate(ed.LabelShort);
+                        return PieceState.Blocked;
+                    }
+                }
                 return PieceState.Waiting;
             }
             plan.seen++;
@@ -421,7 +442,7 @@ namespace ColonyCouncil
             var wall = plan.pieces.FirstOrDefault(p => p.group == "wall" && p.state != PieceState.Present);
             if (wall?.stuff?.stuffProps?.categories != null && wall.stuff.stuffProps.categories.Contains(StuffCategoryDefOf.Woody) && t.kind != "palisade")
                 plan.warnings.Add("CC_Def_Warn_Wood".Translate(wall.stuff.label));
-            if (plan.pieces.Any(p => p.group == "trap" && p.state != PieceState.Present && map.areaManager.Home[p.cell]))
+            if (plan.pieces.Any(p => p.group == "trap" && p.state != PieceState.Present && p.cell.InBounds(map) && map.areaManager.Home[p.cell]))
                 plan.warnings.Add("CC_Def_Warn_TrapsHome".Translate());
             if (plan.clearBlocked.Count > 0) plan.warnings.Add("CC_Def_Warn_ClearBlocked".Translate(plan.clearBlocked.Count));
             if (plan.chunks > 0) plan.warnings.Add("CC_Def_Warn_Chunks".Translate(plan.chunks));

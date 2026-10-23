@@ -306,7 +306,17 @@ namespace ColonyCouncil
                     }
                     else if (isWall)
                     {
-                        if (reservedWall.Contains(((long)fx << 32) | (uint)fz)) continue;
+                        if (reservedWall.Contains(((long)fx << 32) | (uint)fz))
+                        {
+                            // The piece in the wall (a cooler) needs its cell cleared like any other wall cell. If it can't
+                            // go in after all, the wall goes up there instead (WallInstead, below).
+                            if (ed != null && IsOwn(ed) && replace && !TemplatePlanner.IsWallLike(ed.def) && !ed.def.IsDoor && CanTakeDown(ed))
+                            {
+                                if (!plan.deconstruct.Contains(ed)) plan.deconstruct.Add(ed);
+                                plan.deconstructCells.Add(cell);
+                            }
+                            continue;
+                        }
                         if (ed != null && (TemplatePlanner.IsWallLike(ed.def) || ed.def.IsDoor))
                         {
                             plan.wallReuse.Add(cell);
@@ -405,6 +415,9 @@ namespace ColonyCouncil
                 }
                 if (pt.state != PieceState.Blocked) pt.state = FurnitureState(plan, map, pt.source, pt.rect, pt.cell, pt.rot, out pt.reason, out pt.ground);
                 plan.furniture.Add(pt);
+                // A piece in the wall that can't go in leaves no hole in it.
+                if (pt.state == PieceState.Blocked && pt.source != null && pt.source.inWall)
+                    foreach (var c in pt.rect) WallInstead(plan, map, c);
             }
             if (lamps.Count > 0) HangLamps(plan, map, lamps, cutPlants && !quick);
 
@@ -879,6 +892,29 @@ namespace ColonyCouncil
             }
             plan.doorState = PieceState.Blocked;
             plan.doorReason = ed != null && IsOwn(ed) ? "CC_Plan_Block_DoorOwn".Translate() : "CC_Plan_DoorBlocked".Translate();
+        }
+
+        /// <summary>A wall cell kept for a piece in the wall that can't go in: the wall goes up there as on the rest of the line.</summary>
+        private static void WallInstead(PlacementPlan plan, Map map, IntVec3 cell)
+        {
+            // Off the map or in the dark it was counted already; rock or a wall standing there closes it as it is.
+            if (!cell.InBounds(map) || cell.Fogged(map)) return;
+            var ed = cell.GetEdifice(map);
+            if (ed != null && (TemplatePlanner.IsWallLike(ed.def) || ed.def.IsDoor || IsMineable(ed))) return;
+            if (plan.deconstructCells.Contains(cell)) plan.wallWaiting.Add(cell);
+            else if (HasWallBlueprint(cell, map)) plan.wallReuse.Add(cell);
+            else if (!GroundHolds(ThingDefOf.Wall, cell, map, Rot4.North, plan.wallStuff)) plan.wallSkipped.Add(cell);
+            else if (ed != null && IsOwn(ed))
+            {
+                plan.ownBlocked = true;
+                plan.wallBlocked.Add(cell);
+            }
+            else if (GenConstruct.CanPlaceBlueprintAt(ThingDefOf.Wall, cell, Rot4.North, map, false, null, null, plan.wallStuff).Accepted) plan.wallNew.Add(cell);
+            else
+            {
+                plan.otherBlocked = true;
+                plan.wallBlocked.Add(cell);
+            }
         }
 
         /// <param name="ground">Set when it's left out because the ground under it can't hold it.</param>

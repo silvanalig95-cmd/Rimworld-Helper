@@ -94,18 +94,18 @@ namespace ColonyCouncil
                         continue;
                     }
                     var rect = q.thing != null ? GenAdj.OccupiedRect(q.cell, q.rot, q.thing.size) : CellRect.SingleCell(q.cell);
-                    bool waiting = false, hopeless = false, done = false;
+                    bool waiting = false, hopeless = false, done = false, off = false, dark = false;
                     foreach (var c in rect)
                     {
                         if (!c.InBounds(map))
                         {
-                            hopeless = true;
+                            hopeless = off = true;
                             break;
                         }
                         // Still in unexplored ground: the colonists are digging towards it.
                         if (c.Fogged(map))
                         {
-                            waiting = true;
+                            waiting = dark = true;
                             continue;
                         }
                         foreach (var t in c.GetThingList(map))
@@ -122,6 +122,8 @@ namespace ColonyCouncil
                         else if (q.thing != null && q.thing.IsWall && TemplatePlanner.IsWallLike(ed.def)) done = true;
                         else hopeless = true;
                     }
+                    // Part of it still in the dark: what stands in the rest is judged once all of it has come to light.
+                    if (hopeless && dark && !off) hopeless = false;
                     // A wall lamp hangs on the wall it faces: it waits for that wall as long as the wall is still to come.
                     bool wallToCome = false;
                     if (!done && !hopeless && q.thing != null && WallLights.IsAttached(q.thing))

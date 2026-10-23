@@ -43,6 +43,21 @@ namespace ColonyCouncil
     public static class CampWork
     {
         private static readonly Dictionary<int, int> nextSearch = new Dictionary<int, int>();
+        private static Game searchGame;
+
+        /// <summary>
+        /// Not to look again for a camp's prey or trees before this tick. Camp ids start over in every game, so what
+        /// another game (or an earlier load of this one) noted is let go.
+        /// </summary>
+        private static bool Searched(int key)
+        {
+            if (searchGame != Current.Game)
+            {
+                searchGame = Current.Game;
+                nextSearch.Clear();
+            }
+            return nextSearch.TryGetValue(key, out int next) && Now < next && next - Now <= GenDate.TicksPerHour * 3;
+        }
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -348,7 +363,7 @@ namespace ColonyCouncil
         private static Pawn Prey(Camp camp, Pawn hunter)
         {
             int key = camp.id * 2;
-            if (nextSearch.TryGetValue(key, out int next) && Now < next) return null;
+            if (Searched(key)) return null;
             var map = hunter.Map;
             Pawn best = null;
             float bestD = float.MaxValue;
@@ -373,7 +388,7 @@ namespace ColonyCouncil
         private static Plant Tree(Camp camp, Pawn pawn)
         {
             int key = camp.id * 2 + 1;
-            if (nextSearch.TryGetValue(key, out int next) && Now < next) return null;
+            if (Searched(key)) return null;
             var map = pawn.Map;
             Plant best = null;
             float bestD = float.MaxValue;

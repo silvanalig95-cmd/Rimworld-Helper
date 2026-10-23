@@ -36,6 +36,8 @@ namespace ColonyCouncil
 
         public const string MemoLeave = "VisitLeave";
         public const string MemoHurry = "VisitHurry";
+        /// <summary>One of them was taken (arrested, enslaved): the rest leave at once, defending themselves.</summary>
+        public const string MemoFlee = "VisitFlee";
 
         public LordJob_RimfolkVisit()
         {
@@ -110,6 +112,8 @@ namespace ColonyCouncil
             if (onward != null) hurt.AddSource(onward);
             hurt.AddSources(leave, hurry);
             hurt.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
+            // An arrest carries no blow the game counts as harm.
+            hurt.AddTrigger(new Trigger_Memo(MemoFlee));
             hurt.AddPostAction(new TransitionAction_Custom(() => VisitorTracker.Instance?.Notify_Harmed(id)));
             hurt.AddPostAction(new TransitionAction_WakeAll());
             hurt.AddPostAction(new TransitionAction_EndAllJobs());

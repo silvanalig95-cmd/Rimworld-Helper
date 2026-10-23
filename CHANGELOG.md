@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Plans that hold, guests who go
+
+*23 October 2026, version 0.11.4*
+
+- Hovering a trap plan near the top or bottom of the map no longer throws an error every frame.
+- A cooler that can't go into a room's wall (something of yours in the way, or the ground) no longer leaves a hole there: the wall goes up in its place, and with "replace your own" on, what stands there is taken down for it like on the rest of the wall.
+- A defense piece that lies partly in unexplored ground has the rock in its visible part mined too, and the build queue waits until all of it has come to light before giving up on it.
+- A raid's lessons count raiders who arrive late or are seen again after loading a save, and removing a line during a raid no longer credits raiders to the wrong line.
+- A visit or lesson never calls a colonist away from a meal, their bed, a rescue or another plan, nor anyone urgently hungry or very tired, and it ends once they need to eat or sleep.
+- When you arrest one of a group of visitors, the rest leave at once instead of standing at the gate for a day; visitors walled in on their way out leave after a day.
+- A camp no longer stops hunting or felling trees for a day or more after you load an earlier save or another colony.
+
 ## Couriers home, panels fresh
 
 *23 October 2026, version 0.11.3*

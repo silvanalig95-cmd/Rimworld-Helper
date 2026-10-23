@@ -154,10 +154,17 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<int, (int day, bool ok)> cache = new Dictionary<int, (int, bool)>();
+        private static Game cacheGame;
 
         /// <summary>Whether a camp could go anywhere on this map (worked out once a day).</summary>
         public static bool AnyRoom(Map map)
         {
+            // Map ids and days start over in every game.
+            if (cacheGame != Current.Game)
+            {
+                cacheGame = Current.Game;
+                cache.Clear();
+            }
             int day = GenDate.DaysPassed;
             if (cache.TryGetValue(map.uniqueID, out var c) && c.day == day) return c.ok;
             bool ok = TryFind(map, out _);
