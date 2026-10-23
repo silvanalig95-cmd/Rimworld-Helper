@@ -35,8 +35,10 @@ namespace ColonyCouncil
         public string burden;
         public int burdenDays;
         public List<FaithNote> notes = new List<FaithNote>();
+        /// <summary>How strongly they're drawn to other ideoligions (Faith/FaithLeanings.cs).</summary>
+        public List<FaithLeaning> leanings = new List<FaithLeaning>();
 
-        public bool Empty => notes.Count == 0 && burden == null && lastSwayed < 0 && lastSteadied < 0 && lastCrisis < 0;
+        public bool Empty => notes.Count == 0 && leanings.Count == 0 && burden == null && lastSwayed < 0 && lastSteadied < 0 && lastCrisis < 0;
 
         public void ExposeData()
         {
@@ -47,10 +49,13 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref burden, "burden");
             Scribe_Values.Look(ref burdenDays, "burdenDays");
             Scribe_Collections.Look(ref notes, "notes", LookMode.Deep);
+            Scribe_Collections.Look(ref leanings, "leanings", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 notes ??= new List<FaithNote>();
                 notes.RemoveAll(n => n == null);
+                leanings ??= new List<FaithLeaning>();
+                leanings.RemoveAll(l => l?.ideo == null);
             }
         }
     }

@@ -96,17 +96,7 @@ namespace ColonyCouncil
         }
 
         // ---------------- One faith for the colony (a decree) ----------------
-
-        /// <summary>
-        /// A day's sway toward the colony's named faith for a wavering colonist of another one: 1.2%, up to 2% when they
-        /// think well of its believers (average opinion 0 to 60), a little more for the open-minded and less for the
-        /// closed (openness -100 to 100).
-        /// </summary>
-        public static float DecreeSway(float opinionOfBelievers, float openness)
-        {
-            float v = 0.012f + 0.008f * Clamp(opinionOfBelievers / 60f, 0f, 1f);
-            return v * Clamp(1f + openness / 300f, 0.7f, 1.3f);
-        }
+        // Its pull on everyone of another faith is their leaning toward the named one (LeaningMath.Decree).
 
         /// <summary>
         /// Trust lost a day by a colonist of another faith while one faith is the colony's: the open-minded a quarter

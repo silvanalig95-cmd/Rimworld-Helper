@@ -155,11 +155,14 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("faith: the day's clean-up", e);
             }
             int now = Now;
+            var look = FaithLeanings.Begin();
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 if (!FaithPeople.Ours(p) || !PersonaMarks.CanBeMarked(p)) continue;
                 try
                 {
+                    // Drawn toward the other ideoligions around them, and maybe over (Faith/FaithLeanings.cs).
+                    FaithLeanings.Day(p, look);
                     FaithPeople.KeepView(p, 0f);
                     LookAtBurden(tr, p);
                 }

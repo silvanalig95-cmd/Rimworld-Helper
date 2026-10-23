@@ -10,6 +10,17 @@
   <CC_Faith_Converted>{PAWN_nameDef} has taken up {FAITH}, leaving {OLD} behind.</CC_Faith_Converted>
   <CC_Faith_ConvertedBy>{PAWN_nameDef} has taken up {FAITH}, leaving {OLD} behind. {OTHER_nameDef} brought {PAWN_objective} round.</CC_Faith_ConvertedBy>
 
+  <!-- Leanings: how strongly someone is drawn to another ideoligion (Faith/FaithLeanings.cs) -->
+  <CC_Leaning_Drawn>{PAWN_nameDef} is drawn more and more to {FAITH}.</CC_Leaning_Drawn>
+  <CC_Leaning_Cause>It had been drawing {PAWN_objective} in for a while.</CC_Leaning_Cause>
+  <CC_Leaning_Note>drawn over to {FAITH}</CC_Leaning_Note>
+  <CC_Leaning_Label>Drawn to {0}</CC_Leaning_Label>
+  <CC_Leaning_Value>{0}, {1}</CC_Leaning_Value>
+  <CC_Leaning_Trend_Up>growing</CC_Leaning_Trend_Up>
+  <CC_Leaning_Trend_Down>fading</CC_Leaning_Trend_Down>
+  <CC_Leaning_Trend_Same>holding</CC_Leaning_Trend_Same>
+  <CC_Leaning_Tip>How strongly {PAWN_nameDef} is drawn to {FAITH}. It grows each day with its believers here (friends, lovers and family most), with talks about faith, and with the council's decree when it names {FAITH}, and it fades when nothing feeds it. The strongest pull wears on {PAWN_possessive} certainty; once a pull passes that certainty, {PAWN_pronoun} takes the ideoligion up.</CC_Leaning_Tip>
+
   <!-- The council's buttons on the ideoligions page (Source/ColonyCouncil/Faith/FaithButtons.cs). -->
   <CC_FaithBtn_Evening>Call an ideoligion evening</CC_FaithBtn_Evening>
   <CC_FaithBtn_Evening_Tip>Ask {0}'s moral guide, or its most devout believer, to speak this evening. Its believers come to hear it; others decide for themselves, and a good evening can sway them.</CC_FaithBtn_Evening_Tip>

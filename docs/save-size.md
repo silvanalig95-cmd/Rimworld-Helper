@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 311; modelled: 311; growing without end: 0.
+Saved collections found: 312; modelled: 312; growing without end: 0.
 Rimfolk's part of the save, roughly: **1,649 KB** after a year, **2,012 KB** after two, **2,125 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -280,6 +280,7 @@ Rimfolk's part of the save, roughly: **1,649 KB** after a year, **2,012 KB** aft
 | `Defense/DefenseLine.cs:raids` | per line: the last DefenseLine.MaxRaids raids (counted under lines) | fixed | 5 | 5 | 5 | (in its record) |
 | `Defense/DefenseLine.cs:skipped` | per line: steps set aside by hand, one per step (counted under lines) | defs | 4 | 4 | 4 | (in its record) |
 | `Defense/DefenseLine.cs:span` | per line: the cells across its gap, 29 at most (counted under lines) | fixed | 14 | 14 | 14 | (in its record) |
+| `Faith/FaithPeople.cs:leanings` | per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people) | fixed | 6 | 6 | 6 | (in its record) |
 | `Faith/FaithPeople.cs:notes` | per colonist: the newest faith moments, 120 days at most (counted under people) | fixed | 5 | 5 | 5 | (in its record) |
 | `Happenings/Workers_Chains2.cs:flags` | per story chain (counted under chains) | fixed | 4 | 4 | 4 | (in its record) |
 | `Health/HealthTracker.cs:losses` | per healer: 30 days (counted under healers) | fixed | 3 | 3 | 3 | (in its record) |

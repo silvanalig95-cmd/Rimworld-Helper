@@ -71,10 +71,6 @@ public static class FaithCouncilTests
             "an evening with the believer moves more than an ordinary evening of faith, within the cap");
 
         // ---------------- The decree ----------------
-        Check(Math.Abs(FaithCouncilMath.DecreeSway(0f, 0f) - 0.012f) < 0.0001f && Math.Abs(FaithCouncilMath.DecreeSway(60f, 0f) - 0.02f) < 0.0001f,
-            "a day's sway is 1.2%, up to 2% for those who like its believers");
-        Check(FaithCouncilMath.DecreeSway(30f, 90f) > FaithCouncilMath.DecreeSway(30f, 0f) && FaithCouncilMath.DecreeSway(30f, -90f) < FaithCouncilMath.DecreeSway(30f, 0f)
-              && FaithCouncilMath.DecreeSway(100f, 100f) <= 0.026f, "the open a little more, the closed a little less, never much past 2%");
         float openTrust = FaithCouncilMath.DecreeTrustPerDay(50f, 0.7f, false);
         float mostTrust = FaithCouncilMath.DecreeTrustPerDay(0f, 0.7f, false);
         float devoutTrust = FaithCouncilMath.DecreeTrustPerDay(50f, 0.95f, false);

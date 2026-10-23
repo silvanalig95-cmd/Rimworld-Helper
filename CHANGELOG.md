@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Drawn to another ideoligion
+
+*23 October 2026, version 0.10.15*
+
+- Each colonist now leans toward the other ideoligions around them, shown as bars under their certainty on the Culture tab, growing, fading or holding. Believers they like, love or are family to pull hardest, and a leaning fades when nothing feeds it.
+- The strongest leaning wears on their certainty against the game's own daily recovery. When it passes their certainty, they take that ideoligion up through the game's own conversion, and the one they leave becomes a leaning they may drift back to. A leaning passing half is told once.
+- The one-ideoligion decree now draws everyone of another ideoligion, not only the wavering, who were almost never there because content colonists stay at full certainty. With friends among its believers, a content colonist comes round in about a month; a lone believer of a minority never pulls the rest over.
+- Talks, evenings, crises and council answers that sway someone toward an ideoligion feed their leaning toward it as well.
+
 ## Messages you can read
 
 *23 October 2026, version 0.10.14*

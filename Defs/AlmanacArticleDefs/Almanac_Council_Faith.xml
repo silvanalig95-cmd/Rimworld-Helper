@@ -9,12 +9,25 @@
     <category>Council</category>
     <order>24</order>
     <dlc>Ideology</dlc>
-    <summary>Ideoligion evenings, a wavering colonist's wish to learn another ideoligion, the question when ideoligions clash, and the decree that names one ideoligion the colony's.</summary>
+    <summary>How colonists are drawn to the other ideoligions around them, ideoligion evenings, a wavering colonist's wish to learn another ideoligion, the question when ideoligions clash, and the decree that names one ideoligion the colony's.</summary>
     <tip>Pick the speaker's evening for when the open-minded and the wavering are at home: they are the ones it can move.</tip>
-    <description>With Ideology, each colonist holds their ideoligion with a certainty from 0 to 100%. Under 60% they are wavering, from 85% devout; at none left, the game converts them to the ideoligion that wore it down. Rimfolk never converts anyone itself: everything below takes or gives back certainty, and a conversion, when it comes, is the game's own, with a message and a line in the chronicle.
+    <description>With Ideology, each colonist holds their ideoligion with a certainty from 0 to 100%. Under 60% they are wavering, from 85% devout; at none left, the game converts them to the ideoligion that wore it down. Beside it, Rimfolk keeps how strongly each colonist is drawn to each other ideoligion around them, their leanings, shown under their certainty on the Culture tab. When a leaning passes their certainty, they take that ideoligion up. A conversion is always the game's own, with a message and a line in the chronicle.
 
 The council has four ways to work with the colony's ideoligions: an ideoligion evening it can call, a wish a wavering colonist may make, a question that comes when ideoligions clash, and a decree that names one ideoligion the colony's. Their costs are trust and certainty, never a bad mood. None of it happens without Ideology, in classic mode, or with "Ideoligions in the colony" off in the settings.</description>
     <sections>
+      <li>
+        <heading>Leanings</heading>
+        <text>Once a day each leaning fades a little and is fed by what draws them. The strongest wears on their certainty, against the game's own daily recovery, which gives a content colonist about three points a day and an unhappy one less. When a leaning passes their certainty by 5 points (and is at least 30%), they take that ideoligion up, as firmly as they had leaned, and the one they leave becomes a leaning of its own, so they may drift back. A leaning passing 50% is told once.</text>
+        <table>
+          <li>What | Each day</li>
+          <li>Its believers in the colony | Up to 4%, more the more there are and the closer they are: a rival adds nothing, a stranger half, a friend a whole, the dearest one and a half, a lover or family half again</li>
+          <li>The decree naming it | 4% more (half for someone whose ideoligion frowns on being preached to)</li>
+          <li>How open they are | The closed-minded take 40% of it, the open up to 160%</li>
+          <li>Fading | 3% of the leaning, so a lone believer barely matters and a whole colony does</li>
+          <li>Wear on certainty | 12% of the strongest leaning (70% of that while they're devout)</li>
+        </table>
+        <after>A talk, an evening, a crisis or a council answer that sways someone toward an ideoligion feeds their leaning toward it by as much. For a content colonist of average openness: with the decree and friends among its believers, about 25 days; with the decree alone, about 35; four friends of another ideoligion and no decree, about 70; a lone believer of a minority never pulls the others over. The open come round sooner, the closed-minded later, the unhappy sooner.</after>
+      </li>
       <li>
         <heading>An ideoligion evening</heading>
         <text>A gathering where one ideoligion is spoken for, between five and eleven in the evening, for about two hours. The speaker is the ideoligion's moral guide if they're at home, else its most devout believer with the best Social skill. It is held at the ideoligion's own altar or ideogram if one is built (one in its style, or for the colony's own ideoligion any that isn't another ideoligion's), else round a fire, at the dining table or a gather spot. It needs "Answers play out on the map" on.
@@ -64,7 +77,7 @@ The colony can hold one every five days at most, and the same ideoligion one eve
         <text>You choose the ideoligion as you declare it, the largest first. It holds for 15 days, with 20 days to wait before it can be declared again (the decrees page's fatigue and forcing apply as for any decree). It has no mood of its own. Lifting it ends all of it at once, and it is never listed with only one ideoligion at home.</text>
         <table>
           <li>While it holds | Each day</li>
-          <li>Wavering colonists of other ideoligions | Swayed 1.2% toward it, up to 2% when they like its believers (a little more for the open, less for the closed)</li>
+          <li>Colonists of other ideoligions | Lean toward it 4% more (see Leanings above), whatever their certainty</li>
           <li>Colonists of other ideoligions | Lose trust: 0.25 if open-minded, 0.5 most, 0.75 if devout, 1 if their ideoligion frowns on being preached to</li>
           <li>Its believers | Speak of it half again as often; every council meeting opens with a word from one of them</li>
         </table>

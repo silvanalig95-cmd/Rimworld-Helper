@@ -9,9 +9,9 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The decree "one faith for the colony" (a DecreeDef with oneFaith, Defs/DecreeDefs/Rimfolk_Decrees_Faith.xml), with
-    /// Ideology. The player names the faith as it's declared (the largest by default). While it holds, each day the
-    /// wavering colonists of other faiths are swayed a little toward it (more when they think well of its believers),
-    /// those of other faiths trust the council a little less (the open-minded least, the devout and a faith that frowns
+    /// Ideology. The player names the faith as it's declared (the largest by default). While it holds, everyone of
+    /// another faith leans toward it a little more each day (Faith/FaithLeanings.cs, LeaningMath.Decree), and trusts
+    /// the council a little less (the open-minded least, the devout and a faith that frowns
     /// on being preached to most), and council meetings open with a word from one of its believers. Believers of the
     /// faith also start talks about it more often: the faith talks read <see cref="FaithOfColony"/> and
     /// <see cref="TalkFactor"/>. The devout of other faiths hate it, so the decree system's own petition to lift it
@@ -178,9 +178,9 @@ namespace ColonyCouncil
         // ---------------- Each day while it holds ----------------
 
         /// <summary>
-        /// The decree's morning (DecreeWork.Daily): the wavering of other faiths are swayed a little toward the named faith,
-        /// and those of other faiths trust the council a little less. With faith life gone, or the faith with nobody left
-        /// to hold it, the decree is lifted.
+        /// The decree's morning (DecreeWork.Daily): those of other faiths trust the council a little less (its pull on them
+        /// is their leaning toward the named faith, fed each day by FaithLeanings). With faith life gone, or the faith
+        /// with nobody left to hold it, the decree is lifted.
         /// </summary>
         public static void Daily(DecreeTracker t, DecreeDef d)
         {
@@ -197,18 +197,14 @@ namespace ColonyCouncil
             int day = a == null ? 1 : Mathf.Max(1, (Find.TickManager.TicksGame - a.startTick) / GenDate.TicksPerDay + 1);
             // The trust log says why on the first morning and every fifth after, rather than every day.
             string why = day % 5 == 1 ? "CC_Log_FaithDecree".Translate(faith.name.Named("FAITH")).Resolve() : null;
-            string cause = "CC_FaithDecree_Cause".Translate(faith.name.Named("FAITH")).Resolve();
             var people = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger()).ToList();
-            var believers = people.Where(p => Faiths.Of(p) == faith).ToList();
-            // apart: a decree is felt by each colonist wherever they are; nobody here does anything to anyone.
+            // apart: a decree is felt by each colonist wherever they are; nobody here does anything to anyone. Its pull on
+            // everyone of another faith is their leaning toward it, fed each day (Faith/FaithLeanings.cs).
             foreach (var p in people)
             {
                 if (!Faiths.Holds(p) || Faiths.Of(p) == faith) continue;
                 float openness = Persona.Get(p, PersonaAxis.Openness);
                 comp.standings.Change(p, FaithCouncilMath.DecreeTrustPerDay(openness, Faiths.Certainty(p), Faiths.DislikesPreaching(p)), why);
-                if (!Faiths.Wavering(p) || p.relations == null) continue;
-                float opinion = believers.Count == 0 ? 0f : (float)believers.Average(b => p.relations.OpinionOf(b));
-                Faiths.SwayToward(p, faith, FaithCouncilMath.DecreeSway(opinion, openness), cause);
             }
         }
 

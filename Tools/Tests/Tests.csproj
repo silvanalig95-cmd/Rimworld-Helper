@@ -45,6 +45,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherMath.cs" Link="TogetherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/PersonaMath.cs" Link="PersonaMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithMath.cs" Link="FaithMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Faith/LeaningMath.cs" Link="LeaningMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithPeopleMath.cs" Link="FaithPeopleMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithCouncilMath.cs" Link="FaithCouncilMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/Talk/TalkMath.cs" Link="TalkMath.cs" />

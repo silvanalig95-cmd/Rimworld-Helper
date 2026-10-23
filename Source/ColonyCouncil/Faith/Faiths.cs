@@ -133,9 +133,36 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("faith sway", e);
                 return SwayResult.None;
             }
-            if (!converted || Of(listener) != toward) return SwayResult.Moved;
+            if (!converted || Of(listener) != toward)
+            {
+                // A sway toward a faith draws them toward it too (Faith/FaithLeanings.cs).
+                FaithLeanings.Feed(listener, toward, amount);
+                return SwayResult.Moved;
+            }
             Converted(listener, old, toward, cause, by);
             return SwayResult.Converted;
+        }
+
+        /// <summary>
+        /// They take another faith up outright (a leaning that overtook their certainty): the game's own conversion, or
+        /// its plain change of faith should a stat keep the conversion from landing, then told as any conversion is.
+        /// </summary>
+        internal static bool TakeUp(Pawn p, Ideo toward, string cause)
+        {
+            if (!Holds(p) || toward == null || Of(p) == toward) return false;
+            var old = Of(p);
+            try
+            {
+                p.ideo.IdeoConversionAttempt(10f, toward);
+                if (Of(p) != toward) p.ideo.SetIdeo(toward);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("faith take up", e);
+            }
+            if (Of(p) != toward) return false;
+            Converted(p, old, toward, cause, null);
+            return true;
         }
 
         /// <summary>Certainty taken without pointing anywhere (a crisis of faith): no one converts from this alone.</summary>

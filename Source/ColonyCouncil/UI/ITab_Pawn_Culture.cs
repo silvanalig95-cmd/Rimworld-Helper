@@ -180,6 +180,11 @@ namespace ColonyCouncil
             {
                 roleIcon = null;
             }
+            // The ideoligions they're drawn to, strongest first (Faith/FaithLeanings.cs).
+            var leanings = FaithLeanings.Shown(p).Select(l => (l.ideo, l.pull,
+                label: "CC_Leaning_Label".Translate(l.ideo.name).Resolve(),
+                value: "CC_Leaning_Value".Translate(l.pull.ToStringPercent(), ("CC_Leaning_Trend_" + (l.trend > 0 ? "Up" : l.trend < 0 ? "Down" : "Same")).Translate()).Resolve(),
+                tip: "CC_Leaning_Tip".Translate(p.Named("PAWN"), l.ideo.name.Named("FAITH")).Resolve())).ToList();
             s.custom = (x, y, w) =>
             {
                 const float icon = 34f;
@@ -204,7 +209,15 @@ namespace ColonyCouncil
                 if (culture != null && x + w - lx > 40f) UiKit.LabelFit(new Rect(lx, y + 18f, x + w - lx, 18f), culture, UiKit.Faint, GameFont.Tiny);
                 float my = y + icon + 6f;
                 UiKit.Meter(new Rect(x, my, w, UiKit.MeterHeight), certainty, color, certaintyLabel, value, null, tip);
-                return icon + 6f + UiKit.MeterHeight + 6f;
+                my += UiKit.MeterHeight + 6f;
+                foreach (var l in leanings)
+                {
+                    const float small = 18f;
+                    IdeoUIUtility.DoIdeoIcon(new Rect(x, my + 1f, small, small), l.ideo);
+                    UiKit.Meter(new Rect(x + small + 6f, my, w - small - 6f, UiKit.MeterHeight), l.pull, l.ideo.Color, l.label, l.value, null, l.tip);
+                    my += UiKit.MeterHeight + 4f;
+                }
+                return my - y;
             };
             // Faiths they held before this one.
             try

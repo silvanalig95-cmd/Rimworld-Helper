@@ -16,14 +16,13 @@ namespace ColonyCouncil
     /// </summary>
     public class LordToil_PlayOutListen : LordToil_Party
     {
-        private readonly IntVec3 spot;
         private bool placed;
         private CellRect stage;
         private IntVec3 head = IntVec3.Invalid;
 
+        // The spot is the game's own (LordToil_Gathering.spot).
         public LordToil_PlayOutListen(IntVec3 spot, GatheringDef gatheringDef) : base(spot, gatheringDef, 1.5E-05f)
         {
-            this.spot = spot;
         }
 
         /// <summary>Where the speaker stands: the head of the table, or the gathering's spot.</summary>

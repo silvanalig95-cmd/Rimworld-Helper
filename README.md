@@ -489,8 +489,15 @@ or gives some back, and when someone has none left the game converts them, with 
   ideoligion its own corner (a letter suggests where; a little trust all round and everyone surer of their own), or
   name the largest ideoligion the colony's (its believers pleased, everyone else trusting the council less and drawn a
   little toward it, the devout of other ideoligions taking it hard). Each answer plays out on the map.
-- **One ideoligion for the colony.** A decree for fifteen days, naming the ideoligion you choose. Each day the
-  wavering of other ideoligions are drawn a little toward it, its believers speak of it more and open the council's
+- **Leanings.** Beside the ideoligion they hold, each colonist is drawn to the others around them, shown under their
+  certainty on the Culture tab. Each day a leaning fades a little and is fed by that ideoligion's believers in the
+  colony (friends, lovers and family most), by talks and evenings that sway them, and by the decree below; the
+  strongest wears on their certainty against the game's own daily recovery. When a leaning passes their certainty they
+  take that ideoligion up, through the game's own conversion, and the one they leave becomes a leaning, so they may
+  drift back. With the decree and friends among its believers, a content colonist comes round in about a month; a
+  colony drifts toward its majority over seasons; a lone believer of a minority never pulls the rest over.
+- **One ideoligion for the colony.** A decree for fifteen days, naming the ideoligion you choose. Each day everyone of
+  another ideoligion leans a little more toward it, its believers speak of it more and open the council's
   meetings with a word from it, and those of other ideoligions trust the council a little less (the open-minded least,
   the devout most); the devout of other ideoligions petition to lift it. Lifting it ends all of it.
 
