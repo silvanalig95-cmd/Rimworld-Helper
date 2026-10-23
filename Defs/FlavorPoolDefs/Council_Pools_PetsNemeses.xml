@@ -10,25 +10,25 @@
     <defName>Council_Pool_PetHeroics</defName>
     <lines>
       <plain>
-        <li>[defended] {PAWN_nameDef} was hurt in the battle, and {PET_definite} fought to defend {PAWN_objective}.</li>
-        <li>[defended] When {PAWN_nameDef} went down, {PET_definite} stood over {PAWN_objective} and wouldn't let anyone near.</li>
+        <li>[defended] {PAWN_nameDef} was hurt in the fighting, and {PET_definite} stood its ground and fought for {PAWN_objective}.</li>
+        <li>[defended] When {PAWN_nameDef} was hit, {PET_definite} planted itself in front of {PAWN_objective} and wouldn't let anyone near.</li>
         <li>[defended] {PET_nameDef} put itself between {PAWN_nameDef} and the enemy, and stayed there until the fighting was done.</li>
-        <li>[defended,small] {PET_nameDef} is not much bigger than a boot, and it went at the raider standing over {PAWN_nameDef} as if it were a bear.</li>
+        <li>[defended,small] {PET_nameDef} is not much bigger than a boot, and it went at the raider closing in on {PAWN_nameDef} as if it were a bear.</li>
         <li>[defended,big] {PET_nameDef} charged the ones who had {PAWN_nameDef} pinned down, and they scattered.</li>
         <li>[fought] In the fighting, {PET_definite} went for the enemy alongside {PAWN_nameDef}.</li>
         <li>[fought] {PET_nameDef} fought at {PAWN_nameDef}'s side the whole battle, and came back with blood on its muzzle that wasn't its own.</li>
         <li>[fought] {PAWN_nameDef} and {PET_definite} went into the fight together, and came out of it together.</li>
-        <li>[fought,big] {PET_nameDef} broke the enemy's line before {PAWN_nameDef} had even reloaded.</li>
-        <li>[fought,small] {PET_nameDef} harried the raiders' ankles all through the fight, and nobody could hit it.</li>
+        <li>[fought,big] {PET_nameDef} broke the enemy's line before {PAWN_nameDef} could even catch up.</li>
+        <li>[fought,small] {PET_nameDef} harried the raiders' ankles all through the fight, too quick for any of them to hit.</li>
       </plain>
       <warm>
         <li>[defended] {PAWN_nameDef} says {PET_nameDef} saved {PAWN_possessive} life today, and has been feeding it the best scraps since.</li>
       </warm>
       <blunt>
-        <li>[fought] {PET_nameDef} bit a raider. Several raiders. {PAWN_nameDef} is very pleased.</li>
+        <li>[fought] {PET_nameDef} bit several raiders, and {PAWN_nameDef} couldn't be prouder.</li>
       </blunt>
       <cheerful>
-        <li>[fought] {PAWN_nameDef} is telling everyone that {PET_nameDef} won the battle single-handed. Single-pawed.</li>
+        <li>[fought] {PAWN_nameDef} is telling anyone who'll listen that {PET_nameDef} won the battle on its own.</li>
       </cheerful>
       <cold>
         <li>[fought] {PET_nameDef} engaged the enemy alongside {PAWN_nameDef}, effectively and without orders.</li>
@@ -44,14 +44,14 @@
     <lines>
       <plain>
         <li>{PAWN_nameDef} buried {PET_nameDef} where it used to lie in the sun, and marked the spot with a stone.</li>
-        <li>{PAWN_nameDef} hasn't said much since {PET_nameDef} died. {PAWN_nameDef} keeps looking at the door.</li>
-        <li>[longtime] {PET_nameDef} had been with {PAWN_nameDef} since the early days, longer than most of the people here. {PAWN_nameDef} says the place feels newer without it.</li>
-        <li>[newpet] {PAWN_nameDef} had only just got to know {PET_nameDef}. {PAWN_nameDef} says that makes it worse, not better.</li>
+        <li>{PAWN_nameDef} keeps glancing at the door, as if {PET_nameDef} might still come through it.</li>
+        <li>[longtime] {PET_nameDef} had been with {PAWN_nameDef} since the early days, longer than most of the people here.</li>
+        <li>[newpet] {PAWN_nameDef} had only just got to know {PET_nameDef}, and says that makes it worse.</li>
         <li>[small] {PAWN_nameDef} dug a small grave for {PET_nameDef}, and was surprised how long it took.</li>
-        <li>[big] It took three of them to carry {PET_nameDef}. {PAWN_nameDef} wouldn't let them use the cart.</li>
+        <li>[big] It took three of them to carry {PET_nameDef}, and {PAWN_nameDef} took the heaviest end.</li>
         <li>[bonded] {PAWN_nameDef} keeps reaching down to scratch an ear that isn't there.</li>
         <li>[master] {PAWN_nameDef} trained {PET_nameDef} from the start, and says {PAWN_pronoun} never once had to raise {PAWN_possessive} voice to it.</li>
-        <li>[hero] {PET_nameDef} died fighting. {PAWN_nameDef} says it would have wanted it that way, and then goes quiet, because animals don't want anything of the kind.</li>
+        <li>[hero] {PET_nameDef} died fighting for the colony, and {PAWN_nameDef} cleaned the blood from its coat before the burial.</li>
         <li>[winter] {PAWN_nameDef} kept a fire going by {PET_nameDef}'s grave all night, as if it could still feel cold.</li>
       </plain>
       <warm>
@@ -62,7 +62,7 @@
         <li>{PAWN_nameDef} dug the grave alone and said nothing to anyone all day.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} spent the evening remembering every ridiculous thing {PET_nameDef} ever ate, and by the end the whole table was laughing.</li>
+        <li>{PAWN_nameDef} spent the evening remembering every ridiculous thing {PET_nameDef} ever ate, and had the table laughing by the end.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} says everything good out here gets taken eventually, and {PET_nameDef} was very good.</li>
@@ -96,7 +96,7 @@
         <li>I don't remember much of the fight, except a shape between me and them, and then they were running. It was {PET_nameDef}.</li>
         <li>{PET_nameDef} limped a little on the way back and wouldn't let me look at the paw until I'd been seen to first.</li>
       </plain>
-      <warm><li>I sat up with {PET_nameDef} by the fire tonight and told it everything. It listened better than anyone.</li></warm>
+      <warm><li>Sat up late with {PET_nameDef} and told it everything. It listened better than most people do.</li></warm>
       <blunt><li>{PET_nameDef} saved my neck. I owe it. I always pay what I owe.</li></blunt>
       <cold><li>I underestimated {PET_nameDef}. I won't make that mistake again.</li></cold>
     </lines>
@@ -114,16 +114,16 @@
     <defName>Council_Pool_NemesisTaunt</defName>
     <lines>
       <plain>
-        <li>[escape,person] {X_nameDef} looked back once from the treeline, and raised a hand as if to say: later.</li>
+        <li>[escape,person] {X_nameDef} looked back once from the treeline and raised a hand, as if they'd be seeing each other again.</li>
         <li>[escape,person] "Tell {VICTIM} I'll be back," {X_nameDef} shouted, and was gone.</li>
-        <li>[escape,person,killed] {X_nameDef} laughed as {X_pronoun} ran. Nobody here has forgotten the sound.</li>
+        <li>[escape,person,killed] {X_nameDef} laughed as {X_pronoun} ran, and the sound carried all the way back to the colony.</li>
         <li>[escape,person,maimed] "Keep the leg warm for me," {X_nameDef} called back over {X_possessive} shoulder.</li>
-        <li>[escape,beast] It left a trail of blood and broken branches into the hills, and the dogs won't follow it.</li>
+        <li>[escape,beast] It left a trail of blood and trampled brush leading off into the hills.</li>
         <li>[escape,beast] Its tracks circle the colony twice before they head off into the wild.</li>
         <li>[return,person] {X_nameDef} called out {VICTIM}'s name across the field before the shooting started.</li>
         <li>[return,person] {X_nameDef} has been seen at the head of the raiders, pointing at the colony.</li>
         <li>[return,person] "Did you miss me?" {X_nameDef} shouted from the treeline.</li>
-        <li>[return,person,again] {X_nameDef} again. Some of the colonists have started making bets on how many times.</li>
+        <li>[return,person,again] Some of the colonists keep a tally of {X_nameDef}'s visits scratched on the storeroom wall.</li>
         <li>[return,person,killed] {X_nameDef} shouted that {X_pronoun} had come to finish what {X_pronoun} started.</li>
         <li>[return,person,downed] "Still standing, {VICTIM}?" {X_nameDef} shouted. "Not for long."</li>
         <li>[return,person,maimed] {X_nameDef} asked, very loudly, how {VICTIM} was getting about these days.</li>
@@ -131,15 +131,15 @@
         <li>[return,person,betrayed] {X_nameDef} called the colony a nest of traitors, loud enough for the whole valley to hear.</li>
         <li>[return,person,enslaved] {X_nameDef} rattled a set of chains above {X_possessive} head where everyone could see them.</li>
         <li>[return,person,hunts] {X_nameDef} shouted that the hunt was nearly over.</li>
-        <li>[return,beast] The animals have been restless all morning, and now everyone knows why.</li>
+        <li>[return,beast] The animals in the pens had been restless since dawn.</li>
         <li>[return,beast] There were fresh claw marks on the gate at dawn.</li>
         <li>[return,beast,again] The colony knows that howl by now.</li>
       </plain>
       <blunt>
-        <li>[return,person] {X_nameDef} spat on the ground in the colony's direction. Charming as ever.</li>
+        <li>[return,person] {X_nameDef} spat in the colony's direction and drew a finger across {X_possessive} throat.</li>
       </blunt>
       <gloomy>
-        <li>[return,person] {X_nameDef} didn't shout anything this time. That was worse.</li>
+        <li>[return,person] {X_nameDef} didn't shout anything this time, only stood and watched the walls.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -152,9 +152,9 @@
     <lines>
       <plain>
         <li>[loose] Never seen again.</li>
-        <li>[loose] Gone without a trace. Somewhere out there, maybe, or maybe not.</li>
+        <li>[loose] Gone without a trace, alive or dead.</li>
         <li>[loose] Not seen for a long time now. {VICTIM} has stopped looking at the treeline.</li>
-        <li>[loose] Word on the roads is that {NAME} went somewhere far off. Nobody here is sorry.</li>
+        <li>[loose] Word on the roads is that {NAME} went somewhere far off, and stayed there.</li>
         <li>[captive] Gone from the colony's keeping, and never heard of again.</li>
       </plain>
       <gloomy>
@@ -184,7 +184,7 @@
     <lines>
       <plain>
         <li>{X_nameDef}, who {DEED}, is dead.</li>
-        <li>[person,loose] {X_nameDef}, who {DEED}, is dead. Nobody here knows exactly how, and nobody is asking.</li>
+        <li>[person,loose] {X_nameDef}, who {DEED}, is dead. How it happened, the colony never learned.</li>
         <li>[person,loose] {X_nameDef}, who {DEED}, died out there somewhere. {VICTIM} heard the news and went very quiet.</li>
         <li>[person,captive] {X_nameDef}, who {DEED}, died in the colony's cells.</li>
         <li>[beast,loose] The beast that {DEED} is dead. Something bigger got it, or the winter did.</li>
@@ -199,8 +199,8 @@
     <lines>
       <plain>
         <li>[person] The colony let {X_nameDef}, who {DEED}, walk out of the gate. {VICTIM} watched {X_objective} all the way to the treeline.</li>
-        <li>[person] {X_nameDef}, who {DEED}, has been set free. Whatever comes of it, it's out of the colony's hands now.</li>
-        <li>[person] {X_nameDef} is free. {VICTIM} says nothing about it, which says a good deal.</li>
+        <li>[person] {X_nameDef}, who {DEED}, has been set free, and the colony will have to live with whatever comes of it.</li>
+        <li>[person] {X_nameDef} is free. {VICTIM} went back to work without a word.</li>
         <li>[beast] The beast that {DEED} has been let go into the wild.</li>
       </plain>
     </lines>
