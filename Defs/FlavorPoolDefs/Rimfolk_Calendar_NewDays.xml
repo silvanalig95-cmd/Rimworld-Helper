@@ -396,7 +396,7 @@
     <lines>
       <plain>
         <li>{NAME}, and {A_nameDef} has been stacking wood since noon for the fire tonight.</li>
-        <li>[first] {NAME} comes round for the first time. {A_nameDef} wants a bonfire for it, with music.</li>
+        <li>[first] This is the first year {NAME} comes round. {A_nameDef} wants a bonfire for it, with music.</li>
         <li>[years] {NAME} again, {YEARS} years on. The fire goes up at dusk, as every year.</li>
         <li>[tradition] {NAME}. The wood was stacked by noon without anyone being asked.</li>
         <li>[winter] {NAME} in the cold. A fire tonight will be welcome for more than one reason.</li>
@@ -442,7 +442,7 @@
     <lines>
       <plain>
         <li>{NAME}, and {A_nameDef} has been making something in secret all week.</li>
-        <li>[first] {NAME} comes round for the first time, and {A_nameDef} suggests gifts round the circle.</li>
+        <li>[first] {NAME}, the first time it's kept, and {A_nameDef} suggests gifts round the circle.</li>
         <li>[years] {NAME} again, {YEARS} years on. Everyone has something small hidden in a pocket.</li>
         <li>[tradition] {NAME}. People have been whittling and sewing behind closed doors for days.</li>
         <li>[lowtech] {NAME}. {A_nameDef} has carved little gifts from offcuts, one for each of them.</li>
@@ -457,7 +457,7 @@
     <lines>
       <plain>
         <li>Gifts for {NAME}. I got a carved button and gave a pair of socks. A fair trade.</li>
-        <li>[first] We kept {NAME} with gifts for the first time. Nothing much, all of it lovely.</li>
+        <li>[first] First time we kept {NAME} with gifts. Nothing much, all of it lovely.</li>
         <li>[tradition] {NAME}, with gifts as always. I've been planning mine since last year.</li>
       </plain>
       <warm><li>{NAME}. The gift I got was something I'd only mentioned once, months ago. Someone was listening.</li></warm>
@@ -486,7 +486,7 @@
     <lines>
       <plain>
         <li>{NAME}, kept with a hunt. {A_nameDef} has the hunters ready, and the pot is waiting.</li>
-        <li>[first] {NAME} comes round for the first time, and {A_nameDef} says the right way to keep it is a hunt.</li>
+        <li>[first] A new day on the calendar, {NAME}, and {A_nameDef} says the right way to keep it is a hunt.</li>
         <li>[years] {NAME} again: the hunters out at dawn, the pot on by dusk.</li>
         <li>[tradition] {NAME}. The hunters are already out; it's how the day has always begun.</li>
         <li>[tribal] {NAME}. {A_nameDef} says a day worth keeping is a day worth hunting for.</li>
@@ -500,7 +500,7 @@
     <lines>
       <plain>
         <li>Kept {NAME} with a hunt. Out all day, back with game.</li>
-        <li>[first] We kept {NAME} with a hunt for the first time. Muddy, tired, well fed.</li>
+        <li>[first] Our first hunt for {NAME}. Muddy, tired, well fed.</li>
         <li>[tradition] {NAME}: the hunt, as always. My legs know the way now.</li>
       </plain>
       <warm><li>{NAME}. Hunted with the others all day, and we ate what we brought home together.</li></warm>

@@ -99,7 +99,7 @@
         <li>[feeling:Worry] I hope they're all right out there.</li>
         <li>[feeling:Worry] We should check the stores again.</li>
         <li>[feeling:Worry,about] Has anyone seen {OTHER_nameDef} today?</li>
-        <li>[feeling:Worry,about] I keep thinking about {OTHER_nameDef}.</li>
+        <li>[feeling:Worry,about] {OTHER_nameDef} hasn't been right lately, and it's on my mind.</li>
         <li>[feeling:Fellowship] We're a good crew, aren't we?</li>
         <li>[feeling:Fellowship] I'd trust any of you with my life.</li>
         <li>[feeling:Fellowship] Whatever comes over that wall, it'll find all of us waiting.</li>

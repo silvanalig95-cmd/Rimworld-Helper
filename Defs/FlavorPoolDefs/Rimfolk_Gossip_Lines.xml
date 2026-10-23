@@ -32,7 +32,7 @@
         <li>[aboutoutsider] {SUBJECT_nameDef} keeps to {SUBJECT_objective}self, but {SUBJECT_pronoun} {DEED}.</li>
         <li>[persona:wary] If it's true, {SUBJECT_nameDef} {DEED}.</li>
         <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} went back for {VICTIM} with the fight still going on.</li>
-        <li>[deed:rescue] {SUBJECT_nameDef} dragged someone clear while the rest of us kept our heads down.</li>
+        <li>[deed:rescue] {SUBJECT_nameDef} dragged someone clear while I kept my head down.</li>
         <li>[deed:rescue,hasvictim] {VICTIM} would be dead if {SUBJECT_nameDef} hadn't gone back out.</li>
         <li>[deed:rescue] Did you see {SUBJECT_nameDef} run into the open to pull someone back?</li>
         <li>[deed:heldline] {SUBJECT_nameDef} didn't give an inch when they hit the wall.</li>
@@ -133,7 +133,7 @@
         <li>Three cheers for {SUBJECT_nameDef}, {SUBJECT_pronoun} {DEED}!</li>
       </cheerful>
       <gloomy>
-        <li>{SUBJECT_nameDef} {DEED}, more than the rest of us managed.</li>
+        <li>{SUBJECT_nameDef} {DEED}, more than I managed.</li>
       </gloomy>
       <cold>
         <li>{SUBJECT_nameDef} {DEED}, which is more than most would.</li>
@@ -165,7 +165,7 @@
         <li>[deed:keptsecret] {SUBJECT_nameDef} kept a secret, which is the least you'd expect.</li>
         <li>[deed:masterwork] {SUBJECT_nameDef} made {DETAIL} with the best materials we had, mind.</li>
         <li>[deed:masterwork] Anyone could make {DETAIL} with that much time at the bench.</li>
-        <li>[deed:greatwork] {SUBJECT_nameDef} talked a lot about {DETAIL}, the rest of us built it.</li>
+        <li>[deed:greatwork] {SUBJECT_nameDef} talked a lot about {DETAIL}, and we did the building.</li>
         <li>[deed:contestwon,hasvictim] {SUBJECT_nameDef} beat {VICTIM} at {DETAIL}, and {VICTIM} wasn't trying.</li>
         <li>[deed:elected] {SUBJECT_nameDef} as {DETAIL}, well, it's not as if there was a queue.</li>
       </plain>
@@ -200,7 +200,7 @@
         <li>Hero of the hour, {SUBJECT_nameDef}, who {DEED}.</li>
         <li>[deed:rescue] {SUBJECT_nameDef} ran into a fight to fetch someone, which is either brave or daft.</li>
         <li>[deed:heldline] {SUBJECT_nameDef} stood so still the raiders took {SUBJECT_objective} for a post.</li>
-        <li>[deed:kills] {SUBJECT_nameDef} got {DETAIL} of them, the rest of us are thinking of retiring.</li>
+        <li>[deed:kills] {SUBJECT_nameDef} got {DETAIL} of them, so I'm taking up knitting.</li>
         <li>[deed:tended] The patients think {SUBJECT_nameDef} lives in the sickroom now.</li>
         <li>[deed:masterwork] {SUBJECT_nameDef} made {DETAIL} and carries it about like a newborn.</li>
         <li>[deed:contestwon,hasvictim] {SUBJECT_nameDef} beat {VICTIM} at {DETAIL}, and {VICTIM} wants a rematch hourly.</li>
@@ -251,7 +251,7 @@
         <li>[deed:lashedout,hasvictim] {SUBJECT_nameDef} hurt {VICTIM}, out of {SUBJECT_possessive} mind, but still.</li>
         <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} swung at {VICTIM} first, I was there.</li>
         <li>[deed:startedfight,hasvictim] {SUBJECT_nameDef} and {VICTIM} came to blows, and {SUBJECT_nameDef} started it.</li>
-        <li>[deed:hoarded] {SUBJECT_nameDef} ate through a week's food while the rest of us went without.</li>
+        <li>[deed:hoarded] {SUBJECT_nameDef} ate through a week's food while we went without.</li>
         <li>[deed:hoarded] When the stores were nearly bare, {SUBJECT_nameDef} was still eating.</li>
         <li>[deed:betrayed,hasvictim] {VICTIM} told {SUBJECT_nameDef} a secret, and now it's at every table.</li>
         <li>[deed:betrayed] Don't tell {SUBJECT_nameDef} anything you want kept, that's all I'll say.</li>

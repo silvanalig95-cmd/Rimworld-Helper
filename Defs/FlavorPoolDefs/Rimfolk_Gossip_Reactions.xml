@@ -69,7 +69,7 @@
         <li>[tonewcomer] Good to know who to watch out for.</li>
         <li>[persona:warm,deed:cruelty|deed:prisoner|deed:lashedout|deed:hoarded] That's cruel, there's no other word for it.</li>
         <li>[persona:warm,hasvictim] Poor {VICTIM}, that's awful.</li>
-        <li>[persona:bold,deed:fled] Running, with the rest of us out there, I won't forget it.</li>
+        <li>[persona:bold,deed:fled] Running, with us still out there, I won't forget it.</li>
         <li>[persona:hothead] If {SUBJECT_nameDef} tries that near me, there'll be trouble.</li>
         <li>[persona:wary] I knew there was something off about {SUBJECT_objective}.</li>
         <li>[persona:wary,deed:betrayed] Well, I won't be telling {SUBJECT_objective} anything now.</li>
