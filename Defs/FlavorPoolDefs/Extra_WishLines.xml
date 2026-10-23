@@ -16,54 +16,54 @@
     <wish>Council_Wish_OwnRoom</wish>
     <request>
       <plain>
-        <li>Whatever I leave by my bunk is gone by morning. A room with a door would keep my things where I put them.</li>
-        <li>[trigger:barracks] Somebody in the barracks talks in their sleep, and last night it was my name. I want my own room.</li>
-        <li>[summer] With that many of us in one room all summer, you can smell the barracks from the fields. I want my own room.</li>
+        <li>Whatever I put down goes missing by morning. A room with a door would keep my things where I left them.</li>
+        <li>[trigger:barracks] Every cough in the barracks wakes me, and there's always a cough. I want my own room.</li>
+        <li>[summer] It's too hot to sleep with anyone else breathing nearby. I'd sleep better behind my own door.</li>
         <li>[trait:NightOwl] I go to bed at dawn, right when the others are getting up. A room of my own would save us all the tiptoeing.</li>
       </plain>
       <warm>
-        <li>I don't mind the barracks, really. I just hate waking the others with my nightmares.</li>
-        <li>[old] I'm up three times a night, and every time I creak past four bunks. A small room near the door would spare them.</li>
+        <li>I don't mind sharing, really. I just hate waking the others with my nightmares.</li>
+        <li>[old] I'm up three times a night, and I wake somebody every time. A small room near the door would spare them.</li>
         <li>[trusting] You've been good to me so far. If a room ever comes free, I'd love it.</li>
       </warm>
       <blunt>
-        <li>I want a room with a door I can slam.</li>
+        <li>I need my own four walls. Soon.</li>
         <li>[trigger:barracks] Next person who steps on me in the dark loses the foot. Get me a room before it comes to that.</li>
-        <li>[trait:Abrasive] The others in the barracks can't stand me, and the feeling's mutual. Move me out.</li>
+        <li>[trait:Abrasive] The people I sleep near can't stand me, and the feeling's mutual. Move me out.</li>
       </blunt>
       <cheerful>
-        <li>I'd put the bed under the window and a shelf by the door. A room of my own would be wonderful!</li>
-        <li>[spring] Even the birds have their own nests by now! Could I move out of the barracks too?</li>
+        <li>Could I have a room of my own? I'd hang my coat on my own hook and never lose it again!</li>
+        <li>[spring] Even the birds have their own nests by now! When do I get mine?</li>
         <li>[child] Can I have my own room, like the grown-ups? I'll keep my socks off the floor, I promise.</li>
       </cheerful>
       <gloomy>
-        <li>You can't even cry in the barracks without somebody rolling over to listen.</li>
-        <li>[bitter] I've worked for this place since the first wall went up, and I still sleep in a row of bunks.</li>
-        <li>[night] Someone three bunks down grinds their teeth all night. I'd give a lot for a wall between us.</li>
+        <li>You can't even cry around here without somebody rolling over to listen.</li>
+        <li>[bitter] I've worked here since the first wall went up, and I still have no door of my own.</li>
+        <li>[night] Somebody near me grinds their teeth all night. I'd give a lot for a wall between us.</li>
       </gloomy>
       <cold>
         <li>People who sleep near me tend to get nervous. A private room solves their problem and mine.</li>
-        <li>[trigger:barracks] I sleep badly in the barracks, and you lose hours of my work for it every week. Build the room.</li>
+        <li>[trigger:barracks] In the barracks I sleep with my back to the wall. I'd rather sleep alone.</li>
       </cold>
     </request>
     <requestForOther>
       <plain>
-        <li>{FOR_nameDef} wakes up every time someone in the barracks turns over. A room of {FOR_possessive} own would fix that.</li>
+        <li>{FOR_nameDef} wakes up every time someone near {FOR_objective} turns over. A room of {FOR_possessive} own would fix that.</li>
       </plain>
       <warm>
-        <li>{FOR_nameDef} has earned some quiet. A room with a door, maybe {THING} in it. I'll carry the stone myself.</li>
+        <li>{FOR_nameDef} has earned some quiet. A room with a door, maybe {THING} in it. I'll haul the blocks myself.</li>
       </warm>
       <blunt>
         <li>{FOR_nameDef} is too proud to ask. I'm not. Give {FOR_objective} a room.</li>
       </blunt>
       <cold>
-        <li>{FOR_nameDef} sleeps badly in the barracks and works badly as a result. A private room is a cheap fix.</li>
+        <li>{FOR_nameDef} sleeps badly where {FOR_pronoun} is, and it shows in {FOR_possessive} work. I've been watching.</li>
       </cold>
     </requestForOther>
     <thanks>
       <plain>
-        <li>I put my boots by my own door last night, and they were still there this morning.</li>
-        <li>[trigger:barracks] I slept straight through to morning. I'd forgotten what that was like.</li>
+        <li>I'm putting my boots by my own door tonight, and they'll still be there in the morning.</li>
+        <li>[trigger:barracks] Tonight I'll sleep straight through, for once.</li>
         <li>[forother] {PAWN_nameDef} asked for this on my behalf? I'll have to find a way to repay that.</li>
       </plain>
       <warm>
@@ -71,60 +71,60 @@
         <li>[old] I've slept in a lot of places. This is the first in years that feels like mine.</li>
       </warm>
       <blunt>
-        <li>Good. From now on, people knock.</li>
+        <li>From now on, people knock.</li>
       </blunt>
       <cheerful>
-        <li>I've rearranged it four times already and it's been one afternoon!</li>
-        <li>[night] I sang myself to sleep last night, as loud as I liked!</li>
+        <li>I'm going to move everything around at least four times!</li>
+        <li>[night] Tonight I'm singing myself to sleep, as loud as I like!</li>
       </cheerful>
       <gloomy>
-        <li>I shut the door and sat on the bed until it got dark, listening to nothing.</li>
+        <li>I shut the door and just sat there, listening to nothing.</li>
       </gloomy>
       <cold>
-        <li>A locked door and uninterrupted sleep. My work will reflect it.</li>
+        <li>A door between me and the rest of you. Better.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
-        <li>I'll keep my valuables in my boots, then. Safest place in the barracks.</li>
-        <li>[promised] I told people I was getting a room. I'll have to take that back now.</li>
-        <li>[forother] {FOR_nameDef} is still in the barracks. I did ask for {FOR_objective}, and I'll ask again.</li>
+        <li>I'll keep my valuables in my boots, since there's no door to keep them behind.</li>
+        <li>[promised] I told people I was getting a room, and now I have to take it back.</li>
+        <li>[forother] {FOR_nameDef} still has no room of {FOR_possessive} own, and I'll ask again for {FOR_objective}.</li>
       </plain>
       <warm>
-        <li>Never mind. Somebody in the barracks has to hum the others to sleep, I suppose.</li>
-        <li>[trusting] I know there's a lot going on. I'm not angry, just tired.</li>
+        <li>Never mind, someone has to hum the others to sleep.</li>
+        <li>[trusting] I know there's a lot going on, so I'm not angry, just tired.</li>
       </warm>
       <blunt>
         <li>Great. Another season between a snorer and a sleepwalker.</li>
         <li>[bitter] Funny how the people who decide these things all have doors.</li>
       </blunt>
       <cheerful>
-        <li>The barracks it is, then! At least there's always someone to talk to at night.</li>
+        <li>No room, then, but at least there's always someone to talk to at night!</li>
       </cheerful>
       <gloomy>
-        <li>Back to lying awake in the barracks, counting other people's breaths.</li>
+        <li>Back to lying awake, counting other people's breaths.</li>
       </gloomy>
       <cold>
-        <li>My sleep will suffer, so my work will suffer. That's on you now, not me.</li>
-        <li>[trait:Psychopath] If someone in the barracks wakes up with me standing over them, remember this conversation.</li>
+        <li>When my work suffers for it, remember whose choice it was.</li>
+        <li>[trait:Psychopath] If someone wakes up with me standing over them, remember this conversation.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>Still in the barracks. I can tell who's asleep in there just by the snoring now.</li>
-        <li>[trigger:barracks] Someone sneezed on me in my sleep. I'm only bringing it up because of the room.</li>
+        <li>I still don't have a door of my own, in case anyone's wondering.</li>
+        <li>[trigger:barracks] Someone sneezed on me in my sleep last night, and I'm bringing it up because of the room.</li>
       </plain>
       <warm>
-        <li>[forother] {FOR_nameDef} is still sleeping in the barracks. I haven't forgotten that room for {FOR_objective}.</li>
+        <li>[forother] {FOR_nameDef} still has nowhere of {FOR_possessive} own to sleep, and I haven't forgotten.</li>
       </warm>
       <blunt>
-        <li>[bitter] I asked for a room. Was that too much to remember?</li>
+        <li>[bitter] Has anyone even remembered I asked for a room?</li>
       </blunt>
       <gloomy>
-        <li>[winter] Another week of coughing in the barracks. I take it the room isn't coming.</li>
+        <li>[winter] Another week of everyone's winter coughs, and still no room.</li>
       </gloomy>
       <cold>
-        <li>My room has not been built. I am keeping track of how long it has been.</li>
+        <li>My room has not been built, and I am keeping track of how long it has been.</li>
       </cold>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -134,30 +134,30 @@
     <wish>Council_Wish_NicerBedroom</wish>
     <request>
       <plain>
-        <li>My room is a bed, a crate and a crack in the wall shaped like a raider. I'd like one thing in there worth looking at.</li>
+        <li>The only thing on my bedroom wall is a crack. I'd like one thing in there worth looking at.</li>
         <li>[trait:Jealous] Some of the others have rugs and statues in their rooms. I have a bed and a bucket.</li>
         <li>[skill:Construction] I've built most of the rooms here, and mine's the one I'd be ashamed to show anyone.</li>
         <li>[old] I've lived long enough to want my last rooms to be nice ones.</li>
       </plain>
       <warm>
-        <li>A proper floor, something soft underfoot, a bit of color on the walls. I'd finally feel at home.</li>
+        <li>A rug by the bed would make my room feel like home.</li>
         <li>[trusting] No rush, I know there's a lot to build. My room just needs some care when you get to it.</li>
         <li>[spring] Spring's here and my room is still the color of winter. Some flowers or a painting would help.</li>
       </warm>
       <blunt>
-        <li>My room looks like where we keep the bodies before burial. Do something about it.</li>
-        <li>[trait:Greedy] I work harder than most people here and sleep in a room fit for a boomalope. Fix it.</li>
+        <li>My room looks like where we keep the bodies before burial.</li>
+        <li>[trait:Greedy] I sleep in a room fit for a boomalope. I'm worth more than that.</li>
         <li>[rich] There's silver piling up in the storeroom and nothing in my room. Spend some of it on me.</li>
       </blunt>
       <cheerful>
-        <li>What if, hear me out, my room had a statue of me in it? Too much? A statue of anything, then!</li>
+        <li>My room could use a statue. Of me, ideally, but I'm not fussy!</li>
         <li>[highmood] I'm in such a good mood, I want my room to match. Let's make it fancy!</li>
         <li>[trait:Beautiful|trait:Pretty] A face like mine deserves a room like... well, not like this one!</li>
       </cheerful>
       <gloomy>
         <li>I don't need a beautiful room. I just want one that doesn't remind me where I am.</li>
-        <li>[winter] All winter I've stared at the same bare stone. I know every crack in it by now.</li>
-        <li>[repeat] I asked before. The room's still ugly, and I'm tired of waking up in it.</li>
+        <li>[winter] All winter I've stared at the same bare walls. I know every crack in them by now.</li>
+        <li>[repeat] My room's still ugly, and I'm tired of waking up in it.</li>
       </gloomy>
       <cold>
         <li>People here judge each other by their rooms. Mine doesn't reflect my position.</li>
@@ -166,65 +166,65 @@
     </request>
     <thanks>
       <plain>
-        <li>I gave the cook a tour of my bedroom today. I've never given anyone a tour of anything.</li>
-        <li>[morning] I woke up and didn't want to leave. That's never happened here.</li>
+        <li>I'm going to give the cook a tour of my bedroom. I've never given anyone a tour of anything.</li>
+        <li>[morning] I won't want to get up in the mornings now.</li>
         <li>[promised] I didn't really believe the promise. I'm glad I was wrong.</li>
       </plain>
       <warm>
         <li>It feels like a real home now. Come by anytime, I mean it.</li>
       </warm>
       <blunt>
-        <li>[trait:Greedy] Now that's a room. Make sure the others see it.</li>
+        <li>[trait:Greedy] Make sure the others get a look at it.</li>
       </blunt>
       <cheerful>
-        <li>I keep walking in just to look at it. I've done it six times today!</li>
+        <li>I'm never leaving my room again! Well, for meals.</li>
       </cheerful>
       <gloomy>
-        <li>Nicer walls to stare at when I can't sleep. It does help.</li>
+        <li>Nicer walls to stare at when I can't sleep.</li>
         <li>[lowmood] It's lovely. I'm in no state to enjoy it today, but it's lovely.</li>
       </gloomy>
       <cold>
         <li>The others will notice it. That's what I wanted.</li>
-        <li>[trait:Greedy] The best room in the colony is mine now? Keep it that way.</li>
+        <li>[trait:Greedy] Mine is one of the better rooms now. I intend to keep it that way.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
         <li>I'll hang a blanket on the wall and call it art.</li>
-        <li>[bitter] I've watched three bedrooms get furnished this season. None of them were mine.</li>
-        <li>[promised] I was told my room would be nicer. It looks the same as the day I asked.</li>
+        <li>[bitter] I've watched other bedrooms get furnished this season, and none of them were mine.</li>
+        <li>[promised] I was told my room would be nicer, and it looks the same as the day I asked.</li>
       </plain>
       <warm>
-        <li>It's still a roof over my head. I'll fix it up myself, one thing at a time.</li>
-        <li>[trusting] I'm sure you tried. There'll be another season.</li>
+        <li>It's still a roof over my head, and I'll fix it up myself bit by bit.</li>
+        <li>[trusting] I'm sure you tried, and there'll be another season.</li>
       </warm>
       <blunt>
-        <li>[trait:Jealous] So the others get nice rooms and I get stone. Got it.</li>
+        <li>[trait:Jealous] So the others get nice rooms and I get bare walls.</li>
       </blunt>
       <cheerful>
         <li>Plain is a style too! I'll just tell people I like it bare.</li>
         <li>[highmood] Ugly room, but I'm in too good a mood to care today!</li>
       </cheerful>
       <gloomy>
-        <li>So I keep the ugly room. It suits how things are going.</li>
+        <li>I keep the ugly room, then, which suits how things are going.</li>
       </gloomy>
       <cold>
-        <li>So my standards are not a priority. I'll lower my effort to match.</li>
+        <li>Then I'll lower my effort to match the room.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>My room still isn't what you'd call {SUBJECT}. Not even close.</li>
-        <li>[morning] Woke up to the same bare walls. Just mentioning it.</li>
+        <li>My room still isn't what you'd call {SUBJECT}, not even close.</li>
+        <li>[morning] Woke up to the same bare walls again, just so you know.</li>
       </plain>
       <blunt>
-        <li>Has anybody even looked at my room since I asked? Go look. I'll wait.</li>
+        <li>Has anybody even looked at my room since I asked?</li>
       </blunt>
       <cheerful>
-        <li>Still dreaming about {WISH}! It'll happen. I've decided.</li>
+        <li>Still dreaming about "{WISH}", and it'll happen, I've decided!</li>
       </cheerful>
       <gloomy>
-        <li>[trait:Jealous] I walked past another nice room today. Not mine, obviously.</li>
+        <li>[trait:Jealous] I walked past another nice room today, and it wasn't mine.</li>
       </gloomy>
       <warm>
         <li>Whenever there's time, my room could still use a softer floor and some color on the walls.</li>
@@ -243,13 +243,13 @@
       </plain>
       <warm>
         <li>I'd love just enough room for a chair, so a friend could sit with me in the evenings.</li>
-        <li>[old] My hips don't turn the way they used to, and there's nowhere in that room to turn them.</li>
+        <li>[old] At my age I need room to get round the bed without holding on to the wall.</li>
         <li>[trait:Kind] If my room were bigger, I could take in someone who's sick. The barracks is no place to be sick.</li>
       </warm>
       <blunt>
-        <li>I've dug bigger graves. Knock out a wall.</li>
+        <li>I can't open the door all the way without hitting the bed. Knock out a wall.</li>
         <li>[trait:Recluse] I spend all my free time in there. Make it big enough to actually live in.</li>
-        <li>[old] I'm too old to climb over furniture to reach my own bed. Move a wall.</li>
+        <li>[old] I'm too old to be squeezing sideways past my own bed. Move a wall.</li>
       </blunt>
       <cheerful>
         <li>I can touch both walls from the middle of my room! Could we push one of them back?</li>
@@ -257,23 +257,23 @@
         <li>With a bit more room I could have friends over in the evening, two or three of them!</li>
       </cheerful>
       <gloomy>
-        <li>Sleeping in a box. Practice for later, I suppose.</li>
+        <li>I sleep in a box and wake up in a box.</li>
         <li>[lowmood] When I can't sleep I need to pace, and there's no room to pace in there.</li>
         <li>[night] At night I can hear my own breathing come back off the walls.</li>
       </gloomy>
       <cold>
-        <li>I'm being stored in that room like spare parts. Allocate more space.</li>
+        <li>I'm being stored in that room like spare parts.</li>
         <li>A cramped room means I rest poorly. Moving one wall is cheaper than my mistakes.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>I paced my room last night, five steps each way. I couldn't do that before.</li>
+        <li>Five steps each way, wall to wall. I couldn't do that before.</li>
         <li>[old] I can get out of bed without a fight now. Thank you.</li>
       </plain>
       <warm>
         <li>There's room for a visitor now. You'll have to come and sit with me.</li>
-        <li>[trait:Kind] I had two friends over last night, and they both got to sit down.</li>
+        <li>[trait:Kind] Next time friends come over, they'll both get to sit down.</li>
       </warm>
       <blunt>
         <li>I can stretch without hitting anything. Took you long enough.</li>
@@ -285,47 +285,47 @@
         <li>More room for my thoughts to rattle around in. It is nicer, though.</li>
       </gloomy>
       <cold>
-        <li>Better. My rest should improve, and my work with it.</li>
+        <li>My rest should improve now, and my work with it.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
-        <li>I'll keep getting dressed sideways, then.</li>
-        <li>[promised] A bigger room, I was told. The walls haven't moved an inch.</li>
+        <li>I'll keep getting dressed sideways.</li>
+        <li>[promised] I was told my room would be bigger, and the walls haven't moved an inch.</li>
         <li>[old] I'll keep climbing over the furniture on these old knees.</li>
       </plain>
       <warm>
-        <li>It's cozy, I suppose. I can reach everything from the bed, at least.</li>
-        <li>[trusting] Maybe next season. I can wait.</li>
+        <li>It's cozy, I suppose, and I can reach everything from the bed.</li>
+        <li>[trusting] Next season, maybe, and I can wait till then.</li>
       </warm>
       <blunt>
         <li>When I put my fist through the wall, that one's on you.</li>
       </blunt>
       <cheerful>
-        <li>Small room, less to sweep! I'll take it.</li>
+        <li>Small room, less to sweep!</li>
       </cheerful>
       <gloomy>
         <li>[lowmood] Never mind. I don't take up much room these days anyway.</li>
       </gloomy>
       <cold>
-        <li>Unfortunate. Small rooms make me irritable, and irritable people make mistakes. We'll see which ones.</li>
+        <li>Small rooms make me irritable, and irritable people make mistakes.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>Hit my head on the wall getting up again. About the room.</li>
+        <li>Hit my head on the wall getting up again, in case anyone's counting.</li>
       </plain>
       <warm>
         <li>My room could still use another few feet, when someone has a spare afternoon.</li>
       </warm>
       <blunt>
-        <li>My room hasn't gotten any bigger. My elbows would know.</li>
+        <li>My room hasn't gotten any bigger, and my elbows would know.</li>
       </blunt>
       <gloomy>
         <li>[night] Lying in the dark, I can feel how close the walls are.</li>
       </gloomy>
       <cold>
-        <li>[repeat] I have asked for {WISH} more than once. This is me asking again, calmly.</li>
+        <li>[repeat] I have asked for "{WISH}" more than once, and I'm asking again, calmly.</li>
       </cold>
       <cheerful>
         <li>Still bumping into everything! My shins are every color there is.</li>
@@ -343,22 +343,22 @@
         <li>[old] {OTHER_nameDef} and I have been together a long time. Long enough to have earned one bed.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} has nightmares sometimes. I'd like to be close enough to wake {OTHER_objective} gently.</li>
+        <li>When {OTHER_nameDef} has nightmares, I'd like to be close enough to wake {OTHER_objective} gently.</li>
         <li>[hurt] I'm healing slowly. I'd heal faster with {OTHER_nameDef} beside me.</li>
         <li>[winter] {OTHER_nameDef}'s hands are always cold at night. I want to be there to warm them.</li>
       </warm>
       <blunt>
-        <li>Two beds for one couple. Who planned that? Fix it.</li>
+        <li>We're a couple with two beds. One of them can go.</li>
         <li>[trait:Jealous] I don't like {OTHER_nameDef} sleeping where anyone can wander past. Put {OTHER_objective} in my bed.</li>
         <li>[repeat] {OTHER_nameDef} and I are still sleeping apart. I'm asking again.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} steals blankets. I've decided I want that to be my problem every night!</li>
-        <li>[spring] The muffalo are pairing up for spring. {OTHER_nameDef} and I would like {THING} too!</li>
+        <li>I want to wake up to {OTHER_nameDef} humming every morning!</li>
+        <li>[spring] Everything's pairing off for spring, and {OTHER_nameDef} and I would like {THING} too!</li>
         <li>[night] {OTHER_nameDef} and I keep calling goodnight down the hall, and the others are sick of it. Give us {THING}!</li>
       </cheerful>
       <gloomy>
-        <li>Any night could be the last one on this rock. I'd rather spend them next to {OTHER_nameDef}.</li>
+        <li>The nights are long out here, and I'd rather spend them next to {OTHER_nameDef}.</li>
         <li>[lowmood] Some nights the only thing that would help is {OTHER_nameDef}'s hand, and it's across the room.</li>
       </gloomy>
       <cold>
@@ -368,65 +368,65 @@
     </request>
     <thanks>
       <plain>
-        <li>{OTHER_nameDef} snores. I never knew, and I don't mind at all.</li>
-        <li>[winter] Cold feet against my legs all night. Best thing that's happened all winter.</li>
+        <li>I'll find out tonight whether {OTHER_nameDef} snores.</li>
+        <li>[winter] Cold feet against my legs every night from now on, and I'm glad of it.</li>
         <li>[promised] {OTHER_nameDef} didn't think you'd keep your word. I did, and I've been reminding {OTHER_objective} all week.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} fell asleep holding my hand, and I lay still so I wouldn't wake {OTHER_objective}. Thank you.</li>
+        <li>Tonight {OTHER_nameDef} can fall asleep holding my hand. Thank you.</li>
       </warm>
       <blunt>
-        <li>[morning] We were late to work. You'll live.</li>
+        <li>[morning] We'll be late to work some mornings. You'll live.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} hogs the blankets and I've never been happier!</li>
-        <li>[morning] {OTHER_nameDef} woke me up with cold feet, and I laughed instead of yelling!</li>
+        <li>{OTHER_nameDef} and I are sharing a bed! I've already told the cook.</li>
+        <li>[morning] Every morning from now on starts with {OTHER_nameDef}!</li>
       </cheerful>
       <gloomy>
         <li>Whatever happens out there, I get to come back to {OTHER_nameDef}. That's more than most get.</li>
       </gloomy>
       <cold>
-        <li>Better. I know where {OTHER_nameDef} is at night now. That matters to me.</li>
+        <li>I'll know where {OTHER_nameDef} is at night now. That matters to me.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
-        <li>{OTHER_nameDef} and I will push two beds together, then. It isn't the same.</li>
-        <li>[promised] We were told we'd get a bed together. {OTHER_nameDef} keeps asking me when.</li>
-        <li>[winter] We'll sleep in our coats and think of each other, I suppose.</li>
+        <li>{OTHER_nameDef} and I will push two beds together, but it isn't the same.</li>
+        <li>[promised] We were told we'd get a bed together, and {OTHER_nameDef} keeps asking me when.</li>
+        <li>[winter] We'll sleep in our coats and think of each other.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} says it doesn't matter. I can tell that it does.</li>
+        <li>{OTHER_nameDef} says it doesn't matter, but I can tell it does.</li>
       </warm>
       <blunt>
-        <li>We'll keep sneaking across the colony in the dark like teenagers, then.</li>
-        <li>[trait:Jealous] So {OTHER_nameDef} sleeps alone, where anyone can wander in for a chat. I don't like it.</li>
+        <li>Back to sneaking across the colony in the dark like teenagers.</li>
+        <li>[trait:Jealous] So {OTHER_nameDef} sleeps alone, where anyone can wander in, and I don't like it.</li>
       </blunt>
       <cheerful>
-        <li>Late-night visits it is, then! The floor's cold, but it's romantic.</li>
+        <li>Late-night visits it is, cold floors and all!</li>
       </cheerful>
       <gloomy>
         <li>[night] {OTHER_nameDef} is probably lying awake too, on the other side of the wall.</li>
       </gloomy>
       <cold>
-        <li>Disappointing. I won't bring personal matters to the council again.</li>
+        <li>I won't bring personal matters to the council again.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>{OTHER_nameDef} and I are still in separate beds. We keep hoping.</li>
+        <li>{OTHER_nameDef} and I are still in separate beds, and still hoping.</li>
       </plain>
       <warm>
-        <li>[night] {OTHER_nameDef} and I said goodnight in the hallway again tonight, then went to our separate beds.</li>
+        <li>[night] {OTHER_nameDef} and I said goodnight at the door again tonight, and went off to separate beds.</li>
       </warm>
       <blunt>
-        <li>We're still in two beds. Push them together or build a new one, I don't care which.</li>
+        <li>Push our beds together or build a new one, I don't care which.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} and I have already picked our sides of the bed! Now we just need the bed.</li>
       </cheerful>
       <gloomy>
-        <li>[winter] Another cold night in separate beds. Winter's long enough as it is.</li>
+        <li>[winter] Another cold night in separate beds, and winter's long enough as it is.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} and I are still assigned separate beds. I want that corrected.</li>
@@ -440,7 +440,7 @@
     <request>
       <plain>
         <li>My spare shirt lives in a corner and my knife lives under the pillow. They'd both prefer {THING}.</li>
-        <li>[night] I knocked my water over in the dark again. Somewhere to set it down would help.</li>
+        <li>[night] I can never find anything in the dark when it's all on the floor. Somewhere to put it would help.</li>
         <li>[newcomer] I'm still living out of my pack. Having {THING} would make it feel like I'm staying.</li>
       </plain>
       <warm>
@@ -449,43 +449,43 @@
         <li>[trusting] I know there are bigger things to build. When there's a moment, {THING} would make my room feel finished.</li>
       </warm>
       <blunt>
-        <li>I'm tired of digging through a pile for my socks. Build {THING}.</li>
-        <li>[trait:Greedy] I have things worth keeping, and they're sitting on the floor. Give me {THING}.</li>
+        <li>I'm tired of digging through a pile for my socks, so get me {THING}.</li>
+        <li>[trait:Greedy] I have things worth keeping, and they belong on {THING}, not the floor.</li>
         <li>[repeat] My things are still on the floor, and I'm still asking for {THING}.</li>
       </blunt>
       <cheerful>
-        <li>If I had {THING}, I could put my good rock on it. I found it by the river and it's very smooth!</li>
+        <li>If I had {THING}, I could put my good rock on it. I found it out past the fields and it's very smooth!</li>
         <li>[child] I need {THING} for my bug collection! I've got eleven and they keep getting stepped on.</li>
         <li>[trait:Greedy] I have so many nice things now, and every one of them deserves a spot on {THING}!</li>
       </cheerful>
       <gloomy>
-        <li>It's a bedroom with nothing in it but a bed. Feels like a cell.</li>
+        <li>I come home to a bed and nothing else.</li>
         <li>[lowmood] Everything I own fits in one pile on the floor. Says a lot, doesn't it.</li>
         <li>[grieving] I have a few things that belonged to someone I lost. They shouldn't have to live on the floor.</li>
       </gloomy>
       <cold>
-        <li>Organized possessions mean less time wasted. Supply {THING}.</li>
+        <li>I like to know exactly where my things are, and with {THING} I would.</li>
         <li>[trait:Psychopath] Someone has been touching my things. With {THING}, I'll know exactly when it happens again.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>I put my things away last night. It took four minutes.</li>
-        <li>[newcomer] I unpacked. First time since I got here.</li>
+        <li>Putting everything away will take me about four minutes.</li>
+        <li>[newcomer] I'm unpacking. I'm staying.</li>
         <li>[promised] It's exactly where I said it should go. Thank you for keeping your word.</li>
       </plain>
       <warm>
-        <li>My keepsakes have a home now. It's silly how much that matters.</li>
-        <li>[grieving] I set their things out on it, like a small shrine. I talk to it some nights.</li>
+        <li>My keepsakes have a home now.</li>
+        <li>[grieving] I'm going to set their things out on it, where I can see them from the bed.</li>
       </warm>
       <blunt>
-        <li>My stuff is off the floor and out of reach. Good.</li>
+        <li>My stuff is off the floor and out of reach.</li>
       </blunt>
       <cheerful>
         <li>I've arranged and rearranged everything on it six times!</li>
       </cheerful>
       <gloomy>
-        <li>It's just furniture. I didn't expect to feel this much about furniture.</li>
+        <li>It's only furniture. I'm going to dust it every day.</li>
       </gloomy>
       <cold>
         <li>Order restored. My things are where I left them, and I'll know if they aren't.</li>
@@ -493,22 +493,22 @@
     </thanks>
     <expired>
       <plain>
-        <li>My things will stay piled in the corner. I know which pile is socks, at least.</li>
-        <li>[promised] I cleared a spot for {THING}. The spot's still clear.</li>
+        <li>My things stay piled in the corner, and at least I know which pile is socks.</li>
+        <li>[promised] I cleared a spot for {THING}, and it's still empty.</li>
       </plain>
       <warm>
-        <li>An old crate does the job, mostly. Don't worry about me.</li>
-        <li>[grieving] The keepsakes will stay in my pack, then. Safe enough.</li>
+        <li>An old crate does the job, mostly, so don't worry about me.</li>
+        <li>[grieving] The keepsakes can stay in my pack, where they're safe enough.</li>
       </warm>
       <blunt>
         <li>Anyone who steps on my stuff can take it up with you.</li>
-        <li>[bitter] Can't get one piece of furniture out of this council. Unbelievable.</li>
+        <li>[bitter] Can't get one piece of furniture out of this council.</li>
       </blunt>
       <cheerful>
-        <li>Floor storage! At least I always know where to look.</li>
+        <li>Floor storage it is, and I always know where to look!</li>
       </cheerful>
       <gloomy>
-        <li>Nothing in my room but me and a bed. Suits the mood around here.</li>
+        <li>Nothing in my room but me and a bed, which suits the mood around here.</li>
       </gloomy>
       <cold>
         <li>Not built. My room stays disorganized, and my work may follow.</li>
@@ -516,13 +516,13 @@
     </expired>
     <reminder>
       <plain>
-        <li>Still stepping over my own things every morning. About {THING}...</li>
+        <li>Still stepping over my things every morning, in case {THING} slipped your mind.</li>
       </plain>
       <warm>
         <li>[trusting] I know you haven't forgotten {THING}. I'm just still hoping.</li>
       </warm>
       <blunt>
-        <li>Tripped over my pack again. You know what fixes that.</li>
+        <li>Tripped over my pack again, and you know what fixes that.</li>
       </blunt>
       <gloomy>
         <li>[night] Fumbled through the pile on the floor in the dark again.</li>
@@ -548,8 +548,8 @@
         <li>[old] My eyes aren't what they were. In the dark I'm practically blind. Could I have {THING}?</li>
       </warm>
       <blunt>
-        <li>[trigger:dark] Can't see my hand in front of my face in there. Fix it before I break my neck.</li>
-        <li>I got bitten in my room last night and couldn't see by what. Give me a light.</li>
+        <li>[trigger:dark] Can't see my hand in front of my face in there, and one night I'll break my neck.</li>
+        <li>Something bit me in my room last night, and I couldn't see what.</li>
         <li>[repeat] I asked about a light already. I'm still feeling my way around like a mole.</li>
       </blunt>
       <cheerful>
@@ -562,22 +562,22 @@
       </gloomy>
       <cold>
         <li>I can't see who comes into my room at night. I'd prefer to.</li>
-        <li>[trigger:dark] Injuries in the dark will cost us more than {THING} would. Build it.</li>
+        <li>[trigger:dark] Injuries in the dark will cost more than {THING} would.</li>
         <li>[trait:Psychopath] I like to watch the door while I fall asleep. I can't watch what I can't see.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>I found both my boots this morning without crawling around on the floor.</li>
+        <li>I'll find both my boots in the morning without crawling around on the floor.</li>
         <li>[winter] The evenings are long and dark, and now I have some light to spend them in.</li>
         <li>[promised] A light, as promised. I'll trust the council's word a bit more now.</li>
       </plain>
       <warm>
-        <li>It's such a soft light. I stayed up mending until late. Thank you.</li>
+        <li>It's such a soft light. I'll be up mending until late tonight.</li>
         <li>[child] I'm not scared anymore. I wasn't scared before. But I'm extra not scared now.</li>
       </warm>
       <blunt>
-        <li>Good. Now I can see who's knocking.</li>
+        <li>Now I can see who's knocking.</li>
       </blunt>
       <cheerful>
         <li>[night] Shadow puppet show in my room tonight! I'll do the muffalo.</li>
@@ -591,36 +591,36 @@
     </thanks>
     <expired>
       <plain>
-        <li>I've learned where everything is in there by feel. I still miss the bed frame some nights.</li>
+        <li>I'll keep a hand on the wall and count my steps to the bed.</li>
         <li>[promised] I was promised a light, and I'm still sitting in the dark.</li>
-        <li>[trigger:dark] I'll leave the door open and borrow whatever light drifts in. Not much does.</li>
+        <li>[trigger:dark] I'll leave the door open and borrow whatever light drifts in.</li>
       </plain>
       <warm>
-        <li>It's all right. I've got a candle stub I can light on the bad nights.</li>
+        <li>It's all right, I've got a candle stub for the bad nights.</li>
       </warm>
       <blunt>
-        <li>Whatever. If I break my neck in there, put "should've had a light" on the grave.</li>
-        <li>[bitter] Not even a light. I know where I stand with this council now.</li>
+        <li>If I break my neck in there, you'll know why.</li>
+        <li>[bitter] Not even a light, so now I know where I stand with this council.</li>
       </blunt>
       <cheerful>
-        <li>No light? I'll hum in the dark, then. It keeps the monsters away!</li>
+        <li>I'll hum in the dark instead, it keeps the monsters away!</li>
       </cheerful>
       <gloomy>
-        <li>[night] Another dark night. I didn't really expect anything else.</li>
+        <li>[night] I'll lie here in the dark, same as always.</li>
       </gloomy>
       <cold>
-        <li>Very well. I'll find my way by memory. Don't move anything in my room.</li>
+        <li>I'll find my way by memory, so don't move anything in my room.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>[night] Banged my knee on the bed frame again. That light, whenever you're ready.</li>
+        <li>[night] Banged my knee on the bed frame again, so about that light.</li>
       </plain>
       <warm>
         <li>I don't like to fuss, but my room is still awfully dark at night.</li>
       </warm>
       <blunt>
-        <li>[trigger:dark] Still dark in my room. I walked into the doorframe this morning.</li>
+        <li>[trigger:dark] I walked into the doorframe again this morning, because it's still dark in there.</li>
       </blunt>
       <cheerful>
         <li>My room's still as dark as a cave! I've been feeling my way to bed every night.</li>
@@ -629,7 +629,7 @@
         <li>[lowmood] I've stopped expecting the light. I haven't stopped wanting it.</li>
       </gloomy>
       <cold>
-        <li>My room remains unlit. I've begun to hear things in it that I can't account for.</li>
+        <li>My room remains unlit, and I've begun to hear things in it I can't account for.</li>
       </cold>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -641,30 +641,30 @@
       <plain>
         <li>I get maybe two hours of real sleep a night in that room. Some {SUBJECT} would change that.</li>
         <li>[trigger:cold] I slept curled up so tight I couldn't straighten my back this morning.</li>
-        <li>[trigger:heat] I've started sleeping on the floor because it's the coolest spot in the room, and it's still too hot.</li>
+        <li>[trigger:heat] I sleep on the floor now because it's the coolest spot, and it's still too hot.</li>
         <li>[repeat] Still waking up wrecked from that room. I'm asking again for {SUBJECT}.</li>
       </plain>
       <warm>
         <li>[trigger:cold] I lent my blanket to someone colder, and now I'm the colder one. Could my room get {THING}?</li>
-        <li>[trigger:heat] I don't want to complain when others have it worse. But I haven't really slept in two days.</li>
+        <li>[trigger:heat] I hate to complain when others have it worse, but I haven't really slept in two days.</li>
         <li>[old,trigger:heat] At my age the heat sits on your chest all night. Some cool air would be a mercy.</li>
       </warm>
       <blunt>
         <li>[trigger:cold] My breath freezes on the blanket. Put {THING} in there or I'm sleeping in the kitchen.</li>
-        <li>[trigger:heat] It's an oven in there, and I'm not bread. Fix it.</li>
+        <li>[trigger:heat] I'm not sleeping another night in that heat.</li>
       </blunt>
       <cheerful>
         <li>[trigger:cold] I slept in five shirts last night and still shivered! Could my room get {THING}?</li>
         <li>[trigger:heat] I sweated enough last night to water a field! Could we get {THING} in my room?</li>
-        <li>[highmood] I'm cheerful on two hours of sleep. Think what I'd be like with {SUBJECT}!</li>
+        <li>[highmood] I'm this cheerful on a bad night's sleep. Imagine me with {SUBJECT}!</li>
       </cheerful>
       <gloomy>
         <li>Every night I lie there waiting for morning like it's a rescue party.</li>
-        <li>[trigger:cold] Woke up blue around the lips again. People die in their sleep like that.</li>
+        <li>[trigger:cold] Woke up blue around the lips again, and my hands still won't stop shaking.</li>
       </gloomy>
       <cold>
         <li>Keep me sleeping like this and I'll make a mistake eventually. In surgery, maybe. Or in a fight.</li>
-        <li>[trigger:heat] Heatstroke would cost you days of my work. Building {THING} costs less.</li>
+        <li>[trigger:heat] Heatstroke would cost you days of my work, and {THING} costs less.</li>
       </cold>
     </request>
     <requestForOther>
@@ -680,19 +680,19 @@
     </requestForOther>
     <thanks>
       <plain>
-        <li>I woke up rested. I didn't recognize the feeling at first.</li>
-        <li>[trigger:cold] I woke up and counted all ten toes.</li>
-        <li>[forother] I hear {PAWN_nameDef} spoke up about my room. Tell {PAWN_objective} I finally slept.</li>
-        <li>[promised] You said you'd fix my room, and last night I slept.</li>
+        <li>Tonight I'll actually sleep.</li>
+        <li>[trigger:cold] I'll sleep with my feet out from under the blanket tonight.</li>
+        <li>[forother] I hear {PAWN_nameDef} spoke up about my room. I'll thank {PAWN_objective} myself.</li>
+        <li>[promised] You said you'd fix my room, and you did.</li>
       </plain>
       <warm>
-        <li>[trigger:heat] I didn't sweat through the sheets. I'm almost embarrassed by how happy that makes me.</li>
+        <li>[trigger:heat] No more sweating through the sheets. I'm almost embarrassed by how happy that makes me.</li>
       </warm>
       <blunt>
-        <li>[trigger:cold] Warm. Good. The kitchen is safe from me.</li>
+        <li>[trigger:cold] The kitchen is safe from me now.</li>
       </blunt>
       <cheerful>
-        <li>I slept like a happy little boomrat!</li>
+        <li>I'm going to sleep like a happy little boomrat!</li>
       </cheerful>
       <gloomy>
         <li>One less thing keeping me awake. There are plenty of others.</li>
@@ -705,21 +705,21 @@
     <expired>
       <plain>
         <li>[trigger:cold] I'll warm a stone in the kitchen and take it to bed, like my grandmother used to.</li>
-        <li>[trigger:heat] I'll sleep with a wet rag over my face, then.</li>
-        <li>[promised] I was promised {SUBJECT}. I got another night exactly like the last one.</li>
+        <li>[trigger:heat] I'll sleep with a wet rag over my face.</li>
+        <li>[promised] I was promised {SUBJECT} and got another night exactly like the last one.</li>
       </plain>
       <warm>
-        <li>It can't stay like this forever. The seasons change, at least. I'll hold on until they do.</li>
-        <li>[forother] I'm sorry, {FOR_nameDef}. I tried. You can have my blanket.</li>
+        <li>The seasons will change, and I'll hold on until they do.</li>
+        <li>[forother] I'm sorry, {FOR_nameDef}, I tried, and you can have my blanket.</li>
       </warm>
       <blunt>
-        <li>[forother] I asked for {FOR_nameDef}, not for me. And you still couldn't be bothered.</li>
+        <li>[forother] I asked for {FOR_nameDef}, not for me, and you still couldn't be bothered.</li>
       </blunt>
       <cheerful>
         <li>Sleeping rough builds character, or so I keep telling myself!</li>
       </cheerful>
       <gloomy>
-        <li>[trigger:cold] One of these nights the cold wins. I'd like it on record that I asked.</li>
+        <li>[trigger:cold] I'd like it on record that I asked, for when the cold gets worse.</li>
       </gloomy>
       <cold>
         <li>Then I'll sleep wherever there's {SUBJECT}, whoever's bed that is.</li>
@@ -727,17 +727,17 @@
     </expired>
     <reminder>
       <plain>
-        <li>Another night like the last one. My room still needs {SUBJECT}.</li>
-        <li>[trigger:cold] Frost on the inside of the wall this morning. Any news on {THING}?</li>
+        <li>Another night like the last one, and my room still needs {SUBJECT}.</li>
+        <li>[trigger:cold] There was frost on the inside of my wall this morning, and still no {THING}.</li>
       </plain>
       <warm>
-        <li>[forother] {FOR_nameDef} still isn't sleeping. I haven't forgotten, even if the council has.</li>
+        <li>[forother] {FOR_nameDef} still isn't sleeping, and I haven't forgotten even if the council has.</li>
       </warm>
       <blunt>
-        <li>[trigger:heat] Still cooking in there. Any day now.</li>
+        <li>[trigger:heat] Still cooking in there, any day now.</li>
       </blunt>
       <gloomy>
-        <li>I've been counting the bad nights. You don't want to know the number.</li>
+        <li>I've been counting the bad nights, and you don't want to know the number.</li>
       </gloomy>
       <cheerful>
         <li>[trigger:cold] I'm up to six shirts at night now! I could bend my arms again if I had {THING}.</li>
@@ -758,75 +758,75 @@
       <warm>
         <li>Meals are when we actually talk to each other. It's hard to talk while crouched in the dirt.</li>
         <li>[child] Can we have a table so we all eat together? I want to sit next to somebody.</li>
-        <li>[evening] I'd love one evening where we all sit down at the same time, at a table, instead of eating over a stockpile.</li>
+        <li>[evening] I'd love one evening where we all sit down at a table at the same time.</li>
       </warm>
       <blunt>
-        <li>[trigger:floor] I've eaten off cleaner rocks in a raider camp. Build a table.</li>
+        <li>[trigger:floor] I've eaten off cleaner rocks in a raider camp.</li>
         <li>My back's bent from eating hunched over a crate. Get {THING} built before it sets that way.</li>
         <li>[trait:Ugly|trait:StaggeringlyUgly] People already don't like looking at me. Watching me eat off the floor isn't helping.</li>
       </blunt>
       <cheerful>
         <li>A table means table manners! I've been practicing mine on the floor.</li>
-        <li>[winter] Imagine a hot meal at a real table on a cold night, all of us elbow to elbow!</li>
+        <li>[winter] On a cold night I want a hot meal at a real table, elbow to elbow with all of you!</li>
       </cheerful>
       <gloomy>
         <li>We eat like scavengers. Hunched, quick, looking over our shoulders.</li>
         <li>[lowmood] I don't even taste the food anymore. Maybe sitting down to it would help.</li>
       </gloomy>
       <cold>
-        <li>[trigger:floor] Eating on the floor makes people sullen, and sullen people start fights. Build a table.</li>
-        <li>Spilled food draws vermin, and vermin draw disease. Build {THING} somewhere with walls.</li>
-        <li>[trait:Psychopath] People who eat together trust each other more. I'd like them to trust me more. Build a table.</li>
+        <li>[trigger:floor] Eating on the floor makes people sullen, and sullen people start fights.</li>
+        <li>Spilled food draws vermin, and vermin draw disease. I'd put {THING} somewhere with walls.</li>
+        <li>[trait:Psychopath] People who eat together trust each other more. I'd like them to trust me more.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>I spilled my soup today, and it went on the table instead of my boots.</li>
-        <li>[petition] All of us who asked for this table ate at it tonight. Someone even brought a candle.</li>
-        <li>[promised] A table, just like you said. We ate at it last night.</li>
+        <li>Next time I spill my soup, it'll land on the table instead of my boots.</li>
+        <li>[petition] All of us who asked for this table are eating at it tonight. I'm bringing a candle.</li>
+        <li>[promised] A table, just like you said.</li>
       </plain>
       <warm>
-        <li>Someone passed me the bread tonight without my asking. That never happened on the floor.</li>
+        <li>Now someone can pass me the bread without my asking. That never happened on the floor.</li>
       </warm>
       <blunt>
-        <li>Chair, table, food. I can finally eat without my knees in my soup.</li>
+        <li>I can eat without my knees in my soup.</li>
       </blunt>
       <cheerful>
-        <li>[evening] First proper supper at our table! I stood up and made a speech about it.</li>
+        <li>[evening] First proper supper at our table tonight! I'm going to make a speech.</li>
       </cheerful>
       <gloomy>
-        <li>We sat together for a whole meal and didn't talk about the dead once.</li>
+        <li>Maybe at a table we'll get through a whole meal without talking about the dead.</li>
       </gloomy>
       <cold>
-        <li>Meals are shorter and tidier now. Good.</li>
+        <li>Meals will be shorter and tidier now.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
-        <li>Back to squatting by the stockpile, then. Mind the squirrels.</li>
-        <li>[promised] We were meant to have a table by now. I'm eating off a crate lid.</li>
-        <li>[rain] Eating in the rain again. The soup gets thinner with every bite.</li>
+        <li>Back to squatting by the stockpile with the squirrels.</li>
+        <li>[promised] We were meant to have a table by now, and I'm eating off a crate lid.</li>
+        <li>[rain] Eating in the rain again, and the soup gets thinner with every bite.</li>
       </plain>
       <warm>
-        <li>We'll sit in a circle on the ground, then. We can still talk.</li>
-        <li>[child] That's all right. I'll sit on the floor next to somebody instead.</li>
+        <li>We'll sit in a circle on the ground and talk anyway.</li>
+        <li>[child] That's all right, I'll sit on the floor next to somebody instead.</li>
       </warm>
       <blunt>
         <li>[trigger:floor] Don't complain when I start eating in your bed.</li>
       </blunt>
       <cheerful>
-        <li>Picnics every day, then! I'll find us a good flat rock.</li>
+        <li>Picnics every day, and I'll find us a good flat rock!</li>
       </cheerful>
       <gloomy>
-        <li>We eat in the dirt, then. We'll be buried in it soon enough.</li>
+        <li>We eat in the dirt, like we've always done.</li>
       </gloomy>
       <cold>
-        <li>Morale will suffer for this. I did warn you.</li>
+        <li>Morale will suffer for this, as I warned you.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>[trigger:floor] Ate on the floor again today. Still thinking about {WISH}.</li>
+        <li>[trigger:floor] Ate on the floor again today, still thinking about "{WISH}".</li>
       </plain>
       <warm>
         <li>[evening] It would be lovely to have supper together at a real table one of these days.</li>
@@ -835,7 +835,7 @@
         <li>[petition] We all signed for a table, and we're all still eating off our knees.</li>
       </blunt>
       <cheerful>
-        <li>Still no table! I've been setting the floor very nicely, though.</li>
+        <li>I've been setting the floor very nicely while we wait for that table!</li>
       </cheerful>
       <gloomy>
         <li>We still eat crouched in corners with our backs to the wall.</li>
@@ -852,7 +852,7 @@
     <request>
       <plain>
         <li>I've played every game we own against myself, and lost most of them. Could we get {THING}?</li>
-        <li>[trigger:cabin] I caught myself staring at a stone wall yesterday afternoon. I don't know how long I'd been at it.</li>
+        <li>[trigger:cabin] I caught myself staring at a wall yesterday afternoon. I don't know how long I'd been at it.</li>
         <li>[rain] It's been raining for days. There's nothing to do inside but listen to it.</li>
         <li>[child] The grown-ups keep telling me to go play. Play with what?</li>
       </plain>
@@ -862,9 +862,9 @@
         <li>[old] I'd love something gentle to do in the evenings. My hands aren't up to much, but my mind is.</li>
       </warm>
       <blunt>
-        <li>I'm so bored I volunteered to clean the kitchen. Build {THING}.</li>
+        <li>I'm so bored I volunteered to clean the kitchen. I'd rather have {THING}.</li>
         <li>[trait:Abrasive] Give me something to do, or I'll start picking fights for fun.</li>
-        <li>[repeat] I asked once already. Build {THING} before I start making my own fun.</li>
+        <li>[repeat] Second time asking for {THING}, and I'm twice as bored.</li>
       </blunt>
       <cheerful>
         <li>I invented a game where you throw pebbles at a bucket, and I'm the only one who plays it. Let's get {THING}!</li>
@@ -877,49 +877,49 @@
       </gloomy>
       <cold>
         <li>[trigger:cabin] Cabin fever comes before a breakdown, and you don't want to see mine.</li>
-        <li>Bored people gossip, and lately they gossip about me. Give them {THING} to keep them busy.</li>
+        <li>Lately the bored ones gossip about me. I'd rather they had {THING} to talk about.</li>
       </cold>
     </request>
     <thanks>
       <plain>
-        <li>I played until my eyes hurt last night, and I'm going back after supper.</li>
-        <li>[trigger:cabin] I didn't realize how close I was to cracking until I had something new to do.</li>
-        <li>[promised] You kept your word, and I've already lost three games on it.</li>
+        <li>I'm going to play until my eyes hurt.</li>
+        <li>[trigger:cabin] I was close to cracking, and now I've got something to do with my hands.</li>
+        <li>[promised] You kept your word, and I'm about to lose a lot of games on it.</li>
       </plain>
       <warm>
-        <li>We were all laughing tonight, even the ones who never do. Thank you.</li>
+        <li>I want to see the quiet ones laughing at it tonight. Thank you.</li>
       </warm>
       <blunt>
-        <li>[trait:Abrasive] Fine. It's fun. Don't make a big thing of it.</li>
+        <li>[trait:Abrasive] It's fun, so don't make a big thing of it.</li>
       </blunt>
       <cheerful>
         <li>[evening] We're having a tournament tonight, and the losers wash the dishes! I'll probably be washing dishes.</li>
       </cheerful>
       <gloomy>
-        <li>I forgot to be miserable for a whole evening.</li>
+        <li>I might forget to be miserable for a whole evening.</li>
       </gloomy>
       <cold>
-        <li>The colony is calmer already. Fewer arguments at meals, I've noticed.</li>
+        <li>It should mean fewer arguments at meals. I'll be counting.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
-        <li>Back to the pebbles and the bucket, then.</li>
-        <li>[promised] I was promised something new to do. I spent the whole time waiting for it instead.</li>
+        <li>The evenings stay as dull as ever.</li>
+        <li>[promised] I was promised something new to do, and waiting for it was all I did.</li>
       </plain>
       <warm>
-        <li>We'll make our own fun, then. Stories cost nothing, and we've got plenty of those.</li>
-        <li>[child] Will somebody play with me instead, then? Just for a bit?</li>
+        <li>We'll make our own fun, and stories cost nothing.</li>
+        <li>[child] Will somebody play with me instead, just for a bit?</li>
       </warm>
       <blunt>
-        <li>I'll go back to throwing rocks at the boomalope, then, and hoping it doesn't explode.</li>
+        <li>I'll go back to throwing rocks at the boomalope and hoping it doesn't explode.</li>
         <li>[trigger:cabin] When I crack, try to look surprised.</li>
       </blunt>
       <cheerful>
-        <li>No problem! I'll find someone to teach my pebble game to.</li>
+        <li>No problem, I'll make up a new game with sticks!</li>
       </cheerful>
       <gloomy>
-        <li>[lowmood] I'll just sit in my room, then, like every other evening.</li>
+        <li>[lowmood] I'll sit in my room like every other evening.</li>
       </gloomy>
       <cold>
         <li>Then expect someone to snap before the month is out.</li>
@@ -927,20 +927,20 @@
     </expired>
     <reminder>
       <plain>
-        <li>[trigger:cabin] Still nothing new to do. I've started arguing with the furniture.</li>
-        <li>[winter] It's still winter, and there's still nothing to do. About {WISH}...</li>
+        <li>[trigger:cabin] Still nothing new to do, so I've started arguing with the furniture.</li>
+        <li>[winter] It's still winter, and I'm still waiting on "{WISH}".</li>
       </plain>
       <warm>
-        <li>[petition] A lot of us are hoping for {WISH}. Just so the council knows it isn't only me.</li>
+        <li>[petition] A lot of us are hoping for "{WISH}", not only me.</li>
       </warm>
       <blunt>
-        <li>I'm still bored, and it's making me dangerous. You've been warned.</li>
+        <li>I'm still bored, and it's making me dangerous.</li>
       </blunt>
       <cheerful>
         <li>My pebble game has seventeen rules now! Please build {THING} before I add more.</li>
       </cheerful>
       <gloomy>
-        <li>[night] Another evening of staring at the wall. I know it better than some of the people here.</li>
+        <li>[night] Another evening of staring at the wall, which I know better than some of the people here.</li>
       </gloomy>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
@@ -950,8 +950,8 @@
     <wish>Council_Wish_Greenery</wish>
     <request>
       <plain>
-        <li>I'd water it every morning before work. It would be the best-kept plant on the rim.</li>
-        <li>[skill:Plants] I spend all day in the fields and come home to bare stone. I'd like to bring some of the fields inside.</li>
+        <li>I'd keep it alive through anything, the best-kept plant for miles.</li>
+        <li>[skill:Plants] I spend all day in the fields and come home to bare walls. I'd like to bring some of the fields inside.</li>
         <li>[rain] The rain makes everything outside grow, and my room stays gray. One green thing, please.</li>
         <li>[repeat] My room is still the grayest place I go all day. Have you thought any more about the plant?</li>
       </plain>
@@ -961,8 +961,8 @@
         <li>[grieving] Someone I lost loved flowers. I want to keep one growing, for them.</li>
       </warm>
       <blunt>
-        <li>This colony lets people wear hats made of human leather. I'm asking for a flower.</li>
-        <li>[trait:Abrasive] Get me {THING}. Plants don't talk back, which is more than I can say for anyone here.</li>
+        <li>Plenty of uglier things get built around here. I'm asking for a flower.</li>
+        <li>[trait:Abrasive] I want {THING}, because plants don't talk back.</li>
         <li>[snow] My fields are buried in snow and I've got nothing to tend. Get me {THING}, quick.</li>
       </blunt>
       <cheerful>
@@ -981,9 +981,9 @@
     </request>
     <thanks>
       <plain>
-        <li>I've watered it twice already. I know that's too much. I couldn't help it.</li>
-        <li>[morning] The first thing I saw this morning was green and growing.</li>
-        <li>[promised] It's planted and watered, just like you said.</li>
+        <li>I'll overwater it, I know I will.</li>
+        <li>[morning] Tomorrow the first thing I see will be green.</li>
+        <li>[promised] You said I'd have it, and here it is by my bed.</li>
       </plain>
       <warm>
         <li>I'll keep it alive, I promise. I've already moved my bed so it gets the window.</li>
@@ -993,26 +993,26 @@
       </blunt>
       <cheerful>
         <li>I've put it by the window where it gets the morning sun!</li>
-        <li>[spring] It's sprouting already! The leaf is tiny, but it's there.</li>
+        <li>[spring] I'm going to plant it today, and it'll sprout in no time!</li>
       </cheerful>
       <gloomy>
-        <li>It's leaning toward the light already. I keep turning it around, and it keeps leaning back.</li>
+        <li>I'll probably kill it, but I'll try.</li>
       </gloomy>
       <cold>
-        <li>It's thriving. I've made sure of that.</li>
+        <li>It will thrive. I'll make sure of that.</li>
       </cold>
     </thanks>
     <expired>
       <plain>
         <li>No plant. I'll keep some soil in a bowl and pretend.</li>
-        <li>[promised] I'd already picked out the seeds. Never mind.</li>
-        <li>[skill:Plants] I'll spend more time in the fields, then. At least those plants are mine to look after.</li>
+        <li>[promised] I'd already picked out the seeds, but never mind.</li>
+        <li>[skill:Plants] I'll spend more time in the fields, where the plants are mine to look after.</li>
       </plain>
       <warm>
         <li>I'll press a few flowers between two stones and keep those by the bed instead.</li>
       </warm>
       <blunt>
-        <li>I'll dig one up from the field myself. Don't tell anyone.</li>
+        <li>I'll dig one up from the field myself, so don't tell anyone.</li>
       </blunt>
       <cheerful>
         <li>I'll draw a plant on the wall instead! I'm no artist, but it'll be green.</li>
@@ -1021,12 +1021,12 @@
         <li>Of course. Nothing grows in here.</li>
       </gloomy>
       <cold>
-        <li>Disappointing. I had the spot measured.</li>
+        <li>I had the spot measured and everything.</li>
       </cold>
     </expired>
     <reminder>
       <plain>
-        <li>[skill:Plants] I keep tracking soil into my room anyway. Might as well be in a pot.</li>
+        <li>[skill:Plants] I keep tracking soil into my room anyway, so it might as well be in a pot.</li>
       </plain>
       <warm>
         <li>If anyone has a moment, I'm still hoping for something green by my bed.</li>
@@ -1038,7 +1038,7 @@
         <li>[winter] Everything outside is dead, and there's still nothing green in my room.</li>
       </gloomy>
       <blunt>
-        <li>Still no plant. I could have it growing in a day if someone built the pot.</li>
+        <li>I could have it growing in a day if someone built the pot.</li>
       </blunt>
     </reminder>
   </ColonyCouncil.FlavorExtensionDef>
