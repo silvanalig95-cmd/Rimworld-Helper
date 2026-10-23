@@ -32,7 +32,7 @@
       </blunt>
       <gloomy>
         <li>[ransom] {PAWN_nameDef} has taken silver for {LOST}, and doesn't feel any lighter for it. But the oath is laid down.</li>
-        <li>[apology] The people of {FACTION} are sorry for {LOST}. {PAWN_nameDef} believes them. {LOST} is still gone.</li>
+        <li>[apology] The people of {FACTION} are sorry for {LOST}. {PAWN_nameDef} believes them, and it doesn't bring {LOST} back.</li>
       </gloomy>
       <cold>
         <li>[ransom] {PAWN_nameDef} has accepted fair payment from {FACTION} for {LOST}. The account is closed.</li>
@@ -66,7 +66,7 @@
     <lines>
       <plain>
         <li>[ransom] They paid for {LOST}. I took it. I keep looking at the purse as if it ought to look different.</li>
-        <li>[ransom] I've laid down the oath against {FACTION}, and the silver's been counted. {LOST} would have told me to buy something warm with it.</li>
+        <li>[ransom] I've laid down the oath against {FACTION}, and the silver's been counted. I still don't know what to do with it.</li>
         <li>[apology] Someone of {FACTION} looked me in the eye and said they were sorry for {LOST}. I didn't know I'd been waiting for that until it came.</li>
         <li>[apology] I accepted {FACTION}'s apology for {LOST} today. I think I might sleep tonight.</li>
       </plain>

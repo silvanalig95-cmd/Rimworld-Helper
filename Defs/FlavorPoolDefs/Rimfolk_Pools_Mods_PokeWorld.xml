@@ -235,7 +235,7 @@
       </plain>
       <warm><li>Whatever else goes wrong here, {X_nameDef} is glad to see me. Every single day.</li></warm>
       <blunt><li>Good day. Spent the end of it with my Pokémon.</li></blunt>
-      <cheerful><li>Guess who climbed into my lap again? {X_nameDef}, of course!</li></cheerful>
+      <cheerful><li>And who climbed into my lap again but {X_nameDef}!</li></cheerful>
       <gloomy><li>On the bad days it's my Pokémon that keeps me going. I don't say that out loud.</li></gloomy>
       <cold><li>Time with my Pokémon today. It keeps it calm, and me.</li></cold>
     </lines>

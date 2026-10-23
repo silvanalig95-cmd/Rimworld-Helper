@@ -22,12 +22,12 @@
         <li>{PAWN_nameDef} drew {OTHER_nameDef} aside and talked low for a long while.</li>
         <li>{PAWN_nameDef} waited until they were alone, then told {OTHER_nameDef} what {PAWN_pronoun} had kept back.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} something in confidence, and {OTHER_nameDef} went very quiet.</li>
-        <li>{PAWN_nameDef} and {OTHER_nameDef} talked in whispers, and stopped whenever anyone came near.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} kept their heads together, and stopped whenever anyone came near.</li>
         <li>{PAWN_nameDef} trusted {OTHER_nameDef} with something very few people know.</li>
         <li>{PAWN_nameDef} found {OTHER_nameDef} alone and told {OTHER_objective} a secret.</li>
         <li>[goodsecret] {PAWN_nameDef} told {OTHER_nameDef} a secret that made {OTHER_objective} laugh out loud.</li>
         <li>[goodsecret] {PAWN_nameDef} shared a happy secret with {OTHER_nameDef}, who promised not to tell a soul.</li>
-        <li>[goodsecret] {PAWN_nameDef} whispered something to {OTHER_nameDef}, and they both laughed and wouldn't explain.</li>
+        <li>[goodsecret] {PAWN_nameDef} leaned over and told {OTHER_nameDef} something, and they both laughed and wouldn't explain.</li>
       </plain>
       <warm>
         <li>{PAWN_nameDef} told {OTHER_nameDef} something hard to say, and {OTHER_nameDef} simply took {PAWN_possessive} hand.</li>
