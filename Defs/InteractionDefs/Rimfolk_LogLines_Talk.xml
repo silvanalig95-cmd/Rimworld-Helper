@@ -18,7 +18,7 @@
         <li>r_logentry->[INITIATOR_nameDef] described a dream in which [strange], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] had heard stranger.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt [strange], and that it had all seemed perfectly normal at the time.</li>
         <li>r_logentry->[INITIATOR_nameDef] tried to tell [RECIPIENT_nameDef] about a dream in which [strange], and lost the thread halfway through.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] how [INITIATOR_pronoun] had slept, and heard about a dream in which [strange].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] noticed [INITIATOR_nameDef] was miles away, and heard about a dream in which [strange].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded odd dreams, and the oddest was [INITIATOR_nameDef]'s, in which [strange].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream in which [strange], and [RECIPIENT_nameDef] tried to work out who in the colony each part stood for.</li>
         <li>r_logentry->[INITIATOR_nameDef] lowered [INITIATOR_possessive] voice to tell [RECIPIENT_nameDef] about a dream in which [strange].</li>
@@ -41,19 +41,19 @@
     <interaction>Council_DreamTalk_Sweet</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet], and said the day had felt lighter since.</li>
+        <li>r_logentry->A dream of [sweet] had made the day feel lighter, [INITIATOR_nameDef] told [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] described a dream of [sweet] to [RECIPIENT_nameDef] slowly, as if to make it last.</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] why [INITIATOR_pronoun] was humming, and heard about a dream of [sweet].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had dreamt of [sweet], and wished [INITIATOR_pronoun] could have stayed there.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a dream of [sweet] had made up for a short night.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] heard [INITIATOR_nameDef]'s dream of [sweet] and said they ought to build some of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] woke still half inside a dream of [sweet], and told [RECIPIENT_nameDef] before it faded.</li>
+        <li>r_logentry->After hearing [INITIATOR_nameDef]'s dream of [sweet], [RECIPIENT_nameDef] said they ought to build some of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted [RECIPIENT_nameDef] to hear a dream of [sweet] before [INITIATOR_pronoun] forgot it.</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] who else had been in [INITIATOR_possessive] dream of [sweet].</li>
-        <li>r_logentry->[INITIATOR_nameDef] described a dream of [sweet], and [RECIPIENT_nameDef] smiled the whole way through it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a dream of [sweet], and [RECIPIENT_nameDef] wanted to know what came next.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef], somewhat embarrassed, how happy a dream of [sweet] had made [INITIATOR_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet] in such detail that [RECIPIENT_nameDef] said [RECIPIENT_pronoun] could almost see it.</li>
+        <li>r_logentry->[INITIATOR_nameDef]'s dream of [sweet] came out in such detail that [RECIPIENT_nameDef] said [RECIPIENT_pronoun] could almost see it.</li>
         <li>r_logentry->[INITIATOR_nameDef] couldn't get a dream of [sweet] out of [INITIATOR_possessive] head, and shared it with [RECIPIENT_nameDef].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [sweet], and they spent a while adding to it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] spent a while adding to [INITIATOR_nameDef]'s dream of [sweet].</li>
         <li>r_logentry->[INITIATOR_nameDef] described a dream of [sweet] to [RECIPIENT_nameDef], who said [RECIPIENT_pronoun] would try to dream the same one tonight.</li>
         <li>sweet->a slow morning and fresh bread</li>
         <li>sweet->the first warm day of spring</li>
@@ -70,10 +70,10 @@
     <interaction>Council_DreamTalk_Nightmare</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [dread], and [RECIPIENT_nameDef] heard [INITIATOR_objective] out without interrupting.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [dread], and [RECIPIENT_nameDef] asked whether it was the same one as before.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that a dream of [dread] had stayed with [INITIATOR_objective] since waking.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [dread], quickly, as if to get it out of the way.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] what was wrong, and heard about a dream of [dread].</li>
+        <li>r_logentry->Quickly, as if to get it out of the way, [INITIATOR_nameDef] told [RECIPIENT_nameDef] about a dream of [dread].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] what was wrong, and [INITIATOR_nameDef] told [RECIPIENT_objective] about a dream of [dread].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a dream of [dread] had felt completely real.</li>
         <li>r_logentry->[INITIATOR_nameDef] described a nightmare about [dread], and [RECIPIENT_nameDef] pointed out how unlike it the colony really was.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to keep [INITIATOR_objective] company for a while after a dream of [dread].</li>
@@ -81,7 +81,7 @@
         <li>r_logentry->[INITIATOR_nameDef] went pale all over again telling [RECIPIENT_nameDef] about a dream of [dread].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether a dream of [dread] meant anything, and [RECIPIENT_nameDef] said firmly that it didn't.</li>
         <li>r_logentry->[INITIATOR_nameDef] couldn't finish telling [RECIPIENT_nameDef] about a dream of [dread], and [RECIPIENT_nameDef] didn't make [INITIATOR_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over [INITIATOR_nameDef]'s dream of [dread] until it seemed smaller.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over [INITIATOR_nameDef]'s dream of [dread], and what might have brought it on.</li>
         <li>dread->claws scratching at the door all night</li>
         <li>dread->footsteps on the roof</li>
         <li>dread->fighting off a raid alone</li>
@@ -101,12 +101,12 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] did with [RECIPIENT_possessive] free hours, because [INITIATOR_pronoun] had run out of ideas.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] planned [fun] down to the last detail, in case the council said yes.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people who worked this hard had earned [fun].</li>
-        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] the rules of a game [INITIATOR_pronoun] played as a child.</li>
-        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that every evening here ended the same way.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to back [INITIATOR_objective] up when [INITIATOR_pronoun] asked the council for [fun].</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what people did for fun where [RECIPIENT_pronoun] came from.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that the colony knew how to work and nothing else.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud to [RECIPIENT_nameDef] whether the council would ever agree to [fun].</li>
         <li>r_logentry->[INITIATOR_nameDef] described [fun] to [RECIPIENT_nameDef] and sighed at the end of it.</li>
         <li>fun->a sing-along, in tune or not</li>
-        <li>fun->a day by the river with nothing to carry</li>
+        <li>fun->a dance, with someone who could play</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -121,8 +121,8 @@
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the council's own members had to put up with [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] how good it would feel to be done with [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [gripe] was no way to treat people who worked as hard as they did.</li>
-        <li>r_logentry->[INITIATOR_nameDef] made light of [gripe] to [RECIPIENT_nameDef], who could tell it wore on [INITIATOR_objective].</li>
-        <li>r_logentry->[INITIATOR_nameDef] tried to count for [RECIPIENT_nameDef] the days [INITIATOR_pronoun] had spent with [gripe], and lost count.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone else minded [gripe] as much as [INITIATOR_pronoun] did.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] exactly how many days [gripe] had been going on.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -135,7 +135,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] would give a lot for [food], after [gripe].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [food] would cheer the place up.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] when the colony had last had [food].</li>
-        <li>r_logentry->[INITIATOR_nameDef] described [food] to [RECIPIENT_nameDef], from the first bite to the last.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether anyone in the colony knew how to make [food].</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -161,7 +161,7 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would settle for [dream], nothing grander.</li>
         <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] a visit to [INITIATOR_possessive] own room, [someday].</li>
         <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] about [gripe] and asked whether [RECIPIENT_pronoun] had a spare blanket to hang across a corner.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] would put in a room of [RECIPIENT_possessive] own, then told [RECIPIENT_objective] what [INITIATOR_pronoun] would.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the first thing [INITIATOR_pronoun] would put in a room of [INITIATOR_possessive] own.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -172,7 +172,7 @@
     <rulePack>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_possessive] hands itched to get back to the work [INITIATOR_pronoun] was good at.</li>
-        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the workbench [INITIATOR_pronoun] would build if the council gave [INITIATOR_objective] half a chance.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] could make if the council gave [INITIATOR_objective] half a chance.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the council knew how much more [INITIATOR_pronoun] could do in the right place.</li>
       </rulesStrings>
     </rulePack>
@@ -251,8 +251,8 @@
     <pack>Council_Sent_Story_InitiatorWon</pack>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef]'s story was the one the listeners kept repeating.</li>
-        <li>sent->[INITIATOR_nameDef] won when a listener asked whether the story was true, and [INITIATOR_pronoun] wouldn't say.</li>
+        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef] said [RECIPIENT_possessive] own story had the better ending.</li>
+        <li>sent->[INITIATOR_nameDef] won, and wouldn't say whether the story was true.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -262,8 +262,8 @@
     <pack>Council_Sent_Story_RecipientWon</pack>
     <rulePack>
       <rulesStrings>
-        <li>sent->[RECIPIENT_nameDef] won with a sad story that left the listeners wiping their eyes.</li>
-        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] asked to hear it again the next night.</li>
+        <li>sent->[RECIPIENT_nameDef] won with a sad story that left [INITIATOR_nameDef] wiping [INITIATOR_possessive] eyes.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] asked to hear it again some time.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -273,7 +273,7 @@
     <pack>Council_Sent_Craft_InitiatorWon</pack>
     <rulePack>
       <rulesStrings>
-        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef]'s was the one people wanted to keep.</li>
+        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef] still liked [RECIPIENT_possessive] own better.</li>
         <li>sent->[INITIATOR_nameDef] won and gave the winning piece to [RECIPIENT_nameDef] anyway.</li>
       </rulesStrings>
     </rulePack>
@@ -296,7 +296,7 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[INITIATOR_nameDef]'s came out ahead by a hair.</li>
-        <li>sent->[INITIATOR_nameDef] won, and saved the seeds.</li>
+        <li>sent->[INITIATOR_nameDef] won, and said [INITIATOR_pronoun] would save the seeds.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -306,7 +306,7 @@
     <pack>Council_Sent_Vegetable_RecipientWon</pack>
     <rulePack>
       <rulesStrings>
-        <li>sent->[RECIPIENT_nameDef]'s won, and [INITIATOR_nameDef] asked for a look at the soil.</li>
+        <li>sent->[RECIPIENT_nameDef]'s won, and [INITIATOR_nameDef] asked what [RECIPIENT_pronoun] put in the soil.</li>
         <li>sent->[RECIPIENT_nameDef] won, and offered to share the prize.</li>
       </rulesStrings>
     </rulePack>
