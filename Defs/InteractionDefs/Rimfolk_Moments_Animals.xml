@@ -16,10 +16,10 @@
     <recipientThought>Council_MomentA_HerdTips</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] leaned on the fence and talked about the herd until the light went.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [trick], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would try it in the morning.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued, cheerfully, about which of the animals was the cleverest.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about a lame one in the pens, and they went to look at it together.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over the colony's animals one by one.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [trick], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would try it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued cheerfully about which animal was the cleverest.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] would do for an animal that had gone off its feed.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories of the worst animal either of them had ever handled.</li>
         <li>trick->how to come up on a nervous animal from the side, talking all the while</li>
         <li>trick->the old trick with a handful of salt and a lot of patience</li>
@@ -49,9 +49,9 @@
     <recipientThought>Council_MomentA_PetStories</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared what their animals had been up to this week, and each privately decided theirs was cleverer.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how [INITIATOR_possessive] animal had learned to open the storeroom door, and [RECIPIENT_nameDef] laughed until [RECIPIENT_pronoun] had to sit down.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat on the step while their animals sniffed each other over, and agreed they'd get along.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared what their animals had been up to lately.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the latest thing [INITIATOR_possessive] animal had done, and heard one about [RECIPIENT_possessive] own in return.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_possessive] animal ever seemed to know how [RECIPIENT_pronoun] was feeling.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] taught [RECIPIENT_possessive] animal to come to a whistle.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -75,11 +75,11 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] [question], and listened to the whole answer.</li>
-        <li>r_logentry->[INITIATOR_nameDef] followed [RECIPIENT_nameDef] to the pens and asked a question about every single animal.</li>
-        <li>r_logentry->[INITIATOR_nameDef] wanted to know from [RECIPIENT_nameDef] whether animals have names for us. [RECIPIENT_nameDef] said probably, and none of them flattering.</li>
-        <li>question->why the goats climb on everything</li>
-        <li>question->where the young ones come from, and got a careful answer</li>
-        <li>question->whether the animals know they belong to us</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] one question about animals after another, and [RECIPIENT_nameDef] answered every one.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know from [RECIPIENT_nameDef] whether animals have names for people.</li>
+        <li>question->why goats climb on everything</li>
+        <li>question->where baby animals come from</li>
+        <li>question->whether animals know who they belong to</li>
         <li>question->how you can tell when an animal is happy</li>
       </rulesStrings>
     </logRulesInitiator>

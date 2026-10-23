@@ -18,12 +18,12 @@
         <li>trouble->the state of the stores</li>
         <li>trouble->somebody else's temper</li>
         <li>saying->"rain today, bread tomorrow"</li>
-        <li>saying->"the best ploughman still turns a crooked furrow"</li>
-        <li>saying->"a slow ox ploughs deep"</li>
+        <li>saying->"the best plowman still turns a crooked furrow"</li>
+        <li>saying->"a slow ox plows deep"</li>
         <li>saying->"you can't hurry the harvest"</li>
-        <li>saying->"every cloud has a silver lining", which helped less</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] an old saying about patience. [RECIPIENT_nameDef] thought about it longer than [RECIPIENT_pronoun] wanted to.</li>
-        <li>r_logentry->[INITIATOR_nameDef] had a proverb for [RECIPIENT_nameDef]'s problem. It was annoyingly to the point.</li>
+        <li>saying->"no storm lasts all year"</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] an old saying about patience, and [RECIPIENT_nameDef] turned it over for a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] found an old proverb to fit [RECIPIENT_nameDef]'s trouble.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -44,13 +44,13 @@
     <recipientThought>Council_Friction_LightMocked</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the candle really had to burn all night. [RECIPIENT_nameDef] said yes.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the light really had to burn all night, and [RECIPIENT_nameDef] said it did.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_possessive] night light had kept [INITIATOR_objective] awake [when].</li>
         <li>when->until the small hours</li>
         <li>when->through two whole dreams</li>
         <li>when->most of the night</li>
-        <li>r_logentry->[INITIATOR_nameDef] blew out [RECIPIENT_nameDef]'s candle in the night, and [RECIPIENT_nameDef] lit it again, and they had words about it at breakfast.</li>
-        <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] a blindfold, for [INITIATOR_objective]self, and made a point of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] had words with [RECIPIENT_nameDef] over a light blown out in the night and lit again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], pointedly, whether [RECIPIENT_pronoun] had a spare blindfold for [INITIATOR_objective].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -68,17 +68,17 @@
 
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_WorrierChecks</defName>
-    <label>checked it together</label>
+    <label>talked through a worry</label>
     <initiatorThought>Council_SocLv_WorryEased</initiatorThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to check [thing] with [INITIATOR_objective], just once more. [RECIPIENT_nameDef] did, patiently.</li>
-        <li>thing->the bolts on the gate</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [thing], and [RECIPIENT_nameDef] patiently went through it with [INITIATOR_objective] once more.</li>
+        <li>thing->anyone had checked the doors</li>
         <li>thing->the fire was really out</li>
-        <li>thing->how much food was left</li>
-        <li>thing->the roof over the storeroom</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] everything that could go wrong tomorrow. [RECIPIENT_nameDef] told [INITIATOR_objective] what they'd do about each one.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] sat with [INITIATOR_nameDef] until the worrying ran out of things to worry about.</li>
+        <li>thing->there was enough food put by</li>
+        <li>thing->the roof would hold in a storm</li>
+        <li>r_logentry->[INITIATOR_nameDef] listed everything that could go wrong tomorrow, and [RECIPIENT_nameDef] had an answer for each one.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] heard [INITIATOR_nameDef] out until [INITIATOR_possessive] worries began to sound smaller.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -99,11 +99,11 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [stars], and [RECIPIENT_nameDef] couldn't see it until suddenly [RECIPIENT_pronoun] could.</li>
-        <li>stars->the shape [INITIATOR_pronoun] calls the Plough</li>
+        <li>stars->the shape [INITIATOR_pronoun] calls the Plow</li>
         <li>stars->the star that never moves</li>
-        <li>stars->a red star [INITIATOR_pronoun] says is a whole other sun</li>
+        <li>stars->a red star [INITIATOR_pronoun] says brings rain</li>
         <li>stars->the long smear of light across the sky</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] lay on their backs and [INITIATOR_nameDef] named the stars. Some of the names were made up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] named the stars for [RECIPIENT_nameDef], one after another.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how to find the way home by the stars, if [RECIPIENT_pronoun] ever needed to.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -147,16 +147,16 @@
 
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_CountedTogether</defName>
-    <label>counted something</label>
+    <label>counted out loud</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] counted the steps to the well out loud, and [RECIPIENT_nameDef] found [RECIPIENT_objective]self counting along.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how many [things] there were in the colony. [RECIPIENT_nameDef] hadn't asked.</li>
-        <li>things->fence posts</li>
-        <li>things->roof beams in the hall</li>
-        <li>things->chickens, as of this morning</li>
-        <li>things->stones in the path</li>
-        <li>r_logentry->[RECIPIENT_nameDef] bet [INITIATOR_nameDef] couldn't say how many windows the colony has. [INITIATOR_nameDef] could, and did.</li>
+        <li>r_logentry->[INITIATOR_nameDef] counted out loud while they talked, and [RECIPIENT_nameDef] found [RECIPIENT_objective]self counting along.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef], unasked, how many [things] there were in the colony.</li>
+        <li>things->spoons</li>
+        <li>things->beds</li>
+        <li>things->pairs of boots</li>
+        <li>things->bowls</li>
+        <li>r_logentry->[RECIPIENT_nameDef] tested [INITIATOR_nameDef] on how many doors the colony has, and [INITIATOR_nameDef] knew without stopping to think.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>

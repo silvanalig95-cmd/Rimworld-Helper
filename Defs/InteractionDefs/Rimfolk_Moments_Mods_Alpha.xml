@@ -18,16 +18,16 @@
     <recipientThought>Council_Moment_TalkOfTheDeep</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what the sea floor looks like by the light of [INITIATOR_possessive] own eyes: [deep].</li>
-        <li>r_logentry->[INITIATOR_nameDef] held [INITIATOR_possessive] breath for [RECIPIENT_nameDef] while [RECIPIENT_pronoun] counted, and [RECIPIENT_nameDef] gave up counting first.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether [INITIATOR_pronoun] missed the water. [INITIATOR_nameDef] said [missed].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the sea floor was [deep].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked how long [INITIATOR_nameDef] could stay underwater, and the answer was longer than [RECIPIENT_pronoun] had guessed.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether [INITIATOR_pronoun] missed the water, and [INITIATOR_nameDef] said [missed].</li>
         <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] the webbing between [INITIATOR_possessive] fingers and let [RECIPIENT_objective] look as long as [RECIPIENT_pronoun] liked.</li>
         <li>deep->quiet, cold and full of things that glow</li>
         <li>deep->like a forest at night, only slower</li>
         <li>deep->dark, mostly, and the dark is not empty</li>
-        <li>missed->every morning, and most of all on dry days</li>
-        <li>missed->less since the colony dug its pond</li>
-        <li>missed->the way a person misses a sound they grew up with</li>
+        <li>missed->yes, every morning, and most of all on dry days</li>
+        <li>missed->less than [INITIATOR_pronoun] had feared</li>
+        <li>missed->yes, the way anyone misses the sound of home</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -52,9 +52,9 @@
     <recipientThought>Council_Moment_WarmedHands</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[RECIPIENT_nameDef] came in blue with cold, and [INITIATOR_nameDef], who runs hotter than any hearth, took [RECIPIENT_possessive] hands in [INITIATOR_possessive] until the feeling came back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] sit close on a freezing evening. [RECIPIENT_nameDef] said it was like sitting next to a [warm].</li>
-        <li>r_logentry->[INITIATOR_nameDef] breathed on [RECIPIENT_nameDef]'s frozen fingers, carefully, and the frost went off them in a puff of steam.</li>
+        <li>r_logentry->[INITIATOR_nameDef], who runs hotter than any hearth, took [RECIPIENT_nameDef]'s cold hands in [INITIATOR_possessive] own until the feeling came back.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that standing near [INITIATOR_objective] on a cold day was like standing next to a [warm].</li>
+        <li>r_logentry->[INITIATOR_nameDef] breathed warm air over [RECIPIENT_nameDef]'s stiff fingers until [RECIPIENT_nameDef] could bend them again.</li>
         <li>warm->kettle that had learned to talk</li>
         <li>warm->banked fire with opinions</li>
         <li>warm->summer afternoon wearing a coat</li>
@@ -83,10 +83,10 @@
     <recipientThought>Council_Moment_ReadTheStone</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] pressed [INITIATOR_possessive] palm to the rock face and told [RECIPIENT_nameDef] where the seam ran, [stone].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over a lump of ore. [INITIATOR_nameDef] licked it, which settled the matter.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] how to hear a fault in the rock by tapping, and [RECIPIENT_nameDef] tapped the whole wall twice to be sure.</li>
-        <li>stone->and [RECIPIENT_nameDef] marked it in chalk</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] where [INITIATOR_pronoun] thought the nearest seam ran, [stone].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over how to tell good ore from bad, and [INITIATOR_nameDef] said the taste never lies.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] how to hear a fault in the rock by tapping it.</li>
+        <li>stone->and [RECIPIENT_nameDef] promised to dig there</li>
         <li>stone->three hands to the left of where everyone else would dig</li>
         <li>stone->deep and thin, like a vein in a wrist</li>
       </rulesStrings>
@@ -115,11 +115,11 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to hold still and drew [RECIPIENT_objective] on the back of [surface] in a dozen quick lines.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_possessive] face has [face], and asked to draw it before the light went.</li>
-        <li>r_logentry->[INITIATOR_nameDef] sketched [RECIPIENT_nameDef] at work, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] had never looked so busy in [RECIPIENT_possessive] life.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_possessive] face had [face], and asked whether [INITIATOR_pronoun] might draw it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sketched [RECIPIENT_nameDef] while they talked, and [RECIPIENT_nameDef] asked to see it.</li>
         <li>surface->a feed sack</li>
         <li>surface->a scrap of hide</li>
-        <li>surface->the duty roster</li>
+        <li>surface->a scrap of bark</li>
         <li>face->a very good nose for drawing</li>
         <li>face->more weather in it than most</li>
         <li>face->the kind of frown painters wait years for</li>
@@ -141,14 +141,14 @@
   <!-- ===================== Alpha Memes: a blessing with water ===================== -->
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_WaterBlessing</defName>
-    <label>a blessing with water</label>
+    <label>gave a water blessing</label>
     <symbol>ColonyCouncil/Symbols/Heart</symbol>
     <recipientThought>Council_Moment_WaterBlessed</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] wet [INITIATOR_possessive] fingers and touched [RECIPIENT_nameDef]'s brow, the way [INITIATOR_possessive] faith teaches, and wished [RECIPIENT_objective] [wish].</li>
-        <li>r_logentry->[INITIATOR_nameDef] poured clean water over [RECIPIENT_nameDef]'s hands at the end of a long day and said the old words over them.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that every river they will ever cross remembers them, and [RECIPIENT_nameDef] found that oddly comforting.</li>
+        <li>r_logentry->[INITIATOR_nameDef] touched [RECIPIENT_nameDef]'s brow with wet fingers, the way [INITIATOR_possessive] faith teaches, and wished [RECIPIENT_objective] [wish].</li>
+        <li>r_logentry->[INITIATOR_nameDef] said the old water-words over [RECIPIENT_nameDef], asking that [RECIPIENT_pronoun] never go thirsty.</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] that every river [RECIPIENT_pronoun] crossed would remember [RECIPIENT_objective].</li>
         <li>wish->a clear head and a long life</li>
         <li>wish->rain when it's needed and none when it isn't</li>
         <li>wish->the patience of deep water</li>
@@ -176,14 +176,14 @@
     <recipientThought>Council_Moment_RanchTalk</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a herd is only as good as the one who counts it at dusk, and then counted the colony's animals twice to prove it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] how to throw a loop over a post from ten paces, and [RECIPIENT_nameDef] caught [catch].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] leaned on the fence and talked about [talk] until the light went.</li>
-        <li>catch->the post, eventually</li>
-        <li>catch->[INITIATOR_nameDef], twice</li>
-        <li>catch->nothing, and laughed about it</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] counted the animals every evening, as a good hand should.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the trick to throwing a loop over a post from ten paces, and [RECIPIENT_nameDef] said [catch].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked for a good while about [talk].</li>
+        <li>catch->[RECIPIENT_pronoun] would practice</li>
+        <li>catch->[INITIATOR_nameDef] made it sound easy</li>
+        <li>catch->it was harder than it looked</li>
         <li>talk->good grazing and bad weather</li>
-        <li>talk->which animal in the pen was the cleverest</li>
+        <li>talk->the best animals for rough country</li>
         <li>talk->the open range, and how far it goes</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -204,14 +204,14 @@
   <!-- ===================== Alpha Memes: a monastic's silence ===================== -->
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_MonasticSilence</defName>
-    <label>sat in silence</label>
+    <label>shared a silence</label>
     <symbol>ColonyCouncil/Symbols/Heart</symbol>
     <recipientThought>Council_Moment_SharedSilence</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] saw how troubled [RECIPIENT_nameDef] was and asked [RECIPIENT_objective] to sit, and they sat together without a word until [RECIPIENT_possessive] breathing slowed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] saw how troubled [RECIPIENT_nameDef] was and stayed beside [RECIPIENT_objective] without a word until [RECIPIENT_possessive] breathing slowed.</li>
         <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] to count ten breaths and start again, and said that was all there was to it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] said nothing at all to [RECIPIENT_nameDef] for a quarter of an hour, and [RECIPIENT_nameDef] said afterwards it was the best talk [RECIPIENT_pronoun] had had in weeks.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] talk [RECIPIENT_possessive] fears out and offered no advice at all.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
