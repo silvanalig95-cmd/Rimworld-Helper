@@ -9,21 +9,21 @@
 
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_ConvalescentWalk</defName>
-    <label>walked slowly with a convalescent</label>
+    <label>offered a convalescent an arm</label>
     <symbol>ColonyCouncil/Symbols/Heart</symbol>
     <recipientThought>Council_Moment_SlowWalk</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] walked a slow circuit of the yard with [RECIPIENT_nameDef], who is still getting [RECIPIENT_possessive] strength back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] an arm on the stairs and pretended it was for [INITIATOR_possessive] own sake.</li>
-        <li>r_logentry->[INITIATOR_nameDef] stopped to rest whenever [RECIPIENT_nameDef] did, and said it was the view.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_possessive] legs were holding up, and said they could take a turn round the yard together whenever [RECIPIENT_pronoun] liked.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] an arm on the stairs and claimed it was for the sake of [INITIATOR_possessive] own knees.</li>
+        <li>r_logentry->[INITIATOR_nameDef] assured [RECIPIENT_nameDef] there was no hurry, and that [INITIATOR_pronoun] liked a slow walk better anyway.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [RECIPIENT_pronoun] was walking better than yesterday, and meant it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] a stick to lean on and cut it to the right height.</li>
-        <li>r_logentry->[INITIATOR_nameDef] counted [RECIPIENT_nameDef]'s steps along the wall with [RECIPIENT_objective], a few more than the day before.</li>
-        <li>r_logentry->[INITIATOR_nameDef] took [RECIPIENT_nameDef] out to sit in the air for a while, and they talked about nothing much.</li>
-        <li>r_logentry->[INITIATOR_nameDef] walked [RECIPIENT_nameDef] as far as the fields and back, and called it a good day's work.</li>
-        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] set the pace on their walk, and it was slow, and that was fine.</li>
-        <li>r_logentry->[INITIATOR_nameDef] walked beside [RECIPIENT_nameDef] to the dining room so [RECIPIENT_pronoun] could eat with the others again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to cut [RECIPIENT_nameDef] a walking stick and asked how tall [RECIPIENT_pronoun] wanted it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what [RECIPIENT_nameDef] would do first once [RECIPIENT_possessive] legs came back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] chatted with [RECIPIENT_nameDef] about nothing much, which suited [RECIPIENT_objective] after days of being asked how [RECIPIENT_pronoun] felt.</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] that a walk to the fields and back would count as a fair day's work while [RECIPIENT_pronoun] mended.</li>
+        <li>r_logentry->[INITIATOR_nameDef] insisted that [RECIPIENT_nameDef] set the pace next time they went out, however slow it was.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to come and eat at the table again, and said [INITIATOR_pronoun] would walk over with [RECIPIENT_objective].</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -45,15 +45,15 @@
     <recipientThought>Council_Moment_ToldToRest</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] took the load out of [RECIPIENT_nameDef]'s hands and sent [RECIPIENT_objective] to sit down.</li>
-        <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] lifting something heavy and finished the job for [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to put that load down before [RECIPIENT_pronoun] dropped it, and to go and sit.</li>
+        <li>r_logentry->[INITIATOR_nameDef] caught [RECIPIENT_nameDef] about to lift something heavy and said [INITIATOR_pronoun] would see to it.</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] what the doctor had said about rest, twice.</li>
-        <li>r_logentry->[INITIATOR_nameDef] swapped jobs with [RECIPIENT_nameDef] for the afternoon, the heavy one for the easy one.</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] a stool and wouldn't take it back until [RECIPIENT_pronoun] sat on it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to swap jobs with [RECIPIENT_nameDef] for the afternoon, the heavy one for the easy one.</li>
+        <li>r_logentry->[INITIATOR_nameDef] pointed [RECIPIENT_nameDef] to a stool in the corner and said it had [RECIPIENT_possessive] name on it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the work would still be there tomorrow, and [RECIPIENT_nameDef] would be stronger for it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] found [RECIPIENT_nameDef] a lighter job to do sitting down, so [RECIPIENT_pronoun] could still feel useful.</li>
-        <li>r_logentry->[INITIATOR_nameDef] carried [RECIPIENT_nameDef]'s share of the hauling and didn't make anything of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] sent [RECIPIENT_nameDef] back to bed with a cup of something warm and a firm look.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to help with something that could be done sitting down, so [RECIPIENT_pronoun] would leave the heavy work alone.</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised to take [RECIPIENT_nameDef]'s share of the hauling until [RECIPIENT_pronoun] was properly on [RECIPIENT_possessive] feet.</li>
+        <li>r_logentry->[INITIATOR_nameDef] took one look at [RECIPIENT_nameDef] and said [RECIPIENT_pronoun] ought to be back in bed.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
