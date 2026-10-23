@@ -16,14 +16,14 @@
     <recipientThought>Rimfolk_Friction_WideBerth</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] moved to the far end of the table when [RECIPIENT_nameDef] sat down.</li>
-        <li>r_logentry->[INITIATOR_nameDef] found a reason to be somewhere else when [RECIPIENT_nameDef] came over.</li>
-        <li>r_logentry->[INITIATOR_nameDef] kept a bench between [INITIATOR_objective]self and [RECIPIENT_nameDef] all through supper.</li>
-        <li>r_logentry->[INITIATOR_nameDef] wouldn't hand [RECIPIENT_nameDef] the [thing], and left it on the table between them instead.</li>
-        <li>r_logentry->[INITIATOR_nameDef] went stiff when [RECIPIENT_nameDef] laughed, as if remembering what [INITIATOR_pronoun] had heard.</li>
-        <li>r_logentry->[INITIATOR_nameDef] steered the children away from [RECIPIENT_nameDef] without a word.</li>
-        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] in single words and kept [INITIATOR_possessive] eyes on [INITIATOR_possessive] work.</li>
-        <li>r_logentry->[INITIATOR_nameDef] took the long way round rather than pass [RECIPIENT_nameDef] in the doorway.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept the talk with [RECIPIENT_nameDef] short and found a reason to be on [INITIATOR_possessive] way.</li>
+        <li>r_logentry->[INITIATOR_nameDef] remembered somewhere [INITIATOR_pronoun] was needed the moment [RECIPIENT_nameDef] started talking.</li>
+        <li>r_logentry->[INITIATOR_nameDef] was polite to [RECIPIENT_nameDef] and no more, with one eye on the door.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said the [thing] was spoken for when [RECIPIENT_nameDef] asked for it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went stiff when [RECIPIENT_nameDef] laughed, remembering what [INITIATOR_pronoun] had heard.</li>
+        <li>r_logentry->[INITIATOR_nameDef] couldn't look [RECIPIENT_nameDef] in the eye while they talked.</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef] in single words and kept [INITIATOR_possessive] eyes down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept a step back from [RECIPIENT_nameDef] the whole time they spoke.</li>
         <li>thing->bread</li>
         <li>thing->salt</li>
         <li>thing->knife</li>
@@ -50,13 +50,13 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] would be sticking around for the next raid.</li>
-        <li>r_logentry->[INITIATOR_nameDef] offered to save [RECIPIENT_nameDef] a spot well behind the wall for next time.</li>
-        <li>r_logentry->[INITIATOR_nameDef] made a show of checking where [RECIPIENT_nameDef] was before the alarm drill.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to save [RECIPIENT_nameDef] a spot well at the back for next time.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know where exactly [RECIPIENT_nameDef] had been when the fighting started.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the bravest thing [RECIPIENT_pronoun] had done all season was finish [RECIPIENT_possessive] stew.</li>
-        <li>r_logentry->[INITIATOR_nameDef] jumped at a loud noise and said [INITIATOR_pronoun] was only doing [RECIPIENT_nameDef]'s part for [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised to watch [RECIPIENT_nameDef]'s back in the next fight, since [RECIPIENT_pronoun] would be showing it to the enemy.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef], loudly, how fast [RECIPIENT_pronoun] could run with a pack on.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the others had stopped counting on [RECIPIENT_objective] in a fight.</li>
-        <li>r_logentry->[INITIATOR_nameDef] handed [RECIPIENT_nameDef] a spear and asked if [RECIPIENT_pronoun] remembered which end to hold.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] which end of a weapon to hold, in case [RECIPIENT_pronoun] had forgotten.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -78,13 +78,13 @@
     <recipientThought>Rimfolk_Friction_TalkStopped</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] stopped mid-sentence when [RECIPIENT_nameDef] sat down, and didn't pick it up again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] stopped mid-sentence when [RECIPIENT_nameDef] came over, and didn't pick it up again.</li>
         <li>r_logentry->[INITIATOR_nameDef] changed the subject to the weather the moment [RECIPIENT_nameDef] came within earshot.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] it was nothing, really, nothing at all.</li>
-        <li>r_logentry->[INITIATOR_nameDef] waited until [RECIPIENT_nameDef] had gone before finishing [INITIATOR_possessive] story.</li>
+        <li>r_logentry->[INITIATOR_nameDef] broke off [INITIATOR_possessive] story when [RECIPIENT_nameDef] joined in and said [INITIATOR_pronoun] had forgotten the rest.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] not to repeat what [INITIATOR_pronoun] was about to say, then decided not to say it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] lowered [INITIATOR_possessive] voice when [RECIPIENT_nameDef] walked past, and kept it low.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that some things are better kept between two people, and looked at [RECIPIENT_objective] meaningfully.</li>
+        <li>r_logentry->[INITIATOR_nameDef] dropped [INITIATOR_possessive] voice the moment [RECIPIENT_nameDef] joined the talk, and kept it down.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that some things were better kept between two people, and looked straight at [RECIPIENT_objective] as [INITIATOR_pronoun] said it.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -106,10 +106,10 @@
     <recipientThought>Rimfolk_Friction_HandedWork</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] put a broom in [RECIPIENT_nameDef]'s hands without a word.</li>
+        <li>r_logentry->[INITIATOR_nameDef] mentioned to [RECIPIENT_nameDef] where the broom was kept, in case [RECIPIENT_pronoun] had been wondering.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was planning to do anything today, or just watch.</li>
         <li>r_logentry->[INITIATOR_nameDef] counted out loud the hours [INITIATOR_pronoun] had worked since dawn, for [RECIPIENT_nameDef]'s benefit.</li>
-        <li>r_logentry->[INITIATOR_nameDef] dropped a heavy sack at [RECIPIENT_nameDef]'s feet and walked off.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the sacks by the door had been waiting for [RECIPIENT_objective] all day.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [chore], in case [RECIPIENT_pronoun] was waiting for that.</li>
         <li>r_logentry->[INITIATOR_nameDef] offered [RECIPIENT_nameDef] a chair, since [RECIPIENT_pronoun] seemed to like sitting so much.</li>
         <li>chore->the dishes wouldn't wash themselves</li>
@@ -138,10 +138,10 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] chose every word carefully around [RECIPIENT_nameDef], and it showed.</li>
-        <li>r_logentry->[INITIATOR_nameDef] put the breakable things on a high shelf when [RECIPIENT_nameDef] came into the room.</li>
+        <li>r_logentry->[INITIATOR_nameDef] spoke to [RECIPIENT_nameDef] in the careful voice people keep for a dog that has bitten before.</li>
         <li>r_logentry->[INITIATOR_nameDef] agreed with everything [RECIPIENT_nameDef] said, which [RECIPIENT_nameDef] noticed.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked someone else to tell [RECIPIENT_nameDef] the bad news.</li>
-        <li>r_logentry->[INITIATOR_nameDef] edged towards the door the moment [RECIPIENT_nameDef] raised [RECIPIENT_possessive] voice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] started to give [RECIPIENT_nameDef] some bad news and then thought better of it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] backed off the moment [RECIPIENT_nameDef] raised [RECIPIENT_possessive] voice.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to calm down before [RECIPIENT_nameDef] had said anything at all.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -166,11 +166,11 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] keeps steady when the raiders come.</li>
-        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] freezes in a fight, and asked what to do about it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked to stand next to [RECIPIENT_nameDef] when the next alarm goes.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] showed [INITIATOR_nameDef] where [RECIPIENT_pronoun] stands when the wall is hit, and why.</li>
-        <li>r_logentry->[INITIATOR_nameDef] wanted to hear the story of the last fight from [RECIPIENT_nameDef] [INITIATOR_objective]self, not secondhand.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that being scared is fine, as long as [INITIATOR_pronoun] stays put.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] froze in a fight, and asked what to do about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] begged a place next to [RECIPIENT_nameDef] for when the next raid came.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] where [RECIPIENT_pronoun] stands when the fighting starts, and why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted the story of the last fight from [RECIPIENT_nameDef], in [RECIPIENT_possessive] own words, not secondhand.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that being scared was fine, as long as [INITIATOR_pronoun] stayed put.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was ever afraid, and [RECIPIENT_nameDef] said every time.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -192,12 +192,12 @@
     <label>sought out a kind word</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] sat down next to [RECIPIENT_nameDef] after a hard day, because everyone says [RECIPIENT_pronoun] is easy to talk to.</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] something warm to drink, having heard what [RECIPIENT_pronoun] did for the others.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sought out [RECIPIENT_nameDef] after a hard day, since people said [RECIPIENT_pronoun] was easy to talk to.</li>
+        <li>r_logentry->[INITIATOR_nameDef] thanked [RECIPIENT_nameDef] for what [RECIPIENT_pronoun] had done for the others, having only just heard about it.</li>
         <li>r_logentry->[INITIATOR_nameDef] went to [RECIPIENT_nameDef] with a splinter, and stayed to talk about something else entirely.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people speak well of [RECIPIENT_objective], and [RECIPIENT_nameDef] went red.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for advice about a falling-out, since [RECIPIENT_pronoun] never seems to have any.</li>
-        <li>r_logentry->[INITIATOR_nameDef] saved [RECIPIENT_nameDef] the warm end of the bench without being asked.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that people spoke well of [RECIPIENT_objective], and [RECIPIENT_nameDef] went red.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for advice about a falling-out, since [RECIPIENT_pronoun] never seemed to have any.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud how [RECIPIENT_nameDef] always knew what to say to people.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -217,12 +217,12 @@
     <label>asked them to look over the work</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to look over [INITIATOR_possessive] work, since everyone says [RECIPIENT_pronoun] has the best hands here.</li>
-        <li>r_logentry->[INITIATOR_nameDef] watched [RECIPIENT_nameDef] work for a while and asked how [RECIPIENT_pronoun] got the edges so clean.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to look over [INITIATOR_possessive] work, since people said [RECIPIENT_pronoun] had the best hands in the colony.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wanted to know how [RECIPIENT_nameDef] got the edges so clean, and listened to the whole answer.</li>
         <li>r_logentry->[RECIPIENT_nameDef] showed [INITIATOR_nameDef] a trick of [RECIPIENT_possessive] trade, and [INITIATOR_nameDef] made [RECIPIENT_objective] show it twice.</li>
-        <li>r_logentry->[INITIATOR_nameDef] brought [RECIPIENT_nameDef] a broken thing nobody else could fix.</li>
+        <li>r_logentry->[INITIATOR_nameDef] described a job the rest of them had given up on, and [RECIPIENT_nameDef] said where [RECIPIENT_pronoun] would start.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [RECIPIENT_pronoun] learned to work like that, and got the long version.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had heard about the masterwork, and wanted to see it for [INITIATOR_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had heard about [RECIPIENT_possessive] work and wanted to see it for [INITIATOR_objective]self.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -242,11 +242,11 @@
     <label>told them something private</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] something [INITIATOR_pronoun] had never told anyone, because [RECIPIENT_pronoun] keeps things to [RECIPIENT_objective]self.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] something [INITIATOR_pronoun] had never told anyone, because [RECIPIENT_pronoun] kept things to [RECIPIENT_objective]self.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for a word in private, and [RECIPIENT_nameDef] listened without interrupting once.</li>
         <li>r_logentry->[INITIATOR_nameDef] got something off [INITIATOR_possessive] chest to [RECIPIENT_nameDef], knowing it would go no further.</li>
         <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] what was really keeping [INITIATOR_objective] up at night.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked behind the storehouse until [INITIATOR_nameDef] felt lighter.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked in low voices until [INITIATOR_nameDef] felt lighter.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -267,10 +267,10 @@
     <label>left something in their hands</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to keep an eye on the [task], since [RECIPIENT_pronoun] never lets anything slip.</li>
-        <li>r_logentry->[INITIATOR_nameDef] left [RECIPIENT_nameDef] in charge of the [task] and didn't check on it once.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to keep an eye on the [task], since [RECIPIENT_pronoun] never let anything slip.</li>
+        <li>r_logentry->[INITIATOR_nameDef] handed the [task] over to [RECIPIENT_nameDef] and said [INITIATOR_pronoun] wouldn't need to check on it.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if [RECIPIENT_pronoun] said it would be done, that was good enough.</li>
-        <li>r_logentry->[INITIATOR_nameDef] went to [RECIPIENT_nameDef] first when the [task] needed doing, as most people do.</li>
+        <li>r_logentry->[INITIATOR_nameDef] came to [RECIPIENT_nameDef] first about the [task], as most people did.</li>
         <li>task->stores</li>
         <li>task->night watch</li>
         <li>task->seedlings</li>
