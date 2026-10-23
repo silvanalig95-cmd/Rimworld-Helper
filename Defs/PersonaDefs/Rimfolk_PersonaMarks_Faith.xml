@@ -17,7 +17,7 @@
     <shifts><temper>5</temper><trust>-4</trust><openness>3</openness></shifts>
     <major>true</major>
     <keepDays>180</keepDays>
-    <shaped>{PAWN_nameDef} has had hard words for {LABEL} since {OTHER} died, rites and all.</shaped>
+    <shaped>{PAWN_nameDef} has had hard words for {LABEL} since {OTHER} died.</shaped>
     <defaultLabel>the faith</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -31,20 +31,20 @@
         <news>{PAWN_nameDef} has turned on {PAWN_possessive} faith since {OTHER_nameDef} died.</news>
         <journal>
           <plain>
-            <li>We gave {OTHER_nameDef} every rite {LABEL} has. It didn't bring {OTHER_objective} back, and I'm done pretending it might have.</li>
-            <li>I said the words over {OTHER_nameDef} like I was taught. Then I walked off and kicked a wall until my foot hurt more than the rest of me.</li>
+            <li>Every prayer {LABEL} ever taught me, and {OTHER_nameDef} is still dead. I'm done pretending they help.</li>
+            <li>I tried to say the words for {OTHER_nameDef} the way I was taught. They stuck in my throat.</li>
             <li>If {LABEL} was listening, it had a strange way of showing it. {OTHER_nameDef} is still dead.</li>
           </plain>
-          <warm><li>I prayed for {OTHER_nameDef} every night. I don't know who I was talking to. I'm angry, and I don't know who at.</li></warm>
-          <blunt><li>Did the rites for {OTHER_nameDef}. Waste of breath. Said so.</li></blunt>
-          <cheerful><li>I can usually laugh at anything. Not this. {OTHER_nameDef} deserved better than a few words and a hole.</li></cheerful>
+          <warm><li>I keep reaching for a prayer for {OTHER_nameDef} and finding only anger. I don't even know who it's meant for.</li></warm>
+          <blunt><li>Don't talk to me about the comfort of faith. {OTHER_nameDef} is dead.</li></blunt>
+          <cheerful><li>I can usually laugh at anything. Not this. {OTHER_nameDef} deserved better than a few holy words.</li></cheerful>
           <gloomy><li>So that's what {LABEL} is worth when it counts. Nothing. I should have known.</li></gloomy>
-          <cold><li>The rites of {LABEL} were observed for {OTHER_nameDef}. They changed nothing. I note that, and I resent it.</li></cold>
+          <cold><li>I was taught that {LABEL} gives death a meaning. I can find none in {OTHER_nameDef}'s, and I resent being told otherwise.</li></cold>
         </journal>
       </li>
       <li Class="ColonyCouncil.FaithShake">
         <shake>0.2</shake>
-        <note>{OTHER} died, for all the rites</note>
+        <note>{OTHER} died, and the faith was no comfort</note>
       </li>
     </modExtensions>
   </ColonyCouncil.PersonaMarkDef>
@@ -69,20 +69,20 @@
         <news>{PAWN_nameDef}'s faith has been shaken since {OTHER_nameDef} died.</news>
         <journal>
           <plain>
-            <li>Everyone says {LABEL} will carry me through losing {OTHER_nameDef}. I knelt for an hour tonight and felt nothing come.</li>
-            <li>The funeral was done properly. I keep waiting for it to help. It hasn't, and I don't know what that says about me, or about the faith.</li>
+            <li>Everyone says {LABEL} will carry me through losing {OTHER_nameDef}. I've waited for it, and felt nothing come.</li>
+            <li>The faith has words for this, and I know them all by heart. They haven't helped, and I don't know what that says about me, or about the faith.</li>
             <li>I used to know what happens to us after. Since {OTHER_nameDef}, I find I'm only hoping.</li>
           </plain>
           <warm><li>I want to believe {OTHER_nameDef} is somewhere kind now. Wanting it and believing it used to be the same thing.</li></warm>
-          <blunt><li>The rites didn't help. Missing {OTHER_nameDef} is all I've got. Faith can wait.</li></blunt>
+          <blunt><li>Prayer didn't help. Missing {OTHER_nameDef} is all I've got. Faith can wait.</li></blunt>
           <cheerful><li>I tried to say a prayer for {OTHER_nameDef} and couldn't remember how it went. That's never happened before. It frightened me.</li></cheerful>
-          <gloomy><li>{LABEL} promised comfort. I've had none. Perhaps there was never any to have.</li></gloomy>
+          <gloomy><li>I was promised comfort by {LABEL}. I've had none. Perhaps there was never any to have.</li></gloomy>
           <cold><li>I have examined my faith since {OTHER_nameDef}'s death. It holds up less well than I had assumed.</li></cold>
         </journal>
       </li>
       <li Class="ColonyCouncil.FaithShake">
         <shake>0.18</shake>
-        <note>{OTHER} died, for all the rites</note>
+        <note>{OTHER} died, and the faith was no comfort</note>
       </li>
     </modExtensions>
   </ColonyCouncil.PersonaMarkDef>
@@ -105,16 +105,16 @@
         <lean>openness:0.3, pride:-0.3</lean>
         <chance>0.5</chance>
         <repeatDays>90</repeatDays>
-        <news>{PAWN_nameDef} has been asking {OTHER_nameDef} about {LABEL} since {OTHER_pronoun} saved {PAWN_objective}.</news>
+        <news>{PAWN_nameDef} has been thinking about {LABEL} since {OTHER_nameDef} saved {PAWN_objective}.</news>
         <journal>
           <plain>
             <li>{OTHER_nameDef} doesn't pray the way I do, and {OTHER_pronoun} saved my life anyway. I keep turning that over.</li>
-            <li>I was raised to think little of {LABEL}. It was one of its own who got me through. I owe it a fairer hearing.</li>
-            <li>Asked {OTHER_nameDef} what {OTHER_pronoun} says before sleeping. I'd never thought to ask before.</li>
+            <li>I never thought much of {LABEL}. Then one of its own got me through. I owe it a fairer hearing.</li>
+            <li>I want to ask {OTHER_nameDef} what {OTHER_pronoun} says before sleeping. I've never thought to ask before.</li>
           </plain>
           <warm><li>{OTHER_nameDef} looked after me like I was {OTHER_possessive} own. Whatever {LABEL} teaches, it taught {OTHER_objective} that.</li></warm>
           <blunt><li>{OTHER_nameDef} saved my neck. Keeps {LABEL}. Can't be all wrong, then.</li></blunt>
-          <cheerful><li>I'm alive, thanks to {OTHER_nameDef}, who's been trying to tell me about {LABEL} for weeks. I suppose I'll have to listen now.</li></cheerful>
+          <cheerful><li>I'm alive, thanks to {OTHER_nameDef}. If {OTHER_pronoun} wants to tell me about {LABEL} now, I suppose I'll listen.</li></cheerful>
           <gloomy><li>My own faith didn't send anyone. {OTHER_nameDef}'s did. I don't like what that might mean.</li></gloomy>
           <cold><li>I was saved by a believer in {LABEL}. I am revising some opinions I held about it.</li></cold>
         </journal>
@@ -135,7 +135,7 @@
     <shifts><openness>4</openness><outlook>-3</outlook><pride>-2</pride></shifts>
     <major>true</major>
     <keepDays>150</keepDays>
-    <shaped>{PAWN_nameDef} has asked whether {LABEL} asks too much of {PAWN_objective}, after days of carrying it.</shaped>
+    <shaped>After days under what {LABEL} demands, {PAWN_nameDef} has begun to wonder whether it asks too much.</shaped>
     <defaultLabel>the faith</defaultLabel>
     <modExtensions>
       <li Class="ColonyCouncil.PersonaMarkExtension">
@@ -148,11 +148,11 @@
         <journal>
           <plain>
             <li>Day after day of doing without what {LABEL} says I must have. I'm starting to ask who it's for.</li>
-            <li>I keep the ways of {LABEL}, and I'm miserable keeping them while the others seem glad to.</li>
-            <li>Something {LABEL} asks has been eating at me all week. Tonight I wondered whether it has to.</li>
+            <li>I keep the ways of {LABEL}, and lately they've done nothing but make me miserable.</li>
+            <li>Something {LABEL} asks has been eating at me for days. I've started to wonder whether it has to.</li>
           </plain>
           <warm><li>I don't want to let the others of {LABEL} down. But I'm tired, and the faith never seems to notice.</li></warm>
-          <blunt><li>{LABEL} wants things this colony can't give. I'm sick of paying for it.</li></blunt>
+          <blunt><li>This colony can't give what {LABEL} wants, and I'm sick of paying for it.</li></blunt>
           <cheerful><li>I've been a good believer all week and all I've got for it is a sour face. I'm starting to think the rules were written by someone with a bigger house.</li></cheerful>
           <gloomy><li>Every day {LABEL} finds a new way I'm falling short. Maybe I'm not the one at fault.</li></gloomy>
           <cold><li>The demands of {LABEL} cost me more than they return. I am reconsidering the arrangement.</li></cold>
@@ -185,13 +185,13 @@
         <news>{PAWN_nameDef} came close to dying, and {PAWN_possessive} faith hasn't been the same since.</news>
         <journal>
           <plain>
-            <li>I nearly died. I always thought I'd see something, at the end. There was only the cold and the ceiling.</li>
+            <li>I nearly died. I always thought I'd see something, at the end. There was only the cold, and voices far away.</li>
             <li>They tell me I was nearly gone. I don't remember {LABEL} being anywhere near me.</li>
-            <li>Up and walking again. The faith I had before feels like a coat that doesn't fit any more.</li>
+            <li>I'm through the worst of it. The faith I had before feels like a coat that doesn't fit anymore.</li>
           </plain>
           <warm><li>I thought of everyone here when I was going. Not of {LABEL}. I'm not sure what to make of that.</li></warm>
-          <blunt><li>Nearly died. Nobody came for me but the doctor. Noted.</li></blunt>
-          <cheerful><li>The other side is very quiet and smells of the infirmary. I expected more from {LABEL}.</li></cheerful>
+          <blunt><li>Nearly died. Nothing was waiting there. Noted.</li></blunt>
+          <cheerful><li>The other side is very quiet and very dull. I expected more from {LABEL}.</li></cheerful>
           <gloomy><li>I was nearly dead, and there was nothing waiting. I can't stop thinking about the nothing.</li></gloomy>
           <cold><li>At the edge of death I observed no evidence for the teachings of {LABEL}. I find the absence significant.</li></cold>
         </journal>
