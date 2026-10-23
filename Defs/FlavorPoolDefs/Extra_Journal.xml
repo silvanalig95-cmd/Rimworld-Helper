@@ -135,7 +135,7 @@
       </blunt>
       <cheerful>
         <li>They promised and they did it! I'm going to bring it up at every meal for a week.</li>
-        <li>A promise kept and a full belly. If tomorrow's half this good I'll be very happy!</li>
+        <li>Promise kept, full belly. If tomorrow's half this good I'll be very happy!</li>
       </cheerful>
       <gloomy>
         <li>They kept their word. Now I don't know what to do with all the disappointment I'd saved up.</li>
@@ -270,7 +270,7 @@
         <li>[large] With so many of us, it helps to have everyone pulling the same way. I'm glad they chose {DECREE}.</li>
       </warm>
       <blunt>
-        <li>They declared {DECREE}. Anyone who wants to whine about it can whine to me.</li>
+        <li>Anyone who wants to whine about {DECREE} can whine to me.</li>
         <li>One good decision. One. They're not off the hook.</li>
       </blunt>
       <cheerful>
@@ -278,7 +278,7 @@
         <li>[skill:Social] I've already talked three people round to {DECREE}!</li>
       </cheerful>
       <gloomy>
-        <li>The council declared {DECREE}. Right call. I'm waiting to find out what it costs us.</li>
+        <li>I agree with them about {DECREE}. Now I'm waiting to find out what it costs us.</li>
         <li>[lowmood] I actually agreed with the council about {DECREE}. It felt strange.</li>
       </gloomy>
       <cold>
@@ -295,25 +295,25 @@
     <lines>
       <plain>
         <li>Declared: {DECREE}. I voted no in my head, very loudly.</li>
-        <li>[trait:Lazy|trait:Slothful] They declared {DECREE}. I'd planned a nap. I'm still having it, but I'll feel watched.</li>
+        <li>[trait:Lazy|trait:Slothful] I'd planned a nap, and then they declared {DECREE}. I'm still having the nap, but I'll feel watched.</li>
         <li>[trait:Wimp|trait:Nervous|trait:Volatile] My hands haven't stopped shaking since they announced {DECREE}. The letters keep coming out crooked.</li>
-        <li>[trait:Gourmand] The council declared {DECREE}. I ate two helpings at dinner and felt no better.</li>
+        <li>[trait:Gourmand] Ate two helpings at dinner over {DECREE}, and felt no better.</li>
         <li>[summer,hot] Hot as a kiln, and now {DECREE} on top of it. Somebody up there has never sweated in their life.</li>
       </plain>
       <warm>
         <li>I'll do my part under {DECREE}. I just wish someone had asked how the rest of us were holding up first.</li>
-        <li>[grieving] They declared {DECREE}. I haven't the heart to fight it right now. Ask me again when I've stopped crying at dinner.</li>
+        <li>[grieving] I haven't the heart to fight {DECREE} right now. Ask me again when I've stopped crying at dinner.</li>
       </warm>
       <blunt>
-        <li>The council declared {DECREE}. They're welcome to try making me enjoy it.</li>
-        <li>[bitter] They declared {DECREE}. Another thing done to us, not for us.</li>
+        <li>They're welcome to try making me enjoy {DECREE}.</li>
+        <li>[bitter] Another thing done to us, not for us: {DECREE}.</li>
       </blunt>
       <cheerful>
         <li>They declared {DECREE}. I'm being very positive about it, through my teeth!</li>
         <li>Not even {DECREE} can ruin my week. It's having a good try, though!</li>
       </cheerful>
       <gloomy>
-        <li>They declared {DECREE}. I'm not going to say it can't get worse.</li>
+        <li>So it's {DECREE} now. I'm not going to say it can't get worse.</li>
         <li>[rain] Rain all day, and the council declared {DECREE}. The sky and I are in agreement.</li>
       </gloomy>
       <cold>
@@ -517,7 +517,7 @@
         <li>[spring] Everything's coming up green. {OTHER_nameDef} won't see it, so I'll look twice.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} is dead and the work still needed doing. So I did it.</li>
+        <li>The work still needed doing, {OTHER_nameDef} or no. So I did it.</li>
         <li>[bitter] {OTHER_nameDef} is dead, and tomorrow the council will argue about chores like nothing happened.</li>
       </blunt>
       <cheerful>

@@ -30,7 +30,7 @@
         <li>[good] Fought {OTHER_nameDef} today, fair and square. Afterward {OTHER_nameDef} helped me up.</li>
         <li>[bad] {OTHER_nameDef} hit me first. I don't remember what I said to deserve it, which worries me.</li>
         <li>[bad] Fought with {OTHER_nameDef} in front of the others. I'm more ashamed of that than of the bruise.</li>
-        <li>[bad] {OTHER_nameDef} and I fought, and nobody won. Two sore faces and the same argument.</li>
+        <li>[bad] A fight with {OTHER_nameDef}, and neither of us won. Two sore faces and the same argument.</li>
         <li>[bad] My hand still hurts from {OTHER_nameDef}'s jaw. It was a stupid fight about a stupid thing.</li>
       </plain>
       <warm>
@@ -85,7 +85,7 @@
     <lines>
       <plain>
         <li>Somebody told me what {OTHER_nameDef} said about me. I wish they hadn't.</li>
-        <li>{OTHER_nameDef} has been talking. The cook knew before I did.</li>
+        <li>The cook knew before I did. {OTHER_nameDef} has been talking.</li>
         <li>Walked in on {OTHER_nameDef} telling a story about me. It was mostly wrong, and I didn't correct it.</li>
       </plain>
       <warm>
@@ -165,7 +165,7 @@
     <pool>Council_Journal_Day_Magic_Shop</pool>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} and I went over who stands where when the next fight comes. We agreed, mostly.</li>
+        <li>Went over who stands where with {OTHER_nameDef}, for when the next fight comes. We agreed, mostly.</li>
         <li>[mage] Showed {OTHER_nameDef} how I shape a working. {OTHER_nameDef} asked better questions than most students.</li>
       </plain>
       <warm>
@@ -178,7 +178,7 @@
         <li>{OTHER_nameDef} and I worked out a signal for the next fight. It's a sort of whistle, and I'm very proud of it.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} and I planned for the worst. It's what we're good at.</li>
+        <li>Planned for the worst with {OTHER_nameDef}. We're both good at that.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -241,7 +241,7 @@
         <li>[fall] Fought among the fallen leaves. By the end I couldn't tell blood from mud.</li>
         <li>[fall] They came before the frost, as if they knew our stores were full.</li>
         <li>[winter] They came over the frozen ground. We held.</li>
-        <li>[winter] Fought in the cold until my fingers wouldn't close. Someone had to pry the weapon out of my hand.</li>
+        <li>[winter] My fingers wouldn't close by the end of it. Someone had to pry the weapon out of my hand.</li>
         <li>[winter] Short day, long fight. It was dark before we'd counted everyone.</li>
       </plain>
       <warm>
@@ -305,7 +305,7 @@
         <li>[trusting] I said they'd keep it, and they did. I told the doubters at supper.</li>
       </plain>
       <warm>
-        <li>They kept their word. I'd have carried water for them all week for it.</li>
+        <li>Kept their word. I'd have carried water for them all week for it.</li>
       </warm>
       <blunt>
         <li>Said. Done. Good council.</li>
@@ -354,7 +354,7 @@
     <pool>Council_Journal_Refused</pool>
     <lines>
       <plain>
-        <li>They said no to "{WISH}". At least they said something.</li>
+        <li>A no on "{WISH}". At least they said something.</li>
         <li>Refused. I nodded the whole time, then kicked a bucket on the way out.</li>
         <li>[trusting] The council said no. I suppose they know something I don't.</li>
       </plain>

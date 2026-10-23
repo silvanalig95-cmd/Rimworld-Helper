@@ -65,7 +65,7 @@
       <warm><li>{OTHER_nameDef} asked me to teach {OTHER_objective} {SKILL}. I said yes before {OTHER_pronoun} finished asking.</li></warm>
       <blunt><li>Teaching {OTHER_nameDef} {SKILL}. Slow going. Will improve.</li></blunt>
       <cheerful><li>My student did {SKILL} without my help for a whole minute today! We celebrated with an extra biscuit.</li></cheerful>
-      <gloomy><li>Teaching {OTHER_nameDef} {SKILL}. I hope I'm better at teaching it than I was at learning it.</li></gloomy>
+      <gloomy><li>I hope I'm better at teaching {SKILL} than I was at learning it. {OTHER_nameDef} deserves that.</li></gloomy>
       <cold><li>{OTHER_nameDef} has potential in {SKILL}. Potential is cheap. We'll see what work makes of it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -210,7 +210,7 @@
       <blunt><li>Missing {OTHER_nameDef}.</li></blunt>
       <cheerful><li>Told the children the funniest thing {OTHER_nameDef} ever did. They laughed, and so did I, mostly.</li></cheerful>
       <gloomy><li>Tomorrow comes without {OTHER_nameDef} in it. Then the day after.</li></gloomy>
-      <cold><li>{OTHER_nameDef} is dead. I slept badly, which isn't like me.</li></cold>
+      <cold><li>I slept badly, which isn't like me. {OTHER_nameDef}, I suppose.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 

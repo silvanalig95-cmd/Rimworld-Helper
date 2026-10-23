@@ -30,7 +30,7 @@
       </cheerful>
       <gloomy>
         <li>Nothing wrong with {DECREE} that I can find. That worries me.</li>
-        <li>It's a good idea, {DECREE}. I'm trying to enjoy that before something spoils it.</li>
+        <li>It's a good idea, {DECREE}. I'm trying to enjoy agreeing with them while it lasts.</li>
       </gloomy>
       <cold>
         <li>Choosing {DECREE} was right. I'd begun to wonder whether they'd see it.</li>
@@ -194,7 +194,7 @@
         <li>They said they'd see to "{WISH}", and they did, a day before I'd given up.</li>
         <li>Promise kept. I found myself telling the others the council's not so bad.</li>
       </plain>
-      <warm><li>They kept their word about "{WISH}". I'd like to keep mine as well as that.</li></warm>
+      <warm><li>Word kept on "{WISH}". I'd like to keep mine as well as that.</li></warm>
       <blunt><li>Promised. Done. That's how it should work.</li></blunt>
       <cheerful><li>A promise kept, and "{WISH}" is mine! I'm writing this in my best handwriting.</li></cheerful>
       <gloomy><li>They kept the promise about "{WISH}". I'll stop bracing for it to go wrong. Mostly.</li></gloomy>

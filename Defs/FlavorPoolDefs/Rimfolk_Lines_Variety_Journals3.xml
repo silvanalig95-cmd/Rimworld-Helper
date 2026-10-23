@@ -56,7 +56,7 @@
     <lines>
       <plain>
         <li>[clear] Walked out past the fields with {OTHER_nameDef} on a clear evening and talked about what we'd lost to get here.</li>
-        <li>[clear] {OTHER_nameDef} and I sat on the wall in the last of the light and talked until the stars came out.</li>
+        <li>[clear] Sat on the step with {OTHER_nameDef} in the last of the light and talked until the stars came out.</li>
         <li>[rain] Stuck indoors by the rain with {OTHER_nameDef}, and we talked about everything we'd been putting off saying.</li>
         <li>[lowmood] I was having a bad day, and {OTHER_nameDef} noticed, and sat down, and let me talk.</li>
         <li>[lowmood] Told {OTHER_nameDef} how low I've been. {OTHER_nameDef} didn't try to fix it, just nodded.</li>
@@ -148,7 +148,7 @@
     <pool>Council_Journal_Day_Optimism</pool>
     <lines>
       <plain>
-        <li>[highmood] Whistled all day. It's a good feeling, building something from the ground up.</li>
+        <li>[highmood] Whistled all day. Every nail I drove went into something that's ours.</li>
         <li>[highmood] Every small thing went right today. The door hung straight and the fire caught first time.</li>
       </plain>
     </lines>
@@ -213,7 +213,7 @@
       </plain>
       <warm>
         <li>[spring] The first flowers are out. I picked some for {OTHER_nameDef}.</li>
-        <li>[spring] {OTHER_nameDef} loved this time of year. I planted something where {OTHER_pronoun} used to sit.</li>
+        <li>[spring] {OTHER_nameDef} loved this time of year. I planted daylilies where {OTHER_pronoun} used to sit.</li>
       </warm>
       <cheerful>
         <li>[rain] Rain all day. {OTHER_nameDef} used to say it washed the colony clean. I'm trying to believe it.</li>

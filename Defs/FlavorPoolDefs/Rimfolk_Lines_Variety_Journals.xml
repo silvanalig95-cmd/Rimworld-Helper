@@ -241,7 +241,7 @@
     <lines>
       <plain>
         <li>[spring] Flowers on the dining table tonight. Someone picked them on the way in.</li>
-        <li>[spring] Supper in the dining room with the windows open. You could smell the fields.</li>
+        <li>[spring] Windows open at supper. You could smell the fields from the long table.</li>
         <li>[spring] Long table, fresh greens, and the first warm evening of the year.</li>
         <li>[summer] The dining room stays cool when the rest of the colony bakes. Lingered over supper.</li>
         <li>[summer] Ate late in the dining room, with the door open to the evening.</li>
@@ -286,7 +286,7 @@
         <li>[fall] Rainy evening. I've cleaned every tool I own.</li>
         <li>[fall] The harvest's in and suddenly there's nothing to do. I miss it.</li>
         <li>[fall] Sat and watched the leaves come down. It took all evening.</li>
-        <li>[winter] Nothing to do but sit indoors. I've counted the jars in the kitchen. Forty-one.</li>
+        <li>[winter] Stuck indoors with my hands empty. I've counted the jars in the kitchen. Forty-one.</li>
         <li>[winter] Long winter night. I tied knots in a rope and untied them again.</li>
         <li>[winter] Too cold to go out, nothing to do in. I talked to the fire.</li>
         <li>[lowtech] No one has played a tune in days. I tried humming one and lost interest halfway.</li>
@@ -400,10 +400,10 @@
         <li>[winter] On a cold night, {OTHER_nameDef} said I make the place feel warmer. I went to bed smiling.</li>
         <li>[winter] {OTHER_nameDef} told me my stew was the best thing about winter.</li>
         <li>[winter] {OTHER_nameDef} stopped by the fire to say I'd been a great help all week.</li>
-        <li>[grieving] {OTHER_nameDef} said something gentle about the one we lost, and about me. I needed both.</li>
+        <li>[grieving] {OTHER_nameDef} said a gentle word about the one we lost, and another about me. I needed both.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} said something kind, I said something kind back, and we both stood there smiling.</li>
+        <li>{OTHER_nameDef} said a kind thing, I said one back, and we both stood there smiling like fools.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} thanked me. Good. I earned it.</li>
@@ -647,7 +647,7 @@
         <li>[spring] {OTHER_nameDef} told me about {OTHER_possessive} mother while we mended the fence. I'd never asked.</li>
         <li>[spring] On the woodpile with {OTHER_nameDef} after supper, talking about the people we used to be.</li>
         <li>[spring] Sat out in the spring evening with {OTHER_nameDef} until the frogs drowned us out.</li>
-        <li>[summer] {OTHER_nameDef} and I sat in the shade at noon and told each other things we'd never told anyone.</li>
+        <li>[summer] Sat in the shade at noon with {OTHER_nameDef}, and we told each other things we'd never told anyone.</li>
         <li>[summer] Swam in the river with {OTHER_nameDef} and talked on the bank until dark.</li>
         <li>[summer] Watched the sun go down with {OTHER_nameDef}, talking about where we'd go if we could go anywhere.</li>
         <li>[fall] Husking corn with {OTHER_nameDef}, and somewhere in the middle of the pile we started talking about home.</li>
@@ -733,7 +733,7 @@
         <li>[bad] Grim week for the look of the place. Next week will be better, I've decided.</li>
       </cheerful>
       <gloomy>
-        <li>[good] The colony looks fine. Fine things get noticed by the wrong people.</li>
+        <li>[good] It looks fine here now. Fine things get noticed by the wrong people.</li>
         <li>[good] Someone's made the hall lovely. I sat in it and felt a bit less heavy.</li>
         <li>[good] The flowers by the door are out. I looked at them and thought of someone who isn't here.</li>
         <li>[good] Clean and pretty for once. I almost forgot what's out past the walls.</li>
@@ -751,13 +751,13 @@
         <li>[good] Clean halls, decent art. People behave better in pleasant rooms. I've seen it.</li>
         <li>[good] The place looks prosperous. Visitors will price us accordingly.</li>
         <li>[good] A good-looking colony keeps its people. That's the practical case for flowers.</li>
-        <li>[good] The hall looks well kept. I know who keeps it, and I've made a note of it.</li>
+        <li>[good] Well-kept hall. I know who keeps it. That's worth knowing.</li>
         <li>[good] Pleasant surroundings today. I worked faster in them.</li>
         <li>[bad] The yard is a disgrace. Anyone visiting would think we're failing.</li>
         <li>[bad] Filth slows people down and makes them sick. I've seen both this week.</li>
         <li>[bad] Ugly rooms make for short tempers. I've counted three arguments this week.</li>
         <li>[bad] Rubble left where it fell. Somebody decided it wasn't their job.</li>
-        <li>[bad] The colony looks neglected, and neglect invites trouble.</li>
+        <li>[bad] Weeds coming up through the storeroom floor. That's how it starts.</li>
         <li>[bad] Dirt in the hall for days. I know who walks through it most.</li>
       </cold>
     </lines>
@@ -774,7 +774,7 @@
         <li>[bad,fall] Leaves blew in under my door again. My room's half outside.</li>
       </plain>
       <warm>
-        <li>[good] My room is starting to feel like mine. I put the little carving from a friend on the shelf.</li>
+        <li>[good] Put the little carving from a friend on my shelf. The room's starting to feel like mine.</li>
         <li>[good] Woke up rested in my own room, with the light coming in just right.</li>
         <li>[good] Someone fixed the draft in my room while I was out. I'll find out who.</li>
         <li>[good] Lay in bed a few minutes longer than I should have, just because I could.</li>
@@ -811,7 +811,7 @@
         <li>[bad] My room's drafty, so I sleep in my coat. It's like camping, but with a roof.</li>
         <li>[bad] Tiny room. I can touch both walls from the bed, which is a good trick for parties.</li>
         <li>[bad] The roof leaks right over my bed, so now I have a water clock.</li>
-        <li>[bad] My room is ugly, so I've given every crack in the wall a name.</li>
+        <li>[bad] Ugly room, so I've given every crack in the wall a name.</li>
         <li>[bad] Cold room, warm blankets. I'm calling that a draw!</li>
         <li>[bad] My room smells of damp, so I filled it with pine branches. Now it smells of damp pine.</li>
       </cheerful>
@@ -834,7 +834,7 @@
         <li>[good] The door locks and the walls hold heat. That's all I ask of a room.</li>
         <li>[good] Good rest in a good room. The council got this one right.</li>
         <li>[good] I've arranged my room exactly to my liking. Anyone who moves anything will hear from me.</li>
-        <li>[good] My room is better than most. I'm aware of it, and so is everyone else.</li>
+        <li>[good] Better room than most. I'm aware of it, and so are the others.</li>
         <li>[good] Slept seven hours without a sound. A well-built room.</li>
         <li>[bad] My room is substandard. I've measured it against the others.</li>
         <li>[bad] Cold and damp. Whoever built this room should sleep in it.</li>

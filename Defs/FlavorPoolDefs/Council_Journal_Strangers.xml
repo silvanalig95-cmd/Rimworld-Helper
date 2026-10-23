@@ -61,15 +61,15 @@
     <defName>Council_Pool_PetFarewell</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} is sitting with {PET_definite} and won't let anyone take the body yet.</li>
+        <li>{PAWN_nameDef} sat down beside {PET_definite} and won't let anyone take the body yet.</li>
         <li>{PET_nameDef} is gone. {PAWN_nameDef} put the bowl away and then took it back out again.</li>
         <li>[quiet] {PET_nameDef} died curled up in its usual spot. {PAWN_nameDef} left supper untouched.</li>
         <li>[quiet] {PAWN_nameDef} keeps saying {PET_nameDef} had a good life, for out here.</li>
         <li>[hero] {PET_nameDef} went down in the fighting. {PAWN_nameDef} says it never once backed off.</li>
         <li>[hero] {PAWN_nameDef} won't leave {PET_definite} lying out where the fighting was. Not for anyone.</li>
         <li>[winter] The ground is frozen hard. {PAWN_nameDef} says {PET_nameDef} gets a proper grave, frozen or not.</li>
-        <li>[rain] {PAWN_nameDef} is out in the rain at the spot where {PET_nameDef} used to wait for {PAWN_objective}.</li>
-        <li>[pokemon] {PAWN_nameDef} is keeping {PET_nameDef}'s ball. It goes on the shelf by {PAWN_possessive} bed, and it isn't to be touched.</li>
+        <li>[rain] {PAWN_nameDef} went out into the rain, to the spot where {PET_nameDef} used to wait for {PAWN_objective}.</li>
+        <li>[pokemon] {PET_nameDef}'s ball goes on the shelf by {PAWN_nameDef}'s bed, empty, and it isn't to be touched.</li>
         <li>[pokemon,hero] {PET_nameDef} fainted once too often, fighting for {PAWN_nameDef}. This time it didn't get up.</li>
         <li>[oldage] {PET_nameDef} died of old age, warm and well fed. {PAWN_nameDef} wants the grave somewhere that gets the sun.</li>
         <li>[oldage] {PET_nameDef} had gone slow and gray these last seasons. {PAWN_nameDef} says it earned the rest.</li>
@@ -83,7 +83,7 @@
         <li>[hero] "It went for them like it was twice its size," {PAWN_nameDef} said, and then said nothing more.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} is telling stories about {PET_nameDef} to anyone who'll listen, laughing through most of them.</li>
+        <li>{PAWN_nameDef} has a story about {PET_nameDef} for anyone who'll listen, and laughs through most of them.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} says the good ones always go first out here, and {PET_nameDef} was a good one.</li>

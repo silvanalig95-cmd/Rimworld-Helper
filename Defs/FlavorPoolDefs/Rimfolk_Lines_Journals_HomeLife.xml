@@ -71,7 +71,7 @@
       <plain>
         <li>Tea at the end of a long day. I drank it standing at the window.</li>
         <li>Someone left the pot warm. I had the last cup and refilled it for the next person.</li>
-        <li>[night] A cup of tea when I couldn't sleep. It didn't help me sleep, but it helped.</li>
+        <li>[night] Couldn't sleep, so I made tea. It didn't help me sleep, but it helped.</li>
       </plain>
       <warm>
         <li>Brought a cup of tea to whoever was on watch. We drank it together and didn't say much.</li>
@@ -90,7 +90,7 @@
         <li>A cup of tea. For a few minutes I didn't have to be anywhere.</li>
       </gloomy>
       <cold>
-        <li>A cup of tea before the evening's work. It helps me concentrate.</li>
+        <li>Tea before the evening's work. It helps me concentrate.</li>
         <li>Good tea is a sign of a well-run storeroom. Ours is adequate.</li>
       </cold>
     </lines>
@@ -159,8 +159,8 @@
       <warm><li>A hot bath, then I warmed more water for whoever came next. Left the good soap out, too.</li></warm>
       <blunt><li>Bath was hot. Back's better.</li></blunt>
       <cheerful><li>The bath was so hot I turned pink, and I loved every minute!</li></cheerful>
-      <gloomy><li>A hot bath. The ache came back as soon as I got out, but it was gone for a while.</li></gloomy>
-      <cold><li>A hot bath. The time it takes is repaid by a clear head.</li></cold>
+      <gloomy><li>The ache went away in the hot water and came back as soon as I got out. It was gone for a while, though.</li></gloomy>
+      <cold><li>Bathed. The time it takes is repaid by a clear head.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 

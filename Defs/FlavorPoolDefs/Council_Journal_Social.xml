@@ -294,7 +294,7 @@
         <li>I quit teaching {OTHER_nameDef}. Nothing was sticking.</li>
       </blunt>
       <cheerful>
-        <li>No more {SKILL} lessons with {OTHER_nameDef}. We gave it a proper go, and I learned plenty about teaching!</li>
+        <li>The {SKILL} lessons with {OTHER_nameDef} are over, and I learned plenty about teaching!</li>
         <li>Taking a break from {SKILL}, {OTHER_nameDef} and I, possibly a long one. We'll still eat lunch together!</li>
       </cheerful>
       <gloomy>
@@ -364,7 +364,7 @@
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} has learned everything I can teach. Someone will still know {SKILL} after I'm gone.</li>
-        <li>{OTHER_nameDef} doesn't need lessons anymore. I'll miss the evenings more than I'll admit.</li>
+        <li>The evenings with {OTHER_nameDef} are over. I'll miss them more than I'll admit.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} is now competent in {SKILL}. The colony no longer depends on me alone for it.</li>
@@ -396,7 +396,7 @@
         <li>{OTHER_nameDef} says I don't need lessons anymore, so I made {OTHER_objective} a present. It's lumpy, and I'm very proud of it!</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} says I'm ready. Now when it goes wrong, it's all on me.</li>
+        <li>Ready, {OTHER_nameDef} says. Now when it goes wrong, it's all on me.</li>
         <li>{OTHER_nameDef} says I've learned all there is. I keep waiting for {OTHER_objective} to notice the mistake.</li>
       </gloomy>
       <cold>
@@ -465,7 +465,7 @@
         <li>I let {OTHER_nameDef} have the last word, for once. {OTHER_nameDef} always wanted it.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} is dead. All that fighting, for what.</li>
+        <li>All that fighting with {OTHER_nameDef}, and for what.</li>
         <li>All {OTHER_nameDef} and I ever did was make each other miserable. Years of it, and now it's over.</li>
       </gloomy>
       <cold>
