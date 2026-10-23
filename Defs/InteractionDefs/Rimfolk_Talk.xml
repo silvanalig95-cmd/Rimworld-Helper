@@ -20,13 +20,13 @@
 
   <InteractionDef ParentName="Rimfolk_TalkBase">
     <defName>Rimfolk_Talk_Raid</defName>
-    <label>talked about the last raid</label>
+    <label>talked about raids</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the last fight again.</li>
-        <li>r_logentry->[INITIATOR_nameDef] got talking with [RECIPIENT_nameDef] about the last raid.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] made of the last raid.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what to do when the raiders come back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about raiders.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] would rather meet raiders in the open or behind a wall.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went over the colony's defenses with [RECIPIENT_nameDef], weak spot by weak spot.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about who should stand where when raiders come.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -50,7 +50,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the food.</li>
         <li>r_logentry->[INITIATOR_nameDef] had something to say to [RECIPIENT_nameDef] about the last meal.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the subject of what the colony eats.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto what the colony eats, and who cooks it.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -61,7 +61,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the work, and who does how much of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] got talking with [RECIPIENT_nameDef] about the day's work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_possessive] work was going.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared notes on the chores.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -97,7 +97,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the world beyond the colony.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about traders and the other peoples out there.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the colony ought to have more to do with traders and neighbors.</li>
         <li>r_logentry->[INITIATOR_nameDef] wondered aloud to [RECIPIENT_nameDef] what the rest of the world is up to.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -108,8 +108,8 @@
     <label>talked about the animals</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the animals.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the subject of the colony's beasts.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about animals.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether an animal is family or livestock.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] thinks of keeping animals.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -120,9 +120,9 @@
     <label>talked about the weather</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the weather, and meant it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the season and what it's doing to them.</li>
-        <li>r_logentry->[INITIATOR_nameDef] looked at the sky and said something to [RECIPIENT_nameDef] about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the weather.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] was finding the season.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] thought the weather would do next.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -145,7 +145,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the future.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about whether the colony will last.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wondered whether the colony would still be here in ten years.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] where [RECIPIENT_pronoun] sees [RECIPIENT_objective]self in a few years.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -157,7 +157,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the ones they have lost.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked quietly about the dead.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said a few words to [RECIPIENT_nameDef] about the dead, and [RECIPIENT_nameDef] added some of [RECIPIENT_possessive] own.</li>
         <li>r_logentry->[INITIATOR_nameDef] brought up the colony's dead with [RECIPIENT_nameDef].</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -169,7 +169,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how the colony treats its captives.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the ones in the cells.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the captives were being treated fairly.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] thinks should be done with the captives.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -182,7 +182,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about drink and drugs.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the subject of what people take to get through the day.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] thinks of a drink after work.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about whether a drink after work does anyone harm.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -193,7 +193,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about new learning and the old ways.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what the colony should learn next.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what the colony should learn next.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto whether newer is always better.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -201,11 +201,11 @@
 
   <InteractionDef ParentName="Rimfolk_TalkBase">
     <defName>Rimfolk_Talk_Children</defName>
-    <label>talked about the children</label>
+    <label>talked about children</label>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the children.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what kind of place this is to grow up in.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about children.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto whether this is a good place to grow up.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] ever thinks about children.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -217,7 +217,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the colony's project.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how the council's project is going.</li>
+        <li>r_logentry->[INITIATOR_nameDef] gave [RECIPIENT_nameDef] [INITIATOR_possessive] view of how the council's project was going.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the project is worth all the work.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -229,7 +229,7 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about money.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how rich the colony is, or isn't.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] tried to reckon up what the colony is worth.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] would do with a pile of silver.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -241,8 +241,8 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about love, and who is with whom.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the colony's couples.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] thinks of love out here.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had ever been in love.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto weddings, and whether they're worth the fuss.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>
@@ -271,7 +271,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] brought up an old joke with [RECIPIENT_nameDef].</li>
         <li>r_logentry->[INITIATOR_nameDef] said one word to [RECIPIENT_nameDef], and they both knew what it meant.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shared a joke nobody else would get.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] shared a joke only the two of them understand.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions Inherit="False"><li Class="ColonyCouncil.TalkExtension"><kind>Joke</kind></li></modExtensions>
@@ -283,9 +283,9 @@
     <symbol>ColonyCouncil/Symbols/Heart</symbol>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] saw that [RECIPIENT_nameDef] was low, and sat down beside [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] saw that [RECIPIENT_nameDef] was low, and stopped to talk.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] was really doing, and waited for the answer.</li>
-        <li>r_logentry->[INITIATOR_nameDef] kept [RECIPIENT_nameDef] company through a bad hour.</li>
+        <li>r_logentry->[INITIATOR_nameDef] kept [RECIPIENT_nameDef] company for a while and let [RECIPIENT_objective] talk.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions Inherit="False"><li Class="ColonyCouncil.TalkExtension"><kind>Comfort</kind></li></modExtensions>
@@ -300,8 +300,8 @@
         <li>sent->They found they saw it the same way.</li>
         <li>sent->They agreed on most of it.</li>
         <li>sent->Neither had to be talked round.</li>
-        <li>sent->It turned out they were of one mind.</li>
-        <li>sent->They nodded along with each other the whole time.</li>
+        <li>sent->They were of one mind on it.</li>
+        <li>sent->They kept finishing each other's points.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -313,8 +313,8 @@
         <li>sent->They didn't agree, and enjoyed not agreeing.</li>
         <li>sent->They argued it back and forth, good-naturedly.</li>
         <li>sent->Neither gave an inch, and neither minded.</li>
-        <li>sent->It was a friendly disagreement, as theirs usually are.</li>
-        <li>sent->They agreed to disagree, eventually.</li>
+        <li>sent->Each gave up a point and kept the rest.</li>
+        <li>sent->They were still at it when they parted.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -339,6 +339,7 @@
         <li>sent->[INITIATOR_nameDef] couldn't resist teasing, and [RECIPIENT_nameDef] took it well.</li>
         <li>sent->[INITIATOR_nameDef] pulled [RECIPIENT_possessive] leg about it, and [RECIPIENT_nameDef] laughed.</li>
         <li>sent->[INITIATOR_nameDef] made a joke of it, and [RECIPIENT_nameDef] gave as good as [RECIPIENT_pronoun] got.</li>
+        <li>sent->[RECIPIENT_nameDef] got teased about it, and laughed along with [INITIATOR_nameDef].</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -348,8 +349,9 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[INITIATOR_nameDef] teased, and [RECIPIENT_nameDef] didn't find it funny.</li>
-        <li>sent->[INITIATOR_nameDef] made a joke of it; [RECIPIENT_nameDef] wasn't in the mood.</li>
+        <li>sent->[INITIATOR_nameDef] joked about it, but [RECIPIENT_nameDef] wasn't in the mood.</li>
         <li>sent->[INITIATOR_nameDef]'s teasing landed badly.</li>
+        <li>sent->[RECIPIENT_nameDef] went stiff at [INITIATOR_nameDef]'s teasing and didn't answer.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -360,7 +362,8 @@
       <rulesStrings>
         <li>sent->They remembered it together.</li>
         <li>sent->It came back to them both, every detail.</li>
-        <li>sent->They told it to each other again, the way they always do.</li>
+        <li>sent->They told it to each other again, each with a detail the other had forgotten.</li>
+        <li>sent->Each of them remembered a different part of it best.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -372,6 +375,7 @@
         <li>sent->It still hurts, and they said so.</li>
         <li>sent->They were quiet for a while afterwards.</li>
         <li>sent->Neither of them has let it go.</li>
+        <li>sent->They didn't get to the end of it.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -383,6 +387,7 @@
         <li>sent->They both laughed.</li>
         <li>sent->It was funnier than it had any right to be.</li>
         <li>sent->It still gets them, every time.</li>
+        <li>sent->They were still grinning about it afterwards.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -393,7 +398,7 @@
       <rulesStrings>
         <li>sent->It wasn't as funny as the first time.</li>
         <li>sent->The joke is wearing thin.</li>
-        <li>sent->[RECIPIENT_nameDef] has heard it before. Several times.</li>
+        <li>sent->[RECIPIENT_nameDef] smiled at it, more out of habit than anything.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -405,6 +410,7 @@
         <li>sent->It was the first easy word between them since their quarrel.</li>
         <li>sent->Whatever had been between them, they let it go.</li>
         <li>sent->They seem to have patched things up.</li>
+        <li>sent->They parted on good terms again.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
