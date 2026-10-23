@@ -19,15 +19,15 @@
     <defName>Council_Cal_Letter_FirstChild</defName>
     <lines>
       <plain>
-        <li>[first] A year ago today, {SUBJECT} was born here, the first child the colony ever had. {A_nameDef} has been up since dawn and won't say why, though everyone knows.</li>
-        <li>[years] {YEARS} years since {SUBJECT} was born, the first of the colony's children. {A_nameDef} still tells the story of that night to anyone who sits still long enough.</li>
-        <li>The first child born in the {PLACE} came into the world on this day. {A_nameDef} wants small gifts for everyone, the way they went round the night {SUBJECT} was born.</li>
-        <li>[tradition] The colony knows what today is. There's a little pile of gifts by the door already, and {A_nameDef} pretending not to have put them there.</li>
+        <li>[first] A year ago today {SUBJECT} was born here, the first child the colony ever had. {A_nameDef} was up before dawn and has looked in on the cradle three times since.</li>
+        <li>[years] {YEARS} years since {SUBJECT} was born, the first of the colony's children. {A_nameDef} still tells the story of that night, down to who boiled the water.</li>
+        <li>On this day the first child born in the {PLACE} came into the world. {A_nameDef} wants small gifts passed round, as they were the night {SUBJECT} was born.</li>
+        <li>[tradition] The first child's day has been kept so many years now that gifts start turning up by the door before breakfast. {A_nameDef} left the first of them.</li>
         <li>[winter] {SUBJECT} was born in the cold, and the day comes round in the cold. {A_nameDef} has the fire built up early.</li>
-        <li>[devout] The day {SUBJECT} was born. {A_nameDef} gave thanks at dawn for the first child the colony was given, and wants the day kept well.</li>
+        <li>[devout] The day {SUBJECT} was born. {A_nameDef} gave thanks at dawn for the first child the colony was given, and asks that the gifts be blessed before they go round.</li>
       </plain>
-      <warm><li>The day {SUBJECT} was born. {A_nameDef} keeps looking at the children as if to make sure they're all still real.</li></warm>
-      <gloomy><li>The first child born here. {A_nameDef} says every year that it was a promise the colony made, and that it hasn't broken it yet.</li></gloomy>
+      <warm><li>{SUBJECT}'s day. {A_nameDef} has kept a scrap of the blanket {SUBJECT} was first wrapped in, and brought it out this morning.</li></warm>
+      <gloomy><li>The day the first child was born here. {A_nameDef} remembers how thin the stores were that season, and says so to anyone at the table.</li></gloomy>
       <cheerful><li>{SUBJECT}'s day! {A_nameDef} has been wrapping things in cloth since before breakfast and won't let anyone see.</li></cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -36,31 +36,31 @@
     <defName>Council_Journal_Cal_FirstChild</defName>
     <lines>
       <plain>
-        <li>[new] {SUBJECT} was born today, the first child born here. This is home now for someone who will never have known anywhere else.</li>
-        <li>[new] A child, here, ours. The whole colony came to look and nobody knew what to say.</li>
-        <li>[!new,first] A year since {SUBJECT} was born. Gifts went round the circle, the way they did that first night.</li>
-        <li>[!new,years] {YEARS} years since the first child was born here. There are children now who won't remember a time before the colony.</li>
+        <li>[new] {SUBJECT} was born today. The first child born here, and the only one of us who won't remember living anywhere else.</li>
+        <li>[new] A child, here, ours. People came to the door one at a time to look, and most of them took their boots off first.</li>
+        <li>[!new,first] A year since {SUBJECT} was born. Gifts went round the circle again, and {SUBJECT} tried to eat one.</li>
+        <li>[!new,years] {YEARS} years since the first child was born here. One of the children asked me what the colony was like before. I didn't know where to start.</li>
         <li>[!new,tradition] The first child's day, kept the way we always keep it: gifts round the circle and far too much fuss.</li>
       </plain>
       <warm>
-        <li>[new] I held {SUBJECT} today, the first child born here. So small. I've been smiling all evening.</li>
-        <li>[!new] Gave a little carved bird for {SUBJECT}'s day. The look I got for it was worth every splinter.</li>
+        <li>[new] {SUBJECT} slept on my chest most of the afternoon. So small. I didn't want to move.</li>
+        <li>[!new] Carved a wooden bird for {SUBJECT}'s day and got a hug that nearly knocked me over.</li>
       </warm>
       <blunt>
         <li>[new] A child born here today. Healthy. Loud.</li>
-        <li>[!new] The first child's day. Gifts. Good.</li>
+        <li>[!new] First child's day. Gave a gift, got one. Good day.</li>
       </blunt>
       <cheerful>
-        <li>[new] A baby! Here! I've already started carving a cradle and I don't know how.</li>
-        <li>[!new] {SUBJECT}'s day! I got a ribbon and gave a whittled spoon, and we all pretended they were the finest gifts ever made.</li>
+        <li>[new] A baby, born here, ours! I've started on a cradle and I've never made one in my life.</li>
+        <li>[!new] {SUBJECT}'s day! I gave a whittled spoon and got a ribbon, which I'm still wearing.</li>
       </cheerful>
       <gloomy>
         <li>[new] A child born here today. I hope this place is kinder to the child than it has been to the rest of us.</li>
-        <li>[!new] {SUBJECT}'s day. I watched the children and thought about all the things I can't protect them from.</li>
+        <li>[!new] {SUBJECT}'s day. I watched the children at the circle and thought about the things I can't keep from them.</li>
       </gloomy>
       <cold>
-        <li>[new] The first birth in the colony. A settlement with children in it is a settlement that means to last.</li>
-        <li>[!new] {SUBJECT}'s day. The colony is a little more permanent every year it keeps it.</li>
+        <li>[new] First birth recorded here. That room will need a cradle, and later a second bed.</li>
+        <li>[!new] {SUBJECT}'s day again. The child is growing; we'll need more beds before long.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -69,8 +69,8 @@
     <defName>Council_Cal_Talk_FirstChild</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} and {B_nameDef} remembered the night {SUBJECT} was born, and who fainted.</li>
-        <li>{A_nameDef} reminded {B_nameDef} that {SUBJECT} was the first child born in the colony, as if anyone could forget.</li>
+        <li>{A_nameDef} and {B_nameDef} remembered the night {SUBJECT} was born, and how long it went on.</li>
+        <li>{A_nameDef} told {B_nameDef} about {SUBJECT}'s first word.</li>
         <li>{A_nameDef} and {B_nameDef} talked about how fast the colony's children are growing.</li>
         <li>{A_nameDef} showed {B_nameDef} the gift {A_pronoun} made for the first child's day.</li>
       </plain>
@@ -83,17 +83,17 @@
     <defName>Council_Cal_Letter_Walls</defName>
     <lines>
       <plain>
-        <li>[first] A year ago the last stretch went up and the colony had a wall round it for the first time. {A_nameDef}, who laid more of it than anyone, has been walking it since breakfast.</li>
-        <li>[years] {YEARS} years since the walls went up. {A_nameDef} wants a fire lit by the wall tonight, the way one was lit the night the last stone went in.</li>
-        <li>The day the walls went up. {A_nameDef} has been round them all with a lantern, checking the mortar, which is how the day begins now.</li>
-        <li>[tradition] The day the walls went up, and the colony knows how it's kept: a fire, music, and someone telling the story of the last stone.</li>
+        <li>[first] A year ago the last stretch went up and the colony was walled in all the way round. {A_nameDef}, who built more of it than anyone, has been walking it since breakfast.</li>
+        <li>[years] {YEARS} years since the walls went up. {A_nameDef} wants a fire lit by the wall tonight, the way one was lit the night the last section went in.</li>
+        <li>The walls' day. {A_nameDef} went round them before dawn with a lantern, checking every joint, which is how the day begins now.</li>
+        <li>[tradition] The walls' day, kept so long that the wood for the fire was stacked by the gate before anyone asked. Tonight someone will tell the story of the last section again.</li>
         <li>[tribal] The day the palisade closed. {A_nameDef} says the spirits of the place have watched over it ever since.</li>
         <li>[medieval] The day the walls went up. {A_nameDef} has hung a garland over the gate, as the old towns did on their walls' day.</li>
         <li>[afterraid] The walls' day, and they held again this year. {A_nameDef} says that's reason enough for the fire.</li>
       </plain>
-      <blunt><li>The walls went up a year ago today. {A_nameDef} would like everyone to know they're still standing.</li></blunt>
+      <blunt><li>Walls' day. {A_nameDef} wants the fire built against the north wall, same as last time.</li></blunt>
       <cold><li>The day the walls went up. {A_nameDef} says the colony has been measurably safer every day since.</li></cold>
-      <gloomy><li>The walls' day. {A_nameDef} says a wall is a promise that something is worth keeping out. Then {A_pronoun} goes quiet.</li></gloomy>
+      <gloomy><li>The walls' day. {A_nameDef} spent the morning looking for cracks, and found two.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -101,22 +101,22 @@
     <defName>Council_Journal_Cal_Walls</defName>
     <lines>
       <plain>
-        <li>[new] The last section of wall went in today. For the first time we're inside something. I walked the whole length of it before supper.</li>
+        <li>[new] The last section of wall went in today. I walked the whole length of it before supper, slapping it every few steps.</li>
         <li>[new] We have walls. Real ones, all the way round. I'll sleep better tonight than I have since we came.</li>
-        <li>[!new,first] A year since the walls went up. We lit a fire and sang, and I put my hand on the stones as if they could feel it.</li>
+        <li>[!new,first] A year since the walls went up. We lit a fire and sang, and I put my hand on the wall as if it could feel it.</li>
         <li>[!new,years] {YEARS} years behind these walls. They've earned their fire.</li>
-        <li>[!new,tradition] The walls' day, kept the old way: the fire, the music, the story of the last stone.</li>
+        <li>[!new,tradition] The walls' day, kept the old way. Someone always tells the story of the last section, and it's never quite the same story.</li>
       </plain>
       <warm>
-        <li>[new] The walls are up, and everyone helped. I could see every one of us in the stones.</li>
-        <li>[!new] The walls' day. I thanked everyone who carried a stone for them. That's everyone.</li>
+        <li>[new] The walls are up. I know whose hands built which stretch, every one of them.</li>
+        <li>[!new] The walls' day. I sat with the old building crew at the fire and we named every stretch we put up.</li>
       </warm>
       <blunt>
         <li>[new] Walls done. Finally.</li>
-        <li>[!new] Walls' day. Fire. They're still standing.</li>
+        <li>[!new] Walls' day. Fire. Patched the east corner first.</li>
       </blunt>
       <cheerful>
-        <li>[new] The walls are finished! I ran all the way round them and nobody stopped me.</li>
+        <li>[new] The walls are finished! I ran all the way round them twice.</li>
         <li>[!new] The walls' day! We danced round the fire till the sparks gave out.</li>
       </cheerful>
       <gloomy>
@@ -125,7 +125,7 @@
       </gloomy>
       <cold>
         <li>[new] Perimeter complete. Our odds against the next raid are a good deal better.</li>
-        <li>[!new] The walls' day. A wall that's honoured gets repaired. That's what the fire is for.</li>
+        <li>[!new] The walls' day. People patched the walls before the fire without being told. Useful.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -134,10 +134,10 @@
     <defName>Council_Cal_Talk_Walls</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} and {B_nameDef} walked the walls together, pointing out the stones they laid.</li>
+        <li>{A_nameDef} and {B_nameDef} went over which stretches of the wall each of them built.</li>
         <li>{A_nameDef} argued with {B_nameDef} about which stretch of the wall was the hardest to build.</li>
         <li>{A_nameDef} told {B_nameDef} that the walls have held every time it mattered.</li>
-        <li>{A_nameDef} told {B_nameDef} the story of the last stone, the way it's told on the walls' day.</li>
+        <li>{A_nameDef} told {B_nameDef} the story of the last section, the way it's told on the walls' day.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -150,13 +150,13 @@
       <plain>
         <li>[first] A year ago today {SUBJECT} came home safe after {COUNT} days on the road. {A_nameDef} still remembers the first sight of the gate.</li>
         <li>[years] {YEARS} years since {SUBJECT} came home from {COUNT} days away. {A_nameDef} wants the long table laid the way it was that night.</li>
-        <li>The homecoming. {A_nameDef} has been telling the newcomers about the road home, which grows longer every year it's told.</li>
-        <li>[tradition] The homecoming, and the colony knows how it goes: everyone at the gate at noon, then the long table.</li>
+        <li>The homecoming. {A_nameDef} has been telling the newcomers about the road home, starting, as always, with the ford.</li>
+        <li>[tradition] The homecoming. By noon there were people at the gate for no reason but the day, and the long table is already out.</li>
         <li>[winter] The homecoming comes round in the snow. {A_nameDef} says the road home was worse.</li>
       </plain>
-      <warm><li>The homecoming. {A_nameDef} has been round everyone this morning, saying how good it is to be home, as if it happened yesterday.</li></warm>
-      <cheerful><li>The homecoming! {A_nameDef} has put a lantern in the gate, the one they saw from the hill that night.</li></cheerful>
-      <cold><li>The homecoming. {A_nameDef} notes that every one of them came back, which is not how most long journeys end.</li></cold>
+      <warm><li>The homecoming. {A_nameDef} has been telling people all morning how good it is to be home, as if the road were only yesterday.</li></warm>
+      <cheerful><li>The homecoming! {A_nameDef} lit a lantern in the gate, the same one that hung there that night.</li></cheerful>
+      <cold><li>The homecoming. {A_nameDef} notes that the journey cost no lives, which is not how most long ones end.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -165,14 +165,14 @@
     <lines>
       <plain>
         <li>[new] Home. {COUNT} days on the road and I'd forgotten what my own bed felt like.</li>
-        <li>[new] We came through the gate this afternoon and everyone was there. I didn't know how much I'd missed them.</li>
+        <li>[new] Came through the gate this afternoon and they were all there waiting. I didn't know how much I'd missed them.</li>
         <li>[!new,first] A year since we came home. We ate at the long table and told the road stories, and they were better than the road was.</li>
         <li>[!new,years] {YEARS} years since the homecoming. I still look at the gate at dusk, out of habit.</li>
-        <li>[!new,tradition] The homecoming, kept as always: the gate at noon, the long table, the road stories.</li>
+        <li>[!new,tradition] The homecoming, kept as always. I could tell the road stories in my sleep by now.</li>
       </plain>
       <warm>
-        <li>[new] Home, all of us, safe. Someone had kept my bed made the whole time.</li>
-        <li>[!new] The homecoming. Everyone at the gate again, and every face a welcome one.</li>
+        <li>[new] Home safe. Someone had kept my bed made the whole time.</li>
+        <li>[!new] The homecoming. Ate at the long table between two people who weren't even here when we set out.</li>
       </warm>
       <blunt>
         <li>[new] Back. Tired. Glad.</li>
@@ -187,8 +187,8 @@
         <li>[!new] The homecoming. I think about the ones on the road who didn't have a gate to come back to.</li>
       </gloomy>
       <cold>
-        <li>[new] Returned after {COUNT} days. All accounted for. A good result.</li>
-        <li>[!new] The homecoming. It's good for the colony to remember that people come back.</li>
+        <li>[new] Returned after {COUNT} days, in one piece. A good result.</li>
+        <li>[!new] The homecoming. The ones who stayed behind like this day more than the ones who traveled.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -211,14 +211,14 @@
     <defName>Council_Cal_Letter_NewCrop</defName>
     <lines>
       <plain>
-        <li>[first] A year ago the colony brought in its first {SUBJECT}. {A_nameDef}, who grew it, has been quietly proud of it ever since, and is again today.</li>
-        <li>[years] {YEARS} years since the first {SUBJECT} came in. {A_nameDef} has a bundle of it over the door, for luck.</li>
-        <li>The day of the first {SUBJECT}: on the calendar because {A_nameDef} insisted, and nobody could think of a good reason why not.</li>
+        <li>[first] A year ago the colony brought in its first {SUBJECT}. {A_nameDef}, who grew it, still keeps a pouch of seed from that first harvest.</li>
+        <li>[years] {YEARS} years since the first {SUBJECT} came in, and {A_nameDef} was walking the rows again before breakfast.</li>
+        <li>The day of the first {SUBJECT}. {A_nameDef} asked for it to go on the calendar, and has been out in the field since dawn.</li>
         <li>[tradition] The day of the first {SUBJECT}. The colony keeps it every year now, and {A_nameDef} tells the story of the seed.</li>
         <li>[lowtech] {A_nameDef} has hung the first {SUBJECT} of the year over the door, the way it was done the first time.</li>
       </plain>
-      <cheerful><li>The day of the first {SUBJECT}! {A_nameDef} has been showing everyone the field since breakfast, whether they asked or not.</li></cheerful>
-      <cold><li>The first {SUBJECT}. {A_nameDef} points out that the colony grows something today that it couldn't before. That's worth a day.</li></cold>
+      <cheerful><li>The day of the first {SUBJECT}! {A_nameDef} has been showing people the field since breakfast, whether they asked or not.</li></cheerful>
+      <cold><li>The first {SUBJECT}'s day. {A_nameDef} has worked out what the crop has saved the colony in trade since, and would like it mentioned at the feast.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -233,8 +233,8 @@
         <li>[!new,tradition] The day of the first {SUBJECT}, kept as always. I told the story of the seed again.</li>
       </plain>
       <warm>
-        <li>[new] The first {SUBJECT} came in today, and everyone came out to the field to see it.</li>
-        <li>[!new] The first {SUBJECT}'s day. I took some to everyone who helped with that first field.</li>
+        <li>[new] The first {SUBJECT} came in today, and people kept stopping by the field to look.</li>
+        <li>[!new] The first {SUBJECT}'s day. I took some round to the ones who helped with that first field.</li>
       </warm>
       <blunt>
         <li>[new] First {SUBJECT} in. It works.</li>
@@ -272,13 +272,13 @@
     <defName>Council_Cal_Letter_FirstTrade</defName>
     <lines>
       <plain>
-        <li>[first] A year ago today the colony made its first trade. {A_nameDef} struck the deal, and has been telling everyone how hard {A_pronoun} bargained ever since.</li>
+        <li>[first] A year ago today the colony made its first trade. {A_nameDef} struck the deal, and has been telling people how hard {A_pronoun} bargained ever since.</li>
         <li>[years] {YEARS} years since the first trade. {A_nameDef} wants small gifts round the circle, the way the colony shared out what came in that day.</li>
-        <li>The day of the first trade: the day the colony stopped being alone in the world. {A_nameDef} has dug out the first coin from the strongbox to show everyone.</li>
+        <li>The day of the first trade, when the colony stopped being alone in the world. {A_nameDef} has dug the first coin out of the strongbox to pass round.</li>
         <li>[tradition] The day of the first trade, and gifts are going round the circle already.</li>
-        <li>[tribal] The day of the first trade with another people. {A_nameDef} has laid out the first things the colony gave and got, side by side.</li>
+        <li>[tribal] The day of the first trade with another people. {A_nameDef} set out the first things the colony gave and got, side by side, on a hide.</li>
       </plain>
-      <blunt><li>The first trade, a year back. {A_nameDef} maintains {A_pronoun} got the better of it.</li></blunt>
+      <blunt><li>The day of the first trade. {A_nameDef} still says {A_pronoun} got the better of it.</li></blunt>
       <cheerful><li>The day of the first trade! {A_nameDef} has a gift for everyone and won't say what any of them cost.</li></cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -287,9 +287,9 @@
     <defName>Council_Journal_Cal_FirstTrade</defName>
     <lines>
       <plain>
-        <li>[new] Struck our first trade today. I think I got the better of it. I think.</li>
+        <li>[new] Struck our first trade today. I think I got the better of it.</li>
         <li>[new] We traded with someone today. It feels like being let into the world.</li>
-        <li>[!new,first] A year since the first trade. Gave and got a little something round the circle.</li>
+        <li>[!new,first] A year since the first trade. Gifts round the circle; mine was a bone needle in a leather case.</li>
         <li>[!new,years] {YEARS} years since we first traded. We're known on the roads now.</li>
         <li>[!new,tradition] The day of the first trade, with gifts as always.</li>
       </plain>
@@ -302,8 +302,8 @@
         <li>[!new] Gifts for the first trade's day. Nice.</li>
       </blunt>
       <cheerful>
-        <li>[new] Our first trade! I haggled! I'm a haggler now!</li>
-        <li>[!new] The first trade's day! I wrapped my gift in so much cloth it took a minute to open.</li>
+        <li>[new] Our first trade, and I haggled. I'm a haggler now!</li>
+        <li>[!new] The first trade's day! I got a carved comb and I've used it four times since lunch.</li>
       </cheerful>
       <gloomy>
         <li>[new] Traded with strangers today. They know where we are now.</li>
@@ -334,14 +334,14 @@
     <lines>
       <plain>
         <li>[first] A year ago today the hunters brought down {COUNT} head of game in a day, mostly {SUBJECT}, and the colony ate well for a week. {A_nameDef} led them, and wants to lead them again.</li>
-        <li>[years] {YEARS} years since the great hunt. {A_nameDef} had the bows strung before dawn.</li>
+        <li>[years] {YEARS} years since the great hunt. {A_nameDef} had the hunters up and fed before dawn.</li>
         <li>The day of the great hunt. {A_nameDef} has been watching the tree line since first light.</li>
         <li>[tradition] The great hunt, and the hunters are out before the sun is up, as every year.</li>
-        <li>[tribal] The day of the great hunt. {A_nameDef} has painted the old marks on the hunters' faces.</li>
-        <li>[medieval] The day of the great hunt. {A_nameDef} has the dogs and the spears ready, and the cook warned.</li>
+        <li>[tribal] The day of the great hunt. {A_nameDef} painted the old marks on the hunters' faces at dawn.</li>
+        <li>[medieval] The day of the great hunt. The dogs and spears are ready, and {A_nameDef} has warned the cook.</li>
       </plain>
-      <blunt><li>Great hunt's day. {A_nameDef} wants meat. Everyone else wants meat too.</li></blunt>
-      <cheerful><li>The great hunt! {A_nameDef} has been practising the hunting call all morning, to everyone's regret.</li></cheerful>
+      <blunt><li>Great hunt's day. {A_nameDef} wants the hunters out early and back with meat before dark.</li></blunt>
+      <cheerful><li>The great hunt! {A_nameDef} has been practicing the hunting call all morning, and the dogs have started answering.</li></cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -357,7 +357,7 @@
       </plain>
       <warm>
         <li>[new] A great hunt today, and nobody hurt. I'm grateful for that more than the meat.</li>
-        <li>[!new] The great hunt's day. I thanked the animals, quietly, the way I was taught.</li>
+        <li>[!new] The great hunt's day. I thanked the animals under my breath, the way I was taught.</li>
       </warm>
       <blunt>
         <li>[new] Big hunt. Lots of meat. Good day.</li>
@@ -368,7 +368,7 @@
         <li>[!new] The great hunt! My shot was the best one, whatever anyone says.</li>
       </cheerful>
       <gloomy>
-        <li>[new] A great hunt, they're calling it. The forest was very quiet afterwards.</li>
+        <li>[new] A great hunt, they're calling it. The forest was very still afterwards.</li>
         <li>[!new] The great hunt's day. There's less game every year.</li>
       </gloomy>
       <cold>
@@ -396,14 +396,14 @@
     <lines>
       <plain>
         <li>{NAME}, and {A_nameDef} has been stacking wood since noon for the fire tonight.</li>
-        <li>[first] {NAME} comes round for the first time. {A_nameDef} wants a bonfire, music, and everyone round it.</li>
+        <li>[first] {NAME} comes round for the first time. {A_nameDef} wants a bonfire for it, with music.</li>
         <li>[years] {NAME} again, {YEARS} years on. The fire goes up at dusk, as every year.</li>
-        <li>[tradition] {NAME}: the fire, the music, the sparks going up. The colony knows how it goes.</li>
+        <li>[tradition] {NAME}. The wood was stacked by noon without anyone being asked.</li>
         <li>[winter] {NAME} in the cold. A fire tonight will be welcome for more than one reason.</li>
         <li>[named] {NAME}, a day the colony named for itself, and tonight it gets a fire.</li>
       </plain>
       <cheerful><li>{NAME}! {A_nameDef} has found a drum somewhere and is threatening to play it all night.</li></cheerful>
-      <gloomy><li>{NAME}. {A_nameDef} says a fire in the dark is the oldest thing people do, and probably the best.</li></gloomy>
+      <gloomy><li>{NAME}. {A_nameDef} says it will rain on the fire, as it does most years, and has stacked the wood under cover anyway.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -414,13 +414,13 @@
         <li>We kept {NAME} with a fire. I sat close enough to scorch my boots and didn't move.</li>
         <li>[first] The first time we kept {NAME}: a fire, music, sparks going up. I think it'll stick.</li>
         <li>[years] {NAME} again. Same fire, same songs, a year older.</li>
-        <li>[tradition] {NAME}: the fire and the songs. Some things are worth doing every year.</li>
+        <li>[tradition] {NAME}. The same songs round the fire, and I still don't know the second verse of any of them.</li>
       </plain>
       <warm><li>{NAME}. Everyone round the fire, faces lit up orange. I looked at each of them and was glad.</li></warm>
       <blunt><li>{NAME}. Big fire. Warm.</li></blunt>
       <cheerful><li>{NAME}! I danced till the fire was embers and then a bit more.</li></cheerful>
       <gloomy><li>{NAME}. I watched the sparks go up and thought about everyone who used to sit round fires with me.</li></gloomy>
-      <cold><li>{NAME}. A fire costs a little wood and buys a good deal of goodwill. Worth it.</li></cold>
+      <cold><li>{NAME}. A fire costs some wood and buys a good deal of goodwill. Worth it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -428,8 +428,8 @@
     <defName>Council_Cal_Talk_Bonfire</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} and {B_nameDef} sat by the fire for {NAME} and talked until it burned down.</li>
-        <li>{A_nameDef} told {B_nameDef} a story by the fire on {NAME}.</li>
+        <li>{A_nameDef} and {B_nameDef} sat at the fire for {NAME} and talked until it burned down.</li>
+        <li>{A_nameDef} told {B_nameDef} a story at the fire on {NAME}.</li>
         <li>{A_nameDef} taught {B_nameDef} the song the colony sings round the fire on {NAME}.</li>
       </plain>
     </lines>
@@ -441,13 +441,13 @@
     <defName>Council_Cal_Letter_Gifts</defName>
     <lines>
       <plain>
-        <li>{NAME}, and the colony keeps it with gifts: everyone gives one and gets one. {A_nameDef} has been making something in secret all week.</li>
+        <li>{NAME}, and {A_nameDef} has been making something in secret all week.</li>
         <li>[first] {NAME} comes round for the first time, and {A_nameDef} suggests gifts round the circle.</li>
         <li>[years] {NAME} again, {YEARS} years on. Everyone has something small hidden in a pocket.</li>
-        <li>[tradition] {NAME}, and everyone knows who they're giving to this year. Nobody admits it.</li>
-        <li>[lowtech] {NAME}. {A_nameDef} has carved little gifts from offcuts, one for everyone.</li>
+        <li>[tradition] {NAME}. People have been whittling and sewing behind closed doors for days.</li>
+        <li>[lowtech] {NAME}. {A_nameDef} has carved little gifts from offcuts, one for each of them.</li>
       </plain>
-      <warm><li>{NAME}. {A_nameDef} says the best gifts are the ones that show you were paying attention.</li></warm>
+      <warm><li>{NAME}. {A_nameDef} has been asking round, carefully, what people have been missing.</li></warm>
       <blunt><li>{NAME}. Gifts. {A_nameDef} asks that nobody give {A_objective} socks again.</li></blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -474,7 +474,7 @@
       <plain>
         <li>{A_nameDef} gave {B_nameDef} a small gift for {NAME}.</li>
         <li>{A_nameDef} and {B_nameDef} compared what they got for {NAME}.</li>
-        <li>{A_nameDef} thanked {B_nameDef} for the gift on {NAME}, and meant it.</li>
+        <li>{A_nameDef} thanked {B_nameDef} for {B_possessive} gift on {NAME}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -485,13 +485,13 @@
     <defName>Council_Cal_Letter_Hunt</defName>
     <lines>
       <plain>
-        <li>{NAME}, kept with a hunt: {A_nameDef} has the hunters ready, and the pot is waiting.</li>
+        <li>{NAME}, kept with a hunt. {A_nameDef} has the hunters ready, and the pot is waiting.</li>
         <li>[first] {NAME} comes round for the first time, and {A_nameDef} says the right way to keep it is a hunt.</li>
         <li>[years] {NAME} again: the hunters out at dawn, the pot on by dusk.</li>
         <li>[tradition] {NAME}. The hunters are already out; it's how the day has always begun.</li>
         <li>[tribal] {NAME}. {A_nameDef} says a day worth keeping is a day worth hunting for.</li>
       </plain>
-      <cheerful><li>{NAME}! {A_nameDef} is out at the tree line already, waving everyone on.</li></cheerful>
+      <cheerful><li>{NAME}! {A_nameDef} is out at the tree line already, waving the others on.</li></cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -530,8 +530,8 @@
     <lines>
       <plain>
         <li>[way:bonfire] {A_nameDef} told {B_nameDef} {A_pronoun} has been stacking wood for the fire tomorrow.</li>
-        <li>[way:gifts] {A_nameDef} asked {B_nameDef} what {B_pronoun} was giving tomorrow, and got no answer at all.</li>
-        <li>[way:hunt] {A_nameDef} and {B_nameDef} checked the bows and spears for tomorrow's hunt.</li>
+        <li>[way:gifts] {A_nameDef} tried to find out what {B_nameDef} was giving tomorrow.</li>
+        <li>[way:hunt] {A_nameDef} and {B_nameDef} looked over their weapons for tomorrow's hunt.</li>
         <li>[kind:firstchild] {A_nameDef} reminded {B_nameDef} that tomorrow is the day the first child was born here.</li>
         <li>[kind:walls] {A_nameDef} told {B_nameDef} that tomorrow it'll be another year since the walls went up.</li>
         <li>[kind:homecoming] {A_nameDef} told {B_nameDef} that tomorrow is the homecoming, and started on the road story early.</li>
