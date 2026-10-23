@@ -14,15 +14,15 @@
     <interaction>Council_Friction_PetMischief</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[RECIPIENT_nameDef] held up what was left of [RECIPIENT_possessive] supper and asked [INITIATOR_nameDef] whose animal had been at it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whose animal had been at [RECIPIENT_possessive] supper, though [RECIPIENT_pronoun] already knew.</li>
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime], and [INITIATOR_nameDef] [ownerexcuse].</li>
-        <li>r_logentry->[RECIPIENT_nameDef] woke to find [INITIATOR_nameDef]'s animal standing on [RECIPIENT_objective], and said so at breakfast, loudly.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] found tooth marks in [RECIPIENT_possessive] hat and knew at once whose animal to blame. [INITIATOR_nameDef] [ownerexcuse].</li>
-        <li>r_logentry->[RECIPIENT_nameDef] spent the morning cleaning up after [INITIATOR_nameDef]'s animal and made sure [INITIATOR_nameDef] heard about every minute of it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] about waking up with [INITIATOR_possessive] animal standing on [RECIPIENT_possessive] chest.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] complained to [INITIATOR_nameDef] about the tooth marks in [RECIPIENT_possessive] hat, and [INITIATOR_nameDef] [ownerexcuse].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] gave [INITIATOR_nameDef] a full account of the cleaning up after [INITIATOR_possessive] animal.</li>
         <li>r_logentry->[RECIPIENT_nameDef] said that [INITIATOR_nameDef]'s animal had [petcrime] twice this week, and that [RECIPIENT_pronoun] had been counting.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether [INITIATOR_possessive] animal would ever learn the word "no". [INITIATOR_nameDef] [ownerexcuse].</li>
-        <li>r_logentry->[RECIPIENT_nameDef] caught [INITIATOR_nameDef]'s animal with its head in the berry basket and marched it straight back to [INITIATOR_objective].</li>
-        <li>r_logentry->[RECIPIENT_nameDef] stepped in something [INITIATOR_nameDef]'s animal had left by the door, and came to tell [INITIATOR_objective] about it with one boot off.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether [INITIATOR_possessive] animal would ever learn what no meant, and [INITIATOR_nameDef] [ownerexcuse].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] about catching [INITIATOR_possessive] animal with its head in the berry basket.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef], in some detail, what [INITIATOR_possessive] animal had left by the door.</li>
         <li>r_logentry->[RECIPIENT_nameDef] told [INITIATOR_nameDef] that [INITIATOR_possessive] animal had [petcrime], and [INITIATOR_nameDef] laughed before [INITIATOR_pronoun] could stop [INITIATOR_objective]self.</li>
         <li>r_logentry->[RECIPIENT_nameDef] complained to [INITIATOR_nameDef] that [INITIATOR_possessive] animal sat and stared at [RECIPIENT_objective] all through every meal.</li>
         <li>ownerexcuse->said it only did that to people it liked</li>
@@ -44,16 +44,16 @@
     <interaction>Council_Moment_PetPride</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] brought [INITIATOR_possessive] animal over to meet [RECIPIENT_nameDef] properly, and the animal [petgreeting].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_possessive] animal could tell [INITIATOR_possessive] footsteps from anyone else's. [RECIPIENT_nameDef] [petreaction].</li>
-        <li>r_logentry->[INITIATOR_nameDef] went on to [RECIPIENT_nameDef] about [INITIATOR_possessive] animal's [petfeat] until their supper went cold.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] where [INITIATOR_possessive] animal liked to be scratched, and [RECIPIENT_nameDef] found the spot at the first try.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said that the first time [RECIPIENT_nameDef] met [INITIATOR_possessive] animal, it [petgreeting].</li>
+        <li>r_logentry->[INITIATOR_nameDef] claimed [INITIATOR_possessive] animal could tell [INITIATOR_possessive] footsteps from anyone else's, and [RECIPIENT_nameDef] [petreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] went on to [RECIPIENT_nameDef] about [INITIATOR_possessive] animal's [petfeat] at great length.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] exactly where [INITIATOR_possessive] animal liked to be scratched, in case [RECIPIENT_pronoun] ever needed to know.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_possessive] animal was the only one in the colony who never minded [INITIATOR_possessive] singing.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to guess what [INITIATOR_possessive] animal had done that morning, and told [RECIPIENT_objective] before [RECIPIENT_pronoun] could.</li>
-        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_possessive] animal always knew when [INITIATOR_pronoun] was low, before anyone else did. [RECIPIENT_nameDef] [petreaction].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] watched [INITIATOR_possessive] animal [petplay], and [INITIATOR_nameDef] said that was nothing, it was better on a good day.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the whole story of how [INITIATOR_pronoun] and [INITIATOR_possessive] animal first met, with only a little added.</li>
-        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] walk [INITIATOR_possessive] animal once round the yard, and kept a close eye on them both.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to guess what [INITIATOR_possessive] animal had done that day, and told [RECIPIENT_objective] before [RECIPIENT_pronoun] could.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_possessive] animal always knew when [INITIATOR_pronoun] was low, before anyone else did, and [RECIPIENT_nameDef] [petreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] how [INITIATOR_possessive] animal liked to [petplay], laughing as [INITIATOR_pronoun] told it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the whole story of how [INITIATOR_pronoun] and [INITIATOR_possessive] animal first met, with a few things added.</li>
+        <li>r_logentry->[INITIATOR_nameDef] offered to let [RECIPIENT_nameDef] walk [INITIATOR_possessive] animal one day, if [RECIPIENT_pronoun] was very careful.</li>
         <li>petgreeting->sniffed [RECIPIENT_objective] all over and seemed to approve</li>
         <li>petgreeting->ignored [RECIPIENT_objective] completely, which [INITIATOR_nameDef] said was a very good sign</li>
         <li>petgreeting->leaned its whole weight against [RECIPIENT_possessive] legs</li>
@@ -61,7 +61,7 @@
         <li>petplay->chase a leaf across the yard</li>
         <li>petplay->roll in the dust and look pleased about it</li>
         <li>petplay->steal a glove and run off with it</li>
-        <li>petfeat->patience with the children</li>
+        <li>petfeat->patience with strangers</li>
         <li>petfeat->way of keeping watch at night</li>
         <li>petreaction->asked to borrow it for a day</li>
         <li>petreaction->said [RECIPIENT_pronoun] had noticed the same thing</li>
@@ -75,19 +75,19 @@
     <interaction>Council_Talk_Animals</interaction>
     <rulePack>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] leaned on the fence and talked about what the animals would need before the cold came.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what an animal would need to get through a winter here.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the first animal [INITIATOR_pronoun] ever looked after, and what became of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] which of the colony's animals [RECIPIENT_pronoun] would save first in a fire. They did not agree.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] some tracks at the edge of the fields and said what had made them, more or less.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] which animal [RECIPIENT_pronoun] would choose if the colony could keep only one, and they did not agree.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about tracks [INITIATOR_pronoun] had seen near the fields, and what [INITIATOR_pronoun] thought had made them.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that you could tell a lot about a colony by how it kept its animals.</li>
         <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] [animaldream], and [RECIPIENT_nameDef] [animalreply].</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the council ever gave the animals a thought.</li>
-        <li>r_logentry->[INITIATOR_nameDef] counted the herd out loud for [RECIPIENT_nameDef], came up one short, and found it standing right behind them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] had ever had an animal of [RECIPIENT_possessive] own.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that an animal of [INITIATOR_possessive] own would be [animalworth].</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over which animal in the colony was the cleverest, and agreed only that it wasn't the chickens.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over which kind of animal was cleverest, and neither would give way.</li>
         <li>animaldream->the pen [INITIATOR_pronoun] would build if anyone gave [INITIATOR_objective] the timber</li>
-        <li>animaldream->the animal [INITIATOR_pronoun] had been watching at the edge of the woods</li>
-        <li>animaldream->how the herd might look in a few years, with care</li>
+        <li>animaldream->the animal [INITIATOR_pronoun] had been watching out past the fields</li>
+        <li>animaldream->the herd the colony might have in a few years, with care</li>
         <li>animalreply->offered to help when the time came</li>
         <li>animalreply->said it sounded like a lot of work, and that [INITIATOR_pronoun] should do it anyway</li>
         <li>animalreply->asked who would be doing the feeding</li>
@@ -106,10 +106,10 @@
     <rulePack>
       <rulesStrings>
         <li>sent->[INITIATOR_nameDef]'s Pokémon won it in the last exchange, and [RECIPIENT_nameDef] asked to see the move again, slowly.</li>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon had the better of it from the start, and was given an extra handful of berries for it.</li>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon won, and [RECIPIENT_nameDef] spent the evening scratching out in the dirt where it had all gone wrong.</li>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon carried the day, though [RECIPIENT_nameDef] says the sun was in [RECIPIENT_possessive] Pokémon's eyes.</li>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon came out ahead, and [INITIATOR_nameDef] was gracious about it for nearly an hour.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon had the better of it from the start, and [INITIATOR_nameDef] promised it an extra handful of berries.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon won, and [RECIPIENT_nameDef] wanted to go over every move that had gone wrong.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon carried the day, though [RECIPIENT_nameDef] said the sun had been in [RECIPIENT_possessive] Pokémon's eyes.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon came out ahead, and [RECIPIENT_nameDef] shook [INITIATOR_nameDef]'s hand on it.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
@@ -121,9 +121,9 @@
       <rulesStrings>
         <li>sent->[RECIPIENT_nameDef]'s Pokémon won, and [INITIATOR_nameDef] asked for a rematch before the dust had settled.</li>
         <li>sent->[RECIPIENT_nameDef]'s Pokémon took it, and [INITIATOR_nameDef] admitted [INITIATOR_pronoun] had called the wrong move at the wrong moment.</li>
-        <li>sent->[RECIPIENT_nameDef]'s Pokémon won it cleanly, and both trainers went to fetch water for the two of them.</li>
-        <li>sent->[RECIPIENT_nameDef]'s Pokémon came out on top, and [INITIATOR_nameDef] was quiet and thoughtful all through supper.</li>
-        <li>sent->[RECIPIENT_nameDef]'s Pokémon won by a hair, and the people at the fence argued about it until dark.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won it cleanly, and both trainers had a word of praise for the loser too.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon came out on top, and [INITIATOR_nameDef] went quiet, working out what to change.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won by a hair, and [INITIATOR_nameDef] wasn't sure it counted.</li>
       </rulesStrings>
     </rulePack>
   </ColonyCouncil.LogLinesDef>
