@@ -27,7 +27,7 @@
         <li>Lights out. Mouths shut. Sleep.</li>
       </blunt>
       <gloomy>
-        <li>[lowmood] I lie awake every night listening to everyone else having a better time than me.</li>
+        <li>[lowmood] I lie awake every night listening to the rest of you having a better time than me.</li>
       </gloomy>
       <cold>
         <li>Most arguments here start after dark, so take away the evenings and you take away the arguments.</li>
@@ -60,14 +60,14 @@
       <plain>
         <li>[newcomer] I've been here a week, and some of you I still haven't spoken to.</li>
         <li>People eat standing up, alone, in a hurry, and that's no way to live.</li>
-        <li>[trait:Kind] Everyone should have a seat and someone to pass them the bread.</li>
+        <li>[trait:Kind] Each of us should have a seat and someone to pass the bread.</li>
       </plain>
       <warm>
         <li>[skill:Social] I want to hear about everyone's day, all of it, over supper.</li>
         <li>[winter] Long dark evenings go faster with a full table.</li>
       </warm>
       <cheerful>
-        <li>Shared supper! I'll make sure there's a seat for everyone.</li>
+        <li>Shared supper, and I'll lay a place for every one of us!</li>
       </cheerful>
       <cold>
         <li>Grudges grow when people avoid each other. Make them sit together.</li>
@@ -167,7 +167,7 @@
       <plain>
         <li>[small] There are too few of us for anyone to know only one trade.</li>
         <li>[newcomer] I'd learn anything, if someone would show me.</li>
-        <li>[trait:Kind] Everyone here knows something worth passing on.</li>
+        <li>[trait:Kind] Each of us knows something worth passing on.</li>
         <li>[old] I won't be around forever. Somebody should learn what I know.</li>
       </plain>
       <warm>

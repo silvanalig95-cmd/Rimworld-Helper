@@ -17,7 +17,7 @@
         <li>{PAWN_nameDef} poured tea for {A_nameDef} and {B_nameDef} and sat with them until the pot went cold.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to settle it or stop sulking where everyone could see.</li>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to settle it or stop sulking through every meal.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} got {A_nameDef} and {B_nameDef} laughing at the same joke, feud or no feud.</li>

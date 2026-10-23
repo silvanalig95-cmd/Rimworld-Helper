@@ -142,7 +142,7 @@
         <li>Empty pot. Wonderful.</li>
       </blunt>
       <cheerful>
-        <li>Crumbs for me, then, very festive!</li>
+        <li>Crumbs for me, then, very festive.</li>
       </cheerful>
       <gloomy>
         <li>Of course it ran out before I got there.</li>
@@ -263,7 +263,7 @@
         <li>Turned down again: "{MINE}".</li>
       </blunt>
       <gloomy>
-        <li>I don't know why I stand up at those meetings.</li>
+        <li>Stood up at the meeting again. Sat down again. Same as ever.</li>
       </gloomy>
       <cold>
         <li>They turned down "{MINE}". I'll bring it back when they've seen "{AMBITION}" fail.</li>

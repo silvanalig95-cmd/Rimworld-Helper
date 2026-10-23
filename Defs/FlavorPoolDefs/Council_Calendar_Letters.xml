@@ -65,13 +65,13 @@
     <defName>Council_Cal_Letter_Battle</defName>
     <lines>
       <plain>
-        <li>[clean,first] A year ago today the colony saw off {ENEMY}, and {COUNT} of them fell without the loss of one of ours. {A_nameDef} still talks about where the line held.</li>
+        <li>[clean,first] The colony saw off {ENEMY} a year ago today, and {COUNT} of them fell without the loss of one of ours. {A_nameDef} still talks about where the line held.</li>
         <li>[clean,years] {A_nameDef} wants a feast tonight, like the one the night the colony beat back {ENEMY}, {YEARS} years ago.</li>
         <li>[clean] {A_nameDef} walked the old defenses this morning, the ones that held against {ENEMY} on this day.</li>
         <li>[clean,tradition] Every year at supper the fight with {ENEMY} gets told again, and every year the enemy is a little more numerous.</li>
-        <li>[nemesis,first] A year ago today {ENEMY} was finally brought down. {A_nameDef} says the colony slept better that night than it had in months.</li>
+        <li>[nemesis,first] {ENEMY} was finally brought down on this day last year. {A_nameDef} says the colony slept better that night than it had in months.</li>
         <li>[nemesis,years] Some of the newer people know {ENEMY} only from the stories. {A_nameDef}, who was there {YEARS} years ago, is glad to tell them again.</li>
-        <li>[fallen,first] A year ago today the colony fought {ENEMY} and lost {DEAD}. {A_nameDef} has said very little this morning.</li>
+        <li>[fallen,first] It's a year since the colony fought {ENEMY} and lost {DEAD}. {A_nameDef} has said very little this morning.</li>
         <li>[fallen,years] {YEARS} years since the battle with {ENEMY}, when {DEAD} fell. The ones who were there don't talk about it much, but they were all up early today.</li>
         <li>[fallen] On this day {ENEMY} attacked, and {DEAD} did not come back from the fight. {A_nameDef} went out to the graves before breakfast.</li>
         <li>[fallen,tradition] The colony keeps this day every year for {DEAD}, who fell fighting {ENEMY}.</li>
