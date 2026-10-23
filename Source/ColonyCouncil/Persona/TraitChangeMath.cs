@@ -189,10 +189,13 @@ namespace ColonyCouncil
         /// <summary>Who someone loves: never changed by what happens to them.</summary>
         public static readonly string[] Sexuality = { "Gay", "Bisexual", "Asexual", "DislikesMen", "DislikesWomen" };
 
-        /// <summary>Traits of the body or of a gift they were born with, not of character: never changed here.</summary>
+        /// <summary>
+        /// Traits of the body or of a gift they were born with, not of character: never changed here (but see
+        /// <see cref="Trained"/>).
+        /// </summary>
         public static readonly string[] Body =
         {
-            "Tough", "Nimble", "Beauty", "SpeedOffset", "Immunity", "Delicate", "PsychicSensitivity", "AnnoyingVoice", "CreepyBreathing",
+            "Nimble", "Beauty", "Immunity", "Delicate", "PsychicSensitivity", "AnnoyingVoice", "CreepyBreathing",
             "QuickSleeper", "BodyMastery", "FastLearner", "SlowLearner", "GreatMemory", "PerfectMemory", "TooSmart", "ShootingAccuracy",
             "VTE_BigBoned", "VTE_ThickSkinned", "VTE_ThinSkinned", "VTE_IronStomach", "VTE_HeatInclined", "VTE_ColdInclined", "VTE_HeavySleeper",
             "VTE_Clumsy", "AG_Beauty", "RT_Nearsighted", "RT_Farsighted", "RT_Athletic", "RT_Stiff", "RT_Muscular", "RT_Frail", "RT_Hardy",
@@ -200,6 +203,15 @@ namespace ColonyCouncil
         };
 
         /// <summary>Why a trait may never be changed by a rule ("sexuality", "body"), or null.</summary>
+        /// <summary>
+        /// The body's traits its own history can earn: hardened by wounds survived (tough), quickened by a season on its
+        /// feet (fast walker). Only ever gained or stepped up, never taken away.
+        /// </summary>
+        public static readonly string[] Trained = { "Tough", "SpeedOffset" };
+
+        /// <summary>Whether a change of this kind may touch this trait: a trained one only grows.</summary>
+        public static bool TrainedOnlyGrows(string trait, bool grows) => Array.IndexOf(Trained, trait) < 0 || grows;
+
         public static string Untouchable(string trait)
         {
             if (string.IsNullOrEmpty(trait)) return "none";

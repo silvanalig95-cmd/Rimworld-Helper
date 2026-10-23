@@ -243,6 +243,9 @@ MODEL = {
     "Persona/Marks.cs:once": ("known", 0.3, 40, "skills mastered; known pawns only, 800 at most"),
     # Faith among the colony's people (a colonist's faith moments, a faith's demands watched, crises waiting to be felt)
     "Faith/FaithPeople.cs:people": ("colonists", 1, 160, "one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving"),
+    "Quirks/Quirks.cs:practice": ("colonists", 1, 140, "one per colonist who works or keeps late or early hours; dead and departed dropped daily and at saving, faded-out ones removed"),
+    "Quirks/Practice.cs:kinds": ("fixed", const("Quirks/Practice.cs", "MaxKinds", 8), 30, "per colonist: the kinds of work they've done lately, 8 at most (counted under practice)"),
+    "Quirks/Practice.cs:hours": ("fixed", const("Quirks/Practice.cs", "MaxKinds", 8), 20, "per colonist: hours at each kind of work, in step with kinds (counted under practice)"),
     "Faith/FaithPeople.cs:leanings": ("fixed", const("Faith/LeaningMath.cs", "MaxLeanings", 6), 120, "per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people)"),
     "Faith/FaithPeople.cs:notes": ("fixed", const("Faith/FaithPeopleMath.cs", "MaxNotes", 5), 170, "per colonist: the newest faith moments, 120 days at most (counted under people)"),
     "Faith/FaithPeople.cs:waiting": ("cap", (COLONISTS, 0.15), 140, "crises waiting to be felt: one per kind per colonist, let go after 6 days"),

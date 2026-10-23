@@ -20,6 +20,32 @@
   <CC_TC_Pace>{0}: {1}% of the time over the last {2} days.</CC_TC_Pace>
   <CC_TC_Calm>No breakdown or other mental state for {0} days.</CC_TC_Calm>
   <CC_TC_Skill>{0} skill: {1}.</CC_TC_Skill>
+  <CC_TC_Practice>{0}: about {1} hours lately.</CC_TC_Practice>
+  <CC_TC_Habit>The habit "{0}": held {1} days, lived on {2} of them.</CC_TC_Habit>
+
+  <!-- Where life is taking them: the character page's section 26 (Persona/TraitChanges.cs, Building). -->
+  <CC_TCB_Section>Where life is taking them</CC_TCB_Section>
+  <CC_TCB_Of>{0} of {1}</CC_TCB_Of>
+  <CC_TCB_All>all of it has happened</CC_TCB_All>
+  <CC_TCB_Tip>Toward {0}. What leads there, and what has happened (green):</CC_TCB_Tip>
+  <CC_TCB_TipEnd>When all of it has, the change can come on any day, but only one colonist changes in ten days, and nobody twice in sixty.</CC_TCB_TipEnd>
+  <CC_TCB_NoLonger>no longer {0}</CC_TCB_NoLonger>
+  <CC_TCB_Moved>{0}: moved {1} from their nature (needs {2})</CC_TCB_Moved>
+  <CC_TCB_Now>{0}: {1} now (needs {2})</CC_TCB_Now>
+  <CC_TCB_OrMore>{0} or more</CC_TCB_OrMore>
+  <CC_TCB_OrLess>{0} or less</CC_TCB_OrLess>
+  <CC_TCB_Marks>Marks on their character page that count: {0} of {1}</CC_TCB_Marks>
+  <CC_TCB_Count>{0}: {1} of {2}</CC_TCB_Count>
+  <CC_TCB_Fact>{0}: {1} (needs {2})</CC_TCB_Fact>
+  <CC_TCB_Pace>{0}: {1}% of their time ({2})</CC_TCB_Pace>
+  <CC_TCB_AtLeast>needs at least {0}%</CC_TCB_AtLeast>
+  <CC_TCB_AtMost>needs at most {0}%</CC_TCB_AtMost>
+  <CC_TCB_Calm>Days without a breakdown: {0} of {1}</CC_TCB_Calm>
+  <CC_TCB_Melee>Fights in melee</CC_TCB_Melee>
+  <CC_TCB_Practice>{0}: about {1} hours lately (needs {2})</CC_TCB_Practice>
+  <CC_TCB_NoHabit>The habit "{0}"</CC_TCB_NoHabit>
+  <CC_TCB_HabitHeld>The habit "{0}": held {1} of {2} days</CC_TCB_HabitHeld>
+  <CC_TCB_HabitLived>The habit "{0}": lived on {1} of {2} days</CC_TCB_HabitLived>
   <CC_TC_Side>{0}: {1} from what has happened, now {2} ({3}).</CC_TC_Side>
 
   <!-- The character page and the tooltip of a side on it. -->

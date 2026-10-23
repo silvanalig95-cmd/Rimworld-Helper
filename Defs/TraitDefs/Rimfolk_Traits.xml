@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Rimfolk's own traits (Source/ColonyCouncil/Persona/RimfolkTraits.cs). Never on a new arrival (commonality 0): each
+    is only earned in the colony, the end of a habit lived for months (Defs/PersonaDefs/Rimfolk_TraitChanges_Habits.xml).
+    Where Vanilla Traits Expanded has the same trait (neat, animal lover), its own is given instead, and one of ours that
+    shares a label with another mod's trait stays out of the game. Like any trait, it stays with the colonist; with Rimfolk
+    removed from a game, the game drops it when the save loads.
+  -->
+
+  <TraitDef>
+    <defName>Rimfolk_Tidy</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>tidy</label>
+        <description>{PAWN_nameDef} can't abide a mess and cleans quickly and well. A filthy room puts {PAWN_objective} out of sorts.</description>
+        <statOffsets>
+          <CleaningSpeed>0.25</CleaningSpeed>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>Rimfolk_GreenThumb</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>green thumb</label>
+        <description>Seasons in the fields have taught {PAWN_nameDef} what every plant wants. {PAWN_pronoun} sows and harvests faster than most, and a little more comes of it.</description>
+        <statOffsets>
+          <PlantWorkSpeed>0.15</PlantWorkSpeed>
+          <PlantHarvestYield>0.05</PlantHarvestYield>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>Rimfolk_BornCook</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>born cook</label>
+        <description>{PAWN_nameDef} is at home at the stove. {PAWN_pronoun} cooks quickly, and keeps the kitchen clean enough that hardly anyone gets sick from {PAWN_possessive} food.</description>
+        <statOffsets>
+          <CookSpeed>0.15</CookSpeed>
+        </statOffsets>
+        <statFactors>
+          <FoodPoisonChance>0.7</FoodPoisonChance>
+        </statFactors>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>Rimfolk_AnimalFriend</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>animal friend</label>
+        <description>{PAWN_nameDef} has a name and a kind word for every animal, and they know it. Wild ones are tamed and tame ones trained more easily by {PAWN_objective}.</description>
+        <statOffsets>
+          <TameAnimalChance>0.08</TameAnimalChance>
+          <TrainAnimalChance>0.08</TrainAnimalChance>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>Rimfolk_Healer</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>healer's hands</label>
+        <description>{PAWN_nameDef} has tended so many wounds that {PAWN_possessive} hands know the work by themselves. {PAWN_pronoun} tends faster and better than before.</description>
+        <statOffsets>
+          <MedicalTendQuality>0.08</MedicalTendQuality>
+          <MedicalTendSpeed>0.1</MedicalTendSpeed>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>Rimfolk_TrailWise</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>trail-wise</label>
+        <description>{PAWN_nameDef} knows the land around the colony like {PAWN_possessive} own room: where the game drinks, which way the wind carries. Animals rarely see {PAWN_objective} coming.</description>
+        <statOffsets>
+          <HuntingStealth>0.15</HuntingStealth>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+</Defs>

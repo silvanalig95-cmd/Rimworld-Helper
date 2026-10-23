@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 312; modelled: 312; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,649 KB** after a year, **2,012 KB** after two, **2,125 KB** after five.
+Saved collections found: 315; modelled: 315; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,652 KB** after a year, **2,015 KB** after two, **2,128 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -87,6 +87,7 @@ Rimfolk's part of the save, roughly: **1,649 KB** after a year, **2,012 KB** aft
 | `Wishes/Kept.cs:watches` | granted wishes still watched (grace days) | window | 8 | 8 | 8 | 2.9 |
 | `World/WorldSituations.cs:active` | 2 running | fixed | 2 | 2 | 2 | 2.9 |
 | `Faith/FaithPeople.cs:waiting` | crises waiting to be felt: one per kind per colonist, let go after 6 days | cap | 9 | 18 | 20 | 2.7 |
+| `Quirks/Quirks.cs:practice` | one per colonist who works or keeps late or early hours; dead and departed dropped daily and at saving, faded-out ones removed | colonists | 20 | 20 | 20 | 2.7 |
 | `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 31 | 31 | 31 | 2.7 |
 | `Ailments/AilmentTracker.cs:healing` | injuries an ailment may follow; let go when healed, known pawns only | known | 16 | 18 | 22 | 2.6 |
 | `Aspirations/Aspirations.cs:events` | sparks, 30 days | window | 30 | 30 | 30 | 2.6 |
@@ -308,6 +309,8 @@ Rimfolk's part of the save, roughly: **1,649 KB** after a year, **2,012 KB** aft
 | `PlayOut/PlayOuts.cs:route` | per searcher: the places they look over (counted under plays) | fixed | 6 | 6 | 6 | (in its record) |
 | `PlayOut/PlayOuts.cs:tasks` | per work party: its kinds of work (counted under plays) | fixed | 3 | 3 | 3 | (in its record) |
 | `Pressures/Pressures.cs:meals` | per colonist: 12 meals (counted under people) | fixed | 12 | 12 | 12 | (in its record) |
+| `Quirks/Practice.cs:hours` | per colonist: hours at each kind of work, in step with kinds (counted under practice) | fixed | 8 | 8 | 8 | (in its record) |
+| `Quirks/Practice.cs:kinds` | per colonist: the kinds of work they've done lately, 8 at most (counted under practice) | fixed | 8 | 8 | 8 | (in its record) |
 | `Secrets/Secrets.cs:knowers` | per secret (counted under secrets) | fixed | 3 | 3 | 3 | (in its record) |
 | `Setbacks/SetbackTracker.cs:sowers` | per sown field (counted under sown) | fixed | 3 | 3 | 3 | (in its record) |
 | `Social/Groups/SocialGroup.cs:counts` | per work log (counted under work) | fixed | 6 | 6 | 6 | (in its record) |

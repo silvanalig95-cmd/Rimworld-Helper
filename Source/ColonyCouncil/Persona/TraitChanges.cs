@@ -245,6 +245,7 @@ namespace ColonyCouncil
         static TraitChanges()
         {
             CharacterPage.Add("traits", 25, Section);
+            CharacterPage.Add("traitsBuilding", 26, Building);
         }
 
         public static bool On =>
@@ -496,6 +497,17 @@ namespace ColonyCouncil
         /// <summary>Why this rule can't change this person now, or null if it can (with where it would take the trait).</summary>
         public static string Why(Pawn p, TraitChangeDef def, int now, out TraitStep step)
         {
+            string gate = Gate(p, def, now, out step);
+            return gate ?? Lacks(p, def, now);
+        }
+
+        /// <summary>
+        /// What stands in the way whatever they live through: the rule unavailable or used, a trait that blocks it, the
+        /// degree it would step to, room for a trait, conflicts, a role, the last change of this trait too recent, age
+        /// and time in the colony. Null when only the evidence is missing (or nothing).
+        /// </summary>
+        private static string Gate(Pawn p, TraitChangeDef def, int now, out TraitStep step)
+        {
             step = default;
             var t = Tracker;
             if (t == null || def == null || !def.Available) return "unavailable";
@@ -521,6 +533,14 @@ namespace ColonyCouncil
             if (rate != null) return rate;
             if (def.minAge > 0 && (p.ageTracker?.AgeBiologicalYears ?? 0) < def.minAge) return "age";
             if (def.daysHere > 0 && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < def.daysHere * (float)GenDate.TicksPerDay) return "new";
+            return null;
+        }
+
+        /// <summary>The first piece of evidence the rule still lacks, or null when all of it is there.</summary>
+        private static string Lacks(Pawn p, TraitChangeDef def, int now)
+        {
+            var t = Tracker;
+            int lastSame = t.LastChange(p.thingIDNumber, def.Trait.defName);
             // Their character: how far life has moved them, and where they are.
             if (def.Moved.Count > 0 || def.Now.Count > 0 || def.marks.Count > 0 || !def.notMarks.NullOrEmpty())
             {
@@ -556,8 +576,21 @@ namespace ColonyCouncil
                 if (!pace.Holds(Share(w, p, pace, now))) return "pace " + pace.record;
             if (def.calmDays > 0 && (w == null || TraitChangeMath.DaysSince(w.calmSince, now) < def.calmDays)) return "calm";
             if (def.meleeFighter && !MeleeFighter(p)) return "melee";
+            foreach (var f in def.Practice)
+                if (!f.Holds(Practice.Hours(p, f.name))) return "practice " + f.name;
+            if (def.Habit != null)
+            {
+                var q = HabitOf(p, def);
+                if (q == null) return "habit";
+                if (TraitChangeMath.DaysSince(q.gainedTick, now) < def.habitDays) return "habit days";
+                if (q.livedDays < def.habitLived) return "habit lived";
+            }
             return null;
         }
+
+        /// <summary>Their habit that the rule grows from (the quirks setting on), or null.</summary>
+        private static Quirk HabitOf(Pawn p, TraitChangeDef def) =>
+            def.Habit == null || ColonyCouncilMod.Settings?.quirks != true ? null : CouncilGameComponent.Instance?.quirks?.Get(p, def.Habit);
 
         /// <summary>A trait the game gave them for a reason of its own: from a gene, a backstory, the scenario, or suppressed.</summary>
         private static bool Protected(Pawn p, Trait tr)
@@ -709,6 +742,8 @@ namespace ColonyCouncil
             };
             t.changes.Add(record);
             t.lastChange = now;
+            // A habit that grew into the trait is the trait now.
+            if (def.Habit != null && def.endsHabit && step.hasAfter) CouncilGameComponent.Instance?.quirks?.EndHabit(p, def.Habit);
             if (!def.onceKey.NullOrEmpty()) t.once.Add(def.onceKey);
             try
             {
@@ -782,6 +817,11 @@ namespace ColonyCouncil
                 var s = sd == null ? null : p.skills?.GetSkill(sd);
                 if (s != null) ordered.Add("CC_TC_Skill".Translate(sd.LabelCap, s.Level).Resolve());
             }
+            foreach (var f in def.Practice)
+                ordered.Add("CC_TC_Practice".Translate(Practice.Words(f.name).CapitalizeFirst(), Mathf.RoundToInt(Practice.Hours(p, f.name))).Resolve());
+            var habit = HabitOf(p, def);
+            if (habit != null)
+                ordered.Add("CC_TC_Habit".Translate(habit.Label, Mathf.FloorToInt(TraitChangeMath.DaysSince(habit.gainedTick, now)), habit.livedDays).Resolve());
             if (r != null)
             {
                 var axes = def.Moved.Select(c => c.axis).Concat(def.Now.Select(c => c.axis)).Distinct().OrderBy(a => a).ToList();
@@ -800,6 +840,160 @@ namespace ColonyCouncil
         {
             int n = Mathf.RoundToInt(v);
             return n > 0 ? "+" + n : n.ToString();
+        }
+
+        // ---------------- Where life is taking them ----------------
+
+        /// <summary>
+        /// What leads to a rule's change, part by part, in words, and whether each part holds: how far a side has moved
+        /// and where it stands, the marks, the deeds, the records, skills, how their time goes, calm days, a habit, what
+        /// they've been doing lately. The same evidence the rule checks (Lacks), told for the player.
+        /// </summary>
+        public static List<(string text, bool ok)> Parts(Pawn p, TraitChangeDef def, int now)
+        {
+            var parts = new List<(string, bool)>();
+            var t = Tracker;
+            if (t == null || def?.Trait == null) return parts;
+            int lastSame = t.LastChange(p.thingIDNumber, def.Trait.defName);
+            var r = Persona.Of(p);
+            if (r != null && (def.Moved.Count > 0 || def.Now.Count > 0))
+            {
+                r.Fade(now);
+                var moved = new float[PersonaMath.Axes];
+                for (int i = 0; i < moved.Length; i++) moved[i] = TraitChangeMath.Moved(r.lasting[i], r.drift[i]);
+                foreach (var c in def.Moved)
+                    parts.Add(("CC_TCB_Moved".Translate(AxisName(c.axis), Signed(moved[c.axis]), Needs(c.atLeast, c.value, true)).Resolve(), c.Holds(moved)));
+                var values = Persona.Values(p);
+                foreach (var c in def.Now)
+                    parts.Add(("CC_TCB_Now".Translate(AxisName(c.axis), Signed(values[c.axis]), Needs(c.atLeast, c.value, true)).Resolve(), c.Holds(values)));
+            }
+            foreach (var need in def.marks)
+            {
+                int have = r == null ? 0 : EvidenceMarks(r, need, lastSame, now).Count;
+                parts.Add(("CC_TCB_Marks".Translate(Mathf.Min(have, need.count), need.count).Resolve(), have >= need.count));
+            }
+            var w = t.Watch(p, false);
+            foreach (var tally in def.tallies)
+            {
+                int have = Entries(w, tally, lastSame, now).Count;
+                parts.Add(("CC_TCB_Count".Translate((tally.label ?? tally.key).CapitalizeFirst(), Mathf.Min(have, tally.count), tally.count).Resolve(), have >= tally.count));
+            }
+            foreach (var f in def.Records)
+            {
+                var rd = DefDatabase<RecordDef>.GetNamedSilentFail(f.name);
+                if (rd == null || p.records == null) continue;
+                float v = p.records.GetValue(rd);
+                parts.Add(("CC_TCB_Fact".Translate(rd.LabelCap, Mathf.RoundToInt(v), Needs(f.atLeast, f.value, false)).Resolve(), f.Holds(v)));
+            }
+            foreach (var f in def.Skills)
+            {
+                var sd = DefDatabase<SkillDef>.GetNamedSilentFail(f.name);
+                var sk = sd == null ? null : p.skills?.GetSkill(sd);
+                if (sk == null) continue;
+                parts.Add(("CC_TCB_Fact".Translate(sd.LabelCap, sk.Level, Needs(f.atLeast, f.value, false)).Resolve(), !sk.TotallyDisabled && f.Holds(sk.Level)));
+            }
+            foreach (var pace in def.pace)
+            {
+                float share = Share(w, p, pace, now);
+                string needs = pace.atLeast >= 0f ? "CC_TCB_AtLeast".Translate(Mathf.RoundToInt(pace.atLeast * 100f)).Resolve() : "CC_TCB_AtMost".Translate(Mathf.RoundToInt(pace.atMost * 100f)).Resolve();
+                parts.Add(("CC_TCB_Pace".Translate((pace.label ?? pace.record).CapitalizeFirst(), Mathf.RoundToInt(Mathf.Max(0f, share) * 100f), needs).Resolve(), pace.Holds(share)));
+            }
+            if (def.calmDays > 0)
+            {
+                int days = w == null ? 0 : Mathf.FloorToInt(TraitChangeMath.DaysSince(w.calmSince, now));
+                parts.Add(("CC_TCB_Calm".Translate(Mathf.Min(days, def.calmDays), def.calmDays).Resolve(), days >= def.calmDays));
+            }
+            if (def.meleeFighter) parts.Add(("CC_TCB_Melee".Translate().ToString(), MeleeFighter(p)));
+            foreach (var f in def.Practice)
+            {
+                float h = Practice.Hours(p, f.name);
+                parts.Add(("CC_TCB_Practice".Translate(Practice.Words(f.name).CapitalizeFirst(), Mathf.RoundToInt(h), Needs(f.atLeast, f.value, false)).Resolve(), f.Holds(h)));
+            }
+            if (def.Habit != null)
+            {
+                var q = HabitOf(p, def);
+                if (q == null) parts.Add(("CC_TCB_NoHabit".Translate(def.Habit.label).Resolve(), false));
+                else
+                {
+                    int held = Mathf.FloorToInt(TraitChangeMath.DaysSince(q.gainedTick, now));
+                    parts.Add(("CC_TCB_HabitHeld".Translate(q.Label, Mathf.Min(held, def.habitDays), def.habitDays).Resolve(), held >= def.habitDays));
+                    parts.Add(("CC_TCB_HabitLived".Translate(q.Label, Mathf.Min(q.livedDays, def.habitLived), def.habitLived).Resolve(), q.livedDays >= def.habitLived));
+                }
+            }
+            return parts;
+        }
+
+        private static string AxisName(int axis) => ("CC_Persona_Axis_" + (PersonaAxis)axis).Translate().CapitalizeFirst();
+
+        /// <summary>"+16 or more", "10 or less".</summary>
+        private static string Needs(bool atLeast, float value, bool signed)
+        {
+            string v = signed ? Signed(value) : Mathf.RoundToInt(value).ToString();
+            return (atLeast ? "CC_TCB_OrMore" : "CC_TCB_OrLess").Translate(v).Resolve();
+        }
+
+        /// <summary>Most rules shown at once, and the share of a rule's parts that must hold before it's shown.</summary>
+        public const int BuildingShown = 3;
+        public const float BuildingFrom = 0.34f;
+
+        private static readonly Dictionary<int, (int tick, CharacterSection section)> buildingCache = new Dictionary<int, (int, CharacterSection)>();
+
+        /// <summary>
+        /// Section 26: the changes their life is heading toward, the furthest along first, each with how many of the
+        /// things that lead there have happened; hover one for the list. Only rules nothing else stands in the way of
+        /// (the gate), with at least a third of their evidence there. Kept a few hours of game time.
+        /// </summary>
+        public static CharacterSection Building(Pawn p)
+        {
+            if (!On || !CanChange(p)) return null;
+            int now = Now;
+            if (buildingCache.TryGetValue(p.thingIDNumber, out var cached) && now >= cached.tick && now - cached.tick < GenDate.TicksPerHour * 2) return cached.section;
+            if (buildingCache.Count > 60) buildingCache.Clear();
+            Build();
+            var rows = new List<(TraitChangeDef def, int have, int total, List<(string text, bool ok)> parts)>();
+            foreach (var def in TraitChangeDef.All)
+            {
+                try
+                {
+                    if (Gate(p, def, now, out _) != null) continue;
+                    var parts = Parts(p, def, now);
+                    int have = parts.Count(x => x.ok);
+                    if (parts.Count == 0 || have == 0 || have < parts.Count * BuildingFrom) continue;
+                    rows.Add((def, have, parts.Count, parts));
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("trait changes: where life is taking them, " + def.defName, e);
+                }
+            }
+            CharacterSection s = null;
+            if (rows.Count > 0)
+            {
+                s = new CharacterSection { title = "CC_TCB_Section".Translate() };
+                foreach (var row in rows.OrderByDescending(x => x.have / (float)x.total).ThenByDescending(x => x.have).Take(BuildingShown))
+                {
+                    string count = row.have >= row.total ? "CC_TCB_All".Translate().ToString() : "CC_TCB_Of".Translate(row.have, row.total).Resolve();
+                    var tip = new StringBuilder("CC_TCB_Tip".Translate(TraitWord(row.def, p)).Resolve());
+                    foreach (var (text, ok) in row.parts)
+                        tip.Append("\n").Append(("• " + text).Colorize(ok ? UiKit.Good : UiKit.Dim));
+                    tip.Append("\n\n").Append("CC_TCB_TipEnd".Translate());
+                    s.Line(row.def.label.CapitalizeFirst() + "  " + count.Colorize(UiKit.Dim), tip.ToString());
+                }
+            }
+            buildingCache[p.thingIDNumber] = (now, s);
+            return s;
+        }
+
+        /// <summary>The trait a rule leads to, as the player would read it: "kind", "no longer abrasive", "steadier nerves".</summary>
+        private static string TraitWord(TraitChangeDef def, Pawn p)
+        {
+            var td = def.Trait;
+            var cur = p.story?.traits?.GetTrait(td);
+            var degrees = td.degreeDatas?.Select(d => d.degree).ToList() ?? new List<int>();
+            var step = TraitChangeMath.Plan(def.change, cur != null, cur?.Degree ?? 0, def.degree, def.anyDegree, degrees, def.from);
+            if (step.ok && step.hasAfter) return DegreeLabel(td, step.to, p);
+            if (step.ok && step.hadTrait) return "CC_TCB_NoLonger".Translate(DegreeLabel(td, step.from, p)).Resolve();
+            return td.label;
         }
 
         // ---------------- The character page ----------------

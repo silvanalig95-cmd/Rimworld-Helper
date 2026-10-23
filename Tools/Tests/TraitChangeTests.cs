@@ -29,7 +29,8 @@ public static class TraitChangeTests
         ["Nerves"] = new[] { -2, -1, 1, 2 },
         ["NaturalMood"] = new[] { -2, -1, 1, 2 },
         ["Industriousness"] = new[] { -2, -1, 1, 2 },
-        ["DrugDesire"] = new[] { -1, 1, 2 }
+        ["DrugDesire"] = new[] { -1, 1, 2 },
+        ["SpeedOffset"] = new[] { -1, 1, 2 }
     };
 
     // The memories, deeds, tales, records and skills the rules name, each one the game has: memories from its thought
@@ -203,7 +204,13 @@ public static class TraitChangeTests
 
         // ---------- Traits never touched ----------
         foreach (var t in new[] { "Gay", "Bisexual", "Asexual" }) Check(TraitChangeMath.Untouchable(t) == "sexuality", t + " is never changed");
-        foreach (var t in new[] { "Tough", "Nimble", "Beauty", "SpeedOffset", "Immunity" }) Check(TraitChangeMath.Untouchable(t) == "body", t + " is the body, not character");
+        foreach (var t in new[] { "Nimble", "Beauty", "Immunity" }) Check(TraitChangeMath.Untouchable(t) == "body", t + " is the body, not character");
+        foreach (var t in new[] { "Tough", "SpeedOffset" })
+        {
+            Check(TraitChangeMath.Untouchable(t) == null, t + " can be earned by the body's history");
+            Check(TraitChangeMath.TrainedOnlyGrows(t, true) && !TraitChangeMath.TrainedOnlyGrows(t, false), t + " is only ever gained, never taken");
+        }
+        Check(TraitChangeMath.TrainedOnlyGrows("Kind", false), "character traits may be lost");
         Check(TraitChangeMath.Untouchable("Kind") == null && TraitChangeMath.Untouchable("Nerves") == null, "character traits may change");
 
         // ---------- Facts, deeds and paces ----------
@@ -247,6 +254,21 @@ public static class TraitChangeTests
                 if (x?.Element("story") != null) markNames.Add((string)x.Element("story")!);
             }
         var modNames = new HashSet<string>(File.ReadAllLines(Path.Combine(root, "Tools", "Tests", "ModDefNames.txt")).Where(l => !l.StartsWith("#")).Select(l => l.Trim()));
+        // Rimfolk's own traits: only ever earned (commonality 0), each with one degree.
+        var ours = new HashSet<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs", "TraitDefs"), "*.xml"))
+            foreach (var td in XDocument.Load(file).Root!.Elements("TraitDef"))
+            {
+                string n = (string)td.Element("defName") ?? "";
+                ours.Add(n);
+                Check(n.StartsWith("Rimfolk_"), $"{n}: one of Rimfolk's own traits is named Rimfolk_");
+                Check((float?)td.Element("commonality") == 0f, $"{n}: never on a new arrival (commonality 0)");
+                Check(td.Element("degreeDatas")?.Elements("li").Count() == 1, $"{n}: one degree");
+            }
+        var habits = new HashSet<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs", "QuirkDefs"), "*.xml"))
+            foreach (var q in XDocument.Load(file).Root!.Elements("ColonyCouncil.QuirkDef"))
+                habits.Add((string)q.Element("defName") ?? "");
         var rules = new List<XElement>();
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs", "PersonaDefs"), "Rimfolk_TraitChanges*.xml"))
             rules.AddRange(XDocument.Load(file).Root!.Elements("ColonyCouncil.TraitChangeDef"));
@@ -258,7 +280,13 @@ public static class TraitChangeTests
             string name = (string)r.Element("defName")!;
             string trait = (string)r.Element("trait") ?? "";
             string change = (string)r.Element("change") ?? "Gain";
-            Check(GameTraits.Contains(trait) || modNames.Contains(trait), $"{name}: {trait} is a trait the game or its mod has");
+            Check(GameTraits.Contains(trait) || modNames.Contains(trait) || ours.Contains(trait), $"{name}: {trait} is a trait the game, its mod or Rimfolk has");
+            string habit = (string)r.Element("habit");
+            if (habit != null) Check(habits.Contains(habit), $"{name}: grows from the habit {habit}, which is one");
+            foreach (var other in r.Element("insteadOf")?.Elements("li") ?? Enumerable.Empty<XElement>())
+                Check(modNames.Contains(other.Value), $"{name}: gives way to {other.Value}, a mod's trait");
+            if (ours.Contains(trait)) Check(r.Element("change") == null || (string)r.Element("change") == "Gain", $"{name}: Rimfolk's own traits are only gained");
+            Check(TraitChangeMath.TrainedOnlyGrows(trait, change == "Gain" || change == "StepUp"), $"{name}: a trait of the body is only earned, never taken");
             Check(TraitChangeMath.Untouchable(trait) == null, $"{name}: {trait} is character, not body or sexuality");
             if (change == "StepUp" || change == "StepDown")
             {

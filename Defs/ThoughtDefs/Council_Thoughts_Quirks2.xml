@@ -81,4 +81,41 @@
     <stages><li><label>talking to the dead</label><description>I told them how the harvest went and who's been quarrelling. They're good listeners.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- The small effects of the superstitions and comforts (Quirks/QuirkMoments.cs). -->
+
+  <ThoughtDef>
+    <defName>Council_Quirk_KnockedWood</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>knocked on wood, and it held</label><description>Came through that fight without a scratch. I knocked on the doorframe on the way back in. It held.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Quirk_BestBite</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>0.25</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>saved the best bite</label><description>I ate the rest first and the best bite last. It's still the best part of the day.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Quirk_SleepTalkRoommate</defName>
+    <thoughtClass>ColonyCouncil.Thought_Quirk</thoughtClass>
+    <workerClass>ColonyCouncil.ThoughtWorker_SleepTalkRoommate</workerClass>
+    <stages>
+      <li><label>my love talks in their sleep</label><description>Half of it is nonsense and the other half is about me. I lie awake listening sometimes.</description><baseMoodEffect>1</baseMoodEffect></li>
+      <li><label>a roommate who talks in their sleep</label><description>Every night, mumbling about goats and doors. I'd like one quiet night.</description><baseMoodEffect>-1</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- The tidy (a trait of Rimfolk's own, Defs/TraitDefs/Rimfolk_Traits.xml), in a filthy room. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Trait_TidyMess</defName>
+    <thoughtClass>ColonyCouncil.Thought_Quirk</thoughtClass>
+    <workerClass>ColonyCouncil.ThoughtWorker_TidyMess</workerClass>
+    <requiredTraits><li>Rimfolk_Tidy</li></requiredTraits>
+    <stages><li><label>filth everywhere</label><description>Muck on the floor and crumbs on every surface. How does anyone live like this?</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>

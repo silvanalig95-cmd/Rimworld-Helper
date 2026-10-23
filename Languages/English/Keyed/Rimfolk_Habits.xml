@@ -8,6 +8,8 @@
   <CC_Practice_Morning>early mornings</CC_Practice_Morning>
   <CC_Practice_Outdoors>time outdoors</CC_Practice_Outdoors>
 
+  <CC_Quirk_CountedStores>{PAWN_nameDef} has been over the stores twice: the food won't last the week.</CC_Quirk_CountedStores>
+
   <CC_Quirk_Deep>{QUIRK}: it has become second nature to {PAWN_nameDef}.</CC_Quirk_Deep>
 
   <CC_QuirkFx_Line>Quirk: {0}. {1}. {2}.</CC_QuirkFx_Line>

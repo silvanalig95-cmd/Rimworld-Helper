@@ -123,6 +123,22 @@ namespace ColonyCouncil
         public int minAge;
         /// <summary>A melee fighter: their Melee two above their Shooting, and no ranged weapon in hand.</summary>
         public bool meleeFighter;
+        /// <summary>
+        /// A habit they hold (a QuirkDef's defName): had at least <see cref="habitDays"/> days, and lived on at least
+        /// <see cref="habitLived"/> of them (at its work, or its moment in their free time). A habit that grows into the
+        /// trait ends with the change (<see cref="endsHabit"/>).
+        /// </summary>
+        public string habit;
+        public int habitDays = 90;
+        public int habitLived = 60;
+        public bool endsHabit = true;
+        /// <summary>What they've been doing lately (Quirks/Practice.cs): "night&gt;=40, Hauling&gt;=60" (recent hours).</summary>
+        public string practice;
+        /// <summary>
+        /// Traits (defNames) that do this one's job when their mod is loaded: then this rule is off, and another names
+        /// that trait (Rimfolk's own traits give way to Vanilla Traits Expanded's).
+        /// </summary>
+        public List<string> insteadOf;
 
         /// <summary>Days since this person's last change of the same trait.</summary>
         public int gapDays = 120;
@@ -151,7 +167,9 @@ namespace ColonyCouncil
         public ToneLines journal = new ToneLines();
 
         [Unsaved] private List<MarkCond> movedConds, nowConds;
-        [Unsaved] private List<TraitFact> recordFacts, skillFacts;
+        [Unsaved] private List<TraitFact> recordFacts, skillFacts, practiceFacts;
+        [Unsaved] private QuirkDef habitDef;
+        [Unsaved] private bool habitLooked;
         [Unsaved] private string parseError;
         [Unsaved] private bool parsed;
         [Unsaved] private TraitDef traitDef;
@@ -167,6 +185,8 @@ namespace ColonyCouncil
             if (!MarksMath.TryParseWhen(now, out nowConds, out string e2)) errors.Add("now: " + e2);
             if (!TraitChangeMath.TryParseFacts(records, out recordFacts, out string e3)) errors.Add("records: " + e3);
             if (!TraitChangeMath.TryParseFacts(skills, out skillFacts, out string e4)) errors.Add("skills: " + e4);
+            if (!TraitChangeMath.TryParseFacts(practice, out practiceFacts, out string e5)) errors.Add("practice: " + e5);
+            practiceFacts ??= new List<TraitFact>();
             movedConds ??= new List<MarkCond>();
             nowConds ??= new List<MarkCond>();
             recordFacts ??= new List<TraitFact>();
@@ -214,6 +234,29 @@ namespace ColonyCouncil
             }
         }
 
+        public List<TraitFact> Practice
+        {
+            get
+            {
+                Parse();
+                return practiceFacts;
+            }
+        }
+
+        /// <summary>The habit it grows from, if any.</summary>
+        public QuirkDef Habit
+        {
+            get
+            {
+                if (!habitLooked)
+                {
+                    habitLooked = true;
+                    habitDef = habit.NullOrEmpty() ? null : DefDatabase<QuirkDef>.GetNamedSilentFail(habit);
+                }
+                return habitDef;
+            }
+        }
+
         public bool NotMark(PersonaMarkDef def)
         {
             Parse();
@@ -252,6 +295,9 @@ namespace ColonyCouncil
             {
                 if (Trait == null) return false;
                 if (!mods.NullOrEmpty() && !mods.Any(People.ModActive)) return false;
+                if (!insteadOf.NullOrEmpty() && insteadOf.Any(n => DefDatabase<TraitDef>.GetNamedSilentFail(n) != null)) return false;
+                if (RimfolkTraits.Doubled(Trait)) return false;
+                if (!habit.NullOrEmpty() && Habit == null) return false;
                 switch (dlc)
                 {
                     case null:
@@ -275,11 +321,16 @@ namespace ColonyCouncil
             string never = TraitChangeMath.Untouchable(trait);
             if (never != null && trait != null) yield return "trait " + trait + " is never changed (" + never + ")";
             if (chance <= 0f || chance > 1f) yield return "chance must be above 0 and at most 1";
+            if (trait != null && !TraitChangeMath.TrainedOnlyGrows(trait, change == TraitChangeKind.Gain || change == TraitChangeKind.StepUp))
+                yield return "trait " + trait + " is the body's, earned by its history: it is only gained or stepped up";
             if (news.NullOrEmpty()) yield return "no news";
             if (journal == null || !journal.Any) yield return "no journal lines";
             if (!dlc.NullOrEmpty() && !new[] { "Royalty", "Ideology", "Biotech", "Anomaly", "Odyssey" }.Contains(dlc)) yield return "unknown dlc " + dlc;
             bool evidence = (marks != null && marks.Count > 0) || (tallies != null && tallies.Count > 0) || (pace != null && pace.Count > 0) || calmDays > 0
-                            || !records.NullOrEmpty();
+                            || !records.NullOrEmpty() || !habit.NullOrEmpty() || !practice.NullOrEmpty();
+            if (!habit.NullOrEmpty() && Habit == null) yield return "unknown habit " + habit;
+            foreach (var f in Practice)
+                if (!ColonyCouncil.Practice.IsKnown(f.name)) yield return "unknown practice " + f.name;
             if (!evidence) yield return "a change with nothing behind it: give it marks, deeds, records, a pace or calm days";
             if (marks != null)
                 foreach (var m in marks)

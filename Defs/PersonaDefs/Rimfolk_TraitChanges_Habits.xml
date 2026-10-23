@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Traits that grow out of a habit lived for months (Source/ColonyCouncil/Persona/TraitChanges.cs; the habits are in
+    Defs/QuirkDefs/Council_Quirks_Habits.xml). habit names the habit; habitDays how long they've had it and habitLived
+    on how many days they lived it (at its work, or at its moment in their free time). The habit ends when the trait
+    comes: the trait is what it became. Rimfolk's own traits (Defs/TraitDefs/Rimfolk_Traits.xml) give way to Vanilla
+    Traits Expanded's where it has the same one (insteadOf), and that one is given by a rule of its own. The rest:
+    the game's own traits that grow from what someone does (practice: recent hours, Quirks/Practice.cs) or lives
+    through (marks).
+  -->
+
+  <!-- ==================== From habits ==================== -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitTidy</defName>
+    <label>tidy after months of not standing a mess</label>
+    <trait>Rimfolk_Tidy</trait>
+    <change>Gain</change>
+    <insteadOf><li>VTE_Neat</li></insteadOf>
+    <habit>Council_Quirk_TidyTable</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>Months of not standing a mess have settled into {PAWN_objective} for good: {PAWN_pronoun} cleans quickly and well, and a filthy room still puts {PAWN_objective} out of sorts.</meaning>
+    <journal>
+      <plain><li>I don't decide to clean anymore. I just find the cloth in my hand.</li></plain>
+      <warm><li>A clean room is a kind of welcome. I keep ours that way for everyone.</li></warm>
+      <blunt><li>Mess is a choice. I don't make it.</li></blunt>
+      <cheerful><li>Everything in its place and a shine on the table! This is who I am now.</li></cheerful>
+      <gloomy><li>I can't leave a mess alone anymore. It used to be a habit. Now it's just me.</li></gloomy>
+      <cold><li>Order is no longer something I impose. It is how I work.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitNeatVTE</defName>
+    <label>neat after months of not standing a mess</label>
+    <trait>VTE_Neat</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <habit>Council_Quirk_TidyTable</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>Months of not standing a mess have settled into {PAWN_objective} for good.</meaning>
+    <journal>
+      <plain><li>I don't decide to clean anymore. I just find the cloth in my hand.</li></plain>
+      <warm><li>A clean room is a kind of welcome. I keep ours that way for everyone.</li></warm>
+      <blunt><li>Mess is a choice. I don't make it.</li></blunt>
+      <cheerful><li>Everything in its place and a shine on the table! This is who I am now.</li></cheerful>
+      <gloomy><li>I can't leave a mess alone anymore. It used to be a habit. Now it's just me.</li></gloomy>
+      <cold><li>Order is no longer something I impose. It is how I work.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitGreenThumb</defName>
+    <label>a green thumb from talking to the plants</label>
+    <trait>Rimfolk_GreenThumb</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_TalksToPlants</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has a {TRAIT}.</news>
+    <meaning>After seasons of tending the fields and talking to every plant in them, {PAWN_pronoun} knows what each one wants. The work goes faster, and a little more comes of it.</meaning>
+    <journal>
+      <plain><li>I can tell what a plant needs by looking at it now. Water, shade, or just to be left alone.</li></plain>
+      <warm><li>The fields feel like old friends. I think they'd say the same about me.</li></warm>
+      <blunt><li>Plants grow when I'm around. That's all I know.</li></blunt>
+      <cheerful><li>The corn's taller this year and I'm taking all the credit!</li></cheerful>
+      <gloomy><li>The plants are the only things here that do what I hope they will.</li></gloomy>
+      <cold><li>I have learned the crops' requirements well enough that the work is mostly reflex.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitBornCook</defName>
+    <label>a born cook, from singing at the stove</label>
+    <trait>Rimfolk_BornCook</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_SingsAtStove</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <meaning>All those meals and all those songs at the stove: the kitchen is where {PAWN_pronoun} belongs now. {PAWN_pronoun} cooks quickly, and hardly anyone gets sick from it.</meaning>
+    <journal>
+      <plain><li>I know the stove's moods now, which pot burns and which corner stays cool.</li></plain>
+      <warm><li>Feeding everyone is how I look after them. I've never been better at anything.</li></warm>
+      <blunt><li>I cook. Well. Eat it.</li></blunt>
+      <cheerful><li>New song, new stew, and nobody's been sick in weeks! The kitchen's mine.</li></cheerful>
+      <gloomy><li>The stove is the one place I'm sure of myself.</li></gloomy>
+      <cold><li>Repetition has made the cooking efficient and clean. The results speak for themselves.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitAnimalFriend</defName>
+    <label>an animal friend, from naming every animal</label>
+    <trait>Rimfolk_AnimalFriend</trait>
+    <change>Gain</change>
+    <insteadOf><li>VTE_AnimalLover</li></insteadOf>
+    <habit>Council_Quirk_NamesAnimals</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become an {TRAIT}.</news>
+    <meaning>Every animal here has a name {PAWN_pronoun} gave it, and they know {PAWN_objective} for it. Wild ones tame and tame ones learn more easily for {PAWN_objective}.</meaning>
+    <journal>
+      <plain><li>The animals come when I call. Not the others. Me.</li></plain>
+      <warm><li>Every animal here knows my voice. I'd like to think they're glad of it.</li></warm>
+      <blunt><li>Animals trust me. I don't waste it.</li></blunt>
+      <cheerful><li>The goat follows me everywhere now. So does the other goat. And the dog.</li></cheerful>
+      <gloomy><li>The animals don't ask anything of me I can't give. People do.</li></gloomy>
+      <cold><li>The animals respond to me reliably now. Consistency is most of it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitAnimalLoverVTE</defName>
+    <label>an animal lover, from naming every animal</label>
+    <trait>VTE_AnimalLover</trait>
+    <change>Gain</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <habit>Council_Quirk_NamesAnimals</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become an {TRAIT}.</news>
+    <meaning>Every animal here has a name {PAWN_pronoun} gave it, and they know {PAWN_objective} for it.</meaning>
+    <journal>
+      <plain><li>The animals come when I call. Not the others. Me.</li></plain>
+      <warm><li>Every animal here knows my voice. I'd like to think they're glad of it.</li></warm>
+      <blunt><li>Animals trust me. I don't waste it.</li></blunt>
+      <cheerful><li>The goat follows me everywhere now. So does the other goat. And the dog.</li></cheerful>
+      <gloomy><li>The animals don't ask anything of me I can't give. People do.</li></gloomy>
+      <cold><li>The animals respond to me reliably now. Consistency is most of it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitHealer</defName>
+    <label>healer's hands, from steady hands kept busy</label>
+    <trait>Rimfolk_Healer</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_SteadyHands</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has {TRAIT}.</news>
+    <meaning>So many wounds tended that {PAWN_possessive} hands know the work by themselves: {PAWN_pronoun} tends faster and better than before.</meaning>
+    <journal>
+      <plain><li>I closed a wound today without thinking about it. My hands knew before I did.</li></plain>
+      <warm><li>When someone's hurt they ask for me now. I'll always come.</li></warm>
+      <blunt><li>Good at this now. Keep the bandages stocked.</li></blunt>
+      <cheerful><li>Stitches straight as a ruler! I've found my calling, even if it's a messy one.</li></cheerful>
+      <gloomy><li>I'm good at mending people. We've given me plenty of practice.</li></gloomy>
+      <cold><li>My tending is fast and clean now. Practice did what instruction couldn't.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitTrailWise</defName>
+    <label>trail-wise, from knowing every trail</label>
+    <trait>Rimfolk_TrailWise</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_KnowsTrails</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>{PAWN_pronoun} knows the land around the colony like {PAWN_possessive} own room. Animals rarely see {PAWN_objective} coming.</meaning>
+    <journal>
+      <plain><li>I can tell which way the wind will turn by the trees. The deer never hear me now.</li></plain>
+      <warm><li>I know this land well enough to bring anyone home from it.</li></warm>
+      <blunt><li>I see them first. Every time.</li></blunt>
+      <cheerful><li>I snuck up on a rabbit today just to say hello. It was very surprised.</li></cheerful>
+      <gloomy><li>The land and I understand each other. It's easier than people.</li></gloomy>
+      <cold><li>I move through the land without disturbing it. The hunt is mostly patience now.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitIndustrious</defName>
+    <label>harder working, from humming through the days</label>
+    <trait>Industriousness</trait>
+    <change>StepUp</change>
+    <from><li>-1</li><li>0</li><li>1</li></from>
+    <habit>Council_Quirk_Hums</habit>
+    <gapDays>120</gapDays>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer {TRAIT}. Months of humming through the work have done it.</newsLost>
+    <meaning>Months of humming through long days of work: the work has become something {PAWN_pronoun} likes doing.</meaning>
+    <journal>
+      <plain><li>The days go by in a tune now. I look up and the work's done.</li></plain>
+      <warm><li>I like being the one who keeps going. It lets the others rest.</li></warm>
+      <blunt><li>Work gets done. I do it.</li></blunt>
+      <cheerful><li>Another day, another tune, another pile of work finished. I love it!</li></cheerful>
+      <gloomy><li>Work fills the quiet. I don't stop now.</li></gloomy>
+      <cold><li>I find I no longer need rest as often as I took it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitKind</defName>
+    <label>kind, from remembering every birthday</label>
+    <trait>Kind</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_Birthdays</habit>
+    <blockedBy><li>Psychopath</li><li>Abrasive</li></blockedBy>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become kind.</news>
+    <meaning>A year of remembering everyone's day: {PAWN_pronoun} has a good word for most people now, and never an insult.</meaning>
+    <journal>
+      <plain><li>I know everyone's birthday and most of their worries. It's hard to be sharp with people you know that well.</li></plain>
+      <warm><li>Remembering the little things is how I love the people here. It's become all of me.</li></warm>
+      <blunt><li>People matter. I act like it.</li></blunt>
+      <cheerful><li>There's always someone to celebrate, if you're paying attention!</li></cheerful>
+      <gloomy><li>Somebody should remember. I'd hate for anyone here to be forgotten.</li></gloomy>
+      <cold><li>Kindness costs little and buys a great deal. I practice it now without deciding to.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitNightOwl</defName>
+    <label>a night owl, from keeping late hours</label>
+    <trait>NightOwl</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_LateHours</habit>
+    <chance>0.1</chance>
+    <tone>0</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <meaning>Months of late hours have turned {PAWN_objective} around for good: {PAWN_pronoun} is at {PAWN_possessive} best at night and sorry to be up by day. Give {PAWN_objective} the night shift.</meaning>
+    <journal>
+      <plain><li>Daylight feels like someone else's time now. The night is mine.</li></plain>
+      <warm><li>I keep watch while they sleep. I wouldn't trade it.</li></warm>
+      <blunt><li>Nights. Not days. Schedule me accordingly.</li></blunt>
+      <cheerful><li>Good morning! It's midnight. Best part of the day.</li></cheerful>
+      <gloomy><li>The sun's too loud. The dark understands me.</li></gloomy>
+      <cold><li>My body has settled on the night. I've stopped arguing with it.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <!-- ==================== From what they do and live through ==================== -->
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_ToughGained</defName>
+    <label>tough, after surviving wound after wound</label>
+    <trait>Tough</trait>
+    <change>Gain</change>
+    <marks>
+      <li><any>Downed, Rimfolk_Mark_LongIllness, Rimfolk_Mark_NursedBack</any><count>3</count></li>
+    </marks>
+    <moved>nerve>=10</moved>
+    <blockedBy><li>Wimp</li></blockedBy>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become {TRAIT}.</news>
+    <meaning>Downed, laid up and patched back together more than once, {PAWN_pronoun} has come out harder to hurt: blows that would floor others glance off {PAWN_objective} now.</meaning>
+    <journal>
+      <plain><li>I've been knocked down enough times to know I get back up. My body seems to know it too.</li></plain>
+      <warm><li>Every time they carried me in, someone sat with me. I'm tougher for it, and I owe them.</li></warm>
+      <blunt><li>Takes more than that to put me down now.</li></blunt>
+      <cheerful><li>Scars on scars, and still standing! I'm practically made of leather.</li></cheerful>
+      <gloomy><li>I don't feel the hits like I used to. I'm not sure what that says about me.</li></gloomy>
+      <cold><li>Injury no longer stops me as it did. The body has adapted.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_FastWalker</defName>
+    <label>quicker on their feet after a season of hauling</label>
+    <trait>SpeedOffset</trait>
+    <change>StepUp</change>
+    <from><li>-1</li><li>0</li></from>
+    <practice>Hauling>=80</practice>
+    <daysHere>60</daysHere>
+    <gapDays>120</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <newsLost>{PAWN_nameDef} is no longer a {TRAIT}. A season of carrying loads across the colony has quickened {PAWN_possessive} step.</newsLost>
+    <meaning>A season of carrying loads from one end of the colony to the other has quickened {PAWN_possessive} step.</meaning>
+    <journal>
+      <plain><li>I walk the colony faster than anyone now. I know every shortcut between the stockpiles.</li></plain>
+      <warm><li>If anything needs carrying, I'm already on my way.</li></warm>
+      <blunt><li>Faster on my feet. Fewer wasted hours.</li></blunt>
+      <cheerful><li>I raced the dog to the stockpile today. I won! Mostly.</li></cheerful>
+      <gloomy><li>All that hauling got me something, at least. Quick legs.</li></gloomy>
+      <cold><li>My pace has increased with the distance covered. A predictable adaptation.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+</Defs>

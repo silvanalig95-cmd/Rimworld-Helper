@@ -222,7 +222,11 @@ namespace ColonyCouncil
             return null;
         }
 
-        public void Notify_Fought(Pawn p) => battleTick[p] = Find.TickManager.TicksGame;
+        public void Notify_Fought(Pawn p)
+        {
+            battleTick[p] = Find.TickManager.TicksGame;
+            QuirkMoments.Fought(p);
+        }
 
         // ---------------- Practice, and habits lived ----------------
 
@@ -294,6 +298,14 @@ namespace ColonyCouncil
                 SyncKnacks();
                 News.Post("CC_Quirk_Deep".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve(), p, NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
             }
+        }
+
+        /// <summary>A habit that grew into a trait (Persona/TraitChanges.cs) ends without a word of its own: the trait's letter tells it.</summary>
+        public void EndHabit(Pawn p, QuirkDef def)
+        {
+            if (p == null || def == null) return;
+            quirks.RemoveAll(q => q != null && q.pawn == p && q.def == def);
+            SyncKnacks();
         }
 
         /// <summary>The day's look at practice: what faded, and the habits lived at their work.</summary>
@@ -373,6 +385,7 @@ namespace ColonyCouncil
                 if (!line.NullOrEmpty()) comp.journals.WriteText(q.pawn, line);
             }
             SyncKnacks();
+            QuirkMoments.Daily();
             // Picking up new ones.
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(Eligible).ToList())
             {

@@ -33,6 +33,8 @@ namespace ColonyCouncil
             PersonaMarks.Notify_Memory(__instance?.pawn, newThought);
             // Some memories are counted towards a trait that changes (Persona/TraitChanges.cs): human flesh eaten while starving.
             TraitChanges.Notify_Memory(__instance?.pawn, newThought);
+            // A good meal lifts one who saves the best bite for last a while longer (Quirks/QuirkMoments.cs).
+            QuirkMoments.Notify_Memory(__instance?.pawn, newThought);
             if (__state == GoodTimes.Untouched) return;
             try
             {
