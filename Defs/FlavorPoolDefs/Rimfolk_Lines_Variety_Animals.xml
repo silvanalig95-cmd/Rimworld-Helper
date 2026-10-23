@@ -23,7 +23,7 @@
         <li>[winter] Breath like smoke, the pair of us.</li>
         <li>[rain] Rain or not, the work still wants doing.</li>
         <li>[rain] Shake off over there, not on me.</li>
-        <li>[night] Quiet now, the others are sleeping.</li>
+        <li>[night] I can't see a thing out here, so you'll have to stand still for me.</li>
         <li>[night] Late for both of us, I know.</li>
         <li>[job:milk] Good girl, that's the last of it.</li>
         <li>[job:shear] Hold still, this is the tricky bit round the legs.</li>
@@ -32,7 +32,7 @@
         <li>[job:tend] Let me see that, there's a good animal.</li>
         <li>[job:feed] Plenty for everyone, no shoving.</li>
         <li>[job:rescue] Easy, easy, I'll have you inside in a moment.</li>
-        <li>[job:rope] Back to the pen with you, there's a good one.</li>
+        <li>[job:rope] Back to the pen with you, and no stopping for the grass.</li>
         <li>[childplay] You can have half my bread if you stay.</li>
         <li>[childplay] I'm going to tell you a story and you have to listen.</li>
       </plain>
@@ -52,7 +52,7 @@
         <li>Best animal in the colony, and I'll tell anyone who asks.</li>
       </cheerful>
       <gloomy>
-        <li>You and me, stuck with the jobs nobody wants.</li>
+        <li>You and me, stuck with the dirty jobs again.</li>
         <li>Don't look at me like that, I didn't choose this either.</li>
         <li>At least one of us is having a good day.</li>
       </gloomy>
@@ -70,32 +70,32 @@
     <pool>Council_Pool_HabitHerd</pool>
     <lines>
       <plain>
-        <li>Nobody out here asks me for anything.</li>
+        <li>Out here it's just chewing and the wind.</li>
         <li>I could watch them all afternoon.</li>
         <li>[child] That one's the boss, I can tell.</li>
         <li>[child] I'm going to count them all, every single one.</li>
         <li>[evening] Last light, and every one of them accounted for.</li>
         <li>[evening] Listen to them settling, that's the best bit of the day.</li>
         <li>[spring] New grass, and they know it.</li>
-        <li>[spring] Everyone shedding, everyone hungry, everyone happy.</li>
-        <li>[winter] They've got the right idea, standing close like that.</li>
+        <li>[spring] Half of them shedding and all of them hungry.</li>
+        <li>[winter] Frost on their backs, and not one of them minds.</li>
         <li>[winter] Thick coats on all of them, good.</li>
       </plain>
       <warm>
-        <li>Look at them, every one of them fed and safe.</li>
-        <li>Hello, you lot, don't mind me.</li>
+        <li>Every one of them fed and safe.</li>
+        <li>Shove over, you lot, I've come to sit with you.</li>
       </warm>
       <blunt>
         <li>All present.</li>
         <li>Good grass, fat animals, fine.</li>
       </blunt>
       <cheerful>
-        <li>Look at them all, fat and happy and not a care between them.</li>
-        <li>Best spot in the colony, and the best company too.</li>
+        <li>Fat and happy, the lot of them, and not a care between them.</li>
+        <li>If I had my way, I'd eat my supper out here with them.</li>
       </cheerful>
       <gloomy>
         <li>They'll still be grazing here long after the rest of us.</li>
-        <li>Nobody out here asks how I'm doing, and that suits me.</li>
+        <li>They don't ask how I'm doing, and that suits me.</li>
       </gloomy>
       <cold>
         <li>Head count correct.</li>
@@ -117,7 +117,7 @@
         <li>[named] Stand still, {OTHER_nameDef}, you'll thank me later.</li>
         <li>[named] Easy, {OTHER_nameDef}, I'm only after the burrs.</li>
         <li>[young] All fluff and no patience, aren't you?</li>
-        <li>[winter] Snow in your coat again, hold still.</li>
+        <li>[winter] Frozen mud in your coat, let's knock it out.</li>
         <li>[winter] Coat as thick as a blanket, I'm almost jealous.</li>
         <li>[summer] Flies again, stand still and I'll get the worst of them.</li>
         <li>[summer] Too hot for all this hair, let's get some of it off you.</li>
@@ -131,11 +131,11 @@
       </warm>
       <blunt>
         <li>Hold still, I'm not doing this twice.</li>
-        <li>Knots everywhere, honestly.</li>
+        <li>Knots everywhere, as usual.</li>
       </blunt>
       <cheerful>
         <li>Look at that shine, the others will be jealous!</li>
-        <li>Handsomest animal in the colony, whatever anyone says.</li>
+        <li>You'll be the smartest beast in the pen by the time I'm done.</li>
       </cheerful>
       <gloomy>
         <li>One of us might as well look tidy today.</li>
@@ -155,31 +155,31 @@
     <pool>Council_Pool_Herd_Rounds</pool>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was resting easy and would be up soon.</li>
-        <li>{PAWN_nameDef} took {OTHER_nameDef} down to see {PET_nameDef}, who lifted its head at once.</li>
-        <li>{PAWN_nameDef} found {OTHER_nameDef} at supper to say {PET_nameDef} had had a good day.</li>
-        <li>[sick] {PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef}'s fever had broken in the night.</li>
+        <li>{PAWN_nameDef} stopped {OTHER_nameDef} to say {PET_nameDef} was resting easy and would be up soon.</li>
+        <li>{PAWN_nameDef} said {PET_nameDef} had lifted its head and looked round for {OTHER_nameDef} during the rounds.</li>
+        <li>{PAWN_nameDef} sought out {OTHER_nameDef} to say {PET_nameDef} had had a good day.</li>
+        <li>[sick] {PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had slept through the night, which was a good sign.</li>
         <li>[sick] {PAWN_nameDef} let {OTHER_nameDef} know that {PET_nameDef} had kept its food down at last.</li>
-        <li>[hurt] {PAWN_nameDef} told {OTHER_nameDef} that the wound on {PET_nameDef} was knitting cleanly.</li>
-        <li>[hurt] {PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was moving more easily today.</li>
+        <li>[hurt] {PAWN_nameDef} let {OTHER_nameDef} know that {PET_nameDef} had stopped worrying at the dressing, so it must hurt less.</li>
+        <li>[hurt] {PAWN_nameDef} was pleased with how {PET_nameDef} was moving today, and said so to {OTHER_nameDef}.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} sat with {OTHER_nameDef} by {PET_nameDef}'s pen until {OTHER_nameDef} could smile again.</li>
+        <li>{PAWN_nameDef} sat with {OTHER_nameDef} and talked about {PET_nameDef} until {OTHER_nameDef} could smile again.</li>
         <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} had been asking for {OTHER_objective}, in its way.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was fine and to stop hovering.</li>
-        <li>{PAWN_nameDef} said {PET_nameDef} would mend, and that was the end of it.</li>
+        <li>{PAWN_nameDef} said {PET_nameDef} was on the mend and {OTHER_nameDef} could stop hovering.</li>
+        <li>{PAWN_nameDef} kept it short: {PET_nameDef} would be fine.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} was already back to its old tricks.</li>
         <li>{PAWN_nameDef} came to say {PET_nameDef} had tried to steal {PAWN_possessive} lunch, which was a good sign.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} would be bossing the others again in no time.</li>
+        <li>{OTHER_nameDef} heard from {PAWN_nameDef} that {PET_nameDef} would be bossing the others again in no time.</li>
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef} would pull through, though it would take time.</li>
         <li>{PAWN_nameDef} warned {OTHER_nameDef} that {PET_nameDef} was still weak, but no worse.</li>
-        <li>{PAWN_nameDef} told {OTHER_nameDef} not to expect too much of {PET_nameDef} just yet.</li>
+        <li>{PAWN_nameDef} asked {OTHER_nameDef} not to expect too much of {PET_nameDef} just yet.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} gave {OTHER_nameDef} {PET_nameDef}'s progress in one plain word: improving.</li>
@@ -215,7 +215,7 @@
       </cheerful>
       <gloomy>
         <li>I'll miss how small you were.</li>
-        <li>You won't fit in my lap any more, will you?</li>
+        <li>You won't fit in my lap anymore, will you?</li>
       </gloomy>
       <cold>
         <li>Evolution complete, now we test it.</li>
@@ -253,7 +253,7 @@
       </gloomy>
       <cold>
         <li>A sensible use of training time.</li>
-        <li>Stronger animal, better defence.</li>
+        <li>Stronger animal, better defense.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -269,7 +269,7 @@
         <li>[meme:AM_Cowboys] {OTHER_nameDef} asked me about the open range. I talked until the lamp was out and could have gone on.</li>
         <li>[!meme:AM_Cowboys] {OTHER_nameDef} counts the herd at dusk, every night, twice. I've started doing it too.</li>
         <li>[!meme:AM_Cowboys] Spent the evening at the fence with {OTHER_nameDef}, who talks about grazing the way some people talk about poetry.</li>
-        <li>Out by the pens with {OTHER_nameDef} until dark. We said more about the animals than about ourselves, and it was a good evening.</li>
+        <li>Out by the pens with {OTHER_nameDef} until dark, talking about the animals and hardly at all about ourselves.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} and I agreed the herd is family, the loud and smelly part of it.</li>
@@ -279,7 +279,7 @@
         <li>Talked herds with {OTHER_nameDef}. Knows the work.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} and I gave every animal in the pen a new name, again. They didn't seem to mind.</li>
+        <li>{OTHER_nameDef} and I gave every animal in the pen a new name, again, and argued longest over the bull's.</li>
       </cheerful>
       <gloomy>
         <li>Talked about the herd with {OTHER_nameDef}. Easier than talking about anything else.</li>
