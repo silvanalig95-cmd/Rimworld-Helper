@@ -34,7 +34,7 @@
       </plain>
       <warm><li>I liked walking {X_nameDef} round. I'm proud of this place, and I don't get to say that often.</li></warm>
       <blunt><li>Gave the guest the tour. Too many questions, but good ones.</li></blunt>
-      <cheerful><li>I showed {X_nameDef} the whole colony, and {X_pronoun} spent half the tour making friends with the animals.</li></cheerful>
+      <cheerful><li>I showed {X_nameDef} round, and {X_pronoun} spent half the tour making friends with the animals.</li></cheerful>
       <gloomy><li>{X_nameDef} asked what we do when raiders come. I said we hold the wall and count heads after.</li></gloomy>
       <cold><li>I showed the guest only what I wanted seen. The stores stayed shut.</li></cold>
     </lines>

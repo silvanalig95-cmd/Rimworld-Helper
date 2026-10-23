@@ -72,7 +72,7 @@
       <warm><li>Someone found me sitting by the path and walked me home without a word of told-you-so. I'll rest now.</li></warm>
       <blunt><li>Too soon. Again.</li></blunt>
       <cheerful><li>Lesson learned: rest first, heroics later.</li></cheerful>
-      <gloomy><li>Every time I think I'm better, it turns out I'm not.</li></gloomy>
+      <gloomy><li>Every time I think I'm better, I'm not.</li></gloomy>
       <cold><li>Returned to work prematurely. Recovery extended by a few days.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -227,7 +227,7 @@
         <li>Delivered {OTHER_nameDef}'s baby today. {BABY_nameDef} came out red-faced and furious, which is exactly how it should be.</li>
         <li>{BABY_nameDef} was born in the small hours. {OTHER_nameDef} did the hard part; I mostly caught.</li>
         <li>Long labor, but {OTHER_nameDef} and the baby are both fine. {BABY_nameDef}. Good name.</li>
-        <li>Washed {BABY_nameDef}, wrapped {BABY_objective} and handed {BABY_objective} to {OTHER_nameDef}. Then I sat down for the first time in nine hours.</li>
+        <li>Washed {BABY_nameDef}, wrapped {BABY_objective} and handed {BABY_objective} to {OTHER_nameDef}. Then I sat down. Nine hours on my feet.</li>
         <li>[first] My first birth. I read everything I could find beforehand and still felt like I knew nothing. {BABY_nameDef} didn't seem to mind.</li>
         <li>[first] Brought a child into the world today. My hands are still shaking, in a good way.</li>
         <li>[winter] {BABY_nameDef} was born on a cold night, with the stove roaring and every blanket we have.</li>

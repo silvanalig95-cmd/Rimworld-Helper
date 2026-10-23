@@ -190,7 +190,7 @@
         <li>[good] Grilled cheese on bread. I could live on that.</li>
         <li>[bad] Tried the new cheese. It needed more time, or less of whatever went into it.</li>
         <li>[bad] The cheese has gone wrong somewhere. It smells like the pens.</li>
-        <li>[good,winter] Cheese and bread by the fire. Winter food.</li>
+        <li>[good,winter] Cheese and bread at the hearth. Winter food.</li>
         <li>[good,skill:Cooking] The cheese I pressed in spring is ready, and it's good. I may have bragged.</li>
       </plain>
       <warm><li>[good] Cut a wedge of cheese for whoever was nearest, and then one for whoever was next.</li></warm>
