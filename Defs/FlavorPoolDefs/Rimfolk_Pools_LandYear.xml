@@ -16,18 +16,18 @@
     <lines>
       <plain>
         <li>Ah. There it is.</li>
-        <li>Close the door. Close it.</li>
-        <li>Give it a minute. Then you won't want to leave.</li>
-        <li>I can feel my toes again. All ten.</li>
+        <li>Close the door, quick.</li>
+        <li>Give it a minute and you won't want to leave.</li>
+        <li>I can feel my toes again.</li>
         <li>[snow] Snow on my boots, and in here it's summer.</li>
         <li>[evening] Best part of the day, this.</li>
-        <li>[old] My knees thank you. My back thanks you.</li>
+        <li>[old] My knees are thanking me already.</li>
         <li>[lowtech] Another ladle on the stones, if you can reach.</li>
         <li>[child] It's so hot! Can I stay?</li>
       </plain>
       <warm>
         <li>Shift up, there's room for one more.</li>
-        <li>Everyone should come in here at least once a day.</li>
+        <li>We should all come in here every day.</li>
       </warm>
       <blunt>
         <li>Hot. Good.</li>
@@ -35,14 +35,14 @@
       </blunt>
       <cheerful>
         <li>I'm going to sit here until I melt!</li>
-        <li>Who's going to roll in the snow after? Not me. Maybe me.</li>
+        <li>Last one out has to fetch the water!</li>
       </cheerful>
       <gloomy>
-        <li>Warm for an hour. Better than nothing.</li>
-        <li>The cold's waiting outside the door. Let it wait.</li>
+        <li>Warm for an hour, then back out into it.</li>
+        <li>The cold's waiting outside the door, and it can wait.</li>
       </gloomy>
       <cold>
-        <li>Twenty minutes. Then back to work.</li>
+        <li>Twenty minutes, then back to work.</li>
         <li>Heat. Sweat. Recovery.</li>
       </cold>
     </lines>
@@ -53,18 +53,18 @@
     <defName>Council_Pool_SaunaTogether</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} and {OTHER_nameDef} sat in the heat of the sauna and talked about nothing much until they were both red as beets.</li>
-        <li>{PAWN_nameDef} poured water on the heat and {OTHER_nameDef} complained, then asked for more.</li>
-        <li>In the sauna, {OTHER_nameDef} told {PAWN_nameDef} something {OTHER_pronoun} hadn't told anyone. The steam made it easier.</li>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} sat in the heat of the sauna and talked about nothing much until they were both red in the face.</li>
+        <li>{PAWN_nameDef} kept pouring water on the hot stones, and {OTHER_nameDef} kept complaining about the steam.</li>
+        <li>{OTHER_nameDef} told {PAWN_nameDef} a few things in the sauna that {OTHER_pronoun} wouldn't have said anywhere else.</li>
         <li>{PAWN_nameDef} and {OTHER_nameDef} sat shoulder to shoulder in the sauna, too warm to argue about anything.</li>
-        <li>[snow] {PAWN_nameDef} dared {OTHER_nameDef} to run out into the snow from the sauna. They both did, and both ran straight back in.</li>
+        <li>[snow] {PAWN_nameDef} dared {OTHER_nameDef} to roll in the snow after the sauna.</li>
         <li>{PAWN_nameDef} and {OTHER_nameDef} compared aches in the sauna and agreed that {OTHER_nameDef}'s back was the worse of the two.</li>
-        <li>{OTHER_nameDef} fell asleep sitting up in the sauna, and {PAWN_nameDef} let {OTHER_objective} be until the heat woke {OTHER_objective}.</li>
+        <li>{OTHER_nameDef} nearly nodded off in the sauna, and {PAWN_nameDef} let {OTHER_objective} be.</li>
       </plain>
-      <warm><li>{PAWN_nameDef} and {OTHER_nameDef} warmed up together in the sauna, and came out friends of a slightly better sort.</li></warm>
-      <blunt><li>{PAWN_nameDef} told {OTHER_nameDef} to stop talking and sweat. {OTHER_nameDef} did, mostly.</li></blunt>
-      <cheerful><li>{PAWN_nameDef} sang in the sauna until {OTHER_nameDef} joined in, badly.</li></cheerful>
-      <gloomy><li>{PAWN_nameDef} and {OTHER_nameDef} sat in the sauna and agreed the winter was too long. It helped, a bit.</li></gloomy>
+      <warm><li>{PAWN_nameDef} and {OTHER_nameDef} warmed their hands and feet in the sauna and talked about the places they grew up.</li></warm>
+      <blunt><li>{PAWN_nameDef} told {OTHER_nameDef} to stop talking and sweat.</li></blunt>
+      <cheerful><li>{PAWN_nameDef} sang in the sauna until {OTHER_nameDef} joined in.</li></cheerful>
+      <gloomy><li>{PAWN_nameDef} and {OTHER_nameDef} sat in the sauna and agreed that the cold months were far too long.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -75,31 +75,31 @@
     <defName>Council_Pool_PlantingWork</defName>
     <lines>
       <plain>
-        <li>Two seeds to a hole. Two.</li>
-        <li>Straight rows, now. The neighbours are watching.</li>
+        <li>Not so deep, just a thumb's depth.</li>
+        <li>Keep the rows straight, the neighbors are watching.</li>
         <li>Mind where you're stepping, that row's done.</li>
         <li>Who's got the seed basket?</li>
-        <li>Smell that soil. That's spring.</li>
+        <li>Smell that soil, it's ready.</li>
         <li>[rain] Perfect weather for it, whatever your boots say.</li>
         <li>[lowtech] A handful for the birds, so they leave the rest.</li>
         <li>[child] I'm planting a whole row by myself!</li>
       </plain>
       <warm>
-        <li>Look how much we've done already. Good work, everyone.</li>
-        <li>Take a breather. The ground isn't going anywhere.</li>
+        <li>Good work, everyone, look how far we've got.</li>
+        <li>Take a breather, the ground isn't going anywhere.</li>
       </warm>
       <blunt>
         <li>Less talking, more sowing.</li>
       </blunt>
       <cheerful>
-        <li>I'll race you to the end of the row!</li>
+        <li>First one to the far end wins!</li>
         <li>This is the best day of the year and nobody can tell me otherwise.</li>
       </cheerful>
       <gloomy>
         <li>All this, and one bad frost could take it.</li>
       </gloomy>
       <cold>
-        <li>An even spacing gives a better yield. Keep it even.</li>
+        <li>Keep the spacing even, it gives a better yield.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -112,27 +112,27 @@
         <li>May it come up thick and green.</li>
         <li>Rain enough, sun enough, and no more frost.</li>
         <li>That's the year started, then.</li>
-        <li>Whatever comes up, we put it there together.</li>
+        <li>Whatever comes up here, it'll be ours.</li>
         <li>[lowtech] To the ground, and back to us in the autumn.</li>
-        <li>[rain] Listen to that. The fields are drinking.</li>
-        <li>Remember this evening when we're bringing it in.</li>
-        <li>Every row of it ours. Every one.</li>
+        <li>[rain] Listen to the fields drinking.</li>
+        <li>Remember today when we're bringing it in.</li>
+        <li>Every row of it ours.</li>
       </plain>
       <warm>
-        <li>Thank you, all of you. It's a good day's work.</li>
-        <li>Look at it. We did that, together.</li>
+        <li>Thank you, all of you, for a good day's work.</li>
+        <li>I'm glad we're all out here together.</li>
       </warm>
       <blunt>
-        <li>Seed's in. Now we wait.</li>
+        <li>That'll do. Home.</li>
       </blunt>
       <cheerful>
         <li>See you in the autumn, little ones!</li>
       </cheerful>
       <gloomy>
-        <li>We've done our part. The rest is up to the weather.</li>
+        <li>The rest is up to the weather now.</li>
       </gloomy>
       <cold>
-        <li>Sown on time. The harvest should follow.</li>
+        <li>The fields are in order, and the harvest should follow.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -144,19 +144,19 @@
     <defName>Council_Pool_HerdHome</defName>
     <lines>
       <plain>
-        <li>Come on, you. Home.</li>
+        <li>Come on, you, home.</li>
         <li>Easy, easy. This way.</li>
-        <li>Mind the gate. One at a time.</li>
+        <li>One at a time through the gate.</li>
         <li>That's it. Nearly there.</li>
         <li>Who's got the last one?</li>
-        <li>[snow] Keep moving, all of you. It's warmer inside.</li>
-        <li>[afterraid] Found another one. It's all right. They've gone.</li>
-        <li>[evening] In before dark. That's the rule.</li>
-        <li>[child] It's following me! It likes me!</li>
+        <li>[snow] Keep moving, you'll freeze standing there.</li>
+        <li>[afterraid] It's all right, they've gone, come on.</li>
+        <li>[evening] In before dark, that's the rule.</li>
+        <li>[child] It's following me, it likes me!</li>
       </plain>
       <warm>
-        <li>There you go. Warm straw tonight.</li>
-        <li>Good animal. Good. Nearly home.</li>
+        <li>There you go, warm straw tonight.</li>
+        <li>Good animal, nearly home.</li>
       </warm>
       <blunt>
         <li>Move.</li>
@@ -180,11 +180,11 @@
     <pool>Council_Pool_PlayWorkInvite</pool>
     <lines>
       <plain>
-        <li>[herd] Ropes, everyone. We're bringing the herd home.</li>
-        <li>[herd] Out to the grazing and back with every head of them. Come on.</li>
-        <li>[herd,snow] Before the snow gets deeper. Ropes, and quick.</li>
+        <li>[herd] Ropes, everyone, we're bringing the herd home.</li>
+        <li>[herd] Out to the grazing and back with every head of them.</li>
+        <li>[herd,snow] Ropes, and quick, before the snow gets deeper.</li>
       </plain>
-      <warm><li>[herd] Let's get them in somewhere warm. They've earned it.</li></warm>
+      <warm><li>[herd] Let's get them in somewhere warm, they've earned it.</li></warm>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -193,10 +193,10 @@
     <pool>Council_Journal_PlayWork</pool>
     <lines>
       <plain>
-        <li>[herd] We walked the herd in on ropes today, one by one. They're under a roof tonight.</li>
-        <li>[herd] Brought the animals home before the weather turned. My hands smell of rope and fleece.</li>
+        <li>[herd] We walked the herd in on ropes, one by one. The stubborn one took three of us.</li>
+        <li>[herd] Brought the animals home with the others. My hands smell of rope and animal.</li>
       </plain>
-      <warm><li>[herd] Brought the herd home with the others. Counting them in at the door is the best part.</li></warm>
+      <warm><li>[herd] Counting the animals in at the end was the best part of the day.</li></warm>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -206,15 +206,15 @@
     <defName>Council_Cal_Letter_Planting</defName>
     <lines>
       <plain>
-        <li>{NAME}, and {A_nameDef} has the seed sorted and the baskets by the door: everyone out to the fields together.</li>
-        <li>[first] {NAME} comes round for the first time. {A_nameDef} wants it kept with the sowing, everyone together, and a word at the end.</li>
-        <li>[years] {NAME} again, {YEARS} years on. The fields are waiting, and so is {A_nameDef}.</li>
-        <li>[tradition] {NAME}: everyone in the fields from the morning, a word at the edge in the evening. The colony knows how it goes.</li>
-        <li>[winter] {NAME}, though the ground's still hard. {A_nameDef} says they'll walk the fields together all the same, and plan the rows.</li>
-        <li>[lowtech] {NAME}. {A_nameDef} has a handful of grain set aside for the birds, as always.</li>
+        <li>{A_nameDef} has the seed sorted and the baskets by the door for {NAME}. Every pair of hands is wanted in the fields.</li>
+        <li>[first] It's the first {NAME}. {A_nameDef} wants it kept with the sowing, all hands together, and a word at the end.</li>
+        <li>[years] {YEARS} years of {NAME} now. The fields are waiting, and so is {A_nameDef}.</li>
+        <li>[tradition] The colony knows how {NAME} goes by now: the fields from morning, and a word at the edge in the evening.</li>
+        <li>[winter] The ground's still hard for {NAME}, but {A_nameDef} says they'll walk the fields together all the same and plan the rows.</li>
+        <li>[lowtech] For {NAME}, {A_nameDef} has set a handful of grain aside for the birds.</li>
       </plain>
-      <cheerful><li>{NAME}! {A_nameDef} has been up since before dawn and is already muddy to the knees.</li></cheerful>
-      <gloomy><li>{NAME}. {A_nameDef} says a year that starts well has a better chance, and they all need the chance.</li></gloomy>
+      <cheerful><li>It's {NAME}! {A_nameDef} has been up since before dawn and is already muddy to the knees.</li></cheerful>
+      <gloomy><li>{A_nameDef} says a year that starts well on {NAME} has a better chance, and they could all use one.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -222,16 +222,16 @@
     <defName>Council_Journal_Cal_Planting</defName>
     <lines>
       <plain>
-        <li>We kept {NAME} in the fields, all of us. My back aches and the rows are straight.</li>
-        <li>[first] The first time we kept {NAME}: seed in the ground and a word at the edge after. I think it'll stick.</li>
-        <li>[years] {NAME} again. Same fields, same seed baskets, a year older.</li>
-        <li>[tradition] {NAME}: the sowing together, as always. Some things are worth doing every year.</li>
+        <li>All of us in the fields today for {NAME}. My back aches just thinking about it.</li>
+        <li>[first] Our first {NAME}, with all of us out in the fields together. I hope it becomes a habit.</li>
+        <li>[years] Another {NAME}. Same fields, same seed baskets, a year older.</li>
+        <li>[tradition] Out to the fields together for {NAME}, as always. I've had my boots by the door since last night.</li>
       </plain>
-      <warm><li>{NAME}. Everyone in the fields, kneeling in the dirt side by side. I was glad of every one of them.</li></warm>
-      <blunt><li>{NAME}. Sowed. Tired.</li></blunt>
-      <cheerful><li>{NAME}! I planted more than anyone. Nobody else was counting, but I was.</li></cheerful>
-      <gloomy><li>{NAME}. We put it all in the ground and now it's up to the weather.</li></gloomy>
-      <cold><li>{NAME}. A day of everyone's work at the right moment is worth a week of it later.</li></cold>
+      <warm><li>Side by side in the dirt with the others for {NAME}. I like this day.</li></warm>
+      <blunt><li>Fields today. Boots on.</li></blunt>
+      <cheerful><li>It's {NAME}! I was up before anyone else.</li></cheerful>
+      <gloomy><li>Whatever we do for {NAME}, the rest is up to the weather.</li></gloomy>
+      <cold><li>Fieldwork for {NAME}. Sensible enough, if the ground allows.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
@@ -239,9 +239,9 @@
     <defName>Council_Cal_Talk_Planting</defName>
     <lines>
       <plain>
-        <li>{A_nameDef} and {B_nameDef} argued about the best spacing for the rows on {NAME}.</li>
-        <li>{A_nameDef} showed {B_nameDef} how {A_pronoun} was taught to sow, on {NAME}.</li>
-        <li>{A_nameDef} told {B_nameDef} what {A_pronoun} hopes will come up this year, on {NAME}.</li>
+        <li>{A_nameDef} and {B_nameDef} argued about how far apart the rows should go.</li>
+        <li>{A_nameDef} showed {B_nameDef} how {A_pronoun} was taught to sow as a child.</li>
+        <li>{A_nameDef} told {B_nameDef} what {A_pronoun} hoped would come up this year.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -251,7 +251,7 @@
     <pool>Council_Cal_Talk_Eve</pool>
     <lines>
       <plain>
-        <li>[way:planting] {A_nameDef} and {B_nameDef} sorted seed together for tomorrow's planting day.</li>
+        <li>[way:planting] {A_nameDef} and {B_nameDef} talked over tomorrow's planting day and which fields to sow first.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
