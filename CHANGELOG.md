@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Plain materials
+
+*30 October 2026, later, version 0.10.8*
+
+- What colonists plan on their own (a light or a bed for themselves, a personal touch in their room, a floor, a grave, the thing a wish of theirs asks for) is only ever of plain materials: wood, stone blocks or bone. They no longer spend the colony's steel, silver, gold, plasteel, cloth or components; something that needs those isn't planned at all.
+- What the council plans for a promised wish is made of wood or stone blocks too when it can be, and of the colony's finer materials only when nothing plainer will do.
+
 ## Moods in their own words
 
 *30 October 2026, version 0.10.7*

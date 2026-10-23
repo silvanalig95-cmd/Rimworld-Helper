@@ -608,13 +608,21 @@ namespace ColonyCouncil
             "CC_Progress_Floor".Translate((1f - BareShare(RoomUtil.PrivateRoom(wish.Beneficiary), wish.Beneficiary.MapHeld)).ToStringPercent()).ToString();
 
         /// <summary>Plans the floor over the bare ground in their room. True if anything was planned.</summary>
-        private static bool PlanFloor(Pawn p)
+        /// <summary>The floor a colonist lays of their own accord: one of plain materials (wood, stone tiles), never steel or cloth.</summary>
+        private static TerrainDef PlainFloorFor(Map map)
+        {
+            var options = RoomPlanConfig.FloorOptions(map).Where(f => Avail.BuildablePlainly(f)).ToList();
+            return options.FirstOrDefault(f => Avail.MaterialsWithinReach(f, map, f.MadeFromStuff ? Avail.PlainStuff(f, map) : null));
+        }
+
+        private static bool PlanFloor(Pawn p, bool ownAccord = false)
         {
             var map = p?.MapHeld;
             var room = RoomUtil.PrivateRoom(p);
-            var floor = map == null ? null : FloorFor(map);
+            var floor = map == null ? null : ownAccord ? PlainFloorFor(map) : FloorFor(map);
             if (room == null || floor == null || room.PsychologicallyOutdoors) return false;
-            var stuff = floor.MadeFromStuff ? Avail.BestStuff(floor, map) : null;
+            var stuff = floor.MadeFromStuff ? Avail.PlainStuff(floor, map) ?? (ownAccord ? null : Avail.BestStuff(floor, map)) : null;
+            if (ownAccord && floor.MadeFromStuff && stuff == null) return false;
             int planned = 0;
             foreach (var c in room.Cells.ToList())
             {
@@ -634,7 +642,7 @@ namespace ColonyCouncil
 
         public override string OnPromised(Wish wish) => PlanFloor(wish.Beneficiary) ? "CC_Promise_Floor" : null;
 
-        public override string TrySelfHelp(Wish wish) => PlanFloor(wish.Beneficiary) ? "CC_SelfHelp_Floor" : null;
+        public override string TrySelfHelp(Wish wish) => PlanFloor(wish.Beneficiary, true) ? "CC_SelfHelp_Floor" : null;
 
         /// <summary>Promises kept: most of their floor stays laid; a floor planned or being laid in the room counts for a while.</summary>
         public const float KeptBare = 0.25f;

@@ -1784,7 +1784,9 @@ Now and then a colonist fixes a small thing that hurts their mood, on their own 
 - places a **plan** for one cheap thing in their own room: a light when it's too dark, a plant pot when it's ugly, a
   passive cooler when it's too hot to sleep, or a free sleeping spot when there's no bed at all
 
-Only things the colony can already build, with the materials in stock, and cheap; at most two such plans at a time.
+Only things the colony can already build, with the materials in stock, and cheap, and only of plain materials: wood,
+stone blocks or bone, never steel, silver, gold, plasteel, cloth or components (the same goes for personal touches and
+for the plans of a wish a colonist sees to themselves); at most two such plans at a time.
 Never during a raid, never anything that harms or bothers anyone else. The industrious do it more, the lazy less.
 You get a message each time, and a plan is only a plan: cancel it if you'd rather not. Both parts have their own
 switch in the settings.

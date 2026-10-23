@@ -215,7 +215,7 @@ namespace ColonyCouncil
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
-        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         public override string ProgressText(Wish wish)
         {
@@ -272,7 +272,7 @@ namespace ColonyCouncil
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
-        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         public override string ProgressText(Wish wish) =>
             "CC_Progress_Space".Translate(RoomUtil.Space(RoomUtil.PrivateRoom(wish.Beneficiary)).ToString("0"), wish.targetValue.ToString("0"));
@@ -428,7 +428,7 @@ namespace ColonyCouncil
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
-        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         public override bool InTheirRoom => true;
 
@@ -472,7 +472,7 @@ namespace ColonyCouncil
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
-        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         public override bool InTheirRoom => true;
 
@@ -534,7 +534,7 @@ namespace ColonyCouncil
 
     public partial class WishWorker_ComfortTemperature
     {
-        public override string TrySelfHelp(Wish wish) => PlanInRoom(RoomUtil.BedRoom(wish.Beneficiary), wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => PlanInRoom(RoomUtil.BedRoom(wish.Beneficiary), wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         // Promises kept: the heater (or cooler) stays in their bedroom; out of season, a comfortable room is enough. Only
         // watched when it came true with one: a mild night isn't something the council gave.
@@ -651,7 +651,7 @@ namespace ColonyCouncil
 
         public override bool StillValid(Wish wish) => RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
-        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         public override bool InTheirRoom => true;
 

@@ -99,8 +99,8 @@ namespace ColonyCouncil
 
             foreach (var def in DecorOptions(pawn, map, room))
             {
-                if (!Avail.MaterialsWithinReach(def, map)) continue;
-                var stuff = def.MadeFromStuff ? Avail.BestStuff(def, map) : null;
+                // Plain materials only (wood, stone blocks, bone): a colonist's own touch never spends the colony's steel.
+                if (!Avail.PlainWithinReach(def, map, out var stuff)) continue;
                 if (!FindCell(room, map, def, stuff, out var cell, out var rot)) continue;
                 GenConstruct.PlaceBlueprintForBuild(def, cell, map, rot, Faction.OfPlayer, stuff);
                 pending.Add(new PersonalTouch { pawn = pawn, def = def, cell = cell, map = map, createdTick = Find.TickManager.TicksGame });

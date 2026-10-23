@@ -47,7 +47,7 @@ namespace ColonyCouncil
 
         public override bool StillValid(Wish wish) => wish.other != null && !wish.other.Dead && RoomUtil.PrivateRoom(wish.Beneficiary) != null;
 
-        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => PlanInOwnRoom(wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         public override LookTargets LookAt(Wish wish) => wish.other != null && wish.other.Spawned ? new LookTargets(wish.other) : base.LookAt(wish);
 

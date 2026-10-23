@@ -14,7 +14,8 @@ namespace ColonyCouncil
     /// one, a passive cooler for a sweltering one, a sleeping spot when there's no bed, a tidy-up of their own room, a
     /// short break when they're starved of recreation, a visit to a grave when they grieve.
     ///
-    /// Low impact by design: plans (blueprints) only, cheap, buildable now, with materials in stock, only in their own
+    /// Low impact by design: plans (blueprints) only, cheap, of plain materials (wood, stone blocks, bone), buildable now,
+    /// with materials in stock, only in their own
     /// room; at most a couple of open plans at a time; jobs only in their free time (except a short break when
     /// recreation is nearly gone) and never in danger. Every action is reported so the player can undo it.
     /// </summary>
@@ -209,14 +210,17 @@ namespace ColonyCouncil
 
         // ---------------- Plans ----------------
 
-        /// <summary>The cheapest thing for the purpose that the colony can build now, has materials for, and that costs little.</summary>
+        /// <summary>
+        /// The cheapest thing for the purpose that the colony can build now, of plain materials only (wood, stone blocks,
+        /// bone: never steel or anything precious), that it has those for, and that costs little.
+        /// </summary>
         private static ThingDef Cheapest(Map map, Func<ThingDef, bool> pred)
         {
             ThingDef best = null;
             float bestValue = float.MaxValue;
             foreach (var d in Avail.AllBuildings)
             {
-                if (d.size.x > 1 || d.size.z > 1 || !pred(d) || !Avail.CanBuild(d, map) || !Avail.MaterialsWithinReach(d, map)) continue;
+                if (d.size.x > 1 || d.size.z > 1 || !pred(d) || !Avail.CanBuild(d, map) || !Avail.PlainWithinReach(d, map, out _)) continue;
                 float value = PlanValue(d, map);
                 if (value > MaxPlanValue || value >= bestValue) continue;
                 best = d;
@@ -227,7 +231,7 @@ namespace ColonyCouncil
 
         private static float PlanValue(ThingDef d, Map map)
         {
-            var stuff = d.MadeFromStuff ? Avail.BestStuff(d, map) : null;
+            var stuff = d.MadeFromStuff ? Avail.PlainStuff(d, map) : null;
             float v = 0f;
             foreach (var c in d.CostListAdjusted(stuff, false)) v += c.thingDef.BaseMarketValue * c.count;
             return v;
@@ -236,7 +240,7 @@ namespace ColonyCouncil
         private bool Plan(Room room, Map map, ThingDef def, out Thing blueprint)
         {
             blueprint = null;
-            var stuff = def.MadeFromStuff ? Avail.BestStuff(def, map) : null;
+            if (!Avail.PlainWithinReach(def, map, out var stuff)) return false;
             if (!PersonalTouchTracker.FindCell(room, map, def, stuff, out var cell, out var rot)) return false;
             blueprint = GenConstruct.PlaceBlueprintForBuild(def, cell, map, rot, Faction.OfPlayer, stuff);
             if (blueprint == null) return false;

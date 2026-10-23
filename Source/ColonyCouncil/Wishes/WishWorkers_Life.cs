@@ -95,7 +95,10 @@ namespace ColonyCouncil
             var existing = Avail.ColonyBuildings(map, Avail.IsGrave).FirstOrDefault();
             IntVec3 center = existing?.Position ?? TemplatePlanner.ColonyCenter(map);
             float minDist = existing != null ? 0f : 12f;
-            var stuff = grave.MadeFromStuff ? Avail.BestStuff(grave, map) : null;
+            // Their own doing: plain materials only (wood, stone blocks, bone), or no grave planned.
+            if (!Avail.BuildablePlainly(grave)) return null;
+            var stuff = grave.MadeFromStuff ? Avail.PlainStuff(grave, map) : null;
+            if (grave.MadeFromStuff && stuff == null) return null;
             foreach (var c in GenRadial.RadialCellsAround(center, 30f, true))
             {
                 if (!c.InBounds(map) || c.Fogged(map) || c.DistanceTo(center) < minDist) continue;

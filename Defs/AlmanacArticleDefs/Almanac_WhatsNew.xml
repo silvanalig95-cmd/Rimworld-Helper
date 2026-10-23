@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.8</version>
+        <date>30 October 2026, later</date>
+        <title>Plain materials</title>
+        <points>
+          <li>What colonists plan on their own (a light or a bed for themselves, a personal touch in their room, a floor, a grave, the thing a wish of theirs asks for) is only ever of plain materials: wood, stone blocks or bone. They no longer spend the colony's steel, silver, gold, plasteel, cloth or components; something that needs those isn't planned at all.</li>
+          <li>What the council plans for a promised wish is made of wood or stone blocks too when it can be, and of the colony's finer materials only when nothing plainer will do.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.7</version>
         <date>30 October 2026</date>
         <title>Moods in their own words</title>

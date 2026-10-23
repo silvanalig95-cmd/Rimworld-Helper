@@ -168,6 +168,75 @@ namespace ColonyCouncil
             return GenStuff.DefaultStuffFor(def);
         }
 
+        // ---------- Plain materials, for what colonists plan on their own ----------
+
+        /// <summary>
+        /// The plain materials a colonist may spend on a plan of their own (a self-help bed, a personal touch, a wish
+        /// the council planned): wood (any woody stuff), stone blocks (any stony stuff) and bone (other mods' bone
+        /// materials). Never steel, silver, gold, plasteel, uranium, cloth, leather or components.
+        /// </summary>
+        public static bool IsPlainMaterial(ThingDef thing)
+        {
+            if (thing == null) return false;
+            if (thing == ThingDefOf.WoodLog) return true;
+            var cats = thing.stuffProps?.categories;
+            if (cats != null && (cats.Contains(StuffCategoryDefOf.Woody) || cats.Contains(StuffCategoryDefOf.Stony))) return true;
+            if (cats != null && cats.Any(c => c?.defName != null && c.defName.IndexOf("Bon", StringComparison.OrdinalIgnoreCase) >= 0)) return true;
+            return thing.stuffProps != null && thing.defName != null && thing.defName.IndexOf("Bone", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        /// <summary>Whether this can be built of plain materials only: its fixed costs all plain, and a plain material it may be made of.</summary>
+        public static bool BuildablePlainly(BuildableDef def)
+        {
+            if (def == null) return false;
+            if (def.CostList != null && def.CostList.Any(c => !IsPlainMaterial(c.thingDef))) return false;
+            return !def.MadeFromStuff || AllowedStuffs(def).Any(IsPlainMaterial);
+        }
+
+        /// <summary>
+        /// The plain material to make this of: of those the colony has enough of, the most; else the one there's most
+        /// of; else wood or the first plain one it may be made of. Null when it can't be made of a plain material.
+        /// </summary>
+        public static ThingDef PlainStuff(BuildableDef def, Map map, int needed = -1)
+        {
+            if (def == null || !def.MadeFromStuff) return null;
+            if (needed < 0) needed = def.CostStuffCount;
+            ThingDef best = null, bestEnough = null, first = null;
+            int bestCount = -1, bestEnoughCount = -1;
+            foreach (var stuff in AllowedStuffs(def))
+            {
+                if (!IsPlainMaterial(stuff)) continue;
+                if (first == null || stuff == ThingDefOf.WoodLog) first = first == ThingDefOf.WoodLog ? first : stuff;
+                int count = map != null ? map.resourceCounter.GetCount(stuff) : 0;
+                if (count > bestCount)
+                {
+                    best = stuff;
+                    bestCount = count;
+                }
+                if (count >= needed && count > bestEnoughCount)
+                {
+                    bestEnough = stuff;
+                    bestEnoughCount = count;
+                }
+            }
+            if (bestEnough != null) return bestEnough;
+            if (best != null && bestCount > 0) return best;
+            return first;
+        }
+
+        /// <summary>Plain materials only, and in reach: what a colonist may plan on their own (see <see cref="IsPlainMaterial"/>).</summary>
+        public static bool PlainWithinReach(BuildableDef def, Map map, out ThingDef stuff)
+        {
+            stuff = null;
+            if (def == null || map == null || !BuildablePlainly(def)) return false;
+            if (def.MadeFromStuff)
+            {
+                stuff = PlainStuff(def, map);
+                if (stuff == null) return false;
+            }
+            return MaterialsWithinReach(def, map, stuff);
+        }
+
         /// <summary>
         /// Does the colony have (or can it easily get) the materials for one of these? Wood counts as
         /// obtainable when there are trees on the map; stone blocks count when there are chunks.

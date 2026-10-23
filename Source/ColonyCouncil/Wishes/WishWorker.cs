@@ -158,14 +158,21 @@ namespace ColonyCouncil
             return pet.Faction == Faction.OfPlayer ? KeptCheck.Holds : KeptCheck.Gone;
         }
 
-        /// <summary>Plans <paramref name="thing"/> in the colonist's own room. Shared by the furniture-like wishes.</summary>
-        protected static bool PlanInOwnRoom(Pawn p, ThingDef thing) => PlanInRoom(RoomUtil.PrivateRoom(p), p, thing);
+        /// <summary>
+        /// Plans <paramref name="thing"/> in the colonist's own room. Shared by the furniture-like wishes. With
+        /// <paramref name="ownAccord"/> (a colonist helping themselves) only plain materials: wood, stone blocks or bone,
+        /// or nothing is planned. Promised by the council, plain materials when it can be made of them.
+        /// </summary>
+        protected static bool PlanInOwnRoom(Pawn p, ThingDef thing, bool ownAccord = false) => PlanInRoom(RoomUtil.PrivateRoom(p), p, thing, ownAccord);
 
-        protected static bool PlanInRoom(Room room, Pawn p, ThingDef thing)
+        protected static bool PlanInRoom(Room room, Pawn p, ThingDef thing, bool ownAccord = false)
         {
             var map = p?.MapHeld;
             if (room == null || map == null || thing == null || !Avail.CanBuild(thing, map)) return false;
-            var stuff = thing.MadeFromStuff ? Avail.BestStuff(thing, map) : null;
+            if (ownAccord && !Avail.PlainWithinReach(thing, map, out _)) return false;
+            // Plain materials (wood, stone blocks, bone) when it can be made of them; the colony's steel only when nothing plainer will do.
+            var stuff = thing.MadeFromStuff ? Avail.PlainStuff(thing, map) ?? (ownAccord ? null : Avail.BestStuff(thing, map)) : null;
+            if (ownAccord && thing.MadeFromStuff && stuff == null) return false;
             if (!PersonalTouchTracker.FindCell(room, map, thing, stuff, out var cell, out var rot)) return false;
             GenConstruct.PlaceBlueprintForBuild(thing, cell, map, rot, Faction.OfPlayer, stuff);
             return true;

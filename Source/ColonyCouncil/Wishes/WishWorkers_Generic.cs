@@ -314,7 +314,7 @@ namespace ColonyCouncil
 
         public override string OnPromised(Wish wish) => P.inBedroom && PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_Promise_Planned" : null;
 
-        public override string TrySelfHelp(Wish wish) => P.inBedroom && PlanInOwnRoom(wish.Beneficiary, wish.thingDef) ? "CC_SelfHelp_Plan" : null;
+        public override string TrySelfHelp(Wish wish) => P.inBedroom && PlanInOwnRoom(wish.Beneficiary, wish.thingDef, true) ? "CC_SelfHelp_Plan" : null;
 
         // Promises kept: the building stays, in their room or in the colony; with their room gone, the room's own watch speaks.
         public override bool InTheirRoom => P.inBedroom;
