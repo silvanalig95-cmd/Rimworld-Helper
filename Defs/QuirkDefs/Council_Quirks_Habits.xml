@@ -23,9 +23,9 @@
     <gained>
       <plain>
         <li>Someone told me today that I hum while I work. I didn't know. Apparently it's the same tune every time.</li>
-        <li>[child] I hum when I do my chores. It makes them go faster. Everyone knows the tune now.</li>
+        <li>[child] I hum when I do my chores. It makes them go faster. The others know the tune now.</li>
       </plain>
-      <cheerful><li>I've started humming at work. I don't know where the tune comes from. Nobody has told me to stop yet!</li></cheerful>
+      <cheerful><li>Humming at work now, and I couldn't tell you where the tune comes from!</li></cheerful>
       <gloomy><li>I caught myself humming while I worked today. I can't remember the last time I did that.</li></gloomy>
       <blunt><li>I hum. Get used to it.</li></blunt>
       <warm><li>People tell me they can find me by my humming. They say it like it's a good thing, so I keep at it.</li></warm>
@@ -33,8 +33,8 @@
     <faded>
       <plain><li>Somebody asked me today why I don't hum at work anymore. I hadn't noticed I'd stopped.</li></plain>
       <warm><li>Someone said the place is quieter without my humming. I'll try to find the tune again.</li></warm>
-      <blunt><li>Stopped humming. Didn't notice. Neither did anyone.</li></blunt>
-      <cheerful><li>My humming's gone for now, but someone else has picked up the tune!</li></cheerful>
+      <blunt><li>Stopped humming. Didn't notice. Doesn't matter.</li></blunt>
+      <cheerful><li>Lost my humming tune somewhere. I'll find another.</li></cheerful>
       <gloomy><li>The tune's gone. I don't know where it went.</li></gloomy>
     </faded>
   </ColonyCouncil.QuirkDef>
@@ -51,9 +51,9 @@
     <thought>Council_Quirk_PrettyStones</thought>
     <gained>
       <plain>
-        <li>Found a stone today with a stripe of white right through it. Kept it. Then I found another one, and now I have a collection.</li>
-        <li>[skill:Mining] Every vein I cut, I keep the best little piece. My windowsill is full of them.</li>
-        <li>[child] I have nine stones now. The red one is the best. Nobody is allowed to touch the red one.</li>
+        <li>Found a stone with a stripe of white right through it. Kept it, then another, and now it's a collection.</li>
+        <li>[skill:Mining] Every vein I cut, I keep the best chip. My sill is filling up.</li>
+        <li>[child] I have nine stones now. The red one is the best, and only I'm allowed to touch it.</li>
       </plain>
       <warm><li>I pick up a pretty stone whenever I see one and line them up by my bed. They're nothing special. They're mine.</li></warm>
       <cold><li>I've started collecting stones by color and grain. There's no use to it. I've decided I don't need one.</li></cold>
@@ -62,11 +62,11 @@
       <gloomy><li>I collect pretty stones now. They're the only things here that don't change.</li></gloomy>
     </gained>
     <faded>
-      <plain><li>I gave most of my stones away to the children today. I kept the striped one.</li></plain>
-      <warm><li>I gave my best stone to a child who'd had a bad day. It's in better hands.</li></warm>
+      <plain><li>My stones sit on the sill gathering dust. I still keep the striped one.</li></plain>
+      <warm><li>If anyone wants a pretty stone, they can have one of mine. I don't need them now.</li></warm>
       <blunt><li>Got rid of most of the stones. Took up too much room.</li></blunt>
-      <cheerful><li>My stone collection's gone to new homes all over the colony! Everyone got a favorite.</li></cheerful>
-      <gloomy><li>The stones are just stones now. I left them in a heap by the wall.</li></gloomy>
+      <cheerful><li>I've stopped picking up stones, but I'm keeping my favorite!</li></cheerful>
+      <gloomy><li>The stones are just stones now. I can't remember what I saw in them.</li></gloomy>
     </faded>
   </ColonyCouncil.QuirkDef>
 
@@ -85,17 +85,17 @@
         <li>I've been waking before dawn every day, without meaning to. I've decided to like it. The first hour is mine.</li>
         <li>[winter] Up before the sun again, in the dark and the cold, with the stove to myself. I've started to look forward to it.</li>
       </plain>
-      <cheerful><li>Up before everyone again! I watched the sun come up over the fields with a hot cup. Best part of the day.</li></cheerful>
+      <cheerful><li>Up before everyone again! I get the whole sunrise to myself.</li></cheerful>
       <gloomy><li>I can't sleep past dawn anymore. So I get up, and sit, and watch the light come.</li></gloomy>
       <blunt><li>Up at dawn. Every day. Don't wake me after supper.</li></blunt>
-      <warm><li>I'm up early, so I put the water on for the others. Small thing. They seem to like it.</li></warm>
+      <warm><li>Since I'm up first anyway, I'd like to have something warm waiting for the others.</li></warm>
       <cold><li>I rise before the others now. An hour of uninterrupted work is worth more than an hour of sleep.</li></cold>
     </gained>
     <faded>
-      <plain><li>Slept past sunrise this morning, for once. I didn't feel guilty about it at all.</li></plain>
-      <warm><li>Slept in today, and someone else put the water on. It was nice to be looked after for once.</li></warm>
-      <blunt><li>Slept late. Good.</li></blunt>
-      <cheerful><li>Woke up when everyone else did today! I'd forgotten how nice a lie-in is.</li></cheerful>
+      <plain><li>I've been sleeping past sunrise lately, and I don't feel guilty about it at all.</li></plain>
+      <warm><li>I wake up with the others now. It's nice to come into a day someone else has started.</li></warm>
+      <blunt><li>Sleeping late again. Good.</li></blunt>
+      <cheerful><li>I sleep as late as everyone else now! I'd forgotten how nice that is.</li></cheerful>
       <gloomy><li>Can't get up before dawn anymore. I miss the quiet.</li></gloomy>
       <cold><li>My sleep has returned to the usual hours. A pity. The early ones were productive.</li></cold>
     </faded>
@@ -112,18 +112,18 @@
     <hediff>Council_Quirk_GreenThumb</hediff>
     <gained>
       <plain>
-        <li>I've started talking to the plants while I work. Telling them what the weather's going to do, mostly. Someone heard me and laughed. The plants didn't.</li>
-        <li>[lowtech] My grandmother said plants grow better if you talk to them. I've started doing it. She was right, I think.</li>
+        <li>I talk to the plants while I work now, mostly about what the weather's going to do.</li>
+        <li>[lowtech] The old women at home said plants grow better if you talk to them. I've started doing it, and I think they were right.</li>
       </plain>
       <warm><li>I tell the seedlings good morning now. It costs nothing, and they're coming up beautifully.</li></warm>
-      <cheerful><li>I talk to the plants now! The potatoes are excellent listeners.</li></cheerful>
+      <cheerful><li>I talk to the plants now! They're excellent listeners.</li></cheerful>
       <cold><li>I speak to the plants while I work. Whether they benefit is unproven. The work goes faster for me, which is enough.</li></cold>
-      <blunt><li>I talk to the plants. They grow. You don't. Think about it.</li></blunt>
+      <blunt><li>I talk to the plants. They grow. Laugh all you like.</li></blunt>
       <gloomy><li>The plants are the only ones here who listen without wanting something back.</li></gloomy>
     </gained>
     <faded>
       <plain><li>I realized today I've stopped talking to the plants. I'll start again in spring, maybe.</li></plain>
-      <warm><li>I've stopped chattering to the plants, but I still say good morning to the oldest tree.</li></warm>
+      <warm><li>I've stopped chattering to the plants, but I still wish them good morning now and then.</li></warm>
       <blunt><li>Quit talking to the plants. They still grow.</li></blunt>
       <cheerful><li>The plants will have to do without my news for a while!</li></cheerful>
       <gloomy><li>I don't talk to the plants anymore. I've run out of things to tell them.</li></gloomy>
@@ -148,17 +148,17 @@
       </plain>
       <blunt><li>No red. Not on me, not near me.</li></blunt>
       <gloomy><li>Red is the color of what happened. I can't look at it without remembering.</li></gloomy>
-      <warm><li>I asked a friend not to wear red near me. They took it off without a word. I'm grateful.</li></warm>
+      <warm><li>If a friend could keep red out of my sight, I'd be grateful. I know how it sounds.</li></warm>
       <cheerful><li>Red is unlucky now! Anyone in red gets a very polite request to change.</li></cheerful>
       <cold><li>I avoid red. I know it's irrational. I'd rather be irrational than unlucky.</li></cold>
     </gained>
     <faded>
-      <plain><li>Wore my red scarf today without thinking about it. Nothing happened. Maybe nothing ever was going to.</li></plain>
-      <warm><li>Someone handed me a red cloth today and I took it without thinking. It's just a color.</li></warm>
+      <plain><li>Red doesn't make me flinch anymore. Maybe nothing was ever going to happen.</li></plain>
+      <warm><li>I could wear red tomorrow and not mind. It's just a color.</li></warm>
       <blunt><li>Red's fine. Was always fine.</li></blunt>
-      <cheerful><li>I've got a red hat now, and nothing bad has happened in it!</li></cheerful>
+      <cheerful><li>Bring me a red hat and I'll wear it!</li></cheerful>
       <gloomy><li>Red doesn't scare me now. What happened that day still does.</li></gloomy>
-      <cold><li>I wore red today to test it. No effect. The matter is closed.</li></cold>
+      <cold><li>Red has had no measurable effect on anything. The matter is closed.</li></cold>
     </faded>
   </ColonyCouncil.QuirkDef>
 
@@ -174,8 +174,8 @@
     <hediff>Council_Quirk_AnimalNames</hediff>
     <gained>
       <plain>
-        <li>Every animal in the pens has a name now. I gave them all names, and I use them. They come better when you call them by name.</li>
-        <li>[child] I named all the hens. The brown one is Captain. Captain knows her name, I'm sure of it.</li>
+        <li>Every animal here gets a name from me, and I use it. They come better when you call them by name.</li>
+        <li>[child] I named all the animals. My favorite is Captain. Captain knows the name, I'm sure of it.</li>
       </plain>
       <warm><li>I've named every animal we have, even the ones we'll eat. I know. I couldn't help it.</li></warm>
       <cheerful><li>I've named every single animal in the colony! I've made a list so I don't forget any.</li></cheerful>
@@ -189,7 +189,7 @@
       <blunt><li>Too many animals. Stopped naming them.</li></blunt>
       <cheerful><li>There are so many animals now that I've started numbering them! Number six is my favorite.</li></cheerful>
       <gloomy><li>I stopped naming them. It hurt too much when one went.</li></gloomy>
-      <cold><li>Naming the animals stopped being useful when the herd grew. I've stopped.</li></cold>
+      <cold><li>Naming the animals stopped being useful. I've stopped.</li></cold>
     </faded>
   </ColonyCouncil.QuirkDef>
 
@@ -205,20 +205,20 @@
     <hediff>Council_Quirk_Tidy</hediff>
     <gained>
       <plain>
-        <li>Somebody left crumbs and a puddle of stew on the table again, and I cleaned it up again. I've started noticing every mess in this place. I can't stop.</li>
+        <li>Crumbs and spilled stew on the table again. I notice every mess in this place now, and I can't stop.</li>
         <li>[trait:Ascetic] I don't need much, but I need what I have to be clean.</li>
       </plain>
       <blunt><li>Wipe the table after you eat. That's all. That's all I ask.</li></blunt>
-      <gloomy><li>I can't sit in a dirty room anymore without my skin crawling. I spend half my evenings scrubbing.</li></gloomy>
+      <gloomy><li>I can't sit in a dirty room anymore without my skin crawling.</li></gloomy>
       <cold><li>A clean room is an efficient room. I've begun cleaning what others won't.</li></cold>
-      <warm><li>I tidy up after everyone at supper now. Nobody asked me. It's a small way to look after them.</li></warm>
+      <warm><li>I'd tidy up after everyone at supper if they let me. It's one way to look after them.</li></warm>
       <cheerful><li>I've become the colony's tidy one! There's nothing a cloth and some elbow grease can't fix.</li></cheerful>
     </gained>
     <faded>
       <plain><li>Walked past a mess today and left it for someone else. It felt strange. It felt fine.</li></plain>
-      <warm><li>I left the table for someone else to clear tonight, and they did. Lovely.</li></warm>
+      <warm><li>I can leave the table for someone else to clear now, and trust that they will.</li></warm>
       <blunt><li>Mess doesn't bother me now. Not my job.</li></blunt>
-      <cheerful><li>I saw crumbs on the table today and let them be. They looked quite happy there.</li></cheerful>
+      <cheerful><li>Crumbs on the table don't bother me now. Let them stay!</li></cheerful>
       <gloomy><li>I stopped scrubbing. The mess always came back anyway.</li></gloomy>
     </faded>
   </ColonyCouncil.QuirkDef>
@@ -234,18 +234,18 @@
     <hediff>Council_Quirk_StoveSongs</hediff>
     <gained>
       <plain>
-        <li>I sing while I cook now. One song for chopping, one for stirring, one while I scrub up. It keeps the time.</li>
+        <li>I sing while I cook now, one song for chopping and one for stirring. The songs know the timing better than I do.</li>
         <li>[lowtech] My mother sang over the cooking pot, and now I do. Same songs. I'd forgotten I knew them.</li>
       </plain>
       <cheerful><li>I sing at the stove now! Loudly. The stew has never been better.</li></cheerful>
-      <warm><li>People come and sit in the kitchen while I cook, to hear the songs. I don't mind the company.</li></warm>
+      <warm><li>I'd sing at the stove for anyone who wanted to listen. I don't mind company in the kitchen.</li></warm>
       <blunt><li>I sing when I cook. If you don't like it, cook your own supper.</li></blunt>
       <gloomy><li>I sing at the stove now, old sad songs. They suit the onions.</li></gloomy>
       <cold><li>I sing while I cook. It keeps time better than counting.</li></cold>
     </gained>
     <faded>
       <plain><li>The kitchen's been quiet lately. I've stopped singing in there, and I don't know why.</li></plain>
-      <warm><li>The kitchen's quiet now. I hum a little when nobody's there.</li></warm>
+      <warm><li>The kitchen's quiet now. I still hum when I'm alone in there.</li></warm>
       <blunt><li>Stopped singing. Food's the same.</li></blunt>
       <cheerful><li>I've lost my kitchen song for now, but I'll find a new one!</li></cheerful>
       <gloomy><li>I don't sing when I cook anymore. The songs feel like they belong to someone else.</li></gloomy>
@@ -264,20 +264,20 @@
     <thought>Council_Quirk_Stargazer</thought>
     <gained>
       <plain>
-        <li>I slept outside last night and lay awake looking up for hours. Now I go out most nights, just to look.</li>
+        <li>Sleeping out under the open sky, I lay awake looking up for hours. Now I want to go out every night, just to look.</li>
         <li>[skill:Intellectual] I've started mapping the stars on the back of an old page. Some of them move. I want to know why.</li>
         <li>[child] I counted the stars last night and got to two hundred and eleven before I fell asleep.</li>
       </plain>
       <warm><li>I sleep better after an hour under the stars. I've stopped explaining why I go out.</li></warm>
-      <gloomy><li>The stars were there before us and they'll be there after. I find that comforting, for some reason.</li></gloomy>
+      <gloomy><li>The stars were here before us and they'll be here after. I find that comforting.</li></gloomy>
       <blunt><li>I watch the stars at night. Don't wait up.</li></blunt>
-      <cheerful><li>I've named a star after everyone in the colony! Some of them are very small stars.</li></cheerful>
-      <cold><li>I've started watching the night sky. It's the one thing here nobody can take.</li></cold>
+      <cheerful><li>I've named a star after everyone in the colony! The brightest one's mine.</li></cheerful>
+      <cold><li>Watching the night sky has become a habit. It's the one thing here nobody can take.</li></cold>
     </gained>
     <faded>
       <plain><li>I haven't been out to look at the stars in weeks. Too tired, or too busy. They'll keep.</li></plain>
-      <warm><li>I don't go out to the stars as much now, but when I do, I bring someone with me.</li></warm>
-      <blunt><li>Too cold for star-watching. Going to bed.</li></blunt>
+      <warm><li>When I go out to the stars now, which isn't often, I bring someone with me.</li></warm>
+      <blunt><li>Done with star-watching. Going to bed.</li></blunt>
       <cheerful><li>I haven't been stargazing in a while! I'll go out on the next clear night.</li></cheerful>
       <gloomy><li>The stars are still up there. I just stopped looking.</li></gloomy>
     </faded>
@@ -285,7 +285,7 @@
 
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_WalksTheWalls</defName>
-    <label>checks the gate every night</label>
+    <label>checks the doors every night</label>
     <afterBattle>true</afterBattle>
     <chance>0.08</chance>
     <days>90</days>
@@ -293,22 +293,22 @@
     <thought>Council_Quirk_WalksTheWalls</thought>
     <gained>
       <plain>
-        <li>Since the fight I walk the walls before bed and check the gate. Twice. I know it's shut. I check anyway.</li>
-        <li>[lowtech] I go round the palisade every night with a torch before I sleep. I can't sleep otherwise.</li>
+        <li>Since the fight I check every door before bed, twice. I know they're shut. I check anyway.</li>
+        <li>[lowtech] I go round with a torch before I sleep and try every door. I can't sleep otherwise.</li>
       </plain>
-      <blunt><li>Gate's shut. I checked. I'll check again later.</li></blunt>
-      <cold><li>I perform a nightly inspection of the perimeter. Nobody asked me to. It costs ten minutes.</li></cold>
-      <gloomy><li>They came once. They'll come again. I check the gate every night now.</li></gloomy>
-      <warm><li>I walk the walls at night so the others can sleep. Someone should.</li></warm>
-      <cheerful><li>Nightly walk round the walls! Good for the legs and good for the nerves.</li></cheerful>
+      <blunt><li>Shut and barred. I checked. I'll check again later.</li></blunt>
+      <cold><li>I inspect the doors every night. It costs ten minutes and buys me a night's sleep.</li></cold>
+      <gloomy><li>They came once. They'll come again. I check the doors every night now.</li></gloomy>
+      <warm><li>I check the doors at night so the others can sleep easy.</li></warm>
+      <cheerful><li>A last round before bed, every night! Good for the legs and good for the nerves.</li></cheerful>
     </gained>
     <faded>
-      <plain><li>Went to bed last night without checking the gate, and slept fine. First time since the fight.</li></plain>
-      <warm><li>I asked someone else to check the gate tonight, and I trusted them. That's new.</li></warm>
-      <blunt><li>Skipped the walls. Slept.</li></blunt>
-      <cheerful><li>I slept the whole night through without checking the gate once!</li></cheerful>
-      <gloomy><li>I don't walk the walls anymore. If they come, they come.</li></gloomy>
-      <cold><li>The nightly inspections have stopped. The walls hold whether I check or not.</li></cold>
+      <plain><li>I go to bed without checking the doors these days, and I sleep fine.</li></plain>
+      <warm><li>I can leave the doors to someone else now, and trust them to see to it.</li></warm>
+      <blunt><li>Skipped the rounds. Slept.</li></blunt>
+      <cheerful><li>I slept the whole night through without getting up to check once!</li></cheerful>
+      <gloomy><li>I've stopped checking. If they come, they come.</li></gloomy>
+      <cold><li>The nightly inspections have stopped. The doors hold whether I check or not.</li></cold>
     </faded>
   </ColonyCouncil.QuirkDef>
 
@@ -329,15 +329,15 @@
       </plain>
       <blunt><li>Cold. Always cold. Somebody shut that door.</li></blunt>
       <gloomy><li>I don't think I'll ever be properly warm again.</li></gloomy>
-      <warm><li>I'm always cold now. The others keep offering me their blankets. I keep saying no, and they keep offering.</li></warm>
-      <cheerful><li>I'm always cold, so I've made myself the warmest scarf in the colony!</li></cheerful>
+      <warm><li>I'm always cold now. If anyone has a spare blanket, I'd be grateful for it.</li></warm>
+      <cheerful><li>I'm always cold, so I'll be the one wrapped up like a parcel all year!</li></cheerful>
       <cold><li>My tolerance for cold has dropped. I've adjusted my clothing and my position at the table.</li></cold>
     </gained>
     <faded>
-      <plain><li>Sat near the hearth tonight and was too warm. Took my scarf off. Felt like a victory.</li></plain>
-      <warm><li>Gave my spare blanket back to the person who lent it to me. I don't need it now.</li></warm>
+      <plain><li>Caught myself too warm today. Felt like a victory.</li></plain>
+      <warm><li>Someone else can have my extra blanket. I'm warm enough now.</li></warm>
       <blunt><li>Warm again. Finally.</li></blunt>
-      <cheerful><li>I'm warm! I took off two layers and danced a little.</li></cheerful>
+      <cheerful><li>I'm warm again! I could throw off every layer I've got.</li></cheerful>
       <gloomy><li>Warm at last. It took long enough.</li></gloomy>
     </faded>
   </ColonyCouncil.QuirkDef>
@@ -354,19 +354,19 @@
     <thought>Council_Quirk_FeedsBirds</thought>
     <gained>
       <plain>
-        <li>I've started keeping the crusts from breakfast for the birds. They wait on the fence for me now.</li>
-        <li>[winter] The birds have a hard time of it in winter. I put crumbs out on the wall every morning.</li>
+        <li>I keep my crusts for the birds now. They know me.</li>
+        <li>[winter] The birds have a hard time of it in winter. I keep crumbs in my pocket for them.</li>
         <li>[child] I feed the birds every day now. One of them eats from my hand. I'm not telling anyone which one.</li>
       </plain>
       <warm><li>There's a little bird that follows me when I go out. I save it the crumbs from my bread.</li></warm>
-      <cold><li>I feed the birds. They keep the insects down in the fields. Mostly I like watching them eat.</li></cold>
+      <cold><li>I feed the birds. They keep the insects down. Mostly I like watching them eat.</li></cold>
       <blunt><li>I feed the birds. They don't talk back.</li></blunt>
       <cheerful><li>The birds wait for me every morning now! I'm very popular with the birds.</li></cheerful>
       <gloomy><li>I feed the birds. At least something here is glad to see me.</li></gloomy>
     </gained>
     <faded>
-      <plain><li>The birds have stopped waiting for me on the fence. I suppose I stopped coming.</li></plain>
-      <warm><li>Someone else has taken over feeding the birds. I see them on the fence, and I'm glad.</li></warm>
+      <plain><li>The birds don't come looking for me now. I suppose I stopped bringing anything.</li></plain>
+      <warm><li>I hope someone else will feed the birds now. They've got used to it.</li></warm>
       <blunt><li>Stopped feeding the birds. They'll manage.</li></blunt>
       <cheerful><li>The birds have found better feeders than me! I hope they're happy.</li></cheerful>
       <gloomy><li>The birds don't wait for me anymore. Nothing does, for long.</li></gloomy>
@@ -385,17 +385,17 @@
     <hediff>Council_Quirk_Birthdays</hediff>
     <gained>
       <plain>
-        <li>I've worked out everyone's birthday and written them all on the wall by my bed. Nobody's will go by without something.</li>
-        <li>[trait:Kind] It was someone's birthday today and nobody knew but me. I made sure everyone knew by supper.</li>
+        <li>I've worked out everyone's birthday and keep the list by my bed.</li>
+        <li>[trait:Kind] No birthday here goes by unnoticed while I'm around.</li>
       </plain>
-      <cheerful><li>I know every birthday in the colony now! There's one next week, and I've already started planning.</li></cheerful>
-      <warm><li>Everyone deserves to have their day remembered, out here more than anywhere.</li></warm>
+      <cheerful><li>I know every birthday in the colony now! I'm already planning for the next one.</li></cheerful>
+      <warm><li>A person's day should be remembered, out here more than anywhere.</li></warm>
       <blunt><li>I know your birthday. Don't bother hiding it.</li></blunt>
-      <gloomy><li>I remember every birthday now, the dead ones' too. I mark those quietly.</li></gloomy>
+      <gloomy><li>I remember every birthday now, the dead ones' too. I mark those on my own.</li></gloomy>
     </gained>
     <faded>
-      <plain><li>I missed someone's birthday this week. I've lost track. I'll have to ask around and start again.</li></plain>
-      <warm><li>I've lost track of the birthdays. I'll ask everyone again, one by one.</li></warm>
+      <plain><li>I've lost track of the birthdays. I'll have to ask around and start again.</li></plain>
+      <warm><li>I've let the birthdays slip. I'm sorry for any I've missed.</li></warm>
       <blunt><li>Forgot a birthday. Happens.</li></blunt>
       <cheerful><li>I've lost my birthday list! Time to start a new one, with drawings this time.</li></cheerful>
       <gloomy><li>Birthdays come and go. I've stopped keeping track.</li></gloomy>
@@ -418,14 +418,14 @@
       <cheerful><li>Carved a little bird out of a stick today! I'm going to make a whole flock.</li></cheerful>
       <blunt><li>I whittle. It's better than talking.</li></blunt>
       <gloomy><li>I carve while the others talk. Something to look at that isn't them.</li></gloomy>
-      <warm><li>I whittle little animals and leave them where the children will find them.</li></warm>
+      <warm><li>I whittle little animals. If anyone wants one, they only have to ask.</li></warm>
       <cold><li>I whittle. Idle hands are wasted hands.</li></cold>
     </gained>
     <faded>
       <plain><li>Found my whittling knife at the bottom of my pack today, rusty. I don't remember when I stopped.</li></plain>
-      <warm><li>I gave my last carving away today and haven't started a new one. Maybe soon.</li></warm>
+      <warm><li>My last carving's long given away, and I haven't started another. Maybe soon.</li></warm>
       <blunt><li>Put the knife away. Done whittling.</li></blunt>
-      <cheerful><li>My whittling knife is on holiday! I'll pick it up again when I've an idea.</li></cheerful>
+      <cheerful><li>My whittling knife is on holiday! I'll pick it up again when I have an idea.</li></cheerful>
       <gloomy><li>I stopped carving. Nothing I made was ever quite right.</li></gloomy>
     </faded>
   </ColonyCouncil.QuirkDef>
@@ -442,16 +442,16 @@
     <gained>
       <plain>
         <li>Apparently I talk in my sleep. Whole conversations, they say. I've asked them not to tell me what about.</li>
-        <li>My roommate says I gave orders in my sleep last night, very clearly, to someone called Fen. I don't know anyone called Fen.</li>
+        <li>Someone heard me give orders in my sleep, very clearly, to a person called Fen. I don't know anyone called Fen.</li>
       </plain>
-      <cheerful><li>I talk in my sleep, apparently! Last night I asked for more potatoes. Twice.</li></cheerful>
+      <cheerful><li>I talk in my sleep, apparently! I asked for more potatoes, twice.</li></cheerful>
       <gloomy><li>They say I talk in my sleep. I'm afraid of what I'm saying.</li></gloomy>
       <warm><li>They say I talk in my sleep, mostly kind things. I'm glad it's kind things.</li></warm>
       <blunt><li>I talk in my sleep. Don't listen.</li></blunt>
     </gained>
     <faded>
       <plain><li>Nobody's said anything about my sleep-talking for a while. Either I've stopped or they've stopped listening.</li></plain>
-      <warm><li>My roommate says I've gone quiet at night. They say they almost miss it.</li></warm>
+      <warm><li>I've gone quiet at night, I'm told. Someone said they almost miss it.</li></warm>
       <blunt><li>Sleeping quiet now. Good.</li></blunt>
       <cheerful><li>I've stopped talking in my sleep, so now I'll never know what I was saying!</li></cheerful>
       <gloomy><li>I've stopped talking in my sleep. Whatever I had to say, I've said it.</li></gloomy>
@@ -469,7 +469,7 @@
     <gained>
       <plain>
         <li>I've started saving the best bite of every meal for last. It makes the rest of the meal a kind of waiting. I like that.</li>
-        <li>[child] I always eat the crust first and the soft bit last. That's the right way. Everyone else is wrong.</li>
+        <li>[child] I always eat the crust first and the soft bit last. That's the right way. The other way is wrong.</li>
       </plain>
       <cheerful><li>Best bite last, every meal! Something to look forward to three times a day.</li></cheerful>
       <gloomy><li>I save the best bite for last. One day someone will take it off my plate, I just know it.</li></gloomy>
@@ -478,7 +478,7 @@
     </gained>
     <faded>
       <plain><li>Ate the best bite first today. Didn't seem to matter much either way.</li></plain>
-      <warm><li>Gave my best bite to a friend today without thinking. It tasted better that way.</li></warm>
+      <warm><li>I'd rather give the best bite to a friend now than save it for myself.</li></warm>
       <blunt><li>Ate it all in order. Doesn't matter.</li></blunt>
       <cheerful><li>I ate the best bite first today, and then the whole meal was a celebration!</li></cheerful>
       <gloomy><li>I stopped saving the best bite. Too many times it got cold.</li></gloomy>
