@@ -108,7 +108,7 @@
         <li>sent->[INITIATOR_nameDef]'s Pokémon won it in the last exchange, and [RECIPIENT_nameDef] asked to see the move again, slowly.</li>
         <li>sent->[INITIATOR_nameDef]'s Pokémon had the better of it from the start, and [INITIATOR_nameDef] promised it an extra handful of berries.</li>
         <li>sent->[INITIATOR_nameDef]'s Pokémon won, and [RECIPIENT_nameDef] wanted to go over every move that had gone wrong.</li>
-        <li>sent->[INITIATOR_nameDef]'s Pokémon carried the day, though [RECIPIENT_nameDef] said the sun had been in [RECIPIENT_possessive] Pokémon's eyes.</li>
+        <li>sent->[INITIATOR_nameDef]'s Pokémon carried the day, though [RECIPIENT_nameDef] said [RECIPIENT_possessive] Pokémon hadn't been properly warmed up.</li>
         <li>sent->[INITIATOR_nameDef]'s Pokémon came out ahead, and [RECIPIENT_nameDef] shook [INITIATOR_nameDef]'s hand on it.</li>
       </rulesStrings>
     </rulePack>
@@ -119,7 +119,7 @@
     <pack>Council_Sent_PW_RecipientWon</pack>
     <rulePack>
       <rulesStrings>
-        <li>sent->[RECIPIENT_nameDef]'s Pokémon won, and [INITIATOR_nameDef] asked for a rematch before the dust had settled.</li>
+        <li>sent->[RECIPIENT_nameDef]'s Pokémon won, and [INITIATOR_nameDef] asked for a rematch on the spot.</li>
         <li>sent->[RECIPIENT_nameDef]'s Pokémon took it, and [INITIATOR_nameDef] admitted [INITIATOR_pronoun] had called the wrong move at the wrong moment.</li>
         <li>sent->[RECIPIENT_nameDef]'s Pokémon won it cleanly, and both trainers had a word of praise for the loser too.</li>
         <li>sent->[RECIPIENT_nameDef]'s Pokémon came out on top, and [INITIATOR_nameDef] went quiet, working out what to change.</li>
