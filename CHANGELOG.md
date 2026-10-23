@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Sandbags further from the gate
+
+*23 October 2026, version 0.10.16*
+
+- The gate with sandbag lines put its sandbags three cells straight behind the gate, which a defense line's own review calls too close: the first raider through was on the shooters at once, and raiders outside could see the nearest of them through the gap. Its sandbags now stand five cells back and off to either side of the way through, like the sandbag line's, with three firing positions behind each.
+- The perimeter wall's sandbags moved the same way, five cells back from its inner gate. A plan that closes a gap can no longer bring cover closer than a line's review allows, and the advice for a gate with too little cover says how far back to put it.
+
 ## Drawn to another ideoligion
 
 *23 October 2026, version 0.10.15*

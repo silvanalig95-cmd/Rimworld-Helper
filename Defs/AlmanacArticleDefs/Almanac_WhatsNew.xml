@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.16</version>
+        <date>23 October 2026</date>
+        <title>Sandbags further from the gate</title>
+        <points>
+          <li>The gate with sandbag lines put its sandbags three cells straight behind the gate, which a defense line's own review calls too close: the first raider through was on the shooters at once, and raiders outside could see the nearest of them through the gap. Its sandbags now stand five cells back and off to either side of the way through, like the sandbag line's, with three firing positions behind each.</li>
+          <li>The perimeter wall's sandbags moved the same way, five cells back from its inner gate. A plan that closes a gap can no longer bring cover closer than a line's review allows, and the advice for a gate with too little cover says how far back to put it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.15</version>
         <date>23 October 2026</date>
         <title>Drawn to another ideoligion</title>

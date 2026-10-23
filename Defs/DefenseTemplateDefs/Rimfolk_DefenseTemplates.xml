@@ -11,24 +11,27 @@
   <ColonyCouncil.DefenseTemplateDef>
     <defName>Rimfolk_Defense_Gate</defName>
     <label>gate with sandbag lines</label>
-    <description>A wall across the gap with one gate in it, open ground behind, and two short lines of sandbags facing the gate with room for four shooters behind them.</description>
-    <purpose>Whatever comes through the gate stands in the open, a few steps from people behind cover. The wall carries on to the rock on either side when you close the gap.</purpose>
+    <description>A wall across the gap with one gate in it, open ground behind, and five cells back two short lines of sandbags off to either side, three firing positions behind each, with a clear way through the middle.</description>
+    <purpose>Whoever comes through the gate has open ground to cross toward people behind cover, and a rush takes a few seconds under fire to reach them. Standing off to the sides, they're hard to see from outside the gate, so a raider has to step through to shoot at them or throw a grenade. The wall carries on to the rock on either side when you close the gap.</purpose>
     <kind>gate</kind>
     <order>10</order>
     <line>1</line>
     <placeAt>choke</placeAt>
     <iconDefs><li>Sandbags</li><li>Barricade</li></iconDefs>
     <layout>
-      <li>.........</li>
-      <li>WWWWGWWWW</li>
-      <li>.........</li>
-      <li>.........</li>
-      <li>.SSS.SSS.</li>
-      <li>.fff.fff.</li>
+      <li>.............</li>
+      <li>WWWWWWGWWWWWW</li>
+      <li>.............</li>
+      <li>.............</li>
+      <li>.............</li>
+      <li>.............</li>
+      <li>.SSSS...SSSS.</li>
+      <li>.fff.....fff.</li>
     </layout>
     <tips>
       <li>When raiders come, set the gate to stay open. With a way in they walk into your guns; with none, they hack at the wall wherever they like.</li>
-      <li>Keep the two rows behind the gate empty: anything standing there is cover for them, not for you.</li>
+      <li>Keep the ground between the gate and the sandbags empty: anything standing there is cover for them, not for you.</li>
+      <li>Not closer: cover right behind the gate is reached by the first raider through it, and a shooter up against sandbags gets little from them. With rifles, the sandbag line can go further back still: a defense line's review says how far suits your weapons.</li>
       <li>Stone walls and a stone gate: wood burns, and raiders like to set fires.</li>
       <li>[lowtech]Archers behind sandbags, and someone with a spear or an axe beside the gate to meet whoever gets through first.</li>
     </tips>
@@ -64,7 +67,7 @@
   <ColonyCouncil.DefenseTemplateDef>
     <defName>Rimfolk_Defense_Wall</defName>
     <label>perimeter wall with a gate</label>
-    <description>Fifteen cells of wall two thick, a double gate through the middle, and sandbags on the inside either side of it.</description>
+    <description>Fifteen cells of wall two thick, a double gate through the middle, and on the inside, five cells back from the gate, two short lines of sandbags off to either side of the way in.</description>
     <purpose>Closes a wide gap or a stretch of open ground, so the gate becomes the only easy way in. Two thick, it holds a breacher's axe and a sapper's pick a good while longer.</purpose>
     <kind>wall</kind>
     <order>20</order>
@@ -75,9 +78,12 @@
       <li>_______________</li>
       <li>WWWWWWWGWWWWWWW</li>
       <li>WWWWWWWGWWWWWWW</li>
-      <li>_____....._____</li>
-      <li>_____SS.SS_____</li>
-      <li>_____ff.ff_____</li>
+      <li>_............._</li>
+      <li>_............._</li>
+      <li>_............._</li>
+      <li>_............._</li>
+      <li>_.SSSS...SSSS._</li>
+      <li>_.fff.....fff._</li>
     </layout>
     <tips>
       <li>Close the gap: the wall carries on to rock, water or another wall on both sides, so there's no easy way round.</li>

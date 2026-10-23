@@ -131,7 +131,7 @@
 
   <CC_Def_Adv_Gap_Title>Hold the way in to the {0}</CC_Def_Adv_Gap_Title>
   <CC_Def_Adv_Cover_Title>Cover behind the gate to the {0}</CC_Def_Adv_Cover_Title>
-  <CC_Def_Adv_Cover>There's a gate to the {0}, but only {1} piece(s) of cover behind it. Sandbags a few cells back give your people cover and leave raiders in the open when they come through.</CC_Def_Adv_Cover>
+  <CC_Def_Adv_Cover>There's a gate to the {0}, but only {1} piece(s) of cover behind it. Sandbags five or six cells back, off to the sides of the gate, give your people cover and leave raiders in the open when they come through.</CC_Def_Adv_Cover>
   <CC_Def_Adv_Wood_Title>A gate of wood burns</CC_Def_Adv_Wood_Title>
   <CC_Def_Adv_Wood>The walls by the gate to the {0} are wood. Raiders set fires, and fire in a narrow place is a trap for your own people. Rebuild them in stone when there's stone to spare.</CC_Def_Adv_Wood>
   <CC_Def_Adv_Wall_Title>A way in of your own</CC_Def_Adv_Wall_Title>

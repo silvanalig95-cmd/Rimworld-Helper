@@ -67,6 +67,14 @@ public static class DefenseTests
             foreach (var r in t.roles) Check(DefenseLayout.Roles.Contains(r), $"{t.defName}: unknown role {r}");
             var g = DefenseLayout.Parse(t.rows, t.line);
             foreach (var p in DefenseLayout.Problems(g, t.kind)) Check(false, $"{t.defName}: {p}");
+            // A plan that closes a gap and brings its own cover puts the shooters where a line's review wants them, not
+            // so close behind the gate that the first raider through reaches them.
+            if (t.placeAt == "choke" && g.line >= 0)
+                for (int x = 0; x < g.W; x++)
+                    for (int z = 0; z < g.line; z++)
+                        if (g.cells[x, z] == DefenseLayout.Firing && g.At(x, z + 1) == DefenseLayout.Cover)
+                            Check(DefenseLineMath.ReachOf(g.line - z, 0f) != DefenseLineMath.Reach.TooClose,
+                                $"{t.defName}: the firing position at ({x},{z}) is {g.line - z} cells behind the gate, too close");
             for (int m = 0; m < 2; m++)
                 for (int turn = 0; turn < 4; turn++)
                 {
