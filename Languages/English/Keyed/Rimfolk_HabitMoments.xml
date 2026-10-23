@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What a quirk's small habit looks like in the colonist's inspect pane (Immersion/QuirkHabits.cs). -->
+  <CC_Habit_Report_Tidy>tidying up.</CC_Habit_Report_Tidy>
+  <CC_Habit_Report_Sunrise>watching the sun come up.</CC_Habit_Report_Sunrise>
+  <CC_Habit_Report_Stones>looking for pretty stones.</CC_Habit_Report_Stones>
+  <CC_Habit_Report_Birds>feeding the birds.</CC_Habit_Report_Birds>
+  <CC_Habit_Report_Whittle>whittling.</CC_Habit_Report_Whittle>
+  <CC_Habit_Report_Whetstone>sharpening a blade.</CC_Habit_Report_Whetstone>
+  <CC_Habit_Report_TreeLine>watching the tree line.</CC_Habit_Report_TreeLine>
+  <CC_Habit_Report_Patient>looking in on {OTHER}.</CC_Habit_Report_Patient>
+  <CC_Habit_Report_Birthday>wishing {OTHER} a happy birthday.</CC_Habit_Report_Birthday>
+
+</LanguageData>

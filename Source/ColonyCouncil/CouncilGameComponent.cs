@@ -336,6 +336,7 @@ namespace ColonyCouncil
             Safe("annals", () => annals.Hourly(this));
             Safe("dreams", () => dreams.Hourly(this));
             Safe("quirks", quirks.Hourly);
+            Safe("habit bubbles", HabitBubbles.Hourly);
         }
 
         private void HourlyPeople()

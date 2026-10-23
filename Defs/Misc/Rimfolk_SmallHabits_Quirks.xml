@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Nine small habits, each the free-time moment of a quirk (Source/ColonyCouncil/Immersion/QuirkHabits.cs), under the
+    same rules as the others in Rimfolk_SmallHabits.xml: only with the "Small habits" setting on, in free time, off
+    cooldown, and only for a colonist who has the quirk (with the quirks setting on). Doing it lives the habit, so it
+    doesn't fade while they keep at it. Nothing is used up or made; a tidy one wipes up a little of the mess at their
+    feet, the game's own way. Looking in on a patient and remembering a birthday leave the other one a small good
+    memory (Rimfolk_Thoughts_HabitMoments.xml).
+  -->
+
+  <!-- ===================== The jobs ===================== -->
+
+  <!-- One who can't stand a mess: a while by the mess in a room at home, wiping a little of it up. -->
+  <JobDef>
+    <defName>Council_Habit_Tidy</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>tidying up.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.6</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Tidy</kind>
+        <pool>Council_Pool_HabitTidy</pool>
+        <quirk>Council_Quirk_TidyTable</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- An early riser: out under the open sky at dawn, facing east. -->
+  <JobDef>
+    <defName>Council_Habit_Sunrise</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>watching the sun come up.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Sunrise</kind>
+        <pool>Council_Pool_HabitSunrise</pool>
+        <quirk>Council_Quirk_EarlyRiser</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who collects pretty stones: a while by a stone chunk or the rock face, by day. -->
+  <JobDef>
+    <defName>Council_Habit_Stones</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>looking for pretty stones.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.8</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Stones</kind>
+        <pool>Council_Pool_HabitStones</pool>
+        <quirk>Council_Quirk_PrettyStones</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who feeds the birds: a while out by a tree or on open ground, by day. -->
+  <JobDef>
+    <defName>Council_Habit_Birds</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>feeding the birds.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Birds</kind>
+        <pool>Council_Pool_HabitBirds</pool>
+        <quirk>Council_Quirk_FeedsBirds</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who is always whittling: a while in a chair, indoors or by the fire. -->
+  <JobDef>
+    <defName>Council_Habit_Whittle</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>whittling.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.8</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Whittle</kind>
+        <pool>Council_Pool_HabitWhittle</pool>
+        <quirk>Council_Quirk_Whittler</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who sharpens every blade: a while in a chair with a whetstone. -->
+  <JobDef>
+    <defName>Council_Habit_Whetstone</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>sharpening a blade.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.7</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Whetstone</kind>
+        <pool>Council_Pool_HabitWhetstone</pool>
+        <quirk>Council_Quirk_SharpensBlades</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who knows every trail: a while just outside the colony, looking out at the tree line. -->
+  <JobDef>
+    <defName>Council_Habit_TreeLine</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>watching the tree line.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.8</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>TreeLine</kind>
+        <pool>Council_Pool_HabitTreeLine</pool>
+        <quirk>Council_Quirk_KnowsTrails</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Steady hands: a while at the bedside of someone awake in a sickbed. -->
+  <JobDef>
+    <defName>Council_Habit_Patient</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>looking in on a patient.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Patient</kind>
+        <pool>Council_Pool_HabitPatient</pool>
+        <social>true</social>
+        <quirk>Council_Quirk_SteadyHands</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who remembers every birthday: beside whoever has one today, wishing them a happy one. -->
+  <JobDef>
+    <defName>Council_Habit_Birthday</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>wishing someone a happy birthday.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Birthday</kind>
+        <pool>Council_Pool_HabitBirthday</pool>
+        <social>true</social>
+        <quirk>Council_Quirk_Birthdays</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- ===================== The joy givers ===================== -->
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Tidy</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitTidy</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Tidy</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Sunrise</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitSunrise</giverClass>
+    <baseChance>6</baseChance>
+    <jobDef>Council_Habit_Sunrise</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Stones</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitStones</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Stones</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Birds</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitBirds</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Birds</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Whittle</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitWhittle</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Whittle</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Whetstone</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitWhetstone</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Whetstone</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_TreeLine</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitTreeLine</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_TreeLine</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Patient</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitPatient</giverClass>
+    <baseChance>6</baseChance>
+    <jobDef>Council_Habit_Patient</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Birthday</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitBirthday</giverClass>
+    <baseChance>8</baseChance>
+    <jobDef>Council_Habit_Birthday</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+</Defs>
