@@ -12,22 +12,22 @@
     <lines>
       <plain>
         <li>[killed] {NAME} swore vengeance on {FACTION} for {OTHER_nameDef}.</li>
-        <li>[killed] Over {OTHER_nameDef}'s grave, {NAME} swore that {FACTION} would pay.</li>
+        <li>[killed] Over {OTHER_nameDef}'s body, {NAME} swore that {FACTION} would pay.</li>
         <li>[killed] {NAME} won't forget {OTHER_nameDef}, and won't forgive {FACTION}.</li>
         <li>[killed,kin,!many] {NAME} lost family to {FACTION} today, and has sworn to make them pay for {OTHER_nameDef}.</li>
-        <li>[killed,partner,!many] {NAME} buried {OTHER_nameDef}, and has sworn on the grave that {FACTION} will pay.</li>
+        <li>[killed,partner,!many] {NAME} closed {OTHER_nameDef}'s eyes and swore that {FACTION} would pay for it.</li>
         <li>[killed,friend,!many] {OTHER_nameDef} was {NAME}'s friend. {FACTION} will find that out.</li>
-        <li>[killed,many] {NAME} stood together at {OTHER_nameDef}'s grave and swore the same oath against {FACTION}.</li>
+        <li>[killed,many] {NAME} stood together over {OTHER_nameDef} and swore the same oath against {FACTION}.</li>
         <li>[killed,mech] {NAME} swore to tear apart three of the machines for every year {OTHER_nameDef} should have had.</li>
         <li>[taken,!many] {FACTION} carried off {OTHER_nameDef}, and {NAME} means to make them pay.</li>
         <li>[taken] {NAME} watched {FACTION} drag {OTHER_nameDef} away, and swore they'd regret it.</li>
         <li>[taken,many] {NAME} have sworn to make {FACTION} answer for taking {OTHER_nameDef}.</li>
-        <li>[taken,partner,!many] {FACTION} took {OTHER_nameDef}. {NAME} hasn't slept since, and has sworn they'll pay for it.</li>
+        <li>[taken,partner,!many] {FACTION} took {OTHER_nameDef} from {NAME}'s side, and {NAME} has sworn they'll pay for it.</li>
         <li>[pet] {FACTION} killed {OTHER_nameDef} in the fighting, and {NAME} has sworn they'll pay for it.</li>
-        <li>[pet] {NAME} dug {OTHER_nameDef}'s grave alone, and swore on it that {FACTION} would answer for it.</li>
+        <li>[pet] {NAME} knelt by {OTHER_nameDef} after the fighting and swore that {FACTION} would answer for it.</li>
       </plain>
       <warm>
-        <li>[killed,!many] {NAME} has never wanted to hurt anyone. For {OTHER_nameDef}'s sake, {NAME} will make an exception for {FACTION}.</li>
+        <li>[killed,!many] {NAME} has never wanted to hurt anyone, but for {OTHER_nameDef}'s sake has sworn to make an exception of {FACTION}.</li>
         <li>[pet] {NAME} held {OTHER_nameDef} until the end, and swore then that {FACTION} would answer for it.</li>
       </warm>
       <blunt>
@@ -40,7 +40,7 @@
       </gloomy>
       <cold>
         <li>[killed,!many] {NAME} has added {FACTION} to a short list, with {OTHER_nameDef}'s name beside it.</li>
-        <li>[taken,!many] {NAME} has quietly begun counting what {FACTION} owes for {OTHER_nameDef}.</li>
+        <li>[taken,!many] {NAME} has begun keeping count of what {FACTION} owes for {OTHER_nameDef}.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -62,10 +62,10 @@
         <li>[home] {LOST} is home, and {PAWN_nameDef} has no quarrel left with {FACTION}.</li>
         <li>[home] {PAWN_nameDef} met {LOST} at the gate and didn't let go for a long while. Whatever {FACTION} owed, it can keep.</li>
         <li>[forgiven] {PAWN_nameDef} has laid down the vendetta against {FACTION}. {LOST} wouldn't have wanted {PAWN_objective} to carry it forever.</li>
-        <li>[forgiven] {PAWN_nameDef} woke up one morning and found the hatred for {FACTION} gone. {PAWN_nameDef} still misses {LOST}, but that's all now.</li>
+        <li>[forgiven] {PAWN_nameDef} woke up one morning and found the hatred for {FACTION} gone, though {PAWN_pronoun} still misses {LOST}.</li>
         <li>[forgiven,pet] {PAWN_nameDef} has let the matter of {LOST} go. Animals don't hold grudges, {PAWN_nameDef} says, and {LOST} never did.</li>
         <li>[peace] With peace made, {PAWN_nameDef} has decided to stop counting what {FACTION} owes for {LOST}.</li>
-        <li>[peace] {PAWN_nameDef} saw a caravan of {FACTION} pass in peace, and found {PAWN_pronoun} had nothing left to say to them about {LOST}.</li>
+        <li>[peace] Now that there's peace, {PAWN_nameDef} finds {PAWN_pronoun} has nothing left to say to {FACTION} about {LOST}.</li>
       </plain>
       <warm>
         <li>[forgiven] {PAWN_nameDef} lit a candle for {LOST} and let the anger at {FACTION} go out with the old one.</li>

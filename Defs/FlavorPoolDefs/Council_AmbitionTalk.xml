@@ -7,25 +7,25 @@
     <defName>Council_Pool_AmbitionHalfway</defName>
     <lines>
       <plain>
-        <li>Halfway there. Don't slow down now.</li>
-        <li>Half of "{AMBITION}" is done, and I'd guess the harder half is still ahead.</li>
-        <li>[winter] Halfway through "{AMBITION}", and halfway through winter. I'll take it.</li>
-        <li>[afterraid] We lost days to the raids and we're still halfway there.</li>
+        <li>Halfway there, and the hard part is still ahead of us.</li>
+        <li>We're halfway on "{AMBITION}" with days still in hand.</li>
+        <li>[winter] Halfway through "{AMBITION}", with frost on the tools every morning.</li>
+        <li>[afterraid] Even with the raid, we're halfway there.</li>
       </plain>
       <warm>
-        <li>Look how far we've come. Thank you, all of you.</li>
+        <li>Halfway already, and that's down to every one of you.</li>
       </warm>
       <blunt>
-        <li>Halfway. Whoever's been slacking, I know who you are.</li>
+        <li>Halfway, and I know exactly who's been slacking.</li>
       </blunt>
       <cheerful>
-        <li>We're halfway there! I've been marking off the days on the wall.</li>
+        <li>Halfway! I've been scratching off the days on the wall by my bed.</li>
       </cheerful>
       <gloomy>
         <li>Halfway. There's still plenty of time for it to fall apart.</li>
       </gloomy>
       <cold>
-        <li>We're at half. At this pace it will be done on time.</li>
+        <li>Half done, and at this pace we finish with days to spare.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -34,12 +34,12 @@
     <defName>Council_Pool_AmbitionDeadline</defName>
     <lines>
       <plain>
-        <li>We're running out of time on "{AMBITION}". A few more days, that's all we've got.</li>
-        <li>I told everyone we'd do this. Please don't make a liar of me.</li>
-        <li>[night] Can't sleep. I keep thinking about "{AMBITION}" and how much is left.</li>
+        <li>Only a few days left for "{AMBITION}", and a lot of it still to do.</li>
+        <li>I promised the council we'd finish this, so please don't make a liar of me.</li>
+        <li>[night] Can't sleep for counting what's left of "{AMBITION}".</li>
       </plain>
       <warm>
-        <li>I know you're all tired. Keep at it, and we can say we did it together.</li>
+        <li>I know you're tired, but a few more days and we'll have done this together.</li>
       </warm>
       <blunt>
         <li>There's hardly any time left, and we're nowhere near done.</li>
@@ -48,10 +48,10 @@
         <li>We can still do it if we all skip lunch tomorrow!</li>
       </cheerful>
       <gloomy>
-        <li>We're not going to make it. I should never have proposed it.</li>
+        <li>We won't make it, and it was my idea in the first place.</li>
       </gloomy>
       <cold>
-        <li>At this rate, "{AMBITION}" will fail. Put more hands on it or let it go.</li>
+        <li>At this rate "{AMBITION}" fails unless more hands go to it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

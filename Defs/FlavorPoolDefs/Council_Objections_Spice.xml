@@ -8,28 +8,28 @@
     <defName>Council_Pool_ObjectJustice</defName>
     <lines>
       <plain>
-        <li>{ABOUT_nameDef} is locked in a cell with nothing to fight with. I won't call killing {ABOUT_objective} justice.</li>
+        <li>Killing {ABOUT_nameDef} in a locked cell, unarmed, isn't justice.</li>
         <li>If we start executing prisoners, where does it stop?</li>
-        <li>I stitched {ABOUT_nameDef} up myself. I'm not going to stand there and watch {ABOUT_objective} die.</li>
-        <li>[afterraid] We're all still angry about yesterday. This isn't the day to decide who dies.</li>
+        <li>I stitched {ABOUT_nameDef} up myself, and I won't stand and watch {ABOUT_objective} die.</li>
+        <li>[afterraid] We're all still angry about yesterday, so this isn't the day to decide who dies.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef}, please. I know you're angry, and I know why. This won't help.</li>
+        <li>{OTHER_nameDef}, please, I know why you're angry, but this won't help.</li>
         <li>{ABOUT_nameDef} has family somewhere, waiting for {ABOUT_objective} to come home.</li>
-        <li>[trait:Kind] I'll feed {ABOUT_nameDef} from my own plate if that's the problem. Just don't do this.</li>
+        <li>[trait:Kind] I'll feed {ABOUT_nameDef} from my own plate if that's the problem, only don't do this.</li>
       </warm>
       <blunt>
-        <li>You want blood, {OTHER_nameDef}, go hunt a muffalo. Leave the prisoner alone.</li>
+        <li>If you want blood, {OTHER_nameDef}, go hunt a muffalo and leave the prisoner be.</li>
         <li>You'll have to go through me first.</li>
       </blunt>
       <cheerful>
-        <li>Can we not kill the prisoner? {ABOUT_nameDef} and I were just starting to get along!</li>
+        <li>Don't kill the prisoner, {ABOUT_nameDef} and I were just starting to get along!</li>
       </cheerful>
       <gloomy>
-        <li>We keep killing people who've already lost. I don't recognize us anymore.</li>
+        <li>We keep killing people who've already lost, and I don't recognize us anymore.</li>
       </gloomy>
       <cold>
-        <li>An execution upsets the others and loses us the ransom. It's poor value.</li>
+        <li>An execution upsets the others and loses us the ransom, which is poor value.</li>
         <li>{ABOUT_nameDef} could be recruited, sold or ransomed. A corpse can only be buried.</li>
       </cold>
     </lines>
@@ -39,26 +39,26 @@
     <defName>Council_Pool_ObjectMercy</defName>
     <lines>
       <plain>
-        <li>We let {ABOUT_nameDef} go, and next season {ABOUT_pronoun}'s back with twenty friends and a good idea of where our walls are weak.</li>
-        <li>{OTHER_nameDef} wants to free {ABOUT_nameDef}? The same {ABOUT_nameDef} who was trying to kill us last week?</li>
-        <li>[afterraid] Their blood is still on the floor. It's too soon to be letting anyone go.</li>
+        <li>Let {ABOUT_nameDef} go, and {ABOUT_pronoun}'ll be back with friends and a map of our weak spots.</li>
+        <li>{OTHER_nameDef} wants to free {ABOUT_nameDef}, who was trying to kill us not long ago?</li>
+        <li>[afterraid] Their blood is still on the floor, and it's too soon to let anyone go.</li>
       </plain>
       <warm>
-        <li>I know you mean well, {OTHER_nameDef}. But I've seen what people like {ABOUT_nameDef} do to people like you.</li>
+        <li>You mean well, {OTHER_nameDef}, but I've seen what people like {ABOUT_nameDef} do.</li>
       </warm>
       <blunt>
-        <li>Free {ABOUT_nameDef}? Fine. Then you can explain it to whoever {ABOUT_pronoun} kills next.</li>
-        <li>[trait:Bloodlust] I had plans for {ABOUT_nameDef}. Don't ask what they were.</li>
+        <li>Free {ABOUT_nameDef}, then, and you can explain it to whoever {ABOUT_pronoun} kills next.</li>
+        <li>[trait:Bloodlust] I had plans for {ABOUT_nameDef}, and don't ask what they were.</li>
       </blunt>
       <cheerful>
         <li>I'm all for second chances, but not for people who came here to rob us!</li>
       </cheerful>
       <gloomy>
-        <li>They thank you, they walk off, and they come back with more. They always do.</li>
+        <li>They thank you, walk off, and come back with more of their own.</li>
       </gloomy>
       <cold>
-        <li>{ABOUT_nameDef} knows our layout and how many of us can fight. Releasing {ABOUT_objective} gives that away for nothing.</li>
-        <li>[trait:Psychopath] We've invested a lot of food in {ABOUT_nameDef}. I'd like a return on it.</li>
+        <li>Releasing {ABOUT_nameDef} hands our layout and our numbers to the enemy for nothing.</li>
+        <li>[trait:Psychopath] We've put a lot of food into {ABOUT_nameDef}, and I'd like a return on it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -67,19 +67,19 @@
     <defName>Council_Pool_ObjectRescue</defName>
     <lines>
       <plain>
-        <li>I miss {ABOUT_nameDef} too. But attacking a whole settlement to get one person back could cost us three.</li>
-        <li>We're farmers and cooks. We're not an army.</li>
+        <li>I miss {ABOUT_nameDef} too, but storming a settlement for one person could cost us three.</li>
+        <li>We're farmers and cooks, not an army.</li>
         <li>Whoever goes in after {ABOUT_nameDef} might not come back either.</li>
       </plain>
       <blunt>
-        <li>{ABOUT_nameDef} is gone. Stop planning a war we'll lose.</li>
+        <li>{ABOUT_nameDef} is gone, so stop planning a war we'll lose.</li>
       </blunt>
       <gloomy>
-        <li>I'm sorry, but they're probably dead already.</li>
+        <li>I'm sorry, but after this long it may already be too late.</li>
       </gloomy>
       <cold>
         <li>Getting {ABOUT_nameDef} back means risking several of us to save one.</li>
-        <li>[trait:Psychopath] We can take someone with the same skills from the next raid. It's cheaper.</li>
+        <li>[trait:Psychopath] We can take someone with the same skills from the next raid, and cheaper.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

@@ -35,7 +35,7 @@
         <li>[rain] With the rain drumming on the roof and nowhere to be, {PAWN_nameDef} finally says it.</li>
         <li>[rain,!summer] Cold rain sheets past the door. {PAWN_nameDef} watches it for a while, then turns around.</li>
         <li>[snow] Stamping snow off {PAWN_possessive} boots, {PAWN_nameDef} decides today is the day to ask.</li>
-        <li>[snow] Snow is piled against the walls, and after three days indoors {PAWN_nameDef} has had time to think it over.</li>
+        <li>[snow] Snow is piled against the walls, and after days indoors {PAWN_nameDef} has had time to think it over.</li>
         <li>[storm] Thunder cracks overhead. {PAWN_nameDef} waits for it to roll past, then says what's been on {PAWN_possessive} mind.</li>
         <li>[fog] {PAWN_nameDef} comes in out of the fog, damp to the knees, and gets straight to it.</li>
         <li>[hot] Wiping sweat out of {PAWN_possessive} eyes, {PAWN_nameDef} stops work long enough to make a point.</li>
@@ -95,7 +95,7 @@
         <li>[trigger:raid] {PAWN_nameDef} hasn't stopped shaking since the fighting ended.</li>
         <li>[trigger:raid,lowtech] Arrows still stick out of the walls. {PAWN_nameDef} pulls one free and holds it up as {PAWN_possessive} argument.</li>
         <li>[trigger:raid] {PAWN_nameDef} comes to talk with someone else's blood still on {PAWN_possessive} hands.</li>
-        <li>[trigger:death] The body hasn't been buried yet. {PAWN_nameDef} keeps looking at it, then away, then back.</li>
+        <li>[trigger:death] Since the death, {PAWN_nameDef} has barely eaten, and comes to the council red-eyed.</li>
         <li>[trigger:death] The news has gone around the colony twice already. {PAWN_nameDef} hasn't said a word until now.</li>
         <li>[trigger:death] {PAWN_nameDef} has been sitting in the same spot since morning, and speaks without looking up.</li>
         <li>[trigger:cold] {PAWN_nameDef} spent the night shivering under a blanket that was not up to the job.</li>
@@ -127,27 +127,27 @@
     <defName>Council_Pool_Scene_Thanks</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} stands in the doorway for a long moment before saying anything.</li>
-        <li>{PAWN_nameDef} walks around it twice, touches it once, and only then turns around.</li>
+        <li>{PAWN_nameDef} takes the news in silence at first.</li>
+        <li>{PAWN_nameDef} has to hear it twice before {PAWN_pronoun} believes it.</li>
         <li>{PAWN_nameDef} finds the people who made it happen and thanks them, awkwardly.</li>
         <li>It takes {PAWN_nameDef} a while to notice, and then {PAWN_pronoun} tells anyone who'll listen.</li>
         <li>[evening|night] {PAWN_nameDef} hums all through supper.</li>
-        <li>[trait:Abrasive] {PAWN_nameDef} inspects it with narrowed eyes, looking for a flaw, and fails to find one.</li>
-        <li>[trait:Kind] {PAWN_nameDef} thanks everyone who touched it, by name, including the hauler who just carried the wood.</li>
-        <li>[trait:Psychopath] {PAWN_nameDef} looks it over, says "Good," and goes back to work.</li>
+        <li>[trait:Abrasive] {PAWN_nameDef} looks for a fault to pick at, and for once can't find one.</li>
+        <li>[trait:Kind] {PAWN_nameDef} thanks everyone who had a hand in it, by name, down to whoever did the hauling.</li>
+        <li>[trait:Psychopath] {PAWN_nameDef} says "Good," and goes back to work.</li>
         <li>[promised] The council kept its promise, and {PAWN_nameDef} will remember that.</li>
-        <li>[petition] Those who signed on to the request crowd around it, talking over one another.</li>
+        <li>[petition] Those who signed on to the request get together to talk it over, all speaking at once.</li>
         <li>[bitter] {PAWN_nameDef} had stopped expecting anything, and doesn't seem to know what to say.</li>
-        <li>[child] {PAWN_nameDef} runs to tell everyone, then runs back to make sure it's still there.</li>
+        <li>[child] {PAWN_nameDef} runs to tell everyone, then runs back to ask if it's really true.</li>
         <li>[old] {PAWN_nameDef} nods slowly and says, "That'll do."</li>
-        <li>{PAWN_nameDef} runs a hand over it, as if to check it's real.</li>
+        <li>{PAWN_nameDef} grins, then tries to look as if {PAWN_pronoun} isn't.</li>
         <li>{PAWN_nameDef} goes quiet for a moment, then laughs out loud.</li>
-        <li>{PAWN_nameDef} drags the nearest person over to see it.</li>
+        <li>{PAWN_nameDef} grabs the nearest person to tell them about it.</li>
         <li>{PAWN_nameDef} says thank you three times, each time in a different way.</li>
-        <li>{PAWN_nameDef} sits down beside it and doesn't get up for a while.</li>
-        <li>{PAWN_nameDef} looks at it from the doorway, then from the other side, then from the doorway again.</li>
-        <li>[child] {PAWN_nameDef} shows it to every grown-up in turn and makes each one say it's good.</li>
-        <li>[old] {PAWN_nameDef} lowers {PAWN_objective}self onto the nearest seat and looks at it for a long time.</li>
+        <li>{PAWN_nameDef} sits down, lets out a long breath, and stays sitting.</li>
+        <li>{PAWN_nameDef} keeps bringing it up at supper, long after the others have moved on.</li>
+        <li>[child] {PAWN_nameDef} tells every grown-up in turn, and makes each one say it's good news.</li>
+        <li>[old] {PAWN_nameDef} says {PAWN_pronoun} never expected to see the day.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -176,17 +176,17 @@
       <cheerful>
         <li>Seeing {ENVIED_nameDef}'s gave me an idea!</li>
         <li>I saw {ENVIED_nameDef}'s and now I want one too!</li>
-        <li>{ENVIED_nameDef} let me try it, and now I want one too!</li>
+        <li>{ENVIED_nameDef} let me try it, and I haven't stopped thinking about it since!</li>
       </cheerful>
       <gloomy>
         <li>{ENVIED_nameDef} got one. Of course.</li>
         <li>Some people only have to ask once.</li>
-        <li>Of course {ENVIED_nameDef} got one first.</li>
+        <li>Once {ENVIED_nameDef} had one, I knew I'd end up asking too.</li>
       </gloomy>
       <cold>
         <li>{ENVIED_nameDef} set a precedent. I'm invoking it.</li>
         <li>Fair is fair. {ENVIED_nameDef} received one; so should I.</li>
-        <li>{ENVIED_nameDef} has set a precedent. I'm invoking it.</li>
+        <li>What {ENVIED_nameDef} was given, I'm asking for on the same terms.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -196,7 +196,7 @@
     <lines>
       <plain>
         <li>I'll hold you to that.</li>
-        <li>A promise, then. Good. I'll stop asking.</li>
+        <li>A promise, then, so I'll stop asking.</li>
         <li>Right. I'll believe it when I see it.</li>
       </plain>
       <warm>
@@ -212,13 +212,13 @@
         <li>Thank you! You won't regret it.</li>
       </cheerful>
       <gloomy>
-        <li>People promise things all the time out here. We'll see.</li>
+        <li>People promise things all the time out here, so we'll see.</li>
         <li>[bitter] I've heard that before.</li>
         <li>Thanks. I won't get my hopes up.</li>
       </gloomy>
       <cold>
         <li>Noted. I will check on progress.</li>
-        <li>An agreement, then. I'll be watching to see if it's kept.</li>
+        <li>An agreement, then, and I'll be watching to see it kept.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -229,8 +229,8 @@
       <plain>
         <li>No? Well. At least you said so.</li>
         <li>I suppose there are bigger problems right now.</li>
-        <li>[trusting] I understand. I don't like it, but I understand.</li>
-        <li>[poor] I know we're stretched thin. Doesn't make it easier.</li>
+        <li>[trusting] I don't like it, but I understand.</li>
+        <li>[poor] I know we're stretched thin, but it doesn't make it easier.</li>
         <li>[afterraid] Right. Walls first. I get it.</li>
       </plain>
       <warm>
@@ -253,7 +253,7 @@
       </gloomy>
       <cold>
         <li>Understood. I will adjust my expectations accordingly.</li>
-        <li>Your decision. I'll remember it.</li>
+        <li>Your decision, and I'll remember it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -265,7 +265,7 @@
         <li>Not to nag, but "{WISH}" is still waiting.</li>
         <li>Has anyone had a chance to think about "{WISH}"?</li>
         <li>I'm still hoping for "{WISH}", in case it slipped anyone's mind.</li>
-        <li>[promised] You did promise. I haven't forgotten, even if you have.</li>
+        <li>[promised] You did promise, and I haven't forgotten, even if you have.</li>
         <li>[winter] It's a long winter, and I'm still waiting on "{WISH}".</li>
         <li>[night] I was lying awake thinking about "{WISH}" again.</li>
         <li>[petition] There are several of us still waiting on "{WISH}".</li>
@@ -278,33 +278,33 @@
       </plain>
       <warm>
         <li>No rush. But if there's ever a spare day, "{WISH}" would mean a lot to me.</li>
-        <li>I don't want to be a bother. I'm just still hoping, that's all.</li>
-        <li>I know there's a lot to do. "{WISH}" is still on my mind, though.</li>
+        <li>I don't want to be a bother, I'm only still hoping.</li>
+        <li>I know there's a lot to do, but "{WISH}" is still on my mind.</li>
         <li>Whenever someone has a moment, I'd still love "{WISH}".</li>
       </warm>
       <blunt>
-        <li>{WISH}. Still waiting.</li>
-        <li>I asked days ago. Anyone?</li>
-        <li>I'm asking about "{WISH}" again. Did anyone hear me the first time?</li>
-        <li>"{WISH}". Any day now.</li>
-        <li>Still nothing on "{WISH}". Why?</li>
+        <li>Still waiting on "{WISH}".</li>
+        <li>I asked days ago, so is anyone listening?</li>
+        <li>I'm asking about "{WISH}" again; did anyone hear me the first time?</li>
+        <li>"{WISH}", any day now.</li>
+        <li>Why is there still nothing on "{WISH}"?</li>
       </blunt>
       <cheerful>
         <li>Just a friendly reminder about "{WISH}"!</li>
         <li>Still waiting on "{WISH}", and still in a good mood about it.</li>
         <li>Me again! Still dreaming about "{WISH}".</li>
-        <li>Just checking in on "{WISH}". I'm still hopeful!</li>
+        <li>Just checking in on "{WISH}", still hopeful!</li>
       </cheerful>
       <gloomy>
         <li>I suppose "{WISH}" isn't going to happen. I'll stop mentioning it.</li>
         <li>There's always something more important than "{WISH}".</li>
-        <li>Still no "{WISH}". I'm not surprised.</li>
-        <li>Not a word about "{WISH}" in days. I can take a hint.</li>
+        <li>Still no "{WISH}", and I'm not surprised.</li>
+        <li>Not a word about "{WISH}" in days, and I can take a hint.</li>
       </gloomy>
       <cold>
         <li>I'd like to know where things stand on "{WISH}".</li>
         <li>I note that "{WISH}" is still outstanding.</li>
-        <li>"{WISH}" remains unaddressed. I'm keeping count of the days.</li>
+        <li>"{WISH}" remains unaddressed, and I'm keeping count of the days.</li>
         <li>I asked for "{WISH}" some time ago, and I expect an answer.</li>
       </cold>
     </lines>
@@ -315,36 +315,36 @@
     <lines>
       <plain>
         <li>I won't ask about "{WISH}" again.</li>
-        <li>I've asked about "{WISH}" for long enough. After this, I'm done.</li>
-        <li>[promised] You promised me "{WISH}". Time's nearly up on that promise.</li>
+        <li>I've asked about "{WISH}" for long enough, and after this I'm done.</li>
+        <li>[promised] You promised me "{WISH}", and time's nearly up on that promise.</li>
         <li>[petition] There are a few of us waiting on "{WISH}" now, and we've started talking among ourselves.</li>
         <li>This is the last time I'll raise "{WISH}". After this I'll stop hoping.</li>
         <li>If "{WISH}" doesn't happen soon, I'll take that as my answer.</li>
         <li>I've waited a long time for "{WISH}", and my patience is nearly gone.</li>
-        <li>[promised] A promise is a promise. "{WISH}", please, before it's too late.</li>
+        <li>[promised] A promise is a promise, so "{WISH}", please, before it's too late.</li>
         <li>[petition] We've all asked for "{WISH}", and we'd like an answer before the week is out.</li>
       </plain>
       <warm>
-        <li>I've been patient about "{WISH}". I'm trying to stay patient.</li>
+        <li>I've been patient about "{WISH}", and I'm trying to stay that way.</li>
         <li>I've tried not to make a fuss, but "{WISH}" matters to me.</li>
         <li>I hate to push, but "{WISH}" means a lot to me, and time's running out.</li>
-        <li>Please don't forget "{WISH}". It's the only thing I've asked for.</li>
+        <li>Please don't forget "{WISH}"; it's the only thing I've asked for.</li>
       </warm>
       <blunt>
-        <li>{WISH}. Now, or forget I ever asked.</li>
+        <li>"{WISH}", now, or forget I ever asked.</li>
         <li>I'm done being polite about "{WISH}".</li>
-        <li>You've got a few days. Then I stop caring what you think of me.</li>
-        <li>Last chance on "{WISH}". Then I'm done asking.</li>
-        <li>"{WISH}". Yes or no. Soon.</li>
+        <li>You've got a few days, and then I stop caring what you think of me.</li>
+        <li>Last chance on "{WISH}", then I'm done asking.</li>
+        <li>Yes or no on "{WISH}", and soon.</li>
       </blunt>
       <cheerful>
         <li>I'm still smiling, but I'm getting upset about "{WISH}"!</li>
         <li>Even my good mood has limits, and "{WISH}" is finding them.</li>
-        <li>Still smiling, barely! Please, "{WISH}", before I lose it.</li>
+        <li>Still smiling, barely, so please, "{WISH}", before I lose it!</li>
         <li>I've been patient and cheerful about "{WISH}", and I'm running low on both!</li>
       </cheerful>
       <gloomy>
-        <li>I'll just keep waiting, then. It's what I'm good at.</li>
+        <li>I'll keep waiting, then, since it's what I'm good at.</li>
         <li>I seem to be the only one who cares about "{WISH}".</li>
         <li>I knew "{WISH}" would come to nothing. I'm just saying it out loud now.</li>
         <li>After this I won't ask about "{WISH}" again. There's no point.</li>
@@ -352,7 +352,7 @@
       <cold>
         <li>This is my final request about "{WISH}". I'll draw my own conclusions afterward.</li>
         <li>You are running out of time to address "{WISH}".</li>
-        <li>I've been patient about "{WISH}". That patience ends soon.</li>
+        <li>My patience about "{WISH}" ends soon.</li>
         <li>Consider this the last reminder about "{WISH}". After it, I'll act as I see fit.</li>
       </cold>
     </lines>
@@ -375,7 +375,7 @@
         <li>Next time I ask for something, maybe just say yes. Saves time.</li>
       </blunt>
       <cheerful>
-        <li>I took care of it myself! Only one bent nail.</li>
+        <li>I took care of it myself! It only took twice as long as it should have.</li>
         <li>Look at me, solving problems!</li>
       </cheerful>
       <gloomy>
@@ -395,18 +395,18 @@
     <lines>
       <plain>
         <li>I asked for "{MINE}" first.</li>
-        <li>So {OTHER_nameDef} gets to skip the line. Good to know.</li>
+        <li>So {OTHER_nameDef} gets to skip the line, good to know.</li>
         <li>Some requests get answered fast, I see.</li>
       </plain>
       <warm>
-        <li>Good for {OTHER_nameDef}, really. I can wait a bit longer.</li>
+        <li>Good for {OTHER_nameDef}, really, and I can wait a bit longer.</li>
       </warm>
       <blunt>
         <li>{OTHER_nameDef} asked after me and got it first.</li>
-        <li>I was first in line, with "{MINE}". Remember?</li>
+        <li>I was first in line with "{MINE}", remember?</li>
       </blunt>
       <cheerful>
-        <li>Happy for {OTHER_nameDef}! I'm sure my turn is next.</li>
+        <li>Happy for {OTHER_nameDef}, and I'm sure my turn is next!</li>
       </cheerful>
       <gloomy>
         <li>Someone's always ahead of me.</li>
@@ -423,7 +423,7 @@
     <lines>
       <plain>
         <li>You promised. You actually promised.</li>
-        <li>I stopped asking because you gave me your word. That's on me, I suppose.</li>
+        <li>I stopped asking because you gave me your word, and more fool me.</li>
         <li>Remember this the next time you ask me to trust you.</li>
       </plain>
       <warm>
@@ -440,7 +440,7 @@
         <li>I knew better, and I believed you anyway.</li>
       </gloomy>
       <cold>
-        <li>A promise was made and not kept. I have updated my assessment of you.</li>
+        <li>A promise was made and not kept, and I've revised my opinion of you accordingly.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -450,8 +450,8 @@
     <defName>Council_Pool_Bitter</defName>
     <lines>
       <plain>
-        <li>Ask the council? Might as well ask the rocks.</li>
-        <li>Don't bother asking for anything. I've tried.</li>
+        <li>Might as well ask the rocks as ask the council.</li>
+        <li>Don't bother asking for anything, I've tried.</li>
         <li>They'll listen to you right up until you need something.</li>
         <li>[winter] It's a long winter, and the council doesn't hear a word I say.</li>
         <li>[afterraid] I held the wall yesterday, and I still can't get a straight answer out of the council.</li>
@@ -465,13 +465,13 @@
         <li>I've stopped expecting anyone here to care.</li>
       </gloomy>
       <cold>
-        <li>This colony's leadership has consistently failed to meet my requests. I've noted each instance.</li>
+        <li>The council has failed every request I've made, and I've noted each one.</li>
       </cold>
       <cheerful>
-        <li>I've stopped asking the council for things! It saves so much time.</li>
+        <li>I've stopped asking the council for things, and it saves so much time!</li>
       </cheerful>
       <warm>
-        <li>I try not to take it personally. It's getting harder.</li>
+        <li>I try not to take it personally, but it's getting harder.</li>
       </warm>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

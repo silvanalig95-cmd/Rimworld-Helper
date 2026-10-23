@@ -9,30 +9,30 @@
       <plain>
         <li>With the stores this low, {OTHER_nameDef} wants "{WISH}"?</li>
         <li>Can we fix the leaks in the roof before anyone starts on "{WISH}"?</li>
-        <li>I'm not saying no. I'm saying food and walls come first.</li>
-        <li>[poor] We can't pay for it. We're down to rice and whatever the hunters bring in.</li>
-        <li>[winter] It's the middle of winter. Every hand on "{WISH}" is one less hand cutting firewood.</li>
+        <li>I'm not saying no, only that food and walls come first.</li>
+        <li>[poor] We can't pay for it, not while we're down to the last sacks of grain.</li>
+        <li>[winter] Every hand on "{WISH}" in the middle of winter is one less hand cutting firewood.</li>
         <li>[afterraid] We were patching wounds half the night, and now "{WISH}" comes first?</li>
-        <li>[trait:Ascetic] We've managed without it this long. I don't see what's changed.</li>
-        <li>[trait:Ascetic] I sleep on a bedroll and eat what I'm given. I don't see why we need more.</li>
-        <li>[trait:Jealous] I asked the council for something last month and heard nothing. {OTHER_nameDef} asks, and we all sit down to discuss it.</li>
+        <li>[trait:Ascetic] We've managed without it this long, so what's changed?</li>
+        <li>[trait:Ascetic] I sleep on a bedroll and eat what I'm given, and I don't see why anyone needs more.</li>
+        <li>[trait:Jealous] {OTHER_nameDef} asks and the council listens, while my request last month went nowhere.</li>
         <li>[trait:Industrious|trait:HardWorker] That's days of work for one person's comfort, with fields to sow and walls to finish.</li>
       </plain>
       <warm>
-        <li>I'm sorry, {OTHER_nameDef}. Some of us are still sleeping on the floor.</li>
+        <li>Sorry, {OTHER_nameDef}, but some of us are still sleeping on the floor.</li>
         <li>Could it wait until we all have a bed and a hot meal?</li>
-        <li>I'd say yes in a better season, {OTHER_nameDef}. Not this one.</li>
+        <li>I'd say yes in a better season, {OTHER_nameDef}, but not this one.</li>
       </warm>
       <blunt>
         <li>No. Ask me again after the harvest is in.</li>
-        <li>{OTHER_nameDef} wants "{WISH}". I want boots without holes in them. We can both wait.</li>
+        <li>{OTHER_nameDef} wants "{WISH}" and I want boots without holes, and we can both wait.</li>
         <li>Give {OTHER_nameDef} "{WISH}" and the rest of us will be lining up tomorrow.</li>
       </blunt>
       <cheerful>
-        <li>I like it, I really do! Can we come back to it once the walls are up?</li>
+        <li>I like it, I really do, but can we come back to it once the walls are up?</li>
       </cheerful>
       <gloomy>
-        <li>{WISH}, now. As if we didn't have enough to look after.</li>
+        <li>As if we didn't have enough to look after, now there's "{WISH}".</li>
         <li>We'll spend everything we have on it, and the raiders will carry it off in the end.</li>
       </gloomy>
       <cold>

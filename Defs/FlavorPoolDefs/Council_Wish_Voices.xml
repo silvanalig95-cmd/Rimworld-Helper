@@ -15,7 +15,7 @@
         <li>[trait:Greedy] I'd like "{WISH}" before somebody else gets something first.</li>
         <li>[trait:Jealous] Others have been given things since I asked for "{WISH}". I've noticed.</li>
         <li>[trait:Nervous] Sorry to ask again about "{WISH}". I keep worrying it was forgotten.</li>
-        <li>[trait:Ascetic] I don't ask for much. I asked for "{WISH}", and I'm still waiting.</li>
+        <li>[trait:Ascetic] I don't ask for much, and I'm still waiting on "{WISH}".</li>
         <li>[child] Is "{WISH}" happening yet? I asked ages ago.</li>
         <li>[old] At my age I can't wait forever for "{WISH}".</li>
         <li>[doubtful] I'm starting to wonder whether "{WISH}" was ever going to happen.</li>
@@ -31,8 +31,8 @@
     <lines>
       <plain>
         <li>[trait:Volatile] One more day without "{WISH}" and I won't be responsible for what I say.</li>
-        <li>[bitter] Ask, wait, nothing. "{WISH}" was never going to happen, was it?</li>
-        <li>[child] You said maybe about "{WISH}". Maybe means yes, right?</li>
+        <li>[bitter] Ask, wait, nothing, so "{WISH}" was never going to happen, was it?</li>
+        <li>[child] You said maybe about "{WISH}", and maybe means yes, right?</li>
         <li>[old] I'm too old to keep asking for "{WISH}". This is the last time.</li>
       </plain>
     </lines>
@@ -43,17 +43,17 @@
     <pool>Council_Pool_Scene_Thanks</pool>
     <lines>
       <plain>
-        <li>[trait:Greedy] {PAWN_nameDef} admires it, then asks whether there's any chance of a second one.</li>
+        <li>[trait:Greedy] {PAWN_nameDef} is pleased, then asks whether there's any chance of more.</li>
         <li>[trait:Gourmand] {PAWN_nameDef} celebrates with an extra helping at supper.</li>
-        <li>[trait:Recluse] {PAWN_nameDef} waits until everyone has gone before going to look at it properly.</li>
-        <li>[trait:Pessimist|trait:Depressive] {PAWN_nameDef} keeps glancing at it, as though it might disappear.</li>
-        <li>[trait:NightOwl] {PAWN_nameDef} is still up admiring it long after everyone else is asleep.</li>
-        <li>[winter] {PAWN_nameDef} stamps the snow off {PAWN_possessive} boots, takes one look, and grins.</li>
-        <li>[summer] {PAWN_nameDef} wipes the sweat from {PAWN_possessive} face and stands there smiling at it.</li>
-        <li>[afterraid] After the fighting, it's the first thing {PAWN_nameDef} has smiled at in days.</li>
+        <li>[trait:Recluse] {PAWN_nameDef} says little while the others are around, and smiles once they've gone.</li>
+        <li>[trait:Pessimist|trait:Depressive] {PAWN_nameDef} keeps asking whether it's really settled, as though it might be taken back.</li>
+        <li>[trait:NightOwl] {PAWN_nameDef} is still up talking about it long after the others are asleep.</li>
+        <li>[winter] {PAWN_nameDef} stamps the snow off {PAWN_possessive} boots, hears the news, and grins.</li>
+        <li>[summer] {PAWN_nameDef} wipes the sweat from {PAWN_possessive} face and breaks into a smile.</li>
+        <li>[afterraid] After the fighting, it's the first thing to make {PAWN_nameDef} smile in days.</li>
         <li>[grieving] It's the nearest {PAWN_nameDef} has come to looking glad since the loss.</li>
         <li>[trusting] {PAWN_nameDef} had no doubt it would happen, and still looks delighted.</li>
-        <li>[doubtful] {PAWN_nameDef} looks at it, then at the council, and the doubt goes out of {PAWN_possessive} face.</li>
+        <li>[doubtful] {PAWN_nameDef} looks round at the council, and the doubt goes out of {PAWN_possessive} face.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

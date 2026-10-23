@@ -15,29 +15,29 @@
     <decree>Council_Decree_QuietHours</decree>
     <support>
       <plain>
-        <li>[trait:Nervous|trait:Volatile] Every bang in the night has me sitting up in bed. Please. Some quiet.</li>
-        <li>Someone sawed wood until midnight again. Nobody needs a shelf that badly.</li>
-        <li>[trait:Ascetic] Early to bed, early up. That's how people lived before there was anything to stay up for.</li>
+        <li>[trait:Nervous|trait:Volatile] Every bang in the night has me sitting up in bed, so please, some quiet.</li>
+        <li>Someone sawed wood until midnight again, and no shelf is worth that.</li>
+        <li>[trait:Ascetic] Early to bed and early up, the way people lived before there was anything to stay up for.</li>
         <li>[night] It's the middle of the night and somebody is still hammering.</li>
       </plain>
       <warm>
-        <li>We're all tired and short with each other. A few quiet evenings would do us good.</li>
+        <li>We're all tired and short with each other, and a few quiet evenings would do us good.</li>
       </warm>
       <blunt>
         <li>Lights out. Mouths shut. Sleep.</li>
       </blunt>
       <gloomy>
-        <li>[lowmood] I lie awake every night listening to everyone else having a better time than me.</li>
+        <li>[lowmood] I lie awake every night listening to the rest of you having a better time than me.</li>
       </gloomy>
       <cold>
-        <li>Most arguments in this colony start after dark. Remove the dark hours, remove the arguments.</li>
+        <li>Most arguments here start after dark, so take away the evenings and you take away the arguments.</li>
       </cold>
     </support>
     <oppose>
       <plain>
-        <li>[trait:NightOwl] I do my best work when the rest of you are asleep. Now I'm supposed to be asleep too?</li>
+        <li>[trait:NightOwl] I do my best work while the rest of you sleep, and now I'm supposed to sleep too?</li>
         <li>[skill:Social] The only time anyone talks to each other here is after supper.</li>
-        <li>[winter] It's dark at four in the afternoon. Quiet hours means quiet days.</li>
+        <li>[winter] It's dark by the middle of the afternoon, so quiet hours means quiet days.</li>
       </plain>
       <blunt>
         <li>[trait:NightOwl] I don't sleep at night. Never have.</li>
@@ -58,16 +58,16 @@
     <decree>Council_Decree_SharedMeals</decree>
     <support>
       <plain>
-        <li>[newcomer] I've been here a week and there are people I still haven't spoken to. A shared table would help.</li>
-        <li>People eat standing up, alone, in a hurry. That's no way to live.</li>
-        <li>[trait:Kind] Everyone should have a seat and someone to pass them the bread.</li>
+        <li>[newcomer] I've been here a week, and some of you I still haven't spoken to.</li>
+        <li>People eat standing up, alone, in a hurry, and that's no way to live.</li>
+        <li>[trait:Kind] Each of us should have a seat and someone to pass the bread.</li>
       </plain>
       <warm>
-        <li>[skill:Social] I want to hear about everyone's day. All of it. Over supper.</li>
+        <li>[skill:Social] I want to hear about everyone's day, all of it, over supper.</li>
         <li>[winter] Long dark evenings go faster with a full table.</li>
       </warm>
       <cheerful>
-        <li>Shared supper! I'll make sure there's a seat for everyone.</li>
+        <li>Shared supper, and I'll lay a place for every one of us!</li>
       </cheerful>
       <cold>
         <li>Grudges grow when people avoid each other. Make them sit together.</li>
@@ -77,7 +77,7 @@
       <plain>
         <li>[trait:Abrasive] I don't want to look at most of these people while I'm eating.</li>
         <li>[trait:Ascetic] A bowl and a quiet corner is all a meal needs.</li>
-        <li>[trait:Industrious] I was in the middle of something. The bell can wait.</li>
+        <li>[trait:Industrious] I was in the middle of something, and supper can wait.</li>
       </plain>
       <blunt>
         <li>[trait:Abrasive] I'll eat with them when I like them.</li>
@@ -96,12 +96,12 @@
     <support>
       <plain>
         <li>[skill:Medicine] I can't treat anyone who won't stay in bed.</li>
-        <li>[trait:Sickly] I catch everything that comes through here. I'd rather they didn't bring it to me.</li>
-        <li>[hurt] I've been limping about for a week. I'd stay in bed if anyone let me.</li>
-        <li>[trait:Lazy|trait:Slothful] Bed rest for the sick. And for the very tired, I hope.</li>
+        <li>[trait:Sickly] I catch everything that comes through here, so keep the sick ones in bed.</li>
+        <li>[hurt] I've been limping about for a week, and I'd stay in bed if anyone let me.</li>
+        <li>[trait:Lazy|trait:Slothful] Bed rest for the sick, and for the very tired too, I hope.</li>
       </plain>
       <warm>
-        <li>Nobody should be working through a fever just to look tough.</li>
+        <li>Don't work through a fever just to look tough.</li>
       </warm>
       <cold>
         <li>[skill:Medicine] One sick worker on their feet costs us three sick workers in a week.</li>
@@ -128,13 +128,13 @@
     <decree>Council_Decree_BankedFires</decree>
     <support>
       <plain>
-        <li>[winter] Have you looked at the woodpile? We won't see the spring burning like this.</li>
+        <li>[winter] Burning like this, we won't see the spring; go and look at the woodpile.</li>
         <li>[trait:Ascetic] A coat indoors never hurt anyone.</li>
         <li>[trait:Greedy] Every log we don't burn is a log we don't have to chop or buy.</li>
         <li>[lowtech] Bank the fire at night, my mother used to say, and you'll still have one in the morning.</li>
       </plain>
       <cold>
-        <li>Fuel in, heat out. We're burning more than we need.</li>
+        <li>Fuel in, heat out, and we're burning more than we need.</li>
       </cold>
       <gloomy>
         <li>Better a cold month than a dead winter.</li>
@@ -150,7 +150,7 @@
         <li>I can't work with numb hands.</li>
       </blunt>
       <warm>
-        <li>[child] Can I keep my candle? Just until I fall asleep?</li>
+        <li>[child] Can I keep my candle until I fall asleep?</li>
       </warm>
       <gloomy>
         <li>Dark at supper, dark at breakfast, cold in between.</li>
@@ -167,26 +167,26 @@
       <plain>
         <li>[small] There are too few of us for anyone to know only one trade.</li>
         <li>[newcomer] I'd learn anything, if someone would show me.</li>
-        <li>[trait:Kind] Everyone here knows something worth passing on.</li>
+        <li>[trait:Kind] Each of us knows something worth passing on.</li>
         <li>[old] I won't be around forever. Somebody should learn what I know.</li>
       </plain>
       <warm>
-        <li>[skill:Social] I love teaching. Give me a student and a whole afternoon.</li>
+        <li>[skill:Social] I love teaching, so give me a student and a whole afternoon.</li>
       </warm>
       <cheerful>
-        <li>I'm going to learn to cook, and build, and grow things!</li>
+        <li>I'm going to learn to cook, and then to build!</li>
       </cheerful>
       <cold>
-        <li>Every skill held by one person is a weak point. Spread them.</li>
+        <li>Every skill held by one person is a weak point, so spread them around.</li>
       </cold>
     </support>
     <oppose>
       <plain>
         <li>[trait:Abrasive] Watching someone else ruin my work is not teaching.</li>
-        <li>[trait:Lazy|trait:Slothful] More lessons on top of the work. Lovely.</li>
+        <li>[trait:Lazy|trait:Slothful] More lessons on top of the work, lovely.</li>
       </plain>
       <blunt>
-        <li>[trait:Abrasive] Learn by watching. Without talking.</li>
+        <li>[trait:Abrasive] Learn by watching, and without talking.</li>
       </blunt>
       <gloomy>
         <li>They'll learn just enough to be dangerous with a saw.</li>
@@ -201,8 +201,8 @@
     <decree>Council_Decree_FeastDay</decree>
     <support>
       <plain>
-        <li>[fall] The harvest is in. We should eat some of it while it's fresh.</li>
-        <li>[trait:Gourmand] One good meal. One. With everything on the table together.</li>
+        <li>[fall] The harvest is in, and we should eat some of it while it's fresh.</li>
+        <li>[trait:Gourmand] One good meal, just one, with everything on the table together.</li>
         <li>[lowmood] We need something to look forward to, and a good meal is something.</li>
         <li>[lowtech] My people always ate a great meal when the harvest came in, to thank the land.</li>
       </plain>

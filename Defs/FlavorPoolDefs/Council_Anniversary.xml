@@ -6,33 +6,33 @@
     <defName>Council_Pool_Anniversary</defName>
     <lines>
       <plain>
-        <li>A year ago I'd never heard of this place. Now I know which floorboard creaks.</li>
-        <li>Another year here. I can tell who's coming down the hall by the footsteps now.</li>
-        <li>When I arrived I gave it a month. Shows what I know.</li>
-        <li>[old] I've lived in a lot of places. This is the one I'll be buried in.</li>
-        <li>[newcomer] Still feels new. Less every day.</li>
-        <li>[winter] Snow again. Same as the day I got here, more or less.</li>
-        <li>[grieving] I'd like to celebrate. Not everyone who was here a year ago got to.</li>
-        <li>[lowtech] Another year of fire and stone. I've grown to like both.</li>
+        <li>I know which floorboards creak in this place now, every one of them.</li>
+        <li>I can tell who's coming down the hall by their footsteps now.</li>
+        <li>When I first got here I gave this place a month, at most.</li>
+        <li>[old] Of all the places I've lived, this is the one I'll be buried in.</li>
+        <li>[newcomer] It still feels new here, though less so every day.</li>
+        <li>[winter] Another winter here, and I've finally learned where the drafts get in.</li>
+        <li>[grieving] I'd raise a cup, but not everyone who was here a year ago is still with us.</li>
+        <li>[lowtech] Another year of woodsmoke in my hair, and I've stopped noticing it.</li>
       </plain>
       <warm>
-        <li>I came here with nothing. Now I have all of you. Not a bad trade.</li>
-        <li>Thank you for keeping me around. I mean it.</li>
+        <li>I came here with nothing, and now I've got all of you.</li>
+        <li>Thank you for keeping me around all this time.</li>
       </warm>
       <blunt>
-        <li>Another year. Still hate the rice. Still here.</li>
-        <li>Don't make a fuss. Fine, a small fuss.</li>
+        <li>Still hate the rice, still here, another year on.</li>
+        <li>Don't make a fuss over it, or at most a small one.</li>
       </blunt>
       <cheerful>
-        <li>Happy anniversary to me! I'm accepting gifts, compliments and extra dessert.</li>
-        <li>Best year here yet! I'd do it all again, even the mud.</li>
+        <li>Happy anniversary to me, and I'll take my presents in extra dessert!</li>
+        <li>Best year here yet, mud and all!</li>
       </cheerful>
       <gloomy>
-        <li>One more year survived. The odds keep getting worse, but here I am.</li>
-        <li>I didn't expect to last this long. I'm not sure how I feel about it.</li>
+        <li>One more year survived, though the odds get worse each time.</li>
+        <li>I never expected to last this long out here.</li>
       </gloomy>
       <cold>
-        <li>Another year here. My contribution has been substantial, and I expect it to be remembered.</li>
+        <li>Another year of my work here, and I expect it to be remembered.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

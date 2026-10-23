@@ -19,7 +19,7 @@
         <li>[trait:Industrious] I'll sleep when the walls are finished.</li>
         <li>Half the jobs on the list have been waiting since last season. Let's clear them.</li>
         <li>[fall] Winter's coming whether we're rested or not.</li>
-        <li>[trait:Industrious|trait:HardWorker] I was working late anyway. Now there's company at the bench.</li>
+        <li>[trait:Industrious|trait:HardWorker] I was working late anyway, and now there's company at the bench.</li>
       </plain>
       <warm>
         <li>I'll keep a pot warm for whoever finishes last. It'll probably be me.</li>
@@ -33,10 +33,10 @@
         <li>[highmood] I feel like I could dig through a mountain today!</li>
       </cheerful>
       <gloomy>
-        <li>The work never ends anyway. Now it's official.</li>
+        <li>The work never ends anyway, and now it's official.</li>
       </gloomy>
       <cold>
-        <li>Idle hands were costing us. Now they won't.</li>
+        <li>Idle hands were costing us, and now they won't.</li>
         <li>They'll be tired for a week, and the walls will be up.</li>
       </cold>
     </support>
@@ -49,7 +49,7 @@
       </plain>
       <warm>
         <li>[hurt] I'll work, but slowly. My stitches pull every time I bend.</li>
-        <li>I can keep up. Watch the young ones, though; they won't say when they're done in.</li>
+        <li>I can keep up, but watch the young ones; they won't say when they're done in.</li>
       </warm>
       <blunt>
         <li>Work me any longer and you'll get crooked walls.</li>
@@ -84,7 +84,7 @@
         <li>I'll serve it on the small plates so it looks like more. It's an old trick.</li>
       </warm>
       <blunt>
-        <li>Stop whining about the bowls. You'd like starving even less.</li>
+        <li>Stop whining about the bowls; you'd like starving even less.</li>
       </blunt>
       <cheerful>
         <li>[trait:Ascetic] Light meals suit me! I've never felt so clear-headed.</li>
@@ -104,7 +104,7 @@
         <li>I'm hauling stone on a breakfast you could fit in a pocket.</li>
       </plain>
       <warm>
-        <li>I'll eat less. Just give the people on the heavy jobs some extra.</li>
+        <li>I'll eat less, but give the people on the heavy jobs some extra.</li>
       </warm>
       <blunt>
         <li>[trait:Gourmand] Touch my bowl again and I'll eat the hand.</li>
@@ -134,7 +134,7 @@
         <li>[afterraid] We're still digging graves from the last raid. Let's make sure the next ones are theirs.</li>
         <li>[trait:Tough] I've been hit by worse than any of you. Line up.</li>
         <li>When the raiders come, your hands will know what to do even if the rest of you is scared.</li>
-        <li>[trait:Brawler,!lowtech] Guns are fine. Fists never jam and never run out.</li>
+        <li>[trait:Brawler,!lowtech] Guns are fine, but fists never jam and never run out.</li>
       </plain>
       <warm>
         <li>I'd rather everyone sweat out here than bleed out there.</li>
@@ -165,7 +165,7 @@
       </plain>
       <warm>
         <li>[trait:Kind] I keep pulling my swings. I don't want to hurt anyone, even with a practice blade.</li>
-        <li>Do the children have to watch? They're watching.</li>
+        <li>I'll drill, but I won't enjoy swinging at people I eat supper with.</li>
       </warm>
       <blunt>
         <li>Yell "again" at me once more and you'll see my form up close.</li>
@@ -192,7 +192,7 @@
       <plain>
         <li>[skill:Intellectual] Finally, an evening where nobody asks me why I'm reading.</li>
         <li>Half of us can't tell healroot from a weed. A few evenings would fix that.</li>
-        <li>[lowtech] I'll teach letters by the fire. Bring a stick; we'll write in the dirt.</li>
+        <li>[lowtech] I'll teach letters after supper; bring a stick and we'll write in the dirt.</li>
         <li>[trait:TooSmart] I've been waiting for this. I have a whole list of things to explain.</li>
       </plain>
       <warm>
@@ -221,7 +221,7 @@
         <li>The crops don't care whether I can do sums.</li>
       </plain>
       <warm>
-        <li>I'll sit in. But please go easy on the slow readers; I'm one of them.</li>
+        <li>I'll sit in, but please go easy on the slow readers; I'm one of them.</li>
       </warm>
       <blunt>
         <li>Teach me something useful, like when lunch is.</li>
@@ -283,7 +283,7 @@
         <li>[trait:Greedy] If nobody's allowed to want anything, I'll want twice as hard in private.</li>
       </blunt>
       <cheerful>
-        <li>No new wishes? That's fine! I'll save mine up for later.</li>
+        <li>No new wishes, that's fine, I'll save mine up for later!</li>
       </cheerful>
       <gloomy>
         <li>We've lived like this before. We called it the first year.</li>
@@ -304,10 +304,10 @@
         <li>[trait:Lazy|trait:Slothful] I was born for this. Specifically for the lying-down part.</li>
         <li>Put the tools away. If something catches fire we'll put it out, and that's all the work we do.</li>
         <li>[winter] Too cold to work anyway. Might as well be cold together, with music.</li>
-        <li>[afterraid] We lived through the raid. That's worth a party.</li>
+        <li>[afterraid] We lived through the raid, and that's worth a party.</li>
       </plain>
       <warm>
-        <li>We've all been holding it together for so long. We need a few days off.</li>
+        <li>We've all been holding it together for so long, and we need a few days off.</li>
         <li>[grieving] I don't feel much like dancing. I'll come anyway; they'd have wanted the music loud.</li>
       </warm>
       <blunt>
@@ -385,7 +385,7 @@
         <li>[trait:Undergrounder] The sky's too big out here. I keep waiting for it to fall on me.</li>
         <li>[hot] I've been bent double in this heat so long I'm wilting faster than the crops.</li>
         <li>I don't know a weed from a crop, and the crops can tell.</li>
-        <li>[trait:Lazy|trait:Slothful] Plants grow on their own. Why do they need me?</li>
+        <li>[trait:Lazy|trait:Slothful] Plants grow on their own, so why do they need me?</li>
       </plain>
       <warm>
         <li>I'll do my rows. Could someone bring water out to the far field? People are wilting.</li>
@@ -398,7 +398,7 @@
         <li>I've only cut myself twice today!</li>
       </cheerful>
       <gloomy>
-        <li>We'll get it all in just in time for the toxic fallout.</li>
+        <li>We'll get it all in just in time for the rats to find it.</li>
       </gloomy>
       <cold>
         <li>Pulling the miners onto the fields leaves the mountain idle. Poor trade.</li>
@@ -416,8 +416,8 @@
       <plain>
         <li>[skill:Construction] I've had that wall in my head since the day I got here, and now I get to build it.</li>
         <li>[skill:Mining] There's a vein in the north face I've been eyeing for days. I'm going after it first.</li>
-        <li>[winter] The cold gets in through every gap. Let's close the gaps.</li>
-        <li>[trait:Undergrounder] More tunnels. Good. The sky has had its chance.</li>
+        <li>[winter] The cold gets in through every gap, so let's close them.</li>
+        <li>[trait:Undergrounder] More tunnels, good; the sky has had its chance.</li>
         <li>Walls first, then roofs. Everything else can wait.</li>
       </plain>
       <warm>
@@ -455,7 +455,7 @@
         <li>I've hit my thumb so many times I've stopped feeling it!</li>
       </cheerful>
       <gloomy>
-        <li>The next raid will knock a hole in it anyway. Usually in the new bit.</li>
+        <li>The next raid will knock a hole in it anyway, usually in the new bit.</li>
       </gloomy>
       <cold>
         <li>Building faster means building worse. I've inspected the east wall.</li>
@@ -472,23 +472,23 @@
       <plain>
         <li>[skill:Social] Watch me with the next caravan. They'll leave smiling, with lighter packs.</li>
         <li>Our last trade went so badly the muffalo looked embarrassed.</li>
-        <li>[child] The grown-ups are being polite to each other. It's weird. I like it.</li>
+        <li>[child] The grown-ups are being polite to each other, and it's weird, and I like it.</li>
       </plain>
       <warm>
         <li>[trait:Kind] Be gentle with the prisoners. Some of them will be eating at our table soon.</li>
         <li>Say good morning to people. You'd be amazed what it fixes.</li>
       </warm>
       <blunt>
-        <li>Fine, be nice. If it gets us cheaper medicine, I'll be nice to a boomalope.</li>
+        <li>Fine, if it gets us cheaper medicine I'll be nice to a boomalope.</li>
       </blunt>
       <cheerful>
         <li>[skill:Social] I've been practicing my bow all morning! I've nearly got it.</li>
       </cheerful>
       <gloomy>
-        <li>Being polite won't save us. It might get us a better price on a casket.</li>
+        <li>Being polite won't save us, but it might get us a better price on a coffin.</li>
       </gloomy>
       <cold>
-        <li>[trait:Psychopath] I've practiced the smile. People say it's very convincing now.</li>
+        <li>[trait:Psychopath] I've practiced the smile, and people say it's very convincing now.</li>
         <li>Be pleasant to the prisoner until they've joined. After that it's optional.</li>
       </cold>
     </support>
@@ -496,21 +496,21 @@
       <plain>
         <li>I spent all morning being polite to a prisoner who tried to stab me last week.</li>
         <li>[trait:Abrasive] I've bitten my tongue so often it's sore.</li>
-        <li>[afterraid] Their friends were trying to kill us yesterday. Now I smile at the one in the cell?</li>
+        <li>[afterraid] Their friends were trying to kill us yesterday, and now I smile at the one in the cell?</li>
         <li>I've said thank you so many times the words have stopped meaning anything.</li>
       </plain>
       <warm>
-        <li>I'll try. I'm just not good at finding the right words when I'm tired.</li>
+        <li>I'll try, but I'm not good at finding the right words when I'm tired.</li>
       </warm>
       <blunt>
-        <li>[trait:Abrasive] I said "please" to the trader. I'm still angry about it.</li>
+        <li>[trait:Abrasive] I said "please" to the trader, and I'm still angry about it.</li>
         <li>I don't do nice. Never have.</li>
       </blunt>
       <cheerful>
         <li>I've only called the trader a thief once, and under my breath!</li>
       </cheerful>
       <gloomy>
-        <li>I can't smile on command. It comes out wrong.</li>
+        <li>I can't smile on command; it comes out wrong.</li>
       </gloomy>
       <cold>
         <li>Courtesy toward captives is wasted. They remember the cell, not the manners.</li>
@@ -525,13 +525,13 @@
     <decree>Council_Decree_Mourning</decree>
     <support>
       <plain>
-        <li>[grieving] I can't lift anything today. I'm glad I don't have to.</li>
-        <li>Leave the tools where they fell. They'll keep.</li>
-        <li>We never stopped for the last ones. We should stop for these.</li>
+        <li>[grieving] I can't lift anything today, and I'm glad I don't have to.</li>
+        <li>Leave the tools where they fell; they'll keep.</li>
+        <li>We never stopped for the last ones, so let's stop for these.</li>
       </plain>
       <warm>
         <li>I'll cook. Come to the table if you want to, or don't.</li>
-        <li>[grieving] I can't think straight yet. A few quiet days is the only thing I want.</li>
+        <li>[grieving] I can't think straight yet, and a few quiet days is all I want.</li>
       </warm>
       <blunt>
         <li>Anyone who whistles at the graveside gets a grave of their own.</li>
@@ -540,7 +540,7 @@
         <li>I'm going to tell all the funny stories about them! They'd want us laughing.</li>
       </cheerful>
       <gloomy>
-        <li>[grieving] The grave's finished. I keep walking out to check it's still there.</li>
+        <li>[grieving] The grave's finished, and I keep walking out to check it's still there.</li>
         <li>We've dug more graves than we've built beds.</li>
       </gloomy>
       <cold>
@@ -549,13 +549,13 @@
     </support>
     <oppose>
       <plain>
-        <li>[trait:Industrious] Sitting still makes it worse. Let me fix a fence, at least.</li>
+        <li>[trait:Industrious] Sitting still makes it worse, so let me fix a fence, at least.</li>
         <li>[afterraid] The raiders don't take days off for our funerals.</li>
         <li>[winter] The fires won't feed themselves while we mourn.</li>
-        <li>[!grieving] I hardly knew them. I'll be quiet, but let me be quiet somewhere useful.</li>
+        <li>[!grieving] I hardly knew them, so let me be quiet somewhere useful.</li>
       </plain>
       <warm>
-        <li>I loved them too. I'd just rather honor them by keeping everyone else alive.</li>
+        <li>I loved them too, but I'd rather honor them by keeping everyone else alive.</li>
       </warm>
       <blunt>
         <li>Crying won't weed the fields.</li>
@@ -564,11 +564,11 @@
         <li>They'd want the roof fixed, not us moping under it! They hated that leak.</li>
       </cheerful>
       <gloomy>
-        <li>We stop to grieve, and then there's more to grieve. It never catches up.</li>
+        <li>We stop to grieve, and then there's more to grieve.</li>
       </gloomy>
       <cold>
         <li>[trait:Psychopath] I've stood by the grave for the expected length of time. May I go now?</li>
-        <li>Grief doesn't need all of us. Assign two people to it.</li>
+        <li>Grief doesn't need all of us, so assign two people to it.</li>
       </cold>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>
@@ -583,7 +583,7 @@
         <li>[afterraid] They'll be back for whoever they left behind. I'll be waiting.</li>
         <li>[night] I'll take the night watch. I like the quiet, and I like seeing them first.</li>
         <li>[trait:Bloodlust] I sharpened everything twice. Now I just need someone to try us.</li>
-        <li>[trait:Tough] Doesn't bother me. I've slept through worse than an alarm.</li>
+        <li>[trait:Tough] Doesn't bother me; I've slept through worse than a shout in the night.</li>
       </plain>
       <warm>
         <li>Get some sleep; I've got the watch. I'll wake you if anything moves.</li>
@@ -596,24 +596,24 @@
         <li>[trait:Bloodlust] I hope someone tries us tonight!</li>
       </cheerful>
       <gloomy>
-        <li>They'll come eventually. At least now we're watching for them.</li>
+        <li>They'll come eventually, but at least now we're watching.</li>
       </gloomy>
       <cold>
-        <li>Raiders pick soft targets. We are going to stop being one.</li>
+        <li>Raiders pick soft targets, and we're going to stop being one.</li>
       </cold>
     </support>
     <oppose>
       <plain>
-        <li>[trait:Nervous|trait:Volatile] I nearly hit the cook at breakfast. I heard footsteps behind me and swung.</li>
+        <li>[trait:Nervous|trait:Volatile] I nearly hit the cook at breakfast when I heard footsteps behind me.</li>
         <li>[trait:Wimp] I've gripped my weapon so long my hand's gone numb. Is that an injury?</li>
         <li>Sleeping in shifts means I never get a full night.</li>
         <li>[night] Every noise out there is a raider or a squirrel, and I can't tell which anymore.</li>
       </plain>
       <warm>
-        <li>Fine, I'll stand watch. But the children shouldn't have to sleep with a knife beside them.</li>
+        <li>Fine, I'll stand watch, but I won't sleep well with a knife by my pillow.</li>
       </warm>
       <blunt>
-        <li>If they come, they come. Me glaring at a tree won't change that.</li>
+        <li>If they come, they come, and me glaring at a tree won't change that.</li>
         <li>[trait:Volatile] One more twig snaps and I'm picking a fight with the forest.</li>
       </blunt>
       <cheerful>
@@ -638,7 +638,7 @@
         <li>[skill:Medicine] I won't stitch anyone up on a floor a raider bled on.</li>
         <li>There's still blood on the hospital floor from the raid before last.</li>
         <li>The last time the kitchen looked like this, half of us threw up all night.</li>
-        <li>[trait:Ascetic] A bare room is easy to clean. You'll all find that out this week.</li>
+        <li>[trait:Ascetic] A bare room is easy to clean, as you'll all find out this week.</li>
         <li>[hurt] I'd like to heal in a room that doesn't smell like the last patient.</li>
       </plain>
       <warm>
@@ -659,17 +659,17 @@
     </support>
     <oppose>
       <plain>
-        <li>[trait:Lazy|trait:Slothful] Dirt's natural. It was here before us. Show some respect.</li>
-        <li>I scrubbed the hospital until my knuckles bled. Now it needs scrubbing again.</li>
+        <li>[trait:Lazy|trait:Slothful] Dirt was here before us, so show it some respect.</li>
+        <li>I scrubbed the hospital until my knuckles bled, and now it needs scrubbing again.</li>
         <li>[rain] Every pair of muddy boots through that door undoes my morning's work.</li>
         <li>[large] With this many people, it's filthy again before the mop's dry.</li>
       </plain>
       <warm>
-        <li>I'll mop. I just don't think the animals understand the new rules.</li>
+        <li>I'll mop, but I don't think the animals understand the new rules.</li>
       </warm>
       <blunt>
         <li>I'll clean when the boomalopes stop exploding in the yard.</li>
-        <li>[trait:Slothful] Clean around me. I'm part of the furniture now.</li>
+        <li>[trait:Slothful] Clean around me; I'm part of the furniture now.</li>
       </blunt>
       <cheerful>
         <li>I scrubbed the dining room twice! It's almost a shame to eat in it.</li>
@@ -678,7 +678,7 @@
         <li>We scrub it, someone bleeds on it, we scrub it again.</li>
       </gloomy>
       <cold>
-        <li>Mopping is low-value work. Give it to the prisoners.</li>
+        <li>Mopping is low-value work, so give it to the prisoners.</li>
       </cold>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>

@@ -7,26 +7,26 @@
     <defName>Council_Pool_PeacemakerMediates</defName>
     <lines>
       <plain>
-        <li>{PAWN_nameDef} sat {A_nameDef} and {B_nameDef} down at the same table and didn't let either of them leave until they'd both said their piece.</li>
-        <li>{PAWN_nameDef} gave {A_nameDef} and {B_nameDef} one job to do together, and stood nearby the whole time. The feud is quieter for it.</li>
-        <li>{PAWN_nameDef} heard {A_nameDef} out, then heard {B_nameDef} out, then told them both the same thing.</li>
-        <li>[night] {PAWN_nameDef} kept {A_nameDef} and {B_nameDef} up late by the fire, talking it through. They went to bed tired, and less angry.</li>
-        <li>[winter] {PAWN_nameDef} put {A_nameDef} and {B_nameDef} on the same woodpile for a morning. They came back talking.</li>
+        <li>{PAWN_nameDef} sat down between {A_nameDef} and {B_nameDef} and didn't let either of them leave until both had said their piece.</li>
+        <li>{PAWN_nameDef} asked {A_nameDef} and {B_nameDef} what their quarrel was really about, and made them both answer.</li>
+        <li>{PAWN_nameDef} heard {A_nameDef} out, then {B_nameDef}, then told them both the same thing.</li>
+        <li>[night] {PAWN_nameDef} kept {A_nameDef} and {B_nameDef} up late, talking their quarrel through.</li>
+        <li>[winter] {PAWN_nameDef} got {A_nameDef} and {B_nameDef} onto the same bench, out of the cold, to talk it over.</li>
       </plain>
       <warm>
-        <li>{PAWN_nameDef} made tea for {A_nameDef} and {B_nameDef} and sat with them until it was cold. Something thawed, at least.</li>
+        <li>{PAWN_nameDef} poured tea for {A_nameDef} and {B_nameDef} and sat with them until the pot went cold.</li>
       </warm>
       <blunt>
-        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to sort it out or stop sulking where everyone can see. They sorted some of it out.</li>
+        <li>{PAWN_nameDef} told {A_nameDef} and {B_nameDef} to settle it or stop sulking through every meal.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} got {A_nameDef} and {B_nameDef} laughing at the same joke, and neither of them could remember the feud for a whole minute.</li>
+        <li>{PAWN_nameDef} got {A_nameDef} and {B_nameDef} laughing at the same joke, feud or no feud.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} reminded {A_nameDef} and {B_nameDef} how few of them there are out here. It seemed to land.</li>
+        <li>{PAWN_nameDef} reminded {A_nameDef} and {B_nameDef} how few of them there were out here to waste on a feud.</li>
       </gloomy>
       <cold>
-        <li>{PAWN_nameDef} listed, calmly, everything the feud between {A_nameDef} and {B_nameDef} has cost the colony. They both looked at the floor.</li>
+        <li>{PAWN_nameDef} listed, calmly, everything the feud between {A_nameDef} and {B_nameDef} had cost the colony.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

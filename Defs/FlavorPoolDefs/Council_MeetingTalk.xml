@@ -12,38 +12,38 @@
     <lines>
       <plain>
         <li>Right. Somebody wake up the ones at the back, and we'll begin.</li>
-        <li>This council is now in session. Somebody find a chair for the old ones.</li>
-        <li>We have a few proposals to get through. One at a time, please.</li>
-        <li>[evening] One more thing before bed. What do we work on next?</li>
+        <li>Council's in session; somebody find a chair for the old ones.</li>
+        <li>We've a few proposals to get through, one at a time, please.</li>
+        <li>[evening] One last question before bed, and it's what we work on next.</li>
         <li>[afterraid] We need to talk about what happened, and what we do now.</li>
-        <li>[winter] Long nights ahead. Let's spend this one planning.</li>
-        <li>[tribal|medieval] The fire's lit. Whoever has something to say, say it.</li>
-        <li>Everyone here? Close enough. Let's start.</li>
+        <li>[winter] Long nights ahead, so let's spend this one planning.</li>
+        <li>[tribal|medieval] The fire's lit, so whoever has something to say, say it.</li>
+        <li>Most of us are here, and that'll do, so let's start.</li>
         <li>We've all got work waiting, so let's be quick about it.</li>
       </plain>
       <warm>
-        <li>Thanks for coming. Let's hear each other out before we vote.</li>
-        <li>Good to see all of you. Sit wherever you like.</li>
-        <li>Thank you for coming. You'll all get a turn tonight.</li>
+        <li>Thanks for coming, and let's hear each other out before we vote.</li>
+        <li>Good to see you all; sit wherever you like.</li>
+        <li>You'll all get your turn to speak tonight, I promise.</li>
       </warm>
       <blunt>
-        <li>Let's keep this short. Say your piece and sit down.</li>
+        <li>Keep it short, say your piece and sit down.</li>
         <li>Quiet down. We're starting.</li>
-        <li>Proposals. Votes. Bed.</li>
+        <li>Proposals, votes, bed.</li>
       </blunt>
       <cheerful>
-        <li>Welcome, welcome! Mind the loose board by the door.</li>
-        <li>Here we all are again! Who's got a good idea for us?</li>
-        <li>Meeting time! Somebody pass the bread around.</li>
+        <li>Welcome, welcome, and mind the loose board by the door!</li>
+        <li>Here we all are again, so who's got a good idea for us?</li>
+        <li>Somebody pass the bread around, it's meeting time!</li>
       </cheerful>
       <gloomy>
         <li>Let's get this over with before something else goes wrong.</li>
-        <li>We made it to another meeting. I'll take that.</li>
-        <li>Let's decide something before we all lose heart.</li>
+        <li>Another meeting, and we're all still alive for it.</li>
+        <li>Let's settle on a plan before we all lose heart.</li>
       </gloomy>
       <cold>
         <li>Let's begin. I'll hear each proposal once.</li>
-        <li>I've heard the proposals already. Let's see if the rest of you have.</li>
+        <li>I've read the proposals already, and I hope the rest of you have.</li>
         <li>Sit. We'll go through the proposals in order.</li>
       </cold>
     </lines>
@@ -53,47 +53,47 @@
     <defName>Council_Pool_MeetingSupport</defName>
     <lines>
       <plain>
-        <li>I'm with {OTHER_nameDef} on "{AMBITION}". It makes sense.</li>
-        <li>"{AMBITION}" gets my vote. We need it.</li>
+        <li>I'm with {OTHER_nameDef} on "{AMBITION}"; it makes sense.</li>
+        <li>My vote goes to "{AMBITION}", because we need it.</li>
         <li>Say what you like about {OTHER_nameDef}, the idea's sound.</li>
         <li>If we're doing anything this season, let it be "{AMBITION}".</li>
         <li>[afterraid] After that raid, I'm voting for "{AMBITION}".</li>
         <li>[winter] Winter makes the decision for us, I think.</li>
-        <li>[poor] We can't afford much. We can afford that.</li>
+        <li>[poor] We can't afford much, but we can afford that.</li>
         <li>I'll put my hand up for "{AMBITION}", and my back into it.</li>
-        <li>We keep saying we'll do this one day. Let's make it this season.</li>
+        <li>We keep saying we'll do this one day, so let's make it this season.</li>
         <li>{OTHER_nameDef} and I don't agree on much, but I agree on this.</li>
         <li>[winter] Let's have it done before the next winter, at least.</li>
-        <li>[afterraid] I don't want another day like this one. "{AMBITION}", yes.</li>
+        <li>[afterraid] I don't want another day like this one, so "{AMBITION}", yes.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} has clearly thought this through. I'm for it.</li>
+        <li>{OTHER_nameDef} has clearly thought this through, and I'm for it.</li>
         <li>I like it. It's good for all of us, not just the loud ones.</li>
-        <li>{OTHER_nameDef} cares about this colony. I'll back it.</li>
-        <li>It would do us all good. Count me in.</li>
+        <li>{OTHER_nameDef} cares about this colony, so I'll back it.</li>
+        <li>It would do us all good, so count me in.</li>
       </warm>
       <blunt>
-        <li>"{AMBITION}". Vote for it and let's go to bed.</li>
+        <li>Vote for "{AMBITION}" and let's go to bed.</li>
         <li>For once {OTHER_nameDef} said something useful.</li>
         <li>Yes. Next.</li>
-        <li>It's a good idea. Stop arguing and vote.</li>
+        <li>Good idea, so stop arguing and vote.</li>
       </blunt>
       <cheerful>
         <li>Ooh, "{AMBITION}"! Yes, let's do it.</li>
-        <li>I can already picture it finished. Vote yes!</li>
-        <li>This is the one! I've been hoping someone would suggest it.</li>
-        <li>Yes to "{AMBITION}"! I'll be up early tomorrow to start.</li>
+        <li>I can already picture it finished, so vote yes!</li>
+        <li>I've been hoping someone would suggest this one!</li>
+        <li>Yes to "{AMBITION}", and I'll be up early tomorrow to start!</li>
       </cheerful>
       <gloomy>
-        <li>It might even work. I've seen stranger things work out.</li>
+        <li>It might even work; I've seen stranger things work out.</li>
         <li>Fine. Better than sitting around waiting for the next disaster.</li>
-        <li>I suppose it's worth a try. Most things are, until they aren't.</li>
-        <li>It won't solve everything, but it might solve something.</li>
+        <li>I suppose it's worth a try, for whatever good it does.</li>
+        <li>It won't solve all our troubles, but it might solve one.</li>
       </gloomy>
       <cold>
-        <li>"{AMBITION}" has the best return on effort. I support it.</li>
-        <li>"{AMBITION}" serves the colony's interests. I vote yes.</li>
-        <li>The numbers favor it. Yes.</li>
+        <li>Of the proposals, "{AMBITION}" has the best return on effort.</li>
+        <li>I vote yes on "{AMBITION}"; it serves the colony's interests.</li>
+        <li>The numbers favor it, so yes.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -102,43 +102,43 @@
     <defName>Council_Pool_MeetingDoubt</defName>
     <lines>
       <plain>
-        <li>"{AMBITION}"? With what materials, exactly?</li>
-        <li>Who's going to do all that work? Not {OTHER_nameDef}, I bet.</li>
+        <li>With what materials, exactly, are we doing "{AMBITION}"?</li>
+        <li>All that work, and I bet {OTHER_nameDef} won't lift a finger of it.</li>
         <li>Nice idea. Wrong season.</li>
         <li>[poor] We can barely feed ourselves and {OTHER_nameDef} wants "{AMBITION}".</li>
         <li>[afterraid] We just got shot at and we're talking about "{AMBITION}"?</li>
         <li>[winter] Ask me again when I can feel my toes.</li>
         <li>We said that last time, and look how that went.</li>
         <li>Can we finish the last thing before we start a new one?</li>
-        <li>I'm not against "{AMBITION}". I'm against doing it now.</li>
+        <li>I'm not against "{AMBITION}", only against doing it now.</li>
       </plain>
       <warm>
         <li>I don't want to dismiss it, but are we sure it's the most important thing?</li>
-        <li>It's a fine idea. I just think people need rest first.</li>
+        <li>It's a fine idea, but people need rest first.</li>
         <li>I'd rather we looked after the ones who are struggling before we start on anything new.</li>
       </warm>
       <blunt>
         <li>That's the dumbest thing I've heard since the last meeting.</li>
-        <li>{OTHER_nameDef} wants a lot of things. Most of them are stupid.</li>
+        <li>{OTHER_nameDef} wants a lot of things, and most of them are stupid.</li>
         <li>No. Next.</li>
         <li>Waste of time.</li>
         <li>{OTHER_nameDef} can build it alone, then.</li>
       </blunt>
       <cheerful>
         <li>I love the energy, {OTHER_nameDef}, but I can't vote for this one!</li>
-        <li>Not this one, {OTHER_nameDef}! Ask me again next season.</li>
+        <li>Not this one, {OTHER_nameDef}, but ask me again next season!</li>
         <li>Ha! No. But I like your spirit.</li>
       </cheerful>
       <gloomy>
         <li>We'll get halfway through it, and then the next raid will come.</li>
         <li>Plans. Ha.</li>
-        <li>We don't have the hands. We never have the hands.</li>
-        <li>Something will go wrong. Something always does.</li>
+        <li>We don't have the hands for it, and we never have.</li>
+        <li>It'll go wrong the way the last one did.</li>
       </gloomy>
       <cold>
-        <li>The cost outweighs the benefit. Vote it down.</li>
+        <li>The cost outweighs the benefit, so vote it down.</li>
         <li>I see no return on it this season.</li>
-        <li>The proposal is poorly planned. I vote no.</li>
+        <li>The proposal is poorly planned, and I vote no.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -148,27 +148,27 @@
     <defName>Council_Pool_MeetingAside</defName>
     <lines>
       <plain>
-        <li>Are we nearly done? I left the stew on the fire.</li>
-        <li>Is that pemmican? Pass it over.</li>
+        <li>I left the stew on the fire, so are we nearly done?</li>
+        <li>Pass that pemmican over, would you?</li>
         <li>Can we vote on whoever keeps tracking mud in?</li>
-        <li>I had a point. It was a good point. It's gone.</li>
+        <li>I had a good point a moment ago, and now it's gone.</li>
         <li>[night] Some of us have to be up early.</li>
         <li>[rain] At least it's dry in here.</li>
-        <li>[hot] Can we open a door? Any door?</li>
-        <li>[cold] Move in closer, all of you. It's freezing.</li>
-        <li>[large] Too many of us are talking. Whoever's holding the spoon gets to speak.</li>
+        <li>[hot] Can somebody open a door, any door?</li>
+        <li>[cold] Move in closer, all of you, it's freezing.</li>
+        <li>[large] With this many of us, only whoever holds the spoon gets to talk.</li>
         <li>[small] There are only a handful of us, and we still can't agree.</li>
         <li>[trait:Gourmand] Is there going to be food at these things from now on?</li>
-        <li>[trait:Pyromaniac] Can we hold the next meeting around a bonfire? A big one.</li>
+        <li>[trait:Pyromaniac] Can we hold the next meeting around a big bonfire?</li>
         <li>[trait:Ascetic] We have too much as it is.</li>
         <li>[trait:Greedy] And what do I get out of it?</li>
         <li>[trait:Industrious|trait:HardWorker] We could have built half of it by now, instead of talking.</li>
-        <li>[child] Can I vote? Why not? That's not fair.</li>
+        <li>[child] Can I vote? Why not, that's not fair!</li>
         <li>[old] When I was young, the oldest one in the room decided, and that was that.</li>
       </plain>
       <cheerful>
-        <li>Best meeting yet! Only one argument so far.</li>
-        <li>I brought biscuits! Well, crumbs now.</li>
+        <li>Best meeting yet, only one argument so far!</li>
+        <li>I brought biscuits for everyone, but they're mostly crumbs now!</li>
         <li>We should do this every night!</li>
       </cheerful>
       <gloomy>
@@ -178,8 +178,8 @@
       </gloomy>
       <blunt>
         <li>{OTHER_nameDef}, you're standing on my foot.</li>
-        <li>Who's snoring? Stop it.</li>
-        <li>Can we hurry up? My feet are frozen.</li>
+        <li>Whoever's snoring, stop it.</li>
+        <li>Hurry it up, I've got work waiting.</li>
       </blunt>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

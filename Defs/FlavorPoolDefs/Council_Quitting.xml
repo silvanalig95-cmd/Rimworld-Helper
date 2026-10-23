@@ -6,25 +6,25 @@
     <defName>Council_Pool_Quitting</defName>
     <lines>
       <plain>
-        <li>I've asked. I've waited. I've asked again. I'm done asking.</li>
-        <li>It's a big world out there. Some of it must have people who listen.</li>
-        <li>Three days. Then I'm taking my things and my boots and walking until this place is a smudge behind me.</li>
+        <li>I've asked and waited and asked again, and I'm done asking.</li>
+        <li>Somewhere out there there must be people who listen, and I'm going to find them.</li>
+        <li>In three days I'm taking my boots and walking until this place is a smudge behind me.</li>
         <li>[winter] I'd rather freeze out there than keep being ignored in here.</li>
-        <li>[small] You can't afford to lose me. You know that. Act like it.</li>
+        <li>[small] You can't afford to lose me, so start acting like it.</li>
       </plain>
       <warm>
-        <li>I don't want to go. I really don't. But I can't keep being invisible here.</li>
+        <li>I don't want to go, but I can't keep being invisible here.</li>
       </warm>
       <blunt>
         <li>I'm leaving. Don't bother packing me a lunch.</li>
-        <li>You've got three days to start treating me like I exist. Then I stop existing here.</li>
+        <li>You've got three days to treat me like I exist, and then I'm gone.</li>
       </blunt>
       <cheerful>
-        <li>I've found a way to stop being disappointed by this colony! I'm leaving it.</li>
+        <li>Good news, I've found a cure for being let down by this colony, and it's leaving!</li>
       </cheerful>
       <gloomy>
-        <li>I'll probably die out there alone. At least it'll be my choice for once.</li>
-        <li>You won't even notice I've gone. That's the problem.</li>
+        <li>I'll probably die out there alone, but at least it'll be my choice.</li>
+        <li>You won't even notice I've gone, which is the whole trouble.</li>
       </gloomy>
       <cold>
         <li>My skills are worth more somewhere they're valued. I'll be taking them there.</li>
@@ -37,11 +37,11 @@
     <defName>Council_Pool_Staying</defName>
     <lines>
       <plain>
-        <li>Fine. I'll unpack. For now.</li>
+        <li>Fine. I'll unpack my things, and we'll see how long they stay unpacked.</li>
         <li>Somebody finally listened. Took long enough.</li>
       </plain>
       <warm>
-        <li>I'm glad I don't have to go. I'd have missed all of you. Even the loud ones.</li>
+        <li>I'm glad I don't have to go. I'd have missed you all, even the loud ones.</li>
       </warm>
       <blunt>
         <li>I'm staying. Don't make me regret it.</li>
@@ -63,8 +63,8 @@
     <defName>Council_Pool_Quit</defName>
     <lines>
       <plain>
-        <li>Don't follow me. Don't send word. Not that you'd know where.</li>
-        <li>Good luck with the next raid. You'll be one fighter short.</li>
+        <li>Don't follow me, and don't send word. You wouldn't know where to send it.</li>
+        <li>Good luck with the next raid, one pair of hands short.</li>
       </plain>
       <warm>
         <li>Take care of each other. Better than you took care of me.</li>

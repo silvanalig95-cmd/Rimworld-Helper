@@ -15,15 +15,15 @@
     <defName>Council_Journal_PM_Vented</defName>
     <lines>
       <plain>
-        <li>Told {OTHER_nameDef} everything that's been eating at me. {OTHER_nameDef} just listened, and that was enough.</li>
+        <li>Told {OTHER_nameDef} everything that's been eating at me. {OTHER_nameDef} didn't try to fix any of it, just listened.</li>
         <li>Bad day. Sat with {OTHER_nameDef} after supper and talked until it was smaller.</li>
-        <li>[night] Couldn't sleep, so I found {OTHER_nameDef} still up and talked it all out. I feel lighter.</li>
+        <li>[night] Couldn't sleep. {OTHER_nameDef} was still up too, so we sat in the kitchen and I talked it all out.</li>
         <li>[grieving] I said the name out loud to {OTHER_nameDef} tonight, for the first time since the burial.</li>
         <li>[afterraid] Still shaking from the raid. {OTHER_nameDef} let me talk about it without telling me I was lucky.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} is a good friend. I unloaded all of it tonight and got only kindness back.</li></warm>
-      <blunt><li>Complained to {OTHER_nameDef} for an hour. Helped more than I'd like to admit.</li></blunt>
-      <gloomy><li>Poured it all out to {OTHER_nameDef}. Nothing's changed, but I'm not carrying it alone now.</li></gloomy>
+      <warm><li>Unloaded all of it on {OTHER_nameDef} tonight, and got a blanket round my shoulders and something hot to drink for it.</li></warm>
+      <blunt><li>Complained at {OTHER_nameDef} until my supper went cold. It helped, annoyingly.</li></blunt>
+      <gloomy><li>Poured it all out to {OTHER_nameDef}. Same troubles tomorrow, but {OTHER_nameDef} knows them now too.</li></gloomy>
       <cold><li>Talking to {OTHER_nameDef} cleared my head. I'll remember that it works.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -34,8 +34,8 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} is my best friend. I don't remember when it happened, only that it has.</li>
-        <li>If anything happens to me, {OTHER_nameDef} knows where I keep my things and what to do with them. That's what a best friend is.</li>
-        <li>[winter] Long winter evenings with {OTHER_nameDef}. I've never had a friend like this.</li>
+        <li>If anything happens to me, {OTHER_nameDef} knows where I keep my things and who gets what.</li>
+        <li>[winter] Another long winter evening talking with {OTHER_nameDef} until the lamp burned down.</li>
         <li>[old] At my age I didn't expect to make a best friend. {OTHER_nameDef} didn't ask my permission.</li>
       </plain>
       <warm><li>{OTHER_nameDef} and I are as close as family now. Closer than some of my family ever was.</li></warm>
@@ -68,7 +68,7 @@
     <defName>Council_Ext_PM_Wish_FineClothes</defName>
     <wish>Council_Wish_FineClothes</wish>
     <request>
-      <plain><li>[trait:VTE_Snob] I can't be seen in this. Nobody of any standing would be.</li></plain>
+      <plain><li>[trait:VTE_Snob] I can't be seen in this. These are field clothes, and I am not a field hand.</li></plain>
     </request>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -95,7 +95,7 @@
     <defName>Council_Ext_PM_Wish_WeaponRack</defName>
     <wish>Council_Wish_WeaponRack</wish>
     <request>
-      <plain><li>[fighter] A fighter should know where the weapons are without thinking. Right now I'd have to think.</li></plain>
+      <plain><li>[fighter] A fighter should be able to find a weapon in the dark. Ours are scattered all over the storeroom.</li></plain>
     </request>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -155,7 +155,7 @@
       </plain>
     </support>
     <oppose>
-      <plain><li>[trait:VTE_Rebel] Nobody tells me how long my day is.</li></plain>
+      <plain><li>[trait:VTE_Rebel] I decide how long my day is, not the council.</li></plain>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -171,8 +171,8 @@
     </support>
     <oppose>
       <plain>
-        <li>[trait:VTE_Workaholic] Days of nothing to do. I'll go mad.</li>
-        <li>[trait:VTE_Anxious] All those people in one room, every night. I'll be in my room.</li>
+        <li>[trait:VTE_Workaholic] Days of nothing to do, and I'll be mad by the second one.</li>
+        <li>[trait:VTE_Anxious] All those people in one room every night, so I'll be in mine.</li>
       </plain>
     </oppose>
   </ColonyCouncil.FlavorExtensionDef>
@@ -182,7 +182,7 @@
     <decree>Council_Decree_Drills</decree>
     <support>
       <plain>
-        <li>[fighter] Good. My forms get sloppy between raids.</li>
+        <li>[fighter] Good, I've been getting slow between raids.</li>
         <li>[trait:VTE_Brave] We'll be ready this time.</li>
         <li>[meme:VME_Bushido] Training is how we honor the fight before it comes.</li>
       </plain>
@@ -200,7 +200,7 @@
     <decree>Council_Decree_Study</decree>
     <support>
       <plain>
-        <li>[mage] Evenings for study. My books have been gathering dust.</li>
+        <li>[mage] Evenings for study, and about time; my books have been gathering dust.</li>
         <li>[trait:VTE_Academian] Finally, time to read properly.</li>
       </plain>
     </support>
@@ -236,7 +236,7 @@
     <decree>Council_Decree_Building</decree>
     <support>
       <plain>
-        <li>[trait:VTE_Groundbreaker] Every hand on the walls. I'll show you how to lay them straight.</li>
+        <li>[trait:VTE_Groundbreaker] Every hand on the walls, and I'll show you how to lay them straight.</li>
         <li>[meme:VME_CityBuilders] Walls first, then streets. This place will look like a town by spring.</li>
       </plain>
     </support>

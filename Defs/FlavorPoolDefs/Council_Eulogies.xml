@@ -12,40 +12,40 @@
     <defName>Council_Eulogy</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} worked hard, complained about the food, and never once left anyone behind.</li>
+        <li>{OTHER_nameDef} complained about the food at every meal and still went back for seconds.</li>
         <li>I don't have the right words. {OTHER_nameDef} always did.</li>
         <li>{OTHER_nameDef} hauled the stone for most of these walls. We'll keep them standing.</li>
-        <li>{OTHER_nameDef} was with us through the bad winters and the raids, and never once talked about leaving.</li>
+        <li>{OTHER_nameDef} stayed through the raids and the hungry seasons, and never talked about leaving.</li>
         <li>[longtime] {OTHER_nameDef} was with us for {YEARS} years. Most of what we have, {OTHER_nameDef} helped build.</li>
         <li>[titled] {OTHER_nameDef} never asked to be called {TITLE}. It stuck because it was true.</li>
         <li>[unfinished] {OTHER_nameDef} wanted to {GOAL}, and ran out of time. Some of us will try to finish it.</li>
-        <li>[battle] {FACTION} did this. {OTHER_nameDef} was on the wall when they came, so the rest of us didn't have to be.</li>
+        <li>[battle] {FACTION} did this. {OTHER_nameDef} stood out in front when they came, so the rest of us didn't have to.</li>
         <li>[battle] {OTHER_nameDef} died holding the line, and the line held.</li>
-        <li>[deadchild] There's nothing I can say over a child's grave that will help. I keep hearing the laughing from the yard.</li>
-        <li>[deadold] {OTHER_nameDef} saw more winters than any of us. Taught us how to get through them, too.</li>
+        <li>[deadchild] There's nothing I can say over a child's grave that will help. I keep listening for that laugh out in the yard.</li>
+        <li>[deadold] {OTHER_nameDef} saw more winters than any of us, and taught the rest of us how to get through them.</li>
         <li>[kin] {OTHER_nameDef} was my family. We fought like family, and we looked after each other like family.</li>
         <li>[partner] I woke up every day next to {OTHER_nameDef}. I don't know how to wake up any other way.</li>
         <li>[stranger] I didn't know {OTHER_nameDef} well, and I wish I had.</li>
         <li>[rival] {OTHER_nameDef} and I fought about everything. I'd give a lot for one more argument.</li>
         <li>[winter] It took four of us all morning to break the frozen ground for {OTHER_nameDef}.</li>
         <li>[rain] {OTHER_nameDef} hated getting wet. I'm sorry we couldn't pick a better day for this.</li>
-        <li>{OTHER_nameDef} never asked for much. A warm bed, a hot meal, and somewhere quiet to sit in the evenings.</li>
+        <li>{OTHER_nameDef} never asked for much more than a dry bed and a seat out of the wind in the evenings.</li>
         <li>{OTHER_nameDef} always knew whose turn it was to wash the pots, and made sure they knew it too.</li>
-        <li>[stranger] I'm told {OTHER_nameDef} was good with the animals and hated mornings. I wish I'd found that out for myself.</li>
-        <li>[stranger] Someone closer should be standing here, but they couldn't manage it today. {OTHER_nameDef} was one of us, and there are fewer of us without {OTHER_objective}.</li>
-        <li>[rival] I never liked {OTHER_nameDef}, and {OTHER_nameDef} never liked me. I'd still have trusted {OTHER_objective} with my life, and I think the feeling was mutual.</li>
+        <li>[stranger] I'm told {OTHER_nameDef} was good with the animals and hated mornings. I should have found that out for myself.</li>
+        <li>[stranger] Someone who knew {OTHER_nameDef} better should be standing here, but couldn't face it today. {OTHER_nameDef} was one of ours all the same.</li>
+        <li>[rival] I never liked {OTHER_nameDef}, and it was mutual. I'd still have trusted {OTHER_objective} with my life.</li>
         <li>[rival] Most of the shouting around here was {OTHER_nameDef} and me. It's going to be very quiet now.</li>
-        <li>[kin] Same blood. Same stubborn chin. I'll see {OTHER_nameDef} every time I catch my reflection in the water.</li>
+        <li>[kin] We had the same stubborn chin, {OTHER_nameDef} and I. I'll see it every time I look into still water.</li>
         <li>[partner] We had small plans, a garden and a dog and a quiet old age. I'll keep the garden going.</li>
-        <li>[battle] {OTHER_nameDef} didn't have to be on that wall. {OTHER_nameDef} picked up a weapon and went anyway.</li>
+        <li>[battle] {OTHER_nameDef} could have stayed inside when they came, and picked up a weapon instead.</li>
         <li>[battle] {FACTION} came at us, and {OTHER_nameDef} met them at the gate. Some of us are only standing here because of that.</li>
         <li>[deadchild] {OTHER_nameDef} should have grown up here, been bored here, fallen in love here and complained about chores.</li>
-        <li>[deadold] {OTHER_nameDef} told the same three stories every winter. I'd give anything to hear them again. I'll tell them myself, badly.</li>
-        <li>[titled] We called {OTHER_nameDef} {TITLE}, and nobody ever had to ask why.</li>
+        <li>[deadold] {OTHER_nameDef} told the same three stories every winter, and I know them all by heart. I'll tell them tonight, though not as well.</li>
+        <li>[titled] We called {OTHER_nameDef} {TITLE}. Ask anyone here how that name was earned.</li>
         <li>[unfinished] {OTHER_nameDef} was going to {GOAL}. I'll take that up, if I can.</li>
         <li>[longtime] {OTHER_nameDef} was here before most of us. {YEARS} years of early mornings and late suppers.</li>
         <li>[night] We're burying {OTHER_nameDef} by torchlight. None of us wanted to leave {OTHER_objective} lying out there until morning.</li>
-        <li>[summer] It's a beautiful day. {OTHER_nameDef} would have been out in the fields in it, complaining about the heat.</li>
+        <li>[summer] It's a fine day. {OTHER_nameDef} would have been out in the fields in it, hat pulled down against the sun.</li>
         <li>[old] I've buried too many people younger than me, and now {OTHER_nameDef}.</li>
       </plain>
       <warm>
@@ -60,7 +60,7 @@
         <li>{OTHER_nameDef} was good at the work and good to the people here. That's all I've got.</li>
         <li>[battle] {FACTION} took {OTHER_nameDef}. Next time they come, they'll find out what that cost them.</li>
         <li>[rival] We didn't get on, and you all know it. {OTHER_nameDef} was still one of ours.</li>
-        <li>{OTHER_nameDef} worked, fought, and never quit.</li>
+        <li>{OTHER_nameDef} pulled {OTHER_possessive} weight every day. Let's get the grave filled.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} made me laugh every day. I'll try to do the same for you lot, though I won't be half as good at it.</li>
@@ -76,8 +76,8 @@
       <cold>
         <li>{OTHER_nameDef} was reliable and competent, and no one here can do that work as well. We are weaker today.</li>
         <li>[battle] {OTHER_nameDef} fell to {FACTION}. I've added that to the ledger.</li>
-        <li>{OTHER_nameDef}'s duties will be reassigned by morning. {OTHER_nameDef} will not be replaced. Those are different things.</li>
-        <li>[titled] {OTHER_nameDef} was called {TITLE}. The name will stay in the annals. That will have to do.</li>
+        <li>{OTHER_nameDef}'s duties will be reassigned by morning. Finding someone who does them as well will take longer.</li>
+        <li>[titled] {OTHER_nameDef} was called {TITLE}, and the name goes into the annals. That will have to do.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
