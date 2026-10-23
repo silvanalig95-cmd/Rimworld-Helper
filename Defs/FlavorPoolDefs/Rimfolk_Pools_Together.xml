@@ -143,11 +143,11 @@
         <li>{PAWN_nameDef} said a short thank you to {OTHER_nameDef} for the lessons in {SKILL}, and meant it.</li>
       </blunt>
       <cheerful>
-        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL} and promised to outdo {OTHER_objective} one day.</li>
+        <li>{PAWN_nameDef} swore to outdo {OTHER_nameDef} at {SKILL} one day, and thanked {OTHER_objective} for the start.</li>
         <li>The lessons in {SKILL} had been the best part of {PAWN_nameDef}'s days, {PAWN_pronoun} told {OTHER_nameDef}.</li>
       </cheerful>
       <gloomy>
-        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL}, sorry that they were over.</li>
+        <li>{PAWN_nameDef} thanked {OTHER_nameDef} for the lessons in {SKILL}, and wondered aloud who {PAWN_pronoun} would ask now.</li>
         <li>{PAWN_nameDef} admitted to {OTHER_nameDef} that {PAWN_pronoun} had never expected to be any good at {SKILL}.</li>
       </gloomy>
       <cold>
@@ -322,7 +322,7 @@
       </cheerful>
       <gloomy>
         <li>{PAWN_nameDef} told {OTHER_nameDef} that losing {PET_nameDef} would not get easier soon, and that {PAWN_pronoun} knew.</li>
-        <li>{PAWN_nameDef} sat with {OTHER_nameDef} in the empty corner where {PET_nameDef} used to sleep.</li>
+        <li>{PAWN_nameDef} told {OTHER_nameDef} that {PET_nameDef}'s old corner could stay empty as long as {OTHER_pronoun} liked.</li>
       </gloomy>
       <cold>
         <li>{PAWN_nameDef} answered every question {OTHER_nameDef} had about {PET_nameDef}'s last days, plainly.</li>
