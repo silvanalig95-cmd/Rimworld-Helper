@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Messages you can read
+
+*23 October 2026, version 0.10.14*
+
+- The game's messages at the top left are drawn over the on-screen panels, and were hard to read over a panel's own lines. Where a message lies over a panel, the panel is now painted dark beneath it, fading with the message.
+- A decree used lately says on its card in how many days it's safe to enact again, and "used once" or "used 3 times" instead of "1 time(s)".
+
 ## Talk in their own voices
 
 *23 October 2026, version 0.10.13*

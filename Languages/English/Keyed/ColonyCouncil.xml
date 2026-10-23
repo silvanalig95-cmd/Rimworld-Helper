@@ -1552,7 +1552,9 @@ Keys: the game's "slower" key ({0}) steps below normal speed, "faster" ({1}) ste
   <CC_Cause_Trust>lately, with the council:\n{0}</CC_Cause_Trust>
 
   <!-- Decree fatigue: the same decree again, or forced through its cooldown -->
-  <CC_Decree_FatigueWarn>Enacted {0} time(s) in the last {1} days. Enacting it again costs the trust of those against it and makes them resent it more, with a {2} chance someone snaps.</CC_Decree_FatigueWarn>
+  <CC_Decree_FatigueWarn>Enacted {TIMES} in the last {DAYS} days, so it's safe to enact again in {SAFE}. Enacting it before then costs the trust of those against it and makes them resent it more, with a {CHANCE} chance someone snaps.</CC_Decree_FatigueWarn>
+  <CC_Decree_UsedOnce>once</CC_Decree_UsedOnce>
+  <CC_Decree_UsedTimes>{0} times</CC_Decree_UsedTimes>
   <CC_Decree_Force>Force it through</CC_Decree_Force>
   <CC_Decree_ForceTip>People aren't ready for this again yet. You can push it through anyway: those against it lose trust in the council and resent it more for every recent time, and there's a {0} chance someone snaps.</CC_Decree_ForceTip>
   <CC_Decree_ForceNobody>nobody yet</CC_Decree_ForceNobody>

@@ -345,6 +345,15 @@ namespace ColonyCouncil
             return n;
         }
 
+        /// <summary>Ticks until its last use this month is a month old and enacting it costs nothing extra; 0 when it already doesn't.</summary>
+        public int TicksUntilFresh(DecreeDef def)
+        {
+            int now = Find.TickManager.TicksGame, window = Mathf.RoundToInt(FatigueDays * GenDate.TicksPerDay), left = 0;
+            for (int i = 0; i < useDefs.Count; i++)
+                if (useDefs[i] == def.defName && now - useTicks[i] < window) left = Mathf.Max(left, useTicks[i] + window - now);
+            return left;
+        }
+
         /// <summary>The chance that someone snaps when it's enacted (again, or forced through its cooldown).</summary>
         public float UnrestChance(DecreeDef def, bool force)
         {

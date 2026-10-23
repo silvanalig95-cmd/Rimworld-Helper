@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.14</version>
+        <date>23 October 2026</date>
+        <title>Messages you can read</title>
+        <points>
+          <li>The game's messages at the top left are drawn over the on-screen panels, and were hard to read over a panel's own lines. Where a message lies over a panel, the panel is now painted dark beneath it, fading with the message.</li>
+          <li>A decree used lately says on its card in how many days it's safe to enact again, and "used once" or "used 3 times" instead of "1 time(s)".</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.13</version>
         <date>23 October 2026</date>
         <title>Talk in their own voices</title>

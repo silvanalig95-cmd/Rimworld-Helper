@@ -365,7 +365,7 @@ and sends bread to the hungry people). A decree for another era or ideoligion is
 There's no hard limit on repeating a decree, but there is a price. Enact the same one again within a month, or
 **force it through** before its cooldown is over, and those against it lose more trust and resent it more each
 time. Someone may even snap: the hot-tempered throw a tantrum, others wander off in a daze. The tab warns you how
-many times a decree was used lately and how likely trouble is.
+many times a decree was used lately, how likely trouble is, and in how many days it's safe to enact again.
 
 ### Our ways: the colony's character
 The council's choices add up. Every dilemma answer, decree and many granted wishes nudge the colony's five ways:

@@ -277,6 +277,7 @@ namespace ColonyCouncil
             // Behind another window where the mouse is: the clicks, drags and wheel are that window's, never the panel's.
             if ((cur.isMouse || cur.type == EventType.ScrollWheel) && !dragging && !scrollDragging && Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted) != this) return;
             Contents(false);
+            HudMessages.Under(windowRect);
         }
 
         /// <summary>Whether the early pass painted this panel this frame (if not, the window paints it, as a fallback).</summary>
@@ -294,6 +295,8 @@ namespace ColonyCouncil
             try
             {
                 Contents(true);
+                // The game's messages are drawn over the panel later: a dark strip beneath them keeps them readable.
+                HudMessages.Under(frame);
             }
             finally
             {

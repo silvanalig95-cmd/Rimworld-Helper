@@ -118,7 +118,9 @@ namespace ColonyCouncil
                 : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
             int fatigue = active == null ? tracker.Fatigue(def) : 0;
             l.warning = fatigue > 0
-                ? "CC_Decree_FatigueWarn".Translate(fatigue, Mathf.RoundToInt(DecreeTracker.FatigueDays), tracker.UnrestChance(def, tracker.OnCooldown(def)).ToStringPercent()).Resolve()
+                ? "CC_Decree_FatigueWarn".Translate((fatigue == 1 ? "CC_Decree_UsedOnce".Translate() : "CC_Decree_UsedTimes".Translate(fatigue)).Named("TIMES"),
+                    Mathf.RoundToInt(DecreeTracker.FatigueDays).Named("DAYS"), tracker.UnrestChance(def, tracker.OnCooldown(def)).ToStringPercent().Named("CHANCE"),
+                    TextUtil.DaysString(tracker.TicksUntilFresh(def)).Named("SAFE")).Resolve()
                 : null;
             for (int i = 0; i < Reactions.Length; i++)
             {
