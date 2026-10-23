@@ -12,12 +12,12 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} knows how I take my tea now, and I know which side of the bed {OTHER_pronoun} gets out of in a bad mood.</li>
-        <li>Worked a whole shift next to {OTHER_nameDef} and the day went by in no time.</li>
+        <li>Worked the afternoon next to {OTHER_nameDef}. It went by in no time.</li>
       </plain>
       <warm><li>I've a friend in {OTHER_nameDef}. It's been a while since I could say that and mean it.</li></warm>
       <blunt><li>{OTHER_nameDef} and me get on. That's rare. I'll keep it.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} saved me the crispy end of the bread without being asked. That's friendship!</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} and I are friends now. I keep waiting for it to go wrong, and it hasn't.</li></gloomy>
+      <cheerful><li>{OTHER_nameDef} saved me the crispy end of the bread without being asked!</li></cheerful>
+      <gloomy><li>Friends with {OTHER_nameDef}. I give it a season.</li></gloomy>
       <cold><li>{OTHER_nameDef} and I understand each other. That's worth more here than most things in the stockpile.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -32,8 +32,8 @@
       </plain>
       <warm><li>I don't know what I did to {OTHER_nameDef}. I'd fix it if I could work it out.</li></warm>
       <blunt><li>{OTHER_nameDef} and me. Not friends. Never will be.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} and I are rivals now, apparently. I'm going to be the friendliest rival {OTHER_pronoun} ever had!</li></cheerful>
-      <gloomy><li>Something about {OTHER_nameDef} sets my teeth on edge, and I've stopped pretending otherwise.</li></gloomy>
+      <cheerful><li>Rivals with {OTHER_nameDef} now! I already beat {OTHER_objective} at hauling stone today, and {OTHER_nameDef} didn't know it was a race.</li></cheerful>
+      <gloomy><li>The way {OTHER_nameDef} chews sets my teeth on edge. I'm not proud of it.</li></gloomy>
       <cold><li>{OTHER_nameDef} wants a contest. {OTHER_nameDef} will get one, on my terms.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -43,13 +43,13 @@
     <pool>Council_Journal_TieFormed_Comrades</pool>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} shouted a warning at the right moment today. I'm still here because of it.</li>
+        <li>{OTHER_nameDef} kept count of how many were left and called it out to me. I'd never have kept track alone.</li>
         <li>We counted heads after the fight, {OTHER_nameDef} and I, and then sat down together without a word.</li>
       </plain>
       <warm><li>When it was over I looked for {OTHER_nameDef} first, and {OTHER_nameDef} was already looking for me.</li></warm>
       <blunt><li>{OTHER_nameDef} held. I held. We're square.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} and I came through it together, and we've already started arguing over who saved whom!</li></cheerful>
-      <gloomy><li>{OTHER_nameDef} and I stood together today while things went to pieces around us. I'll not forget {OTHER_possessive} face.</li></gloomy>
+      <cheerful><li>We came through it together, {OTHER_nameDef} and I, and we're already arguing over who saved whom!</li></cheerful>
+      <gloomy><li>Things went to pieces around us today, and {OTHER_nameDef} stood next to me through all of it. I'll not forget {OTHER_possessive} face.</li></gloomy>
       <cold><li>{OTHER_nameDef} kept {OTHER_possessive} head. Few do. I'll remember who to stand next to.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -65,7 +65,7 @@
       <warm><li>{OTHER_nameDef} asked me to teach {OTHER_objective} {SKILL}. I said yes before {OTHER_pronoun} finished asking.</li></warm>
       <blunt><li>Teaching {OTHER_nameDef} {SKILL}. Slow going. Will improve.</li></blunt>
       <cheerful><li>My student did {SKILL} without my help for a whole minute today! We celebrated with an extra biscuit.</li></cheerful>
-      <gloomy><li>Teaching {OTHER_nameDef} {SKILL}. I hope I'm better at teaching it than I was at learning it.</li></gloomy>
+      <gloomy><li>I hope I'm better at teaching {SKILL} than I was at learning it. {OTHER_nameDef} deserves that.</li></gloomy>
       <cold><li>{OTHER_nameDef} has potential in {SKILL}. Potential is cheap. We'll see what work makes of it.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -75,13 +75,13 @@
     <pool>Council_Journal_TieFormed_Student</pool>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} makes me do every step of {SKILL} twice, slowly. It's maddening, and it's working.</li>
+        <li>{OTHER_nameDef} makes me do every step of {SKILL} twice, slowly. Maddening.</li>
         <li>Asked {OTHER_nameDef} why we do every step in that order. {OTHER_nameDef} said I'd find out. I did, the hard way.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} is patient with me, more patient than I'd be. I'm learning {SKILL} and something else besides.</li></warm>
-      <blunt><li>More {SKILL} with {OTHER_nameDef}. Hands sore. Head full.</li></blunt>
+      <warm><li>{OTHER_nameDef} is more patient with me than I'd be. I'll learn {SKILL} if only to deserve it.</li></warm>
+      <blunt><li>More {SKILL} with {OTHER_nameDef}. Head full.</li></blunt>
       <cheerful><li>I did one thing right at {SKILL} today and {OTHER_nameDef} said "good." Just "good." I'm framing it!</li></cheerful>
-      <gloomy><li>Another lesson in {SKILL} with {OTHER_nameDef}. I'm still slow, but slower at fewer things.</li></gloomy>
+      <gloomy><li>Lessons in {SKILL} with {OTHER_nameDef} from now on. I'll be slow. I'm always slow at first.</li></gloomy>
       <cold><li>{OTHER_nameDef} teaches well. I intend to know {SKILL} as well as {OTHER_pronoun} does by the end of the season.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -95,9 +95,9 @@
         <li>I went to tell {OTHER_nameDef} something today, then didn't. It used to be the first thing I'd do.</li>
       </plain>
       <warm><li>I'll always be fond of {OTHER_nameDef}, even if we don't see much of each other now.</li></warm>
-      <blunt><li>{OTHER_nameDef} and I drifted. It happens.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} and I aren't as close as we were, but I still save {OTHER_objective} a smile at supper!</li></cheerful>
-      <gloomy><li>Nobody fought. It just went, the way most things go.</li></gloomy>
+      <blunt><li>Drifted from {OTHER_nameDef}. Neither of us is sorry enough to fix it.</li></blunt>
+      <cheerful><li>We aren't as close as we were, {OTHER_nameDef} and I, but I still save {OTHER_objective} a smile at supper!</li></cheerful>
+      <gloomy><li>We never fought. It just went, the way most things go here.</li></gloomy>
       <cold><li>{OTHER_nameDef} and I have drifted. It costs me nothing I can't do without.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -110,11 +110,11 @@
         <li>{OTHER_nameDef} asked my advice today, and I gave it straight. It felt like setting down something heavy.</li>
         <li>Ate supper across from {OTHER_nameDef} and neither of us said anything sharp. That's new.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} and I shook hands today. I hope it holds. I think it will.</li></warm>
+      <warm><li>Shook hands with {OTHER_nameDef} today. I hope it holds. I think it will.</li></warm>
       <blunt><li>Stopped fighting {OTHER_nameDef}. Didn't stop disliking {OTHER_objective}. Close enough.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} and I agreed about something at supper and the whole table went quiet!</li></cheerful>
+      <cheerful><li>{OTHER_nameDef} and I agreed about the stew at supper, and the whole table went quiet!</li></cheerful>
       <gloomy><li>The feud with {OTHER_nameDef} has worn itself out, and so have I.</li></gloomy>
-      <cold><li>{OTHER_nameDef} and I have reached an understanding. Rivalry was costing us both.</li></cold>
+      <cold><li>An understanding with {OTHER_nameDef}, at last. The rivalry was costing us both.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -123,13 +123,13 @@
     <pool>Council_Journal_TieEnded_Comrades</pool>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} and I nodded to each other across the yard. That's about all that's left of the wall.</li>
+        <li>{OTHER_nameDef} and I nodded to each other across the yard. That's about all that's left of what we had in the fighting.</li>
         <li>It's been quiet long enough that {OTHER_nameDef} and I have gone back to our own lives.</li>
       </plain>
       <warm><li>I don't see much of {OTHER_nameDef} now. I'd still stand beside {OTHER_objective} if it came to it.</li></warm>
       <blunt><li>Fight's long over. So is that.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} and I have nothing to fight together these days, and I'm not complaining!</li></cheerful>
-      <gloomy><li>What {OTHER_nameDef} and I shared on the wall is fading. It'll come back when the next lot comes.</li></gloomy>
+      <cheerful><li>Nothing to fight these days, {OTHER_nameDef} and me, and I'm not complaining!</li></cheerful>
+      <gloomy><li>What {OTHER_nameDef} and I shared in the fighting is fading. It'll come back when the next lot comes.</li></gloomy>
       <cold><li>The bond with {OTHER_nameDef} has cooled, as these do between fights.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -144,7 +144,7 @@
       </plain>
       <warm><li>Teaching {OTHER_nameDef} didn't work out. I'll still answer any question {OTHER_pronoun} brings me.</li></warm>
       <blunt><li>Lessons with {OTHER_nameDef} are off. Moving on.</li></blunt>
-      <cheerful><li>{OTHER_nameDef} and I gave {SKILL} our best shot! Now we know, and nobody lost a finger.</li></cheerful>
+      <cheerful><li>We gave {SKILL} our best shot, {OTHER_nameDef} and I! We're both better at other things.</li></cheerful>
       <gloomy><li>Gave up teaching {OTHER_nameDef}. I'm not sure who failed whom.</li></gloomy>
       <cold><li>The arrangement with {OTHER_nameDef} has ended. I'll choose the next student more carefully.</li></cold>
     </lines>
@@ -188,9 +188,9 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} handed me a job in {SKILL} today and didn't check on me once.</li>
-        <li>I finished my first {SKILL} work with nobody watching. I showed {OTHER_nameDef} anyway.</li>
+        <li>Went to ask {OTHER_nameDef} a question about {SKILL} and answered it myself on the way.</li>
       </plain>
-      <warm><li>{OTHER_nameDef} gave me more than {SKILL}. I'll try to be the kind of teacher {OTHER_pronoun} was.</li></warm>
+      <warm><li>{OTHER_nameDef} never once made me feel stupid. I'll remember that when it's my turn to teach {SKILL}.</li></warm>
       <blunt><li>Done learning from {OTHER_nameDef}. Not done learning.</li></blunt>
       <cheerful><li>No more lessons! I celebrated by doing {SKILL} all afternoon, just for fun.</li></cheerful>
       <gloomy><li>The lessons are over. I'll miss {OTHER_nameDef} being the one who knows what to do.</li></gloomy>
@@ -207,10 +207,10 @@
         <li>Did {OTHER_nameDef}'s chores as well as mine today. I didn't want anyone else to do them.</li>
       </plain>
       <warm><li>I'll keep {OTHER_nameDef}'s name in my mouth, so the newcomers know {OTHER_pronoun} was here.</li></warm>
-      <blunt><li>Missing {OTHER_nameDef}. Every day.</li></blunt>
+      <blunt><li>Missing {OTHER_nameDef}.</li></blunt>
       <cheerful><li>Told the children the funniest thing {OTHER_nameDef} ever did. They laughed, and so did I, mostly.</li></cheerful>
-      <gloomy><li>The days keep coming without {OTHER_nameDef} in them. I don't know what to do with them.</li></gloomy>
-      <cold><li>{OTHER_nameDef} is buried. I've been sleeping badly, which isn't like me.</li></cold>
+      <gloomy><li>Tomorrow comes without {OTHER_nameDef} in it. Then the day after.</li></gloomy>
+      <cold><li>I slept badly, which isn't like me. {OTHER_nameDef}, I suppose.</li></cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -219,8 +219,8 @@
     <pool>Council_Journal_RivalLost</pool>
     <lines>
       <plain>
-        <li>Nobody moved my tools today. I keep looking for them in the wrong place anyway.</li>
-        <li>I went to the funeral. I stood at the back. I'm not sure {OTHER_nameDef} would have wanted me there, but I went.</li>
+        <li>My tools were right where I left them today. I looked in the wrong place first, out of habit.</li>
+        <li>When they bury {OTHER_nameDef} I'll stand at the back. I'm not sure {OTHER_nameDef} would want me there, but I'll go.</li>
       </plain>
       <warm><li>I hope {OTHER_nameDef} knew I never wished {OTHER_objective} harm. Not really.</li></warm>
       <blunt><li>{OTHER_nameDef}'s dead. Nothing left to win.</li></blunt>

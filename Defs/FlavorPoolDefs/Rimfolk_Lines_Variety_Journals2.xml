@@ -30,7 +30,7 @@
         <li>[good] Fought {OTHER_nameDef} today, fair and square. Afterward {OTHER_nameDef} helped me up.</li>
         <li>[bad] {OTHER_nameDef} hit me first. I don't remember what I said to deserve it, which worries me.</li>
         <li>[bad] Fought with {OTHER_nameDef} in front of the others. I'm more ashamed of that than of the bruise.</li>
-        <li>[bad] {OTHER_nameDef} and I fought, and nobody won. Two sore faces and the same argument.</li>
+        <li>[bad] A fight with {OTHER_nameDef}, and neither of us won. Two sore faces and the same argument.</li>
         <li>[bad] My hand still hurts from {OTHER_nameDef}'s jaw. It was a stupid fight about a stupid thing.</li>
       </plain>
       <warm>
@@ -71,7 +71,7 @@
         <li>{OTHER_nameDef} made fun of my hat, so I wore it to supper on purpose. Twice the hat.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} was joking. Everyone keeps saying so.</li>
+        <li>{OTHER_nameDef} was only joking. I've been told so four times today.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} needs an audience for the jokes. I'll see that there isn't one.</li>
@@ -85,7 +85,7 @@
     <lines>
       <plain>
         <li>Somebody told me what {OTHER_nameDef} said about me. I wish they hadn't.</li>
-        <li>{OTHER_nameDef} has been talking. Half the colony knew before I did.</li>
+        <li>The cook knew before I did. {OTHER_nameDef} has been talking.</li>
         <li>Walked in on {OTHER_nameDef} telling a story about me. It was mostly wrong, and I didn't correct it.</li>
       </plain>
       <warm>
@@ -98,7 +98,7 @@
         <li>{OTHER_nameDef} has been spreading stories about me, and they're more exciting than my real life.</li>
       </cheerful>
       <gloomy>
-        <li>Everyone's heard it by now. I can tell by the way they look at me.</li>
+        <li>They've all heard it by now. I can tell by the way they look at me at supper.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} can't keep a thing to {OTHER_objective}self. That cuts both ways.</li>
@@ -165,7 +165,7 @@
     <pool>Council_Journal_Day_Magic_Shop</pool>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} and I went over who stands where when the next fight comes. We agreed, mostly.</li>
+        <li>Went over who stands where with {OTHER_nameDef}, for when the next fight comes. We agreed, mostly.</li>
         <li>[mage] Showed {OTHER_nameDef} how I shape a working. {OTHER_nameDef} asked better questions than most students.</li>
       </plain>
       <warm>
@@ -178,7 +178,7 @@
         <li>{OTHER_nameDef} and I worked out a signal for the next fight. It's a sort of whistle, and I'm very proud of it.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} and I planned for the worst. It's what we're good at.</li>
+        <li>Planned for the worst with {OTHER_nameDef}. We're both good at that.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -190,9 +190,9 @@
     <pool>Council_Journal_Granted</pool>
     <lines>
       <plain>
-        <li>[spring] Spring, and "{WISH}" is done. Feels like everything's starting at once.</li>
+        <li>[spring] Spring, and "{WISH}" is done. I whistled the whole way back from the fields.</li>
         <li>[spring] They saw to "{WISH}" between the planting and the rain. I don't know how they found the time.</li>
-        <li>[spring] New shoots in the fields and "{WISH}" crossed off my list. Good week.</li>
+        <li>[spring] New shoots in the fields, and "{WISH}" done. Good week.</li>
         <li>[summer] Long hot day, and at the end of it, "{WISH}". I sat with it until the light went.</li>
         <li>[summer] They did it in the middle of the busiest season. I noticed.</li>
         <li>[summer] "{WISH}" is done. I've been in a good mood all day, and the heat hasn't spoiled it.</li>
@@ -208,20 +208,20 @@
         <li>They said yes to "{WISH}". I want to give something back, and I'm thinking about what.</li>
       </warm>
       <blunt>
-        <li>Asked. Waited. Got it.</li>
+        <li>Got it. Didn't even have to ask twice.</li>
         <li>They did "{WISH}". Took a while. Done now.</li>
       </blunt>
       <cheerful>
         <li>"{WISH}" happened. I've told everyone, and the animals too.</li>
-        <li>They said yes. I did a small dance in the storeroom where nobody could see.</li>
+        <li>They said yes. I hugged the doorframe.</li>
       </cheerful>
       <gloomy>
         <li>They came through on "{WISH}". I'll enjoy it before something comes along to take it.</li>
         <li>Got what I asked for. I don't quite know what to do with being happy.</li>
       </gloomy>
       <cold>
-        <li>Request fulfilled. I'll remember who argued for it.</li>
-        <li>"{WISH}" delivered. The council has earned a little patience from me.</li>
+        <li>They argued about it, I hear. I'll remember who was on which side.</li>
+        <li>"{WISH}" delivered, close to when they said. Noted in their favor.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -234,24 +234,24 @@
         <li>[spring] They came through the new crops. Half the field is trampled flat.</li>
         <li>[spring] Fought in the mud. I lost a boot in it and haven't found it.</li>
         <li>[spring] They came on the first warm day. I'd been looking forward to that day.</li>
-        <li>[summer] Fighting in the heat. Afterward we drank the well half dry.</li>
+        <li>[summer] Fighting in the heat. Afterward we drank the water barrel dry.</li>
         <li>[summer] They came at dusk, out of the long grass. We'll cut it back tomorrow.</li>
         <li>[summer] Sweat and smoke all afternoon. I can still taste both.</li>
         <li>[fall] They came for the harvest. They didn't get it.</li>
-        <li>[fall] Fought in the rain among the fallen leaves. Couldn't tell blood from mud by the end.</li>
-        <li>[fall] Raiders before the frost, as if they knew our stores were full.</li>
-        <li>[winter] They came over the frozen ground, and we held them at the wall.</li>
-        <li>[winter] Fought in the cold until my fingers wouldn't close. Someone had to pry the weapon out of my hand.</li>
+        <li>[fall] Fought among the fallen leaves. By the end I couldn't tell blood from mud.</li>
+        <li>[fall] They came before the frost, as if they knew our stores were full.</li>
+        <li>[winter] They came over the frozen ground. We held.</li>
+        <li>[winter] My fingers wouldn't close by the end of it. Someone had to pry the weapon out of my hand.</li>
         <li>[winter] Short day, long fight. It was dark before we'd counted everyone.</li>
       </plain>
       <warm>
-        <li>We carried the wounded in between us, two to a stretcher, and nobody was left out there.</li>
+        <li>We carried the hurt ones in between us, two to a stretcher.</li>
       </warm>
       <blunt>
         <li>Fought. Won. Need sleep.</li>
       </blunt>
       <cheerful>
-        <li>We're all still here, and the stew survived too.</li>
+        <li>The stew survived, and so did I.</li>
       </cheerful>
       <gloomy>
         <li>We won today. I don't feel like it.</li>
@@ -289,7 +289,7 @@
         <li>I counted the days down to nothing. Next time I won't count.</li>
       </gloomy>
       <cold>
-        <li>A broken promise is information. I have it now.</li>
+        <li>A broken promise. I've written down the date, and the names.</li>
         <li>The council's word has a price. I've just learned what it is.</li>
       </cold>
     </lines>
@@ -301,11 +301,11 @@
     <lines>
       <plain>
         <li>They told me "{WISH}" was coming, and it came. That's all I ever wanted from them.</li>
-        <li>Promise kept. I've stopped half listening when they speak at meetings.</li>
+        <li>Promise kept. Next time they speak at a meeting, I'll listen properly.</li>
         <li>[trusting] I said they'd keep it, and they did. I told the doubters at supper.</li>
       </plain>
       <warm>
-        <li>They kept their word. I'll keep mine, the next time they need me.</li>
+        <li>Kept their word. I'd have carried water for them all week for it.</li>
       </warm>
       <blunt>
         <li>Said. Done. Good council.</li>
@@ -314,10 +314,10 @@
         <li>They kept their promise, so I'm keeping mine: an extra slice of pie for everyone who helped.</li>
       </cheerful>
       <gloomy>
-        <li>They kept it. I'm a little ashamed of how sure I was that they wouldn't.</li>
+        <li>They kept it. I'm ashamed of how sure I was that they wouldn't.</li>
       </gloomy>
       <cold>
-        <li>Promise honored. Noted, with the date.</li>
+        <li>Kept, and on time. Noted.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -328,7 +328,7 @@
     <lines>
       <plain>
         <li>Not a yes, not a no: "{WISH}" just ran out of days.</li>
-        <li>The time ran out on my request. I only noticed because I'd been counting.</li>
+        <li>I only noticed it had lapsed because I'd been counting the days.</li>
         <li>[trusting] I'm sure they meant to get to it. They didn't.</li>
       </plain>
       <warm>
@@ -338,13 +338,13 @@
         <li>Too slow. Forget it.</li>
       </blunt>
       <cheerful>
-        <li>Missed my chance this time. There's always next season.</li>
+        <li>Missed my chance this time. I'll ask again when the weather's better, and louder.</li>
       </cheerful>
       <gloomy>
-        <li>It came to nothing. Most things do, if you wait long enough.</li>
+        <li>Another thing I wanted, gone past. I've stopped keeping a list.</li>
       </gloomy>
       <cold>
-        <li>Lapsed. Silence is an answer, and I've taken it as one.</li>
+        <li>Lapsed. I'll take my next request to whoever actually gets things done.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -354,8 +354,8 @@
     <pool>Council_Journal_Refused</pool>
     <lines>
       <plain>
-        <li>They said no to "{WISH}". At least they said something.</li>
-        <li>Refused. They gave a reason, and it was even a decent one. I'm still annoyed.</li>
+        <li>A no on "{WISH}". At least they said something.</li>
+        <li>Refused. I nodded the whole time, then kicked a bucket on the way out.</li>
         <li>[trusting] The council said no. I suppose they know something I don't.</li>
       </plain>
       <warm>
@@ -392,13 +392,13 @@
         <li>{OTHER_nameDef}. Gone. Can't write more.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} laughed louder than anyone. I'll laugh louder for both of us, when I can.</li>
+        <li>{OTHER_nameDef} had the loudest laugh at the table. I keep waiting to hear it.</li>
       </cheerful>
       <gloomy>
         <li>The colony feels smaller without {OTHER_nameDef}, and colder.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef}'s tools are still where {OTHER_pronoun} left them. Nobody wants to move them, me included.</li>
+        <li>{OTHER_nameDef}'s tools are still where {OTHER_pronoun} left them. I'll move them when it's useful to. Not yet.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -418,7 +418,7 @@
       </warm>
       <blunt>
         <li>Didn't wait. Did it.</li>
-        <li>Nobody else was going to. So I did.</li>
+        <li>Wasn't going to wait on anyone else. So I did it.</li>
       </blunt>
       <cheerful>
         <li>Did it myself and it turned out better than I'd hoped. I'm a genius, occasionally.</li>
@@ -430,7 +430,7 @@
       </gloomy>
       <cold>
         <li>Handled it without the council. I'll keep doing that where I can.</li>
-        <li>Done myself, done right. That's the lesson.</li>
+        <li>Done myself, done right, done by noon.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

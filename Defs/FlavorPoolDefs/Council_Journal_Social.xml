@@ -7,34 +7,34 @@
     <defName>Council_Journal_TieFormed_Friends</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} saved me a seat at dinner again. I think we're friends now. I didn't notice it happening.</li>
-        <li>Talked with {OTHER_nameDef} late into the night about nothing much. I'd missed having someone to do that with.</li>
-        <li>[winter] Long cold nights go faster with {OTHER_nameDef} around. I'm glad {OTHER_pronoun}'s here.</li>
+        <li>{OTHER_nameDef} saved me a seat at dinner again. Third time this week.</li>
+        <li>Up late talking with {OTHER_nameDef} about nothing. Boots, mostly.</li>
+        <li>[winter] Played knucklebones with {OTHER_nameDef} until the candle gave out. The winter nights go quicker like that.</li>
         <li>[summer] {OTHER_nameDef} and I sat out on the step after supper and watched the sun go down.</li>
         <li>{OTHER_nameDef} noticed I'd gone quiet today and sat with me until I wasn't.</li>
-        <li>Lent {OTHER_nameDef} my good knife without thinking twice. That's how I knew.</li>
-        <li>[trait:Abrasive] {OTHER_nameDef} laughs at my worst jokes and ignores my worst moods. I have no idea why, and I'm not going to ask.</li>
-        <li>[rain] Stuck indoors all day with {OTHER_nameDef}, and it was the best day in weeks.</li>
+        <li>Lent {OTHER_nameDef} my good knife and didn't ask when I'd get it back.</li>
+        <li>[trait:Abrasive] I snapped at {OTHER_nameDef} twice today, and {OTHER_nameDef} still sat next to me at supper.</li>
+        <li>[rain] Rain all day. {OTHER_nameDef} and I mended sacks by the door and talked till dark.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} is a real friend. I wanted to write that down somewhere, so here it is.</li>
-        <li>{OTHER_nameDef} mended my coat without being asked. I didn't even know {OTHER_pronoun} had noticed the tear.</li>
+        <li>{OTHER_nameDef} is a good friend to me. I wanted it written down.</li>
+        <li>{OTHER_nameDef} mended my coat without being asked. Small, neat stitches, better than mine.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef}'s all right. Better than all right. Don't tell {OTHER_objective} I said so.</li>
-        <li>Friends with {OTHER_nameDef} now, apparently. Fine by me.</li>
+        <li>{OTHER_nameDef}'s all right. Don't tell {OTHER_objective}.</li>
+        <li>Friends with {OTHER_nameDef} now. Fine by me.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} and I already have our own joke, about the potatoes! The others don't get it.</li>
+        <li>{OTHER_nameDef} and I have our own joke now, about the potatoes! The others don't get it.</li>
         <li>We made up a secret handshake, {OTHER_nameDef} and me. It has eleven steps, and I keep forgetting the ninth!</li>
       </cheerful>
       <gloomy>
-        <li>I've let myself get attached to {OTHER_nameDef}. I should know better by now.</li>
+        <li>Got attached to {OTHER_nameDef}. Should know better by now.</li>
         <li>{OTHER_nameDef} is my friend now. One more person to worry about when the raiders come.</li>
       </gloomy>
       <cold>
-        <li>{OTHER_nameDef} has proved reliable and good company. I will treat the friendship as an asset worth protecting.</li>
-        <li>{OTHER_nameDef} seems to think we're close. I'll let {OTHER_objective} keep thinking so. It's convenient.</li>
+        <li>{OTHER_nameDef}: reliable, discreet, good company. Worth keeping.</li>
+        <li>{OTHER_nameDef} thinks we're close. I haven't corrected {OTHER_objective}.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -44,24 +44,24 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} has an opinion about everything I do, down to how I stack the firewood.</li>
-        <li>I can't be in the same room as {OTHER_nameDef} anymore. One of us is going to have to eat somewhere else, and it won't be me.</li>
+        <li>Can't be in a room with {OTHER_nameDef} anymore. One of us will have to eat elsewhere, and it won't be me.</li>
         <li>[trait:Abrasive] {OTHER_nameDef} says I'm the problem. That's rich, coming from {OTHER_objective}.</li>
-        <li>{OTHER_nameDef} moved my tools again, to the one shelf I never use. I know it was on purpose.</li>
-        <li>Every time I speak at dinner, {OTHER_nameDef} sighs. I've started counting.</li>
-        <li>[trait:Kind] I keep trying to be nice to {OTHER_nameDef}, and it keeps bouncing off. I brought {OTHER_objective} tea this morning and {OTHER_pronoun} poured it out.</li>
+        <li>Tools moved again, to the top shelf this time. {OTHER_nameDef} swears it wasn't {OTHER_objective}.</li>
+        <li>Eleven sighs from {OTHER_nameDef} at dinner. I counted.</li>
+        <li>[trait:Kind] Brought {OTHER_nameDef} tea this morning and watched it get tipped out on the step.</li>
         <li>[winter] Snowed in until spring with {OTHER_nameDef}, who hums while {OTHER_pronoun} works.</li>
       </plain>
       <warm>
-        <li>I tried with {OTHER_nameDef}. I really did. We just bring out the worst in each other.</li>
-        <li>I wish {OTHER_nameDef} and I had started differently. We didn't, and I can't find the way back.</li>
+        <li>I tried with {OTHER_nameDef}, I really did. We bring out the worst in each other.</li>
+        <li>If I could take back the first thing I ever said to {OTHER_nameDef}, I would.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} is a pain. I'm done pretending otherwise.</li>
-        <li>{OTHER_nameDef} thinks I'm useless. I think worse of {OTHER_nameDef}. Neither of us is changing our mind.</li>
+        <li>{OTHER_nameDef}. Ugh.</li>
+        <li>{OTHER_nameDef} thinks I'm useless. I think worse of {OTHER_objective}.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} doesn't like me. That's all right! I'll just be twice as cheerful at {OTHER_objective}.</li>
-        <li>{OTHER_nameDef} glared at me all through breakfast, so I waved. That made it worse!</li>
+        <li>{OTHER_nameDef} glared at me all through breakfast, so I waved. That made it worse.</li>
       </cheerful>
       <gloomy>
         <li>Of course {OTHER_nameDef} and I can't get along. I don't get along with anyone for long.</li>
@@ -78,18 +78,18 @@
     <defName>Council_Journal_TieFormed_Comrades</defName>
     <lines>
       <plain>
-        <li>{OTHER_nameDef} was next to me when they came over the wall. I'd trust {OTHER_objective} with my life now.</li>
-        <li>Held the gap in the north wall with {OTHER_nameDef} until it was over.</li>
-        <li>{OTHER_nameDef} covered me while I dragged the wounded back from the wall. We haven't talked about it since.</li>
-        <li>[afterraid] {OTHER_nameDef} sat beside me while I washed the blood off my hands and didn't say a word. I was grateful for that.</li>
+        <li>{OTHER_nameDef} was next to me when they came at us. I'd trust {OTHER_objective} with my life now.</li>
+        <li>Shared cover with {OTHER_nameDef} until it was over. By the end we were breathing in time.</li>
+        <li>{OTHER_nameDef} shouted when I didn't see the one on my left. That shout is why I'm writing this.</li>
+        <li>[afterraid] {OTHER_nameDef} sat beside me at the washbasin afterward and didn't say a word.</li>
         <li>[trait:Bloodlust] {OTHER_nameDef} fights almost as well as I do. We should do this more often.</li>
       </plain>
       <warm>
         <li>{OTHER_nameDef} grabbed my collar and pulled me back behind cover just in time. I owe {OTHER_objective}.</li>
-        <li>When it was over, {OTHER_nameDef} checked on me before seeing to {OTHER_possessive} own wounds.</li>
+        <li>{OTHER_nameDef}'s hands were shaking worse than mine afterward. I held them till they stopped.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} can shoot, and {OTHER_pronoun} didn't run. That's all I need to know about a person.</li>
+        <li>{OTHER_nameDef} didn't run. That's enough for me.</li>
         <li>{OTHER_nameDef} watched my back and I watched {OTHER_possessive}.</li>
       </blunt>
       <cheerful>
@@ -98,11 +98,11 @@
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} saw what I saw today. At least I'm not the only one who'll dream about it.</li>
-        <li>{OTHER_nameDef} and I both came back from the wall this time. Next time one of us might not.</li>
+        <li>{OTHER_nameDef} and I both walked away from this one. Next time one of us might not.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} performed well under fire. I'll want {OTHER_objective} beside me next time.</li>
-        <li>{OTHER_nameDef} held position under fire without being told to. I've made a note of it.</li>
+        <li>{OTHER_nameDef} held position without being told to. I've made a note of it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -111,12 +111,12 @@
     <defName>Council_Journal_TieFormed_Mentor</defName>
     <lines>
       <plain>
-        <li>I've started teaching {OTHER_nameDef} {SKILL}. The questions never stop, which is a good sign.</li>
+        <li>Started teaching {OTHER_nameDef} {SKILL}. The questions don't stop. Good.</li>
         <li>{OTHER_nameDef} wants to learn {SKILL}. Someone taught me once. My turn.</li>
-        <li>{OTHER_nameDef} asked me about {SKILL} three times today. I'm enjoying this more than I expected.</li>
+        <li>{OTHER_nameDef} asked me about {SKILL} three times before lunch. I minded less than I thought I would.</li>
         <li>First proper lesson in {SKILL} with {OTHER_nameDef}. Most of it was unlearning what somebody else taught {OTHER_objective} wrong.</li>
         <li>[old] I'm not getting any younger, and someone should know {SKILL} when I can't. {OTHER_nameDef} will do nicely.</li>
-        <li>[trait:Abrasive] Teaching {OTHER_nameDef} {SKILL}. I've been told I'm a harsh teacher. {OTHER_nameDef} hasn't quit yet.</li>
+        <li>[trait:Abrasive] Made {OTHER_nameDef} go over the same bit of {SKILL} four times today. Not one complaint. I'm impressed, and I didn't say so.</li>
       </plain>
       <warm>
         <li>Teaching {OTHER_nameDef} {SKILL}. Seeing it click for someone else is better than doing it myself.</li>
@@ -124,11 +124,11 @@
       </warm>
       <blunt>
         <li>Taking on {OTHER_nameDef} as a student in {SKILL}. First sign of slacking, the lessons stop.</li>
-        <li>Told {OTHER_nameDef} the first rule of {SKILL}: do it until your hands know it. Then do it more.</li>
+        <li>Told {OTHER_nameDef} the first rule of {SKILL}: do it until you can do it without thinking. Then do it more.</li>
       </blunt>
       <cheerful>
         <li>I have a student! {OTHER_nameDef} wants to learn {SKILL}, and I've already planned the first ten lessons.</li>
-        <li>Lesson one in {SKILL} with {OTHER_nameDef} went better than I'd hoped!</li>
+        <li>Lesson one in {SKILL} with {OTHER_nameDef}! Nothing broke and nothing caught fire.</li>
       </cheerful>
       <gloomy>
         <li>Teaching {OTHER_nameDef} {SKILL}, so someone knows how when I'm gone.</li>
@@ -148,7 +148,7 @@
         <li>{OTHER_nameDef} has agreed to teach me {SKILL}. I'm going to be bad at it for a while.</li>
         <li>First lesson in {SKILL} with {OTHER_nameDef} today. I followed about half of it.</li>
         <li>{OTHER_nameDef} watched me make a mess of {SKILL} today and didn't laugh, just showed me again.</li>
-        <li>My hands hurt, my head hurts, and I know a tiny bit more {SKILL} than yesterday. {OTHER_nameDef} says that's how it goes.</li>
+        <li>Head aches. I know a tiny bit more {SKILL} than yesterday. {OTHER_nameDef} says that's how it goes.</li>
         <li>[trait:Abrasive] {OTHER_nameDef} wants to teach me {SKILL}. I said I already knew most of it. I don't. We'll see.</li>
         <li>[night] Up late practicing {SKILL}, because {OTHER_nameDef} said I'd get it eventually and I want eventually to be now.</li>
       </plain>
@@ -161,12 +161,12 @@
         <li>Lessons in {SKILL} from {OTHER_nameDef}. I'll listen, if {OTHER_pronoun} keeps it short.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} is going to teach me {SKILL}! I can't wait to start.</li>
+        <li>{OTHER_nameDef} is going to teach me {SKILL}! I've cleared three pages at the back of this book for notes.</li>
         <li>I asked {OTHER_nameDef} a hundred questions about {SKILL} today. {OTHER_nameDef} answered about forty of them, which is still a lot!</li>
       </cheerful>
       <gloomy>
         <li>Learning {SKILL} from {OTHER_nameDef}. I'll probably disappoint {OTHER_objective}. Trying anyway.</li>
-        <li>{OTHER_nameDef} makes {SKILL} look easy. I've been at it a week and I'm still slow and clumsy.</li>
+        <li>{OTHER_nameDef} makes {SKILL} look easy. I'm slow at it, and I'll be slow for a long time.</li>
       </gloomy>
       <cold>
         <li>Arranged training in {SKILL} under {OTHER_nameDef}. Efficient use of the evenings.</li>
@@ -188,22 +188,22 @@
       </plain>
       <warm>
         <li>I miss how things were with {OTHER_nameDef}. I hope {OTHER_pronoun}'s all right.</li>
-        <li>Whatever happened between {OTHER_nameDef} and me, I hope {OTHER_nameDef} knows the door's still open.</li>
+        <li>Whatever went wrong with {OTHER_nameDef}, my door's still open. I hope {OTHER_pronoun} knows that.</li>
       </warm>
       <blunt>
         <li>Not close with {OTHER_nameDef} anymore. Things change.</li>
         <li>Don't really talk to {OTHER_nameDef} now. No fight, no story.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} and I drifted apart, but people do. We'll still share a laugh now and then, I'm sure of it!</li>
-        <li>{OTHER_nameDef} still waves at me across the yard! We aren't close anymore, but I'll take a wave.</li>
+        <li>We drifted apart, {OTHER_nameDef} and I, but people do. We'll still share a laugh now and then, I'm sure of it!</li>
+        <li>{OTHER_nameDef} still waves at me across the yard. We aren't close anymore, but I'll take a wave!</li>
       </cheerful>
       <gloomy>
         <li>Lost {OTHER_nameDef} too, the slow way. We just stopped sitting together.</li>
-        <li>Another friendship worn away by the work and the cold. {OTHER_nameDef} doesn't even seem to notice.</li>
+        <li>Another friendship worn away by the work and the cold. {OTHER_nameDef} doesn't seem to notice.</li>
       </gloomy>
       <cold>
-        <li>The friendship with {OTHER_nameDef} has lapsed. Noted without sentiment.</li>
+        <li>The friendship with {OTHER_nameDef} has lapsed. Noted.</li>
         <li>My friendship with {OTHER_nameDef} has ended. I will reallocate the evenings.</li>
       </cold>
     </lines>
@@ -215,7 +215,7 @@
       <plain>
         <li>{OTHER_nameDef} passed me the salt today without being asked.</li>
         <li>I don't hate {OTHER_nameDef} anymore. I don't know when I stopped.</li>
-        <li>{OTHER_nameDef} said good morning to me today, and I said it back before I could stop myself. I think that means it's over.</li>
+        <li>{OTHER_nameDef} said good morning to me today, and I said it back before I could stop myself.</li>
         <li>I can't even remember what {OTHER_nameDef} and I were fighting about. A door left open, I think.</li>
         <li>[afterraid] Hard to keep hating {OTHER_nameDef} after today. We were shooting at the same people.</li>
         <li>[trait:Abrasive] No more fighting with {OTHER_nameDef}. Dinner is very dull now.</li>
@@ -225,12 +225,12 @@
         <li>I told {OTHER_nameDef} I was sorry for my part of it, and got a sorry back. I've felt lighter all day.</li>
       </warm>
       <blunt>
-        <li>Me and {OTHER_nameDef}: truce. For now.</li>
+        <li>Truce with {OTHER_nameDef}. We'll see how long.</li>
         <li>Done fighting with {OTHER_nameDef}. Too much work, and we've got enough of that.</li>
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} smiled at me today! Well, nearly.</li>
-        <li>{OTHER_nameDef} laughed at one of my jokes today, on purpose! We might even be friends one day.</li>
+        <li>{OTHER_nameDef} laughed at one of my jokes today, and meant it! We might even be friends one day.</li>
       </cheerful>
       <gloomy>
         <li>Too tired to stay angry at {OTHER_nameDef}. Too tired for most things lately.</li>
@@ -248,13 +248,13 @@
     <lines>
       <plain>
         <li>We don't talk about that fight anymore, {OTHER_nameDef} and I. We don't talk much at all.</li>
-        <li>I used to walk the wall after dark with {OTHER_nameDef}. We haven't in weeks. Things must be calmer.</li>
+        <li>I used to keep watch after dark with {OTHER_nameDef}. We haven't in weeks. Things must be calmer.</li>
         <li>Ran into {OTHER_nameDef} at the stockpile and we talked about the weather, like neighbors.</li>
         <li>[summer] A quiet summer. {OTHER_nameDef} and I hardly see each other now. No fighting, no reason.</li>
         <li>[trait:Bloodlust] It's been too long since {OTHER_nameDef} and I fought anyone together. We're both going soft.</li>
       </plain>
       <warm>
-        <li>The fight {OTHER_nameDef} and I came through together feels like a long time ago now. I'm glad it does.</li>
+        <li>The fight {OTHER_nameDef} and I came through together feels a long way off now. I'm glad it does.</li>
         <li>We don't lean on each other the way we did in the fighting, {OTHER_nameDef} and me. I'm grateful for that, and for {OTHER_objective}.</li>
       </warm>
       <blunt>
@@ -266,7 +266,7 @@
         <li>No raids lately, so {OTHER_nameDef} and I have nothing to talk about! I'll happily take that.</li>
       </cheerful>
       <gloomy>
-        <li>Even what {OTHER_nameDef} and I had on the wall has faded.</li>
+        <li>Even what {OTHER_nameDef} and I had in the fighting has faded.</li>
         <li>We're practically strangers again, {OTHER_nameDef} and I. The next raid will change that.</li>
       </gloomy>
       <cold>
@@ -282,7 +282,7 @@
       <plain>
         <li>No more {SKILL} lessons with {OTHER_nameDef}. It wasn't working.</li>
         <li>Called off the {SKILL} lessons with {OTHER_nameDef}. Maybe {OTHER_pronoun} needs a different teacher.</li>
-        <li>{OTHER_nameDef} stopped turning up for lessons. I waited an hour, then did the work myself.</li>
+        <li>{OTHER_nameDef} stopped turning up for lessons. I waited till the light went, then did the work myself.</li>
         <li>[trait:Kind] I had to stop teaching {OTHER_nameDef} {SKILL}. I said it wasn't a failure. I hope that was true.</li>
       </plain>
       <warm>
@@ -294,8 +294,8 @@
         <li>I quit teaching {OTHER_nameDef}. Nothing was sticking.</li>
       </blunt>
       <cheerful>
-        <li>The {SKILL} lessons with {OTHER_nameDef} are over. We gave it a good try, and we had fun!</li>
-        <li>{OTHER_nameDef} and I are taking a break from {SKILL}, possibly a long one. We'll still eat lunch together!</li>
+        <li>The {SKILL} lessons with {OTHER_nameDef} are over, and I learned plenty about teaching!</li>
+        <li>Taking a break from {SKILL}, {OTHER_nameDef} and I, possibly a long one. We'll still eat lunch together!</li>
       </cheerful>
       <gloomy>
         <li>Gave up on teaching {OTHER_nameDef}. Another thing I wasn't good enough at.</li>
@@ -364,11 +364,11 @@
       </cheerful>
       <gloomy>
         <li>{OTHER_nameDef} has learned everything I can teach. Someone will still know {SKILL} after I'm gone.</li>
-        <li>{OTHER_nameDef} doesn't need lessons anymore. I'll miss the evenings more than I'll admit.</li>
+        <li>The evenings with {OTHER_nameDef} are over. I'll miss them more than I'll admit.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} is now competent in {SKILL}. The colony no longer depends on me alone for it.</li>
-        <li>{OTHER_nameDef} has reached the required standard in {SKILL}. No further instruction needed. The time was well spent.</li>
+        <li>{OTHER_nameDef} has reached the standard I set in {SKILL}. Instruction ends here.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -393,10 +393,10 @@
       </blunt>
       <cheerful>
         <li>{OTHER_nameDef} says I'm ready to do {SKILL} on my own! I've already started three projects.</li>
-        <li>{OTHER_nameDef} says I don't need lessons anymore, so I made {OTHER_objective} a present. It's lumpy, but it's from the heart!</li>
+        <li>{OTHER_nameDef} says I don't need lessons anymore, so I made {OTHER_objective} a present. It's lumpy, and I'm very proud of it!</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} says I'm ready. Now when it goes wrong, it's all on me.</li>
+        <li>Ready, {OTHER_nameDef} says. Now when it goes wrong, it's all on me.</li>
         <li>{OTHER_nameDef} says I've learned all there is. I keep waiting for {OTHER_objective} to notice the mistake.</li>
       </gloomy>
       <cold>
@@ -411,15 +411,15 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} is gone. I keep turning around to tell {OTHER_objective} things.</li>
-        <li>We buried {OTHER_nameDef} today. I said a few words, and none of them were right.</li>
-        <li>{OTHER_nameDef}'s seat at the table is still empty. The others leave it that way without saying anything.</li>
+        <li>I keep trying to think what to say over {OTHER_nameDef}'s grave. None of it is right.</li>
+        <li>Supper tonight, and {OTHER_nameDef}'s stool empty. I couldn't stop looking at it.</li>
         <li>Found one of {OTHER_nameDef}'s buttons in my pocket today. I don't know how it got there. I'm keeping it.</li>
         <li>The others keep telling me {OTHER_nameDef} wouldn't want me to be sad. They didn't know {OTHER_objective} like I did. {OTHER_nameDef} would want me furious.</li>
-        <li>[winter] First snow without {OTHER_nameDef}. I went out to see it anyway, for both of us.</li>
-        <li>[trait:Psychopath] {OTHER_nameDef} is dead. I keep setting out two bowls. Habit, I expect.</li>
+        <li>[winter] It's freezing tonight, and I keep thinking of {OTHER_nameDef} out there without a coat.</li>
+        <li>[trait:Psychopath] {OTHER_nameDef} is dead. I set out two bowls at supper. Habit, I expect.</li>
       </plain>
       <warm>
-        <li>I lost {OTHER_nameDef}. I'm grateful for every day we had, and I wish there'd been more of them.</li>
+        <li>I want to remember {OTHER_nameDef} properly. The laugh. The way {OTHER_nameDef} hummed over the washing.</li>
         <li>I sat where {OTHER_nameDef} used to sit and told {OTHER_objective} about my day. I'll do it again tomorrow.</li>
       </warm>
       <blunt>
@@ -436,7 +436,7 @@
       </gloomy>
       <cold>
         <li>{OTHER_nameDef} died. I will make sure it wasn't for nothing.</li>
-        <li>{OTHER_nameDef}'s duties have been reassigned. I find I keep checking on them anyway.</li>
+        <li>{OTHER_nameDef}'s duties have been reassigned. I went and checked on them twice.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -465,7 +465,7 @@
         <li>I let {OTHER_nameDef} have the last word, for once. {OTHER_nameDef} always wanted it.</li>
       </cheerful>
       <gloomy>
-        <li>{OTHER_nameDef} is dead. All that fighting, for what.</li>
+        <li>All that fighting with {OTHER_nameDef}, and for what.</li>
         <li>All {OTHER_nameDef} and I ever did was make each other miserable. Years of it, and now it's over.</li>
       </gloomy>
       <cold>

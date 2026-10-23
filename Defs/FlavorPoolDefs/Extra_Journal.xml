@@ -14,11 +14,11 @@
     <pool>Council_Journal_Arrival</pool>
     <lines>
       <plain>
-        <li>Someone showed me where the food is, where I sleep, and where they bury people, in that order.</li>
-        <li>[night] Can't sleep. Every noise outside sounds like something with too many legs. The others snore right through it.</li>
-        <li>[summer,hot] Walked in sunburnt and half dead from thirst. First thing they handed me was water. Second thing was a shovel.</li>
+        <li>Got shown round by someone with a limp who talked the whole way. I remember where the food is. That's about it.</li>
+        <li>[night] Can't sleep. Every noise outside sounds like it has too many legs. The others snore through all of it.</li>
+        <li>[summer,hot] Got here burnt red across the back of my neck. The water they gave me was warm, and I drank every drop.</li>
         <li>[child] A grown-up here gave me a blanket and didn't ask me any questions. I'm keeping the blanket.</li>
-        <li>[old] I'm too old to be starting over. My knees ached the whole way here, and they're aching now.</li>
+        <li>[old] Too old to be starting over. My knees ached the whole road here and they ache now.</li>
       </plain>
       <warm>
         <li>Someone saved me the last warm bowl and wouldn't hear a word about it. I'll learn their name tomorrow and thank them properly.</li>
@@ -30,7 +30,7 @@
       </blunt>
       <cheerful>
         <li>I have my own bed! There's a beetle living under it, but we've come to an understanding.</li>
-        <li>[spring] Arrived on the first warm day of spring, with mud to my knees and green shoots everywhere. I'm calling it a good sign!</li>
+        <li>[spring] Mud to my knees and green shoots everywhere. I'm taking that as a good sign!</li>
       </cheerful>
       <gloomy>
         <li>They seem decent. The last lot seemed decent too, right up until they didn't.</li>
@@ -56,7 +56,7 @@
         <li>[trait:Lazy|trait:Slothful] Started a journal because it's the only hobby that can be done lying down.</li>
       </plain>
       <warm>
-        <li>I want something to leave for whoever comes after. Proof that we were here, and we tried, and some days it went well.</li>
+        <li>Something to leave for whoever comes after. Proof we were here, and tried, and some days it went well.</li>
         <li>[large] So many people here now. I'm writing down one good thing about each of them before I forget who did what.</li>
       </warm>
       <blunt>
@@ -65,7 +65,7 @@
       </blunt>
       <cheerful>
         <li>Page one! I drew the colony at the top, and made the walls a bit taller than they are.</li>
-        <li>[highmood] Started a journal because the day was so good I wanted to keep it somewhere safe!</li>
+        <li>[highmood] Good day. Good enough that I wanted it kept somewhere, so I started this!</li>
       </cheerful>
       <gloomy>
         <li>Started a journal. I doubt I'll fill it.</li>
@@ -84,7 +84,7 @@
     <pool>Council_Journal_Granted</pool>
     <lines>
       <plain>
-        <li>It's done: {WISH}. I keep catching myself smiling at nothing.</li>
+        <li>It's done: {WISH}. Caught myself smiling at a fence post on the way to supper.</li>
         <li>[repeat] Second time asking, and this time it stuck. Maybe I just needed to be more annoying.</li>
         <li>[forother] I never even asked for this. Someone spoke up for me, and the council listened. I should find out who.</li>
         <li>[child] The grown-ups said yes! I said thank you to every one of them, twice.</li>
@@ -92,7 +92,7 @@
       </plain>
       <warm>
         <li>I said thank you four times before someone told me to stop. So here's a fifth.</li>
-        <li>[trusting] They keep doing right by me. I'm going to try very hard to deserve it.</li>
+        <li>[trusting] They keep doing right by me. I mean to deserve it.</li>
       </warm>
       <blunt>
         <li>Didn't even have to shout this time. Progress.</li>
@@ -100,7 +100,7 @@
       </blunt>
       <cheerful>
         <li>A yes! I did a dance in the storeroom and the cook walked in on it.</li>
-        <li>[cold] Freezing outside, and I don't even care. They said yes!</li>
+        <li>[cold] Frost on the inside of the shutters, and I don't care one bit. They said yes!</li>
       </cheerful>
       <gloomy>
         <li>They gave me what I wanted. Now I have something to lose.</li>
@@ -127,7 +127,7 @@
       </plain>
       <warm>
         <li>A promise kept: {WISH}. I made sure to thank the ones who did the actual work, not just the ones who gave their word.</li>
-        <li>[winter] Bitter cold out, and they still kept their word. I'll remember that the next time someone grumbles about the council.</li>
+        <li>[winter] Bitter cold out, and they still kept their word. I'll bring that up the next time someone grumbles about the council.</li>
       </warm>
       <blunt>
         <li>They kept their word. Don't tell them I was surprised.</li>
@@ -135,14 +135,14 @@
       </blunt>
       <cheerful>
         <li>They promised and they did it! I'm going to bring it up at every meal for a week.</li>
-        <li>Promise kept, belly full, and nobody shot at me. If tomorrow's half this good I'll be very happy!</li>
+        <li>Promise kept, full belly. If tomorrow's half this good I'll be very happy!</li>
       </cheerful>
       <gloomy>
         <li>They kept their word. Now I don't know what to do with all the disappointment I'd saved up.</li>
         <li>[rain] Raining, naturally. But they kept their promise, so I'll let the rain off just this once.</li>
       </gloomy>
       <cold>
-        <li>Promise honored on schedule. Now I know which of them can be relied upon, and which of them merely talk.</li>
+        <li>Promise honored, on time. Now I know which of them can be relied on and which of them only talk.</li>
         <li>[skill:Social] Kept, as expected. I'd made sure they knew I was counting the days.</li>
       </cold>
     </lines>
@@ -154,7 +154,7 @@
     <pool>Council_Journal_Lapsed</pool>
     <lines>
       <plain>
-        <li>So "{WISH}" came to nothing. No meeting, no answer, not even a no.</li>
+        <li>So "{WISH}" came to nothing. I'd have taken a no.</li>
         <li>[forother] It wasn't even for me. I asked on someone else's behalf, and they still couldn't be bothered.</li>
         <li>[repeat] Same request, same silence. I could set the seasons by it.</li>
         <li>[child] I asked the grown-ups and they forgot. I think grown-ups forget on purpose sometimes.</li>
@@ -169,7 +169,7 @@
         <li>[doubtful] At this point I'd be more surprised if they'd actually done it.</li>
       </blunt>
       <cheerful>
-        <li>Didn't happen, so I'll sort it out myself. I'm not sure how yet!</li>
+        <li>Didn't happen, so I'll sort it out myself. How, I haven't worked out!</li>
         <li>[fall] Didn't get it. But the leaves are turning, and I refuse to be miserable in fall!</li>
       </cheerful>
       <gloomy>
@@ -196,15 +196,15 @@
         <li>[old] I've lived long enough to know promises break. Apparently not long enough to stop believing them.</li>
       </plain>
       <warm>
-        <li>I keep telling myself something must have come up. I just wish someone had come and told me what.</li>
+        <li>Something must have come up, I keep telling myself. I wish someone had come and told me what.</li>
         <li>[skill:Social] I'll talk to them, calmly, tomorrow. Tonight I'm writing all the uncalm things down here, to get them out of me.</li>
       </warm>
       <blunt>
         <li>Promise broken. Next time they want me on the walls during a raid, I'll promise too.</li>
-        <li>I'm done giving them the benefit of the doubt. They used it all up.</li>
+        <li>No more benefit of the doubt. They had it and spent it.</li>
       </blunt>
       <cheerful>
-        <li>They broke it. I'm smiling anyway, because the other choice is screaming into the fields.</li>
+        <li>They broke it. I'm smiling, because the other choice is screaming into the fields.</li>
         <li>[trait:Sanguine] Promise broken. I've decided to forgive them by breakfast. Possibly lunch.</li>
       </cheerful>
       <gloomy>
@@ -231,7 +231,7 @@
         <li>[child] They said no. I asked why. They said "because". Because isn't a reason. Everybody knows that.</li>
       </plain>
       <warm>
-        <li>They said no gently, and someone came by afterward to see if I was all right. That helped more than I'll admit to them.</li>
+        <li>They said no gently, and one of them came by after to see if I was all right. That helped more than I'll admit.</li>
         <li>[trusting] If they said no, there's a reason. I'll grumble first, then trust it.</li>
       </warm>
       <blunt>
@@ -260,7 +260,7 @@
     <lines>
       <plain>
         <li>The council has gone with {DECREE}. I nodded through the whole announcement like it was my idea.</li>
-        <li>[trait:Industrious] Declared: {DECREE}. I could kiss whoever proposed it.</li>
+        <li>[trait:Industrious] So we're on {DECREE}. I could kiss whoever proposed it.</li>
         <li>[trait:Lazy|trait:Slothful] They've declared {DECREE}. Less work for a while, if I play it right.</li>
         <li>[bitter] The council declared {DECREE}, and for once I can't argue with them. I tried.</li>
         <li>[child] The grown-ups made a new rule: {DECREE}. I like this one. I don't like most rules.</li>
@@ -270,15 +270,15 @@
         <li>[large] With so many of us, it helps to have everyone pulling the same way. I'm glad they chose {DECREE}.</li>
       </warm>
       <blunt>
-        <li>They declared {DECREE}. Anyone who wants to whine about it can whine to me.</li>
+        <li>Anyone who wants to whine about {DECREE} can whine to me.</li>
         <li>One good decision. One. They're not off the hook.</li>
       </blunt>
       <cheerful>
-        <li>They declared {DECREE}, exactly what I'd have done! I'm practically on the council.</li>
+        <li>They declared {DECREE}, which is what I'd have done! I'm practically on the council.</li>
         <li>[skill:Social] I've already talked three people round to {DECREE}!</li>
       </cheerful>
       <gloomy>
-        <li>The council declared {DECREE}. Right call. I'm waiting to find out what it costs us.</li>
+        <li>I agree with them about {DECREE}. Now I'm waiting to find out what it costs us.</li>
         <li>[lowmood] I actually agreed with the council about {DECREE}. It felt strange.</li>
       </gloomy>
       <cold>
@@ -295,25 +295,25 @@
     <lines>
       <plain>
         <li>Declared: {DECREE}. I voted no in my head, very loudly.</li>
-        <li>[trait:Lazy|trait:Slothful] They declared {DECREE}. I'd planned a nap. I'm still having it, but I'll feel watched.</li>
+        <li>[trait:Lazy|trait:Slothful] I'd planned a nap, and then they declared {DECREE}. I'm still having the nap, but I'll feel watched.</li>
         <li>[trait:Wimp|trait:Nervous|trait:Volatile] My hands haven't stopped shaking since they announced {DECREE}. The letters keep coming out crooked.</li>
-        <li>[trait:Gourmand] The council declared {DECREE}. I ate two helpings at dinner and felt no better.</li>
+        <li>[trait:Gourmand] Ate two helpings at dinner over {DECREE}, and felt no better.</li>
         <li>[summer,hot] Hot as a kiln, and now {DECREE} on top of it. Somebody up there has never sweated in their life.</li>
       </plain>
       <warm>
         <li>I'll do my part under {DECREE}. I just wish someone had asked how the rest of us were holding up first.</li>
-        <li>[grieving] They declared {DECREE}. I haven't the heart to fight it right now. Ask me again when I've stopped crying at dinner.</li>
+        <li>[grieving] I haven't the heart to fight {DECREE} right now. Ask me again when I've stopped crying at dinner.</li>
       </warm>
       <blunt>
-        <li>The council declared {DECREE}. They're welcome to try making me enjoy it.</li>
-        <li>[bitter] They declared {DECREE}. Another thing done to us, not for us.</li>
+        <li>They're welcome to try making me enjoy {DECREE}.</li>
+        <li>[bitter] Another thing done to us, not for us: {DECREE}.</li>
       </blunt>
       <cheerful>
         <li>They declared {DECREE}. I'm being very positive about it, through my teeth!</li>
-        <li>Not even {DECREE} can ruin my week, though it's trying hard!</li>
+        <li>Not even {DECREE} can ruin my week. It's having a good try, though!</li>
       </cheerful>
       <gloomy>
-        <li>They declared {DECREE}. I'm not going to say it can't get worse.</li>
+        <li>So it's {DECREE} now. I'm not going to say it can't get worse.</li>
         <li>[rain] Rain all day, and the council declared {DECREE}. The sky and I are in agreement.</li>
       </gloomy>
       <cold>
@@ -330,10 +330,10 @@
     <lines>
       <plain>
         <li>Year {YEARS}. I went and stood where I first walked in. It's a wall now.</li>
-        <li>[old] {YEARS} year(s) here, and more of my life behind me than ahead. I'd rather spend what's left with this lot than anywhere else.</li>
-        <li>[child] I've been here {YEARS} year(s). That's a really big part of my whole life! I worked it out with pebbles.</li>
+        <li>[old] Year {YEARS} here, and more of my life behind me than ahead. I'd rather spend what's left with this lot.</li>
+        <li>[child] It's my anniversary here, number {YEARS}. That's a really big part of my life! I worked it out with pebbles.</li>
         <li>[grieving] Anniversary. I tried to count the people who were here when I arrived. I stopped partway through.</li>
-        <li>[winter] Snow on my anniversary. Spent it shoveling, which is about how I spent the first one.</li>
+        <li>[winter] Cold on my anniversary. Spent it chopping firewood, which is about how I spent my first day here.</li>
         <li>[trait:Teetotaler] Someone offered me a drink for my anniversary. I had water and watched the rest of them get sillier.</li>
       </plain>
       <warm>
@@ -341,15 +341,15 @@
         <li>[small] There are only a handful of us, and every one of them found me today to wish me well.</li>
       </warm>
       <blunt>
-        <li>Year {YEARS}. Raiders, plague, bad harvests, and I'm still here.</li>
+        <li>Year {YEARS}. Still standing.</li>
         <li>[hurt] Another year. Held together with stitches and spite, but here.</li>
       </blunt>
       <cheerful>
         <li>Anniversary number {YEARS}! I've cut a notch in the doorframe, one for every year.</li>
-        <li>[highmood] Anniversary, a good mood and a hot dinner. On my first day here I'd never have believed it!</li>
+        <li>[highmood] Anniversary, and a hot dinner, and I'm in a good mood. My first day here, I'd never have believed it!</li>
       </cheerful>
       <gloomy>
-        <li>{YEARS} year(s) here. Longer than I've lasted anywhere. I don't trust it.</li>
+        <li>Year {YEARS} here. Longer than I've lasted anywhere. I don't trust it.</li>
         <li>Somebody wished me a happy anniversary. I said thank you. I meant about half of it.</li>
       </gloomy>
       <cold>
@@ -373,7 +373,7 @@
       </plain>
       <warm>
         <li>They call me {TITLE}, but I learned everything I know from people who aren't here to hear it.</li>
-        <li>The name {TITLE} has stuck, and they mean it kindly. I'd do a lot for these people.</li>
+        <li>The name {TITLE} has stuck, and they mean it kindly. I'd do a great deal for these people.</li>
       </warm>
       <blunt>
         <li>Being called {TITLE} doesn't come with extra rations. I checked.</li>
@@ -404,7 +404,7 @@
         <li>[child] They all call me {TITLE} now. I asked what it means and the grown-ups looked at each other.</li>
         <li>[old] I had a perfectly good name for longer than most of them have been alive. Now I'm {TITLE}.</li>
         <li>[hurt] I'd laugh about being called {TITLE}, but laughing hurts right now.</li>
-        <li>[trait:Ugly|trait:StaggeringlyUgly] They call me {TITLE}. It's an improvement on what they used to whisper.</li>
+        <li>[trait:Ugly|trait:StaggeringlyUgly] They call me {TITLE}. It's kinder than what they said behind my back before.</li>
       </plain>
       <warm>
         <li>If somebody has to be {TITLE}, better me than someone who'd mind.</li>
@@ -416,10 +416,10 @@
       </blunt>
       <cheerful>
         <li>I'm {TITLE} now! Not the name I'd have picked, but it's catchy.</li>
-        <li>I've been {TITLE} all day, and I'm in too good a mood to care!</li>
+        <li>I've been {TITLE} since breakfast. Too good a day to mind!</li>
       </cheerful>
       <gloomy>
-        <li>Of everything I've done here, that's what stuck: {TITLE}. A whole life summed up in a joke.</li>
+        <li>Of everything I've done here, {TITLE} is what stuck.</li>
         <li>[lowmood] I can't even argue with being called {TITLE}. They're not wrong, and I'm tired.</li>
       </gloomy>
       <cold>
@@ -435,7 +435,7 @@
     <pool>Council_Journal_Leaving</pool>
     <lines>
       <plain>
-        <li>I've started looking at everything as if it's the last time, even the ugly chair by the door.</li>
+        <li>I've started looking at everything as if it's the last time, even the crooked shelf over my bed.</li>
         <li>[winter] Leaving in winter. Stupid, I know. Staying would be stupider.</li>
         <li>[fall] Leaving with the harvest half in. Someone else can bring in the rest.</li>
         <li>[trait:Nervous|trait:Volatile] I can't tell if it's leaving that scares me, or staying.</li>
@@ -450,7 +450,7 @@
         <li>[trait:Greedy] I'm taking my share. I earned it. Every last scrap.</li>
       </blunt>
       <cheerful>
-        <li>I keep telling myself out loud that leaving will be an adventure! It's mostly working.</li>
+        <li>Leaving will be an adventure. I said it out loud six times today, and it nearly works!</li>
         <li>[spring] At least I'm leaving in spring, with flowers out along the road!</li>
       </cheerful>
       <gloomy>
@@ -470,15 +470,15 @@
     <pool>Council_Journal_Raid</pool>
     <lines>
       <plain>
-        <li>Spent the evening prying bits of someone's weapon out of my doorframe.</li>
+        <li>Spent the evening sweeping up splinters and setting the table back on its legs.</li>
         <li>[hurt] New scar. I'm told I was lucky. I saw what unlucky looked like today, so I believe it.</li>
         <li>[winter,snow] Blood on snow is the brightest red there is. I'd rather not know that.</li>
-        <li>[fog] Fog so thick we heard them before we saw them. I'll be hearing them for a while yet.</li>
+        <li>[fog] Fog so thick we heard them before we saw them. I can still hear them.</li>
         <li>[child] There was fighting and the grown-ups told me to hide and I hid. I was very good at hiding. I don't want to be good at it.</li>
         <li>[teen] First real fight where they let me help. I thought I'd feel brave. Mostly I felt sick.</li>
       </plain>
       <warm>
-        <li>Sat with the wounded until they fell asleep. Somebody has to, and I'm good at holding a hand.</li>
+        <li>Sat with the hurt ones until they fell asleep. I'm good at holding a hand.</li>
         <li>[skill:Medicine] Stitched until my fingers cramped. Everyone I worked on is still breathing. Writing that down first, before anything else.</li>
       </warm>
       <blunt>
@@ -487,14 +487,14 @@
       </blunt>
       <cheerful>
         <li>We're alive! I hugged three people who didn't want to be hugged, and one of them hugged back.</li>
-        <li>[highmood] Good fight! Nobody I love got hurt, and one of the raiders left behind a really nice hat.</li>
+        <li>[highmood] Good fight! The people I love are all in one piece, and somebody left a really nice hat behind.</li>
       </cheerful>
       <gloomy>
         <li>Washed someone else's blood out of my shirt tonight. It never fully comes out.</li>
         <li>[lowmood] During the fight I caught myself thinking: if I go now, at least I won't have to clean up after.</li>
       </gloomy>
       <cold>
-        <li>Raiders arrive carrying weapons, clothing and perfectly good organs. We should be better at keeping them.</li>
+        <li>Everything that falls out there is meat, leather or spare parts. We waste too much of it.</li>
         <li>[skill:Shooting] I watched how each of them behaved under fire. I know now who I want beside me, and who I want in front.</li>
       </cold>
     </lines>
@@ -506,7 +506,7 @@
     <pool>Council_Journal_Grief</pool>
     <lines>
       <plain>
-        <li>Walked past {OTHER_nameDef}'s spot at dinner three times before I remembered.</li>
+        <li>Called {OTHER_nameDef} in for supper before I remembered.</li>
         <li>[night] Woke up and listened for {OTHER_nameDef}. Old habit. It'll take a while to break.</li>
         <li>[child] {OTHER_nameDef} isn't coming back. The grown-ups keep saying it in soft voices, like I didn't hear the first time.</li>
         <li>[old] I've written too many of these. {OTHER_nameDef} goes under the others, and the page is nearly full.</li>
@@ -517,19 +517,19 @@
         <li>[spring] Everything's coming up green. {OTHER_nameDef} won't see it, so I'll look twice.</li>
       </warm>
       <blunt>
-        <li>{OTHER_nameDef} is dead and the work still needed doing. So I did it. Then I came here and wrote this.</li>
+        <li>The work still needed doing, {OTHER_nameDef} or no. So I did it.</li>
         <li>[bitter] {OTHER_nameDef} is dead, and tomorrow the council will argue about chores like nothing happened.</li>
       </blunt>
       <cheerful>
         <li>I told a story about {OTHER_nameDef} at dinner and the others laughed. Then I went outside for a while by myself.</li>
-        <li>[rain] {OTHER_nameDef} always liked the rain. I stood out in it for a bit, for both of us.</li>
+        <li>[rain] {OTHER_nameDef} always liked the rain. I've left the shutters open tonight.</li>
       </cheerful>
       <gloomy>
-        <li>They're digging a hole for {OTHER_nameDef}. They're getting quick at it.</li>
+        <li>{OTHER_nameDef} will need a grave. We've got too good at digging them.</li>
         <li>[lowmood,afterraid] It should have been me. I don't mean that dramatically. I was standing closer.</li>
       </gloomy>
       <cold>
-        <li>I've reassigned {OTHER_nameDef}'s work among the others. Then I sat in the empty room for longer than was necessary.</li>
+        <li>Worked out who takes over {OTHER_nameDef}'s chores. Then sat in the empty room longer than was necessary.</li>
         <li>[trait:Psychopath] I'm told I should feel something about {OTHER_nameDef}. I'm writing this to find out if I do. Inconclusive.</li>
       </cold>
     </lines>
