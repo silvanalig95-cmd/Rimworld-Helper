@@ -280,6 +280,9 @@ namespace ColonyCouncil
             HudMessages.Under(windowRect);
         }
 
+        /// <summary>Where the panel is on screen, header and all.</summary>
+        public Rect Frame => frame;
+
         /// <summary>Whether the early pass painted this panel this frame (if not, the window paints it, as a fallback).</summary>
         public bool PaintedThisFrame => paintedFrame == Time.frameCount;
 
@@ -295,8 +298,6 @@ namespace ColonyCouncil
             try
             {
                 Contents(true);
-                // The game's messages are drawn over the panel later: a dark strip beneath them keeps them readable.
-                HudMessages.Under(frame);
             }
             finally
             {

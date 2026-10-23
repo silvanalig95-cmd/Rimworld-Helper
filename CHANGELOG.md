@@ -18,7 +18,7 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 *23 October 2026, version 0.10.14*
 
-- The game's messages at the top left are drawn over the on-screen panels, and were hard to read over a panel's own lines. Where a message lies over a panel, the panel is now painted dark beneath it, fading with the message.
+- The game's messages at the top left are drawn over the on-screen panels, and were hard to read over a panel's own lines. A message that touches a panel now sits in a box of its own (a dark fill with a thin light edge, behind the whole line), fading with the message; over the open map it looks as it always did.
 - A decree used lately says on its card in how many days it's safe to enact again, and "used once" or "used 3 times" instead of "1 time(s)".
 
 ## Talk in their own voices

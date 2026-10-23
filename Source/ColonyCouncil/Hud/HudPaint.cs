@@ -28,6 +28,7 @@ namespace ColonyCouncil
     {
         private static bool broken;
         private static int gameUiFrame = -1;
+        private static readonly System.Collections.Generic.List<Rect> frames = new System.Collections.Generic.List<Rect>();
 
         /// <summary>The panels are painted beneath the game's interface this session (else in their windows).</summary>
         public static bool Working => !broken && RimfolkPatches.On && RimfolkPatches.Applied.Contains(nameof(Patch_HudPaint));
@@ -51,9 +52,15 @@ namespace ColonyCouncil
                 if (stack == null) return;
                 // In the stack's order, so a panel above another stays above it.
                 var list = stack.Windows;
+                frames.Clear();
                 for (int i = 0; i < list.Count; i++)
                     if (list[i] is HudPanel p)
+                    {
                         p.PaintEarly();
+                        if (p.PaintedThisFrame) frames.Add(p.Frame);
+                    }
+                // The game's messages are drawn over the panels later: a box behind each that touches one keeps it readable.
+                HudMessages.Boxes(frames);
             }
             catch (Exception e)
             {
