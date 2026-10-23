@@ -7,6 +7,9 @@
     a nemesis dead and a vendetta handed on. Same placeholders as the pools they join ({WISH}, {AMBITION},
     {PAWN_...}, {OTHER_...}, {FOR_...}). Where a pool's speakers rarely match a tag, the new lines are plain and
     untagged in every voice; where they mostly do (a season), each season gets lines of its own.
+    A reminder, a last call, a refusal, an objection, a co-signing and an ambition's check-in are only ever shown up to
+    the end of their first sentence (TextUtil.ShortSpeech, in the message and over the head), so each is one sentence.
+    A wish's or an ambition's label is lowercase: it never opens a line, even inside quotes.
   -->
 
   <ColonyCouncil.FlavorExtensionDef>
@@ -14,11 +17,11 @@
     <pool>Council_Pool_Reminder</pool>
     <lines>
       <plain>
-        <li>[spring] The fields are planted. Maybe now someone has time for "{WISH}".</li>
+        <li>[spring] Now the fields are planted, maybe someone has time for "{WISH}".</li>
         <li>[spring] New season, same request: "{WISH}".</li>
         <li>[spring] Everything's growing except "{WISH}".</li>
-        <li>[spring] I asked for "{WISH}" before the thaw. The thaw's come and gone.</li>
-        <li>[summer] Long days, plenty of light. Enough for "{WISH}", I'd have thought.</li>
+        <li>[spring] I asked for "{WISH}" before the thaw, and the thaw's come and gone.</li>
+        <li>[summer] There's light till late these days, enough for "{WISH}", I'd have thought.</li>
         <li>[summer] It's too hot to argue, so I'll just remind you: "{WISH}".</li>
         <li>[summer] Half the summer's gone, and "{WISH}" with it, it seems.</li>
         <li>[summer] I'd like "{WISH}" before the weather turns, if anyone's counting.</li>
@@ -26,50 +29,50 @@
         <li>[fall] The leaves are coming down and "{WISH}" still hasn't come up.</li>
         <li>[fall] Once the stores are in, "{WISH}" would be a good next thing.</li>
         <li>[fall] It's getting colder, and I'm still waiting on "{WISH}".</li>
-        <li>[clear] Fine weather for getting things done. "{WISH}", for instance.</li>
+        <li>[clear] Fine weather for getting things done, "{WISH}" for instance.</li>
         <li>[clear] Not a cloud in the sky, and no excuse I can see for "{WISH}" waiting.</li>
         <li>[clear] Good day for it, if anyone's looking for a job: "{WISH}".</li>
-        <li>[clear] Clear skies all week. I've been looking at the spot where "{WISH}" would go.</li>
+        <li>[clear] Clear skies all week, and still no sign of "{WISH}".</li>
         <li>[highmood] I'm in a good mood, so I'll ask nicely: "{WISH}"?</li>
-        <li>[highmood] Things are going well. "{WISH}" would make them go better.</li>
+        <li>[highmood] Things are going well, and "{WISH}" would make them go better.</li>
         <li>[highmood] Good week. I'd like it to end with "{WISH}".</li>
-        <li>[trusting] I'm not worried. I just don't want "{WISH}" to slip through the cracks.</li>
+        <li>[trusting] I'm not worried, I just don't want "{WISH}" to slip through the cracks.</li>
         <li>[trusting] You've never let me down before, so I'm only checking on "{WISH}".</li>
-        <li>[night] Up late again, and "{WISH}" is the first thing I thought of.</li>
+        <li>[night] Up late again, and "{WISH}" is what I keep thinking about.</li>
       </plain>
       <warm>
-        <li>When there's a moment to spare, I'm still thinking about "{WISH}". Only when there's a moment.</li>
-        <li>I don't want to add to anyone's load. I'd just love "{WISH}", someday soon.</li>
-        <li>Thank you for listening the first time. I'm still hoping, that's all.</li>
+        <li>When there's a moment to spare, and only then, I'm still hoping for "{WISH}".</li>
+        <li>I don't want to add to anyone's load, but I'd still love "{WISH}".</li>
+        <li>Thank you for listening the first time; I'm still hoping, that's all.</li>
         <li>I'd offer to help with "{WISH}" myself, if someone tells me what to fetch.</li>
-        <li>No pressure. "{WISH}" would just make my days a little easier.</li>
+        <li>No pressure, but "{WISH}" would make my days easier.</li>
       </warm>
       <blunt>
         <li>Is "{WISH}" happening or not?</li>
-        <li>How long does "{WISH}" take? Longer than this?</li>
-        <li>I asked. You heard. Now do it.</li>
-        <li>"{WISH}". Not getting younger here.</li>
-        <li>Still no "{WISH}". I'll keep saying it.</li>
+        <li>How long does "{WISH}" take, exactly?</li>
+        <li>I asked and you heard, so do it.</li>
+        <li>Still waiting on "{WISH}", and I'm not getting any younger.</li>
+        <li>Still no "{WISH}", so I'll keep saying it.</li>
       </blunt>
       <cheerful>
         <li>Guess what I'm still dreaming about? "{WISH}"!</li>
-        <li>Friendly reminder number three: "{WISH}". I'm keeping count, kindly.</li>
-        <li>I've already picked a spot for "{WISH}" and a name for it.</li>
-        <li>Still hoping, still smiling, still asking about "{WISH}".</li>
+        <li>Friendly reminder number three: "{WISH}".</li>
+        <li>I've been telling the others all about "{WISH}", so it had better happen!</li>
+        <li>Still smiling, and still asking about "{WISH}".</li>
         <li>Don't mind me, I'm only waving the "{WISH}" flag again.</li>
       </cheerful>
       <gloomy>
-        <li>"{WISH}". I keep mentioning it, the way you keep pressing a bruise.</li>
+        <li>I keep mentioning "{WISH}", the way you keep pressing on a bruise.</li>
         <li>I suppose "{WISH}" is waiting behind a dozen other things.</li>
-        <li>Another day without "{WISH}". They add up.</li>
-        <li>I'm still waiting. I don't expect much, but I'm still waiting.</li>
-        <li>Maybe "{WISH}" will happen. Maybe I'll stop asking first.</li>
+        <li>Another day without "{WISH}", and they add up.</li>
+        <li>I don't expect much, but I'm still waiting.</li>
+        <li>Maybe "{WISH}" will happen, or maybe I'll stop asking first.</li>
       </gloomy>
       <cold>
-        <li>"{WISH}" is overdue. I'll be raising it at the next meeting.</li>
-        <li>I've waited a reasonable time for "{WISH}". We are now past it.</li>
+        <li>I'll raise "{WISH}" at the next meeting if it's still waiting.</li>
+        <li>I've waited a reasonable time for "{WISH}", and we are now past it.</li>
         <li>A request left open this long starts to look like a refusal.</li>
-        <li>"{WISH}". I'd like a date, or a reason.</li>
+        <li>I'd like a date for "{WISH}", or a reason.</li>
         <li>My patience on "{WISH}" has a limit, and we're approaching it.</li>
       </cold>
     </lines>
@@ -80,20 +83,20 @@
     <pool>Council_Pool_Scene_Thanks</pool>
     <lines>
       <plain>
-        <li>[spring] {PAWN_nameDef} picks a flower on the way over and leaves it there, as thanks.</li>
-        <li>[spring] It's the first warm day of the year, and {PAWN_nameDef} spends a good part of it just looking.</li>
+        <li>[spring] {PAWN_nameDef} turns up with mud on {PAWN_possessive} knees and a fistful of early flowers for whoever made it happen.</li>
+        <li>[spring] It's a warm spring day, and {PAWN_nameDef} spends a good part of it just looking.</li>
         <li>[spring] {PAWN_nameDef} comes in muddy from the fields, sees it, and forgets to take {PAWN_possessive} boots off.</li>
         <li>[summer] {PAWN_nameDef} sits beside it in the long evening light until the insects drive {PAWN_objective} in.</li>
         <li>[summer] Despite the heat, {PAWN_nameDef} walks over twice before supper to look at it again.</li>
         <li>[fall] {PAWN_nameDef} sets down an armful of harvest to take a proper look.</li>
         <li>[fall] With the wind getting colder, {PAWN_nameDef} says it came at just the right time.</li>
-        <li>[fall] {PAWN_nameDef} shows it to everyone coming in from the fields, one by one.</li>
+        <li>[fall] {PAWN_nameDef} stops each person coming in from the fields to show them.</li>
         <li>[winter] {PAWN_nameDef} blows on {PAWN_possessive} hands, grins at it, and says it was worth the wait.</li>
         <li>[winter] In the dull light of a winter afternoon, it's the brightest thing {PAWN_nameDef} has seen in weeks.</li>
         <li>[clear] {PAWN_nameDef} stands with it in the sun for a while, saying nothing, looking pleased.</li>
-        <li>[clear] On a clear, still day, {PAWN_nameDef} takes everyone over to see it.</li>
+        <li>[clear] On a clear, still day, {PAWN_nameDef} takes anyone who'll come over to see it.</li>
         <li>[clear] {PAWN_nameDef} spends the fine afternoon finding excuses to walk past it.</li>
-        <li>[highmood] {PAWN_nameDef} was in a good mood already. Now nobody can get a word in.</li>
+        <li>[highmood] Already in good spirits, {PAWN_nameDef} talks about it to anyone who stands still long enough.</li>
         <li>[highmood] {PAWN_nameDef} thanks the council, then the builders, then the cook, who had nothing to do with it.</li>
         <li>[highmood] {PAWN_nameDef} whistles all the way back to work.</li>
       </plain>
@@ -105,13 +108,13 @@
     <pool>Council_Pool_CoSign</pool>
     <lines>
       <plain>
-        <li>I was going to ask for the same thing. {OTHER_nameDef} beat me to it.</li>
-        <li>"{WISH}" would help me too. Put me down.</li>
-        <li>I'm adding my voice to {OTHER_nameDef}'s. Two is harder to ignore.</li>
+        <li>{OTHER_nameDef} beat me to it; I was going to ask for the same thing.</li>
+        <li>Put me down for "{WISH}" too, it would help me as well.</li>
+        <li>I'm adding my voice to {OTHER_nameDef}'s, since two are harder to ignore.</li>
         <li>{OTHER_nameDef} isn't the only one who's been thinking about "{WISH}".</li>
         <li>Whatever {OTHER_nameDef} is getting, I'd like the same written down for me.</li>
-        <li>I've been meaning to ask for this since the first week. {OTHER_nameDef} just said it first.</li>
-        <li>I'll ask alongside {OTHER_nameDef}. We'll share the work if it helps.</li>
+        <li>I've wanted this since my first week here, and {OTHER_nameDef} just said it first.</li>
+        <li>I'll ask alongside {OTHER_nameDef}, and we'll share the work if it helps.</li>
       </plain>
       <warm>
         <li>If it helps {OTHER_nameDef}'s case, I'm asking too.</li>
@@ -120,26 +123,26 @@
         <li>Put my name next to {OTHER_nameDef}'s, and thank you for listening to both of us.</li>
       </warm>
       <blunt>
-        <li>Same as {OTHER_nameDef}. Two of us now.</li>
+        <li>Same as {OTHER_nameDef}, so that's two of us.</li>
         <li>Me as well. Don't make us ask twice.</li>
-        <li>{OTHER_nameDef}'s right. Do it.</li>
-        <li>"{WISH}". Two votes. Get on with it.</li>
+        <li>{OTHER_nameDef}'s right, so do it.</li>
+        <li>Two votes for "{WISH}" now, so get on with it.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} and I are a team now! Team "{WISH}".</li>
+        <li>{OTHER_nameDef} and I are Team "{WISH}" now!</li>
         <li>I'll ask too, and if that's not enough, I'll ask again tomorrow!</li>
-        <li>What a good idea {OTHER_nameDef} had. I'm stealing half of it.</li>
+        <li>What a good idea {OTHER_nameDef} had; I'm stealing half of it.</li>
         <li>Two of us! That's practically a crowd.</li>
       </cheerful>
       <gloomy>
-        <li>I'll put my name down too. Maybe two names count for more than one.</li>
-        <li>{OTHER_nameDef} asked, so I'm asking. I don't expect it to matter.</li>
-        <li>Same request as {OTHER_nameDef}. Same chance of it happening, I'd guess.</li>
+        <li>I'll put my name down too, in case two names count for more than one.</li>
+        <li>{OTHER_nameDef} asked, so I'm asking, not that I expect it to matter.</li>
+        <li>Same request as {OTHER_nameDef}, and the same slim chance, I'd guess.</li>
         <li>Count me in, for what it's worth.</li>
       </gloomy>
       <cold>
-        <li>I'm co-signing. It's more efficient than asking separately.</li>
-        <li>{OTHER_nameDef}'s request benefits me. I'll support it.</li>
+        <li>I'm co-signing; it's more efficient than asking separately.</li>
+        <li>{OTHER_nameDef}'s request benefits me, so I'll support it.</li>
         <li>Two requests for "{WISH}" make it a priority, by any fair measure.</li>
         <li>Add my name. I'll be watching how long it takes.</li>
       </cold>
@@ -152,16 +155,16 @@
     <lines>
       <plain>
         <li>[spring] {PAWN_nameDef} pointed out that it was planting season, and asked whether "{AMBITION}" could be eaten.</li>
-        <li>[spring] {PAWN_nameDef} asked whether "{AMBITION}" would still matter once the fields needed every hand.</li>
-        <li>[spring] {PAWN_nameDef} said every spring brings a big idea, and every summer buries it.</li>
+        <li>[spring] {PAWN_nameDef} wondered aloud who would mind the fields while the rest of them were busy with "{AMBITION}".</li>
+        <li>[spring] {PAWN_nameDef} reminded the room of last spring's big idea, and asked where it had got to.</li>
         <li>[summer] {PAWN_nameDef} fanned {PAWN_objective}self through {OTHER_nameDef}'s pitch and asked who'd haul stone in this heat.</li>
         <li>[summer] {PAWN_nameDef} said "{AMBITION}" sounded lovely, and asked whether it came with shade.</li>
-        <li>[summer] {PAWN_nameDef} asked {OTHER_nameDef} to finish quickly, since the evening was the only cool part of the day.</li>
+        <li>[summer] {PAWN_nameDef} begged {OTHER_nameDef} to finish quickly, since the evening was the only cool part of the day.</li>
         <li>[fall] {PAWN_nameDef} wanted to know whether "{AMBITION}" came before or after the harvest, because it couldn't be both.</li>
         <li>[fall] {PAWN_nameDef} asked how "{AMBITION}" would keep anyone warm this winter.</li>
         <li>[fall] {PAWN_nameDef} said the colony had a harvest to bring in, and that was ambition enough.</li>
-        <li>[winter] {PAWN_nameDef} asked whether "{AMBITION}" could be built in the snow, and by whom.</li>
-        <li>[winter] {PAWN_nameDef} said {PAWN_pronoun} would vote for anything that came with firewood.</li>
+        <li>[winter] {PAWN_nameDef} asked who exactly would be out in the snow working on "{AMBITION}".</li>
+        <li>[winter] {PAWN_nameDef} promised to vote for anything that came with firewood.</li>
         <li>[night] {PAWN_nameDef} asked whether this could be settled in the morning, then stayed to argue anyway.</li>
         <li>[night] {PAWN_nameDef} pointed out the hour, and that "{AMBITION}" had already taken most of it.</li>
       </plain>
@@ -171,7 +174,7 @@
       </warm>
       <blunt>
         <li>{PAWN_nameDef} said "{AMBITION}" was the third grand plan this year, and asked what happened to the other two.</li>
-        <li>{PAWN_nameDef} said "no" before the pitch was over, then sat back.</li>
+        <li>"No," said {PAWN_nameDef}, before the pitch was even over.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} asked whether "{AMBITION}" could have a party at the end of it, and seemed to mean it.</li>
@@ -194,42 +197,42 @@
     <lines>
       <plain>
         <li>[spring] It's spring. If we start "{AMBITION}" now, we'll see it done before the cold.</li>
-        <li>[spring] Fresh season, fresh start. "{AMBITION}" has my vote.</li>
-        <li>[spring] The ground's soft and the days are long. Good time for "{AMBITION}".</li>
-        <li>[summer] We've got the light and the hands. Let's do "{AMBITION}".</li>
-        <li>[summer] Summer's the time for big work. I'm for it.</li>
+        <li>[spring] Fresh season, fresh start, and "{AMBITION}" has my vote.</li>
+        <li>[spring] The ground's soft and the days are long, so it's a good time for "{AMBITION}".</li>
+        <li>[summer] We've got the light and the hands, so let's do "{AMBITION}".</li>
+        <li>[summer] Summer's the time for big work, and I'm for it.</li>
         <li>[summer] Better to sweat over "{AMBITION}" now than freeze over it later.</li>
         <li>[fall] If we're doing "{AMBITION}", let's get it done before the snow.</li>
-        <li>[fall] The harvest's nearly in. After that, I'm all for "{AMBITION}".</li>
-        <li>[fall] We'll want "{AMBITION}" before winter. I'm voting yes.</li>
-        <li>[winter] We're stuck indoors anyway. Might as well plan "{AMBITION}" properly.</li>
-        <li>[winter] Something to work toward will get us through the cold. "{AMBITION}", then.</li>
+        <li>[fall] Once the harvest's in, I'm all for "{AMBITION}".</li>
+        <li>[fall] We'll want "{AMBITION}" before winter, so I'm voting yes.</li>
+        <li>[winter] We're stuck indoors anyway, so we might as well plan "{AMBITION}" properly.</li>
+        <li>[winter] A job to work toward would get us through the cold, and "{AMBITION}" is a good one.</li>
         <li>[night] It's late and I'm tired, and I still think {OTHER_nameDef} is right.</li>
-        <li>[night] Let's vote and go to bed. I'm for it.</li>
+        <li>[night] I'm for it, so let's vote and go to bed.</li>
         <li>[night] I'll keep it short, since it's late: yes to "{AMBITION}".</li>
-        <li>[clear] It's been a fine week. Let's use the good weather for "{AMBITION}".</li>
-        <li>[clear] The weather's with us. So am I.</li>
-        <li>[clear] Clear skies, good tempers. Best time to start something.</li>
+        <li>[clear] Let's use this good weather for "{AMBITION}" while it lasts.</li>
+        <li>[clear] The weather's with us, and so am I.</li>
+        <li>[clear] With skies like these, I'd start tomorrow.</li>
       </plain>
       <warm>
-        <li>{OTHER_nameDef} has worked hard on this. The least I can do is vote for it.</li>
-        <li>It would mean a lot to some of us. I'm for it.</li>
+        <li>{OTHER_nameDef} has worked hard on this, and the least I can do is vote for it.</li>
+        <li>It would mean a lot to some of us, so I'm for it.</li>
       </warm>
       <blunt>
-        <li>Good idea. Vote yes. Next.</li>
+        <li>Good idea. Vote yes and move on.</li>
         <li>I'm for it. Let's not talk it to death.</li>
       </blunt>
       <cheerful>
         <li>Yes to "{AMBITION}", and I'll be first in line to start!</li>
-        <li>I've been waiting for someone to suggest this. Put me down for the first shift.</li>
+        <li>I've been waiting for someone to suggest this, so put me down for the first shift.</li>
       </cheerful>
       <gloomy>
-        <li>It's the least bad idea I've heard all season. I'll vote for it.</li>
-        <li>We'll probably regret something this year. Let it not be skipping "{AMBITION}".</li>
+        <li>It's the least bad idea I've heard all season, so I'll vote for it.</li>
+        <li>We'll regret plenty this year, so let's not make skipping "{AMBITION}" one of them.</li>
       </gloomy>
       <cold>
-        <li>The numbers on "{AMBITION}" work. I'm in favor.</li>
-        <li>It's the sensible choice. I'll support {OTHER_nameDef} on it.</li>
+        <li>The numbers on "{AMBITION}" work, and I'm in favor.</li>
+        <li>It's the sensible choice, and I'll support {OTHER_nameDef} on it.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -239,37 +242,37 @@
     <pool>Council_Pool_MeetingDoubt</pool>
     <lines>
       <plain>
-        <li>[spring] It's planting season. Where are the hands for "{AMBITION}" coming from?</li>
-        <li>[spring] Let's get the fields in first. "{AMBITION}" will keep.</li>
-        <li>[spring] Spring makes everyone ambitious. Summer makes them tired.</li>
-        <li>[summer] In this heat? I'd like to see {OTHER_nameDef} haul the first load.</li>
+        <li>[spring] It's planting season, so where are the hands for "{AMBITION}" coming from?</li>
+        <li>[spring] Let's get the fields in first; "{AMBITION}" will keep.</li>
+        <li>[spring] Every spring we plan something big, and every summer we're too tired to finish it.</li>
+        <li>[summer] I'd like to see {OTHER_nameDef} haul the first load in this heat.</li>
         <li>[summer] Half of us are already worn out from the fields.</li>
-        <li>[fall] The harvest isn't in yet. Can this wait?</li>
+        <li>[fall] The harvest isn't in yet, so can this wait?</li>
         <li>[fall] We need to be thinking about winter, not "{AMBITION}".</li>
         <li>[fall] Every hand on "{AMBITION}" is a hand not bringing in the crops.</li>
-        <li>[winter] With what light? The days are four hours long.</li>
-        <li>[night] It's late. Let's not decide something this big half asleep.</li>
+        <li>[winter] With what light, when the days are four hours long?</li>
+        <li>[night] It's late. Let's not decide a thing this big half asleep.</li>
         <li>[night] Can we talk about this when we're all awake?</li>
         <li>[night] I'm too tired to vote for anything this big.</li>
       </plain>
       <warm>
-        <li>I'd love to say yes. I'm just not sure we have it in us right now.</li>
+        <li>I'd love to say yes, I'm just not sure we have it in us right now.</li>
         <li>Could we try something smaller first, and work up to it?</li>
       </warm>
       <blunt>
         <li>No. Too big, too soon.</li>
-        <li>We can't afford it. Next.</li>
+        <li>We can't afford it, so no.</li>
       </blunt>
       <cheerful>
-        <li>It's a lovely idea! I just think we'll need about twice as many of us.</li>
-        <li>I'm not saying no! I'm saying not yet, with a smile.</li>
+        <li>It's a lovely idea, but we'll need about twice as many of us!</li>
+        <li>I'm not saying no, I'm saying not yet!</li>
       </cheerful>
       <gloomy>
         <li>We'll start it, and we won't finish it, and we'll feel worse than if we'd never tried.</li>
         <li>Big plans tend to end with someone hurt.</li>
       </gloomy>
       <cold>
-        <li>The cost of "{AMBITION}" outweighs what it brings. I'm against it.</li>
+        <li>The cost of "{AMBITION}" outweighs what it brings, so I'm against it.</li>
         <li>I'd like {OTHER_nameDef} to show the work before I vote for it.</li>
       </cold>
     </lines>
@@ -281,28 +284,28 @@
     <lines>
       <plain>
         <li>[spring] Somebody's tracked half the field in on their boots.</li>
-        <li>[spring] Can we keep this short? The seedlings need watering.</li>
-        <li>[spring] I can smell the rain coming. Let's be quick.</li>
+        <li>[spring] The seedlings need watering, so can we keep this short?</li>
+        <li>[spring] I can smell rain coming, so let's be quick.</li>
         <li>[summer] Whoever's sitting by the door, prop it open.</li>
-        <li>[summer] It's too hot to think. Let me know how I voted.</li>
+        <li>[summer] It's too hot to think, so someone tell me how I voted.</li>
         <li>[summer] Is there any water left in that jug?</li>
         <li>[fall] I've still got baskets to carry before dark.</li>
-        <li>[fall] Who brought apples? Can I have one?</li>
-        <li>[fall] The wind's picking up. Somebody check the shutters after this.</li>
-        <li>[winter] Pass the blanket. No, the other one.</li>
+        <li>[fall] Who brought apples, and can I have one?</li>
+        <li>[fall] Somebody check the shutters after this, the wind's picking up.</li>
+        <li>[winter] Pass the blanket, no, the other one.</li>
         <li>[winter] Has anyone seen my other glove?</li>
         <li>[winter] Sit closer to the fire, it's free.</li>
         <li>[night] I'm going to be useless tomorrow.</li>
       </plain>
       <warm>
         <li>Shift up, there's room for one more on the bench.</li>
-        <li>Who's minding the children? Oh, good.</li>
+        <li>Is someone minding the children?</li>
       </warm>
       <blunt>
         <li>Get to the point.</li>
       </blunt>
       <cheerful>
-        <li>I brought snacks! Well, one snack. Who wants to share?</li>
+        <li>I brought one snack, and I'm willing to share it!</li>
       </cheerful>
       <gloomy>
         <li>I'll forget all of this by tomorrow.</li>
@@ -318,51 +321,51 @@
     <pool>Council_Pool_LastCall</pool>
     <lines>
       <plain>
-        <li>Last time I'll mention "{WISH}". I mean it this time.</li>
-        <li>There's not long left. "{WISH}", or I let it go.</li>
+        <li>This is the last time I'll mention "{WISH}", and I mean it.</li>
+        <li>There's not long left on "{WISH}" before I let it go.</li>
         <li>I'd like an answer on "{WISH}" before the time runs out, even if it's no.</li>
-        <li>I'm asking one last time. After this, I'll know where I stand.</li>
+        <li>I'm asking one last time, and after this I'll know where I stand.</li>
         <li>If "{WISH}" isn't coming, someone tell me so I can stop waiting.</li>
-        <li>Days left, not weeks. "{WISH}".</li>
+        <li>Days left on "{WISH}", not weeks.</li>
       </plain>
       <warm>
-        <li>I know it's late to ask again. "{WISH}" still matters to me.</li>
-        <li>I won't be angry if it can't be done. I'd just like to know.</li>
+        <li>I know it's late to ask again, but "{WISH}" still matters to me.</li>
+        <li>I won't be angry if it can't be done, I'd just like to know.</li>
         <li>One last nudge, and then I'll leave it in your hands.</li>
-        <li>If there's any way, I'd still be grateful for "{WISH}". Truly.</li>
-        <li>I've tried to be patient. I'm still trying.</li>
-        <li>Please, before the time's up. That's all.</li>
+        <li>If there's any way at all, I'd still be grateful for "{WISH}".</li>
+        <li>I've tried to be patient, and I'm still trying.</li>
+        <li>Please, before the time's up, that's all I ask.</li>
       </warm>
       <blunt>
-        <li>"{WISH}". Now or never.</li>
+        <li>Now or never on "{WISH}".</li>
         <li>Last chance. Use it.</li>
         <li>I'm done asking after this.</li>
-        <li>Yes or no on "{WISH}". Today.</li>
-        <li>Time's nearly out. So's my patience.</li>
+        <li>Yes or no on "{WISH}", today.</li>
+        <li>Time's nearly out, and so's my patience.</li>
         <li>Last time. Listen.</li>
       </blunt>
       <cheerful>
-        <li>Last call for "{WISH}"! Final offer, while stocks last.</li>
-        <li>It's the eleventh hour! Still a whole hour, though.</li>
-        <li>One more try for "{WISH}". I believe in miracles, mostly.</li>
-        <li>Nearly out of time! Good thing I'm stubborn.</li>
-        <li>Last reminder about "{WISH}", I promise. Almost certainly.</li>
+        <li>Last call for "{WISH}"!</li>
+        <li>It's the eleventh hour, but that's still a whole hour!</li>
+        <li>One more try for "{WISH}", because I believe in miracles, mostly.</li>
+        <li>Nearly out of time, and good thing I'm stubborn!</li>
+        <li>Last reminder about "{WISH}", I promise, almost certainly.</li>
         <li>Still hoping, right up to the end!</li>
       </cheerful>
       <gloomy>
-        <li>Time's nearly up on "{WISH}". So is the hope.</li>
+        <li>Time's nearly up on "{WISH}", and most of my hope with it.</li>
         <li>I'll ask once more, so I can't say I didn't.</li>
         <li>It's going to lapse, isn't it.</li>
-        <li>Last chance for "{WISH}". I already know how this ends.</li>
-        <li>I've stopped expecting it. I'm only asking out of habit.</li>
+        <li>Last chance for "{WISH}", and I already know how this ends.</li>
+        <li>I've stopped expecting it; I'm only asking out of habit.</li>
         <li>Nearly over. I'll start forgetting it now.</li>
       </gloomy>
       <cold>
-        <li>Final notice on "{WISH}". Silence will be taken as no.</li>
-        <li>"{WISH}" expires soon. I'll draw my own conclusions.</li>
-        <li>This is the last time I raise it. Remember that I did.</li>
-        <li>The window for "{WISH}" is closing. So is mine.</li>
-        <li>I've given the council every chance. This is the last one.</li>
+        <li>Final notice on "{WISH}": silence will be taken as no.</li>
+        <li>When "{WISH}" expires, I'll draw my own conclusions.</li>
+        <li>This is the last time I raise it, and I'd like it remembered that I did.</li>
+        <li>The window for "{WISH}" is closing, and so is mine.</li>
+        <li>I've given the council every chance, and this is the last.</li>
         <li>If "{WISH}" lapses, I'll treat it as a choice, not an accident.</li>
       </cold>
     </lines>
@@ -373,28 +376,28 @@
     <pool>Council_Pool_Objection</pool>
     <lines>
       <plain>
-        <li>"{WISH}" is fine, {OTHER_nameDef}, but it can't come before the roof.</li>
-        <li>I'm not against "{WISH}". I'm against it this week.</li>
-        <li>We've three other jobs half done. "{WISH}" would make four.</li>
+        <li>Fine, {OTHER_nameDef}, but "{WISH}" can't come before the roof.</li>
+        <li>I'm not against "{WISH}", only against it this week.</li>
+        <li>We've three other jobs half done, and "{WISH}" would make four.</li>
       </plain>
       <warm>
-        <li>I'd like {OTHER_nameDef} to have it, truly. Just not before the ones going without.</li>
-        <li>Let's come back to "{WISH}" when things are calmer, {OTHER_nameDef}. I'll speak for it then.</li>
+        <li>I'd like {OTHER_nameDef} to have it, truly, just not before the ones going without.</li>
+        <li>Ask again for "{WISH}" when things are calmer, {OTHER_nameDef}, and I'll back you.</li>
       </warm>
       <blunt>
         <li>Not now. We've got bigger problems.</li>
-        <li>"{WISH}"? With what?</li>
+        <li>And pay for "{WISH}" with what?</li>
       </blunt>
       <cheerful>
-        <li>Oh, it's a nice idea! Can we have it after we've stopped being hungry?</li>
+        <li>Oh, it's a nice idea, but can we have it after we've stopped being hungry?</li>
         <li>I love it, {OTHER_nameDef}, and I'll love it even more next season.</li>
       </cheerful>
       <gloomy>
-        <li>We can't afford it. We can't afford most things.</li>
+        <li>We can't afford it, the same as we can't afford most things.</li>
         <li>The moment we start "{WISH}", something else will fall apart.</li>
       </gloomy>
       <cold>
-        <li>"{WISH}" is a luxury. We aren't in a position for luxuries.</li>
+        <li>We aren't in a position for luxuries like "{WISH}".</li>
         <li>I'd want to see what it costs before anyone says yes, {OTHER_nameDef}.</li>
       </cold>
     </lines>
@@ -406,12 +409,12 @@
     <lines>
       <plain>
         <li>No. Right. I'll find some other way.</li>
-        <li>I'd hoped for a yes. I'll take the no and go.</li>
+        <li>I'd hoped for a yes, but I'll take the no.</li>
         <li>[trusting] You've been fair with me before, so I'll trust this one.</li>
-        <li>[trusting] If it's no, there's a reason. I'll ask what it is, later.</li>
+        <li>[trusting] If it's no, there's a reason, and I'll ask what it is later.</li>
       </plain>
       <warm>
-        <li>I understand. Maybe another time.</li>
+        <li>I understand, and maybe another time.</li>
       </warm>
       <blunt>
         <li>No. Fine.</li>
@@ -439,7 +442,7 @@
         <li>[summer] Sitting out on a long summer evening, {PAWN_nameDef} decides it's time to ask.</li>
         <li>[fall] {PAWN_nameDef} sets down a basket of the harvest and says it plainly.</li>
         <li>[fall] With the first cold winds coming through, {PAWN_nameDef} has a request before winter.</li>
-        <li>[winter] Huddled by the fire, {PAWN_nameDef} raises something that's been on {PAWN_possessive} mind for weeks.</li>
+        <li>[winter] Wrapped in a blanket, {PAWN_nameDef} raises what's been on {PAWN_possessive} mind for weeks.</li>
         <li>[winter] Snowbound and restless, {PAWN_nameDef} finally asks.</li>
         <li>[winter] {PAWN_nameDef} knocks the frost off {PAWN_possessive} collar and gets to the point.</li>
         <li>[clear] On a fine clear day, {PAWN_nameDef} catches someone between jobs.</li>
@@ -447,7 +450,7 @@
         <li>[clear] It's a good day, and {PAWN_nameDef} decides a good day is the time to ask.</li>
         <li>[trusting] {PAWN_nameDef} asks easily, as if the answer is already yes.</li>
         <li>[highmood] {PAWN_nameDef} is grinning when {PAWN_pronoun} asks, which is hard to say no to.</li>
-        <li>[lowmood] {PAWN_nameDef} asks quietly, without looking up.</li>
+        <li>[lowmood] {PAWN_nameDef} asks without looking up.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -460,11 +463,11 @@
       <plain>
         <li>[trusting] {PAWN_nameDef} nods as if {PAWN_pronoun} knew all along the council would see to it.</li>
         <li>[trusting] {PAWN_nameDef} thanks the council warmly, and isn't surprised in the least.</li>
-        <li>[doubtful] {PAWN_nameDef} walks round it twice before {PAWN_pronoun} lets {PAWN_objective}self believe it.</li>
+        <li>[doubtful] {PAWN_nameDef} asks twice whether it's really for {PAWN_objective} before believing it.</li>
         <li>[doubtful] {PAWN_nameDef} hadn't really expected this, and says so, and then says thank you.</li>
         <li>[lowmood] For a while, at least, {PAWN_nameDef} looks less weighed down.</li>
         <li>[lowmood] {PAWN_nameDef} manages a smile, the first in days.</li>
-        <li>[night] {PAWN_nameDef} goes back out after dark with a lamp, just to look at it again.</li>
+        <li>[night] {PAWN_nameDef} goes back out after dark with a lamp to look at it again.</li>
         <li>[night] Long after supper, {PAWN_nameDef} is still sitting beside it.</li>
       </plain>
     </lines>
@@ -485,7 +488,7 @@
     <pool>Council_Pool_MeetingDoubt</pool>
     <lines>
       <plain>
-        <li>[winter] We've firewood for a month. Let's talk about "{AMBITION}" when we've more than that.</li>
+        <li>[winter] We've firewood for a month, so let's talk about "{AMBITION}" when we've more.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -496,7 +499,7 @@
     <lines>
       <plain>
         <li>[winter] We're burning wood faster than we can cut it, and {OTHER_nameDef} wants "{WISH}"?</li>
-        <li>[winter] Ask again in spring, {OTHER_nameDef}. Winter has enough to say about what comes first.</li>
+        <li>[winter] Ask again in spring, {OTHER_nameDef}, when the woodpile isn't the first thing on our minds.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -506,30 +509,30 @@
     <pool>Council_Pool_AmbitionDeadline</pool>
     <lines>
       <plain>
-        <li>Only a few days left for "{AMBITION}". Every pair of hands counts now.</li>
-        <li>I've counted what's left to do on "{AMBITION}". It's a lot, and the days are few.</li>
+        <li>Only a few days left for "{AMBITION}", and every pair of hands counts.</li>
+        <li>I've counted what's left to do on "{AMBITION}", and there's more of it than days.</li>
         <li>If anyone can spare an hour, "{AMBITION}" needs it.</li>
-        <li>[night] Up late going over "{AMBITION}" again. We're so close and so short.</li>
-        <li>[night] I lay awake doing the sums on "{AMBITION}". They don't come out well.</li>
+        <li>[night] Up late going over "{AMBITION}" again, so close and still so short.</li>
+        <li>[night] I lay awake doing the sums on "{AMBITION}", and they don't come out well.</li>
       </plain>
       <warm>
         <li>Whatever happens with "{AMBITION}", thank you for trying so hard.</li>
-        <li>We're tired, I know. A little more, together.</li>
+        <li>I know we're tired, but we can do a bit more, together.</li>
       </warm>
       <blunt>
         <li>Days left. Work faster.</li>
-        <li>"{AMBITION}" won't finish itself. Move.</li>
+        <li>The work on "{AMBITION}" won't finish itself, so move.</li>
       </blunt>
       <cheerful>
-        <li>Down to the wire on "{AMBITION}"! This is the exciting part.</li>
-        <li>Nearly there! Well, nearly nearly.</li>
+        <li>Down to the wire on "{AMBITION}", which is the exciting part!</li>
+        <li>We're nearly there, or nearly nearly!</li>
       </cheerful>
       <gloomy>
-        <li>We're going to miss it. I can feel it.</li>
+        <li>We're going to miss it, I can feel it.</li>
         <li>I keep looking at what's left of "{AMBITION}" and feeling sick.</li>
       </gloomy>
       <cold>
-        <li>The deadline on "{AMBITION}" is close. I want everyone not on essential work on it.</li>
+        <li>With the deadline on "{AMBITION}" this close, I want every spare hand on it.</li>
         <li>Failure on "{AMBITION}" will cost us more than the effort to finish it.</li>
       </cold>
     </lines>
@@ -540,57 +543,59 @@
     <pool>Council_Pool_AmbitionHalfway</pool>
     <lines>
       <plain>
-        <li>Half of "{AMBITION}" done. I didn't think we'd get this far this fast.</li>
-        <li>We're halfway. The second half's always slower, so let's not stop.</li>
+        <li>Half of "{AMBITION}" done, and faster than I thought we'd manage.</li>
+        <li>We're halfway, and the second half's always slower, so let's not stop.</li>
         <li>[winter] Halfway, and the cold hasn't stopped us yet.</li>
-        <li>[winter] Half done, with frost on every tool. Not bad.</li>
-        <li>[afterraid] Even with the raid, we're halfway. That says something about us.</li>
-        <li>[afterraid] We lost days to the fighting and still kept going. Halfway.</li>
+        <li>[winter] Half done, and we did it with frost on every tool.</li>
+        <li>[afterraid] Even with the raid, we're halfway there.</li>
+        <li>[afterraid] We lost days to the fighting and still made it halfway.</li>
       </plain>
       <warm>
-        <li>Halfway, and everyone's done their share. I'm proud of us.</li>
-        <li>Half done. Let's make sure nobody's carrying more than their part.</li>
+        <li>Halfway, and every one of us did a share of it.</li>
+        <li>Half done. Let's make sure no one's carrying more than their part.</li>
       </warm>
       <blunt>
         <li>Half done. Other half next.</li>
         <li>Halfway. No time to admire it.</li>
       </blunt>
       <cheerful>
-        <li>Halfway! I'm going to celebrate by working twice as hard. Or by having a nap.</li>
-        <li>Half of "{AMBITION}"! The second half will be easier, because I've decided it will.</li>
+        <li>Halfway! I'm celebrating by working twice as hard, or by having a nap.</li>
+        <li>Half of "{AMBITION}" done, and the second half will be easier because I've decided so!</li>
       </cheerful>
       <gloomy>
         <li>Halfway. The easy half, if past jobs are anything to go by.</li>
-        <li>Half done. I'll believe in the rest when I see it.</li>
+        <li>I'll believe in the second half when I see it.</li>
       </gloomy>
       <cold>
-        <li>Fifty percent. On schedule, give or take a day.</li>
-        <li>Halfway. The pace is acceptable. I'd like it better.</li>
+        <li>Fifty percent, and on schedule, give or take a day.</li>
+        <li>Halfway. The pace is acceptable, though I'd like it better.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
 
+  <!-- The nemesis can be a beast, and an unnamed beast is "the warg": lines that aren't tagged [person] never open a
+       sentence with {X_nameDef}. -->
   <ColonyCouncil.FlavorExtensionDef>
     <defName>Rimfolk_Variety_Pool_NemesisDied</defName>
     <pool>Council_Pool_NemesisDied</pool>
     <lines>
       <plain>
-        <li>Word has come that {X_nameDef} is dead, and won't trouble {VICTIM} again.</li>
-        <li>{X_nameDef} is dead. {VICTIM} won't have to watch the horizon for {X_nameDef} anymore.</li>
-        <li>The news reached the colony today. {X_nameDef}, who {DEED}, will not be back.</li>
-        <li>{X_nameDef} is gone for good. What {X_nameDef} did to {VICTIM} stays, but {X_nameDef} doesn't.</li>
+        <li>There will be no more trouble for {VICTIM}; {X_nameDef} is dead.</li>
+        <li>{VICTIM} can stop watching the horizon now that {X_nameDef} is dead.</li>
+        <li>The news reached the colony today that {X_nameDef}, who {DEED}, will not be back.</li>
+        <li>What {X_nameDef} did to {VICTIM} can't be undone, but there will be no more of it: {X_nameDef} is dead.</li>
         <li>[person,loose] A traveler passing through mentioned {X_nameDef}'s death as if it were weather. {VICTIM} asked them to say it again.</li>
-        <li>[person,loose] {X_nameDef}, who {DEED}, died far from here, of something nobody bothered to name.</li>
+        <li>[person,loose] {X_nameDef}, who {DEED}, died far from here, of a fever or a fall, depending on who tells it.</li>
         <li>[person,captive] {X_nameDef} died in the cells. {VICTIM} went to look, once, and then went back to work.</li>
-        <li>[person,captive] {X_nameDef}, who {DEED}, will be buried by the people {X_nameDef} hurt.</li>
+        <li>[person,captive] {X_nameDef}, who {DEED}, died a prisoner of the people {X_nameDef} hurt.</li>
         <li>[beast,loose] What was left of the beast that {DEED} turned up in the brush, picked clean.</li>
-        <li>[beast,captive] The beast that {DEED} died in its pen. {VICTIM} stood at the rail for a long time afterward.</li>
+        <li>[beast,captive] The beast that {DEED} died in its pen. {VICTIM} went to the rail and looked at it a while.</li>
       </plain>
       <gloomy>
-        <li>{X_nameDef} is dead. It doesn't undo anything.</li>
+        <li>So {X_nameDef} is dead. It doesn't undo anything.</li>
       </gloomy>
       <cold>
-        <li>{X_nameDef}, who {DEED}, is dead. One less thing to plan around.</li>
+        <li>One less thing to plan around: {X_nameDef}, who {DEED}, is dead.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -601,8 +606,8 @@
     <lines>
       <plain>
         <li>{OTHER_nameDef} is gone, and so the oath against {FACTION} for {LOST} passes to {PAWN_nameDef}.</li>
-        <li>{PAWN_nameDef} kept {OTHER_nameDef}'s promise: {FACTION} still owe for {LOST}, and {PAWN_nameDef} means to collect.</li>
-        <li>{PAWN_nameDef} said it at the graveside, so everyone heard: the account with {FACTION} for {LOST} stays open.</li>
+        <li>{PAWN_nameDef} means to keep {OTHER_nameDef}'s promise and make {FACTION} pay for {LOST}.</li>
+        <li>{PAWN_nameDef} said it in front of the others, plainly: the account with {FACTION} for {LOST} stays open.</li>
         <li>{OTHER_nameDef}'s vendetta against {FACTION} didn't die with {OTHER_objective}. {PAWN_nameDef} carries it now, for {LOST}.</li>
       </plain>
       <warm>
@@ -611,7 +616,7 @@
       </warm>
       <blunt>
         <li>{OTHER_nameDef} died owed. {PAWN_nameDef} will take payment from {FACTION} for {LOST}.</li>
-        <li>{PAWN_nameDef} picked up the vendetta where {OTHER_nameDef} dropped it. {FACTION}, {LOST}. Simple.</li>
+        <li>{PAWN_nameDef} picked up the vendetta where {OTHER_nameDef} dropped it, against {FACTION}, for {LOST}.</li>
       </blunt>
       <cheerful>
         <li>{PAWN_nameDef} has sworn to finish {OTHER_nameDef}'s quarrel with {FACTION} over {LOST}, and says {OTHER_nameDef} would have laughed to see it.</li>
@@ -620,7 +625,7 @@
         <li>{PAWN_nameDef} took on {OTHER_nameDef}'s oath against {FACTION} for {LOST}, knowing where oaths like that lead.</li>
       </gloomy>
       <cold>
-        <li>{PAWN_nameDef} has taken over {OTHER_nameDef}'s claim on {FACTION} for {LOST}. Debts like that don't lapse.</li>
+        <li>{OTHER_nameDef}'s claim on {FACTION} for {LOST} is {PAWN_nameDef}'s now, to be paid in full.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
