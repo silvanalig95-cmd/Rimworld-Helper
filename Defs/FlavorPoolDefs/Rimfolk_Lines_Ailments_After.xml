@@ -15,18 +15,18 @@
     <lines>
       <plain>
         <li>[ail:FluCough] The flu's gone and left its cough behind. I woke the whole room twice last night.</li>
-        <li>[ail:FluCough] Everyone says I look better. Then I start coughing and they step back.</li>
+        <li>[ail:FluCough] People keep telling me I look better, right up until I cough.</li>
         <li>[ail:PlagueSwellings] The fever's gone. The lumps under my arms are still there, tender as bruises.</li>
         <li>[ail:PlagueSwellings] They tell me I've beaten the plague. I'd feel more like celebrating if I could lift my arms.</li>
         <li>[ail:Limp] The leg has knit. It just hasn't been told yet. I limp to the table and limp back.</li>
-        <li>[ail:Limp] Walked the length of the yard today and had to sit on the woodpile. The bone's fine, they say. The rest of the leg disagrees.</li>
+        <li>[ail:Limp] Walked the length of the yard today and had to sit on the woodpile. The bone's fine, they say; it's the muscle that's gone soft.</li>
         <li>[ail:BurnItch] The burn has healed into shiny new skin that itches all day. I sit on my hands.</li>
         <li>[ail:BadNights] Haven't slept properly since the fight. Every door that bangs is the raid again.</li>
         <li>[ail:BadNights] Woke in the dark with my hand on my knife and no idea why. Then I remembered.</li>
         <li>[ail:BadNights,child] I had bad dreams about the raiders. I went and slept on the floor by the fire.</li>
         <li>[ail:Unease] I keep looking at the corners of rooms. There's nothing there. I keep looking anyway.</li>
         <li>[ail:Unease] I left a lamp burning all night and didn't care who saw it.</li>
-        <li>[ail:PollutionCough] A day out on the bad ground, and now I cough up grey and taste metal.</li>
+        <li>[ail:PollutionCough] A day out on the bad ground, and now I cough up gray and taste metal.</li>
         <li>[ail:PollutionCough] The haze was down all afternoon. My throat feels sanded.</li>
         <li>[ail:SnowBlind] Too long out on the snow under that sun. My eyes are red and full of grit, and I can't bear the lamp.</li>
         <li>[ail:SnowBlind] Snow-blind, they call it. I spent the evening with a wet cloth over my eyes, listening to everyone else eat.</li>
@@ -45,7 +45,7 @@
       </cheerful>
       <gloomy>
         <li>[ail:BadNights] The fight's over. It just hasn't stopped happening at night.</li>
-        <li>[ail:Unease] Some things you can't stop seeing.</li>
+        <li>[ail:Unease] I still see it when I close my eyes.</li>
       </gloomy>
       <cold>
         <li>[ail:BadNights] Disturbed sleep after the engagement. It should pass within the week.</li>
@@ -70,7 +70,7 @@
     <pool>Council_Journal_Ail_Better</pool>
     <lines>
       <plain>
-        <li>[ail:FluCough] Got through a whole night without coughing. The others say the same.</li>
+        <li>[ail:FluCough] Got through a whole night without coughing. The others say they slept better too.</li>
         <li>[ail:PlagueSwellings] The swellings have gone down at last. I can lift my arms over my head again.</li>
         <li>[ail:Limp] Ran across the yard today without thinking about it. The leg's mine again.</li>
         <li>[ail:BurnItch] The burn has stopped itching. It's just a pale patch now.</li>
