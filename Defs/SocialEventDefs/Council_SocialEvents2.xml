@@ -232,7 +232,7 @@
       <li>{A_nameDef} and {B_nameDef} ended up nose to nose, and for a long moment neither of them backed off.</li>
       <li>{B_nameDef} knocked {A_nameDef}'s arm, maybe on purpose, and both of them squared up with their fists clenched.</li>
       <li>{A_nameDef} told {B_nameDef} to say it again. {B_nameDef} said it again.</li>
-      <li>{A_nameDef} and {B_nameDef} grabbed for the same tool, and neither of them would let go.</li>
+      <li>{A_nameDef} and {B_nameDef} grabbed for the same tool, and neither would let go.</li>
       <li>{B_nameDef} laughed at {A_nameDef}'s mistake one time too many, and {A_nameDef} turned round slowly with {A_possessive} fists closed.</li>
     </texts>
     <effects>
@@ -673,7 +673,7 @@
 
   <ColonyCouncil.SocialEventDef>
     <defName>Council_Soc2_LittleFire</defName>
-    <label>a little fire</label>
+    <label>too fond of fire</label>
     <weight>0.5</weight>
     <roleA><anyTrait><li>Pyromaniac</li></anyTrait></roleA>
     <roleB><notTrait><li>Pyromaniac</li></notTrait></roleB>

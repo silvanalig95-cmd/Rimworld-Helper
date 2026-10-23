@@ -185,7 +185,7 @@
     <aFeelings><li>Fear</li><li>Dread</li></aFeelings>
     <texts>
       <li>{A_nameDef} woke {B_nameDef} in the night, shaking from a fear {A_pronoun} couldn't name, and {B_nameDef} sat up with {A_objective} until dawn.</li>
-      <li>{A_nameDef} admitted to {B_nameDef} that {A_pronoun} sleeps with a weapon close by, and {B_nameDef} admitted that {B_pronoun} does too.</li>
+      <li>{A_nameDef} confessed that {A_pronoun} sleeps with a weapon close by, and {B_nameDef} said {B_pronoun} does too.</li>
       <li>{B_nameDef} found {A_nameDef} awake in the dark, listening to every sound, and stayed until {A_nameDef} fell asleep.</li>
       <li>{A_nameDef} told {B_nameDef} what frightens {A_objective} most, and {B_nameDef} didn't laugh.</li>
     </texts>

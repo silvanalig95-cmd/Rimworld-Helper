@@ -89,7 +89,7 @@
     <texts>
       <li>{B_nameDef} asked {A_nameDef} about {A_possessive} habit ({QUIRK}), expecting a joke, and got a real story instead.</li>
       <li>{B_nameDef} caught {A_nameDef} at it ({QUIRK}) and, instead of laughing, joined in.</li>
-      <li>{B_nameDef} admitted to {A_nameDef} that {B_pronoun} understands it now ({QUIRK}), more than {B_pronoun} expected to.</li>
+      <li>{B_nameDef} told {A_nameDef} that {B_pronoun} understands it now ({QUIRK}), more than {B_pronoun} expected to.</li>
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought></li>
