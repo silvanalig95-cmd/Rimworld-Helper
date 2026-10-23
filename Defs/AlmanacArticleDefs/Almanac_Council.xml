@@ -178,7 +178,8 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>Rationing | Hunger 25% slower.</li>
           <li>Drills | Everyone who can fight trains shooting and melee every waking hour.</li>
           <li>Study hours | Learning 30% and research 20% faster.</li>
-          <li>Harvest push, building season, clean sweep | Faster at one kind of work.</li>
+          <li>Harvest push, building season | Faster at one kind of work.</li>
+          <li>Clean sweep | Cleaning 50% faster, and everyone who can clean does it before other work, after fires, the sick, children, prisoners and cooking.</li>
           <li>Best behavior | Better negotiating, recruiting and trade prices.</li>
           <li>On guard | Better aim and melee, more tiredness.</li>
           <li>Austerity | No new wishes; standards fall fast.</li>

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A clean sweep that cleans
+
+*23 October 2026, version 0.10.11*
+
+- During a clean sweep, everyone who can clean does it before their other work, even those not set to clean, until the home area is clean. The decree's card says so.
+- Fires, the sick and wounded, children, prisoners and cooking still come before the scrubbing, and so do sleep, meals and washing. It's one of the deeper game hooks: with them off, the work order is your own.
+
 ## Rest for the wounded
 
 *23 October 2026, version 0.10.10*

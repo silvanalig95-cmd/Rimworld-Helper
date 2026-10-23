@@ -9,6 +9,7 @@
   <ItemGroup>
     <!-- Pure code shared with the mod (no game types). -->
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateMath.cs" Link="TemplateMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Decrees/DecreeMath.cs" Link="DecreeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/TemplateLayout.cs" Link="TemplateLayout.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/ThemeMath.cs" Link="ThemeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/LightMath.cs" Link="LightMath.cs" />

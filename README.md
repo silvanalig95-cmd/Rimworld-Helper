@@ -346,7 +346,10 @@ sleep, far fewer quarrels; night owls hate it), **shared meals** (talk and goodw
 heaters burn a quarter less fuel, in colder, darker rooms), **apprenticeships** (everyone practices building,
 crafting, cooking and growing every hour) and **a feast day** (one day of eating well and working half). Colonists
 petition for them when someone is ill or many are hurt, in winter, or when a newcomer joins. Anyone still healing from
-a wound or an illness likes rest when ill and a clean sweep, and asks for either when many are hurt.
+a wound or an illness likes rest when ill and a clean sweep, and asks for either when many are hurt. During a
+**clean sweep**, everyone who can clean puts it before their other work, even those not set to clean; fires, the sick
+and wounded, children, prisoners and cooking still come first, and so do sleep, meals and washing. This is one of the
+deeper game hooks.
 
 Thirty-one decrees in all. The newest come from a village's own year and do something no stat can: **tithes** (a tenth
 of the silver each morning to a people of the colony's ideoligion or the nearest village, for goodwill and, with Ideology,

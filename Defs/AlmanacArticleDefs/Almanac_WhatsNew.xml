@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.10.11</version>
+        <date>23 October 2026</date>
+        <title>A clean sweep that cleans</title>
+        <points>
+          <li>During a clean sweep, everyone who can clean does it before their other work, even those not set to clean, until the home area is clean. The decree's card says so.</li>
+          <li>Fires, the sick and wounded, children, prisoners and cooking still come before the scrubbing, and so do sleep, meals and washing. It's one of the deeper game hooks: with them off, the work order is your own.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.10.10</version>
         <date>23 October 2026</date>
         <title>Rest for the wounded</title>

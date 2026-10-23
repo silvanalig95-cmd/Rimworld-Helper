@@ -614,10 +614,7 @@ namespace ColonyCouncil
                 case DecreeMoment.Situation:
                     return def != null && DecreeWork.SituationRunning(def) != null;
                 case DecreeMoment.Wounded:
-                {
-                    int hurt = pawns.Count(p => LifeChecks.WoundSeverity(p) >= LifeChecks.HurtFrom);
-                    return hurt >= 2 && hurt * 3 >= pawns.Count;
-                }
+                    return DecreeMath.ManyHurt(pawns.Count(p => LifeChecks.WoundSeverity(p) >= LifeChecks.HurtFrom), pawns.Count);
                 default:
                     return false;
             }
