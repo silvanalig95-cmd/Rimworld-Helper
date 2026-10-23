@@ -122,3 +122,10 @@ Keep the era: [lowtech] text never mentions power, radios, steel or other worlds
 - No sentence may start with a lowercase placeholder or a lowercase name ({TALE} of an illness, a world event's label).
 - Tags that can never be true for the event (a season it doesn't fire in) make a line that never shows: report them.
 - Keep your helper scripts in your own scratchpad folder; shared names get overwritten by the other writers.
+
+## Learned in round two
+- Speech bubbles, and the news line shown beside a quote, are cut at the first sentence (`TextUtil.ShortSpeech`). Find out per pool whether anything after the first sentence is ever shown; if not, say the whole point in that sentence.
+- Don't assume a thing is there: most wishes aren't objects, a grave isn't dug yet at the moment of death, and children, a fight or a wall may not exist. Lines must hold for every case the tag allows (an [annals:peaceful] year may still have had one raid).
+- Letters arrive at any hour: "woke to" or "this morning" only where the code fires in the morning. Journals and dreams go by the hour of the moment they tell.
+- Default day names and ambition labels are lower case: never open a sentence on {NAME} or a quoted "{AMBITION}".
+- Write from the side of the one who writes: a memory given only to the recipient is told by the recipient.
