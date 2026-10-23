@@ -148,7 +148,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] touched [RECIPIENT_nameDef]'s brow with wet fingers, the way [INITIATOR_possessive] faith teaches, and wished [RECIPIENT_objective] [wish].</li>
         <li>r_logentry->[INITIATOR_nameDef] said the old water-words over [RECIPIENT_nameDef], asking that [RECIPIENT_pronoun] never go thirsty.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that every river [RECIPIENT_pronoun] crossed would remember [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] that every river [RECIPIENT_pronoun] crossed would remember [RECIPIENT_objective].</li>
         <li>wish->a clear head and a long life</li>
         <li>wish->rain when it's needed and none when it isn't</li>
         <li>wish->the patience of deep water</li>
@@ -176,7 +176,7 @@
     <recipientThought>Council_Moment_RanchTalk</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that a good hand counts the animals every evening, and asked whether [RECIPIENT_nameDef] did.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] counted the animals every evening, as a good hand should.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the trick to throwing a loop over a post from ten paces, and [RECIPIENT_nameDef] said [catch].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked for a good while about [talk].</li>
         <li>catch->[RECIPIENT_pronoun] would practice</li>

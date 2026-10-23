@@ -399,6 +399,7 @@
         <li>sent->It wasn't as funny as the first time.</li>
         <li>sent->The joke is wearing thin.</li>
         <li>sent->[RECIPIENT_nameDef] smiled at it, more out of habit than anything.</li>
+        <li>sent->Neither of them laughed as hard as they used to.</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
