@@ -15,15 +15,15 @@
     <recipientThought>Council_Moment_CampStories</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the people [INITIATOR_pronoun] had got to know at the camp, and what they'd said about the road.</li>
-        <li>r_logentry->[INITIATOR_nameDef] passed on a story [INITIATOR_pronoun] had heard at the camp's fire, and [RECIPIENT_nameDef] laughed in the right place.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the people [INITIATOR_pronoun] had come to know at the camp, and what they'd said about the road.</li>
+        <li>r_logentry->[INITIATOR_nameDef] passed on a story [INITIATOR_pronoun] had heard at the camp, and [RECIPIENT_nameDef] laughed in the right place.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to come down to the camp one evening and meet [INITIATOR_possessive] friends there.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed the camp's people were better neighbours than they'd feared.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] a small thing [INITIATOR_pronoun] had been given at the camp: [gift].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed the camp's people were better neighbors than they'd feared.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the people at the camp had given [INITIATOR_objective] [gift].</li>
         <li>gift->a carved spoon</li>
         <li>gift->a knotted cord bracelet</li>
         <li>gift->a twist of dried herbs for tea</li>
-        <li>gift->a song, sung badly</li>
+        <li>gift->a song of theirs to keep</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -48,12 +48,12 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] couldn't stop thinking about the trouble in the region, and [RECIPIENT_nameDef] admitted [RECIPIENT_pronoun] couldn't either.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over what the colony would do if the trouble on the roads came this way, and felt a little better for having a plan.</li>
-        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] kept thinking of the people out there with less than the colony had. [RECIPIENT_nameDef] said that was a good thing to think about.</li>
-        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] thought it would reach them. [RECIPIENT_nameDef] said [reach].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over what the colony would do if the trouble came this way.</li>
+        <li>r_logentry->[INITIATOR_nameDef] talked to [RECIPIENT_nameDef] about the people out there who had less than the colony did.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] thought it would reach the colony, and [RECIPIENT_nameDef] said [reach].</li>
         <li>reach->not if they kept their heads</li>
         <li>reach->maybe, and they'd manage</li>
-        <li>reach->[RECIPIENT_pronoun] didn't know, and that was the hard part</li>
+        <li>reach->[RECIPIENT_pronoun] didn't know</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -78,9 +78,9 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the good news from the region, and what the colony might make of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] said that if things kept going this way, next year could be a good one. [RECIPIENT_nameDef] said not to say it too loudly.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that if things kept going this way, next year could be a good one.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] made a list of everything they'd trade for, if the roads stayed open.</li>
-        <li>r_logentry->[INITIATOR_nameDef] talked [RECIPIENT_nameDef] into going to see it for [RECIPIENT_objective]self, one day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] would like to go out and see the world, now that things were looking up.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -96,14 +96,14 @@
 
   <InteractionDef ParentName="Council_MomentBase">
     <defName>Council_Moment_CampShame</defName>
-    <label>wished the camp had been treated better</label>
+    <label>wished the colony had done better</label>
     <initiatorThought>Council_Moment_SaidItOutLoud</initiatorThought>
     <recipientThought>Council_Moment_HeardTheirWorries</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] wished the colony had done better by the people who camped here. [RECIPIENT_nameDef] said next time it would.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the camp that was sent away, and what they'd say if those people ever came back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] still thought about the faces at the gate.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] wished the colony had done better by the people it turned away.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the people the colony had let down, and what they would say if they ever met them again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] was ashamed of how the colony had treated its neighbors.</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
