@@ -248,27 +248,27 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what things were like [oldtimes], and how [oldwisdom].</li>
         <li>r_logentry->[INITIATOR_nameDef] began a story with "back in my day", and [RECIPIENT_nameDef] settled in for the long version.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [oldstory]. [RECIPIENT_nameDef] wasn't sure how much of it to believe.</li>
-        <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] an old song from [oldtimes], and they sang it through twice.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] whether things really were better back then. [INITIATOR_nameDef] said [oldanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [oldstory], and [RECIPIENT_nameDef] wasn't sure how much of it to believe.</li>
+        <li>r_logentry->[INITIATOR_nameDef] sang [RECIPIENT_nameDef] a song from [oldtimes] and explained what the words meant.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked whether things really were better back then, and [INITIATOR_nameDef] said [oldanswer].</li>
         <li>oldtimes->before any of this</li>
         <li>oldtimes->back when [INITIATOR_pronoun] was young</li>
         <li>oldtimes->before the colony was even an idea</li>
         <li>oldwisdom->people used to mend things instead of throwing them away</li>
-        <li>oldwisdom->a handshake used to mean something</li>
+        <li>oldwisdom->a family used to eat at one table every night</li>
         <li>oldwisdom->winters used to be colder, or felt it</li>
         <li>oldwisdom->no one went to bed hungry if a neighbor had bread</li>
         <li>oldstory->the winter the river froze solid</li>
         <li>oldstory->a market so big you could get lost in it for a day</li>
         <li>oldstory->a dog that could find its way home from anywhere</li>
         <li>oldstory->the best harvest anyone had ever seen</li>
-        <li>oldstory->[INITIATOR_possessive] first love, in more detail than strictly necessary</li>
+        <li>oldstory->[INITIATOR_possessive] first love, and how it ended</li>
         <li>oldanswer->no, just different</li>
         <li>oldanswer->yes, and also no</li>
         <li>oldanswer->the people were better and the food was worse</li>
         <li>oldanswer->it was easier to be young then</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] how things used to be done, the slow way, and why it still worked.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about [oldstory], and [RECIPIENT_nameDef] asked good questions.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained to [RECIPIENT_nameDef] how things used to be done, the slow way, and why it still worked.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went on about [oldstory], and [RECIPIENT_nameDef] asked good questions.</li>
         <li>r_logentry->[INITIATOR_nameDef] listed for [RECIPIENT_nameDef] every place [INITIATOR_pronoun] had lived, in order, and the long roads between them.</li>
         <li>oldstory->the year the locusts came</li>
         <li>oldwisdom->you never left a guest outside after dark</li>
@@ -297,8 +297,8 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] [childlesson], and [RECIPIENT_nameDef] had it by the third try.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [childlesson]. By supper, [RECIPIENT_nameDef] was teaching the grown-ups.</li>
-        <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] a new word. [RECIPIENT_nameDef] used it [wordcount] before supper.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went over [childlesson] with [RECIPIENT_nameDef] until [RECIPIENT_pronoun] had it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] a new word, and [RECIPIENT_nameDef] used it [wordcount].</li>
         <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] [childgame] and let [RECIPIENT_objective] win the first round.</li>
         <li>r_logentry->[RECIPIENT_nameDef] asked [INITIATOR_nameDef] [childquestion], and [INITIATOR_nameDef] did [INITIATOR_possessive] honest best to answer.</li>
         <li>childlesson->how to tie a knot that holds</li>
@@ -306,11 +306,11 @@
         <li>childlesson->the names of the birds around the colony</li>
         <li>childlesson->how to count to a hundred</li>
         <li>childlesson->how to tell which berries are safe to eat</li>
-        <li>childlesson->how to skip a stone across water</li>
+        <li>childlesson->how to find north by the sun</li>
         <li>childgame->a clapping game</li>
         <li>childgame->a game with five pebbles and a circle in the dirt</li>
         <li>childgame->a riddle game</li>
-        <li>childgame->hide-and-seek around the storeroom</li>
+        <li>childgame->a string game, all loops and fingers</li>
         <li>wordcount->eleven times</li>
         <li>wordcount->about forty times</li>
         <li>wordcount->far too often</li>
@@ -319,11 +319,11 @@
         <li>childquestion->where the wind goes</li>
         <li>childquestion->why the moon follows people around</li>
         <li>childquestion->whether animals dream</li>
-        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] help with the work for an afternoon and explained each step as they went.</li>
-        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s questions all through supper, one after another.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [childlesson], slowly, twice.</li>
-        <li>r_logentry->[RECIPIENT_nameDef] followed [INITIATOR_nameDef] around all morning asking [childquestion].</li>
-        <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] [childgame], and [RECIPIENT_nameDef] had made up new rules for it by bedtime.</li>
+        <li>r_logentry->[INITIATOR_nameDef] explained [INITIATOR_possessive] work to [RECIPIENT_nameDef], step by step, and answered every "why".</li>
+        <li>r_logentry->[INITIATOR_nameDef] answered [RECIPIENT_nameDef]'s questions one after another until [RECIPIENT_nameDef] ran out.</li>
+        <li>r_logentry->[INITIATOR_nameDef] made a song out of [childlesson] so [RECIPIENT_nameDef] would remember it.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] would not let [INITIATOR_nameDef] go until [INITIATOR_pronoun] had explained [childquestion].</li>
+        <li>r_logentry->[INITIATOR_nameDef] taught [RECIPIENT_nameDef] [childgame], and [RECIPIENT_nameDef] made up new rules for it straight away.</li>
         <li>childlesson->how to read the weather from the clouds</li>
         <li>childlesson->how to carry a full bowl without spilling it</li>
         <li>childquestion->why stones are cold and wood isn't</li>
@@ -353,9 +353,9 @@
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories as the evening wore on, each one taller than the last.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [talltale]. [RECIPIENT_nameDef] [talereaction].</li>
-        <li>r_logentry->As the light faded, [INITIATOR_nameDef] told [RECIPIENT_nameDef] a ghost story and then refused to walk to bed alone.</li>
-        <li>r_logentry->Long after dark, [INITIATOR_nameDef] and [RECIPIENT_nameDef] were still up talking about [eveningtopic].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [talltale], and [RECIPIENT_nameDef] [talereaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the ghost story from [INITIATOR_possessive] childhood that still scared [INITIATOR_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stayed up talking about [eveningtopic].</li>
         <li>r_logentry->[INITIATOR_nameDef] forgot the ending of [INITIATOR_possessive] story halfway through, and [RECIPIENT_nameDef] helped make up a new one.</li>
         <li>talltale->the one about the thrumbo that followed a trader for a week</li>
         <li>talltale->a story about a lost city out in the hills</li>
@@ -368,10 +368,10 @@
         <li>eveningtopic->home, the old one and this one</li>
         <li>eveningtopic->what they would do with a whole free day</li>
         <li>eveningtopic->the stars, and which ones have names</li>
-        <li>eveningtopic->everyone they had ever met, good and bad</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat out the last of the evening telling stories about people they used to know.</li>
+        <li>eveningtopic->the people they had met on the road, good and bad</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] told each other about people they used to know.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [talltale], and stuck to every word of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about [eveningtopic] until the candle guttered.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about [eveningtopic] until they were both yawning.</li>
         <li>talltale->the one about the merchant who sold a bridge to a whole town</li>
         <li>talltale->a story about a wolf that guarded a shepherd's children</li>
         <li>eveningtopic->the worst meal either of them had ever eaten</li>
@@ -401,11 +401,11 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] listened to the storm rattle the walls, and counted the seconds between the loud parts.</li>
         <li>r_logentry->With the storm howling outside, [INITIATOR_nameDef] and [RECIPIENT_nameDef] [stormactivity].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that storms used to frighten [INITIATOR_objective] as a child. [RECIPIENT_nameDef] admitted they still frightened [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that storms used to frighten [INITIATOR_objective] as a child, and [RECIPIENT_nameDef] admitted they still frightened [RECIPIENT_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that no one was going anywhere until the storm [stormend].</li>
-        <li>r_logentry->[INITIATOR_nameDef] wondered aloud whether the roof would hold. [RECIPIENT_nameDef] said [roofanswer].</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud whether the roof would hold, and [RECIPIENT_nameDef] said [roofanswer].</li>
         <li>stormactivity->played a game of guessing what each bang had knocked over</li>
-        <li>stormactivity->shared the last of the dried fruit</li>
+        <li>stormactivity->made a list of everything that would need fixing afterward</li>
         <li>stormactivity->told each other about the worst storms they had ever lived through</li>
         <li>stormactivity->sat close and said very little</li>
         <li>stormend->had passed</li>
@@ -416,12 +416,12 @@
         <li>roofanswer->it had better, after all that work</li>
         <li>roofanswer->they would find out together</li>
         <li>roofanswer->that was a problem for whoever built it</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat by the window watching the lightning light up the fields.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] moved the buckets around under the leaks while the storm went on.</li>
-        <li>r_logentry->[INITIATOR_nameDef] jumped at a crack of thunder, and [RECIPIENT_nameDef] was kind enough not to laugh.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over the noise about the crops, and whether there would be any left.</li>
-        <li>stormactivity->played cards by the light of the flashes</li>
-        <li>stormend->moved off over the hills</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had to shout to hear each other over the storm.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whether the storm was getting closer or moving off.</li>
+        <li>r_logentry->[INITIATOR_nameDef] jumped at a loud bang outside, and [RECIPIENT_nameDef] was kind enough not to laugh.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wondered what the storm would leave standing outside.</li>
+        <li>stormactivity->traded riddles to keep their minds off it</li>
+        <li>stormend->moved on</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
@@ -448,21 +448,21 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] stopped [RECIPIENT_nameDef] to watch the snow come down for a moment.</li>
         <li>r_logentry->[INITIATOR_nameDef] caught a snowflake on [INITIATOR_possessive] sleeve and showed it to [RECIPIENT_nameDef] before it melted.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stood in the falling snow and agreed that [snowthought].</li>
-        <li>r_logentry->[INITIATOR_nameDef] stuck out [INITIATOR_possessive] tongue to catch a snowflake. [RECIPIENT_nameDef] [snowreaction].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] looked up at the falling snow and agreed that [snowthought].</li>
+        <li>r_logentry->[INITIATOR_nameDef] stuck out [INITIATOR_possessive] tongue to catch a snowflake, and [RECIPIENT_nameDef] [snowreaction].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how the snow used to fall where [INITIATOR_pronoun] grew up, and that it looked just like this.</li>
         <li>snowthought->the colony looked almost peaceful under it</li>
         <li>snowthought->the world sounds different when it snows</li>
-        <li>snowthought->no two flakes are alike, probably</li>
-        <li>snowthought->it would be a long winter, and a pretty one</li>
+        <li>snowthought->the cold was worth it for this</li>
+        <li>snowthought->there was more on the way, by the look of the sky</li>
         <li>snowreaction->shook [RECIPIENT_possessive] head at [INITIATOR_objective], then did the same</li>
         <li>snowreaction->laughed and joined in</li>
         <li>snowreaction->caught one first and gloated</li>
         <li>snowreaction->said it tasted like winter</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] left the first footprints across the fresh snow.</li>
-        <li>r_logentry->[INITIATOR_nameDef] lobbed a snowball at [RECIPIENT_nameDef], and the work stopped for a while.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] stood with their faces turned up to the falling snow.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] the tracks of some small animal crossing the new snow.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about how deep the snow might get.</li>
+        <li>r_logentry->[INITIATOR_nameDef] warned [RECIPIENT_nameDef] that the first snowball fight of the year was coming, and soon.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] turned their faces up to the falling snow.</li>
+        <li>r_logentry->[INITIATOR_nameDef] pointed out to [RECIPIENT_nameDef] how fast the snow was covering the paths.</li>
         <li>snowthought->the snow made the colony look new</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -486,28 +486,28 @@
     <recipientThought>Council_Moment_SpringTogether</recipientThought>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] pulled [RECIPIENT_nameDef] over to see [springsight].</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] [INITIATOR_pronoun] had seen [springsight].</li>
         <li>r_logentry->For a moment [INITIATOR_nameDef] and [RECIPIENT_nameDef] stopped what they were doing, just to stand in the sun.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] could smell spring in the air. [RECIPIENT_nameDef] said [springsmell].</li>
-        <li>r_logentry->On the way across the colony, [INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the first blossoms and lost count at [blossomcount].</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that winter was finally over. [RECIPIENT_nameDef] told [INITIATOR_objective] not to jinx it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] could smell spring in the air, and [RECIPIENT_nameDef] said [springsmell].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over how many birds had come back so far, and settled on [blossomcount].</li>
+        <li>r_logentry->[INITIATOR_nameDef] said winter was finally over, and [RECIPIENT_nameDef] told [INITIATOR_objective] not to jinx it.</li>
         <li>springsight->the first flowers pushing up through the mud</li>
         <li>springsight->a bird building a nest in the oddest place</li>
-        <li>springsight->the first green shoots in the fields</li>
-        <li>springsight->a patch of wildflowers growing by the wall</li>
-        <li>springsmell->it was mostly mud, but the hopeful kind</li>
+        <li>springsight->the first green shoots poking through</li>
+        <li>springsight->a patch of wildflowers growing out of a crack in the stone</li>
+        <li>springsmell->it smelled mostly of mud</li>
         <li>springsmell->it smelled like wet earth and new leaves</li>
-        <li>springsmell->that was probably the animals</li>
+        <li>springsmell->it smelled like rain coming</li>
         <li>springsmell->[RECIPIENT_pronoun] could smell it too</li>
         <li>blossomcount->forty-something</li>
         <li>blossomcount->thirty-one, or thirty-two</li>
         <li>blossomcount->somewhere past a hundred</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] watched the first birds come back over the fields.</li>
-        <li>r_logentry->[INITIATOR_nameDef] picked a flower and tucked it behind [RECIPIENT_nameDef]'s ear.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took off their boots and walked in the new grass.</li>
-        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [springsight], and they both stood looking for a while.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what to plant first now the ground was soft.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] looked better for a bit of sun.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed it was warm enough to leave the heavy coats inside.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] asked whether [INITIATOR_nameDef] had seen [springsight] yet, and [INITIATOR_nameDef] hadn't.</li>
         <li>springsight->a newborn animal finding its legs</li>
-        <li>springsight->the river running high with snowmelt</li>
+        <li>springsight->a stream running high with snowmelt</li>
       </rulesStrings>
     </logRulesInitiator>
     <modExtensions>
