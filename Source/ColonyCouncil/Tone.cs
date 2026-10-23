@@ -176,32 +176,8 @@ namespace ColonyCouncil
 
     public static class TextUtil
     {
-        /// <summary>Takes the first sentence of a line for floating speech text.</summary>
-        public static string ShortSpeech(string line, int maxLen = 90)
-        {
-            if (line.NullOrEmpty()) return line;
-            string s = line.Trim();
-            // Quotes round the whole line go; a quote that opens a line ("{WISH}" is still waiting.) stays.
-            if (s.Length >= 2 && s[0] == '"' && s.IndexOf('"', 1) == s.Length - 1) s = s.Substring(1, s.Length - 2).Trim();
-            int cut = -1;
-            for (int i = 0; i < s.Length; i++)
-            {
-                char c = s[i];
-                if ((c == '.' || c == '!' || c == '?') && i >= 12)
-                {
-                    cut = i + 1;
-                    break;
-                }
-            }
-            if (cut > 0 && cut < s.Length) s = s.Substring(0, cut);
-            if (s.Length > maxLen) s = s.Substring(0, maxLen - 1).TrimEnd() + "…";
-            // A cut inside a quotation closes it.
-            int quotes = 0;
-            foreach (char c in s)
-                if (c == '"') quotes++;
-            if (quotes % 2 == 1) s += "\"";
-            return s;
-        }
+        /// <summary>A line short enough to show over a head or quote in a message (see <see cref="SpeechMath.Shorten"/>).</summary>
+        public static string ShortSpeech(string line, int maxLen = 90) => SpeechMath.Shorten(line, maxLen);
 
         public static string DaysString(int ticks)
         {

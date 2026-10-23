@@ -160,7 +160,7 @@ public static class ImmersionTests
         return t.Substring(end + 1).Trim();
     }
 
-    /// <summary>The floating text's cut (TextUtil.ShortSpeech): up to the first '.', '!' or '?' from the 13th character on.</summary>
+    /// <summary>The first sentence: up to the first '.', '!' or '?' from the 13th character on (what always shows; SpeechMath.Shorten).</summary>
     private static string FirstSentence(string s)
     {
         for (int i = 12; i < s.Length; i++)

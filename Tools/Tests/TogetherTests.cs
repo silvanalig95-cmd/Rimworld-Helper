@@ -87,6 +87,19 @@ public static class TogetherTests
         Check(SpeechMath.Shows(SpeechMode.Bubbles, false) == SpeechMode.Floating, "floating text when it isn't");
         Check(SpeechMath.Shows(SpeechMode.Floating, true) == SpeechMode.Floating && SpeechMath.Shows(SpeechMode.Floating, false) == SpeechMode.Floating, "floating text when asked for, either way");
         Check(SpeechMath.Shows(SpeechMode.Off, true) == SpeechMode.Off && SpeechMath.Shows(SpeechMode.Off, false) == SpeechMode.Off, "off is off");
+
+        // ---------- How much of a line shows ----------
+        Check(SpeechMath.Shorten("Still no banner. I asked twice.") == "Still no banner. I asked twice.", "two short sentences that fit both show");
+        string longer = "The kitchen floor will be spotless, and my knees will be ruined. I'll be scrubbing until the frost comes, you'll see.";
+        Check(SpeechMath.Shorten(longer) == "The kitchen floor will be spotless, and my knees will be ruined.", "too long: the sentences that fit, never half of one");
+        string three = "Cold again. Fires out by dusk. Coats on indoors, and nobody says a word about it to the council either.";
+        Check(SpeechMath.Shorten(three) == "Cold again. Fires out by dusk.", "as many whole sentences as fit: " + SpeechMath.Shorten(three));
+        string run = new string('a', 120) + ".";
+        Check(SpeechMath.Shorten(run).Length == 90 && SpeechMath.Shorten(run).EndsWith("…"), "a first sentence too long alone is cut with an ellipsis");
+        Check(SpeechMath.Shorten("\"Bed. Now.\"") == "Bed. Now.", "quotes round the whole line go");
+        Check(SpeechMath.Shorten("It costs 3.5 silver a head, he says. " + new string('b', 80) + ".") == "It costs 3.5 silver a head, he says.", "a point inside a number doesn't end a sentence");
+        Check(SpeechMath.Shorten("He told me \"go home now.\" " + new string('c', 80) + ".") == "He told me \"go home now.\"", "a closing quote goes with its sentence");
+        Check(SpeechMath.Shorten(longer, 120) == longer, "a message's longer limit shows the whole of it (117 characters)");
         foreach (SpeechMode setting in Enum.GetValues(typeof(SpeechMode)))
         {
             foreach (bool loaded in new[] { true, false })

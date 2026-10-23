@@ -277,7 +277,7 @@ public static class TalkTests
                     Check(known.Contains(m.Groups[1].Value), $"{n}: known placeholder {{{m.Groups[1].Value}}}");
                 string shown = text.Replace("{OTHER}", "Margaret").Replace("{PAWN}", "Margaret").Replace("{SUBJECT}", "the fight with Iron Hand")
                     .Replace("{LABEL}", "the fight with Iron Hand").Replace("{TOPIC}", "the colony's project");
-                // Speech shows a line up to its first full stop (TextUtil.ShortSpeech, from the 13th character).
+                // Talk lines are one sentence: speech always shows the first whole (SpeechMath.Shorten, from the 13th character).
                 int cut = -1;
                 for (int i = 12; i < shown.Length - 1; i++)
                     if (".!?".IndexOf(shown[i]) >= 0 && ".!?\"'".IndexOf(shown[i + 1]) < 0)
