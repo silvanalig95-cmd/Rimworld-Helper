@@ -781,7 +781,7 @@
         <li>drinktoast->absent friends</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] there was a bottle put by for exactly this sort of day.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whose turn it was to pour tonight, and agreed to call it even.</li>
-        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] a drink tonight if [RECIPIENT_pronoun] finished the job by sundown.</li>
+        <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] a drink tonight if [RECIPIENT_pronoun] got the job finished first.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to save [INITIATOR_objective] a seat and a cup for later.</li>
         <li>drinktoast->the ones who didn't make it this far</li>
         <li>drinkplan->a drink outside, watching the sun go down</li>
