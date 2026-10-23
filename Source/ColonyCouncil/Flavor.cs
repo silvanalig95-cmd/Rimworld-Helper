@@ -24,6 +24,12 @@ namespace ColonyCouncil
     /// </summary>
     public static class Flavor
     {
+        /// <summary>
+        /// While set (0..23), the hour a line is about instead of now: an everyday journal entry, written once a day,
+        /// about something that happened at another hour. -1 when not set.
+        /// </summary>
+        public static int AtHour = -1;
+
         public static HashSet<string> TagsFor(Pawn p, Wish w = null)
         {
             var tags = new HashSet<string>();
@@ -41,7 +47,7 @@ namespace ColonyCouncil
                         case Season.Winter:
                         case Season.PermanentWinter: tags.Add("winter"); break;
                     }
-                    int hour = GenLocalDate.HourOfDay(map);
+                    int hour = AtHour >= 0 ? AtHour : GenLocalDate.HourOfDay(map);
                     tags.Add(hour < 6 || hour >= 22 ? "night" : hour < 11 ? "morning" : hour < 18 ? "day" : "evening");
                     var weather = map.weatherManager?.curWeather;
                     if (weather != null)

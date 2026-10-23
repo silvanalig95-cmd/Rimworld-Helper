@@ -145,17 +145,42 @@ namespace ColonyCouncil
                 if (pick.moment == null) continue;
                 seen[p.ThingID + "|" + pick.moment.key] = now;
                 var tags = new[] { pick.good ? "good" : "bad" };
-                if (pick.other != null) journals.WriteTagged(p, "Council_Journal_Day_" + pick.moment.key, tags, null, pick.other.Named("OTHER"));
-                else journals.WriteTagged(p, "Council_Journal_Day_" + pick.moment.key, tags);
+                // The entry is written once a day, at the same hour: its [night] or [evening] lines go by the hour the
+                // moment happened, not the hour of writing.
+                Flavor.AtHour = HourOf(p, pick.age);
+                try
+                {
+                    if (pick.other != null) journals.WriteTagged(p, "Council_Journal_Day_" + pick.moment.key, tags, null, pick.other.Named("OTHER"));
+                    else journals.WriteTagged(p, "Council_Journal_Day_" + pick.moment.key, tags);
+                }
+                finally
+                {
+                    Flavor.AtHour = -1;
+                }
             }
             foreach (var k in seen.Where(kv => now - kv.Value > GenDate.TicksPerDay * RepeatDays * 2).Select(kv => kv.Key).ToList()) seen.Remove(k);
             // Colonists posted at an outpost write home now and then (Integrations/Outposts.cs).
             OutpostLife.Letters(journals, seen);
         }
 
-        private static (Moment moment, Pawn other, bool good) Pick(Pawn p, Dictionary<string, int> seen, int now)
+        /// <summary>The local hour, where the colonist is, of a moment <paramref name="age"/> ticks ago; -1 when it can't be said (now).</summary>
+        private static int HourOf(Pawn p, int age)
         {
-            var candidates = new List<(Moment moment, Pawn other, bool good, float weight)>();
+            try
+            {
+                var map = p?.MapHeld;
+                if (map == null || age <= 0) return -1;
+                return GenDate.HourOfDay(Find.TickManager.TicksAbs - age, Find.WorldGrid.LongLatOf(map.Tile).x);
+            }
+            catch
+            {
+                return -1;
+            }
+        }
+
+        private static (Moment moment, Pawn other, bool good, int age) Pick(Pawn p, Dictionary<string, int> seen, int now)
+        {
+            var candidates = new List<(Moment moment, Pawn other, bool good, float weight, int age)>();
             void Consider(Thought t, Pawn other)
             {
                 if (t?.def == null || !ByThought.TryGetValue(t.def.defName, out var m)) return;
@@ -174,7 +199,7 @@ namespace ColonyCouncil
                 if (other != null && (other.Destroyed || other.Discarded)) other = null;
                 if (other == null && (m.social || SocialMoments.Contains(m.key))) return;
                 if (DefDatabase<FlavorPoolDef>.GetNamedSilentFail("Council_Journal_Day_" + m.key) == null) return;
-                candidates.Add((m, other, mood >= 0f, m.weight * (1f + UnityEngine.Mathf.Min(System.Math.Abs(mood), 20f) / 8f)));
+                candidates.Add((m, other, mood >= 0f, m.weight * (1f + UnityEngine.Mathf.Min(System.Math.Abs(mood), 20f) / 8f), t is Thought_Memory tm ? tm.age : 0));
             }
             var memories = p.needs.mood.thoughts.memories?.Memories;
             if (memories != null)
@@ -192,9 +217,9 @@ namespace ColonyCouncil
             foreach (var t in scratch)
                 if (!(t is Thought_Memory)) Consider(t, null);
             scratch.Clear();
-            if (candidates.Count == 0) return (null, null, false);
+            if (candidates.Count == 0) return (null, null, false, 0);
             var c = candidates.RandomElementByWeight(x => x.weight);
-            return (c.moment, c.other, c.good);
+            return (c.moment, c.other, c.good, c.age);
         }
 
         /// <summary>Moments that are about someone else: their lines name {OTHER}, so they need that person.</summary>
