@@ -57,11 +57,11 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had the colony to themselves in the small hours, and talked about whatever came up.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what kept [RECIPIENT_objective] up at night, and [RECIPIENT_nameDef] asked the same back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] named the stars they knew and argued about the rest.</li>
+        <li>r_logentry->[INITIATOR_nameDef] named the stars [INITIATOR_pronoun] knew for [RECIPIENT_nameDef], and they argued about the rest.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that night was the best part of the day, and that day people would never understand it.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] talked about the chores they liked doing best after dark.</li>
         <li>r_logentry->[INITIATOR_nameDef] heard [RECIPIENT_nameDef] moving about in the dark and went to keep [RECIPIENT_objective] company.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] heard something outside and argued about what had made the noise.</li>
+        <li>r_logentry->Something outside made a noise, and [INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about what it was.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked themselves hungry and planned a midnight meal.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -87,8 +87,8 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that a mountain overhead was the best roof there is.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] slept best with solid rock close overhead.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that neither of them missed the sky much.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared the snuggest, most closed-in rooms they had ever slept in.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] admitted [RECIPIENT_pronoun] didn't miss the sky much, and neither did [INITIATOR_nameDef].</li>
+        <li>r_logentry->[INITIATOR_nameDef] described to [RECIPIENT_nameDef] the snuggest room [INITIATOR_pronoun] had ever slept in, and [RECIPIENT_nameDef] described a snugger one.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about where the colony should dig next, and how deep.</li>
         <li>r_logentry->[INITIATOR_nameDef] said a good thick wall sounded like home when you knocked on it, and [RECIPIENT_nameDef] agreed.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] agreed that a quiet room with no windows was worth more than any view.</li>
@@ -119,7 +119,7 @@
         <li>scar->a pale line across [INITIATOR_possessive] ribs</li>
         <li>scar->a bite mark from an animal [INITIATOR_pronoun] wouldn't name</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued happily about which of them had taken the worse beating, and when.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded stories of old brawls they had won, and a few they hadn't.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about old brawls [INITIATOR_pronoun] had won, and a few [INITIATOR_pronoun] hadn't.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about the worst beating [RECIPIENT_pronoun] ever took, and [RECIPIENT_nameDef] told it with some pride.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that any fight you walk away from is a good one.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] worked out which of their old injuries ached before rain, and which before snow.</li>
@@ -220,7 +220,7 @@
         <li>food->a pie crust</li>
         <li>food->pickles</li>
         <li>food->jerky</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] ranked every meal they'd had that season, best to worst.</li>
+        <li>r_logentry->[INITIATOR_nameDef] got [RECIPIENT_nameDef] to rank every meal they'd had that season, best to worst.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] drew up the menu for a feast the colony couldn't yet afford.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the best meal of their lives, and it was the same kind of soup.</li>
         <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] guess the secret ingredient in the last good supper, and [RECIPIENT_nameDef] got it on the third try.</li>
@@ -253,7 +253,7 @@
         <li>r_logentry->[INITIATOR_nameDef] scratched a diagram in the dirt for [RECIPIENT_nameDef], and [RECIPIENT_nameDef] added to it.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] found a flaw in each other's reasoning and were delighted about it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] a question [INITIATOR_pronoun] had been chewing on for a week, and now they were both chewing on it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] lapsed into words only the two of them seemed to know.</li>
+        <li>r_logentry->Talking with [RECIPIENT_nameDef], [INITIATOR_nameDef] lapsed into words only the two of them seemed to know.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out a better way to do something, then argued about who had thought of it first.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] tried to work out how far it was to the horizon, and got two different answers.</li>
       </rulesStrings>
@@ -279,7 +279,7 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed there was no point stopping with the job half done.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would be done first, and [RECIPIENT_nameDef] took that as a challenge.</li>
         <li>r_logentry->[INITIATOR_nameDef] nodded at [RECIPIENT_nameDef] across the work, and [RECIPIENT_nameDef] nodded back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed there was always one more thing to do.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] said there was always one more thing to do, and [INITIATOR_nameDef] didn't argue.</li>
         <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] to drink some water, then went straight back to work.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] planned tomorrow's work over today's.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] compared how many jobs each of them had got through today.</li>
@@ -373,9 +373,9 @@
         <li>whoseworse->[INITIATOR_nameDef] won, narrowly</li>
         <li>whoseworse->[RECIPIENT_nameDef] won, and seemed pleased about it</li>
         <li>whoseworse->they called it a draw</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] grumbled to each other about being ill.</li>
+        <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] about being ill, and [RECIPIENT_nameDef] grumbled back.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] which remedies had helped [INITIATOR_objective] and which hadn't.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] felt sorry for themselves in good company.</li>
+        <li>r_logentry->In good company, [INITIATOR_nameDef] and [RECIPIENT_nameDef] felt sorry for themselves.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] was sleeping, and neither of them was.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] made a list of everything they'd do once they were well.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] agreed that the worst part of being ill was the boredom.</li>
@@ -443,10 +443,10 @@
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] all the news [RECIPIENT_pronoun] had missed while [RECIPIENT_pronoun] was ill, most of it unimportant.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] to eat properly now, and said [RECIPIENT_pronoun] had been missed at meals.</li>
         <li>r_logentry->[INITIATOR_nameDef] promised [RECIPIENT_nameDef] a bowl of the good stew to celebrate [RECIPIENT_possessive] getting back on [RECIPIENT_possessive] feet.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_pronoun] still looked pale.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [RECIPIENT_possessive] job had been done badly without [RECIPIENT_objective].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] still looked pale, [INITIATOR_nameDef] told [RECIPIENT_objective].</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that [RECIPIENT_possessive] job had been done badly without [RECIPIENT_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] said it was good to have [RECIPIENT_nameDef] back, and [RECIPIENT_nameDef] said it was good to be back.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] the colony had been too quiet without [RECIPIENT_objective].</li>
+        <li>r_logentry->The colony had been too quiet without [RECIPIENT_nameDef], [INITIATOR_nameDef] said.</li>
         <li>r_logentry->[INITIATOR_nameDef] kept telling [RECIPIENT_nameDef] to sit down and rest, and [RECIPIENT_nameDef] let [INITIATOR_objective] fuss.</li>
       </rulesStrings>
     </logRulesInitiator>
@@ -508,9 +508,9 @@
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] guessed where the camp's people were headed next.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] had seen at the camp.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whether the camp was a good sign or a bad one.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wondered aloud what the camp people made of the colony.</li>
+        <li>r_logentry->[INITIATOR_nameDef] wondered aloud to [RECIPIENT_nameDef] what the camp people made of the colony.</li>
         <li>r_logentry->[RECIPIENT_nameDef] and [INITIATOR_nameDef] made up a whole life story for one of the camp's people.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] tried to guess how many people the camp held, and disagreed.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] tried to guess how many people the camp held, and [INITIATOR_nameDef] guessed differently.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wondered what the camp's people ate, and whether they would trade it.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] thought the camp's people could be trusted.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] which of the camp people had waved at [INITIATOR_objective], and they argued about whether it was friendly.</li>
@@ -533,7 +533,7 @@
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded what they had heard about the trouble out in the region, and none of it was good.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a rumor [INITIATOR_pronoun] had heard, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] didn't believe a word of it.</li>
-        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed the colony had been lucky so far, and hoped it would hold.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said the colony had been lucky so far, and [RECIPIENT_nameDef] hoped it would hold.</li>
         <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wondered how the towns were coping, and whether the colony ought to help.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the trouble would reach them, and [RECIPIENT_nameDef] said [reach].</li>
         <li>reach->not if they were careful</li>
@@ -616,8 +616,8 @@
         <li>gift->a pressed flower</li>
         <li>r_logentry->[INITIATOR_nameDef] offered to take one of [RECIPIENT_nameDef]'s chores, the way [RECIPIENT_nameDef] had once done for [INITIATOR_objective].</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] wouldn't forget it, and [RECIPIENT_nameDef] said it was nothing.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] still owed [RECIPIENT_objective] one.</li>
-        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] had been telling the others what [RECIPIENT_pronoun] had done.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [INITIATOR_pronoun] still owed [RECIPIENT_nameDef] one.</li>
+        <li>r_logentry->[INITIATOR_nameDef] let [RECIPIENT_nameDef] know [INITIATOR_pronoun] had been telling the others what [RECIPIENT_pronoun] had done.</li>
         <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether there was anything [INITIATOR_pronoun] could do in return.</li>
         <li>r_logentry->[INITIATOR_nameDef] offered to mend whatever of [RECIPIENT_nameDef]'s needed mending.</li>
         <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] still thought about what [RECIPIENT_nameDef] had done, most days.</li>
