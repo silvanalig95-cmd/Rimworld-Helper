@@ -4,7 +4,8 @@
   <!--
     More lines for personal touches (Touches/): planning a plant pot, a light, an end table or a dresser for one's own
     room, and seeing it built. The caller always tags the kind of thing (touch:...), so every voice gets more lines
-    for every kind. Same placeholders: {THING} ("a plant pot"), {THINGBARE} ("plant pot").
+    for every kind. Same placeholders: {THING} ("a plant pot"), {THINGBARE} ("plant pot"). A planned touch goes into the
+    news whole and is said in its first sentence; a built one is only said, so it is one sentence.
   -->
 
   <ColonyCouncil.FlavorExtensionDef>
@@ -13,26 +14,26 @@
     <lines>
       <plain>
         <li>[touch:plantpot] There's a sunny corner in my room going to waste. A plant pot would fix that.</li>
-        <li>[touch:plantpot] I've marked a spot for a plant by the window. I'll water it myself.</li>
-        <li>[touch:plantpot] Something growing in my room would be nice. I've put a blueprint down.</li>
-        <li>[touch:light] I've marked out a light for my room. The evenings are long in the dark.</li>
-        <li>[touch:light] A light by the bed, so I can find my boots before dawn.</li>
+        <li>[touch:plantpot] A few flowers by the bed, nothing to eat. I've marked a spot for the pot.</li>
+        <li>[touch:plantpot] The room needs a living thing in it besides me and the spiders.</li>
+        <li>[touch:light] My light goes low on the wall, where it won't glare in my eyes.</li>
+        <li>[touch:light] I dropped my only needle in the dark last week and I'm still looking. A light, please.</li>
         <li>[touch:light] My room is the darkest in the colony. I've planned a lamp for it.</li>
-        <li>[touch:endtable] I've planned a small table by the bed. My things keep ending up on the floor.</li>
-        <li>[touch:endtable] An end table for my room, for a cup and a candle and not much else.</li>
+        <li>[touch:endtable] A small table by the bed would hold my water and my comb.</li>
+        <li>[touch:endtable] An end table for my room, just big enough for a cup and a candle.</li>
         <li>[touch:endtable] Somewhere to put things down at night. I've marked the spot.</li>
         <li>[touch:dresser] I've planned a dresser for my room. My clothes need somewhere to live.</li>
         <li>[touch:dresser] A dresser in the corner, so my things aren't in a sack under the bed.</li>
-        <li>[touch:dresser] I've marked where a dresser would go. Everything I own is in a heap right now.</li>
+        <li>[touch:dresser] I'm tired of dressing out of a basket, so I've marked where a dresser would go.</li>
       </plain>
       <warm>
         <li>[touch:plantpot] My mother always had something growing on the sill. I'd like that for my room.</li>
         <li>[touch:plantpot] A plant would make my room feel looked after. I'll do the looking after.</li>
-        <li>[touch:plantpot] I'd love a pot by the window, whenever someone has the clay to spare.</li>
+        <li>[touch:plantpot] I'd love a pot by the window, if someone can spare the stone.</li>
         <li>[touch:light] A light would let me sit up with whoever can't sleep. I've marked a place for one.</li>
         <li>[touch:light] I'd like a lamp by the bed, so I'm not stumbling about waking the others.</li>
         <li>[touch:light] Some light in my room, when there's time. It doesn't have to be bright.</li>
-        <li>[touch:endtable] A little table for the gifts people have given me, so they're not in a pile.</li>
+        <li>[touch:endtable] A small table for the stones the children keep bringing me.</li>
         <li>[touch:endtable] I've marked a spot for an end table. Only if it's no trouble.</li>
         <li>[touch:endtable] A table by the bed, for a cup of water and the book I'm reading slowly.</li>
         <li>[touch:dresser] A dresser would help me keep the clothes the others mended for me in good order.</li>
@@ -40,16 +41,16 @@
         <li>[touch:dresser] I'd like somewhere tidy for my things. It would feel like settling in.</li>
       </warm>
       <blunt>
-        <li>[touch:plantpot] Plant. Window. Done.</li>
+        <li>[touch:plantpot] Plant by the window. Done.</li>
         <li>[touch:plantpot] I want a green thing in my room. Build the pot.</li>
         <li>[touch:plantpot] Pot by the bed. I'll keep it alive.</li>
-        <li>[touch:light] Light. My room. Soon.</li>
+        <li>[touch:light] I want a light in my room, and soon.</li>
         <li>[touch:light] I'm tired of dressing in the dark.</li>
         <li>[touch:light] Lamp's marked. Build it.</li>
-        <li>[touch:endtable] Small table. By the bed. That's it.</li>
+        <li>[touch:endtable] Small table, by the bed. That's the whole request.</li>
         <li>[touch:endtable] Floor's full. Need a table.</li>
         <li>[touch:endtable] I want a table to put my cup on. Is that a lot?</li>
-        <li>[touch:dresser] Dresser. Corner. Thanks.</li>
+        <li>[touch:dresser] A dresser in the corner. Thanks.</li>
         <li>[touch:dresser] My clothes need drawers. Blueprint's down.</li>
         <li>[touch:dresser] No more sack under the bed. I want a dresser.</li>
       </blunt>
@@ -60,7 +61,7 @@
         <li>[touch:light] A lamp by my bed! I'll be able to see my own feet at night.</li>
         <li>[touch:light] I'm planning a light, so I can stay up late reading the same three books.</li>
         <li>[touch:light] Light in my room! I'll finally find the sock I lost in the corner.</li>
-        <li>[touch:endtable] A little table by my bed, for my cup and my collection of interesting stones.</li>
+        <li>[touch:endtable] A small table by my bed, for my cup and the feathers I've been collecting.</li>
         <li>[touch:endtable] I've planned an end table, and I keep thinking of more things to put on it.</li>
         <li>[touch:endtable] A bedside table! I'm going to feel so grown-up.</li>
         <li>[touch:dresser] A dresser for my room! I'll fold my clothes into neat little squares.</li>
@@ -69,20 +70,20 @@
       </cheerful>
       <gloomy>
         <li>[touch:plantpot] A plant, so there's something in that room that's growing instead of wearing out.</li>
-        <li>[touch:plantpot] I've marked a spot for a pot. I'll try not to let it die.</li>
+        <li>[touch:plantpot] The weeds outside look happier than my room. I've marked a spot for a pot.</li>
         <li>[touch:plantpot] Something green to look at when I can't get out of bed.</li>
         <li>[touch:light] A light, so the dark doesn't win every night.</li>
         <li>[touch:light] I've planned a lamp. I don't sleep much, so I might as well see.</li>
         <li>[touch:light] Some light, for the hours before dawn when I lie there thinking.</li>
         <li>[touch:endtable] A table by the bed. Somewhere to put things down, at least.</li>
         <li>[touch:endtable] I've marked out a small table. It'll hold what little I have.</li>
-        <li>[touch:endtable] An end table for my room. A small comfort, but I'll take it.</li>
-        <li>[touch:dresser] A dresser, so my things are in order if anyone has to go through them.</li>
+        <li>[touch:endtable] An end table for my room. Not much of a comfort, but I'll take it.</li>
+        <li>[touch:dresser] A dresser. My clothes keep getting damp on the floor, like everything else here.</li>
         <li>[touch:dresser] I've planned some drawers. It feels like deciding to stay.</li>
         <li>[touch:dresser] My clothes in a heap make the room feel temporary. A dresser, then.</li>
       </gloomy>
       <cold>
-        <li>[touch:plantpot] A plant pot is cheap and improves the room. Placed.</li>
+        <li>[touch:plantpot] One plant pot, placed where I'll see it from the door.</li>
         <li>[touch:plantpot] I've planned a pot by the window, where it gets the most light per hour.</li>
         <li>[touch:plantpot] One plant, one pot. The room will be measurably better.</li>
         <li>[touch:light] A light extends my working day. The blueprint is down.</li>
@@ -90,10 +91,10 @@
         <li>[touch:light] Light by the bed, positioned so it doesn't wake anyone in the hall.</li>
         <li>[touch:endtable] An end table, so my knife sleeps within reach.</li>
         <li>[touch:endtable] A table beside the bed. Efficient, and it costs very little.</li>
-        <li>[touch:endtable] I've planned an end table. Things on the floor get stepped on.</li>
-        <li>[touch:dresser] A dresser keeps my belongings organized and visible. Placed.</li>
-        <li>[touch:dresser] Drawers for my room. I want to know at a glance what I own.</li>
-        <li>[touch:dresser] I've marked a dresser against the wall. Clothes kept properly last longer.</li>
+        <li>[touch:endtable] Things on the floor get stepped on. I've planned an end table.</li>
+        <li>[touch:dresser] A dresser keeps my belongings organized and in sight.</li>
+        <li>[touch:dresser] Drawers for my room, one for each kind of thing.</li>
+        <li>[touch:dresser] A dresser against the wall, away from the damp. Placed.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -103,108 +104,108 @@
     <pool>Council_Pool_TouchDone</pool>
     <lines>
       <plain>
-        <li>[touch:plantpot] The plant pot is in. I moved it twice before it caught the light right.</li>
-        <li>[touch:plantpot] My plant is in by the window. First thing I see in the morning now.</li>
-        <li>[touch:plantpot] It's only a sprout, but it's my sprout, in my room.</li>
-        <li>[touch:light] The light is in. I didn't know my walls were that color.</li>
+        <li>[touch:plantpot] I moved the new pot twice before it caught the light right.</li>
+        <li>[touch:plantpot] My plant is in by the window, the first thing I see in the morning.</li>
+        <li>[touch:plantpot] One sprout so far, and it's leaning toward the window already.</li>
+        <li>[touch:light] The light's in, and my walls are a different color than I thought.</li>
         <li>[touch:light] I lit the new lamp and sat there for a while, doing nothing in particular.</li>
-        <li>[touch:light] My room has a light now. I found two things I'd lost under the bed.</li>
-        <li>[touch:endtable] The end table is in. My cup has a home.</li>
-        <li>[touch:endtable] There's a table by my bed now, and everything I care about fits on it.</li>
+        <li>[touch:light] With the light in, I found two things I'd lost under the bed.</li>
+        <li>[touch:endtable] My cup has a home now, on the new end table.</li>
+        <li>[touch:endtable] Everything I care about fits on the new table, with room to spare.</li>
         <li>[touch:endtable] I put a candle on the new table and lay there looking at it.</li>
-        <li>[touch:dresser] The dresser is in. My clothes are off the floor for the first time since I got here.</li>
+        <li>[touch:dresser] The dresser is in, and my clothes are off the floor at last.</li>
         <li>[touch:dresser] I spent the evening putting things in drawers and taking them out again.</li>
-        <li>[touch:dresser] My things are folded and put away. The room looks twice the size.</li>
+        <li>[touch:dresser] With my things put away, the room looks twice the size.</li>
       </plain>
       <warm>
-        <li>[touch:plantpot] I've given the new plant the best spot in the room. It deserves it.</li>
-        <li>[touch:plantpot] Someone even put soil in the pot for me. I'll look after it well.</li>
+        <li>[touch:plantpot] I've given the new plant the best spot in the room.</li>
+        <li>[touch:plantpot] The pot is just the size I hoped, and I've thanked the builder twice.</li>
         <li>[touch:plantpot] My plant is in, and I've promised it a drink every morning.</li>
-        <li>[touch:plantpot] I showed the plant to the youngest, who wanted to name it. It has a name now.</li>
-        <li>[touch:light] The light is so warm. I sat under it mending socks and was perfectly happy.</li>
+        <li>[touch:plantpot] I showed the plant to the youngest one here, who gave it a name on the spot.</li>
+        <li>[touch:light] I sat under the new light mending, and was perfectly happy.</li>
         <li>[touch:light] The new lamp means I can sit up with a friend without bumping into things.</li>
         <li>[touch:light] I left the light on late and read a letter from home, slowly.</li>
-        <li>[touch:light] Whoever made the lamp did it beautifully. I'll tell them so.</li>
-        <li>[touch:endtable] I put the carving my friend made me on the new table. It looks right there.</li>
-        <li>[touch:endtable] The table's just where I wanted it. Thank you to whoever carried it in.</li>
-        <li>[touch:endtable] A cup of water by the bed at night. Such a small thing. I'm grateful.</li>
+        <li>[touch:light] Whoever made the lamp did it beautifully, and I mean to tell them so.</li>
+        <li>[touch:endtable] The carving my friend made me sits on the new table now, where it belongs.</li>
+        <li>[touch:endtable] The table's just where I wanted it, so thank you to whoever built it.</li>
+        <li>[touch:endtable] A cup of water within reach at night, and I'm grateful for it.</li>
         <li>[touch:endtable] The new table holds my few treasures, and my room feels like mine now.</li>
-        <li>[touch:dresser] My clothes have drawers. I folded them the way my mother taught me.</li>
-        <li>[touch:dresser] The dresser is well made. I ran my hand along the top and thanked the builder in my head.</li>
-        <li>[touch:dresser] Everything has a place now. I think I'll sleep better.</li>
+        <li>[touch:dresser] I folded my clothes into the new drawers the way my mother taught me.</li>
+        <li>[touch:dresser] I ran my hand along the top of the dresser and thanked the builder under my breath.</li>
+        <li>[touch:dresser] Everything has a place now, and I think I'll sleep better for it.</li>
         <li>[touch:dresser] I gave the bottom drawer to the blanket someone lent me when I first came.</li>
       </warm>
       <blunt>
-        <li>[touch:plantpot] Plant's in. Don't touch it.</li>
-        <li>[touch:plantpot] It's green and it's mine. Good.</li>
-        <li>[touch:plantpot] Pot's fine. Soil's fine. Done.</li>
-        <li>[touch:plantpot] Plant. Window. Finally.</li>
-        <li>[touch:light] Light's in. Good.</li>
-        <li>[touch:light] I can see. That's all I asked.</li>
-        <li>[touch:light] Bright enough. Thanks.</li>
-        <li>[touch:light] Lamp works. No more stubbed toes.</li>
-        <li>[touch:endtable] Table's in. Cup's on it.</li>
-        <li>[touch:endtable] Right height, right place. Good.</li>
-        <li>[touch:endtable] Floor's clear. Table's full.</li>
-        <li>[touch:endtable] Solid table. Doesn't wobble. Fine.</li>
-        <li>[touch:dresser] Drawers. Clothes in them. Good.</li>
-        <li>[touch:dresser] Dresser's in. Room's tidy.</li>
-        <li>[touch:dresser] Good dresser. I'll use every drawer.</li>
-        <li>[touch:dresser] Clothes off the floor. About time.</li>
+        <li>[touch:plantpot] Plant's in, and I water it, not you.</li>
+        <li>[touch:plantpot] It's green and it's mine.</li>
+        <li>[touch:plantpot] Pot's fine, soil's fine.</li>
+        <li>[touch:plantpot] Plant by the window, good.</li>
+        <li>[touch:light] Light's in, finally.</li>
+        <li>[touch:light] I can see what I'm doing now.</li>
+        <li>[touch:light] Bright enough, thanks.</li>
+        <li>[touch:light] Lamp works, so no more stubbed toes.</li>
+        <li>[touch:endtable] Table's in, cup's on it.</li>
+        <li>[touch:endtable] Right height, right place.</li>
+        <li>[touch:endtable] Floor's clear and the table's full.</li>
+        <li>[touch:endtable] Solid table, I'll give whoever built it that.</li>
+        <li>[touch:dresser] Drawers, with my clothes in them.</li>
+        <li>[touch:dresser] Dresser's in and the room's tidy.</li>
+        <li>[touch:dresser] Good dresser, and I'll use every drawer.</li>
+        <li>[touch:dresser] About time my clothes had somewhere to go.</li>
       </blunt>
       <cheerful>
-        <li>[touch:plantpot] I've named my plant already. It doesn't know yet.</li>
+        <li>[touch:plantpot] I've named my plant already, and I'm not telling anyone what.</li>
         <li>[touch:plantpot] My plant pot is in, and I've been checking on it every hour.</li>
-        <li>[touch:plantpot] I sang to my new plant this morning. It didn't complain.</li>
+        <li>[touch:plantpot] I sang to my new plant this morning, all the verses.</li>
         <li>[touch:plantpot] There's a pot of green in my room, and I'm the proudest person in the colony.</li>
         <li>[touch:light] My lamp is in, and I keep finding reasons to light it.</li>
-        <li>[touch:light] I can see my room at night now! It's smaller than I thought, and I love it.</li>
-        <li>[touch:light] Read in bed by my own light last night. I feel very fancy.</li>
-        <li>[touch:light] My new light makes the whole room glow. I invited three people in to see it.</li>
-        <li>[touch:endtable] My table's in, and I've arranged my stones on it by size, then by color.</li>
-        <li>[touch:endtable] A table all for me! I keep putting my cup down just to hear the clink.</li>
+        <li>[touch:light] I can see my room at night now, and I love every corner of it.</li>
+        <li>[touch:light] I read in bed by my own light last night, like someone very fancy!</li>
+        <li>[touch:light] My new light makes the whole room glow, and I've had visitors already.</li>
+        <li>[touch:endtable] My table's in, and I've arranged everything on it by size, then by color.</li>
+        <li>[touch:endtable] A table all for me, and I keep setting my cup down to hear the clink!</li>
         <li>[touch:endtable] I've got a bedside table now, so I've started keeping a bedside snack.</li>
-        <li>[touch:endtable] The new table is perfect for my cup, my candle and my one good comb.</li>
+        <li>[touch:endtable] The new table fits my candle and my one good book exactly.</li>
         <li>[touch:dresser] I folded all my clothes into the new dresser, then unfolded them to do it better.</li>
-        <li>[touch:dresser] I have drawers now! I put a dried flower in each one.</li>
+        <li>[touch:dresser] I have drawers now, with a dried flower in each one!</li>
         <li>[touch:dresser] The dresser's in, and my room looks like a grown-up lives there.</li>
-        <li>[touch:dresser] Every sock in its drawer. I've never been so organized in my life.</li>
+        <li>[touch:dresser] Every sock in its drawer, and I've never been so organized in my life.</li>
       </cheerful>
       <gloomy>
-        <li>[touch:plantpot] The plant's in. One green thing in a long gray season.</li>
-        <li>[touch:plantpot] I watered the new plant and watched it for a while. It didn't do anything, which was restful.</li>
-        <li>[touch:plantpot] It's a nice pot. I hope the plant does better than the last thing I looked after.</li>
-        <li>[touch:plantpot] My plant is in. It's the only thing in here that's growing.</li>
-        <li>[touch:light] The light's in. Now the nights only feel long instead of endless.</li>
-        <li>[touch:light] I lit the lamp and the room looked less like a cell. A little less.</li>
-        <li>[touch:light] Some light to lie awake by. It helps more than I expected.</li>
-        <li>[touch:light] The new lamp throws long shadows. Better than the dark, I suppose.</li>
-        <li>[touch:endtable] The table is in. I put my one keepsake on it, and it looked lonely.</li>
-        <li>[touch:endtable] A good table. My cup won't end up on the floor in the night anymore.</li>
-        <li>[touch:endtable] Somewhere to put things down. I didn't know how much I'd missed that.</li>
-        <li>[touch:endtable] The end table's in. It makes the room look lived in, which is half the battle.</li>
-        <li>[touch:dresser] My clothes are in drawers now. It feels like I've decided to stay.</li>
-        <li>[touch:dresser] The dresser's in. It holds everything I own with room to spare.</li>
-        <li>[touch:dresser] Folded everything away. The room looks calm, even if I'm not.</li>
-        <li>[touch:dresser] A good dresser. It'll be easy to pack, if it comes to that.</li>
+        <li>[touch:plantpot] The plant's in, one green thing in a long gray season.</li>
+        <li>[touch:plantpot] I watered the new plant and watched it do nothing for a while, which was restful.</li>
+        <li>[touch:plantpot] It's a nice pot, and I hope the plant does better than the last thing I looked after.</li>
+        <li>[touch:plantpot] My plant is the only thing in here that's growing.</li>
+        <li>[touch:light] The light's in, and the shadows have all moved into the corners.</li>
+        <li>[touch:light] I lit the lamp, and the room looked a bit less like a cell.</li>
+        <li>[touch:light] Some light to lie awake by, which helps more than I expected.</li>
+        <li>[touch:light] Better a lamp than the dark, I suppose.</li>
+        <li>[touch:endtable] I put my one keepsake on the new table, and it looked lonely there.</li>
+        <li>[touch:endtable] My cup won't end up on the floor in the night anymore, at least.</li>
+        <li>[touch:endtable] Somewhere to put things down, and I hadn't known I missed it.</li>
+        <li>[touch:endtable] The end table makes the room look lived in, which is half of it.</li>
+        <li>[touch:dresser] My clothes are in drawers now, as if I'd decided to stay.</li>
+        <li>[touch:dresser] The dresser holds everything I own, with room to spare.</li>
+        <li>[touch:dresser] The room looks calm with everything folded away, even if I'm not.</li>
+        <li>[touch:dresser] A good dresser, and easy to empty if it comes to that.</li>
       </gloomy>
       <cold>
-        <li>[touch:plantpot] The pot is placed where I marked it. The plant will do.</li>
-        <li>[touch:plantpot] Plant installed. Watering assigned to myself.</li>
-        <li>[touch:plantpot] The room's beauty has improved. I can feel the difference, which surprises me.</li>
-        <li>[touch:plantpot] A plant is in. I'll see whether I sleep better, as people claim.</li>
-        <li>[touch:light] The light is in and covers the room. No dark corners.</li>
-        <li>[touch:light] Lamp installed. I've moved my evening reading into the room.</li>
-        <li>[touch:light] Good placement. I can see the door and the bed both.</li>
-        <li>[touch:light] The light works as intended. I've thanked the builder briefly.</li>
-        <li>[touch:endtable] The end table is in. My knife and cup are within reach.</li>
-        <li>[touch:endtable] Table built to the right height. I've checked it twice.</li>
-        <li>[touch:endtable] The table is in. Fewer things on the floor, fewer things broken.</li>
-        <li>[touch:endtable] Adequate table. Placed where I specified.</li>
-        <li>[touch:dresser] Dresser in. Everything sorted by use.</li>
+        <li>[touch:plantpot] The pot is where I marked it, and the plant will do.</li>
+        <li>[touch:plantpot] Plant installed; I'll see whether it survives my care.</li>
+        <li>[touch:plantpot] The room is better to look at, and I can feel it, which surprises me.</li>
+        <li>[touch:plantpot] The plant is in, and I'll see whether I sleep better, as people claim.</li>
+        <li>[touch:light] The light covers the whole room, with no dark corners.</li>
+        <li>[touch:light] Lamp installed, and my evening reading has moved in here.</li>
+        <li>[touch:light] Good placement; the light reaches the bed and not the hall.</li>
+        <li>[touch:light] The light works as intended, and I've thanked the builder, briefly.</li>
+        <li>[touch:endtable] The end table is in, level with the mattress, as I asked.</li>
+        <li>[touch:endtable] Table built square; I've checked it twice.</li>
+        <li>[touch:endtable] Fewer things on the floor means fewer things broken.</li>
+        <li>[touch:endtable] Adequate table; I've no complaints worth making.</li>
+        <li>[touch:dresser] Dresser in, and everything sorted by use.</li>
         <li>[touch:dresser] My belongings are in drawers and I know exactly how many there are.</li>
-        <li>[touch:dresser] The dresser is solid. It will last longer than most things here.</li>
-        <li>[touch:dresser] Clothes stored properly. They'll last longer, and so will my patience.</li>
+        <li>[touch:dresser] The dresser is solid and will outlast most things here.</li>
+        <li>[touch:dresser] Clothes stored properly last longer, and so will my patience.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
