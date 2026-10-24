@@ -271,7 +271,8 @@ namespace ColonyCouncil
                 wasOut[p] = false;
                 if (slept < 4) continue;
                 if (lastDreamTick.TryGetValue(p, out int last) && now - last < GenDate.TicksPerHour * 18) continue;
-                if (!Rand.Chance(fever ? 0.7f : Mathf.Min(0.95f, ChancePerWaking * S.dreamFrequency))) continue;
+                // One who keeps a dream book since a dream came true dreams more often (Quirks/QuirkEvents.cs).
+                if (!Rand.Chance(fever ? 0.7f : Mathf.Min(0.95f, ChancePerWaking * S.dreamFrequency * QuirkEvents.DreamFactor(p)))) continue;
                 try
                 {
                     if (TryDream(comp, p, fever)) lastDreamTick[p] = now;
@@ -583,8 +584,8 @@ namespace ColonyCouncil
                 omens.Add(new PendingOmen { def = def, dreamer = p, map = p.MapHeld, fireTick = Find.TickManager.TicksGame + def.omen.days.RandomInRange * GenDate.TicksPerDay + Rand.Range(0, GenDate.TicksPerDay / 2), text = text });
                 lastOmenTick = Find.TickManager.TicksGame;
             }
-            // Everyday dreams only sometimes make it into the journal, so they don't crowd out the days.
-            if (def.Matters || def.AboutEvents || def.AboutNow || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f))
+            // Everyday dreams only sometimes make it into the journal, so they don't crowd out the days (a dream book keeps them all).
+            if (def.Matters || def.AboutEvents || def.AboutNow || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f) || QuirkEvents.WritesDreamsDown(p))
                 comp.journals.WriteText(p, text);
             recent.Add(new DreamRecord { pawn = p, name = p.LabelShort, text = text, kind = def.kind, tick = Find.TickManager.TicksGame });
             while (recent.Count > 80) recent.RemoveAt(0);

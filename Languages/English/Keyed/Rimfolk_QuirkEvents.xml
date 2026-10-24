@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The quirks the colony's events leave behind (Quirks/QuirkEvents.cs, Defs/QuirkDefs/Rimfolk_Quirks_Events.xml). -->
+
+  <CC_QuirkWhen_NearFire>near an open fire</CC_QuirkWhen_NearFire>
+  <CC_QuirkFrom_seen>after something they saw</CC_QuirkFrom_seen>
+
+  <CC_Quirk_LampSeen>The travelers from {FACTION} saw the lamp {PAWN_nameDef} keeps burning by the door, and stayed the night easier for it.</CC_Quirk_LampSeen>
+  <CC_Quirk_JuggledAtTable>{PAWN_nameDef} juggled whatever came to hand, and {COUNT} of the others stopped what they were doing to watch.</CC_Quirk_JuggledAtTable>
+
+</LanguageData>

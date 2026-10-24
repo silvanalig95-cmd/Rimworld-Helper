@@ -232,12 +232,13 @@
     <defName>Council_DreamLv_QuirkPlants</defName>
     <label>a dream of the plants answering</label>
     <kind>Strange</kind>
-    <dreamer><tags>quirk:TalksToPlants|quirk:FeedsBirds</tags></dreamer>
+    <dreamer><tags>quirk:TalksToPlants|quirk:FeedsBirds|quirk:WalksFields</tags></dreamer>
     <lines>
       <plain>
         <li>The plants finally answered me last night. They had a lot of opinions about the watering.</li>
         <li>The whole field turned to look at me as I passed, like a crowd at a feast.</li>
         <li>The seedlings told me which of them would make it. I've stopped looking at the ones that won't.</li>
+        <li>[quirk:WalksFields] I walked the rows at first light in my dream, and every leaf I turned over had a word written underneath.</li>
       </plain>
       <cheerful><li>Dreamt the corn thanked me personally. Lovely manners, corn.</li></cheerful>
       <cold><li>A dream in which the crops communicated. Their complaints were reasonable.</li></cold>
@@ -340,12 +341,14 @@
     <kind>Sweet</kind>
     <children>true</children>
     <about>Goal</about>
-    <dreamer><tags>goal:ChildPet|goal:Tamer</tags></dreamer>
+    <dreamer><tags>goal:ChildPet|goal:Tamer|goal:GreatBeast|goal:TrainFully|goal:Champion</tags></dreamer>
     <lines>
       <plain>
         <li>Dreamt a wild animal walked out of the trees and lay down at my feet, as if it had been waiting for me.</li>
         <li>[child] I had a dog as big as a horse, and I rode it to the river and back.</li>
         <li>I knew the name every animal in the colony calls itself, and they all came to me.</li>
+        <li>[goal:GreatBeast] One of the great beasts came down from the hills in my dream and lowered its head for me to touch.</li>
+        <li>[goal:Champion|goal:TrainFully] My animal and I went through the gate together in the dream, and it knew what I wanted before I said it.</li>
       </plain>
       <cheerful><li>Dreamt I had a pet goat that followed me everywhere, even up ladders!</li></cheerful>
       <warm><li>Dreamt of an animal that trusted me completely. I want to earn that.</li></warm>

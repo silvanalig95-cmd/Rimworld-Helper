@@ -851,7 +851,13 @@ nightmares away, and a sleep talker's roommate sleeps a little worse (a lover fi
 at the wrong moments, a worrier frets aloud at the council table and asks to keep watch, someone who writes
 everything down reads back what was said; others tell the old stories, are first to volunteer, have a soft
 spot for strays or sleep with a light burning after bad nights. Dilemmas and letters ask for them too: a worrier's
-watch, the colony's record kept by the one who writes everything down. 44 quirks in all. Picking one up and letting it
+watch, the colony's record kept by the one who writes everything down. And some come from what the colony lives
+through: someone who saw refugees through, or was taken in, keeps a lamp lit for travelers (visitors who stay the night
+leave on better terms); someone who watched the pyre burn can't stand the smell of smoke near an open fire; a cheated
+trader's mark counts every coin twice (better prices), a farmer who lost a crop to locusts walks the fields at dawn (a
+better harvest), someone whose dream came true keeps a dream book (more dreams, all written down), a healer's patient
+swears by their salve (faster healing), one who saw the players juggles at supper (a little recreation for those beside
+them), and one taught a traveler's trick against the cold feels it less. 60 quirks in all. Picking one up and letting it
 fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a
 nervous neighbor or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
 the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions,
@@ -860,7 +866,7 @@ roommate up (21 social events and a handful of moments, which change the bond be
 mood).
 
 ### Dreams
-Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 184), and tell each
+Colonists who sleep (or lie unconscious) for a few hours sometimes wake from a dream (there are 231), and tell each
 other about it. Dreams grow out of their lives: the raid two days ago, the friend they buried, the rival who insulted
 them, the wish the council ignored, the leg they lost, the skill they're learning, the dead they miss, their partner,
 their dog. They grow out of what they feel, too (an argument all night with the one they're angry at, a debt repaid
@@ -871,8 +877,12 @@ dead visiting after a remembrance, a feast that goes on all night, a wish taken 
 in dreams (at the gate, behind the cell door, and gone once it's over); convalescents dream of running again, healers of
 the patients they pulled through or lost; and a feeling that meets a camp or a world event dreams deepest (fellowship
 by the camp's fire, worry about the fever at the door, hope on the open road). Every feeling has
-dreams of its own, and so do many quirks, life goals and personal stories: the worrier dreams of checking one gate after
-another, someone set on marrying dreams of a wedding, someone caught between two friends of a rope pulled both ways.
+dreams of its own, and so does every quirk and habit and nearly every life goal and personal story: the worrier dreams
+of checking one gate after another, a mender of a coat that mends itself, a light sleeper of smoke under the door,
+someone set on marrying of a wedding, a would-be healer of an empty sickroom, someone caught between two friends of a
+rope pulled both ways, a new parent of a small hand. The colony's newer days leave dreams too: gifts round the fire
+after a birthday, the day's sport after games or a fair, many hands after the planting day or helping the neighbors, the
+warlord's fall, pilgrims' songs, the players, the road home after a mission.
 Most leave a line in their journal and
 little else: a sweet dream a bit of rest, a strange one now and then an inspiration, a nightmare or a visit from the
 dead a passing mood (hover it to read the dream). Now and then one changes something: an inspiration, a lesson, a

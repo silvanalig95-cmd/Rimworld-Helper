@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of the colony's newer days and doings: the calendar's ways to keep a day (a birthday, a day of gifts or a
+    bonfire, games, a hunt, a day of rest, the planting day), the world events the colony took part in (neighbors
+    helped and rebuilt, a fair, a warlord brought down or still loose, peace made at the colony's table, pilgrims'
+    songs and blessings, locusts), a camp's show, and missions seen through (a lost child or a pilgrim taken home,
+    refugees seen on their way). Each comes only within a few days of the memory it grows out of, so it comes to those
+    who were there. Fields as in Council_Dreams.xml.
+  -->
+
+  <!-- ===================== The calendar's days ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_Gifts</defName>
+    <label>a dream of gifts round the fire</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <afterThoughts>
+      <li>Council_Cal_Birthday</li>
+      <li>Council_Cal_GiftDay</li>
+      <li>Council_Cal_BonfireNight</li>
+    </afterThoughts>
+    <withinDays>1.5</withinDays>
+    <lines>
+      <plain>
+        <li>We were all round the fire in my dream, and each of us had a small gift wrapped in cloth, and we waited for the last one to sit down before we opened them.</li>
+        <li>In the dream the fire burned all night without anyone feeding it, and every time I looked into it I saw someone I was fond of.</li>
+        <li>Somebody had made me a present in my dream, carved and polished, and they wouldn't say who.</li>
+        <li>[child] I got a present in my dream that was exactly what I wanted, and I didn't even have to say.</li>
+      </plain>
+      <warm><li>Dreamt I chose the right gift for each of them, every single one, and got to watch their faces.</li></warm>
+      <blunt><li>Gift dream. Got a good one. Kept it.</li></blunt>
+      <cheerful><li>The fire in my dream threw sparks shaped like stars, and we all made wishes on them!</li></cheerful>
+      <gloomy><li>Dreamt of the day again. It's already over. They always go so fast.</li></gloomy>
+      <cold><li>Gifts were exchanged in my dream. Mine was adequate.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_Sport</defName>
+    <label>a dream of the day's sport</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <afterThoughts>
+      <li>Council_Cal_GamesDay</li>
+      <li>Council_Cal_HuntDay</li>
+      <li>Council_WS_FairPrize</li>
+      <li>Council_WS_FairLost</li>
+      <li>Council_Evt_FairPrize</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>I was running a race in my dream, and the finish kept moving back, and I kept gaining on it anyway.</li>
+        <li>In the dream we were out at first light after a great stag, all of us strung out across the hills, not a word between us.</li>
+        <li>Dreamt they were handing out the prizes, and when my name came up, the ribbon was longer than I am tall.</li>
+        <li>[child] I won every race in my dream, even the one against the dog.</li>
+      </plain>
+      <warm><li>Dreamt there was a prize for each of us, even the slowest, and the slowest was the proudest.</li></warm>
+      <blunt><li>Dreamt of the contest. Won. Want a rematch awake.</li></blunt>
+      <cheerful><li>In my dream I threw the stone so far it never came down!</li></cheerful>
+      <gloomy><li>Lost again, in my dream. Same as the real one.</li></gloomy>
+      <cold><li>I studied the others' form in my dream. Next time.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_Rest</defName>
+    <label>a dream of a long morning</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <afterThoughts>
+      <li>Council_Cal_RestDay</li>
+    </afterThoughts>
+    <withinDays>1.5</withinDays>
+    <lines>
+      <plain>
+        <li>In my dream I woke late with no work waiting, and the sun was already halfway across the floor.</li>
+        <li>Dreamt the day of rest went on for a week, and the fields grew all by themselves.</li>
+        <li>I lay in the grass in my dream and watched one cloud cross the whole sky.</li>
+      </plain>
+      <warm><li>Dreamt we all slept late and had breakfast at noon, together, in no hurry.</li></warm>
+      <blunt><li>Rest day dream. Did nothing. Again.</li></blunt>
+      <cheerful><li>I took a nap in my dream, inside my sleep. Very efficient!</li></cheerful>
+      <gloomy><li>Dreamt of another day of rest. The work will all still be there tomorrow.</li></gloomy>
+      <cold><li>A dream about idleness. I found it restorative. I'm told that's the idea.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== The world events the colony took part in ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_Hands</defName>
+    <label>a dream of many hands</label>
+    <kind>Sweet</kind>
+    <afterThoughts>
+      <li>Council_Cal_PlantingDay</li>
+      <li>Council_WS_HelpedNeighbors</li>
+      <li>Council_WS_RebuiltTogether</li>
+      <li>Council_WS_GoodNeighbours</li>
+      <li>Council_Mission_HarvestHands</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>In my dream we were all in a line passing things hand to hand, seed and stone and timber, and the line reached into the next valley.</li>
+        <li>Dreamt the new roofs went up in a single day, theirs beside ours, and at dusk you couldn't tell which houses were whose.</li>
+        <li>The whole field was planted in my dream before the sun was high, with all of us bent over the same rows.</li>
+      </plain>
+      <warm><li>Dreamt we helped them and they helped us, back and forth, until nobody could remember who owed whom.</li></warm>
+      <blunt><li>Worked all night in my sleep, shoulder to shoulder. Back aches.</li></blunt>
+      <cheerful><li>In my dream so many people turned up to help that we finished before lunch and had a party!</li></cheerful>
+      <gloomy><li>We worked side by side in my dream. Then they went home, and so did we.</li></gloomy>
+      <cold><li>A dream of shared labor. Efficient. Good relations have their uses.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_WarlordFell</defName>
+    <label>a dream of the warlord's fall</label>
+    <kind>Strange</kind>
+    <afterThoughts>
+      <li>Council_WS_WarlordFell</li>
+      <li>Council_WS_WarlordSlayer</li>
+      <li>Council_WS_WarlordAvenged</li>
+      <li>Council_WS_WarbandGone</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>I saw the warlord fall again in my dream, slowly, like a tree going over, and the whole field went quiet.</li>
+        <li>In the dream the warband's banners were lying in the mud, and people from every town were stepping over them on their way home.</li>
+        <li>Dreamt the warlord's horse came to our gate without a rider and stood there, waiting to be let in.</li>
+      </plain>
+      <warm><li>Dreamt the roads were safe, and children from three towns were playing where the warband used to camp.</li></warm>
+      <blunt><li>Dreamt the warlord fell. Did fall. Good.</li></blunt>
+      <cheerful><li>In my dream the whole region threw a feast for the warlord's fall, and we were the guests of honor!</li></cheerful>
+      <gloomy><li>The warlord fell in my dream, and another one stood up in the same place.</li></gloomy>
+      <cold><li>The warlord fell again in my sleep. It ended as it should have.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_WarlordLoose</defName>
+    <label>a dream of riders at night</label>
+    <kind>Nightmare</kind>
+    <weight>0.5</weight>
+    <afterThoughts>
+      <li>Council_WS_WarlordEscaped</li>
+      <li>Council_WS_WarlordFreed</li>
+      <li>Council_WS_WarbandWatched</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Riders on the road in my dream with the warlord at the front, looking straight at our walls as they passed.</li>
+        <li>The warlord was sitting at our table in my dream, eating our bread, and we all kept our eyes on our plates.</li>
+        <li>Hoofbeats all night in the dream, coming closer and never arriving.</li>
+      </plain>
+      <warm><li>I hid the children in the cellar in my dream and stood at the top of the stairs until the riders went past.</li></warm>
+      <blunt><li>Warlord dream. Checked the gate. Barred.</li></blunt>
+      <cheerful><li>In my dream the warband rode past and every one of their horses threw a shoe!</li></cheerful>
+      <gloomy><li>They're still out there. In my dream they came back. They will.</li></gloomy>
+      <cold><li>A dream about the warlord, still at large. A reasonable thing to worry about.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_Songs</defName>
+    <label>a dream of songs on the road</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <afterThoughts>
+      <li>Council_WS_PeaceHosted</li>
+      <li>Council_WS_OurSong</li>
+      <li>Council_WS_PilgrimSongs</li>
+      <li>Council_WS_Blessed</li>
+      <li>Council_WS_KeptTheYear</li>
+      <li>Council_Camp_SongHeard</li>
+      <li>Council_Camp_Blessing</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>Pilgrims were singing on the road in my dream, and the song had our colony's name in it.</li>
+        <li>In the dream two old enemies sat at our table and passed each other the salt, and someone outside was singing.</li>
+        <li>Dreamt I knew the words to the strangers' song, every verse, and sang it back to them across the fields.</li>
+        <li>[child] The grown-ups were all singing in my dream, and the birds joined in too.</li>
+      </plain>
+      <warm><li>Dreamt the whole region was singing one song, and every town took a verse.</li></warm>
+      <blunt><li>Singing in my dream. Good song. Can't remember it.</li></blunt>
+      <cheerful><li>Somebody wrote a song about us in my dream, and it rhymed!</li></cheerful>
+      <gloomy><li>The singing faded down the road in my dream until I couldn't hear it anymore.</li></gloomy>
+      <cold><li>The tune from my dream has stayed with me, unfortunately.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_Locusts</defName>
+    <label>a dream of wings over the fields</label>
+    <kind>Strange</kind>
+    <afterThoughts>
+      <li>Council_WS_LocustsTook</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <lines>
+      <plain>
+        <li>The sky went dark with wings in my dream, and the sound of them was like rain that never landed.</li>
+        <li>In the dream I walked the bare fields with a sack of seed, planting again right behind the swarm.</li>
+        <li>Dreamt every locust in the swarm turned into a grain of wheat, and they all fell back down into the furrows.</li>
+      </plain>
+      <warm><li>Dreamt the towns that lost everything came to share our harvest, and there was enough to go round.</li></warm>
+      <blunt><li>Locusts. In my dream too. Can't get away from them.</li></blunt>
+      <cheerful><li>In my dream the chickens ate every locust in the valley and got very fat!</li></cheerful>
+      <gloomy><li>The swarm came back in my dream and took the rest.</li></gloomy>
+      <cold><li>A dream about the swarm. I've been thinking about seed stores since. That's useful, at least.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== A camp's show, and missions seen through ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_Players</defName>
+    <label>a dream of the players</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <afterThoughts>
+      <li>Council_Camp_Show</li>
+      <li>Council_Evt_SawPlayers</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <lines>
+      <plain>
+        <li>The players were back in my dream, and this time I was up there with them, and I knew all my lines.</li>
+        <li>In the dream the show went on all night, and the masks kept changing, and one of them was my own face.</li>
+        <li>Dreamt the juggler threw me a ball and I caught it, and threw it back, and we kept it going back and forth across the stage.</li>
+        <li>[child] In my dream I ran away with the players and learned to walk on my hands.</li>
+      </plain>
+      <warm><li>Dreamt we all laughed at the same joke at the same moment, and it went on a long time.</li></warm>
+      <blunt><li>Players again, in my dream. Good show.</li></blunt>
+      <cheerful><li>I was the star of the show in my dream, and I didn't trip once!</li></cheerful>
+      <gloomy><li>The players packed up their wagon in my dream and left before the end.</li></gloomy>
+      <cold><li>I worked out how the trick was done, in my dream. It was obvious.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamD_RoadHome</defName>
+    <label>a dream of the road home</label>
+    <kind>Sweet</kind>
+    <afterThoughts>
+      <li>Council_Mission_ChildHome</li>
+      <li>Council_Mission_Escorted</li>
+      <li>Council_Mem_RefugeesThrough</li>
+    </afterThoughts>
+    <withinDays>4</withinDays>
+    <lines>
+      <plain>
+        <li>In my dream I walked with them again, all the way to their door, and someone inside was already running out to meet them.</li>
+        <li>Dreamt the people we saw through were safe somewhere far off, eating supper, and one of them said our names.</li>
+        <li>The road home went on and on in my dream, but every mile of it was downhill.</li>
+      </plain>
+      <warm><li>Dreamt the ones we helped came back years later, well and grown, just to see us again.</li></warm>
+      <blunt><li>Got them home, in my dream. Got them home awake too.</li></blunt>
+      <cheerful><li>Dreamt they threw us a party at the other end, with ribbons on every post!</li></cheerful>
+      <gloomy><li>I kept looking back down the road in my dream, wondering if they'd made it.</li></gloomy>
+      <cold><li>The journey went as planned in my dream. The end was satisfying.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

@@ -10,7 +10,9 @@ namespace ColonyCouncil
     /// The habits without a free-time moment of their own (<see cref="QuirkHabits"/>) show over a head now and then
     /// instead: a hum at work, a song at the stove, a mumble in the night, a word over the last bite of a meal, a line
     /// checked twice on a building site, a load too big, the small hours kept, a sickbed that won't keep someone still,
-    /// a page read over supper, a prisoner's name, a stitch at leisure, a doodle, a sniff at the night air.
+    /// a page read over supper, a prisoner's name, a stitch at leisure, a doodle, a sniff at the night air; and the
+    /// quirks the colony's events leave: the lamp lit at night, a wrinkled nose by a fire, the coins counted twice, the
+    /// fields walked at dawn, a dream written down, the salve rubbed in, a few things juggled at supper, the cold kept off.
     /// </summary>
     /// <remarks>
     /// Once an hour (CouncilGameComponent), with the quirks and small habits settings on and speech showing: a colonist
@@ -60,6 +62,15 @@ namespace ColonyCouncil
                 Add("Council_Quirk_MendsClothes", "Council_Pool_BubbleMends", (p, hour) => p.Awake() && (p.CurJobDef?.joyKind != null || Work(p)?.defName == "Tailoring"));
                 Add("Council_Quirk_Doodles", "Council_Pool_BubbleDoodles", (p, hour) => p.Awake() && (p.CurJobDef?.joyKind != null || Work(p)?.defName == "Art" || Work(p)?.defName == "Research"));
                 Add("Council_Quirk_SleepsLight", "Council_Pool_BubbleLightSleep", (p, hour) => p.Awake() && (hour >= 22 || hour < 5));
+                // The quirks the colony's events leave behind (Quirks/QuirkEvents.cs).
+                Add("Council_Quirk_LampForTravelers", "Council_Pool_BubbleLamp", (p, hour) => p.Awake() && (hour >= 19 || hour < 4) && !AtWork(p));
+                Add("Council_Quirk_SmokeAversion", "Council_Pool_BubbleSmoke", (p, hour) => QuirkEvents.NearOpenFire(p));
+                Add("Council_Quirk_CountsCoins", "Council_Pool_BubbleCoins", (p, hour) => p.Awake() && (p.CurJobDef == JobDefOf.TradeWithPawn || p.carryTracker?.CarriedThing?.def == ThingDefOf.Silver));
+                Add("Council_Quirk_WalksFields", "Council_Pool_BubbleFields", (p, hour) => p.Awake() && hour >= 5 && hour < 10 && Work(p) == WorkTypeDefOf.Growing);
+                Add("Council_Quirk_DreamBook", "Council_Pool_BubbleDreamBook", (p, hour) => p.Awake() && QuirkEvents.JustDreamt(p));
+                Add("Council_Quirk_HealersSalve", "Council_Pool_BubbleSalve", (p, hour) => p.Awake() && QuirkHabits.StillPatient(p));
+                Add("Council_Quirk_Juggles", "Council_Pool_BubbleJuggles", (p, hour) => p.Awake() && (p.CurJobDef == JobDefOf.Ingest || p.CurJob?.def?.joyKind != null));
+                Add("Council_Quirk_ColdTrick", "Council_Pool_BubbleColdTrick", (p, hour) => p.Awake() && p.Spawned && p.AmbientTemperature < 0f);
                 return bubbles;
             }
         }

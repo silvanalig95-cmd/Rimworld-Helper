@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods of the quirks the colony's events leave behind (Defs/QuirkDefs/Rimfolk_Quirks_Events.xml), while their moment holds. -->
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_SmokeAversion</defName>
+    <stages><li><label>the smell of smoke</label><description>The smoke gets into my clothes and my hair, and I'm back outside the gate watching the pyre burn.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
