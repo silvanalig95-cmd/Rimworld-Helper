@@ -17,6 +17,8 @@ namespace ColonyCouncil
         public void Tick250()
         {
             if (phase == CampPhase.Over) return;
+            // Their animals taken out of the group before a flight or a fight go off on their own (CampLook.cs).
+            if (herd.Count > 0) LeadOffStrays();
             if (!LordAlive)
             {
                 Finish();

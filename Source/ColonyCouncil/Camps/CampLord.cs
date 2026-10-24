@@ -68,7 +68,7 @@ namespace ColonyCouncil
             scatter.AddTrigger(new Trigger_Memo(MemoFlee));
             scatter.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
             scatter.AddTrigger(new Trigger_ChanceOnPlayerHarmNPCBuilding(1f));
-            // Their animals are walked off on their own first, so they never fight anyone (CampLook.cs).
+            // Their animals are taken out of the group first and walked off on their own, so they never fight anyone (CampLook.cs).
             scatter.AddPreAction(new TransitionAction_Custom(() => CampBeasts.LeadOff(lord)));
             scatter.AddPostAction(new TransitionAction_EndAllJobs());
             graph.AddTransition(scatter);

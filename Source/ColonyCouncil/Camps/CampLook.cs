@@ -352,6 +352,7 @@ namespace ColonyCouncil
         /// </summary>
         private void KeepHerd()
         {
+            LeadOffStrays();
             herd.RemoveAll(a => a == null || a.Dead || a.Destroyed || !a.Spawned || a.Map != map || a.GetLord() != lord);
             props.RemoveAll(t => t == null || t.Destroyed || !Owns(t));
             if (!LordAlive) return;
@@ -368,7 +369,27 @@ namespace ColonyCouncil
         private void SendHerdOff()
         {
             if (LordAlive) CampBeasts.LeadOff(lord);
-            herd.Clear();
+            LeadOffStrays();
+        }
+
+        /// <summary>
+        /// Their animals no longer in their group (taken out of it before a flight or a fight): walked off the map in a
+        /// group of their own that doesn't defend itself, and no longer the camp's.
+        /// </summary>
+        public void LeadOffStrays()
+        {
+            if (herd.Count == 0 || map == null) return;
+            var strays = herd.Where(a => a != null && !a.Dead && a.Spawned && a.Map == map && a.GetLord() == null).ToList();
+            if (strays.Count == 0) return;
+            herd.RemoveAll(strays.Contains);
+            try
+            {
+                LordMaker.MakeNewLord(faction ?? strays[0].Faction, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, false), map, strays);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp beasts led off", e);
+            }
         }
 
         /// <summary>
@@ -726,7 +747,7 @@ namespace ColonyCouncil
             foreach (var g in kind.leaveBehind)
             {
                 if (g == null || g.at == "gate") continue;
-                var at = g.at == "spot" ? taskSpot : fire;
+                var at = g.at == "spot" && taskSpot.IsValid ? taskSpot : fire;
                 if (!Place(g, at, Here.FirstOrDefault())) continue;
                 leftKey = g.key;
                 SayMoment(Here.Where(p => !p.Downed).RandomElementWithFallback(), "gift", 0.7f);
@@ -933,19 +954,23 @@ namespace ColonyCouncil
     public static class CampBeasts
     {
         /// <summary>
-        /// The animals of a camp's group taken out of it and walked off the map in a group of their own that never fights:
-        /// before the group flees (the colony harmed or arrested one of them) or holds its camp against the colony.
+        /// The animals of a camp's group taken out of it before the group flees (the colony harmed or arrested one of
+        /// them) or holds its camp against the colony, so they never take part in either. Called from the group's own
+        /// change of plan, so it only takes them out: the camp walks them off the map in a group of their own on its next
+        /// look (<see cref="Camp.LeadOffStrays"/>). Without the camp's record, they stay with the group.
         /// </summary>
         public static void LeadOff(Lord lord)
         {
-            if (lord?.ownedPawns == null || lord.Map == null) return;
+            var camp = CampTracker.Instance?.camp;
+            if (lord?.ownedPawns == null || camp == null || camp.lord != lord) return;
             var beasts = lord.ownedPawns.Where(p => p?.RaceProps != null && !p.RaceProps.Humanlike).ToList();
-            if (beasts.Count == 0) return;
             try
             {
-                foreach (var b in beasts) lord.RemovePawn(b);
-                var walking = beasts.Where(b => b.Spawned && !b.Dead).ToList();
-                if (walking.Count > 0) LordMaker.MakeNewLord(lord.faction ?? walking[0].Faction, new LordJob_ExitMapBest(LocomotionUrgency.Jog, false, false), lord.Map, walking);
+                foreach (var b in beasts)
+                {
+                    lord.RemovePawn(b);
+                    if (!camp.herd.Contains(b)) camp.herd.Add(b);
+                }
             }
             catch (Exception e)
             {
