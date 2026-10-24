@@ -266,5 +266,14 @@
   <CC_Timed_Pyre_Gear>Their gear was left in a heap beside it.</CC_Timed_Pyre_Gear>
   <CC_Timed_Pyre_Out>The pyre has burned down to ash.</CC_Timed_Pyre_Out>
   <CC_Timed_Bolt>{PAWN_nameDef}'s door is bolted for the night.</CC_Timed_Bolt>
+  <CC_Week_Timed_Lanterns>Lanterns along the walls</CC_Week_Timed_Lanterns>
+  <CC_Week_Timed_Lantern>A lantern at the gate</CC_Week_Timed_Lantern>
+  <CC_Week_Timed_Fire>A fire in {0}'s room</CC_Week_Timed_Fire>
+  <CC_Week_Timed_Pyre>The pyre beyond the gate</CC_Week_Timed_Pyre>
+  <CC_Week_Timed_Bolt>{0}'s door bolted at night ({1} nights left)</CC_Week_Timed_Bolt>
+  <CC_Week_Timed_Follow>{0} at {1}'s heels</CC_Week_Timed_Follow>
+  <CC_Week_Timed_AtDusk>at dusk</CC_Week_Timed_AtDusk>
+  <CC_Week_Timed_AtNight>at bedtime</CC_Week_Timed_AtNight>
+  <CC_Week_Timed_Tip>Kept on the map for a while because of an answer, and taken away again when it's over.</CC_Week_Timed_Tip>
 
 </LanguageData>

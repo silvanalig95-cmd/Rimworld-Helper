@@ -834,8 +834,7 @@ namespace ColonyCouncil
         public static void FellThrough(PlayOutTracker t, PlayOut p, string why, bool quiet)
         {
             foreach (var h in p.hands) Stop(p, h.pawn, true);
-            // An errand that never went: the courier waiting for it (Couriers/), if one is coming or at the gate, fetches
-            // the things from the stores instead; else they leave the stores at once, as always.
+            // A gift never carried over is set down beside the one it was for; a stash is burned where it lies.
             if (p.kind == PlayKind.Give)
             {
                 try
@@ -847,6 +846,8 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("gift fell through", e);
                 }
             }
+            // An errand that never went: the courier waiting for it (Couriers/), if one is coming or at the gate, fetches
+            // the things from the stores instead; else they leave the stores at once, as always.
             bool fetched = p.kind == PlayKind.Carry && Couriers.TakeOver(p);
             if (fetched) p.tally = p.amount;
             if (p.kind == PlayKind.Carry && !fetched) PlayCarry.Settle(p);

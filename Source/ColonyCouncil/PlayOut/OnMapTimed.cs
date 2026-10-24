@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using RimWorld.Planet;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -530,6 +531,66 @@ namespace ColonyCouncil
         {
             var a = k.animal;
             if (a != null && a.Spawned && k.pawn != null && Following(a, k.pawn)) a.jobs.EndCurrentJob(JobCondition.InterruptForced);
+        }
+
+        /// <summary>A line for This week ("Gatherings and plans"): what's kept, whose it is, and whether it's out now.</summary>
+        public static WeekRow WeekRowFor(TimedThing k)
+        {
+            if (k?.map == null) return null;
+            try
+            {
+                string text;
+                Texture2D icon;
+                switch (k.kind)
+                {
+                    case TimedKind.Lights:
+                        text = (k.where == "gate" ? "CC_Week_Timed_Lantern" : "CC_Week_Timed_Lanterns").Translate();
+                        icon = Icons.Wedding;
+                        break;
+                    case TimedKind.Fire:
+                        if (k.pawn == null) return null;
+                        text = "CC_Week_Timed_Fire".Translate(k.pawn.LabelShort).Resolve();
+                        icon = Icons.Rooms;
+                        break;
+                    case TimedKind.Pyre:
+                        text = "CC_Week_Timed_Pyre".Translate();
+                        icon = Icons.Death;
+                        break;
+                    case TimedKind.Bolt:
+                        if (k.pawn == null) return null;
+                        text = "CC_Week_Timed_Bolt".Translate(k.pawn.LabelShort, k.nights).Resolve();
+                        icon = Icons.Rooms;
+                        break;
+                    case TimedKind.Follow:
+                        if (k.pawn == null || k.animal == null) return null;
+                        text = "CC_Week_Timed_Follow".Translate(k.animal.LabelShort, k.pawn.LabelShort).Resolve();
+                        icon = Icons.Bonds;
+                        break;
+                    default:
+                        return null;
+                }
+                bool now = k.on || k.kind == TimedKind.Fire || k.kind == TimedKind.Follow;
+                var look = k.things.FirstOrDefault(t => t != null && t.Spawned);
+                var target = look != null ? new GlobalTargetInfo(look)
+                    : k.pawn != null && k.pawn.Spawned ? new GlobalTargetInfo(k.pawn)
+                    : k.cell.IsValid ? new GlobalTargetInfo(k.cell, k.map) : GlobalTargetInfo.Invalid;
+                return new WeekRow
+                {
+                    icon = icon,
+                    text = text,
+                    color = now ? UiKit.Good : Color.white,
+                    note = now ? "CC_Week_UnderWay".Translate().ToString() : (k.kind == TimedKind.Bolt ? "CC_Week_Timed_AtNight" : "CC_Week_Timed_AtDusk").Translate().ToString(),
+                    noteColor = now ? UiKit.Good : UiKit.Faint,
+                    tip = "CC_Week_Timed_Tip".Translate(),
+                    click = target.IsValid ? WeekModel.Go(target) : null,
+                    order = now ? -1 : 0
+                };
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("kept on the map: this week", e);
+                return null;
+            }
         }
 
         public override void ExposeData()
