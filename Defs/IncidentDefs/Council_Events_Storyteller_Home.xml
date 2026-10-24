@@ -328,7 +328,7 @@
           </li>
           <li>
             <label>Trade it ({COUNT} silver)</label>
-            <outcome>It sells for {COUNT} silver. {A_nameDef} hands it over without a word, and is very quiet for the rest of the day.</outcome>
+            <outcome>It sells for {COUNT} silver to a neighbor's buyer, and their runner will bring the silver. {A_nameDef} gives it up without a word, and is very quiet for the rest of the day.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FindSold</thought></li>
             </effects>
@@ -416,7 +416,7 @@
           </li>
           <li>
             <label>Sell it sealed ({COUNT} silver)</label>
-            <outcome>A rider of {FACTION} pays {COUNT} silver for the crate and hauls it away, still sealed. The colony will never know what was in it.</outcome>
+            <outcome>{FACTION} buy the crate sealed, for {COUNT} silver. Their rider will bring the silver up to the gate and take the crate away unopened, and the colony will never know what was in it.</outcome>
           </li>
         </options>
       </li>

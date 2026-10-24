@@ -259,10 +259,10 @@
     <options>
       <li>
         <label>Keep the gate open and the pot full</label>
-        <outcome>The gate stays open to anyone who comes hungry. Another week's worth of food went out of the storeroom, {FACTION} speaks warmly of the colony, and {A_nameDef} has started cooking in bigger pots.</outcome>
+        <outcome>The gate stays open to anyone who comes hungry. {A_nameDef} carries another week's worth of food out to the hungry of {FACTION} waiting there, and has started cooking in bigger pots. {FACTION} speaks warmly of the colony.</outcome>
         <ways><generosity>6</generosity><mercy>2</mercy></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the hungry at the gate</label><what>rawfood</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_NoOneTurnedAway</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FeedingTheRoad</thought><exceptTrait><li>Kind</li></exceptTrait></li>

@@ -94,7 +94,7 @@
       <li>[their:tendedbyA] {X_nameDef} put a purse in {A_nameDef}'s hands from someone whose wounds {A_pronoun} once dressed. "For the bandages," {X_pronoun} said. "And the rest."</li>
     </texts>
     <effects>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>25</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>25</count><by>Outsiders</by></li>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>150</xp></li>
     </effects>
     <journal>Council_Journal_KinGreeted</journal>

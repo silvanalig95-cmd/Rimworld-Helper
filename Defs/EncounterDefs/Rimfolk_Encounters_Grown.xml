@@ -22,7 +22,7 @@
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count><chance>0.6</chance></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count><chance>0.6</chance><by>Outsiders</by></li>
     </effects>
   </ColonyCouncil.EncounterDef>
 

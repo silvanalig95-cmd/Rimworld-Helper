@@ -41,7 +41,7 @@
       <li>{A_nameDef} went to haggle with {X_nameDef} and found nothing to haggle over. The price was fair before {A_pronoun} opened {A_possessive} mouth, and {X_nameDef} counted back more change than {A_pronoun} was owed.</li>
     </texts>
     <effects>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count><by>Outsiders</by></li>
       <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>150</xp></li>
     </effects>
   </ColonyCouncil.EncounterDef>

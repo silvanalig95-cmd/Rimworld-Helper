@@ -1240,7 +1240,12 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            if (option == 1 && !byDefault && StorytellerEvents.Food(ctx.variant).Unavailable(ctx) == null) StorytellerEvents.Food(ctx.variant).Apply(ctx);
+            if (option == 1 && !byDefault && StorytellerEvents.Food(ctx.variant).Unavailable(ctx) == null)
+            {
+                // Set aside for the lord's carters, who come for it (Couriers/); else it leaves the stores now, as before.
+                int n = Mathf.Max(1, Mathf.RoundToInt(ctx.variant * (CouncilGameComponent.Instance?.offices.CostFactor ?? 1f)));
+                if (!Couriers.Collect(ctx.map, "rawfood", null, n, ctx.faction)) StorytellerEvents.Food(ctx.variant).Apply(ctx);
+            }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

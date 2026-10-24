@@ -344,7 +344,6 @@ Council_WS_StrangeHerds [tracks] already happened, told
 Council_WS_StrangeHerds [end:moved] far away, told
 
 # Defs/WorldSituationDefs/Council_WS_Mods_Factions.xml
-Council_WS_ImperialDeserters [fugitive/2] a stranger's part: the deserter is fed
 Council_WS_ImperialDeserters [end:over] far away, told
 Council_WS_RepublicVotes [canvass/2] a refusal; the canvassers are fed
 Council_WS_RepublicVotes [games] news from far away

@@ -531,7 +531,8 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            if (option == 2 && !byDefault) VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
+            // Sold to a neighbor's buyer: their runner brings the silver up to the gate (Couriers/); else it's there at once.
+            if (option == 2 && !byDefault) Couriers.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count, ctx.faction);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }
@@ -651,7 +652,8 @@ namespace ColonyCouncil
                 Loot.Deliver(things, ctx.map, near, false);
                 outcome = VarietyUtil.Line(StorytellerEvents.More(def)?.outcomes, ctx, new[] { option == 0 ? "careful" : "broken", risk ? "risk" : "safe" }, Loot.Describe(things)) ?? outcome;
             }
-            else if (option == 2 && !byDefault) VarietyUtil.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count);
+            // Sold sealed: their rider brings the price up to the gate (Couriers/); else it's there at once.
+            else if (option == 2 && !byDefault) Couriers.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count, ctx.faction);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
     }

@@ -47,7 +47,7 @@
       <li>"For the mercy," said {X_nameDef}, handing {A_nameDef} a bundle of healroot and a few coins. {A_nameDef} asked which mercy. People talk about all of them, {X_nameDef} said.</li>
     </texts>
     <effects>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>10</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>10</count><by>Outsiders</by></li>
       <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>1</count></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_KindnessReturned</thought></li>
     </effects>
@@ -88,7 +88,7 @@
       <li>Twice, very carefully, {X_nameDef} counted out {A_nameDef}'s change, then added a few coins "in case I miscounted". {A_nameDef} hadn't questioned the sum.</li>
     </texts>
     <effects>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>15</count><by>Outsiders</by></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_ScaredTheTrader</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li><li>Greedy</li></exceptTrait></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncR_FearfulPrice</thought><onlyTrait><li>Bloodlust</li><li>Psychopath</li><li>Greedy</li></onlyTrait></li>
     </effects>
