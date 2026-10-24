@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Habits handed down
+
+*24 October 2026, version 0.11.5*
+
+- The architect menu's build buttons can be clicked again where an on-screen panel lies behind them: the panel steps aside under the buttons and the info box, as it already did under the colonist bar and the inspect pane.
+- Five habits of the quieter work: reading at every meal (research, a little faster), knowing every prisoner by name (warden work, a little more persuasive), mending their own clothes (tailoring: the worst-worn thing they wear mends a little each day), doodling in the margins (art: now and then inspired at it) and sleeping light (after fighting fires: they wake when fire breaks out near them). Each has a word of its own on the map.
+- Two more traits of Rimfolk's own grow out of them: a scholar from months of reading at meals, a mender from months of mending.
+- Habits pass between people who spend their days together: a child picks one up from a parent, a student from their mentor, lovers, family and good friends from each other, the closer the sooner. The habit's line says whom they had it from; fears, grief and lucky things never pass.
+
 ## Plans that hold, guests who go
 
 *23 October 2026, version 0.11.4*

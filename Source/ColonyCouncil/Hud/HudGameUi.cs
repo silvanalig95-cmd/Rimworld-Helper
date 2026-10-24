@@ -11,8 +11,9 @@ namespace ColonyCouncil
     /// <summary>
     /// Where the game's own interface outside windows is drawn over the panels (they paint beneath it): the main buttons
     /// along the bottom, the colonist bar, the resource list (unless the inventory panel stands in for it), the game's
-    /// alert list (unless the alerts panel does), the letters with the date, time and play settings below them, and,
-    /// while the inspect pane is open, its row of tab buttons and the gizmos beside it. Worked out at most once a frame,
+    /// alert list (unless the alerts panel does), the letters with the date, time and play settings below them, while
+    /// the inspect pane is open its row of tab buttons and the gizmos beside it, and while the architect menu is open
+    /// the build buttons of the chosen category beside it with the info box over it. Worked out at most once a frame,
     /// and only while the mouse is over a panel. A panel whose window is under the mouse in one of these places steps
     /// aside (<see cref="HudPanel"/>), so the game's interface there gets the mouse: its highlight, its tooltip, its click.
     /// Anything that can't be read is left out (the panel then takes the mouse there, as before); one error stops it for
@@ -76,7 +77,28 @@ namespace ColonyCouncil
             if (WorldRendererUtility.WorldSelected || Find.CurrentMap == null) return;
             ResourceList(sh);
             Inspect(sw, sh);
+            Architect(sw, sh);
         }
+
+        /// <summary>
+        /// The architect menu's build buttons, drawn beside its window (not in it, so no window claims the mouse there), and the
+        /// info box over the window for the button under the mouse or the one picked.
+        /// </summary>
+        private static void Architect(float sw, float sh)
+        {
+            if (Find.MainTabsRoot?.OpenTab != MainButtonDefOf.Architect || !(MainButtonDefOf.Architect.TabWindow is MainTabWindow_Architect arch)) return;
+            if (arch.selectedDesPanel == null) return;
+            float grid = GizmoGridDrawer.HeightDrawnRecently;
+            // A grid not drawn yet this frame: a full row of buttons at least, so the first moment over it is the game's too.
+            if (grid <= 0f) grid = ArchitectRow;
+            float x = MainTabWindow_Architect.WinWidth;
+            Add(new HudBox(x, sh - MainButtonsHeight - grid - 6f, Mathf.Max(0f, sw - 147f - x), grid + 6f));
+            var info = ArchitectCategoryTab.InfoRect;
+            Add(new HudBox(info.x, info.y, info.width, info.height));
+        }
+
+        /// <summary>One row of the architect's build buttons with its gap (the game's gizmo size).</summary>
+        private const float ArchitectRow = 80f;
 
         private static void ColonistBar()
         {
