@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Seen, not told
+
+*24 October 2026, version 0.12.0*
+
+- The people world news sends to the gate now come: a feud's runaway and the elder who takes the blood price, the toll-keeper's man, a smith and a merchant's agent who buy and pay on the spot, pilgrims and prospectors camping by the water, a deserter, two claimants' riders.
+- Small sums and food change hands on the map too: visitors count out their tips, a beaten challenger hands over the stake, a neighbor's runner pays for a find the colony sells, the lord's carters come for a tithe in kind, and food for the hungry who keep coming is carried out to them at the gate.
+- Camps look the part: a salt caravan's pack beasts and porters, the drovers' herd grazing beyond the camp with a dog at the leader's heels, hunters dressing their kills at camp, the refugees' washing by the windbreak, the hermit's woodpile.
+- Camps leave as they lived: healers look in on the colony's sick before going, mourners plant a sprig by the door, the hermit leaves a carved bird, players their painted backdrop, tree-singers a ring of saplings, and a traveling smith may mend a damaged door or wall for nothing.
+- Council choices you see happen: lantern night lights real torches until dawn, the enemy dead are carried out to a pyre that burns through the night or to the tree line, a cold elder gets a fire or a warmer room, a sleepwalker's door is bolted at night, a doctor goes round to everyone, and the night watch walks the walls.
+- Gifts by hand: a carving, a replacement keepsake, an old debt's gift and an old crafter's knife are carried over and set at the other's feet, and the moods wait for it; the scribe's copy is a real book, and a coffin stands in its owner's room.
+- Story endings you can see: a secret told is said to the gathered colony, a recurring dream ends with a long look at what was made, and a companion animal keeps at its person's heels for a day or two.
+
 ## Habits handed down
 
 *24 October 2026, version 0.11.5*
