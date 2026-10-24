@@ -210,8 +210,15 @@ namespace ColonyCouncil
             if (!ErrandSet) return;
             errandPeople.RemoveAll(p => p == null || p.Dead || !Here.Contains(p));
             bool strayed = errandDoing == "stray";
-            if (Now > errandUntil && Settled && errandArrived && !strayed) ErrandOver();
-            if (Now > errandUntil || !Settled || (errandPeople.Count == 0 && !strayed)) EndErrand();
+            if (Now > errandUntil || !Settled) CloseErrand();
+            else if (errandPeople.Count == 0 && !strayed) EndErrand();
+        }
+
+        /// <summary>The errand's time is up (or trouble came): what it promised comes if they got there and did it, and it's over.</summary>
+        private void CloseErrand()
+        {
+            if (errandArrived && errandDoing != "stray" && Settled) ErrandOver();
+            EndErrand();
         }
 
         /// <summary>Their errand done: what it promised (a share of what they dug, the herd's milk, a seam marked in the rock).</summary>
@@ -244,13 +251,13 @@ namespace ColonyCouncil
             if (!OnErrand(p) || Now < errandFrom) return null;
             if (Now > errandUntil || MapFacts.ThreatOn(map))
             {
-                EndErrand();
+                CloseErrand();
                 return null;
             }
             if (errandTo == "A")
             {
                 var c = errandFor;
-                if (c == null || c.Dead || !c.Spawned || c.Map != map || (errandDone && errandDoing == "tend"))
+                if (c == null || c.Dead || !c.Spawned || c.Map != map || (errandDone && (errandDoing == "tend" || errandDoing == "prayover")))
                 {
                     EndErrand();
                     return null;

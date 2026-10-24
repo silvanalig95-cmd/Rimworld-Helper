@@ -48,7 +48,7 @@ What a camp puts out once it stands (bales and fodder, a woodpile, washing) is t
 
 Some kinds take a last walk when their time is up. The healers' best doctor goes round the colony first: whoever needs wounds seen to (and gets them tended), then the ill, the ailing and the laid up, then those who spent time at their fire, 4 people at most. That round waits for morning, for up to half a day. The mourners and the hermit walk to the colony's door nearest their camp to leave something there. A walk never takes more than 5 hours; then they go whatever happens.
 
-What a camp leaves behind as a gift only comes when it goes in peace at the end of its stay, and its farewell letter says so: the tree-singers' ring of saplings of this land's own trees, the players' castle backdrop (a large wooden sculpture, standing where their stage was), the hermit's carved bird in its crate, and the mourners' sprig, a young rose or daylily, only in its growing season and only where it can grow. These belong to nobody: the colony can claim, keep or clear them. The hermit's woodpile is left with the hut.
+What a camp leaves behind as a gift only comes when it goes in peace at the end of its stay, and its farewell letter says so: the tree-singers' ring of saplings of this land's own trees, the players' castle backdrop (a large wooden sculpture, standing where their stage was), the hermit's carved bird in its crate, and the mourners' sprig, a young rose or daylily, only in its growing season and only where it can grow. These belong to nobody: the colony can claim, keep or clear them. The hermit's woodpile is left with the hut. Each gift also puts the day on the colony calendar ("the hermit's bird", "the tree-singers' ring", "the players' castle", "the mourners' flowers"), kept by walking out to it, until the gift is gone from the map.
 
 The smith's mending is one of their good turns: the smith picks one of the colony's buildings below 90% of its hit points (doors and gates count as half as far away), walks over, works on it for a while and leaves it as good as new, for nothing. If it isn't done within a day, it's given up. Nothing else of the colony's is ever touched.</text>
       </li>
@@ -62,7 +62,7 @@ A camp of a people that remembers one of the colony by name asks for that coloni
       </li>
       <li>
         <heading>What the colony can ask of them</heading>
-        <text>Most of the newer camps can be asked for something beyond trade, terms and hiring, from their camp's page on the World page, while they're settled. Who goes is the colonist best at what's asked, else the one who has spent most time at their fire. What people do happens on the map: an evening at their fire is a gathering there, a lesson is the colonist at their teacher's side, bread for the road is carried over to their camp. Each is asked once per camp (the healer's care once a day), some only after a day or so, some only in the evening (4pm to 10pm), and what costs silver costs more for a richer colony.</text>
+        <text>Every kind of camp can be asked for something beyond trade, terms and hiring, from their camp's page on the World page, while they're settled. Who goes is the colonist best at what's asked, else the one who has spent most time at their fire. What people do happens on the map: an evening at their fire is a gathering there, a lesson is the colonist at their teacher's side, bread for the road is carried over to their camp. Each is asked once per camp (the healer's care once a day), some only after a day or so, some only in the evening (4pm to 10pm), and what costs silver costs more for a richer colony.</text>
         <table>
           <li>Camp | What the colony can ask</li>
           <li>Salt caravan | An evening at their fire (recreation); preserved fare for the stores (90 silver); news of the roads ahead (Social practice for the one who asks, a little goodwill)</li>
@@ -73,8 +73,47 @@ A camp of a people that remembers one of the colony by name asks for that coloni
           <li>A traveling healer | Seeing a colonist who is ill or ailing (eases it); teaching the colony's best doctor at their side on the rounds (70 silver: Medicine)</li>
           <li>A band of minstrels | Playing at a feast (80 silver); a song about the colony, sung at their fire (a good mood: the song travels); a tune taught (Artistic)</li>
           <li>Mourners | Sitting vigil with them tonight; standing by the road when they go (goodwill); food for the road (15 raw food)</li>
+          <li>Hunting party | A colonist sent hunting with them (the colony's best shot and one more go after two head of good game: Shooting practice, and what they bring down is the colony's); their hides (60 silver: 30 leather)</li>
+          <li>Refugee family | Supper at the colony's table, children and all (goodwill)</li>
+          <li>Prospectors | A lesson in reading rock at their diggings (Mining); an hour by their cook's pot (Cooking practice)</li>
+          <li>Pilgrims | Prayers at the side of a colonist who is ill or ailing (an everyday ailment eased, a stranger's blessing); salve for their feet (2 medicine, carried over: goodwill)</li>
+          <li>Traders | A colonist helping at their stall for the afternoon (Social practice, and a few coins)</li>
+          <li>Traveling smith | A lesson at the forge (60 silver: Crafting); mending one of the colony's damaged buildings, doors and gates first, for nothing</li>
+          <li>Hermit | A walk along the hermit's paths, after two days (Plants practice); a hot meal carried out to the hut (once a day)</li>
+          <li>Traveling healers | Their remedies (60 silver: 5 herbal medicine); a lesson at their table (Medicine)</li>
+          <li>A procession of the faithful | Their evening hymn at their fire (a stranger's blessing)</li>
+          <li>Traveling players | A show at the colony's table after supper (80 silver); a small part in their next play (Artistic)</li>
+          <li>Surveyors | A lesson with the instrument and the chain (Intellectual)</li>
         </table>
         <after>Each eases the camp's tension and warms them to the colonist who went, and their people remember the kinder ones: a vigil, the road, a supper, a feast, food given, a beast bought, a healer paid to teach.</after>
+      </li>
+      <li>
+        <heading>What they ask of the colony</heading>
+        <text>Now and then a camp asks something of the colony, by letter: on a day when things are calm between them (tension under 55), half a day or more after they arrive, at most one every other day, and only once Rimfolk's last question is 12 hours behind, like any question that can wait. The letter says what they want and who of the colony would go. Grant it, and it plays out like an ask: the camp's own people walk into the colony to do it (to the gate, the water, the fields, the graves, the open ground in the middle of the colony, or one colonist's side), in daylight, for a few hours, and walk back; the week's page shows them coming and there. What they promised comes when they've done it. Say no, and the camp's tension rises (by half as much if the letter just runs out, which counts as a no); a few take it badly enough to cost a little goodwill.</text>
+        <table>
+          <li>Camp | What they ask | What comes of it</li>
+          <li>Hunting party | Cooked food for meat (only when they have 20 meat or more to spare) | 4 of the colony's meals carried to their camp; 35 of their meat set out for the colony</li>
+          <li>Refugee family | Work for food | They fell trees by their camp, 40 logs for the colony; 20 raw food carried over</li>
+          <li>Refugee family | Their broken cart mended (after a day) | The colony's best builder carries 20 logs down and mends it at their fire (Construction practice)</li>
+          <li>Prospectors | A test hole on the colony's side (after a day) | Two of them dig at the edge of the colony for 3 to 4 hours and share what they find: silver most likely, now and then jade or gold</li>
+          <li>Pilgrims | Prayers at the colony's graves | Up to 6 of them pray at the graves for 1.5 to 2 hours; a stranger's blessing for the colony (recreation, no mood)</li>
+          <li>Traders | A day's stall at the colony's gate | Their trader and a porter keep the stall there for 6 to 8 hours (trade as usual), and pay 25 silver for the spot</li>
+          <li>Traveling smith | Steel to work, 40 of it (after a day) | The steel carried down to the smith, who makes a knife of it and brings it over</li>
+          <li>Hermit | One dose of medicine (after three days) | Carried out to the hut; the hermit warms to the colony</li>
+          <li>Traveling healers | Practice for their apprentice on a colonist who is ill or ailing | Their two best healers come to the colonist's side: wounds tended, an illness or everyday ailment eased</li>
+          <li>A procession of the faithful | To carry their icon round the colony's fields | They walk the fields for an hour or two, up to 4 colonists walk with them; a stranger's blessing</li>
+          <li>Traveling players | An audience for their new play | The colony goes to their stage in the evening (recreation)</li>
+          <li>Surveyors | A sighting from the middle of the colony | Two of them take sightings for 2 to 3 hours; then, once per camp, they mark a seam of ore in the colony's rock</li>
+          <li>Salt caravan | Fresh food for salted fare | 25 raw food carried over; 40 pemmican set out for the colony</li>
+          <li>Drovers | Water for the herd | Two drovers walk the herd to the colony's water (a mod's well first, else shallow water near the colony) for 2 to 3 hours; afterwards milk, wool or a hide</li>
+        </table>
+        <after>A request that can't be granted now (nobody ill, no water near the colony, no graves, nothing to survey) isn't asked. While their herd is in the colony's fields, nothing else of theirs is set going.</after>
+      </li>
+      <li>
+        <heading>Questions for the council</heading>
+        <text>A camp brings questions of its own to the council (with dilemmas on), and every answer costs one side something. One of their people wants to stay when the camp goes on: take them in and the camp resents it, have the colonist who befriended them speak for them, pay the camp for the lost hands, or send them on and that colonist misses them. A purse goes missing from the camp and a colonist is blamed: search the colony, pay for it, stand by your own, or send them down to answer for it. One of theirs is caught in the colony's storeroom. Their beasts get into the colony's ripe fields and stand among the crops until the answer sends them home; the longer they're left, the more they eat. Riders of another people with an old quarrel come by: side with the camp, bring both to the colony's table, ask the camp to move on early, or keep out of it, and each costs goodwill with one people or the other. A child of theirs and a child of the colony become friends (Biotech). Their feast day comes round: the colony's hall, their fire, or not this year. And a camp that took a fee may not be able to pay it: a beast, a day's work, forgiveness, or the terms are the terms (and a proud camp may pack up over it).
+
+What each answer says happens is done on the map: the colonist walks down to the camp, the silver is carried over, the supper is laid, the beasts are walked home. A camp that moves on early leaves no gift behind.</text>
       </li>
       <li>
         <heading>Terms, trouble and parting</heading>

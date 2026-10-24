@@ -578,6 +578,23 @@ namespace ColonyCouncil
                     click = target.IsValid ? Go(target) : Page("World"),
                     order = -1
                 });
+                // What their people are coming into the colony for, or are there doing now (Camps/CampRequests.cs).
+                string errand = camp.ErrandText();
+                if (errand != null)
+                {
+                    int until = camp.errandFrom - now;
+                    var at = camp.errandCell.IsValid ? new GlobalTargetInfo(camp.errandCell, camp.map) : target;
+                    c.rows.Add(new WeekRow
+                    {
+                        icon = Icons.Visitor,
+                        color = UiKit.StrangerColor,
+                        text = errand,
+                        note = until > 0 ? "CC_Week_In".Translate(UiKit.Duration(until)).Resolve() : "CC_Week_UnderWay".Translate().ToString(),
+                        tip = Tip(null, at.IsValid ? "CC_Week_ClickPlace".Translate().ToString() : ClickPage("World")),
+                        click = at.IsValid ? Go(at) : Page("World"),
+                        order = 0
+                    });
+                }
             }
             // Hospitality's guests staying now (Integrations/GuestsWeek.cs).
             GuestsWeek.AddRows(c);
