@@ -53,6 +53,8 @@ namespace ColonyCouncil
             var lines = new List<string> { c.StatusLine(), c.TermsLine() };
             if (c.Settled && c.treesFelled + c.animalsHunted > 0) lines.Add(c.TakenLine());
             if (c.trader != null) lines.Add("CC_Camp_TraderLine".Translate(c.trader.Named("X")).Resolve());
+            string animals = c.Settled ? c.AnimalsText() : null;
+            if (animals != null) lines.Add("CC_Camp_AnimalsLine".Translate(animals).Resolve());
             string text = string.Join("\n", lines);
             Text.Font = GameFont.Small;
             float textW = w - 20f;

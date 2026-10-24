@@ -301,6 +301,10 @@ namespace ColonyCouncil
                     Tell(Text("CC_Camp_HelpTitle"), HelpText("tales", teller, listener), LetterDefOf.PositiveEvent, false);
                     return true;
                 }
+                case "repair":
+                    // A smith mends one of the colony's damaged buildings as a gift (the gate first): the smith walks over
+                    // and does the work, and the colony hears of it when it's done (CampLook.cs).
+                    return StartRepair();
                 case "survey":
                 {
                     // Once per camp: their sightings turn up a seam of ore in the colony's own rock.

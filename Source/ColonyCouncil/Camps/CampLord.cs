@@ -68,6 +68,8 @@ namespace ColonyCouncil
             scatter.AddTrigger(new Trigger_Memo(MemoFlee));
             scatter.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
             scatter.AddTrigger(new Trigger_ChanceOnPlayerHarmNPCBuilding(1f));
+            // Their animals are walked off on their own first, so they never fight anyone (CampLook.cs).
+            scatter.AddPreAction(new TransitionAction_Custom(() => CampBeasts.LeadOff(lord)));
             scatter.AddPostAction(new TransitionAction_EndAllJobs());
             graph.AddTransition(scatter);
 
@@ -76,6 +78,7 @@ namespace ColonyCouncil
             var war = new Transition(travel, defend);
             war.AddSources(camp);
             war.AddTrigger(new Trigger_BecamePlayerEnemy());
+            war.AddPreAction(new TransitionAction_Custom(() => CampBeasts.LeadOff(lord)));
             war.AddPostAction(new TransitionAction_WakeAll());
             war.AddPostAction(new TransitionAction_EndAllJobs());
             graph.AddTransition(war, true);
@@ -95,7 +98,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Life at the camp: every one of them on the camp duty (see <see cref="JobGiver_CampLife"/>).</summary>
+    /// <summary>
+    /// Life at the camp: every one of them on the camp duty (see <see cref="JobGiver_CampLife"/>), their animals on their
+    /// own (see <see cref="JobGiver_CampBeasts"/>).
+    /// </summary>
     public class LordToil_Camp : LordToil
     {
         private readonly IntVec3 center;
@@ -114,7 +120,9 @@ namespace ColonyCouncil
         public override void UpdateAllDuties()
         {
             foreach (var p in lord.ownedPawns)
-                p.mindState.duty = new PawnDuty(CampDefOf.Council_CampLife, center, CampSite.CoreRadius);
+                p.mindState.duty = p.RaceProps.Humanlike
+                    ? new PawnDuty(CampDefOf.Council_CampLife, center, CampSite.CoreRadius)
+                    : new PawnDuty(CampDefOf.Council_CampBeasts, center, CampSite.CoreRadius + 6f);
         }
 
         public override void LordToilTick()

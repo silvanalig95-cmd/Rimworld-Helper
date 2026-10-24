@@ -83,6 +83,23 @@ namespace ColonyCouncil
         /// </summary>
         public List<string> drawnBy;
 
+        // What makes the camp look lived-in (CampLook.cs): what they bring, put out, leave behind, and how they say goodbye.
+
+        /// <summary>Animals they bring: pack beasts, a herd, a dog (see <see cref="CampAnimals"/>).</summary>
+        public List<CampAnimals> animals;
+        /// <summary>Goods they put out once the camp stands: bales, a woodpile, washing (see <see cref="CampGoods"/>).</summary>
+        public List<CampGoods> campGoods;
+        /// <summary>What they leave behind when they go at the end of their stay (see <see cref="CampGift"/>).</summary>
+        public List<CampGift> leaveBehind;
+        /// <summary>A last walk before they go: a healer's round, a gift laid at the colony's gate (see <see cref="CampWalk"/>).</summary>
+        public CampWalk farewellWalk;
+        /// <summary>
+        /// Short lines said at moments of the camp's life, tagged with the moment: [kill] (a hunter's shot), [butcher] (a
+        /// kill dressed at the camp), [carry] (a porter with a load), [herd] (seeing to the herd), [repair] (mending the
+        /// colony's building), [round] (the farewell round), [gift] (a gift left behind).
+        /// </summary>
+        [MustTranslate] public List<string> momentLines;
+
         /// <summary>How likely this kind is to be the one that comes now.</summary>
         public float WeightNow()
         {
@@ -124,6 +141,12 @@ namespace ColonyCouncil
             if (titles.NullOrEmpty()) yield return "camp kind has no titles";
             if (people.min < 1 || people.max > 8) yield return "camp size must stay within 1 to 8";
             if (structures.NullOrEmpty() || !structures.Any(s => s.role == "fire")) yield return "camp kind needs a fire";
+            if (animals != null && animals.Sum(a => a?.count.max ?? 0) > CampLookMath.MaxAnimals) yield return "camp kind brings more than " + CampLookMath.MaxAnimals + " animals";
+            if (animals != null && animals.Any(a => a == null || (a.kinds.NullOrEmpty() && !a.pack))) yield return "camp animals need kinds (or pack)";
+            if (campGoods != null && campGoods.Any(g => g == null || g.defs.NullOrEmpty())) yield return "camp goods need defs";
+            if (leaveBehind != null && leaveBehind.Any(g => g == null || g.key.NullOrEmpty() || (g.defs.NullOrEmpty() && !g.wildTrees))) yield return "camp gifts need a key and defs (or wildTrees)";
+            if (farewellWalk != null && farewellWalk.to != "sick" && farewellWalk.to != "gate") yield return "farewellWalk.to must be sick or gate";
+            if (farewellWalk?.gift != null && (leaveBehind == null || !leaveBehind.Any(g => g?.key == farewellWalk.gift))) yield return "farewellWalk.gift names no leaveBehind entry";
         }
     }
 
@@ -170,6 +193,10 @@ namespace ColonyCouncil
         public static JobDef Council_CampButcher;
         public static JobDef Council_CampTend;
         public static JobDef Council_CampSit;
+        public static JobDef Council_CampFarewell;
+        public static JobDef Council_CampLayGift;
+        public static JobDef Council_CampRepair;
+        public static DutyDef Council_CampBeasts;
         public static LetterDef Council_CampLetter;
         public static ThoughtDef Council_Camp_GoodNeighbors;
         public static ThoughtDef Council_Camp_Crowded;

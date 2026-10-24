@@ -183,15 +183,37 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("camp supplies", e);
             }
+            // The animals they bring (pack beasts, a herd, a dog) walk in with them, in their group (CampLook.cs).
             try
             {
-                c.lord = LordMaker.MakeNewLord(s.faction, new LordJob_Camp(s.center), map, c.members);
+                foreach (var a in Camp.MakeAnimals(s.kind, s.faction, map))
+                {
+                    GenSpawn.Spawn(a, CellFinder.RandomClosewalkCellNear(entry, map, 5), map);
+                    c.herd.Add(a);
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp animals", e);
+            }
+            try
+            {
+                c.lord = LordMaker.MakeNewLord(s.faction, new LordJob_Camp(s.center), map, c.members.Concat(c.herd));
             }
             catch (Exception e)
             {
                 // No group to live in: they walk off again rather than stand about on the map with nothing to do.
                 CouncilLog.ErrorOnce("camp group", e);
                 Arrivals.SendAway(c.members);
+                try
+                {
+                    var beasts = c.herd.Where(a => a.Spawned && !a.Dead).ToList();
+                    if (beasts.Count > 0) LordMaker.MakeNewLord(s.faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, false), map, beasts);
+                }
+                catch (Exception e2)
+                {
+                    CouncilLog.ErrorOnce("camp animals sent off", e2);
+                }
                 return null;
             }
             camp = c;

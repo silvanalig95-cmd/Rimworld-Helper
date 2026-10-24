@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A camp that looks lived-in (Source/ColonyCouncil/Camps/CampLook.cs): the animals they bring, and a smith's
+       mending of one of the colony's buildings. Placeholders as in Rimfolk_Camps.xml. -->
+
+  <CC_Camp_Facts_Animals>They have {THING} with them.</CC_Camp_Facts_Animals>
+  <CC_Camp_AnimalsLine>With them: {0}.</CC_Camp_AnimalsLine>
+  <CC_Camp_Help_repair>{X_nameDef} from the camp mended the colony's {THING} and wouldn't hear of being paid for it.</CC_Camp_Help_repair>
+
+</LanguageData>

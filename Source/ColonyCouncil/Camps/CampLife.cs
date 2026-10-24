@@ -52,7 +52,11 @@ namespace ColonyCouncil
                     dayHunts++;
                     AddTension(termShare && !skipShare ? 1.5f : 3f);
                     // The vanilla hunt ends by hauling the body to storage; theirs goes to the camp instead.
-                    if (hunter != null) hunter.jobs.EndCurrentJob(JobCondition.Succeeded);
+                    if (hunter != null)
+                    {
+                        hunter.jobs.EndCurrentJob(JobCondition.Succeeded);
+                        SayMoment(hunter, "kill", 0.6f);
+                    }
                     continue;
                 }
                 if (hunter == null || !animal.Spawned || animal.Map != map)
@@ -134,6 +138,7 @@ namespace ColonyCouncil
                 return;
             }
             WatchMembers();
+            KeepHerd();
             if (phase == CampPhase.Coming)
             {
                 // Lost on the way: they give up and go.
@@ -149,6 +154,7 @@ namespace ColonyCouncil
             int day = GenDate.DaysPassed;
             if (day != dayKey) NewDay(day);
             Upkeep();
+            WatchRepair();
             if (phase == CampPhase.Building) CheckBuilt();
             WatchTrade();
             if (Ends()) return;
@@ -431,6 +437,8 @@ namespace ColonyCouncil
             foreach (var p in plans.Where(p => p.placed && p.Built(map, faction) == null)) p.dropped = true;
             phase = CampPhase.Living;
             builtTick = Now;
+            // What they put out once the camp stands: bales by the beasts, a woodpile by the door (CampLook.cs).
+            PutOut();
             Note(Pick(kind.settled) ?? Text("CC_Camp_Built"), MessageTypeDefOf.NeutralEvent, Importance.Notable);
         }
 
@@ -685,6 +693,7 @@ namespace ColonyCouncil
                 if (GenPlace.TryPlaceThing(t, stash, map, ThingPlaceMode.Near, out var put, null, AtStash)) Own(put);
             }
             skipShare = false;
+            SayMoment(butcher, "butcher", 0.5f);
             if (shared > 0) Note(Text("CC_Camp_Shared", null, null, shared), MessageTypeDefOf.PositiveEvent, Importance.Notable);
         }
 
@@ -785,6 +794,8 @@ namespace ColonyCouncil
                 }
                 // Waiting on the colony's answer to that.
                 if (extendAsked && !extended && Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Camp c && c.campId == id && c.what == "overstay" && !c.resolved)) return false;
+                // A last walk first, if their kind takes one: the healer's round, a gift carried to the colony's gate.
+                if (FarewellWalking()) return false;
                 Leave("time");
                 return true;
             }
@@ -844,6 +855,9 @@ namespace ColonyCouncil
             foreach (var t in Unfinished())
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
             if (!peaceful) return;
+            // Where the fire and their day's work stood, for what they leave there at the end of their stay.
+            var fire = FireCell;
+            var taskSpot = kind.taskAt != null ? plans.FirstOrDefault(p => p.role == kind.taskAt && !p.dropped)?.cell ?? IntVec3.Invalid : IntVec3.Invalid;
             // A hut taken down loses its roof first: left without walls, the roof would fall in on whoever is below.
             if (!kind.leaveBuildings)
                 foreach (var c in CampSite.HutInside(plans))
@@ -878,6 +892,8 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("camp packing " + b.def.defName, e);
                 }
             }
+            // What they can't take is left for the colony (the hermit's woodpile, with the hut); the rest goes with them.
+            LeaveGoods();
             foreach (var t in Goods())
             {
                 Disown(t);
@@ -885,6 +901,8 @@ namespace ColonyCouncil
                 if (t.Spawned) t.DeSpawn();
                 if (!carriers.RandomElement().inventory.innerContainer.TryAdd(t) && !t.Destroyed) t.Destroy();
             }
+            // At the end of their stay, what they leave at the camp: a ring of seeds round the old fire, a backdrop on the stage.
+            if (ending == "time") LeaveGifts(fire, taskSpot);
         }
 
         /// <summary>Half a day after they set off (or broke out of a fight), whoever is still here is stuck: walled in, or lost.</summary>
@@ -903,7 +921,8 @@ namespace ColonyCouncil
         private void SendOff()
         {
             var walkers = new List<Pawn>();
-            foreach (var p in Here)
+            // Their animals go with them (and any beast bought from the colony).
+            foreach (var p in Here.Concat(lord.ownedPawns.Where(x => x?.RaceProps != null && !x.RaceProps.Humanlike)).Distinct().ToList())
             {
                 try
                 {
@@ -927,6 +946,7 @@ namespace ColonyCouncil
             bool arrest = arrested.Count > 0 || map.mapPawns.FreeColonistsSpawned.Any(c => c.CurJobDef == JobDefOf.Arrest && c.CurJob.targetA.Thing is Pawn t && members.Contains(t));
             ending ??= arrest ? "arrest" : "harmed";
             leftTick = Now;
+            SendHerdOff();
             AbandonGoods();
             foreach (var t in Unfinished())
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
@@ -938,6 +958,8 @@ namespace ColonyCouncil
         {
             phase = CampPhase.Fighting;
             ending = "fight";
+            // Their animals are walked off first: they never fight anyone.
+            SendHerdOff();
             foreach (var t in Unfinished())
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
             Tell(Text("CC_Camp_FightTitle"), Text("CC_Camp_Fight"), LetterDefOf.ThreatSmall, true, leader);
@@ -965,16 +987,27 @@ namespace ColonyCouncil
                 return;
             }
             if (phase == CampPhase.Fighting) AbandonGoods();
+            bool allJoined = false;
             if (ending == null)
             {
                 ending = "empty";
                 // Everyone left joined the colony: the camp and its goods are the colony's now.
                 if (joined.Count > 0 && map != null && Find.Maps.Contains(map))
                 {
+                    allJoined = true;
                     foreach (var b in Buildings())
                         if (!b.Destroyed) b.SetFaction(Faction.OfPlayer);
                     AbandonGoods();
                 }
+            }
+            // Animals of theirs still here go too, or are the colony's with the rest of the camp.
+            try
+            {
+                ReleaseHerd(allJoined);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp herd at the end", e);
             }
             try
             {
@@ -1034,7 +1067,8 @@ namespace ColonyCouncil
             }
             string key = "CC_Camp_End_" + (ending ?? "empty");
             if (!key.CanTranslate()) key = "CC_Camp_End_empty";
-            string text = ending == "time" ? Pick(kind.farewell) ?? Text(key) : Text(key);
+            // Their own farewell, told as it went (what they left, the healer's round, the smith's mending).
+            string text = ending == "time" ? FarewellText() ?? Text(key) : Text(key);
             if (final && ending == "fight") text = Text("CC_Camp_End_fightOver");
             if (joined.Count > 0 && ending != "fight") text += "\n\n" + "CC_Camp_Stayed".Translate(TextUtil.JoinAnd(joined.Select(p => p.LabelShort).ToList())).Resolve();
             bool bad = ending == "harmed" || ending == "arrest" || ending == "fight" || ending == "fallout" || ending == "forced";
