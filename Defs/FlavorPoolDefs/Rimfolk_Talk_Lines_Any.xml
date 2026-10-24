@@ -76,6 +76,81 @@
         <li>[argue,otherrep:gossip] Go on, tell everyone I said so, you will anyway.</li>
         <li>[argue,otherrep:idle] Do something useful for once, then talk.</li>
         <li>[debate,otherrep:clumsy] Careful, you'll trip over that argument.</li>
+        <li>[agree] That's it exactly, and I'm glad someone said it.</li>
+        <li>[agree] I've been saying that for weeks, and nobody listens.</li>
+        <li>[agree] Right, and it's about time we talked about it.</li>
+        <li>[agree] You'll get no argument from me.</li>
+        <li>[agree] I was nodding before you'd finished.</li>
+        <li>[agree] Same here, word for word.</li>
+        <li>[agree] I thought I was the only one who saw it that way.</li>
+        <li>[agree] There's nothing I'd add to that.</li>
+        <li>[agree] That's how it looks from where I'm standing too.</li>
+        <li>[agree] Good, then it isn't just me.</li>
+        <li>[agree] I'd have said the same, if you hadn't.</li>
+        <li>[agree] You've been thinking about this as much as I have.</li>
+        <li>[agree] Yes, and I'll stand by it.</li>
+        <li>[agree] I couldn't agree more, and I don't say that often.</li>
+        <li>[agree] Spoken like someone who's thought it through.</li>
+        <li>[agree] My thoughts exactly, I was just slower to say them.</li>
+        <li>[agree] I'd put my name to every word.</li>
+        <li>[agree] Well said, that.</li>
+        <li>[debate] I can see where you're coming from, I just don't end up there.</li>
+        <li>[debate] That's a fair point, but it isn't the whole story.</li>
+        <li>[debate] I'd put it the other way round, myself.</li>
+        <li>[debate] Maybe, but you're forgetting something.</li>
+        <li>[debate] Hold on, I don't think that follows.</li>
+        <li>[debate] I'll give you the first half and argue about the rest.</li>
+        <li>[debate] We've had this out before, and I still don't see it.</li>
+        <li>[debate] You make it sound simple, and it isn't.</li>
+        <li>[debate] There's another side to that, you know.</li>
+        <li>[debate] Not quite, and you know I'm going to tell you why.</li>
+        <li>[debate] I used to think that, then I changed my mind.</li>
+        <li>[debate] It's not that you're wrong, it's that it's more complicated.</li>
+        <li>[debate] I'd like to agree with you, but I can't, quite.</li>
+        <li>[debate] That's one way to see it, and I see it another.</li>
+        <li>[debate] Go on, convince me, I'm listening.</li>
+        <li>[debate] I've thought about that, and I came out somewhere else.</li>
+        <li>[debate] You're not wrong, you're just not right either.</li>
+        <li>[debate] I think you've got it backwards, but let's hear it.</li>
+        <li>[argue] That's nonsense, and you know it.</li>
+        <li>[argue] You haven't thought about it for a second, have you?</li>
+        <li>[argue] I'm tired of hearing you say that.</li>
+        <li>[argue] Must you always be right?</li>
+        <li>[argue] Where do you get these ideas?</li>
+        <li>[argue] No, and I won't pretend otherwise to keep you happy.</li>
+        <li>[argue] That's the most backward thing I've heard all season.</li>
+        <li>[argue] You'd say anything to win an argument.</li>
+        <li>[argue] Keep your voice down, the whole place can hear you.</li>
+        <li>[argue] You're not listening, you never do.</li>
+        <li>[argue] Don't you dare talk down to me.</li>
+        <li>[argue] Have you ever once admitted you were wrong?</li>
+        <li>[argue] That's not an argument, that's just shouting.</li>
+        <li>[argue] You can say it louder, it won't make it true.</li>
+        <li>[argue] Why do I even bother talking to you?</li>
+        <li>[argue] That's easy to say when it's not you who pays for it.</li>
+        <li>[argue] Stop twisting my words.</li>
+        <li>[argue] You don't believe that, you just like arguing.</li>
+        <li>[agree,mixed] I'm not sure either, so I can't argue.</li>
+        <li>[agree,mixed] Maybe so, I haven't made up my mind.</li>
+        <li>[agree,mixed] I lean that way myself, some days.</li>
+        <li>[debate,mixed] I'm in the middle on it, and you're not helping.</li>
+        <li>[debate,mixed] Both sides make sense to me, and yours is only one of them.</li>
+        <li>[debate,mixed] Some days I'd agree, today I wouldn't.</li>
+        <li>[argue,mixed] Neither side has me, and I won't be shouted onto one.</li>
+        <li>[argue,mixed] You're arguing with the wrong person, I haven't decided.</li>
+        <li>[argue,mixed] Leave me out of your crusade.</li>
+        <li>[agree] I said the same to someone just yesterday.</li>
+        <li>[agree] Exactly what I was thinking.</li>
+        <li>[agree] I'm with you on that.</li>
+        <li>[debate] I'll need more than that to change my mind.</li>
+        <li>[debate] You've a point, but I've a better one.</li>
+        <li>[debate] Possibly, but I doubt it.</li>
+        <li>[argue] You've no idea what you're talking about.</li>
+        <li>[argue] Say that once more and we're done.</li>
+        <li>[argue] Give it a rest, will you.</li>
+        <li>[agree,mixed] I've no strong view, but that sounds right.</li>
+        <li>[debate,mixed] I'm not sure, and neither should you be.</li>
+        <li>[argue,mixed] I haven't picked a side, and you can't make me.</li>
       </plain>
       <warm>
         <li>[agree] I'm so glad you said that, I thought I was the only one.</li>
@@ -89,6 +164,15 @@
         <li>[argue] That hurt to hear, {OTHER}.</li>
         <li>[agree,friends] It's a comfort, having you see it the same way.</li>
         <li>[debate] I could listen to you argue all day, even when you're wrong.</li>
+        <li>[agree] I'm so glad we see it the same way.</li>
+        <li>[agree] You always put things better than I do.</li>
+        <li>[agree] It means a lot that you think so too.</li>
+        <li>[debate] I love that you care so much, I just see it differently.</li>
+        <li>[debate] Let's not fall out, but I can't agree.</li>
+        <li>[debate] I'd follow your reasoning anywhere, except there.</li>
+        <li>[argue] Please, I don't want to fight with you.</li>
+        <li>[argue] I care about you, but you're wrong about this.</li>
+        <li>[argue] Can we both calm down, please?</li>
       </warm>
       <blunt>
         <li>[agree] Finally, someone with sense.</li>
@@ -105,6 +189,14 @@
         <li>[argue] I've had enough of your opinions for one day.</li>
         <li>[agree] Took you long enough to say it.</li>
         <li>[argue] Stop talking.</li>
+        <li>[agree] Obviously, keep going.</li>
+        <li>[agree] About time.</li>
+        <li>[debate] No, wrong.</li>
+        <li>[debate] That's not it.</li>
+        <li>[debate] Try again.</li>
+        <li>[argue] Shut it.</li>
+        <li>[argue] Idiot.</li>
+        <li>[argue] Don't push me.</li>
       </blunt>
       <cheerful>
         <li>[agree] Look at us agreeing on something, somebody mark the calendar.</li>
@@ -117,6 +209,15 @@
         <li>[argue] Easy now, it was only a thought.</li>
         <li>[agree] We're both right, and that's a first.</li>
         <li>[debate] Oh, you're adorable when you're wrong.</li>
+        <li>[agree] Agreed, let's go and tell everyone how clever we are.</li>
+        <li>[agree] Look at us, two wise heads in one colony.</li>
+        <li>[agree] I'd shake on it, but my hands are sticky.</li>
+        <li>[debate] Wrong, but I love the confidence.</li>
+        <li>[debate] I'll argue the other side just for fun.</li>
+        <li>[debate] Ooh, now that's a fight I'll enjoy.</li>
+        <li>[argue] Whoa, steady, you'll scare the chickens.</li>
+        <li>[argue] Someone needs a nap, and it isn't me.</li>
+        <li>[argue] Fine, be wrong loudly, see if I care.</li>
       </cheerful>
       <gloomy>
         <li>[agree] Yes, and it'll probably get worse.</li>
@@ -128,6 +229,15 @@
         <li>[argue] You'll see I was right when it all goes wrong.</li>
         <li>[agree] Not that it'll change anything.</li>
         <li>[debate] Maybe you're right, maybe it won't matter.</li>
+        <li>[agree] Yes, for all the good it'll do.</li>
+        <li>[agree] You're right, which is the worst part.</li>
+        <li>[agree] I've thought the same, on bad nights.</li>
+        <li>[debate] Maybe, but it won't turn out the way you think.</li>
+        <li>[debate] I'd like to believe that, I just can't.</li>
+        <li>[debate] It won't matter who's right in the end.</li>
+        <li>[argue] Shout all you like, nothing changes.</li>
+        <li>[argue] Fine, but don't say I didn't warn you.</li>
+        <li>[argue] It'll end badly whichever of us is right.</li>
       </gloomy>
       <cold>
         <li>[agree] Correct.</li>
@@ -141,6 +251,15 @@
         <li>[argue] You're wrong, and I don't care how you feel about it.</li>
         <li>[agree] Obviously.</li>
         <li>[argue] I'm not interested in your opinion.</li>
+        <li>[agree] Agreed, that's the logical view.</li>
+        <li>[agree] I reached the same conclusion.</li>
+        <li>[agree] Correct, as it happens.</li>
+        <li>[debate] Your premise is weak.</li>
+        <li>[debate] Unpersuaded.</li>
+        <li>[debate] That doesn't follow.</li>
+        <li>[argue] You're being emotional.</li>
+        <li>[argue] This conversation is pointless.</li>
+        <li>[argue] Your opinion is noted and dismissed.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -182,6 +301,45 @@
         <li>[argue] I'm going before I say something I regret.</li>
         <li>[argue,othergroup] Go back to your own lot, then.</li>
         <li>[argue,mend] I thought we'd put this behind us.</li>
+        <li>[agree] Good, glad we're of one mind.</li>
+        <li>[agree] I'll remember you said that.</li>
+        <li>[agree] That's two of us, at least.</li>
+        <li>[agree] Good talk, that.</li>
+        <li>[agree] We should talk like this more often.</li>
+        <li>[agree] I'm glad I asked you.</li>
+        <li>[agree] Right, then we know where we stand.</li>
+        <li>[agree] Let's leave it there, while we agree.</li>
+        <li>[agree] Good, I'll sleep easier.</li>
+        <li>[agree] I'll tell the others you agree.</li>
+        <li>[debate] Think it over, and so will I.</li>
+        <li>[debate] Same time tomorrow, and I'll have better arguments.</li>
+        <li>[debate] I still think I'm right, but I'll grant you a point.</li>
+        <li>[debate] We'll never settle it, will we.</li>
+        <li>[debate] You've given me something to chew on.</li>
+        <li>[debate] Good argument, wrong answer.</li>
+        <li>[debate] Let's call it a draw for today.</li>
+        <li>[debate] I'll come round when you do.</li>
+        <li>[debate] At least you argue fairly.</li>
+        <li>[debate] We'll see who's still saying it in a year.</li>
+        <li>[argue] I'm not doing this again.</li>
+        <li>[argue] That's enough, I'm going.</li>
+        <li>[argue] You've said enough for one day.</li>
+        <li>[argue] Fine, have it your way, as always.</li>
+        <li>[argue] I'll talk to you when you've calmed down.</li>
+        <li>[argue] Leave me alone.</li>
+        <li>[argue] Don't follow me.</li>
+        <li>[argue] I've nothing more to say to you.</li>
+        <li>[argue] We'll talk when you can be civil.</li>
+        <li>[argue] Go and shout at someone else.</li>
+        <li>[agree,mixed] Good, neither of us has to decide today.</li>
+        <li>[debate,mixed] I'll make up my mind eventually, don't rush me.</li>
+        <li>[argue,mixed] Stop pushing, I'll decide when I'm ready.</li>
+        <li>[agree] Glad we see eye to eye.</li>
+        <li>[agree] Let's leave it on a good note.</li>
+        <li>[debate] I'll think on what you said, I promise.</li>
+        <li>[debate] You're wrong, but I'll miss arguing with you.</li>
+        <li>[argue] I'm not talking about this anymore.</li>
+        <li>[argue] You've made your point, now go.</li>
       </plain>
       <warm>
         <li>[agree] It means a lot to hear you say it.</li>
@@ -192,6 +350,13 @@
         <li>[argue] I'm sorry it came to this, I really am.</li>
         <li>[argue] Let's both sleep on it, please.</li>
         <li>[argue] I hate fighting with you.</li>
+        <li>[agree] I'm glad we talked, truly.</li>
+        <li>[agree] You always make me feel better about things.</li>
+        <li>[debate] Whatever we think, I'm glad it's you I argue with.</li>
+        <li>[debate] Come here, no hard feelings.</li>
+        <li>[argue] I'm sorry, I didn't mean to raise my voice.</li>
+        <li>[argue] Let's start again tomorrow, kinder.</li>
+        <li>[agree] Thank you for hearing me out.</li>
       </warm>
       <blunt>
         <li>[agree] Good, glad you're not an idiot.</li>
@@ -202,6 +367,13 @@
         <li>[argue] Talk to me again when you've grown a brain.</li>
         <li>[argue] Waste of breath.</li>
         <li>[agree] Good, that's sorted.</li>
+        <li>[agree] Done.</li>
+        <li>[agree] Settled, then.</li>
+        <li>[debate] Fine, you're wrong, moving on.</li>
+        <li>[debate] Enough for today.</li>
+        <li>[argue] Get out of my sight.</li>
+        <li>[argue] We're done.</li>
+        <li>[debate] Think harder next time.</li>
       </blunt>
       <cheerful>
         <li>[agree] Look at that, harmony, the elders would weep.</li>
@@ -210,6 +382,12 @@
         <li>[debate] Rematch tomorrow, winner gets the last biscuit.</li>
         <li>[argue] Right, I'm going to go and be cheerful somewhere else.</li>
         <li>[debate] Let's do this again, I'm enjoying myself.</li>
+        <li>[agree] High five, if you're the high-five sort.</li>
+        <li>[agree] Look at us, nodding like a pair of owls.</li>
+        <li>[debate] I declare myself the winner, and you can appeal tomorrow.</li>
+        <li>[debate] Loser fetches the water.</li>
+        <li>[argue] I'm off to be right somewhere else.</li>
+        <li>[argue] Fine, I'll sulk magnificently.</li>
       </cheerful>
       <gloomy>
         <li>[agree] At least we'll have each other when it goes wrong.</li>
@@ -217,6 +395,13 @@
         <li>[argue] It doesn't matter anyway.</li>
         <li>[argue] Fine, it'll all fall apart without my help.</li>
         <li>[debate] Ask me again next year, if we're still here.</li>
+        <li>[agree] Not that agreeing ever changed anything.</li>
+        <li>[agree] At least we'll be wrong together.</li>
+        <li>[debate] It won't matter which of us is right.</li>
+        <li>[debate] We'll argue again, we always do.</li>
+        <li>[argue] Fine, it was pointless anyway.</li>
+        <li>[argue] I knew this would happen.</li>
+        <li>[agree] Well, at least someone agrees with me.</li>
       </gloomy>
       <cold>
         <li>[agree] Good.</li>
@@ -224,6 +409,13 @@
         <li>[argue] We're done here.</li>
         <li>[argue] I have better things to do.</li>
         <li>[argue] I've heard enough.</li>
+        <li>[agree] Then we're decided.</li>
+        <li>[agree] Good, that's efficient.</li>
+        <li>[debate] We'll revisit it with more information.</li>
+        <li>[debate] Your position is noted.</li>
+        <li>[argue] I won't waste more time on this.</li>
+        <li>[argue] This is over.</li>
+        <li>[agree] Agreement reached.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -277,6 +469,110 @@
         <li>[comfort] I'm glad you came over.</li>
         <li>[reminisce] I think about it more than I let on.</li>
         <li>[joke] You and your jokes.</li>
+        <li>[debate] Still wrong, but nicely put.</li>
+        <li>[debate] I'll think about it, that's all I'm promising.</li>
+        <li>[debate] Ask me again in a week.</li>
+        <li>[debate] You'll come round.</li>
+        <li>[debate] Maybe, maybe not.</li>
+        <li>[debate] I'm not convinced, but I'm listening.</li>
+        <li>[debate] Next time I'll win.</li>
+        <li>[debate] Good argument, I'll give you that.</li>
+        <li>[debate] That's one for you, then.</li>
+        <li>[debate] I'll let you have that one.</li>
+        <li>[debate] Bring better reasons next time.</li>
+        <li>[debate] Same time tomorrow?</li>
+        <li>[debate] You're still wrong, mind.</li>
+        <li>[debate] I'll grant you half.</li>
+        <li>[debate] You argue like my mother did.</li>
+        <li>[debate] Fair enough, but no.</li>
+        <li>[debate] Hm.</li>
+        <li>[argue] Fine, go, then.</li>
+        <li>[argue] Don't speak to me.</li>
+        <li>[argue] You're impossible.</li>
+        <li>[argue] I'm done with you.</li>
+        <li>[argue] Say that again and see.</li>
+        <li>[argue] That's it, I'm finished.</li>
+        <li>[argue] You'll be sorry you said that.</li>
+        <li>[argue] Nobody asked you.</li>
+        <li>[argue] Get away from me.</li>
+        <li>[argue] Typical, just typical.</li>
+        <li>[argue] Every time, every single time.</li>
+        <li>[argue] I won't forget that.</li>
+        <li>[argue] Walk away, like always.</li>
+        <li>[argue] Run along, then.</li>
+        <li>[argue] You've got a nerve.</li>
+        <li>[argue] Good riddance.</li>
+        <li>[reminisce] I think about it more than I'd say.</li>
+        <li>[reminisce] Strange how clear it still is.</li>
+        <li>[reminisce] Some days it feels like yesterday.</li>
+        <li>[reminisce] It's good, talking about it.</li>
+        <li>[reminisce] I'd forgotten that part.</li>
+        <li>[reminisce] You remember it better than I do.</li>
+        <li>[reminisce] Funny what sticks with you.</li>
+        <li>[reminisce] Of all people, I'm glad it was you.</li>
+        <li>[reminisce] Let's not leave it so long before we talk about it again.</li>
+        <li>[reminisce] That'll be in my head all day now.</li>
+        <li>[reminisce,good] I still laugh about that sometimes.</li>
+        <li>[reminisce,good] Those were good days, weren't they.</li>
+        <li>[reminisce,good] I'd go back to that day, if I could.</li>
+        <li>[reminisce,good] That's one of my favorite memories.</li>
+        <li>[reminisce,bad] I try not to think about it, mostly.</li>
+        <li>[reminisce,bad] I wish I could forget some of it.</li>
+        <li>[reminisce,bad] We got through it, didn't we.</li>
+        <li>[reminisce,bad] It still hurts, if I'm truthful.</li>
+        <li>[reminisce,byme] I couldn't have done it without you.</li>
+        <li>[reminisce,byother] I'll never forget what you did.</li>
+        <li>[debate] I'll sleep on it.</li>
+        <li>[debate] You're half right, which is more than usual.</li>
+        <li>[debate] Let's not do this again tomorrow.</li>
+        <li>[debate] We'll talk again when you've thought it over.</li>
+        <li>[debate] That's your view, and I've got mine.</li>
+        <li>[debate] Two minds, two answers, then.</li>
+        <li>[debate] If you say so.</li>
+        <li>[debate] Interesting, but no.</li>
+        <li>[debate] Remind me why I argue with you.</li>
+        <li>[debate] You haven't won, you know.</li>
+        <li>[debate] I'll find a better answer by morning.</li>
+        <li>[debate] We're both stubborn, that's the trouble.</li>
+        <li>[debate] Hah, nice try.</li>
+        <li>[debate] You'll see.</li>
+        <li>[debate] Let's leave it before we start shouting.</li>
+        <li>[debate] I'll get you next time.</li>
+        <li>[debate] Well, I enjoyed that.</li>
+        <li>[debate] End of round one, then.</li>
+        <li>[argue] Enough.</li>
+        <li>[argue] Don't bother.</li>
+        <li>[argue] You've ruined my evening.</li>
+        <li>[argue] Out of my way.</li>
+        <li>[argue] I'm not listening anymore.</li>
+        <li>[argue] Unbelievable, really.</li>
+        <li>[argue] Forget I ever said anything.</li>
+        <li>[argue] You always do this to me.</li>
+        <li>[argue] Keep talking, I'm leaving.</li>
+        <li>[argue] And that's why nobody asks you.</li>
+        <li>[argue] Stay away from me for a while.</li>
+        <li>[argue] I'm going before I say something worse.</li>
+        <li>[argue] Last time I talk to you about anything.</li>
+        <li>[argue] Grow up.</li>
+        <li>[argue] Next time, keep it to yourself.</li>
+        <li>[argue] I'll be somewhere you aren't.</li>
+        <li>[reminisce] I didn't know you remembered that.</li>
+        <li>[reminisce] I'd almost forgotten how it went.</li>
+        <li>[reminisce] We were different people back then.</li>
+        <li>[reminisce] You tell it better than I do.</li>
+        <li>[reminisce] I've never told anyone else about that.</li>
+        <li>[reminisce] It feels like a long time ago.</li>
+        <li>[reminisce] Good to know someone else remembers.</li>
+        <li>[reminisce] We should do this more often, remember things.</li>
+        <li>[reminisce] I wonder what the others remember of it.</li>
+        <li>[reminisce] There was more to it than that, but yes.</li>
+        <li>[reminisce,good] I smile every time I think of it.</li>
+        <li>[reminisce,good] That's the day I knew I'd stay.</li>
+        <li>[reminisce,bad] I'm glad we don't have to go through that again.</li>
+        <li>[reminisce,bad] Some nights it comes back.</li>
+        <li>[reminisce,byme] You were there when I needed someone.</li>
+        <li>[reminisce,byother] You were braver than you think you were.</li>
+        <li>[reminisce,friends] That's when we became friends, I think.</li>
       </plain>
       <warm>
         <li>[agree] Look after yourself, won't you.</li>
@@ -286,6 +582,16 @@
         <li>[reminisce] I'm glad it was you there with me.</li>
         <li>[argue] I'm sorry, I didn't mean it like that.</li>
         <li>[comfort] You're kind, you know that.</li>
+        <li>[debate] I love arguing with you, you know.</li>
+        <li>[debate] Think on it, and I will too.</li>
+        <li>[argue] I'm sorry, come back.</li>
+        <li>[argue] I didn't mean that, please.</li>
+        <li>[reminisce] I'm so glad you were there.</li>
+        <li>[reminisce] Thank you for remembering it with me.</li>
+        <li>[reminisce,bad] We'll carry it together, then.</li>
+        <li>[debate] We'll work it out, you and me.</li>
+        <li>[argue] Come back when you're ready, I'll be here.</li>
+        <li>[reminisce] I'll never forget it either.</li>
       </warm>
       <blunt>
         <li>[argue] Coward.</li>
@@ -293,6 +599,16 @@
         <li>[argue] Wasting my time.</li>
         <li>[tease] Keep it up and see what happens.</li>
         <li>[debate] Wrong, still.</li>
+        <li>[debate] Still no.</li>
+        <li>[debate] Nope.</li>
+        <li>[argue] Get lost.</li>
+        <li>[argue] Whatever.</li>
+        <li>[reminisce] Yeah.</li>
+        <li>[reminisce,good] Good times.</li>
+        <li>[reminisce,bad] Rough day, that.</li>
+        <li>[debate] Nah.</li>
+        <li>[argue] Leave it.</li>
+        <li>[reminisce] Long time ago now.</li>
       </blunt>
       <cheerful>
         <li>[debate] I'll write it down so you can be wrong in writing.</li>
@@ -300,6 +616,16 @@
         <li>[joke] I'm going to be laughing at that all day.</li>
         <li>[debate] I'll have the last word, it's tradition.</li>
         <li>[joke] Oh, my sides.</li>
+        <li>[debate] I'm counting this one as a win.</li>
+        <li>[debate] Rematch at supper.</li>
+        <li>[argue] Sulk all you like, I'm still lovely.</li>
+        <li>[argue] Fine, I'll be over here, being right.</li>
+        <li>[reminisce,good] Best day ever, that, nearly.</li>
+        <li>[reminisce] I'm going to tell that story at every supper now.</li>
+        <li>[reminisce] We should write it down before we make it any better.</li>
+        <li>[debate] I'll win the next round, mark my words.</li>
+        <li>[argue] You'll laugh about this tomorrow, I promise.</li>
+        <li>[reminisce] What a day that was, eh?</li>
       </cheerful>
       <gloomy>
         <li>[argue] Whatever, nothing changes.</li>
@@ -307,6 +633,16 @@
         <li>[reminisce] Feels like a hundred years ago.</li>
         <li>[debate] It doesn't matter anyway.</li>
         <li>[comfort] Maybe tomorrow will be easier.</li>
+        <li>[debate] We'll both be wrong in the end.</li>
+        <li>[debate] You might be right, it won't help.</li>
+        <li>[argue] Nothing ever changes.</li>
+        <li>[argue] Fine, leave like everyone does.</li>
+        <li>[reminisce] Those days are gone now.</li>
+        <li>[reminisce,bad] I still have the dreams.</li>
+        <li>[reminisce] It all seems so far away.</li>
+        <li>[debate] It won't change anything either way.</li>
+        <li>[argue] Go on, then, leave.</li>
+        <li>[reminisce] I miss how it was, even then.</li>
       </gloomy>
       <cold>
         <li>[argue] Noted.</li>
@@ -314,6 +650,16 @@
         <li>[tease] Hilarious.</li>
         <li>[argue] Done.</li>
         <li>[joke] Mm.</li>
+        <li>[debate] Possibly.</li>
+        <li>[debate] I remain unconvinced.</li>
+        <li>[argue] We're finished.</li>
+        <li>[argue] Irrelevant.</li>
+        <li>[reminisce] An instructive day.</li>
+        <li>[reminisce] It was what it was.</li>
+        <li>[reminisce,good] A good day, by any measure.</li>
+        <li>[debate] Insufficient argument.</li>
+        <li>[argue] Conversation over.</li>
+        <li>[reminisce] I remember it accurately.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -337,6 +683,11 @@
         <li>[tooutsider] Has anyone warned you what you're getting into here?</li>
         <li>[otherrep:clumsy] Mind your feet, {OTHER}, you're about to fall over {TOPIC}.</li>
         <li>[otherrep:hothead] Deep breaths, {OTHER}, before you start on {TOPIC}.</li>
+        <li>What's it today, {OTHER}, more about {TOPIC}?</li>
+        <li>Here we go, {OTHER} has that look that means {TOPIC}.</li>
+        <li>Brace yourselves, {OTHER}'s thinking about {TOPIC} again.</li>
+        <li>Someone tell {OTHER} there are other things to talk about than {TOPIC}.</li>
+        <li>[friends] You and {TOPIC}, {OTHER}, it's a love story.</li>
       </plain>
       <cheerful>
         <li>Quick, everyone, {OTHER} wants a word about {TOPIC}.</li>
@@ -346,6 +697,9 @@
         <li>That's eleven times today you've mentioned {TOPIC}, {OTHER}.</li>
         <li>[grouprole:joker] Ladies and gentlemen, {OTHER}'s views on {TOPIC}, again.</li>
         <li>[otherrep:brave] Our hero has views on {TOPIC}, everybody stand back.</li>
+        <li>I can see your ears go red when someone says {TOPIC}, {OTHER}.</li>
+        <li>We should make you the official keeper of {TOPIC}, {OTHER}.</li>
+        <li>You'll write a book about {TOPIC} one day, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -373,16 +727,22 @@
         <li>You'll pay for that.</li>
         <li>Funny, coming from you.</li>
         <li>[samegroup] The others warned me about you.</li>
+        <li>Oh, here we go.</li>
+        <li>I walked right into that one.</li>
+        <li>Say what you like, I know I'm right.</li>
+        <li>I'll get you back, you know I will.</li>
       </plain>
       <warm>
         <li>Ha, all right, you've got me.</li>
         <li>You know me too well, that's the trouble.</li>
         <li>[stung] I know you mean well, but not today, please.</li>
+        <li>All right, I deserved that.</li>
       </warm>
       <blunt>
         <li>Watch it.</li>
         <li>Keep talking and you'll be wearing your dinner.</li>
         <li>[stung] Say that again, I dare you.</li>
+        <li>Careful.</li>
       </blunt>
       <cheerful>
         <li>Guilty as charged, and proud of it.</li>
@@ -393,10 +753,14 @@
       <gloomy>
         <li>Mock me now, you'll see.</li>
         <li>[stung] Typical, nobody takes me seriously.</li>
+        <li>Laugh, then, it's all I'm good for.</li>
+        <li>Fine, mock away.</li>
       </gloomy>
       <cold>
         <li>Are you finished?</li>
         <li>[stung] I don't find you amusing.</li>
+        <li>Charming.</li>
+        <li>That isn't clever.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -416,6 +780,10 @@
         <li>[stung] Sorry, bad timing.</li>
         <li>Just keeping you on your toes.</li>
         <li>Don't take it to heart.</li>
+        <li>Don't look at me like that, it was a joke.</li>
+        <li>I'll stop, I promise, probably.</li>
+        <li>Someone has to keep you humble.</li>
+        <li>[stung] I'm sorry, that went too far.</li>
       </plain>
       <warm>
         <li>You know I only tease the people I like.</li>
@@ -430,6 +798,9 @@
         <li>I've got plenty more where that came from.</li>
         <li>[stung] Fine, fine, I'll stop.</li>
         <li>Admit it, you love it.</li>
+        <li>Same time tomorrow, then?</li>
+        <li>You'd miss it if I stopped.</li>
+        <li>That one was good, you have to admit.</li>
       </cheerful>
       <gloomy>
         <li>Somebody has to laugh around here.</li>
@@ -456,21 +827,46 @@
         <li>[friends] You're the only one I can talk to about {TOPIC}.</li>
         <li>[rivals] I suppose you've got an opinion on {TOPIC} too.</li>
         <li>[samegroup] The rest of us were talking about {TOPIC} only last night.</li>
+        <li>[for] I've made up my mind about {TOPIC}, and I want to tell someone.</li>
+        <li>[for] Things are looking up with {TOPIC}, I think.</li>
+        <li>[against] Can I tell you what bothers me about {TOPIC}?</li>
+        <li>[against] All week, {TOPIC} has been bothering me.</li>
+        <li>[mixed] I don't know what to think about {TOPIC}, do you?</li>
+        <li>Has anyone asked you about {TOPIC} lately?</li>
+        <li>What would you change about {TOPIC}, if you could?</li>
+        <li>[hot] Did you hear what happened, about {TOPIC}?</li>
+        <li>[friends] I wanted to ask you about {TOPIC}, you always talk sense.</li>
+        <li>I keep coming back to {TOPIC}, for some reason.</li>
       </plain>
       <warm>
         <li>I'd love to know what you think about {TOPIC}.</li>
+        <li>I'd value your thoughts on {TOPIC}, if you've a moment.</li>
+        <li>[mixed] Can we talk about {TOPIC}, just the two of us?</li>
+        <li>Tell me how you really feel about {TOPIC}.</li>
       </warm>
       <blunt>
         <li>Let's have it out about {TOPIC}.</li>
+        <li>So, {TOPIC}, what's your view?</li>
+        <li>Tell me straight what you think of {TOPIC}.</li>
+        <li>[strong] I've had it with {TOPIC}.</li>
       </blunt>
       <cheerful>
         <li>Go on, tell me your wildest idea about {TOPIC}.</li>
+        <li>I've got a theory about {TOPIC}, and it's brilliant.</li>
+        <li>Let's talk about {TOPIC}, I'm in the mood for an argument.</li>
+        <li>Quick question about {TOPIC}, it'll only take all evening.</li>
       </cheerful>
       <gloomy>
         <li>I keep worrying about {TOPIC}.</li>
+        <li>I lie awake over {TOPIC} some nights.</li>
+        <li>Nothing good ever comes of {TOPIC}, does it?</li>
+        <li>I've been brooding about {TOPIC} again.</li>
       </gloomy>
       <cold>
         <li>I have views on {TOPIC}.</li>
+        <li>Let's discuss {TOPIC} properly.</li>
+        <li>I've reached some conclusions about {TOPIC}.</li>
+        <li>There's a problem with {TOPIC}, as I see it.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>

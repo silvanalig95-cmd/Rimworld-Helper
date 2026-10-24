@@ -44,6 +44,37 @@
         <li>[otherrep:kind] You're always the one looking after everyone, so let someone look after you.</li>
         <li>[otherrep:brave] Even the brave get frightened, you know.</li>
         <li>[otherrep:reliable] You carry all of us, and you're allowed to put it down sometimes.</li>
+        <li>[grief] I keep thinking about how hard this must be for you.</li>
+        <li>[grief] Do you want to talk about them, or not?</li>
+        <li>[grief] There's no right way to do this, you know.</li>
+        <li>[grief,subject] {SUBJECT} talked about you all the time.</li>
+        <li>[despair] There's a way through this, even if you can't see it yet.</li>
+        <li>[despair] Nobody's asking you to fix everything today.</li>
+        <li>[despair] Tell me what feels worst, and we'll start there.</li>
+        <li>[lonely] I've missed you at supper.</li>
+        <li>[lonely] Come and walk with me for a bit.</li>
+        <li>[lonely] I was hoping I'd find you, I could use the company.</li>
+        <li>[fear] Nobody's going to hurt you while I'm here.</li>
+        <li>[fear] Let's sit somewhere with a wall at our backs.</li>
+        <li>[fear] There's no need to pretend you're not scared.</li>
+        <li>[worry] You keep staring at nothing, what is it?</li>
+        <li>[worry] Whatever it is, saying it out loud helps.</li>
+        <li>[lowmood] You look worn through.</li>
+        <li>[lowmood] Bad days happen, even to you.</li>
+        <li>[lowmood] Want to sit somewhere quiet for a bit?</li>
+        <li>[shame] Everyone makes mistakes, even the ones who pretend not to.</li>
+        <li>[homesick] What do you miss most about home?</li>
+        <li>I brought you some water, you look like you need it.</li>
+        <li>Mind if I sit?</li>
+        <li>[grief] I heard, and I came straight over.</li>
+        <li>[despair] Talk to me, whatever's going on.</li>
+        <li>[lonely] I've hardly seen you with anyone lately.</li>
+        <li>[fear] Hey, it's only me.</li>
+        <li>[worry] You've chewed your lip raw today, what is it?</li>
+        <li>[lowmood] Something's not right with you today.</li>
+        <li>[lowmood] Come on, walk with me.</li>
+        <li>[shame] Whatever you did, it's not the end of the world.</li>
+        <li>[homesick] Thinking about home again?</li>
       </plain>
       <warm>
         <li>Oh, come here, you look like you need a hug.</li>
@@ -54,6 +85,9 @@
         <li>[lonely] I'd like your company, if you'll have mine.</li>
         <li>[lowmood] Come on, sit with me, you don't have to talk.</li>
         <li>[homesick] I miss my home too, sometimes, more than I say.</li>
+        <li>[grief] I'll sit with you as long as you want.</li>
+        <li>[despair] We'll find a way, I promise you.</li>
+        <li>[worry] Tell me, and we'll carry it together.</li>
       </warm>
       <blunt>
         <li>Out with it, what's eating you?</li>
@@ -61,17 +95,27 @@
         <li>[grief] It's rotten, all of it, and you're allowed to say so.</li>
         <li>[fear] Fear won't kill you, now breathe.</li>
         <li>[shame] Stop punishing yourself, it's done.</li>
+        <li>[despair] Things are bad, but you're not alone in it.</li>
+        <li>[lonely] You're coming to supper with me tonight.</li>
+        <li>[worry] Spit it out, you'll feel better.</li>
       </blunt>
       <cheerful>
         <li>I've come to cheer you up, and I won't leave until I have.</li>
         <li>I've got a terrible joke and a biscuit, which do you want first?</li>
         <li>[lowmood] Bad day? Mine too, let's be miserable together.</li>
         <li>[lonely] You, me, and the worst game of cards ever played, tonight.</li>
+        <li>[grief] I can't fix it, but I can sit here and be silly until you smile.</li>
+        <li>[fear] Stick with me, I'm terrible at fighting but great at hiding.</li>
+        <li>[worry] Let's make a list of everything that could go wrong, then burn it.</li>
       </cheerful>
       <gloomy>
         <li>I know, it's all awful, isn't it.</li>
         <li>[despair] Some days I can't see the point either.</li>
         <li>[grief] It doesn't get better, but it gets quieter.</li>
+        <li>[fear] I'm scared too, if it helps.</li>
+        <li>[lonely] I know what it's like, being on your own.</li>
+        <li>[worry] It might go wrong, but at least we'll know.</li>
+        <li>[grief] Losing people never gets easier, does it.</li>
       </gloomy>
       <cold>
         <li>You're not well, sit down.</li>
@@ -79,6 +123,8 @@
         <li>[fear] We have weapons and people who can use them, so you're safe tonight.</li>
         <li>[worry] Worrying won't change it, so tell me what it is.</li>
         <li>[lowmood] Eat first, then talk.</li>
+        <li>[despair] The situation isn't hopeless, whatever it feels like.</li>
+        <li>[lonely] You've been keeping to yourself, and it isn't helping.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -117,26 +163,74 @@
         <li>[fear] I can't sleep, every noise wakes me.</li>
         <li>[despair] I don't know how to keep going.</li>
         <li>[shame] I'd take it back if I could.</li>
+        <li>[grief] I didn't get to say goodbye.</li>
+        <li>[grief] Everything reminds me of them.</li>
+        <li>[grief,subject] {SUBJECT} would know what to say, and I don't.</li>
+        <li>[despair] I'm so tired of trying.</li>
+        <li>[despair] What's the point of any of it?</li>
+        <li>[despair] Tomorrow's as far as I can see, and not even that.</li>
+        <li>[lonely] I didn't want to be a bother.</li>
+        <li>[lonely] Everyone seems so busy, I didn't want to ask.</li>
+        <li>[lonely] It's nice to be noticed.</li>
+        <li>[fear] I'm sorry, I can't stop shaking.</li>
+        <li>[fear] I hear things at night that aren't there.</li>
+        <li>[fear] Every time someone shouts, I freeze.</li>
+        <li>[worry] It won't leave me alone, it just keeps coming back.</li>
+        <li>[worry] What if it all goes wrong?</li>
+        <li>[worry] I haven't slept properly in days.</li>
+        <li>[lowmood] It's just everything, I suppose.</li>
+        <li>[lowmood] I'm tired, that's all.</li>
+        <li>[lowmood] It's been a long week.</li>
+        <li>I'm sorry, I'm not much company.</li>
+        <li>You didn't have to come over.</li>
+        <li>I'll be all right, I think.</li>
+        <li>[grief] Every morning I forget, and then I remember.</li>
+        <li>[despair] Nothing I do makes any difference.</li>
+        <li>[lonely] Nobody's talked to me properly in days.</li>
+        <li>[fear] It's in my head all the time.</li>
+        <li>[worry] My stomach's been in knots all week.</li>
+        <li>[lowmood] Everything feels heavy, that's all.</li>
+        <li>[shame] Everyone knows, don't they.</li>
+        <li>[homesick] I'd give anything to see home once more.</li>
       </plain>
       <warm>
         <li>You're kind to sit with me.</li>
         <li>I'm glad it's you.</li>
         <li>Thank you, it helps more than you know.</li>
+        <li>[grief] Thank you for not saying it gets better.</li>
+        <li>[lonely] I've missed talking to you.</li>
+        <li>You noticed, that means a lot.</li>
+        <li>[fear] I feel safer with you here.</li>
       </warm>
       <blunt>
         <li>I don't want to talk about it.</li>
         <li>Leave it, I'll be fine.</li>
         <li>[lowmood] It's nothing, just a bad week.</li>
+        <li>[fear] I'm fine, I said.</li>
+        <li>[despair] Don't, I'm not in the mood.</li>
+        <li>[worry] Leave it, it's my problem.</li>
       </blunt>
       <cheerful>
         <li>And there I was, going for "mysterious".</li>
+        <li>[lowmood] I'll be back to my sparkling self by supper.</li>
+        <li>[lonely] Careful, I might start talking and never stop.</li>
+        <li>[worry] Don't mind me, worrying's my hobby.</li>
+        <li>[fear] I'm brave, really, just not today.</li>
       </cheerful>
       <gloomy>
         <li>It doesn't matter, nothing helps.</li>
         <li>I'll survive, probably.</li>
+        <li>[despair] There's no use pretending it'll get better.</li>
+        <li>[grief] It'll never stop hurting.</li>
+        <li>[lonely] Nobody needs me here.</li>
+        <li>[fear] It'll happen again, I know it.</li>
       </gloomy>
       <cold>
         <li>I'm functioning.</li>
+        <li>[despair] I'm aware of the situation.</li>
+        <li>[grief] I'll manage.</li>
+        <li>[lonely] I prefer my own company.</li>
+        <li>[worry] I've worked out every way it can go wrong.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -163,24 +257,95 @@
         <li>[tooutsider] Come and sit with us, we're not as frightening as we look.</li>
         <li>[despair] Tomorrow we'll find one good thing, I promise.</li>
         <li>[otherrep:kind] You've been kind to all of us, so let us be kind back.</li>
+        <li>[grief] If the quiet gets too loud tonight, knock on my door.</li>
+        <li>[grief] We'll remember them together, when you're ready.</li>
+        <li>[despair] One step, then the next, that's all.</li>
+        <li>[despair] You'll see, it won't always feel like this.</li>
+        <li>[lonely] I'll come and find you tomorrow, too.</li>
+        <li>[lonely] You've got me, at least, for whatever that's worth.</li>
+        <li>[fear] I'll be right next door tonight.</li>
+        <li>[fear] Stay close to me for a while.</li>
+        <li>[worry] Whatever happens, you won't face it alone.</li>
+        <li>[worry] Get some sleep, it'll look smaller in the morning.</li>
+        <li>[lowmood] Get some rest, and eat something.</li>
+        <li>[lowmood] Tomorrow's another day, a better one, I hope.</li>
+        <li>[shame] It's forgotten, as far as I'm concerned.</li>
+        <li>[homesick] Tell me more about home sometime.</li>
+        <li>I'm glad you let me sit with you.</li>
+        <li>Don't keep it all inside, all right?</li>
+        <li>[grief] Talk to me about them anytime, I mean it.</li>
+        <li>[grief] Let yourself cry if you need to, nobody minds.</li>
+        <li>[grief,subject] {SUBJECT} would want you looked after, so let us.</li>
+        <li>[despair] Hold on, just until tomorrow, that's all I ask.</li>
+        <li>[despair] We need you here, remember that.</li>
+        <li>[lonely] I'll sit beside you at supper, save me a place.</li>
+        <li>[lonely] Knock on my door anytime, day or night.</li>
+        <li>[fear] Nothing gets past our walls tonight.</li>
+        <li>[fear] Wake me if you can't sleep.</li>
+        <li>[worry] Write it all down, and we'll look at it together tomorrow.</li>
+        <li>[worry] Most of what we worry about never happens.</li>
+        <li>[lowmood] Go easy on yourself today.</li>
+        <li>[lowmood] Warm up somewhere and rest, you'll feel better.</li>
+        <li>[shame] We all have days we'd take back.</li>
+        <li>[homesick] We'll make this place feel more like home, I promise.</li>
+        <li>[grief] I'll bring you something to eat later, you'll forget otherwise.</li>
+        <li>[grief] There's no hurry, take as long as it takes.</li>
+        <li>[despair] Things can change faster than you think.</li>
+        <li>[despair] I'll check on you tomorrow, and the day after.</li>
+        <li>[lonely] I'll find you after work, all right?</li>
+        <li>[fear] Keep a light burning tonight if it helps.</li>
+        <li>[worry] Let it rest for tonight.</li>
+        <li>[lowmood] Sleep, and find me in the morning.</li>
+        <li>[shame] Nobody's keeping score, you know.</li>
+        <li>[homesick] Some of home comes with us, wherever we go.</li>
+        <li>[grief] Nobody needs you to be strong today.</li>
+        <li>[fear] I'll walk you back to your room.</li>
+        <li>[lonely] I'm only ever a shout away.</li>
+        <li>[worry] Bring it to me next time, before it gets this big.</li>
+        <li>[lowmood] Be kind to yourself tonight.</li>
       </plain>
       <warm>
         <li>I'm always here, you know that.</li>
         <li>You matter to us, never forget it.</li>
         <li>I'll check on you in the morning.</li>
+        <li>[grief] I'll be thinking of you tonight.</li>
+        <li>[lonely] You're never as alone as you feel.</li>
+        <li>[fear] I'll keep watch, you rest.</li>
+        <li>[despair] I believe in you, even if you don't right now.</li>
+        <li>[worry] I'm proud of you for telling me.</li>
       </warm>
       <blunt>
         <li>Right, you're coming to supper, no arguments.</li>
+        <li>[despair] Eat, sleep, and stop thinking for one night.</li>
+        <li>[lonely] Supper, my table, no excuses.</li>
+        <li>[worry] Stop worrying, I'll handle it with you.</li>
+        <li>[fear] Sleep, I'll watch.</li>
+        <li>[grief] Cry if you need to, then eat.</li>
       </blunt>
       <cheerful>
         <li>Stick with me, I'm a professional at bad days.</li>
         <li>And if all else fails, there's always pie.</li>
+        <li>[lowmood] I'll be back tomorrow with a worse joke.</li>
+        <li>[lonely] You're stuck with me now, I'm afraid.</li>
+        <li>[despair] Tomorrow I'm making you laugh, whether you like it or not.</li>
+        <li>[fear] If anything comes in the night, I'll scream first, I promise.</li>
+        <li>[worry] Stop worrying, that's my job tonight.</li>
       </cheerful>
       <gloomy>
         <li>It's bad, but it'd be worse alone.</li>
+        <li>[despair] We'll get through it, or we won't, but together.</li>
+        <li>[grief] It'll always hurt, but less, someday.</li>
+        <li>[fear] I'm scared too, so we'll be scared together.</li>
+        <li>[lonely] At least we've got each other, for what it's worth.</li>
+        <li>[worry] Whatever comes, we'll take it.</li>
       </gloomy>
       <cold>
         <li>Get some rest, you'll think more clearly.</li>
+        <li>[worry] Make a plan, and the worry will shrink.</li>
+        <li>[despair] Rest, and reassess tomorrow.</li>
+        <li>[lowmood] Sleep will help.</li>
+        <li>[fear] You're safe, the doors are barred.</li>
+        <li>[grief] It will pass, slowly.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
