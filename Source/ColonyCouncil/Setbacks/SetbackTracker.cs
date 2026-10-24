@@ -235,8 +235,11 @@ namespace ColonyCouncil
                 Safe("noisy nights", () => Nights(map, now));
                 Safe("long hauls", () => Hauls(map, now));
                 Safe("waiting for a doctor", () => Tending(map, now));
+                Safe("guests at the table", () => Setbacks.GuestsAtTable(map, now));
             }
             Safe("research", () => Research(now));
+            // Mishaps at a day's gathering that are jokes by now (Social/Talk/SharedTimes.cs).
+            Safe("mishaps", SharedTimes.Hourly);
         }
 
         // ---------------- Lasting setbacks ----------------
@@ -746,10 +749,19 @@ namespace ColonyCouncil
                 string what = job is LordJob_PlayOut po && !po.label.NullOrEmpty() ? po.label
                     : (job.GetType().Name.IndexOf("Marriage", StringComparison.Ordinal) >= 0 ? "CC_Setback_TheWedding" : "CC_Setback_TheParty").Translate().ToString();
                 string cause = "CC_Setback_Cause_Rained".Translate(what).Resolve();
+                // A calendar day's own gathering, waited for all year: it's felt more, and laughed at later (SetbackTimes.cs).
+                var day = job is LordJob_PlayOut lp ? SharedTimes.DayOf(PlayOutTracker.Instance?.Get(lp.playId)) : null;
+                var def = SetbackDefOf.Council_Setback_RainedOut;
+                if (day != null)
+                {
+                    def = SetbackTimesDefOf.Council_Setback_DayRainedOut;
+                    cause = "CC_Setback_Cause_DayRained".Translate(SharedTimes.The(day.label)).Resolve();
+                    Setbacks.Notify_DayRained(((LordJob_PlayOut)job).playId);
+                }
                 foreach (var p in lord.ownedPawns.ToList())
                 {
                     if (p == null || !p.Spawned || p.Position.Roofed(map) || !Ready(p, "rained", 1f)) continue;
-                    if (Setbacks.Give(p, SetbackDefOf.Council_Setback_RainedOut, null, cause) && Rand.Chance(0.3f))
+                    if (Setbacks.Give(p, def, null, cause) && Rand.Chance(0.3f))
                         Setbacks.Say(p, "Council_Pool_Setback_Rained");
                 }
             }

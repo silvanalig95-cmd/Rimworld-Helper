@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What the newer systems leave behind (Source/ColonyCouncil/Social/Talk/SharedTimes.cs, JokesRetold.cs,
+       Setbacks/SetbackTimes.cs): the names memories go by, the news of a bad day, and what caused each setback. -->
+
+  <!-- Names of shared memories ({LABEL} in their lines) -->
+  <CC_Times_Label_Camp>the camp of the {0}</CC_Times_Label_Camp>
+  <CC_Times_Label_Round>{0}'s last round</CC_Times_Label_Round>
+  <CC_Times_Label_RoundNoName>the last round of the {0}</CC_Times_Label_RoundNoName>
+  <CC_Times_Label_Pilgrim>old {0}</CC_Times_Label_Pilgrim>
+  <CC_Times_Label_Harvest>the harvest at {0}</CC_Times_Label_Harvest>
+  <CC_Times_Label_Day>{0} in {1}</CC_Times_Label_Day>
+  <CC_Times_Label_Rain>{0} in the rain</CC_Times_Label_Rain>
+  <CC_Times_Label_Burned>the burned {0} on {1}</CC_Times_Label_Burned>
+  <CC_Times_Label_Watch>the {0}</CC_Times_Label_Watch>
+  <CC_Times_Label_Lanterns>lantern night in {0}</CC_Times_Label_Lanterns>
+  <CC_Times_TheRegion>the region</CC_Times_TheRegion>
+
+  <!-- World events whose label isn't a name a memory can use as it is -->
+  <CC_Times_World_Council_WS_RepublicVotes>the republic's vote</CC_Times_World_Council_WS_RepublicVotes>
+  <CC_Times_World_Council_WS_Mercenaries>the sellswords' season</CC_Times_World_Council_WS_Mercenaries>
+  <CC_Times_World_Council_WS_BanditLordFalls>the bandit lord's fall</CC_Times_World_Council_WS_BanditLordFalls>
+  <CC_Times_World_Council_WS_ShipDown>the ship that came down</CC_Times_World_Council_WS_ShipDown>
+  <CC_Times_World_Council_WS_Warlord>the warlord's rise</CC_Times_World_Council_WS_Warlord>
+  <CC_Times_World_Council_WS_Feud>the blood feud</CC_Times_World_Council_WS_Feud>
+  <CC_Times_World_Council_WS_Comet>the comet</CC_Times_World_Council_WS_Comet>
+  <CC_Times_World_Council_WS_Rebuilding>the rebuilding</CC_Times_World_Council_WS_Rebuilding>
+
+  <!-- A feast day gone wrong -->
+  <CC_Times_Dishes>roast|pie|bread|honey cake|pudding|flatbread</CC_Times_Dishes>
+  <CC_Times_QuarrelOver>where everyone sat|the last of the bread|an old debt|something said at the last council|whose turn it was to give the toast|a story told wrong</CC_Times_QuarrelOver>
+  <CC_Times_News_Burned>{COOK_nameDef} burned the {DISH} for {DAY}. The feast went on with the bread and what was left.</CC_Times_News_Burned>
+  <CC_Times_News_Quarrel>{A_nameDef} and {B_nameDef} quarreled at the table on {DAY}, over {OVER}.</CC_Times_News_Quarrel>
+
+  <!-- What caused each setback (shown in its tooltip) -->
+  <CC_Setback_Cause_DayRained>rain on {0}, the colony's own day, held out in the open.</CC_Setback_Cause_DayRained>
+  <CC_Setback_Cause_BurnedDish>the {0} for {1} came off the fire black; {2} was cooking.</CC_Setback_Cause_BurnedDish>
+  <CC_Setback_Cause_Quarrel>a quarrel with {0} at the table on {1}, over {2}.</CC_Setback_Cause_Quarrel>
+  <CC_Setback_Cause_EmptyChair>the colony kept {0}, the first since {1} died.</CC_Setback_Cause_EmptyChair>
+  <CC_Setback_Cause_CampSoured>the camp of the {0} ended in a falling-out.</CC_Setback_Cause_CampSoured>
+  <CC_Setback_Cause_CampForced>the camp of the {0} was sent away.</CC_Setback_Cause_CampForced>
+  <CC_Setback_Cause_CampOwedFee>the camp of the {0} left without paying the last of their fee.</CC_Setback_Cause_CampOwedFee>
+  <CC_Setback_Cause_CampOwedShare>the camp of the {0} left without giving the colony its share of their hunting.</CC_Setback_Cause_CampOwedShare>
+  <CC_Setback_Cause_Guests>{0} guests have stayed {1} or more, with {2} days of food left in the stores.</CC_Setback_Cause_Guests>
+  <CC_Setback_Cause_LetDown>{0} asked the colony for help ({1}), and it came to nothing.</CC_Setback_Cause_LetDown>
+  <CC_Setback_Cause_HalfDone>the colony's hands left {0}'s harvest at {1} half in the fields.</CC_Setback_Cause_HalfDone>
+  <CC_Setback_Cause_WorldTurn>the council's gamble over "{0}" went wrong.</CC_Setback_Cause_WorldTurn>
+  <CC_Setback_Cause_StoodBy>{0} ended without the colony lifting a hand to help {1}.</CC_Setback_Cause_StoodBy>
+
+</LanguageData>

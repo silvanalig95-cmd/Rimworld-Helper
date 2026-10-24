@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What colonists live through together in the newer systems (Source/ColonyCouncil/Social/Talk/SharedTimes.cs): a camp
+    on the colony's land, a mission, a calendar day, an answer played out on the map, a world event the colony took part
+    in. Recorded where each system already says the thing is over, and brought up in conversation like the others
+    (their lines: Defs/FlavorPoolDefs/Rimfolk_Talk_Lines_Times.xml). {A} and {B} are the two (the first the one who did
+    it, where it matters: the one who found the child, the one who told the joke); {LABEL} what it was.
+    Two mishaps at a day's gathering become jokes half a day later, once everyone in them is up and about. A joke two
+    have laughed over can be passed on to a friend who wasn't there (Social/Talk/JokesRetold.cs), once.
+  -->
+
+  <!-- ===================== Camps ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_CampFire</defName>
+    <label>evenings at a camp's fire</label>
+    <description>Travelers camped on the colony's land for a few days, and the two of them kept ending up at the same strangers' fire in the evenings.</description>
+    <text>spent evenings together at {LABEL}</text>
+    <weight>0.9</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_HealerRound</defName>
+    <label>the healer's last round</label>
+    <description>A healer from a camp went round the colony before moving on, and looked in on both of them: a wound checked, a hand on a forehead, a word about rest.</description>
+    <text>were both looked in on during {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>120</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_SmithMending</defName>
+    <label>the smith's mending</label>
+    <description>A smith from a camp mended something of the colony's for nothing, and they were both about the camp while it was done.</description>
+    <text>watched a passing smith mend {LABEL}</text>
+    <weight>0.7</weight>
+    <fadeDays>75</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== Missions ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_ChildFound</defName>
+    <label>the lost child</label>
+    <description>A neighbor's child went missing on the colony's land, and one of them found the child and brought them in to wait for their family.</description>
+    <text>{A} found the lost child, {LABEL}</text>
+    <weight>1.3</weight>
+    <fadeDays>180</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_PilgrimRoad</defName>
+    <label>the pilgrim's road</label>
+    <description>They walked an old pilgrim of a neighboring people all the way to the pilgrim's holy place, at an old person's pace.</description>
+    <text>walked {LABEL} home together</text>
+    <weight>1.2</weight>
+    <fadeDays>150</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_HarvestHands</defName>
+    <label>a neighbor's harvest</label>
+    <description>They worked another town's fields together, bringing in a harvest that wasn't theirs before the weather turned.</description>
+    <text>brought in {LABEL} together</text>
+    <weight>1.1</weight>
+    <fadeDays>120</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== The world ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_WorldPart</defName>
+    <label>did their part</label>
+    <description>When trouble came to the region, the colony took a hand in it, and they were both part of that.</description>
+    <text>did their part in {LABEL} together</text>
+    <weight>1</weight>
+    <fadeDays>150</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== The calendar ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_DayKept</defName>
+    <label>a day kept together</label>
+    <description>One of the colony's own days came round, and they kept it together: the table, the games, the fire.</description>
+    <text>kept {LABEL} together</text>
+    <weight>0.8</weight>
+    <fadeDays>75</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_FeastRain</defName>
+    <label>the day in the rain</label>
+    <description>A day they had looked forward to, kept out of doors in a downpour. Nobody stayed dry, and nobody has let it go.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_BurnedDish</defName>
+    <label>the burned dish</label>
+    <description>The dish for a feast day came off the fire black, and the feast went on without it. It's funny now. The cook may disagree.</description>
+    <text>still joke about {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== Answers played out on the map ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Pyre</defName>
+    <label>carried out the dead</label>
+    <description>After a fight they carried the enemy dead out together, to a pyre beyond the gate or to the tree line. Grim work, done side by side.</description>
+    <text>carried the dead out together after {LABEL}</text>
+    <weight>1.1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>0</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_NightWatch</defName>
+    <label>the night watch</label>
+    <description>They walked the colony's walls together through a night, from one look-out to the next, until the sky went gray.</description>
+    <text>kept the night watch together on {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_LanternNight</defName>
+    <label>lantern night</label>
+    <description>The lanterns were lit all at once at dusk, and they stood out in the cold together to look at the colony glowing.</description>
+    <text>stood out together on {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>120</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <!-- ===================== Jokes passed on ===================== -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_JokeHeard</defName>
+    <label>a joke passed on</label>
+    <description>One of them told the other about something funny they weren't there for. Now they both tell it, the second one not quite right.</description>
+    <text>{A} told {B} about {LABEL}</text>
+    <weight>0.7</weight>
+    <fadeDays>60</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+</Defs>

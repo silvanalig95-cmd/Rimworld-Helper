@@ -127,33 +127,41 @@ namespace ColonyCouncil
         {
             try
             {
-                if (ctx == null || ways == null || !ways.Any || !On(SetbackGroup.Council)) return;
-                var shift = byDefault ? ways.Scaled(0.5f) : ways;
-                var all = CharacterTracker.All;
-                var s = new float[all.Length];
-                for (int i = 0; i < all.Length; i++) s[i] = shift.Get(all[i]);
-                var map = ctx.map ?? ctx.a?.MapHeld ?? HappeningTracker.HomeMap();
-                if (map == null) return;
-                var a = new float[all.Length];
-                foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
-                {
-                    if (p == ctx.a || p == ctx.b || p == ctx.stranger || !Eligible(p) || p.DevelopmentalStage.Juvenile() || UpsetJustNow(p)) continue;
-                    // Their nature, and for an old hand a little of the colony's own name (Interplay/).
-                    for (int i = 0; i < all.Length; i++) a[i] = Interplay.WayAffinity(p, all[i], CharacterTracker.Affinity(p, all[i]));
-                    float clash = SetbackMath.Clash(s, a);
-                    if (SetbackMath.ToldSo(clash, risk))
-                    {
-                        Give(p, SetbackDefOf.Council_Setback_ToldThemSo, null, "CC_Setback_Cause_ToldSo".Translate(question ?? "?", answer ?? "?").Resolve());
-                        continue;
-                    }
-                    int stage = SetbackMath.ClashStage(clash);
-                    if (stage < 0) continue;
-                    Give(p, SetbackDefOf.Council_Setback_NotAgreed, null, "CC_Setback_Cause_NotAgreed".Translate(question ?? "?", answer ?? "?", Against(s, a)).Resolve(), stage);
-                }
+                if (ctx == null) return;
+                if (ways != null && ways.Any && On(SetbackGroup.Council)) NotAgreed(ctx, ways, byDefault, risk, question, answer);
+                // A world event's gamble gone wrong: the news reaches the rest of the colony (SetbackTimes.cs).
+                if (risk && ctx is SituationContext) WorldTurn(ctx, question);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("setbacks: answer", e);
+            }
+        }
+
+        /// <summary>Those whose nature the answer goes against (see <see cref="Notify_Answer"/>).</summary>
+        private static void NotAgreed(DilemmaContext ctx, WayShift ways, bool byDefault, bool risk, string question, string answer)
+        {
+            var shift = byDefault ? ways.Scaled(0.5f) : ways;
+            var all = CharacterTracker.All;
+            var s = new float[all.Length];
+            for (int i = 0; i < all.Length; i++) s[i] = shift.Get(all[i]);
+            var map = ctx.map ?? ctx.a?.MapHeld ?? HappeningTracker.HomeMap();
+            if (map == null) return;
+            var a = new float[all.Length];
+            foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
+            {
+                if (p == ctx.a || p == ctx.b || p == ctx.stranger || !Eligible(p) || p.DevelopmentalStage.Juvenile() || UpsetJustNow(p)) continue;
+                // Their nature, and for an old hand a little of the colony's own name (Interplay/).
+                for (int i = 0; i < all.Length; i++) a[i] = Interplay.WayAffinity(p, all[i], CharacterTracker.Affinity(p, all[i]));
+                float clash = SetbackMath.Clash(s, a);
+                if (SetbackMath.ToldSo(clash, risk))
+                {
+                    Give(p, SetbackDefOf.Council_Setback_ToldThemSo, null, "CC_Setback_Cause_ToldSo".Translate(question ?? "?", answer ?? "?").Resolve());
+                    continue;
+                }
+                int stage = SetbackMath.ClashStage(clash);
+                if (stage < 0) continue;
+                Give(p, SetbackDefOf.Council_Setback_NotAgreed, null, "CC_Setback_Cause_NotAgreed".Translate(question ?? "?", answer ?? "?", Against(s, a)).Resolve(), stage);
             }
         }
 
@@ -202,6 +210,8 @@ namespace ColonyCouncil
             try
             {
                 if (play == null || early || attended.NullOrEmpty() || map == null || !On(SetbackGroup.Life)) return;
+                // A calendar day's gathering: rain, a burned dish, a quarrel at the table (SetbackTimes.cs).
+                DayGatheringOver(play, attended, feast, map);
                 string label = (play.label ?? "").NullOrEmpty() ? "CC_Setback_TheGathering".Translate().ToString() : play.label;
                 var meant = new List<Pawn>(play.invited);
                 if (play.organizer != null && !meant.Contains(play.organizer)) meant.Add(play.organizer);

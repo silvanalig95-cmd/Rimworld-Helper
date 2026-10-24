@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the setbacks that follow the newer systems (Defs/ThoughtDefs/Council_Thoughts_Setbacks3.xml). -->
+
+  <!-- ===================== The calendar ===================== -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackDayRained</defName>
+    <thoughts><li>Council_Setback_DayRainedOut</li></thoughts>
+    <fix>A calendar day's gathering held out of doors in the rain. It fades in a day and a half. Feasts and games go to the dining hall or the rec room first, so a roofed room big enough for everyone keeps the next one dry; a bonfire night is out of doors whatever the weather.</fix>
+    <act>Give the day a roof</act>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>Calendar</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackBurnedDish</defName>
+    <thoughts><li>Council_Setback_BurnedDish</li></thoughts>
+    <fix>A feast day's dish burned. It's likelier the less the colony's best cook knows: one feast in four with a novice at the fire, one in fifty with a master. Training a cook (or taking one in) makes it rare. The cook takes it harder, most of all one who loves cooking. It passes in a day and a half.</fix>
+    <act>Train a better cook</act>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>Calendar</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackTableQuarrel</defName>
+    <thoughts><li>Council_Setback_TableQuarrel</li></thoughts>
+    <fix>Two rivals at the same day's table quarreled. Mending the rivalry (time apart, a talk, a peacemaker) stops it happening again; it fades in three days. The everyday frictions setting turns it off.</fix>
+    <act>Mend the rivalry</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>Bonds</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackEmptyChair</defName>
+    <thoughts><li>Council_Setback_EmptyChair</li></thoughts>
+    <fix>The first time a calendar day is kept since someone died this year. It comes once for each of the dead, and passes in a day and a half; company helps, and keeping the day the dead person loved keeps them part of it.</fix>
+    <act>Passes in a day or two</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>Calendar</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <!-- ===================== Camps and guests ===================== -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackCampSoured</defName>
+    <thoughts><li>Council_Setback_CampSoured</li></thoughts>
+    <fix>A camp they'd made friends at left on bad terms, or was sent away. Easing the camp's tension while it stays (fair terms, a gift, a little trade, leaving its game and trees alone) keeps it from souring; it fades in three days.</fix>
+    <act>Keep the next camp sweet</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>World</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackCampOwed</defName>
+    <thoughts><li>Council_Setback_CampOwed</li></thoughts>
+    <fix>A camp broke the colony's terms (a fee unpaid, a share of the hunt not given) and left before making good. Answering the camp's broken terms when they ask, rather than letting it slide, settles it while they're still here. The greedy mind it most, the kind not at all; it passes in two days.</fix>
+    <act>Settle terms while they're here</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>World</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackGuestsEat</defName>
+    <thoughts><li>Council_Setback_GuestsEat</li></thoughts>
+    <fix>Guests who have stayed two days or more are eating from stores with under four days of food left (under two, it's worse). Fill the stores (hunt, harvest, buy food) and it stops; the kind and the ascetic don't mind.</fix>
+    <act>Fill the stores</act>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <!-- ===================== Missions and the world ===================== -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackMissionLetDown</defName>
+    <thoughts><li>Council_Setback_MissionLetDown</li></thoughts>
+    <fix>A mission the colony took on came to nothing, or a harvest was left half in the fields. Take on only what the colony can reach in time (the mission page says how long is left); it fades in three days.</fix>
+    <act>Take on what you can finish</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>World</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackWorldTurn</defName>
+    <thoughts><li>Council_Setback_WorldTurn</li></thoughts>
+    <fix>The council's answer to a world event was a gamble, and it went wrong. It passes in a day and a half. Answers that say they're a risk can go either way.</fix>
+    <act>Passes soon</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>World</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_SetbackStoodBy</defName>
+    <thoughts><li>Council_Setback_StoodBy</li></thoughts>
+    <fix>A world event the colony could have helped with ended with nothing from it, and a kind colonist minds. Answering the region's next call, even a little, keeps it away; it fades in three days.</fix>
+    <act>Answer the next call</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>World</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

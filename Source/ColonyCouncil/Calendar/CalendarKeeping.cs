@@ -324,6 +324,8 @@ namespace ColonyCouncil
             if (!quiet) comp?.offices.Notify_CustomKept(home);
             if (!quiet) Journals(d, map, home, years);
             if (!quiet) Interplay.Notify_DayKept(d, home);
+            // Kept together, and an empty place at the table (Social/Talk/SharedTimes.cs).
+            if (!quiet) SharedTimes.DayKept(d, map, home);
             talkDayId = d.id;
             talkDate = DateKey(map);
             talksLeft = Rand.RangeInclusive(2, 3);
