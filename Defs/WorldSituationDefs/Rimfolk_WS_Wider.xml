@@ -18,7 +18,7 @@
     <earliestDay>40</earliestDay>
     <cooldownDays>220</cooldownDays>
     <durationDays>14~20</durationDays>
-    <kind>prophet</kind>
+    <kind>faith</kind>
     <faction>
       <friendly>true</friendly>
     </faction>
@@ -821,7 +821,7 @@
     <earliestDay>35</earliestDay>
     <cooldownDays>220</cooldownDays>
     <durationDays>15~22</durationDays>
-    <kind>market</kind>
+    <kind>trade</kind>
     <faction>
       <friendly>true</friendly>
     </faction>
