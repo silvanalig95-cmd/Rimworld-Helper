@@ -1167,9 +1167,11 @@ end. **Plan it here** opens the plan at the place the advice is about, turned to
 until you click. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate or a line holds one,
 labelled "covered by the south-west pass") and where a gate's wall would cross (gold), also with the window closed.
 
-**Fifteen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
+**Sixteen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
 rock mined and plants cut where you allow it, and a preview that shows what's ready, waiting or in the way: a gate
-with sandbag lines, a sandbag or barricade line to put behind a gate you already have, a perimeter wall two thick
+with sandbag lines, a sandbag or barricade line to put behind a gate you already have (both with a piece of wall
+capping each line's outer end against flanking shots), a wall and sandbag firing line for where raiders come straight
+on (a wall either side of each shooter), a perimeter wall two thick
 with a double gate, a second layer of wall that makes an existing line two thick, a small killbox for a narrow gap and
 bows, a killbox (a narrow entrance with two turns, a deep open box with two traps, cover at the far end more than a
 grenade's throw from the mouth, turrets on the flanks behind walls of their own), a tunnel killbox dug into a

@@ -38,7 +38,7 @@ From that it ranks its advice and marks what's done. "Plan it here" opens a defe
       </li>
       <li>
         <heading>The plans</heading>
-        <text>A gate with sandbag lines, a sandbag or barricade line to put behind a gate you have, a stretch of perimeter wall two thick, a second layer of wall to make a line two thick, a small killbox, a killbox, a tunnel killbox for a mountain's entrance, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a mortar pit, and with Medieval Overhaul a palisade or a castle gate with a gatehouse. Each uses what your colony can build: barricades and log gates for a medieval colony, sandbags and turrets once you have them. A plan the colony can't build yet says what it lacks.
+        <text>A gate with sandbag lines, a sandbag or barricade line to put behind a gate you have, a wall and sandbag firing line for where raiders come straight on, a stretch of perimeter wall two thick, a second layer of wall to make a line two thick, a small killbox, a killbox, a tunnel killbox for a mountain's entrance, a trap corridor, a turret nest, a sniper's or archers' post, a fallback line, a keep, a mortar pit, and with Medieval Overhaul a palisade or a castle gate with a gatehouse. Each uses what your colony can build: barricades and log gates for a medieval colony, sandbags and turrets once you have them. A plan the colony can't build yet says what it lacks.
 
 A plan with a wall line can "close the gap": the wall carries on to the rock, a wall or deep water on both sides, up to 12 cells each way. It stops at shallow water and marsh, which take no wall, and says so.</text>
       </li>
@@ -134,7 +134,7 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
         <heading>Building it</heading>
         <points>
           <li>A firing position needs cover between it and the threat, with open ground in front: sandbags against a wall shelter nobody.</li>
-          <li>Mix walls and sandbags. A wall blocks your own line of fire; a short line of sandbags in a gap of the wall lets people shoot through it from good cover.</li>
+          <li>Mix walls and sandbags. A wall blocks your own line of fire; a short line of sandbags in a gap of the wall lets people shoot through it from good cover. A wall beside a shooter guards their side: a shot from an angle hits it, and leaning out beside it they're three-quarters covered. Where raiders come straight on, a row of wall and sandbags taking turns does both (the wall and sandbag firing line); where your people shoot at a gate at an angle, cap the sandbag line's outer end with wall instead, so nothing blocks their view of the gate.</li>
           <li>Sandbags are made of cloth or leather and don't burn; barricades are wood, stone or metal.</li>
           <li>Since 1.6 raiders can stop and shoot while standing on sandbags or anything else, so cover no longer keeps them off a spot.</li>
           <li>Cut trees and haul chunks out of the field in front: each one is cover for them.</li>
