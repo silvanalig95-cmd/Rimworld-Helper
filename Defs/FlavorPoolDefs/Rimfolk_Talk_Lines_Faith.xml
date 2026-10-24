@@ -161,7 +161,7 @@
         <li>[digin] No, and don't ask again.</li>
         <li>[unmoved] Nice speech, still no.</li>
         <li>[persuaded] Fine, you've got a point, don't let it go to your head.</li>
-        <li>[digin] Not a chance.</li>
+        <li>[digin] Not a chance in this life.</li>
         <li>[persuaded] Fine, maybe you've got a point.</li>
       </blunt>
       <cheerful>
@@ -175,7 +175,7 @@
         <li>[persuaded,faith:wavering] I've nothing else to hold on to, so maybe yours will do.</li>
         <li>[digin] Believe what you like, we'll both be dust in the end.</li>
         <li>[persuaded] I've nothing left to hold on to, so maybe.</li>
-        <li>[digin] We'll both be wrong in the end, probably.</li>
+        <li>[digin] One of us is wrong, and it won't matter.</li>
         <li>[steadied] It helps, it always helps, for a while.</li>
       </gloomy>
       <cold>
@@ -225,7 +225,7 @@
       </warm>
       <blunt>
         <li>[digin] Done talking, I know what I believe.</li>
-        <li>[digin] Done.</li>
+        <li>[digin] Done arguing faith.</li>
         <li>[persuading] Think on it.</li>
         <li>[unmoved] My mind's made up.</li>
       </blunt>
@@ -282,8 +282,8 @@
       <blunt>
         <li>[unmoved] Nice try.</li>
         <li>[digin] Never.</li>
-        <li>[persuaded] Maybe.</li>
-        <li>[steadied] Good.</li>
+        <li>[persuaded] Maybe, just maybe.</li>
+        <li>[steadied] Good, that helps.</li>
       </blunt>
       <cheerful>
         <li>[persuaded] Save me a seat at the next rite, just in case.</li>
@@ -300,7 +300,7 @@
       <cold>
         <li>[digin] We disagree.</li>
         <li>[unmoved] Unconvinced.</li>
-        <li>[steadied] Agreed.</li>
+        <li>[steadied] Agreed, we hold to it.</li>
         <li>[persuaded] I'll consider it.</li>
       </cold>
     </lines>

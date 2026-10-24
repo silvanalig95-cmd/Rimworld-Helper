@@ -367,7 +367,7 @@
         <li>[argue] Talk to me again when you've grown a brain.</li>
         <li>[argue] Waste of breath.</li>
         <li>[agree] Good, that's sorted.</li>
-        <li>[agree] Done.</li>
+        <li>[agree] Done, then.</li>
         <li>[agree] Settled, then.</li>
         <li>[debate] Fine, you're wrong, moving on.</li>
         <li>[debate] Enough for today.</li>
@@ -472,7 +472,7 @@
         <li>[debate] Still wrong, but nicely put.</li>
         <li>[debate] I'll think about it, that's all I'm promising.</li>
         <li>[debate] Ask me again in a week.</li>
-        <li>[debate] You'll come round.</li>
+        <li>[debate] You'll come round to it, give it time.</li>
         <li>[debate] Maybe, maybe not.</li>
         <li>[debate] I'm not convinced, but I'm listening.</li>
         <li>[debate] Next time I'll win.</li>
@@ -600,7 +600,7 @@
         <li>[tease] Keep it up and see what happens.</li>
         <li>[debate] Wrong, still.</li>
         <li>[debate] Still no.</li>
-        <li>[debate] Nope.</li>
+        <li>[debate] Nope, still no.</li>
         <li>[argue] Get lost.</li>
         <li>[argue] Whatever.</li>
         <li>[reminisce] Yeah.</li>

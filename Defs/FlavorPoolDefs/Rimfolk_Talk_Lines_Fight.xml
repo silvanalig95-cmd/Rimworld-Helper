@@ -178,7 +178,7 @@
         <li>[debate] It depends what they send next time.</li>
         <li>[debate] I've gone back and forth on that myself.</li>
         <li>[debate] There's more than one way to win a fight.</li>
-        <li>[debate] Ask me again after the next one.</li>
+        <li>[debate] We'll know better when the next lot comes.</li>
         <li>[debate] That's not how I remember it going.</li>
         <li>[argue] You weren't even on the wall when it mattered.</li>
         <li>[argue] Don't lecture me about fighting.</li>
@@ -196,7 +196,7 @@
         <li>[mixed] I don't know what's right, I only know I was scared.</li>
         <li>[agree,mixed] Nobody really knows, do they.</li>
         <li>[agree,mixed] I go back and forth on it too.</li>
-        <li>[agree,mixed] Maybe it depends who they send.</li>
+        <li>[agree,mixed] Depends who comes over the hill, doesn't it.</li>
         <li>[debate,mixed] I'm not sure either way, but I'm not sure you're right.</li>
         <li>[debate,mixed] I'd want walls and fighters both.</li>
         <li>[debate,mixed] It's never as simple as walls or no walls.</li>
@@ -223,7 +223,7 @@
         <li>[debate,for] Walls are for people who've given up.</li>
         <li>[agree,mixed] Who knows.</li>
         <li>[debate,against] Walls work, heroes die.</li>
-        <li>[argue,mixed] Leave me out of it.</li>
+        <li>[argue,mixed] I'll fight when they come, not with you.</li>
       </blunt>
       <cheerful>
         <li>[debate,against] You charge, I'll hold the door, and we'll argue about it afterwards.</li>
@@ -285,7 +285,7 @@
       </warm>
       <blunt>
         <li>[argue,against] Go be a hero and I'll start digging.</li>
-        <li>[agree] Good, that's settled.</li>
+        <li>[agree] Good, then we're ready.</li>
         <li>[debate] Fine, we'll see.</li>
         <li>[agree,for] Next time, we hit back.</li>
       </blunt>
@@ -303,7 +303,7 @@
       </gloomy>
       <cold>
         <li>[argue] When they come, we'll see whose way works.</li>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, the defenses come first.</li>
         <li>[debate] The next raid will decide it.</li>
         <li>[agree,against] I'll work out how much stone we need.</li>
       </cold>
@@ -512,9 +512,9 @@
         <li>[agree,against] Bunch of clowns, the lot of them.</li>
         <li>[argue,for] Stop whining.</li>
         <li>[argue,against] Lick their boots, then, if you like the taste.</li>
-        <li>[agree,mixed] Whatever.</li>
-        <li>[debate,for] They're fine.</li>
-        <li>[argue,mixed] Don't ask me.</li>
+        <li>[agree,mixed] Council, no council, whatever.</li>
+        <li>[debate,for] The council's fine.</li>
+        <li>[argue,mixed] Don't drag me into council business.</li>
         <li>[agree,for] They're doing all right.</li>
       </blunt>
       <cheerful>
@@ -559,7 +559,7 @@
         <li>[argue] Fine, defend them, see where it gets you.</li>
         <li>[agree] I'll say it at the next meeting, then.</li>
         <li>[debate] Let's see how the next decree goes.</li>
-        <li>[argue] I'm done talking about the council.</li>
+        <li>[argue] Take it up with the council yourself, I'm finished.</li>
         <li>[agree,mixed] Time will show what they're worth.</li>
         <li>[debate,mixed] Let's give them more time.</li>
       </plain>
@@ -571,7 +571,7 @@
       </warm>
       <blunt>
         <li>[argue,against] Enjoy being told what to do.</li>
-        <li>[agree] Good.</li>
+        <li>[agree] Good, then we'll say so at the meeting.</li>
         <li>[debate] Think about it.</li>
         <li>[argue,for] Get over it.</li>
       </blunt>
@@ -584,11 +584,11 @@
       <gloomy>
         <li>[agree] It won't change anything, but there we are.</li>
         <li>[debate] They'll do what they want anyway.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Trust them, then, and see where it gets you.</li>
         <li>[agree,against] Nothing ever changes up there.</li>
       </gloomy>
       <cold>
-        <li>[agree] Settled.</li>
+        <li>[agree] Settled, then, on the council.</li>
         <li>[debate] Their record will speak for itself.</li>
         <li>[argue] I'm not discussing this further.</li>
         <li>[agree,against] I'll bring it to the council myself.</li>
@@ -730,7 +730,7 @@
         <li>[agree] I've thought the same, walking past the cells.</li>
         <li>[agree] You're right, I've seen it too.</li>
         <li>[agree] I said the same to the warden.</li>
-        <li>[debate] It depends which one of them you mean.</li>
+        <li>[debate] Some of them I'd let go tomorrow, some never.</li>
         <li>[debate] I'm not sure it's as simple as that.</li>
         <li>[debate] There's more to it than kind or harsh.</li>
         <li>[argue] You've never even spoken to one of them.</li>
@@ -747,7 +747,7 @@
         <li>[debate,mixed] Somewhere between your way and theirs, I'd say.</li>
         <li>[debate,mixed] I'd judge each one on their own.</li>
         <li>[argue,mixed] I haven't decided, and I won't be pushed.</li>
-        <li>[argue,mixed] Leave me out of the prisoners.</li>
+        <li>[argue,mixed] The prisoners are the warden's worry, not mine.</li>
       </plain>
       <warm>
         <li>[agree,for] You're a kind soul, you know that.</li>
@@ -799,7 +799,7 @@
         <li>[debate] We'll see which of us they prove right.</li>
         <li>[agree] Let's look in on them later.</li>
         <li>[debate] Let's wait and watch how they behave.</li>
-        <li>[argue] I'm done talking about the prisoners.</li>
+        <li>[argue] That's enough about the cells for one day.</li>
         <li>[argue,mixed] I'm not fighting about this.</li>
         <li>[agree,mixed] We'll decide when we have to.</li>
       </plain>
@@ -810,7 +810,7 @@
         <li>[agree,against] I'll be careful around them, I promise.</li>
       </warm>
       <blunt>
-        <li>[agree] Fine.</li>
+        <li>[agree] Fine, they stay put.</li>
         <li>[debate] They stay locked up.</li>
         <li>[argue] Do what you want.</li>
         <li>[agree,against] Lock the doors.</li>
@@ -824,12 +824,12 @@
       <gloomy>
         <li>[agree] It won't end well for them, whatever we do.</li>
         <li>[debate] Nothing we decide changes much for them.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Treat them how you like, it'll go wrong anyway.</li>
         <li>[agree,against] One day one of them will get out.</li>
       </gloomy>
       <cold>
         <li>[argue,against] Do as you like, I'll lock my door.</li>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, on the prisoners at least.</li>
         <li>[debate] Their behavior will settle it.</li>
         <li>[agree,against] I'll check the locks.</li>
       </cold>

@@ -121,7 +121,7 @@
         <li>[argue,for] They've done nothing to you, leave them be.</li>
         <li>[argue,against] Don't come crying to me when they're gone with the silver.</li>
         <li>[agree] I was thinking the same at supper.</li>
-        <li>[agree] You're not the only one who's noticed.</li>
+        <li>[agree] I've noticed the same about them.</li>
         <li>[agree] I said as much to the others.</li>
         <li>[agree] That's what I've seen too.</li>
         <li>[agree] Funny, I was going to say the same.</li>
@@ -134,7 +134,7 @@
         <li>[argue] You made up your mind before they'd unpacked.</li>
         <li>[argue] I won't hear that about someone who's done nothing wrong.</li>
         <li>[argue] We have this argument about every newcomer.</li>
-        <li>[argue] That's not fair, and you know it.</li>
+        <li>[argue] That's not fair on them, and you know it.</li>
         <li>[for] They've been pulling their weight, I've seen it.</li>
         <li>[for] They seem decent, and that's enough for me.</li>
         <li>[for] We need more hands, and they've got two good ones.</li>
@@ -170,7 +170,7 @@
         <li>[agree,mixed] Dunno.</li>
         <li>[debate,for] Give them a chance.</li>
         <li>[agree,against] Don't trust them.</li>
-        <li>[argue,mixed] Don't ask me.</li>
+        <li>[argue,mixed] I've barely met them, so stop.</li>
       </blunt>
       <cheerful>
         <li>[debate,against] I'll trust them when they've survived your cooking.</li>
@@ -210,7 +210,7 @@
         <li>[debate] Give it a month, then ask me again.</li>
         <li>[agree] Let's go and say hello properly.</li>
         <li>[debate] We'll know more in a week or two.</li>
-        <li>[argue] I'm done talking about them.</li>
+        <li>[argue] I'm done talking about the new one.</li>
         <li>[agree,mixed] We'll see what they're made of.</li>
         <li>[debate,mixed] Let's give them time.</li>
       </plain>
@@ -222,7 +222,7 @@
       </warm>
       <blunt>
         <li>[argue,for] Your loss, then.</li>
-        <li>[agree] Fine.</li>
+        <li>[agree] Fine, they get a chance.</li>
         <li>[debate] Watch and see.</li>
         <li>[agree,against] Eyes open, then.</li>
       </blunt>
@@ -234,14 +234,14 @@
       </cheerful>
       <gloomy>
         <li>[agree] They'll learn what this place is like soon enough.</li>
-        <li>[debate] It won't matter in the end.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[debate] They'll show us what they are soon enough.</li>
+        <li>[argue] Trust them if you want, you'll learn.</li>
         <li>[agree,against] New people, new trouble.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, about the new one.</li>
         <li>[debate] Their work will tell us.</li>
-        <li>[argue] I've said what I think.</li>
+        <li>[argue] My view of them stands, for now.</li>
         <li>[agree,for] They'll do.</li>
       </cold>
     </lines>
@@ -370,14 +370,14 @@
         <li>[debate,against] Wait until they have their first real fight.</li>
         <li>[argue,for] You'd frighten off anyone who tried.</li>
         <li>[argue,against] Head in the clouds, as always.</li>
-        <li>[agree] I was thinking the same at supper.</li>
-        <li>[agree] You're right, I've seen it too.</li>
+        <li>[agree] I was thinking the same, watching them at supper.</li>
+        <li>[agree] You're right, I've seen how they look at each other.</li>
         <li>[agree] That's what I keep telling people.</li>
         <li>[debate] It depends on the two people, doesn't it.</li>
-        <li>[debate] It's not as simple as good or bad.</li>
+        <li>[debate] Love's not as simple as good or bad.</li>
         <li>[debate] That's one way to see it.</li>
         <li>[argue] What would you know about love?</li>
-        <li>[argue] We always end up fighting about this.</li>
+        <li>[argue] We always end up fighting about love.</li>
         <li>[argue] I won't hear that, not about them.</li>
         <li>[for] Love's what makes people stay.</li>
         <li>[for] I'd rather have love and lose it than never have it.</li>
@@ -388,7 +388,7 @@
         <li>[agree,mixed] It's a mystery, love.</li>
         <li>[agree,mixed] Good and bad, like most things.</li>
         <li>[debate,mixed] It's not all hearts and flowers, or all heartache either.</li>
-        <li>[debate,mixed] It depends who you fall for.</li>
+        <li>[debate,mixed] Fall for the right one and it's worth it, the wrong one and it isn't.</li>
         <li>[argue,mixed] I'm not getting into other people's love lives.</li>
         <li>[argue,mixed] Leave me out of it, I'm hopeless at love.</li>
       </plain>
@@ -400,9 +400,9 @@
       </warm>
       <blunt>
         <li>[agree,against] Waste of time, all of it.</li>
-        <li>[agree,mixed] Who knows.</li>
+        <li>[agree,mixed] Love's a mystery.</li>
         <li>[debate,for] It's worth it.</li>
-        <li>[argue,mixed] Don't ask me.</li>
+        <li>[argue,mixed] Not my business who loves who.</li>
       </blunt>
       <cheerful>
         <li>[debate,for] Come on, everyone loves a good love story.</li>
@@ -421,7 +421,7 @@
       <cold>
         <li>[debate,for] Pairs are good for morale.</li>
         <li>[agree,against] Attachments cause problems.</li>
-        <li>[agree,mixed] It has costs and benefits.</li>
+        <li>[agree,mixed] Love has costs and benefits, like anything.</li>
         <li>[argue,for] Your cynicism isn't an argument.</li>
       </cold>
     </lines>
@@ -444,20 +444,20 @@
         <li>[argue,for] Grumpy and alone, that's your future.</li>
         <li>[agree] Let's leave them to it, then.</li>
         <li>[debate] We'll see how it goes for them.</li>
-        <li>[argue] I'm done talking about love.</li>
-        <li>[agree,mixed] To each their own, then.</li>
+        <li>[argue] No more about love, I've had my fill for one day.</li>
+        <li>[agree,mixed] To each their own heart, then.</li>
         <li>[debate,mixed] Let's not fight about other people's hearts.</li>
       </plain>
       <warm>
         <li>[agree] Whatever happens, you've got me.</li>
         <li>[debate] Whatever we think, I hope they're happy.</li>
-        <li>[argue] I'm sorry, it matters to me, that's all.</li>
+        <li>[argue] I'm sorry, love matters to me, that's all.</li>
         <li>[agree,for] Here's to love, then.</li>
       </warm>
       <blunt>
-        <li>[agree] Right.</li>
+        <li>[agree] Right, enough about hearts.</li>
         <li>[debate] Leave them be.</li>
-        <li>[argue] Fine.</li>
+        <li>[argue] Fine, moon about, see if I care.</li>
         <li>[agree,against] No more of that talk.</li>
       </blunt>
       <cheerful>
@@ -468,14 +468,14 @@
       </cheerful>
       <gloomy>
         <li>[agree] It always ends one way or another.</li>
-        <li>[debate] It won't last, nothing does.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[debate] It won't last, love never does.</li>
+        <li>[argue] Fall in love, then, and see how it ends.</li>
         <li>[agree,against] Better alone.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
-        <li>[debate] Time will tell.</li>
-        <li>[argue] I've said my piece.</li>
+        <li>[agree] Agreed, about the couples.</li>
+        <li>[debate] Time will tell which pairs last.</li>
+        <li>[argue] My view on love is settled.</li>
         <li>[agree,for] It's good for morale, at least.</li>
       </cold>
     </lines>
@@ -601,10 +601,10 @@
         <li>[argue,for] They're not made of glass.</li>
         <li>[argue,against] They're children, not soldiers.</li>
         <li>[agree] I was thinking the same thing.</li>
-        <li>[agree] You're right, I've seen it too.</li>
-        <li>[agree] That's what I told the others.</li>
+        <li>[agree] You're right, I've seen it in their faces.</li>
+        <li>[agree] That's what I said to the parents.</li>
         <li>[debate] It depends on the child, doesn't it.</li>
-        <li>[debate] It's not as simple as that.</li>
+        <li>[debate] Children aren't all made the same, you know.</li>
         <li>[debate] Children are tougher than we think, and softer too.</li>
         <li>[argue] What would you know about children?</li>
         <li>[argue] We always argue about this.</li>
@@ -633,7 +633,7 @@
         <li>[agree,mixed] Kids are kids.</li>
         <li>[debate,for,!nochildren] They'll be fine.</li>
         <li>[agree,against] Too dangerous.</li>
-        <li>[argue,mixed] Don't ask me.</li>
+        <li>[argue,mixed] I'm no parent, stop asking.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] They're running this place, really, we just work here.</li>
@@ -671,9 +671,9 @@
         <li>[agree,for] Let's make this a place worth growing up in.</li>
         <li>[agree,against] We'll keep them close, then.</li>
         <li>[debate,against] Just be careful with them.</li>
-        <li>[agree,!nochildren] Let's look in on them later.</li>
+        <li>[agree,!nochildren] Let's look in on the little ones later.</li>
         <li>[debate,!nochildren] We'll see how they grow.</li>
-        <li>[argue] I'm done talking about this.</li>
+        <li>[argue] I won't argue about the children anymore.</li>
         <li>[agree,mixed,!nochildren] We'll do our best by them.</li>
         <li>[debate,mixed,!nochildren] Let's not fight about the children.</li>
       </plain>
@@ -685,9 +685,9 @@
       </warm>
       <blunt>
         <li>[argue,against] Just keep them away from the gate.</li>
-        <li>[agree] Right.</li>
-        <li>[debate,!nochildren] Leave them be.</li>
-        <li>[argue] Fine.</li>
+        <li>[agree] Right, we'll mind the little ones.</li>
+        <li>[debate,!nochildren] Let the kids be kids.</li>
+        <li>[argue] Fine, coddle them.</li>
       </blunt>
       <cheerful>
         <li>[agree,!nochildren] Let's go and teach them a terrible song.</li>
@@ -698,13 +698,13 @@
       <gloomy>
         <li>[agree,!nochildren] They'll grow up whatever we do.</li>
         <li>[debate,!nochildren] We can't protect them from everything.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Raise them how you like, the world will do the rest.</li>
         <li>[agree,against,!nochildren] I fear for them.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, where the children are concerned.</li>
         <li>[debate,!nochildren] Their progress will tell us.</li>
-        <li>[argue] I've made my position clear.</li>
+        <li>[argue] My position on the children is clear.</li>
         <li>[agree,for,!nochildren] They're the future, so they matter.</li>
       </cold>
     </lines>
@@ -894,9 +894,9 @@
         <li>[agree,for] They'd have loved hearing us talk like this.</li>
       </warm>
       <blunt>
-        <li>[agree] Right.</li>
+        <li>[agree] Right, we remember them.</li>
         <li>[debate] Grieve how you like.</li>
-        <li>[argue] Leave it.</li>
+        <li>[argue] Leave the dead out of it.</li>
         <li>[agree,against] Let them rest.</li>
       </blunt>
       <cheerful>
@@ -908,13 +908,13 @@
       <gloomy>
         <li>[agree] We'll all be with them one day.</li>
         <li>[debate] It never stops hurting, does it.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Grieve your way, then, and I'll grieve mine.</li>
         <li>[agree,against] Some things can't be fixed.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, they'll be remembered.</li>
         <li>[debate] Grief will run its course.</li>
-        <li>[argue] I've said what I think.</li>
+        <li>[argue] I've said how I grieve, and that's that.</li>
         <li>[agree,for] We'll remember them properly.</li>
       </cold>
     </lines>

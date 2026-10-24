@@ -206,12 +206,12 @@
       </warm>
       <blunt>
         <li>[argue,for,child] No.</li>
-        <li>[agree,against,child] Good.</li>
+        <li>[agree,against,child] Good, I'm ready.</li>
         <li>[debate,for,!child] Go and play, I said.</li>
         <li>[argue,against,!child] Enough, do your chores.</li>
         <li>[agree,against,!child] Right, grab the other end of this.</li>
-        <li>[agree,mixed,!child] Fine.</li>
-        <li>[debate,mixed,!child] We'll see.</li>
+        <li>[agree,mixed,!child] Fine, try it.</li>
+        <li>[debate,mixed,!child] We'll see, I said.</li>
         <li>[agree,for,!child] Go on, then.</li>
         <li>[debate,against,!child] Work first.</li>
       </blunt>
@@ -289,7 +289,7 @@
         <li>[argue,!child] I'm sorry I snapped, I'm just tired.</li>
       </warm>
       <blunt>
-        <li>[argue,child] Fine.</li>
+        <li>[argue,child] Fine, whatever you say.</li>
         <li>[agree,child] Bye.</li>
         <li>[agree,!child] Go on.</li>
         <li>[debate,!child] Chores, then play, that's the deal.</li>
@@ -343,7 +343,7 @@
       </warm>
       <blunt>
         <li>[argue,child] Don't care.</li>
-        <li>[debate,child] Maybe.</li>
+        <li>[debate,child] Maybe, if I feel like it.</li>
         <li>[argue,!child] Go on, out.</li>
         <li>[debate,!child] Tomorrow, then.</li>
       </blunt>

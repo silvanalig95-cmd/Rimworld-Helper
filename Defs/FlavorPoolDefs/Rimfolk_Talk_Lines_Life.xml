@@ -112,7 +112,7 @@
         <li>[debate] That's one way to look at it.</li>
         <li>[argue] You don't know any more about it than I do.</li>
         <li>[argue] Every time we talk about this, you start.</li>
-        <li>[argue] I'm not listening to this again.</li>
+        <li>[argue] Not this again, the same gloom every week.</li>
         <li>[for] We've built too much here to walk away now.</li>
         <li>[for] I'd stake my life on this place, and I am.</li>
         <li>[against] I'm not sure any of us will be here in ten years.</li>
@@ -134,10 +134,10 @@
         <li>[argue,against] I'm not giving up on you, I'm giving up on the place.</li>
       </warm>
       <blunt>
-        <li>[agree,mixed] Who knows.</li>
+        <li>[agree,mixed] Nobody knows what's coming.</li>
         <li>[debate,for] We're staying.</li>
         <li>[agree,against] It won't last.</li>
-        <li>[argue,mixed] Don't ask me.</li>
+        <li>[argue,mixed] How should I know what's coming?</li>
       </blunt>
       <cheerful>
         <li>[agree,for] I'm reserving the best rocking chair now.</li>
@@ -177,7 +177,7 @@
         <li>[argue,against] Stay and rot, then.</li>
         <li>[agree] We'll see where we are next spring.</li>
         <li>[debate] Let's just get through this season first.</li>
-        <li>[argue] I'm done talking about it.</li>
+        <li>[argue] No more about leaving, not today.</li>
         <li>[agree,mixed] We'll take it as it comes.</li>
         <li>[debate,mixed] Nobody knows, so let's not fight about it.</li>
       </plain>
@@ -188,7 +188,7 @@
         <li>[agree,against] If you go, tell me first.</li>
       </warm>
       <blunt>
-        <li>[agree] Right.</li>
+        <li>[agree] Right, one year at a time.</li>
         <li>[debate] Stay or go, just decide.</li>
         <li>[argue] Go, then.</li>
         <li>[agree,for] We stay.</li>
@@ -201,12 +201,12 @@
       </cheerful>
       <gloomy>
         <li>[agree] If we're still here.</li>
-        <li>[debate] It won't matter in the end.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[debate] We'll find out soon enough, I suppose.</li>
+        <li>[argue] Hope all you like, it won't change what's coming.</li>
         <li>[agree,against] Nothing lasts.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, as far as anyone can see ahead.</li>
         <li>[debate] Time will settle it.</li>
         <li>[argue] I've made my decision.</li>
         <li>[agree,for] We plan for the long term, then.</li>
@@ -310,10 +310,10 @@
         <li>[argue,for] You'd ban laughter if you could.</li>
         <li>[argue,against] Drink yourself silly, then.</li>
         <li>[agree] I've thought the same, watching people at the feast.</li>
-        <li>[agree] You're not the only one who's noticed.</li>
+        <li>[agree] I've noticed how much the jugs go down.</li>
         <li>[agree] I said the same to the brewer.</li>
         <li>[debate] It depends who's drinking.</li>
-        <li>[debate] It's not as simple as good or bad.</li>
+        <li>[debate] One cup's a comfort and ten's a curse, that's all I know.</li>
         <li>[debate] There's a difference between a cup and a binge.</li>
         <li>[argue] You're the last person who should be lecturing about drink.</li>
         <li>[argue] We always fight about this.</li>
@@ -327,7 +327,7 @@
         <li>[agree,mixed] In moderation it does no harm, does it.</li>
         <li>[agree,mixed] Hard to say where the line is.</li>
         <li>[debate,mixed] A cup, yes, a jug, no.</li>
-        <li>[debate,mixed] It depends on the person, doesn't it.</li>
+        <li>[debate,mixed] I've seen it help people and I've seen it ruin them.</li>
         <li>[argue,mixed] I'm not taking sides about drink.</li>
         <li>[argue,mixed] Leave me out of it, I barely touch the stuff.</li>
         <li>[debate,against,!lowtech] Flake and yayo are a different thing from beer, and you know it.</li>
@@ -382,19 +382,19 @@
         <li>[agree,against] Tea for us, then.</li>
         <li>[agree] Let's keep an eye on each other, then.</li>
         <li>[debate] We'll talk again after the next feast.</li>
-        <li>[argue] I'm done talking about this.</li>
+        <li>[argue] I'm done talking about drink.</li>
         <li>[agree,mixed] Everything in moderation, then.</li>
         <li>[debate,mixed] Let's not fight about a cup of beer.</li>
       </plain>
       <warm>
         <li>[agree,against] Look after yourself, that's all.</li>
-        <li>[agree] Look after yourself, won't you.</li>
+        <li>[agree] Look after yourself with the drink, won't you.</li>
         <li>[debate] Whatever you drink, drink it with friends.</li>
         <li>[argue] I'm sorry, I just worry, that's all.</li>
       </warm>
       <blunt>
         <li>[argue,for] More for me, then.</li>
-        <li>[agree] Fine.</li>
+        <li>[agree] Fine, one cup each.</li>
         <li>[debate] Drink less.</li>
         <li>[agree,against] No more for me.</li>
       </blunt>
@@ -407,11 +407,11 @@
       <gloomy>
         <li>[agree] We all need something.</li>
         <li>[debate] It'll end badly for someone either way.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Drink, then, it's all the same in the end.</li>
         <li>[agree,against] Someone's going to get hurt.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, the drink stays in moderation.</li>
         <li>[debate] Moderation, then.</li>
         <li>[argue] I've made my position clear.</li>
         <li>[agree,against] I'll keep count.</li>
@@ -515,8 +515,8 @@
         <li>[agree] I was thinking the same while I worked on it.</li>
         <li>[agree] That's what I told the others.</li>
         <li>[agree] You're right, and I'd say it to the council.</li>
-        <li>[debate] It depends how the next few days go.</li>
-        <li>[debate] It's not as simple as worth it or not.</li>
+        <li>[debate] Give it a few more days and we'll know.</li>
+        <li>[debate] Worth it depends on what it's for, and nobody's said.</li>
         <li>[debate] Ask me again when it's done.</li>
         <li>[argue] You've barely touched the project, so don't lecture me.</li>
         <li>[argue] We have this argument every time.</li>
@@ -529,10 +529,10 @@
         <li>[mixed] I do my share and try not to think about it.</li>
         <li>[agree,mixed] Hard to say until it's done.</li>
         <li>[agree,mixed] It's coming along, I suppose.</li>
-        <li>[debate,mixed] It's not as bad as you say, or as good.</li>
+        <li>[debate,mixed] The project's not as bad as you say, or as good.</li>
         <li>[debate,mixed] We'll know more in a few days.</li>
         <li>[argue,mixed] I'm not taking sides on the project.</li>
-        <li>[argue,mixed] Leave me out of it, I just do the work.</li>
+        <li>[argue,mixed] I carry what I'm told to carry, the arguing's yours.</li>
       </plain>
       <warm>
         <li>[agree,for] We'll finish it together.</li>
@@ -544,7 +544,7 @@
         <li>[agree,mixed] It's work.</li>
         <li>[debate,for] Just finish it.</li>
         <li>[agree,against] Waste of time.</li>
-        <li>[argue,mixed] Don't ask me.</li>
+        <li>[argue,mixed] I just carry the stones.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] I'm already planning the party for when it's done.</li>
@@ -609,11 +609,11 @@
       <gloomy>
         <li>[agree] It'll never be finished.</li>
         <li>[debate] It doesn't matter what we think.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Keep building it, then, it'll fall down like everything.</li>
         <li>[agree,against] It's going nowhere.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, on the project.</li>
         <li>[debate] The result will decide it.</li>
         <li>[argue] I've said my piece.</li>
         <li>[agree,for] Back to work on it.</li>
@@ -718,7 +718,7 @@
         <li>[agree] That's what I told the last trader.</li>
         <li>[agree] You're right, and I've said it before.</li>
         <li>[debate] It depends what we'd spend it on.</li>
-        <li>[debate] It's not as simple as more or less.</li>
+        <li>[debate] More silver means more to guard, so I'm not sure.</li>
         <li>[debate] Silver's only as good as what it buys.</li>
         <li>[argue] You've never earned a coin of it.</li>
         <li>[argue] We always fight about silver.</li>
@@ -732,9 +732,9 @@
         <li>[agree,mixed] Enough is enough, but how much is enough?</li>
         <li>[agree,mixed] It's useful, I'll say that.</li>
         <li>[debate,mixed] A bit more wouldn't hurt, a lot more might.</li>
-        <li>[debate,mixed] It depends on the trade.</li>
+        <li>[debate,mixed] A good trade, yes, hoarding, no.</li>
         <li>[argue,mixed] I'm not fighting about silver.</li>
-        <li>[argue,mixed] Leave me out of this one, I don't care about money.</li>
+        <li>[argue,mixed] Money talk bores me, so count me out.</li>
       </plain>
       <warm>
         <li>[agree,against] We have each other, that's worth more.</li>
@@ -746,7 +746,7 @@
         <li>[agree,mixed] Silver's silver.</li>
         <li>[debate,for] More's better.</li>
         <li>[agree,against] Enough's enough.</li>
-        <li>[argue,mixed] Who cares.</li>
+        <li>[argue,mixed] Silver's silver, who cares.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] I'm going to be rich and unbearable, I can't wait.</li>
@@ -796,7 +796,7 @@
       </warm>
       <blunt>
         <li>[argue] Think what you like, I'm done.</li>
-        <li>[agree] Fine.</li>
+        <li>[agree] Fine, watch the purse.</li>
         <li>[debate] Count it later.</li>
         <li>[agree,for] Sell more.</li>
       </blunt>
@@ -809,13 +809,13 @@
       <gloomy>
         <li>[agree] It won't last, whatever we have.</li>
         <li>[debate] Silver won't save us.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Count your silver, then, it won't count you back.</li>
         <li>[agree,against] Silver's only trouble.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, on the silver.</li>
         <li>[debate] The ledger will settle it.</li>
-        <li>[argue] I've said what I think.</li>
+        <li>[argue] My view of the money stands.</li>
         <li>[agree,for] I'll look for better trades.</li>
       </cold>
     </lines>

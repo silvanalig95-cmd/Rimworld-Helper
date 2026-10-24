@@ -129,7 +129,7 @@
         <li>[debate,mixed] I wouldn't go as far as you, either way.</li>
         <li>[debate,mixed] I keep an open mind, that's all I can do.</li>
         <li>[argue,mixed] Don't make me pick a side on this.</li>
-        <li>[argue,mixed] I haven't decided, and I won't be pushed.</li>
+        <li>[argue,mixed] I haven't decided what I believe, and I won't be pushed.</li>
       </plain>
       <warm>
         <li>[debate,for] I'll pray for you anyway, if that's all right.</li>
@@ -140,10 +140,10 @@
       </warm>
       <blunt>
         <li>[argue,against] Your gods never did a day's work here.</li>
-        <li>[agree,mixed] Who knows.</li>
+        <li>[agree,mixed] Who knows what's up there.</li>
         <li>[agree,for] It works for me.</li>
         <li>[debate,against] Not for me.</li>
-        <li>[argue,mixed] Leave me out of it.</li>
+        <li>[argue,mixed] Don't make me pick a god.</li>
       </blunt>
       <cheerful>
         <li>[debate,for] Come once and try it, the singing alone is worth it.</li>
@@ -195,9 +195,9 @@
         <li>[agree,for] I'll keep you in my prayers.</li>
       </warm>
       <blunt>
-        <li>[agree] Good.</li>
-        <li>[debate] Think about it.</li>
-        <li>[argue] Drop it.</li>
+        <li>[agree] Good, enough said about faith.</li>
+        <li>[debate] Think about it, at least.</li>
+        <li>[argue] Drop the sermon.</li>
         <li>[agree,against] Fair enough, then.</li>
       </blunt>
       <cheerful>
@@ -209,12 +209,12 @@
       <gloomy>
         <li>[agree] Maybe none of us will ever know.</li>
         <li>[debate] We'll find out when we're dead, I suppose.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Believe what you like, we all end up in the ground.</li>
         <li>[agree,against] Nobody's listening anyway.</li>
       </gloomy>
       <cold>
         <li>[debate] We'll see who's right in the end.</li>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, as far as faith goes.</li>
         <li>[argue] I won't discuss this further.</li>
         <li>[agree,for] Faith keeps people steady, and that's enough.</li>
       </cold>
@@ -344,8 +344,8 @@
         <li>[agree] I've been thinking about it too.</li>
         <li>[agree] You're right, and I'd say it to anyone.</li>
         <li>[debate] It depends who's at the gate.</li>
-        <li>[debate] It's not as simple as open or shut.</li>
-        <li>[debate] Ask me again after the next trader.</li>
+        <li>[debate] There's more than one way to open a gate.</li>
+        <li>[debate] Ask me again once the traders have been.</li>
         <li>[argue] You've never been past the river.</li>
         <li>[argue] We have this fight every time someone comes to the gate.</li>
         <li>[argue] I'm not having this argument again.</li>
@@ -359,7 +359,7 @@
         <li>[agree,mixed] Some good, some bad, like anywhere.</li>
         <li>[debate,mixed] I'd keep the gate open, but I'd watch it.</li>
         <li>[debate,mixed] There's a middle road, if we wanted one.</li>
-        <li>[argue,mixed] I'm not on either side, so leave me out of it.</li>
+        <li>[argue,mixed] I'll trade with them and lock the door, both, so stop.</li>
         <li>[argue,mixed] Fight about the outsiders with someone else.</li>
       </plain>
       <warm>
@@ -372,7 +372,7 @@
         <li>[agree,against] Strangers stay strangers.</li>
         <li>[agree,mixed] Depends.</li>
         <li>[debate,for] Open the gate.</li>
-        <li>[argue,for] Coward.</li>
+        <li>[argue,for] Coward, hiding behind the gate.</li>
       </blunt>
       <cheerful>
         <li>[debate,for] Imagine the spices, though, imagine them.</li>
@@ -390,7 +390,7 @@
         <li>[agree,for] Trade is necessary.</li>
         <li>[agree,against] Contact should be kept to what we need.</li>
         <li>[debate,for] Isolation is a risk too.</li>
-        <li>[argue,against] Your trust is misplaced.</li>
+        <li>[argue,against] Your trust in strangers is misplaced.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -412,19 +412,19 @@
         <li>[agree] Let's see who comes by next.</li>
         <li>[debate] We'll talk again when the traders come.</li>
         <li>[argue] I'm not discussing it again.</li>
-        <li>[agree,mixed] We'll take it as it comes.</li>
+        <li>[agree,mixed] We'll take whoever comes as they come.</li>
         <li>[debate,mixed] Let's not decide anything until we have to.</li>
       </plain>
       <warm>
         <li>[argue] I don't want to fight about it, not with you.</li>
-        <li>[agree] I'm glad we talked about it.</li>
+        <li>[agree] I'm glad we talked about the world out there.</li>
         <li>[debate] Whatever we decide, let's be kind to whoever comes.</li>
         <li>[agree,against] We'll keep each other safe, then.</li>
       </warm>
       <blunt>
-        <li>[agree] Right.</li>
-        <li>[debate] Think on it.</li>
-        <li>[argue] Suit yourself.</li>
+        <li>[agree] Right, gate open, eyes open.</li>
+        <li>[debate] Think about who's at the gate.</li>
+        <li>[argue] Suit yourself, I'll watch the gate.</li>
         <li>[agree,for] Next traders, I'm going out to meet them.</li>
       </blunt>
       <cheerful>
@@ -436,13 +436,13 @@
       <gloomy>
         <li>[agree] It'll find us either way.</li>
         <li>[debate] They'll come whether we want them or not.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Open the gate, then, and see who walks in.</li>
         <li>[agree,against] Nothing good comes through that gate.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, we deal with them on our terms.</li>
         <li>[debate] We'll judge each visitor as they come.</li>
-        <li>[argue] I've said my piece.</li>
+        <li>[argue] I've said my piece about outsiders.</li>
         <li>[agree,against] The gate stays closed unless we need it.</li>
       </cold>
     </lines>
@@ -560,9 +560,9 @@
         <li>[agree,mixed] It's nice to have, but it's not everything.</li>
         <li>[agree,mixed] I can take it or leave it.</li>
         <li>[debate,mixed] I'd have some, just not as much.</li>
-        <li>[debate,mixed] It depends who made it and what for.</li>
+        <li>[debate,mixed] A carving made with care is worth something, a lazy one isn't.</li>
         <li>[argue,mixed] I don't care enough about art to fight about it.</li>
-        <li>[argue,mixed] Leave me out of this one.</li>
+        <li>[argue,mixed] I can't tell a good statue from a bad one, so don't ask me.</li>
       </plain>
       <warm>
         <li>[agree,for] I love seeing what people make.</li>
@@ -574,7 +574,7 @@
         <li>[agree,for] It's good work.</li>
         <li>[debate,for] Leave the artists alone.</li>
         <li>[agree,against] Waste of stone.</li>
-        <li>[argue,mixed] Who cares.</li>
+        <li>[argue,mixed] Who cares about statues.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] I'll pose for the next one, my good side's the left.</li>
@@ -613,7 +613,7 @@
         <li>[agree,against] Walls first, then.</li>
         <li>[agree] Let's go and look at the new piece together.</li>
         <li>[debate] We'll see what the next one's like.</li>
-        <li>[argue] I'm done talking about art.</li>
+        <li>[argue] Enough about statues, I mean it.</li>
         <li>[agree,mixed] To each their own, then.</li>
         <li>[debate,mixed] Let's see what people make next.</li>
       </plain>
@@ -624,9 +624,9 @@
         <li>[agree,against] We'll get the walls done first, then.</li>
       </warm>
       <blunt>
-        <li>[agree] Good.</li>
+        <li>[agree] Good, more art, then.</li>
         <li>[debate] Look at it properly next time.</li>
-        <li>[argue] Fine.</li>
+        <li>[argue] Fine, keep your bare walls.</li>
         <li>[agree,against] Walls, then art.</li>
       </blunt>
       <cheerful>
@@ -642,9 +642,9 @@
         <li>[argue] Fine, it won't matter in a hundred years.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, on the art.</li>
         <li>[debate] Usefulness will decide it.</li>
-        <li>[argue] I've said what I think.</li>
+        <li>[argue] My view of art hasn't changed.</li>
         <li>[agree,for] Art has its uses.</li>
       </cold>
     </lines>
@@ -745,9 +745,9 @@
         <li>[argue,against] You'll learn your way into trouble.</li>
         <li>[agree] I've been saying it since we got here.</li>
         <li>[agree] That's what I told the researchers.</li>
-        <li>[agree] You're right, I've seen it too.</li>
+        <li>[agree] You're right, I've watched the researchers at it.</li>
         <li>[debate] It depends what you're trying to do.</li>
-        <li>[debate] It's not as simple as new or old.</li>
+        <li>[debate] The best tools are old ideas done better.</li>
         <li>[debate] I'm not sure that's true of everything.</li>
         <li>[argue] You don't understand half of it, so don't lecture me.</li>
         <li>[argue] We always end up fighting about this.</li>
@@ -763,7 +763,7 @@
         <li>[debate,mixed] I'd keep the best of both.</li>
         <li>[debate,mixed] Depends on the job, doesn't it.</li>
         <li>[argue,mixed] I don't care which way, as long as it works.</li>
-        <li>[argue,mixed] Leave me out of this fight.</li>
+        <li>[argue,mixed] I'll use whichever way works, now stop.</li>
       </plain>
       <warm>
         <li>[agree,for] I can't wait to see what we learn next.</li>
@@ -775,7 +775,7 @@
         <li>[agree,for] Learn it.</li>
         <li>[debate,for] Try it first.</li>
         <li>[agree,against] Old ways work.</li>
-        <li>[argue,mixed] Who cares.</li>
+        <li>[argue,mixed] Old way, new way, who cares.</li>
       </blunt>
       <cheerful>
         <li>[debate,against] I'll trust it once it's stopped exploding.</li>
@@ -827,7 +827,7 @@
       </warm>
       <blunt>
         <li>[argue] Enough, I'm not arguing this again.</li>
-        <li>[agree] Good.</li>
+        <li>[agree] Good, then we learn.</li>
         <li>[debate] Try it and see.</li>
         <li>[agree,for] Learn, then.</li>
       </blunt>
@@ -840,13 +840,13 @@
       <gloomy>
         <li>[agree] Whatever we learn, it won't be enough.</li>
         <li>[debate] It'll all go wrong one way or another.</li>
-        <li>[argue] Have it your way.</li>
+        <li>[argue] Learn all you like, it won't save us.</li>
         <li>[agree,against] The old ways will outlast us.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, on the learning.</li>
         <li>[debate] Results will decide it.</li>
-        <li>[argue] I've said my piece.</li>
+        <li>[argue] I've said what I think of new learning.</li>
         <li>[agree,for] Progress it is.</li>
       </cold>
     </lines>

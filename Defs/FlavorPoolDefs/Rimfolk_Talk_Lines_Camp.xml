@@ -163,7 +163,7 @@
         <li>[mixed] They're people passing through, that's all I know.</li>
         <li>[mixed] I've no quarrel with them, and no love for them either.</li>
         <li>[agree] I was saying the same down at the water.</li>
-        <li>[debate] It's not as simple as glad or sorry.</li>
+        <li>[debate] I'm glad of some of them and sorry about others.</li>
         <li>[argue] Don't tell me what to think about them.</li>
       </plain>
       <warm>
@@ -180,7 +180,7 @@
         <li>[agree,against] Agreed, move them on.</li>
         <li>[debate,for] Leave them alone.</li>
         <li>[argue,against] Run them off, then, and see what happens.</li>
-        <li>[argue,for] Mind your own business.</li>
+        <li>[argue,for] Mind your own business, and let them mind theirs.</li>
         <li>[agree,mixed] Maybe.</li>
         <li>[argue,mixed] Don't ask me.</li>
       </blunt>
@@ -248,7 +248,7 @@
       </warm>
       <blunt>
         <li>[agree] Right.</li>
-        <li>[debate] Leave it.</li>
+        <li>[debate] Leave the camp be.</li>
         <li>[argue] Fine, have it your way.</li>
         <li>[argue,for] Leave them alone, I mean it.</li>
         <li>[agree,against] They go when the week's out.</li>
@@ -302,7 +302,7 @@
       <blunt>
         <li>[argue] Fine.</li>
         <li>[debate] Still don't trust them.</li>
-        <li>[argue,for] Grow up.</li>
+        <li>[argue,for] Grow up, they're only campers.</li>
         <li>[debate,for] They're harmless.</li>
       </blunt>
       <cheerful>

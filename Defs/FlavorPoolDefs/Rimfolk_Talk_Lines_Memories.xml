@@ -89,7 +89,7 @@
         <li>Course I remember.</li>
         <li>Yeah, I remember.</li>
         <li>[bad] Rather not talk about it.</li>
-        <li>[good] Good times.</li>
+        <li>[good] Good times, those.</li>
       </blunt>
       <cheerful>
         <li>[good] We were magnificent, weren't we.</li>
@@ -101,7 +101,7 @@
         <li>[bad] It never leaves you, does it.</li>
         <li>I remember, more's the pity.</li>
         <li>[good] Those days don't come round twice.</li>
-        <li>I wish I could forget some of it.</li>
+        <li>Some of it I'd give anything to forget.</li>
       </gloomy>
       <cold>
         <li>I remember.</li>
@@ -131,7 +131,7 @@
       </plain>
       <warm>
         <li>I'm glad I've got you.</li>
-        <li>Thank you for remembering it with me.</li>
+        <li>It means a lot that you remember it too.</li>
         <li>I'll always remember it was you there.</li>
         <li>[bad] We'll carry it together, then, like before.</li>
       </warm>
@@ -250,7 +250,7 @@
       <gloomy>
         <li>Lucky, this time.</li>
         <li>Some of it I'll never forget, however hard I try.</li>
-        <li>I still dream about it.</li>
+        <li>I wake up some nights and I'm back there.</li>
         <li>Next time we won't both walk away.</li>
       </gloomy>
       <cold>
@@ -476,7 +476,7 @@
       <cheerful>
         <li>They'd have made a joke of the whole thing.</li>
         <li>I like to think they're laughing at us somewhere.</li>
-        <li>They'd tell us to stop moping and eat something.</li>
+        <li>They'd laugh at us, standing about with long faces.</li>
         <li>I still do the thing they always laughed at.</li>
       </cheerful>
       <gloomy>
@@ -692,7 +692,7 @@
         <li>I'd go through it again, if it were with you.</li>
       </warm>
       <blunt>
-        <li>Never again.</li>
+        <li>Never again, I hope.</li>
         <li>We got through.</li>
         <li>Awful.</li>
         <li>Don't remind me.</li>
@@ -979,7 +979,7 @@
         <li>{LABEL} was long.</li>
         <li>You yawned the whole of {LABEL}.</li>
         <li>We got a lot done on {LABEL}, though.</li>
-        <li>{LABEL}, never again.</li>
+        <li>{LABEL}, I'm still tired.</li>
       </blunt>
       <cheerful>
         <li>You fell asleep standing up on {LABEL}, I saw you.</li>
@@ -1025,7 +1025,7 @@
       <blunt>
         <li>Long night.</li>
         <li>Tired, still.</li>
-        <li>Never again.</li>
+        <li>Never another night like that.</li>
         <li>We got it done.</li>
       </blunt>
       <cheerful>
@@ -1251,7 +1251,7 @@
       <blunt>
         <li>Done with.</li>
         <li>Forgotten.</li>
-        <li>We were idiots.</li>
+        <li>We were idiots, both of us.</li>
         <li>Let's not.</li>
       </blunt>
       <cheerful>
@@ -1363,7 +1363,7 @@
       </warm>
       <blunt>
         <li>[byother] Course I won't tell.</li>
-        <li>[byme] Good.</li>
+        <li>[byme] Good, keep it that way.</li>
         <li>[byother] It's nobody's business.</li>
         <li>[byme] Keep it that way.</li>
       </blunt>
@@ -1471,7 +1471,7 @@
       </warm>
       <blunt>
         <li>I'll be there.</li>
-        <li>Same as ever.</li>
+        <li>Same as ever, I'll be there.</li>
         <li>Don't be late.</li>
         <li>Good habit, that.</li>
       </blunt>
@@ -1553,7 +1553,7 @@
       <cold>
         <li>{LABEL} has grown steadily.</li>
         <li>{LABEL} serves its purpose.</li>
-        <li>We built {LABEL} well.</li>
+        <li>{LABEL} was founded on sound lines.</li>
         <li>{LABEL} needs direction.</li>
       </cold>
     </lines>

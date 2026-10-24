@@ -185,8 +185,8 @@
         <li>[debate,for] Doing nothing is a choice too.</li>
         <li>[argue,against] Go and help them yourself, then.</li>
         <li>[argue,for] Selfish, that's what that is.</li>
-        <li>[agree,mixed] Who knows.</li>
-        <li>[argue,mixed] Leave me out of it.</li>
+        <li>[agree,mixed] Who knows what's true out there.</li>
+        <li>[argue,mixed] Out there's not my business.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] We'll be heroes, they'll write songs about us.</li>
@@ -251,8 +251,8 @@
         <li>[debate,against] We'll look after our own, and then we'll see.</li>
       </warm>
       <blunt>
-        <li>[agree] Right.</li>
-        <li>[debate] Think on it.</li>
+        <li>[agree] Right, we'll see what the road brings.</li>
+        <li>[debate] Think on the news, that's all.</li>
         <li>[argue] Forget it, then.</li>
         <li>[argue,for] Coward's choice.</li>
         <li>[agree,against] Doors shut, then.</li>
@@ -272,7 +272,7 @@
         <li>[debate,for,!goodnews] Help them if you must, it won't last.</li>
       </gloomy>
       <cold>
-        <li>[agree] Settled.</li>
+        <li>[agree] Settled, until the next news.</li>
         <li>[debate] We'll weigh it when there's more to weigh.</li>
         <li>[argue] Your view is noted.</li>
         <li>[agree,against] We stay out of it.</li>
@@ -304,7 +304,7 @@
         <li>[argue,against] I care about them too, you know.</li>
       </warm>
       <blunt>
-        <li>[argue] Enough.</li>
+        <li>[argue] Enough about the world.</li>
         <li>[debate] Still not our fight.</li>
         <li>[argue,for] Heartless.</li>
         <li>[debate,for] Think harder.</li>

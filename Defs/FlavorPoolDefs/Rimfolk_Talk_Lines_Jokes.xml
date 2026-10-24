@@ -87,7 +87,7 @@
       <blunt>
         <li>[fresh] Ha.</li>
         <li>[told] Not again.</li>
-        <li>[worn] Enough.</li>
+        <li>[worn] Enough, it's dead.</li>
         <li>[told] You and that story.</li>
       </blunt>
       <cheerful>
@@ -250,7 +250,7 @@
         <li>[byother] You made the funniest noises, I'm sorry.</li>
       </cheerful>
       <gloomy>
-        <li>[fresh] It wasn't funny at the time.</li>
+        <li>[fresh] I wasn't laughing at the time.</li>
         <li>[told] I've never trusted the kitchen since.</li>
         <li>[byme] I thought I was dying.</li>
         <li>[worn] The stew will haunt us forever.</li>
@@ -485,7 +485,7 @@
       <cold>
         <li>[fresh] My approach was wrong.</li>
         <li>[told] Wild animals are unpredictable.</li>
-        <li>[worn] Enough.</li>
+        <li>[worn] That joke has run its course.</li>
         <li>[byme] I've adjusted my technique.</li>
       </cold>
     </lines>
@@ -542,7 +542,7 @@
       <gloomy>
         <li>{LABEL} could have burned the whole place down.</li>
         <li>I still smell smoke from {LABEL} sometimes.</li>
-        <li>[worn] We'll be talking about {LABEL} forever.</li>
+        <li>[worn] We'll never stop talking about {LABEL}, will we.</li>
         <li>[byme] I still feel foolish about {LABEL}.</li>
       </gloomy>
       <cold>
@@ -577,7 +577,7 @@
         <li>[worn] All right, the fire, one more time.</li>
       </warm>
       <blunt>
-        <li>[fresh] Too close.</li>
+        <li>[fresh] Too close to the roof.</li>
         <li>[told] I wasn't panicking.</li>
         <li>[worn] Not the fire again.</li>
         <li>[byme] I kept my head.</li>
@@ -597,7 +597,7 @@
       <cold>
         <li>[fresh] It was contained quickly.</li>
         <li>[told] We overreacted.</li>
-        <li>[worn] It's been discussed.</li>
+        <li>[worn] The fire has been discussed.</li>
         <li>[byme] I acted correctly.</li>
       </cold>
     </lines>
@@ -756,13 +756,13 @@
         <li>[byme] {LABEL} was a mistake.</li>
         <li>[byother] You were a mess at {LABEL}.</li>
         <li>[worn] {LABEL}, I know.</li>
-        <li>{LABEL}, never again.</li>
+        <li>{LABEL}, my head still hurts.</li>
       </blunt>
       <cheerful>
         <li>[byother] When's the encore, {OTHER}?</li>
         <li>[byother] Your speech at {LABEL} was the best thing I've ever heard, word for word.</li>
         <li>[byme] I was in great voice during {LABEL}, everyone said so, I think.</li>
-        <li>[fresh] I'm still laughing about {LABEL}.</li>
+        <li>[fresh] I can't stop laughing about {LABEL}.</li>
       </cheerful>
       <gloomy>
         <li>[byme] I still feel bad about {LABEL}.</li>
@@ -774,7 +774,7 @@
         <li>[byme] {LABEL} was poorly judged.</li>
         <li>[byother] Your behavior at {LABEL} was memorable.</li>
         <li>{LABEL} cost a day's work.</li>
-        <li>[worn] {LABEL} is old news.</li>
+        <li>[worn] {LABEL} has been mentioned enough.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -802,9 +802,9 @@
         <li>[worn] All right, one more time, for you.</li>
       </warm>
       <blunt>
-        <li>[fresh] Never again.</li>
-        <li>[told] Leave it.</li>
-        <li>[worn] Drop it.</li>
+        <li>[fresh] Never again, not one drop.</li>
+        <li>[told] Leave that night alone.</li>
+        <li>[worn] Drop it, I've learned.</li>
         <li>[byme] I was celebrating.</li>
       </blunt>
       <cheerful>
@@ -816,13 +816,13 @@
       <gloomy>
         <li>[fresh] My head still hurts.</li>
         <li>[told] I'm not proud of it.</li>
-        <li>[worn] We'll never hear the end of it.</li>
+        <li>[worn] Nobody will ever let me forget it.</li>
         <li>[byme] I made a fool of myself.</li>
       </gloomy>
       <cold>
         <li>[fresh] It was excessive.</li>
         <li>[told] It won't happen again.</li>
-        <li>[worn] Enough.</li>
+        <li>[worn] We have discussed my evening enough.</li>
         <li>[byme] An error of judgment.</li>
       </cold>
     </lines>

@@ -177,7 +177,7 @@
         <li>[argue,mixed] I never said it was good, I said it wasn't that bad.</li>
         <li>[argue,mixed] Don't drag me into your fight about the stew.</li>
         <li>[argue,mixed] I'm not taking sides over supper.</li>
-        <li>[argue,mixed] Leave me out of it, I just eat what's there.</li>
+        <li>[argue,mixed] I eat what's put in front of me, so don't ask me to judge it.</li>
         <li>[agree,for] It filled me up and kept me going, what more is there?</li>
         <li>[agree,against] I've been eating standing up so I don't have to taste it.</li>
         <li>[debate,for] Try a winter on boiled bark, then talk to me about flavor.</li>
@@ -278,7 +278,7 @@
         <li>[agree,against] It's not getting better, is it.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, and I'll tell the kitchen.</li>
         <li>[debate] Taste is a matter of opinion.</li>
         <li>[argue] I'm finished with this subject.</li>
         <li>[agree,against] I'll raise it with the council.</li>
@@ -421,7 +421,7 @@
         <li>[agree] That's what I keep telling the others at the woodpile.</li>
         <li>[agree] I've thought the same, more than once.</li>
         <li>[agree] I was going to say the same thing.</li>
-        <li>[debate] It's not as simple as who does what.</li>
+        <li>[debate] Half the work nobody sees, so who's counting?</li>
         <li>[debate] Depends which day you're looking at.</li>
         <li>[debate] That's one way to count it.</li>
         <li>[argue] Keep your nose out of other people's work.</li>
@@ -438,7 +438,7 @@
         <li>[debate,mixed] There's a bit of truth on both sides.</li>
         <li>[debate,mixed] I'd need to watch longer before I said.</li>
         <li>[argue,mixed] I'm not going to start naming people.</li>
-        <li>[argue,mixed] Leave me out of whatever this is.</li>
+        <li>[argue,mixed] Whatever this is between you, I've got hauling to do.</li>
       </plain>
       <warm>
         <li>[debate,for] Let's not start blaming each other, we're all tired.</li>
@@ -503,7 +503,7 @@
       </plain>
       <warm>
         <li>[agree] Get some rest tonight, both of us.</li>
-        <li>[debate] Let's not let it come between us.</li>
+        <li>[debate] Let's not let a few chores come between us.</li>
         <li>[argue] I'm sorry, I'm just worn out.</li>
         <li>[agree,against] I'll help you with yours after mine.</li>
       </warm>
@@ -690,7 +690,7 @@
       <blunt>
         <li>[argue,against] Sentimental rubbish.</li>
         <li>[agree,for] They're good animals.</li>
-        <li>[debate,for] Leave them alone.</li>
+        <li>[debate,for] Leave the beasts alone.</li>
         <li>[agree,against] Too many mouths.</li>
       </blunt>
       <cheerful>
@@ -760,7 +760,7 @@
         <li>[agree,against] They're more trouble than they're worth.</li>
       </gloomy>
       <cold>
-        <li>[agree] Settled.</li>
+        <li>[agree] Settled, the herd stays as it is.</li>
         <li>[debate] We'll see what they cost us this winter.</li>
         <li>[argue] I've said what I think.</li>
         <li>[agree,against] We'll keep the strongest and sell the rest.</li>
@@ -908,7 +908,7 @@
         <li>[agree] I was thinking the same when I looked out this morning.</li>
         <li>[agree] You're right, I felt it on the way in.</li>
         <li>[agree] Everyone's saying it.</li>
-        <li>[debate] The weather's not as simple as that.</li>
+        <li>[debate] Nobody's ever been right about the weather here, you included.</li>
         <li>[debate] Ask me again after I've been outside.</li>
         <li>[debate] It changes too fast here to say.</li>
         <li>[argue] You complain about the weather like it's listening.</li>
@@ -1006,7 +1006,7 @@
         <li>[agree,against] Another day of this, then.</li>
       </gloomy>
       <cold>
-        <li>[agree] Agreed.</li>
+        <li>[agree] Agreed, there's nothing to be done about the sky.</li>
         <li>[debate] We'll plan the work around it.</li>
         <li>[argue] I'm not discussing the weather further.</li>
         <li>[agree,against] We'll lose a day to it.</li>
