@@ -17,7 +17,8 @@ namespace ColonyCouncil
     /// at a level while something at a higher one can go ahead: its materials are on the map (not forbidden), the
     /// colony can reach it and someone here has the skill for it. What can't go ahead (materials missing, forbidden,
     /// walled off, beyond everyone's skill) holds nothing up, and a job given by hand ("prioritize") is always taken. The level goes with a blueprint when
-    /// it becomes a frame. Looked at every 250 ticks while any level is set, and at once when one is changed.
+    /// it becomes a frame, and shows on the map as a light tint (BuildPriorityText.Tint). Looked at every 250 ticks while
+    /// any level is set, and at once when one is changed.
     /// </summary>
     public class BuildPriorities : MapComponent
     {
@@ -149,23 +150,27 @@ namespace ColonyCouncil
             return n;
         }
 
-        /// <summary>A small tag under each prioritized blueprint and frame in view: urgent, high or low.</summary>
-        public override void MapComponentOnGUI()
+        /// <summary>A light tint over each prioritized blueprint and frame in view: red for urgent, amber for high, blue for low.</summary>
+        public override void MapComponentUpdate()
         {
             if (levels.Count == 0 || !On || Find.CurrentMap != map || WorldRendererUtility.WorldSelected || Find.UIRoot?.screenshotMode?.Active == true) return;
             try
             {
-                var view = Find.CameraDriver.CurrentViewRect;
+                var view = Find.CameraDriver.CurrentViewRect.ExpandedBy(1);
                 foreach (var kv in levels)
                 {
                     var t = kv.Key;
-                    if (t == null || !t.Spawned || !view.Contains(t.Position)) continue;
-                    GenMapUI.DrawThingLabel(GenMapUI.LabelDrawPosFor(t, -0.6f), BuildPriorityText.Short(kv.Value), BuildPriorityText.Color(kv.Value));
+                    if (t == null || !t.Spawned) continue;
+                    var mat = BuildPriorityText.Tint(kv.Value);
+                    if (mat == null) continue;
+                    foreach (var c in t.OccupiedRect())
+                        if (view.Contains(c))
+                            Graphics.DrawMesh(MeshPool.plane10, c.ToVector3ShiftedWithAltitude(AltitudeLayer.MetaOverlays), Quaternion.identity, mat, 0);
                 }
             }
             catch (Exception e)
             {
-                CouncilLog.ErrorOnce("build priority tags", e);
+                CouncilLog.ErrorOnce("build priority tints", e);
             }
         }
 
@@ -188,13 +193,35 @@ namespace ColonyCouncil
     {
         public static string Name(int level) => ("CC_BuildPrio_" + Key(level)).Translate();
 
-        public static string Short(int level) => ("CC_BuildPrio_Tag_" + Key(level)).Translate();
-
         private static string Key(int level) =>
             level >= BuildPriorityMath.Urgent ? "Urgent" : level == BuildPriorityMath.High ? "High" : level <= BuildPriorityMath.Low ? "Low" : "Normal";
 
         public static Color Color(int level) =>
-            level >= BuildPriorityMath.Urgent ? new Color(1f, 0.55f, 0.35f) : level == BuildPriorityMath.High ? new Color(1f, 0.85f, 0.4f) : new Color(0.7f, 0.75f, 0.8f);
+            level >= BuildPriorityMath.Urgent ? new Color(1f, 0.45f, 0.32f)
+            : level == BuildPriorityMath.High ? new Color(1f, 0.82f, 0.32f)
+            : level <= BuildPriorityMath.Low ? new Color(0.5f, 0.68f, 1f)
+            : UnityEngine.Color.white;
+
+        /// <summary>How strongly the tint shows over a blueprint or frame: enough to tell apart, not enough to hide it.</summary>
+        public const float TintAlpha = 0.22f;
+
+        private static Material urgent, high, low;
+
+        /// <summary>The see-through tint for a level on the map (made on first use, on the main thread); null for normal.</summary>
+        public static Material Tint(int level)
+        {
+            if (level >= BuildPriorityMath.Urgent) return urgent ??= Make(level);
+            if (level == BuildPriorityMath.High) return high ??= Make(level);
+            if (level <= BuildPriorityMath.Low) return low ??= Make(level);
+            return null;
+        }
+
+        private static Material Make(int level)
+        {
+            var c = Color(level);
+            c.a = TintAlpha;
+            return SolidColorMaterials.SimpleSolidColorMaterial(c);
+        }
     }
 
     /// <summary>
