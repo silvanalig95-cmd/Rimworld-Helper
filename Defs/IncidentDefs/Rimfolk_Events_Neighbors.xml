@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk events: a colonist's own life and the neighbors'. Word of a death far away, a keepsake turning up on a
+       trader's blanket, a colonist called home; goods with no questions asked, a traveling gambler, a neighbor's stray
+       beast; hands for hire and a teacher for the children. Told from data (HappeningWorker_Setting); none ends in a
+       fight. -->
+
+  <!-- ===================== Word of a death ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_DeathNews</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>word of a death</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <minColonists>2</minColonists>
+        <answerDays>0.5</answerDays>
+        <colonist>
+          <minAge>22</minAge>
+        </colonist>
+        <journal>Council_Journal_Evt_DeathNews</journal>
+        <titles>
+          <li>Word of a death</li>
+          <li>News for {A_nameDef}</li>
+          <li>Too far away</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A peddler on the road passed the news to {A_nameDef} along with the rest of the gossip, not knowing what it was: {TALE} has died, back where {A_nameDef} came from. A fever in the spring, the peddler thinks.\n\n{A_nameDef} finished the day's work without a word, and hasn't eaten since.</li>
+          <li>[!lowtech] The message was three lines long and had been passed on twice before it reached the colony's comms: {TALE} has died. {A_nameDef} copied it out by hand and has been carrying the paper folded in a pocket all afternoon.</li>
+          <li>Word came with a traveler this morning. {TALE} is dead, months ago now, and buried far from here. {A_nameDef} heard it at the gate, nodded, and went back to work, and the work isn't getting done.</li>
+          <li>[winter] News moves slowly in the cold. A letter from the old country reached {A_nameDef} today, half a year late: {TALE} died before the snow came. {A_nameDef} read it by the stove, folded it small, and hasn't said a word since.</li>
+          <li>[trait:Kind] {A_nameDef} has been sitting on the woodpile since noon with a letter in {A_possessive} lap. {TALE} is dead. There was a funeral, a long way from here, weeks ago, and {A_nameDef} wasn't at it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A wake tonight, and {A_nameDef} tells the colony about them</label>
+            <outcome>The colony gathered after supper and {A_nameDef} told stories until late: the jokes, the quarrels, the time with the borrowed cart. There was more laughing than anyone expected, and some crying at the end.</outcome>
+            <outcomes>
+              <li>[lowtech] They poured a cup for the dead and set it at the end of the table, the old way, and {A_nameDef} talked until the cup was the only full thing left.</li>
+              <li>[trait:Kind] {A_nameDef} talked about the one who died for an evening, and the colony listened, and at the end {A_nameDef} said thank you to each of them in turn.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef}'s wake for an old friend</label><spots><li>Dining</li><li>Fire</li><li>Rec</li></spots><hours>18~23</hours><duration>1.5~2.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GriefWake</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Give {A_objective} the day, and leave {A_objective} be</label>
+            <outcome>{A_nameDef} went out past the fields after breakfast and didn't come back until the light was going. The next morning {A_nameDef} was at work early, red-eyed and steady.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Rest" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s day alone</label><to>Walk</to><hours>8~16</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GriefDay</thought></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Keep {A_objective} busy; work helps</label>
+            <outcome>{A_nameDef} worked through the day and the next, long hours and short answers, and went to bed early both nights.</outcome>
+            <outcomes>
+              <li>[trait:Industrious] {A_nameDef} took on twice the work and finished all of it. The grief went into the work, or somewhere further down.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GriefNoTime</thought></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <tales>
+          <li>an old friend from the years before the colony</li>
+          <li>a friend from childhood</li>
+          <li>[past:soldier] the old sergeant from the unit</li>
+          <li>[past:healer] the old doctor who did the training</li>
+          <li>[past:outlaw] the first of the old crew to go straight</li>
+          <li>[past:farmer] the old farmer next door, the one with the dogs</li>
+          <li>[past:scholar] the strict old tutor</li>
+          <li>[past:trader] an old partner from the trading years</li>
+          <li>[past:noble] the steward who ran the old house</li>
+          <li>[past:artisan] the master of the old workshop</li>
+        </tales>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A keepsake for sale ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_PawnedKeepsake</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a keepsake for sale</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <ages>30~65</ages>
+        <stayHours>12~18</stayHours>
+        <amount>80~180</amount>
+        <answerDays>0.6</answerDays>
+        <colonist>
+          <minAge>20</minAge>
+        </colonist>
+        <journal>Council_Journal_Evt_PawnedKeepsake</journal>
+        <titles>
+          <li>A keepsake for sale</li>
+          <li>On {X_nameDef}'s blanket</li>
+          <li>Something of {A_nameDef}'s</li>
+        </titles>
+        <texts>
+          <li>Laid out on {X_nameDef}'s blanket between the buckles and the spoons is {TALE}, and {A_nameDef} knew it from across the yard. It was {A_possessive}, years ago, lost with everything else when {A_nameDef} left the old life behind.\n\n{X_nameDef} of {FACTION} bought it at a market somewhere, and wants {COUNT} silver for it.</li>
+          <li>[lowtech] {X_nameDef} of {FACTION} trades in odds and ends, and among the odds and ends is {TALE}. {A_nameDef} picked it up, turned it over and went pale: there's a mark on the underside made by a child's knife, and the child was {A_nameDef}.\n\n{X_nameDef} wants {COUNT} silver, and can see how much {A_nameDef} wants it.</li>
+          <li>{A_nameDef} hasn't moved from {X_nameDef}'s pack in an hour. In among the trader's goods is {TALE}, {A_possessive} own once, sold off in a bad year long before the colony. {X_nameDef} of {FACTION} has noticed, and the price has gone up to {COUNT} silver.</li>
+          <li>[!lowtech] It's in a plastic tray with a price tag tied on: {TALE}. {A_nameDef} has the matching scratch on the back memorized. {X_nameDef} of {FACTION} found it in a house clearance three towns back, and wants {COUNT} silver.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Buy it back ({COUNT} silver)</label>
+            <outcome>The silver went over to {X_nameDef}, and {A_nameDef} took it back without a word. It's on the shelf above {A_possessive} bed now, where {A_nameDef} can see it from the pillow.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_KeepsakeBack</thought></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Have {B_nameDef} haggle for it</label>
+            <outcome>{B_nameDef} talked {X_nameDef} down to half, mostly by pretending not to care, and {A_nameDef} has it back.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{B_nameDef} haggled too hard. {X_nameDef} put it back in the pack and wouldn't take it out again, and it went with {X_objective} in the morning.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>6</minLevel><asB>true</asB></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_KeepsakeBack</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_KeepsakeGone</thought></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Say it was stolen, and ask for it</label>
+            <outcome>{X_nameDef} argued, then looked at {A_nameDef}'s face and handed it over. {FACTION} will hear that the colony takes back what it calls its own.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} wouldn't hear of it, packed up and left for {PLACE} in a temper, with {TALE} still in the bag.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_KeepsakeBack</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-2</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_KeepsakeGone</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </riskEffects>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Let it go</label>
+            <outcome>{A_nameDef} set it back down on the blanket. By evening {X_nameDef} had sold it to a traveler going the other way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_KeepsakeGone</thought></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <visitAt>gathering</visitAt>
+        <tales>
+          <li>a silver locket with a cracked hinge</li>
+          <li>a carved wooden horse, worn smooth</li>
+          <li>[past:soldier] a medal on a faded ribbon</li>
+          <li>[past:healer] a doctor's case with initials burned into the lid</li>
+          <li>[past:noble] a signet ring</li>
+          <li>[past:scholar] a book of poems with notes in the margins</li>
+          <li>[past:artisan] a roll of carving tools in oiled leather</li>
+          <li>[past:farmer] a pocketknife with a horn handle</li>
+          <li>[past:trader] a brass scale in a wooden box</li>
+        </tales>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Called home ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_CalledHome</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>called home</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>30</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Past</group>
+        <minColonists>4</minColonists>
+        <amount>100~220</amount>
+        <answerDays>1</answerDays>
+        <colonist>
+          <minAge>20</minAge>
+        </colonist>
+        <journal>Council_Journal_Evt_CalledHome</journal>
+        <titles>
+          <li>Called home</li>
+          <li>Come home, {A_nameDef}</li>
+          <li>A letter from home</li>
+        </titles>
+        <texts>
+          <li>[lowtech] A runner came a long way to put a knotted cord in {A_nameDef}'s hands, and {A_nameDef} read the knots and sat down where {A_pronoun} stood. The people {A_pronoun} left behind want {A_objective} home: {TALE} needs {A_objective}, and there's no one else to do it.\n\n{A_nameDef} hasn't said what {A_pronoun} wants. The council will have to say it first.</li>
+          <li>[!lowtech] The letter has been through four hands and two caravans to reach {A_nameDef}, and it says what letters like it always say: come home. {TALE} can't wait much longer, and there's no one else to take it on.\n\n{A_nameDef} has read it many times, and has asked the council to decide, because {A_pronoun} can't.</li>
+          <li>A traveler brought {A_nameDef} word from the old country: the family wants {A_objective} back. {TALE} needs {A_objective} now, and they've waited as long as they can.\n\n{A_nameDef} came to the council with the letter still in {A_possessive} hand. Whatever the council says, {A_nameDef} will do.</li>
+          <li>[winter] The letter came with the last trader before the passes close. {A_nameDef}'s people want {A_objective} home by spring: {TALE} needs hands, and {A_nameDef}'s are the hands they're counting on.\n\nIf {A_nameDef} is going, it had better be before the snow gets deep.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Write back: {A_nameDef} is needed here</label>
+            <outcome>{A_nameDef} wrote the answer at the table that night and sealed it before {A_pronoun} could change a word, then sat a long while with the candle.</outcome>
+            <outcomes>
+              <li>[trait:Kind] {A_nameDef} wrote three pages, crossed most of them out and sent one. The colony needs {A_objective}. The rest was apologies.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StayedForUs</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send {COUNT} silver home instead, with a long letter</label>
+            <outcome>The silver went into a pouch with a long letter, both bound for the old country with the next trader. It won't bring {A_nameDef} home, but it will hire the hands {A_nameDef} can't be.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SentHome</thought></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} go home, with the colony's blessing</label>
+            <outcome>In the morning the colony saw {A_nameDef} to the gate with a full pack and too much advice. {A_nameDef} turned twice on the road to wave, and then the road bent and the colony was one smaller.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {A_nameDef} off</label><to>Gate</to><hours>7~17</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Evt_SawThemOff</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_LeaveForGood" />
+            </effects>
+            <ways><mercy>1</mercy><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <tales>
+          <li>the family farm</li>
+          <li>an old mother who can't manage alone</li>
+          <li>[past:farmer] the farm, and fields no one else knows how to work</li>
+          <li>[past:trader] the family's trading house</li>
+          <li>[past:artisan] the old workshop and its customers</li>
+          <li>[past:noble] the family's house and name</li>
+          <li>[past:healer] the village sickroom, which has no one else</li>
+        </tales>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Goods with no questions asked ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_StolenGoods</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>goods with no questions asked</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <ages>22~55</ages>
+        <stayHours>8~14</stayHours>
+        <amount>120~240</amount>
+        <value>350~650</value>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>No questions asked</li>
+          <li>A bargain at the gate</li>
+          <li>{X_nameDef}'s cart</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} has a cart of good things and a price far too low for them: {COUNT} silver for the lot. When {A_nameDef} asked where they came from, {X_nameDef} talked about the weather.\n\n{A_nameDef} found the answer on the side of a crate: a merchant's mark from {PLACE}, and fresh splinters where someone pried it open.</li>
+          <li>[lowtech] Under the sacking on {X_nameDef}'s handcart: good cloth, a few tools, a jar of salt, a pair of boots made for someone else. {COUNT} silver for everything, says {X_nameDef} of {FACTION}, and no questions.\n\n{A_nameDef} heard at the last market that a storehouse at {PLACE} was broken into the week before.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} opened the back of the cart only partway, and kept looking at the road while {X_pronoun} did it. Inside are crates with {PLACE}'s customs seals cut through. {X_nameDef} wants {COUNT} silver for the lot, a third of what it's worth, and wants it fast.</li>
+          <li>[colony:Thrifty] Word on the road is that the colony counts every coin, so {X_nameDef} of {FACTION} has brought it a bargain: a cart of goods worth three times the {COUNT} silver {X_pronoun} asks. Where they came from is {X_possessive} business, {X_nameDef} says.\n\nThe sacks are stenciled with the name of a granary at {PLACE}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy the lot ({COUNT} silver; {FACTION} may find out)</label>
+            <outcome>{X_nameDef} took the silver and was gone before the goods were off the cart. They're in the storeroom now, with the marks scraped off.</outcome>
+            <riskChance>0.35</riskChance>
+            <riskOutcome>{X_nameDef} took the silver and went. A week later a rider from {PLACE} came asking after a stolen cart, and found its goods in the colony's storeroom with the marks half scraped off. {FACTION} won't forget it.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Loot"><by>Outsiders</by></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>slighted</kind></li>
+            </riskEffects>
+            <ways><generosity>-1</generosity><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Send word to {PLACE}</label>
+            <outcome>A rider went off to {PLACE} within the hour. {X_nameDef} saw the rider go, understood, and was off up the road with the cart before evening. {FACTION} sent their thanks, and riders after the cart.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>7</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>favorDone</kind></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Not interested</label>
+            <outcome>{X_nameDef} shrugged, threw the sacking back over the cart and went on to try the next settlement.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A traveling gambler ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Gambler</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a traveling gambler</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <ages>25~60</ages>
+        <stayHours>14~20</stayHours>
+        <amount>60~140</amount>
+        <answerDays>0.6</answerDays>
+        <colonist>
+          <bestAt>Intellectual</bestAt>
+        </colonist>
+        <journal>Council_Journal_Evt_Gambler</journal>
+        <titles>
+          <li>A traveling gambler</li>
+          <li>A game after supper</li>
+        </titles>
+        <texts>
+          <li>[lowtech] {X_nameDef} of {FACTION} rattles a cup of knucklebones while talking, and never seems to notice doing it. {X_nameDef} would like a game or two after supper with anyone who has silver and an evening to lose it in, or one game against the colony's best, {COUNT} silver a side.\n\n{A_nameDef}, who is good with numbers, thinks {X_nameDef}'s bones roll too well.</li>
+          <li>[!lowtech] A deck of cards, worn soft at the corners, came out of {X_nameDef}'s coat before {X_nameDef} of {FACTION} had finished saying hello. Cards after supper, {X_nameDef} offers: anyone who'd like to play, or one hand against the colony's best for {COUNT} silver a side.\n\n{A_nameDef} has heard about friendly games.</li>
+          <li>{X_nameDef} of {FACTION} plays dice for a living and makes no secret of it: a game tonight with whoever wants one, or a single game against the colony's best, {COUNT} silver a side, winner takes the pot.</li>
+          <li>[colony:Hardworking] The colony doesn't play much, by the look of it, and {X_nameDef} of {FACTION} has taken that as a challenge. A night of games never ruined anyone, {X_nameDef} says, and the dice are already out. Or {A_nameDef}, who looks clever, can play {X_objective} for {COUNT} silver a side.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let anyone who wants to play</label>
+            <outcome>The table was loud until late. When the last game was done, the colony had come out ahead, and {X_nameDef} paid up with a sour face.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The table was loud until late. When the last game was done, the colony's purses were lighter and {X_nameDef}'s heavier, and {A_nameDef} still can't work out how.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>games with {X_nameDef}</label><organizer>None</organizer><spots><li>Rec</li><li>Dining</li><li>Stranger</li></spots><hours>18~23</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>games with {X_nameDef}</label><organizer>None</organizer><spots><li>Rec</li><li>Dining</li><li>Stranger</li></spots><hours>18~23</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
+            </riskEffects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} plays {X_objective}, {COUNT} silver a side</label>
+            <outcome>{A_nameDef} sat across from {X_nameDef} with the colony crowded round, and took the pot on the last throw. {X_nameDef} shook {A_possessive} hand and counted the silver out slowly.</outcome>
+            <riskChance>0.6</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} played well and lost anyway. {X_nameDef} swept up the pot with a nod, as if it had never been in doubt.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s game against {X_nameDef}</label><to>Stranger</to><hours>18~23</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>2</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WonThePot</thought></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s game against {X_nameDef}</label><to>Stranger</to><hours>18~23</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_LostThePot</thought></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>No gambling at the colony</label>
+            <outcome>{X_nameDef} put the dice away with good grace, stayed the night and left in the morning to find livelier company.</outcome>
+            <ways><tradition>1</tradition></ways>
+          </li>
+        </options>
+        <riskSkill>Intellectual</riskSkill>
+        <riskSkillOption>1</riskSkillOption>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <visitAt>gathering</visitAt>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A neighbor's stray beast ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_StrayBeast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a neighbor's stray beast</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <amount>50~110</amount>
+        <value>80~160</value>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>A stray from {PLACE}</li>
+          <li>{FACTION}'s brand</li>
+        </titles>
+        <texts>
+          <li>A big draft beast with {PLACE}'s brand on its flank came out of the trees yesterday and started on the colony's hay as if it had always lived here. {A_nameDef} has had it in the barn overnight.\n\nA rider passed this morning asking at every gate along the road: {FACTION} lost one of their best draft animals in the last storm.</li>
+          <li>[lowtech] There's a beast in the colony's pen that isn't the colony's. It wandered in at dusk with a cut rope hanging from its neck and {FACTION}'s mark burned into its hide, and {A_nameDef} hadn't the heart to drive it off.\n\n{FACTION}'s people at {PLACE} will be looking for it. Or they may never think to look here.</li>
+          <li>[winter] It came in out of the snow with frost on its back and {PLACE}'s brand on its flank, and went straight into the barn to stand with the others. {A_nameDef} fed it. {FACTION} will want it back before the thaw, if they know where it went.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Send word to {PLACE} to come for it</label>
+            <outcome>A drover from {PLACE} came for the beast the next morning, with a sack of something by way of thanks and a lot of talk about the storm. {FACTION} will remember the colony gave it back.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>favorDone</kind></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Loot"><by>Outsiders</by></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Ask {FACTION} for a finder's fee ({COUNT} silver)</label>
+            <outcome>{FACTION} paid the fee when their drover came for the beast. The drover counted it out without a smile, and led the animal off without a word.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-2</amount></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Clip the brand and keep it (they may find out)</label>
+            <outcome>The brand was clipped and the beast stays. It works as hard as any animal the colony owns, and no one from {PLACE} has come asking.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskOutcome>The brand was clipped and the beast stays, but one of {FACTION}'s traders knew it in the colony's pen at a glance. {FACTION} know now where their animal went, and what the colony did about it.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Muffalo</li><li>Yak</li><li>Dromedary</li><li>Horse</li><li>Donkey</li><li>Bison</li><li>Cow</li></kinds></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>slighted</kind></li>
+            </riskEffects>
+            <ways><generosity>-2</generosity><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <neighbor>true</neighbor>
+        <wealthScaled>false</wealthScaled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Hands for hire ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_HiredHands</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>hands for hire</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>3~3</count>
+        <ages>18~45</ages>
+        <stayHours>10~16</stayHours>
+        <amount>30~70</amount>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>Hands for hire</li>
+          <li>A day's work for a meal</li>
+        </titles>
+        <texts>
+          <li>Three of {FACTION}'s people stopped at the gate on their way to {PLACE}, axes on their shoulders and nothing in their packs. {X_nameDef} speaks for them: a day's work for a day's food, any work, and they'll be gone tomorrow.\n\nFor {COUNT} silver, they'd stay on until dark and cut a winter's wood.</li>
+          <li>[lowtech] {X_nameDef} and two others of {FACTION} have been going from village to village looking for work since their own fields failed. They can fell trees, split wood and carry anything, {X_nameDef} says, and they'll take their pay in food, or {COUNT} silver for a longer day.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} and a couple of friends are working their way along the road, a day here and a day there, boots held together with wire. They'll fell and trim timber for a hot meal each, or a winter's worth for {COUNT} silver.</li>
+          <li>[fall] Hands come cheap at the end of harvest. {X_nameDef} and the two with {X_objective}, laborers of {FACTION}, have finished at {PLACE} and are taking the long way home, looking for a last day's work before the cold. A meal each, or {COUNT} silver for a winter's wood.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>A day's wood for a meal each</label>
+            <outcome>The three of them worked the treeline all afternoon and ate sitting on the logs when they were done, sawdust in their hair. They were gone by morning, and the wood lay where the trees had come down.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>supper for the hired hands</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>45</count><near>Stranger</near></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>A winter's wood for {COUNT} silver</label>
+            <outcome>For the silver, {X_nameDef}'s crew cleared a whole stretch of the treeline, felling and trimming until dark. There's wood lying out there for half the winter.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>110</count><near>Stranger</near></li>
+            </effects>
+          </li>
+          <li>
+            <label>Feed them, and send them on</label>
+            <outcome>{A_nameDef} carried out a pot of something hot, and the three of them ate it at the gate and went on toward {PLACE} with full bellies.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>a hot pot for the road</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>No work today</label>
+            <outcome>{X_nameDef} nodded. They've heard it before, and they went on up the road.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A traveling teacher ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Schoolteacher</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a traveling teacher</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~65</ages>
+        <stayHours>16~24</stayHours>
+        <amount>40~90</amount>
+        <answerDays>0.7</answerDays>
+        <colonist>
+          <child>true</child>
+        </colonist>
+        <titles>
+          <li>A traveling teacher</li>
+          <li>Lessons for the children</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} goes from settlement to settlement teaching children their letters and numbers, a day here and a week there, for whatever a place can pay. {X_nameDef} has already met {A_nameDef}, who asked eleven questions before supper.\n\nFor {COUNT} silver, {X_nameDef} will give the colony's children a day of real lessons.</li>
+          <li>[lowtech] A teacher has come up the road with a slate under each arm: {X_nameDef} of {FACTION}, who teaches the children of the villages to count, to read the old marks and to tell the stars apart. For {COUNT} silver, {X_nameDef} will spend tomorrow with the colony's young ones.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} runs a school out of a backpack: chalk, a battered reader, a box of pencils worn to stubs. For {COUNT} silver, {X_nameDef} will give the colony's children a day of lessons, and leave the reader behind.</li>
+          <li>[winter] With the fields asleep, {X_nameDef} of {FACTION} walks the settlements teaching, and has stopped at the colony. {A_nameDef} has been following {X_objective} around since the gate. A day of lessons would be {COUNT} silver, {X_nameDef} says.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A day of lessons for the children ({COUNT} silver)</label>
+            <outcome>{X_nameDef} sat the children down at the table with a slate each and kept them at it until supper. {A_nameDef} went to bed reciting something under {A_possessive} breath.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{X_nameDef}'s lessons</label><teacher>X</teacher><student>A</student><skill>Intellectual</skill><xpPerHour>120</xpPerHour><hours>8~16</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Intellectual</skill><xp>300</xp></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Lessons for the grown-ups too (half as much again)</label>
+            <outcome>After the children's lessons, {X_nameDef} sat the grown-ups down as well. Some of them hadn't held a slate in years, and {A_nameDef} enjoyed correcting them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>1.5</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{X_nameDef}'s lessons</label><teacher>X</teacher><student>A</student><skill>Intellectual</skill><xpPerHour>120</xpPerHour><hours>8~16</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{X_nameDef}'s lesson for the grown-ups</label><organizer>None</organizer><spots><li>Dining</li><li>Rec</li><li>Stranger</li></spots><hours>17~22</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>200</xp></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Thank {X_objective}, but no</label>
+            <outcome>{X_nameDef} left the children a riddle each to puzzle over and went on in the morning.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <needs>
+          <li>children</li>
+        </needs>
+        <visitor>true</visitor>
+        <visitAt>gathering</visitAt>
+        <people>own</people>
+        <visitorSkill>Intellectual</visitorSkill>
+        <visitorLevel>9~15</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

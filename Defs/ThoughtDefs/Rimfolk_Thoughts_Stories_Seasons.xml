@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods from the season-long story chains (Defs/IncidentDefs/Council_Events_Stories_Seasons.xml): the apprentice
+       from the town and the traveler with the fever. The good endings mostly give something other than a mood. -->
+
+  <ThoughtDef>
+    <defName>Council_Story_ApprenticeStayed</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>my apprentice stayed</label><description>The youngster I taught all season asked to stay, and stayed. There are two of us at the bench now, and one of us is still learning.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>3</felt><skill>Social</skill><xp>300</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_ApprenticeDone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>sent my apprentice home a journeyman</label><description>The youngster from the town went home with a trade and a set of our old tools. Somewhere down the road, someone is going to sit on a chair I taught them to make.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>3</felt><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_ApprenticeLost</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>lost my apprentice</label><description>Half a season of teaching, and the youngster is gone before the work was done. The half-made pieces are still on my bench.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_FeverDoctor</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>what I taught got a town through</label><description>The traveler I nursed through the fever took what I knew back to the town, and the town came through it. I'd like to know how many.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Pride</li></feelings><felt>2</felt><skill>Medicine</skill><xp>400</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_FeverTownSaved</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>our medicine got a town through a fever</label><description>We sent our medicine down the road to a town with a fever in it, and word came back that it got them through. It's a strange thing to have done from this far away.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Story_FeverShutOut</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>we kept the gate shut on a sick town</label><description>A whole town had the fever, and the one who came to ask was a traveler we'd helped ourselves. We kept the gate shut. I keep wondering what our medicine would have done there.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
