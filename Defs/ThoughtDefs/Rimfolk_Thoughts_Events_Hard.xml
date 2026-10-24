@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods from the Rimfolk events of the hard turns and the neighbors (Defs/IncidentDefs/Rimfolk_Events_Hardships.xml,
+       Rimfolk_Events_Neighbors.xml). Most are bad or bittersweet; the few good moments give something else instead
+       of a mood (RewardInstead). What helps is in Defs/MoodHintDefs/Rimfolk_MoodHints_Events.xml. -->
+
+  <ThoughtDef>
+    <defName>Council_Evt_FrostTook</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the frost took my rows</label><description>I knew it was coming and we left the crop standing anyway. Now the leaves are black and the stalks fold over when you touch them.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_LostToTheNight</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>lost one of the herd to the night</label><description>Something got under the gate in the dark and took one of the animals I look after. I keep counting them in the mornings now.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_HuntedTheFleeing</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>hunted animals running from a fire</label><description>They were running for their lives from the fire, and we shot them as they went past. The meat's in the smokehouse. I can't stop thinking about it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_ShelteredThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>we took in the burned-out family</label><description>A family burned out of their farm slept inside our walls last night, with a hot supper in them. Whatever came after them, at least they weren't out on the road.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_GateShutOnThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>we shut the gate on them</label><description>They'd been burned out of their home and walked all night, and we kept the gate shut. I watched them go down the road in the dark.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_GriefWake</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>said goodbye to an old friend</label><description>Word came that someone from before the colony died, far away. We held a wake and I talked until late. Some of them laughed in the right places.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_GriefDay</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>grieving someone far away</label><description>Someone I knew before the colony is dead, and buried where I can't go. The council gave me the day. I spent it walking.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_GriefTree</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>planted a tree for them</label><description>Someone I knew before the colony died, far away. I planted a tree for them by the fields, with a stone beside it. I'll know where to go.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_GriefNoTime</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>no time to grieve</label><description>Someone I knew before the colony died, far away, and the next morning I was back at work as if nothing happened. It's still sitting there.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_KeepsakeBack</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>got my old keepsake back</label><description>It turned up on a trader's blanket after all these years, and now it's mine again. I keep picking it up to check it's real.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_KeepsakeGone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>my keepsake went down the road</label><description>It was right there on the trader's blanket, the one thing left from before, and now it's gone again. I should have done something.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_StayedForUs</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>said no to home</label><description>My family asked me to come home, and I wrote back that I'm needed here. I am. I keep reading their letter anyway.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_SentHome</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>sent silver home</label><description>The colony sent silver to my family instead of sending me. It will hire the help they need. It isn't the same as me being there, and they'll know that.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>2</felt><trust>0.03</trust></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_SawThemOff</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>one of us went home</label><description>We walked them to the gate this morning and waved until the road bent. Their place at the table is still empty.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_WonThePot</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>beat the gambler</label><description>A traveling gambler played me for the colony's silver, and I took the pot at the very end. My hands were shaking when I picked it up.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><feelings><li>Pride</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Evt_LostThePot</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>lost the colony's stake</label><description>The council trusted me with the stake, and the gambler went off down the road with it. I keep seeing the last game.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

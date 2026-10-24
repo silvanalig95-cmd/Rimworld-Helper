@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What helps with the moods of the newer Rimfolk events and the season-long stories: grief for someone far away,
+       crops lost to frost, a keepsake gone again, a gate shut on people in need, a colonist who went home or stayed,
+       an apprentice lost. -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtGrief</defName>
+    <thoughts>
+      <li>Council_Evt_GriefWake</li>
+      <li>Council_Evt_GriefDay</li>
+      <li>Council_Evt_GriefTree</li>
+      <li>Council_Evt_GriefNoTime</li>
+    </thoughts>
+    <fix>Word came that someone they knew before the colony has died, far away. It fades in a few days. A wake that evening, a day to themselves or a tree planted for the dead when the news comes makes it lighter than being sent straight back to work.</fix>
+    <act>Give it a few days</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldEvents</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtFrost</defName>
+    <thoughts><li>Council_Evt_FrostTook</li></thoughts>
+    <fix>A frost killed the crops they had been growing. It fades within a week. When a frost is coming, sending hands to bring in what's ripe saves both the crop and the grower's mood.</fix>
+    <act>Passes with time</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldEvents</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtLosses</defName>
+    <thoughts>
+      <li>Council_Evt_LostToTheNight</li>
+      <li>Council_Evt_KeepsakeGone</li>
+      <li>Council_Evt_LostThePot</li>
+    </thoughts>
+    <fix>Something they cared about or answered for is gone: an animal taken in the night, a keepsake carried off down the road, a stake lost at the gambler's table. It fades in a few days.</fix>
+    <act>Passes with time</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldEvents</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtHeartless</defName>
+    <thoughts>
+      <li>Council_Evt_GateShutOnThem</li>
+      <li>Council_Evt_HuntedTheFleeing</li>
+      <li>Council_Story_FeverShutOut</li>
+    </thoughts>
+    <fix>The council did something they found heartless: shut the gate on people in need, or hunted animals running from a fire. Only the kind feel it, and it fades in a few days. A kinder answer next time keeps it from coming back.</fix>
+    <act>Answer the next one kindly</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldEvents</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtHome</defName>
+    <thoughts>
+      <li>Council_Evt_StayedForUs</li>
+      <li>Council_Evt_SawThemOff</li>
+    </thoughts>
+    <fix>Someone was called home: they stayed and said no to their family, or they went, and the others miss them. It fades within a week; evenings with friends help in the meantime.</fix>
+    <act>Time with friends helps</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldEvents</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_StoryApprenticeLost</defName>
+    <thoughts><li>Council_Story_ApprenticeLost</li></thoughts>
+    <fix>The apprentice they were teaching left before the season was out. It fades in a few days. A long talk with the youngster when trouble comes can keep them at the bench.</fix>
+    <act>Passes with time</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldEvents</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_EvtGoodTurns</defName>
+    <thoughts>
+      <li>Council_Evt_KeepsakeBack</li>
+      <li>Council_Evt_ShelteredThem</li>
+      <li>Council_Evt_SentHome</li>
+      <li>Council_Evt_WonThePot</li>
+      <li>Council_Story_ApprenticeStayed</li>
+      <li>Council_Story_ApprenticeDone</li>
+      <li>Council_Story_FeverDoctor</li>
+      <li>Council_Story_FeverTownSaved</li>
+    </thoughts>
+    <keep>A good turn from a Rimfolk event or a story: a keepsake bought back, a family sheltered, an apprentice taught, a town helped through a fever. Most of these give something other than a mood (pride, trust, practice), and they come from the answers the council gives.</keep>
+    <article>Council_Alm_C_WorldEvents</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

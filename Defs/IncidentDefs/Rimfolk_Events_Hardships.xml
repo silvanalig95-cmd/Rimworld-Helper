@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk events: hard turns of the land and the road. A killing frost with a day's warning, something at the
+       pens at night, a neighbor's thirsty herd in a dry summer, a fire on the far ridge driving the game before it, a
+       war band moving through the valley, and a family burned out of their farm. Told from data
+       (HappeningWorker_Setting); the two last can end in a fight, only as the risk of an answer and only with battles
+       on. -->
+
+  <!-- ===================== A killing frost ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_KillingFrost</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a killing frost</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Fall</li>
+        </seasons>
+        <minTemp>3</minTemp>
+        <condition>ColdSnap</condition>
+        <days>1.5~2.5</days>
+        <answerDays>0.4</answerDays>
+        <colonist>
+          <bestAt>Plants</bestAt>
+        </colonist>
+        <journal>Council_Journal_Evt_KillingFrost</journal>
+        <titles>
+          <li>A killing frost</li>
+          <li>Frost tonight</li>
+          <li>[spring] A late frost</li>
+          <li>[fall] An early frost</li>
+        </titles>
+        <texts>
+          <li>[spring] {A_nameDef} came in from the fields at noon rubbing {A_possessive} hands. The wind has gone round to the north and the sky is hard and pale, and {A_pronoun} says it will freeze tonight and keep freezing for a day or two. The seedlings are up, and nothing that young lives through a frost like that.\n\nWhatever is ripe enough to bring in should come in today.</li>
+          <li>[fall] The geese went over low and fast this morning, and by noon {A_nameDef} had stopped work to look at the sky. It's going to freeze tonight, hard and weeks early, and stay cold a day or two. Half the crop is still standing.\n\nWhat's ripe can be in the stores before dark, if the colony drops everything else.</li>
+          <li>[lowtech] {A_nameDef} has been sniffing the air since morning, the way old growers do, and doesn't like it. A frost is coming down tonight, the kind that turns leaves black by dawn, with a cold behind it that will sit on the land a day or two.\n\nAnything still in the fields after dark takes its chances.</li>
+          <li>[!lowtech] The weather report on the comms gave it one line between the trade prices: hard frost tonight across the region, cold to follow. {A_nameDef} read it twice and went straight out to the fields to see what can be saved before dark.</li>
+          <li>[cold] Frost is nothing new here, but {A_nameDef} says this one is wrong: clear sky, no wind, and a cold coming that will go down into the soil. The crops still standing tonight won't be standing by morning.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>All hands to the fields, now</label>
+            <outcome>The colony put down its tools and went out to the fields with baskets, and kept at it until the rows were too dark to see. What was ripe came in. The rest was left to the frost.</outcome>
+            <outcomes>
+              <li>[spring] The seedlings were past saving, but the early greens and the herbs are in the cellar, and {A_nameDef} counted every basket in.</li>
+              <li>[lowtech] {A_nameDef} walked the rows by torchlight and pointed, and the others picked where {A_pronoun} pointed. The last baskets came in with frost already on them.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the crop in before the frost</label><count>6</count><tasks><li>Harvest</li></tasks><near><li>Fields</li></near><hours>6~22</hours><waitHours>4</waitHours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Plants</skill><xp>250</xp></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} and two others save the best of it</label>
+            <outcome>{A_nameDef} took two helpers and the biggest baskets and went for the best of it first: the ripe rows, the plants kept for seed, the herbs. The rest of the colony kept to its work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>saving the best of the crop</label><count>3</count><tasks><li>Harvest</li></tasks><near><li>Fields</li></near><hours>6~22</hours><waitHours>4</waitHours><duration>2~3</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Let the frost take what it takes</label>
+            <outcome>The cold came down in the night, as {A_nameDef} said it would. By morning the leaves in the fields hung black and limp, and the colony is counting what's left.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_FrostTook</thought></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minTileTemp>-14</minTileTemp>
+        <maxTileTemp>24</maxTileTemp>
+        <needs>
+          <li>crops</li>
+        </needs>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Something at the pens ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_PenRaider</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>something at the pens</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.6</answerDays>
+        <colonist>
+          <bestAt>Animals</bestAt>
+        </colonist>
+        <journal>Council_Journal_Evt_PenRaider</journal>
+        <titles>
+          <li>Something at the pens</li>
+          <li>Tracks by the fence</li>
+          <li>[winter] Hungry in the snow</li>
+        </titles>
+        <texts>
+          <li>Two nights running, something has been at the pens. {A_nameDef} found the fence dug under this morning, and {PET_definite} pressed into the far corner, shaking. It's {TALE}, and it will be back tonight.</li>
+          <li>[winter] The snow by the pens is trampled in a ring, round and round, where something walked all night looking for a way in. {A_nameDef} read the tracks before breakfast: {TALE}, and thin, and it found the soft place under the gate before dawn. Hunger will bring it back tonight.</li>
+          <li>{A_nameDef} sat up last night after the herd started bawling in the dark, and saw eyes just past the lamplight before they went. In the morning there were prints round the whole fence: {TALE}. The animals haven't eaten since.</li>
+          <li>[lowtech] "It tested the fence," {A_nameDef} told the council, holding up a tuft of fur caught on a split post. "Every side. It'll come where the fence is weakest." By the tracks it's {TALE}, and it has learned where the colony keeps its meat on the hoof.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sit up by the pens with a lamp until it's gone</label>
+            <outcome>{A_nameDef} and one other took turns walking the fences all night with a lamp and a stick. Near dawn the eyes came back, the stick went over the fence after them, and they haven't been seen since.</outcome>
+            <outcomes>
+              <li>[winter] {A_nameDef} and another stamped up and down by the pens all night, breath smoking in the lamplight. Whatever it was came close once, saw the lamp and went off across the snow.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>a watch on the pens</label><target>Colony</target><count>2</count><patrol>true</patrol><untilDawn>true</untilDawn></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Bring the animals in close every night</label>
+            <outcome>{A_nameDef} brought the herd in before dark and shut them in where the walls are thick. They'll go in every night now until the tracks stop coming, and the barn already smells like it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the herd in</label><count>2</count><tasks><li>Herd</li></tasks><hours>15~20</hours><duration>1~2</duration></li>
+            </effects>
+          </li>
+          <li>
+            <label>Leave it; a fence is a fence</label>
+            <outcome>Whatever it was gave up on the colony's fence and went after easier meat somewhere else.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>It came back the third night and found the weak place under the gate. {A_nameDef} found the gap at dawn, and one of the herd gone through it.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_LoseAnimal" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_LostToTheNight</thought></li>
+            </riskEffects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <needs>
+          <li>herd</li>
+        </needs>
+        <tales>
+          <li>[!hot] a fox</li>
+          <li>[cold|tundra|forest] a wolf, and a big one</li>
+          <li>[forest|hills] a lynx</li>
+          <li>[hot|dry|desert] a jackal</li>
+          <li>[jungle|swamp] a big cat</li>
+          <li>something with long claws</li>
+        </tales>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A thirsty herd ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_ThirstyHerd</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a thirsty herd</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>18</minTemp>
+        <ages>30~65</ages>
+        <stayHours>8~12</stayHours>
+        <amount>40~90</amount>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A thirsty herd</li>
+          <li>Water for {FACTION}'s herd</li>
+          <li>Dry season</li>
+        </titles>
+        <texts>
+          <li>The wells at {PLACE} have gone to mud, and the creeks on that side of the hills are dry stones. {X_nameDef} of {FACTION} has walked {X_possessive} herd two days to reach water, and the nearest is the colony's river.\n\n{X_nameDef} asks, hat in hand, whether the animals may drink. They won't stay past evening.</li>
+          <li>[lowtech] Dust on the road since morning, and the lowing of a herd under it. {X_nameDef}, a drover of {FACTION}, came ahead to the gate alone: the herd hasn't drunk properly in three days, and the colony sits on the only river that's still running.\n\nThe beasts will drink and go, {X_nameDef} promises.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} came on ahead of a herd that's mostly ribs. The pumps at {PLACE} quit when the water table dropped, and the colony's river is the closest water for a day in any direction.\n\n{X_nameDef} wants a few hours at the bank for the animals, no more.</li>
+          <li>{X_nameDef}, a herder of {FACTION}, has been standing at the gate since dawn without asking for anything, which is how {A_nameDef} knew it was serious. The summer has dried up every pond between {PLACE} and here. {X_nameDef}'s herd needs the colony's river, for an afternoon.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Let the herd drink</label>
+            <outcome>The herd came down to the river in the afternoon heat and drank until the drovers had to drag them off, with {A_nameDef} on the bank keeping them clear of the fields. {X_nameDef} thanked the colony three times, and {FACTION} won't forget it.</outcome>
+            <outcomes>
+              <li>[lowtech] The drovers walked the herd down to the river in a long brown line, and stood in the shallows with them while they drank. {X_nameDef} left a horn spoon on the gatepost by way of thanks.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2~3</count><livestock>4~8</livestock><spot>Water</spot><stopHours>2~4</stopHours><delay>0.3~1</delay><hourFrom>9</hourFrom><hourTo>17</hourTo></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} at the bank with the drovers</label><to>Water</to><orTo><li>Gate</li><li>Outdoors</li></orTo><hours>9~17</hours><waitHours>6</waitHours><duration>1.5~2.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>favorDone</kind></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Let them, for {COUNT} silver</label>
+            <outcome>{X_nameDef} counted the silver out slowly, coin by coin, and the herd came down to the river in the afternoon. The drovers didn't say much on the way back.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2~3</count><livestock>4~8</livestock><spot>Water</spot><stopHours>2~4</stopHours><delay>0.3~1</delay><hourFrom>9</hourFrom><hourTo>17</hourTo></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Let them, if the drovers cut wood while the herd drinks</label>
+            <outcome>The herd drank its fill, and while it did, the drovers went at the trees past the gate with their axes. By evening there was a heap of logs where the trees had been, and {X_nameDef} called it a fair trade.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2~3</count><livestock>4~8</livestock><spot>Water</spot><stopHours>2~4</stopHours><delay>0.3~1</delay><hourFrom>9</hourFrom><hourTo>17</hourTo></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>40</count><near>Stranger</near></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} at the bank with the drovers</label><to>Water</to><orTo><li>Gate</li><li>Outdoors</li></orTo><hours>9~17</hours><waitHours>6</waitHours><duration>1.5~2.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>{X_nameDef} looked at the river for a long moment, then turned the herd back the way it came, along the dry road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>refused</kind></li>
+            </effects>
+            <ways><generosity>-2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <river>true</river>
+        <visitor>true</visitor>
+        <people>any</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Fire on the far ridge ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_FarFire</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>fire on the far ridge</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>16</minTemp>
+        <amount>10~10</amount>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>Fire on the far ridge</li>
+          <li>Smoke over {PLACE}</li>
+          <li>The game is running</li>
+        </titles>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>HerdMigration</incident></li>
+        </effects>
+        <texts>
+          <li>The sky over the far ridge went brown at noon, and by evening the sun was a red coin in it. A grass fire is burning through the hills beyond the colony's land, a long way off, and the wind is keeping it there.\n\nThe animals aren't waiting to see. A herd is coming through the colony's land at a run, and {FACTION}'s farms at {PLACE} lie right in the fire's path.</li>
+          <li>[lowtech] Ash came down with the rain this morning, gray flakes on the washing. {A_nameDef} climbed the lookout and came down to say it: the woods past the ridge are burning, and the fire is walking toward {FACTION}'s fields at {PLACE}.\n\nEverything with legs is running from it, straight across the colony's land.</li>
+          <li>[!lowtech] {FACTION} put out a call on the comms an hour ago: a wildfire on the far ridge, moving toward {PLACE}, and every hand they have on the firebreaks. The colony is well out of its way.\n\nThe game isn't. Animals driven out of the hills are pouring across the colony's land, too frightened to stop.</li>
+          <li>[dry] It hasn't rained in weeks, and now the hills beyond the ridge are burning. Smoke hangs over the colony like a low ceiling. {A_nameDef} counted forty head of game crossing the fields before breakfast, running east, away from it.\n\n{FACTION}'s farms at {PLACE} are next in its way.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send the hunters after the running game</label>
+            <outcome>The hunters went out while the herd was still crossing, and came back with meat for the smokehouse. Some of the colony thought it was a hard way to treat animals already running for their lives, and said so at supper.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><count>2</count><animals>2</animals><label>hunting the running game</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_HuntedTheFleeing</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them pass</label>
+            <outcome>The colony stayed out of the way and let the animals through. By evening the last stragglers had gone over the far side of the land, and the smoke was thinner.</outcome>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send bread and blankets to {PLACE} ({COUNT} meals)</label>
+            <outcome>{A_nameDef} loaded up with meals and spare blankets for {FACTION}'s people on the firebreaks. They held the fire at the river, in the end, with the colony's bread in their packs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><to>Gate</to><label>bread for the firebreaks</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>gift</kind></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minTileTemp>2</minTileTemp>
+        <maxRain>1500</maxRain>
+        <neighbor>true</neighbor>
+        <wealthScaled>false</wealthScaled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A war band in the valley ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_WarBandNear</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a war band in the valley</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <threat>true</threat>
+        <points>0.45~0.65</points>
+        <delayHours>20~48</delayHours>
+        <amount>120~260</amount>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A war band in the valley</li>
+          <li>Word from {PLACE}</li>
+          <li>{ENEMY} on the move</li>
+        </titles>
+        <texts>
+          <li>A runner from {PLACE} came in at a dead run and drank a whole jug of water before saying a word. A war band of {ENEMY} is moving down the valley, {FACTION} say, burning as it goes. It may pass the colony by. It may not.\n\n{FACTION}'s militia could turn it at the ford, with silver for more spears: {COUNT} would do it.</li>
+          <li>[lowtech] Smoke on the hills to the north this morning, three columns of it, and then a rider from {FACTION} with the reason: {ENEMY} are out in force, a war band of them, coming down the valley toward {PLACE} and the colony both.\n\n{FACTION} will meet them at the ford if they can. {COUNT} silver would hire the spears to make sure of it.</li>
+          <li>[!lowtech] The message from {PLACE} came over the comms in pieces, the signal breaking up: a war band of {ENEMY}, moving down the valley road, three days out. {FACTION}'s militia means to hold the bridge and asks the colony for {COUNT} silver toward ammunition.\n\nWithout it, the war band may come straight on.</li>
+          <li>{A_nameDef} brought the news up from the gate: a war band of {ENEMY} is coming down the valley, and {FACTION} have sent word to every settlement in its way. Some places it passes by. Some it doesn't.\n\n{FACTION} say {COUNT} silver toward their militia would let them turn it at the ford.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Watch the walls every night until it's gone</label>
+            <outcome>The colony kept a watch on the walls three nights running, lamps shuttered. On the second night there were fires on the far ridge, and on the third they moved off south, away from the colony.</outcome>
+            <riskChance>0.25</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The colony kept a watch on the walls three nights running. On the third, the fires on the far ridge turned toward the colony, and the watch came running in to wake the others.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch on the walls</label><target>Colony</target><count>3</count><patrol>true</patrol><untilDawn>true</untilDawn></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch on the walls</label><target>Colony</target><count>3</count><patrol>true</patrol><untilDawn>true</untilDawn></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <label>{ENEMY} come down the valley</label>
+                <text>The war band of {ENEMY} that {FACTION} warned of has turned off the valley road. They're coming for the colony.</text>
+              </li>
+            </riskEffects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Send {COUNT} silver to {FACTION}'s militia</label>
+            <outcome>The silver went down to the gate for {FACTION}'s rider, and two days later word came back: the militia met {ENEMY} at the ford and turned them, and the war band has gone back into the hills.</outcome>
+            <riskChance>0.1</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The silver went to {FACTION}'s militia, and the militia held the ford for a day. Then {ENEMY} found another way across, and they're coming up the valley toward the colony.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><tens>true</tens><to>Gate</to><label>silver for {FACTION}'s militia</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><tens>true</tens><to>Gate</to><label>silver for {FACTION}'s militia</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <points>0.3~0.45</points>
+                <label>{ENEMY} cross the ford</label>
+                <text>{FACTION}'s militia couldn't hold the ford. The war band of {ENEMY} is through, and coming for the colony.</text>
+              </li>
+            </riskEffects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Change nothing</label>
+            <outcome>The colony kept to its work. The war band passed down the far side of the valley a few days later, and burned a barn at {PLACE} on its way.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The colony kept to its work, and the war band came anyway. Their fires are on the near ridge tonight.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <label>{ENEMY} come down the valley</label>
+                <text>The war band of {ENEMY} that {FACTION} warned of didn't pass the colony by. They're here.</text>
+              </li>
+            </riskEffects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <neighbor>true</neighbor>
+        <enemy>true</enemy>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Burned out ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_BurnedOut</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>burned out</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Battle</group>
+        <battle>true</battle>
+        <points>0.3~0.45</points>
+        <delayHours>12~36</delayHours>
+        <count>3~4</count>
+        <ages>16~60</ages>
+        <stayHours>16~22</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Burned out</li>
+          <li>The farm two valleys over</li>
+          <li>{X_nameDef}'s people at the gate</li>
+        </titles>
+        <texts>
+          <li>{ENEMY} came to {X_nameDef}'s farm two nights ago and burned it to the ground. {X_nameDef} and the people of the farm got out with what they could carry, which is nearly nothing, and have walked here because the colony was the nearest place with a wall.\n\nThey ask for a roof tonight. Whoever burned them out may be following.</li>
+          <li>[lowtech] There's soot on their faces still. {X_nameDef} of {FACTION} stands at the gate with the others from the farm behind {X_objective}, a cookpot and a blanket roll between them. {ENEMY} took the rest and burned the roof over it.\n\n{X_nameDef} asks for one night inside the colony's walls.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} and the people from {X_possessive} homestead came up the road in the dark, without lights. {ENEMY} hit the homestead at dusk yesterday, took the generator and the stores, and set the rest alight.\n\n{X_nameDef} doesn't know whether they were followed, and asks the colony to let them in anyway.</li>
+          <li>[winter] The people from {X_nameDef}'s farm walked through the snow all night after {ENEMY} burned it. They have the clothes they slept in and nothing else. {X_nameDef} of {FACTION} is asking for the colony's fire, for one night, and won't meet anyone's eyes while asking.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Shelter them for the night (they may have been followed)</label>
+            <outcome>The people from the farm ate hot food from the colony's kitchen and slept in the lee of its wall, where the watch could see them. {X_nameDef} was up before dawn to thank whoever was awake, and they went on toward {PLACE} at first light.</outcome>
+            <riskChance>0.3</riskChance>
+            <riskOutcome>The people from the farm ate hot food from the colony's kitchen and slept in the lee of its wall. Before dawn the watch saw torches on the road behind them: {ENEMY} followed them here after all.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>supper for the people from the farm</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ShelteredThem</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_RaidLater">
+                <label>{ENEMY} followed them</label>
+                <text>{ENEMY} tracked the people from {X_nameDef}'s farm to the colony, and they've come to finish it.</text>
+              </li>
+            </riskEffects>
+            <ways><mercy>2</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Food for the road, and send them on to {PLACE}</label>
+            <outcome>{A_nameDef} carried out bread and a pot of stew, and the people from the farm ate it standing up. Then they went on toward {PLACE}, before dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>food for the road</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Keep the gate shut</label>
+            <outcome>The gate stayed shut. {X_nameDef} stood outside it a while longer, then led the others off down the road in the failing light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>refused</kind></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_GateShutOnThem</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <enemy>true</enemy>
+        <people>own</people>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -42,7 +42,8 @@ namespace ColonyCouncil
         /// <summary>
         /// What has to be there: camp (a camp on the map that will talk), grave (a colonist's grave), crops (a field
         /// under the sky), ailing (A has an everyday ailment), strained (A is worn down), meetings (the council meets),
-        /// animals (the colony keeps tame animals: {PET}), power, research (a project in hand), children, prisoner.
+        /// animals (the colony keeps tame animals: {PET}), herd (at least three head of livestock: {PET} is one of them),
+        /// power, research (a project in hand), children, prisoner.
         /// </summary>
         public List<string> needs;
 
@@ -163,6 +164,7 @@ namespace ColonyCouncil
                 case "strained": return Heart.On;
                 case "meetings": return ColonyCouncilMod.Settings.enableAmbitions;
                 case "animals": return Animals(map).Any();
+                case "herd": return Herd(map).Count >= 3;
                 case "power": return Avail.HasElectricity;
                 case "research": return Find.ResearchManager?.GetProject(null) != null;
                 case "children": return Colonists(map).Any(p => p.DevelopmentalStage.Child());
@@ -187,6 +189,9 @@ namespace ColonyCouncil
 
         public static IEnumerable<Pawn> Animals(Map map) =>
             map.mapPawns.SpawnedColonyAnimals.Where(p => p.RaceProps.Animal && !p.Dead && !p.Downed);
+
+        /// <summary>The colony's livestock on this map, up and about (no pets, nothing downed).</summary>
+        public static List<Pawn> Herd(Map map) => AnimalFacts.Herd(map).Where(p => !p.Dead && !p.Downed).ToList();
 
         /// <summary>A's everyday (never serious) Rimfolk ailment, or null.</summary>
         public static Hediff Ailment(Pawn p)
@@ -255,6 +260,7 @@ namespace ColonyCouncil
             }
             if (ctx.a == null) return false;
             if (s.Needs("animals")) ctx.pet = Animals(map).RandomElementWithFallback();
+            else if (s.Needs("herd")) ctx.pet = Herd(map).RandomElementWithFallback();
             if (s.enemy)
             {
                 ctx.enemy = Raids.Enemy();

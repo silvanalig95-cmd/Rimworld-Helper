@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Journal lines for the Rimfolk events of the hard turns and the neighbors, written by the colonist the event is
+       about once the council answers ([opt0], [opt1]... the answer; [risk] or [safe] how its gamble went). -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_KillingFrost</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Frost coming. All hands out with baskets until dark. Backs aching, cellar full.</li>
+        <li>[opt1] Two helpers and the best baskets. We got the seed plants in. Not much else.</li>
+        <li>[opt2] Frost last night, like I said. Walked the rows this morning. Black, all of it.</li>
+        <li>[opt0] We picked by torchlight with frost already on the baskets. Got most of what was ripe.</li>
+      </plain>
+      <warm><li>[opt0] They all came out to the fields when I asked. I didn't even have to ask twice.</li></warm>
+      <blunt><li>[opt2] Told them it would freeze. It froze.</li></blunt>
+      <cheerful><li>[opt0] Raced the frost and won, mostly! The cellar smells like summer.</li></cheerful>
+      <gloomy><li>[opt2] All that work since spring, gone in one clear night.</li></gloomy>
+      <cold><li>[opt1] Saved the seed stock and the herbs. The rest was a fair price for the hours.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_PenRaider</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Sat up by the pens all night with a lamp. Eyes past the lamplight near dawn, then nothing.</li>
+        <li>[opt1] The herd goes in every night now. The barn smells like it.</li>
+        <li>[opt2,safe] The tracks stopped coming. Whatever it was went somewhere easier.</li>
+        <li>[opt2,risk] Gap under the gate this morning, and one of them gone. I counted three times.</li>
+      </plain>
+      <warm><li>[opt0] Kept watch over the animals all night. They settled once they saw the lamp.</li></warm>
+      <blunt><li>[opt2,risk] Should have watched the pens. Didn't. Now one's gone.</li></blunt>
+      <cheerful><li>[opt0] Threw a stick at a pair of eyes and they ran off. Best throw I've ever made.</li></cheerful>
+      <gloomy><li>[opt2] Lay awake listening for the herd. Every sound was teeth.</li></gloomy>
+      <cold><li>[opt1] Moving the herd in at night costs an hour a day. Cheaper than replacing them.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_DeathNews</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Word came about {TALE}. Dead, months ago. We held a wake tonight and I talked too much.</li>
+        <li>[opt1] The council gave me the day. I walked as far as the river and back.</li>
+        <li>[opt3] Heard about {TALE}. Went back to work. Didn't say anything.</li>
+        <li>[opt0] Told them all about {TALE}. Somebody poured an extra cup.</li>
+        <li>[opt1] Walked all day. Didn't think about much. Then I thought about everything.</li>
+        <li>[opt2] Planted a tree for {TALE} out past the last row of the fields. Put a stone by it. Watered it twice.</li>
+      </plain>
+      <warm>
+        <li>[opt0] They listened to every story. I didn't know how much I needed someone to listen.</li>
+        <li>[opt2] There's a sapling by the fields now with a stone beside it. I'll sit there when I need to.</li>
+      </warm>
+      <blunt><li>[opt3] Somebody I knew died. Work still needs doing.</li></blunt>
+      <cheerful><li>[opt0] We laughed more than we cried at the wake. That would have pleased them.</li></cheerful>
+      <gloomy><li>[opt3] Gone, and buried, and I wasn't there. I wasn't there.</li></gloomy>
+      <cold><li>[opt3] Word came: {TALE} is dead. It was a long time ago, and far away.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_PawnedKeepsake</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Found {TALE} on a trader's blanket today. Bought it back. It's on the shelf over my bed.</li>
+        <li>[opt1,safe] Got {TALE} back for half the price. I owe somebody a drink.</li>
+        <li>[opt1,risk] The haggling went wrong and {TALE} went back in the trader's pack. Gone again.</li>
+        <li>[opt2,safe] Told the trader it was stolen. The trader looked at me and handed it over.</li>
+        <li>[opt3] Saw {TALE} for sale today. Put it back down. Someone else has it now.</li>
+      </plain>
+      <warm><li>[opt0] The council paid for {TALE}. I didn't ask them to. I'll remember it.</li></warm>
+      <blunt><li>[opt2,risk] Called the trader a thief. The trader left. So did {TALE}.</li></blunt>
+      <cheerful><li>[opt0] It's back! Scratch on the back and all.</li></cheerful>
+      <gloomy><li>[opt3] The one thing left from before, and I watched someone else carry it off.</li></gloomy>
+      <cold><li>[opt3] An object. I don't need it to remember.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_CalledHome</defName>
+    <lines>
+      <plain>
+        <li>[opt0] Wrote home to say I'm staying. Sealed it before I could change my mind.</li>
+        <li>[opt1] The colony sent silver home for {TALE}. A long letter went with it, most of it mine.</li>
+        <li>[opt0] They wanted me home for {TALE}. I said no. I'm needed here.</li>
+      </plain>
+      <warm><li>[opt1] The council sent my family silver without being asked twice. I'll pay it back in work.</li></warm>
+      <blunt><li>[opt0] They'll manage without me. They'll have to.</li></blunt>
+      <cheerful><li>[opt1] The silver will hire two good hands at home. Better than one of me!</li></cheerful>
+      <gloomy><li>[opt0] Chose this place over my own people. I'd choose it again, and I don't feel good about that.</li></gloomy>
+      <cold><li>[opt0] Answered the letter from home. The colony has the better claim on my time.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Evt_Gambler</defName>
+    <lines>
+      <plain>
+        <li>[opt0,safe] Games with the traveler until late. We came out ahead.</li>
+        <li>[opt0,risk] Games with the traveler until late. Purses lighter in the morning. No idea how.</li>
+        <li>[opt1,safe] Played the gambler for the colony's stake and won it on the last game.</li>
+        <li>[opt1,risk] Played the gambler for the colony's stake and lost. Watched every move. Still lost.</li>
+        <li>[opt2] A gambler came through. The council said no games. I'd have liked to see how good they were.</li>
+      </plain>
+      <warm><li>[opt0] Loud night round the table. I haven't laughed like that in a while.</li></warm>
+      <blunt><li>[opt1,risk] Lost. Don't want to talk about it.</li></blunt>
+      <cheerful><li>[opt1,safe] Beat a professional at their own game!</li></cheerful>
+      <gloomy><li>[opt1,risk] They all watched me lose the stake. I'll hear about it all winter.</li></gloomy>
+      <cold><li>[opt1] The gambler's odds were good. Mine were better, or worse. Chance either way.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

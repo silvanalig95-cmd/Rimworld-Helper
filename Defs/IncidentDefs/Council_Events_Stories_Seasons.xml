@@ -1,0 +1,781 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Two story chains that run over a season, told from data (HappeningWorker_StoryFlow,
+       Source/ColonyCouncil/Happenings/Workers_StoryFlow.cs): an apprentice from a nearby town learning a trade at the
+       colony's best bench, and a traveler with a fever whose long recovery comes back to the colony when the fever
+       reaches the traveler's own town. Every stage brings someone to the colony, and most answers happen on the map.
+       Neither brings a fight. -->
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The apprentice from the town ===================================================== -->
+  <!-- ======================================================================================================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Apprentice</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an apprentice from the town</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>An apprentice from {PLACE}</li>
+          <li>A pupil for {A_nameDef}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} is barely grown and all elbows, and has walked up from {PLACE} with a letter from {X_possessive} family and a purse of {COUNT} silver for board. They want {X_objective} taught a trade, and the talk in {PLACE} is that the best hands at a bench for a day's walk belong to {A_nameDef}.\n\n{X_nameDef} would come up a day or two each week through the season and work at {A_nameDef}'s side.</li>
+          <li>[lowtech] {X_nameDef}'s mother sent {X_objective} up from {PLACE} with a basket of eggs, a purse of {COUNT} silver and a speech learned by heart: {FACTION} have no one with {A_nameDef}'s skill, and {X_nameDef} is good with {X_possessive} hands and bad at sitting still. Would {A_nameDef} take {X_objective} on for the season?</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} has the family's letter in one hand and a dented toolbox in the other. The workshops in {PLACE} aren't taking apprentices this year, the letter says, and {A_nameDef}'s work is spoken of there.\n\nThere's {COUNT} silver for {X_possessive} keep, if the colony will have {X_objective} at the bench a day or two a week until the season turns.</li>
+          <li>[colony:Hardworking] They say in {PLACE} that the colony works from dark to dark, and {X_nameDef}'s family thinks that's exactly what {X_nameDef} needs. {X_nameDef} of {FACTION} has come up with {COUNT} silver for board, to learn a trade at {A_nameDef}'s elbow through the season, and looks as if {X_pronoun} would rather be anywhere else.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} on, and the board money ({COUNT} silver)</label>
+            <outcome>{A_nameDef} took the purse and the letter, and spent the afternoon showing {X_nameDef} round the workshop: what to touch, what never to touch, where the broom is. {X_nameDef} will be back next week.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} shows {X_nameDef} the workshop</label><to>Stranger</to><hours>9~19</hours><duration>1.5~2</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Take {X_objective} on, and send the silver back</label>
+            <outcome>{A_nameDef} pressed the purse back into {X_nameDef}'s hands for the family and showed {X_objective} round the workshop instead. The family at {PLACE} will hear about the purse before they hear anything else.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} shows {X_nameDef} the workshop</label><to>Stranger</to><hours>9~19</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><generosity>2</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} has no time for a pupil</label>
+            <outcome>{X_nameDef} took the letter back, folded it carefully along its old creases, and went home to {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <stranger>true</stranger>
+        <strangerAges>15~18</strangerAges>
+        <strangerSkill>Crafting</strangerSkill>
+        <strangerLevel>5~8</strangerLevel>
+        <heroSkill>Crafting</heroSkill>
+        <visitHours>20</visitHours>
+        <silver>60~150</silver>
+        <value>250~500</value>
+        <rolls>
+          <li><flag>gifted</flag><weight>0.4</weight></li>
+          <li><flag>homesick</flag><weight>0.3</weight></li>
+          <li><flag>restless</flag><weight>0.3</weight></li>
+        </rolls>
+        <fallback>lost</fallback>
+        <routes>
+          <li><option>0</option><flags><li>board</li></flags><next>Council_Story_ApprenticeBench</next><days>5~8</days></li>
+          <li><option>1</option><flags><li>free</li></flags><next>Council_Story_ApprenticeBench</next><days>5~8</days></li>
+          <li><option>2</option><next>end:declined</next><days>1~2</days></li>
+        </routes>
+        <endings>
+          <li>
+            <key>joined</key>
+            <goodwill>6</goodwill>
+            <xJoins>true</xJoins>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Story_ApprenticeStayed</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>journeyman</key>
+            <goodwill>10</goodwill>
+            <gift>0.6</gift>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Story_ApprenticeDone</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>guild</key>
+            <goodwill>4</goodwill>
+            <gift>0.25</gift>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Story_ApprenticeLost</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>home</key>
+            <goodwill>5</goodwill>
+          </li>
+          <li>
+            <key>drifted</key>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Story_ApprenticeLost</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>declined</key>
+          </li>
+          <li>
+            <key>lost</key>
+          </li>
+        </endings>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>apprentice</chain>
+        <key>apprentice</key>
+        <start>true</start>
+        <coming>
+          <li>[apprenticebench] {X_nameDef}, the apprentice from {PLACE}, starts at {A_nameDef}'s bench within {DAYS}.</li>
+          <li>[apprenticetrouble] {X_nameDef} is learning the trade at {A_nameDef}'s bench, up from {PLACE} a day or two each week. Due again within {DAYS}.</li>
+          <li>[apprenticepiece] {X_nameDef} is making a piece to show what the season taught. Due within {DAYS}.</li>
+          <li>[guild] {X_nameDef}'s family is settling things with the guild at {PLACE}. Word within {DAYS}.</li>
+        </coming>
+        <endingTitles>
+          <li>[joined] {X_nameDef} stays</li>
+          <li>[journeyman] A journeyman from the colony</li>
+          <li>[guild] To the guild</li>
+          <li>[home] {X_nameDef} goes home</li>
+          <li>[drifted] The empty bench</li>
+          <li>[declined] No apprentice</li>
+          <li>[lost] No word from {PLACE}</li>
+        </endingTitles>
+        <endings>
+          <li>[joined] {X_nameDef} has a bed at the colony now, and a place at {A_nameDef}'s bench that is {X_possessive} own. The family at {PLACE} sent {X_possessive} things up on a cart, with a letter that was mostly about socks.</li>
+          <li>[joined,piece] {X_nameDef} lives at the colony now. The stool with the short leg still stands by {A_nameDef}'s bench, and {X_nameDef} has offered twice to fix it. {A_nameDef} won't let {X_objective}.</li>
+          <li>[journeyman] {X_nameDef} is home at {PLACE} with a journeyman's skill and a set of the colony's old tools, and the family has sent something up the road by way of thanks: {ITEM}.\n\nThere's already talk at {PLACE} of a workshop of {X_possessive} own.</li>
+          <li>[journeyman,free] {X_nameDef} went home to {PLACE} a journeyman. The family remembered the purse the colony sent back in the spring, and the gift that came up the road afterward is worth far more than the purse was: {ITEM}.</li>
+          <li>[journeyman,greedy] {X_nameDef} went home to {PLACE} a journeyman, and the family sent their thanks: {ITEM}. They have also told the market they paid twice for the timber, more than once.</li>
+          <li>[guild] {X_nameDef} has gone to the guild at {PLACE}, with wages and a bed and a master who doesn't know {X_objective} yet. A small package came up the road for {A_nameDef} afterward: {ITEM}, and a note in careful letters that says thank you.</li>
+          <li>[guild,family] The family chose the guild, as families do. {X_nameDef} went, and wrote to {A_nameDef} from {PLACE}: the guild's bench is wider, the master is stricter, and {X_nameDef} misses the colony's. A gift came with the letter: {ITEM}.</li>
+          <li>[home] {X_nameDef} is home at {PLACE}, where {X_pronoun} wanted to be. The family let the colony know they're grateful, and that {X_nameDef} talks about {A_nameDef}'s workshop more than they expected.</li>
+          <li>[drifted] {X_nameDef} never came back up the hill. The family at {PLACE} wrote to say sorry, and that {X_nameDef} has taken up with a crowd at the market they don't like. {A_nameDef} cleared {X_possessive} things off the bench without saying anything.</li>
+          <li>[drifted,greedy] {X_nameDef} never came back up the hill, and the family at {PLACE} wrote to say the timber money is gone too. {A_nameDef} cleared {X_possessive} things off the bench and put the half-made pieces on the woodpile.</li>
+          <li>[declined] {X_nameDef} went home to {PLACE} and took work at the tannery. The family doesn't hold it against the colony. Not much.</li>
+          <li>[lost] Word stopped coming up from {PLACE}. A trader thought {X_nameDef}'s family had moved on, and taken {X_objective} with them.</li>
+        </endings>
+        <summaries>
+          <li>[joined] {X_nameDef} came from {PLACE} to learn a trade at {A_nameDef}'s bench, and stayed.</li>
+          <li>[journeyman] The colony taught {X_nameDef} of {PLACE} a trade for a season and sent {X_objective} home a journeyman.</li>
+          <li>[guild] The apprentice {X_nameDef} left the colony's bench for the guild at {PLACE}.</li>
+          <li>[home] The apprentice {X_nameDef} went home to {PLACE} before the season was out.</li>
+          <li>[drifted] The apprentice {X_nameDef} drifted away from the colony's bench.</li>
+          <li>[declined] The colony turned down an apprentice from {PLACE}.</li>
+          <li>[lost] An apprentice from {PLACE} stopped coming.</li>
+        </summaries>
+        <good>
+          <li>joined</li>
+          <li>journeyman</li>
+        </good>
+        <bad>
+          <li>drifted</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ApprenticeBench</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the apprentice at the bench</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>The apprentice at the bench</li>
+          <li>{X_nameDef}'s first weeks</li>
+        </titles>
+        <texts>
+          <li>[gifted] {X_nameDef} is back up from {PLACE} for the week, and has already made a joint that {A_nameDef} had to look at twice. Cleaner than {A_nameDef}'s own were at that age, {A_nameDef} admits, though not to {X_nameDef}.\n\nThe question is what to do with a quick pair of hands.</li>
+          <li>[homesick] {X_nameDef} works hard at {A_nameDef}'s bench and says very little, and every hour or so looks down the road toward {PLACE}. {A_nameDef} found {X_objective} in the woodshed yesterday with red eyes, blaming the sawdust.\n\nIt's {X_possessive} first time away from home.</li>
+          <li>[restless] In {X_nameDef}'s first week at the bench: one saw blade snapped, one chisel lost, and an afternoon spent up on the roof watching a hawk. {A_nameDef} says the hands are good, when they stay on the work.\n\n{X_nameDef} is back up from {PLACE} today, grinning.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Keep {X_objective} at {A_nameDef}'s elbow all day</label>
+            <outcome>{A_nameDef} kept {X_nameDef} at the bench from breakfast to supper, hands on the tools and eyes on {A_nameDef}'s hands.</outcome>
+            <outcomes>
+              <li>[gifted] {A_nameDef} kept {X_nameDef} at the bench all day, and by evening {X_nameDef} was showing {A_nameDef} a faster way to cut a mortise. {A_nameDef} let {X_objective}.</li>
+              <li>[homesick] {A_nameDef} kept {X_nameDef} so busy at the bench that {X_nameDef} only looked down the road twice all day.</li>
+              <li>[restless] {A_nameDef} kept {X_nameDef} at the bench until supper, and {X_nameDef} got through the whole day without breaking anything, which {A_nameDef} counts as a good day.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the day at the bench</label><to>Stranger</to><hours>8~18</hours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>200</xp></li>
+            </effects>
+          </li>
+          <li>
+            <label>Set {X_objective} a piece of {X_possessive} own to make</label>
+            <outcome>{X_nameDef} spent the day on a stool, start to finish, and handed it to {A_nameDef} with both hands. One leg is short. {A_nameDef} is keeping it anyway.</outcome>
+            <outcomes>
+              <li>[gifted] {X_nameDef} made a stool from start to finish without asking a single question, and none of its legs is short. {A_nameDef} looked at it for a long time.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Made"><label>{X_nameDef}'s first piece</label><things>Stool|DiningChair</things><maker>X</maker><forWhom>A</forWhom><skill>Crafting</skill><hours>9~19</hours></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Ask {X_possessive} family for more, for the timber</label>
+            <outcome>{X_nameDef} brought the family's answer up the next morning: half as much again, for timber, and a note saying they hoped the work was worth it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>0.5</factor></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>20</visitHours>
+        <routes>
+          <li><option>0</option><flags><li>bench</li></flags><next>Council_Story_ApprenticeTrouble</next><days>6~10</days></li>
+          <li><option>1</option><flags><li>piece</li></flags><next>Council_Story_ApprenticeTrouble</next><days>6~10</days></li>
+          <li><option>2</option><flags><li>greedy</li></flags><next>Council_Story_ApprenticeTrouble</next><days>6~10</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>apprentice</chain>
+        <key>apprenticebench</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ApprenticeTrouble</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>trouble with the apprentice</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>Trouble with the apprentice</li>
+          <li>[gifted] An offer from the guild</li>
+          <li>[homesick] {X_nameDef} wants to go home</li>
+          <li>[restless] Where was {X_nameDef}?</li>
+        </titles>
+        <texts>
+          <li>[gifted] A master of the guild at {PLACE} has seen {X_nameDef}'s work and offered to take {X_objective} on: wages, a bed, and a guild mark at the end of it. {X_nameDef}'s family wants the guild.\n\n{X_nameDef} came up today to say so, and to say {X_pronoun} would rather finish the season with {A_nameDef}.</li>
+          <li>[gifted,piece] Word of the stool got round {PLACE}, and a master of the guild there came to look at {X_nameDef}'s hands and offered {X_objective} a place: wages, a bed, a mark of {X_possessive} own one day. The family is ready to say yes. {X_nameDef} wants to stay at {A_nameDef}'s bench.</li>
+          <li>[homesick] {X_nameDef} came up from {PLACE} today with a bundle of {X_possessive} things, to say goodbye. The work is good, {X_nameDef} says, and {A_nameDef} is kind, and {X_nameDef} can't stand being away from home another week.</li>
+          <li>[restless] {X_nameDef} missed last week at the bench, and turned up today with mud to the knees and a story that changes every time it's told. Word from {PLACE} is that {X_nameDef} has been spending the days at the market with a crowd the family doesn't like.</li>
+          <li>[restless,greedy] {X_nameDef}'s family paid twice for timber, and {X_nameDef} hasn't been near the bench in a week. Today {X_nameDef} turned up with mud to the knees and a story that keeps changing. The family at {PLACE} will want to know where their silver went.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} has a long talk with {X_objective}</label>
+            <outcome>{A_nameDef} took {X_nameDef} out to the woodpile and talked, and mostly listened, until the light went. {X_nameDef} will be at the bench next week.</outcome>
+            <outcomes>
+              <li>[gifted] {A_nameDef} told {X_nameDef} the guild would still be there in spring, and the season wasn't over. {X_nameDef}'s family grumbled, and agreed to wait.</li>
+              <li>[homesick] {A_nameDef} and {X_nameDef} talked until dark about home, mostly {X_nameDef}'s. {X_nameDef} unpacked the bundle and stayed for supper.</li>
+              <li>[restless] {A_nameDef} didn't shout. {A_nameDef} handed {X_nameDef} the hardest job in the workshop and stood over it until it was done right, and the next week {X_nameDef} came up on time.</li>
+            </outcomes>
+            <riskChance>0.4</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} talked until the light went, and {X_nameDef} listened politely, and at the end of it nothing had changed.</riskOutcome>
+            <riskOutcomes>
+              <li>[gifted] {A_nameDef} talked until the light went. {X_nameDef} cried, and is going to the guild.</li>
+              <li>[homesick] {A_nameDef} talked until the light went, and in the morning {X_nameDef} picked up the bundle and went home.</li>
+              <li>[restless] {A_nameDef} talked until the light went, and {X_nameDef} nodded at all of it and went off toward {PLACE} without looking back.</li>
+            </riskOutcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s talk with {X_nameDef}</label><to>Stranger</to><hours>9~20</hours><duration>1.5~2.5</duration></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s talk with {X_nameDef}</label><to>Stranger</to><hours>9~20</hours><duration>1.5~2.5</duration></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Write to {X_possessive} family at {PLACE}</label>
+            <outcome>{A_nameDef} wrote to the family at {PLACE} and sent the letter down with {X_nameDef}.</outcome>
+            <outcomes>
+              <li>[gifted] {A_nameDef} wrote to the family. They wrote back that the guild is a chance {X_nameDef} won't get twice, and they aren't wrong.</li>
+              <li>[homesick] {A_nameDef} wrote to the family, and they wrote back: a week at home, and then {X_nameDef} goes back up to finish what {X_pronoun} started.</li>
+              <li>[restless] {A_nameDef} wrote to the family, and {X_nameDef}'s father came up from {PLACE} the next day with {X_nameDef} beside him, to apologize to {A_nameDef} in person.</li>
+            </outcomes>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let {X_objective} go, with thanks</label>
+            <outcome>{A_nameDef} shook {X_nameDef}'s hand at the gate and said the bench would be there if {X_pronoun} ever wanted it.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>16</visitHours>
+        <routes>
+          <li><option>0</option><when>safe</when><next>Council_Story_ApprenticePiece</next><days>8~12</days></li>
+          <li><option>0</option><requires>gifted</requires><next>end:guild</next><days>3~5</days></li>
+          <li><option>0</option><requires>homesick</requires><next>end:home</next><days>2~4</days></li>
+          <li><option>0</option><next>end:drifted</next><days>3~5</days></li>
+          <li><option>1</option><requires>gifted</requires><flags><li>family</li></flags><next>end:guild</next><days>3~5</days></li>
+          <li><option>1</option><flags><li>family</li></flags><next>Council_Story_ApprenticePiece</next><days>10~14</days></li>
+          <li><option>2</option><requires>gifted</requires><next>end:guild</next><days>2~4</days></li>
+          <li><option>2</option><requires>homesick</requires><next>end:home</next><days>1~2</days></li>
+          <li><option>2</option><next>end:drifted</next><days>2~4</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>apprentice</chain>
+        <key>apprenticetrouble</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_ApprenticePiece</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the journeyman's piece</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The journeyman's piece</li>
+          <li>{X_nameDef}'s piece</li>
+          <li>The end of the season</li>
+        </titles>
+        <texts>
+          <li>The season is nearly over, and {X_nameDef} has come up from {PLACE} with something under a blanket: a piece made start to finish, to show {A_nameDef} what the season taught. {X_nameDef} is too nervous to take the blanket off.\n\nAfter today, {X_nameDef} goes home a journeyman, unless the colony gives {X_objective} a reason not to.</li>
+          <li>[gifted] {X_nameDef} has made a chair. Not a stool, not a box: a chair, with a carved back and joints {A_nameDef} has to look at twice. {X_nameDef} brought it up from {PLACE} on a borrowed handcart to show {A_nameDef}, and to ask what comes next.</li>
+          <li>[homesick,family] A week at home did {X_nameDef} good. {X_nameDef} came back to finish the season, and today brought up the piece {X_pronoun} has been making in the evenings, to show {A_nameDef}.</li>
+          <li>[restless,family] Since {X_possessive} father came up the hill, {X_nameDef} hasn't missed a day. Today {X_nameDef} brought a piece up from {PLACE}, made at home in the evenings, and set it down in front of {A_nameDef} without a word.</li>
+          <li>[piece] The first thing {X_nameDef} made at the colony was a stool with one short leg. Today {X_nameDef} brought up a chair, and none of its legs is short.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Ask {X_objective} to stay on, as one of the colony</label>
+            <outcome>{A_nameDef} looked the piece over for a long time, then asked {X_nameDef} to stay. {X_nameDef} said yes before {A_nameDef} had finished asking.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} asked {X_nameDef} to stay. {X_nameDef} wanted to, and said so, and said no: there's a family at {PLACE} that needs {X_objective} more.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Made"><label>{X_nameDef}'s piece</label><things>DiningChair|Stool</things><maker>X</maker><forWhom>A</forWhom><skill>Crafting</skill><hours>9~19</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Made"><label>{X_nameDef}'s piece</label><things>DiningChair|Stool</things><maker>X</maker><forWhom>A</forWhom><skill>Crafting</skill><hours>9~19</hours></li>
+            </riskEffects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Send {X_objective} home a journeyman</label>
+            <outcome>{A_nameDef} kept the piece and gave {X_nameDef} a set of the colony's old tools to take home. A few of the colony walked {X_objective} to the gate, and {A_nameDef} went furthest.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Made"><label>{X_nameDef}'s piece</label><things>DiningChair|Stool</things><maker>X</maker><forWhom>A</forWhom><skill>Crafting</skill><hours>9~19</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {X_nameDef} off</label><count>4</count><to>Gate</to><hours>8~18</hours><duration>1~1.5</duration></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>20</visitHours>
+        <routes>
+          <li><option>0</option><when>safe</when><next>end:joined</next><days>0.3~0.6</days></li>
+          <li><next>end:journeyman</next><days>3~6</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>apprentice</chain>
+        <key>apprenticepiece</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ======================================================================================================== -->
+  <!-- ===================== The traveler with the fever ====================================================== -->
+  <!-- ======================================================================================================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_Fever</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a traveler with a fever</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <minColonists>2</minColonists>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A traveler with a fever</li>
+          <li>At the gatepost</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} got as far as the colony's gate and sat down against the post, burning with fever and shivering in the sun. {X_nameDef} was on the way home to {PLACE}, and won't get there like this.\n\n{A_nameDef}, the colony's best doctor, took one look and asked the council to decide quickly.</li>
+          <li>[lowtech] The traveler at the gate is {X_nameDef} of {FACTION}, gray in the face and soaked through, with the kind of fever that takes people on the road. {X_nameDef} asks for nothing but a dry place to lie down.\n\n{A_nameDef} says a fever like that can turn either way, and it may be catching.</li>
+          <li>[!lowtech] {X_nameDef} of {FACTION} came off the road in the rain and went down by the gate, with a temperature {A_nameDef} didn't like and a cough that sounds deep. The nearest proper clinic is days away at {PLACE}.\n\n{A_nameDef} can treat it here, if the council agrees.</li>
+          <li>[winter] Snow on {X_possessive} shoulders and fever in {X_possessive} face: {X_nameDef} of {FACTION} won't last another night on the road to {PLACE}. {A_nameDef} has already fetched a blanket, and is waiting on the council.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} in; {A_nameDef} will nurse {X_objective}</label>
+            <outcome>{A_nameDef} sat up with {X_nameDef} through the worst of the night, with cold cloths and the medicine chest open. By morning the fever had broken, or bent at least.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_HospitalPatient" />
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{A_nameDef}'s night at {X_nameDef}'s side</label><count>1</count><to>Stranger</to><hours>19~1</hours><duration>4~6</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tended</kind></li>
+            </effects>
+            <ways><mercy>2</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Medicine and a dry corner by the wall, then on to {PLACE}</label>
+            <outcome>A dose of medicine and a blanket went out to {X_nameDef} by the wall, and in the morning {X_nameDef} went on toward {PLACE}, slowly, stopping often.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>medicine</what><count>1</count><steward>false</steward><to>Stranger</to><label>medicine for {X_nameDef}</label></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Keep {X_objective} away; it may be catching</label>
+            <outcome>{X_nameDef} was told to keep away. In the morning the place by the gatepost was empty, and a line of footprints led off toward {PLACE}.</outcome>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <stranger>true</stranger>
+        <strangerAges>20~55</strangerAges>
+        <heroSkill>Medicine</heroSkill>
+        <visitHours>24</visitHours>
+        <gathering>false</gathering>
+        <value>250~500</value>
+        <rolls>
+          <li><flag>strong</flag><weight>0.45</weight></li>
+          <li><flag>relapse</flag><weight>0.35</weight></li>
+          <li><flag>lingering</flag><weight>0.2</weight></li>
+        </rolls>
+        <fallback>lost</fallback>
+        <routes>
+          <li><option>0</option><requires>strong</requires><flags><li>nursed</li></flags><next>Council_Story_FeverMended</next><days>8~12</days></li>
+          <li><option>0</option><flags><li>nursed</li></flags><next>Council_Story_FeverRelapse</next><days>4~7</days></li>
+          <li><option>1</option><requires>strong</requires><flags><li>sent</li></flags><next>Council_Story_FeverMended</next><days>10~14</days></li>
+          <li><option>1</option><flags><li>sent</li></flags><next>Council_Story_FeverRelapse</next><days>4~7</days></li>
+          <li><option>2</option><flags><li>refused</li></flags><next>end:turnedaway</next><days>8~12</days></li>
+        </routes>
+        <endings>
+          <li>
+            <key>joined</key>
+            <goodwill>5</goodwill>
+            <xJoins>true</xJoins>
+          </li>
+          <li>
+            <key>saved</key>
+            <goodwill>12</goodwill>
+            <gift>0.5</gift>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Story_FeverDoctor</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Story_FeverTownSaved</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+          </li>
+          <li>
+            <key>helped</key>
+            <goodwill>7</goodwill>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Story_FeverDoctor</thought></li>
+            </effects>
+          </li>
+          <li>
+            <key>closed</key>
+            <goodwill>-6</goodwill>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Story_FeverShutOut</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+          </li>
+          <li>
+            <key>turnedaway</key>
+            <goodwill>-5</goodwill>
+          </li>
+          <li>
+            <key>worse</key>
+            <goodwill>-3</goodwill>
+          </li>
+          <li>
+            <key>lost</key>
+          </li>
+        </endings>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>fever</chain>
+        <key>fever</key>
+        <start>true</start>
+        <coming>
+          <li>[feverrelapse|fevermended] {X_nameDef}, the traveler with the fever, is on the road to {PLACE}. Word of how {X_pronoun} fares should come within {DAYS}.</li>
+          <li>[feverrepaid] {X_nameDef} went home to {PLACE} promising the colony would hear from {X_objective} again. Within {DAYS}, perhaps.</li>
+          <li>[saved|helped|closed] The fever is going through {PLACE}. Word of how the town fares should come within {DAYS}.</li>
+          <li>[turnedaway] The traveler the colony turned away from its gate is somewhere on the road to {PLACE}. Word may come within {DAYS}.</li>
+        </coming>
+        <endingTitles>
+          <li>[joined] {X_nameDef} stays</li>
+          <li>[saved] The fever at {PLACE} is over</li>
+          <li>[helped] Advice on a feed sack</li>
+          <li>[closed] The shut gate</li>
+          <li>[turnedaway] The traveler the colony turned away</li>
+          <li>[worse] A long month at {PLACE}</li>
+          <li>[lost] No more word</li>
+        </endingTitles>
+        <endings>
+          <li>[joined] {X_nameDef} sleeps at the colony now, in a bed this time, and works as if the fever owed {X_objective} the weeks it took. {A_nameDef} still checks {X_possessive} forehead now and then, out of habit.</li>
+          <li>[saved] Word came up from {PLACE}: the fever has run its course, and the medicine the colony sent went where it was needed most. {FACTION} haven't forgotten who sent it, and a gift came up the road afterward: {ITEM}.</li>
+          <li>[saved,nursed] The fever at {PLACE} is over. {X_nameDef} went from house to house with the colony's medicine and {A_nameDef}'s way of doing things, and there are people walking about at {PLACE} who {FACTION} say wouldn't be. A gift came up the road for the colony: {ITEM}.</li>
+          <li>[helped] The fever at {PLACE} has burned itself out. {A_nameDef}'s advice went round the town on the back of a feed sack, copied out a dozen times, and {FACTION} credit it with the houses that got off lightly.</li>
+          <li>[closed] The fever ran its course at {PLACE} without the colony. {X_nameDef} has stopped coming up the road, and {FACTION} remember the shut gate.</li>
+          <li>[turnedaway] {X_nameDef} reached {PLACE} in the end and pulled through, slowly, in a neighbor's spare bed. {FACTION} know which colony kept its gate shut on a sick traveler, and say so.</li>
+          <li>[turnedaway,strong] {X_nameDef} shook the fever off on the road and reached {PLACE} on {X_possessive} own feet. {X_nameDef} tells the story of the colony that wouldn't open its gate to anyone who'll listen.</li>
+          <li>[worse] {X_nameDef} mended in the end, at {PLACE}, over a long hard month. {FACTION} remember that the colony helped once, and then didn't.</li>
+          <li>[lost] No more word came up the road about {X_nameDef}. A trader thought the traveler with the fever had gone south to family, and that was the last anyone heard.</li>
+        </endings>
+        <summaries>
+          <li>[joined] {X_nameDef}, a traveler the colony nursed through a fever, stayed.</li>
+          <li>[saved] The colony's medicine saw {PLACE} through the fever {X_nameDef} first brought to its gate.</li>
+          <li>[helped] {A_nameDef}'s advice helped {PLACE} through a fever.</li>
+          <li>[closed] The colony kept its gate shut while a fever went through {PLACE}.</li>
+          <li>[turnedaway] The colony turned away {X_nameDef}, a traveler with a fever.</li>
+          <li>[worse] The colony helped a feverish traveler once, and then stopped.</li>
+          <li>[lost] A traveler the colony helped through a fever was never heard of again.</li>
+        </summaries>
+        <good>
+          <li>joined</li>
+          <li>saved</li>
+          <li>helped</li>
+        </good>
+        <bad>
+          <li>closed</li>
+          <li>turnedaway</li>
+        </bad>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_FeverRelapse</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the fever comes back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The fever comes back</li>
+          <li>{X_nameDef} again</li>
+        </titles>
+        <texts>
+          <li>[relapse] {X_nameDef} came back up the road on a borrowed mule, gray and shaking. The fever came back two days out of {PLACE}, worse than before, and the healer there sent {X_objective} straight back: go to the one who treated you.</li>
+          <li>[lingering] {X_nameDef} of {FACTION} is mending, but so slowly that the family at {PLACE} has given up waiting. {X_nameDef} walked back up to the colony leaning on a stick, to ask {A_nameDef} what else can be done.</li>
+          <li>[relapse,sent] Last time, the colony gave {X_nameDef} medicine and a corner outside the wall. The fever came back on the road, and {X_nameDef} is at the gate again, worse, asking for more than a corner this time.</li>
+          <li>[lingering,nursed] {A_nameDef} pulled {X_nameDef} through the first night, but the fever never quite let go. {X_nameDef} has come back up from {PLACE} thin and slow, to see the doctor who started the job.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} sits with {X_objective} again (2 medicine)</label>
+            <outcome>{A_nameDef} sat with {X_nameDef} another long night and went through two doses from the medicine chest. Near dawn the fever let go, for good this time, {A_nameDef} thinks.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>2</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_HospitalPatient" />
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{A_nameDef}'s night at {X_nameDef}'s side</label><count>1</count><to>Stranger</to><hours>19~1</hours><duration>4~6</duration></li>
+            </effects>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Medicine for the road (2)</label>
+            <outcome>Two doses went out to {X_nameDef} at the gate, wrapped in a cloth with instructions, and {X_nameDef} started back for {PLACE} before dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>medicine</what><count>2</count><steward>false</steward><to>Stranger</to><label>medicine for {X_nameDef}</label></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The colony has done what it can</label>
+            <outcome>{X_nameDef} nodded, as if expecting it, and started back down the road toward {PLACE}.</outcome>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>16</visitHours>
+        <gathering>false</gathering>
+        <routes>
+          <li><option>0</option><flags><li>nursed</li></flags><next>Council_Story_FeverMended</next><days>10~15</days></li>
+          <li><option>1</option><next>Council_Story_FeverMended</next><days>12~18</days></li>
+          <li><option>2</option><next>end:worse</next><days>8~12</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>fever</chain>
+        <key>feverrelapse</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_FeverMended</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the traveler mended</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <addsPeople>true</addsPeople>
+        <answerDays>0.8</answerDays>
+        <titles>
+          <li>{X_nameDef} comes back</li>
+          <li>Mended</li>
+        </titles>
+        <texts>
+          <li>[nursed] {X_nameDef} of {FACTION} is back on {X_possessive} own two feet, brown from the road and a good deal thinner. {X_nameDef} remembers very little of the fever and every bit of {A_nameDef} sitting up through it, and has come to say so, and to pay the debt.</li>
+          <li>[sent] {X_nameDef} of {FACTION} has come back up from {PLACE}, well again. The medicine the colony carried out to the wall did the work, {X_nameDef} says, and {X_pronoun} pays {X_possessive} debts.</li>
+          <li>[lingering] {X_nameDef} still walks with a stick and still stops on hills, but the fever is gone. {X_nameDef} of {FACTION} has come up from {PLACE} to thank {A_nameDef}, and to ask how the colony would like to be repaid.</li>
+          <li>[strong] Brown from the road and grinning, {X_nameDef} of {FACTION} is back at the gatepost where {X_pronoun} sat down with the fever a few weeks ago. {X_nameDef} has come to repay the colony, and won't take no for an answer.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {X_objective} work off the debt</label>
+            <outcome>{X_nameDef} took an axe to the treeline and didn't stop until the light went. There's a good start on the winter's firewood lying where the trees came down, and {X_nameDef} says the debt is half paid.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>60</count><near>Stranger</near></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Ask {X_objective} to stay</label>
+            <outcome>{X_nameDef} looked at {A_nameDef}, then at the gatepost, and said yes.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{X_nameDef} was touched, and said no. There's family at {PLACE} who thought {X_objective} lost on the road.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Join" />
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Tell {X_objective} there's no debt</label>
+            <outcome>{A_nameDef} wouldn't hear of payment. They sat together by the gatepost a while instead, and {X_nameDef} went home to {PLACE} promising the colony hadn't heard the last of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} and {X_nameDef} at the gatepost</label><to>Stranger</to><hours>9~20</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>20</visitHours>
+        <gathering>false</gathering>
+        <routes>
+          <li><option>1</option><when>safe</when><next>end:joined</next><days>0.3~0.6</days></li>
+          <li><option>0</option><flags><li>worked</li></flags><next>Council_Story_FeverRepaid</next><days>15~25</days></li>
+          <li><option>1</option><flags><li>nostay</li></flags><next>Council_Story_FeverRepaid</next><days>15~25</days></li>
+          <li><option>2</option><flags><li>nodebt</li></flags><next>Council_Story_FeverRepaid</next><days>15~25</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>fever</chain>
+        <key>fevermended</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Story_FeverRepaid</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the fever at the town</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoryFlow</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>0</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <notable>false</notable>
+        <answerDays>0.6</answerDays>
+        <titles>
+          <li>The fever at {PLACE}</li>
+          <li>{X_nameDef} asks a favor</li>
+        </titles>
+        <texts>
+          <li>The fever {X_nameDef} carried to the colony's gate has reached {PLACE}, and it's going through the town a street at a time. {X_nameDef} had it once and won't catch it again, so {X_nameDef} is the one who came up the road to ask: the colony pulled one of them through it. Can it spare medicine for the rest?</li>
+          <li>[nursed] {X_nameDef} of {FACTION} knows what the fever needs, because {X_nameDef} watched {A_nameDef} do it. It's in {PLACE} now, house after house, and the healer there has run out of everything. {X_nameDef} has come back to the colony to ask for medicine, and for whatever {A_nameDef} can tell {X_objective}.</li>
+          <li>[worked] The wood {X_nameDef} cut for the colony is still drying by the treeline. Now {X_nameDef} is back at the gate with a different face on: the fever has reached {PLACE}, and the town has run out of medicine.</li>
+          <li>[nodebt] "You said there was no debt," {X_nameDef} says at the gate. "So I've come to ask a favor instead." The fever {X_nameDef} lived through is going through {PLACE}, and the town's healer has nothing left.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send medicine back with {X_objective} (4)</label>
+            <outcome>Four doses went into {X_nameDef}'s pack, wrapped in oilcloth, and {X_nameDef} set off for {PLACE} at a run.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>medicine</what><count>4</count><steward>false</steward><to>Stranger</to><label>medicine for {PLACE}</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>gift</kind></li>
+            </effects>
+            <ways><generosity>2</generosity><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} tells {X_objective} everything the fever taught</label>
+            <outcome>{A_nameDef} sat {X_nameDef} down and went through it all: cold cloths, clean water, who to keep apart, what to watch for in the second week. {X_nameDef} wrote it down on the back of a feed sack.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s advice for {PLACE}</label><to>Stranger</to><hours>9~20</hours><duration>1.5~2</duration></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Keep the gate shut until it passes</label>
+            <outcome>{A_nameDef} told {X_nameDef} through the gate that the colony couldn't risk it. {X_nameDef} didn't argue, and went back down the road alone.</outcome>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.StoryFlow">
+        <visitHours>16</visitHours>
+        <gathering>false</gathering>
+        <routes>
+          <li><option>0</option><next>end:saved</next><days>8~12</days></li>
+          <li><option>1</option><next>end:helped</next><days>8~12</days></li>
+          <li><option>2</option><next>end:closed</next><days>8~12</days></li>
+        </routes>
+      </li>
+      <li Class="ColonyCouncil.StoryText">
+        <chain>fever</chain>
+        <key>feverrepaid</key>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -1570,6 +1570,17 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   **headstones** for the colony's graves, a neighbor's **bridge** to rebuild, a **sick herd**, and a **feast** or a
   **quarrel** with a camp nearby. Many answers call on someone with the right skill or trait; when nobody fits, the
   answer says why.
+- **Hard turns and the neighbors (14 more).** Many of these are hard on purpose. A **killing frost** gives a day's
+  warning (every hand to the fields brings the ripe crop in before the cold), **something at the pens** comes back
+  night after night until someone sits up with a lamp or the herd is brought in, a neighbor's **thirsty herd** needs
+  your river in a dry summer (the drovers bring the animals down to the water, and can cut wood while they drink), and
+  **fire on the far ridge** drives the game across your land while the neighbors' farms lie in its path. A **war
+  band** in the valley and a family **burned out** of their farm can bring a fight, only as the risk of an answer.
+  A colonist's own life: **word of a death** far away (a wake, a day alone, or straight back to work), a **keepsake**
+  from their old life on a trader's blanket, and being **called home** (stay, send silver instead, or let them go,
+  seen off at the gate). The neighbors' troubles: **goods with no questions asked**, a **gambler**, a neighbor's
+  **stray beast** in your barn, **hands for hire** who fell trees for a meal, and a **teacher** for the colony's
+  children. What you do is remembered by the people it touched.
 - **Strangers who make camp.** Now and then a group that isn't hostile settles part of your map for days to a
   season: a **hunting party** following a herd, a **refugee family**, **prospectors**, **pilgrims** at rest,
   **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut, **traveling healers** who ease an
@@ -1609,7 +1620,7 @@ send their thanks down the road. A neighbor whose **order** you filled comes bac
 **visited** writes home news, and can be invited to come and live here; the colonist the **fortune teller** saw bad
 things for has a fright that comes to nothing; and the neighbors whose **quarrel** you judged remember it.
 
-**Stories** are longer: eight chains told in three to five stages over days and weeks, where your answer and some luck
+**Stories** are longer: ten chains told in three to five stages over days and weeks, where your answer and some luck
 decide what comes next and how it ends. **The door in the hill** (open it, study it first, or sell the way to it: an
 empty vault with writing on the walls, a sleeper in an old casket who may stay, go or flee, or a hoard whose owners
 come for it); **the fugitive's debt** (hide a stranger at night, then lie to their pursuers or give them up: the debt
@@ -1622,8 +1633,16 @@ astray: send them on, read them first, or burn them; a love letter, a buried cac
 them, and a thank-you, a share or a new colonist may come back); **the stranger's seeds** (plant them with care, out
 of the way, or turn them down: a rare harvest, a weed that chokes the fields, cuttings to sell, and the stranger
 coming back to see what grew); and **the play** a traveling writer makes of the colony (tell them everything, only the
-best, or nothing: a hit along the road, an admirer who comes to visit, a flop or a scandal). Each ending gets its own
-letter and a line in the chronicle; a path brings at most one fight, and only with battles on.
+best, or nothing: a hit along the road, an admirer who comes to visit, a flop or a scandal); and two that run over a
+whole season, every stage on the map: **the apprentice** from a nearby town who learns at your best crafter's bench a
+day or two each week (a first piece and a journeyman's piece really handed over, trouble halfway through from a guild,
+homesickness or bad company, and an end where they stay, go home a journeyman, or drift away), and **the traveler
+with the fever** your best doctor sits up with at the gate (it counts toward the hospital's name), who may come back
+when the fever does, returns well to work off the debt or stay, and later asks for help when the fever reaches their
+own town. Each ending gets its own letter and a line in the chronicle; a path brings at most one fight, and only with
+battles on. Nine of the events that come round most often (the fortune teller, the tinker, stranded merchants, the
+harvest fair, a family visit, the traveling cook, the scribe, the hedge healer, the spirit singer) have more ways to
+read and to turn out.
 
 **Missions** are a neighbor's request with clear terms: goods for a **funeral or a wedding** by a set day (meals,
 sculptures, stone blocks, beer), a prize animal that **bolted** onto your land to tame and hand back (or buy, or
