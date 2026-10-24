@@ -610,7 +610,7 @@ def nuisance_rates(defs):
 
 # Draws a year (60 days, eight colonists), set by hand from the callers. First match wins.
 FREQ = [
-    # Conversations (Social/Talk/): about 0.8 talks a colonist a day, three in four on a topic (19 of them, the raid, the
+    # Conversations (Social/Talk/): about 0.8 talks a colonist a day, three in four on a topic (23 of them, the raid, the
     # food, the council and newcomers most), the rest remembering, in-jokes and comfort. Generic pools serve every topic.
     (r"^Rimfolk_TL_Any_Reply\.", 75, "conversation: any topic's reply"),
     (r"^Rimfolk_TL_Any_Close\.", 45, "conversation: any topic's closing word"),
