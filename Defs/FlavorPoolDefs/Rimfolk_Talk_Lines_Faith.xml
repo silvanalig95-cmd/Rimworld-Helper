@@ -48,30 +48,54 @@
         <li>[nopreaching] Where I come from, you keep your faith and let others keep theirs.</li>
         <li>[digin,faith:devout] I'll say it plainly: I'm not ashamed of what I believe.</li>
         <li>[digin,otherideo] I've seen how your lot do things, and I can't say I'm impressed.</li>
+        <li>[persuading] Let me tell you what my faith has done for me.</li>
+        <li>[persuading,otherideo] You've asked about our rites before, so let me tell you properly.</li>
+        <li>[persuaded] Your faith has been on my mind lately, more than I let on.</li>
+        <li>[persuaded,otherideo] What is it you get from your rites, really?</li>
+        <li>[persuaded,faith:wavering] I've been listening to you at supper, and some of it stays with me.</li>
+        <li>[unmoved] I know you'd like me to come round to your faith.</li>
+        <li>[unmoved,otherideo] I've heard what your lot believe, and I'll hear it again if you like.</li>
+        <li>[digin] We never talk about faith without it going badly, do we.</li>
+        <li>[digin,otherideo] I know what you think of my faith, so let's have it out.</li>
+        <li>[steadied] It's good to have someone who believes what I believe.</li>
+        <li>[steadied,sameideo] I keep thinking about the last rite, don't you?</li>
+        <li>[steadied,faith:wavering] I've slipped lately, and I wanted to talk to someone who keeps the faith.</li>
       </plain>
       <warm>
         <li>[persuading] I pray for you, you know, and I'd love it if one day you prayed with me.</li>
         <li>[persuading,otherfaith:wavering] Whatever's troubling you, there's room for you at our rites.</li>
         <li>[faith:wavering] I miss being sure, and I'd give a lot to feel it again.</li>
         <li>[faith:alone] It would mean a lot if someone sat with me at a rite one day, even just to watch.</li>
+        <li>[steadied] I'm glad we share this, you and I.</li>
+        <li>[persuaded] Tell me about your faith, I'd really like to understand.</li>
       </warm>
       <blunt>
         <li>[persuading] Your faith's done nothing for you that I can see, and mine might.</li>
         <li>[digin] Let's not pretend we'll agree on this.</li>
         <li>[faith:wavering] I don't know what I believe any more, and I'm tired of pretending I do.</li>
+        <li>[persuading] You need something to believe in, and I've got something.</li>
+        <li>[unmoved] Go on, make your case, I'm listening.</li>
       </blunt>
       <cheerful>
         <li>[persuading] Come to one rite with us, and if you hate it I'll do your laundry for a week.</li>
         <li>[faith:alone] Being the only one of my ideoligion here means I always get the best seat at the rites.</li>
         <li>[steadied,sameideo] Good rite last time, and I only nodded off once.</li>
+        <li>[persuaded] I've been sneaking a look at your rites, and they're better than ours.</li>
+        <li>[digin] Shall we argue about faith again, for old times' sake?</li>
       </cheerful>
       <gloomy>
         <li>[faith:wavering] Some days the faith is all that gets me up, and some days I can't feel it at all.</li>
         <li>[persuading] Out here, faith is the only thing that doesn't run out, think about it.</li>
+        <li>[digin] We'll never agree on this, we both know it.</li>
+        <li>[steadied] Faith's all that keeps me going some days, and I know it's the same for you.</li>
+        <li>[persuaded] I've lost my way a bit, and I don't know where else to look.</li>
       </gloomy>
       <cold>
         <li>[persuading] I can set out the case for what I believe, if you'll hear it to the end.</li>
         <li>[digin] Your faith and mine contradict each other on most points, and I won't pretend otherwise.</li>
+        <li>[digin] Your faith and mine can't both be true.</li>
+        <li>[persuaded] I've been considering your faith's claims, and some of them hold up.</li>
+        <li>[steadied] Keeping the faith together is easier than alone.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -108,32 +132,58 @@
         <li>[steadied,myfaith] {SUBJECT} has carried us this far, and it'll carry us further.</li>
         <li>[faith:wavering,sameideo] I want to believe you, so give me time.</li>
         <li>[faith:alone,otherideo] You're kind to ask, most here don't.</li>
+        <li>[persuaded] You've given me a lot to chew on.</li>
+        <li>[persuaded] I can't argue with that, and I've tried.</li>
+        <li>[persuaded,otherideo] Maybe your way has something mine doesn't.</li>
+        <li>[unmoved] It's a good answer, but it's not mine.</li>
+        <li>[unmoved] I respect it, I just don't feel it.</li>
+        <li>[unmoved,otherideo] Your faith suits you, and mine suits me.</li>
+        <li>[persuading] Think of it as a door, not a rope.</li>
+        <li>[persuading] I'm not asking you to change, just to listen.</li>
+        <li>[persuading,otherfaith:wavering] You're halfway there already, I can see it.</li>
+        <li>[digin] I'm not going to pretend you're right.</li>
+        <li>[digin] Every word you say makes me surer of mine.</li>
+        <li>[digin,otherideo] Your faith has nothing to say to me.</li>
+        <li>[steadied] It's good to hear someone say it.</li>
+        <li>[steadied] You've made me feel surer, thank you.</li>
+        <li>[steadied,sameideo] We'll keep it going, you and me.</li>
       </plain>
       <warm>
         <li>[persuaded] You care about this, and about me, and that counts for something.</li>
         <li>[persuading] I'm not trying to take anything from you, only to give you something.</li>
         <li>[steadied] I'm glad it's you I share this with.</li>
         <li>[preachedat] I know you mean well, but please don't.</li>
+        <li>[unmoved] Thank you for sharing it, truly, but I'll keep my own.</li>
+        <li>[steadied] I needed to hear that, more than you know.</li>
       </warm>
       <blunt>
         <li>[preachedat] Save the sermon.</li>
         <li>[digin] No, and don't ask again.</li>
         <li>[unmoved] Nice speech, still no.</li>
         <li>[persuaded] Fine, you've got a point, don't let it go to your head.</li>
+        <li>[digin] Not a chance.</li>
+        <li>[persuaded] Fine, maybe you've got a point.</li>
       </blunt>
       <cheerful>
         <li>[persuaded] Keep talking like that and I'll be at your rites before long.</li>
         <li>[unmoved] Very convincing, and I'll think it over in the next life.</li>
         <li>[steadied] Between the two of us, we've nearly got the whole thing worked out.</li>
+        <li>[steadied] We're the most faithful pair in the colony, I've decided.</li>
+        <li>[digin] Nice try, but my faith has better songs.</li>
       </cheerful>
       <gloomy>
         <li>[persuaded,faith:wavering] I've nothing else to hold on to, so maybe yours will do.</li>
         <li>[digin] Believe what you like, we'll both be dust in the end.</li>
+        <li>[persuaded] I've nothing left to hold on to, so maybe.</li>
+        <li>[digin] We'll both be wrong in the end, probably.</li>
+        <li>[steadied] It helps, it always helps, for a while.</li>
       </gloomy>
       <cold>
         <li>[persuaded] That is a better argument than I expected, and I'll consider it.</li>
         <li>[unmoved] Your reasoning is sound until the last step.</li>
         <li>[preachedat] I don't recall inviting a sermon.</li>
+        <li>[unmoved] Your argument has a gap in the middle.</li>
+        <li>[steadied] Shared belief makes us both steadier.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -156,19 +206,46 @@
         <li>[digin] We'll each keep our own, then.</li>
         <li>[steadied] Same time at the next rite, then.</li>
         <li>[steadied,faith:devout] Hold fast, and so will I.</li>
+        <li>[persuading] I'll leave you with that, and you can think it over.</li>
+        <li>[persuading,otherfaith:wavering] Come and find me when the doubts get loud.</li>
+        <li>[persuaded] Everything you've said, I'll be turning over tonight.</li>
+        <li>[persuaded,otherideo] Maybe I'll come to one of your rites.</li>
+        <li>[unmoved] I'll mull it over, but I don't expect to change.</li>
+        <li>[digin] Let's leave faith alone for a while, shall we?</li>
+        <li>[digin,otherideo] Keep yours, I'll keep mine.</li>
+        <li>[steadied] I feel better for talking about it.</li>
+        <li>[steadied,sameideo] See you at the next rite.</li>
       </plain>
       <warm>
         <li>[persuading] Whatever you decide, you're welcome at our rites.</li>
         <li>[persuaded] Thank you for not pushing, it made it easier to listen.</li>
+        <li>[steadied] Thank you, I mean it.</li>
+        <li>[persuaded] I'm grateful you took the time.</li>
+        <li>[digin] I don't want our faiths to come between us.</li>
       </warm>
       <blunt>
         <li>[digin] Done talking, I know what I believe.</li>
+        <li>[digin] Done.</li>
+        <li>[persuading] Think on it.</li>
+        <li>[unmoved] My mind's made up.</li>
       </blunt>
       <cheerful>
         <li>[persuading] One rite, and I'll save you a seat and won't even make you sing.</li>
+        <li>[steadied] Two faithful souls, ready for anything.</li>
+        <li>[digin] Rematch next week, same faiths.</li>
+        <li>[persuaded] You might have a convert, watch this space.</li>
       </cheerful>
+      <gloomy>
+        <li>[digin] We'll never agree, so why try.</li>
+        <li>[steadied] Hold on, it's all we can do.</li>
+        <li>[persuaded] Maybe your faith will do better by me than mine did.</li>
+        <li>[unmoved] It wouldn't help, whatever I believed.</li>
+      </gloomy>
       <cold>
         <li>[persuading] Consider it at your leisure, the argument will keep.</li>
+        <li>[digin] We've reached the end of this.</li>
+        <li>[steadied] We'll keep each other steady.</li>
+        <li>[persuaded] Your argument has merit.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -190,16 +267,42 @@
         <li>[digin] Suit yourself.</li>
         <li>[digin,faith:devout] I'll pray for you anyway, so don't argue.</li>
         <li>[steadied] Thank you, I needed that.</li>
+        <li>[persuaded,otherideo] I might come and watch your next rite, if that's all right.</li>
+        <li>[unmoved,otherideo] I'll keep my own, thank you.</li>
+        <li>[persuading] Think about it, that's all.</li>
+        <li>[digin] We'll never see it the same way.</li>
+        <li>[steadied] I'll hold on, then, with you.</li>
       </plain>
       <warm>
         <li>[persuaded] Thank you for caring enough to say all that.</li>
+        <li>[steadied] I'm so glad we talked.</li>
+        <li>[digin] Let's not let this spoil anything between us.</li>
+        <li>[unmoved] Thank you for caring, all the same.</li>
       </warm>
       <blunt>
         <li>[unmoved] Nice try.</li>
+        <li>[digin] Never.</li>
+        <li>[persuaded] Maybe.</li>
+        <li>[steadied] Good.</li>
       </blunt>
+      <cheerful>
+        <li>[persuaded] Save me a seat at the next rite, just in case.</li>
+        <li>[digin] Same argument next week, then.</li>
+        <li>[steadied] Faithful to the end, the pair of us.</li>
+        <li>[unmoved] Nice try, though, really.</li>
+      </cheerful>
       <gloomy>
         <li>[persuaded] I'll try it, what's one more thing to lose.</li>
+        <li>[digin] It won't matter in the end.</li>
+        <li>[unmoved] Nothing's going to change me now.</li>
+        <li>[steadied] For as long as it lasts, then.</li>
       </gloomy>
+      <cold>
+        <li>[digin] We disagree.</li>
+        <li>[unmoved] Unconvinced.</li>
+        <li>[steadied] Agreed.</li>
+        <li>[persuaded] I'll consider it.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 

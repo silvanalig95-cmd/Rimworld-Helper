@@ -5,7 +5,7 @@
     Talk about the camp on the map (Source/ColonyCouncil/Social/Talk/TopicWorkers_Life.cs): glad of the people camped
     nearby, or wanting them gone and the land back. Tags as in Rimfolk_Talk_Lines_Fight.xml, and for the camp:
       [coming] they're still walking in; [leaving] they go within the day; [tense] tension with them is high (40 or more)
-      [terms] the colony set them terms; [trader] they trade; [family] a refugee family; [hunting] they hunt the colony's
+      [terms] the colony set them terms; [trader] they trade; [campfamily] a refugee family with children; [hunting] they hunt the colony's
       game; [felling] they've cut its trees; [knowsthem] the speaker has spent time at their fire
       [faithful] pilgrims, a procession, penitents, tree-singers; [healers] traveling healers; [music] players or minstrels;
       [mourners] mourners passing through; [camp:Hunters], [camp:Hermit], [camp:Smith]... the kind by its name
@@ -26,7 +26,7 @@
         <li>[for,subject] I went over to see {SUBJECT} yesterday, and they fed me.</li>
         <li>[for,knowsthem] I've been down to their camp a few times now, and they're decent people.</li>
         <li>[for,trader] Traders camped on our doorstep, we couldn't ask for better.</li>
-        <li>[for,family] There are children in that camp, did you see?</li>
+        <li>[for,campfamily] There are children in that camp, did you see?</li>
         <li>[for,faithful] Whatever they pray to, they've been peaceful about it.</li>
         <li>[for,healers] Their healer looked at my bad knee and wouldn't take a thing for it.</li>
         <li>[for,music] I could hear their music from the fields last night.</li>
@@ -61,7 +61,7 @@
       </plain>
       <warm>
         <li>[for] I took them a pot of stew yesterday, and they looked like they needed it.</li>
-        <li>[for,family] I hope the little ones in that camp have enough to eat.</li>
+        <li>[for,campfamily] I hope the little ones in that camp have enough to eat.</li>
         <li>[against] I'm sure they're good people, but I'd feel safer if they moved on.</li>
         <li>[mixed] I hope they find whatever they're looking for.</li>
         <li>[for,knowsthem] They know my name over there now, and they wave.</li>
@@ -161,7 +161,7 @@
         <li>[agree,for] I'll take some bread down to them tomorrow.</li>
         <li>[debate,against] I'm sure they're kind, I just don't like strangers so close.</li>
         <li>[argue,for] Please, they're people, just like us.</li>
-        <li>[agree,family] Those children deserve a warm place to sleep.</li>
+        <li>[agree,campfamily] Those children deserve a warm place to sleep.</li>
         <li>[debate,for] We were strangers here once too, remember.</li>
         <li>[agree,mixed] I hope they're kind to each other over there, at least.</li>
         <li>[argue,against] I don't wish them harm, I just want them gone.</li>
@@ -234,7 +234,7 @@
         <li>[agree] I'm glad we feel the same about them.</li>
         <li>[debate] Let's be kind to them while they're here.</li>
         <li>[argue] I'm sorry, I just don't want anyone to feel unwelcome.</li>
-        <li>[agree,family] I'll see if the children need anything.</li>
+        <li>[agree,campfamily] I'll see if the children need anything.</li>
         <li>[debate,against] Give them a few more days, for my sake.</li>
       </warm>
       <blunt>

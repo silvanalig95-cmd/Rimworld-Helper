@@ -619,6 +619,10 @@ FREQ = [
     (r"^Rimfolk_TL_(Raid|Food|Council|Newcomer)_(Open|Reply)\.", 22, "conversation: a common topic"),
     # (Comfort, remembering and in-jokes before the topics, whose pattern would take their pools too.)
     (r"^Rimfolk_TL_Comfort_", 25, "conversation: comfort"),
+    # Faith talks that move someone (Faith/FaithTalk.cs): about half of a colony's faith talks, a dozen a year.
+    (r"^Rimfolk_TL_FaithMoves_(Open|Reply)\.", 7, "conversation: a faith talk that moves someone"),
+    (r"^Rimfolk_TL_FaithMoves_Close\.", 5, "conversation: a faith talk that moves someone, the closing word"),
+    (r"^Rimfolk_TL_FaithMoves_Last\.", 3, "conversation: a faith talk that moves someone, the last word"),
     (r"^Rimfolk_TL_(Mem|Joke)_(Open|Reply|Close)\.", 8, "conversation: remembering or a joke, any memory"),
     (r"^Rimfolk_TL_(Mem|Joke)_", 4, "conversation: one kind of shared memory"),
     (r"^Rimfolk_TL_\w+_(Open|Reply)\.", 12, "conversation: a topic"),
@@ -747,10 +751,10 @@ def estimate(pools):
             p.extra = (("for|against|mixed", 1.0), ("otherfor|otheragainst|othermixed", 1.0), how,
                        ("friends", 0.3), ("good|bad|mixed", 1.0), ("byme|byother", 1.0), ("fresh|told|worn", 1.0),
                        ("grief|despair|lonely|fear|worry|lowmood", 1.0))
-            # Faith talks that matter (Faith/FaithTalk.cs): in about half of them one of the two sways, is swayed, digs
-            # in or is steadied; the other's faith as the speaker sees it, whose faith it's about, one faith or two.
+            # Faith talks that matter (Faith/FaithTalk.cs), drawn from in the talks where one of the two sways, is swayed,
+            # digs in or is steadied; the other's faith as the speaker sees it, whose faith it's about, one faith or two.
             if p.name.startswith("Rimfolk_TL_FaithMoves_"):
-                p.extra += (("persuading|persuaded|unmoved|digin|steadied", 0.5), ("sameideo|otherideo", 1.0),
+                p.extra += (("persuading|persuaded|unmoved|digin|steadied", 1.0), ("sameideo|otherideo", 1.0),
                             ("otherfaith:devout|otherfaith:wavering", 0.5), ("myfaith|theirfaith", 0.6),
                             ("faith:devout|faith:wavering", 0.5), ("faith:alone|faith:minority|faith:majority", 0.4),
                             ("preachedat", 0.15), ("nopreaching", 0.15))

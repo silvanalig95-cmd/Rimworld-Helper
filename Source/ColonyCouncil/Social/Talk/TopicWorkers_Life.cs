@@ -252,7 +252,7 @@ namespace ColonyCouncil
             if (c.tension >= 40f) tags.Add("tense");
             if (c.AnyTerms) tags.Add("terms");
             if (c.kind.trader) tags.Add("trader");
-            if (c.kind.family) tags.Add("family");
+            if (c.kind.family) tags.Add("campfamily");
             if (c.animalsHunted > 0 || c.kind.huntsPerDay >= 0.5f) tags.Add("hunting");
             if (c.treesFelled > 0) tags.Add("felling");
             if (c.untilTick != int.MaxValue && c.untilTick - Now < GenDate.TicksPerDay) tags.Add("leaving");

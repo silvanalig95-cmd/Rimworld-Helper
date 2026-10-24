@@ -35,36 +35,50 @@
         <li>[against] I believe in walls and full stores, that's my faith.</li>
         <li>[against,devout] I've been having doubts, and it frightens me.</li>
         <li>[mixed,sameideo] Do you think we're doing it right, our faith?</li>
+        <li>[for] When I can't sleep, I pray, and it settles me.</li>
+        <li>[for] A colony needs something to believe in besides the next meal.</li>
+        <li>[against] Whatever's up there, it's never once helped me plant a field.</li>
+        <li>[against] I'd rather trust the people beside me than something I can't see.</li>
+        <li>[mixed] I wonder sometimes what we're supposed to be believing in.</li>
+        <li>[mixed] I go to the gatherings, but I couldn't tell you what I believe.</li>
+        <li>[mixed] Some days I'm sure of it, some days I feel nothing at all.</li>
+        <li>[mixed] Who taught you what you believe?</li>
+        <li>[mixed] I've been thinking about faith lately, more than usual.</li>
       </plain>
       <warm>
         <li>[for] I pray for all of you, you know, every night.</li>
         <li>[against] I envy people who are sure, I really do.</li>
         <li>[for,sameideo] I'm glad we share a faith, you and I.</li>
         <li>[against] I'd like to believe, I just can't make myself.</li>
+        <li>[mixed] Does your faith help you, out here?</li>
       </warm>
       <blunt>
         <li>[against] Faith's a comfort for people who can't face facts.</li>
         <li>[for] Some people round here could do with a bit of faith.</li>
         <li>[for] People without faith are lost, whether they know it or not.</li>
         <li>[against] I'll believe it when it pays my debts.</li>
+        <li>[mixed] Faith, what's it for, really?</li>
       </blunt>
       <cheerful>
         <li>[for] I asked the heavens for a good harvest and a pie, and one of those came true.</li>
         <li>[against] If there's a god, they owe me a new pair of boots.</li>
         <li>[for] I pray every night, mostly for better weather.</li>
         <li>[against] I tried praying, and all I got was a stiff neck.</li>
+        <li>[mixed] I keep meaning to ask the heavens a few questions, if they'll take visitors.</li>
       </cheerful>
       <gloomy>
         <li>[against] If anyone's up there, they're not on our side.</li>
         <li>[for] Faith's all we'll have left, in the end.</li>
         <li>[for] I pray because I don't know what else to do.</li>
         <li>[against] The heavens are empty, and that's the truth.</li>
+        <li>[mixed] I don't know what I believe, but I know it's dark at night.</li>
       </gloomy>
       <cold>
         <li>[against] Belief is a habit, not evidence.</li>
         <li>[for] Shared belief keeps a colony together; that's worth something.</li>
         <li>[for] Ritual keeps people steady.</li>
         <li>[against] I've never seen proof of any of it.</li>
+        <li>[mixed] Belief seems to matter more to some than others.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -95,24 +109,61 @@
         <li>[agree,against] I've stopped expecting answers.</li>
         <li>[argue,for] Have some respect, at least.</li>
         <li>[argue,against] I've heard this sermon before.</li>
+        <li>[agree] I've thought the same, lying awake.</li>
+        <li>[agree] You're not the only one who feels that way.</li>
+        <li>[agree] I said as much to myself this morning.</li>
+        <li>[debate] Faith's not something you can argue someone into, or out of.</li>
+        <li>[debate] It's never been that simple for me.</li>
+        <li>[debate] There's more to it than that, I think.</li>
+        <li>[argue] You don't understand the first thing about faith.</li>
+        <li>[argue] I won't hear my beliefs mocked.</li>
+        <li>[argue] We've had this out before, and I haven't changed.</li>
+        <li>[for] It's carried me this far, and I'm not putting it down now.</li>
+        <li>[for] Believing makes the bad days bearable.</li>
+        <li>[against] I've seen too much to believe someone's watching.</li>
+        <li>[against] I trust what I can see and touch, that's all.</li>
+        <li>[mixed] I believe some days, and some days I don't.</li>
+        <li>[mixed] I'm still working out what I think.</li>
+        <li>[agree,mixed] Nobody's sure, really, are they.</li>
+        <li>[agree,mixed] I go back and forth myself.</li>
+        <li>[debate,mixed] I wouldn't go as far as you, either way.</li>
+        <li>[debate,mixed] I keep an open mind, that's all I can do.</li>
+        <li>[argue,mixed] Don't make me pick a side on this.</li>
+        <li>[argue,mixed] I haven't decided, and I won't be pushed.</li>
       </plain>
       <warm>
         <li>[debate,for] I'll pray for you anyway, if that's all right.</li>
         <li>[agree,for] It's good to hear someone else say it.</li>
+        <li>[agree,mixed] Whatever you believe, I'm glad you've got something.</li>
+        <li>[debate,for] I'd love for you to find what I've found, that's all.</li>
+        <li>[argue,against] I don't mean to hurt you, I just can't believe it.</li>
       </warm>
       <blunt>
         <li>[argue,against] Your gods never did a day's work here.</li>
+        <li>[agree,mixed] Who knows.</li>
+        <li>[agree,for] It works for me.</li>
+        <li>[debate,against] Not for me.</li>
+        <li>[argue,mixed] Leave me out of it.</li>
       </blunt>
       <cheerful>
         <li>[debate,for] Come once and try it, the singing alone is worth it.</li>
+        <li>[agree,for] I'll pray for you, and you can owe me one.</li>
+        <li>[argue,against] If the heavens are listening, they've got very odd taste in weather.</li>
+        <li>[agree,mixed] I'm keeping my options open, just in case.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] Nobody's listening up there.</li>
         <li>[debate,for] Doubting won't make it any easier either.</li>
+        <li>[agree,for] It's all we've got left, isn't it.</li>
+        <li>[debate,for] Doubt's just faith that's tired.</li>
+        <li>[argue,against] Nobody's coming to save us.</li>
       </gloomy>
       <cold>
         <li>[argue,for] Your cynicism is tiresome.</li>
         <li>[debate,against] Comfort isn't evidence.</li>
+        <li>[agree,for] It serves its purpose.</li>
+        <li>[debate,mixed] The evidence is thin on both sides.</li>
+        <li>[argue,against] Comfort isn't truth.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -131,12 +182,41 @@
         <li>[debate] Maybe we're both partly right.</li>
         <li>[agree] I thought I was the only one who felt that way.</li>
         <li>[argue,for] You'll come round one day.</li>
+        <li>[agree] Let's leave it there, and both feel better for it.</li>
+        <li>[debate] We'll keep talking about it, I expect.</li>
+        <li>[argue] I'm done arguing about what I believe.</li>
+        <li>[agree,mixed] We'll find our own way, both of us.</li>
+        <li>[debate,mixed] Maybe we'll both know more in time.</li>
       </plain>
       <warm>
         <li>[argue] Let's not let this spoil things between us.</li>
+        <li>[agree] I'm glad we can talk about this.</li>
+        <li>[debate] Whatever we believe, we're in this together.</li>
+        <li>[agree,for] I'll keep you in my prayers.</li>
       </warm>
+      <blunt>
+        <li>[agree] Good.</li>
+        <li>[debate] Think about it.</li>
+        <li>[argue] Drop it.</li>
+        <li>[agree,against] Fair enough, then.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Same time next week for another sermon, then.</li>
+        <li>[debate] Loser has to pray for the winner.</li>
+        <li>[argue] Fine, I'll pray for us both.</li>
+        <li>[agree,for] Now let's go and ask the heavens for better weather.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] Maybe none of us will ever know.</li>
+        <li>[debate] We'll find out when we're dead, I suppose.</li>
+        <li>[argue] Have it your way.</li>
+        <li>[agree,against] Nobody's listening anyway.</li>
+      </gloomy>
       <cold>
         <li>[debate] We'll see who's right in the end.</li>
+        <li>[agree] Agreed.</li>
+        <li>[argue] I won't discuss this further.</li>
+        <li>[agree,for] Faith keeps people steady, and that's enough.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -150,7 +230,13 @@
       <plain>
         <li>[otherfor] Put in a word for a pie while you're praying, {OTHER}.</li>
         <li>[otheragainst] You don't believe in anything but second helpings, {OTHER}.</li>
+        <li>[otherfor] You pray so loudly at night the goats have joined in, {OTHER}.</li>
+        <li>[otheragainst] One day a miracle will hit you on the head, {OTHER}, and you'll call it weather.</li>
+        <li>Say one for me while you're at it, {OTHER}.</li>
       </plain>
+      <cheerful>
+        <li>[otherfor] Did the heavens answer you yet about the pie, {OTHER}?</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -181,27 +267,40 @@
         <li>[against] I'd rather know everyone at the table.</li>
         <li>[against,traders] I watch the traders the whole time they're here.</li>
         <li>[mixed] Do you think anyone out there knows we're here?</li>
+        <li>[for] The more we know of the world, the less it can surprise us.</li>
+        <li>[for] A friendly settlement nearby is worth more than a wall.</li>
+        <li>[against] Every time we let strangers in, something goes missing.</li>
+        <li>[against] We were doing fine before anyone knew we were here.</li>
+        <li>[mixed] I wonder what the other settlements think of us.</li>
+        <li>[mixed] Is it better out there, or worse, I wonder?</li>
+        <li>[mixed] I can't tell if the world's getting friendlier or just quieter.</li>
+        <li>[mixed] What's the furthest you've ever traveled?</li>
+        <li>[mixed] Sometimes I want to see the world, and sometimes I want to lock the gate.</li>
       </plain>
       <warm>
         <li>[for] I hope the people out there are as decent as the people in here.</li>
         <li>[for] I'd like us to be the kind of place travelers are glad to find.</li>
         <li>[against] I just want everyone here safe, that's all.</li>
+        <li>[mixed] I hope the people out there are getting through all right.</li>
       </warm>
       <blunt>
         <li>[against] Outsiders can stay outside.</li>
         <li>[for] We can't do everything ourselves, we need trade.</li>
         <li>[for] Hiding from the world won't make it go away.</li>
         <li>[against] Strangers bring trouble, always have.</li>
+        <li>[mixed] What's out there, anyway?</li>
       </blunt>
       <cheerful>
         <li>[for] I'd trade a pig for a story from somewhere new.</li>
         <li>[for,traders] The traders have a hat I'd swap my boots for.</li>
         <li>[against] My policy on outsiders is a locked door and a pleasant wave.</li>
+        <li>[mixed] I've heard there's a place out there where it never snows, and I'm suspicious.</li>
       </cheerful>
       <gloomy>
         <li>[against] Nobody out there cares if we live or die.</li>
         <li>[for] Out there's better than in here, some days.</li>
         <li>[against,traders] They'll be back with an army, you'll see.</li>
+        <li>[mixed] The world out there doesn't know we exist, and maybe that's for the best.</li>
       </gloomy>
       <cold>
         <li>[for] Trade improves our position.</li>
@@ -238,22 +337,57 @@
         <li>[debate,against] Friendly today, raiders tomorrow, that's how it goes.</li>
         <li>[argue,for] You'd brick up the gate if you could.</li>
         <li>[argue,against] You'll get us all killed with your open gates.</li>
+        <li>[agree] That's what I said when the last traders left.</li>
+        <li>[agree] I've been thinking about it too.</li>
+        <li>[agree] You're right, and I'd say it to anyone.</li>
+        <li>[debate] It depends who's at the gate.</li>
+        <li>[debate] It's not as simple as open or shut.</li>
+        <li>[debate] Ask me again after the next trader.</li>
+        <li>[argue] You've never been past the river.</li>
+        <li>[argue] We have this fight every time someone comes to the gate.</li>
+        <li>[argue] I'm not having this argument again.</li>
+        <li>[for] We need the world more than it needs us.</li>
+        <li>[for] Trade's kept us alive more than once.</li>
+        <li>[against] Outsiders take more than they bring.</li>
+        <li>[against] Every stranger is a risk, however friendly.</li>
+        <li>[mixed] Some of them are fine, some of them aren't.</li>
+        <li>[mixed] I'd trade with them, I just wouldn't trust them.</li>
+        <li>[agree,mixed] It's hard to know who to trust out there.</li>
+        <li>[agree,mixed] Some good, some bad, like anywhere.</li>
+        <li>[debate,mixed] I'd keep the gate open, but I'd watch it.</li>
+        <li>[debate,mixed] There's a middle road, if we wanted one.</li>
+        <li>[argue,mixed] I'm not on either side, so leave me out of it.</li>
+        <li>[argue,mixed] Fight about the outsiders with someone else.</li>
       </plain>
       <warm>
         <li>[agree,for] Let's be good neighbors, then.</li>
+        <li>[agree,mixed] I just hope we treat everyone fairly, whoever they are.</li>
+        <li>[debate,against] I want to trust them, I really do.</li>
+        <li>[argue,for] They're just people, like us.</li>
       </warm>
       <blunt>
         <li>[agree,against] Strangers stay strangers.</li>
+        <li>[agree,mixed] Depends.</li>
+        <li>[debate,for] Open the gate.</li>
+        <li>[argue,for] Coward.</li>
       </blunt>
       <cheerful>
         <li>[debate,for] Imagine the spices, though, imagine them.</li>
         <li>[agree,for] I want to try every strange food they've got.</li>
+        <li>[argue,against] You'd invite a bandit in for tea if they complimented your hat.</li>
+        <li>[agree,mixed] I'll make up my mind when they bring something interesting.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] They'd watch us starve and call it business.</li>
+        <li>[debate,for] They're no worse than we are.</li>
+        <li>[agree,mixed] Out there or in here, it's all trouble.</li>
+        <li>[argue,for] We'll die alone if we shut them all out.</li>
       </gloomy>
       <cold>
         <li>[agree,for] Trade is necessary.</li>
+        <li>[agree,against] Contact should be kept to what we need.</li>
+        <li>[debate,for] Isolation is a risk too.</li>
+        <li>[argue,against] Your trust is misplaced.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -272,13 +406,42 @@
         <li>[debate] Ask me again after the next trader.</li>
         <li>[agree,for] Next caravan, we're both going.</li>
         <li>[agree,against] Keep the gate shut, then.</li>
+        <li>[agree] Let's see who comes by next.</li>
+        <li>[debate] We'll talk again when the traders come.</li>
+        <li>[argue] I'm not discussing it again.</li>
+        <li>[agree,mixed] We'll take it as it comes.</li>
+        <li>[debate,mixed] Let's not decide anything until we have to.</li>
       </plain>
       <warm>
         <li>[argue] I don't want to fight about it, not with you.</li>
+        <li>[agree] I'm glad we talked about it.</li>
+        <li>[debate] Whatever we decide, let's be kind to whoever comes.</li>
+        <li>[agree,against] We'll keep each other safe, then.</li>
       </warm>
+      <blunt>
+        <li>[agree] Right.</li>
+        <li>[debate] Think on it.</li>
+        <li>[argue] Suit yourself.</li>
+        <li>[agree,for] Next traders, I'm going out to meet them.</li>
+      </blunt>
       <cheerful>
         <li>[debate] Next trader, I'm buying you a hat.</li>
+        <li>[agree] Next trader, I'm asking for all the gossip.</li>
+        <li>[argue] Fine, I'll befriend the whole world myself.</li>
+        <li>[agree,for] Pack a bag, we're going traveling one day.</li>
       </cheerful>
+      <gloomy>
+        <li>[agree] It'll find us either way.</li>
+        <li>[debate] They'll come whether we want them or not.</li>
+        <li>[argue] Have it your way.</li>
+        <li>[agree,against] Nothing good comes through that gate.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Agreed.</li>
+        <li>[debate] We'll judge each visitor as they come.</li>
+        <li>[argue] I've said my piece.</li>
+        <li>[agree,against] The gate stays closed unless we need it.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -306,32 +469,46 @@
         <li>[against] People spend days on art and then nobody looks at it.</li>
         <li>[against,isartist] I'm not sure my work is worth the stone it's made of.</li>
         <li>[mixed] I don't understand art, but some of it moves me.</li>
+        <li>[for] Something beautiful in the hall makes everyone stand a bit straighter.</li>
+        <li>[for] When we're gone, what we made is what they'll find.</li>
+        <li>[against] Pretty things don't keep the rain out.</li>
+        <li>[against] I'd trade every statue here for a full larder.</li>
+        <li>[mixed] I never know what to say when someone shows me their art.</li>
+        <li>[mixed] Have you seen the new piece in the hall?</li>
+        <li>[mixed] I can't tell good art from bad, can you?</li>
+        <li>[mixed] Some of it I'd keep, some of it I'd use as a doorstop.</li>
+        <li>[mixed] Do you think art matters, out here?</li>
       </plain>
       <warm>
         <li>[for] Pretty things make the hard days softer.</li>
         <li>[for] Beautiful things make people kinder, I think.</li>
         <li>[against] I like pretty things, but walls come first.</li>
+        <li>[mixed] I love seeing what people make, even when I don't understand it.</li>
       </warm>
       <blunt>
         <li>[against] Art's a waste of good stone.</li>
         <li>[for] A colony without art is just a barracks.</li>
         <li>[against] Statues don't stop arrows.</li>
+        <li>[mixed] Art, what's it for?</li>
       </blunt>
       <cheerful>
         <li>[for] I'm told my sculpture has a "raw energy", which means it's terrible.</li>
         <li>[for] I want a statue of a goat in the dining room, a big one.</li>
         <li>[against] I've seen the new sculpture, and I have questions.</li>
+        <li>[mixed] I tried to carve a bird and made a potato, so I've decided it's a potato.</li>
       </cheerful>
       <gloomy>
         <li>[against] Who'll look at it when we're gone?</li>
         <li>[for] At least art will outlast us.</li>
         <li>[against] It'll all be rubble one day, art and all.</li>
+        <li>[mixed] Beautiful or ugly, it'll all end up in the dirt.</li>
       </gloomy>
       <cold>
         <li>[for] Beauty improves morale measurably.</li>
         <li>[against] Art produces nothing.</li>
         <li>[for] People work better in rooms worth sitting in.</li>
         <li>[against] Art is a poor use of labor.</li>
+        <li>[mixed] The value of art is difficult to measure.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -362,19 +539,57 @@
         <li>[debate,against] I like it, but I like a dry roof more.</li>
         <li>[argue,for] You've never once stopped to look at anything, have you.</li>
         <li>[argue,against] We'll be admiring statues as we starve.</li>
+        <li>[agree] I've thought the same, walking through the hall.</li>
+        <li>[agree] You're right, I noticed it too.</li>
+        <li>[agree] That's what I said when it was finished.</li>
+        <li>[debate] It depends on the piece.</li>
+        <li>[debate] Art's not as simple as useful or not.</li>
+        <li>[debate] I'm not sure about that.</li>
+        <li>[argue] You wouldn't know good work if it fell on you.</li>
+        <li>[argue] We have this fight every time something's carved.</li>
+        <li>[argue] I won't be told about art by you.</li>
+        <li>[for] A colony without art is just a camp.</li>
+        <li>[for] Making things beautiful is part of making a home.</li>
+        <li>[against] Every hour on a statue is an hour off the walls.</li>
+        <li>[against] It's nice, but it's not needed.</li>
+        <li>[mixed] Some of it's lovely and some of it isn't.</li>
+        <li>[mixed] I don't understand it, but I don't mind it.</li>
+        <li>[agree,mixed] It's nice to have, but it's not everything.</li>
+        <li>[agree,mixed] I can take it or leave it.</li>
+        <li>[debate,mixed] I'd have some, just not as much.</li>
+        <li>[debate,mixed] It depends who made it and what for.</li>
+        <li>[argue,mixed] I don't care enough about art to fight about it.</li>
+        <li>[argue,mixed] Leave me out of this one.</li>
       </plain>
       <warm>
         <li>[agree,for] I love seeing what people make.</li>
+        <li>[agree,mixed] Whatever people make, it's good that they make something.</li>
+        <li>[debate,against] I love it, I just worry about the work.</li>
+        <li>[argue,for] Please don't talk about it like that, someone poured their heart into it.</li>
       </warm>
+      <blunt>
+        <li>[agree,for] It's good work.</li>
+        <li>[debate,for] Leave the artists alone.</li>
+        <li>[agree,against] Waste of stone.</li>
+        <li>[argue,mixed] Who cares.</li>
+      </blunt>
       <cheerful>
         <li>[agree,for] I'll pose for the next one, my good side's the left.</li>
         <li>[debate,against] I'll admire the art from my nice dry bed.</li>
+        <li>[argue,against] I've seen your bedroom, and you need art more than anyone.</li>
+        <li>[agree,mixed] I like the ones that look like animals, the rest are a mystery.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] Nobody will look at it in a hundred years.</li>
+        <li>[agree,for] It's the only thing here that'll last.</li>
+        <li>[debate,for] Better a pretty ruin than an ugly one.</li>
+        <li>[argue,against] Nobody will care when we're gone.</li>
       </gloomy>
       <cold>
         <li>[agree,against] Practical things first.</li>
+        <li>[debate,for] It improves morale, so it pays for itself.</li>
+        <li>[argue,for] Your view of art is narrow.</li>
+        <li>[agree,mixed] Some art is worth the labor, some is not.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -393,13 +608,42 @@
         <li>[argue] There's no talking to you about this.</li>
         <li>[agree,for] I'll ask for a sculpture at the next meeting.</li>
         <li>[agree,against] Walls first, then.</li>
+        <li>[agree] Let's go and look at the new piece together.</li>
+        <li>[debate] We'll see what the next one's like.</li>
+        <li>[argue] I'm done talking about art.</li>
+        <li>[agree,mixed] To each their own, then.</li>
+        <li>[debate,mixed] Let's see what people make next.</li>
       </plain>
       <warm>
         <li>[debate] I like talking this over with you, even when we don't agree.</li>
+        <li>[agree] I'm glad you see the beauty in it too.</li>
+        <li>[argue] I'm sorry, it matters to me, that's all.</li>
+        <li>[agree,against] We'll get the walls done first, then.</li>
       </warm>
+      <blunt>
+        <li>[agree] Good.</li>
+        <li>[debate] Look at it properly next time.</li>
+        <li>[argue] Fine.</li>
+        <li>[agree,against] Walls, then art.</li>
+      </blunt>
       <cheerful>
         <li>[debate] I'll carve you something, then you'll see.</li>
+        <li>[agree] I'm going to carve a statue of us agreeing.</li>
+        <li>[argue] Fine, I'll make the ugliest statue ever, just for you.</li>
+        <li>[agree,for] Next one I make, you get to name it.</li>
       </cheerful>
+      <gloomy>
+        <li>[agree] It'll all crumble eventually.</li>
+        <li>[debate] Nobody will remember who was right.</li>
+        <li>[agree,against] It's all dust in the end.</li>
+        <li>[argue] Fine, it won't matter in a hundred years.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Agreed.</li>
+        <li>[debate] Usefulness will decide it.</li>
+        <li>[argue] I've said what I think.</li>
+        <li>[agree,for] Art has its uses.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -426,33 +670,47 @@
         <li>[against] We got this far without any of it.</li>
         <li>[against,research] Clever, sure, but who's going to fix it when it breaks?</li>
         <li>[mixed,research] I don't really understand the new ideas, but I'm trying.</li>
+        <li>[for] The more we understand, the less the world can surprise us.</li>
+        <li>[for] I want us to be the colony that figured things out.</li>
+        <li>[against] Some things are better done the slow way.</li>
+        <li>[against] I don't trust anything I can't fix with my own hands.</li>
+        <li>[mixed] I can't tell if the new ways are better or just different.</li>
+        <li>[mixed] Do you understand half of what the researchers talk about?</li>
+        <li>[mixed] What do you think we should learn next?</li>
+        <li>[mixed] Some of the new ideas are good and some of them scare me.</li>
+        <li>[mixed] My hands know the old ways, but my head likes the new ones.</li>
       </plain>
       <warm>
         <li>[for] I love watching the clever ones work things out.</li>
         <li>[for] It's lovely, seeing someone finally understand a thing.</li>
         <li>[against] I like the old ways; they feel like home.</li>
+        <li>[mixed] I'd love to understand more of it, if someone had the patience to teach me.</li>
       </warm>
       <blunt>
         <li>[against] Newfangled nonsense.</li>
         <li>[for] Stop being afraid of anything new.</li>
         <li>[for] Learn or fall behind.</li>
         <li>[against] Nobody needs most of what they come up with.</li>
+        <li>[mixed] What are they studying now?</li>
       </blunt>
       <cheerful>
         <li>[for] I learned something new today, and I've already forgotten it.</li>
         <li>[for] I invented a new way to carry three buckets, it involved falling over.</li>
         <li>[against] I prefer the old ways, they don't explode.</li>
+        <li>[mixed] I asked the researchers what they're working on, and now I need a lie down.</li>
       </cheerful>
       <gloomy>
         <li>[against] Clever things fail in clever ways.</li>
         <li>[for] We'd better learn fast, or we won't last.</li>
         <li>[against] All this learning, and we still die of a cold.</li>
+        <li>[mixed] We learn and learn, and it never seems to be enough.</li>
       </gloomy>
       <cold>
         <li>[for] Progress is efficiency.</li>
         <li>[against] Untested methods carry risk.</li>
         <li>[for] Learning compounds.</li>
         <li>[against] Tried methods are reliable.</li>
+        <li>[mixed] The value of new methods should be tested.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -482,19 +740,58 @@
         <li>[debate,against] Some old things last because they work.</li>
         <li>[argue,for] Stuck in the past, that's you.</li>
         <li>[argue,against] You'll learn your way into trouble.</li>
+        <li>[agree] I've been saying it since we got here.</li>
+        <li>[agree] That's what I told the researchers.</li>
+        <li>[agree] You're right, I've seen it too.</li>
+        <li>[debate] It depends what you're trying to do.</li>
+        <li>[debate] It's not as simple as new or old.</li>
+        <li>[debate] I'm not sure that's true of everything.</li>
+        <li>[argue] You don't understand half of it, so don't lecture me.</li>
+        <li>[argue] We always end up fighting about this.</li>
+        <li>[argue] I won't be told I'm backward by you.</li>
+        <li>[for] Every new trick we learn makes us harder to kill.</li>
+        <li>[for] Learning's the best thing we do here.</li>
+        <li>[against] People lived a long time on the old ways.</li>
+        <li>[against] Clever isn't the same as wise.</li>
+        <li>[mixed] New things are good sometimes, and sometimes not.</li>
+        <li>[mixed] I use what works, old or new.</li>
+        <li>[agree,mixed] Some of each, I'd say.</li>
+        <li>[agree,mixed] It's hard to know which way is better.</li>
+        <li>[debate,mixed] I'd keep the best of both.</li>
+        <li>[debate,mixed] Depends on the job, doesn't it.</li>
+        <li>[argue,mixed] I don't care which way, as long as it works.</li>
+        <li>[argue,mixed] Leave me out of this fight.</li>
       </plain>
       <warm>
         <li>[agree,for] I can't wait to see what we learn next.</li>
+        <li>[agree,mixed] Whatever helps us, I'm glad of it.</li>
+        <li>[debate,against] I just don't want to lose what we know.</li>
+        <li>[argue,for] Please, just give it a chance.</li>
       </warm>
+      <blunt>
+        <li>[agree,for] Learn it.</li>
+        <li>[debate,for] Try it first.</li>
+        <li>[agree,against] Old ways work.</li>
+        <li>[argue,mixed] Who cares.</li>
+      </blunt>
       <cheerful>
         <li>[debate,against] I'll trust it once it's stopped exploding.</li>
+        <li>[argue,against] You'd build a contraption to scratch your nose.</li>
+        <li>[agree,mixed] I'll take whatever works and pretend I understood it.</li>
+        <li>[debate,for] Imagine what we'll know in ten years.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] The more we make, the more can go wrong.</li>
+        <li>[debate,for] We won't last without it.</li>
+        <li>[agree,mixed] Old or new, something will break.</li>
+        <li>[argue,for] The old ways are dying anyway.</li>
       </gloomy>
       <cold>
         <li>[agree,for] Agreed, progress pays.</li>
         <li>[argue,for] Your nostalgia is costing us.</li>
+        <li>[debate,against] Proven methods have value.</li>
+        <li>[agree,mixed] Each method should be judged on results.</li>
+        <li>[argue,against] Your enthusiasm outruns the evidence.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -513,13 +810,42 @@
         <li>[debate] We'll see which way serves us better.</li>
         <li>[agree,for] I'll go and see what they're studying.</li>
         <li>[agree,against] I'll stick to what I know.</li>
+        <li>[agree] Let's go and see what they've worked out.</li>
+        <li>[debate] We'll see which way serves us best.</li>
+        <li>[argue] I'm done arguing about this.</li>
+        <li>[agree,mixed] We'll use what works, then.</li>
+        <li>[debate,mixed] Let's see how it goes.</li>
       </plain>
+      <warm>
+        <li>[agree] I'm glad we see it the same way.</li>
+        <li>[debate] Let's learn from each other, then.</li>
+        <li>[argue] I'm sorry, I get carried away.</li>
+        <li>[agree,against] We'll keep the old ways alive between us.</li>
+      </warm>
       <blunt>
         <li>[argue] Enough, I'm not arguing this again.</li>
+        <li>[agree] Good.</li>
+        <li>[debate] Try it and see.</li>
+        <li>[agree,for] Learn, then.</li>
       </blunt>
       <cheerful>
         <li>[debate] We'll argue again when the next thing explodes.</li>
+        <li>[agree] Let's go and confuse the researchers with questions.</li>
+        <li>[argue] Fine, I'll invent something just to annoy you.</li>
+        <li>[agree,for] Next discovery, we celebrate.</li>
       </cheerful>
+      <gloomy>
+        <li>[agree] Whatever we learn, it won't be enough.</li>
+        <li>[debate] It'll all go wrong one way or another.</li>
+        <li>[argue] Have it your way.</li>
+        <li>[agree,against] The old ways will outlast us.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Agreed.</li>
+        <li>[debate] Results will decide it.</li>
+        <li>[argue] I've said my piece.</li>
+        <li>[agree,for] Progress it is.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -532,7 +858,51 @@
       <plain>
         <li>[otherfor] You'd follow a trader home if we let you, {OTHER}.</li>
         <li>[otheragainst] You count the spoons after every trader, don't you, {OTHER}.</li>
+        <li>[otherfor] Every trader that leaves, you stand at the gate waving like a child, {OTHER}.</li>
+        <li>[otheragainst] You'd want a password from your own mother, {OTHER}.</li>
+        <li>Any word from your friends out on the roads, {OTHER}?</li>
       </plain>
+      <cheerful>
+        <li>[otherfor] One day you'll run off with a caravan, {OTHER}, and come back with a funny accent.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Art_Tease</defName>
+    <topic>Rimfolk_Topic_Art</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You stopped to admire a pebble this morning, {OTHER}, I watched you.</li>
+        <li>[otheragainst] You'd use a masterpiece as a chopping board, {OTHER}.</li>
+        <li>[otherfor] You've named every statue in the hall, {OTHER}, haven't you?</li>
+        <li>You've stared at that wall all morning, {OTHER}, is it art yet?</li>
+        <li>[otheragainst] You walked past the new statue like it owed you money, {OTHER}.</li>
+      </plain>
+      <cheerful>
+        <li>[otheragainst] The statues frown when you walk past, {OTHER}, have you noticed?</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Tech_Tease</defName>
+    <topic>Rimfolk_Topic_Tech</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd study a rock if someone told you it was new, {OTHER}.</li>
+        <li>[otheragainst] You still don't trust the wheel, do you, {OTHER}?</li>
+        <li>[otherfor] You've taken apart three things this week to see how they work, {OTHER}.</li>
+        <li>Here comes {OTHER}, with another clever idea.</li>
+        <li>[otheragainst] You'd still be rubbing sticks together if we let you, {OTHER}.</li>
+      </plain>
+      <cheerful>
+        <li>[otherfor] One day you'll invent something that does your chores, {OTHER}, and vanish.</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
