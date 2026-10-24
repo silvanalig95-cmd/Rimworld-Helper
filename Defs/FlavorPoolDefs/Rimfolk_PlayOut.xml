@@ -493,6 +493,7 @@
         <li>[gate] We'll keep an eye on the gate, all of us.</li>
         <li>[beside] I'll sit up with {OTHER_nameDef}.</li>
         <li>[fields] Spread out along the fields and keep your eyes open.</li>
+        <li>[walls] I'll take the far side. Walk it slow and keep your eyes out.</li>
       </plain>
       <warm>
         <li>Come and sit by me, it's warmer with two.</li>
@@ -526,6 +527,8 @@
         <li>[fields] Nothing stirring.</li>
         <li>[winter] My breath's freezing.</li>
         <li>[rain] Just the rain.</li>
+        <li>[walls] All quiet on this side.</li>
+        <li>[walls] Cold out here by the wall.</li>
       </plain>
       <warm>
         <li>I'm here. I'm not going anywhere.</li>
@@ -555,6 +558,7 @@
         <li>[gate] Watched the gate with the others for hours. Every shadow on the road looked like someone coming.</li>
         <li>[beside] Sat up late at {OTHER_nameDef}'s side. {OTHER_nameDef} slept, mostly. I didn't.</li>
         <li>[fields] Watched the fields through the dark. Nothing came, which is what we hoped.</li>
+        <li>[walls] Walked the walls half the night, round and round. Nothing came. My feet are blocks of ice.</li>
       </plain>
       <warm>
         <li>We kept watch together and passed one blanket back and forth the whole time.</li>

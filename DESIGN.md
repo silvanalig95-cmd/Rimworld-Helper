@@ -667,12 +667,34 @@ gives those taking part come once it's over (PlayOut/).
   when the stores have it (`_CarryOut.ifHave`). Work parties shear and milk (`WorkTask.Tend`: the game's
   `WorkGiver_Shear` and `WorkGiver_Milk`, counted done when the animal is no longer full). What an answer says now
   exists is made by `OnMapThings.cs` (pure part `OnMapMath`): `_Made` (the first of a list of things this game has
-  and the colony's era allows, its quality from the maker's skill, art signed by them, minified, set down beside the
+  and the colony's era allows, its quality from the maker's skill, art signed by them, a book theirs, minified; carried
+  over by hand by the giver (below), or set in a corner of the one's bedroom with `inRoom`, else set down beside the
   one it's for), `_Felled` (the nearest ordinary wild trees outside home and zones felled for the wood a guest cut,
   stumps left, the logs shared out beside them; never with a tree-respecting faith at home), `_Plant` (saplings of
   the biome's commonest timber tree by the fields), `_PlanRoom` (the room planner's `FindSpot`, `Plan` and `Execute`
   on a copy of the player's config) and `_BurnFound` (addictive drugs on someone and in a bedroom of their own, with
   ash in the yard). Each is wrapped, and does nothing when it can't.
+- **One thing, one round, kept for a while.** Three more group kinds (`OnMapPlays.cs`): **a thing carried by hand**
+  (`PlayKind.Give`: `_Made` with a giver of ours walks the thing over and sets it at the other's feet, holding both
+  their good moods until then; a thing a visitor made is fetched by the one it's for and taken to the table; `_BurnIt`
+  makes the event's stash and carries it out to the yard to burn; the thing waits forbidden, and if it never happens a
+  gift is set down beside its receiver after all and a stash burns where it lies; `JobDriver_PlayOutGive`),
+  **rounds** (`_Rounds`: one colonist goes to each of up to eight others in turn, nearest first, a few minutes beside
+  each, `JobDriver_PlayOutGroup`; `outdoors` only those out in the open) and **the dead carried out** (`_HaulDead`:
+  the raiders' bodies, at most twelve, hauled one each with the game's own `HaulToCell`, `ToCellNonStorage`, to a pyre
+  beyond the gate or the tree line, then forbidden there). A vigil with `patrol` walks the colony's edge from look-out
+  to look-out (`PlayVigils.Route`), `untilDawn` sets its length at the start. `OnMapTimed` (a game component, every
+  250 ticks at tick 149, only while something is kept, at most twelve) keeps things for a while: `_Lanterns` (torches
+  the colony could build, along the outside of its walls or by the gate, lit at dusk with a night's fuel and no
+  refueling, taken away at dawn), `_KeepFire` (a campfire in a cold bedroom's free corner, fed the answer's wood,
+  cleared when it's burned unless refueled by hand), the pyre (lit after six, the bodies stripped and burned, a campfire
+  until dawn, then ash), `_BoltDoor` (the single door of a bedroom nobody else sleeps in, forbidden from ten to five
+  while its owner is asleep in bed and nothing is wrong, three nights) and `_Follow` (the story's animal on the game's
+  `FollowClose` job whenever it's idle, a day and a half, never a penned animal). `OnMapRooms` places things in a
+  room's free corner (against a wall, clear of the door and the bed's sides; a sarcophagus is claimed as its owner's
+  grave) and trades two colonists' beds (`_SwapRooms`). Personal stories: `Arc.madeThing` keeps what was made for a
+  Made gate, `{THING}` names it and a visit `to` Place goes to it; `ArcEffect_Confess` with `gathering` calls a words
+  gathering and says the secret at its end (`PlayOut.afterward`, `PlayAfter`).
 - **The moods.** While an answer's effects run, a good memory (`DilemmaEffect_Thought`) given to someone taking part
   in what the answer set going is held with the plan (`PlayOuts.Hold`) and given when it's over to those who were
   there long enough (a quarter of a gathering, at most half an hour; half a visit) or ate at the feast. Bad memories,
@@ -2013,6 +2035,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 89 | Missions: an accepted quest starts, a goal met is noticed (with a map) | per open mission |
 | 113 | The welcome letter (only until it's sent); answers playing out on the map (only while one waits or runs) | one check; per play-out |
 | 131 | Visitors on the map: each visit waiting to come or under way (only while there are any) | per visit: its hour, danger, the weather, its letter, its people |
+| 149 | Things an answer keeps on the map for a while: lanterns for a night, a fire in a cold room, the pyre, a bolted door, an animal at someone's heels (only while there are any) | per thing kept: its hour, danger, its fuel, its people |
 | 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
 | 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |

@@ -410,9 +410,9 @@ a youngster who wants to see the world, an elder who wants one last walk in the 
 tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (424 answers of 134
-dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 15
-stages of personal stories and 7 moments with visitors). A
+**Answers play out on the map.** When an answer describes something people do, they do it (434 answers of 134
+dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 20
+stages of 17 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
@@ -432,11 +432,23 @@ names who learned what); if it never happens within a few hours,
 everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
 who took part write about it. A setting (Events & world) turns it off.
 
-What an answer says now exists is made real where that's safe: the apology carving and the gift that settles an old
-debt are signed sculptures set down beside the one they're for, the hat bought on the side is a real hat, a guest who
-cut wood leaves real stumps and logs beside them, the children's trees are saplings at the edge of the fields, a room
-staked out is placed as building plans through the room planner, and a relapsed colonist's stash burns in the yard.
-Shearing day is a real shearing and milking party. Only things of the colony's own era and DLCs, and nobody is hurt.
+What an answer says now exists is made real where that's safe: the apology carving, a broken keepsake's replacement
+and the gift that settles an old debt are signed sculptures that the one who made them carries over by hand and sets
+down at the other's feet (the moods wait for it), an old crafter hands the student their old knife, a scribe's bound
+copy is a real book with the scribe's name on it, a coffin made ready is a wooden sarcophagus in the corner of its
+owner's room, assigned as their grave, the hat bought on the side is a real hat, a guest who cut wood leaves real
+stumps and logs beside them, the children's trees are saplings at the edge of the fields with a stone beside each, a
+room staked out is placed as building plans through the room planner, and a relapsed colonist's stash, or a found
+one the council won't keep, burns in the yard. Shearing day is a real shearing and milking party.
+
+Some answers keep something on the map for a while. Lantern night sets real torches along the colony's walls at dusk
+and takes them in at first light; the enemy dead are carried out by hand to a pyre beyond the gate that's lit at dusk
+and burns down by morning, or to the tree line and left there; an old colonist who can't get warm gets a fire in their
+room that burns the wood the council set aside; two colonists trade rooms when one gives up the warmer; a sleepwalker's
+door is bolted for three nights (only once they're in bed, and never while anything is wrong); a doctor goes round to
+everyone in turn, and a cook takes a pot round to those working outside; the first night watch walks the walls until
+dawn; a companion animal keeps at its person's heels for a day and a half, and a secret told is said in front of
+whoever gathers to hear it. Only things of the colony's own era and DLCs, and nobody is hurt.
 
 **Goods and people come and go on the map.** What Rimfolk's events move between the colony and the outside world is
 carried by people you can see. When a village buys 250 corn, two porters walk in from the edge a few hours later, by

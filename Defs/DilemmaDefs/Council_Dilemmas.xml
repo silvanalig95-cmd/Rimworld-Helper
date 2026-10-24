@@ -116,6 +116,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Wasted</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Clean</thought><degreeTrait>DrugDesire</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Clean</thought><onlyTrait><li>Ascetic</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BurnIt"><label>the stash burned in the yard</label></li>
         </effects>
       </li>
     </options>

@@ -54,6 +54,11 @@ namespace ColonyCouncil
         public Pawn talkedWith;
         /// <summary>The best quality they've made in this stage, as a number (-1: nothing yet).</summary>
         public int madeQuality = -1;
+        /// <summary>
+        /// The thing itself, the best they made for a stage that waited for something made (kept past the stage, so the
+        /// story's end can go back to it: the dream made real, stood in front of).
+        /// </summary>
+        public Thing madeThing;
         /// <summary>A fight at home went on during this stage while they were there.</summary>
         public bool sawBattle;
         public int baseLevel;
@@ -128,6 +133,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref talkedTick, "talkedTick", -1);
             Scribe_References.Look(ref talkedWith, "talkedWith");
             Scribe_Values.Look(ref madeQuality, "madeQuality", -1);
+            Scribe_References.Look(ref madeThing, "madeThing");
             Scribe_Values.Look(ref sawBattle, "sawBattle");
             Scribe_Values.Look(ref baseLevel, "baseLevel");
             Scribe_Values.Look(ref baseOtherLevel, "baseOtherLevel");

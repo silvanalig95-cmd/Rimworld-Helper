@@ -28,7 +28,10 @@ namespace ColonyCouncil
             [PlayKind.Vigil] = new[] { "Council_Pool_PlayVigilInvite", "Council_Pool_PlayVigil", "Council_Journal_PlayVigil", "Council_Journal_PlayVigilMissed" },
             [PlayKind.Search] = new[] { "Council_Pool_PlaySearchInvite", "Council_Pool_PlaySearch", "Council_Journal_PlaySearch", "Council_Journal_PlaySearchMissed" },
             [PlayKind.Carry] = new[] { "Council_Pool_PlayCarryInvite", "Council_Pool_PlayCarry", "Council_Journal_PlayCarry", "Council_Journal_PlayCarryMissed" },
-            [PlayKind.Hunt] = new[] { "Council_Pool_PlayHuntInvite", "Council_Pool_PlayHunt", "Council_Journal_PlayHunt", "Council_Journal_PlayHuntMissed" }
+            [PlayKind.Hunt] = new[] { "Council_Pool_PlayHuntInvite", "Council_Pool_PlayHunt", "Council_Journal_PlayHunt", "Council_Journal_PlayHuntMissed" },
+            [PlayKind.Give] = new[] { "Council_Pool_PlayGiveInvite", "Council_Pool_PlayGive", "Council_Journal_PlayGive", "Council_Journal_PlayGiveMissed" },
+            [PlayKind.Rounds] = new[] { "Council_Pool_PlayRoundsInvite", "Council_Pool_PlayRounds", "Council_Journal_PlayRounds", "Council_Journal_PlayRoundsMissed" },
+            [PlayKind.Haul] = new[] { "Council_Pool_PlayHaulInvite", "Council_Pool_PlayHaul", "Council_Journal_PlayHaul", "Council_Journal_PlayHaulMissed" }
         };
 
         private static string Pool(PlayKind k, int stage) => Pools.TryGetValue(k, out var names) ? names[stage] : null;
@@ -49,6 +52,9 @@ namespace ColonyCouncil
                 case PlaySpot.Walk: tags.Add("walkout"); break;
             }
             if (p.other != null && p.other != speaker) tags.Add("other");
+            // The new plays' own: a watch on the walls, a gift or a stash burned, rounds outdoors, the pyre or the tree line.
+            if (p.patrol) tags.Add("walls");
+            if (!p.mode.NullOrEmpty() && (p.kind == PlayKind.Give || p.kind == PlayKind.Rounds || p.kind == PlayKind.Haul)) tags.Add(p.mode);
             return tags.ToArray();
         }
 
@@ -104,6 +110,15 @@ namespace ColonyCouncil
                     return "CC_Play_Begin_Carry".Translate(label, names, PlayCarry.Label(p.what, p.thing), where ?? "CC_Play_To_Gate".Translate().ToString()).Resolve();
                 case PlayKind.Hunt:
                     return "CC_Play_Begin_HuntParty".Translate(label, names, TextUtil.JoinAnd(p.game.Where(a => a != null).Select(a => a.LabelShort).ToList())).Resolve();
+                case PlayKind.Give:
+                {
+                    string what = PlayGive.Label(PlayGive.ThingOf(p));
+                    if (p.mode == PlayGive.Burn) return "CC_Play_Begin_Burn".Translate(label, names, what).Resolve();
+                    if (p.mode == PlayGive.Fetch) return "CC_Play_Begin_Fetch".Translate(label, names, what, (p.other?.LabelShort ?? "").Named("OTHER")).Resolve();
+                    return "CC_Play_Begin_Give".Translate(label, names, what, where ?? p.other?.LabelShort ?? "").Resolve();
+                }
+                case PlayKind.Rounds: return "CC_Play_Begin_Rounds".Translate(label, names, where ?? "").Resolve();
+                case PlayKind.Haul: return "CC_Play_Begin_Haul".Translate(label, names, p.things.Count, where ?? "").Resolve();
                 default: return label;
             }
         }
@@ -126,8 +141,8 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A line now and then while it goes on: the answer's own, or the kind's.</summary>
-        public static void During(PlayOut p, Pawn speaker)
+        /// <summary>A line now and then while it goes on: the answer's own, or the kind's (said to <paramref name="toWhom"/> when given).</summary>
+        public static void During(PlayOut p, Pawn speaker, Pawn toWhom = null)
         {
             if (speaker == null || !speaker.Spawned || Find.CurrentMap != speaker.Map) return;
             try
@@ -141,8 +156,8 @@ namespace ColonyCouncil
                 }
                 // together: said at the work party, the walk, the vigil, the search or the hunt itself, by one of those on it;
                 // an errand's words go to whoever it's handed to, and only show when they're really together (Speech.Say checks).
-                var to = p.kind == PlayKind.Carry && p.other != null && p.other != speaker ? p.other : null;
-                if (!line.NullOrEmpty()) Speech.Say(speaker, Fill(line, p, speaker), to, SpeechColor);
+                var to = toWhom != null && toWhom != speaker ? toWhom : p.kind == PlayKind.Carry && p.other != null && p.other != speaker ? p.other : null;
+                if (!line.NullOrEmpty()) Speech.Say(speaker, Fill(line, p, speaker, to), to, SpeechColor);
             }
             catch (Exception e)
             {
@@ -151,10 +166,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>Fills in a spoken line's names ({OTHER}, the one it's about; {NAME}, what the answer called it).</summary>
-        private static string Fill(string line, PlayOut p, Pawn speaker)
+        private static string Fill(string line, PlayOut p, Pawn speaker, Pawn to = null)
         {
             if (line.IndexOf('{') < 0) return line;
-            var other = p.other ?? speaker;
+            var other = to ?? p.other ?? speaker;
             return line.Formatted(speaker.Named("PAWN"), other.Named("OTHER"), (p.label ?? "").Named("NAME")).Resolve();
         }
 
@@ -217,6 +232,9 @@ namespace ColonyCouncil
             bool today = hour < p.hourTo - 1 && p.deadline - now > 0;
             string part = p.hourFrom >= 17 ? "Evening" : p.hourFrom >= 12 ? "Afternoon" : "Day";
             string when = ("CC_Play_When_" + (today ? "Today" : "Tomorrow") + part).Translate();
+            // A thing carried over by hand: who takes what to whom. together: the giver walks it over to them (JobDriver_PlayOutGive).
+            if (p.kind == PlayKind.Give && p.mode == PlayGive.Give && p.visitor != null && p.other != null)
+                return "CC_Play_Planned_Give".Translate(p.visitor.Named("PAWN"), p.other.Named("OTHER"), PlayGive.Label(PlayGive.ThingOf(p)).Named("THING"), when.Named("WHEN")).Resolve();
             return "CC_Play_Planned".Translate(label, when).Resolve();
         }
 
@@ -251,6 +269,19 @@ namespace ColonyCouncil
                         : "CC_Play_End_Carry".Translate(names, carried ?? PlayCarry.Label(p.what, p.thing)).Resolve();
                 case PlayKind.Hunt:
                     return "CC_Play_End_HuntParty".Translate(label, TextUtil.JoinAnd(p.game.Where(a => a != null && a.Dead).Select(a => a.LabelShort).ToList())).Resolve();
+                case PlayKind.Give:
+                {
+                    var giver = p.hands.FirstOrDefault()?.pawn;
+                    string gn = giver?.LabelShort ?? names;
+                    if (p.mode == PlayGive.Burn) return "CC_Play_End_Burn".Translate(gn, carried ?? "").Resolve();
+                    if (p.mode == PlayGive.Fetch) return "CC_Play_End_Fetch".Translate(gn, carried ?? "", (p.other?.LabelShort ?? "").Named("OTHER")).Resolve();
+                    // together: the giver walked it over and set it down at their feet (JobDriver_PlayOutGive).
+                    return to != null ? "CC_Play_End_Give".Translate(gn, carried ?? "", to.LabelShort).Resolve() : "CC_Play_End".Translate(label).Resolve();
+                }
+                case PlayKind.Rounds:
+                    return "CC_Play_End_Rounds".Translate(label, p.hands.FirstOrDefault()?.pawn?.LabelShort ?? names, p.tally).Resolve();
+                case PlayKind.Haul:
+                    return (p.mode == PlayHaul.Treeline ? "CC_Play_End_HaulTreeline" : "CC_Play_End_HaulPyre").Translate(label, names, p.tally).Resolve();
                 default: return "CC_Play_End".Translate(label).Resolve();
             }
         }
@@ -266,6 +297,8 @@ namespace ColonyCouncil
                 case PlayKind.Vigil: return "CC_Play_Note_Vigil".Translate(took.Count).Resolve();
                 case PlayKind.Search: return "CC_Play_Note_Searched".Translate(took.Count).Resolve();
                 case PlayKind.Hunt: return p.tally > 0 ? "CC_Play_Note_Hunt".Translate(p.tally).Resolve() : null;
+                case PlayKind.Rounds: return "CC_Play_Note_Rounds".Translate(p.tally).Resolve();
+                case PlayKind.Haul: return p.tally > 0 ? "CC_Play_Note_Haul".Translate(p.tally).Resolve() : null;
                 default: return null;
             }
         }
@@ -296,10 +329,16 @@ namespace ColonyCouncil
                         default: return "CC_Play_Report_WalkBack".Translate();
                     }
                 case PlayKind.Vigil:
+                    if (p.patrol) return "CC_Play_Report_Watch".Translate();
                     return p.to == PlaySpot.Person && p.other != null
                         ? "CC_Play_Report_VigilBeside".Translate(p.other.Named("OTHER")).Resolve()
                         : "CC_Play_Report_Vigil".Translate().ToString();
                 case PlayKind.Search: return "CC_Play_Report_Search".Translate();
+                case PlayKind.Rounds:
+                {
+                    var x2 = PlayRounds.Current(p, p.Hand(x));
+                    return x2 != null ? "CC_Play_Report_Rounds".Translate(x2.Named("OTHER")).Resolve() : null;
+                }
                 default: return null;
             }
         }

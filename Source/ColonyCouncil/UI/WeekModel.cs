@@ -447,6 +447,14 @@ namespace ColonyCouncil
                         order = running ? -1 : Mathf.Max(0, left)
                     });
                 }
+            // What an answer keeps on the map for a while (PlayOut/OnMapTimed.cs): lanterns, a fire, the pyre, a bolted door, an animal at heel.
+            var kept = OnMapTimed.Instance?.kept;
+            if (kept != null)
+                foreach (var k in kept)
+                {
+                    var row = OnMapTimed.WeekRowFor(k);
+                    if (row != null) c.rows.Add(row);
+                }
             // The council meeting: called, or simply next on the calendar.
             var amb = comp.ambitions;
             var meeting = amb?.meeting;

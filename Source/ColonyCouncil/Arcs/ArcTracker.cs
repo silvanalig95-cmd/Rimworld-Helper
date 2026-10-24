@@ -610,6 +610,8 @@ namespace ColonyCouncil
             pet = arc.OtherIsAnimal ? arc.other : null,
             skill = arc.skill,
             faction = arc.faction,
+            // {THING}: what they made for the story, when it waited for something made.
+            thing = arc.madeThing != null && !arc.madeThing.Destroyed ? arc.madeThing.def : null,
             why = arc.def.label,
             cause = CauseText(arc)
         };
@@ -866,7 +868,11 @@ namespace ColonyCouncil
             var arc = Of(worker);
             var g = arc?.Gate;
             if (g == null || !(g.kind == ArcGateKind.Made || (g.or?.Any(x => x?.kind == ArcGateKind.Made) ?? false))) return;
-            if (thing.TryGetQuality(out var q) && (int)q > arc.madeQuality) arc.madeQuality = (int)q;
+            if (thing.TryGetQuality(out var q) && (int)q > arc.madeQuality)
+            {
+                arc.madeQuality = (int)q;
+                arc.madeThing = thing;
+            }
         }
 
         /// <summary>

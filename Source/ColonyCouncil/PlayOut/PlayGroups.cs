@@ -27,6 +27,9 @@ namespace ColonyCouncil
             switch (k)
             {
                 case PlayKind.Carry: return 1;
+                case PlayKind.Give: return 1;
+                case PlayKind.Rounds: return 1;
+                case PlayKind.Haul: return 4;
                 case PlayKind.Hunt: return 2;
                 case PlayKind.Search: return 4;
                 case PlayKind.Vigil: return 4;
@@ -41,13 +44,19 @@ namespace ColonyCouncil
             if (x == null || x.Dead || x.health?.capacities == null) return false;
             if (!x.health.capacities.CapableOf(PawnCapacityDefOf.Moving)) return false;
             // Out in the open (a walk, a search, an errand to the gate, a watch kept outside): never for those whose faith keeps them indoors.
-            bool outside = p.kind == PlayKind.Procession || p.kind == PlayKind.Search || p.kind == PlayKind.Hunt
-                           || (p.kind == PlayKind.Vigil && p.to != PlaySpot.Person) || (p.kind == PlayKind.Carry && p.other == null);
+            bool outside = p.kind == PlayKind.Procession || p.kind == PlayKind.Search || p.kind == PlayKind.Hunt || p.kind == PlayKind.Haul
+                           || (p.kind == PlayKind.Vigil && p.to != PlaySpot.Person) || (p.kind == PlayKind.Carry && p.other == null)
+                           || (p.kind == PlayKind.Give && p.mode == PlayGive.Burn) || (p.kind == PlayKind.Rounds && p.mode == PlayRounds.Outdoors);
             if (outside && Beliefs.Forbids(x, Belief.Indoors)) return false;
             switch (p.kind)
             {
                 case PlayKind.WorkParty: return PlayWork.CanDo(p, x);
-                case PlayKind.Carry: return x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) && !x.DevelopmentalStage.Baby();
+                case PlayKind.Carry:
+                case PlayKind.Give:
+                    return x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) && !x.DevelopmentalStage.Baby();
+                // The dead are carried by grown hands that can haul.
+                case PlayKind.Haul:
+                    return x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) && !x.DevelopmentalStage.Juvenile() && !x.WorkTypeIsDisabled(WorkTypeDefOf.Hauling);
                 case PlayKind.Hunt: return PlayHunt.CanHunt(x);
                 default: return true;
             }
@@ -67,12 +76,15 @@ namespace ColonyCouncil
                 case PlayKind.WorkParty: return PlayWork.Ours(p, x);
                 case PlayKind.Hunt: return PlayHunt.OnIt(p, x);
                 case PlayKind.Carry: return job.def == PlayOutDefOf.Council_PlayOutCarry;
+                case PlayKind.Give: return job.def == PlayOutDefOf.Council_PlayOutGive;
+                case PlayKind.Haul: return PlayHaul.OnIt(p, x);
                 default: return job.def == JobOf(p.kind);
             }
         }
 
         private static JobDef JobOf(PlayKind k) =>
-            k == PlayKind.Procession ? PlayOutDefOf.Council_PlayOutWalk : k == PlayKind.Vigil ? PlayOutDefOf.Council_PlayOutVigil : PlayOutDefOf.Council_PlayOutSearch;
+            k == PlayKind.Procession ? PlayOutDefOf.Council_PlayOutWalk : k == PlayKind.Vigil ? PlayOutDefOf.Council_PlayOutVigil
+            : k == PlayKind.Rounds ? PlayOutDefOf.Council_PlayOutRounds : PlayOutDefOf.Council_PlayOutSearch;
 
         // ---------------- Starting ----------------
 
@@ -104,8 +116,9 @@ namespace ColonyCouncil
                 return;
             }
             // Someone the answer names who could never do it (no hands for the work, beliefs against it): their good
-            // moods come now rather than wait for something they can't take part in.
-            foreach (var m in p.moods.Where(m => m?.pawn != null && !capable.Contains(m.pawn)).ToList())
+            // moods come now rather than wait for something they can't take part in. (The one a gift or a round is for
+            // isn't one of those going: theirs wait for it.)
+            foreach (var m in p.moods.Where(m => m?.pawn != null && p.invited.Contains(m.pawn) && !capable.Contains(m.pawn)).ToList())
             {
                 p.moods.Remove(m);
                 try
@@ -158,6 +171,15 @@ namespace ColonyCouncil
                         break;
                     case PlayKind.Hunt:
                         ok = StartHunt(p);
+                        break;
+                    case PlayKind.Give:
+                        ok = PlayGive.Start(t, p, out where);
+                        break;
+                    case PlayKind.Rounds:
+                        ok = PlayRounds.Start(p, out where);
+                        break;
+                    case PlayKind.Haul:
+                        ok = PlayHaul.Start(t, p, out where);
                         break;
                     default:
                         ok = false;
@@ -215,6 +237,31 @@ namespace ColonyCouncil
         {
             where = null;
             var lead = p.hands[0].pawn;
+            // Kept until dawn, however long that is from now (never longer than a vigil may last).
+            if (p.mode == PlayVigils.Dawn)
+                p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(OnMapMath.TicksUntil(GenLocalDate.HourFloat(p.map), OnMapMath.Dawn) / (float)PlayOutMath.TicksPerHour, true));
+            if (p.patrol)
+            {
+                // A watch on the move: each walks the colony's edge from one look-out to the next, starting at their own.
+                for (int i = 0; i < p.hands.Count; i++)
+                {
+                    var h = p.hands[i];
+                    h.route = PlayVigils.Route(p.map, h.pawn, i, p.hands.Count);
+                    h.done = 0;
+                    h.waited = 0;
+                    h.phase = 0;
+                }
+                if (p.hands.All(h => h.route.Count == 0))
+                {
+                    p.waitReason = "CC_Play_Why_Place".Translate();
+                    return false;
+                }
+                p.cell = p.hands.First(h => h.route.Count > 0).route[0];
+                where = "CC_Play_Where_Walls".Translate();
+                foreach (var h in p.hands)
+                    if (h.route.Count > 0) StartGroupJob(p, h.pawn, LocomotionUrgency.Walk);
+                return true;
+            }
             if (p.to == PlaySpot.Person)
             {
                 var o = p.other;
@@ -352,8 +399,8 @@ namespace ColonyCouncil
             int elapsed = now - p.started;
             if (PlayOuts.WhyNotNow(map, false) != null)
             {
-                // An errand waits for the danger to pass (what's carried is set down, still the colony's); anything else breaks up.
-                if (p.kind == PlayKind.Carry)
+                // An errand or a gift waits for the danger to pass (what's carried is set down, still the colony's); anything else breaks up.
+                if (p.kind == PlayKind.Carry || p.kind == PlayKind.Give)
                 {
                     foreach (var h in p.hands) Stop(p, h.pawn, true);
                     StepCarry(t, p, now);
@@ -383,10 +430,15 @@ namespace ColonyCouncil
                     break;
                 case PlayKind.Vigil:
                 case PlayKind.Search:
+                case PlayKind.Rounds:
                     StepStay(t, p, elapsed);
                     break;
                 case PlayKind.Carry:
+                case PlayKind.Give:
                     StepCarry(t, p, now);
+                    break;
+                case PlayKind.Haul:
+                    PlayHaul.Step(t, p, elapsed);
                     break;
                 case PlayKind.Hunt:
                     StepHunt(t, p, elapsed);
@@ -446,6 +498,9 @@ namespace ColonyCouncil
             foreach (var h in p.hands)
                 if (!h.left && !going.Contains(h) && elapsed > 500)
                     h.left = true;
+            // A watch on the move counts the whole of the time they're at it, walking or looking out.
+            if (p.kind == PlayKind.Vigil && p.patrol)
+                foreach (var h in going) h.ticks += 250;
             if (p.kind == PlayKind.Vigil && going.Count > 0 && Rand.Chance(0.06f)) PlayWords.During(p, going.RandomElement().pawn);
             if (going.Count == 0 || (p.kind == PlayKind.Vigil && elapsed >= p.durationTicks)) Finish(t, p, false, null);
         }
@@ -519,6 +574,10 @@ namespace ColonyCouncil
                     face = p.phase == 2 && p.place != null && p.place.Spawned ? new LocalTargetInfo(p.place) : new LocalTargetInfo(center);
                     return cell.IsValid;
                 }
+                case PlayKind.Rounds:
+                    return PlayRounds.Where(p, x, h, out cell, out face);
+                case PlayKind.Vigil when p.patrol:
+                    return PlayVigils.Where(p, h, out cell, out face);
                 case PlayKind.Vigil:
                 {
                     var center = p.to == PlaySpot.Person ? (p.other != null && p.other.Spawned && p.other.Map == map ? p.other.Position : IntVec3.Invalid) : p.cell;
@@ -549,6 +608,12 @@ namespace ColonyCouncil
             {
                 case PlayKind.Procession:
                     if (p.phase == 2) h.ticks += delta;
+                    break;
+                case PlayKind.Rounds:
+                    PlayRounds.Arrived(p, x, h, delta);
+                    break;
+                case PlayKind.Vigil when p.patrol:
+                    PlayVigils.Arrived(p, h, delta);
                     break;
                 case PlayKind.Vigil:
                 {
@@ -583,6 +648,16 @@ namespace ColonyCouncil
             {
                 h.done++;
                 h.waited = 0;
+                return;
+            }
+            if (p.kind == PlayKind.Rounds)
+            {
+                PlayRounds.Next(p, h, false);
+                return;
+            }
+            if (p.kind == PlayKind.Vigil && p.patrol)
+            {
+                PlayVigils.CantReach(h);
                 return;
             }
             h.left = true;
@@ -651,6 +726,7 @@ namespace ColonyCouncil
                 case PlayKind.Vigil: return PlayOutMath.VigilCounts(h.ticks, p.durationTicks);
                 case PlayKind.Search: return PlayOutMath.SearchCounts(h.done, h.route.Count);
                 case PlayKind.Hunt: return p.tally > 0 && h.ticks >= 250;
+                case PlayKind.Haul: return h.done > 0;
                 default: return false;
             }
         }
@@ -667,6 +743,11 @@ namespace ColonyCouncil
                 Stop(p, h.pawn, early);
             }
             var took = p.hands.Where(h => h.pawn != null && !h.pawn.Dead && Counts(p, h)).Select(h => h.pawn).Distinct().ToList();
+            // A gift handed over, a round gone: the one it was for and the answer's own people were part of it too.
+            if ((p.kind == PlayKind.Give || p.kind == PlayKind.Rounds) && took.Count > 0)
+                foreach (var x in p.named)
+                    if (x != null && !x.Dead && !took.Contains(x)) took.Add(x);
+            if (p.kind == PlayKind.Haul) PlayHaul.Count(p);
             if (p.note.NullOrEmpty()) p.note = PlayWords.Note(p, took);
             if (took.Count == 0)
             {
@@ -677,6 +758,18 @@ namespace ColonyCouncil
             List<Thing> found = null;
             if (p.kind == PlayKind.Search) found = GiveFind(p, early ? null : took);
             t.Done(p, took, false);
+            // The dead carried out to the pyre: it's laid for dusk.
+            if (p.kind == PlayKind.Haul)
+            {
+                try
+                {
+                    PlayHaul.Finished(p);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("haul finished", e);
+                }
+            }
             string text = PlayWords.EndText(p, early, took, found, to, carried);
             if (!early) text = PlayWords.EndWords(p, text, p.note);
             if (!text.NullOrEmpty())
@@ -741,6 +834,18 @@ namespace ColonyCouncil
         public static void FellThrough(PlayOutTracker t, PlayOut p, string why, bool quiet)
         {
             foreach (var h in p.hands) Stop(p, h.pawn, true);
+            // A gift never carried over is set down beside the one it was for; a stash is burned where it lies.
+            if (p.kind == PlayKind.Give)
+            {
+                try
+                {
+                    PlayGive.FellThrough(p);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("gift fell through", e);
+                }
+            }
             // An errand that never went: the courier waiting for it (Couriers/), if one is coming or at the gate, fetches
             // the things from the stores instead; else they leave the stores at once, as always.
             bool fetched = p.kind == PlayKind.Carry && Couriers.TakeOver(p);

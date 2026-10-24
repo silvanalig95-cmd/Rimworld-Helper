@@ -119,11 +119,15 @@ namespace ColonyCouncil
     /// given; the gate, the fields, a fire, the event's place) or at someone's side (<see cref="to"/> Person, with
     /// <see cref="whom"/>: A unless given), through the evening and into the night unless other hours are given. Each
     /// stays until it's over, or until hunger or tiredness sends them off (a vigil isn't kept at the cost of collapsing).
+    /// With <see cref="patrol"/>, a watch on the move: they walk the colony's edge from one look-out to the next (a night
+    /// watch on the walls); with <see cref="untilDawn"/>, it's kept until first light, however long that is.
     /// </summary>
     public class DilemmaEffect_Vigil : DilemmaEffect_Group
     {
         public PlaySpot to = PlaySpot.Grave;
         public PlayWho whom = PlayWho.A;
+        public bool patrol;
+        public bool untilDawn;
 
         public DilemmaEffect_Vigil()
         {
@@ -151,6 +155,8 @@ namespace ColonyCouncil
                 p.other = o;
                 p.to = PlaySpot.Person;
             }
+            p.patrol = patrol && p.to != PlaySpot.Person;
+            if (untilDawn) p.mode = PlayVigils.Dawn;
             return true;
         }
     }

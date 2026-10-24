@@ -6,27 +6,52 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    // Things an answer says now exist, made real on the map where that's safe: a carving made by someone's hands and set
-    // down beside the one it's for, a hat bought on the side, logs where a guest really felled the trees, the children's
-    // saplings at the edge of the fields, a new room marked out as building plans, a stash burned in the yard. Each only
+    // Things an answer says now exist, made real on the map where that's safe: a carving made by someone's hands and
+    // carried over by them to the one it's for (OnMapPlays.cs), a coffin in the corner of a room (OnMapRooms.cs), a hat
+    // bought on the side, logs where a guest really felled the trees, the children's saplings at the edge of the fields
+    // with a stone by each, a new room marked out as building plans, a stash burned in the yard. Each only
     // with what the colony's era and DLCs have (looked up by name, never required), and each falls back quietly to the
     // answer's words alone when it can't be done. The pure part is OnMapMath.cs.
 
     /// <summary>
     /// A thing someone made (<see cref="maker"/>: its quality from their <see cref="skill"/>, the story's own skill, else
-    /// Artistic; a work of art carries their name) or got hold of (no maker: <see cref="quality"/>), set down beside
-    /// <see cref="forWhom"/> (A unless given), packed up for moving if it's furniture. <see cref="things"/>: the candidates,
-    /// "SculptureSmall" or "Apparel_HatTop|Apparel_BowlerHat", the first that exists and fits the colony's era; none does,
-    /// nothing is made. Of <see cref="stuff"/> when it may be (wood unless given), else the thing's usual stuff.
+    /// Artistic; a work of art carries their name, a book is theirs) or got hold of (no maker: <see cref="quality"/>), for
+    /// <see cref="forWhom"/> (A unless given). <see cref="things"/>: the candidates, "SculptureSmall" or
+    /// "Apparel_HatTop|Apparel_BowlerHat", the first that exists and fits the colony's era; none does, nothing is made.
+    /// Of <see cref="stuff"/> when it may be (wood unless given), else the thing's usual stuff.
+    /// How it reaches them: the one it's from (<see cref="giver"/>, the maker unless given) carries it over by hand and sets
+    /// it down at their feet, and the good moods the answer gives the two wait until it's handed over; a thing a visitor
+    /// made is collected from beside them by the one it's for and taken in to the table. With <see cref="inRoom"/>, it's
+    /// set in a corner of their own bedroom instead (a building stands there, built, if the colony could build one). With
+    /// "Answers play out on the map" off, or nobody to carry it, it's set down beside them, packed if it's furniture.
     /// </summary>
-    public class DilemmaEffect_Made : DilemmaEffect
+    public class DilemmaEffect_Made : DilemmaEffect_PlayOut
     {
         public string things;
         public PlayWho maker = PlayWho.None;
         public PlayWho forWhom = PlayWho.A;
+        /// <summary>Who carries it over (None: the maker, or nobody when nobody made it).</summary>
+        public PlayWho giver = PlayWho.None;
         public SkillDef skill;
         public QualityCategory quality = QualityCategory.Normal;
         public string stuff = "WoodLog";
+        /// <summary>Set in a corner of their own bedroom (a coffin made ready), not carried over.</summary>
+        public bool inRoom;
+
+        [Unsaved] private Thing pending;
+        [Unsaved] private Pawn pendingCarrier;
+        [Unsaved] private Pawn pendingTo;
+        [Unsaved] private Pawn pendingFrom;
+        [Unsaved] private string pendingMode;
+
+        public DilemmaEffect_Made()
+        {
+            hours = new IntRange(7, 21);
+            duration = new FloatRange(0.5f, 1f);
+            waitHours = 12f;
+        }
+
+        protected override PlayKind Kind => PlayKind.Give;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -40,17 +65,55 @@ namespace ColonyCouncil
                 var mk = PlayOuts.Who(maker, ctx);
                 if (mk != null && (mk.Dead || !(mk.RaceProps?.Humanlike ?? false))) mk = null;
                 var to = PlayOuts.Who(forWhom, ctx);
+                if (to != null && to.Dead) to = null;
+                // A building set in someone's room must be one the colony could build.
+                if (inRoom && def.category == ThingCategory.Building && !Avail.CanBuild(def, map)) return;
                 var thing = Make(def, mk, skill ?? ctx.skill ?? SkillDefOf.Artistic);
                 if (thing == null) return;
-                var near = Spot(map, to, mk, ctx.a);
                 string label = thing.LabelNoCount;
-                if (def.Minifiable) thing = thing.MakeMinified();
-                if (!GenPlace.TryPlaceThing(thing, near, map, ThingPlaceMode.Near))
+                if (inRoom && to != null)
                 {
-                    thing.Destroy();
+                    var placed = OnMapRooms.PlaceInRoom(thing, to);
+                    if (placed != null)
+                    {
+                        Messages.Message("CC_Made_InRoom".Translate(to.Named("PAWN"), label.Named("THING")).Resolve(), new LookTargets(placed), MessageTypeDefOf.NeutralEvent, false);
+                        return;
+                    }
+                    if (def.category == ThingCategory.Building && !def.Minifiable)
+                    {
+                        if (!thing.Destroyed) thing.Destroy();
+                        return;
+                    }
+                }
+                var from = giver != PlayWho.None ? PlayOuts.Who(giver, ctx) : mk;
+                if (from != null && from.Dead) from = null;
+                var near = Spot(map, to, mk, ctx.a);
+                if (def.Minifiable && !(thing is MinifiedThing)) thing = thing.MakeMinified();
+                // Carried over by hand: set down where the giver stands (or beside the visitor who made it) for now.
+                string mode = null;
+                Pawn carrier = null;
+                if (!inRoom && PlayOuts.On && to != null && from != null && from != to && to.Spawned && to.Map == map && from.Spawned && from.Map == map)
+                {
+                    if (PlayOuts.OurPerson(from))
+                    {
+                        mode = PlayGive.Give;
+                        carrier = from;
+                    }
+                    else if (PlayOuts.OurPerson(to))
+                    {
+                        mode = PlayGive.Fetch;
+                        carrier = to;
+                    }
+                    if (carrier != null) near = from.Position;
+                }
+                if (!GenPlace.TryPlaceThing(thing, near, map, ThingPlaceMode.Near, out var lying))
+                {
+                    if (!thing.Destroyed) thing.Destroy();
                     return;
                 }
-                var who = to != null && !to.Dead ? to : mk;
+                thing = lying ?? thing;
+                if (carrier != null && Handed(ctx, thing, carrier, to, from, mode)) return;
+                var who = to ?? mk;
                 if (who == null) return;
                 string text = mk != null && mk != who
                     ? "CC_Made_By".Translate(mk.Named("MAKER"), who.Named("PAWN"), label.Named("THING")).Resolve()
@@ -62,6 +125,55 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("made thing " + things, e);
             }
         }
+
+        /// <summary>Sets the handing over going. False when it couldn't be (the thing is then left where it lies, unforbidden).</summary>
+        private bool Handed(DilemmaContext ctx, Thing thing, Pawn carrier, Pawn to, Pawn from, string mode)
+        {
+            thing.SetForbidden(true, false);
+            pending = thing;
+            pendingCarrier = carrier;
+            pendingTo = to;
+            pendingFrom = from;
+            pendingMode = mode;
+            float was = chance;
+            chance = 1f;
+            PlayOut p;
+            try
+            {
+                p = Create(ctx);
+            }
+            finally
+            {
+                chance = was;
+                pending = null;
+                pendingCarrier = pendingTo = pendingFrom = null;
+                pendingMode = null;
+            }
+            if (p != null) return true;
+            thing.SetForbidden(false, false);
+            return false;
+        }
+
+        protected override bool Fill(PlayOut p, DilemmaContext ctx)
+        {
+            if (pending == null || pendingCarrier == null) return false;
+            p.things = new List<Thing> { pending };
+            p.visitor = pendingCarrier;
+            p.organizer = pendingCarrier;
+            p.invited = new List<Pawn> { pendingCarrier };
+            p.mode = pendingMode;
+            // A gift goes to the one it's for; a thing collected from a visitor, to the table (the visitor stands by it).
+            p.other = pendingMode == PlayGive.Give ? pendingTo : pendingFrom;
+            p.named = new List<Pawn>();
+            foreach (var x in new[] { pendingCarrier, pendingTo, pendingFrom })
+                if (x != null && !p.named.Contains(x) && PlayOuts.OurPerson(x)) p.named.Add(x);
+            p.count = 1;
+            p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(duration.RandomInRange, false));
+            return true;
+        }
+
+        protected override string DefaultLabel(DilemmaContext ctx) =>
+            "CC_Play_Label_Give".Translate(PlayGive.Label(pending).Named("THING")).Resolve();
 
         /// <summary>The first of the candidates this game has, of the colony's era.</summary>
         public static ThingDef Pick(string names)
@@ -93,6 +205,18 @@ namespace ColonyCouncil
             }
             else art?.InitializeArt(ArtGenerationContext.Colony);
             if (art != null && mk != null) art.JustCreatedBy(mk);
+            // A book written out by its maker: their name on it.
+            if (thing is Book book && mk != null)
+            {
+                try
+                {
+                    book.GenerateBook(mk, null);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("made book", e);
+                }
+            }
             return thing;
         }
 
@@ -209,12 +333,14 @@ namespace ColonyCouncil
     /// <summary>
     /// Saplings planted: one for A (<see cref="children"/>: one for each child of the colony, up to six), young trees of
     /// the kind that grows wild here, at the edge of the colony's fields (<see cref="near"/> Outdoors: in the open by the
-    /// colony's walls; no fields: there too), a little apart from each other, on ground a tree can grow in.
+    /// colony's walls; no fields: there too), a little apart from each other, on ground a tree can grow in. With
+    /// <see cref="markers"/>, a stone beside each, a chunk of the rock that lies under this land.
     /// </summary>
     public class DilemmaEffect_Plant : DilemmaEffect
     {
         public bool children;
         public PlaySpot near = PlaySpot.Fields;
+        public bool markers;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -241,12 +367,48 @@ namespace ColonyCouncil
                     planted.Add(plant);
                 }
                 if (planted.Count == 0) return;
+                if (markers)
+                {
+                    var stone = MarkerStone(map);
+                    if (stone != null)
+                        foreach (var t in planted) Marker(map, t.Position, stone);
+                }
                 string text = planted.Count == 1 ? "CC_Saplings_One".Translate().Resolve() : "CC_Saplings_Many".Translate(planted.Count).Resolve();
                 Messages.Message(text, new LookTargets(planted), MessageTypeDefOf.NeutralEvent, false);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("saplings planted", e);
+            }
+        }
+
+        /// <summary>A chunk of the rock that lies under this land (the first of its rock kinds), or null.</summary>
+        private static ThingDef MarkerStone(Map map)
+        {
+            try
+            {
+                foreach (var rock in Find.World.NaturalRockTypesIn(map.Tile))
+                {
+                    var chunk = rock?.building?.mineableThing;
+                    if (chunk != null && chunk.category == ThingCategory.Item) return chunk;
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("sapling stones", e);
+            }
+            return null;
+        }
+
+        /// <summary>A stone set down beside a sapling, on free ground next to it.</summary>
+        private static void Marker(Map map, IntVec3 at, ThingDef stone)
+        {
+            foreach (var c in GenAdj.CellsAdjacentCardinal(at, Rot4.North, IntVec2.One))
+            {
+                if (!c.InBounds(map) || !c.Standable(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null || c.GetZone(map) != null) continue;
+                if (c.GetPlant(map) is Plant p && p.def.plant.IsTree) continue;
+                GenSpawn.Spawn(ThingMaker.MakeThing(stone), c, map);
+                return;
             }
         }
 

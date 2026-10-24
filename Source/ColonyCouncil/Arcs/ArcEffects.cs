@@ -226,14 +226,47 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A tells everyone: the secret comes out, confessed, with everything that follows.</summary>
+    /// <summary>
+    /// A tells everyone: the secret comes out, confessed, with everything that follows. With <see cref="gathering"/> (and
+    /// "Answers play out on the map" on), the colony is called together first to hear what A has to say, and it comes out
+    /// at the end of that gathering, in front of those who came; if nobody gathers, to whoever is near, as before.
+    /// </summary>
     public class ArcEffect_Confess : DilemmaEffect
     {
+        public bool gathering;
+
         public override void Apply(DilemmaContext ctx)
         {
             var comp = CouncilGameComponent.Instance;
             var s = comp?.secrets.Of(ctx.a);
             if (s == null || s.revealed) return;
+            if (gathering && PlayOuts.On && ctx.map != null)
+            {
+                try
+                {
+                    var words = new DilemmaEffect_Words
+                    {
+                        label = "CC_Play_Label_SaidAloud".Translate(ctx.a.Named("PAWN")).Resolve(),
+                        organizer = PlayWho.A,
+                        pool = "Council_Pool_PlaySaidAloud",
+                        hours = new IntRange(11, 22),
+                        duration = new FloatRange(0.75f, 1f),
+                        waitHours = 12f
+                    };
+                    var p = words.Begin(ctx);
+                    if (p != null)
+                    {
+                        // Said at the end of it (PlayAfter), whether or not anyone came.
+                        p.afterward = PlayAfter.Confess;
+                        p.named = new List<Pawn> { ctx.a };
+                        return;
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("secret said aloud", e);
+                }
+            }
             // Said out loud to whoever is there: now if anyone is, else when someone is (within a day).
             comp.secrets.ConfessInCompany(comp, s);
         }

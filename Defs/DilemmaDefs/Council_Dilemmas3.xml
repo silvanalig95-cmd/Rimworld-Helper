@@ -647,6 +647,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Morbid</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Morbid</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Psychopath</li><li>Ascetic</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>Sarcophagus</things><forWhom>A</forWhom><inRoom>true</inRoom><stuff>WoodLog</stuff></li>
         </effects>
       </li>
       <li>
@@ -725,6 +726,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BoltDoor"><nights>3</nights></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>{A_nameDef}'s door was bolted, and {A_nameDef} knocked on it in {A_possessive} sleep until dawn, keeping {B_nameDef} and the neighboring rooms awake.</riskOutcome>

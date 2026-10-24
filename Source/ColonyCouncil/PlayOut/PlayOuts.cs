@@ -34,7 +34,13 @@ namespace ColonyCouncil
         /// <summary>Someone carries real things from the stores out to a visitor, the gate or the camp.</summary>
         Carry,
         /// <summary>The hunters go out after game the answer marked, with the game's own hunting.</summary>
-        Hunt
+        Hunt,
+        /// <summary>Someone carries one particular thing to someone (a carving, a gift, an old knife) or out to the yard to burn it.</summary>
+        Give,
+        /// <summary>Someone goes round to each of a few colonists in turn and stops a moment with each (a doctor's look, a pot of soup).</summary>
+        Rounds,
+        /// <summary>A few carry the enemy dead out to one place: a pyre beyond the gate, or the tree line.</summary>
+        Haul
     }
 
     /// <summary>Where a gathering is held, or where a visit goes.</summary>
@@ -270,12 +276,23 @@ namespace ColonyCouncil
         public string note;
         /// <summary>Turns a search's fan of places (so two searches don't go the same way).</summary>
         public int seed;
+        /// <summary>A gift's or a haul's particular things: the thing handed over, the dead still to carry (OnMapPlays.cs).</summary>
+        public List<Thing> things = new List<Thing>();
+        /// <summary>Rounds: those to go round to, in order.</summary>
+        public List<Pawn> round = new List<Pawn>();
+        /// <summary>How a gift ends ("give", "burn", "fetch"), where the dead go ("pyre", "treeline"), whom rounds are for ("outdoors").</summary>
+        public string mode;
+        /// <summary>A vigil kept on the move: a watch walking the colony's edge from one look-out to the next, until dawn.</summary>
+        public bool patrol;
+        /// <summary>What follows once it's over, whether or not it came about (PlayAfter: a secret said out loud).</summary>
+        public string afterward;
 
         public bool IsGathering => kind == PlayKind.Gathering || kind == PlayKind.Feast || kind == PlayKind.Bonfire || kind == PlayKind.Toast;
 
         /// <summary>A work party, a walk together, a vigil, a search, an errand or a hunt: people on jobs of their own, never in a lord.</summary>
         public bool IsGroup => kind == PlayKind.WorkParty || kind == PlayKind.Procession || kind == PlayKind.Vigil || kind == PlayKind.Search
-                               || kind == PlayKind.Carry || kind == PlayKind.Hunt;
+                               || kind == PlayKind.Carry || kind == PlayKind.Hunt || kind == PlayKind.Give || kind == PlayKind.Rounds
+                               || kind == PlayKind.Haul;
 
         public PlayHand Hand(Pawn p)
         {
@@ -344,8 +361,17 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tally, "tally");
             Scribe_Values.Look(ref note, "note");
             Scribe_Values.Look(ref seed, "seed");
+            Scribe_Collections.Look(ref things, "things", LookMode.Reference);
+            Scribe_Collections.Look(ref round, "round", LookMode.Reference);
+            Scribe_Values.Look(ref mode, "mode");
+            Scribe_Values.Look(ref patrol, "patrol");
+            Scribe_Values.Look(ref afterward, "afterward");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (things == null) things = new List<Thing>();
+                things.RemoveAll(t => t == null);
+                if (round == null) round = new List<Pawn>();
+                round.RemoveAll(x => x == null);
                 if (named == null) named = new List<Pawn>();
                 named.RemoveAll(p => p == null);
                 if (hands == null) hands = new List<PlayHand>();

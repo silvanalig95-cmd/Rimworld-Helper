@@ -61,6 +61,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_StoryWritten</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the telling of the colony's story</label><hours>17~23</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Made"><things>Novel</things><maker>X</maker><forWhom>A</forWhom><skill>Intellectual</skill><hours>19~23</hours><waitHours>10</waitHours></li>
             </effects>
             <ways><tradition>2</tradition></ways>
           </li>

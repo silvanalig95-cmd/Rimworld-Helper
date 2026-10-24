@@ -64,6 +64,36 @@ public static class OnMapTests
         C(OnMapMath.Fading(2f, 12f, true), "a lasting condition: in decline, whatever its age");
         C(!OnMapMath.Fading(5f, 0f, false), "no life expectancy known and nothing wrong: not in decline");
 
+        // ---------------- Things kept for a night, or a few ----------------
+
+        const int hour = OnMapMath.TicksPerHour;
+        C(OnMapMath.TicksUntil(17f, OnMapMath.Dawn) == 13 * hour, "lanterns lit at five in the evening burn thirteen hours, until six");
+        C(OnMapMath.TicksUntil(2.5f, OnMapMath.Dawn) == (int)(3.5f * hour), "a pyre lit at half past two burns until dawn, three and a half hours");
+        C(OnMapMath.TicksUntil(6f, OnMapMath.Dawn) == 24 * hour, "at dawn itself, 'until dawn' means the next one");
+        C(OnMapMath.Between(23, OnMapMath.Dusk, OnMapMath.Dawn) && OnMapMath.Between(3, OnMapMath.Dusk, OnMapMath.Dawn), "late evening and the small hours are dark");
+        C(!OnMapMath.Between(12, OnMapMath.Dusk, OnMapMath.Dawn) && !OnMapMath.Between(OnMapMath.Dawn, OnMapMath.Dusk, OnMapMath.Dawn), "noon and dawn aren't");
+        C(OnMapMath.Between(OnMapMath.BoltFrom, OnMapMath.BoltFrom, OnMapMath.BoltTo) && !OnMapMath.Between(21, OnMapMath.BoltFrom, OnMapMath.BoltTo),
+            "a door is bolted from ten, not at nine while people are still about");
+        C(OnMapMath.Lanterns(10, 30) == 10 && OnMapMath.Lanterns(10, 4) == 4, "as many lanterns as asked, or as there are places");
+        C(OnMapMath.Lanterns(100, 100) == OnMapMath.MaxLanterns && OnMapMath.Lanterns(0, 5) == 0, "never more than the cap, none when none are asked");
+
+        // ---------------- Rounds ----------------
+
+        int stop = OnMapMath.RoundsStop(2 * hour, 4);
+        C(stop >= 300 && stop * 4 <= 2 * hour, "four people in two hours: a stop with each, with time left to walk between");
+        C(OnMapMath.RoundsStop(hour, 100) == 300, "never less than a few minutes with each, however many");
+        C(OnMapMath.RoundsStop(8 * hour, 1) == hour / 2, "never more than half an hour with one");
+        C(OnMapMath.RoundsCount(2, 4) && !OnMapMath.RoundsCount(1, 4), "half the round seen counts, less doesn't");
+        C(OnMapMath.RoundsCount(1, 1) && !OnMapMath.RoundsCount(0, 0), "one of one counts; nobody seen never does");
+
+        // ---------------- A fire kept, a room traded ----------------
+
+        C(Math.Abs(OnMapMath.FireDays(40f, 50f, 10f) - 4f) < 0.01f, "forty wood at ten a day: four days");
+        C(Math.Abs(OnMapMath.FireDays(80f, 50f, 10f) - 5f) < 0.01f, "only as much as the fire holds: no more days than that");
+        C(OnMapMath.FireDays(0f, 50f, 10f) == 0f && OnMapMath.FireDays(10f, 0f, 10f) == 0f, "no wood or nowhere to put it: no fire");
+        C(OnMapMath.Warmer(18f, 12f) && OnMapMath.Warmer(12.2f, 12.5f), "the room given up is warmer, or as warm");
+        C(!OnMapMath.Warmer(10f, 15f), "a colder room is never given to someone who's cold");
+
         return n;
     }
 }

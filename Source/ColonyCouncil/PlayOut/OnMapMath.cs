@@ -81,6 +81,77 @@ namespace ColonyCouncil
             return false;
         }
 
+        // ---------------- Things kept for a while (OnMapTimed.cs) and plays of one thing (OnMapPlays.cs) ----------------
+
+        public const int TicksPerHour = 2500;
+
+        /// <summary>The dark hours when lanterns burn and a door is bolted: from five in the evening, and until dawn.</summary>
+        public const int Dusk = 17, Dawn = 6;
+
+        /// <summary>A pyre is lit a little later, once it's properly dark.</summary>
+        public const int PyreDusk = 18;
+
+        /// <summary>A door is bolted only once the house is abed, from ten at night until five in the morning.</summary>
+        public const int BoltFrom = 22, BoltTo = 5;
+
+        /// <summary>Lanterns stand at least this far apart.</summary>
+        public const float LanternSpacing = 4.9f;
+
+        /// <summary>At most this many lanterns are set out for one night, whatever the answer asks.</summary>
+        public const int MaxLanterns = 16;
+
+        /// <summary>At most this many of the enemy dead are carried out for one answer.</summary>
+        public const int MaxDead = 12;
+
+        /// <summary>The most people a doctor or a pot of soup goes round to.</summary>
+        public const int MaxRounds = 8;
+
+        /// <summary>
+        /// Ticks from the hour of the day <paramref name="hourNow"/> (with its fraction) until the next time the clock
+        /// shows <paramref name="hour"/>: never zero, so "until dawn" at dawn means the next one.
+        /// </summary>
+        public static int TicksUntil(float hourNow, int hour)
+        {
+            float h = (hour - hourNow) % 24f;
+            if (h <= 0.01f) h += 24f;
+            return (int)Math.Round(h * TicksPerHour);
+        }
+
+        /// <summary>Within the hours from <paramref name="from"/> to <paramref name="to"/>, wrapping past midnight.</summary>
+        public static bool Between(int hour, int from, int to)
+        {
+            hour = ((hour % 24) + 24) % 24;
+            if (from == to) return true;
+            return from < to ? hour >= from && hour < to : hour >= from || hour < to;
+        }
+
+        /// <summary>How many lanterns go out: what the answer asks, never more than there are places or the cap, at least one if asked.</summary>
+        public static int Lanterns(int wanted, int places) => Math.Max(0, Math.Min(Math.Min(wanted, MaxLanterns), places));
+
+        /// <summary>
+        /// How long the doctor or the cook stops with each person on the rounds: the round's time shared out (half of it
+        /// walking), never less than a few minutes or more than half an hour.
+        /// </summary>
+        public static int RoundsStop(int durationTicks, int people) =>
+            Math.Max(300, Math.Min(TicksPerHour / 2, durationTicks / Math.Max(1, people) / 2));
+
+        /// <summary>Went round: half of those on the list seen (rounded up), and at least one.</summary>
+        public static bool RoundsCount(int seen, int people) => seen > 0 && seen * 2 >= people;
+
+        /// <summary>How long a fire set in someone's room lasts on the wood the answer set aside: as much as it holds, in days of burning.</summary>
+        public static float FireDays(float wood, float capacity, float perDay)
+        {
+            if (wood <= 0f || capacity <= 0f) return 0f;
+            float fuel = Math.Min(wood, capacity);
+            return perDay > 0f ? fuel / perDay : 0f;
+        }
+
+        /// <summary>
+        /// The warmer room really is warmer: the one given up is no colder than the other, give or take half a degree (a
+        /// swap is only made when it helps the one who's cold).
+        /// </summary>
+        public static bool Warmer(float given, float kept) => given >= kept - 0.5f;
+
         private static readonly string[] DogWords = { "husky", "labrador", "yorkshire", "terrier", "retriever", "collie", "mastiff", "shepherd", "hound", "dog" };
 
         /// <summary>
