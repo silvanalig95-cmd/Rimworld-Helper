@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More to live through
+
+*24 October 2026, version 0.13.0*
+
+- A lucky charm counts whenever it's on them, worn, in hand, as a sidearm or in their pack, not only while they hold it.
+- Build priorities: a button on every blueprint and frame sets it low, normal, high or urgent (a click steps through for everything selected, a right-click picks one). Builders leave a level alone while something higher can go ahead, with its materials on the map, reachable and within someone's skill; a job you give by hand is always taken, a blueprint keeps its level as a frame, and a small tag on the map shows the ones you set. The setting "Build priorities on blueprints" turns it off.
+- Camps come about once a season, on a timer of their own, instead of once in years. Every kind of camp can be asked something now, and 14 asks are the camp's own requests, walked into the colony by its people: water for the herd, a stall at the gate, prayers at the graves, an apprentice at a sick bed, a test hole. Eight new council questions are about a camp.
+- Colonists talk about the day coming up on the calendar, the latest world news and the camp on the map, and children get a talk of their own, about growing up here. Talk repeats far less, about 6,900 lines where there were 2,600, every voice with its own lines for each turn, memory and in-joke, and none of it at the wrong moment: no teasing on a day of mourning.
+- Fourteen new everyday events (a killing frost, something at the pens, fire on the far ridge, a war band in the valley, a gambler, a traveling teacher and more), new turns for nine of the most frequent, and two season-long stories: an apprentice from the town and a traveler with a fever.
+- Seven new world events (a prophet on the roads, an old vault opened, markets closed between two peoples, a merchant house failing, the ice road in a hard freeze, a moot of the peoples, an old thrumbo and its horn hunters), and eleven older ones play differently a second time, following from what the colony did.
+- 45 new dreams, so nearly every habit, quirk, life goal and story has one, and eight quirks the colony lives into: a lamp lit for travelers, a horror of smoke, coins counted twice, the fields walked at dawn, a dream book, a healer's salve, juggling at supper, a trick against the cold.
+- Calendar days from what the colony lived through (a camp's gift, a world event it took part in, the faith's holy days, one brought home from captivity), kept with a walk out to what the day remembers; memories and deeds from camps, missions and world events, and jokes passed on to a friend who missed them; ten bad days that follow from what happened, like rain on a feast day; and 22 encounters by the water and under rare skies.
+
 ## Walls at their sides
 
 *24 October 2026, version 0.12.1*
