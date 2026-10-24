@@ -86,6 +86,13 @@ every era. Called world events until the world situations below took that name.
   with its own good turn; camps follow world events (refugees from a famine or a war say so) and name their creed
   with Ideology. Older events with one title, text or answer got more (a letter from home and the lost child grown
   got new answers).
+- Done: a seventh batch of fourteen as data, filling the thinner groups and leaning hard: the land (a killing frost
+  with a day's warning, something at the pens at night, a thirsty herd in a dry summer, fire on the far ridge), two
+  that can end in a fight only as an answer's risk (a war band in the valley, a family burned out of their farm), old
+  lives (word of a death far away, a keepsake on a trader's blanket, a colonist called home), the neighbors (goods
+  with no questions asked, a gambler, a stray beast) and callers (hands for hire, a teacher for the children).
+  Two season-long chains as data, each stage on the map: the apprentice from the town and the traveler with the
+  fever. Nine of the most frequent events got more texts and outcomes.
 - Next: more events per group; more chains (hooking the storyteller
   batch's memos: the peace bought, the survivor, the star-iron blade) and missions (an apprentice to train, a dignitary to host, refugees to see safely through).
 
@@ -290,7 +297,7 @@ things stand:
 
 | Content | Count | Grow toward |
 |---|---|---|
-| Rimfolk events, story stages and missions | 183 (1 for PokéWorld; 13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
+| Rimfolk events, story stages and missions | 205 (183 → 205: 14 everyday events, 2 season-long chains in 8 stages; 9 of the most frequent with more texts and outcomes; 1 for PokéWorld; 13 mission kinds, 9 → 13: a pilgrim to escort, word to carry, a lost child, hands for a harvest; 6 aftermath events after world events, 2 vendetta endings) | more everyday events per group, more chains, more mission kinds |
 | Wishes | 116 (115 → 116, picked by the player for faith in the colony: a wavering colonist's evening learning another faith; 112 → 115, picked by the player: clothes cool enough for the hot season, a favourite kind of animal (or Pokémon), a pack animal of one's own; deepened instead of added: clothes warm enough for the season, a freezer in hot country, a sauna without Dubs Bad Hygiene, fishing with Vanilla Fishing Expanded and in use, food that keeps in hot country; 4 for the herd and pets, 1 for Giddy-Up, 2 for PokéWorld; none added for variety's sake: a new wish must point at what the colony really needs and make a real choice; the player keeps all the existing ones: a wish can be ignored at a mood cost, which keeps things moving) | only wishes that serve the colony's own goals |
 | Council projects (ambitions) | 66 (8 in stages, 3 season-long; 2 tribal, 2 spacer, 1 for Hospitality, 1 for PokéWorld, 1 from the defense planner) | projects from the calendar and the faith, more for children and elders |
 | Life goals | 90 (6 with animals, 2 of them for PokéWorld; children's dreams that grow into grown-up goals, teenagers' goals, elders' last wishes a friend may finish, faith and the heart; goals a faith forbids never come up) | goals for each mod's content, goals two people share |

@@ -125,7 +125,7 @@
               <li>[winter] {A_nameDef} and another stamped up and down by the pens all night, breath smoking in the lamplight. Whatever it was came close once, saw the lamp and went off across the snow.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>a watch on the pens</label><count>2</count><patrol>true</patrol><untilDawn>true</untilDawn></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>a watch on the pens</label><target>Colony</target><count>2</count><patrol>true</patrol><untilDawn>true</untilDawn></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>
@@ -436,7 +436,7 @@
         <delayHours>12~36</delayHours>
         <count>3~4</count>
         <ages>16~60</ages>
-        <stayHours>12~18</stayHours>
+        <stayHours>16~22</stayHours>
         <answerDays>0.5</answerDays>
         <titles>
           <li>Burned out</li>
@@ -452,13 +452,12 @@
         <defaultOption>2</defaultOption>
         <options>
           <li>
-            <label>Take them in for the night (they may have been followed)</label>
-            <outcome>The people from the farm ate hot food at the colony's table and slept inside the walls. {X_nameDef} was up before dawn to thank whoever was awake, and they went on toward {PLACE} at first light.</outcome>
+            <label>Shelter them for the night (they may have been followed)</label>
+            <outcome>The people from the farm ate hot food from the colony's kitchen and slept in the lee of its wall, where the watch could see them. {X_nameDef} was up before dawn to thank whoever was awake, and they went on toward {PLACE} at first light.</outcome>
             <riskChance>0.3</riskChance>
-            <riskOutcome>The people from the farm ate hot food at the colony's table and slept inside the walls. Before dawn the watch saw torches on the road behind them: {ENEMY} followed them here after all.</riskOutcome>
+            <riskOutcome>The people from the farm ate hot food from the colony's kitchen and slept in the lee of its wall. Before dawn the watch saw torches on the road behind them: {ENEMY} followed them here after all.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>supper for the people from the farm</label></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ShelteredThem</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -473,7 +472,7 @@
           </li>
           <li>
             <label>Food for the road, and send them on to {PLACE}</label>
-            <outcome>{A_nameDef} carried out bread and a pot of stew to the gate, and the people from the farm ate it standing up. Then they went on toward {PLACE}, before dark.</outcome>
+            <outcome>{A_nameDef} carried out bread and a pot of stew, and the people from the farm ate it standing up. Then they went on toward {PLACE}, before dark.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>food for the road</label></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>

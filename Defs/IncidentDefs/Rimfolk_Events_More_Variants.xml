@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for nine of the Rimfolk events that come round most often to read, merged in at startup
+    (LetterVariantsDef, Source/ColonyCouncil/Dilemmas/DilemmaChoices.cs): the fortune teller, the tinker, the stranded
+    merchants, the harvest fair, a family visit, the traveling cook, the scribe, the hedge healer and the
+    spirit-singer. Lines are picked by the era, the season, the event's own tags and who the people are, as in the
+    other Variants files; outcomes are added to the answer by its place in the list.
+  -->
+
+  <!-- ===================== The fortune teller ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_FortuneTeller</defName>
+    <incident>Council_Evt_FortuneTeller</incident>
+    <titles>
+      <li>[lowtech] Bones on a blanket</li>
+      <li>[!lowtech] Palms read, cards turned</li>
+    </titles>
+    <texts>
+      <li>[summer] {X_nameDef} of {FACTION} has spread a red cloth in the shade of the wall and laid out a deck of cards on it, face down. Fortunes for everyone in the colony tonight, {X_nameDef} says, for {COUNT} silver, when it's cool enough to sit.</li>
+      <li>[trait:Nerves] {A_nameDef} has been trying not to look at the fortune teller since {X_nameDef} of {FACTION} came through the gate. {X_nameDef} offers to read every colonist's fortune tonight for {COUNT} silver, and has already looked at {A_nameDef} twice.</li>
+      <li>[lowtech] {X_nameDef} of {FACTION} reads the future in the cracks of a burned shoulder bone, and has carried the bone a long way. For {COUNT} silver, each colonist can sit down with it tonight and hear what it says.</li>
+      <li>[!lowtech] {X_nameDef} of {FACTION} has a fortune-telling deck with half the cards replaced by hand-drawn ones, and says the hand-drawn ones are the accurate ones. {COUNT} silver, and every colonist gets a reading tonight.</li>
+      <li>[colony:Open] Word on the road is that the colony will hear anybody out, so {X_nameDef}, a fortune teller of {FACTION}, has come to try. For {COUNT} silver, every colonist can have a fortune read tonight.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[lowtech] {X_nameDef} read the bones for each of them in turn until the fire was low. Long lives, good harvests, a stranger with a gift: every fortune came out kind.</li>
+          <li>[!lowtech] {X_nameDef} turned cards until late. Love for some, luck for others, a good winter all round, and no one got the card with the tower on it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} wrapped the deck in its cloth, wished the colony luck it hadn't paid for, and left in the morning.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[trait:Nerves] {X_nameDef} read {A_nameDef}'s fortune slowly and kindly, and it was a good one. {A_nameDef} came out looking as if a weight had been lifted.</li>
+        </lines>
+        <riskLines>
+          <li>{X_nameDef} read {A_nameDef}'s fortune, paused, and said only that {A_nameDef} should take care near fire. {A_nameDef} has moved {A_possessive} bed away from the hearth.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The tinker ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Tinker</defName>
+    <incident>Council_Evt_Tinker</incident>
+    <texts>
+      <li>[summer] The tinker's cart has a bell on it, and {A_nameDef} heard it a mile off. {X_nameDef} of {FACTION} has parked in the shade by the gate and is already laying out awls and whetstones. {COUNT} silver, and everything worn in the colony goes back the way it should be.</li>
+      <li>[lowtech] {X_nameDef}, a tinker of {FACTION}, walked in with a pack hung all over with pots and leather offcuts, and sat down by the woodpile without being asked. {X_nameDef} looked at the coats on the colonists' backs and named a price for the lot: {COUNT} silver.</li>
+      <li>[!lowtech] A mender of {FACTION}, {X_nameDef}, runs a stall out of a handcart: a sewing frame, a bench grinder, a box of rivets sorted by size. For {COUNT} silver, {X_nameDef} will go through the colony's worn gear by morning.</li>
+      <li>[colony:Thrifty] Word is the colony throws nothing away, and {X_nameDef}, a tinker of {FACTION}, likes that in a customer. Every coat that's been patched twice and every blade with a nick in it can be put right for {COUNT} silver.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[lowtech] {X_nameDef} worked half the night by lamplight, singing under {X_possessive} breath, and in the morning there was a pile of mended things by the door, each one tied with a strip of cloth.</li>
+          <li>[!lowtech] The grinder ran until late and the sewing frame clacked until later. By morning every piece in the pile was sound, and {X_nameDef} was asleep on the cart.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} shrugged, rang the cart's bell once, and went off down the road to the next gate.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[skill:Crafting] {A_nameDef} already knew half of it, and {X_nameDef} knew the other half. They swapped tricks over the mending until late, and {A_nameDef} came out ahead.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Stranded merchants ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Stranded</defName>
+    <incident>Council_Evt_Stranded</incident>
+    <texts>
+      <li>[lowtech,!tribal,fall] Mud to the hubs and a wheel in two pieces: merchants of {FACTION} are stuck on the track below the colony, with the autumn rain coming down and a load of grain going damp. {A_nameDef} could have them rolling by dark. Otherwise they'll buy {TALE} for {COUNT} silver and manage themselves.</li>
+      <li>[tribal,winter] A sledge of {FACTION} lies tipped on its side in the snow below the colony, its runner snapped clean through. The traders are stamping round it, blowing on their hands. They'd welcome {A_nameDef}, or pay {COUNT} silver for {TALE} to cut a new runner.</li>
+      <li>[!lowtech,spring] The road thawed under a caravan of {FACTION} and swallowed a wheel to the axle, and the axle didn't come out whole. They've sent someone up to ask for {A_nameDef}'s hands, or for {TALE} at {COUNT} silver.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[lowtech] {A_nameDef} spent the afternoon in the mud under the wagon with the merchants passing down tools. The new axle took, and they left a sack of their goods at the gate when they rolled on.</li>
+          <li>[!lowtech] {A_nameDef} jacked the cart up on a stack of stones and had the hub off and a new one fitted by evening. The merchants left some of their load with the colony by way of thanks.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} worked on it until dark and the repair cracked again as soon as the load went back on. The merchants thanked {A_objective} anyway, and went on slowly to find someone with better tools.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The merchants bound the break with rope and a prayer and went on, slowly, with someone walking beside the bad wheel.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The harvest fair ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_HarvestFair</defName>
+    <incident>Council_Evt_HarvestFair</incident>
+    <titles>
+      <li>The fair is open</li>
+    </titles>
+    <texts>
+      <li>[!lowtech] A printed handbill nailed to the colony's gatepost: HARVEST FAIR AT {PLACE}. LIVESTOCK, PRODUCE, JUDGING. {FACTION}'s carts will take the colony's goods if it wants to send any. A cart of {TALE} would sell well, and {A_nameDef} is already sorting the best from the rest.</li>
+      <li>[lowtech] Carts have been going past on the road all morning, loaded high, toward the harvest fair at {PLACE}. One of {FACTION}'s drivers stopped long enough to say there's room for the colony's {TALE}, if it wants to sell, and that the judging is on the last day. {A_nameDef} heard "judging" and nothing else.</li>
+      <li>[colony:Hardworking] {FACTION} know how hard the colony works its fields, and have asked it to the harvest fair at {PLACE} to show what came of it. A cart of {TALE} would sell, and {A_nameDef} says the best of it could take the ribbon.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[lowtech] The cart went off down the road to {PLACE} with {A_nameDef}'s best {THING} wrapped in sacking on top, where it wouldn't bruise. They'll be back when the fair's done.</li>
+          <li>[!lowtech] {FACTION}'s driver loaded the colony's {THING} onto the cart and set off for {PLACE}, with a list in {A_nameDef}'s handwriting of which crate was for the judges.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The colony's harvest stays in the colony's stores this year. {A_nameDef} watched the carts go by toward {PLACE} all afternoon.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A family visit ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_FamilyVisit</defName>
+    <incident>Council_Evt_FamilyVisit</incident>
+    <texts>
+      <li>[fall] {X_nameDef}, {A_nameDef}'s {RELATION}, came up the road with a basket of apples from somewhere far away and the news from home, most of it about people {A_nameDef} hasn't thought of in years. {X_nameDef} will stay the day before going back to {FACTION}'s lands.</li>
+      <li>[spring] The roads are open again, and the first traveler up them is {X_nameDef}, {A_nameDef}'s {RELATION}, with a spring's worth of letters and a jar of something from home. {X_nameDef} lives among {FACTION} now, and goes back tomorrow.</li>
+      <li>[trait:Kind] {A_nameDef} has been showing {A_possessive} {RELATION} around the colony since breakfast, introducing {X_nameDef} to every person and most of the animals. {X_nameDef} came from {FACTION}'s lands with a gift from home and will stay the day.</li>
+      <li>[trait:Abrasive] {A_nameDef}'s {RELATION}, {X_nameDef}, has come all the way from {FACTION}'s lands, and the two of them have already argued about something that happened twenty years ago. {X_nameDef} brought a gift from home anyway, and will stay the day.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[trait:Kind] {A_nameDef} asked at supper, carefully, as if it didn't matter. {X_nameDef} said yes, and {A_nameDef} cried into the stew.</li>
+          <li>{X_nameDef} took the whole evening to decide and said yes over the last of the tea. The family will have to be written to.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[trait:Abrasive] {A_nameDef} and {X_nameDef} argued all day and parted friends, the way they always have. {X_nameDef} goes home tomorrow with messages for the family.</li>
+          <li>{A_nameDef} walked {X_nameDef} round every corner of the colony and talked until late. {X_nameDef} goes home in the morning with a pack of presents for the family.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The traveling cook ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_WanderingCook</defName>
+    <incident>Council_Evt_WanderingCook</incident>
+    <titles>
+      <li>[winter] A cook in from the cold</li>
+    </titles>
+    <texts>
+      <li>[winter] {X_nameDef} of {FACTION} came in from the snow with a pack that smells of smoke and dried peppers. Cooking for whoever will have {X_objective} is how {X_nameDef} gets through the winter, and the offer is the usual one: the colony's kitchen and stores for a day, and a supper to remember.\n\nOr {COUNT} silver, and {X_nameDef} will teach the colony's cook.</li>
+      <li>[summer] It's too hot to cook, say most people, but {X_nameDef} of {FACTION} isn't most people. {X_nameDef} wants the run of the colony's kitchen for one day and promises a supper served outside after sundown, cold soup and all.\n\nFor {COUNT} silver, {X_nameDef} will teach instead.</li>
+      <li>[trait:Ascetic] {A_nameDef} eats the same plain thing every day and is proud of it, which {X_nameDef}, a traveling cook of {FACTION}, has taken as a personal challenge. {X_nameDef} offers a feast from the colony's stores tonight, or a day teaching the colony's cook for {COUNT} silver.</li>
+      <li>[lowtech] {X_nameDef} of {FACTION} carries a blackened pot strapped to {X_possessive} back like a shell, and cooks along the roads for food and a bed. Give {X_nameDef} the colony's stores for a day and the colony eats like lords tonight. Or {COUNT} silver buys the colony's cook a day of lessons.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[winter] {X_nameDef} kept every pot going and the kitchen windows ran with steam all afternoon. The colony ate until it was warm through, and then some more.</li>
+          <li>[summer] {X_nameDef} served supper outside after dark: cold soup, flatbread off the hot stones, something sweet at the end. The colony ate under the stars until the bugs drove them in.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} and {B_nameDef} cooked side by side from noon until dark, and {X_nameDef} made {B_nameDef} taste everything twice. {B_nameDef} has a list of things to try that will last the winter.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} ate the colony's supper with the polite face of a professional and left at dawn, leaving a pinch of something in the salt jar.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The scribe ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Scribe</defName>
+    <incident>Council_Evt_Scribe</incident>
+    <texts>
+      <li>[summer] {X_nameDef}, a scribe of {FACTION}, has set up a writing desk in the shade of the wall with a jar of ink weighted down against the wind. For {COUNT} silver, {X_nameDef} will write letters for anyone at the colony who wants one, and see them carried by the next rider.</li>
+      <li>[spring] The roads are open, and the scribes are out on them. {X_nameDef} of {FACTION} has a satchel of fresh paper and a cut quill behind one ear, and offers letters home for anyone at the colony, {COUNT} silver for the lot.</li>
+      <li>[trait:Kind] {A_nameDef} found {X_nameDef}, a traveling scribe of {FACTION}, resting by the road, and brought {X_objective} up to the colony on the thought that some of the colonists have people they haven't written to. For {COUNT} silver, {X_nameDef} will write for anyone who asks.</li>
+      <li>{X_nameDef} of {FACTION} writes letters for those who can't, and reads them out for those who can't read. A letter arrived for the colony in the same rider's bag that brought {X_nameDef}, so {X_nameDef} has already started on the reading. Writing back would be {COUNT} silver.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} wrote until {X_possessive} hand cramped and then kept going. Every letter got a line at the bottom in the colonist's own hand, even if it was only a mark.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} told the colony's story while {X_nameDef} wrote it down, and stopped twice to argue with {X_objective} about the spelling of names. The copy is bound and on the shelf.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{X_nameDef} wiped the quills and corked the ink, slept in the barn, and was on the road before anyone was up.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The hedge healer ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Bonesetter</defName>
+    <incident>Council_Evt_Bonesetter</incident>
+    <texts>
+      <li>[ail:Pinkeye] {X_nameDef} of {FACTION}, a hedge healer with a satchel of dried flowers, took one look at {A_nameDef}'s red, weeping eye and asked who else had touched it. For {COUNT} silver, or a few doses of medicine, {X_nameDef} will clear it up before it goes round the colony.</li>
+      <li>[ail:InsectBites] {A_nameDef} has scratched {A_possessive} arms raw, and {X_nameDef}, a healer of {FACTION} passing through, couldn't stand to watch. {X_nameDef} has a paste for bites that smells like a swamp and works, for {COUNT} silver or some medicine in trade.</li>
+      <li>[ail:Chilblains] Red, swollen fingers and toes: {X_nameDef}, a healer of {FACTION}, saw {A_nameDef}'s chilblains across the yard and was already warming oil in a pan. For {COUNT} silver, or some medicine for the road, {X_nameDef} will see to them properly.</li>
+      <li>[ail:Migraine] {A_nameDef} has been lying in the dark since noon with a cloth over {A_possessive} eyes, and {X_nameDef}, an herb-healer of {FACTION}, has a tea for exactly that. {COUNT} silver, or a few doses of medicine, and {X_nameDef} will sit with {A_objective} until it lifts.</li>
+      <li>[winter] {X_nameDef} of {FACTION} came in from the cold with a healer's bag and stamped the snow off at the gate, and noticed {A_nameDef}'s {TALE} before {X_possessive} boots were clean. For {COUNT} silver or some medicine, {X_nameDef} will see to it by the fire tonight.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[ail:Pinkeye] {X_nameDef} washed {A_nameDef}'s eye with something cold, left a pot of salve and very strict instructions about towels. It's already less red.</li>
+          <li>[ail:Migraine] {X_nameDef} sat with {A_nameDef} in the dark with the tea and a cool cloth, saying nothing, and by evening {A_nameDef} could stand the lamp again.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} talked {B_nameDef} through every step while working on {A_nameDef}, as if {B_nameDef} were the patient. {A_nameDef} is better, and {B_nameDef} has a new trick or two.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} left a packet of herbs on the table anyway, "for when you change your mind," and went on down the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The spirit-singer ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_SpiritSinger</defName>
+    <incident>Council_Evt_SpiritSinger</incident>
+    <texts>
+      <li>[spring] {X_nameDef}, a spirit-singer of {FACTION}, has come with the first green: spring is when the land wakes, {X_nameDef} says, and it should hear a friendly voice before anything else. A meal and a place at the fire, and {X_nameDef} will sing to it tonight.</li>
+      <li>[fall] The leaves are turning, and {X_nameDef} of {FACTION} walks the camps singing the land to sleep before the cold, so it wakes kindly in spring. {X_nameDef} would sing for the colony tonight, for a bowl of something hot and a place by its fire.</li>
+      <li>[trait:Kind] {A_nameDef} brought {X_nameDef}, a spirit-singer of {FACTION}, in from the trail, where {X_pronoun} had been sitting alone under a tree, drumming softly. {X_nameDef} offers to sing for the colony tonight in return for the welcome.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[spring|fall] {X_nameDef} sang until the fire was coals, and drummed for a long while after the singing stopped. In the morning the drum was wrapped and {X_nameDef} was gone, and the camp felt lighter.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

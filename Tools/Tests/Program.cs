@@ -388,6 +388,7 @@ for (int r = 0; r < 4; r++)
         int instead = RewardInsteadTests.Run(root, Check, out int converted, out int small);
         Console.WriteLine($"Checked {instead} things about the {converted} of {small} small good moments that give something other than mood.");
         Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
+        Console.WriteLine($"Checked {StoryChainTests.Run(root, Check)} things about story chains told from data and event variants (routes, endings, flags, answers).");
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");
         Console.WriteLine($"Checked {AlmanacLayoutTests.Run(root, Check)} things about the Almanac's layout (columns, tables, text sizes).");
