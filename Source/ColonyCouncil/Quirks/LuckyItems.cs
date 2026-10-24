@@ -137,7 +137,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Hourly: a lucky quirk without a thing of its own (from an older save, or its thing was destroyed) takes the
-        /// one of its kind they wear or wield now, if nobody else counts that one as theirs.
+        /// one of its kind they wear, wield or carry now, if nobody else counts that one as theirs.
         /// </summary>
         public static void Bind(QuirkTracker tracker)
         {
@@ -152,15 +152,29 @@ namespace ColonyCouncil
             }
         }
 
-        private static Thing Carried(Pawn p, ThingDef def)
+        /// <summary>
+        /// The thing of this kind they have on them, or null: worn, wielded or otherwise equipped, or carried in their pack
+        /// (where Simple Sidearms keeps a sidearm, and where a weapon or hat goes when they put it away).
+        /// </summary>
+        public static Thing Carried(Pawn p, ThingDef def)
         {
+            if (p == null || def == null) return null;
             var worn = p.apparel?.WornApparel;
             if (worn != null)
                 for (int i = 0; i < worn.Count; i++)
                     if (worn[i]?.def == def)
                         return worn[i];
-            var primary = p.equipment?.Primary;
-            return primary != null && primary.def == def ? primary : null;
+            var equipped = p.equipment?.AllEquipmentListForReading;
+            if (equipped != null)
+                for (int i = 0; i < equipped.Count; i++)
+                    if (equipped[i]?.def == def)
+                        return equipped[i];
+            var pack = p.inventory?.innerContainer;
+            if (pack != null)
+                for (int i = 0; i < pack.Count; i++)
+                    if (pack[i]?.def == def)
+                        return pack[i];
+            return null;
         }
 
         /// <summary>A lucky-item quirk is ending: its thing remembers whose it was.</summary>

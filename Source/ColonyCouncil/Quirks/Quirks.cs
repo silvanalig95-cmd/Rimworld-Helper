@@ -603,8 +603,8 @@ namespace ColonyCouncil
             if (quirk.condition == QuirkCondition.LuckyItem)
             {
                 if (q.item == null) return ThoughtState.Inactive;
-                bool has = Wears(p, q.item) || p.equipment?.Primary?.def == q.item;
-                stage = has ? 0 : 1;
+                // On them counts: worn, in hand, a sidearm, or in their pack.
+                stage = LuckyItems.Carried(p, q.item) != null ? 0 : 1;
             }
             else if (Holds(quirk.condition, quirk, p)) stage = 0;
             else if (quirk.elseCondition != QuirkCondition.None && Holds(quirk.elseCondition, quirk, p)) stage = 1;
@@ -612,16 +612,6 @@ namespace ColonyCouncil
             if (def.stages == null || stage >= def.stages.Count) return ThoughtState.Inactive;
             if (!s.Negatives && def.stages[stage] != null && def.stages[stage].baseMoodEffect < 0f) return ThoughtState.Inactive;
             return ThoughtState.ActiveAtStage(stage);
-        }
-
-        private static bool Wears(Pawn p, ThingDef item)
-        {
-            var worn = p.apparel?.WornApparel;
-            if (worn == null) return false;
-            for (int i = 0; i < worn.Count; i++)
-                if (worn[i].def == item)
-                    return true;
-            return false;
         }
 
         /// <summary>Whether the moment fits: the weather, the hour, where they are and what they're doing.</summary>

@@ -10,7 +10,7 @@
   <CC_Lucky_Possessive>{0}'s</CC_Lucky_Possessive>
 
   <!-- The info card and the gear tab's tooltip: {0} the owner, {1} how long, {2} "she", "he" or their name (never to start a sentence) -->
-  <CC_Lucky_Desc_Now>{0} has sworn by this lucky charm for {1}, and feels better with it on and uneasy without it.</CC_Lucky_Desc_Now>
+  <CC_Lucky_Desc_Now>{0} has sworn by this lucky charm for {1}, and feels better with it close and uneasy without it.</CC_Lucky_Desc_Now>
   <CC_Lucky_Desc_Faded>Once {0}'s lucky charm, for {1}, until {2} stopped needing it.</CC_Lucky_Desc_Faded>
   <CC_Lucky_Desc_Died>Once {0}'s lucky charm, for {1}, to the very end.</CC_Lucky_Desc_Died>
   <CC_Lucky_Desc_Gone>Once {0}'s lucky charm, for {1}, until {2} was lost to the colony.</CC_Lucky_Desc_Gone>
