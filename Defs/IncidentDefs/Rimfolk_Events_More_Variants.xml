@@ -246,7 +246,7 @@
       <li>[ail:InsectBites] {A_nameDef} has scratched {A_possessive} arms raw, and {X_nameDef}, a healer of {FACTION} passing through, couldn't stand to watch. {X_nameDef} has a paste for bites that smells like a swamp and works, for {COUNT} silver or some medicine in trade.</li>
       <li>[ail:Chilblains] Red, swollen fingers and toes: {X_nameDef}, a healer of {FACTION}, saw {A_nameDef}'s chilblains across the yard and was already warming oil in a pan. For {COUNT} silver, or some medicine for the road, {X_nameDef} will see to them properly.</li>
       <li>[ail:Migraine] {A_nameDef} has been lying in the dark since noon with a cloth over {A_possessive} eyes, and {X_nameDef}, an herb-healer of {FACTION}, has a tea for exactly that. {COUNT} silver, or a few doses of medicine, and {X_nameDef} will sit with {A_objective} until it lifts.</li>
-      <li>[winter] {X_nameDef} of {FACTION} came in from the cold with a healer's bag and stamped the snow off at the gate, and noticed {A_nameDef}'s {TALE} before {X_possessive} boots were clean. For {COUNT} silver or some medicine, {X_nameDef} will see to it by the fire tonight.</li>
+      <li>[winter] {X_nameDef} of {FACTION} came in from the cold with a healer's bag and stamped the snow off at the gate, and noticed {A_nameDef}'s {TALE} before {X_possessive} boots were clean. For {COUNT} silver or some medicine, {X_nameDef} will see to it tonight, somewhere warm.</li>
     </texts>
     <outcomes>
       <li>

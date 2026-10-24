@@ -44,15 +44,19 @@
       <plain>
         <li>[opt0] Word came about {TALE}. Dead, months ago. We held a wake tonight and I talked too much.</li>
         <li>[opt1] The council gave me the day. I walked as far as the river and back.</li>
-        <li>[opt2] Heard about {TALE}. Went back to work. Didn't say anything.</li>
+        <li>[opt3] Heard about {TALE}. Went back to work. Didn't say anything.</li>
         <li>[opt0] Told them all about {TALE}. Somebody poured an extra cup.</li>
         <li>[opt1] Walked all day. Didn't think about much. Then I thought about everything.</li>
+        <li>[opt2] Planted a tree for {TALE} out past the last row of the fields. Put a stone by it. Watered it twice.</li>
       </plain>
-      <warm><li>[opt0] They listened to every story. I didn't know how much I needed someone to listen.</li></warm>
-      <blunt><li>[opt2] Somebody I knew died. Work still needs doing.</li></blunt>
+      <warm>
+        <li>[opt0] They listened to every story. I didn't know how much I needed someone to listen.</li>
+        <li>[opt2] There's a sapling by the fields now with a stone beside it. I'll sit there when I need to.</li>
+      </warm>
+      <blunt><li>[opt3] Somebody I knew died. Work still needs doing.</li></blunt>
       <cheerful><li>[opt0] We laughed more than we cried at the wake. That would have pleased them.</li></cheerful>
-      <gloomy><li>[opt2] Gone, and buried, and I wasn't there. I wasn't there.</li></gloomy>
-      <cold><li>[opt2] {TALE} is dead. It was a long time ago, and far away.</li></cold>
+      <gloomy><li>[opt3] Gone, and buried, and I wasn't there. I wasn't there.</li></gloomy>
+      <cold><li>[opt3] Word came: {TALE} is dead. It was a long time ago, and far away.</li></cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

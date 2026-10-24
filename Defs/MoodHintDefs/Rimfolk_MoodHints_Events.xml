@@ -10,9 +10,10 @@
     <thoughts>
       <li>Council_Evt_GriefWake</li>
       <li>Council_Evt_GriefDay</li>
+      <li>Council_Evt_GriefTree</li>
       <li>Council_Evt_GriefNoTime</li>
     </thoughts>
-    <fix>Word came that someone they knew before the colony has died, far away. It fades in a few days. A wake that evening or a day to themselves when the news comes makes it lighter than being sent straight back to work.</fix>
+    <fix>Word came that someone they knew before the colony has died, far away. It fades in a few days. A wake that evening, a day to themselves or a tree planted for the dead when the news comes makes it lighter than being sent straight back to work.</fix>
     <act>Give it a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_C_WorldEvents</article>

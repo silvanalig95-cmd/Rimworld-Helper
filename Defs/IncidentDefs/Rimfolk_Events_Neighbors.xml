@@ -33,11 +33,11 @@
         <texts>
           <li>[lowtech] A peddler on the road passed the news to {A_nameDef} along with the rest of the gossip, not knowing what it was: {TALE} has died, back where {A_nameDef} came from. A fever in the spring, the peddler thinks.\n\n{A_nameDef} finished the day's work without a word, and hasn't eaten since.</li>
           <li>[!lowtech] The message was three lines long and had been passed on twice before it reached the colony's comms: {TALE} has died. {A_nameDef} copied it out by hand and has been carrying the paper folded in a pocket all afternoon.</li>
-          <li>Word came with a traveler this morning. {TALE} is dead, months ago now, and buried far from here. {A_nameDef} heard it at the gate, nodded, and went back to work, and the work isn't getting done.</li>
+          <li>Word came with a traveler this morning: {TALE} is dead, months ago now, and buried far from here. {A_nameDef} heard it at the gate, nodded, and went back to work, and the work isn't getting done.</li>
           <li>[winter] News moves slowly in the cold. A letter from the old country reached {A_nameDef} today, half a year late: {TALE} died before the snow came. {A_nameDef} read it by the stove, folded it small, and hasn't said a word since.</li>
-          <li>[trait:Kind] {A_nameDef} has been sitting on the woodpile since noon with a letter in {A_possessive} lap. {TALE} is dead. There was a funeral, a long way from here, weeks ago, and {A_nameDef} wasn't at it.</li>
+          <li>[trait:Kind] {A_nameDef} has been sitting on the woodpile since noon with a letter in {A_possessive} lap: {TALE} is dead. There was a funeral, a long way from here, weeks ago, and {A_nameDef} wasn't at it.</li>
         </texts>
-        <defaultOption>2</defaultOption>
+        <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>A wake tonight, and {A_nameDef} tells the colony about them</label>
@@ -61,6 +61,19 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GriefDay</thought></li>
             </effects>
             <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Plant a tree for them by the fields</label>
+            <outcome>{A_nameDef} dug a hole beside the fields, set a young tree in it and a stone beside it, and stayed out there a while after the watering was done. It will be taller than the colony's roofs one day.</outcome>
+            <outcomes>
+              <li>[lowtech] {A_nameDef} planted a young tree beside the fields and set a stone next to it, the old way, and spoke a name over it that the colony had never heard before.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Plant"><near>Fields</near><markers>true</markers></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s tree for an old friend</label><to>Fields</to><orTo><li>Outdoors</li></orTo><hours>8~18</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_GriefTree</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
           </li>
           <li>
             <label>Keep {A_objective} busy; work helps</label>
@@ -221,10 +234,10 @@
           <li>A letter from home</li>
         </titles>
         <texts>
-          <li>[lowtech] A runner came a long way to put a knotted cord in {A_nameDef}'s hands, and {A_nameDef} read the knots and sat down where {A_pronoun} stood. The people {A_pronoun} left behind want {A_objective} home: {TALE} needs {A_objective}, and there's no one else to do it.\n\n{A_nameDef} hasn't said what {A_pronoun} wants. The council will have to say it first.</li>
-          <li>[!lowtech] The letter has been through four hands and two caravans to reach {A_nameDef}, and it says what letters like it always say: come home. {TALE} can't wait much longer, and there's no one else to take it on.\n\n{A_nameDef} has read it many times, and has asked the council to decide, because {A_pronoun} can't.</li>
-          <li>A traveler brought {A_nameDef} word from the old country: the family wants {A_objective} back. {TALE} needs {A_objective} now, and they've waited as long as they can.\n\n{A_nameDef} came to the council with the letter still in {A_possessive} hand. Whatever the council says, {A_nameDef} will do.</li>
-          <li>[winter] The letter came with the last trader before the passes close. {A_nameDef}'s people want {A_objective} home by spring: {TALE} needs hands, and {A_nameDef}'s are the hands they're counting on.\n\nIf {A_nameDef} is going, it had better be before the snow gets deep.</li>
+          <li>[lowtech] A runner came a long way to put a knotted cord in {A_nameDef}'s hands, and {A_nameDef} read the knots and sat down where {A_pronoun} stood. The people {A_pronoun} left behind want {A_objective} home, because {TALE} needs {A_objective}, and there's no one else to do it.\n\n{A_nameDef} hasn't said what {A_pronoun} wants. The council will have to say it first.</li>
+          <li>[!lowtech] The letter has been through four hands and two caravans to reach {A_nameDef}, and it says what letters like it always say: come home. There's {TALE} to think of, and no one else to take it on.\n\n{A_nameDef} has read it many times, and has asked the council to decide, because {A_pronoun} can't.</li>
+          <li>A traveler brought {A_nameDef} word from the old country: the family wants {A_objective} back, for the sake of {TALE}, and they've waited as long as they can.\n\n{A_nameDef} came to the council with the letter still in {A_possessive} hand. Whatever the council says, {A_nameDef} will do.</li>
+          <li>[winter] The letter came with the last trader before the passes close. {A_nameDef}'s people want {A_objective} home by spring. There's {TALE}, and {A_nameDef}'s are the hands they're counting on.\n\nIf {A_nameDef} is going, it had better be before the snow gets deep.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -263,11 +276,11 @@
         <tales>
           <li>the family farm</li>
           <li>an old mother who can't manage alone</li>
-          <li>[past:farmer] the farm, and fields no one else knows how to work</li>
+          <li>[past:farmer] the farm and its fields</li>
           <li>[past:trader] the family's trading house</li>
           <li>[past:artisan] the old workshop and its customers</li>
           <li>[past:noble] the family's house and name</li>
-          <li>[past:healer] the village sickroom, which has no one else</li>
+          <li>[past:healer] the village sickroom</li>
         </tales>
       </li>
     </modExtensions>
