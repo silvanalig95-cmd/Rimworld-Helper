@@ -54,14 +54,17 @@
     <beats>
       <li>
         <key>timber</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><gender>Male</gender><pack>true</pack></li>
+        </effects>
         <day>1~4</day>
         <count>80~150</count>
         <titles>
           <li>Timber for {PLACE}</li>
         </titles>
         <texts>
-          <li>{FACTION}'s carter has brought a slate with the new bridge drawn on it, and a number chalked under the drawing: {COUNT} logs, for the bridge and the barns at {PLACE}. They'll pay what they can, which after {TALE} isn't much.</li>
-          <li>[afterHelped] {FACTION}'s carter has come with a list and an apology: they hate to ask again, after all the colony did during {TALE}, but {PLACE} needs {COUNT} logs to get its roofs back.</li>
+          <li>{FACTION}'s carter is at the gate with an empty wagon and a slate with the new bridge drawn on it, and a number chalked under the drawing: {COUNT} logs, for the bridge and the barns at {PLACE}. They'll pay what they can, which after {TALE} isn't much.</li>
+          <li>[afterHelped] {FACTION}'s carter has come to the gate with a list and an apology: they hate to ask again, after all the colony did during {TALE}, but {PLACE} needs {COUNT} logs to get its roofs back.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -69,7 +72,7 @@
             <label>Send {COUNT} wood</label>
             <outcome>The carter ropes the logs down and heads back to {PLACE}. {FACTION}'s builders will have their bridge by the end of the month.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>rebuilt</kind><about>place</about></li>
             </effects>
@@ -81,7 +84,7 @@
             <label>Sell it to them</label>
             <outcome>The carter counts out a fair price from {FACTION}'s thin purse, and is glad to get the timber at all.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.1</factor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
             </effects>
@@ -263,13 +266,16 @@
       </li>
       <li>
         <key>contract</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>agent</what><ages>28~55</ages><onward>true</onward></li>
+        </effects>
         <day>3~7</day>
         <count>20~35</count>
         <titles>
           <li>A standing order</li>
         </titles>
         <texts>
-          <li>A merchant house that uses the reopened road has sent an agent to the colony. They want a regular supplier along the way: {COUNT} cooked meals now, for the next caravan's journey, at half again what they're worth, and the same again next season if the meals are good.\n\nThe agent has a covered wagon waiting on the road, and a list of the other places that have tried.</li>
+          <li>A merchant house that uses the reopened road has sent an agent to the colony's gate. They want a regular supplier along the way: {COUNT} cooked meals now, for the next caravan's journey, at half again what they're worth, and the same again next season if the meals are good.\n\nThe agent has a covered wagon waiting on the road, and a list of the other places that have tried.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -277,13 +283,13 @@
             <label>Sell {COUNT} meals (half again their worth)</label>
             <outcome>The meals go out with the agent, and the colony's name goes into the merchant house's book of good stops.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>MealSimple</thing><price>1.5</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>MealSimple</thing><price>1.5</price><toVisitor>true</toVisitor></li>
             </effects>
             <flags><li>contract</li></flags>
           </li>
           <li>
             <label>The colony isn't a kitchen</label>
-            <outcome>The agent thanks the colony politely and rides on to the next village.</outcome>
+            <outcome>The agent thanks the colony politely and goes on to the next village.</outcome>
           </li>
         </options>
       </li>

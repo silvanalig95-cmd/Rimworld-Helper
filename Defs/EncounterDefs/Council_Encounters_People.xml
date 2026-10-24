@@ -227,7 +227,7 @@
     </texts>
     <ways><openness>2</openness></ways>
     <effects>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>12</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>12</count><by>Outsiders</by></li>
       <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>1</count></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_StrangersThanks</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
@@ -467,7 +467,7 @@
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_TreatedLikeFurniture</thought></li>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>8</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>8</count><by>Outsiders</by></li>
     </effects>
     <journal>Council_Journal_EncP_Noble</journal>
   </ColonyCouncil.EncounterDef>

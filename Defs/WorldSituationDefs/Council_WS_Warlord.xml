@@ -113,7 +113,7 @@
             <label>Post a bounty ({ITEM} silver)</label>
             <outcome>Notices go out with every trader and traveler: {ITEM} silver for {X_nameDef}, brought in alive or dead. The silver goes with them, sealed, to be held for whoever collects.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.6</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.6</factor><by>Outsiders</by></li>
             </effects>
             <flags><li>bounty</li></flags>
             <help>1</help>

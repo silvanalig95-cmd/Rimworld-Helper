@@ -145,7 +145,8 @@ namespace ColonyCouncil
             {
                 CouncilGameComponent.GiveThought(a, CouncilDefOf.Council_Evt_WonChallenge);
                 foreach (var p in IncidentWorker_Happening.Colonists(v.map).Where(p => p != a)) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Evt_ChampionWon, a);
-                if (v.stake > 0)
+                // The challenger counts the stake out in person (Couriers/), or it's left by the winner, as before.
+                if (v.stake > 0 && !(Couriers.InPerson(x, a.Map) && Couriers.Deliver(a.Map, Couriers.Make(ThingDefOf.Silver, v.stake), x.Faction, a.Position, x)))
                 {
                     var silver = ThingMaker.MakeThing(ThingDefOf.Silver);
                     silver.stackCount = v.stake;
