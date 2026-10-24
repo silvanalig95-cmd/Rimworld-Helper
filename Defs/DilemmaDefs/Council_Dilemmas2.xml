@@ -361,6 +361,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>SculptureSmall</things><maker>B</maker><forWhom>A</forWhom><skill>Artistic</skill></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -370,6 +371,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LostKeepsake</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PoorCopy</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>SculptureSmall</things><giver>B</giver><forWhom>A</forWhom><quality>Awful</quality></li>
         </riskEffects>
       </li>
       <li>

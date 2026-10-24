@@ -402,7 +402,7 @@
         <label>passed on</label>
         <journal>
           <plain>
-            <li>Gave {OTHER_nameDef} my old tools today. {OTHER_nameDef} held them as if they might break. They won't. They've been through worse.</li>
+            <li>Gave {OTHER_nameDef} my old knife today, the one I've done my best work with. {OTHER_nameDef} held it as if it might break. It won't. It's been through worse.</li>
             <li>{OTHER_nameDef} knows what I know now, more or less. The rest {OTHER_pronoun}'ll find out alone, the way I did.</li>
           </plain>
           <warm><li>Whatever happens to me, what I know is safe with {OTHER_nameDef}. I slept well last night.</li></warm>
@@ -413,7 +413,7 @@
         </journal>
         <otherJournal>
           <plain>
-            <li>{OTHER_nameDef} gave me {OTHER_possessive} old tools today. I don't think I've ever been given anything that mattered more.</li>
+            <li>{OTHER_nameDef} gave me {OTHER_possessive} old knife today, the one {OTHER_pronoun} has always worked with. I don't think I've ever been given anything that mattered more.</li>
             <li>Everything I know about {SKILL}, I learned from {OTHER_nameDef}. I'm going to say so to everyone who asks.</li>
           </plain>
         </otherJournal>
@@ -425,6 +425,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_PassedOn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_TaughtMe</thought><target>B</target></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>1500</xp><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>MeleeWeapon_Knife</things><giver>A</giver><forWhom>B</forWhom><quality>Good</quality><stuff>Steel</stuff></li>
         </effects>
       </li>
     </stages>

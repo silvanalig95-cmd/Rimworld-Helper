@@ -518,6 +518,8 @@ namespace ColonyCouncil
             if (p.state == PlayState.Done) return;
             p.state = PlayState.Done;
             Remember(p, true);
+            // What follows it (a secret said out loud at the end of the gathering called to hear it).
+            PlayAfter.Run(p);
             // A visit, a lesson or a day of rest says the answer's outcome now it has happened; gatherings and groups
             // say it in their own end message.
             if (!gathering && !p.IsGroup && !p.outcome.NullOrEmpty())
@@ -556,6 +558,7 @@ namespace ColonyCouncil
             if (p.note.NullOrEmpty() && !why.NullOrEmpty()) p.note = why;
             Remember(p, false);
             GiveAll(p);
+            PlayAfter.Run(p);
             // A work party, a walk, a vigil, a search, an errand or a hunt lets go of anyone still on it; an errand
             // that never went takes its things from the stores all the same, as the answer always did.
             if (p.IsGroup)

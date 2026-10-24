@@ -31,6 +31,9 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx) => Create(ctx);
 
+        /// <summary>Sets it going from code (an effect of a personal story that adds to it afterwards): the plan, or null.</summary>
+        public PlayOut Begin(DilemmaContext ctx) => Create(ctx);
+
         /// <summary>Sets it going: the plan, or null when nothing was set going (the setting off, its chance not met, nobody to do it).</summary>
         protected PlayOut Create(DilemmaContext ctx)
         {
@@ -265,6 +268,13 @@ namespace ColonyCouncil
                 p.to = PlaySpot.Person;
             }
             p.place = (ctx as HappeningContext)?.place;
+            // A personal story that waited for something made: the thing itself, where it stands (the dream made real).
+            if (to == PlaySpot.Place && p.place == null && ctx is ArcEffectContext made)
+            {
+                var t = made.arc?.madeThing;
+                if (t == null || t.Destroyed || !t.Spawned || t.Map != ctx.map) return false;
+                p.place = t;
+            }
             // A personal story about someone lost: their own grave, when the colony buried them here.
             if (to == PlaySpot.Grave && p.place == null && ctx is ArcEffectContext ac && !(ac.arc?.lostName).NullOrEmpty())
                 p.place = PlaySpots.GraveNamed(ctx.map, ac.arc.lostName);

@@ -28,7 +28,6 @@ Council_Dilemma_PetBite [option 2] an animal's part: the pet is let go (ReleaseP
 Council_Dilemma_PetPot [option 0] a ruling; habit
 Council_Dilemma_PetPot [option 1] extra rations for one colonist, not a meal from the stores
 Council_Dilemma_LoveLetter [option 3] nothing done
-Council_Dilemma_OwnFuneral [option 0] a coffin made: the game has no coffin to make (graves and sarcophagi only), no play-out kind; others stop visiting is a habit
 Council_Dilemma_OwnFuneral [option 3] not answered; the risk is a mental state (wandering), already real
 Council_Dilemma_Sleepwalker [option 3] not answered; the risk is a mental state, already real
 Council_Dilemma_Credit [option 1] a ruling; story told at meals is a habit; the risk is a fight, already real

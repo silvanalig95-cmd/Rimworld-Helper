@@ -268,7 +268,7 @@
           <li>With {OTHER_nameDef} behind {PAWN_objective}, {PAWN_nameDef} stopped keeping {PAWN_possessive} secret.</li>
         </chronicle>
         <effects>
-          <li Class="ColonyCouncil.ArcEffect_Confess" />
+          <li Class="ColonyCouncil.ArcEffect_Confess"><gathering>true</gathering></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_Unburdened</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_StoodByMe</thought></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-10</amount></li>
@@ -578,6 +578,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_DreamLetGo</thought></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.3</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a long look at the {THING}</label><to>Place</to><hours>8~20</hours><duration>0.75~1.25</duration></li>
         </effects>
       </li>
     </stages>

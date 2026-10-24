@@ -312,6 +312,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Pyre</thought><onlyTrait><li>Pyromaniac</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HaulDead"><label>the pyre beyond the gate</label><to>pyre</to><count>4</count><hours>7~16</hours><duration>2~3</duration></li>
         </effects>
       </li>
       <li>
@@ -321,6 +322,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_BodiesLeft</thought><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Bloodlust</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HaulDead"><label>the dead taken to the tree line</label><to>treeline</to><count>3</count><hours>8~17</hours><duration>1.5~2.5</duration></li>
         </effects>
       </li>
       <li>

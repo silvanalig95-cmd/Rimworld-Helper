@@ -118,4 +118,25 @@
     <casualInterruptible>true</casualInterruptible>
   </JobDef>
 
+  <!--
+    A thing carried by hand (PlayOut/OnMapPlays.cs): a gift walked over to the one it's for, a stash carried out to the
+    yard and burned, a thing collected from beside a visitor and taken in to the table.
+  -->
+  <JobDef>
+    <defName>Council_PlayOutGive</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutGive</driverClass>
+    <reportString>carrying TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <!-- Rounds: going from one colonist to the next, a few minutes with each (a doctor's look, a pot of soup). -->
+  <JobDef>
+    <defName>Council_PlayOutRounds</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutGroup</driverClass>
+    <reportString>making the rounds.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
 </Defs>

@@ -99,6 +99,8 @@ namespace ColonyCouncil
         public const int RareCouriers = 59;
         /// <summary>Visitors waiting to come or on the map (Visitors/), only while there are any.</summary>
         public const int RareVisitors = 131;
+        /// <summary>Things an answer keeps on the map for a while (PlayOut/OnMapTimed.cs: lanterns, a fire, a bolted door), only while there are any.</summary>
+        public const int RareTimed = 149;
 
         // ---------------- Other rhythms ----------------
 

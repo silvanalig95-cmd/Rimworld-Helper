@@ -2013,6 +2013,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 89 | Missions: an accepted quest starts, a goal met is noticed (with a map) | per open mission |
 | 113 | The welcome letter (only until it's sent); answers playing out on the map (only while one waits or runs) | one check; per play-out |
 | 131 | Visitors on the map: each visit waiting to come or under way (only while there are any) | per visit: its hour, danger, the weather, its letter, its people |
+| 149 | Things an answer keeps on the map for a while: lanterns for a night, a fire in a cold room, the pyre, a bolted door, an animal at someone's heels (only while there are any) | per thing kept: its hour, danger, its fuel, its people |
 | 139 | Health stories: one tenth of the colonists (by ID), each once an hour (with convalescence or reputation on) | per colonist in the slice: limbs lost, bed rest, setbacks |
 | 167 | The colony news: what waits goes out (as the evening's digest, around six) | the waiting news |
 | 199 | The council window's memory: the day's trust sample, the dilemmas it watches | per colonist once a day |

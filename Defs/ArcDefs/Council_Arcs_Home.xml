@@ -364,6 +364,9 @@
           <li>{PET_nameDef} has started following {PAWN_nameDef} about the colony, out to work and back again.</li>
           <li>Wherever {PAWN_nameDef} goes these days, {PET_nameDef} is a few steps behind.</li>
         </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Follow"><hours>36</hours></li>
+        </effects>
         <gate><kind>Hold</kind><hold>Near</hold><hours>18</hours><minDays>2</minDays><timeoutDays>25</timeoutDays></gate>
       </li>
       <li>

@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What's said around the plays of one thing or one round (Source/ColonyCouncil/PlayOut/OnMapPlays.cs): a gift carried
+    over by hand ([give]), a stash carried out to the yard and burned ([burn]), a thing collected from a visitor
+    ([fetch]); rounds from one colonist to the next ([outdoors]: a pot taken out to those working outside); the enemy dead
+    carried out ([pyre], [treeline]); and what's said before a secret comes out in front of everyone. Short lines over
+    the speaker's head, and journal lines afterwards ({OTHER}: the one it was for; {NAME}: what the answer called it).
+  -->
+
+  <!-- ===================== A thing carried over by hand ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayGiveInvite</defName>
+    <lines>
+      <plain>
+        <li>Back in a moment.</li>
+        <li>[give] This is for {OTHER_nameDef}.</li>
+        <li>[give] I'll take it over myself.</li>
+        <li>[burn] Out to the yard with this.</li>
+        <li>[fetch] I'll go and get it.</li>
+      </plain>
+      <warm>
+        <li>[give] I hope {OTHER_nameDef} likes it.</li>
+      </warm>
+      <blunt>
+        <li>[give] Taking it over now.</li>
+        <li>[burn] Nobody touches this. It's going on the fire.</li>
+      </blunt>
+      <cheerful>
+        <li>[give] Wait till {OTHER_nameDef} sees this.</li>
+      </cheerful>
+      <gloomy>
+        <li>[give] Here goes nothing.</li>
+        <li>[burn] What a waste.</li>
+      </gloomy>
+      <cold>
+        <li>Seeing to it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Said as it's set down: to the one it's for, or to nobody in the yard. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayGive</defName>
+    <lines>
+      <plain>
+        <li>There.</li>
+        <li>[give] For you, {OTHER_nameDef}.</li>
+        <li>[give] I made it for you. Don't make a fuss.</li>
+        <li>[give] It's yours now.</li>
+        <li>[burn] That's the end of that.</li>
+        <li>[burn] Stand back, it'll catch quick.</li>
+        <li>[fetch] Thank you. It's beautiful work.</li>
+      </plain>
+      <warm>
+        <li>[give] I've wanted to give you this for a while.</li>
+      </warm>
+      <blunt>
+        <li>[give] Here. Take it.</li>
+      </blunt>
+      <cheerful>
+        <li>[give] Go on, open it. Well, look at it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[give] It's not much. It's what I had in me.</li>
+        <li>[burn] Up it goes.</li>
+      </gloomy>
+      <cold>
+        <li>[give] This settles it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayGive</defName>
+    <lines>
+      <plain>
+        <li>[give] Took {NAME} over to {OTHER_nameDef} myself and set it down. {OTHER_nameDef} looked at it a long time before saying anything.</li>
+        <li>[give] Gave {OTHER_nameDef} what I'd made. I didn't stay to watch {OTHER_objective} look at it.</li>
+        <li>[burn] Carried the stuff out to the yard and burned it. It smelled sweet for a while, then just like smoke.</li>
+        <li>[fetch] Collected {NAME} from our visitor and brought it in. It's lovely work.</li>
+      </plain>
+      <warm>
+        <li>[give] {OTHER_nameDef} held it in both hands. I'm glad I made it.</li>
+      </warm>
+      <blunt>
+        <li>[give] Gave it over. Done.</li>
+        <li>[burn] Burned it. Good riddance.</li>
+      </blunt>
+      <cheerful>
+        <li>[give] {OTHER_nameDef} liked it. I'm almost sure.</li>
+      </cheerful>
+      <gloomy>
+        <li>[give] I gave it to {OTHER_nameDef}. It looked smaller in the daylight.</li>
+      </gloomy>
+      <cold>
+        <li>Delivered as agreed.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayGiveMissed</defName>
+    <lines>
+      <plain>
+        <li>[give] Meant to take it to {OTHER_nameDef} myself. The day got away from me, and someone else set it down by {OTHER_objective}.</li>
+        <li>[burn] It was meant to go on the fire in the yard. It got burned without me in the end.</li>
+      </plain>
+      <blunt>
+        <li>Never got round to it.</li>
+      </blunt>
+      <gloomy>
+        <li>[give] I never gave it to {OTHER_nameDef} myself. That was the whole point.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Rounds ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayRoundsInvite</defName>
+    <lines>
+      <plain>
+        <li>I'll come to each of you. Don't go far.</li>
+        <li>[outdoors] Soup's coming round.</li>
+      </plain>
+      <warm>
+        <li>It won't take long, I promise.</li>
+        <li>[outdoors] Hot soup for whoever's out in the cold.</li>
+      </warm>
+      <blunt>
+        <li>Stay where you are. I'll find you.</li>
+      </blunt>
+      <cheerful>
+        <li>Nobody escapes. Everyone gets seen.</li>
+      </cheerful>
+      <gloomy>
+        <li>Right. One at a time, then.</li>
+      </gloomy>
+      <cold>
+        <li>Everyone, in turn.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Said to each one, as the one going round comes up to them. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayRounds</defName>
+    <lines>
+      <plain>
+        <li>Your turn, {OTHER_nameDef}.</li>
+        <li>Hold still a moment.</li>
+        <li>[outdoors] Here, mind, it's hot.</li>
+        <li>[outdoors] Bowl, {OTHER_nameDef}. Drink it while it's warm.</li>
+      </plain>
+      <warm>
+        <li>How are you keeping, {OTHER_nameDef}?</li>
+        <li>[outdoors] Warm your hands on that first.</li>
+      </warm>
+      <blunt>
+        <li>Next.</li>
+      </blunt>
+      <cheerful>
+        <li>[outdoors] Soup delivery. No charge.</li>
+      </cheerful>
+      <gloomy>
+        <li>[outdoors] It was hot when I left the kitchen.</li>
+      </gloomy>
+      <cold>
+        <li>Good. Next one.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayRounds</defName>
+    <lines>
+      <plain>
+        <li>Went round to everyone today, one at a time. My feet ache.</li>
+        <li>[outdoors] Took the soup pot out to everyone working in the cold. Came back with it empty and my hands frozen.</li>
+      </plain>
+      <warm>
+        <li>Saw every one of them, and every one of them is all right. That's a good day.</li>
+      </warm>
+      <blunt>
+        <li>Rounds done.</li>
+      </blunt>
+      <cheerful>
+        <li>[outdoors] Everybody wanted seconds. There were no seconds.</li>
+      </cheerful>
+      <gloomy>
+        <li>Walked the whole colony twice over. Nobody thanked me, but nobody complained either.</li>
+      </gloomy>
+      <cold>
+        <li>All accounted for.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayRoundsMissed</defName>
+    <lines>
+      <plain>
+        <li>Meant to go round to everyone. There was never a quiet moment for it.</li>
+        <li>[outdoors] The soup went cold in the pot. Nobody was outside long enough to give it to.</li>
+      </plain>
+      <blunt>
+        <li>No rounds today.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The enemy dead carried out ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayHaulInvite</defName>
+    <lines>
+      <plain>
+        <li>Gloves on. Let's get it done.</li>
+        <li>[pyre] Out past the gate with them. We'll build the pyre there.</li>
+        <li>[treeline] To the tree line. Leave them where the trees start.</li>
+      </plain>
+      <warm>
+        <li>Carefully. They were somebody's.</li>
+      </warm>
+      <blunt>
+        <li>One each. Don't look at the faces.</li>
+      </blunt>
+      <cheerful>
+        <li>Sooner started, sooner done.</li>
+      </cheerful>
+      <gloomy>
+        <li>This is the part nobody tells you about.</li>
+      </gloomy>
+      <cold>
+        <li>Take them out.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayHaul</defName>
+    <lines>
+      <plain>
+        <li>Heavier than you'd think.</li>
+        <li>Mind the feet.</li>
+        <li>[pyre] Lay this one on the pile.</li>
+        <li>[treeline] Leave it here.</li>
+      </plain>
+      <warm>
+        <li>Easy now.</li>
+      </warm>
+      <blunt>
+        <li>Next one.</li>
+      </blunt>
+      <gloomy>
+        <li>They don't get any lighter.</li>
+      </gloomy>
+      <cold>
+        <li>Two more.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayHaul</defName>
+    <lines>
+      <plain>
+        <li>[pyre] Carried the raiders out past the gate and stacked them for the pyre. I washed my hands three times after.</li>
+        <li>[treeline] Dragged the raiders' bodies out to the tree line. I could hear the scavengers before we were back inside.</li>
+      </plain>
+      <warm>
+        <li>We carried them out as gently as we could. They came here to kill us. They were still people.</li>
+      </warm>
+      <blunt>
+        <li>Hauled the dead out. Not doing that again if I can help it.</li>
+      </blunt>
+      <gloomy>
+        <li>I'll be smelling it for days.</li>
+      </gloomy>
+      <cold>
+        <li>The bodies are out of the colony. That was the task.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PlayHaulMissed</defName>
+    <lines>
+      <plain>
+        <li>We were meant to carry the raiders out. It never got done, and the bodies are still lying there.</li>
+      </plain>
+      <blunt>
+        <li>Nobody moved the bodies. Somebody should.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A secret said out loud (a personal story's end) ===================== -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlaySaidAloud</defName>
+    <lines>
+      <plain>
+        <li>I've something to tell all of you.</li>
+        <li>Let me get through it before anyone says anything.</li>
+        <li>This isn't easy. Bear with me.</li>
+      </plain>
+      <warm>
+        <li>I'd rather you heard it from me.</li>
+      </warm>
+      <blunt>
+        <li>I'll just say it.</li>
+      </blunt>
+      <cheerful>
+        <li>Everyone comfortable? Good. This might take a minute.</li>
+      </cheerful>
+      <gloomy>
+        <li>You might think less of me after this.</li>
+      </gloomy>
+      <cold>
+        <li>There is something you should know.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

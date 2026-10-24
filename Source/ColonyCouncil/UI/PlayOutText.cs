@@ -22,6 +22,9 @@ namespace ColonyCouncil
                 case PlayKind.Search: return Icons.WorldEvent;
                 case PlayKind.Carry: return Icons.Trader;
                 case PlayKind.Hunt: return Icons.CatFood;
+                case PlayKind.Give: return Icons.Trader;
+                case PlayKind.Rounds: return Icons.People;
+                case PlayKind.Haul: return Icons.Death;
                 default: return Icons.Wedding;
             }
         }
@@ -65,6 +68,21 @@ namespace ColonyCouncil
                     return "CC_Week_PlayCarry".Translate(p.amount, PlayCarry.Label(p.what, p.thing)).Resolve();
                 case PlayKind.Hunt:
                     return "CC_Week_PlayHunt".Translate(TextUtil.JoinAnd(p.game.Where(a => a != null).Select(a => a.LabelShort).ToList())).Resolve();
+                case PlayKind.Give:
+                {
+                    string what = PlayGive.Label(PlayGive.ThingOf(p));
+                    if (p.mode == PlayGive.Burn) return "CC_Week_PlayBurn".Translate(what).Resolve();
+                    return p.other != null ? "CC_Week_PlayGive".Translate(what, p.other.LabelShort).Resolve() : what;
+                }
+                case PlayKind.Rounds:
+                    return running && p.round.Count > 0 ? "CC_Week_PlayRoundsGoing".Translate(p.tally, p.round.Count).Resolve()
+                        : "CC_Week_PlayRounds".Translate(p.amount).Resolve();
+                case PlayKind.Haul:
+                {
+                    string s = "CC_Week_PlayHaul".Translate(p.things.Count).Resolve();
+                    if (running && p.tally > 0) s += " " + "CC_Week_PlayHaulDone".Translate(p.tally).Resolve();
+                    return s;
+                }
                 case PlayKind.Visit:
                 case PlayKind.Lesson:
                     return p.visitor != null && p.other != null ? "CC_Week_PlayVisit".Translate(p.visitor.LabelShort, p.other.LabelShort).Resolve() : null;

@@ -611,6 +611,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_WarmAtLast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_KeepFire"><wood>40</wood></li>
         </effects>
       </li>
       <li>
@@ -624,6 +625,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_WarmAtLast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmLv_GaveUpMyRoom</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SwapRooms" />
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>9~20</hours><duration>0.75~1</duration><label>moving {A_nameDef} into the warm room</label></li>
         </effects>
       </li>
       <li>
@@ -724,7 +727,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_WatchSet</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmLv_NightWatch</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the first night watch on the walls</label><target>B</target><to>Gate</to><hours>21~1</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the first night watch on the walls</label><target>B</target><to>Gate</to><patrol>true</patrol><untilDawn>true</untilDawn><hours>21~1</hours><duration>3~4</duration></li>
         </effects>
       </li>
       <li>

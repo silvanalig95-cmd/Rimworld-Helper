@@ -6,7 +6,8 @@ Walks every answer in Defs/ (dilemma options, Rimfolk events and their story sta
 and their options, decrees, ambitions) and:
 
   * counts the answers that play out on the map (an effect of PlayOut/: a feast, a gathering, a bonfire, a toast, words,
-    a visit, a lesson, a day off, a hunt, a work party, a walk together, a vigil, a search, a gift carried out), by
+    a visit, a lesson, a day off, a hunt, a work party, a walk together, a vigil, a search, a gift carried out, a thing
+    made and handed over, rounds, the dead carried out, lanterns, a fire kept, a bolted door, an animal at heel), by
     source and by kind, for the README and the ROADMAP; and, on a line of their own, the stages of personal stories and
     the encounters that play out (not answers, so never candidates);
   * lists the answers whose words describe a physical activity (a meal, a vigil, a party, a visit, a lesson, a work
@@ -50,6 +51,19 @@ PLAY = {
     # Faith and the council (Dilemmas/DilemmaWorkers_Faith.cs): words said for a faith, and an evening of faith called.
     "DilemmaEffect_FaithWords": "words",
     "DilemmaEffect_FaithEvening": "evening of faith",
+    # One thing or one round (PlayOut/OnMapPlays.cs): a thing made and carried over by hand (or set in someone's room),
+    # a stash burned in the yard, a doctor's or a cook's rounds, the enemy dead carried out to a pyre or the tree line.
+    "DilemmaEffect_Made": "handed over",
+    "DilemmaEffect_BurnIt": "burned in yard",
+    "DilemmaEffect_Rounds": "rounds",
+    "DilemmaEffect_HaulDead": "dead carried out",
+    # Kept on the map for a while (PlayOut/OnMapTimed.cs, OnMapRooms.cs): lanterns for a night, a fire in a cold room, a
+    # bolted door, an animal at someone's heels, two rooms traded.
+    "DilemmaEffect_Lanterns": "lanterns",
+    "DilemmaEffect_KeepFire": "fire kept",
+    "DilemmaEffect_BoltDoor": "door bolted",
+    "DilemmaEffect_Follow": "at heel",
+    "DilemmaEffect_SwapRooms": "rooms traded",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.
@@ -168,6 +182,9 @@ def walk():
                         cls = (li.get("Class") or "").replace("ColonyCouncil.", "")
                         if cls in PLAY:
                             kinds.append(PLAY[cls])
+                        elif cls == "ArcEffect_Confess" and text_of(li.find("gathering")) == "true":
+                            # A secret said out loud at a gathering called to hear it.
+                            kinds.append("words")
                         elif cls == "ArcEffect_Cast":
                             kinds += [PLAY[c] for c in ((x.get("Class") or "").replace("ColonyCouncil.", "") for x in lis(li, "effects")) if c in PLAY]
                     answers.append(Answer("arc", defname, "stage %d" % i, text_of(st.find("label")), "", kinds, rel))
