@@ -218,10 +218,20 @@ namespace ColonyCouncil
             var c = Candidate(bloodlust ? 1f : 0.7f, (bloodlust ? "CC_Reason_HuntBlood" : "CC_Reason_Hunt").Translate(pawn.Named("PAWN")));
             c.subjectKey = "hunt";
             c.baseline = pawn.records.GetValue(RecordDefOf.KillsAnimals);
+            // The game counts a slaughter as a kill too: the slaughters so far, plus one so that an older wish (0) is told apart.
+            c.targetValue = pawn.records.GetValue(RecordDefOf.AnimalsSlaughtered) + 1f;
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => wish.Beneficiary.records != null && wish.Beneficiary.records.GetValue(RecordDefOf.KillsAnimals) >= wish.baseline + 1f;
+        /// <summary>An animal killed since, not counting those slaughtered in the pens.</summary>
+        public override bool IsFulfilled(Wish wish)
+        {
+            var r = wish.Beneficiary.records;
+            if (r == null) return false;
+            float kills = r.GetValue(RecordDefOf.KillsAnimals) - wish.baseline;
+            if (wish.targetValue > 0f) kills -= r.GetValue(RecordDefOf.AnimalsSlaughtered) - (wish.targetValue - 1f);
+            return kills >= 1f;
+        }
 
         public override string ProgressText(Wish wish) => "CC_Progress_Hunt".Translate(wish.Beneficiary.Named("PAWN"));
 

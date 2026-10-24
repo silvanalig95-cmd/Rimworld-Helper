@@ -69,14 +69,18 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>A caravan of the colony's with its own people, at the town or on its way there.</summary>
-        private static Caravan EscortFor(Settlement town)
+        /// <summary>
+        /// A caravan of the colony's with its own people setting out from the colony itself (still on its tile), bound for
+        /// the town or not yet on its way: the pilgrim waiting there goes with it. Never one already out on the road or at
+        /// the town, which the pilgrim couldn't have joined.
+        /// </summary>
+        private static Caravan EscortFor(Settlement town, Map home)
         {
+            if (home == null) return null;
             foreach (var c in Find.WorldObjects.Caravans)
             {
-                if (c == null || !c.IsPlayerControlled || MissionPeoples.Colonists(c).Count == 0) continue;
-                if (c.Tile == town.Tile) return c;
-                if (c.pather != null && c.pather.Moving && c.pather.Destination == town.Tile) return c;
+                if (c == null || !c.IsPlayerControlled || MissionPeoples.Colonists(c).Count == 0 || c.Tile != home.Tile) continue;
+                if (c.pather == null || !c.pather.Moving || c.pather.Destination == town.Tile) return c;
             }
             return null;
         }
@@ -117,7 +121,7 @@ namespace ColonyCouncil
             }
             if (m.stage == 1)
             {
-                var c = EscortFor(town);
+                var c = EscortFor(town, map);
                 if (c != null)
                 {
                     // The pilgrim walks with the colony's caravan from here.

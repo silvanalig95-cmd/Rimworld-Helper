@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Walls at their sides
+
+*24 October 2026, version 0.12.1*
+
+- The gate, the perimeter wall and the sandbag line put a piece of wall at the outer end of each sandbag line, so a raider who swings wide can't shoot along it, and a new wall and sandbag firing line, for where raiders come straight on, gives each of six shooters a wall on either side.
+- A colonist carried off by raiders no longer counts against anyone: their wish is let go quietly instead of running out against the council and those who backed it, their birthday and anniversaries stay on the calendar, and their hours come back after a rest day.
+- An answer never turns a people hostile on its own: a loss of goodwill stops at -60, as the world events' always did.
+- A wish or goal to tame a new animal counts real tamings (and catches), not a chick hatched or a dog bought, and a hunt wish isn't met by slaughtering in the pens.
+- A curfew declared on a rest day gives the evening hours back to what they were before the rest day, not to recreation for good.
+- A mission stays on the home it was taken on at; Rimfolk's events, visitors and couriers keep to homes on the ground, never an orbital base; an escort starts only with a caravan setting out from the colony itself.
+- A sleepwalker's door is bolted only while it's still their own room's, and only for the nights asked; a talent scout's offer can't be taken once the colonist is gone; and what a story waits for two people to share now survives a save and load.
+
 ## Seen, not told
 
 *24 October 2026, version 0.12.0*

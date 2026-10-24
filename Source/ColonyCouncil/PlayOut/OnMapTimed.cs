@@ -442,7 +442,11 @@ namespace ColonyCouncil
             var door = k.things.FirstOrDefault() as Building_Door;
             var p = k.pawn;
             if (door == null || !door.Spawned || p == null || p.Dead || k.nights <= 0) return true;
+            // Its nights are counted from the day it was asked, slept in that bed or not.
+            if (k.until > 0 && now >= k.until) return true;
             var map = door.Map;
+            // Only while it's still their own room's one door, theirs alone (they moved, or someone moved in: let open).
+            bool theirs = OwnDoor(p) == door;
             int hour = Hour(map);
             bool night = OnMapMath.Between(hour, OnMapMath.BoltFrom, OnMapMath.BoltTo);
             if (k.on)
@@ -454,14 +458,14 @@ namespace ColonyCouncil
                     k.count = 2;
                     return false;
                 }
-                if (night && SafeToBolt(p, door)) return false;
+                if (night && theirs && SafeToBolt(p, door)) return false;
                 door.SetForbidden(false, false);
                 k.on = false;
             }
             if (night)
             {
                 // A door the player has forbidden is theirs to keep shut: never bolted, so never let open by this either.
-                if (k.count == 0 && !door.IsForbidden(Faction.OfPlayer) && SafeToBolt(p, door) && p.GetRoom() == RoomUtil.BedRoom(p) && p.InBed())
+                if (k.count == 0 && theirs && !door.IsForbidden(Faction.OfPlayer) && SafeToBolt(p, door) && p.GetRoom() == RoomUtil.BedRoom(p) && p.InBed())
                 {
                     door.SetForbidden(true, false);
                     k.on = true;
@@ -706,7 +710,9 @@ namespace ColonyCouncil
                 var timed = OnMapTimed.Instance;
                 if (door == null || timed == null) return;
                 timed.kept.RemoveAll(k => k.kind == TimedKind.Bolt && k.pawn == a && !k.on);
-                timed.Add(new TimedThing { kind = TimedKind.Bolt, map = map, pawn = a, things = new List<Thing> { door }, nights = Mathf.Clamp(nights, 1, 10) });
+                int n = Mathf.Clamp(nights, 1, 10);
+                timed.Add(new TimedThing { kind = TimedKind.Bolt, map = map, pawn = a, things = new List<Thing> { door }, nights = n,
+                    until = Find.TickManager.TicksGame + (n + 1) * GenDate.TicksPerDay });
             }
             catch (Exception e)
             {

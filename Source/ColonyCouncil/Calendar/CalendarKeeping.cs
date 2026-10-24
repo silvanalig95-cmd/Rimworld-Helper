@@ -599,6 +599,22 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// What an hour was before today's rest day turned it (Work, Anything), or null when the day didn't touch it. Taking
+        /// it over (a curfew, DecreeWork) forgets it here: whoever changes the hour now puts it back later.
+        /// </summary>
+        public string TakeRestHour(Pawn p, int hour)
+        {
+            if (p == null || restDate < 0 || !restHours.TryGetValue(p.ThingID, out var had) || had.NullOrEmpty()) return null;
+            var parts = had.Split(';').Where(s => !s.NullOrEmpty()).ToList();
+            int i = parts.FindIndex(s => s.StartsWith(hour + "="));
+            if (i < 0) return null;
+            string original = parts[i].Substring(parts[i].IndexOf('=') + 1).Split('>')[0];
+            parts.RemoveAt(i);
+            restHours[p.ThingID] = string.Join(";", parts);
+            return original;
+        }
+
+        /// <summary>
         /// The day after a rest day: each hour turned to recreation (or to sleep, "hour=Work>Sleep") goes back to what it
         /// was, unless someone changed it since.
         /// </summary>
@@ -609,7 +625,8 @@ namespace ColonyCouncil
                 var joy = TimeAssignmentDefOf.Joy;
                 foreach (var kv in restHours)
                 {
-                    var p = FindOurs(kv.Key);
+                    // Someone carried off since gets their own hours back too, for when they come home.
+                    var p = FindOurs(kv.Key) ?? People.KidnappedById(kv.Key);
                     if (p?.timetable == null || kv.Value.NullOrEmpty()) continue;
                     foreach (var part in kv.Value.Split(';'))
                     {

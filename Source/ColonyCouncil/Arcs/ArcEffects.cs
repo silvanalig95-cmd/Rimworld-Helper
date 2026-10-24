@@ -71,10 +71,85 @@ namespace ColonyCouncil
             if (together && c.b != null)
             {
                 string key = "arccast|" + arc.def?.defName + "|" + c.a.thingIDNumber + "|" + c.b.thingIDNumber + "|" + a + b;
-                Together.When(key, c.a, c.b, () => Run(c, arc), 48f, 4f);
+                // Kept on the story too, so a load before they meet doesn't lose it (Resume).
+                if (Place(arc, this, out int stage, out int index))
+                {
+                    arc.waitKey = key;
+                    arc.waitStage = stage;
+                    arc.waitIndex = index;
+                    arc.waitUntil = Find.TickManager.TicksGame + GenDate.TicksPerDay * 2;
+                }
+                Wait(c, arc, key, 48f);
                 return;
             }
             Run(c, arc);
+        }
+
+        private void Wait(ArcEffectContext c, Arc arc, string key, float hours) =>
+            Together.When(key, c.a, c.b, () =>
+            {
+                if (arc.waitKey == key) arc.waitKey = null;
+                Run(c, arc);
+            }, hours, 4f);
+
+        /// <summary>Where this effect stands in the story's stages (top level only).</summary>
+        private static bool Place(Arc arc, ArcEffect_Cast e, out int stage, out int index)
+        {
+            stage = index = -1;
+            var stages = arc?.def?.stages;
+            if (stages == null) return false;
+            for (int s = 0; s < stages.Count; s++)
+            {
+                var list = stages[s]?.effects;
+                int i = list?.IndexOf(e) ?? -1;
+                if (i < 0) continue;
+                stage = s;
+                index = i;
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Once an hour (ArcTracker): what waited for the two to be together and was lost with a load waits again, for what's
+        /// left of its two days; past them, it's let go.
+        /// </summary>
+        public static void Resume(Arc arc)
+        {
+            if (arc?.waitKey == null) return;
+            int now = Find.TickManager.TicksGame;
+            if (now >= arc.waitUntil || arc.def?.stages == null || arc.waitStage < 0 || arc.waitStage >= arc.def.stages.Count)
+            {
+                arc.waitKey = null;
+                return;
+            }
+            if (Together.Waiting(arc.waitKey)) return;
+            var list = arc.def.stages[arc.waitStage]?.effects;
+            if (!(arc.waitIndex >= 0 && list != null && arc.waitIndex < list.Count && list[arc.waitIndex] is ArcEffect_Cast e))
+            {
+                arc.waitKey = null;
+                return;
+            }
+            var ctx = ArcTracker.Context(arc);
+            var c = new ArcEffectContext
+            {
+                arc = arc,
+                map = ctx.map,
+                a = Who(arc, e.a),
+                b = Who(arc, e.b),
+                third = arc.third,
+                pet = ctx.pet,
+                skill = ctx.skill,
+                faction = ctx.faction,
+                why = ctx.why,
+                cause = ctx.cause
+            };
+            if (c.a == null || c.a.Dead || c.b == null || c.b.Dead || c.b == c.a)
+            {
+                arc.waitKey = null;
+                return;
+            }
+            e.Wait(c, arc, arc.waitKey, System.Math.Max(1f, (arc.waitUntil - now) / (float)GenDate.TicksPerHour));
         }
 
         private void Run(ArcEffectContext c, Arc arc)

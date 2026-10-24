@@ -342,12 +342,13 @@ namespace ColonyCouncil
                                                          && (!PokeWorldLink.IsPokemon(a) || (canCatch ??= PokeWorldLink.CanCatch(map))));
         }
 
-        public override float Baseline(Map map) => PokeWorldLink.OwnedAnimalCount(map);
+        // Tamings (and catches) since it began, not heads on the map: births, purchases and slaughter don't move it.
+        public override float Baseline(Map map) => Tamings.Total;
 
-        public override float Progress(Map map, float baseline) => Ratio(PokeWorldLink.OwnedAnimalCount(map) - baseline, count);
+        public override float Progress(Map map, float baseline) => Ratio(Tamings.Total - baseline, count);
 
         public override string Describe(Map map, float baseline) =>
-            "CC_Goal_Animals".Translate(count, UnityEngine.Mathf.Max(0, PokeWorldLink.OwnedAnimalCount(map) - (int)baseline));
+            "CC_Goal_Animals".Translate(count, UnityEngine.Mathf.Max(0, Tamings.Total - (int)baseline));
     }
 
     public class Goal_SharedArt : AmbitionGoal

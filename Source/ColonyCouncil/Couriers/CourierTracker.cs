@@ -176,7 +176,7 @@ namespace ColonyCouncil
         /// <summary>No danger on the map, and weather people would walk in.</summary>
         public static bool Safe(Map map)
         {
-            if (map == null || PlayOuts.WhyNotNow(map, false) != null) return false;
+            if (map == null || MapFacts.InVacuum(map) || PlayOuts.WhyNotNow(map, false) != null) return false;
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < -25f || temp > 45f) return false;
             return !map.gameConditionManager.ConditionIsActive(GameConditionDefOf.ToxicFallout);

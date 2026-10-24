@@ -94,6 +94,10 @@ namespace ColonyCouncil
         public EraMode era = EraMode.Auto;
         public CharacterTracker character = new CharacterTracker();
         public int nextWishId = 1;
+        /// <summary>Animals the colony has tamed, ever (Wishes/Tamings.cs).</summary>
+        public int animalsTamed;
+        /// <summary>1 once tamings are counted (an older save's open taming wish and goal count from its load).</summary>
+        public int tamingsVersion = 1;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
         /// <summary>Recent wishes colony-wide (defName and tick), so the same wish doesn't come round again and again.</summary>
@@ -189,6 +193,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref lastAtHome, "lastAtHome", LookMode.Reference, LookMode.Value, ref tmpHomePawns, ref tmpHomeTicks);
             Scribe_Deep.Look(ref character, "character");
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
+            Scribe_Values.Look(ref animalsTamed, "animalsTamed");
+            Scribe_Values.Look(ref tamingsVersion, "tamingsVersion");
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             Scribe_Collections.Look(ref recentWishDefs, "recentWishDefs", LookMode.Value);
             Scribe_Collections.Look(ref recentWishTicks, "recentWishTicks", LookMode.Value);
@@ -196,6 +202,17 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (wishes == null) wishes = new List<Wish>();
+                // A save from before tamings were counted: an open wish or goal for a new animal counts from now.
+                if (tamingsVersion < 1)
+                {
+                    tamingsVersion = 1;
+                    foreach (var w in wishes)
+                        if (w?.def?.Worker is WishWorker_Companion) w.baseline = 0f;
+                    var a = ambitions?.active;
+                    if (a?.def?.goals != null && a.baselines != null)
+                        for (int i = 0; i < a.def.goals.Count && i < a.baselines.Count; i++)
+                            if (a.def.goals[i] is Goal_Animals) a.baselines[i] = 0f;
+                }
                 if (chronicle == null) chronicle = new List<ChronicleEntry>();
                 chronicle.RemoveAll(e => e == null);
                 if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
@@ -349,6 +366,7 @@ namespace ColonyCouncil
             Safe("animal life", () => AnimalLife.Hourly(this));
             Safe("autonomy", () => autonomy.Hourly(this));
             Safe("who is home", NoteWhoIsHome);
+            Safe("tamings", () => Tamings.Hourly(this));
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));
             // Moments waiting for two people to be together (Social/Together.cs).
@@ -770,12 +788,14 @@ namespace ColonyCouncil
                     wishes.RemoveAt(i);
                     continue;
                 }
-                if (!StillColonist(w.pawn) || !StillColonist(w.Beneficiary))
+                // Carried off by raiders (still of the colony to the game): the wish is let go quietly, never run out
+                // against the council and those who backed it.
+                if (!StillColonist(w.pawn) || !StillColonist(w.Beneficiary) || People.Kidnapped(w.pawn) || People.Kidnapped(w.Beneficiary))
                 {
                     Resolve(w, WishState.Cancelled);
                     continue;
                 }
-                w.coSigners.RemoveAll(p => !StillColonist(p));
+                w.coSigners.RemoveAll(p => !StillColonist(p) || People.Kidnapped(p));
 
                 // Away in a caravan or on another expedition: nothing to check until they're home.
                 var home = w.Beneficiary.MapHeld;

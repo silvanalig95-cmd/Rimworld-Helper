@@ -198,6 +198,7 @@ namespace ColonyCouncil
                 EndLeft(arc);
                 return;
             }
+            ArcEffect_Cast.Resume(arc);
             if (arc.other != null)
             {
                 bool dead = arc.other.Dead;

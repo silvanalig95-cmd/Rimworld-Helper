@@ -171,6 +171,21 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>A pawn held by another faction as a kidnapped pawn, by its ThingID, or null.</summary>
+        public static Pawn KidnappedById(string id)
+        {
+            if (id == null) return null;
+            var factions = Find.FactionManager.AllFactionsListForReading;
+            for (int i = 0; i < factions.Count; i++)
+            {
+                var list = factions[i].kidnapped?.KidnappedPawnsListForReading;
+                if (list == null) continue;
+                for (int j = 0; j < list.Count; j++)
+                    if (list[j]?.ThingID == id) return list[j];
+            }
+            return null;
+        }
+
         private static readonly Dictionary<int, int> modPassions = new Dictionary<int, int>();
 
         /// <summary>

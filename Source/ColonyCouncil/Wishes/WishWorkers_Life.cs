@@ -236,12 +236,13 @@ namespace ColonyCouncil
             if (wild.Count == 0) yield break;
             var example = wild.RandomElement();
             var c = Candidate(People.Burning(animals) ? 1.2f : 0.5f, "CC_Reason_AnimalLover".Translate(pawn.Named("PAWN"), example.kindDef.GetLabelPlural().Named("ANIMALS")));
-            c.baseline = PokeWorldLink.OwnedAnimalCount(map);
+            c.baseline = Tamings.Total;
             c.subjectLabel = example.kindDef.label;
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => PokeWorldLink.OwnedAnimalCount(wish.Beneficiary.MapHeld) > wish.baseline;
+        // A taming, not a head more: a chick hatched or a dog bought isn't one (Tamings).
+        public override bool IsFulfilled(Wish wish) => Tamings.Total > wish.baseline;
 
         // Promises kept: the companion they got stays the colony's. Dead isn't taken back; sold or released is.
         public override void OnGranted(Wish wish) => wish.other = NewAnimalFor(wish.Beneficiary);

@@ -195,7 +195,8 @@ namespace ColonyCouncil
             var f = enemy ? (ctx as HappeningContext)?.enemy : ctx.faction ?? ctx.stranger?.Faction;
             if (f == null || f.IsPlayer || f.defeated || !f.HasGoodwill) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
-            f.TryAffectGoodwillWith(Faction.OfPlayer, amount, true, false);
+            // A loss stops at -60: an answer never turns a people hostile on its own.
+            WorldSituationWorker.Goodwill(f, amount);
         }
     }
 }

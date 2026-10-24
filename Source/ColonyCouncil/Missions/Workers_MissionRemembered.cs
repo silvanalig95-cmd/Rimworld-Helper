@@ -618,7 +618,7 @@ namespace ColonyCouncil
 
         public override string Status(Mission m)
         {
-            var map = HappeningTracker.HomeMap();
+            var map = m.Map;
             bool ready = map != null && GuestRoom(map, m.target) != null;
             string room = (ready ? "CC_Mission_Dignitary_RoomReady" : "CC_Mission_Dignitary_RoomNot").Translate(m.tale ?? "?").Resolve();
             if (m.stage == 0)
@@ -856,7 +856,7 @@ namespace ColonyCouncil
         public override string Status(Mission m)
         {
             int now = Find.TickManager.TicksGame;
-            var map = HappeningTracker.HomeMap();
+            var map = m.Map;
             int beds = map == null ? 0 : FreeBeds(map, out _);
             string roof = "CC_Mission_Refugees_Beds".Translate(beds, m.target).Resolve();
             if (m.stage == 0) return "CC_Mission_Refugees_Coming".Translate(m.target, TextUtil.DaysString(Mathf.Max(0, m.due - now))).Resolve() + " " + roof;

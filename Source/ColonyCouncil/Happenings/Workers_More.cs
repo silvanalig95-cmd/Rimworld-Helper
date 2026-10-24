@@ -105,6 +105,12 @@ namespace ColonyCouncil
             if (Pasts.Has(ctx.a, Past.Noble)) tags.Add("noble");
         }
 
+        /// <summary>Selling their contract, or asking them, only while they're still here to go (not dead, carried off or gone).</summary>
+        public override string Unavailable(HappeningContext ctx, int option) =>
+            (option == 0 || option == 1) && (ctx.a == null || ctx.a.Dead || !ctx.a.IsColonist || People.Kidnapped(ctx.a))
+                ? "CC_Evt_DeserterGone".Translate(ctx.a?.LabelShort ?? "?").ToString()
+                : null;
+
         /// <summary>Asked to choose: whether they go depends on how they feel about the colony.</summary>
         public override float RiskChance(HappeningContext ctx, int option, float chance)
         {

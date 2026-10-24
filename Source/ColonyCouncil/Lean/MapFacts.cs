@@ -208,21 +208,28 @@ namespace ColonyCouncil
                     busiestAt = now;
                     busiest = null;
                     int most = -1;
+                    bool ground = false;
                     var maps = Find.Maps;
                     for (int i = 0; i < maps.Count; i++)
                     {
                         var m = maps[i];
                         if (!m.IsPlayerHome) continue;
+                        // A home on the ground before one in space (an orbital base), however many are up there.
+                        bool onGround = !InVacuum(m);
                         int n = m.mapPawns.FreeColonistsSpawnedCount;
-                        if (n > most)
+                        if ((onGround && !ground) || (onGround == ground && n > most))
                         {
                             most = n;
                             busiest = m;
+                            ground = onGround;
                         }
                     }
                 }
                 return busiest;
             }
         }
+
+        /// <summary>In space (Odyssey's orbit): nobody walks in there, and anyone set down outside dies.</summary>
+        public static bool InVacuum(Map map) => map?.Biome != null && map.Biome.inVacuum;
     }
 }

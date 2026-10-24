@@ -75,6 +75,12 @@ namespace ColonyCouncil
 
         /// <summary>A tag for its lines: ex, kin, betrayed, nemesis, quirk, fear, nightmare...</summary>
         public string tag;
+
+        // ---- What waits for the two to be together (ArcEffect_Cast with together) ----
+
+        /// <summary>Its Together key, the stage and place of the effect in it, and when it gives up (-1: nothing waits).</summary>
+        public string waitKey;
+        public int waitStage = -1, waitIndex = -1, waitUntil = -1;
         /// <summary>{LOST}: someone they lost, or whom the vendetta is for.</summary>
         public string lostName;
         /// <summary>{NAME}: an enemy's name.</summary>
@@ -144,6 +150,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref baseRecord, "baseRecord");
             Scribe_Values.Look(ref baseGranted, "baseGranted");
             Scribe_Values.Look(ref baseDamage, "baseDamage");
+            Scribe_Values.Look(ref waitKey, "waitKey");
+            Scribe_Values.Look(ref waitStage, "waitStage", -1);
+            Scribe_Values.Look(ref waitIndex, "waitIndex", -1);
+            Scribe_Values.Look(ref waitUntil, "waitUntil", -1);
             Scribe_Values.Look(ref tag, "tag");
             Scribe_Values.Look(ref lostName, "lostName");
             Scribe_Values.Look(ref name, "name");

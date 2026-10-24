@@ -825,7 +825,8 @@ namespace ColonyCouncil
             if (known.TryGetValue(id, out var p))
             {
                 missing.Remove(id);
-                return p.Dead || !Ours(p);
+                // Carried off by raiders: theirs still, for when they come home.
+                return p.Dead || (!Ours(p) && !People.Kidnapped(p));
             }
             missing.TryGetValue(id, out int n);
             missing[id] = ++n;

@@ -692,7 +692,7 @@ namespace ColonyCouncil
 
         public override string Status(Mission m)
         {
-            var map = HappeningTracker.HomeMap();
+            var map = m.Map;
             if (map == null) return null;
             var shrine = Shrine(m, map);
             if (m.stage == 1 && shrine != null)
@@ -702,7 +702,7 @@ namespace ColonyCouncil
 
         public override LookTargets Targets(Mission m)
         {
-            var map = HappeningTracker.HomeMap();
+            var map = m.Map;
             var shrine = map == null ? null : Shrine(m, map);
             return shrine != null ? new LookTargets(shrine) : LookTargets.Invalid;
         }

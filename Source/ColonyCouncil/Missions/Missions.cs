@@ -91,6 +91,20 @@ namespace ColonyCouncil
         public int lastLook = -1;
         /// <summary>Days from taking it on until the people come (a dignitary, refugees).</summary>
         public float wait;
+        /// <summary>The home it was taken on at (its uniqueID; -1 before that, or in an older save).</summary>
+        public int mapId = -1;
+
+        /// <summary>The home it's done at: the one it was taken on at while that's still there, else the busiest home.</summary>
+        public Map Map
+        {
+            get
+            {
+                if (mapId >= 0)
+                    foreach (var m in Find.Maps)
+                        if (m.uniqueID == mapId && m.IsPlayerHome) return m;
+                return HappeningTracker.HomeMap();
+            }
+        }
 
         public bool Open => state == MissionState.Offered || state == MissionState.Active;
 
@@ -128,6 +142,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref misses, "misses");
             Scribe_Values.Look(ref lastLook, "lastLook", -1);
             Scribe_Values.Look(ref wait, "wait");
+            Scribe_Values.Look(ref mapId, "mapId", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (goals == null) goals = new List<MissionGoal>();
@@ -323,7 +338,7 @@ namespace ColonyCouncil
         public static void Accept(Mission m)
         {
             if (m == null || m.state != MissionState.Offered) return;
-            var map = HappeningTracker.HomeMap();
+            var map = m.Map;
             var w = Worker(m);
             bool ok = false;
             if (map != null && w != null && LivingEvents.Friendly(m.faction))
@@ -331,6 +346,7 @@ namespace ColonyCouncil
                 try
                 {
                     ok = w.Start(m, map);
+                    if (ok) m.mapId = map.uniqueID;
                 }
                 catch (Exception e)
                 {
@@ -379,7 +395,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("mission cleanup " + m.kind, e);
             }
-            var map = HappeningTracker.HomeMap();
+            var map = m.Map;
             bool success = state == MissionState.Done;
             if (wasActive || outcome == "cancelled")
             {
@@ -470,7 +486,8 @@ namespace ColonyCouncil
                         Finish(m, MissionState.Failed, "ended", null);
                         continue;
                     }
-                    var map = HappeningTracker.HomeMap();
+                    // Where it was taken on, not wherever the most people happen to be now.
+                    var map = m.Map;
                     if (map == null)
                     {
                         // No home to do it from (the colony packed up and left): once its time is well past, it lapses.
@@ -507,7 +524,7 @@ namespace ColonyCouncil
             foreach (var m in comp.missions.Where(m => m.state == MissionState.Active && m.stage == 0 && !m.reminded && m.deadline > 0 && now >= m.deadline - GenDate.TicksPerDay).ToList())
             {
                 m.reminded = true;
-                var map = HappeningTracker.HomeMap();
+                var map = m.Map;
                 string line = VarietyUtil.Line(Text(m)?.reminder, Context(m, map), Tags(m), GoodsText(m), TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
                 if (!line.NullOrEmpty()) Messages.Message(line, Worker(m)?.Targets(m) ?? LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, false);
             }

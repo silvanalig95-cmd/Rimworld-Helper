@@ -508,8 +508,12 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager.TicksGame;
 
-        public static Map HomeMap() =>
-            MapFacts.BusiestHome;
+        /// <summary>The busiest home on the ground; null when the colony lives only in space, where nobody can walk in.</summary>
+        public static Map HomeMap()
+        {
+            var m = MapFacts.BusiestHome;
+            return MapFacts.InVacuum(m) ? null : m;
+        }
 
         public void Hourly(CouncilGameComponent comp)
         {
