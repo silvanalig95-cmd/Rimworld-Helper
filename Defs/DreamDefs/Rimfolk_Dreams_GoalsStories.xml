@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of the life goals and personal stories that had none (Rimfolk_Dreams_Lives.xml has the first ones). A goal's
+    dream asks for its goals by the dreamer's tags (goal:Healer, goal:Surgeon...) and is about the goal (about Goal:
+    {GOAL}); a dream for several goals has lines for each beside lines that fit them all, and may take in a story that
+    belongs with them (story:WeightOfOffice at the council table, story:GrudgeLaidDown with the peacemakers). A story's
+    dream asks for its story (story:OldDebt...); about Story makes {OTHER} the story's other person, so only stories
+    between two people use it. Fields as in Council_Dreams.xml.
+  -->
+
+  <!-- ===================== Life goals ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_Sickroom</defName>
+    <label>a dream of the empty sickroom</label>
+    <kind>Sweet</kind>
+    <about>Goal</about>
+    <dreamer><tags>goal:Healer|goal:Surgeon|goal:Physician|goal:TenLives|goal:Midwife</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Every bed in the sickroom was made up and empty in my dream, and the last patient was walking out into the sun.</li>
+        <li>[goal:Midwife] I caught a baby in my dream, and it looked up at me as if it already knew who I was.</li>
+        <li>[goal:Surgeon] The operation went right in my dream, every cut where it should be, and the patient sat up and asked for soup.</li>
+        <li>[goal:TenLives] Everyone I've pulled through was standing in a line at the gate in my dream, and the line went out of sight.</li>
+      </plain>
+      <warm><li>In my dream the colony was well, every last one of us, and I sat with my hands in my lap and didn't mind at all.</li></warm>
+      <blunt><li>Empty sickroom. Good dream.</li></blunt>
+      <cheerful><li>Dreamt I set a leg so well the patient danced out of the room!</li></cheerful>
+      <gloomy><li>The beds were empty in my dream. I couldn't tell if they'd all got well or I'd been too late.</li></gloomy>
+      <cold><li>A dream of a treatment that went well. I'll take it as encouragement. I still mean to {GOAL}.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_Fight</defName>
+    <label>a dream of the fight going right</label>
+    <kind>Strange</kind>
+    <about>Goal</about>
+    <dreamer><tags>goal:Warrior|goal:Mechbane|goal:Sharpshooter|goal:Blademaster|goal:Hunter|goal:Avenge</tags></dreamer>
+    <lines>
+      <plain>
+        <li>In my dream every shot went where I meant it to, and the fight was over before the dust settled.</li>
+        <li>[goal:Mechbane] A mechanoid came over the wall in my dream, and I found the seam in its armor on the first try.</li>
+        <li>[goal:Hunter] Tracked a great stag through the whole dream, and when I finally had the shot, it turned and looked at me.</li>
+        <li>[goal:Blademaster] I fought someone faster than me in my dream and matched them blow for blow, until they stepped back and bowed.</li>
+        <li>[goal:Avenge] I faced the ones who did it in my dream, and they were smaller than I remembered.</li>
+      </plain>
+      <warm><li>Dreamt we won without anyone of ours getting hurt. That's the only kind of win I want.</li></warm>
+      <blunt><li>Fought all night. Won.</li></blunt>
+      <cheerful><li>Dreamt I hit the mark from so far away they had to send a runner to check!</li></cheerful>
+      <gloomy><li>I won the fight in my dream. It didn't feel the way I thought it would.</li></gloomy>
+      <cold><li>Every move correct, in my dream. I still mean to {GOAL}.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_Built</defName>
+    <label>a dream of the colony finished</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <about>Goal</about>
+    <dreamer><tags>goal:Builder|goal:Mountain|goal:Room|goal:ChildBuilder|goal:Township|goal:Grow|goal:Spotless</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The colony in my dream was finished, every roof on and every wall straight, and there were lights in windows I hadn't built yet.</li>
+        <li>[goal:Mountain] We'd carved halls deep into the mountain in my dream, cool and quiet, with a hearth at the end of each one.</li>
+        <li>[goal:Room] I had a room of my own in the dream, with a real bed and a rug, and a window that looked out on the fields.</li>
+        <li>[goal:Township|goal:Grow] The colony had grown into a town in my dream, with a market and a well in the square, and I knew everyone's name.</li>
+        <li>[goal:ChildBuilder] I built a den in my dream with a door and a roof and a secret way out the back.</li>
+        <li>[goal:Spotless] Every floor in the colony was swept in my dream, and it stayed swept.</li>
+      </plain>
+      <warm><li>Dreamt of the colony years from now, warm and full, and everyone in it had a room of their own.</li></warm>
+      <blunt><li>Dreamt it was all built. Back to work.</li></blunt>
+      <cheerful><li>In my dream we built a tower so tall the birds had to go round it!</li></cheerful>
+      <gloomy><li>The colony was finished in my dream, and I was too old to enjoy it.</li></gloomy>
+      <cold><li>A dream of the finished settlement. The plan was sound. We're behind on it.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_Stores</defName>
+    <label>a dream of full stores</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <about>Goal</about>
+    <dreamer><tags>goal:Grower|goal:Cook|goal:ChildGarden|goal:Herd</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The storeroom was so full in my dream that the door wouldn't shut, and sacks of grain spilled out into the snow.</li>
+        <li>[goal:Cook] I cooked a supper in my dream that made the whole table go quiet, and then ask for more.</li>
+        <li>[goal:ChildGarden] My little seed grew into a tree in the dream, and it had apples on it, and I picked one.</li>
+        <li>[goal:Herd] The herd in my dream filled the whole valley, and I could tell every one of them apart.</li>
+      </plain>
+      <warm><li>Dreamt there was enough food for every hungry mouth on the rim, and some left over.</li></warm>
+      <blunt><li>Full stores. Good dream. Back to the fields.</li></blunt>
+      <cheerful><li>The squashes in my dream were so big we hollowed one out and lived in it!</li></cheerful>
+      <gloomy><li>Dreamt of a harvest so good it couldn't be real. It wasn't.</li></gloomy>
+      <cold><li>Plenty, in my dream. Now to make it so.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_Understanding</defName>
+    <label>a dream of understanding</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <about>Goal</about>
+    <dreamer><tags>goal:Scholar|goal:Discovery|goal:Seer|goal:ChildLetters|goal:Mastery|goal:ChildSkill|goal:TeenTrusted|goal:Teach|goal:Legacy</tags></dreamer>
+    <lines>
+      <plain>
+        <li>In my dream I understood something all the way through, the way you know a room you grew up in. Then it slipped away.</li>
+        <li>[goal:Teach|goal:Legacy] My student did it alone in my dream, without looking over at me once. I was so proud I couldn't speak.</li>
+        <li>[goal:ChildLetters] All the letters lined up in my dream and turned into words, and the words turned into a story.</li>
+        <li>[goal:Seer] I dreamt I was dreaming, and in the dream inside the dream I saw something coming. It'll come back to me.</li>
+        <li>[goal:Mastery|goal:ChildSkill|goal:TeenTrusted] I was the best at {SKILL} in the whole colony in my dream, and they all came to ask me how.</li>
+      </plain>
+      <warm><li>Dreamt I explained it so well the children understood it the first time through. I'd like to manage that awake.</li></warm>
+      <blunt><li>Worked it out in my sleep. Lost it on waking.</li></blunt>
+      <cheerful><li>I understood everything in my dream, the stars, the weather, even the cook's moods!</li></cheerful>
+      <gloomy><li>The answer was written on the wall in my dream, and I couldn't read the writing.</li></gloomy>
+      <cold><li>A dream of insight. The details didn't survive waking. The direction did.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>150</xp></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_Heard</defName>
+    <label>a dream of the council listening</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <about>Goal</about>
+    <dreamer><tags>goal:Seat|goal:Orator|goal:Persuader|goal:Heard|goal:Marshal|goal:Steward|goal:Quartermaster|goal:TeenSeriously|goal:ChildProud|goal:Name|story:WeightOfOffice</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I spoke at the council in my dream, and the room went quiet, and when I sat down they did what I'd said.</li>
+        <li>[story:WeightOfOffice] I was carrying my council seat on my back in my dream, the real wooden chair, up a hill that didn't end.</li>
+        <li>[goal:Name] In the dream I heard people in another town telling a story about me, and getting most of it right.</li>
+        <li>[goal:ChildProud|goal:TeenSeriously] The grown-ups asked me what I thought in my dream, and then they listened to the whole answer.</li>
+        <li>[goal:Quartermaster|goal:Steward|goal:Marshal] They handed me the keys in my dream, the whole ring of them, and every one fit a door.</li>
+      </plain>
+      <warm><li>Dreamt each of us had our say at the meeting, and we all went home on speaking terms.</li></warm>
+      <blunt><li>Council dream. They listened. Imagine that.</li></blunt>
+      <cheerful><li>I gave a speech in my dream and they carried me round the hall on their shoulders!</li></cheerful>
+      <gloomy><li>I spoke at the council in my dream, and not one head turned.</li></gloomy>
+      <cold><li>The council deferred to me in my dream. It felt natural.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_FullTable</defName>
+    <label>a dream of a full table</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <about>Goal</about>
+    <dreamer><tags>goal:Friends|goal:Beloved|goal:BestFriend|goal:HeartFriend|goal:Hospitable|goal:ElderFamily|goal:Belonging|story:FindingHome</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Every seat at the table was taken in my dream, and every one of them was someone glad to see me.</li>
+        <li>[story:FindingHome|goal:Belonging] In my dream someone had carved my name into the bench by the door, next to everyone else's.</li>
+        <li>[goal:BestFriend] My best friend and me had a den in my dream, and only the two of us knew the password.</li>
+        <li>[goal:ElderFamily] My family sat down together in my dream, all of us, and the old trouble stayed outside the door.</li>
+        <li>[goal:Hospitable] The gate was open in my dream and guests kept arriving, and there was always room for one more.</li>
+      </plain>
+      <warm><li>Dreamt of friends, old and new, all laughing at the same thing. That's all I want.</li></warm>
+      <blunt><li>Full table. Friends at it. Good dream.</li></blunt>
+      <cheerful><li>Dreamt I had so many friends we had to eat in shifts!</li></cheerful>
+      <gloomy><li>A full table in my dream, and they all looked up when I came in. I could get used to that.</li></gloomy>
+      <cold><li>A dream of company. More of it than I usually look for. I didn't mind.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_SetDown</defName>
+    <label>a dream of setting it down</label>
+    <kind>Sweet</kind>
+    <about>Goal</about>
+    <dreamer><tags>goal:Peace|goal:ElderPeace|goal:HeartGrief|goal:HeartShame|goal:HeartPurpose|goal:Endure|goal:LongHaul|goal:OneMoreYear|story:GrudgeLaidDown</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I'd been carrying a stone a long way in my dream, and I put it down by the road and walked on lighter.</li>
+        <li>[goal:Peace|goal:ElderPeace|story:GrudgeLaidDown] The one I've been at odds with held out a hand in my dream, and I took it without thinking.</li>
+        <li>[goal:HeartShame] In the dream I told someone the old thing, all of it, and they just nodded and passed the salt.</li>
+        <li>[goal:Endure|goal:LongHaul|goal:OneMoreYear] Seasons went past in my dream like pages turning, spring, summer, harvest, snow, and I was there for every one.</li>
+        <li>[goal:HeartPurpose] I woke inside my dream knowing exactly what I was for, and went straight out to do it.</li>
+      </plain>
+      <warm><li>Dreamt the worst of it was behind me. I want to believe it.</li></warm>
+      <blunt><li>Put something down in my dream. Felt lighter. Still do.</li></blunt>
+      <cheerful><li>In my dream I let it all go and floated up over the roofs like a dandelion seed!</li></cheerful>
+      <gloomy><li>I put it down in my dream. I expect I'll pick it up again today.</li></gloomy>
+      <cold><li>A dream of resolution. The thing I carry was absent. Instructive.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamG_Shrine</defName>
+    <label>a dream of the shrine</label>
+    <kind>Strange</kind>
+    <about>Goal</about>
+    <dreamer><tags>goal:FaithRole|goal:SharedFaith|goal:FaithAgain|goal:FaithShared</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I knelt at the shrine in my dream, and when I looked up the whole colony was kneeling beside me.</li>
+        <li>[goal:FaithAgain] Dreamt I found my faith again in a field, lying in the grass like something dropped, and it fit my hand.</li>
+        <li>[goal:FaithRole] In my dream I led the words at the gathering, and my voice didn't shake.</li>
+      </plain>
+      <warm><li>Dreamt we all believed the same small good things, and it made us gentler with each other.</li></warm>
+      <blunt><li>Shrine dream. Felt right.</li></blunt>
+      <cheerful><li>Everyone sang together in my dream, even the ones who never sing!</li></cheerful>
+      <gloomy><li>I prayed in my dream, and the silence afterward was the same as always.</li></gloomy>
+      <cold><li>I dreamt of the faithful. I noted who was kneeling and who wasn't.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== Personal stories ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_OldQuarrel</defName>
+    <label>a dream of an old quarrel</label>
+    <kind>Strange</kind>
+    <about>Story</about>
+    <dreamer><tags>story:OldWounds|story:GrudgingRespect</tags></dreamer>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I were building the same wall from opposite ends in my dream, and we met in the middle without a word.</li>
+        <li>[story:OldWounds] In the dream {OTHER_nameDef} and I were back before it all went wrong, sitting on the step, sharing an apple.</li>
+        <li>[story:GrudgingRespect] {OTHER_nameDef} beat me at my own work in my dream, fair and square, and I shook {OTHER_possessive} hand.</li>
+      </plain>
+      <warm><li>Dreamt {OTHER_nameDef} and I laughed about the whole thing, years from now, by a fire somewhere.</li></warm>
+      <blunt><li>{OTHER_nameDef} in my dream. We talked. Didn't fight.</li></blunt>
+      <cheerful><li>Dreamt {OTHER_nameDef} and I won a three-legged race together. Neither of us could believe it!</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} turned away in my dream, the way {OTHER_pronoun} always does.</li></gloomy>
+      <cold><li>I dreamt of {OTHER_nameDef}. Our differences seemed smaller asleep.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_Debt</defName>
+    <label>a dream of the gift</label>
+    <kind>Sweet</kind>
+    <about>Story</about>
+    <dreamer><tags>story:OldDebt</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I finished the thing I'm making for {OTHER_nameDef} in my dream and handed it over, and {OTHER_pronoun} knew at once what it meant.</li>
+        <li>In the dream {OTHER_nameDef} was in trouble again, and this time I was the one who got there first.</li>
+        <li>Dreamt the debt was a stone in my pocket, and when I gave {OTHER_nameDef} the gift, the stone was gone.</li>
+      </plain>
+      <warm><li>Dreamt I thanked {OTHER_nameDef} properly, with my hands and not just words.</li></warm>
+      <blunt><li>Paid {OTHER_nameDef} back in my dream. Now to do it awake.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} loved the gift so much in my dream, {OTHER_pronoun} wore it to supper!</li></cheerful>
+      <gloomy><li>In my dream the gift wasn't good enough, and I kept starting over.</li></gloomy>
+      <cold><li>A dream about the debt to {OTHER_nameDef}. It was settled. I'd like it settled awake as well.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_Bench</defName>
+    <label>a dream of the master's bench</label>
+    <kind>Strange</kind>
+    <dreamer><tags>story:Masterwork|story:PassingItOn|instory:PassingItOn|instory:Masterwork</tags></dreamer>
+    <lines>
+      <plain>
+        <li>My teacher's hands were on mine in my dream, guiding the work, and then they lifted away and I kept going.</li>
+        <li>[story:PassingItOn] I watched my student finish the piece in my dream, and it was better than mine, and I was glad.</li>
+        <li>[instory:PassingItOn] The old master handed me their tools in my dream, one by one, and said the name of each.</li>
+        <li>[story:Masterwork] The piece was finished in my dream, and my master looked at it a long time and said nothing at all.</li>
+      </plain>
+      <warm><li>Dreamt my master and I worked side by side all day and didn't need to speak.</li></warm>
+      <blunt><li>At the bench all night. Good work. Can't remember it.</li></blunt>
+      <cheerful><li>Made a masterpiece in my dream on the first try! The master nearly fell off the stool.</li></cheerful>
+      <gloomy><li>My hands wouldn't do what I knew in the dream. I knew it all and couldn't show it.</li></gloomy>
+      <cold><li>I saw the flaw in my method while I slept. I'll correct it.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.08</chance><inspiration>Inspired_Creativity</inspiration></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_Secret</defName>
+    <label>a dream of saying it</label>
+    <kind>Strange</kind>
+    <dreamer><tags>story:SecretTold</tags></dreamer>
+    <lines>
+      <plain>
+        <li>In my dream I said it out loud at supper, the whole thing, and everybody went on eating.</li>
+        <li>I wrote it on a strip of bark in the dream and set it on the river, and it came back to me at the bend.</li>
+        <li>Dreamt the secret was a bird in my coat, and when I opened the coat it flew up onto the roof and sat there singing.</li>
+      </plain>
+      <warm><li>Dreamt I told my friend, and my friend said they'd known for ages and loved me anyway.</li></warm>
+      <blunt><li>Told it in my dream. Nothing happened. Maybe nothing will.</li></blunt>
+      <cheerful><li>Said it in my dream, and the cook just nodded and passed the potatoes!</li></cheerful>
+      <gloomy><li>I said it in my dream, and every face at the table changed.</li></gloomy>
+      <cold><li>I rehearsed the telling in my sleep. The reception was mixed.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_StandFirm</defName>
+    <label>a dream of standing firm</label>
+    <kind>Strange</kind>
+    <dreamer><tags>story:FearFaced|story:FearLaid</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The one I'm afraid of came to the gate in my dream, and I stood there and didn't step back.</li>
+        <li>[story:FearLaid] In my dream the fear was a dog tied in the yard, still barking, but the rope held, and after a while it lay down.</li>
+        <li>[story:FearFaced] I trained all night in my dream, and when it came, my hands knew what to do.</li>
+      </plain>
+      <warm><li>Dreamt my friends stood with me when it came, shoulder to shoulder, and I wasn't afraid.</li></warm>
+      <blunt><li>It came, in my dream. I stood. Good.</li></blunt>
+      <cheerful><li>In my dream I stared it down until it blinked and slunk off!</li></cheerful>
+      <gloomy><li>I stood firm in my dream. I don't know if I will awake.</li></gloomy>
+      <cold><li>I dreamt of the confrontation and held my ground. Useful practice.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_Recurring</defName>
+    <label>the dream again</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <dreamer><tags>story:RecurringDream</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The same dream again. This time I noticed something new in it, a window I'd never seen.</li>
+        <li>It came back last night, every detail where I'd left it, and this time I got to the end of the corridor.</li>
+        <li>Same dream. I've started to know my way around it, like a house I lived in once.</li>
+      </plain>
+      <warm><li>The dream came back, and this time someone was in it with me, holding a light.</li></warm>
+      <blunt><li>Same dream. Again.</li></blunt>
+      <cheerful><li>The dream came back, and I knew how it ended this time, so I skipped to the end!</li></cheerful>
+      <gloomy><li>It's back. It's always back.</li></gloomy>
+      <cold><li>The recurring dream again. I've begun keeping notes on it.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_LastHill</defName>
+    <label>a dream of the last hill</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>story:WithinReach|story:SecondChances</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I was climbing in my dream and thought I'd never reach the top, and then I did, and the whole valley lay below me.</li>
+        <li>[story:SecondChances] In my dream the council read out my name and what I'd asked for, and said yes.</li>
+        <li>[story:WithinReach] Dreamt I'd already done it, the thing I've set my heart on, and I was looking back down the road I'd come.</li>
+      </plain>
+      <warm><li>A friend walked beside me in my dream, and when I slowed down, so did they.</li></warm>
+      <blunt><li>Nearly there, in my dream. Nearly there awake too.</li></blunt>
+      <cheerful><li>In my dream I ran the last stretch and didn't even get out of breath!</li></cheerful>
+      <gloomy><li>The top of the hill kept moving in my dream. I kept climbing anyway.</li></gloomy>
+      <cold><li>A dream of arrival. Premature, but encouraging.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_SmallHand</defName>
+    <label>a dream of a small hand</label>
+    <kind>Sweet</kind>
+    <dreamer><tags>story:NewParent|instory:NewParent|goal:Child</tags></dreamer>
+    <lines>
+      <plain>
+        <li>A small hand closed around my finger in my dream and wouldn't let go, and I didn't want it to.</li>
+        <li>[story:NewParent] The baby slept the whole night through in my dream. I woke three times anyway to check.</li>
+        <li>[goal:Child] I dreamt of a child with my eyes, running across the yard toward me.</li>
+      </plain>
+      <warm><li>Dreamt the little one was grown and kind and came back to visit with flowers.</li></warm>
+      <blunt><li>Baby slept, in my dream. Only there.</li></blunt>
+      <cheerful><li>Dreamt the baby said my name, clear as anything, at two weeks old!</li></cheerful>
+      <gloomy><li>The baby was crying in my dream, and I couldn't find where.</li></gloomy>
+      <cold><li>I dreamt of the child. Instinct is a strange thing. I'm not used to it.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamS_Animal</defName>
+    <label>a dream of the animal at my side</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>story:OldCompanion|story:Companion|story:Stray|story:Orphan|story:AnimalRivalry</tags></dreamer>
+    <lines>
+      <plain>
+        <li>An animal walked beside me all through the dream, never ahead and never behind, and I didn't have to call it.</li>
+        <li>[story:OldCompanion] My old companion was young again in my dream, running circles in the long grass, no gray at the muzzle at all.</li>
+        <li>[story:Stray] The stray came right up to the door in my dream and stepped inside, as if it had always lived here.</li>
+        <li>[story:Orphan] The little one I'm raising was full grown in my dream, and still came running when I whistled.</li>
+        <li>[story:AnimalRivalry] That animal was waiting in the doorway in my dream, the way it does, and this time it let me pass.</li>
+      </plain>
+      <warm><li>Dreamt the animal and I sat in the sun together, doing nothing, and it was the best afternoon.</li></warm>
+      <blunt><li>Animal dream. It stayed. Good.</li></blunt>
+      <cheerful><li>In my dream the animal brought me a present, and it wasn't even a dead mouse!</li></cheerful>
+      <gloomy><li>The animal walked away in my dream and didn't look back.</li></gloomy>
+      <cold><li>The animal trusted me in my dream. I may have earned that.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

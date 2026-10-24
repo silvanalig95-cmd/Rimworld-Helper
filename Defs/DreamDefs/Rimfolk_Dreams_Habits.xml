@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of the habits and quirks that had none: the work habits (reading at meals, the prisoners' names, mending,
+    doodling, sleeping light, humming and singing, early and late hours, the made thing, the heavy load, steady hands),
+    the superstitions (lucky things, red, knocking on wood, salt in the doorway, the eclipse), the quirks of loss (night
+    prayers, talking to the dead, winter grief, a place set for the lost, standing in the rain), and the quirks the
+    colony's events leave behind (Rimfolk_Quirks_Events.xml: the lamp for travelers, smoke, coins counted twice, the
+    dream book, the salve, juggling, the trick against the cold). Each asks for its quirks by the dreamer's tags
+    (quirk:Hums...); a dream for several quirks has lines for each ([quirk:Juggles]) beside lines that fit them all.
+    Fields as in Council_Dreams.xml. One of the lamp's dreams is an omen: travelers do come.
+  -->
+
+  <!-- ===================== Work habits ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Pages</defName>
+    <label>a dream of a book with no last page</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:ReadsAtMeals|quirk:KeepsRecords|quirk:DreamBook</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I was reading at supper, and every time I turned a page the soup got colder and the book got longer.</li>
+        <li>[quirk:KeepsRecords] Everything I ever wrote down was there on one long scroll, and somebody was reading it back to me aloud.</li>
+        <li>[quirk:DreamBook] Dreamt I was writing down the dream I was having, and the words got there just ahead of me.</li>
+        <li>[quirk:ReadsAtMeals] The bowl turned into a book in my hands, and I ate the pages one by one, and they tasted of notes.</li>
+      </plain>
+      <warm><li>Last night I read aloud at supper, and the cook let the stew burn rather than miss the end.</li></warm>
+      <blunt><li>A book with no end. Read it all night. Tired.</li></blunt>
+      <cheerful><li>In my dream the library had a room for every question, and I had the key to all of them!</li></cheerful>
+      <gloomy><li>Found the answer on the last page, and then there was another page after it.</li></gloomy>
+      <cold><li>I read all night and kept one useful fact. I've written it down.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Intellectual</skill><xp>150</xp></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Cells</defName>
+    <label>a dream of the cells</label>
+    <kind>Strange</kind>
+    <dreamer><tags>quirk:KnowsPrisoners</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Walking past the cells in my dream, and every prisoner we ever held called me by name as I went.</li>
+        <li>In the dream the cell doors were open and the prisoners were sitting at our table, passing the bread, polite as guests.</li>
+        <li>Dreamt I was the one behind the bars, and the warden bringing my supper was me as well.</li>
+      </plain>
+      <warm><li>The prisoners we let go came back in my dream to say they'd made it home. One of them brought a pie.</li></warm>
+      <blunt><li>Cells dream. Counted them twice. All there.</li></blunt>
+      <cheerful><li>Dreamt every prisoner we've ever held joined the colony and we needed a bigger kitchen!</li></cheerful>
+      <gloomy><li>The cells were full in my dream, and I couldn't remember a single name.</li></gloomy>
+      <cold><li>I dreamt of the cell block. Every name in order. The mind keeps its own records.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Mending</defName>
+    <label>a dream of a coat that mended itself</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:MendsClothes</tags></dreamer>
+    <lines>
+      <plain>
+        <li>My old coat mended itself in the night, every tear closing up like a wound healing, and it fit like it did the day I got it.</li>
+        <li>In the dream I was sewing a patch onto the sky where the storm had torn it, with small, even stitches.</li>
+        <li>Darned a mountain of socks by lamplight, and there was no end to them, and I didn't mind.</li>
+      </plain>
+      <warm><li>Dreamt I mended the children's coats while they slept, and in the morning they all went out warm.</li></warm>
+      <blunt><li>Sewed all night in my sleep. Fingers ache.</li></blunt>
+      <cheerful><li>The needle threaded itself every time in my dream! Best dream I've had in months.</li></cheerful>
+      <gloomy><li>Patched a shirt all night, and every patch opened another hole beside it.</li></gloomy>
+      <cold><li>A dream of repairs. The stitching was very good. Mine usually is.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Margins</defName>
+    <label>a dream of drawings that walked</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Doodles</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The little drawings in my margins climbed off the page and walked around the table on their ink legs.</li>
+        <li>In the dream every wall in the colony was covered in my doodles, and the others were adding to them.</li>
+        <li>I drew a door in the corner of a page, and it opened, and there was a room behind it full of better drawings.</li>
+      </plain>
+      <warm><li>Dreamt the children found my scribbles and made them into a story. It was a good story.</li></warm>
+      <blunt><li>Drew all night in my sleep. Woke with charcoal on my hands.</li></blunt>
+      <cheerful><li>My doodles came to life and the bird one wouldn't stop singing!</li></cheerful>
+      <gloomy><li>Every drawing I've ever made was in a pile, and someone was feeding them to the fire.</li></gloomy>
+      <cold><li>I woke with a shape in mind from the dream. I intend to use it.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.08</chance><inspiration>Inspired_Creativity</inspiration></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Smoke</defName>
+    <label>a dream of smoke under the door</label>
+    <kind>Nightmare</kind>
+    <weight>0.6</weight>
+    <children>true</children>
+    <dreamer><tags>quirk:SleepsLight|quirk:SmokeAversion|goal:Firefighter</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Smoke was coming in under the door in my dream, slow and gray, and the others in the room slept on, however hard I shook them.</li>
+        <li>[quirk:SmokeAversion] The pyre was burning again in the dream, closer this time, right outside my window.</li>
+        <li>[goal:Firefighter] I put out a fire in my dream, and another started behind me, and another, all the way to the hills.</li>
+        <li>[child] I smelled smoke in my dream and ran to get the grown-ups, but my legs went slow.</li>
+      </plain>
+      <warm><li>Carried the others out of a burning house in my dream, one at a time. I got them all, but I woke up shaking.</li></warm>
+      <blunt><li>Smoke dream. Got up and checked the fires. Banked.</li></blunt>
+      <cheerful><li>Dreamt of smoke, woke up, and it was only the cook burning the porridge. I've never been so glad of burnt porridge!</li></cheerful>
+      <gloomy><li>The smoke again. One of these nights it won't be a dream.</li></gloomy>
+      <cold><li>A dream of a fire I couldn't find. I checked the hearths on waking. All in order.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Hours</defName>
+    <label>a dream of the hour before dawn</label>
+    <kind>Strange</kind>
+    <dreamer><tags>quirk:EarlyRiser|quirk:LateHours|quirk:SleepTalker</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The sun came up three times in my dream, and each time I was the only one there to see it.</li>
+        <li>[quirk:LateHours] The night went on and on, and I got everything done, every job in the colony, and still it wasn't morning.</li>
+        <li>[quirk:SleepTalker] Dreamt I was talking in my sleep, and somebody was writing it all down, and it made perfect sense.</li>
+        <li>[quirk:EarlyRiser] I got up before dawn in my dream and found the sun still asleep behind the hill, and had to wake it.</li>
+      </plain>
+      <warm><li>In the dream I sat up with someone who couldn't sleep, and we watched the light come over the fields together.</li></warm>
+      <blunt><li>Dreamt about not sleeping. Then didn't.</li></blunt>
+      <cheerful><li>Dreamt there was an extra hour in the day and I got to choose where it went! I put it after breakfast.</li></cheerful>
+      <gloomy><li>A dream of the gray hour, when the fires are low and the cold creeps in. I know it too well.</li></gloomy>
+      <cold><li>The hours were badly arranged in my dream. I'd have ordered them differently.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Count</defName>
+    <label>a dream of things that wouldn't stay counted</label>
+    <kind>Strange</kind>
+    <dreamer><tags>quirk:CountsThings|quirk:TidyTable|quirk:CountsCoins</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Counting sacks in the storeroom all night, and every time I reached the end the first one had moved.</li>
+        <li>[quirk:TidyTable] I swept the hall in my dream and the dust came back in through the cracks as fast as I swept it out.</li>
+        <li>[quirk:CountsCoins] A trader paid me in coins that turned to buttons every time I looked away.</li>
+        <li>[quirk:CountsThings] The steps up to the door were a different number every time I climbed them.</li>
+      </plain>
+      <warm><li>I counted heads at supper in my dream, and the number was right, and then there was one more, and it was someone I'd missed.</li></warm>
+      <blunt><li>Counted things all night. Lost count. Annoyed.</li></blunt>
+      <cheerful><li>Everything in the storeroom lined up in neat rows in my dream, and it all added up!</li></cheerful>
+      <gloomy><li>The numbers wouldn't come out right however many times I tried. They never do.</li></gloomy>
+      <cold><li>Inventory, all night. The discrepancy was never explained.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Made</defName>
+    <label>a dream of the made thing</label>
+    <kind>Sweet</kind>
+    <dreamer><tags>quirk:Whittler|quirk:MarksWork|quirk:MeasuresTwice|quirk:PrettyStones</tags></dreamer>
+    <lines>
+      <plain>
+        <li>A piece of wood in my hands, and the knife knew where to go, and a heron came out of it.</li>
+        <li>[quirk:MeasuresTwice] Built a wall in my dream where every stone fit the first time, and the line was straight as a held breath.</li>
+        <li>[quirk:PrettyStones] I found a stone in my dream that held the whole sky inside it, blue and moving.</li>
+        <li>[quirk:MarksWork] In the dream I saw my mark on things all over the world, in houses I've never been to.</li>
+      </plain>
+      <warm><li>Dreamt I carved a little thing for each of them, a bird, a spoon, a button, each one right for its owner.</li></warm>
+      <blunt><li>Made a fine piece in my sleep. Can't remember how.</li></blunt>
+      <cheerful><li>I carved a whole menagerie in my dream, and the little goat kept walking off the shelf!</li></cheerful>
+      <gloomy><li>Made the best thing I've ever made, in the dream. Woke up with empty hands.</li></gloomy>
+      <cold><li>The joint fit perfectly in my dream. I'm going to try the same cut today.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Load</defName>
+    <label>a dream of a load that kept growing</label>
+    <kind>Strange</kind>
+    <dreamer><tags>quirk:StrongBack|quirk:Volunteers|quirk:Fidgets</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Carrying a sack up a hill in my dream, and every few steps someone handed me another, and I kept taking them.</li>
+        <li>[quirk:Fidgets] They made me lie still in the dream, so I ran in place under the blanket all night.</li>
+        <li>[quirk:Volunteers] Every time someone asked for a pair of hands, mine went up, until I had a dozen of them.</li>
+      </plain>
+      <warm><li>Dreamt I carried the others' loads to the top of the hill, and at the top they were all waiting to carry me back down.</li></warm>
+      <blunt><li>Hauled all night. Woke up tired. Typical.</li></blunt>
+      <cheerful><li>Dreamt I could carry the whole storeroom on my back, and it felt like nothing at all!</li></cheerful>
+      <gloomy><li>The load got heavier and heavier, and I kept smiling so they wouldn't ask.</li></gloomy>
+      <cold><li>Too much cargo, in the dream. I've reconsidered how much I carry.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Hands</defName>
+    <label>a dream of steady hands</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:SteadyHands|quirk:HealersSalve</tags></dreamer>
+    <lines>
+      <plain>
+        <li>In the dream I tended a cut that closed under my fingers as I watched, neat as a seam.</li>
+        <li>[quirk:HealersSalve] The healer came back in my dream to show me the rest of the salve, and I wrote down every leaf.</li>
+        <li>[quirk:SteadyHands] My hands didn't shake once in the dream, not even with the knife, not even with the patient's family watching.</li>
+      </plain>
+      <warm><li>Dreamt the people I've tended came by one after another to show me their scars, all healed clean.</li></warm>
+      <blunt><li>Stitched wounds all night. Steady. Good.</li></blunt>
+      <cheerful><li>In my dream I had a salve for everything, even bad moods! I rubbed it on the cook.</li></cheerful>
+      <gloomy><li>There was a wound in my dream that wouldn't close, however much I pressed on it.</li></gloomy>
+      <cold><li>A dream of surgery. Clean, careful, uneventful. As it should be.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Table</defName>
+    <label>a dream of a long table</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Birthdays|quirk:BestBiteLast|quirk:Juggles|quirk:Hums|quirk:SingsAtStove|quirk:WrongLaugh</tags></dreamer>
+    <lines>
+      <plain>
+        <li>The table in my dream went on past the end of the hall, and everyone I've ever eaten with had a seat at it.</li>
+        <li>[quirk:Birthdays] It was everyone's birthday at once in my dream, and I remembered every one, and there was a cake for each.</li>
+        <li>[quirk:BestBiteLast] I saved the best bite for last in my dream, and the plate kept filling up so I never had to eat it.</li>
+        <li>[quirk:Juggles] I juggled at the table in my dream and nothing fell, not the spoons, not the bowls, not the cook's good knife.</li>
+        <li>[quirk:Hums|quirk:SingsAtStove] The whole valley was humming my tune in the dream, at the stove and in the fields and at the table.</li>
+        <li>[quirk:WrongLaugh] I laughed at the wrong moment in my dream, and this time everybody laughed with me.</li>
+      </plain>
+      <warm><li>Dreamt of supper with all of us there, the lamps lit late and the plates long empty.</li></warm>
+      <blunt><li>Big supper in my dream. Good food. Woke hungry.</li></blunt>
+      <cheerful><li>The supper in my dream had music, a cake as tall as the door, and the dishes washed themselves!</li></cheerful>
+      <gloomy><li>A long table in my dream, full of people, and a few of the chairs I knew should be empty.</li></gloomy>
+      <cold><li>Well provisioned, well attended, entirely imaginary. Still, a pleasant meal.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Cold</defName>
+    <label>a dream of tracks in new snow</label>
+    <kind>Strange</kind>
+    <dreamer><tags>quirk:KnowsTrails|quirk:FeelsTheCold|quirk:ColdTrick</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Fresh snow in my dream, and a line of tracks across it I'd never seen, and I followed them to the edge of the map.</li>
+        <li>[quirk:FeelsTheCold] I was cold in my dream, so cold, and then somebody put a hot stone in my hands and I could feel my fingers again.</li>
+        <li>[quirk:ColdTrick] The traveler who taught me the trick was walking ahead of me in the snow, and I matched every step.</li>
+        <li>[quirk:KnowsTrails] I knew every trail in the dream, every bent stalk and scuffed stone, and they all led home.</li>
+      </plain>
+      <warm><li>We were all out in the snow in my dream, warm as toast, and the children were throwing it at each other.</li></warm>
+      <blunt><li>Snow and tracks. Followed them. Woke up.</li></blunt>
+      <cheerful><li>I tracked a hare in my dream, and when I caught up with it, it said good morning!</li></cheerful>
+      <gloomy><li>The tracks went into the trees in my dream, and stopped, and I didn't want to know why.</li></gloomy>
+      <cold><li>I noted which way the tracks went in my dream. Probably meaningless.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== Superstitions and the watch ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Signs</defName>
+    <label>a dream of signs</label>
+    <kind>Strange</kind>
+    <dreamer><tags>quirk:LuckyItem|quirk:RedLuck|quirk:KnocksWood|quirk:SaltsDoor|quirk:EclipseDread</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Every door in the colony had a line of salt across it in my dream, and something outside was reading them.</li>
+        <li>[quirk:LuckyItem] I lost my lucky thing in the dream, and found it again on someone else, and they wouldn't give it back.</li>
+        <li>[quirk:RedLuck] Everyone at the table was dressed in red in my dream, and I was the only one who seemed to mind.</li>
+        <li>[quirk:KnocksWood] Knocked on wood in my dream, and something knocked back.</li>
+        <li>[quirk:EclipseDread] The sun went out in my dream, slow, like a lamp turned down, and the others went on with their work.</li>
+      </plain>
+      <warm><li>Dreamt I tied a charm over every door in the colony, and nothing bad came through any of them all year.</li></warm>
+      <blunt><li>Bad-luck dream. Did all the right things this morning. Twice.</li></blunt>
+      <cheerful><li>In my dream every sign was a good one, even the crow on the roof, who only wanted bread!</li></cheerful>
+      <gloomy><li>The signs were all there in my dream, plain as day, and I still couldn't stop what came after.</li></gloomy>
+      <cold><li>A dream of omens. I don't believe in them. I took the usual precautions anyway.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Watch</defName>
+    <label>a dream of the long watch</label>
+    <kind>Strange</kind>
+    <dreamer><tags>quirk:BattleRitual|quirk:SharpensBlades|quirk:WalksTheWalls</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I walked the wall all night in my dream, and every time I came round to the gate it was a little further away.</li>
+        <li>[quirk:SharpensBlades] Sharpened a blade in my dream until it could cut the dark, and then I cut a door in it.</li>
+        <li>[quirk:BattleRitual] I did the ritual before the fight in my dream, every step, and the fight never came.</li>
+      </plain>
+      <warm><li>Dreamt I kept watch so well that the children slept through till morning and woke up rested.</li></warm>
+      <blunt><li>On watch all night. In my sleep. Still tired.</li></blunt>
+      <cheerful><li>Dreamt the raiders saw how sharp my knife was and turned right round!</li></cheerful>
+      <gloomy><li>The watch never ends, in the dream or out of it.</li></gloomy>
+      <cold><li>Guard duty in my sleep. Nothing happened, which is the best kind of watch.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== Quirks of loss ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Answer</defName>
+    <label>a dream of an answer</label>
+    <kind>Lost</kind>
+    <about>Lost</about>
+    <children>true</children>
+    <dreamer><tags>quirk:NightPrayers|quirk:TalksToDead|quirk:WinterGrief|quirk:ExtraPlace|quirk:RainCleanses|goal:Gravedigger|story:LongGrief</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I said the night prayer like always, and in the dream {LOST} said the last line with me.</li>
+        <li>[quirk:TalksToDead] I talk to {LOST} at the grave most days. Last night, in the dream, {LOST} answered.</li>
+        <li>[quirk:ExtraPlace] The place I set at the table for {LOST} was taken in my dream, and the plate was empty when I looked again.</li>
+        <li>[quirk:WinterGrief] Snow in my dream, deep and blue, and {LOST} walking through it toward me, leaving no tracks.</li>
+        <li>[quirk:RainCleanses] I stood in the rain in my dream, and {LOST} came and stood beside me, and neither of us went in.</li>
+        <li>[story:LongGrief] {LOST} sat with me in the dream and let me say everything I'd been saving, and then asked how the garden was doing.</li>
+      </plain>
+      <warm><li>{LOST} came in my dream to tell me they'd heard every word I've said to them. Every single one.</li></warm>
+      <blunt><li>{LOST} answered, in my dream. Didn't say much. Enough.</li></blunt>
+      <cheerful><li>{LOST} laughed at my jokes in the dream, the way they always did, even the bad ones.</li></cheerful>
+      <gloomy><li>{LOST} answered me last night. It was only a dream. I'm keeping it anyway.</li></gloomy>
+      <cold><li>I dreamt that {LOST} replied. The mind supplies what it lacks. I don't object.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===================== The quirks the colony's events leave ===================== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_LampRoad</defName>
+    <label>a dream of a lamp on the road</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:LampForTravelers|quirk:RoadStories</tags></dreamer>
+    <lines>
+      <plain>
+        <li>From far out on the road in my dream I could see our lamp in the window, small and steady, and I walked toward it all night.</li>
+        <li>[quirk:RoadStories] Every road I've ever walked was laid out in my dream like a map on the table, and I could point to each town.</li>
+        <li>[quirk:LampForTravelers] Travelers came up the road by the light of my lamp in the dream, one after another, and each one knew my name.</li>
+        <li>[child] I dreamt my candle was so bright people saw it from the next valley.</li>
+      </plain>
+      <warm><li>In my dream every traveler on the road found a lit window that night, not only ours.</li></warm>
+      <blunt><li>Lamp dream. Road was busy. Nice.</li></blunt>
+      <cheerful><li>Dreamt the whole road was lined with lamps, all the way to the sea, and I'd lit every one!</li></cheerful>
+      <gloomy><li>I kept the lamp burning all night in my dream, and the road stayed empty till dawn.</li></gloomy>
+      <cold><li>A dream of the road at night. The lamp did what it's for.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Council_DreamH_Omen_Lamp</defName>
+    <label>the dream of the travelers at the lamp</label>
+    <kind>Omen</kind>
+    <weight>0.6</weight>
+    <dreamer><tags>quirk:LampForTravelers</tags></dreamer>
+    <lines>
+      <plain>
+        <li>Dreamt of strangers coming up the road in the dark, following our lamp, and one of them carried a lantern with a green glass.</li>
+        <li>In the dream I heard boots on the road and voices, and I went out with the lamp, and there they were, tired and glad of us.</li>
+        <li>People were standing at the gate in my dream, under the lamp, waiting to be let in. Friendly. I'm sure they were friendly.</li>
+      </plain>
+      <warm><li>Guests are coming. I dreamt them. I'm going to air out the spare beds.</li></warm>
+      <blunt><li>Visitors coming. Dreamt it. Trim the lamp.</li></blunt>
+      <cheerful><li>Visitors in my dream, lots of them, and they brought news and a fiddle!</li></cheerful>
+      <gloomy><li>Strangers on the road in my dream, under my lamp. I hope I lit it for the right people.</li></gloomy>
+      <cold><li>I dreamt of arrivals on the road. I'll keep watch on it for the next few days.</li></cold>
+    </lines>
+    <omen><incident>VisitorGroup</incident><days>1~3</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+</Defs>
