@@ -38,7 +38,7 @@ namespace ColonyCouncil
         public bool armedHunters;
         /// <summary>A daytime task of their own at one of their buildings (praying, prospecting, smithing, keeping the stall).</summary>
         public JobDef task;
-        /// <summary>The role of the building the task is done at (see <see cref="CampStructure.role"/>); none = near the fire.</summary>
+        /// <summary>The role of the building the task is done at (see <see cref="CampStructure.role"/>); "herd": out among their animals; none = near the fire.</summary>
         public string taskAt;
         /// <summary>Chance that each grown-up is willing to work for the colony, if asked (and paid).</summary>
         public float hireChance = 0.3f;
