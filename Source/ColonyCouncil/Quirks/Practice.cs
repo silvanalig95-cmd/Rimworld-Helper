@@ -142,6 +142,6 @@ namespace ColonyCouncil
     /// <summary>How a quirk came (Quirk.cause): said on its line.</summary>
     public static class QuirkCause
     {
-        public const string Practice = "practice", Nature = "nature", Battle = "battle", Downed = "downed", Omen = "omen", Lived = "lived", Story = "story", Passed = "passed";
+        public const string Practice = "practice", Nature = "nature", Battle = "battle", Downed = "downed", Omen = "omen", Lived = "lived", Story = "story", Passed = "passed", Seen = "seen";
     }
 }

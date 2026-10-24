@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Knacks of the quirks the colony's events leave behind (Defs/QuirkDefs/Rimfolk_Quirks_Events.xml), on the base in
+    Council_Hediffs_Quirks.xml: the quirk (severity 0.5) and, for one lived long enough at its work to take root
+    (the fields walked at dawn, kept by growing), the second stage.
+  -->
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_CountsCoins</defName>
+    <label>counts every coin twice (quirk)</label>
+    <description>Counts the silver twice before anything changes hands, ever since someone cheated them. Traders get a little less past them.</description>
+    <stages>
+      <li><statOffsets><TradePriceImprovement>0.02</TradePriceImprovement></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><TradePriceImprovement>0.03</TradePriceImprovement></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_WalksFields</defName>
+    <label>walks the fields at dawn (quirk)</label>
+    <description>Walks every row at first light since a crop was lost, and finds the pests and the rot before they spread. A little more comes in at harvest.</description>
+    <stages>
+      <li><statOffsets><PlantHarvestYield>0.03</PlantHarvestYield></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><PlantHarvestYield>0.05</PlantHarvestYield></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_HealersSalve</defName>
+    <label>swears by a healer's salve (quirk)</label>
+    <description>Rubs a healer's salve into every cut and bruise. Wounds close a little sooner.</description>
+    <stages>
+      <li><statOffsets><InjuryHealingFactor>0.1</InjuryHealingFactor></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><InjuryHealingFactor>0.15</InjuryHealingFactor></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_ColdTrick</defName>
+    <label>swears by a trick against the cold (quirk)</label>
+    <description>Keeps the frost off the way a traveler from the cold lands showed them: dry wraps, grease on the face, never sweating outdoors. Comfortable a few degrees colder than before.</description>
+    <stages>
+      <li><statOffsets><ComfyTemperatureMin>-3</ComfyTemperatureMin></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><ComfyTemperatureMin>-4</ComfyTemperatureMin></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

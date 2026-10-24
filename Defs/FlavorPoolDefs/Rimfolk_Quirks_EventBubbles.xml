@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines said over a head (one sentence each, 90 characters at most) for the quirks the colony's events leave behind
+    (Defs/QuirkDefs/Rimfolk_Quirks_Events.xml), now and then while the quirk fits what they're doing
+    (Source/ColonyCouncil/Immersion/HabitBubbles.cs). Said only with speech showing, by someone in view.
+  -->
+
+  <!-- Keeps a lamp lit for travelers: up in the evening or the night, not at work. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleLamp</defName>
+    <lines>
+      <plain>
+        <li>Lamp's trimmed, in case anyone's out on the road tonight.</li>
+        <li>Somebody out there might be walking in the dark.</li>
+        <li>A little oil for the lamp, and that's the night seen to.</li>
+        <li>[winter] Cold night to be on the road, so the lamp stays lit.</li>
+        <li>I'll leave the light by the door, same as always.</li>
+        <li>If anyone's coming up the road, they'll see it from the hill.</li>
+        <li>There, the wick's trimmed and the glass is clean.</li>
+        <li>[lowtech] A good fire by the gate, so travelers know where we are.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Can't stand the smell of smoke: a few steps from an open fire. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleSmoke</defName>
+    <lines>
+      <plain>
+        <li>That smell gets into everything.</li>
+        <li>I'll sit further back, if nobody minds.</li>
+        <li>Can't breathe near this, I'm moving.</li>
+        <li>Smells like that night all over again.</li>
+        <li>Somebody open a window, please.</li>
+        <li>I'll eat outside, thanks.</li>
+        <li>Every fire smells like the pyre now.</li>
+        <li>The smoke's in my hair again, wonderful.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Counts every coin twice: trading, or carrying silver. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleCoins</defName>
+    <lines>
+      <plain>
+        <li>One, two, three, and again from the top.</li>
+        <li>That's short by two, count it again.</li>
+        <li>I'll count it myself, thank you.</li>
+        <li>Every coin, twice, and then we shake hands.</li>
+        <li>Weigh it in the hand first, then count it.</li>
+        <li>Not a coin goes in the chest until I've counted it.</li>
+        <li>Is this all of it, or is some still up your sleeve?</li>
+        <li>Right, I make it the same as you, this time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Walks the fields at dawn: at the crops in the early morning. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleFields</defName>
+    <lines>
+      <plain>
+        <li>Leaf by leaf, row by row.</li>
+        <li>Nothing chewing on these today, good.</li>
+        <li>Turn them over and look underneath, always.</li>
+        <li>Dew's still on the beans, best time to look.</li>
+        <li>There's a yellow one, I'll pull it before it spreads.</li>
+        <li>[summer] Hot one coming, so I'll check the far rows first.</li>
+        <li>Not losing this crop, not this year.</li>
+        <li>Every row before breakfast, that's the rule.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Keeps a dream book: up within a few hours of a dream not yet told. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleDreamBook</defName>
+    <lines>
+      <plain>
+        <li>Quick, before it goes, there was a bridge and a dog.</li>
+        <li>Got to get it down before breakfast washes it away.</li>
+        <li>Last night's goes on a fresh page.</li>
+        <li>A tower, a red door, and somebody calling my name.</li>
+        <li>Same dream as last week, so I'll mark it twice.</li>
+        <li>I'll read this back in a month and see if it happened.</li>
+        <li>Charcoal, book, and nobody talk to me for a minute.</li>
+        <li>[child] I'm drawing my dream so I don't forget it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Swears by a healer's salve: awake in a sickbed. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleSalve</defName>
+    <lines>
+      <plain>
+        <li>A bit more salve on that, and it'll close.</li>
+        <li>The salve stings, which means it's working.</li>
+        <li>Where's my pot of salve gone?</li>
+        <li>That healer knew what they were doing.</li>
+        <li>Rub it in, wait, rub it in again.</li>
+        <li>I'd be up by now if they'd let me use more salve.</li>
+        <li>Smells awful, works wonders.</li>
+        <li>[child] The salve is cold but it makes it better.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Juggles at supper: eating or at their leisure. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleJuggles</defName>
+    <lines>
+      <plain>
+        <li>Three spoons, watch this.</li>
+        <li>Anyone want to see me keep four apples up?</li>
+        <li>Hold on, let me try it with the bowls.</li>
+        <li>Up, up, up, and caught.</li>
+        <li>Nearly had it, one more go.</li>
+        <li>The players made it look easy, and it isn't.</li>
+        <li>Don't throw me the knife, I'm not that good.</li>
+        <li>[child] Look, I can do three now.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Swears by a trick against the cold: somewhere below freezing. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleColdTrick</defName>
+    <lines>
+      <plain>
+        <li>Dry feet, greased face, slow steps, and the cold can wait.</li>
+        <li>Don't sweat out here, that's the trick.</li>
+        <li>[winter] Frost on my lashes, warm everywhere else.</li>
+        <li>Wraps are dry, so I'm fine.</li>
+        <li>That traveler's trick still works.</li>
+        <li>A bit of grease on the cheeks and I barely feel it.</li>
+        <li>Keep moving, but slow, never hurry in the cold.</li>
+        <li>Cold out there, but not in here, under the wraps.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

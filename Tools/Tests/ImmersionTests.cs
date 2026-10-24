@@ -24,7 +24,10 @@ public static class ImmersionTests
         "Council_Pool_HabitWhetstone", "Council_Pool_HabitTreeLine", "Council_Pool_HabitPatient", "Council_Pool_HabitBirthday",
         "Council_Pool_BubbleHums", "Council_Pool_BubbleStove", "Council_Pool_BubbleSleepTalk", "Council_Pool_BubbleBestBite", "Council_Pool_BubbleMeasure",
         "Council_Pool_BubbleHaul", "Council_Pool_BubbleLateHours", "Council_Pool_BubbleFidgets", "Council_Pool_BubbleReads", "Council_Pool_BubbleWarden",
-        "Council_Pool_BubbleMends", "Council_Pool_BubbleDoodles", "Council_Pool_BubbleLightSleep"
+        "Council_Pool_BubbleMends", "Council_Pool_BubbleDoodles", "Council_Pool_BubbleLightSleep",
+        // The quirks the colony's events leave behind (Quirks/QuirkEvents.cs).
+        "Council_Pool_BubbleLamp", "Council_Pool_BubbleSmoke", "Council_Pool_BubbleCoins", "Council_Pool_BubbleFields", "Council_Pool_BubbleDreamBook",
+        "Council_Pool_BubbleSalve", "Council_Pool_BubbleJuggles", "Council_Pool_BubbleColdTrick"
     };
 
     private static readonly string[] JournalPools =

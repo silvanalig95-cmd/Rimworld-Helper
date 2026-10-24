@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Quirks the colony's events leave behind (Source/ColonyCouncil/Quirks/QuirkEvents.cs): picked up from what someone
+    lived through out in the world and at home. Refugees taken in, a guest seen safely on, or being taken in oneself
+    leave a lamp lit at night for travelers; the pyre beyond the gate leaves a horror of smoke (afterSeen: only those who
+    were awake and near it); a swindle or a cheating trader, coins counted twice; locusts or a lost crop, the fields
+    walked at dawn; a dream come true, a dream book; a healer's care, faith in their salve; the players or a camp's show,
+    juggling at supper; a traveler in the frozen lands, their trick against the cold. Each shows on the map now and then
+    (Immersion/HabitBubbles.cs) and has dreams of its own (Rimfolk_Dreams_Habits.xml).
+  -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_LampForTravelers</defName>
+    <label>keeps a lamp lit for travelers</label>
+    <passes>true</passes>
+    <children>true</children>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <afterThoughts>
+      <li>Council_Mem_RefugeesThrough</li>
+      <li>Council_EncP_RefugeeThanks</li>
+      <li>Council_EncP_KeptWatch</li>
+      <li>Council_Evt_Sheltered</li>
+      <li>Council_Evt_FedPilgrims</li>
+      <li>Council_Evt_GoodTurn</li>
+      <li>Council_Mission_Escorted</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.08</chance>
+    <days>300</days>
+    <effect>visitors and caravans who stay the night leave on better terms (+1 goodwill a visit)</effect>
+    <gained>
+      <plain>
+        <li>I leave a lamp burning by the door at night now. Somebody out on the road might need to see it.</li>
+        <li>Since the guests went on their way, I trim the lamp in the window every evening before I go to bed.</li>
+        <li>[child] I put a candle in the window every night for people on the road. That's my job now.</li>
+      </plain>
+      <warm><li>There are people out on the road tonight with nowhere to go. The least I can do is leave them a light.</li></warm>
+      <blunt><li>Lamp stays lit at night. For whoever's out there.</li></blunt>
+      <cheerful><li>There's a lamp in our window every night now, and I'm the one who trims the wick!</li></cheerful>
+      <gloomy><li>I keep a light burning for the ones still on the road. Most of them won't come this way.</li></gloomy>
+      <cold><li>A light at night tells travelers the place is lived in and friendly. It costs a little oil.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Forgot the lamp last night, and the night before. Maybe the road doesn't need it from me anymore.</li></plain>
+      <warm><li>Someone else can keep the lamp now. I hope they do.</li></warm>
+      <blunt><li>Stopped lighting the lamp. Oil's dear.</li></blunt>
+      <cheerful><li>I don't sit up with the lamp anymore, but I still wave at anyone coming up the road!</li></cheerful>
+      <gloomy><li>The lamp's gone dark. If anyone came by its light, they never said.</li></gloomy>
+      <cold><li>I have stopped lighting the lamp. Its effect on visitors was hard to measure.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SmokeAversion</defName>
+    <label>can't stand the smell of smoke</label>
+    <children>true</children>
+    <who><notTrait><li>Pyromaniac</li><li>Psychopath</li></notTrait></who>
+    <afterSeen><li>pyre</li></afterSeen>
+    <withinDays>2</withinDays>
+    <chance>0.12</chance>
+    <days>120</days>
+    <condition>NearFire</condition>
+    <thought>Council_Quirk_SmokeAversion</thought>
+    <gained>
+      <plain>
+        <li>Ever since the pyre, the smell of smoke turns my stomach. Even the cookfire.</li>
+        <li>I can't sit near the fire anymore. One breath of it and I'm back outside the gate that night.</li>
+        <li>[child] The big fire outside the gate smelled awful, and now every fire smells a bit like it.</li>
+      </plain>
+      <warm><li>I know the fire keeps us warm. I just can't sit close to it since that night.</li></warm>
+      <blunt><li>Can't stand smoke now. Not since the pyre.</li></blunt>
+      <cheerful><li>I'm sitting at the window end of the hall from now on. Fresh air, and plenty of it!</li></cheerful>
+      <gloomy><li>The smoke from the pyre is still in my clothes. I've washed them twice. It must be in my head, then.</li></gloomy>
+      <cold><li>Since the pyre, smoke unsettles me. The reaction is in the body, and I can't reason it away.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Sat by the fire tonight and only smelled the wood. Good.</li></plain>
+      <warm><li>I could sit at the fire with everyone again tonight. I've missed that.</li></warm>
+      <blunt><li>Smoke's just smoke again.</li></blunt>
+      <cheerful><li>I toasted bread over the fire today and didn't think about anything but bread!</li></cheerful>
+      <gloomy><li>The smell doesn't bother me anymore. I suppose I've forgotten that night. I'm not sure that's better.</li></gloomy>
+      <cold><li>Smoke no longer affects me. The association has worn off.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_CountsCoins</defName>
+    <label>counts every coin twice</label>
+    <passes>true</passes>
+    <afterThoughts>
+      <li>Council_Evt_Swindled</li>
+      <li>Council_Evt_Conned</li>
+      <li>Council_EncP_Cheated</li>
+      <li>Council_EncP_HaggledBadly</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.1</chance>
+    <days>240</days>
+    <hediff>Council_Quirk_CountsCoins</hediff>
+    <gained>
+      <plain>
+        <li>After that trader, I count the silver twice before anything changes hands. Then once more.</li>
+        <li>I keep a tally of every trade now, scratched on a scrap of hide in my pocket.</li>
+      </plain>
+      <warm><li>I won't let anyone cheat us again. I count every coin for all of us now.</li></warm>
+      <blunt><li>Got cheated once. Never again. I count everything.</li></blunt>
+      <cheerful><li>I can tell a short purse by the weight of it now! The traders don't like it one bit.</li></cheerful>
+      <gloomy><li>Everyone out there wants to cheat us. So I count. Twice.</li></gloomy>
+      <cold><li>Since I was cheated, I check every exchange. It is simply sensible.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Paid a trader today without counting it twice. I think I trust my eyes again.</li></plain>
+      <warm><li>I'll let someone else count the coins for a while. They'll do it fine.</li></warm>
+      <blunt><li>Count once now. Enough.</li></blunt>
+      <cheerful><li>I've stopped counting the silver twice! Once is plenty when you're good at it.</li></cheerful>
+      <gloomy><li>I've stopped counting twice. If they cheat us, they cheat us.</li></gloomy>
+      <cold><li>I no longer count twice. The second count had stopped finding errors.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_WalksFields</defName>
+    <label>walks the fields at dawn</label>
+    <passes>true</passes>
+    <afterThoughts>
+      <li>Council_WS_LocustsTook</li>
+      <li>Council_Setback_CropLost</li>
+      <li>Council_EncC_CropsRaided</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.1</chance>
+    <days>300</days>
+    <practice><li>Growing</li></practice>
+    <practiceHours>40</practiceHours>
+    <hediff>Council_Quirk_WalksFields</hediff>
+    <gained>
+      <plain>
+        <li>I walk the fields every morning before breakfast now, turning leaves over, looking for anything that shouldn't be there.</li>
+        <li>After losing the crop, I check every row at first light. Found aphids on the corn today and pinched them off.</li>
+      </plain>
+      <warm><li>I go out to the fields at dawn. If something's wrong I'd rather find it early, before it costs us a winter.</li></warm>
+      <blunt><li>Fields at dawn. Every day. Not losing another crop.</li></blunt>
+      <cheerful><li>I'm out in the fields before the sun every morning! The dew soaks my boots, but the beans look grand.</li></cheerful>
+      <gloomy><li>We lost a crop once. I walk the rows every morning, waiting for it to happen again.</li></gloomy>
+      <cold><li>Early inspection catches pests before they spread. I walk the fields at dawn.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Slept through dawn today, and the fields were fine without me.</li></plain>
+      <warm><li>The fields are healthy. I've let the morning walks go, mostly.</li></warm>
+      <blunt><li>Stopped the dawn walks. Fields are fine.</li></blunt>
+      <cheerful><li>I've stopped walking the rows at dawn! The plants seem to manage.</li></cheerful>
+      <gloomy><li>I don't check the fields at dawn anymore. Whatever comes will come.</li></gloomy>
+      <cold><li>The daily inspection has ended. Losses have been low.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_DreamBook</defName>
+    <label>keeps a dream book</label>
+    <children>true</children>
+    <afterOmen>true</afterOmen>
+    <chance>0.12</chance>
+    <days>240</days>
+    <effect>dreams more often, and writes every dream down</effect>
+    <gained>
+      <plain>
+        <li>A dream of mine came true, so now I keep a book by the bed and write each dream down before it goes.</li>
+        <li>I wake, reach for the charcoal, and write. Most of it makes no sense by breakfast.</li>
+        <li>[child] I have a book for my dreams now. I draw the ones I can't spell.</li>
+      </plain>
+      <warm><li>I write my dreams down every morning now. If one of them is a warning, I want to be able to tell everyone.</li></warm>
+      <blunt><li>Dreams go in the book. In case.</li></blunt>
+      <cheerful><li>I've got a dream book! Last night's had a goat in a hat in it, so I drew the hat.</li></cheerful>
+      <gloomy><li>One dream came true. Now I write them all down and wait to see which is next.</li></gloomy>
+      <cold><li>One dream proved accurate. I now record them all, to see whether it happens again.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Haven't written in the dream book for a week. The dreams have gone back to being dreams.</li></plain>
+      <warm><li>I've put the dream book away. If I ever need it again, it's in the chest by my bed.</li></warm>
+      <blunt><li>Done with the dream book. Just dreams.</li></blunt>
+      <cheerful><li>I've filled the dream book, and I'm not starting another. Too many goats.</li></cheerful>
+      <gloomy><li>None of the others came true. I stopped writing them down.</li></gloomy>
+      <cold><li>The dream record yielded nothing further. I've stopped keeping it.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_HealersSalve</defName>
+    <label>swears by a healer's salve</label>
+    <passes>true</passes>
+    <children>true</children>
+    <afterThoughts>
+      <li>Council_Camp_Healed</li>
+      <li>Council_WS_HealerMended</li>
+      <li>Council_WS_HealerTaught</li>
+      <li>Council_Evt_HealerSawMe</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.1</chance>
+    <days>200</days>
+    <hediff>Council_Quirk_HealersSalve</hediff>
+    <gained>
+      <plain>
+        <li>The healer left me a pot of salve and told me what goes in it. I rub it into every cut now, and they close quicker, I swear.</li>
+        <li>I make the healer's salve myself now: tallow, a few leaves from the field edge, and a lot of stirring.</li>
+      </plain>
+      <warm><li>That healer was kind to me. I keep the salve they showed me, and I share it with anyone who's hurt.</li></warm>
+      <blunt><li>Got the healer's salve. It works. I use it.</li></blunt>
+      <cheerful><li>Scraped knee? Salve. Sore hands? Salve! I've grown very fond of this salve.</li></cheerful>
+      <gloomy><li>The healer's salve is the only thing I trust when I'm hurt. Everything else wears off.</li></gloomy>
+      <cold><li>The healer's ointment speeds healing. I can't say exactly why. I use it anyway.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>The last of the salve ran out and I didn't make more.</li></plain>
+      <warm><li>I gave the last jar of salve to someone who needed it more.</li></warm>
+      <blunt><li>Out of salve. Fine.</li></blunt>
+      <cheerful><li>Haven't needed the salve in ages! I'm in very good repair.</li></cheerful>
+      <gloomy><li>The salve's gone. Cuts heal the slow way again.</li></gloomy>
+      <cold><li>I no longer use the salve. The supply ran out.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Juggles</defName>
+    <label>juggles at supper</label>
+    <passes>true</passes>
+    <children>true</children>
+    <afterThoughts>
+      <li>Council_Camp_Show</li>
+      <li>Council_Evt_SawPlayers</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <chance>0.12</chance>
+    <days>300</days>
+    <effect>juggles for those eating or resting nearby (a little recreation for each of them)</effect>
+    <gained>
+      <plain>
+        <li>After the players left I tried juggling three potatoes. Now I can do it, and I do it at supper whether anyone asks or not.</li>
+        <li>I practiced with stones behind the barn until I stopped dropping them. Now it's spoons at the table.</li>
+        <li>[child] I can juggle three things now. Four if one of them is a sock.</li>
+      </plain>
+      <warm><li>I learned to juggle so the others would have something to smile at over supper. It works most nights.</li></warm>
+      <blunt><li>I juggle now. At supper. Watch or don't.</li></blunt>
+      <cheerful><li>I can juggle! Spoons, apples, a boot once. Supper is a show now.</li></cheerful>
+      <gloomy><li>I juggle at supper. It gives everyone something to look at besides the empty chairs.</li></gloomy>
+      <cold><li>I practiced juggling until I could do it without thinking. It keeps the hands busy at meals.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Dropped all three apples at supper tonight, and didn't pick them back up to try again.</li></plain>
+      <warm><li>I've put the spoons down. The children do the juggling now anyway.</li></warm>
+      <blunt><li>Done juggling.</li></blunt>
+      <cheerful><li>My juggling days are over! I went out on a good catch.</li></cheerful>
+      <gloomy><li>I stopped juggling. The others had stopped watching first.</li></gloomy>
+      <cold><li>I have stopped juggling at meals. The novelty wore off.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_ColdTrick</defName>
+    <label>swears by a trick against the cold</label>
+    <passes>true</passes>
+    <afterThoughts>
+      <li>Council_EncL_ColdTrick</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <chance>0.15</chance>
+    <days>240</days>
+    <hediff>Council_Quirk_ColdTrick</hediff>
+    <gained>
+      <plain>
+        <li>A traveler showed me how they keep the frost off: dry wraps next to the skin, grease on the face, never sweat outside. I do it all now.</li>
+        <li>I wrap my feet the traveler's way now, with dry grass between the layers. My toes haven't been cold since.</li>
+      </plain>
+      <warm><li>That traveler's trick for the cold works. I've shown it to anyone who'll stand still long enough.</li></warm>
+      <blunt><li>Grease on the face, dry feet, don't sweat. Cold doesn't bother me now.</li></blunt>
+      <cheerful><li>I've got a trick for the cold now! I look ridiculous with my face greased, but I'm warm.</li></cheerful>
+      <gloomy><li>The cold still comes. I've just learned to keep it at the door a while longer.</li></gloomy>
+      <cold><li>A traveler taught me a method against the cold. It works. I use it.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I've stopped bothering with the traveler's trick. I've got used to the cold the ordinary way.</li></plain>
+      <warm><li>I hope that traveler's somewhere warm tonight. I've forgotten half their trick.</li></warm>
+      <blunt><li>Forgot the cold trick. Wear a coat.</li></blunt>
+      <cheerful><li>I've given up greasing my face! The others are relieved.</li></cheerful>
+      <gloomy><li>The trick stopped working, or I stopped doing it right.</li></gloomy>
+      <cold><li>I no longer follow the traveler's method. Ordinary clothing does well enough.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+</Defs>

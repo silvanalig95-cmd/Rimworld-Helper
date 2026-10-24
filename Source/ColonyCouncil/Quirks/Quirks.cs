@@ -44,7 +44,9 @@ namespace ColonyCouncil
         /// <summary>Within a few steps of a grave with someone in it.</summary>
         NearGrave,
         /// <summary>Awake in a sickbed, or in bed while they need the rest.</summary>
-        Sickbed
+        Sickbed,
+        /// <summary>Awake within a few steps of an open fire: a fire, or a lit campfire, hearth, brazier or torch (QuirkEvents).</summary>
+        NearFire
     }
 
     /// <summary>
@@ -65,6 +67,11 @@ namespace ColonyCouncil
         public bool afterDowned;
         /// <summary>Picked up after one of their dreams came true.</summary>
         public bool afterOmen;
+        /// <summary>
+        /// Picked up after seeing one of these with their own eyes, within withinDays (QuirkSights): "pyre", the enemy dead
+        /// burning beyond the gate.
+        /// </summary>
+        public List<string> afterSeen;
         /// <summary>Simply who they are: picked up on any day by someone who fits <see cref="who"/>.</summary>
         public bool byNature;
         /// <summary>Chance per day while the trigger holds.</summary>
@@ -110,7 +117,7 @@ namespace ColonyCouncil
         /// <summary>Journal when it fades.</summary>
         public ToneLines faded = new ToneLines();
 
-        public bool HasTrigger => !afterThoughts.NullOrEmpty() || afterBattle || afterDowned || afterOmen || byNature;
+        public bool HasTrigger => !afterThoughts.NullOrEmpty() || !afterSeen.NullOrEmpty() || afterBattle || afterDowned || afterOmen || byNature;
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -120,6 +127,9 @@ namespace ColonyCouncil
             if (elseCondition != QuirkCondition.None && (thought?.stages == null || thought.stages.Count < 2)) yield return "quirk with an else condition needs a thought with two stages";
             if ((condition == QuirkCondition.WorkingAt || elseCondition == QuirkCondition.WorkingAt) && workType == null) yield return "WorkingAt needs a workType";
             if (byNature && who == null) yield return "a quirk by nature needs a who";
+            if (afterSeen != null)
+                foreach (var s in afterSeen)
+                    if (!QuirkSights.IsKnown(s)) yield return "unknown sight " + s;
             if (gained == null || !gained.Any) yield return "quirk has no gained lines";
             if (!practice.NullOrEmpty())
             {
@@ -371,6 +381,12 @@ namespace ColonyCouncil
             }
             LuckyItems.Bind(this);
             if (PracticeOn) SamplePractice();
+            // What they saw, and the effects of the quirks the colony's events leave (QuirkEvents.cs).
+            if (S.quirks)
+            {
+                QuirkSights.Hourly();
+                QuirkEvents.Hourly();
+            }
         }
 
         public void Daily(CouncilGameComponent comp)
@@ -432,6 +448,7 @@ namespace ColonyCouncil
             if (d.afterDowned && downedTick.TryGetValue(p, out int t) && now - t < window && !p.Downed) return true;
             if (d.afterOmen && comp.dreams.recent.Any(r => r.pawn == p && r.cameTrue && now - r.tick < GenDate.TicksPerDay * 10)) return true;
             if (d.byNature) return true;
+            if (!d.afterSeen.NullOrEmpty() && QuirkSights.SawAny(p, d.afterSeen, window)) return true;
             if (!d.afterThoughts.NullOrEmpty())
             {
                 var memories = p.needs?.mood?.thoughts?.memories?.Memories;
@@ -449,6 +466,7 @@ namespace ColonyCouncil
             if (d.afterBattle && battleTick.TryGetValue(p, out int b) && now - b < window) return QuirkCause.Battle;
             if (d.afterDowned && downedTick.TryGetValue(p, out int t) && now - t < window) return QuirkCause.Downed;
             if (d.afterOmen && comp.dreams.recent.Any(r => r.pawn == p && r.cameTrue && now - r.tick < GenDate.TicksPerDay * 10)) return QuirkCause.Omen;
+            if (!d.afterSeen.NullOrEmpty() && QuirkSights.SawAny(p, d.afterSeen, window)) return QuirkCause.Seen;
             if (!d.afterThoughts.NullOrEmpty()) return QuirkCause.Lived;
             return QuirkCause.Nature;
         }
@@ -691,6 +709,8 @@ namespace ColonyCouncil
                 }
                 case QuirkCondition.Sickbed:
                     return p.Spawned && p.Awake() && p.InBed() && (p.CurrentBed()?.Medical == true || HealthAIUtility.ShouldSeekMedicalRest(p));
+                case QuirkCondition.NearFire:
+                    return QuirkEvents.NearOpenFire(p);
                 default:
                     return false;
             }

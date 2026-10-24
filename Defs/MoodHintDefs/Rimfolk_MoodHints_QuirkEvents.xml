@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What helps with the moods of the quirks the colony's events leave behind (Defs/QuirkDefs/Rimfolk_Quirks_Events.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_QuirkEv_Smoke</defName>
+    <thoughts><li>Council_Quirk_SmokeAversion</li></thoughts>
+    <fix>Since the pyre they can't stand the smell of smoke. It only troubles them within a few steps of an open fire: give them a seat at the table, a bed and work away from campfires, hearths, braziers and torches. It fades in a season or so.</fix>
+    <act>Keep them away from open fires</act>
+    <article>Council_Alm_C_Secrets</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>
