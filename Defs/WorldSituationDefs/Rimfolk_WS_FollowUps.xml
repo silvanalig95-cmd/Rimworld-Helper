@@ -220,6 +220,7 @@
       <li>Council_WS_Warlord</li>
       <li>Council_WS_BanditLordFalls</li>
       <li>Council_WS_Drought</li>
+      <li>Council_WS_Embargo</li>
     </after>
     <afterDays>1~40</afterDays>
     <faction>
@@ -237,6 +238,7 @@
       <li>[after:Council_WS_Plague] The quarantine is over. {TALE} has burned out, the gates of the towns are open again, and the traders who were shut out for weeks are hurrying back to their old routes.</li>
       <li>[after:Council_WS_BanditRoad|after:Council_WS_BanditLordFalls|after:Council_WS_Warlord] The road is safe again after {TALE}. The first caravan through didn't believe it and came with twice the usual guards. The second came with its music playing.</li>
       <li>[after:Council_WS_Toll] The toll chain is off the road, and the traders who went the long way around are coming back the short way, all of them, at once.</li>
+      <li>[after:Council_WS_Embargo] With {TALE} over, every market in the region is open again, and the carts that were turned back all season are on the road in a crowd, with a season's goods to sell.</li>
     </texts>
     <summaries>
       <li>Trader caravans and visitors come much more often for a while. Merchants may want a place to rest, or a standing order from the colony.</li>

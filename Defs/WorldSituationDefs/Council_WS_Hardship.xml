@@ -54,8 +54,50 @@
       <li><rimfolk>Council_Evt_Inoculation</rimfolk><factor>2.5</factor></li>
       <li><rimfolk>Council_Evt_Pilgrims</rimfolk><factor>0.5</factor></li>
       <li><group>Visitors</group><factor>0.6</factor></li>
+      <!-- A gate shut to travelers, as the neighbors' doctors asked: fewer arrivals, and less sickness with them. -->
+      <li><incident>TraderCaravanArrival</incident><factor>0.4</factor><whileFlag>quarantine</whileFlag></li>
+      <li><incident>VisitorGroup</incident><factor>0.3</factor><whileFlag>quarantine</whileFlag></li>
+      <li><incident>TravelerGroup</incident><factor>0.3</factor><whileFlag>quarantine</whileFlag></li>
+      <li><incident>WandererJoin</incident><factor>0.5</factor><whileFlag>quarantine</whileFlag></li>
+      <li><group>Visitors</group><factor>0.4</factor><whileFlag>quarantine</whileFlag></li>
+      <li><incident>Disease_Plague</incident><factor>0.5</factor><whileFlag>quarantine</whileFlag></li>
+      <li><incident>Disease_Flu</incident><factor>0.7</factor><whileFlag>quarantine</whileFlag></li>
     </modifiers>
     <beats>
+      <li>
+        <key>quarantine</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+        </effects>
+        <day>5~9</day>
+        <titles>
+          <li>{FACTION} ask for a shut gate</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s doctors are asking every neighbor of {PLACE} the same thing: keep your gate shut to travelers until {NAME} is over, so that it has nowhere to go. Their rider waits at the gatepost for the answer.\n\nA shut gate means no traders and few visitors either, for as long as it lasts.</li>
+          <li>[theirLowtech] The healers of {PLACE} have sent round a rowan branch tied with a red cord, which among {FACTION} means: shut your gate until the sickness is gone. Their rider waits at the gatepost to hear whether the colony will.\n\nA shut gate keeps out traders as well as the sick.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Shut the gate to travelers</label>
+            <outcome>The rider ties the red cord to the colony's gatepost and goes on to the next farm. Travelers who come up the road will be turned back until {NAME} is over.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>quarantine</li></flags>
+            <help>1</help>
+            <deed>kept its gate shut through {NAME}, as {FACTION}'s doctors asked</deed>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Keep the gate open</label>
+            <outcome>The rider shrugs and goes on to the next farm. The colony's gate stays open, to traders and to whatever they bring with them.</outcome>
+            <flags><li>openGate</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
       <li>
         <key>medicine</key>
         <effects>
@@ -224,6 +266,7 @@
         </titles>
         <texts>
           <li>{NAME} is over. {PLACE} lost more people than it should have, and {FACTION} count the colony among the neighbors who sent help.</li>
+          <li>[quarantine] {NAME} is over, and the colony can take the red cord off its gatepost. {FACTION} count it among the neighbors who did what their doctors asked, which fewer did than they'd hoped.</li>
         </texts>
         <chronicle>{NAME} ended; the colony sent what it could.</chronicle>
         <effects>
@@ -237,6 +280,7 @@
         </titles>
         <texts>
           <li>{NAME} has run its course, and {PLACE} has opened its gates again. Fewer people come through them than before.\n\n{FACTION} sent a rider around the neighbors to say it was over. The rider passed the colony's gate without stopping.</li>
+          <li>[openGate] {NAME} has run its course, and {PLACE} has opened its gates again. {FACTION}'s doctors still say the sickness spread fastest along the roads where the gates stayed open, and they say it about the colony's road in particular.</li>
         </texts>
         <chronicle>{NAME} ran its course; the colony kept its gate shut.</chronicle>
       </li>
@@ -394,6 +438,52 @@
         </options>
       </li>
       <li>
+        <key>orphan</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>orphan</what><count>1</count><young>true</young><gender>Female</gender></li>
+        </effects>
+        <day>8~14</day>
+        <chance>0.6</chance>
+        <titles>
+          <li>A child from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>An old man from the villages around {PLACE} brought a girl to the colony's gate this morning and was gone before anyone could ask his name. Her parents died in the hungry months, she says, and the old man has nothing left to feed her through the winter. She says it as if she has said it before.\n\nShe is sitting by the gatepost with a bundle, waiting to be told what happens now.</li>
+          <li>[winter] A girl is sitting by the colony's gate in the snow, with a bundle and a note pinned to her coat. The note is from someone in {PLACE}: her parents are dead of the famine, and there is no food left in the village to keep her.</li>
+          <li>[colony:Merciful] Someone in {PLACE} has heard that the colony doesn't turn people away. This morning a girl was left at its gate with a bundle and a note: her parents are dead of the famine, and the village can't feed her.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take her in</label>
+            <outcome>The girl is brought in, fed and given a blanket by the stove. By evening she has asked every colonist's name, some of them twice.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count><ages>14~16</ages></li>
+            </effects>
+            <flags><li>orphan</li></flags>
+            <help>2</help>
+            <deed>took in a girl orphaned by the famine</deed>
+            <ways><mercy>2</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send her back to {FACTION}'s elders, with food</label>
+            <outcome>The girl goes back down the road toward {PLACE} with a sack of food and a letter for {FACTION}'s elders, asking them to see that she is looked after.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a sack of food for the girl and her village</label><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sent an orphan home to {PLACE} with food</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>The colony can't keep her</label>
+            <outcome>The girl is sent back down the road toward {PLACE}. She doesn't argue.</outcome>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
         <key>raid</key>
         <day>6~12</day>
         <chance>0.4</chance>
@@ -450,6 +540,7 @@
         </titles>
         <texts>
           <li>{FACTION} have come through the famine, thinner and quieter, and some of what kept {PLACE} going came from the colony.</li>
+          <li>[orphan] {FACTION} have come through the famine, thinner and quieter. The girl who was left at the colony's gate has stayed, and has started saying "home" about it without noticing.</li>
         </texts>
         <chronicle>The famine among {FACTION} ended; some of their bread had come from the colony.</chronicle>
         <effects>
