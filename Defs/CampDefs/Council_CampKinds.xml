@@ -526,6 +526,8 @@
       <li>
         <key>bird</key>
         <at>gate</at>
+        <dayName>the hermit's bird</dayName>
+        <named>the carved bird</named>
         <defs><li>SculptureSmall</li></defs>
         <stuff><li>WoodLog</li></stuff>
         <minified>true</minified>

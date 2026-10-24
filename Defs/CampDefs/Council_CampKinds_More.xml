@@ -260,6 +260,8 @@
       <li>
         <key>backdrop</key>
         <at>spot</at>
+        <dayName>the players' castle</dayName>
+        <named>the castle backdrop</named>
         <defs><li>SculptureLarge</li></defs>
         <stuff><li>WoodLog</li></stuff>
         <titles>

@@ -583,7 +583,7 @@
     </lines>
     <!-- At the end of their stay, saplings of this land's own trees in a ring round where their fire was. -->
     <leaveBehind>
-      <li><key>seeds</key><at>ring</at><wildTrees>true</wildTrees><count>6~8</count><growth>0.05</growth></li>
+      <li><key>seeds</key><at>ring</at><wildTrees>true</wildTrees><count>6~8</count><growth>0.05</growth><dayName>the tree-singers' ring</dayName><named>the ring of saplings</named></li>
     </leaveBehind>
     <momentLines>
       <li>[gift] Grow slow. Grow tall.</li>
@@ -943,7 +943,7 @@
       <gift>sprig</gift>
     </farewellWalk>
     <leaveBehind>
-      <li><key>sprig</key><at>gate</at><defs><li>Plant_Rose</li><li>Plant_Daylily</li></defs><growth>0.3</growth></li>
+      <li><key>sprig</key><at>gate</at><defs><li>Plant_Rose</li><li>Plant_Daylily</li></defs><growth>0.3</growth><dayName>the mourners' flowers</dayName><named>the flowers by the gate</named></li>
     </leaveBehind>
     <momentLines>
       <li>[gift] For letting him rest a while.</li>

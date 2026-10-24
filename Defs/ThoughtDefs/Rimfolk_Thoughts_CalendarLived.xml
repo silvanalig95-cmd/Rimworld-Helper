@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The colony calendar's walk out to what a day remembers (DayWay.Walk, Source/ColonyCouncil/Calendar/CalendarLived.cs):
+       a small good moment, so it gives a quiet hour's recreation and a feeling of belonging instead of mood. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Cal_WalkDay</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>walked out for the day</label>
+        <description>We walked out together to the place the day is about, and stood there a while before we came back.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><joyKind>Meditative</joyKind><felt>2</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

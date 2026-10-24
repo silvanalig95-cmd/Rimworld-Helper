@@ -234,12 +234,34 @@ namespace ColonyCouncil
 
         // ---------------- Letters ----------------
 
-        public static List<CampOption> Options(Camp c, string what, Pawn pawn)
+        public static List<CampOption> Options(Camp c, string what, Pawn pawn, string askKey = null)
         {
             var list = new List<CampOption>();
             int gift = GiftSize(c);
             switch (what)
             {
+                case "request":
+                {
+                    // One of their requests (CampRequests.cs): grant it (the ask is done, its effects play out), or say no.
+                    var ask = c.AskByKey(askKey);
+                    if (ask == null) break;
+                    var who = c.AskColonist(ask);
+                    int cost = c.AskCost(ask);
+                    list.Add(new CampOption
+                    {
+                        label = c.Format(ask.label, null, who, cost), disabled = c.AskBlocked(ask), act = () =>
+                        {
+                            c.DoAsk(ask);
+                            return null;
+                        }
+                    });
+                    list.Add(new CampOption
+                    {
+                        label = ask.refuseLabel.NullOrEmpty() ? c.Text("CC_CampAsk_Refuse") : c.Format(ask.refuseLabel, null, who, cost),
+                        act = () => c.Refuse(ask, false)
+                    });
+                    break;
+                }
                 case "join":
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Welcome", pawn), act = () => Hire(c, pawn, 0) });
                     list.Add(new CampOption
@@ -302,7 +324,8 @@ namespace ColonyCouncil
             switch (what)
             {
                 case "join":
-                case "overstay": return 1;
+                case "overstay":
+                case "request": return 1;
                 case "broken": return 2;
                 case "tension":
                 case "refused": return 3;
@@ -310,9 +333,9 @@ namespace ColonyCouncil
             }
         }
 
-        public static string DefaultLabel(Camp c, string what, Pawn pawn)
+        public static string DefaultLabel(Camp c, string what, Pawn pawn, string askKey = null)
         {
-            var opts = Options(c, what, pawn);
+            var opts = Options(c, what, pawn, askKey);
             int i = DefaultIndex(what);
             return i < opts.Count ? opts[i].label : "";
         }
@@ -333,6 +356,8 @@ namespace ColonyCouncil
         public string what;
         public Pawn pawn;
         public bool resolved;
+        /// <summary>The request a "request" letter is about (CampAsk.key).</summary>
+        public string askKey;
 
         public override bool CanDismissWithRightClick => false;
 
@@ -349,7 +374,7 @@ namespace ColonyCouncil
                     yield return Option_Close;
                     yield break;
                 }
-                var opts = CampAnswers.Options(camp, what, pawn);
+                var opts = CampAnswers.Options(camp, what, pawn, askKey);
                 int def = CampAnswers.DefaultIndex(what);
                 for (int i = 0; i < opts.Count; i++)
                 {
@@ -391,7 +416,14 @@ namespace ColonyCouncil
             resolved = true;
             var camp = Camp;
             if (camp == null) return;
-            var opts = CampAnswers.Options(camp, what, pawn);
+            // A request left unanswered: they take the silence for a no, and mind it less than a plain one.
+            if (what == "request")
+            {
+                var ask = camp.AskByKey(askKey);
+                if (ask != null) Answer(camp, new CampOption { act = () => camp.Refuse(ask, true) });
+                return;
+            }
+            var opts = CampAnswers.Options(camp, what, pawn, askKey);
             int i = CampAnswers.DefaultIndex(what);
             if (i < opts.Count) Answer(camp, opts[i]);
         }
@@ -403,6 +435,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref what, "what");
             Scribe_References.Look(ref pawn, "pawn");
             Scribe_Values.Look(ref resolved, "resolved");
+            Scribe_Values.Look(ref askKey, "askKey");
         }
     }
 }

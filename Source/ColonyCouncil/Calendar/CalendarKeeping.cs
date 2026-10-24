@@ -18,6 +18,7 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Cal_BonfireNight;
         public static ThoughtDef Council_Cal_GiftDay;
         public static ThoughtDef Council_Cal_HuntDay;
+        public static ThoughtDef Council_Cal_WalkDay;
 
         static CalendarDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(CalendarDefOf));
     }
@@ -47,7 +48,7 @@ namespace ColonyCouncil
         public static string LinesKey(CalendarDay d)
         {
             if (d.kind == CalendarKind.Holiday) return d.way.ToString();
-            if (d.way == DayWay.Personal || d.way == DefaultWay(d.kind, d.fallen.Count > 0)) return d.kind.ToString();
+            if (d.way == DayWay.Personal || d.way == DefaultWayOf(d)) return d.kind.ToString();
             return d.way.ToString();
         }
 
@@ -103,6 +104,13 @@ namespace ColonyCouncil
                 case CalendarKind.Companion:
                     return home.FirstOrDefault(p => p.ThingID == d.otherId) ?? adults.Where(p => d.knew.Contains(p.ThingID)).FirstOrDefault()
                            ?? adults.OrderByDescending(YearsWithUs).First();
+                case CalendarKind.CampGift:
+                case CalendarKind.Rescue:
+                    // The colonist closest to the camp, or the one brought home; else one who knew them, else the longest here.
+                    return home.FirstOrDefault(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile()) ?? adults.Where(p => d.knew.Contains(p.ThingID)).FirstOrDefault()
+                           ?? adults.OrderByDescending(YearsWithUs).First();
+                case CalendarKind.Situation:
+                    return adults.Where(p => d.knew.Contains(p.ThingID)).OrderByDescending(YearsWithUs).FirstOrDefault() ?? adults.OrderByDescending(YearsWithUs).First();
                 default:
                     return adults.OrderByDescending(YearsWithUs).First();
             }
@@ -113,6 +121,8 @@ namespace ColonyCouncil
             var t = new List<string> { years <= 1 ? "first" : "years", "kind:" + d.kind.ToString().ToLowerInvariant(), "way:" + d.way.ToString().ToLowerInvariant() };
             if (d.tradition) t.Add("tradition");
             if (d.byPlayer) t.Add("named");
+            // What it's about: a camp's gift ([about:bird]), a world event's kind ([ws:hunger]).
+            if (!d.about.NullOrEmpty()) t.Add((d.kind == CalendarKind.Situation ? "ws:" : "about:") + d.about);
             if (d.kind == CalendarKind.Battle)
             {
                 // A nemesis brought down has lines of its own; a battle won cleanly or at a cost, its own.
@@ -134,8 +144,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The values a day's lines may use: {NAME}, {YEARS}, {DEAD}, {ENEMY}, {COUNT}, {PLACE}, and {SUBJECT} (a new crop,
-        /// the game of a great hunt, the travellers home, the first child's name).
+        /// The values a day's lines may use: {NAME}, {YEARS}, {DEAD}, {ENEMY}, {COUNT}, {PLACE}, {SUBJECT} (a new crop,
+        /// the game of a great hunt, the travellers home, the first child's name, a camp's gift, a world event, a faith),
+        /// {CAMP} (the camp that left a gift) and {WHO} (the camp's leader, a world event's people, a faith's rite, a
+        /// captive's captors).
         /// </summary>
         private static List<NamedArgument> Args(CalendarDay d, int years, Map map)
         {
@@ -143,7 +155,8 @@ namespace ColonyCouncil
             return new List<NamedArgument>
             {
                 (d.label ?? "").Named("NAME"), years.Named("YEARS"), (dead ?? "").Named("DEAD"), (d.enemy ?? "").Named("ENEMY"),
-                d.kills.Named("COUNT"), (map?.Biome?.label ?? "").Named("PLACE"), (d.subject ?? "").Named("SUBJECT")
+                d.kills.Named("COUNT"), (map?.Biome?.label ?? "").Named("PLACE"), (d.subject ?? "").Named("SUBJECT"),
+                (d.kind == CalendarKind.CampGift ? d.enemy ?? "" : "").Named("CAMP"), (d.otherName ?? "").Named("WHO")
             };
         }
 
@@ -230,9 +243,12 @@ namespace ColonyCouncil
             Couple(d, Keeper(d, home), out var keeper, out var other);
             // A wedding day whose couple can't be found this year (away somewhere the game doesn't look) passes quietly.
             if (d.kind == CalendarKind.Wedding && other == null) return;
-            var ritual = RitualFor(d.way);
+            // A faith's own day offers the faith's own rite for it (the game's date ritual), whatever way the colony keeps it.
+            var faithRite = FaithRite(d);
+            var ritual = faithRite ?? RitualFor(d.way);
             var parts = new List<string> { Opening(d, map, keeper, other, years), ("CC_Cal_Way_" + d.way + "_Letter").Translate().Resolve(), StatusLine(d) };
-            if (ritual != null) parts.Add("CC_Cal_Ritual_Feast".Translate(IdeoName(), ritual.LabelCap).Resolve());
+            if (faithRite != null) parts.Add("CC_Cal_Ritual_FaithDay".Translate(IdeoName(), faithRite.LabelCap).Resolve());
+            else if (ritual != null) parts.Add("CC_Cal_Ritual_Feast".Translate(IdeoName(), ritual.LabelCap).Resolve());
             int hour = GenLocalDate.HourOfDay(map);
             int ticks = Mathf.Max(2, 22 - hour) * GenDate.TicksPerHour;
             string keepLabel = ("CC_Cal_Keep_" + d.way).Translate();
@@ -348,8 +364,12 @@ namespace ColonyCouncil
                     foreach (var p in home) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_FeastDay);
                     return false;
                 case DayWay.Games:
-                    if (PlayDay(d, map, home, PlayKind.Gathering, CalendarDefOf.Council_Cal_GamesDay, null,
-                            new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Outdoors, PlaySpot.Gather, PlaySpot.Dining }, null))
+                {
+                    // Out where a camp's gift stands, when the day remembers one (CalendarLived.cs).
+                    var at = DayThing(d, map);
+                    var spots = new List<PlaySpot> { PlaySpot.Rec, PlaySpot.Outdoors, PlaySpot.Gather, PlaySpot.Dining };
+                    if (at != null) spots.Insert(0, PlaySpot.Place);
+                    if (PlayDay(d, map, home, PlayKind.Gathering, CalendarDefOf.Council_Cal_GamesDay, null, spots, at))
                         return true;
                     foreach (var p in home)
                     {
@@ -357,6 +377,7 @@ namespace ColonyCouncil
                         CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_GamesDay);
                     }
                     return false;
+                }
                 case DayWay.Rest:
                     GiveRest(map, home);
                     foreach (var p in home.Where(p => !Industrious(p))) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_RestDay);
@@ -366,8 +387,12 @@ namespace ColonyCouncil
                     // Those whose faith despises fire stay away from it (Wishes/Beliefs.cs).
                     var round = home.Where(p => !Beliefs.Forbids(p, Belief.NoFire)).ToList();
                     if (round.Count == 0) return false;
-                    if (PlayDay(d, map, round, PlayKind.Bonfire, CalendarDefOf.Council_Cal_BonfireNight, null,
-                            new List<PlaySpot> { PlaySpot.Fire, PlaySpot.Outdoors, PlaySpot.Gather }, null))
+                    // Where a camp's fire was, by what it left (out in the open only: a fire is laid there).
+                    var by = DayThing(d, map);
+                    if (by != null && by.Position.Roofed(map)) by = null;
+                    var fireSpots = new List<PlaySpot> { PlaySpot.Fire, PlaySpot.Outdoors, PlaySpot.Gather };
+                    if (by != null) fireSpots.Insert(0, PlaySpot.Place);
+                    if (PlayDay(d, map, round, PlayKind.Bonfire, CalendarDefOf.Council_Cal_BonfireNight, null, fireSpots, by))
                         return true;
                     foreach (var p in round) CouncilGameComponent.GiveThought(p, CalendarDefOf.Council_Cal_BonfireNight);
                     return false;
@@ -380,6 +405,8 @@ namespace ColonyCouncil
                 case DayWay.Planting:
                     Planting(d, map, home);
                     return false;
+                case DayWay.Walk:
+                    return WalkDay(d, map, home);
                 case DayWay.Faith:
                     // The faith's own speaker for its own faith (Faith/FaithEvenings.cs); when it can't be held, a word at supper.
                     if (FaithEvenings.FromCalendar(d, map)) return true;
@@ -661,7 +688,12 @@ namespace ColonyCouncil
             var result = CalendarMath.Pass(ref d.keptYears, ref d.tradition, ref d.breaks);
             if (result == CalendarMath.PassResult.Passed)
             {
-                News.Post("CC_Cal_LetPass".Translate(d.label.CapitalizeFirst()).Resolve(), null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                // Said its own way where the day has lines for it (a camp's gift, a world event, the faith's day, one brought home).
+                var home = AtHome(map);
+                var keeper = home.Count > 0 ? Keeper(d, home) : null;
+                int years = YearsOf(d, d.lastYear);
+                string own = keeper != null ? Fill(Flavor.FromPool("Council_Cal_Pass_" + LinesKey(d), keeper, null, null, Tags(d, years).ToArray()), d, years, map, keeper, null) : null;
+                News.Post(own.NullOrEmpty() ? "CC_Cal_LetPass".Translate(d.label.CapitalizeFirst()).Resolve() : own, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
                 return;
             }
             using var _cause = Causes.Push("CC_Cause_Tradition".Translate(d.label).Resolve());
@@ -789,6 +821,14 @@ namespace ColonyCouncil
                     list.AddRange(home.Where(p => p.ThingID == d.otherId));
                     list.AddRange(home.Where(p => p.ThingID != d.otherId && d.knew.Contains(p.ThingID)).InRandomOrder().Take(1));
                     break;
+                case CalendarKind.CampGift:
+                case CalendarKind.Rescue:
+                    list.AddRange(home.Where(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile()));
+                    list.AddRange(home.Where(p => p.ThingID != d.pawnId && d.knew.Contains(p.ThingID) && !p.DevelopmentalStage.Juvenile()).InRandomOrder().Take(1));
+                    break;
+                case CalendarKind.Situation:
+                    list.AddRange(home.Where(p => d.knew.Contains(p.ThingID) && !p.DevelopmentalStage.Juvenile()).InRandomOrder().Take(2));
+                    break;
             }
             foreach (var p in home.InRandomOrder())
             {
@@ -814,6 +854,8 @@ namespace ColonyCouncil
                     args.Add(spouse.Named("OTHER"));
                 }
                 if (d.kind == CalendarKind.Death && d.kin.Contains(w.ThingID)) tags.Add("kin");
+                // One brought home writes as themselves; a friend of theirs as the one who waited.
+                if (d.kind == CalendarKind.Rescue && w.ThingID != d.pawnId) tags.Add("friend");
                 comp.journals.WriteTagged(w, pool, tags.ToArray(), null, args.ToArray());
             }
         }
@@ -859,7 +901,12 @@ namespace ColonyCouncil
                 case CalendarKind.Battle:
                 case CalendarKind.Homecoming:
                 case CalendarKind.GreatHunt:
+                case CalendarKind.Situation:
                     a = home.Where(p => d.knew.Contains(p.ThingID)).RandomElementWithFallback();
+                    break;
+                case CalendarKind.CampGift:
+                case CalendarKind.Rescue:
+                    a = home.FirstOrDefault(p => p.ThingID == d.pawnId) ?? home.Where(p => d.knew.Contains(p.ThingID)).RandomElementWithFallback();
                     break;
                 case CalendarKind.FirstChild:
                 case CalendarKind.Companion:
@@ -941,7 +988,7 @@ namespace ColonyCouncil
         public static Precept_Ritual RitualFor(DayWay way)
         {
             if (!ModsConfig.IdeologyActive || way == DayWay.Personal || way == DayWay.Rest || way == DayWay.Gifts || way == DayWay.Hunt || way == DayWay.Planting
-                || way == DayWay.Faith) return null;
+                || way == DayWay.Faith || way == DayWay.Walk) return null;
             try
             {
                 var ideo = Faction.OfPlayer?.ideos?.PrimaryIdeo;

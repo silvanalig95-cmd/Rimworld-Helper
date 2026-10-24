@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Days that come from what the colony lived through (Source/ColonyCouncil/Calendar/CalendarLived.cs): a camp's
+       gift, a world event the colony took part in, the colony's own faith's holy days, one of its people brought home;
+       and the walk out to what a day remembers. -->
+
+  <CC_Cal_Name_CampGift>the day the {0} left</CC_Cal_Name_CampGift>
+  <CC_Cal_Name_Situation>remembering {0}</CC_Cal_Name_Situation>
+  <CC_Cal_Name_FaithDay>{0}'s holy day</CC_Cal_Name_FaithDay>
+  <CC_Cal_Name_Rescue>the day {0} came home</CC_Cal_Name_Rescue>
+
+  <CC_Cal_Origin_CampGift>The {0} stayed {3} days, and left {2} behind on this day in {1}.</CC_Cal_Origin_CampGift>
+  <CC_Cal_Origin_Situation>{0} came to an end on this day in {1}, and the colony had a hand in it.</CC_Cal_Origin_Situation>
+  <CC_Cal_Origin_FaithDay>A holy day of {0}: the faith holds its {1} on this date.</CC_Cal_Origin_FaithDay>
+  <CC_Cal_Origin_Rescue>{0} was brought home on this day in {1}, after {2} days held by {3}.</CC_Cal_Origin_Rescue>
+
+  <CC_Cal_Way_Walk>walk out</CC_Cal_Way_Walk>
+  <CC_Cal_Way_Walk_Desc>the colony walks out together to what the day remembers (a camp's gift, a grave, the fields, the gate, else a long way out), stands there a while and walks back; a quiet good hour, no mood.</CC_Cal_Way_Walk_Desc>
+  <CC_Cal_Way_Walk_Letter>If the council keeps it, the colony walks out together to what the day remembers, stands there a while, and walks back.</CC_Cal_Way_Walk_Letter>
+  <CC_Cal_Keep_Walk>Walk out to it</CC_Cal_Keep_Walk>
+
+  <CC_Cal_Ritual_FaithDay>It is the day of the {1}, a rite of {0}, and its believers will expect it held. Holding the rite counts as keeping the day.</CC_Cal_Ritual_FaithDay>
+
+</LanguageData>

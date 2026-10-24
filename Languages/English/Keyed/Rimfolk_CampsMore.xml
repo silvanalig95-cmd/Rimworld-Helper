@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A camp with more to say (Source/ColonyCouncil/Camps/CampRequests.cs, CampDilemmas.cs): the requests a camp makes of
+       the colony by letter, the errands its people walk on into the colony, and the camp dilemmas' own words.
+       Camp texts take {NAME} (the kind of camp), {FACTION}, {PLACE}, {X} (whoever goes or speaks for them) and {A}. -->
+
+  <CC_CampAsk_RequestTitle>A request from the {NAME}</CC_CampAsk_RequestTitle>
+  <CC_CampAsk_Refuse>Not this time</CC_CampAsk_Refuse>
+  <CC_CampAsk_NoMeat>They have no meat to spare yet.</CC_CampAsk_NoMeat>
+  <CC_CampAsk_Refused>{X_nameDef} took the colony's answer back to their camp without a word.</CC_CampAsk_Refused>
+
+  <!-- Errands: told when the first of them gets there. -->
+  <CC_CampErrand_Arrived_visit>{X_nameDef} of the {NAME} has come over to the colony.</CC_CampErrand_Arrived_visit>
+  <CC_CampErrand_Arrived_water>{X_nameDef} has brought the {NAME}' herd down to the colony's water to drink.</CC_CampErrand_Arrived_water>
+  <CC_CampErrand_Arrived_pray>{X_nameDef} of the {NAME} is praying at the colony's graves.</CC_CampErrand_Arrived_pray>
+  <CC_CampErrand_Arrived_tend>{X_nameDef} of the {NAME} has come to see {A_nameDef}, with a bag of remedies.</CC_CampErrand_Arrived_tend>
+  <CC_CampErrand_Arrived_stall>{X_nameDef} has set out the {NAME}' wares by the colony's gate for the day.</CC_CampErrand_Arrived_stall>
+  <CC_CampErrand_Arrived_dig>{X_nameDef} of the {NAME} has started a test hole at the edge of the colony.</CC_CampErrand_Arrived_dig>
+  <CC_CampErrand_Arrived_survey>{X_nameDef} of the {NAME} has set up an instrument in the middle of the colony and is taking sightings.</CC_CampErrand_Arrived_survey>
+  <CC_CampErrand_Arrived_bless>{X_nameDef} is leading the {NAME} round the colony's fields, their icon held high and everyone singing.</CC_CampErrand_Arrived_bless>
+  <CC_CampErrand_Arrived_mend>{X_nameDef} of the {NAME} has come to the gate with a hammer and a sack of nails.</CC_CampErrand_Arrived_mend>
+
+  <CC_CampErrand_Arrived_prayover>{X_nameDef} of the {NAME} has come to sit with {A_nameDef} and pray.</CC_CampErrand_Arrived_prayover>
+
+  <!-- Errands done: what they leave the colony. -->
+  <CC_CampErrand_Gave_visit>The {NAME} set out a share for the colony at the edge of their camp before they went back.</CC_CampErrand_Gave_visit>
+  <CC_CampErrand_Gave_dig>The {NAME} filled in their test hole and set the colony's share of what it gave out at the edge of their camp, as promised.</CC_CampErrand_Gave_dig>
+
+  <!-- Errands on the week's page, while they're coming or under way. -->
+  <CC_CampErrand_Week_visit>{X_nameDef} of the {NAME} comes over to the colony</CC_CampErrand_Week_visit>
+  <CC_CampErrand_Week_water>The {NAME} water their herd at the colony's water</CC_CampErrand_Week_water>
+  <CC_CampErrand_Week_pray>The {NAME} pray at the colony's graves</CC_CampErrand_Week_pray>
+  <CC_CampErrand_Week_tend>{X_nameDef} of the {NAME} comes to see {A_nameDef}</CC_CampErrand_Week_tend>
+  <CC_CampErrand_Week_stall>The {NAME} keep their stall at the colony's gate</CC_CampErrand_Week_stall>
+  <CC_CampErrand_Week_dig>The {NAME} dig a test hole by the colony</CC_CampErrand_Week_dig>
+  <CC_CampErrand_Week_survey>The {NAME} take sightings in the colony</CC_CampErrand_Week_survey>
+  <CC_CampErrand_Week_bless>{X_nameDef} leads the {NAME} round the colony's fields</CC_CampErrand_Week_bless>
+  <CC_CampErrand_Week_mend>{X_nameDef} of the {NAME} comes to mend at the gate</CC_CampErrand_Week_mend>
+  <CC_CampErrand_Week_prayover>{X_nameDef} of the {NAME} comes to pray at {A_nameDef}'s side</CC_CampErrand_Week_prayover>
+  <CC_CampErrand_Week_stray>Beasts from the {NAME} camp are in the colony's fields</CC_CampErrand_Week_stray>
+
+  <!-- Why an errand can't go. -->
+  <CC_CampErrand_NoHerd>They have no animals with them.</CC_CampErrand_NoHerd>
+  <CC_CampErrand_Busy>Their people are busy with their strayed animals.</CC_CampErrand_Busy>
+  <CC_CampErrand_No_gate>There's no way for them to reach the colony's gate.</CC_CampErrand_No_gate>
+  <CC_CampErrand_No_water>There's no water near the colony they could reach.</CC_CampErrand_No_water>
+  <CC_CampErrand_No_fields>The colony has no fields for them to walk.</CC_CampErrand_No_fields>
+  <CC_CampErrand_No_graves>The colony has no graves.</CC_CampErrand_No_graves>
+  <CC_CampErrand_No_colony>There's no open ground in the colony for them.</CC_CampErrand_No_colony>
+  <CC_CampErrand_No_A>Nobody at the colony to go to.</CC_CampErrand_No_A>
+
+  <CC_CampHelp_No>They can't do that now.</CC_CampHelp_No>
+  <CC_CampHelp_No_repair>Nothing of the colony's needs mending.</CC_CampHelp_No_repair>
+  <CC_CampHelp_No_survey>They've surveyed the colony's ground already.</CC_CampHelp_No_survey>
+
+  <!-- The camp dilemmas. -->
+  <CC_CampDlm_Joined>{X_nameDef} left the {NAME} of {FACTION} to stay with the colony.</CC_CampDlm_Joined>
+  <CC_CampDlm_CropsEaten>The beasts from the {1} camp ate {0} plants in the colony's fields.</CC_CampDlm_CropsEaten>
+  <CC_Camp_End_moved>The {NAME} from {FACTION} packed up their camp {PLACE} early and moved on, to keep their trouble off the colony's land.</CC_Camp_End_moved>
+
+</LanguageData>

@@ -267,6 +267,12 @@ namespace ColonyCouncil
             var home = g == null || g.follow ? FireCell : Spot(g.at);
             var rest = a.needs?.rest;
             if (rest != null && (rest.CurLevelPercentage < 0.25f || (night && rest.CurLevelPercentage < 0.9f))) return LieDown(a, home);
+            // Walked to the colony's water with the drovers, or strayed into its fields (CampRequests.cs): they mill about there.
+            if (errandHerd && ErrandLive && !night && !(g != null && g.follow) && errandCell.IsValid)
+            {
+                var there = Wander(a, errandCell, 4, true);
+                if (there != null) return there;
+            }
             bool loose = false;
             if (g != null && g.follow)
             {
@@ -730,9 +736,12 @@ namespace ColonyCouncil
             walkDone = true;
             var gift = kind.leaveBehind?.FirstOrDefault(g => g?.key != null && g.key == kind.farewellWalk?.gift);
             if (gift == null || w == null || !w.Position.InHorDistOf(cell, 2.5f)) return;
-            if (!Place(gift, cell, w)) return;
+            var placed = new List<Thing>();
+            if (!Place(gift, cell, w, placed)) return;
             leftKey = gift.key;
             SayMoment(w, "gift");
+            // A day on the colony's calendar: the day they stayed and left this behind (Calendar/CalendarLived.cs).
+            CalendarTracker.Notify_CampGift(this, gift, placed, cell);
         }
 
         // ---------------- What they leave behind ----------------
@@ -748,33 +757,38 @@ namespace ColonyCouncil
             {
                 if (g == null || g.at == "gate") continue;
                 var at = g.at == "spot" && taskSpot.IsValid ? taskSpot : fire;
-                if (!Place(g, at, Here.FirstOrDefault())) continue;
+                var placed = new List<Thing>();
+                if (!Place(g, at, Here.FirstOrDefault(), placed)) continue;
                 leftKey = g.key;
                 SayMoment(Here.Where(p => !p.Downed).RandomElementWithFallback(), "gift", 0.7f);
+                CalendarTracker.Notify_CampGift(this, g, placed, at);
             }
         }
 
         /// <summary>A gift set down at or round <paramref name="at"/>: saplings, a plant, a work of art standing or in its crate. Nobody's: it stays.</summary>
-        private bool Place(CampGift g, IntVec3 at, Pawn maker)
+        private bool Place(CampGift g, IntVec3 at, Pawn maker, List<Thing> placed = null)
         {
             if (map == null || !at.IsValid || !at.InBounds(map)) return false;
             try
             {
-                if (g.wildTrees) return PlantGift(WildTree(), at, g) > 0;
+                if (g.wildTrees) return PlantGift(WildTree(), at, g, placed) > 0;
                 foreach (var def in g.Defs)
                 {
                     if (def.category == ThingCategory.Plant)
                     {
-                        if (PlantGift(def, at, g) > 0) return true;
+                        if (PlantGift(def, at, g, placed) > 0) return true;
                         continue;
                     }
                     if (def.category != ThingCategory.Building) continue;
                     if (g.minified && def.Minifiable)
                     {
-                        var mini = MakeGift(def, g, maker).MakeMinified();
+                        var made = MakeGift(def, g, maker);
+                        var mini = made.MakeMinified();
                         if (GenPlace.TryPlaceThing(mini, at, map, ThingPlaceMode.Near, out var put) && put != null)
                         {
                             put.SetForbidden(false, false);
+                            // The carving itself: found again in its crate, or set up wherever the colony puts it.
+                            placed?.Add(made);
                             return true;
                         }
                         if (!mini.Destroyed) mini.Destroy();
@@ -782,7 +796,9 @@ namespace ColonyCouncil
                     }
                     var cell = BuildingCellNear(def, at);
                     if (!cell.IsValid) continue;
-                    GenSpawn.Spawn(MakeGift(def, g, maker), cell, map, Rot4.North, WipeMode.Vanish);
+                    var gift = MakeGift(def, g, maker);
+                    GenSpawn.Spawn(gift, cell, map, Rot4.North, WipeMode.Vanish);
+                    placed?.Add(gift);
                     return true;
                 }
             }
@@ -841,7 +857,7 @@ namespace ColonyCouncil
         /// Plants set in: in a ring round the old fire (saplings, evenly spaced), or one beside the colony's gate (never on
         /// the doorstep). Only where they can grow; a flower only in its growing season. Returns how many.
         /// </summary>
-        private int PlantGift(ThingDef def, IntVec3 at, CampGift g)
+        private int PlantGift(ThingDef def, IntVec3 at, CampGift g, List<Thing> placed = null)
         {
             if (def?.plant == null) return 0;
             int want = Mathf.Max(1, g.count.RandomInRange), planted = 0;
@@ -862,7 +878,10 @@ namespace ColonyCouncil
             foreach (var c in cells)
             {
                 if (planted >= want) break;
-                if (PlantAt(def, c, g.growth, ring)) planted++;
+                var plant = PlantAt(def, c, g.growth, ring);
+                if (plant == null) continue;
+                planted++;
+                placed?.Add(plant);
             }
             return planted;
         }
@@ -877,18 +896,18 @@ namespace ColonyCouncil
             return false;
         }
 
-        private bool PlantAt(ThingDef def, IntVec3 c, float growth, bool atCamp)
+        private Plant PlantAt(ThingDef def, IntVec3 c, float growth, bool atCamp)
         {
-            if (!c.InBounds(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null || c.GetFirstPawn(map) != null || c.Roofed(map)) return false;
+            if (!c.InBounds(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null || c.GetFirstPawn(map) != null || c.Roofed(map)) return null;
             var old = c.GetPlant(map);
-            if (old != null && (old.def == def || old.sown || (old.def.plant?.IsTree ?? false))) return false;
-            if (map.zoneManager.ZoneAt(c) != null || (atCamp && !ClearOfColony(c))) return false;
-            if (!def.CanEverPlantAt(c, map, true)) return false;
-            if (!def.plant.IsTree && !PlantUtility.GrowthSeasonNow(c, map, def)) return false;
+            if (old != null && (old.def == def || old.sown || (old.def.plant?.IsTree ?? false))) return null;
+            if (map.zoneManager.ZoneAt(c) != null || (atCamp && !ClearOfColony(c))) return null;
+            if (!def.CanEverPlantAt(c, map, true)) return null;
+            if (!def.plant.IsTree && !PlantUtility.GrowthSeasonNow(c, map, def)) return null;
             var plant = (Plant)ThingMaker.MakeThing(def);
             plant.Growth = Mathf.Clamp(growth, 0.01f, 1f);
             GenSpawn.Spawn(plant, c, map, WipeMode.Vanish);
-            return true;
+            return plant;
         }
 
         // ---------------- Save ----------------

@@ -113,6 +113,28 @@ namespace ColonyCouncil
         /// <summary>A great hunt: more for a bigger bag (counted to fifteen).</summary>
         public static float HuntWeight(int kills) => 18f + 1.2f * Math.Min(Math.Max(kills, 0), 15);
 
+        /// <summary>
+        /// The day a camp left a gift: more for the time the colony spent at their fire (warmth, counted to twenty), for
+        /// their good turns and the colony's gifts to them (to five), and for a longer stay (to ten days).
+        /// </summary>
+        public static float CampGiftWeight(int warmth, int kindnesses, float days) =>
+            16f + 0.6f * Math.Min(Math.Max(warmth, 0), 20) + 2f * Math.Min(Math.Max(kindnesses, 0), 5) + 0.6f * Math.Min(Math.Max(days, 0f), 10f);
+
+        /// <summary>How many things of a gift a day keeps track of (a ring of saplings is several).</summary>
+        public const int MaxDayThings = 8;
+
+        /// <summary>The colony took part in a world event: its answers counted as help at least once, or it helped see it through.</summary>
+        public static bool TookPart(int help, bool helped) => help > 0 || helped;
+
+        /// <summary>A world event the colony took part in: more for each answer that helped (to five), and for seeing it through.</summary>
+        public static float SituationWeight(int help, bool helped) => 20f + 3f * Math.Min(Math.Max(help, 0), 5) + (helped ? 8f : 0f);
+
+        /// <summary>A holiday of the colony's own faith (a rite held on a date).</summary>
+        public const float FaithDayWeight = 30f;
+
+        /// <summary>One of ours brought home from captivity: more the longer they were gone (counted to thirty days).</summary>
+        public static float RescueWeight(float daysGone) => 30f + 0.5f * Math.Min(Math.Max(daysGone, 0f), 30f);
+
         /// <summary>A caravan counts as a journey once its people are away this many days.</summary>
         public const float HomecomingMinDays = 5f;
 

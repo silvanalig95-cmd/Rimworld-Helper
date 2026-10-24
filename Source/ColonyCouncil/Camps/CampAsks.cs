@@ -30,7 +30,7 @@ namespace ColonyCouncil
         public float minDays;
         /// <summary>Who goes: the colonist best at this.</summary>
         public SkillDef skill;
-        /// <summary>Only when this kind of thing is true: "sick" (a colonist is ill or ailing), "hungry" (they're short of food), "evening" (16h to 22h).</summary>
+        /// <summary>Only when this kind of thing is true: "sick" (a colonist is ill or ailing), "evening" (15h to 22h), "theirMeat" (they have meat of their own to trade).</summary>
         public string needs;
         /// <summary>The camp's tension afterwards (negative eases it), and how much warmer A is with them.</summary>
         public float tension;
@@ -38,6 +38,21 @@ namespace ColonyCouncil
         /// <summary>What their people remember of it (a FactionMemory deed kind), naming A.</summary>
         public string deed;
         public List<DilemmaEffect> effects = new List<DilemmaEffect>();
+
+        // A request of theirs (CampRequests.cs): the camp asks it of the colony by letter, now and then on a day's event,
+        // instead of the colony asking it from the camp's page. Granting it does the ask; saying no costs some goodwill.
+
+        /// <summary>The camp asks this of the colony, by letter (and it isn't offered on the camp's page).</summary>
+        public bool theyAsk;
+        /// <summary>The request, as its letter tells it ({X} asks; {A} is who would go, {COUNT} the silver).</summary>
+        [MustTranslate] public List<string> askTexts;
+        /// <summary>The answer that says no (a plain "not this time" unless given).</summary>
+        [MustTranslate] public string refuseLabel;
+        /// <summary>What happened when the colony said no, or let the letter go unanswered.</summary>
+        [MustTranslate] public List<string> refused;
+        /// <summary>How much tension a no adds (half when the letter just ran out), and the goodwill a plain no costs.</summary>
+        public float refuseTension = 5f;
+        public int refuseGoodwill;
     }
 
     public partial class Camp
@@ -64,6 +79,10 @@ namespace ColonyCouncil
                 case "evening":
                     int h = GenLocalDate.HourOfDay(map);
                     if (h < 15 || h > 21) return "CC_CampAsk_Evening".Translate();
+                    break;
+                case "theirMeat":
+                    // Meat of their own to trade: a hunting party's kills, dressed and in their stash.
+                    if (Goods().Where(t => t.def.IsMeat).Sum(t => t.stackCount) < 20) return "CC_CampAsk_NoMeat".Translate();
                     break;
             }
             int cost = AskCost(a);

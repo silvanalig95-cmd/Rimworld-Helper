@@ -157,6 +157,7 @@ namespace ColonyCouncil
             if (day != dayKey) NewDay(day);
             Upkeep();
             WatchRepair();
+            WatchErrand();
             if (phase == CampPhase.Building) CheckBuilt();
             WatchTrade();
             if (Ends()) return;
@@ -450,6 +451,8 @@ namespace ColonyCouncil
         {
             // Bent terms come first: the colony should hear about those.
             if (AnyTerms && Rand.Chance(kind.breakTerms * (0.5f + tension / 100f)) && BendTerms()) return;
+            // Something they'd ask of the colony (a request by letter, CampRequests.cs), when their kind has one.
+            if (tension < 55f && Rand.Chance(RequestChance) && TryRequest()) return;
             if (tension < 45f && Rand.Chance(kind.helpChance) && Help()) return;
             if (tension < 40f && DaysHere >= 2f && Now - lastJoinAskTick > GenDate.TicksPerDay * 3 && Rand.Chance(kind.joinChance)) AskToJoin();
         }
@@ -1095,7 +1098,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var colonists = IncidentWorker_Happening.Colonists(map);
             // apart: the camp has gone; the friendship was made face to face at their fire (Visited, Visitors need them together).
-            bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded";
+            bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "moved";
             string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" ? "fallout" : "fled";
             var them = members.Where(m => m != null && !m.Dead && !joined.Contains(m)).ToList();
             Pawn friend = null, friendOf = null, foe = null, foeOf = null;

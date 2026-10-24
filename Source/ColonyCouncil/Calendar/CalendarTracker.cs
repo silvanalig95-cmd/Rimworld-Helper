@@ -340,6 +340,10 @@ namespace ColonyCouncil
                 case CalendarKind.NewCrop: return 2;
                 case CalendarKind.GreatHunt: return 2;
                 case CalendarKind.Companion: return 3;
+                case CalendarKind.CampGift: return 2;
+                case CalendarKind.Situation: return 3;
+                case CalendarKind.FaithDay: return 3;
+                case CalendarKind.Rescue: return 2;
                 default: return 1;
             }
         }
@@ -405,6 +409,10 @@ namespace ColonyCouncil
                 case CalendarKind.GreatHunt: return "CC_Cal_Name_GreatHunt".Translate();
                 case CalendarKind.Foal: return "CC_Cal_Name_Foal".Translate(d.subject ?? "?");
                 case CalendarKind.Companion: return "CC_Cal_Name_Companion".Translate(d.pawnName ?? "?");
+                case CalendarKind.CampGift: return "CC_Cal_Name_CampGift".Translate(d.enemy ?? "?");
+                case CalendarKind.Situation: return "CC_Cal_Name_Situation".Translate(d.subject ?? "?");
+                case CalendarKind.FaithDay: return d.otherName.NullOrEmpty() ? "CC_Cal_Name_FaithDay".Translate(d.subject ?? "?").ToString() : d.otherName;
+                case CalendarKind.Rescue: return "CC_Cal_Name_Rescue".Translate(d.pawnName ?? "?");
                 default: return "CC_Cal_Name_Holiday".Translate();
             }
         }
@@ -424,9 +432,15 @@ namespace ColonyCouncil
                 case CalendarKind.Walls: return DayWay.Bonfire;
                 case CalendarKind.GreatHunt: return DayWay.Hunt;
                 case CalendarKind.Companion: return DayWay.Remembrance;
+                case CalendarKind.CampGift: return DayWay.Walk;
+                case CalendarKind.FaithDay: return DayWay.Faith;
                 default: return DayWay.Feast;
             }
         }
+
+        /// <summary>How this day is kept unless the player says otherwise (a world event's day, by what it was).</summary>
+        public static DayWay DefaultWayOf(CalendarDay d) =>
+            d.kind == CalendarKind.Situation ? SituationWay(d.about) : DefaultWay(d.kind, d.fallen.Count > 0);
 
         /// <summary>A day dated at a game tick: its date, its year, and whether it has come round this year already.</summary>
         private static CalendarDay Dated(CalendarDay d, int gameTick, Map map, int today, int year, bool happenedNow)
@@ -811,7 +825,15 @@ namespace ColonyCouncil
                     case CalendarKind.Homecoming:
                     case CalendarKind.GreatHunt:
                     case CalendarKind.Companion:
+                    case CalendarKind.Situation:
                         if (!d.tradition && d.knew.Count > 0 && !d.knew.Any(k => Living(k, known) != null)) days.Remove(d);
+                        break;
+                    case CalendarKind.Rescue:
+                        if (Gone(d, d.pawnId, known)) days.Remove(d);
+                        break;
+                    case CalendarKind.CampGift:
+                        // What they left is gone from the map (cut down, sold, burned): the day goes with it, unless kept long enough to be a tradition.
+                        if (!d.tradition && GiftGone(d)) days.Remove(d);
                         break;
                 }
             }

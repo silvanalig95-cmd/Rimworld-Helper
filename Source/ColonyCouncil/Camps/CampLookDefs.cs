@@ -96,6 +96,12 @@ namespace ColonyCouncil
         public bool minified;
         /// <summary>A work of art's title (one of these).</summary>
         [MustTranslate] public List<string> titles;
+        /// <summary>
+        /// The day it marks on the colony's calendar, as its name ("the hermit's bird"), and what the calendar's lines
+        /// call the gift ("the carved bird"). Without them, the calendar names the day after the camp.
+        /// </summary>
+        [MustTranslate] public string dayName;
+        [MustTranslate] public string named;
 
         public IEnumerable<ThingDef> Defs => defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).Where(d => d != null) ?? Enumerable.Empty<ThingDef>();
     }

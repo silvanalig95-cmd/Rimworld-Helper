@@ -38,7 +38,15 @@ namespace ColonyCouncil
         /// <summary>The first foal: the first animal born to the colony's own herd (Calendar/CalendarAnimals.cs).</summary>
         Foal,
         /// <summary>A beloved animal's day: the death of a bonded animal that was long with the colony, or fought for its person.</summary>
-        Companion
+        Companion,
+        /// <summary>The day a camp stayed its time and left something behind: saplings, a carving, a backdrop (Calendar/CalendarLived.cs).</summary>
+        CampGift,
+        /// <summary>The end of a world event the colony took part in: a famine it fed, a war it chose a side in, a plague it nursed.</summary>
+        Situation,
+        /// <summary>A holiday of the colony's own faith: one of its rites held on a date (Ideology).</summary>
+        FaithDay,
+        /// <summary>The day one of the colony's people came home from captivity.</summary>
+        Rescue
     }
 
     /// <summary>How the colony keeps a day.</summary>
@@ -59,7 +67,9 @@ namespace ColonyCouncil
         /// <summary>The colony sows the fields together, and its grower says a few words at the field's edge (Calendar/CalendarPlanting.cs).</summary>
         Planting,
         /// <summary>An evening of faith for the faith the day names (its subject), with Ideology (Faith/FaithEvenings.cs).</summary>
-        Faith
+        Faith,
+        /// <summary>The colony walks out together to what the day remembers: a camp's gift, a grave, the fields, the gate (Calendar/CalendarLived.cs).</summary>
+        Walk
     }
 
     /// <summary>
@@ -88,6 +98,13 @@ namespace ColonyCouncil
         public string otherName;
         /// <summary>What the day is about besides a person: a new crop's name, the game of a great hunt.</summary>
         public string subject;
+        /// <summary>
+        /// What the day is about as a key, for its lines' tags: a camp gift's key ([about:bird]), a world event's kind
+        /// ([ws:hunger]), a rite's def. And what of it is on the map (ThingIDs: a camp's gift), and where it happened.
+        /// </summary>
+        public string about;
+        public List<string> things = new List<string>();
+        public IntVec3 place = IntVec3.Invalid;
         /// <summary>A battle's enemy, how many of them fell, and the names of ours who fell.</summary>
         public string enemy;
         public int kills;
@@ -146,8 +163,12 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tradition, "tradition");
             Scribe_Values.Look(ref breaks, "breaks");
             Scribe_Values.Look(ref lastKeptYear, "lastKeptYear", -99999);
+            Scribe_Values.Look(ref about, "about");
+            Scribe_Collections.Look(ref things, "things", LookMode.Value);
+            Scribe_Values.Look(ref place, "place", IntVec3.Invalid);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (things == null) things = new List<string>();
                 if (fallen == null) fallen = new List<string>();
                 if (knew == null) knew = new List<string>();
                 if (kin == null) kin = new List<string>();
