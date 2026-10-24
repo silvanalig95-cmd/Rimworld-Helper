@@ -39,6 +39,11 @@ namespace ColonyCouncil
         public bool perSubject;
         /// <summary>Nobody teases anyone about this (the dead).</summary>
         public bool noTease;
+        /// <summary>
+        /// Talk for a child and whoever they're with (growing up here): it comes up only when one of the two is a child,
+        /// and between a child and anyone it's the only kind of talk there is (<see cref="Talk"/>).
+        /// </summary>
+        public bool forChildren;
 
         [Unsaved] private TopicWorker workerInt;
         [Unsaved] private float[] seedWeights, interestWeights;
@@ -179,6 +184,9 @@ namespace ColonyCouncil
 
         /// <summary>What someone's life now adds to their view (-0.6..0.6): a vendetta, their trust in the council, a meal.</summary>
         public virtual float Experience(Pawn p, TalkSubject subject, TalkScene s) => 0f;
+
+        /// <summary>Nobody teases anyone about it now (the dead always; a day of remembrance while it's the day talked of).</summary>
+        public virtual bool NoTease(TalkScene s) => def.noTease;
 
         /// <summary>Tags the topic's lines can be written for (won, lost, mechs; sameideo; lowfood...).</summary>
         public virtual void AddTags(Pawn speaker, Pawn other, TalkScene s, TalkSubject subject, HashSet<string> tags)

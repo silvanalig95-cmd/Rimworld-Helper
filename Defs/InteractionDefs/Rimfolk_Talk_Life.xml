@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The talks for the topics of Defs/TopicDefs/Rimfolk_Topics_Life.xml (see Rimfolk_Talk.xml): a day on the calendar,
+    the world's news, the camp on the map and growing up here.
+  -->
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Calendar</defName>
+    <label>talked about the colony's days</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the day the colony keeps.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] meant to spend the day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto the colony's days and what they're for.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how the day was kept the year before.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_World</defName>
+    <label>talked about the world's news</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked over the latest news from beyond the colony.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] had heard of the world's troubles.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over what the news means for the colony.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether the colony should have a hand in what is happening out there.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Camp</defName>
+    <label>talked about the camp</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the people camped nearby.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] made of the campers.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] traded what they had seen at the camp.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wondered how long the camp would stay.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Growing</defName>
+    <label>talked about growing up</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about growing up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what it's like to be young here.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] got onto lessons, chores and play.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about what comes with being grown.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+</Defs>

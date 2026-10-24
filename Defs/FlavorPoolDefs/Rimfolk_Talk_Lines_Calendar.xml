@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about a day on the colony calendar (Source/ColonyCouncil/Social/Talk/TopicWorkers_Life.cs): for keeping the
+    colony's days, or against losing the work to them. Tags as in Rimfolk_Talk_Lines_Fight.xml, and for the day:
+      [coming] one to three days off ([tomorrow] the day after this), [today] it's the day, [kept] kept in the last two days
+      [way:feast], [way:remembrance], [way:rest], [way:games], [way:personal], [way:bonfire], [way:gifts], [way:hunt],
+      [way:planting], [way:faith]  how the colony keeps it
+      [sombre] a day of mourning (the dead's, a companion's, any remembrance): nobody teases about it, and festive lines
+               carry [!sombre]
+      [tradition] kept three years running; [birthday], [wedding], [founding], [battle] what kind of day
+      [myday] the day is the speaker's own (their birthday, their arrival, their wedding); [yourday] the other's
+    {SUBJECT}: the day's name ("founding day", "Mira's birthday", "the day Tom died"), never when the day is one of the
+    two talking (their lines say "my birthday", "your day"). One sentence each, as all talk lines.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Calendar_Open</defName>
+    <topic>Rimfolk_Topic_Calendar</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] I like that we stop for our days, whatever else is going on.</li>
+        <li>[for] A year needs days like this, or the seasons all run together.</li>
+        <li>[for] Say what you like, our days are what make this a colony and not a work camp.</li>
+        <li>[for,!sombre] People work better for having something to look forward to.</li>
+        <li>[for,coming] I've been counting the days to {SUBJECT}, and it's nearly here.</li>
+        <li>[for,tomorrow] {SUBJECT} is tomorrow, did you remember?</li>
+        <li>[for,today,!sombre] It's {SUBJECT}, so put the tools down for once.</li>
+        <li>[for,kept] We kept {SUBJECT} properly this year, I thought.</li>
+        <li>[for,kept,!sombre] That was a good day, the best we've had in a while.</li>
+        <li>[for,tradition] We do it every year because we always have, and that's reason enough.</li>
+        <li>[for,way:feast] I've been saving my appetite for the feast.</li>
+        <li>[for,way:rest] A whole day of rest, I can hardly remember what that's like.</li>
+        <li>[for,sombre] It's right that we stop and remember, every year.</li>
+        <li>[for,birthday] Birthdays matter more out here, not less.</li>
+        <li>[for,myday,birthday] Don't let anyone tell you birthdays are for children, I'm keeping mine.</li>
+        <li>[for,yourday] It's your day, so you're not lifting a finger.</li>
+        <li>[against] We stop for one thing after another, and the work just piles up.</li>
+        <li>[against] I'd rather have the day's work done than a day off.</li>
+        <li>[against,coming] Another day off coming, and the fields won't wait for it.</li>
+        <li>[against,today] Half the work stops for this, and the other half falls to me.</li>
+        <li>[against,kept] The day's over, and we're two days behind for it.</li>
+        <li>[against,way:feast] A feast is a lot of food gone in one evening.</li>
+        <li>[against,tradition] Doing something every year doesn't make it worth doing.</li>
+        <li>[against,myday] Please don't make a fuss over my day.</li>
+        <li>[against,sombre] I'd rather remember them on my own than with everyone standing about.</li>
+        <li>[mixed] I don't know what I think of our days, some years they mean more than others.</li>
+        <li>[mixed,coming] I haven't decided whether I'm looking forward to it.</li>
+        <li>[mixed,kept] It was a good day, I suppose, though I'm paying for it now.</li>
+        <li>[for] The days we keep are what we'll remember of this place, not the work.</li>
+        <li>[for] It's the one time I see everyone in one spot and nobody's working.</li>
+        <li>[for] Even raiders take a day off, I'd bet, so why shouldn't we?</li>
+        <li>[for] Whatever the day's for, it's good to stop and look at what we've got.</li>
+        <li>[against] Every one of these days costs us, and nobody counts what.</li>
+        <li>[against] I'd keep fewer of them and keep them better.</li>
+        <li>[against] We're not settled enough to be stopping for days yet.</li>
+        <li>[against] Somebody still has to feed the animals on a holiday, and it's always the same people.</li>
+        <li>[against] The days are fine for the ones who don't have to clean up after.</li>
+        <li>[mixed] I like our days well enough, I just never know what to do with myself on them.</li>
+        <li>[mixed] Some of our days I'd keep forever, and some I'd let go.</li>
+        <li>[mixed] I can't decide if it's a rest or just more work in a different shape.</li>
+        <li>[mixed] Do you ever wonder who'll still remember these days in ten years?</li>
+        <li>[mixed] I'll keep the day, but I don't feel it the way some do.</li>
+      </plain>
+      <warm>
+        <li>[for] I love how everyone comes out for the day, even the ones who grumble.</li>
+        <li>[for,birthday] We should all do something kind for {SUBJECT}.</li>
+        <li>[for,sombre] I'll sit with whoever wants company on the day, I've told them.</li>
+        <li>[against] I'm happy for everyone, but I'd sooner spend the day working beside you.</li>
+        <li>[mixed] I hope the day's kind to everyone, it isn't always easy.</li>
+        <li>[for,kept] I saw people smiling who don't smile much, and that was worth the day.</li>
+        <li>[against] I'd keep the day for the others' sake, though I'd rather be working.</li>
+        <li>[mixed] Whatever you do on the day, I hope it's something you enjoy.</li>
+      </warm>
+      <blunt>
+        <li>[for] We work hard, we've earned a day.</li>
+        <li>[against] Days off don't plant crops.</li>
+        <li>[against,coming] Another holiday, as if we've nothing better to do.</li>
+        <li>[for,today,!sombre] Tools down, it's the day.</li>
+        <li>[against,kept] Good, it's over, back to work.</li>
+        <li>[mixed] Keep the day or don't, just decide.</li>
+        <li>[for] Stop counting chores, it's one day.</li>
+        <li>[mixed] Days, days, there's always another one.</li>
+      </blunt>
+      <cheerful>
+        <li>[for,!sombre] I've been practicing my dancing for the day, so stand well back.</li>
+        <li>[for,coming,!sombre] Only a few more sleeps until the day, and I'm counting every one.</li>
+        <li>[for,way:feast] I'm going to eat until I can't stand up, and then a bit more.</li>
+        <li>[against] I'll keep the day if somebody else keeps my chores.</li>
+        <li>[for,kept,!sombre] Best day of the year, and I'm still full.</li>
+        <li>[mixed,!sombre] I like the day, I just don't like being made to sing.</li>
+        <li>[for] I've decided the day needs more games and fewer speeches.</li>
+        <li>[against] If we keep any more days, I'll forget how to work.</li>
+      </cheerful>
+      <gloomy>
+        <li>[for] It's good to have a day to look forward to, out here.</li>
+        <li>[against] Another year gone, that's all these days tell me.</li>
+        <li>[for,sombre] The day's hard every year, but I wouldn't miss it.</li>
+        <li>[against,coming] It'll come and go like the rest, and nothing will change.</li>
+        <li>[mixed,kept] It was a nice day, and now it's gone.</li>
+        <li>[mixed] I never know whether to look forward to these or dread them.</li>
+        <li>[for] Without the days, I'd lose track of the years altogether.</li>
+      </gloomy>
+      <cold>
+        <li>[for] Days like this keep people working the rest of the year.</li>
+        <li>[against] A day off costs us a day of work, that's simple arithmetic.</li>
+        <li>[for,tradition] Traditions hold a colony together, so they're worth the time.</li>
+        <li>[against,way:feast] The feast will eat a week of stores.</li>
+        <li>[mixed] The day has its uses and its costs.</li>
+        <li>[for] A colony that marks its days keeps its people longer.</li>
+        <li>[against] Every day kept is a day the stores don't fill.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Calendar_Reply</defName>
+    <topic>Rimfolk_Topic_Calendar</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] It's the one day everyone stops and looks up.</li>
+        <li>[agree,for] We need a day like that, all of us.</li>
+        <li>[agree,for,coming] I've already set something aside for it.</li>
+        <li>[agree,for,kept] Best day we've had all season.</li>
+        <li>[agree,for,sombre] It's right to stop for them.</li>
+        <li>[agree,for,birthday] Another year, and that's worth something out here.</li>
+        <li>[agree,against] I'll be glad when it's done and we can get on.</li>
+        <li>[agree,against] A day off is a day behind, and somebody has to make it up.</li>
+        <li>[agree,against,kept] I'm still catching up on what didn't get done.</li>
+        <li>[agree,mixed] I can't make up my mind about it either.</li>
+        <li>[agree,mixed] Some years it feels like more than others.</li>
+        <li>[agree] I'll be there, whatever the day brings.</li>
+        <li>[agree] That's what I was saying at supper.</li>
+        <li>[debate,for] The work will still be there the day after.</li>
+        <li>[debate,for] One day won't ruin us, and it does people good.</li>
+        <li>[debate,for,tradition] We've kept it every year, so it'd feel wrong to stop now.</li>
+        <li>[debate,against] A day's fine, but not every time something happens.</li>
+        <li>[debate,against] Nice idea, but the crops don't know it's a holiday.</li>
+        <li>[debate,against,way:feast] I'd keep the day, I just wouldn't empty the larder for it.</li>
+        <li>[debate,against,birthday] Count the years if you like, I'd rather not.</li>
+        <li>[debate,mixed] There's something in that, but I'm not sure.</li>
+        <li>[debate,mixed] Keep it smaller, maybe, and everyone's happy.</li>
+        <li>[debate] Ask me again when the day's here.</li>
+        <li>[debate] You say that every year, and every year we argue about it.</li>
+        <li>[argue,for] You'd work through your own funeral if we let you.</li>
+        <li>[argue,for] Nobody's asking you to dance, just to stop for one day.</li>
+        <li>[argue,for,sombre] Have some respect, it's their day.</li>
+        <li>[argue,against] And who's going to do the work while everyone's celebrating?</li>
+        <li>[argue,against] It's a waste, and you know it is.</li>
+        <li>[argue,against,coming] Mark my words, we'll pay for that day in the winter.</li>
+        <li>[argue,mixed] I didn't say I'd skip it, I said it's a lot of fuss.</li>
+        <li>[argue,mixed] Leave me out of it, I'll decide for myself.</li>
+        <li>[argue] You make everything sound like a chore.</li>
+        <li>[argue] Every year you find something to complain about.</li>
+        <li>[agree,myday] It's kind of everyone, I didn't expect it.</li>
+        <li>[agree,yourday] It's your day, and you should enjoy it.</li>
+        <li>[debate,myday] I'd really rather nobody made a fuss.</li>
+        <li>[debate,yourday] Let us make a fuss, it's one day a year.</li>
+        <li>[argue,myday] It's my day, and I'll spend it how I like.</li>
+        <li>[agree] Everyone's been talking about it at supper.</li>
+        <li>[debate] It's not the day I mind, it's how we keep it.</li>
+        <li>[argue] Every year the same argument, and every year you lose it.</li>
+        <li>[agree,for] We could keep twice as many and I wouldn't complain.</li>
+        <li>[agree,against] I'll keep it, but I won't pretend to enjoy it.</li>
+        <li>[agree,mixed] It depends on the year, doesn't it.</li>
+        <li>[agree,mixed] I'll go along with whatever the rest decide.</li>
+        <li>[debate,for] People need something to work toward besides the next harvest.</li>
+        <li>[debate,against] Keep it, then, but keep it short.</li>
+        <li>[debate,mixed] By all means keep it, I just don't see why it has to be so much.</li>
+        <li>[debate,mixed] There's a middle way, if anyone wanted one.</li>
+        <li>[argue,for] You only hate the day because nobody asks you to anything.</li>
+        <li>[argue,against] I'm the one who cleans up after, so don't tell me it's free.</li>
+        <li>[argue,mixed] Don't make me choose, I like the day and I like the work.</li>
+        <li>[argue,mixed] Why does everything have to be a fight with you?</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I'll save you a seat beside me.</li>
+        <li>[debate,against] I'm sure they're lovely days, I just worry about the work.</li>
+        <li>[argue,for] Please come, even if you only stay until the food's gone.</li>
+        <li>[agree,against] I know, and I'll cover a few chores so nobody falls behind.</li>
+        <li>[agree,sombre] We'll remember them together, then.</li>
+        <li>[debate,mixed] Whatever you decide, I'll be glad to see you there.</li>
+        <li>[agree,mixed] It's nice that you think about it so much.</li>
+        <li>[argue,against] I know it means a lot to you, but it costs us too.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Good, about time we had a day.</li>
+        <li>[agree,against] Exactly, waste of a day.</li>
+        <li>[debate,for] It's one day, stop whining.</li>
+        <li>[argue,against] Celebrate all you like, I'm working.</li>
+        <li>[argue,for] You're no fun, and you never were.</li>
+        <li>[debate,against] Keep it short, then.</li>
+        <li>[agree,mixed] Fair enough.</li>
+        <li>[argue,mixed] Don't drag me into this.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for,!sombre] I've already picked out my best shirt.</li>
+        <li>[debate,against,!sombre] Come for the food, stay for my singing.</li>
+        <li>[argue,for,!sombre] You're coming if I have to carry you there.</li>
+        <li>[agree,against] Fine, I'll celebrate for both of us.</li>
+        <li>[debate,for,!sombre] I bet you'll be the last one to leave.</li>
+        <li>[agree,mixed] I'll go if there's food, and that's my whole opinion.</li>
+        <li>[debate,mixed,!sombre] I'll come, but I'm not dancing, probably.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,for] It's the only day all year that feels the way it used to.</li>
+        <li>[agree,against] It never feels the way it's supposed to, does it.</li>
+        <li>[debate,for] Better a day like that than another plain one.</li>
+        <li>[argue,against] Celebrate, then, the winter won't care.</li>
+        <li>[agree,sombre] I dread it, and I'd hate to miss it.</li>
+        <li>[agree,mixed] Some years I can't face it, some years I can.</li>
+        <li>[debate,mixed] It'll come round again whether we're ready or not.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] Morale needs it, so yes.</li>
+        <li>[agree,against] Agreed, the cost is too high.</li>
+        <li>[debate,for] The lost work is small against what it gives back.</li>
+        <li>[argue,against] Sentiment isn't a reason to stop working.</li>
+        <li>[debate,against] One day is acceptable, more is not.</li>
+        <li>[agree,mixed] It has costs and benefits.</li>
+        <li>[argue,mixed] I have no strong view, and I won't be pushed into one.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Calendar_Close</defName>
+    <topic>Rimfolk_Topic_Calendar</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] I'll see you there, then.</li>
+        <li>[agree,for] Let's make it a good one.</li>
+        <li>[agree,against] Back to work, then, and we'll stop when we have to.</li>
+        <li>[agree,sombre] We'll stand together on the day.</li>
+        <li>[agree,coming] Not long now.</li>
+        <li>[agree,yourday,birthday] Happy birthday, then, and many more of them.</li>
+        <li>[agree,myday] Thank you, it means more than I'd say.</li>
+        <li>[debate] Come anyway, and you can grumble at the back.</li>
+        <li>[debate,for] You'll enjoy it more than you think.</li>
+        <li>[debate,against] Keep your day, and I'll keep the fires going.</li>
+        <li>[debate,kept] Next year we'll do it better, either way.</li>
+        <li>[argue] Do what you like on the day, then.</li>
+        <li>[argue,for] Stay in and sulk, then, and see if anyone misses you.</li>
+        <li>[argue,against] Enjoy it while the work piles up.</li>
+        <li>[agree] Good, we'll make the most of it.</li>
+        <li>[debate] We'll each keep it our own way, then.</li>
+        <li>[argue] I won't argue about it again.</li>
+        <li>[agree,mixed] We'll see how we feel on the day.</li>
+        <li>[debate,mixed] Come or don't, nobody will mind.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'm glad we'll be spending it together.</li>
+        <li>[debate] Come for my sake, if not for the day's.</li>
+        <li>[argue] I'm sorry, I only wanted everyone there.</li>
+        <li>[agree,sombre] I'll find you on the day, so you're not alone.</li>
+        <li>[agree,kept] Thank you for making the day what it was.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Good, that's settled.</li>
+        <li>[debate] You'll be there, and that's that.</li>
+        <li>[argue] Fine, miss it.</li>
+        <li>[argue,against] Have your day, I've got work.</li>
+        <li>[agree,against] Right, back to it.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,!sombre] I'll save you the biggest bowl.</li>
+        <li>[debate,!sombre] Loser of this argument does the washing up after.</li>
+        <li>[argue,!sombre] I'll dance for both of us, then.</li>
+        <li>[agree,coming,!sombre] Not long now, and I can hardly wait.</li>
+        <li>[agree,kept,!sombre] Same again next year, but louder.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] It'll be over before we know it, like always.</li>
+        <li>[debate] Keep it, then, it won't change anything.</li>
+        <li>[argue] Suit yourself, it's only once a year.</li>
+        <li>[agree,sombre] We'll get through the day, we always do.</li>
+        <li>[agree,kept] Another one gone.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Settled.</li>
+        <li>[debate] Do as you see fit.</li>
+        <li>[argue] It's decided, whether you like it or not.</li>
+        <li>[agree,against] Good, we'll lose as little as we can.</li>
+        <li>[debate,for] Come or don't, the day is happening.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Calendar_Last</defName>
+    <topic>Rimfolk_Topic_Calendar</topic>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[debate] I'll think about it, maybe.</li>
+        <li>[debate] I'll come for the food, not the speeches.</li>
+        <li>[debate,for] You'll be there, I know you will.</li>
+        <li>[debate,against] We'll see who's sorry in the morning.</li>
+        <li>[debate,sombre] I'll be there for them, not for anyone else.</li>
+        <li>[argue] Leave me out of it.</li>
+        <li>[argue] Keep your day.</li>
+        <li>[argue,for] Fine, I'll enjoy it without you.</li>
+        <li>[argue,against] Have fun, I'll be working.</li>
+        <li>[argue,myday] It's my day, and I'll say how it goes.</li>
+      </plain>
+      <warm>
+        <li>[debate] I'll save you a place anyway.</li>
+        <li>[argue] Come if you change your mind, please.</li>
+        <li>[debate,against] I'll bring you a plate if you don't come.</li>
+        <li>[argue,sombre] They'd have wanted us both there.</li>
+      </warm>
+      <blunt>
+        <li>[argue] Whatever.</li>
+        <li>[debate] Still a waste of a day.</li>
+        <li>[argue,for] Grump.</li>
+        <li>[debate,for] You'll come.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate,!sombre] I'll drag you out to dance, wait and see.</li>
+        <li>[argue,!sombre] Your loss, more for me.</li>
+        <li>[debate] Bet you a day's chores you come.</li>
+        <li>[debate,against] I'll save you the worst seat, then.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate] It'll come round either way.</li>
+        <li>[argue] It doesn't matter what we do with it.</li>
+        <li>[debate,sombre] I'll be there, for what it's worth.</li>
+        <li>[argue,against] We'll all regret it come winter.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] As you wish.</li>
+        <li>[argue] Noted, and ignored.</li>
+        <li>[debate,for] You'll attend, it's expected.</li>
+        <li>[argue,against] I'll be at work.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Calendar_Tease</defName>
+    <topic>Rimfolk_Topic_Calendar</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You've been counting down to {SUBJECT} like a child, {OTHER}.</li>
+        <li>[otheragainst] Let me guess, {OTHER}, you'll spend the day sweeping something.</li>
+        <li>[otherfor] Is it true you've written a speech for the day, {OTHER}?</li>
+        <li>[otheragainst] You'd work through your own birthday if nobody stopped you, {OTHER}.</li>
+        <li>[otherfor] You'd keep a day for every sunrise if the council let you, {OTHER}.</li>
+        <li>[otheragainst] Smile, {OTHER}, it's allowed on a day like this.</li>
+      </plain>
+      <cheerful>
+        <li>[otherfor] Every year you eat until you fall asleep at the table, {OTHER}, and every year I watch.</li>
+        <li>[otheragainst] I've hidden your tools for the day, {OTHER}, so don't bother looking.</li>
+        <li>[otherfor] First to the food and last to leave, {OTHER}, same as every year.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

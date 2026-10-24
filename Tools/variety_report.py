@@ -617,12 +617,13 @@ FREQ = [
     (r"^Rimfolk_TL_Any_Last\.", 75, "conversation: the other's last word, any talk"),
     (r"^Rimfolk_TL_Any_Tease", 15, "conversation: teasing about any topic"),
     (r"^Rimfolk_TL_(Raid|Food|Council|Newcomer)_(Open|Reply)\.", 22, "conversation: a common topic"),
-    (r"^Rimfolk_TL_\w+_(Open|Reply)\.", 12, "conversation: a topic"),
-    (r"^Rimfolk_TL_\w+_Close\.", 7, "conversation: a topic's closing word"),
-    (r"^Rimfolk_TL_\w+_Tease\.", 3, "conversation: teasing about a topic"),
+    # (Comfort, remembering and in-jokes before the topics, whose pattern would take their pools too.)
     (r"^Rimfolk_TL_Comfort_", 25, "conversation: comfort"),
     (r"^Rimfolk_TL_(Mem|Joke)_(Open|Reply|Close)\.", 8, "conversation: remembering or a joke, any memory"),
     (r"^Rimfolk_TL_(Mem|Joke)_", 4, "conversation: one kind of shared memory"),
+    (r"^Rimfolk_TL_\w+_(Open|Reply)\.", 12, "conversation: a topic"),
+    (r"^Rimfolk_TL_\w+_Close\.", 7, "conversation: a topic's closing word"),
+    (r"^Rimfolk_TL_\w+_Tease\.", 3, "conversation: teasing about a topic"),
     # Everyday journal (Lives/EverydayJournal.cs): one colonist in four writes a day; ~110 entries a year, spread by
     # how often the moment is on someone's mind (weight x how common the thought is), at most once in 12 days each.
     (r"^Council_Journal_Day_(Bedroom|FineMeal|Beauty|DeepTalk)$", 16, "everyday journal, very common thought"),
@@ -741,11 +742,18 @@ def estimate(pools):
                 p.draws, p.basis = 0.5, "not estimated (rare or event text)"
         # Conversations: the caller adds the speaker's side, the other's, how it goes, what kind of memory it is.
         if p.name.startswith("Rimfolk_TL_"):
-            p.extra = (("for|against|mixed", 1.0), ("otherfor|otheragainst|othermixed", 1.0), ("agree|debate|argue", 1.0),
+            # The other's last word (a fourth line) only comes in a debate, an argument or remembering (TalkMath.Turns).
+            how = ("debate|argue|reminisce", 1.0) if "_Last." in p.name else ("agree|debate|argue", 1.0)
+            p.extra = (("for|against|mixed", 1.0), ("otherfor|otheragainst|othermixed", 1.0), how,
                        ("friends", 0.3), ("good|bad|mixed", 1.0), ("byme|byother", 1.0), ("fresh|told|worn", 1.0),
                        ("grief|despair|lonely|fear|worry|lowmood", 1.0))
-            if "_Last." in p.name:
-                p.extra += (("agree|debate|argue|tease|comfort|reminisce|joke", 1.0),)
+            # Faith talks that matter (Faith/FaithTalk.cs): in about half of them one of the two sways, is swayed, digs
+            # in or is steadied; the other's faith as the speaker sees it, whose faith it's about, one faith or two.
+            if p.name.startswith("Rimfolk_TL_FaithMoves_"):
+                p.extra += (("persuading|persuaded|unmoved|digin|steadied", 0.5), ("sameideo|otherideo", 1.0),
+                            ("otherfaith:devout|otherfaith:wavering", 0.5), ("myfaith|theirfaith", 0.6),
+                            ("faith:devout|faith:wavering", 0.5), ("faith:alone|faith:minority|faith:majority", 0.4),
+                            ("preachedat", 0.15), ("nopreaching", 0.15))
         if p.name.startswith("Council_Journal_Day_"):
             p.extra = (("good|bad", 1.0),)
         if p.field in ("request", "requestForOther", "thanks", "expired", "reminder") or p.name.startswith("Council_Pool_"):
