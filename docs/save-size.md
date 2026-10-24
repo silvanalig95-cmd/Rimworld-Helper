@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 327; modelled: 327; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,663 KB** after a year, **2,026 KB** after two, **2,138 KB** after five.
+Rimfolk's part of the save, roughly: **1,665 KB** after a year, **2,027 KB** after two, **2,140 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -30,11 +30,11 @@ Rimfolk's part of the save, roughly: **1,663 KB** after a year, **2,026 KB** aft
 | `Aspirations/Aspirations.cs:counters` | counters of known pawns | known | 165 | 180 | 225 | 19.8 |
 | `Dreams/Dreams.cs:recent` | 80 recent dreams | cap | 80 | 80 | 80 | 19.5 |
 | `Standing.cs:log` | 8 lines per colonist | colonists | 160 | 160 | 160 | 18.8 |
+| `Strangers/Encounters.cs:lastTick` | one per encounter def | defs | 213 | 213 | 213 | 18.7 |
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords | cap | 30 | 60 | 60 | 17.6 |
-| `Strangers/Encounters.cs:lastTick` | one per encounter def | defs | 191 | 191 | 191 | 16.8 |
 | `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 176 | 176 | 176 | 15.5 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
