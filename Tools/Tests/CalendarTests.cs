@@ -84,6 +84,16 @@ public static class CalendarTests
         CalendarMath.Pass(ref k2, ref t2, ref b2);
         check(k2 == 0, "a year let pass starts the count again");
 
+        // Days from what the colony lived through (CalendarLived.cs).
+        check(CalendarMath.CampGiftWeight(0, 0, 0f) < CalendarMath.CampGiftWeight(12, 3, 6f), "a camp the colony warmed to means more");
+        check(CalendarMath.CampGiftWeight(999, 999, 999f) == CalendarMath.CampGiftWeight(20, 5, 10f), "a camp's weight is capped");
+        check(CalendarMath.CampGiftWeight(20, 5, 10f) < CalendarMath.FoundingWeight, "a camp's gift never outweighs the founding");
+        check(!CalendarMath.TookPart(0, false) && CalendarMath.TookPart(1, false) && CalendarMath.TookPart(0, true), "took part: helped once, or saw it through");
+        check(CalendarMath.SituationWeight(1, false) < CalendarMath.SituationWeight(3, true), "more help, more meaning");
+        check(CalendarMath.SituationWeight(50, true) == CalendarMath.SituationWeight(5, true), "a world event's weight is capped");
+        check(CalendarMath.RescueWeight(2f) < CalendarMath.RescueWeight(20f) && CalendarMath.RescueWeight(300f) == CalendarMath.RescueWeight(30f), "longer gone, more meaning, capped");
+        check(CalendarMath.MaxDayThings >= 6, "a ring of saplings fits in a day");
+
         // Reading the chronicle back.
         var clean = CalendarMath.TemplateRegex("The colony saw off {0}: {1} of them fell, and none of ours.", false);
         var parts = CalendarMath.Parse(clean, "The colony saw off <color=#D09B61FF>the Ash Clan</color>: 7 of them fell, and none of ours. Ana brought down 3 of them, more than anyone.");

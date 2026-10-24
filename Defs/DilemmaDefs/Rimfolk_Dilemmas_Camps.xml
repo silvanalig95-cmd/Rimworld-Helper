@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The council's questions about the camp on the colony's land (Source/ColonyCouncil/Camps/CampDilemmas.cs). Each needs
+    a camp settled on the home map and at peace with the colony; X is one of the camp's people, {FACTION} their people.
+    Workers: DilemmaWorker_CampFriend (X: one A has grown close to), DilemmaWorker_CampMember (X: one of their ordinary
+    people), DilemmaWorker_CampHerd (their beasts strayed into the colony's ripe fields: they're there when it's asked),
+    DilemmaWorker_CampRival (another people with a quarrel against them: {ENEMY}), DilemmaWorker_CampChild (X: a child of
+    theirs, A one of the colony's, Biotech), DilemmaWorker_CampFee (they took a fee and it's due: {COUNT}), and
+    DilemmaWorker_Camp (X: whoever speaks for them).
+    Camp effects (CampRequests.cs): CampJoin (X joins the colony, the camp's books keep it), CampHerd (the strayed beasts
+    eat the ripest crops where they stand, and go home), CampGives (goods from their stores), CampMovesOn (they leave
+    early, in peace), CampFee (the fee settled another way), RivalGoodwill (the other people's standing); and the
+    existing CampTension and CampMood. Their own moods are at the end of the file, with the hints for the bad ones.
+  -->
+
+  <!-- ===================== One of them wants to stay ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_StayBehind</defName>
+    <label>one of them wants to stay</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampFriend</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1</answerDays>
+    <thingCount>120</thingCount>
+    <texts>
+      <li>{X_nameDef} of the {FACTION} camp has been at the colony most evenings this week, and today asked {A_nameDef} straight out whether {X_pronoun} could stay. The others at the camp are against it. They need every pair of hands on the road, and {X_nameDef} carries more than most.\n\n{A_nameDef} brought it to the council.</li>
+      <li>[winter] The {FACTION} camp will move on when the snow lets them, and {X_nameDef} doesn't want to go with them. {X_nameDef} has asked {A_nameDef} to put it to the council, knowing the camp will take it badly.</li>
+      <li>{A_nameDef} and {X_nameDef} of the {FACTION} camp have become friends over the evenings at their fire. Now {X_nameDef} wants to stay when the camp goes on, and the camp's elders have made it plain they'd rather lose a mule.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Take {X_nameDef} in, whatever the camp says</label>
+        <outcome>{A_nameDef} went down to help {X_nameDef} carry {X_possessive} pack up from the camp. The camp's people watched from their fire and didn't wave.</outcome>
+        <ways><openness>3</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampJoin" />
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>15</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.5~1</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Have {A_nameDef} speak to the camp for {X_objective}</label>
+        <outcome>{A_nameDef} sat at the camp's fire and talked until the pot boiled dry, and at the end of it the elders shook {A_possessive} hand. {X_nameDef} will stay, with their blessing.</outcome>
+        <outcomes>
+          <li>[trait:Kind] {A_nameDef} didn't argue; {A_pronoun} listened to the elders until they had said everything, and then asked what {X_nameDef} would want. They let {X_objective} go.</li>
+        </outcomes>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampJoin" />
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>200</xp></li>
+        </effects>
+        <riskChance>0.35</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{A_nameDef} talked at the camp's fire until it burned low, and the elders didn't move an inch. {X_nameDef} goes on with them.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_FriendSentOn</thought></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Pay the camp for the lost hands ({COUNT} silver)</label>
+        <outcome>{A_nameDef} carried a purse down to the camp. The elders weighed it, then weighed {X_nameDef} with their eyes, and agreed. {X_nameDef} stays.</outcome>
+        <ways><generosity>2</generosity><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the camp</label><what>silver</what><to>Camp</to><tens>true</tens></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampJoin" />
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Tell {X_nameDef} to go on with {X_possessive} people</label>
+        <outcome>{A_nameDef} told {X_nameDef} the colony won't come between {X_objective} and {X_possessive} people. {X_nameDef} took it well, or made a good show of it, and the camp's elders nodded to the colony's gate that evening.</outcome>
+        <ways><openness>-1</openness><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_FriendSentOn</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Missing from the camp ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_Theft</defName>
+    <label>missing from the camp</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampMember</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>1</answerDays>
+    <thingCount>60</thingCount>
+    <roleB>
+      <adult>true</adult>
+    </roleB>
+    <texts>
+      <li>A purse has gone from the {FACTION} camp in the night, {X_nameDef} says, with most of what they earned on the road in it. And one of them saw {A_nameDef} near their stash at dusk.\n\n{A_nameDef} says {A_pronoun} was only passing. The camp wants it back, or paid for.</li>
+      <li>[theirLowtech] A carved box has gone missing from the {FACTION} camp, and {X_nameDef} has come to the colony's gate about it. One of the camp saw {A_nameDef} by their fire the evening before. {A_nameDef} says {A_pronoun} went down to borrow a light.</li>
+      <li>{X_nameDef} came to the colony with a list: what was taken from the {FACTION} camp's stash last night, and who was seen nearby. {A_nameDef}'s name is the only one on it.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Search the colony for it ourselves</label>
+        <outcome>{A_nameDef} and {B_nameDef} turned the colony's storerooms over and found nothing. Then the camp found it themselves, under a bedroll, and {X_nameDef} came up red in the face to say so.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Search"><label>the search for what the camp lost</label><target>AAndB</target><count>2</count><to>Walk</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_Cleared</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Pay them what it was worth ({COUNT} silver)</label>
+        <outcome>{B_nameDef} carried the silver down to the camp, and the matter was closed. {A_nameDef} hasn't said a word to anyone since.</outcome>
+        <ways><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for the camp</label><what>silver</what><who>B</who><to>Camp</to><tens>true</tens></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_PaidForIt</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Our people don't steal</label>
+        <outcome>The council told {X_nameDef} the colony stands by {A_nameDef}, and that's the end of it. {X_nameDef} went back to the camp, and the camp has kept its distance since.</outcome>
+        <ways><openness>-2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_StoodByMe</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} go and answer for it</label>
+        <outcome>{A_nameDef} went down to the camp and sat with them until they believed {A_objective}. On {A_possessive} way out, a child of theirs pulled the purse out from under a bedroll.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_Cleared</thought></li>
+        </effects>
+        <riskChance>0.35</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{A_nameDef} went down to the camp and said {A_possessive} piece. They listened, and didn't believe a word. The purse hasn't turned up.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_Accused</thought></li>
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== One of theirs in the storeroom ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_CaughtInStores</defName>
+    <label>one of theirs in the storeroom</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampMember</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>0.8</answerDays>
+    <texts>
+      <li>{A_nameDef} found {X_nameDef} from the {FACTION} camp in the colony's storeroom before dawn, with a sack half full of the colony's food. {X_nameDef} didn't run. The camp is hungry, {X_nameDef} said, and the elders don't know about this.</li>
+      <li>[winter] Footprints in the snow led from the {FACTION} camp to the colony's storeroom, and {A_nameDef} followed them to {X_nameDef}, filling a sack. {X_nameDef} put the sack down and waited to hear what the colony would do.</li>
+      <li>{X_nameDef} of the {FACTION} camp was caught coming out of the colony's stores with an armful of vegetables. {A_nameDef}, who caught {X_objective}, says {X_nameDef} looked more ashamed than afraid.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let {X_objective} keep the sack, and add to it</label>
+        <outcome>{A_nameDef} filled the sack the rest of the way and carried it down to the camp with {X_nameDef}. The camp's elders didn't ask where it came from.</outcome>
+        <outcomes>
+          <li>[colony:Generous] It's what the colony does. {A_nameDef} carried the sack down to the camp and came back without a word about the storeroom.</li>
+        </outcomes>
+        <ways><mercy>3</mercy><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the sack for the camp</label><what>rawfood</what><count>20</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-8</amount><gift>true</gift></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_GaveAwayStores</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+        </effects>
+      </li>
+      <li>
+        <label>{X_nameDef} works it off</label>
+        <outcome>{X_nameDef} cut wood for the colony all the next day, near the camp, and stacked it where the colony could fetch it. The food stayed in the camp's pot. Both sides call it square.</outcome>
+        <ways><toil>2</toil><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>25</count><near>Camp</near></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Take it to their elders</label>
+        <outcome>{A_nameDef} walked {X_nameDef} back to the camp and told the elders. They thanked the colony stiffly. {X_nameDef} will be carrying the camp's water for a month.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.5~1</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep the camp out of the colony</label>
+        <outcome>The council sent word that the camp's people aren't welcome inside the colony any more. They stay on their side now, and it's cold between the two fires.</outcome>
+        <ways><openness>-3</openness><mercy>-2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>15</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_TurnedAwayHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Their beasts in the fields ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_HerdInFields</defName>
+    <label>their beasts in the fields</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampHerd</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>25</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.5</answerDays>
+    <roleA>
+      <bestAt>Plants</bestAt>
+    </roleA>
+    <texts>
+      <li>Beasts from the {FACTION} camp got into the colony's fields in the night, and they're in there now, working their way along the rows. {A_nameDef} found them at first light. Their people swear the tether was sound when they turned in.</li>
+      <li>[summer] The {FACTION} camp's animals have pushed into the colony's fields after the green, and {A_nameDef} has been trying to shoo them out on {A_possessive} own. Their people haven't noticed yet.</li>
+      <li>{A_nameDef} came in from the fields to say the camp's beasts are in the crop, and in no hurry to leave it.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Drive them out now</label>
+        <outcome>{A_nameDef} ran the beasts out of the rows with a stick and a great deal of shouting, and they went back toward the camp at a trot. The camp's people came up later to complain about the shouting.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHerd"><eaten>2</eaten></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Have {B_nameDef} walk them back with their people</label>
+        <outcome>{B_nameDef} went out to the fields and, with one of the camp's people, eased the beasts out of the rows and back toward the camp without trampling another plant.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Animals</skill><minLevel>4</minLevel><asB>true</asB><reason>Needs someone good with animals (Animals 4 or more)</reason></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Fields</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHerd"><eaten>3</eaten></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>250</xp></li>
+        </effects>
+      </li>
+      <li>
+        <label>Make them pay for the damage</label>
+        <outcome>{A_nameDef} went down to the camp with an armful of ruined stalks. They paid, and set the silver out at the edge of their camp, and they didn't like it.</outcome>
+        <ways><generosity>-2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHerd"><eaten>5</eaten></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>silver</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let them graze; it's a few rows</label>
+        <outcome>The council let the beasts finish what they'd started. Their people came for them before long, embarrassed, and thanked the colony twice.</outcome>
+        <ways><generosity>3</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHerd"><eaten>8</eaten><home>false</home></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_DlmC_LostTheCrop</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== An old quarrel at the camp ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_Feud</defName>
+    <label>an old quarrel at the camp</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampRival</workerClass>
+    <weight>1</weight>
+    <cooldownDays>45</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>Riders of {ENEMY} came by the {FACTION} camp at dawn and left again without a fight, but not without words. There's an old quarrel between the two peoples, and the riders want the colony, whose land it is, to send the camp on its way.\n\n{X_nameDef} has come up to ask whether the colony means to.</li>
+      <li>{X_nameDef} of the {FACTION} camp came to the gate grim-faced: riders of {ENEMY} have been watching the camp from the ridge since yesterday. An old debt, {X_nameDef} says, older than {X_objective}. The camp would like to know whose side the colony is on, if it's on one.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Our land, our guests: tell {ENEMY} so</label>
+        <outcome>{A_nameDef} walked out to the ridge and told the riders of {ENEMY} that the camp stays as long as the colony says. They went, and the camp's fire burned high that night.</outcome>
+        <ways><openness>2</openness><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Gate</to><duration>0.5~1</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_RivalGoodwill"><amount>-6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Bring both sides to the colony's table</label>
+        <outcome>{B_nameDef} sat {X_nameDef} and a rider of {ENEMY} at the colony's table, fed them both, and kept them talking until the old debt had a number on it that both could live with.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>5</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper for both sides</label><organizer>B</organizer><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_RivalGoodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>300</xp></li>
+        </effects>
+        <riskChance>0.35</riskChance>
+        <riskSkill>Social</riskSkill>
+        <riskReplaces>true</riskReplaces>
+        <riskOutcome>{B_nameDef} got them both to the table and kept them civil through the soup. By the bread they were shouting, and both left angry, at the colony as much as at each other.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper for both sides</label><organizer>B</organizer><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_RivalGoodwill"><amount>-2</amount></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Ask the camp to move on before there's trouble</label>
+        <outcome>{A_nameDef} told {X_nameDef} the colony wants no part of the quarrel. The camp packed up within the hour, and the riders on the ridge watched them go.</outcome>
+        <ways><openness>-2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMovesOn" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_RivalGoodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>It's their quarrel, not ours</label>
+        <outcome>The colony kept out of it. The riders watched the camp for another day and then went, and the camp hasn't been friendly since.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A friend from the camp ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_Playmates</defName>
+    <label>a friend from the camp</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampChild</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1</answerDays>
+    <roleA>
+      <child>true</child>
+    </roleA>
+    <texts>
+      <li>{A_nameDef} has a new friend: {X_nameDef}, a child from the {FACTION} camp. The two of them have been inseparable for days, down at the camp, up at the colony, in the long grass between. Some of the colony think it's sweet, and some think {A_nameDef} spends too long among strangers.</li>
+      <li>{A_nameDef} came home late and muddy again, with {X_nameDef} from the camp trailing behind. They've built a den by the water and want to sleep in it. Neither set of grown-ups is sure about that.</li>
+      <li>[winter] {A_nameDef} and {X_nameDef}, a child from the {FACTION} camp, have spent every hour of daylight this week building a snow fort between the camp and the colony. Now {A_nameDef} wants to know whether {X_nameDef} can come to supper.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Let them play</label>
+        <outcome>The council let them be. {A_nameDef} ran off down to the camp before anyone could add a condition, and came back at dusk with a pocket full of stones and a new word in {X_nameDef}'s language.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_PlayedWithFriend</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>-5</tension><warm>2</warm></li>
+        </effects>
+      </li>
+      <li>
+        <label>Have {X_nameDef}'s family to supper</label>
+        <outcome>{X_nameDef}'s family came up to supper, stiff at first, then not. The two children ate under the table, and were left there.</outcome>
+        <ways><openness>2</openness><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with {X_nameDef}'s family</label><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_PlayedWithFriend</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>-10</tension><warm>2</warm></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep the children apart</label>
+        <outcome>{A_nameDef} was told to stay on the colony's side. {A_pronoun} did, mostly, and spent a lot of time looking toward the camp.</outcome>
+        <ways><openness>-3</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_KeptFromFriend</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>4</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Their feast day ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_Festival</defName>
+    <label>their feast day</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Camp</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.8</answerDays>
+    <texts>
+      <li>Tomorrow is a feast day among the {FACTION}, {X_nameDef} says, and the camp would like to keep it properly, under a roof and with music. {X_nameDef} asked {A_nameDef} whether the colony's hall might be theirs for an evening, and the colony with it.</li>
+      <li>[ideology] The faithful of the {FACTION} camp have a holy day tomorrow, and nowhere fit to keep it. {X_nameDef} asked {A_nameDef}, carefully, whether they might hold it at the colony, and whether the colony would come.</li>
+      <li>{X_nameDef} came up from the camp with a drum under {X_possessive} arm. It's their feast tomorrow, the one they keep wherever they are, and this year they'd like to keep it with the colony.</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Open the hall to them</label>
+        <outcome>The camp's people came up at dusk with their drum and a pot of honeyed grain, and the colony's hall was louder than it has been all year.</outcome>
+        <ways><openness>3</openness><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the camp's feast</label><music>true</music><hours>17~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Send food down and go to theirs</label>
+        <outcome>{A_nameDef} carried a sack of the colony's food down to the camp in the afternoon, and at dusk the colony followed it. The camp's fire was the brightest thing for miles.</outcome>
+        <ways><generosity>2</generosity><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the camp's feast</label><what>rawfood</what><count>20</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the feast at the camp</label><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-10</amount><gift>true</gift></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Whoever wants to can go down</label>
+        <outcome>Some of the colony went down to the camp's fire after supper and stayed for the songs. The camp noticed who came, and who didn't.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the feast at the camp</label><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>18~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>The camp kept their day at their own fire. The drum went on past midnight, and the colony lay awake listening to it.</outcome>
+        <ways><openness>-2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>5</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The fee falls short ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmC_FeeShort</defName>
+    <label>the fee falls short</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampFee</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>25</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{X_nameDef} came up from the {FACTION} camp to say what {X_pronoun} didn't want to say: they can't pay the fee this time, the {COUNT} silver they agreed to. They'd make it good another way, with a beast or a day's work for the colony.</li>
+      <li>The fee from the {FACTION} camp is due, and {X_nameDef} brought half of it and an apology. The road has been poor, {X_nameDef} says. Would the colony take something else for the rest?</li>
+    </texts>
+    <defaultOption>3</defaultOption>
+    <options>
+      <li>
+        <label>Take a beast instead</label>
+        <outcome>{X_nameDef} brought a beast up on a rope and handed the rope to {A_nameDef} without a word. The fee is settled.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><fromCamp>true</fromCamp><kinds><li>Goat</li><li>Sheep</li><li>Cow</li><li>Alpaca</li><li>Yak</li><li>Donkey</li></kinds></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampFee" />
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Take a day's work instead</label>
+        <outcome>The camp's people cut and stacked thirty logs for the colony by their camp, and the fee is settled.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>30</count><near>Camp</near></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampFee" />
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Forgive it this once</label>
+        <outcome>The council let this one go. {X_nameDef} said the camp won't forget it, and seemed to mean that well.</outcome>
+        <ways><mercy>2</mercy><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampFee" />
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The terms are the terms</label>
+        <outcome>{X_nameDef} went back down to the camp, and the fee was found, purse by purse. Every coin of it was grudged.</outcome>
+        <ways><mercy>-2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>10</amount></li>
+        </effects>
+        <riskChance>0.3</riskChance>
+        <riskOutcome>{X_nameDef} went back down to the camp, and by evening they had paid what they could and packed up. They won't be stopping here again on their way.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMovesOn" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
+        </riskEffects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Their moods ===================== -->
+
+  <!-- A friend from the camp sent on with their people. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_FriendSentOn</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>my friend went on with the camp</label>
+        <description>My friend from the camp wanted to stay, and the council sent them on with their people. I keep looking down the road.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Cleared of the camp's theft: trust in the council rather than mood. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_Cleared</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>cleared of the theft</label>
+        <description>The camp said I took their purse. It turned up under one of their own bedrolls. The colony never doubted me.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_PaidForIt</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>paid for what I didn't take</label>
+        <description>The council paid the camp for their purse rather than ask me about it. Now the others look at me as if I took it.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_StoodByMe</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>the council stood by me</label>
+        <description>The camp said I stole from them, and the council told them the colony stands by its own. I won't forget that.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>2</trust><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_Accused</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>called a thief by the camp</label>
+        <description>I went down to the camp and told them I never touched their things. They looked at me like a thief the whole time.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- A child's afternoon with a friend from the camp: play rather than mood. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_PlayedWithFriend</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>played with my friend from the camp</label>
+        <description>My friend from the camp showed me their games and I showed them ours. Theirs have more running.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+      </li>
+    </stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.15</joy><felt>3</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_KeptFromFriend</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>kept from my friend</label>
+        <description>I'm not allowed to play with my friend from the camp any more. The grown-ups won't say why.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmC_LostTheCrop</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>let their beasts eat our crop</label>
+        <description>The council let the camp's animals graze in our fields. That was our food, and the camp isn't paying for it.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_DlmC_FriendSentOn</defName>
+    <thoughts><li>Rimfolk_DlmC_FriendSentOn</li></thoughts>
+    <fix>It fades in a few days. Time with friends at home, and work for their hands, helps them stop watching the road.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_DlmC_Accused</defName>
+    <thoughts><li>Rimfolk_DlmC_PaidForIt</li><li>Rimfolk_DlmC_Accused</li></thoughts>
+    <fix>It fades in a few days. A friend's company helps, and so does the camp moving on; when the camp's next accusation comes, standing by them or searching for the truth leaves no sting.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_DlmC_KeptFromFriend</defName>
+    <thoughts><li>Rimfolk_DlmC_KeptFromFriend</li></thoughts>
+    <fix>It fades in two days. Play with the colony's own children, or an adult's time, takes their mind off it.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_DlmC_LostTheCrop</defName>
+    <thoughts><li>Rimfolk_DlmC_LostTheCrop</li></thoughts>
+    <fix>It fades in two days. A good harvest, or the camp paying its way, settles the greedy.</fix>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

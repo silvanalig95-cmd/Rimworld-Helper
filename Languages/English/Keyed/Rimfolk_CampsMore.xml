@@ -18,7 +18,7 @@
   <CC_CampErrand_Arrived_stall>{X_nameDef} has set out the {NAME}' wares by the colony's gate for the day.</CC_CampErrand_Arrived_stall>
   <CC_CampErrand_Arrived_dig>{X_nameDef} of the {NAME} has started a test hole at the edge of the colony.</CC_CampErrand_Arrived_dig>
   <CC_CampErrand_Arrived_survey>{X_nameDef} of the {NAME} has set up an instrument in the middle of the colony and is taking sightings.</CC_CampErrand_Arrived_survey>
-  <CC_CampErrand_Arrived_bless>{X_nameDef} is leading the {NAME} round the colony's fields, their icon held high and everyone singing.</CC_CampErrand_Arrived_bless>
+  <CC_CampErrand_Arrived_bless>{X_nameDef} is leading the {NAME} round the colony's fields, their icon held high and the hymn going.</CC_CampErrand_Arrived_bless>
   <CC_CampErrand_Arrived_mend>{X_nameDef} of the {NAME} has come to the gate with a hammer and a sack of nails.</CC_CampErrand_Arrived_mend>
 
   <CC_CampErrand_Arrived_prayover>{X_nameDef} of the {NAME} has come to sit with {A_nameDef} and pray.</CC_CampErrand_Arrived_prayover>
@@ -48,7 +48,7 @@
   <CC_CampErrand_No_fields>The colony has no fields for them to walk.</CC_CampErrand_No_fields>
   <CC_CampErrand_No_graves>The colony has no graves.</CC_CampErrand_No_graves>
   <CC_CampErrand_No_colony>There's no open ground in the colony for them.</CC_CampErrand_No_colony>
-  <CC_CampErrand_No_A>Nobody at the colony to go to.</CC_CampErrand_No_A>
+  <CC_CampErrand_No_A>There's no one at the colony for them to see.</CC_CampErrand_No_A>
 
   <CC_CampHelp_No>They can't do that now.</CC_CampHelp_No>
   <CC_CampHelp_No_repair>Nothing of the colony's needs mending.</CC_CampHelp_No_repair>

@@ -177,6 +177,32 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
+      <li>
+        <key>fresh</key>
+        <theyAsk>true</theyAsk>
+        <label>Trade them fresh food for salted fare</label>
+        <refuseLabel>The colony needs its fresh food</refuseLabel>
+        <tension>-6</tension>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} is sick of salt fish, and so is every driver in the caravan. They'd trade a good weight of salted fare for anything fresh the colony can spare.</li>
+          <li>"Salt, salt and more salt," {X_nameDef} said to {A_nameDef}, patting the sacks. The caravan would give half again as much of its preserved fare for some of the colony's fresh food.</li>
+        </askTexts>
+        <tip>Twenty-five of the colony's raw food goes out to the caravan; they set out half again as much salted fare for the colony.</tip>
+        <outcomes>
+          <li>{A_nameDef} carried the fresh food over to the caravan, and the drivers set out sacks of salted fare at the edge of the camp in return.</li>
+          <li>The caravan's drivers are eating fresh greens tonight, and the colony has a store of salted fare it didn't have this morning.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said salt never killed anyone, and went back to the fire.</li>
+          <li>The drivers ate salt fish again, and complained about it loudly enough for the colony to hear.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>fresh food for the caravan</label><what>rawfood</what><count>25</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>Pemmican</what><count>40</count><fallback>Pemmican</fallback></li>
+        </effects>
+      </li>
     </asks>
   </ColonyCouncil.CampKindDef>
 
@@ -396,6 +422,44 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>water</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them water the herd at the colony's water</label>
+        <refuseLabel>Keep the herd away from the colony</refuseLabel>
+        <tension>-6</tension>
+        <deed>favorDone</deed>
+        <askTexts>
+          <li>The stream past the ridge has gone to mud, and the herd is thirsty. {X_nameDef} asked {A_nameDef} whether the drovers might bring the beasts down to the colony's water this afternoon, and promised to keep them off the fields.</li>
+          <li>[summer] It's hot, and the herd hasn't drunk well since yesterday. {X_nameDef} came to ask for the colony's water, for an hour, for the beasts.</li>
+        </askTexts>
+        <tip>Two drovers walk the herd down to the colony's water for an afternoon. Afterwards they leave some milk, wool or a hide for the colony.</tip>
+        <outcomes>
+          <li>The drovers will bring the herd down to the colony's water this afternoon. {X_nameDef} has sworn on the dog that not a hoof touches the fields.</li>
+          <li>{X_nameDef} thanked {A_nameDef} and went to round up the beasts. They'll be at the water within a few hours, lowing.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} walked the herd the long way round to the river. The beasts complained about it all afternoon.</li>
+          <li>{X_nameDef} said they'd find water somewhere, and didn't say where.</li>
+        </refused>
+        <refuseTension>5</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>water</to>
+            <count>2</count>
+            <herd>true</herd>
+            <doing>water</doing>
+            <hours>2~3</hours>
+            <when>9~16</when>
+            <help>milk</help>
+            <lines>
+              <li>Easy now. Let them drink.</li>
+              <li>Mind the edge, it's soft.</li>
+              <li>That's it. Good.</li>
+            </lines>
+          </li>
         </effects>
       </li>
     </asks>

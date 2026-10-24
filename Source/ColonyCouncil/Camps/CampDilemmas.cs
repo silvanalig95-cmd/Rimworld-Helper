@@ -9,7 +9,7 @@ namespace ColonyCouncil
     // Like DilemmaWorker_Camp they need a camp settled on the home map and at peace (X: one of them, {FACTION}: their
     // people), and each asks for something more: one of their ordinary people rather than whoever speaks for them, one
     // a colonist has grown close to, a child of theirs and one of the colony's, their herd and the colony's ripe fields,
-    // a fee they agreed to, or another people with a quarrel against them ({RIVAL}).
+    // a fee they agreed to, or another people with a quarrel against them ({ENEMY}).
 
     /// <summary>X is one of the camp's grown-ups, not the one who speaks for them nor their trader.</summary>
     public class DilemmaWorker_CampMember : DilemmaWorker_Camp
@@ -119,8 +119,8 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Another people with a quarrel against the camp's ({RIVAL}): any at peace with the colony, those at odds with the
-    /// camp's own people first.
+    /// Another people with a quarrel against the camp's: any at peace with the colony, those at odds with the
+    /// camp's own people first ({ENEMY} in its texts).
     /// </summary>
     public class DilemmaWorker_CampRival : DilemmaWorker_Camp
     {
@@ -141,12 +141,12 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A camp dilemma's context with the other people of the quarrel ({RIVAL}).</summary>
+    /// <summary>A camp dilemma's context with the other people of the quarrel ({ENEMY}).</summary>
     public class CampRivalContext : DilemmaContext
     {
         public Faction rival;
 
-        protected override void AddArgs(List<NamedArgument> args) => args.Add((rival?.Name ?? "").Named("RIVAL"));
+        protected override void AddArgs(List<NamedArgument> args) => args.Add((rival?.Name ?? "").Named("ENEMY"));
 
         public override void ExposeData()
         {
@@ -155,7 +155,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The colony's standing with the other people of a camp's quarrel ({RIVAL}); a loss stops short of enmity.</summary>
+    /// <summary>The colony's standing with the other people of a camp's quarrel ({ENEMY}); a loss stops short of enmity.</summary>
     public class DilemmaEffect_RivalGoodwill : DilemmaEffect
     {
         public int amount;
