@@ -366,6 +366,7 @@ MODEL = {
     # Advisor, building
     "Advisor/AdvisorCore.cs:wealthHistory": ("window", (60, 1), V, "60 days of wealth"),
     "Building/CouncilPlanQueue.cs:queue": ("while", 30, 150, "blueprints waiting to be placed"),
+    "Building/BuildPriority.cs:levels": ("while", 40, D, "blueprints and frames with a build priority set, per map, until built or cancelled"),
     "Building/CustomRooms.cs:pieces": ("settings", 30, 120, "per saved room, in the mod's settings file"),
     "Building/PersonalTouches.cs:pending": ("cap", (10, 0.2), 200, "until built or dropped"),
     # Dilemmas and decrees

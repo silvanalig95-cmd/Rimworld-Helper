@@ -92,7 +92,10 @@ namespace ColonyCouncil
         /// <summary>Light sleepers wake at the smell of smoke (only while one of them is asleep at home).</summary>
         public const int RareSmoke = 13;
 
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke };
+        /// <summary>Build priorities: what can go ahead at each level (only while a level is set on the map).</summary>
+        public const int RareBuildPriority = 19;
+
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

@@ -89,6 +89,10 @@ A material you pick yourself is remembered for that room and used again next tim
         <heading>The game's own build menu</heading>
         <text>With Rimfolk's deeper game hooks on, the material list of the game's build menu shows how much of each material you have: "Steel wall    420 (+85 lying around), enough for 84". Switch it off under "Show material counts in build menus".</text>
       </li>
+      <li>
+        <heading>Build priorities</heading>
+        <text>Select any of your blueprints or frames and the button "Build priority" sets how soon it gets built: low, normal, high or urgent. A click steps through them for everything selected; a right-click picks one. Builders take on nothing at a level while something at a higher one can go ahead, so you can lay out the whole base at once and still have the walls and the bedrooms go up first. Something that can't go ahead holds nothing up: its materials aren't on the map, it's forbidden, the colony can't reach it, or nobody here has the skill. A job you give by hand ("prioritize") is always taken. A blueprint keeps its level when it becomes a frame, and a small tag on the map shows urgent, high and low ones. Switch it off under "Build priorities on blueprints".</text>
+      </li>
     </sections>
     <keywords>
       <li>room plan</li>

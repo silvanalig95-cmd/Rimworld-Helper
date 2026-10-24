@@ -112,4 +112,20 @@ Green: enough with some to spare. Amber: only just enough. Red: not enough.</CC_
   <CC_Settings_BuildMenuCounts>Show material counts in build menus</CC_Settings_BuildMenuCounts>
   <CC_Settings_BuildMenuCounts_Tip>When you pick a material for a wall, door or piece of furniture in the game's build menu, each material shows how much the colony has: stored (stockpiles and shelves), lying around (not forbidden, not in storage), and how many you could build with it.</CC_Settings_BuildMenuCounts_Tip>
 
+  <!-- Build priorities (Source/ColonyCouncil/Building/BuildPriority.cs). -->
+  <CC_BuildPrio_Urgent>urgent</CC_BuildPrio_Urgent>
+  <CC_BuildPrio_High>high</CC_BuildPrio_High>
+  <CC_BuildPrio_Normal>normal</CC_BuildPrio_Normal>
+  <CC_BuildPrio_Low>low</CC_BuildPrio_Low>
+  <CC_BuildPrio_Tag_Urgent>urgent</CC_BuildPrio_Tag_Urgent>
+  <CC_BuildPrio_Tag_High>high</CC_BuildPrio_Tag_High>
+  <CC_BuildPrio_Tag_Low>low</CC_BuildPrio_Tag_Low>
+  <CC_BuildPrio_Button>Build priority: {0}</CC_BuildPrio_Button>
+  <CC_BuildPrio_ButtonDesc>How soon this gets built. Builders take on nothing at a level while something at a higher one can go ahead: its materials are on the map and someone here has the skill for it. Anything that can't go ahead doesn't hold the rest up.
+
+Click to step through normal, high, urgent and low for everything selected; right-click to pick one.</CC_BuildPrio_ButtonDesc>
+  <CC_BuildPrio_Inspect>Build priority: {0}</CC_BuildPrio_Inspect>
+  <CC_Settings_BuildPriorities>Build priorities on blueprints</CC_Settings_BuildPriorities>
+  <CC_Settings_BuildPriorities_Tip>A button on each of the colony's blueprints and frames sets how soon it gets built: low, normal, high or urgent. Builders finish what can go ahead at the highest level first. A job you give by hand is always taken.</CC_Settings_BuildPriorities_Tip>
+
 </LanguageData>

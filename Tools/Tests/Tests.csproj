@@ -48,6 +48,7 @@
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithMath.cs" Link="FaithMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/LeaningMath.cs" Link="LeaningMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Quirks/PracticeMath.cs" Link="PracticeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/BuildPriorityMath.cs" Link="BuildPriorityMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Quirks/QuirkPassMath.cs" Link="QuirkPassMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithPeopleMath.cs" Link="FaithPeopleMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithCouncilMath.cs" Link="FaithCouncilMath.cs" />

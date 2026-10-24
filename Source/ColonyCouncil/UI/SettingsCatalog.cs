@@ -349,6 +349,7 @@ namespace ColonyCouncil
             Toggle("planSmoothStone", "CC_Planner_Smooth", "CC_SetNote_PlanSmooth");
             Section("CC_SetSec_BuildMenu");
             Toggle("buildMenuCounts", "CC_Settings_BuildMenuCounts", "CC_SetNote_BuildMenuCounts", "deepHooks");
+            Toggle("buildPriorities", "CC_Settings_BuildPriorities", "CC_SetNote_BuildPriorities", "deepHooks");
 
             // Interface and integrations: messages, alerts, the council's own tabs and buttons, the deeper game hooks.
             Page(SettingsPage.Interface);

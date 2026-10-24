@@ -228,6 +228,8 @@ namespace ColonyCouncil
         public bool planFurniture = true;
         /// <summary>The game's build menu shows how much of each material the colony has (a deeper game hook).</summary>
         public bool buildMenuCounts = true;
+        /// <summary>A priority button on the colony's blueprints and frames (Building/BuildPriority.cs).</summary>
+        public bool buildPriorities = true;
         /// <summary>Rooms the player saved from a map ("Your rooms"), usable in every save.</summary>
         public System.Collections.Generic.List<CustomRoomData> savedRooms = new System.Collections.Generic.List<CustomRoomData>();
         /// <summary>The materials last picked in the room planner, "room::group=>material", used again while there's enough.</summary>
@@ -414,6 +416,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref planSmoothStone, "planSmoothStone", false);
             Scribe_Values.Look(ref planFurniture, "planFurniture", true);
             Scribe_Values.Look(ref buildMenuCounts, "buildMenuCounts", true);
+            Scribe_Values.Look(ref buildPriorities, "buildPriorities", true);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);
             Scribe_Collections.Look(ref planMaterials, "planMaterials", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)

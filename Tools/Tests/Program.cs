@@ -394,6 +394,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {AlmanacLayoutTests.Run(root, Check)} things about the Almanac's layout (columns, tables, text sizes).");
         Console.WriteLine($"Checked {LeaningTests.Run(Check)} things about leanings (how colonists are drawn to other ideoligions, and how fast).");
         Console.WriteLine($"Checked {PracticeTests.Run(Check)} things about practice (habits that grow from what colonists do, kept while lived).");
+        Console.WriteLine($"Checked {BuildPriorityTests.Run(Check)} things about build priorities (the button's steps, what waits for what).");
         Console.WriteLine($"Checked {DecreeMathTests.Run(Check)} things about decrees (when many are hurt, the work order in a clean sweep).");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
         Console.WriteLine($"Checked {ImmersionTests.Run(root, Check)} things about what colonists say and their small habits.");
