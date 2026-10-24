@@ -71,9 +71,9 @@
         <li>[for,sombre] I'll sit with whoever wants company on the day, I've told them.</li>
         <li>[against] I'm happy for everyone, but I'd sooner spend the day working beside you.</li>
         <li>[mixed] I hope the day's kind to everyone, it isn't always easy.</li>
-        <li>[for,kept] I saw people smiling who don't smile much, and that was worth the day.</li>
+        <li>[for,kept,!sombre] I saw people smiling who don't smile much, and that was worth the day.</li>
         <li>[against] I'd keep the day for the others' sake, though I'd rather be working.</li>
-        <li>[mixed] Whatever you do on the day, I hope it's something you enjoy.</li>
+        <li>[mixed,!sombre] Whatever you do on the day, I hope it's something you enjoy.</li>
       </warm>
       <blunt>
         <li>[for] We work hard, we've earned a day.</li>
@@ -92,7 +92,7 @@
         <li>[against] I'll keep the day if somebody else keeps my chores.</li>
         <li>[for,kept,!sombre] Best day of the year, and I'm still full.</li>
         <li>[mixed,!sombre] I like the day, I just don't like being made to sing.</li>
-        <li>[for] I've decided the day needs more games and fewer speeches.</li>
+        <li>[for,!sombre] I've decided the day needs more games and fewer speeches.</li>
         <li>[against] If we keep any more days, I'll forget how to work.</li>
       </cheerful>
       <gloomy>
@@ -126,7 +126,7 @@
         <li>[agree,for] It's the one day everyone stops and looks up.</li>
         <li>[agree,for] We need a day like that, all of us.</li>
         <li>[agree,for,coming] I've already set something aside for it.</li>
-        <li>[agree,for,kept] Best day we've had all season.</li>
+        <li>[agree,for,kept,!sombre] Best day we've had all season.</li>
         <li>[agree,for,sombre] It's right to stop for them.</li>
         <li>[agree,for,birthday] Another year, and that's worth something out here.</li>
         <li>[agree,against] I'll be glad when it's done and we can get on.</li>
@@ -148,9 +148,9 @@
         <li>[debate] Ask me again when the day's here.</li>
         <li>[debate] You say that every year, and every year we argue about it.</li>
         <li>[argue,for] You'd work through your own funeral if we let you.</li>
-        <li>[argue,for] Nobody's asking you to dance, just to stop for one day.</li>
+        <li>[argue,for,!sombre] Nobody's asking you to dance, just to stop for one day.</li>
         <li>[argue,for,sombre] Have some respect, it's their day.</li>
-        <li>[argue,against] And who's going to do the work while everyone's celebrating?</li>
+        <li>[argue,against,!sombre] And who's going to do the work while everyone's celebrating?</li>
         <li>[argue,against] It's a waste, and you know it is.</li>
         <li>[argue,against,coming] Mark my words, we'll pay for that day in the winter.</li>
         <li>[argue,mixed] I didn't say I'd skip it, I said it's a lot of fuss.</li>
@@ -187,7 +187,7 @@
       <warm>
         <li>[agree,for] I'll save you a seat beside me.</li>
         <li>[debate,against] I'm sure they're lovely days, I just worry about the work.</li>
-        <li>[argue,for] Please come, even if you only stay until the food's gone.</li>
+        <li>[argue,for,!sombre] Please come, even if you only stay until the food's gone.</li>
         <li>[agree,against] I know, and I'll cover a few chores so nobody falls behind.</li>
         <li>[agree,sombre] We'll remember them together, then.</li>
         <li>[debate,mixed] Whatever you decide, I'll be glad to see you there.</li>
@@ -198,8 +198,8 @@
         <li>[agree,for] Good, about time we had a day.</li>
         <li>[agree,against] Exactly, waste of a day.</li>
         <li>[debate,for] It's one day, stop whining.</li>
-        <li>[argue,against] Celebrate all you like, I'm working.</li>
-        <li>[argue,for] You're no fun, and you never were.</li>
+        <li>[argue,against,!sombre] Celebrate all you like, I'm working.</li>
+        <li>[argue,for,!sombre] You're no fun, and you never were.</li>
         <li>[debate,against] Keep it short, then.</li>
         <li>[agree,mixed] Fair enough.</li>
         <li>[argue,mixed] Don't drag me into this.</li>
@@ -208,16 +208,16 @@
         <li>[agree,for,!sombre] I've already picked out my best shirt.</li>
         <li>[debate,against,!sombre] Come for the food, stay for my singing.</li>
         <li>[argue,for,!sombre] You're coming if I have to carry you there.</li>
-        <li>[agree,against] Fine, I'll celebrate for both of us.</li>
+        <li>[agree,against,!sombre] Fine, I'll celebrate for both of us.</li>
         <li>[debate,for,!sombre] I bet you'll be the last one to leave.</li>
-        <li>[agree,mixed] I'll go if there's food, and that's my whole opinion.</li>
+        <li>[agree,mixed,!sombre] I'll go if there's food, and that's my whole opinion.</li>
         <li>[debate,mixed,!sombre] I'll come, but I'm not dancing, probably.</li>
       </cheerful>
       <gloomy>
         <li>[agree,for] It's the only day all year that feels the way it used to.</li>
         <li>[agree,against] It never feels the way it's supposed to, does it.</li>
         <li>[debate,for] Better a day like that than another plain one.</li>
-        <li>[argue,against] Celebrate, then, the winter won't care.</li>
+        <li>[argue,against,!sombre] Celebrate, then, the winter won't care.</li>
         <li>[agree,sombre] I dread it, and I'd hate to miss it.</li>
         <li>[agree,mixed] Some years I can't face it, some years I can.</li>
         <li>[debate,mixed] It'll come round again whether we're ready or not.</li>
@@ -249,12 +249,12 @@
         <li>[agree,yourday,birthday] Happy birthday, then, and many more of them.</li>
         <li>[agree,myday] Thank you, it means more than I'd say.</li>
         <li>[debate] Come anyway, and you can grumble at the back.</li>
-        <li>[debate,for] You'll enjoy it more than you think.</li>
+        <li>[debate,for,!sombre] You'll enjoy it more than you think.</li>
         <li>[debate,against] Keep your day, and I'll keep the fires going.</li>
         <li>[debate,kept] Next year we'll do it better, either way.</li>
         <li>[argue] Do what you like on the day, then.</li>
         <li>[argue,for] Stay in and sulk, then, and see if anyone misses you.</li>
-        <li>[argue,against] Enjoy it while the work piles up.</li>
+        <li>[argue,against,!sombre] Enjoy it while the work piles up.</li>
         <li>[agree] Good, we'll make the most of it.</li>
         <li>[debate] We'll each keep it our own way, then.</li>
         <li>[argue] I won't argue about it again.</li>
@@ -307,14 +307,14 @@
     <lines>
       <plain>
         <li>[debate] I'll think about it, maybe.</li>
-        <li>[debate] I'll come for the food, not the speeches.</li>
+        <li>[debate,!sombre] I'll come for the food, not the speeches.</li>
         <li>[debate,for] You'll be there, I know you will.</li>
         <li>[debate,against] We'll see who's sorry in the morning.</li>
         <li>[debate,sombre] I'll be there for them, not for anyone else.</li>
         <li>[argue] Leave me out of it.</li>
         <li>[argue] Keep your day.</li>
-        <li>[argue,for] Fine, I'll enjoy it without you.</li>
-        <li>[argue,against] Have fun, I'll be working.</li>
+        <li>[argue,for,!sombre] Fine, I'll enjoy it without you.</li>
+        <li>[argue,against,!sombre] Have fun, I'll be working.</li>
         <li>[argue,myday] It's my day, and I'll say how it goes.</li>
       </plain>
       <warm>

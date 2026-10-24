@@ -8,14 +8,14 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 322; modelled: 322; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,656 KB** after a year, **2,019 KB** after two, **2,132 KB** after five.
+Rimfolk's part of the save, roughly: **1,665 KB** after a year, **2,029 KB** after two, **2,144 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
 | `Journal.cs:journals` | the living's, and the 30 departed written in most lately | cap | 30 | 50 | 50 | 468.8 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
-| `Persona/PersonaTracker.cs:list` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 146.8 |
+| `Persona/PersonaTracker.cs:list` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
 | `CouncilGameComponent.cs:chronicle` | Caps.Chronicle; the newest 200 always, milestones longest | cap | 300 | 300 | 300 | 102.5 |
 | `Persona/TraitChanges.cs:watches` | one per colonist with its deeds and ten snapshots; known pawns only | colonists | 20 | 20 | 20 | 66.4 |
 | `Social/Gossip/ReputationTracker.cs:deeds` | 10 per colonist, 220 in all, faded ones dropped | cap | 200 | 200 | 200 | 58.6 |
@@ -304,7 +304,7 @@ Rimfolk's part of the save, roughly: **1,656 KB** after a year, **2,019 KB** aft
 | `Persona/PawnPersona.cs:d` | per person: one per side, fading (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:l` | per person: one per side (counted under people) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/PawnPersona.cs:marks` | per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people) | fixed | 12 | 12 | 12 | (in its record) |
-| `Persona/PawnPersona.cs:stances` | per person: one per topic, and per newcomer for 60 days (counted under people) | fixed | 20 | 20 | 20 | (in its record) |
+| `Persona/PawnPersona.cs:stances` | per person: one per topic (23), and per newcomer for 60 days (counted under people) | fixed | 24 | 24 | 24 | (in its record) |
 | `Persona/TraitChanges.cs:absorbed` | per change: how the trait moved each side (counted under changes) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/TraitChanges.cs:snapshots` | per colonist: 10 snapshots, every ten days (counted under watches) | fixed | 10 | 10 | 10 | (in its record) |
 | `Persona/TraitChanges.cs:tallies` | per colonist: deeds counted, 240 days, 12 per kind (counted under watches) | fixed | 3 | 3 | 3 | (in its record) |

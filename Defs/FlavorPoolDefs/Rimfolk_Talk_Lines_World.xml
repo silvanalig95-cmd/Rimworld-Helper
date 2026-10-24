@@ -26,7 +26,7 @@
       <plain>
         <li>[for] Whatever's going on out there, I'd rather we had a hand in it.</li>
         <li>[for] We can't wall ourselves off from the world and pretend it isn't there.</li>
-        <li>[for] Our neighbors will remember who helped them and who didn't.</li>
+        <li>[for,!goodnews] Our neighbors will remember who helped them and who didn't.</li>
         <li>[for,subject] I keep thinking about the news of {SUBJECT}.</li>
         <li>[for,badnews] People out there are in trouble, and we have more than some.</li>
         <li>[for,goodnews] Something good is happening out there for once, and we should be part of it.</li>
@@ -66,10 +66,10 @@
       <warm>
         <li>[for] I keep thinking about the people out there, they're just like us.</li>
         <li>[for,badnews] If it were us in trouble, I'd want someone to come.</li>
-        <li>[against] I feel for them, I do, but we have to look after our own first.</li>
-        <li>[mixed] I hope whoever's caught up in it is all right.</li>
+        <li>[against,!goodnews] I feel for them, I do, but we have to look after our own first.</li>
+        <li>[mixed,!goodnews] I hope whoever's caught up in it is all right.</li>
         <li>[for,goodnews] It's nice to hear of something going right out there.</li>
-        <li>[for] We could send something, even if it's only a few sacks of food.</li>
+        <li>[for,!goodnews] We could send something, even if it's only a few sacks of food.</li>
         <li>[mixed] I hope it ends well for them, whatever it is.</li>
       </warm>
       <blunt>
@@ -95,12 +95,12 @@
         <li>[for,badnews] It'll come here in the end, so we might as well help now.</li>
         <li>[against,badnews] Nothing we do will make any difference out there.</li>
         <li>[mixed] There's always something, isn't there.</li>
-        <li>[for] One day it'll be us asking for help.</li>
+        <li>[for,!goodnews] One day it'll be us asking for help.</li>
         <li>[mixed] News like that never gets better, only quieter.</li>
-        <li>[against] There's no helping a world like this one.</li>
+        <li>[against,!goodnews] There's no helping a world like this one.</li>
       </gloomy>
       <cold>
-        <li>[for] Helping now buys us goodwill we'll need later.</li>
+        <li>[for,!goodnews] Helping now buys us goodwill we'll need later.</li>
         <li>[against] Their misfortune isn't our responsibility.</li>
         <li>[for,badnews] Their trouble could be our opportunity, if we're careful.</li>
         <li>[against,helped] We've given what we could, and that's all they get.</li>
@@ -119,7 +119,7 @@
     <lines>
       <plain>
         <li>[agree,for] Yes, and the sooner the better.</li>
-        <li>[agree,for] They'd do the same for us, I'd like to think.</li>
+        <li>[agree,for,!goodnews] They'd do the same for us, I'd like to think.</li>
         <li>[agree,for,badnews] If we can help, we should.</li>
         <li>[agree,for,goodnews] I'd go myself, if anyone would let me.</li>
         <li>[agree,for,helped] And it's been noticed, the traders say so.</li>
@@ -130,7 +130,7 @@
         <li>[agree,mixed] Strange times, wherever you look.</li>
         <li>[agree] That's the same news I heard.</li>
         <li>[agree] I've been turning it over all day.</li>
-        <li>[debate,for] We don't have to empty the stores, just do something.</li>
+        <li>[debate,for,!goodnews] We don't have to empty the stores, just do something.</li>
         <li>[debate,for] It's closer than you think, all of it.</li>
         <li>[debate,for,news:war] If they lose, who do you think comes for us next?</li>
         <li>[debate,against] Help, maybe, but on our terms.</li>
@@ -141,7 +141,7 @@
         <li>[debate] That's not how the traders told it.</li>
         <li>[debate] News like that changes every time someone repeats it.</li>
         <li>[argue,for] So we just watch and do nothing, is that it?</li>
-        <li>[argue,for] You'd let the world burn as long as our roof held.</li>
+        <li>[argue,for,!goodnews] You'd let the world burn as long as our roof held.</li>
         <li>[argue,against] And when it goes wrong, who pays for it, you?</li>
         <li>[argue,against] You want to save the world, start with the chores.</li>
         <li>[argue,against,helped] We've given plenty, and you'd give the rest away too.</li>
@@ -159,9 +159,9 @@
         <li>[debate,against] Let's see how it settles before we jump in.</li>
         <li>[debate,mixed] I can see it both ways, to be fair.</li>
         <li>[debate,mixed] Hard to say, from this far off.</li>
-        <li>[argue,for] You'd turn your back on anyone who needed you.</li>
+        <li>[argue,for,!goodnews] You'd turn your back on anyone who needed you.</li>
         <li>[argue,for,badnews] Easy to say when it's someone else's village going hungry.</li>
-        <li>[argue,against] We can't feed the whole world, and you know it.</li>
+        <li>[argue,against,!goodnews] We can't feed the whole world, and you know it.</li>
         <li>[argue,mixed] I said I don't know, and I mean I don't know.</li>
         <li>[for] We can't pretend it's nothing to do with us.</li>
         <li>[for] Someone has to care what happens out there.</li>
@@ -175,9 +175,9 @@
         <li>[debate,against] I know you mean well, but think of our own first.</li>
         <li>[argue,for] Please don't talk like that, those are people out there.</li>
         <li>[agree,badnews] I hope it's not as bad as they say.</li>
-        <li>[debate,for] We'd want someone to think of us, wouldn't we?</li>
-        <li>[agree,mixed] I just hope everyone out there is safe.</li>
-        <li>[argue,against] I'm not heartless, I'm worried about us.</li>
+        <li>[debate,for,!goodnews] We'd want someone to think of us, wouldn't we?</li>
+        <li>[agree,mixed,!goodnews] I just hope everyone out there is safe.</li>
+        <li>[argue,against,!goodnews] I'm not heartless, I'm worried about us.</li>
       </warm>
       <blunt>
         <li>[agree,for] Right, let's do something.</li>
@@ -200,8 +200,8 @@
       <gloomy>
         <li>[agree,against] It'll all end badly whatever we do.</li>
         <li>[agree,for] It'll reach us eventually, it always does.</li>
-        <li>[debate,for] Help if you like, I doubt it changes much.</li>
-        <li>[argue,against] You'll get us killed for strangers.</li>
+        <li>[debate,for,!goodnews] Help if you like, I doubt it changes much.</li>
+        <li>[argue,against,!goodnews] You'll get us killed for strangers.</li>
         <li>[agree,badnews] Bad news travels fast, and it's never wrong.</li>
         <li>[agree,mixed] It'll go wrong one way or another, it always does.</li>
         <li>[debate,mixed] Whatever it is, it won't be good for long.</li>
@@ -269,7 +269,7 @@
         <li>[debate] Doesn't matter what we decide, it'll do what it does.</li>
         <li>[argue] Have it your way, we'll see who's right.</li>
         <li>[agree,badnews] More bad news, then, as usual.</li>
-        <li>[debate,for] Help them if you must, it won't last.</li>
+        <li>[debate,for,!goodnews] Help them if you must, it won't last.</li>
       </gloomy>
       <cold>
         <li>[agree] Settled.</li>
@@ -294,13 +294,13 @@
         <li>[debate,badnews] I hope you're right that it won't reach us.</li>
         <li>[argue] I've heard enough about it.</li>
         <li>[argue,for] Some neighbor you'd make.</li>
-        <li>[argue,against] Not with my food, you won't.</li>
+        <li>[argue,against,!goodnews] Not with my food, you won't.</li>
         <li>[argue,news:war] Wait until it's at our gate, then talk.</li>
       </plain>
       <warm>
-        <li>[debate] Either way, I hope they're all right out there.</li>
-        <li>[argue] I just don't want anyone hurt.</li>
-        <li>[debate,for] We'll find a way to help, you'll see.</li>
+        <li>[debate,!goodnews] Either way, I hope they're all right out there.</li>
+        <li>[argue,!goodnews] I just don't want anyone hurt.</li>
+        <li>[debate,for,!goodnews] We'll find a way to help, you'll see.</li>
         <li>[argue,against] I care about them too, you know.</li>
       </warm>
       <blunt>

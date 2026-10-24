@@ -277,6 +277,9 @@
         <li>[agree,!child,for] Have fun, and stay where someone can see you.</li>
         <li>[debate,!child,against] Help me now, and you can play after.</li>
         <li>[argue,!child,for] Go and play, and no arguing.</li>
+        <li>[agree,!child] That's my good one.</li>
+        <li>[debate,!child] We'll see how you feel in the morning.</li>
+        <li>[argue,!child] Not another word, off you go.</li>
       </plain>
       <warm>
         <li>[agree,child] Thank you for listening to me.</li>

@@ -533,10 +533,10 @@
         <li>[for] A place with children in it is a place that means to last.</li>
         <li>[for] Teach a child something and you'll never forget it either.</li>
         <li>[against] I worry about what children see here.</li>
-        <li>[against] Children need more than we can give them out here.</li>
+        <li>[against,!nochildren] Children need more than we can give them out here.</li>
         <li>[mixed] Do you think children should be raised out here?</li>
         <li>[mixed] What would you teach a child first, out here?</li>
-        <li>[mixed] I wonder what kind of people they'll grow up to be.</li>
+        <li>[mixed,!nochildren] I wonder what kind of people they'll grow up to be.</li>
         <li>[mixed] I never know how to talk to children.</li>
         <li>[mixed] Were you happy as a child?</li>
       </plain>
@@ -545,14 +545,14 @@
         <li>[for] I'd teach a child anything they wanted to learn.</li>
         <li>[for] Children should learn their letters, even out here.</li>
         <li>[against] I'd give anything to keep children away from all of this.</li>
-        <li>[mixed] I hope the children here know how much they're loved.</li>
+        <li>[mixed,!nochildren] I hope the children here know how much they're loved.</li>
       </warm>
       <blunt>
         <li>[against] Children here should learn to work and fight, soft won't help them.</li>
         <li>[for] Kids need room to run about, not lessons all day.</li>
         <li>[for] Children need to grow up, and this place will make them grow up.</li>
         <li>[against] No place to raise kids, this, and you know it.</li>
-        <li>[mixed] Children, what are we going to do with them?</li>
+        <li>[mixed,!nochildren] Children, what are we going to do with them?</li>
       </blunt>
       <cheerful>
         <li>[for] If the children ever form a council, it'll be stricter than ours.</li>
@@ -564,7 +564,7 @@
         <li>[against] What future are we giving them, really?</li>
         <li>[for] Children don't know how bad things are, and that's a mercy.</li>
         <li>[against,subject] I wonder what kind of world {SUBJECT} will grow up into.</li>
-        <li>[mixed] They'll grow up whatever we do, and see what we've seen.</li>
+        <li>[mixed,!nochildren] They'll grow up whatever we do, and see what we've seen.</li>
       </gloomy>
       <cold>
         <li>[for] Children are the colony's long-term investment.</li>
@@ -608,50 +608,50 @@
         <li>[debate] Children are tougher than we think, and softer too.</li>
         <li>[argue] What would you know about children?</li>
         <li>[argue] We always argue about this.</li>
-        <li>[argue] I won't hear that, not about the little ones.</li>
-        <li>[for] They're the reason we keep going.</li>
+        <li>[argue,!nochildren] I won't hear that, not about the little ones.</li>
+        <li>[for,!nochildren] They're the reason we keep going.</li>
         <li>[for] Every child here is a reason to make this place better.</li>
         <li>[against] This place is hard on children, and it shows.</li>
-        <li>[against] I'd want them somewhere safer, if there was anywhere.</li>
-        <li>[mixed] Some days I think they're fine, some days I worry.</li>
+        <li>[against,!nochildren] I'd want them somewhere safer, if there was anywhere.</li>
+        <li>[mixed,!nochildren] Some days I think they're fine, some days I worry.</li>
         <li>[mixed] I don't know much about children, really.</li>
-        <li>[agree,mixed] It's hard to know what's right for them.</li>
-        <li>[agree,mixed] They seem happy enough, mostly.</li>
-        <li>[debate,mixed] They need both, safety and freedom.</li>
-        <li>[debate,mixed] It depends what we can give them.</li>
+        <li>[agree,mixed,!nochildren] It's hard to know what's right for them.</li>
+        <li>[agree,mixed,!nochildren] They seem happy enough, mostly.</li>
+        <li>[debate,mixed,!nochildren] They need both, safety and freedom.</li>
+        <li>[debate,mixed,!nochildren] It depends what we can give them.</li>
         <li>[argue,mixed] I'm not going to fight about children.</li>
         <li>[argue,mixed] Leave me out of it, I'm no good with children.</li>
       </plain>
       <warm>
         <li>[agree,for] I'd do anything for them, anything at all.</li>
         <li>[agree,for] I'd sit up all night with any of them.</li>
-        <li>[agree,mixed] Whatever happens, they'll have all of us looking out for them.</li>
-        <li>[debate,against] I love them, I just worry about them.</li>
-        <li>[argue,for] Please don't talk about them like that.</li>
+        <li>[agree,mixed,!nochildren] Whatever happens, they'll have all of us looking out for them.</li>
+        <li>[debate,against,!nochildren] I love them, I just worry about them.</li>
+        <li>[argue,for,!nochildren] Please don't talk about them like that.</li>
       </warm>
       <blunt>
         <li>[agree,mixed] Kids are kids.</li>
-        <li>[debate,for] They'll be fine.</li>
+        <li>[debate,for,!nochildren] They'll be fine.</li>
         <li>[agree,against] Too dangerous.</li>
         <li>[argue,mixed] Don't ask me.</li>
       </blunt>
       <cheerful>
         <li>[agree,for] They're running this place, really, we just work here.</li>
-        <li>[argue,against] You'd wrap them in blankets and never let them out.</li>
-        <li>[agree,mixed] They're smarter than us, I've decided, and they know it.</li>
-        <li>[debate,for] Come on, they're having the time of their lives.</li>
+        <li>[argue,against,!nochildren] You'd wrap them in blankets and never let them out.</li>
+        <li>[agree,mixed,!nochildren] They're smarter than us, I've decided, and they know it.</li>
+        <li>[debate,for,!nochildren] Come on, they're having the time of their lives.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] I hope they forgive us, one day.</li>
-        <li>[debate,for] They'll grow up hard, like the rest of us.</li>
-        <li>[agree,mixed] They'll learn soon enough what the world's like.</li>
-        <li>[argue,for] They're tougher than you, at least.</li>
+        <li>[debate,for,!nochildren] They'll grow up hard, like the rest of us.</li>
+        <li>[agree,mixed,!nochildren] They'll learn soon enough what the world's like.</li>
+        <li>[argue,for,!nochildren] They're tougher than you, at least.</li>
       </gloomy>
       <cold>
         <li>[debate,for] They'll adapt, children do.</li>
         <li>[agree,against] Risk to children should be minimized.</li>
-        <li>[agree,mixed] They're an investment, either way.</li>
-        <li>[argue,for] Overprotecting them makes them weak.</li>
+        <li>[agree,mixed,!nochildren] They're an investment, either way.</li>
+        <li>[argue,for,!nochildren] Overprotecting them makes them weak.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -671,41 +671,41 @@
         <li>[agree,for] Let's make this a place worth growing up in.</li>
         <li>[agree,against] We'll keep them close, then.</li>
         <li>[debate,against] Just be careful with them.</li>
-        <li>[agree] Let's look in on them later.</li>
-        <li>[debate] We'll see how they grow.</li>
+        <li>[agree,!nochildren] Let's look in on them later.</li>
+        <li>[debate,!nochildren] We'll see how they grow.</li>
         <li>[argue] I'm done talking about this.</li>
-        <li>[agree,mixed] We'll do our best by them.</li>
-        <li>[debate,mixed] Let's not fight about the children.</li>
+        <li>[agree,mixed,!nochildren] We'll do our best by them.</li>
+        <li>[debate,mixed,!nochildren] Let's not fight about the children.</li>
       </plain>
       <warm>
         <li>[agree] I'd read to them every night, if I could.</li>
-        <li>[agree,for] They're lucky to have this place, and us.</li>
-        <li>[debate] Whatever we think, let's be good to them.</li>
-        <li>[argue] I'm sorry, they matter so much to me.</li>
+        <li>[agree,for,!nochildren] They're lucky to have this place, and us.</li>
+        <li>[debate,!nochildren] Whatever we think, let's be good to them.</li>
+        <li>[argue,!nochildren] I'm sorry, they matter so much to me.</li>
       </warm>
       <blunt>
         <li>[argue,against] Just keep them away from the gate.</li>
         <li>[agree] Right.</li>
-        <li>[debate] Leave them be.</li>
+        <li>[debate,!nochildren] Leave them be.</li>
         <li>[argue] Fine.</li>
       </blunt>
       <cheerful>
-        <li>[agree] Let's go and teach them a terrible song.</li>
-        <li>[debate] Loser has to tell the bedtime story tonight.</li>
+        <li>[agree,!nochildren] Let's go and teach them a terrible song.</li>
+        <li>[debate,!nochildren] Loser has to tell the bedtime story tonight.</li>
         <li>[argue] Fine, I'll be the fun one, then.</li>
-        <li>[agree,for] Race the children to supper, then.</li>
+        <li>[agree,for,!nochildren] Race the children to supper, then.</li>
       </cheerful>
       <gloomy>
-        <li>[agree] They'll grow up whatever we do.</li>
-        <li>[debate] We can't protect them from everything.</li>
+        <li>[agree,!nochildren] They'll grow up whatever we do.</li>
+        <li>[debate,!nochildren] We can't protect them from everything.</li>
         <li>[argue] Have it your way.</li>
-        <li>[agree,against] I fear for them.</li>
+        <li>[agree,against,!nochildren] I fear for them.</li>
       </gloomy>
       <cold>
         <li>[agree] Agreed.</li>
-        <li>[debate] Their progress will tell us.</li>
+        <li>[debate,!nochildren] Their progress will tell us.</li>
         <li>[argue] I've made my position clear.</li>
-        <li>[agree,for] They're the future, so they matter.</li>
+        <li>[agree,for,!nochildren] They're the future, so they matter.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -927,16 +927,16 @@
     <outcomes><li>Tease</li></outcomes>
     <lines>
       <plain>
-        <li>[otherfor] The children follow you around like ducklings, {OTHER}, have you noticed?</li>
+        <li>[otherfor,!nochildren] The children follow you around like ducklings, {OTHER}, have you noticed?</li>
         <li>[otheragainst] Every time a child laughs, you check the gate, {OTHER}.</li>
-        <li>Telling bedtime stories again, {OTHER}?</li>
-        <li>Still the children's favorite, {OTHER}, or have they found someone better?</li>
+        <li>[!nochildren] Telling bedtime stories again, {OTHER}?</li>
+        <li>[!nochildren] Still the children's favorite, {OTHER}, or have they found someone better?</li>
       </plain>
       <cheerful>
-        <li>[otherfor] You let the children win at every game, {OTHER}, and they know it.</li>
+        <li>[otherfor,!nochildren] You let the children win at every game, {OTHER}, and they know it.</li>
         <li>[otheragainst] One day a child will make you smile, {OTHER}, and you won't be able to stop it.</li>
-        <li>[otherfor] Did you really let the children paint your face, {OTHER}?</li>
-        <li>Still telling the one about the dragon, {OTHER}?</li>
+        <li>[otherfor,!nochildren] Did you really let the children paint your face, {OTHER}?</li>
+        <li>[!nochildren] Still telling the one about the dragon, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

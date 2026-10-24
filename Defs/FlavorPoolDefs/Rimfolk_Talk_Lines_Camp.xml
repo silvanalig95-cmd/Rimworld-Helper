@@ -20,20 +20,20 @@
     <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
     <lines>
       <plain>
-        <li>[for] It's good to see other fires at night, I'll say that.</li>
-        <li>[for] They've been no trouble, as far as I can see.</li>
+        <li>[for,!coming] It's good to see other fires at night, I'll say that.</li>
+        <li>[for,!coming] They've been no trouble, as far as I can see.</li>
         <li>[for] A few neighbors for a while won't hurt us.</li>
-        <li>[for,subject] I went over to see {SUBJECT} yesterday, and they fed me.</li>
-        <li>[for,knowsthem] I've been down to their camp a few times now, and they're decent people.</li>
+        <li>[for,subject,!coming] I went over to see {SUBJECT} yesterday, and they fed me.</li>
+        <li>[for,knowsthem,!coming] I've been down to their camp a few times now, and they're decent people.</li>
         <li>[for,trader] Traders camped on our doorstep, we couldn't ask for better.</li>
         <li>[for,campfamily] There are children in that camp, did you see?</li>
-        <li>[for,faithful] Whatever they pray to, they've been peaceful about it.</li>
+        <li>[for,faithful,!coming] Whatever they pray to, they've been peaceful about it.</li>
         <li>[for,healers] Their healer looked at my bad knee and wouldn't take a thing for it.</li>
-        <li>[for,music] I could hear their music from the fields last night.</li>
+        <li>[for,music,!coming] I could hear their music from the fields last night.</li>
         <li>[for,coming] There are people coming to camp nearby, did you hear?</li>
         <li>[for,leaving] They'll be gone soon, and I'll be sorry to see it.</li>
         <li>[against] I don't like strangers camped where I can see their fires.</li>
-        <li>[against] Nobody asked them, they just turned up and put up tents.</li>
+        <li>[against,!coming] Nobody asked them, they just turned up and put up tents.</li>
         <li>[against] Every day they're here is a day I sleep worse.</li>
         <li>[against,hunting] They're hunting our game, and nobody's saying anything.</li>
         <li>[against,felling] They've been cutting our trees, I've seen the stumps.</li>
@@ -49,7 +49,7 @@
         <li>[for] It costs us nothing to let them be, and they might be useful.</li>
         <li>[for] I like hearing other voices out there in the evenings.</li>
         <li>[for] Travelers like that bring news, and we need news.</li>
-        <li>[for] They've kept to themselves, and that's all I'd ask of anyone.</li>
+        <li>[for,!coming] They've kept to themselves, and that's all I'd ask of anyone.</li>
         <li>[against] We don't know who they are or what they want.</li>
         <li>[against] Strangers this close make the animals nervous, and me too.</li>
         <li>[against] I'd sleep better if they were on someone else's land.</li>
@@ -60,11 +60,11 @@
         <li>[mixed] They seem all right, but what do I know?</li>
       </plain>
       <warm>
-        <li>[for] I took them a pot of stew yesterday, and they looked like they needed it.</li>
+        <li>[for,!coming] I took them a pot of stew yesterday, and they looked like they needed it.</li>
         <li>[for,campfamily] I hope the little ones in that camp have enough to eat.</li>
         <li>[against] I'm sure they're good people, but I'd feel safer if they moved on.</li>
         <li>[mixed] I hope they find whatever they're looking for.</li>
-        <li>[for,knowsthem] They know my name over there now, and they wave.</li>
+        <li>[for,knowsthem,!coming] They know my name over there now, and they wave.</li>
         <li>[for] Someone should make sure they've got enough firewood.</li>
         <li>[mixed] I'd like to know their story, wouldn't you?</li>
       </warm>
@@ -114,10 +114,10 @@
     <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
     <lines>
       <plain>
-        <li>[agree,for] They've been good neighbors, I'll give them that.</li>
+        <li>[agree,for,!coming] They've been good neighbors, I'll give them that.</li>
         <li>[agree,for] I'd be glad if they stayed a while longer.</li>
         <li>[agree,for,knowsthem] They're friendly enough, once you sit with them.</li>
-        <li>[agree,for,trader] I got a fair deal from them, which is more than I expected.</li>
+        <li>[agree,for,trader,!coming] I got a fair deal from them, which is more than I expected.</li>
         <li>[agree,against] I'll be glad to see their backs.</li>
         <li>[agree,against] They should have asked before setting up there.</li>
         <li>[agree,against,hunting] There's hardly a deer left in the woods.</li>
@@ -142,10 +142,10 @@
         <li>[argue,against] Wait until they walk off with half the woodpile.</li>
         <li>[argue,mixed] I'm not on anyone's side, stop pushing me.</li>
         <li>[argue] You haven't even been down there.</li>
-        <li>[agree] They keep their fire going all night, have you noticed?</li>
+        <li>[agree,!coming] They keep their fire going all night, have you noticed?</li>
         <li>[debate] We could just ask them how long they're staying.</li>
         <li>[argue] You've made up your mind without meeting them.</li>
-        <li>[agree,for] They've been more polite than some of us.</li>
+        <li>[agree,for,!coming] They've been more polite than some of us.</li>
         <li>[agree,against] I counted them twice and got two different numbers.</li>
         <li>[agree,mixed] I haven't decided either.</li>
         <li>[agree,mixed] They seem harmless, but who knows.</li>
@@ -156,7 +156,7 @@
         <li>[argue,for] They've given us no reason, and you know it.</li>
         <li>[argue,against] Good neighbors don't camp on your land uninvited.</li>
         <li>[argue,mixed] I don't know them well enough to fight about them.</li>
-        <li>[for] They've been better neighbors than some we've had.</li>
+        <li>[for,!coming] They've been better neighbors than some we've had.</li>
         <li>[for] A few strangers about keeps us on our toes, in a good way.</li>
         <li>[against] I'll be glad when that patch of ground is ours again.</li>
         <li>[against] I don't like not knowing who's walking past at night.</li>
@@ -185,10 +185,10 @@
         <li>[argue,mixed] Don't ask me.</li>
       </blunt>
       <cheerful>
-        <li>[agree,for] I've already made friends with their cook.</li>
+        <li>[agree,for,!coming] I've already made friends with their cook.</li>
         <li>[debate,against] Fine, but I'm keeping the one who tells jokes.</li>
-        <li>[argue,for] You're only jealous they've got better tents.</li>
-        <li>[agree,music] Their songs are better than ours, I'll admit it.</li>
+        <li>[argue,for,!coming] You're only jealous they've got better tents.</li>
+        <li>[agree,music,!coming] Their songs are better than ours, I'll admit it.</li>
         <li>[debate,for] Every colony needs neighbors to gossip about.</li>
         <li>[agree,mixed] I'll make up my mind after I've tasted their cooking.</li>
         <li>[debate,mixed] They're either lovely or terrible, and I can't wait to find out.</li>
@@ -203,8 +203,8 @@
         <li>[debate,mixed] It doesn't much matter what we think.</li>
       </gloomy>
       <cold>
-        <li>[agree,for] They've been useful, and that's enough.</li>
-        <li>[agree,against] Their stay has cost more than it's paid.</li>
+        <li>[agree,for,!coming] They've been useful, and that's enough.</li>
+        <li>[agree,against,!coming] Their stay has cost more than it's paid.</li>
         <li>[debate,against] Tolerable, for now.</li>
         <li>[argue,for] Driving them off would cost us more than they take.</li>
         <li>[debate,for] They're a source of trade and news, nothing more.</li>
@@ -333,18 +333,18 @@
     <outcomes><li>Tease</li></outcomes>
     <lines>
       <plain>
-        <li>[otherfor] You're down at that camp so often they'll start charging you rent, {OTHER}.</li>
-        <li>[otheragainst] You've counted their tents three times today, {OTHER}, I watched.</li>
+        <li>[otherfor,!coming] You're down at that camp so often they'll start charging you rent, {OTHER}.</li>
+        <li>[otheragainst,!coming] You've counted their tents three times today, {OTHER}, I watched.</li>
         <li>[otherfor] Should we pack your things, {OTHER}, or are you moving in as you are?</li>
         <li>[otheragainst] Every time a camper waves, you reach for a stick, {OTHER}.</li>
         <li>[otherfor] Do they know you've adopted them yet, {OTHER}?</li>
-        <li>[otheragainst] They waved at you again, {OTHER}, you could try waving back.</li>
+        <li>[otheragainst,!coming] They waved at you again, {OTHER}, you could try waving back.</li>
       </plain>
       <cheerful>
-        <li>[otherfor] Half their songs are about you now, {OTHER}, you're there that often.</li>
-        <li>[otheragainst] You glare at that camp so hard, {OTHER}, I'm surprised the tents haven't caught fire.</li>
+        <li>[otherfor,!coming] Half their songs are about you now, {OTHER}, you're there that often.</li>
+        <li>[otheragainst,!coming] You glare at that camp so hard, {OTHER}, I'm surprised the tents haven't caught fire.</li>
         <li>[otherfor] They'll be naming a tent after you soon, {OTHER}.</li>
-        <li>[otheragainst] I saw you wave at the camp, {OTHER}, don't deny it.</li>
+        <li>[otheragainst,!coming] I saw you wave at the camp, {OTHER}, don't deny it.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
