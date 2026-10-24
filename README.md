@@ -410,8 +410,8 @@ a youngster who wants to see the world, an elder who wants one last walk in the 
 tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (421 answers of 133
-dilemmas and 125 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 15
+**Answers play out on the map.** When an answer describes something people do, they do it (424 answers of 134
+dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 15
 stages of personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
 they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
@@ -442,9 +442,11 @@ Shearing day is a real shearing and milking party. Only things of the colony's o
 carried by people you can see. When a village buys 250 corn, two porters walk in from the edge a few hours later, by
 day, take it from the stockpile with their own hands and walk off; when the silver comes back at the end of the year,
 a runner brings it and sets it down at the gate. Payments, gifts, debts settled, rewards, a venture's or a fair's
-takings, relief grain and lost cargo all come and go this way (98 answers' takings and gifts marked as crossing the
-colony's edge, the 74 errands carried out to the gate or a visitor, every world event's silver and sale, the story
-chains' and missions' rewards, mission orders collected by their carts). A
+takings, relief grain and lost cargo all come and go this way (106 answers' takings, tips and gifts marked as crossing
+the colony's edge, the 77 errands carried out to the gate or a visitor, every world event's silver and sale, the story
+chains' and missions' rewards, mission orders collected by their carts). A visitor's tip or a challenger's lost stake
+is counted out in person, a find the colony sells is paid for by a neighbor's runner, a tithe paid in kind waits for
+the lord's carters, and the hungry who keep coming to the gate are fed there by hand. A
 purse brings one runner, a cart's worth of timber three porters and a pack animal from their own caravans; tribes send
 runners, medieval folk porters, everyone later couriers, always from the event's own people or the nearest of a
 fitting era. An errand carried out to the gate is handed to one of them waiting there; a prisoner sold to a neighbor
@@ -460,8 +462,11 @@ them, and what their people pay they set down themselves. The family asking to b
 children and their dog, and if you take them in, those are the people who join. Fed and sent on, they sleep by the
 wall (or, on a bitter night, in a corner of the dining room) and go at first light; snowbound travelers stay two nights, a stargazer three on the far hill. Drovers graze
 their herd on the far meadow overnight, herders bring theirs down to the water, and mourners, a clan's band and a
-lord's progress pass along the road and go on to the far side of the map (42 beats of 27 world events, and a feud's
-warning rider and a debt collector; 87 lines of their own). Only peoples at peace with the colony come, only when
+lord's progress pass along the road and go on to the far side of the map. A smith or a merchant house's agent who
+buys takes the goods from your hands and pays on the spot, pilgrims and prospectors you let stay camp by the water,
+and a young man running from a blood feud waits at the gate (hidden, he stays two nights) while a rider of the other
+family goes by on the road (56 beats of 34 world events, and a feud's warning rider, a debt collector and a runaway
+mule's owner; 120 lines of their own). Only peoples at peace with the colony come, only when
 it's safe, at most three groups at once; they go if hurt, if their people turn hostile, if raiders come, or if the
 cold or hunger gets to them. With the same setting off, or when nobody can come, the letter tells it as before.
 
