@@ -7,7 +7,8 @@
     night), pass (going by on the road), leave. What they are: rider, runner, envoy, herald, driver, foreman, clerk,
     family, families, travelers, merchant, exiles, captive, survivor, pilgrims, mourners, drovers, herders, hunters,
     band, retinue, patrol, stargazer, singer, canvassers, surveyors, salvagers, fugitive, elder, tollman, smith, agent,
-    deserter, prospectors, prospector; animals (they brought some). Their people:
+    deserter, prospectors, prospector, preacher, digger, smuggler, bailiff, housemaster, roadkeeper, delegates,
+    gleaners, tinker, orphan, mother; animals (they brought some). Their people:
     theirLowtech or theirHightech. The weather and the hour come from the speaker's moment (rain, snow, winter, night...).
     Keep them short: only the first sentence shows as floating text.
   -->
@@ -93,6 +94,23 @@
         <li>[leave,smith] Good steel's worth the walk.</li>
         <li>[leave,prospectors] On to the next creek.</li>
         <li>[leave,prospector] Next hill. There's always a next hill.</li>
+        <li>[arrive,preacher] I won't keep anyone long. Whoever wants to listen can listen.</li>
+        <li>[wait,preacher] There's no hurry. There never is.</li>
+        <li>[stay,preacher] A blanket is plenty. More than plenty.</li>
+        <li>[leave,preacher] Give away one thing. Just one, to start.</li>
+        <li>[arrive,digger] Straight out of the hill, this lot. Still smells of it.</li>
+        <li>[arrive,smuggler] Keep your voice down. It carries at night.</li>
+        <li>[wait,smuggler] Every lamp on that road is a guard's.</li>
+        <li>[arrive,bailiff] The creditors' list. I only read it out.</li>
+        <li>[arrive,housemaster] Forty years I've run this house. Forty.</li>
+        <li>[arrive,roadkeeper] The ice is singing today. That means it's holding.</li>
+        <li>[leave,roadkeeper] Back to the poles, then.</li>
+        <li>[arrive,delegates] We'll take turns asking, if that helps.</li>
+        <li>[arrive,gleaners] Only what's on the ground. We know how it's done.</li>
+        <li>[arrive,tinker] Pots mended, knives ground, and the news for nothing.</li>
+        <li>[arrive,orphan] I can fetch water. And wood. I'm stronger than I look.</li>
+        <li>[arrive,mother] I won't come in. I only wanted to see the place.</li>
+        <li>[leave,mother] Tell him... no. Never mind. Thank you.</li>
       </plain>
       <warm>
         <li>[arrive] Your people look well fed, that's a good sign.</li>

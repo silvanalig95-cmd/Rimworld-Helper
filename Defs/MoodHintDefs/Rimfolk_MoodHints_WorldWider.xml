@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about the bad memories of the wider world events (Defs/WorldSituationDefs/Rimfolk_WS_Wider_Thoughts.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Council_Mood_RF_LaughedAtMoot</defName>
+    <thoughts><li>Council_WS_LaughedAtMoot</li></thoughts>
+    <fix>The colony's speaker proposed something at a moot of the peoples and the hall laughed. It fades in four days. Recreation and time with friends help it pass; next time, a speaker with more social skill is likelier to carry the hall.</fix>
+    <act>Give them time with friends</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldSituations</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

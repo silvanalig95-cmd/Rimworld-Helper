@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Memories from the wider world events (Rimfolk_WS_Wider.xml, Rimfolk_WS_Wider2.xml). Small good moments give
+       something other than mood (ColonyCouncil.RewardInstead); the bad one has a mood hint
+       (Defs/MoodHintDefs/Rimfolk_MoodHints_WorldWider.xml). -->
+
+  <ThoughtDef>
+    <defName>Council_WS_HeardTheProphet</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>heard the prophet</label><description>A woman with a walking stick talked at our gate about bread and open doors. I don't know what I make of it. I keep coming back to the part about giving away one thing.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt><feelings><li>Curiosity</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_ReadTheOldWriting</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>read the old writing</label><description>Four days under the hill with a lamp, reading words nobody has read in centuries. Most of them were about the doors.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><research>120</research><felt>3</felt><feelings><li>Curiosity</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_SawTheOldBeast</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>saw the old beast</label><description>We went up the ridge at dawn and there it was, white as frost, grazing as if it had all the time in the world. It lifted its head and looked at us once.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Meditative</joyKind><felt>3</felt><feelings><li>Awe</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_WS_LaughedAtMoot</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>laughed at, at the moot</label><description>I stood up at the moot and said the pastures could be shared by season. They laughed until the chair had to bang the table.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

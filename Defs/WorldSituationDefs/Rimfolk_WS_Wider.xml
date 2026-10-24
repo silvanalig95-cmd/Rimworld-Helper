@@ -1,0 +1,1078 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The wider world (same format as Rimfolk_WS_Beyond.xml): a prophet walking the roads with her followers, an old
+       vault opened by a neighbor's diggers, a neighbor closing its markets to another people, and a great merchant
+       house failing. None brings a fight. The prophet preaches no creed of her own: nobody is asked to change faith,
+       and with Ideology her words sit beside the peoples' own. The loan to the merchant house is paid back (or not)
+       when it ends (World/Workers_Wider.cs). -->
+
+  <!-- ===================== A prophet on the roads ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Prophet</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a prophet on the roads</label>
+    <weight>0.6</weight>
+    <drawnBy><li>Devout</li></drawnBy>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>220</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>prophet</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the Barefoot Woman</li>
+      <li>Mother Anwen</li>
+      <li>the ferryman's widow</li>
+      <li>old Sister Hale</li>
+      <li>[lowtech] the Woman of the Ford</li>
+      <li>[!lowtech] the teacher from Corran</li>
+    </names>
+    <titles>
+      <li>A prophet on the roads</li>
+      <li>{NAME}</li>
+    </titles>
+    <texts>
+      <li>Among {FACTION} a woman they call {NAME} has been going from village to village since the thaw, and people have started following her. She preaches no new creed, her followers say. She asks people to give away one thing they don't need, to feed whoever comes to the door, and to come along the road with her for a while.\n\nThere are a few hundred of them now, on the roads around {PLACE}. {FACTION}'s {TITLE} has not yet decided what to make of it.</li>
+      <li>[theirLowtech] In the villages around {PLACE} they are talking about {NAME}, who came down out of the hills barefoot in the snow and has not stopped moving since. She sleeps where she is offered a roof and eats what she is given, and when she talks, farmers put down their hoes to listen.\n\nHer followers come behind her with their belongings on their backs. Some have left their fields to do it, and that is what worries {FACTION}'s elders.</li>
+      <li>[theirHightech] {FACTION} have a problem their rule books don't cover: a retired schoolteacher called {NAME}, who goes up and down the roads around {PLACE} talking to anyone who'll stop, and a following that grows every week. Some of them have quit their jobs to go with her.\n\nShe breaks no law. {FACTION}'s council has met about her twice anyway.</li>
+      <li>[ideology] {NAME} has been preaching on the roads around {PLACE} since the thaw, and {FACTION}'s moral guides don't know what to make of her. She doesn't speak against their faith, or for it. She talks about bread and doors and the road, and people follow her.\n\nThe guides say it will pass. Every week there are more followers on the roads.</li>
+      <li>[colony:Devout] {NAME}'s followers say she has heard of the colony, a place that keeps its faith, and means to come and see it for herself. They are on the roads around {PLACE}, a few hundred of them, and the colony lies on her way.</li>
+    </texts>
+    <summaries>
+      <li>Followers of {NAME} pass the colony on the roads, and some will ask for bread. {NAME} may ask to speak at the gate, and {FACTION}'s {TITLE} will want to know whose side the colony is on. Nobody has to believe a word of it.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Pilgrims</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+      <li><incident>WandererJoin</incident><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>followers</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>pilgrims</what><count>3</count></li>
+        </effects>
+        <day>1~4</day>
+        <titles>
+          <li>Followers on the road</li>
+        </titles>
+        <texts>
+          <li>A dozen of {NAME}'s followers have stopped on the road below the colony, and three of them have come up to the gate. They aren't begging, they say, only asking: {NAME} teaches that a door that opens is worth more than a wall that holds, and they would like to know which kind the colony has.\n\nThey look as if they haven't eaten since yesterday.</li>
+          <li>[winter] Followers of {NAME} are on the road below the colony in the snow, in a line with their bundles. Three of them have come up to the gate to ask for bread and a place out of the wind for the night.</li>
+          <li>[colony:Generous] {NAME}'s followers have heard that the colony's table is long. Three of them have come up to the gate, polite and hungry, to see whether it's true.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give them bread</label>
+            <outcome>The followers take the bread at the gate and break a piece each there and then, before they take the rest down to the others on the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>bread for {NAME}'s followers</label><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>fed</li></flags>
+            <help>1</help>
+            <deed>fed {NAME}'s followers on the road</deed>
+            <ways><generosity>1</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them rest by the wall tonight</label>
+            <outcome>They spread their blankets in the lee of the wall and are gone before first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+            </effects>
+            <flags><li>sheltered</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>The gate stays shut</label>
+            <outcome>The followers thank the colony anyway and go back down the hill.</outcome>
+            <flags><li>shut</li></flags>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>sermon</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>preacher</what><gender>Female</gender><ages>45~70</ages></li>
+        </effects>
+        <day>4~8</day>
+        <titles>
+          <li>{NAME} at the gate</li>
+        </titles>
+        <texts>
+          <li>{NAME} herself has come to the colony's gate: a small, weathered woman with a stick and a voice that carries. She asks nothing for herself. She would like to speak to whoever wants to listen, at the gate, at dusk, and then she'll be on her way.\n\n{A_nameDef} has heard what she says on the roads and is curious. So are others.</li>
+          <li>[ideology] {NAME} has come to the gate, leaning on a stick, and asks leave to speak to the colony at dusk. She says plainly that she won't preach against anyone's faith, and that those who keep one may find her teaching fits inside it.\n\n{A_nameDef} would like to hear her, and isn't the only one.</li>
+          <li>[fed] {NAME} has come up to the gate herself, to thank the colony for the bread her followers were given. She asks one more thing: to speak at the gate at dusk, to whoever wants to hear.</li>
+          <li>[shut] {NAME} has come to the gate the colony shut on her followers. She isn't angry about it, she says. She would still like to speak at dusk to anyone who'll come out and listen, from the other side of the gate if need be.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let her speak at the gate</label>
+            <outcome>At dusk, those who want to hear {NAME} come out to the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering">
+                <label>{NAME}'s words at the gate</label>
+                <organizer>None</organizer>
+                <spots><li>Stranger</li><li>Gather</li><li>Outdoors</li></spots>
+                <hours>17~20</hours>
+                <duration>1.5~2</duration>
+                <lines>
+                  <li>Give away one thing. Just one, to start.</li>
+                  <li>She hasn't asked us for anything. Not once.</li>
+                  <li>My feet hurt just looking at hers.</li>
+                  <li>Feed whoever comes, she says. Ask their name after.</li>
+                  <li>I've heard worse ideas from better-dressed people.</li>
+                </lines>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_HeardTheProphet</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <flags><li>heard</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Give her a bed for the night, no more</label>
+            <outcome>{NAME} sleeps in the guest corner and leaves at first light. Before she goes she thanks {A_nameDef} for the blanket.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+            </effects>
+            <flags><li>sheltered</li></flags>
+          </li>
+          <li>
+            <label>Ask her to move on</label>
+            <outcome>{NAME} nods as if she expected it and goes down the road leaning on her stick. A few of the colonists stop work to see her go.</outcome>
+            <flags><li>refused</li></flags>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>envoy</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>envoy</what></li>
+        </effects>
+        <day>8~12</day>
+        <titles>
+          <li>{FACTION}'s {TITLE} asks the neighbors</li>
+        </titles>
+        <texts>
+          <li>An envoy of {FACTION} has come to the gate with a question from the {TITLE}, who is asking every neighbor the same: will the colony feed and shelter {NAME}'s followers, or send them on? The {TITLE} would rather they went home to their fields before the season is lost.\n\nThe envoy is careful to say it isn't an order, and waits at the gate for an answer.</li>
+          <li>[fed] {FACTION}'s envoy knows the colony fed {NAME}'s followers on the road. The {TITLE} asks, through the envoy, that it stop: every loaf they're given is another week they stay away from their own fields.\n\nThe envoy waits at the gate for an answer.</li>
+          <li>[heard] {FACTION}'s envoy has heard that {NAME} spoke at the colony's gate, and that people came out to listen. The {TITLE} would like to know what the colony means by it, and whether it will send her followers on from now on.\n\nThe envoy waits at the gate, polite and unhappy.</li>
+          <li>[ideology] An envoy of {FACTION} has come on behalf of the {TITLE} and the moral guides of {PLACE}. They ask every neighbor to give {NAME}'s followers neither food nor a roof, so that they come home to their own faith and their own fields.\n\nThe envoy waits at the gate for the colony's answer.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>The colony feeds whoever comes to its gate</label>
+            <outcome>The envoy writes the answer down word for word and takes it back to {PLACE}. The {TITLE} will not be pleased.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount></li>
+            </effects>
+            <flags><li>defied</li></flags>
+            <ways><openness>1</openness><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Promise to send them on</label>
+            <outcome>The envoy thanks the colony and goes on to the next village with the same question.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>promised</li></flags>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Speak up for {NAME}</label>
+            <showIf><li>heard</li></showIf>
+            <outcome>{A_nameDef} goes out to the envoy and repeats what {NAME} said at dusk, as near word for word as {A_pronoun} can: bread, open doors, the road. The envoy listens to the end and promises the {TITLE} will hear it the same way.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The envoy hears {A_nameDef} out, then says the {TITLE} didn't ask what {NAME} preaches, only whether the colony will send her people home. The answer goes back to {PLACE} as a no.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>400</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
+            </riskEffects>
+            <flags><li>spoke</li></flags>
+            <riskFlags><li>defied</li></riskFlags>
+            <help>1</help>
+            <deed>spoke up for {NAME} to {FACTION}'s envoy</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>thanks</key>
+        <requires><li>fed</li></requires>
+        <day>11~16</day>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>pilgrims</what><count>2</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>5</count><by>Outsiders</by></li>
+        </effects>
+        <titles>
+          <li>From {NAME}'s followers</li>
+        </titles>
+        <texts>
+          <li>Two of {NAME}'s followers have come back up the road to the colony's gate with bundles of healroot, picked along the roadsides and dried on their packs as they went. The colony gave them bread when they were hungry, they say, and {NAME} says that what is given comes round again.\n\nThey won't stay. They have a long way still to go.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>settled</key>
+        <requires><li>heard</li><li>fed</li></requires>
+        <chance>0.6</chance>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} stops</li>
+        </titles>
+        <texts>
+          <li>{NAME} has stopped moving. She has taken a hut by the ford two valleys from {PLACE}, and her followers are building around it: a village of people who own very little and give most of it away.\n\nThey sent the colony a message in a careful hand. Its gate was among the first that opened to them, and its bread the first they shared.</li>
+        </texts>
+        <chronicle>{NAME} settled by a ford, and her followers built a village around her.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>spoke</key>
+        <requires><li>spoke</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} goes in peace</li>
+        </titles>
+        <texts>
+          <li>{NAME} has gone over the hills toward the coast, and most of her followers with her. The ones who stayed have gone home to their fields.\n\n{FACTION}'s {TITLE} let her go in peace in the end. At {PLACE} they say a neighbor spoke up for her, and that the neighbor was the colony.</li>
+        </texts>
+        <chronicle>{NAME} left {FACTION}'s country in peace, after the colony spoke up for her.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>promised</key>
+        <requires><li>promised</li></requires>
+        <titles>
+          <li>The followers go home</li>
+        </titles>
+        <texts>
+          <li>{NAME}'s followers have gone home to their fields by ones and twos, and she has gone on alone. {FACTION}'s {TITLE} thanks the neighbors who sent them home, and names the colony among them.</li>
+          <li>[fed] {NAME}'s followers have drifted home, and {NAME} has gone on alone. {FACTION}'s {TITLE} counts the colony among the neighbors who sent them home, and some of the followers remember it for the bread it gave them first.</li>
+        </texts>
+        <chronicle>{NAME}'s followers went home; the colony kept its promise to {FACTION}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>defied</key>
+        <requires><li>defied</li></requires>
+        <titles>
+          <li>{NAME} goes on</li>
+        </titles>
+        <texts>
+          <li>{NAME} has gone on toward the coast, and her followers with her. {FACTION}'s {TITLE} has a short list of neighbors who fed them after being asked not to, and the colony is on it.\n\nSo is every village {NAME} slept in.</li>
+        </texts>
+        <chronicle>{NAME} went on toward the coast; {FACTION} remember the colony fed her followers against their wishes.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>onward</key>
+        <titles>
+          <li>{NAME} goes on</li>
+        </titles>
+        <texts>
+          <li>{NAME} has gone on over the hills, and the roads around {PLACE} are quiet again. Some of her followers went with her and some went home. Nobody is sure yet what it was all for.</li>
+          <li>[shut] {NAME} and her followers have gone over the hills. The colony's gate stayed shut to them, which {FACTION}'s {TITLE} noticed, and so did they.</li>
+          <li>[heard] {NAME} has gone on over the hills. At the colony, people still repeat a thing or two she said at the gate, mostly the part about giving away one thing you don't need.</li>
+        </texts>
+        <chronicle>{NAME} went on over the hills.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== An old vault opened ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Vault</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an old vault opened</label>
+    <weight>0.6</weight>
+    <drawnBy><li>Learned</li></drawnBy>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>260</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>ruins</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[lowtech] the Sleepers' Hall</li>
+      <li>[lowtech] the hall under Gray Hill</li>
+      <li>[lowtech] the Shut Door</li>
+      <li>[!lowtech] Vault Seven</li>
+      <li>[!lowtech] the Corran deep store</li>
+      <li>[!lowtech] the old survey bunker</li>
+    </names>
+    <titles>
+      <li>{NAME} opened</li>
+      <li>Something old under {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[lowtech] Diggers of {FACTION} sinking a new well above {PLACE} broke through into a hall under the hill: smooth gray walls, doors that slide aside when touched, and lights that came on by themselves after who knows how many hundred years. People are calling it {NAME}.\n\nNobody living knows who built it. Half the region wants to see it, and the other half wants it filled in.</li>
+      <li>[!lowtech] Road crews of {FACTION} cutting through a ridge above {PLACE} have opened a sealed vault from the first settlement of this world: a hundred rooms of it, dry and still lit, on no map anyone has. {FACTION} have named it {NAME} and put a guard on the door.\n\nScavengers, scholars and dealers are already on the roads to it.</li>
+      <li>[theirLowtech,!lowtech] {FACTION}'s diggers have broken into an old-world vault above {PLACE}, and they don't know what most of it is. They know it's valuable. Their elders call it {NAME}, and talk about it in low voices.\n\nThe roads are filling with people who think they know better.</li>
+    </texts>
+    <summaries>
+      <li>Scavengers and dealers come by on their way to {NAME}, and some have old things to sell. {FACTION} will want someone who can read the old writing, and there is talk of a deeper door that nobody has opened yet.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Scholar</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>writing</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+        </effects>
+        <day>2~5</day>
+        <skill>Intellectual</skill>
+        <minLevel>6</minLevel>
+        <titles>
+          <li>{FACTION} need a reader</li>
+        </titles>
+        <texts>
+          <li>[lowtech] There is writing everywhere in {NAME}: on the doors, on the walls, on little plates beside every lamp. {FACTION}'s elders can't read a word of it. Someone at {PLACE} has heard that {A_nameDef} knows old letters, and their rider asks whether {A_nameDef} would come and look.\n\nIt would mean a few days in the dark under the hill.</li>
+          <li>[!lowtech] The labels and screens in {NAME} are in an old form of the settlers' tongue, full of words nobody uses now. {FACTION}'s rider asks whether {A_nameDef} would come and spend a few days reading for them, before anyone opens the wrong door.\n\nThey'll share what's found, they say, in their fashion.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to read for them</label>
+            <outcome>{A_nameDef} goes to {PLACE} with a lamp and a notebook, and comes back four days later talking fast, with a dozen pages of copied writing and the beginnings of a sense of what the place was for.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.2</share><max>900</max><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_ReadTheOldWriting</thought></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>read</li></flags>
+            <help>2</help>
+            <deed>lent {A_nameDef} to read the old writing in {NAME}</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send notes instead</label>
+            <outcome>{A_nameDef} writes out what the colony knows of old letters, which fills three pages, and the rider takes them back to {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>400</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sent {A_nameDef}'s notes on the old writing to {PLACE}</deed>
+          </li>
+          <li>
+            <label>{A_nameDef} is needed here</label>
+            <outcome>{FACTION}'s rider goes back alone. The writing in {NAME} will have to wait for someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>dealer</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>digger</what><gender>Male</gender><pack>true</pack></li>
+        </effects>
+        <day>3~7</day>
+        <count>150~260</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Old things for sale</li>
+        </titles>
+        <texts>
+          <li>A scavenger back from {NAME} has stopped at the gate with a cart of crates, roped down and covered. He was one of the first in, he says, and he'll sell the lot for {COUNT} silver, unopened, because he'd rather have silver now than wait for {PLACE}'s dealers to set a price.\n\nHe won't say what's in them. He may not know.</li>
+          <li>[!lowtech] A dealer with a cart of sealed cases from {NAME} is at the gate. The cases still have their old stencils on them, and one of them hums. He wants {COUNT} silver for the lot and won't open one first, on principle.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy the crates for {COUNT} silver</label>
+            <outcome>The scavenger counts the silver twice and leaves the crates at the gate. Under the packing are things worth a good deal more than he was paid.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>380~620</value><fancy>true</fancy></li>
+            </effects>
+            <riskChance>0.3</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>Half the crates hold rust and rotten packing, and one holds a very old boot. The rest is worth about what was paid, which the scavenger says makes it a fair trade.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>140~220</value></li>
+            </riskEffects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>The scavenger shrugs and rattles on down the road toward {PLACE}'s dealers.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>door</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what></li>
+        </effects>
+        <day>7~12</day>
+        <skill>Intellectual</skill>
+        <minLevel>3</minLevel>
+        <titles>
+          <li>The deeper door</li>
+        </titles>
+        <texts>
+          <li>Under the lowest room of {NAME}, {FACTION}'s diggers have found another door, heavier than the rest and marked all over with the same sign: a triangle with a line through it. They want to open it. Some of their elders want it sealed.\n\nThey have sent a runner to ask the colony's advice, and {A_nameDef}'s in particular.</li>
+          <li>[read] Under the lowest room of {NAME} there is one more door. {A_nameDef} copied its markings while {A_pronoun} was there and has been reading them since: they are warnings, the same one over and over, in every script the builders knew.\n\n{FACTION}'s diggers want to open it anyway, and have sent a runner to ask what the colony thinks.</li>
+          <li>[!lowtech] {FACTION}'s crews have found a sealed bulkhead at the bottom of {NAME}, with a hazard placard and a lock that still has power. Half of {FACTION} want it cut open, the other half want it filled with concrete. Their runner asks what the colony thinks, and what {A_nameDef} makes of the placard.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Tell them to seal it</label>
+            <outcome>{A_nameDef} sends back a careful letter: whoever built {NAME} was afraid of what's behind that door, and {FACTION} should take their word for it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>sealed</li></flags>
+            <help>1</help>
+            <deed>advised {FACTION} to seal the deeper door</deed>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Tell them to open it, for a share</label>
+            <outcome>{A_nameDef} sends back what {A_pronoun} can make of the markings, and the colony's terms: a share of whatever is found. {FACTION} agree, and the diggers start on the door.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Owe"><amount>220~420</amount></li>
+            </effects>
+            <riskChance>0.35</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{FACTION} opened the deeper door. Whatever was behind it had been waiting a long time: the diggers came up the stairs coughing and running, and {NAME} has been shut and guarded since. Nobody died. {FACTION} remember whose advice it was.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
+            </riskEffects>
+            <flags><li>opened</li></flags>
+            <riskFlags><li>woke</li></riskFlags>
+            <deed>advised {FACTION} to open the deeper door</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>It isn't the colony's door</label>
+            <outcome>The runner goes back without an answer from the colony. {FACTION} will decide without it.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>woke</key>
+        <requires><li>woke</li></requires>
+        <titles>
+          <li>{NAME} shut</li>
+        </titles>
+        <texts>
+          <li>{NAME} stays shut. {FACTION} have bricked up the stairs and set a guard on them, and the diggers who were down there don't talk about what they heard. The colony's share of the finds went into the ground with everything else.</li>
+        </texts>
+        <chronicle>{NAME} was shut again after its deeper door was opened on the colony's advice.</chronicle>
+      </li>
+      <li>
+        <key>share</key>
+        <requires><li>opened</li></requires>
+        <titles>
+          <li>Behind the deeper door</li>
+        </titles>
+        <texts>
+          <li>{FACTION} opened the deeper door and found a storeroom nobody had touched since the first settlers: tools, cloth, sealed food, books in the old tongue. Their carter has brought the colony's share: {COUNT} silver, counted out at the gate.</li>
+        </texts>
+        <chronicle>The deeper door of {NAME} was opened, and the colony had its share.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>sealed</key>
+        <requires><li>sealed</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The deeper door stays shut</li>
+        </titles>
+        <texts>
+          <li>{FACTION} have sealed the deeper door on the colony's advice and closed {NAME} to dealers. Their elders sleep easier. Their diggers grumble that there was a fortune behind it, and they may be right.</li>
+        </texts>
+        <chronicle>{FACTION} sealed the deeper door of {NAME} on the colony's advice.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>read</key>
+        <requires><li>read</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} emptied</li>
+        </titles>
+        <texts>
+          <li>{NAME} has been stripped of everything that could be moved and left open to the weather. At {PLACE} they still talk about the colony's reader, who could make sense of the doors.</li>
+        </texts>
+        <chronicle>{NAME} was emptied; the colony's reader helped {FACTION} make sense of it.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>stripped</key>
+        <titles>
+          <li>{NAME} emptied</li>
+        </titles>
+        <texts>
+          <li>{NAME} has been stripped bare by {FACTION}'s diggers and every scavenger in the region. What's left is gray walls, and lights that still come on whenever someone goes in.</li>
+        </texts>
+        <chronicle>{NAME} was stripped bare.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Markets closed ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Embargo</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>markets closed</label>
+    <weight>0.6</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>220</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>embargo</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <friendlyToFirst>true</friendlyToFirst>
+    </second>
+    <names>
+      <li>the salt quarrel</li>
+      <li>the wool quarrel</li>
+      <li>the matter of the mill dues</li>
+      <li>[lowtech] the quarrel over the salt spring</li>
+      <li>[!lowtech] the tariff dispute</li>
+    </names>
+    <titles>
+      <li>Markets closed</li>
+      <li>{FACTION} shut out {ENEMY}</li>
+    </titles>
+    <texts>
+      <li>{FACTION} have closed the market at {PLACE} to the traders of {ENEMY}, and every other market they hold besides. It began as {NAME}, a dispute over an old debt, and has grown into this: {ENEMY}'s carts turned back at every gate of {FACTION}, and {FACTION}'s own merchants told not to buy from them anywhere.\n\nNobody has drawn a weapon. Both peoples are counting the cost in silver, and looking for neighbors to take their side.</li>
+      <li>[theirLowtech] By order of {FACTION}'s {TITLE}, no one of {ENEMY} may sell so much as an egg at {PLACE} until {NAME} is settled. {ENEMY}'s people are taking it badly, and their carts are coming round by other roads, looking for anyone who will buy.\n\nThe colony is on one of those roads.</li>
+      <li>[theirHightech] {FACTION} have banned trade with {ENEMY} over {NAME}: no sales, no purchases, no goods of theirs through {PLACE}. {ENEMY} call it robbery. {FACTION} call it a lesson.\n\nTraders of both peoples are now asking which side the neighbors are on.</li>
+    </texts>
+    <summaries>
+      <li>{ENEMY}'s traders come round by the colony's road more often, looking for buyers. {FACTION} will ask the colony to keep out of {ENEMY}'s trade, {ENEMY} will hope it doesn't, and a good talker might bring the two back to one table.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.3</factor><unlessFlag>joined</unlessFlag></li>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor><whileFlag>joined</whileFlag></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>cloth</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><enemy>true</enemy><gender>Male</gender><pack>true</pack></li>
+        </effects>
+        <day>1~4</day>
+        <count>60~120</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{ENEMY}'s goods going cheap</li>
+        </titles>
+        <texts>
+          <li>A carter of {ENEMY} has come up to the gate with a load of cloth that was meant for the market at {PLACE}. It can't go there now, and it won't keep forever in a damp cart. He'll let the colony have {COUNT} of it at half its price.\n\n{FACTION} would rather nobody bought from {ENEMY} at all.</li>
+          <li>[enemyHightech] A truck of {ENEMY}, loaded with bolts of cloth for the market at {PLACE}, has turned up at the colony's gate instead. The driver will sell {COUNT} of it at half price rather than drive it home again.\n\n{FACTION} won't thank anyone who buys.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy {COUNT} cloth at half price</label>
+            <outcome>The carter unloads the cloth at the gate, counts the silver and goes off whistling. {FACTION} will hear about it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.75</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Cloth</thing><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <flags><li>boughtCloth</li></flags>
+          </li>
+          <li>
+            <label>Send him on his way</label>
+            <outcome>The carter turns his cart around without arguing. He has been turned around a good deal this month.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>ask</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>envoy</what></li>
+        </effects>
+        <day>4~8</day>
+        <titles>
+          <li>{FACTION} ask the colony to choose</li>
+        </titles>
+        <texts>
+          <li>An envoy of {FACTION} has come to the gate to ask the colony to close its market to {ENEMY} too, until {NAME} is settled. It would only be for the season, the envoy says, and {FACTION} would remember the colony as a friend when it's over.\n\n{ENEMY}'s traders would remember it differently.</li>
+          <li>[boughtCloth] {FACTION}'s envoy knows the colony bought {ENEMY}'s cloth, and mentions it only twice. The {TITLE} asks that the colony close its gate to {ENEMY}'s traders from now until {NAME} is settled.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Close the colony's market to {ENEMY}</label>
+            <outcome>The envoy thanks the colony warmly. Word goes down the road to {ENEMY} by nightfall: the colony has picked a side.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
+            </effects>
+            <flags><li>joined</li></flags>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Trade with whoever comes</label>
+            <outcome>The envoy hears it without surprise and leaves. The colony will trade with both, and both will watch it do so.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <flags><li>open</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>smuggler</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>smuggler</what><enemy>true</enemy><gender>Male</gender><pack>true</pack></li>
+        </effects>
+        <day>6~11</day>
+        <count>80~160</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>A cart after dark</li>
+        </titles>
+        <texts>
+          <li>A driver of {ENEMY} came to the gate after dark with a covered cart and a quiet voice. He has goods for buyers inside {PLACE} who don't care whose they are, and {FACTION}'s guards are watching the roads. He asks to leave the cart in the colony's barn for a few nights, and offers {COUNT} silver for the space.\n\nIf {FACTION} find out, they won't like it.</li>
+          <li>[joined] A driver of {ENEMY} is at the gate after dark, knowing very well that the colony has closed its market to his people. He isn't asking to sell, he says. He only wants to leave a covered cart in the barn for a few nights, and he'll pay {COUNT} silver for it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Hide the cart, for {COUNT} silver</label>
+            <outcome>The cart goes into the back of the barn under a tarpaulin, and the driver pays in silver and goes off into the dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><enemy>true</enemy></li>
+            </effects>
+            <riskChance>0.3</riskChance>
+            <riskOutcome>{FACTION}'s riders came up the road two days later asking questions, and found the cart. The driver got away. The colony's name went back to {PLACE} with the riders.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-10</amount></li>
+            </riskEffects>
+            <flags><li>smuggled</li></flags>
+            <riskFlags><li>caught</li></riskFlags>
+          </li>
+          <li>
+            <label>Send him on</label>
+            <outcome>The driver nods, says he understands, and takes his cart on into the dark.</outcome>
+          </li>
+          <li>
+            <label>Tell {FACTION}'s riders</label>
+            <outcome>{FACTION}'s riders are told about the cart, and catch it on the road before morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount><who>Enemy</who></li>
+            </effects>
+            <flags><li>informed</li></flags>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>talks</key>
+        <day>9~14</day>
+        <skill>Social</skill>
+        <minLevel>6</minLevel>
+        <titles>
+          <li>Both sides tired of it</li>
+        </titles>
+        <texts>
+          <li>{NAME} is costing both peoples more than the debt it began with, and both know it. Neither will be the first to say so. A trader who deals with both has suggested that someone from outside sit them down at one table, and both have named the colony.\n\nThe colony's best talker is {A_nameDef}.</li>
+          <li>[joined] {ENEMY} haven't trusted the colony since it closed its gate to them, but they trust {FACTION}'s envoys less. Both sides have agreed to talk, if {A_nameDef} sits between them.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} sits them down</label>
+            <outcome>{A_nameDef} goes to {PLACE} and spends two days at a table between {FACTION}'s merchants and {ENEMY}'s, going over the old debt line by line until both sides are too tired to shout. By the end they have agreed how it will be paid.</outcome>
+            <riskChance>0.35</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>The talks went round in circles for two days and ended with {ENEMY}'s merchants leaving the table. {NAME} goes on, and both sides think the colony could have tried harder.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>900</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>500</xp></li>
+            </riskEffects>
+            <flags><li>settled</li></flags>
+            <riskFlags><li>failed</li></riskFlags>
+            <help>2</help>
+            <deed>sat {A_nameDef} between {FACTION} and {ENEMY} over {NAME}</deed>
+            <end>lifted</end>
+            <endDays>1~2</endDays>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them sort it out</label>
+            <outcome>Both sides are told the colony would rather not. {NAME} drags on.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>lifted</key>
+        <requires><li>settled</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The markets open</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. {FACTION} have opened the market at {PLACE} to {ENEMY} again, the old debt is to be paid in three parts, and the first carts of {ENEMY} went through the gate this morning.\n\nBoth peoples say it was {A_nameDef} who found the way.</li>
+        </texts>
+        <chronicle>{NAME} was settled at a table the colony sat between.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount><who>Both</who></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>caught</key>
+        <requires><li>caught</li></requires>
+        <titles>
+          <li>The markets open</li>
+        </titles>
+        <texts>
+          <li>{NAME} has been settled without the colony, the way such things are: {ENEMY} paid part of the debt and {FACTION} pretended it was all of it. At {PLACE} they still talk about the cart they found in the colony's barn.</li>
+        </texts>
+        <chronicle>{NAME} ended; {FACTION} remember the cart found in the colony's barn.</chronicle>
+      </li>
+      <li>
+        <key>joined</key>
+        <requires><li>joined</li></requires>
+        <titles>
+          <li>{ENEMY} give way</li>
+        </titles>
+        <texts>
+          <li>{ENEMY} gave way in the end and paid the old debt, and {FACTION} have opened their markets again. {FACTION} count the colony among the neighbors who stood with them.\n\n{ENEMY}'s traders will be slow to come back to the colony's gate.</li>
+        </texts>
+        <chronicle>{NAME} ended with {ENEMY} paying; the colony stood with {FACTION}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>lapsed</key>
+        <titles>
+          <li>{NAME} wears out</li>
+        </titles>
+        <texts>
+          <li>{NAME} has worn itself out. {FACTION} let {ENEMY}'s carts back into {PLACE} once their own merchants began to complain louder than the {TITLE}. Nothing was settled, and the carts are moving again.</li>
+          <li>[open] {NAME} has worn itself out, and the markets are open again. The colony traded with both peoples the whole time, and neither has quite forgiven it, or quite stopped coming.</li>
+        </texts>
+        <chronicle>{NAME} wore itself out, and the markets opened again.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A merchant house fails ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_HouseFails</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a merchant house fails</label>
+    <weight>0.6</weight>
+    <earliestDay>35</earliestDay>
+    <cooldownDays>220</cooldownDays>
+    <durationDays>15~22</durationDays>
+    <kind>market</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>the House of Varro</li>
+      <li>Ostrander and Daughters</li>
+      <li>the Kettle Company</li>
+      <li>the Brannoc trading house</li>
+      <li>[!lowtech] Halvorsen Freight</li>
+      <li>[lowtech] old Bram's salt-house</li>
+    </names>
+    <titles>
+      <li>{NAME} has failed</li>
+      <li>A great house falls</li>
+    </titles>
+    <texts>
+      <li>{NAME}, the biggest trading house in {PLACE}, has failed. A caravan lost in the mountains, a warehouse fire, then every creditor wanting their money in the same week: it went down in a month after standing for forty years. Its warehouses are sealed and its drivers have not been paid.\n\nFor a while the region's prices will be strange: some things cheap, as the house's stock is sold off, and some things hard to find along the roads it used to run.</li>
+      <li>[theirLowtech] {NAME} has carried salt, iron and news along the roads of {FACTION} since anyone's grandmother can remember. This spring its pack trains stopped coming. The family has sold its mules to pay its debts, and still owes more than the mules were worth.\n\nIts drivers are on the roads looking for work, and what it had in its storehouses at {PLACE} is being sold for whatever it will fetch.</li>
+      <li>[theirHightech] {NAME}, {FACTION}'s largest hauler, has gone under. Its trucks are parked in rows at the depot in {PLACE} with chains on their wheels, and its drivers are on the roads with their last pay spent.\n\nThe creditors are selling what's left. The old owner is still in his office, people say, writing letters.</li>
+    </texts>
+    <summaries>
+      <li>The creditors of {NAME} will sell off its stock cheap, its unpaid drivers are on the roads looking for work, and the house's old master may come asking for a loan. Fewer caravans come for a while.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+      <li><incident>WandererJoin</incident><factor>1.3</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>stock</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>bailiff</what><gender>Male</gender><pack>true</pack></li>
+        </effects>
+        <day>1~4</day>
+        <count>100~200</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>The house's stores for sale</li>
+        </titles>
+        <texts>
+          <li>A bailiff for the creditors of {NAME} has come to the gate with a list and a loaded cart. Among the house's stock are its caravan stores, pemmican packed for drivers who will never set out, and he will let the colony have {COUNT} of it for less than half its price.\n\nIt keeps for a long time. The creditors don't want to keep it at all.</li>
+          <li>[theirHightech] The creditors' agent for {NAME} is at the gate with a manifest and a truck of the house's road rations: {COUNT} packs of pemmican, sold at less than half their price to whoever takes them first.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy {COUNT} pemmican cheap</label>
+            <outcome>The bailiff counts the silver, ticks a line on his list, and leaves the sacks of pemmican at the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.6</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Pemmican</thing><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>The colony doesn't need it</label>
+            <outcome>The bailiff writes something on his list and drives on.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>driver</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><gender>Male</gender><ages>22~50</ages></li>
+        </effects>
+        <day>3~7</day>
+        <titles>
+          <li>A driver out of work</li>
+        </titles>
+        <texts>
+          <li>One of {NAME}'s drivers is at the gate with the clothes he stands in. He hasn't been paid since the house fell, and he has spent a week on the roads looking for anyone who needs a man who can handle animals and a cart.\n\nHe'd work for his keep, he says. He doesn't ask for more.</li>
+          <li>[theirHightech] A driver laid off by {NAME} has come up to the gate with his toolbag. He can fix an engine, drive anything with wheels and lift a crate heavier than he is, and he'd like a job. Any job.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take him on</label>
+            <outcome>The driver is shown a bed and a place at the table, and has the colony's cart axle greased before dark.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count><ages>22~50</ages></li>
+            </effects>
+            <help>1</help>
+            <deed>took on one of {NAME}'s drivers</deed>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Pay him a day's wage and send him on</label>
+            <outcome>The driver takes the coins, says thank you twice, and goes on to the next farm.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a day's wage for the driver</label><what>silver</what><count>30</count><steward>false</steward></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>No work here</label>
+            <outcome>The driver nods and goes back the way he came.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>loan</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>housemaster</what><gender>Male</gender><ages>55~78</ages></li>
+        </effects>
+        <day>6~11</day>
+        <count>200~360</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{NAME} asks for a loan</li>
+        </titles>
+        <texts>
+          <li>The old master of {NAME} has come to the colony himself, in a coat that was very good ten years ago. He needs {COUNT} silver to pay his drivers and send one last caravan over the mountains. If it comes back, he says, the house will stand again, and he will repay the colony a third over.\n\nIf it doesn't come back, nobody will be repaid anything. He says that plainly too.</li>
+          <li>[their:grateful] The master of {NAME} has come to the gate because, he says, the colony has been a good friend to {FACTION} and he has run out of other friends. He asks for {COUNT} silver, to be repaid a third over if his last caravan comes home.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Lend him {COUNT} silver</label>
+            <outcome>The old merchant counts the silver at the gate, writes the colony a note in a fine, shaky hand, and goes back to {PLACE} to send his caravan out.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Lend"><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>lent</li></flags>
+            <help>1</help>
+            <deed>lent {NAME} silver when it fell</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Lend him half</label>
+            <outcome>The old merchant takes half of what he asked for and thanks the colony as if it were all of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Lend"><factor>0.5</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>lent</li><li>half</li></flags>
+            <help>1</help>
+            <deed>lent {NAME} part of what it asked</deed>
+          </li>
+          <li>
+            <label>The colony doesn't lend</label>
+            <outcome>The old merchant thanks the colony for its time and goes back down the road, slowly.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>wagon</key>
+        <requires><li>lent</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what></li>
+        </effects>
+        <day>9~14</day>
+        <titles>
+          <li>The last caravan</li>
+        </titles>
+        <texts>
+          <li>{NAME}'s last caravan is late coming back over the mountains, and a runner from {PLACE} brings word that one of its wagons was seen going off the road in the hills near the colony. The old master asks whether the colony would send people to look for it before the weather does.\n\nIf what it carried can be found, the house might still be saved.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send a search party into the hills</label>
+            <outcome>A search party sets out into the hills to look for the wagon.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Search">
+                <label>the search for {NAME}'s wagon</label>
+                <target>Colony</target>
+                <count>3</count>
+                <value>80~160</value>
+                <lines>
+                  <li>Wheel ruts. They came this way.</li>
+                  <li>No driver goes this far off the road by choice.</li>
+                  <li>There's a broken crate down here.</li>
+                </lines>
+              </li>
+            </effects>
+            <flags><li>searched</li></flags>
+            <help>2</help>
+            <deed>searched the hills for {NAME}'s lost wagon</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>The colony can't spare anyone</label>
+            <outcome>The runner goes back to {PLACE} alone.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>saved</key>
+        <requires><li>lent</li><li>searched</li></requires>
+        <chance>0.85</chance>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} stands</li>
+        </titles>
+        <texts>
+          <li>{NAME} stands. The last caravan came home short a wagon, but with what the colony's people found in the hills and what was on the mules, there was enough to pay the drivers and quiet the creditors. The house's lamps are lit in {PLACE} again.\n\nThe old master has sent back the colony's loan, a third over: {COUNT} silver, and a letter he must have written four times.</li>
+        </texts>
+        <chronicle>{NAME} was saved, with the colony's loan and its search in the hills.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Repay"><factor>1.35</factor></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>savedLuck</key>
+        <requires><li>lent</li></requires>
+        <chance>0.5</chance>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} stands</li>
+        </titles>
+        <texts>
+          <li>{NAME}'s last caravan came home over the mountains a week late and nearly whole, and the house stands. The creditors have been paid, and the drivers have been paid twice, once for the work and once for waiting.\n\nThe old master has repaid the colony's loan, a third over: {COUNT} silver.</li>
+        </texts>
+        <chronicle>{NAME} was saved, with the colony's loan.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Repay"><factor>1.35</factor></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>woundUp</key>
+        <requires><li>lent</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The end of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} is finished. The last caravan never came back over the mountains, and the creditors have divided what was left. The colony's part of it is {COUNT} silver, just under half of what it lent.\n\nThe old master wrote to apologize. He has gone to live with his daughter.</li>
+        </texts>
+        <chronicle>{NAME} was wound up; the colony got back part of its loan.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Repay"><factor>0.4</factor></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>The end of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{NAME} is gone. Its sign has been painted over in {PLACE}, its drivers have scattered to other houses, and the region's traders are dividing up the roads it used to run.</li>
+        </texts>
+        <chronicle>{NAME} was wound up.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

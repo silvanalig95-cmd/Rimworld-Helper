@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 322; modelled: 322; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,656 KB** after a year, **2,019 KB** after two, **2,132 KB** after five.
+Rimfolk's part of the save, roughly: **1,657 KB** after a year, **2,020 KB** after two, **2,133 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -70,11 +70,11 @@ Rimfolk's part of the save, roughly: **1,656 KB** after a year, **2,019 KB** aft
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 53 | 53 | 53 | 4.7 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 50 | 50 | 50 | 4.4 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 46 | 46 | 46 | 4.0 |
 | `CouncilGameComponent.cs:everWished` | one per wish def | defs | 116 | 116 | 116 | 4.0 |
 | `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
 | `Integrations/SocialInteractions.cs:bestFriends` | Caps.BestFriendPairs, known pawns | cap | 12 | 24 | 60 | 3.5 |
