@@ -73,6 +73,7 @@
             </effects>
             <help>2</help>
             <deed>sent timber for the roofs of {PLACE}</deed>
+            <flags><li>gaveWood</li></flags>
             <ways><generosity>2</generosity></ways>
           </li>
           <li>
@@ -177,6 +178,43 @@
           <li>
             <label>{A_nameDef} is needed here</label>
             <outcome>The rider is told the colony can't spare {A_nameDef}. That evening {A_nameDef} looks toward {PLACE} more than once.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>boards</key>
+        <requires><li>gaveWood</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><gender>Male</gender><pack>true</pack></li>
+        </effects>
+        <day>10~16</day>
+        <count>40~70</count>
+        <titles>
+          <li>The first boards from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The carter from {PLACE} is back, and this time his wagon is full. {FACTION} have their sawmill running again, and the first {COUNT} boards off the saw are for the colony, in return for the timber it sent while the ashes were still warm.\n\nHe'll unload wherever the colony likes.</li>
+          <li>[theirHightech] {FACTION}'s driver is back at the gate with a flatbed of fresh-sawn lumber: the first {COUNT} boards from {PLACE}'s rebuilt mill, sent to the colony for the timber it gave after the fire.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Take the boards, with thanks</label>
+            <outcome>The carter stacks the boards by the gate and won't take anything for his trouble.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send them to a family still without a roof</label>
+            <outcome>The carter is asked to take the boards back to {PLACE}, for whichever family is still sleeping under a cart. He turns the wagon round without a word and goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sent the first boards from {PLACE}'s mill back to a family without a roof</deed>
+            <ways><generosity>2</generosity></ways>
           </li>
         </options>
       </li>
@@ -399,6 +437,40 @@
           </li>
         </options>
       </li>
+      <li>
+        <key>mother</key>
+        <requires><li>hid</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>mother</what><gender>Female</gender><ages>40~60</ages></li>
+        </effects>
+        <day>11~16</day>
+        <titles>
+          <li>The boy's mother</li>
+        </titles>
+        <texts>
+          <li>The mother of the boy the colony hid has come to the gate. She came all the way from {FACTION}'s country with a basket on her arm, and she won't come in. She only wanted to see the place, she says, and to leave something: a length of cloth she wove the winter he was born, the best thing in her house.\n\nShe would like the colony to have it.</li>
+          <li>[worse] The boy's mother has come to the colony's gate, though {NAME} is worse than ever and the road from {FACTION}'s country isn't safe for her family. She has brought a length of her own weaving, the best thing in her house, for the people who hid her son.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept it, with thanks</label>
+            <outcome>{A_nameDef} takes the cloth from her at the gate with both hands. She looks at the colony's walls for a while, then turns for home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Cloth</thing><count>30</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Ask her to keep it for her son</label>
+            <outcome>{A_nameDef} tells her to keep it for her son. She nods, folds it back into the basket, and turns for home with it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+        </options>
+      </li>
     </beats>
     <endings>
       <li>
@@ -608,6 +680,23 @@
           </li>
         </options>
       </li>
+      <li>
+        <key>notes</key>
+        <requires><li>studied</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+          <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>600</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.1</share><max>600</max></li>
+        </effects>
+        <day>8~14</day>
+        <titles>
+          <li>The stargazer's notes</li>
+        </titles>
+        <texts>
+          <li>[theirLowtech] A rider is at the gate with a bundle for {A_nameDef} from the old star-reader who spent those nights on the colony's hill: a sheaf of bark sheets covered in her marks, {NAME}'s steps across the sky night by night, and at the end, a mark she says stands for {A_nameDef}.\n\n{A_nameDef} has been puzzling over it all evening, and is starting to read it.</li>
+          <li>[theirHightech] A rider has brought {A_nameDef} a packet from the astronomer who set up on the colony's hill: her finished notes on {NAME}, a chart of its path, and a page of thanks with {A_nameDef}'s name in it.\n\n{A_nameDef} has been reading at the table since it came.</li>
+        </texts>
+      </li>
     </beats>
     <endings>
       <li>
@@ -731,6 +820,40 @@
         </options>
       </li>
       <li>
+        <key>gleaners</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>gleaners</what><count>3</count></li>
+        </effects>
+        <day>5~10</day>
+        <titles>
+          <li>Gleaners</li>
+        </titles>
+        <texts>
+          <li>After a harvest like this one, the poor of the region follow the reapers from field to field to pick up what falls. Three of them have come to the colony's gate with sacks over their shoulders. They ask leave to glean the colony's stubble once its harvest is in.\n\nThey'd take nothing that isn't already on the ground, they say, and they'd be gone by morning.</li>
+          <li>[colony:Generous] Gleaners have heard that the colony is open-handed. Three of them are at the gate with empty sacks, asking leave to glean its stubble and sleep on its far meadow for a night.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them glean</label>
+            <outcome>The gleaners go out over the stubble with their sacks, bent double, and sleep on the far ground with their night's gleanings beside them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><spot>Far</spot></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>gleaned</li></flags>
+            <help>1</help>
+            <deed>let the poor glean its stubble</deed>
+            <ways><mercy>1</mercy><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>The stubble is for the colony's animals</label>
+            <outcome>The gleaners go back down the road to try the next farm.</outcome>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li>
         <key>supper</key>
         <day>8~13</day>
         <titles>
@@ -769,6 +892,7 @@
           <li>The last of the harvest is in, prices are climbing back, and {FACTION}'s granaries at {PLACE} are full to the rafters. People will be talking about this year in the next bad one.</li>
           <li>[hands] {FACTION}'s harvest is in, and their carter has brought the colony's wages up the road: {COUNT} silver, paid in coin, since grain is cheap this year and silver isn't.</li>
           <li>[supper,!hands] The harvest is in all over the region. The colony's own supper is still being talked about, mostly the pie.</li>
+          <li>[gleaned,!hands] The last of the harvest is in. On the roads, the gleaners say the colony's stubble was the most generous in the valley.</li>
         </texts>
         <chronicle>A year of plenty for {FACTION}.</chronicle>
         <effects>
@@ -851,6 +975,7 @@
               <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2</count><armed>true</armed><livestock>5~8</livestock><spot>Far</spot><nights>1</nights><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>0.5~1.5</delay><onward>true</onward></li>
             </effects>
             <help>1</help>
+            <flags><li>friends</li></flags>
             <ways><generosity>2</generosity><openness>1</openness></ways>
           </li>
           <li>
@@ -892,6 +1017,22 @@
             <outcome>The drovers are told it's for {FACTION}'s own elders to judge. They go off arguing, and the heifer looks back once.</outcome>
           </li>
         </options>
+      </li>
+      <li>
+        <key>homeward</key>
+        <requires><li>friends</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>drovers</what><count>2</count><armed>true</armed><hours>2~3</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Cow</li><li>Yak</li><li>Muffalo</li></kinds></li>
+        </effects>
+        <day>9~15</day>
+        <titles>
+          <li>The drovers come home</li>
+        </titles>
+        <texts>
+          <li>The drovers of {FACTION} are on their way home from the market beyond {PLACE}, lighter by a herd and heavier by a purse. They stopped at the colony's gate to leave something: a young beast from the market pens, roped and fed, in return for the night on the far meadow.\n\nDrovers remember a good stop, the headman says. This is how they show it.</li>
+          <li>[theirHightech] {FACTION}'s drovers are heading home from the market with empty trailers and full pockets. They've stopped at the gate to leave the colony a young beast from the sale pens, for the night of grazing it gave them on the way out.</li>
+        </texts>
       </li>
     </beats>
     <endings>

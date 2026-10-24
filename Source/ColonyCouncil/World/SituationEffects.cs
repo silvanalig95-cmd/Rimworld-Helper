@@ -149,12 +149,15 @@ namespace ColonyCouncil
         /// reward, or has nothing to pay with).
         /// </summary>
         public bool fromAfar;
+        /// <summary>The second people ({ENEMY}) pay, not the first: a smuggler of theirs, their hunters' share.</summary>
+        public bool enemy;
 
         public override void Apply(DilemmaContext ctx)
         {
             if (!Gate(ctx)) return;
             int n = Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor);
-            Couriers.PaySilver(SituationEffectUtil.MapOf(ctx), IntVec3.Invalid, n, Couriers.PeopleOf(ctx), fromAfar ? null : ctx.stranger);
+            var from = enemy ? (ctx as HappeningContext)?.enemy : Couriers.PeopleOf(ctx);
+            Couriers.PaySilver(SituationEffectUtil.MapOf(ctx), IntVec3.Invalid, n, from, fromAfar ? null : ctx.stranger);
         }
     }
 

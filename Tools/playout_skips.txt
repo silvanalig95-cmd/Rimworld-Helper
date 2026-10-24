@@ -436,3 +436,10 @@ Council_WS_ClansGather [envoy/2] a refusal
 Council_WS_ClansGather [end:paid] far away, told
 Council_WS_ClansGather [end:warned] far away, told
 Council_WS_ClansGather [end:over] far away, told
+
+# Defs/WorldSituationDefs/Rimfolk_WS_Wider2.xml
+Council_WS_OldBeast [hunters/0] the strangers' part: the horn hunters follow the trail off the map
+Council_WS_OldBeast [hunters/1] a refusal; the hunters go back down the road
+Council_WS_OldBeast [end:taken] far away, told
+Council_WS_OldBeast [end:lost] far away, told
+Council_WS_OldBeast [end:protected] far away, told

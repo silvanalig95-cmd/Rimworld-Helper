@@ -477,8 +477,10 @@ their herd on the far meadow overnight, herders bring theirs down to the water, 
 lord's progress pass along the road and go on to the far side of the map. A smith or a merchant house's agent who
 buys takes the goods from your hands and pays on the spot, pilgrims and prospectors you let stay camp by the water,
 and a young man running from a blood feud waits at the gate (hidden, he stays two nights) while a rider of the other
-family goes by on the road (56 beats of 34 world events, and a feud's warning rider, a debt collector and a runaway
-mule's owner; 120 lines of their own). Only peoples at peace with the colony come, only when
+family goes by on the road. A prophet waits at the gate to speak at dusk, a scavenger with crates from an old vault,
+an unpaid driver looking for work, a caravan off the ice road wanting hot meals, the moot's delegates, horn hunters
+asking leave and a girl left at the gate by the famine (88 beats of 41 world events, and a feud's warning rider, a debt
+collector and a runaway mule's owner; 137 lines of their own). Only peoples at peace with the colony come, only when
 it's safe, at most three groups at once; they go if hurt, if their people turn hostile, if raiders come, or if the
 cold or hunger gets to them. With the same setting off, or when nobody can come, the letter tells it as before.
 
@@ -1695,8 +1697,24 @@ the colony half.
   pay the last of the blood price), a **comet** (a night watch, a stargazer), a **bumper harvest**, the **drove
   roads**, a people **in mourning**, a **season of songs** with a song about the colony going round, a **toll** on the
   roads, **iron gone scarce**, and **exiles** cast out by a neighbor. Two follow another's end with its people:
-  **rebuilding** after a war, a fire or a flood, and **the road reopening** once the bandits, the snow or the toll are
-  gone.
+  **rebuilding** after a war, a fire or a flood, and **the road reopening** once the bandits, the snow, the toll or a
+  closed market are gone.
+- **The wider world:** a **prophet on the roads** (feed her followers or shut the gate, let her speak at dusk, and
+  answer the neighbor's ruler who wants them home; she preaches no creed, and with Ideology her words sit beside the
+  peoples' own), an **old vault opened** by a neighbor's diggers (lend a reader, gamble on a scavenger's crates, advise
+  on the deeper door), **markets closed** between two peoples (cheap goods from the shut-out side, a smuggler's cart, a
+  side taken or talks sat between), a **merchant house failing** (its stores sold cheap, an unpaid driver to take on, a
+  loan the old master repays a third over, or only in part, and a search in the hills for his lost wagon), **the ice
+  road** across the frozen lakes in a hard freeze (wood for the poles, a driver pulled out of the ice, hot meals for a
+  caravan, fires on the shore at the thaw), a **moot of the peoples** (send a speaker, put up the delegates, and vote
+  on two neighbors' pastures, or propose they share them and risk the hall's laughter), and an **old thrumbo** wandering
+  the hills (let the horn hunters through for a share or turn them away, see it at dawn, take a turn at its watch).
+- **A second time round:** eleven world events have a beat that follows from what the colony did earlier: a plague's
+  doctors ask for a shut gate (fewer arrivals and less sickness while it holds), a famine leaves a girl at the gate, the
+  hidden boy's mother comes after a feud, the stargazer sends her notes, the burned town's carter brings the first
+  boards from its new mill, the drovers leave a young beast on the way home, mourners' kin send a keepsake, an exile's
+  mother needs medicine, gleaners ask for the stubble, a carter dodging a toll asks for the old lane across the colony's
+  land, and the smiths the colony taught send their first new iron.
 - **Particular peoples** (with their DLC or mod): **the Empire's levy** (Royalty: pay in full and be named in the
   dispatches, pay half, or decline), **deserters on the roads** (Vanilla Factions Expanded - Empire: shelter a
   deserter, hand them over for the reward, or feed them and send them on), **the republic votes** (Classical: back

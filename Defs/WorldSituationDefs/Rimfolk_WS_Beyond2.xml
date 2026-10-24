@@ -126,6 +126,22 @@
           </li>
         </options>
       </li>
+      <li>
+        <key>keepsake</key>
+        <requires><li>stood</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
+          <li Class="ColonyCouncil.WorldEffect_Loot"><value>150~300</value></li>
+        </effects>
+        <day>7~12</day>
+        <titles>
+          <li>Something of {NAME}'s</li>
+        </titles>
+        <texts>
+          <li>{NAME}'s family have been going through {NAME}'s things since {NAME} was laid to rest, and they have sent a rider to the colony with a small chest. They want the people who stood by the road bareheaded to have something of {NAME}'s, they write. {NAME} would have liked that, having been someone who always stopped to talk.\n\nThe rider waits at the gate until someone comes down for it.</li>
+          <li>[theirHightech] A rider has come from {PLACE} with a crate and a note from {NAME}'s family. They were moved, they write, that the colony's people stood by the road for {NAME}, and they would like the colony to have some of {NAME}'s things.</li>
+        </texts>
+      </li>
     </beats>
     <endings>
       <li>
@@ -318,6 +334,8 @@
       <li><incident>TraderCaravanArrival</incident><factor>0.5</factor><unlessFlag>paid</unlessFlag></li>
       <li><incident>VisitorGroup</incident><factor>0.7</factor></li>
       <li><rimfolk>Council_Evt_Camp</rimfolk><factor>0.7</factor></li>
+      <!-- The old track over the colony's land, opened to carters who won't pay: some of the traders come that way. -->
+      <li><incident>TraderCaravanArrival</incident><factor>1.6</factor><whileFlag>backpath</whileFlag><unlessFlag>backpathFound</unlessFlag></li>
     </modifiers>
     <beats>
       <li>
@@ -389,6 +407,45 @@
           </li>
         </options>
       </li>
+      <li>
+        <key>backpath</key>
+        <requires><li>refused</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><gender>Male</gender><pack>true</pack></li>
+        </effects>
+        <day>5~11</day>
+        <count>40~80</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>The back lane</li>
+        </titles>
+        <texts>
+          <li>A carter who won't pay {FACTION}'s toll has heard that the colony won't either. There is an old cart lane across the colony's land that comes out on the road beyond the chain at {PLACE}, and he asks leave to use it, for himself and a few friends. He'll pay {COUNT} silver for the season.\n\nIf {FACTION} hear of it, they will know who opened the gate.</li>
+          <li>[theirHightech] A driver has come to the gate with a map and a proposal: the old farm lane across the colony's land joins the highway past {FACTION}'s checkpoint at {PLACE}. He and a few others would use it for the season, and pay {COUNT} silver for the privilege.\n\n{FACTION} would not be pleased to find out.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Open the lane, for {COUNT} silver</label>
+            <outcome>The carter pays at the gate, and within the week a few carts a day are coming down the old lane past the colony's fields.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Silver" />
+            </effects>
+            <riskChance>0.35</riskChance>
+            <riskOutcome>{FACTION}'s tollmen found carts on the colony's lane within the week and turned them back at the colony's own fence. The carter's silver stays paid. {FACTION}'s goodwill does not.</riskOutcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
+            </riskEffects>
+            <flags><li>backpath</li></flags>
+            <riskFlags><li>backpathFound</li></riskFlags>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep the lane closed</label>
+            <outcome>The carter goes back down the road to take his chances with the chain.</outcome>
+          </li>
+        </options>
+      </li>
     </beats>
     <endings>
       <li>
@@ -415,6 +472,8 @@
         <texts>
           <li>The toll at {PLACE} has lapsed for the winter, as tolls do when there's nobody left on the road to pay them. {FACTION} have made their money. The traders will come back slowly.</li>
           <li>[paid] The toll at {PLACE} is over for the season. The colony's painted token is nailed over the gate now, as a souvenir of the most expensive piece of wood it owns.</li>
+          <li>[backpath,!backpathFound] The toll at {PLACE} has lapsed. The old lane across the colony's land is rutted deep from a season of carts, and some of the carters still come that way out of habit.</li>
+          <li>[backpathFound] The toll at {PLACE} has lapsed. {FACTION}'s tollmen still mention the colony's lane when they talk about the season, and not fondly.</li>
         </texts>
         <chronicle>The toll on the road at {PLACE} lapsed.</chronicle>
       </li>
@@ -517,12 +576,29 @@
             </effects>
             <help>2</help>
             <deed>sent {A_nameDef} to teach the smiths of {PLACE}</deed>
+            <flags><li>taught</li></flags>
           </li>
           <li>
             <label>{A_nameDef} is needed here</label>
             <outcome>{FACTION}'s smiths will have to work it out for themselves.</outcome>
           </li>
         </options>
+      </li>
+      <li>
+        <key>firstIron</key>
+        <requires><li>taught</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>smith</what><gender>Male</gender><ages>30~60</ages><pack>true</pack></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Steel</thing><count>30</count><by>Outsiders</by></li>
+        </effects>
+        <day>9~15</day>
+        <titles>
+          <li>The first new iron</li>
+        </titles>
+        <texts>
+          <li>[lowtech] The smith from {PLACE} is back at the gate, this time with a loaded cart. The flooded mines are being drained, the first new iron is coming down from the hills, and {FACTION}'s smiths have sent the colony a share of the first smelting, for the days {A_nameDef} spent at their forges.\n\nHe won't take payment. He has been told very firmly not to.</li>
+          <li>[!lowtech] The smith from {PLACE} has come back up the road with a cart of new steel. The smelter upriver is running again, and {FACTION}'s smiths have put aside part of the first batch for the colony, in thanks for {A_nameDef}'s days at their forges.\n\nHe won't hear of payment.</li>
+        </texts>
       </li>
     </beats>
     <endings>
@@ -701,6 +777,41 @@
           </li>
         </options>
       </li>
+      <li>
+        <key>mother</key>
+        <requires><li>harboured</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>tinker</what><gender>Male</gender><ages>35~65</ages><pack>true</pack></li>
+        </effects>
+        <day>10~16</day>
+        <count>2~4</count>
+        <titles>
+          <li>Word from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>One of the exiles the colony took in has had word from a tinker that his mother is ill in {PLACE}, and old, and that {FACTION}'s healers have little time for the family of an exile. He can't go back. He asks whether the colony would send her {COUNT} doses of medicine with the tinker, who goes that way tomorrow.\n\nThe tinker is waiting at the gate, and doesn't much like being in the middle of it.</li>
+          <li>[pardon] The exiles' hopes are up since {A_nameDef} spoke for them, and so is their news: one of them has heard from a tinker that his mother is ill in {PLACE}. He asks whether the colony would send her {COUNT} doses of medicine with the tinker, who is waiting at the gate.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} medicine with the tinker</label>
+            <outcome>The tinker tucks the medicine in among his pots and promises to put it into the old woman's own hands. The exile watches him all the way down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for the exile's mother</label><what>medicine</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>medicine</li></flags>
+            <help>1</help>
+            <deed>sent medicine to an exile's mother in {PLACE}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The colony can't spare it</label>
+            <outcome>The tinker goes on alone. The exile doesn't ask again.</outcome>
+          </li>
+        </options>
+      </li>
     </beats>
     <endings>
       <li>
@@ -729,6 +840,7 @@
           <li>The exiles of {PLACE} have scattered: some to far towns, some to cousins, and some to places nobody knows. {FACTION} have stopped saying their names.</li>
           <li>[harboured] The exiles of {PLACE} are still exiles, and some of them are the colony's people now. {FACTION} have not forgotten it. One of the exiles has planted a row of beans by the wall, from seed brought out of {PLACE}.</li>
           <li>[refused] The exiles of {PLACE} found shelter elsewhere, or didn't. The colony's gate was shut to them, and {FACTION} counted that in its favor.</li>
+          <li>[medicine] The exiles of {PLACE} are still exiles, and some of them are the colony's people now. The tinker came back through last week with word that the old woman in {PLACE} is on her feet again, and her son has been whistling since.</li>
         </texts>
         <chronicle>The exiles of {PLACE} went their ways.</chronicle>
       </li>

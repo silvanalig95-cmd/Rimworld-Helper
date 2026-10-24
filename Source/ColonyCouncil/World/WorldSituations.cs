@@ -62,7 +62,10 @@ namespace ColonyCouncil
             Changed();
         }
 
-        public WorldSituation Get(int id) => active.FirstOrDefault(s => s.id == id);
+        /// <summary>The one whose ending is being told: no longer among the active ones, but its ending's effects still read its flags.</summary>
+        private WorldSituation closing;
+
+        public WorldSituation Get(int id) => active.FirstOrDefault(s => s.id == id) ?? (closing != null && closing.id == id ? closing : null);
 
         public IEnumerable<WorldSituation> Running => active.Where(s => !s.ended);
 
@@ -565,6 +568,8 @@ namespace ColonyCouncil
             s.ended = true;
             s.endingKey = key;
             active.Remove(s);
+            // Its ending's effects find it still (a flag they require, the colonists it hurt, a loan to pay back).
+            closing = s;
             var def = s.def;
             var worker = s.Worker;
             var ending = def?.Ending(key);
@@ -649,6 +654,7 @@ namespace ColonyCouncil
             s.ReleaseAll();
             s.ctx.a = s.ctx.b = null;
             s.sufferers.Clear();
+            closing = null;
             Changed();
         }
 

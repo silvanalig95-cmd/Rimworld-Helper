@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The wider world, continued (see Rimfolk_WS_Wider.xml): an ice road across the frozen lakes in a hard freeze, a
+       moot of the region's peoples over a disputed pasture, and an old thrumbo wandering the hills with horn hunters
+       after it. None brings a fight; the thrumbo that may pass across the colony's land is the game's own, and whether
+       anyone hunts it is the player's choice. -->
+
+  <!-- ===================== The ice road ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_IceRoad</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the ice road</label>
+    <workerClass>ColonyCouncil.SituationWorker_DeepCold</workerClass>
+    <weight>0.7</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>ice</kind>
+    <seasons>
+      <li>Winter</li>
+      <li>PermanentWinter</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>The ice road</li>
+      <li>The lakes have frozen</li>
+    </titles>
+    <texts>
+      <li>[lowtech] The lakes north of {PLACE} have frozen hard enough to take a loaded sledge, which hasn't happened in years, and {FACTION} have marked out an ice road across them with poles and lanterns. What takes ten days around the shore takes two across the ice.\n\nSledges and travelers are already on it, and the road comes ashore not far from the colony.</li>
+      <li>[!lowtech] The cold has frozen the lakes and marshes north of {PLACE} a meter deep, and {FACTION} have opened an ice road across them: a straight line of marker poles from shore to shore, where in summer there is only water and reeds. Haulers use it day and night while it lasts.\n\nIt comes ashore a short way from the colony.</li>
+      <li>[their:grateful] {FACTION} have opened an ice road across the frozen lakes beyond {PLACE}, and their first message about it was to the colony: the road comes ashore nearby, and they would be glad of a friend at that end.</li>
+    </texts>
+    <summaries>
+      <li>Caravans and travelers come over the ice more often while it holds. {FACTION} will want wood for marker poles and shelters, and travelers on the ice may need a warm place. When the thaw comes, it comes quickly.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.5</factor></li>
+      <li><incident>TravelerGroup</incident><factor>1.4</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>poles</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>roadkeeper</what><gender>Male</gender><ages>35~65</ages><pack>true</pack></li>
+        </effects>
+        <day>1~3</day>
+        <count>40~80</count>
+        <titles>
+          <li>Poles for the ice road</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s road-keeper has come off the ice with a sledge and a frozen beard. The marker poles and the shelters along the road use up wood faster than {FACTION} can haul it from {PLACE}, and the colony is closer. He asks for {COUNT} wood, and offers what {FACTION} can pay.\n\nWithout poles the road wanders, and so do the people on it.</li>
+          <li>[!lowtech] {FACTION}'s road crew chief has come off the ice to ask for {COUNT} wood: marker poles blow down in every storm, and the warming huts along the road need fuel. {FACTION} can pay a fair price for it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} wood</label>
+            <outcome>The wood goes out on the road-keeper's sledge before dark. By the end of the week there are new poles all the way to the far shore.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the ice road</label><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>poles</li></flags>
+            <help>2</help>
+            <deed>sent wood for the poles of the ice road</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Sell it at a fair price</label>
+            <outcome>The road-keeper pays more than wood is fetching, since it's the colony's wood or none, and loads his sledge.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the ice road</label><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.4</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold wood for the ice road</deed>
+          </li>
+          <li>
+            <label>The colony needs its wood</label>
+            <outcome>The road-keeper goes back out onto the ice with an empty sledge.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>through</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><gender>Male</gender><robbed>true</robbed></li>
+        </effects>
+        <day>3~8</day>
+        <titles>
+          <li>Through the ice</li>
+        </titles>
+        <texts>
+          <li>A sledge went through the ice near the shore this morning, where a spring keeps it thin. The driver got out, soaked to the chest and shaking, and came to the colony's gate because it was the nearest smoke. His sledge and his load are in the shallows under a meter of black water and broken ice.\n\nHe is very cold, and he would like his goods back.</li>
+          <li>[!lowtech] A hauler's truck broke through the ice near the shore at first light. The driver climbed out of the cab window and made it to the colony's gate, wet to the waist and blue at the lips. The truck is in the shallows with its cargo.\n\nHe needs to get warm, and then he needs a rope and some strong backs.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Warm him up, then pull his load out</label>
+            <outcome>{A_nameDef} goes down to the shore with rope and a long pole while the driver thaws by the stove. Most of the load comes out of the shallows wet but whole, and the driver insists on paying for the work.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>pulling the load out at the shore</label><to>Walk</to><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><count>60</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>pulledOut</li></flags>
+            <help>1</help>
+            <deed>pulled a driver's load out of the ice</deed>
+            <ways><mercy>1</mercy><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Warm him up and send him on</label>
+            <outcome>The driver is given dry clothes and a seat by the stove until he stops shaking, and goes on his way at noon.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send him on as he is</label>
+            <outcome>The driver goes on, dripping, to find someone else's stove.</outcome>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>caravan</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><count>2</count><gender>Female</gender><pack>true</pack></li>
+        </effects>
+        <day>5~10</day>
+        <count>10~18</count>
+        <titles>
+          <li>A caravan off the ice</li>
+        </titles>
+        <texts>
+          <li>A long caravan has come off the ice at dusk, frost on every beast and bundle, and its leader has come up to the gate. They've eaten nothing hot for three days. She would pay well for {COUNT} hot meals, and better for a night out of the wind.\n\nThe rest of the caravan is waiting by the shore, stamping their feet.</li>
+          <li>[!lowtech] A convoy of haulers has come off the ice road and stopped by the colony. Their stove broke down on the first night out. The convoy boss has come to the gate to ask whether the colony could sell them {COUNT} hot meals before they freeze where they stand.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell them {COUNT} meals</label>
+            <outcome>The meals go out steaming, and come back as silver.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>MealSimple</thing><price>1.6</price><toVisitor>true</toVisitor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold hot meals to a caravan off the ice</deed>
+          </li>
+          <li>
+            <label>Give them the meals, and the barn for the night</label>
+            <outcome>The meals go out to the gate, and the caravan's people bed down in the barn that night with their beasts in the lee of the wall.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>hot meals for the caravan off the ice</label><what>meals</what></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>none</about></li>
+            </effects>
+            <help>2</help>
+            <deed>fed a caravan off the ice and gave it the barn for the night</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Nothing to spare</label>
+            <outcome>The caravan's leader nods and goes back down to the shore. They'll push on for {PLACE} in the dark.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>thaw</key>
+        <day>9~14</day>
+        <chance>0.6</chance>
+        <titles>
+          <li>The ice is going</li>
+        </titles>
+        <texts>
+          <li>A warm wind came up from the south in the night, and the ice on the lakes is going gray and soft. {FACTION} have sent word that the road is closed, but there are still sledges out on it, and some of them will try for the near shore after dark.\n\n{A_nameDef} thinks fires on the shore would show them where the land is.</li>
+          <li>[!lowtech] The thaw has come early. {FACTION} have closed the ice road, but haulers already out on it are coming ashore wherever they can, and the shore by the colony is dark. {A_nameDef} wants to light fires along it tonight.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Light fires on the shore tonight</label>
+            <outcome>At dusk the colony lights fires on the shore and keeps them burning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the shore fires</label><spots><li>Fire</li><li>Outdoors</li></spots><hours>18~22</hours><duration>3~4</duration></li>
+            </effects>
+            <flags><li>fires</li></flags>
+            <help>2</help>
+            <deed>lit fires on the shore to bring the last sledges in</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Leave it to {FACTION}</label>
+            <outcome>The shore stays dark. Out on the ice, the last sledges will have to find their own way in.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>fires</key>
+        <requires><li>fires</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The last sledges</li>
+        </titles>
+        <texts>
+          <li>The ice road is gone with the thaw, and the lakes are open water again. On the last night, two sledges that had lost the poles came in toward the colony's fires and reached the shore with the ice cracking behind them.\n\n{FACTION} have sent their thanks, and the drivers have sent theirs separately.</li>
+        </texts>
+        <chronicle>The ice road thawed; the colony's fires brought the last sledges in.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>kept</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The thaw</li>
+        </titles>
+        <texts>
+          <li>The thaw has taken the ice road, and {FACTION} have pulled up the poles for next time. They remember which end of the road had a friend on it.</li>
+          <li>[poles] The thaw has taken the ice road. {FACTION} have pulled up the poles to dry for next winter, and some of them are the colony's wood.</li>
+        </texts>
+        <chronicle>The ice road thawed; {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>thaw</key>
+        <titles>
+          <li>The thaw</li>
+        </titles>
+        <texts>
+          <li>The ice road is gone with the thaw. The poles are coming down, the shelters are being taken off the ice in pieces, and in a month there will be reeds and ducks where the sledges ran.</li>
+          <li>[pulledOut] The thaw has taken the ice road. The driver whose sledge went through near the colony's shore came back once the ice had gone for the last of his load, and found it caught in the reeds.</li>
+        </texts>
+        <chronicle>The ice road across the lakes thawed.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A moot of the peoples ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Moot</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a moot of the peoples</label>
+    <weight>0.6</weight>
+    <earliestDay>50</earliestDay>
+    <cooldownDays>260</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>moot</kind>
+    <minColonists>3</minColonists>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <friendlyToFirst>true</friendlyToFirst>
+    </second>
+    <names>
+      <li>the Long Moot</li>
+      <li>the Stone Moot</li>
+      <li>the moot at the ford</li>
+      <li>[lowtech] the Gathering of Hearths</li>
+      <li>[!lowtech] the Regional Assembly</li>
+    </names>
+    <titles>
+      <li>{NAME}</li>
+      <li>A moot at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>Every few years the peoples of the region send speakers to one place to settle what letters can't: grazing rights, roads, old debts, which bank of a river belongs to whom. This year {FACTION} host {NAME} at {PLACE}, and this time the colony has been asked to send someone.\n\nThe great matter this year lies between {FACTION} and {ENEMY}: the high pastures above {PLACE}, which both have grazed for longer than either can prove.</li>
+      <li>[theirLowtech] The speakers of the hearths are coming to {PLACE} for {NAME}, as they do once in a long while, to argue for days and settle a few things for a generation. {FACTION} host it. {ENEMY} have come to claim the high pastures, which {FACTION} say were always theirs.\n\nThe colony has been asked to send a speaker. Nobody can remember the last time a newcomer was asked.</li>
+      <li>[theirHightech] {FACTION} are hosting {NAME} at {PLACE}: delegates of every settlement in the region, a hall with a long table, and an agenda nobody has read to the end. The item everyone is waiting for is {ENEMY}'s claim to the high pastures, which {FACTION} have farmed for sixty years.\n\nThe colony has a seat, if it wants one.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will ask the colony to send a speaker to {NAME}, and delegates may stop at the colony on their way. If the colony speaks, it will have to say something about {ENEMY}'s claim to the high pastures, and both peoples will hear it.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>VisitorGroup</incident><factor>1.3</factor></li>
+      <li><incident>TravelerGroup</incident><factor>1.2</factor></li>
+      <li><group>Visitors</group><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>herald</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>herald</what></li>
+        </effects>
+        <day>1~3</day>
+        <skill>Social</skill>
+        <minLevel>3</minLevel>
+        <count>50~100</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>A seat at {NAME}</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s herald has come to the gate with a staff and a very formal speech: the colony is invited to send a speaker to {NAME}, with a gift for the host's table, as is the custom. The herald has clearly been warned that the colony may not know the custom.\n\nThe colony's best speaker is {A_nameDef}. The gift is usually about {COUNT} silver.</li>
+          <li>[theirHightech] An invitation has come from {FACTION}, carried to the gate by a herald in a pressed coat: one seat for the colony at {NAME}, and a line at the bottom about the customary contribution to the host's table, about {COUNT} silver. {A_nameDef} is the obvious one to send.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef}, with the gift</label>
+            <outcome>The herald takes the silver for the host's table and bows to {A_nameDef}, who will set out for {PLACE} in the morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the gift for the host's table</label><what>silver</what><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>speaker</li></flags>
+            <help>1</help>
+            <deed>sent {A_nameDef} to speak at {NAME}</deed>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Send {A_nameDef} empty-handed</label>
+            <outcome>The herald writes down, without comment, that the colony sends a speaker and nothing for the table.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+            </effects>
+            <flags><li>speaker</li></flags>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>The colony will stay home</label>
+            <outcome>The herald bows and leaves. {NAME} will go on without the colony.</outcome>
+            <flags><li>absent</li></flags>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>delegates</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>delegates</what><count>3</count><pack>true</pack></li>
+        </effects>
+        <day>3~6</day>
+        <titles>
+          <li>Delegates on the road</li>
+        </titles>
+        <texts>
+          <li>Delegates from the far side of the region are on their way to {NAME}, and night has caught them at the colony's gate: three speakers, a cart and a pack beast, and a long argument about which of them should have to ask. They'd like a meal and a roof, and they have news of every village they passed.</li>
+          <li>[winter] Three delegates on their way to {NAME} have stopped at the colony's gate in the snow, looking for a roof for the night and something hot. They can pay in news, which is all they've got.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Give them supper and a bed</label>
+            <outcome>Supper goes out to the delegates at the gate, and they sleep in the guest corner after talking until late about roads, grazing and who said what at the last moot.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>supper for the delegates</label><what>meals</what><count>3</count></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><who>Neighbors</who></li>
+            </effects>
+            <flags><li>hosted</li></flags>
+            <help>1</help>
+            <deed>gave the moot's delegates a supper and a bed on the road</deed>
+            <ways><openness>1</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Point them down the road</label>
+            <outcome>The delegates thank the colony stiffly and go on to find a roof somewhere else.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>pastures</key>
+        <requires><li>speaker</li></requires>
+        <day>6~10</day>
+        <titles>
+          <li>The high pastures</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} writes from {PLACE}. {NAME} has argued for three days over the high pastures, and the speakers are split down the middle between {FACTION} and {ENEMY}. Tomorrow they vote, and the colony's voice may tip it.\n\n{A_nameDef} asks what the council wants said.</li>
+          <li>[theirLowtech] Word comes back from {NAME} with a rider: the hearths are split over the high pastures, half for {FACTION} and half for {ENEMY}, and the colony's speaker will be asked for a word before the stones are counted. {A_nameDef} asks what the council wants said.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Speak for {FACTION}</label>
+            <outcome>{A_nameDef} speaks for {FACTION}'s old right to the pastures, and the vote goes their way by two.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
+            </effects>
+            <flags><li>forFaction</li></flags>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Speak for {ENEMY}</label>
+            <outcome>{A_nameDef} speaks for {ENEMY}'s claim, and the vote goes their way by one, with {FACTION}'s own hall gone very quiet.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><enemy>true</enemy><about>other</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>other</about></li>
+            </effects>
+            <flags><li>forEnemy</li></flags>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Propose they share it by season</label>
+            <outcome>{A_nameDef} proposes that {FACTION} graze the pastures in spring and {ENEMY} in autumn, and keeps talking until the hall stops laughing and starts counting. The vote goes for it.</outcome>
+            <riskChance>0.45</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskReplaces>true</riskReplaces>
+            <riskOutcome>{A_nameDef} proposes that the pastures be shared by season. The hall laughs, both sides call it cowardice, and the vote goes to {FACTION} by one, without the colony's voice.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount><who>Both</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>800</xp></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount><who>Both</who></li>
+              <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_LaughedAtMoot</thought></li>
+            </riskEffects>
+            <flags><li>shared</li></flags>
+            <riskFlags><li>laughed</li></riskFlags>
+            <help>2</help>
+            <deed>proposed that {FACTION} and {ENEMY} share the high pastures</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Abstain</label>
+            <outcome>{A_nameDef} keeps the colony's voice out of it. The vote goes to {FACTION} by one.</outcome>
+            <flags><li>abstained</li></flags>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>shared</key>
+        <requires><li>shared</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The pastures shared</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. The high pastures will be grazed by {FACTION} in spring and by {ENEMY} in autumn, and the settlement has been cut into the moot stone at {PLACE}, with the colony's name under it.\n\n{A_nameDef} came home hoarse, and has been asked about it every day since.</li>
+        </texts>
+        <chronicle>{NAME} settled the high pastures by season, on the colony's proposal.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount><who>Both</who></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>forFaction</key>
+        <requires><li>forFaction</li></requires>
+        <titles>
+          <li>The pastures go to {FACTION}</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over, and the high pastures are {FACTION}'s, by two votes. {ENEMY}'s speakers left the hall before the last speech, and their herds will have to find other grass this summer.\n\n{FACTION} have not forgotten whose voice made the difference.</li>
+        </texts>
+        <chronicle>{NAME} gave the high pastures to {FACTION}, with the colony's voice.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>forEnemy</key>
+        <requires><li>forEnemy</li></requires>
+        <titles>
+          <li>The pastures go to {ENEMY}</li>
+        </titles>
+        <texts>
+          <li>{NAME} gave the high pastures to {ENEMY}, and {FACTION}, who hosted it, sat through the vote in silence. {ENEMY} have written to the colony to thank it. {FACTION} have not written at all.</li>
+        </texts>
+        <chronicle>{NAME} gave the high pastures to {ENEMY}, with the colony's voice.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><who>Enemy</who></li>
+        </effects>
+      </li>
+      <li>
+        <key>laughed</key>
+        <requires><li>laughed</li></requires>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. The high pastures went to {FACTION} by one vote, and the colony's proposal to share them is still a joke in {PLACE}'s taverns.\n\nA few of the older speakers have written to {A_nameDef} privately, to say it was a good idea, only early.</li>
+        </texts>
+        <chronicle>{NAME} laughed at the colony's proposal and gave the pastures to {FACTION}.</chronicle>
+      </li>
+      <li>
+        <key>absent</key>
+        <requires><li>absent</li></requires>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over, and the colony's seat stayed empty. The high pastures went to {FACTION} by one vote, and the colony's name was read out with the absent ones.</li>
+        </texts>
+        <chronicle>{NAME} met without the colony.</chronicle>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. The high pastures went to {FACTION} by one vote, and the speakers have gone home to tell it each in their own way.</li>
+          <li>[hosted] {NAME} is over, and the pastures went to {FACTION} by one vote. The delegates the colony put up on their way have been praising its bread on every road home.</li>
+        </texts>
+        <chronicle>{NAME} gave the high pastures to {FACTION}.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The old beast ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_OldBeast</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the old thrumbo</label>
+    <workerClass>ColonyCouncil.SituationWorker_OldBeast</workerClass>
+    <weight>0.5</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>beast</kind>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+    </second>
+    <names>
+      <li>Old White</li>
+      <li>the Pale One</li>
+      <li>Graybrow</li>
+      <li>[lowtech] the Grandmother</li>
+      <li>[!lowtech] the Ashby thrumbo</li>
+    </names>
+    <titles>
+      <li>An old thrumbo</li>
+      <li>{NAME} in the hills</li>
+    </titles>
+    <texts>
+      <li>A thrumbo older than anyone has seen has come down out of the high country into {FACTION}'s hills. Its fur has gone white, its horn is as long as a man is tall, and it walks slowly, like something that has nowhere it has to be. The people of {PLACE} call it {NAME}.\n\nIts horn would fetch a fortune. {FACTION}'s elders say it is bad luck even to think about that.</li>
+      <li>[theirLowtech] {FACTION}'s herders have been leaving salt out on the hillsides for {NAME}, the old white thrumbo that has wandered into their country. Their grandmothers told stories about it, or about one like it. To {FACTION}, harming it would be like burning a shrine.\n\nNot everyone in the region feels that way. A horn like that buys a house.</li>
+      <li>[theirHightech] A thrumbo of extraordinary age has been sighted in the hills around {PLACE}, white with years, with a horn {FACTION}'s rangers put at over two meters. {FACTION} have declared it protected. Horn dealers in three towns have started asking about it.\n\nIts path wanders, and lately it has been wandering toward the colony.</li>
+    </texts>
+    <summaries>
+      <li>{NAME} wanders the hills near the colony and may cross its land. Hunters will want leave to go after its horn, and {FACTION} will want it left alone. Anyone who hunts it should remember that a thrumbo fights back.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>ThrumboPasses</incident><factor>3</factor></li>
+      <li><incident>HerdMigration</incident><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>hunters</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>hunters</what><count>2</count><armed>true</armed><enemy>true</enemy></li>
+        </effects>
+        <day>1~4</day>
+        <count>180~320</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Hunters for {NAME}</li>
+        </titles>
+        <texts>
+          <li>[enemyLowtech] Two hunters of {ENEMY} have come to the gate with bows taller than they are. They're after {NAME}, and its trail crosses the colony's land. They ask leave to follow it, and promise a share of the horn: {COUNT} silver, once it's sold.\n\n{FACTION} would not forgive the colony for it.</li>
+          <li>[enemyHightech] Two hunters of {ENEMY} are at the gate with scoped rifles and a permit from nobody in particular. {NAME}'s trail crosses the colony's land, and they would like leave to follow it. They offer a share of the horn: {COUNT} silver, once it's sold.\n\n{FACTION} would not forgive the colony for it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them follow the trail</label>
+            <outcome>The hunters thank the colony and set off up the valley. They'll be back, they say, with the horn or without it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
+            </effects>
+            <!-- Whether the old beast gets away is settled now, and told only when it ends. -->
+            <riskChance>0.4</riskChance>
+            <flags><li>allowed</li></flags>
+            <riskFlags><li>lost</li></riskFlags>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Not on the colony's land</label>
+            <outcome>The hunters are told {NAME} isn't to be touched on the colony's land. They go back down the road, looking over their shoulders at the hills.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>protected</li></flags>
+            <help>1</help>
+            <deed>kept the horn hunters off {NAME}'s trail</deed>
+            <ways><mercy>1</mercy><tradition>1</tradition></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>passes</key>
+        <day>3~5</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>ThrumboPasses</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>ridge</key>
+        <day>5~9</day>
+        <titles>
+          <li>{NAME} on the ridge</li>
+        </titles>
+        <texts>
+          <li>{NAME} was on the ridge above the colony at first light, grazing among the rocks, white against the gray. {A_nameDef} saw it from the wall and woke two people to come and look.\n\n{A_nameDef} wants to go up at dawn tomorrow and see it close. Not too close.</li>
+          <li>[protected] {NAME} has been grazing on the ridge above the colony at dawn, as if it knows nobody here will raise a hand to it. {A_nameDef} wants to take whoever likes up the ridge at first light to see it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Go up at dawn and see it</label>
+            <outcome>A few of the colonists will go up the ridge at first light to see {NAME}, keeping downwind.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the dawn walk to see {NAME}</label><target>Colony</target><count>4</count><hours>5~7</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_SawTheOldBeast</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+            </effects>
+            <flags><li>watched</li></flags>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Keep the colony off the ridge</label>
+            <outcome>The colony stays off the ridge. {NAME} grazes there until noon and then is gone over the top.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>watch</key>
+        <requires><li>protected</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>elder</what><gender>Female</gender><ages>55~75</ages></li>
+        </effects>
+        <day>8~13</day>
+        <skill>Animals</skill>
+        <minLevel>4</minLevel>
+        <titles>
+          <li>A watch over {NAME}</li>
+        </titles>
+        <texts>
+          <li>An elder of {FACTION} has come to the gate to thank the colony for turning the horn hunters away. {FACTION}'s herders are keeping watch over {NAME} by turns, day and night, until it goes back up into the high country, and she asks whether the colony would lend {A_nameDef}, who knows animals, to take a turn.\n\nIt would mean a few nights on a cold hillside.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Lend {A_nameDef} to the watch</label>
+            <outcome>{A_nameDef} goes out to the herders' fire in the hills for four nights, and comes back with a cold, a sore back and a great deal to say about how a thrumbo sleeps.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>900</xp></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>guarded</li></flags>
+            <help>2</help>
+            <deed>lent {A_nameDef} to keep watch over {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>The colony can't spare anyone</label>
+            <outcome>The elder thanks the colony again and goes back to the herders' fire alone.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>taken</key>
+        <requires><li>allowed</li></requires>
+        <forbids><li>lost</li></forbids>
+        <titles>
+          <li>The end of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{ENEMY}'s hunters brought {NAME} down in the high pass beyond the colony, and its horn has gone to a dealer for a sum people repeat in whispers. The colony's share has come up the road in a leather bag: {COUNT} silver.\n\n{FACTION}'s herders have stopped leaving salt on the hillsides. They have also stopped waving to the colony's people on the road.</li>
+        </texts>
+        <chronicle>{ENEMY}'s hunters took {NAME}'s horn, with the colony's leave.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Silver"><enemy>true</enemy></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>lost</key>
+        <requires><li>lost</li></requires>
+        <titles>
+          <li>{NAME} gets away</li>
+        </titles>
+        <texts>
+          <li>{NAME} gave {ENEMY}'s hunters the slip in the high pass and went up into country where nobody follows. The hunters came back with sore feet and nothing else, and there is no share for anyone.\n\n{FACTION} know the colony gave them leave.</li>
+        </texts>
+        <chronicle>{NAME} escaped the horn hunters the colony let through.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>guarded</key>
+        <requires><li>guarded</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} goes home</li>
+        </titles>
+        <texts>
+          <li>{NAME} has gone back up into the high country, slow as ever, with {FACTION}'s watchers following it to the last pass. {A_nameDef} was one of them, and has come home with a story {A_pronoun} tells badly and often.</li>
+        </texts>
+        <chronicle>{NAME} went back to the high country, watched over by {FACTION}'s herders and the colony's {A_nameDef}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_GoodNeighbours</thought></li>
+        </effects>
+      </li>
+      <li>
+        <key>protected</key>
+        <requires><li>protected</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} goes home</li>
+        </titles>
+        <texts>
+          <li>{NAME} has gone back up into the high country. No horn hunter crossed the colony's land after it, and {FACTION}'s elders have said so at {PLACE}, naming the colony.</li>
+        </texts>
+        <chronicle>{NAME} went back to the high country; the colony kept the hunters off its trail.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>gone</key>
+        <titles>
+          <li>{NAME} goes home</li>
+        </titles>
+        <texts>
+          <li>{NAME} has gone back up into the high country where nobody follows. Whether anyone will see it again, nobody at {PLACE} will guess.</li>
+          <li>[watched] {NAME} has gone back up into the high country. The colony still talks about the morning on the ridge, when it lifted its head and looked straight at them.</li>
+        </texts>
+        <chronicle>{NAME} went back to the high country.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>
