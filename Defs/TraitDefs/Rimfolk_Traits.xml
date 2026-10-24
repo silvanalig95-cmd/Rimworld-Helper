@@ -99,4 +99,30 @@
     </degreeDatas>
   </TraitDef>
 
+  <TraitDef>
+    <defName>Rimfolk_Scholar</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>scholar</label>
+        <description>Years with {PAWN_possessive} nose in the colony's notes have made {PAWN_nameDef} a scholar. {PAWN_pronoun} researches faster than before, and picks up anything new a little quicker.</description>
+        <statOffsets>
+          <ResearchSpeed>0.12</ResearchSpeed>
+          <GlobalLearningFactor>0.05</GlobalLearningFactor>
+        </statOffsets>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
+  <TraitDef>
+    <defName>Rimfolk_Mender</defName>
+    <commonality>0</commonality>
+    <degreeDatas>
+      <li>
+        <label>mender</label>
+        <description>{PAWN_nameDef} never lets a tear go unstitched. The clothes {PAWN_pronoun} wears are mended a little every day, and last far longer for it.</description>
+      </li>
+    </degreeDatas>
+  </TraitDef>
+
 </Defs>

@@ -32,9 +32,10 @@ namespace ColonyCouncil
             return i < 0 ? 0f : hours[i];
         }
 
-        public void Add(string kind)
+        /// <param name="asWork">Counted as an hour at work too (putting out fires isn't).</param>
+        public void Add(string kind, bool asWork = true)
         {
-            work += 1f;
+            if (asWork) work += 1f;
             int i = kinds.IndexOf(kind);
             if (i >= 0)
             {
@@ -141,6 +142,6 @@ namespace ColonyCouncil
     /// <summary>How a quirk came (Quirk.cause): said on its line.</summary>
     public static class QuirkCause
     {
-        public const string Practice = "practice", Nature = "nature", Battle = "battle", Downed = "downed", Omen = "omen", Lived = "lived", Story = "story";
+        public const string Practice = "practice", Nature = "nature", Battle = "battle", Downed = "downed", Omen = "omen", Lived = "lived", Story = "story", Passed = "passed";
     }
 }

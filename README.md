@@ -586,9 +586,9 @@ stopping (by the game's record of time at recreation) and idleness after the opp
 teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic drawn deeper into their ideoligion (Ideology); eight for Vanilla
 Traits Expanded and RimTraits. Two traits of the body can be earned, never lost: tough after being downed or laid up
 again and again, and a fast walker after a season of hauling. A habit lived for months grows into a trait: harder work
-from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and six
+from humming through the days, kindness from remembering every birthday, a night owl from keeping late hours, and eight
 traits of Rimfolk's own that are only ever earned, never on a new arrival (tidy, green thumb, born cook, animal friend,
-healer's hands, trail-wise); Vanilla Traits Expanded's neat and animal lover take the place of two of them when it's
+healer's hands, trail-wise, scholar, mender); Vanilla Traits Expanded's neat and animal lover take the place of two of them when it's
 loaded. The character page shows "where life is taking them": the changes a colonist is heading toward, with how many
 of the things that lead there have happened, and hovering one lists them. A psychopath or a cannibal comes only from an extreme history (executions by their own
 hand with warmth and trust driven down by loss and betrayal; human flesh eaten three separate times while starving),
@@ -816,12 +816,17 @@ doing (their kind of work, early mornings, late nights, time outdoors) and remem
 habit of work never comes without its work: one who cleans a lot comes to be unable to stand a mess, a cook to sing at
 the stove, a grower to talk to the plants, a handler to name every animal, a miner to collect pretty stones, a crafter
 to whittle, a doctor to have steady hands, a builder to measure twice, a smith to sharpen every blade, a hunter to know
-every trail, a hauler to carry more than they should, someone up before six to rise early, someone up late to keep late
-hours. A few are simply who someone is: remembering every birthday, talking in their sleep, saving the best bite for
+every trail, a hauler to carry more than they should, a researcher to read at every meal, a warden to know every
+prisoner by name, a tailor to mend their own clothes, an artist to doodle in the margins, someone who has fought fires
+to sleep light, someone up before six to rise early, someone up late to keep late hours. A few are simply who someone is: remembering every birthday, talking in their sleep, saving the best bite for
 last, being unable to sit still. Most bring a small knack (slightly faster plant work or cleaning, fewer food
 poisonings, steadier tending) or a mood at the right moment, and each shows on the map: a moment of its own in their
 free time (tidying a dirty room, watching the sun come up, looking in on the sick, sharpening a blade) or a word now and
 then at the work. A habit lived doesn't fade while it is; lived two months, it takes root and its knack grows a little.
+Habits pass between people who spend their days together, too: a child picks one up from a parent, a student from their
+mentor, and lovers, family and good friends from each other, the closer the sooner, and the habit's line says whom
+they had it from. Mending clothes mends the worst-worn thing someone wears a little each day; a doodler is now and then
+inspired at their art; a light sleeper wakes when fire breaks out near them.
 The colonist's Story tab says of each quirk how it came, what it does and how long it lasts. The superstitions that were
 only flavour do something small now too: knocking on wood gladdens after a fight come through unhurt, talking to the
 dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps

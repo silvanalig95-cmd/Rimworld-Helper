@@ -96,6 +96,11 @@ namespace ColonyCouncil
         /// <summary>Days lived before it takes root; fewer for a habit lived only on rare days (a birthday).</summary>
         public int deepDays = PracticeMath.DeepDays;
         /// <summary>
+        /// Picked up by those close to someone who has it (QuirkPassing.cs): a child from a parent, a student from a mentor,
+        /// a lover, family, a good friend. One that comes only from its work passes only to someone at that work too.
+        /// </summary>
+        public bool passes;
+        /// <summary>
         /// What else it does, beyond its mood and its knack, in a few words for its line ("warns you when food runs
         /// low"); empty when that's all.
         /// </summary>
@@ -147,6 +152,8 @@ namespace ColonyCouncil
         public int lastLivedDay = -1;
         /// <summary>How it came (QuirkCause): from their work, by nature, or from something they lived through; null in older saves.</summary>
         public string cause;
+        /// <summary>Whom they picked it up from (QuirkCause.Passed): their name, kept after they're gone.</summary>
+        public string fromName;
 
         /// <summary>Lived long enough to be deep-rooted: its knack and its good mood a little stronger.</summary>
         public bool Deep => PracticeMath.Deep(livedDays, def?.deepDays ?? PracticeMath.DeepDays);
@@ -168,6 +175,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref livedDays, "livedDays");
             Scribe_Values.Look(ref lastLivedDay, "lastLivedDay", -1);
             Scribe_Values.Look(ref cause, "cause");
+            Scribe_Values.Look(ref fromName, "fromName");
         }
     }
 
@@ -267,12 +275,15 @@ namespace ColonyCouncil
                     if (!Eligible(p) || !p.Awake()) continue;
                     var job = p.CurJob;
                     var wt = job?.workGiverDef?.workType;
-                    bool counts = wt != null && wt.defName != "Firefighter" && wt.defName != "Patient" && wt.defName != "PatientBedRest";
+                    // Putting out fires is kept apart: it's no hour at the day's work (a hum, a song), but it's remembered.
+                    bool fire = wt != null && wt.defName == "Firefighter";
+                    bool counts = wt != null && !fire && wt.defName != "Patient" && wt.defName != "PatientBedRest";
                     bool busy = counts || job?.def?.joyKind != null;
                     bool outside = !p.Position.Roofed(map) && !p.InBed();
-                    if (!counts && !(busy && (night || morning)) && !outside) continue;
+                    if (!counts && !fire && !(busy && (night || morning)) && !outside) continue;
                     var log = PracticeOf(p, true);
                     if (counts) log.Add(wt.defName);
+                    else if (fire) log.Add(wt.defName, false);
                     if (busy && night) log.night += 1f;
                     if (busy && morning) log.morning += 1f;
                     if (outside) log.outdoors += 1f;
@@ -376,6 +387,8 @@ namespace ColonyCouncil
             Caps.DropOlderThan(downedTick, now, LongestWindow);
             Caps.DropOlderThan(battleTick, now, LongestWindow);
             if (PracticeOn) DailyPractice();
+            // Clothes mended by those who mend their own (the habit, or the trait it became).
+            QuirkMoments.Mend(this);
             if (!S.quirks)
             {
                 SyncKnacks();
@@ -406,6 +419,9 @@ namespace ColonyCouncil
                     break;
                 }
             }
+            // And from each other.
+            QuirkPassing.Daily(this, comp);
+            QuirkMoments.Inspire(this);
         }
 
         private bool Triggered(CouncilGameComponent comp, QuirkDef d, Pawn p)
@@ -437,9 +453,11 @@ namespace ColonyCouncil
             return QuirkCause.Nature;
         }
 
-        public void Gain(CouncilGameComponent comp, Pawn p, QuirkDef d, string cause = null)
+        /// <param name="from">Whom they picked it up from (QuirkPassing), or null.</param>
+        public void Gain(CouncilGameComponent comp, Pawn p, QuirkDef d, string cause = null, Pawn from = null)
         {
             var q = new Quirk { def = d, pawn = p, cause = cause, gainedTick = Find.TickManager.TicksGame, expiresTick = d.days > 0f ? Find.TickManager.TicksGame + (int)(d.days * GenDate.TicksPerDay) : 0 };
+            if (from != null) q.fromName = from.LabelShort;
             if (d.condition == QuirkCondition.LuckyItem)
             {
                 // The very thing they had on: a hat or helmet first, else their weapon. It will say whose it is.
@@ -453,7 +471,10 @@ namespace ColonyCouncil
             SyncKnacks();
             string line = Line(d.gained, q);
             if (!line.NullOrEmpty()) comp.journals.WriteText(p, line);
-            News.Post("CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve() + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
+            string news = from != null
+                ? "CC_Quirk_PassedOn".Translate(p.Named("PAWN"), from.Named("FROM"), q.Label.Named("QUIRK")).Resolve()
+                : "CC_Quirk_Gained".Translate(p.Named("PAWN"), q.Label.Named("QUIRK")).Resolve();
+            News.Post(news + (line.NullOrEmpty() ? "" : " \"" + line + "\""), p, NewsKind.People, MessageTypeDefOf.SilentInput, Importance.Flavor);
         }
 
         private static List<HediffDef> knacks;

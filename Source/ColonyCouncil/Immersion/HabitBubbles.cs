@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The habits without a free-time moment of their own (<see cref="QuirkHabits"/>) show over a head now and then
     /// instead: a hum at work, a song at the stove, a mumble in the night, a word over the last bite of a meal, a line
-    /// checked twice on a building site, a load too big, the small hours kept, a sickbed that won't keep someone still.
+    /// checked twice on a building site, a load too big, the small hours kept, a sickbed that won't keep someone still,
+    /// a page read over supper, a prisoner's name, a stitch at leisure, a doodle, a sniff at the night air.
     /// </summary>
     /// <remarks>
     /// Once an hour (CouncilGameComponent), with the quirks and small habits settings on and speech showing: a colonist
@@ -54,6 +55,11 @@ namespace ColonyCouncil
                 Add("Council_Quirk_StrongBack", "Council_Pool_BubbleHaul", (p, hour) => p.Awake() && Work(p) == WorkTypeDefOf.Hauling);
                 Add("Council_Quirk_LateHours", "Council_Pool_BubbleLateHours", (p, hour) => p.Awake() && (hour >= 23 || hour < 5) && (AtWork(p) || p.CurJobDef?.joyKind != null));
                 Add("Council_Quirk_Fidgets", "Council_Pool_BubbleFidgets", (p, hour) => p.Awake() && QuirkHabits.StillPatient(p));
+                Add("Council_Quirk_ReadsAtMeals", "Council_Pool_BubbleReads", (p, hour) => p.Awake() && p.CurJobDef == JobDefOf.Ingest);
+                Add("Council_Quirk_KnowsPrisoners", "Council_Pool_BubbleWarden", (p, hour) => p.Awake() && Work(p) == WorkTypeDefOf.Warden);
+                Add("Council_Quirk_MendsClothes", "Council_Pool_BubbleMends", (p, hour) => p.Awake() && (p.CurJobDef?.joyKind != null || Work(p)?.defName == "Tailoring"));
+                Add("Council_Quirk_Doodles", "Council_Pool_BubbleDoodles", (p, hour) => p.Awake() && (p.CurJobDef?.joyKind != null || Work(p)?.defName == "Art" || Work(p)?.defName == "Research"));
+                Add("Council_Quirk_SleepsLight", "Council_Pool_BubbleLightSleep", (p, hour) => p.Awake() && (hour >= 22 || hour < 5));
                 return bubbles;
             }
         }

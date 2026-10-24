@@ -13,6 +13,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_Proverbs</defName>
     <label>speaks in proverbs</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><minAge>45</minAge><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
@@ -132,6 +133,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_Worrier</defName>
     <label>a worrier</label>
+    <passes>true</passes>
     <afterThoughts>
       <li>Council_Arc_KinDiedFarAway</li>
       <li>KnowColonistDied</li>
@@ -167,6 +169,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_KeepsRecords</defName>
     <label>writes everything down</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><passion>Intellectual</passion></who>
     <chance>0.003</chance>
@@ -195,6 +198,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_Volunteers</defName>
     <label>first to volunteer</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><tags>trait:Kind|trait:Industrious|trait:HardWorker</tags></who>
     <chance>0.003</chance>
@@ -223,6 +227,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_SoftSpot</defName>
     <label>a soft spot for strays</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><passion>Animals</passion><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>

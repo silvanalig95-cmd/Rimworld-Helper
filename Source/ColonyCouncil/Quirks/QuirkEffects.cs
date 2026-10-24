@@ -66,6 +66,7 @@ namespace ColonyCouncil
         {
             if (q?.cause == null) return null;
             if (q.cause == QuirkCause.Practice && q.def.Practised) return Phrase("CC_QuirkFrom_practice", q.def.practice[0]);
+            if (q.cause == QuirkCause.Passed) return q.fromName.NullOrEmpty() ? "CC_QuirkFrom_passedSomeone".Translate().ToString() : "CC_QuirkFrom_passed".Translate(q.fromName).Resolve();
             string key = "CC_QuirkFrom_" + q.cause;
             return key.CanTranslate() ? key.Translate().ToString() : null;
         }

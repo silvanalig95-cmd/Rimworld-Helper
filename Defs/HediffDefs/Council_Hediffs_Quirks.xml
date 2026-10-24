@@ -147,4 +147,24 @@
     </stages>
   </HediffDef>
 
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_Reading</defName>
+    <label>reads at every meal (habit)</label>
+    <description>Always has their notes open, even at the table, and gets through the research a little faster for it.</description>
+    <stages>
+      <li><statOffsets><ResearchSpeed>0.03</ResearchSpeed></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><ResearchSpeed>0.05</ResearchSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Council_Quirk_Warden</defName>
+    <label>knows every prisoner by name (habit)</label>
+    <description>Knows each prisoner by name and what matters to them, and talks people round a little more easily.</description>
+    <stages>
+      <li><statOffsets><NegotiationAbility>0.03</NegotiationAbility></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><NegotiationAbility>0.05</NegotiationAbility></statOffsets></li>
+    </stages>
+  </HediffDef>
+
 </Defs>

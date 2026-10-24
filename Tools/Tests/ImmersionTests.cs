@@ -23,7 +23,8 @@ public static class ImmersionTests
         "Council_Pool_HabitTidy", "Council_Pool_HabitSunrise", "Council_Pool_HabitStones", "Council_Pool_HabitBirds", "Council_Pool_HabitWhittle",
         "Council_Pool_HabitWhetstone", "Council_Pool_HabitTreeLine", "Council_Pool_HabitPatient", "Council_Pool_HabitBirthday",
         "Council_Pool_BubbleHums", "Council_Pool_BubbleStove", "Council_Pool_BubbleSleepTalk", "Council_Pool_BubbleBestBite", "Council_Pool_BubbleMeasure",
-        "Council_Pool_BubbleHaul", "Council_Pool_BubbleLateHours", "Council_Pool_BubbleFidgets"
+        "Council_Pool_BubbleHaul", "Council_Pool_BubbleLateHours", "Council_Pool_BubbleFidgets", "Council_Pool_BubbleReads", "Council_Pool_BubbleWarden",
+        "Council_Pool_BubbleMends", "Council_Pool_BubbleDoodles", "Council_Pool_BubbleLightSleep"
     };
 
     private static readonly string[] JournalPools =

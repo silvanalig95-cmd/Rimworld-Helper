@@ -254,6 +254,7 @@ namespace ColonyCouncil
                 Safe("council meeting", () => ambitions.MeetingTick(this));
             // The hour's work in four parts and the day's in two, each on its own tick of the hour (Sched), in the order
             // they always ran, so no single tick carries all of it.
+            if (Settings.quirks && Sched.Every(t, Sched.RareTicks, Sched.RareSmoke)) Safe("light sleepers", QuirkMoments.Smoke);
             int hourTick = t % HourTicks;
             if (hourTick == Sched.CouncilWishes) HourlyWishes();
             else if (hourTick == Sched.CouncilDayFirst)

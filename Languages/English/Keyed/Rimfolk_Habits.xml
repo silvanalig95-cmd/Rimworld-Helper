@@ -39,6 +39,8 @@
   <CC_QuirkFrom_omen>after a dream came true</CC_QuirkFrom_omen>
   <CC_QuirkFrom_lived>from something they lived through</CC_QuirkFrom_lived>
   <CC_QuirkFrom_story>from their story</CC_QuirkFrom_story>
+  <CC_QuirkFrom_passed>picked up from {0}</CC_QuirkFrom_passed>
+  <CC_QuirkFrom_passedSomeone>picked up from someone close</CC_QuirkFrom_passedSomeone>
 
   <CC_QuirkWhen_Always>always</CC_QuirkWhen_Always>
   <CC_QuirkWhen_Storm>in storms</CC_QuirkWhen_Storm>
@@ -60,5 +62,10 @@
   <CC_QuirkWhen_LateNight>up late</CC_QuirkWhen_LateNight>
   <CC_QuirkWhen_NearGrave>near the graves of the dead</CC_QuirkWhen_NearGrave>
   <CC_QuirkWhen_Sickbed>stuck in bed</CC_QuirkWhen_Sickbed>
+
+  <!-- Habits passed on, and the quieter work's habits (Quirks/QuirkPassing.cs, QuirkMoments.cs). -->
+  <CC_Quirk_PassedOn>{PAWN_nameDef} has picked up a habit from {FROM_nameDef}: {QUIRK}.</CC_Quirk_PassedOn>
+  <CC_Quirk_DoodleInspired>All those doodles in the margins have turned into an idea {PAWN_pronoun} can't put down.</CC_Quirk_DoodleInspired>
+  <CC_Quirk_SmokeWoke>{PAWN_nameDef} woke at the smell of smoke.</CC_Quirk_SmokeWoke>
 
 </LanguageData>

@@ -293,4 +293,44 @@
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitScholar</defName>
+    <label>a scholar, from reading at every meal</label>
+    <trait>Rimfolk_Scholar</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_ReadsAtMeals</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <meaning>Months of reading at every meal and every spare moment have settled into {PAWN_objective}: {PAWN_pronoun} works through the research faster, and learns anything new a little quicker.</meaning>
+    <journal>
+      <plain><li>I don't just read anymore. I know where to look, and what's worth the time.</li></plain>
+      <warm><li>Someone asked me a question at supper and I knew the answer, and where I'd read it. I liked that.</li></warm>
+      <blunt><li>I know things now. Ask.</li></blunt>
+      <cheerful><li>Every page leads to three more and I love every one of them!</li></cheerful>
+      <gloomy><li>The more I read, the more I know how little we have. Still, I read.</li></gloomy>
+      <cold><li>Study is no longer an effort. It is simply how I spend my time.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_HabitMender</defName>
+    <label>a mender, from mending their own clothes</label>
+    <trait>Rimfolk_Mender</trait>
+    <change>Gain</change>
+    <habit>Council_Quirk_MendsClothes</habit>
+    <chance>0.1</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} has become a {TRAIT}.</news>
+    <meaning>After seasons of sewing up every tear, the needle never leaves {PAWN_possessive} hands for long: the clothes {PAWN_pronoun} wears are mended a little every day.</meaning>
+    <journal>
+      <plain><li>My sleeves have more stitches than cloth by now, and they're stronger for it.</li></plain>
+      <warm><li>People leave their torn things by my chair now. I don't mind. It's nice to be trusted with them.</li></warm>
+      <blunt><li>Nothing I wear stays torn. That's how it is.</li></blunt>
+      <cheerful><li>Give me a needle and an evening and I'll make anything new again!</li></cheerful>
+      <gloomy><li>I mend because everything breaks. At least the clothes can be fixed.</li></gloomy>
+      <cold><li>Constant repair has become reflex. My clothing outlasts everyone else's.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
 </Defs>

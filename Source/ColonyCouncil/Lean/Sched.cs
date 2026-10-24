@@ -89,7 +89,10 @@ namespace ColonyCouncil
         /// <summary>Conversations: who stands beside whom in a fight at home (only while one is on), for who remembers it together.</summary>
         public const int RareFightSides = 187;
 
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides };
+        /// <summary>Light sleepers wake at the smell of smoke (only while one of them is asleep at home).</summary>
+        public const int RareSmoke = 13;
+
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace ColonyCouncil
 {
@@ -11,13 +13,16 @@ namespace ColonyCouncil
     /// the food won't last the week; one who salts the doorway has fewer nightmares (Dreams.cs); one who saves the best
     /// bite for last is lifted a while longer by a good meal; a roommate of one who talks in their sleep sleeps a
     /// little worse for it, unless they're lovers. (One who talks to the dead is comforted near the graves: a mood of
-    /// its own, NearGrave.)
+    /// its own, NearGrave.) And the habits of the quieter work: one who mends their own clothes (or has become a mender)
+    /// mends the worst-worn thing they wear a little each day; one who doodles in the margins, while they keep at their
+    /// art, is now and then inspired at it; one who sleeps light wakes when fire breaks out near them.
     /// </summary>
     public static class QuirkMoments
     {
         private static bool looked;
-        private static QuirkDef knocksWood, countsThings, saltsDoor, bestBite, sleepTalker;
+        private static QuirkDef knocksWood, countsThings, saltsDoor, bestBite, sleepTalker, mends, doodles, sleepsLight;
         private static ThoughtDef knocked, bestBiteThought;
+        private static TraitDef mender;
 
         private static void Look()
         {
@@ -28,6 +33,10 @@ namespace ColonyCouncil
             saltsDoor = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_SaltsDoor");
             bestBite = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_BestBiteLast");
             sleepTalker = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_SleepTalker");
+            mends = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_MendsClothes");
+            doodles = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_Doodles");
+            sleepsLight = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_SleepsLight");
+            mender = DefDatabase<TraitDef>.GetNamedSilentFail("Rimfolk_Mender");
             knocked = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Quirk_KnockedWood");
             bestBiteThought = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Quirk_BestBite");
         }
@@ -92,6 +101,135 @@ namespace ColonyCouncil
         {
             Look();
             return On && Has(p, sleepTalker);
+        }
+
+        // ---------------- Mending ----------------
+
+        /// <summary>A day's mending, as a share of the worst-worn piece's hit points: the habit, rooted, the trait.</summary>
+        public const float MendHabit = 0.02f, MendDeep = 0.03f, MendTrait = 0.05f;
+
+        /// <summary>Once a day (QuirkTracker.Daily): each who mends their own clothes mends the worst-worn thing they wear a little.</summary>
+        public static void Mend(QuirkTracker t)
+        {
+            try
+            {
+                Look();
+                var s = ColonyCouncilMod.Settings;
+                if (s == null || Current.Game == null || t == null) return;
+                bool habits = s.quirks && mends != null;
+                bool traits = mender != null && Persona.On && s.traitChanges;
+                if (!habits && !traits) return;
+                foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.ToList())
+                {
+                    if (p.Dead || p.Downed || p.apparel == null) continue;
+                    float rate = 0f;
+                    if (traits && p.story?.traits != null && p.story.traits.HasTrait(mender)) rate = MendTrait;
+                    else if (habits && t.Get(p, mends) is Quirk q) rate = q.Deep ? MendDeep : MendHabit;
+                    if (rate <= 0f) continue;
+                    Apparel worst = null;
+                    float worstShare = 1f;
+                    foreach (var a in p.apparel.WornApparel)
+                    {
+                        if (a?.def == null || !a.def.useHitPoints || a.MaxHitPoints <= 0 || a.HitPoints >= a.MaxHitPoints) continue;
+                        float share = (float)a.HitPoints / a.MaxHitPoints;
+                        if (share < worstShare)
+                        {
+                            worstShare = share;
+                            worst = a;
+                        }
+                    }
+                    if (worst != null) worst.HitPoints = Math.Min(worst.MaxHitPoints, worst.HitPoints + Math.Max(1, (int)Math.Ceiling(worst.MaxHitPoints * rate)));
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("mending", e);
+            }
+        }
+
+        // ---------------- Inspired at their art ----------------
+
+        /// <summary>Each day, while they keep at their art: the chance one who doodles is inspired at it (rooted: a little more).</summary>
+        public const float InspireHabit = 0.03f, InspireDeep = 0.05f;
+
+        /// <summary>Once a day (QuirkTracker.Daily): one who doodles in the margins, still at their art, is now and then inspired.</summary>
+        public static void Inspire(QuirkTracker t)
+        {
+            try
+            {
+                Look();
+                if (!On || doodles == null || t == null || InspirationDefOf.Inspired_Creativity == null) return;
+                foreach (var q in t.quirks.Where(x => x?.def == doodles).ToList())
+                {
+                    var p = q.pawn;
+                    if (p == null || p.Dead || !p.Spawned || p.Downed || p.InMentalState) continue;
+                    if (!PracticeMath.Lived(Practice.Hours(p, doodles.practice), doodles.practiceHours)) continue;
+                    var h = p.mindState?.inspirationHandler;
+                    if (h == null || h.Inspired || !Rand.Chance(q.Deep ? InspireDeep : InspireHabit)) continue;
+                    h.TryStartInspiration(InspirationDefOf.Inspired_Creativity, "CC_Quirk_DoodleInspired".Translate(p.Named("PAWN")).Resolve());
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("doodles", e);
+            }
+        }
+
+        // ---------------- Smoke in the night ----------------
+
+        /// <summary>Woken once for a fire, they aren't woken again for this long.</summary>
+        private const int WakeRest = GenDate.TicksPerHour * 4;
+
+        /// <summary>A fire this close to where they sleep, or anywhere in the home area, wakes them.</summary>
+        private const float SmokeRange = 30f;
+
+        private static readonly Dictionary<int, int> woke = new Dictionary<int, int>();
+        private static Game smokeGame;
+
+        /// <summary>Every 250 ticks (CouncilGameComponent): one who sleeps light wakes when fire breaks out near them at home.</summary>
+        public static void Smoke()
+        {
+            try
+            {
+                Look();
+                if (!On || sleepsLight == null) return;
+                var t = CouncilGameComponent.Instance?.quirks;
+                if (t == null) return;
+                if (smokeGame != Current.Game)
+                {
+                    smokeGame = Current.Game;
+                    woke.Clear();
+                }
+                int now = Find.TickManager.TicksGame;
+                foreach (var q in t.quirks)
+                {
+                    var p = q?.def == sleepsLight ? q.pawn : null;
+                    if (p == null || !p.Spawned || p.Dead || p.Downed || p.Awake() || p.Map == null || !p.Map.IsPlayerHome) continue;
+                    // Not out of a sickbed, nor someone who ought to be in one.
+                    if (RestUtility.CurrentBed(p)?.Medical == true || HealthAIUtility.ShouldSeekMedicalRest(p)) continue;
+                    if (woke.TryGetValue(p.thingIDNumber, out int at) && now - at < WakeRest) continue;
+                    if (!FireNear(p)) continue;
+                    woke[p.thingIDNumber] = now;
+                    RestUtility.WakeUp(p);
+                    Notify.Message("CC_Quirk_SmokeWoke".Translate(p.Named("PAWN")).Resolve(), p, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                }
+                if (woke.Count > 100) woke.RemoveAll(kv => now - kv.Value >= WakeRest);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("light sleepers", e);
+            }
+        }
+
+        private static bool FireNear(Pawn p)
+        {
+            var map = p.Map;
+            var fires = map.listerThings.ThingsOfDef(ThingDefOf.Fire);
+            if (fires == null || fires.Count == 0) return false;
+            var home = map.areaManager.Home;
+            foreach (var f in fires)
+                if (f != null && f.Spawned && (home[f.Position] || f.Position.InHorDistOf(p.Position, SmokeRange))) return true;
+            return false;
         }
 
         // ---------------- Counting the stores ----------------

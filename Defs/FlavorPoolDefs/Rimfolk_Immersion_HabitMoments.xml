@@ -303,4 +303,89 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- Reads at every meal: over food, a page. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleReads</defName>
+    <lines>
+      <plain>
+        <li>Just one more page.</li>
+        <li>Hm, that can't be right, let me read it again.</li>
+        <li>So that's why it didn't work.</li>
+        <li>Pass the salt, would you, now where was I…</li>
+        <li>Huh. I'll have to try that.</li>
+        <li>Whoever wrote this was very sure of themselves.</li>
+        <li>[lowtech] The ink's faded here, bother.</li>
+        <li>Spoon in one hand, page in the other.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Knows every prisoner by name: at warden work. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleWarden</defName>
+    <lines>
+      <plain>
+        <li>Morning. Sleep any better?</li>
+        <li>Your sister would want you eating.</li>
+        <li>I brought the stew you like.</li>
+        <li>Nobody here wants to hurt you.</li>
+        <li>Tell me about your home, if you want to.</li>
+        <li>Same time tomorrow, then.</li>
+        <li>You remembered my name, that's a start.</li>
+        <li>I know it's not much of a room, we're working on it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Mends their own clothes: a stitch at leisure, or at the tailoring bench. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleMends</defName>
+    <lines>
+      <plain>
+        <li>In, out, and pull it snug.</li>
+        <li>That tear's not getting any bigger on my watch.</li>
+        <li>A patch here and it'll last another season.</li>
+        <li>Where did I put the thread?</li>
+        <li>Good as new. Well, good as old.</li>
+        <li>Hold still, sleeve.</li>
+        <li>[winter] Can't have a hole in a coat this time of year.</li>
+        <li>One more stitch and I'll call it done.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Doodles in the margins: at leisure, at the art bench, or over the notes. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleDoodles</defName>
+    <lines>
+      <plain>
+        <li>Just a little bird in the corner.</li>
+        <li>That's a nose, probably.</li>
+        <li>Hm, the light falls like this…</li>
+        <li>Add a hat and it's the cook to the life.</li>
+        <li>I'll draw that hill before the sun moves.</li>
+        <li>A face, a tree, another face.</li>
+        <li>Nobody look at this one, it's not finished.</li>
+        <li>Lines first. The rest follows.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Sleeps light: up in the night, sniffing the air. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BubbleLightSleep</defName>
+    <lines>
+      <plain>
+        <li>Is that smoke, or just the stove?</li>
+        <li>Heard something, probably nothing.</li>
+        <li>Everyone else asleep, good.</li>
+        <li>I'll just check the fires are banked.</li>
+        <li>Quiet tonight, and I like quiet.</li>
+        <li>Can't sleep. Might as well walk round once.</li>
+        <li>[winter] Fires burning high tonight, I'll keep an eye on them.</li>
+        <li>Nose works better than my eyes in the dark.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

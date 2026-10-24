@@ -46,6 +46,18 @@ public static class PracticeTests
             "a deep-rooted habit, lived, lasts longer once they stop");
         Check(PracticeMath.Mood(2f, true) == 3f && PracticeMath.Mood(2f, false) == 2f && PracticeMath.Mood(-2f, true) == -2f,
             "a deep-rooted habit's good mood grows; a bad one never does");
+        // Passed on between people close to each other (QuirkPassMath).
+        var bonds = new[] { QuirkPassMath.Bond.Friend, QuirkPassMath.Bond.Family, QuirkPassMath.Bond.Lover, QuirkPassMath.Bond.Mentor, QuirkPassMath.Bond.Parent };
+        for (int i = 1; i < bonds.Length; i++)
+            Check(QuirkPassMath.Chance(bonds[i], false) > QuirkPassMath.Chance(bonds[i - 1], false), $"{bonds[i]} passes a habit sooner than {bonds[i - 1]}");
+        Check(QuirkPassMath.Chance(QuirkPassMath.Bond.None, true) == 0f, "nothing passes to someone not close");
+        Check(QuirkPassMath.Chance(QuirkPassMath.Bond.Friend, true) > QuirkPassMath.Chance(QuirkPassMath.Bond.Friend, false), "a deep-rooted habit passes more readily");
+        // A parent's habit in a season or two (about 60 to 400 days on average), a friend's in a year or more.
+        float parentDays = 1f / QuirkPassMath.Chance(QuirkPassMath.Bond.Parent, false), friendDays = 1f / QuirkPassMath.Chance(QuirkPassMath.Bond.Friend, false);
+        Check(parentDays >= 60f && parentDays <= 400f, $"a parent's habit passes in a season or two ({parentDays:0} days)");
+        Check(friendDays >= 300f, $"a friend's takes a year or more ({friendDays:0} days)");
+        Check(QuirkPassMath.MinOpinion(QuirkPassMath.Bond.Friend) > QuirkPassMath.MinOpinion(QuirkPassMath.Bond.Parent), "a friend has to be liked more than family");
+        Check(!QuirkPassMath.AtTheWork(5f, 40f) && QuirkPassMath.AtTheWork(10f, 40f), "a work habit passes only to someone at that work too");
         return cases;
     }
 }

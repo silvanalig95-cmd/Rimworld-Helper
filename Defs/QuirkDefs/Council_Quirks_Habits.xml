@@ -16,6 +16,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_Hums</defName>
     <label>hums while working</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
@@ -49,6 +50,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_PrettyStones</defName>
     <label>collects pretty stones</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
@@ -84,6 +86,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_EarlyRiser</defName>
     <label>an early riser</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>NightOwl</li></notTrait></who>
     <chance>0.003</chance>
@@ -119,6 +122,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_TalksToPlants</defName>
     <label>talks to the plants</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.004</chance>
@@ -153,6 +157,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_RedLuck</defName>
     <label>red is bad luck</label>
+    <passes>true</passes>
     <afterDowned>true</afterDowned>
     <afterBattle>true</afterBattle>
     <chance>0.04</chance>
@@ -184,6 +189,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_NamesAnimals</defName>
     <label>names every animal</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
@@ -219,6 +225,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_TidyTable</defName>
     <label>can't stand a mess</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
@@ -253,6 +260,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_SingsAtStove</defName>
     <label>sings at the stove</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.004</chance>
@@ -286,6 +294,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_Stargazer</defName>
     <label>watches the stars</label>
+    <passes>true</passes>
     <afterThoughts><li>SleptOutside</li></afterThoughts>
     <withinDays>2</withinDays>
     <children>true</children>
@@ -377,6 +386,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_FeedsBirds</defName>
     <label>feeds the birds</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
@@ -414,6 +424,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_Birthdays</defName>
     <label>remembers every birthday</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><tags>trait:Kind|skill:Social</tags></who>
     <chance>0.004</chance>
@@ -443,6 +454,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_Whittler</defName>
     <label>always whittling</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.004</chance>
@@ -504,6 +516,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_BestBiteLast</defName>
     <label>saves the best bite for last</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <children>true</children>
@@ -532,6 +545,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_SteadyHands</defName>
     <label>steady hands</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
@@ -562,6 +576,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_MeasuresTwice</defName>
     <label>measures twice</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
@@ -591,6 +606,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_SharpensBlades</defName>
     <label>sharpens every blade</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
@@ -621,6 +637,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_KnowsTrails</defName>
     <label>knows every trail</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
@@ -651,6 +668,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_StrongBack</defName>
     <label>carries more than they should</label>
+    <passes>true</passes>
     <byNature>true</byNature>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chance>0.003</chance>
@@ -736,6 +754,153 @@
       <cheerful><li>I sat in a chair for an entire hour and it was lovely!</li></cheerful>
       <gloomy><li>I don't feel the need to run anymore. I'm not sure that's better.</li></gloomy>
       <cold><li>The restlessness has passed.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <!-- ==================== Habits of the quieter work (research, the cells, the needle, art, fires) ==================== -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_ReadsAtMeals</defName>
+    <label>reads at every meal</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Research</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <hediff>Council_Quirk_Reading</hediff>
+    <gained>
+      <plain><li>I've started bringing my notes to the table. The soup goes cold and I don't mind.</li></plain>
+      <warm><li>I read at meals now. Someone always asks what I'm reading, and then we're talking about it.</li></warm>
+      <blunt><li>I read while I eat. Saves time.</li></blunt>
+      <cheerful><li>Breakfast with a good page is the best kind of breakfast!</li></cheerful>
+      <gloomy><li>I read at the table so I don't have to make conversation. It works.</li></gloomy>
+      <cold><li>Mealtimes are now also reading time. The research benefits.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I left my notes in my room at supper and didn't go back for them. I think the habit's gone.</li></plain>
+      <warm><li>I eat with my eyes up now. I'd forgotten how much I like hearing everyone talk.</li></warm>
+      <blunt><li>Don't read at meals anymore. Nothing to read.</li></blunt>
+      <cheerful><li>I actually tasted my dinner today. It was good!</li></cheerful>
+      <gloomy><li>No book at the table these days. Just the food and the silence.</li></gloomy>
+      <cold><li>Away from the bench, the reading habit has lapsed.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_KnowsPrisoners</defName>
+    <label>knows every prisoner by name</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Warden</li></practice>
+    <practiceHours>25</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <hediff>Council_Quirk_Warden</hediff>
+    <gained>
+      <plain><li>I know the names of everyone we've held, and what they like to eat. It makes the talking easier.</li></plain>
+      <warm><li>Behind the bars they're still people. I ask about their families. Most of them answer, in the end.</li></warm>
+      <blunt><li>Learn their names, learn what they want. Then they listen.</li></blunt>
+      <cheerful><li>The new one told me about his sister today. We're getting somewhere!</li></cheerful>
+      <gloomy><li>I know all their names now. I wish I didn't remember the ones who never came round.</li></gloomy>
+      <cold><li>Knowing each prisoner personally has improved my results with them.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I couldn't remember the last prisoner's name today. It's been too long since I worked the cells.</li></plain>
+      <warm><li>Nobody to look after in the cells lately. That's a good thing, I suppose.</li></warm>
+      <blunt><li>Out of practice with prisoners. Fine.</li></blunt>
+      <cheerful><li>Empty cells, empty head! I've forgotten all the names.</li></cheerful>
+      <gloomy><li>The names are going. Maybe that's for the best.</li></gloomy>
+      <cold><li>My familiarity with prisoners has lapsed without regular contact.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_MendsClothes</defName>
+    <label>mends their own clothes</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>Tailoring</li></practice>
+    <practiceHours>40</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>their worn clothes slowly mend</effect>
+    <gained>
+      <plain><li>I sewed up the tear in my sleeve tonight instead of waiting for new clothes. Took no time at all.</li></plain>
+      <warm><li>I mended my coat by the fire tonight, and then a sock of someone else's that was lying there.</li></warm>
+      <blunt><li>Holes get sewn. Don't need new clothes for a hole.</li></blunt>
+      <cheerful><li>A patch here, a stitch there, good as new! Well, nearly.</li></cheerful>
+      <gloomy><li>Everything wears out. I just sew it back together and wait for the next tear.</li></gloomy>
+      <cold><li>Repairing my own clothing is more efficient than replacing it. I do it every evening.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Found my needle at the bottom of my things today. Haven't touched it in weeks.</li></plain>
+      <warm><li>My mending basket's gathering dust. I'll get back to it one day.</li></warm>
+      <blunt><li>Don't mend anymore. Clothes can wait.</li></blunt>
+      <cheerful><li>My sleeves have holes again and I've decided they're airy!</li></cheerful>
+      <gloomy><li>The tears stay torn now. I've stopped caring.</li></gloomy>
+      <cold><li>I no longer repair my clothing myself.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_Doodles</defName>
+    <label>doodles in the margins</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chance>0.002</chance>
+    <days>300</days>
+    <practice><li>Art</li></practice>
+    <practiceHours>30</practiceHours>
+    <effect>now and then inspired at their art</effect>
+    <gained>
+      <plain><li>There are little drawings all over my notes now. A bird, a face, the hill behind the colony.</li></plain>
+      <warm><li>I drew everyone at supper tonight on the back of a ration list. They laughed at their noses.</li></warm>
+      <blunt><li>I draw when my hands are idle. Keeps them busy.</li></blunt>
+      <cheerful><li>Every scrap of paper has a doodle on it now. My margins are a gallery!</li></cheerful>
+      <gloomy><li>I draw in the margins. It's the only place anything I make is mine.</li></gloomy>
+      <cold><li>I have begun sketching constantly. It sharpens the eye for the real work.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>My notes are just notes again. No birds in the corners.</li></plain>
+      <warm><li>I haven't drawn anyone in weeks. I miss the noses.</li></warm>
+      <blunt><li>Stopped doodling. Nothing worth drawing.</li></blunt>
+      <cheerful><li>The margins are bare! I'll fill them again when the mood strikes.</li></cheerful>
+      <gloomy><li>I don't draw anymore. Nothing comes.</li></gloomy>
+      <cold><li>The sketching habit has lapsed.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SleepsLight</defName>
+    <label>sleeps light</label>
+    <byNature>true</byNature>
+    <chance>0.01</chance>
+    <days>200</days>
+    <practice><li>Firefighter</li></practice>
+    <practiceHours>2</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>wakes at the first smell of smoke</effect>
+    <gained>
+      <plain><li>I woke in the night sure I could smell smoke. There was none. I lay awake anyway.</li></plain>
+      <warm><li>I sleep with one ear open since the fire. If anything burns, I'll be the first one up.</li></warm>
+      <blunt><li>Smoke wakes me now. Good.</li></blunt>
+      <cheerful><li>I've become our smoke alarm! Not the job I wanted, but somebody has to.</li></cheerful>
+      <gloomy><li>I don't sleep deeply anymore. The flames are always just behind my eyes.</li></gloomy>
+      <cold><li>After the fires, I sleep lightly. A useful adaptation.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Slept straight through till morning. First time in a long while.</li></plain>
+      <warm><li>No fires lately. I'm sleeping like a stone again.</li></warm>
+      <blunt><li>Sleep deep now. No smoke.</li></blunt>
+      <cheerful><li>I slept so well I didn't hear the rooster. Whatever a rooster is!</li></cheerful>
+      <gloomy><li>I sleep heavy again. I hope nothing burns.</li></gloomy>
+      <cold><li>My sleep has returned to normal depth.</li></cold>
     </faded>
   </ColonyCouncil.QuirkDef>
 

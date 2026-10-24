@@ -75,6 +75,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_NightPrayers</defName>
     <label>prays every night</label>
+    <passes>true</passes>
     <afterOmen>true</afterOmen>
     <afterThoughts><li>WitnessedDeathFamily</li><li>PawnWithGoodOpinionDied</li></afterThoughts>
     <chance>0.12</chance>
@@ -247,6 +248,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_KnocksWood</defName>
     <label>knocks on wood</label>
+    <passes>true</passes>
     <afterBattle>true</afterBattle>
     <afterDowned>true</afterDowned>
     <chance>0.08</chance>
@@ -285,6 +287,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_CountsThings</defName>
     <label>counts everything</label>
+    <passes>true</passes>
     <afterThoughts><li>Council_Dream_CameTrue</li><li>Council_Secret_Exposed</li></afterThoughts>
     <withinDays>4</withinDays>
     <chance>0.08</chance>
@@ -302,6 +305,7 @@
   <ColonyCouncil.QuirkDef>
     <defName>Council_Quirk_SaltsDoor</defName>
     <label>salts the doorway</label>
+    <passes>true</passes>
     <afterBattle>true</afterBattle>
     <afterOmen>true</afterOmen>
     <chance>0.05</chance>
