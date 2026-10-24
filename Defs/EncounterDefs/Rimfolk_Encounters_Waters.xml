@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Encounters by the water: a lake, a river, the coast (lands: see Source/ColonyCouncil/Strangers/Lands.cs; a lake
+    comes from the tile's lake, a river from the tile's river, a coast from the sea). Wild animals at the water's
+    edge, on lake ice and across a river in spate, a tide line after a storm, the rock pools; travelers who show the
+    colony how their people fish, cross and tie a knot. Their memories give a little recreation, a feeling or practice
+    rather than mood (Defs/ThoughtDefs/Rimfolk_Thoughts_Encounters_Waters.xml). {A_...} the colonist, {X_...} the animal
+    or stranger; never an {X_...} placeholder at the start of a sentence; animals are never named as a species. Nobody
+    is hurt.
+  -->
+
+  <!-- ======================= Lakes ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_LakeMorning</defName>
+    <label>a still morning on the lake</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>lake</li></lands>
+    <moment>morning</moment>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>Mist lay on the lake this morning, and {A_nameDef} watched {X_indefinite} wade out of it to drink, rings spreading across the still water.</li>
+      <li>{A_nameDef} went down to the lake with a bucket and found {X_indefinite} already there, drinking, not much bothered by company.</li>
+      <li>[cold] A skin of ice had formed at the lake's edge overnight, and {X_definite} broke through it to drink. {A_nameDef} heard the crack from the path.</li>
+      <li>[child] {A_nameDef} was skipping stones across the lake until {X_indefinite} came down to drink, and then sat very still to watch it instead.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WaterMorning</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_LakeIce</defName>
+    <label>across the lake ice</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <minBodySize>0.4</minBodySize>
+    </stranger>
+    <lands><li>lake</li></lands>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <moment>cold</moment>
+    <dayOnly>true</dayOnly>
+    <weight>1.2</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>Out on the frozen lake, {X_indefinite} picked its way across the ice, testing every step. {A_nameDef} watched from the shore, and went the long way round.</li>
+      <li>{A_nameDef} heard the lake ice groan in the cold and looked up to see {X_indefinite} stop dead in the middle of it, then carry on, slower.</li>
+      <li>[snow] Snow drifted over the frozen lake, and {X_indefinite} left a line of tracks straight across it that {A_nameDef} didn't trust enough to follow.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_ThinIce</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_LakeLines</defName>
+    <label>night lines on the lake</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>lake</li></lands>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} how their people set night lines along a lake shore: a stick, a length of cord, and patience until morning.</li>
+      <li>Where the reeds thin out is where the fish lie in the heat, {X_nameDef} told {A_nameDef}, pointing across the lake with a crust of bread.</li>
+      <li>[theirLowtech] While they talked by the lake, {X_nameDef} wove {A_nameDef} a fish trap from willow, quick as knitting, and left it as a gift.</li>
+      <li>[winter] {X_nameDef} told {A_nameDef} how {FACTION} people cut holes in lake ice and fish through them, and how many toes that has cost over the years.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WaterTrick</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= Rivers ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_RiverFord</defName>
+    <label>where the river is shallow</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>river</li></lands>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>Watch where the water breaks white over the stones, {X_nameDef} told {A_nameDef} at the river: that's where it's shallow enough to cross.</li>
+      <li>{X_nameDef} of {FACTION} walked {A_nameDef} down to the river and showed {A_objective} the ford their traders use, marked by a split boulder on the far bank.</li>
+      <li>[rain] The river was up after the rain. {X_nameDef} told {A_nameDef} to give it a day before crossing, however shallow it looked.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} how to cross a river with a pole held upstream, leaning on the water instead of fighting it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WaterTrick</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_RiverDawn</defName>
+    <label>at the river at first light</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>river</li></lands>
+    <moment>morning</moment>
+    <children>true</children>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>At first light {A_nameDef} found {X_indefinite} drinking at the river, mist rising off the water round its legs.</li>
+      <li>Down at the river, {A_nameDef} and {X_indefinite} drank a few yards apart, each keeping half an eye on the other.</li>
+      <li>[child] {A_nameDef} went to the river to fill a jug and came back without it, having followed {X_indefinite} along the bank instead.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WaterMorning</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_RiverHigh</defName>
+    <label>the river in spate</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <lands><li>river</li></lands>
+    <moment>rain|storm</moment>
+    <dayOnly>true</dayOnly>
+    <weight>1.1</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>The river ran high and brown after the rain. {A_nameDef} watched {X_indefinite} pace the far bank for a long time before it waded in, and let out a breath when it climbed out on this side.</li>
+      <li>Swollen with rain, the river had cut off a strip of the far bank with {X_indefinite} stranded on it. By evening the water had dropped, and {A_nameDef} saw it pick its way home.</li>
+      <li>[storm] Lightning over the hills, and the river rising. On the far bank {X_indefinite} turned and turned, waiting, while {A_nameDef} hauled the last of the washing in from the water's edge.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_RiverCrossed</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= The coast ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_TideWrack</defName>
+    <label>the tide line after a storm</label>
+    <stranger>
+      <kind>Wild</kind>
+      <maxBodySize>1</maxBodySize>
+    </stranger>
+    <lands><li>coast</li></lands>
+    <dayOnly>true</dayOnly>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>After the night's storm the tide line was thick with weed and broken wood. {A_nameDef} gathered driftwood while {X_indefinite} picked through the wrack further along for whatever the sea had left.</li>
+      <li>{A_nameDef} walked the beach at low tide, turning over driftwood, and kept finding {X_indefinite} a little way ahead, turning over the same things for different reasons.</li>
+      <li>[cold] Frost on the sand, and the sea gray and flat. {A_nameDef} found {X_indefinite} nosing along the tide line and shared the beach with it for the morning.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_Beachcombing</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Coast</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_CoastKnot</defName>
+    <label>a knot from the coast</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <lands><li>coast</li></lands>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} a knot coast people use for mooring, one that holds under any load and comes loose with a single tug.</li>
+      <li>Sitting on the sea wall, {X_nameDef} mended a net and talked {A_nameDef} through every knot of it, until {A_nameDef} could do a row alone.</li>
+      <li>[theirLowtech] Seaweed dried on the rocks makes a winter soup, {X_nameDef} told {A_nameDef}, and {FACTION} children are raised on it.</li>
+      <li>[storm] {X_nameDef} could read the weather off the color of the sea, and told {A_nameDef} so an hour before the storm proved it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_WaterTrick</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>150</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Coast</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncL_TidePools</defName>
+    <label>the rock pools</label>
+    <stranger>
+      <kind>Wild</kind>
+      <maxBodySize>0.4</maxBodySize>
+    </stranger>
+    <lands><li>coast</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} crouched over a rock pool at low tide and found {X_indefinite} doing much the same on the far side of it.</li>
+      <li>[child] {A_nameDef} spent the afternoon at the rock pools with {X_indefinite} for company, poking at everything that moved and some things that didn't.</li>
+      <li>[child] {A_nameDef} came back from the rocks soaked to the knees, with a pocketful of shells and a long story about {X_indefinite}.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncL_TidePools</thought></li>
+    </effects>
+    <journal>Council_Journal_EncL_Coast</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= More lines for the water's journals ======================= -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_JournalExt_EncL_Water_Times</defName>
+    <pool>Council_Journal_EncL_Water</pool>
+    <lines>
+      <plain>
+        <li>[morning] Mist on the water at first light, and something drinking in it. I stood there until my feet were wet.</li>
+        <li>[winter] The lake is frozen from bank to bank. An animal crossed it today; I didn't.</li>
+        <li>[rain] The river came up in the night and took the bank with it. It'll go down. It always does.</li>
+        <li>A traveler showed me the ford today. I've crossed that river the hard way for a year.</li>
+      </plain>
+      <cheerful>
+        <li>Learned to set a night line from a traveler. Tomorrow we find out if there's a fish on it!</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_JournalExt_EncL_Coast_Times</defName>
+    <pool>Council_Journal_EncL_Coast</pool>
+    <lines>
+      <plain>
+        <li>Driftwood all along the tide line after the storm. I brought back an armful and a sore back.</li>
+        <li>Spent an hour at the rock pools. Small things live in there that I didn't know about.</li>
+        <li>A traveler taught me a mooring knot. I've tied it to everything since, the door included.</li>
+      </plain>
+      <gloomy>
+        <li>The sea washed up planks from a boat today. I hope whoever was in it got home.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

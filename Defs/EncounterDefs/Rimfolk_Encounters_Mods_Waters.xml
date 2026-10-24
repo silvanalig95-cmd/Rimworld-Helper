@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Creatures and peoples of the water from Odyssey and the player's mods: Odyssey's herons, swans and flamingos, its
+    seals, sea lions, walruses, otters, sea turtles, crabs and penguins, its minks and bullfrogs; Vanilla Animals
+    Expanded's wild geese, seals, walruses, otters, penguins, beavers and platypuses (vanillaexpanded.vanillaanimalsexpanded:
+    its otters, seals, walruses and penguins load only without Odyssey, which has its own); ReGrowth: Extinct Animals'
+    dodos, woolly mammoths and rhinoceroses and giant otters (mlie.regrowthextinctanimals); and Stagz Merfolk's merren
+    (arquebus.stagzmerfolk; their xenotypes Stagz_Merfolk_Coastal and Stagz_Merfolk_Abyssal). Each lists the DLC or
+    mods in <mods> and the creatures by name (stranger races, matched exactly) or the people by xenotype (tags), so
+    without them nothing fits. Lines tagged x:race:DefName speak of one creature; {X_...} is never the start of a
+    sentence. Nobody is hurt.
+  -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncD_WaterBirds</defName>
+    <label>a bird in the shallows</label>
+    <mods><li>ludeon.rimworld.odyssey</li><li>vanillaexpanded.vanillaanimalsexpanded</li></mods>
+    <stranger><kind>Wild</kind><races><li>Heron</li><li>Swan</li><li>Flamingo</li><li>AEXP_WildGoose</li></races></stranger>
+    <lands><li>lake</li><li>river</li><li>coast</li><li>swamp</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>At the water's edge {A_nameDef} found {X_indefinite} standing on one leg, and stood there with it a while, both of them waiting for something.</li>
+      <li>[x:race:Heron] Motionless in the shallows, {X_definite} watched the water so hard that {A_nameDef} watched it too, until the beak flashed down and came up with a fish.</li>
+      <li>[x:race:Swan] On the still water {X_definite} drifted past, and when {A_nameDef} came too near the reeds it rose up hissing, wings wide. {A_nameDef} backed off laughing.</li>
+      <li>[x:race:Flamingo] A flash of pink on the gray water, upside down and sifting the mud: {X_indefinite}. {A_nameDef} talked about nothing else at supper.</li>
+      <li>[x:race:AEXP_WildGoose] Out on the water {X_definite} honked at {A_nameDef} all the way along the bank, like a landlord after the rent.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncD_WaterBird</thought></li>
+    </effects>
+    <journal>Council_Journal_EncA_Creature</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncD_ShoreBeasts</defName>
+    <label>a creature of the shore</label>
+    <mods><li>ludeon.rimworld.odyssey</li><li>vanillaexpanded.vanillaanimalsexpanded</li></mods>
+    <stranger>
+      <kind>Wild</kind>
+      <races>
+        <li>Seal</li><li>SeaLion</li><li>Walrus</li><li>Otter</li><li>SeaTurtle</li><li>HermitCrab</li><li>StoneCrab</li><li>Penguin</li>
+        <li>AEXP_Seal</li><li>AEXP_Walrus</li><li>AEXP_Otter</li><li>AEXP_Penguin</li>
+      </races>
+    </stranger>
+    <lands><li>coast</li><li>lake</li><li>river</li></lands>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>Down by the water, {X_indefinite} hauled itself onto a rock to lie in the sun, and {A_nameDef} sat on the next rock along and did much the same.</li>
+      <li>[x:race:Seal|x:race:AEXP_Seal|x:race:SeaLion] From the rocks {X_definite} barked at {A_nameDef} until {A_pronoun} went away, then barked again when {A_pronoun} came back.</li>
+      <li>[x:race:Otter|x:race:AEXP_Otter] {A_nameDef} watched {X_indefinite} float on its back in the shallows, cracking something against a stone on its chest, very pleased with itself.</li>
+      <li>[x:race:Walrus|x:race:AEXP_Walrus] On the shingle lay {X_indefinite}, the size of a cart, snoring. {A_nameDef} went round it at a respectful distance.</li>
+      <li>[x:race:SeaTurtle] {A_nameDef} came on {X_indefinite} hauling itself up the sand, slow as a cart in mud, and kept everyone back until it reached the dunes.</li>
+      <li>[x:race:HermitCrab|x:race:StoneCrab] {A_nameDef} turned over a stone on the beach and found {X_indefinite} underneath, which waved a claw until the stone was put back.</li>
+      <li>[x:race:Penguin|x:race:AEXP_Penguin] Along the ice edge, {X_indefinite} waddled after {A_nameDef} for a dozen steps, as if it had been told to follow.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncD_ShoreBeast</thought></li>
+    </effects>
+    <journal>Council_Journal_EncA_Creature</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncD_RiverFolk</defName>
+    <label>busy at the river</label>
+    <mods><li>ludeon.rimworld.odyssey</li><li>vanillaexpanded.vanillaanimalsexpanded</li></mods>
+    <stranger><kind>Wild</kind><races><li>AEXP_Beaver</li><li>AEXP_Platypus</li><li>Mink</li><li>Bullfrog</li></races></stranger>
+    <lands><li>river</li><li>lake</li><li>swamp</li></lands>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>Down at the water's edge, {A_nameDef} sat and watched {X_indefinite} go about its business, which mostly involved the river.</li>
+      <li>[x:race:AEXP_Beaver] The saplings by the river had been gnawed to points, and {A_nameDef} followed the chips down to {X_indefinite}, dragging a branch twice its length toward its dam.</li>
+      <li>[x:race:AEXP_Platypus] {A_nameDef} saw {X_indefinite} at the river and came back swearing it had a duck's bill and a beaver's tail, and that {A_pronoun} wasn't making it up.</li>
+      <li>[x:race:Mink] Quick as a thrown rope, {X_indefinite} ran along the bank and into the water, and {A_nameDef} only saw the ripples where it had been.</li>
+      <li>[x:race:Bullfrog] All evening {X_indefinite} boomed from the reeds, and {A_nameDef} went down with a lamp to see what could make that noise. It was smaller than {A_possessive} hand.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncD_RiverFolk</thought></li>
+    </effects>
+    <journal>Council_Journal_EncA_Creature</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncD_OldBeasts</defName>
+    <label>a beast of the old world</label>
+    <mods><li>mlie.regrowthextinctanimals</li></mods>
+    <stranger><kind>Wild</kind><races><li>RG_Dodo</li><li>RG_WoollyMammoth</li><li>RG_WoollyRhinoceros</li><li>RG_Megalenhydris</li></races></stranger>
+    <weight>1.2</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>{A_nameDef} came over the rise and stopped short: {X_indefinite}, the kind of animal the old books say is gone, grazing as if it hadn't heard.</li>
+      <li>[x:race:RG_Dodo] Without the least fear, {X_indefinite} waddled up to {A_nameDef}, looked {A_objective} over, and pecked at {A_possessive} bootlace.</li>
+      <li>[x:race:RG_WoollyMammoth] Through the trees {A_nameDef} saw {X_indefinite} pull down a branch with its trunk, and stood still until it had gone, counting {A_possessive} own heartbeats.</li>
+      <li>[x:race:RG_WoollyRhinoceros] Along the far field {X_definite} grazed, shaggy as a haystack, and {A_nameDef} decided the far field could wait.</li>
+      <li>[x:race:RG_Megalenhydris] At the river {A_nameDef} watched {X_indefinite}, an otter as long as a canoe, roll in the current with a fish in its paws.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncD_OldBeast</thought></li>
+    </effects>
+    <journal>Council_Journal_EncC_Majestic</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncD_Merren</defName>
+    <label>a merren by the water</label>
+    <mods><li>arquebus.stagzmerfolk</li></mods>
+    <stranger><kind>Visitor</kind><adult>true</adult><tags>xeno:Stagz_Merfolk_Coastal|xeno:Stagz_Merfolk_Abyssal</tags></stranger>
+    <weight>1.1</weight>
+    <cooldownDays>9</cooldownDays>
+    <texts>
+      <li>{X_nameDef} sat with {A_nameDef} at the water trough, trailing {X_possessive} fingers in it, and said the colony's water tasted of iron and old rain.</li>
+      <li>[land:coast] {X_nameDef} stood knee-deep in the surf with {A_nameDef} and named the fish passing round their ankles, every one of them.</li>
+      <li>[land:river|land:lake] Before {X_nameDef} would talk business, {X_pronoun} went down to the water and stayed under so long that {A_nameDef} began to worry.</li>
+      <li>Dry land smells of dust and smoke, {X_nameDef} told {A_nameDef}, and one gets used to it, mostly.</li>
+      <li>[hot] In the heat {X_nameDef} kept a wet cloth across {X_possessive} neck and asked {A_nameDef}, quite politely, where the nearest deep water was.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncD_Merren</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncL_Water</journal>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

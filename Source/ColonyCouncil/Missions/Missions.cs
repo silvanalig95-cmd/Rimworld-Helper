@@ -419,6 +419,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("mission memory " + m.kind, e);
             }
+            // What those who did it remember, and are talked of for (Social/Talk/SharedTimes.cs).
+            SharedTimes.MissionEnded(m, state, outcome, wasActive, look);
             if (m.questId >= 0)
             {
                 // Rimfolk's watch on finished quests writes the chronicle and the colony's pride.

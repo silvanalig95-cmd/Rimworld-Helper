@@ -49,6 +49,11 @@ namespace ColonyCouncil
         public List<string> colonyHas;
         /// <summary>Only on one of these biomes (BiomeDef names).</summary>
         public List<string> biomes;
+        /// <summary>
+        /// Only while one of these is over the map or the whole world (GameConditionDef names: Aurora, Eclipse). A name the
+        /// game doesn't have (a DLC or mod that isn't loaded) is never on, so the rare skies stay rare.
+        /// </summary>
+        public List<string> conditions;
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -167,6 +172,7 @@ namespace ColonyCouncil
                 && (d.seasons.NullOrEmpty() || d.seasons.Contains(season))
                 && (!d.nightOnly || night) && (!d.dayOnly || !night)
                 && Lands.Fits(map, d.lands)
+                && ConditionOn(map, d.conditions)
                 && ModContent.Fits(d, map)
                 && ((d.colonyIs.NullOrEmpty() && d.colonyIsNot.NullOrEmpty()) || comp.character.Fits(d.colonyIs, d.colonyIsNot))).ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
@@ -186,6 +192,27 @@ namespace ColonyCouncil
                 lastFired = now;
                 today++;
                 return true;
+            }
+            return false;
+        }
+
+        /// <summary>One of these game conditions over the map or the world right now (none given: always).</summary>
+        public static bool ConditionOn(Map map, List<string> names)
+        {
+            if (names.NullOrEmpty()) return true;
+            try
+            {
+                foreach (var list in new[] { map?.gameConditionManager?.ActiveConditions, Find.World?.gameConditionManager?.ActiveConditions })
+                {
+                    if (list == null) continue;
+                    foreach (var c in list)
+                        if (c?.def != null && names.Contains(c.def.defName))
+                            return true;
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("encounter conditions", e);
             }
             return false;
         }

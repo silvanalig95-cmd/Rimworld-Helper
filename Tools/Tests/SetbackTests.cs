@@ -58,6 +58,13 @@ public static class SetbackTests
         Check(SetbackMath.SickStage(false, false) == 0 && SetbackMath.SickStage(true, false) == 1 && SetbackMath.SickStage(false, true) == 1, "worry");
         Check(!SetbackMath.NemesisWorry(7f) && SetbackMath.NemesisWorry(8f) && SetbackMath.NemesisWorry(60f) && !SetbackMath.NemesisWorry(61f), "a nemesis still out there");
 
+        // The newer systems: a feast's dish, guests at the table.
+        Check(SetbackMath.BurnedChance(2) > SetbackMath.BurnedChance(6) && SetbackMath.BurnedChance(6) > SetbackMath.BurnedChance(10)
+              && SetbackMath.BurnedChance(10) > SetbackMath.BurnedChance(16) && SetbackMath.BurnedChance(16) > 0f && SetbackMath.BurnedChance(0) <= 0.25f,
+            "a better cook burns the feast less, and a novice not always");
+        Check(SetbackMath.QuarrelChance > 0f && SetbackMath.QuarrelChance < 0.5f, "rivals at the table don't always quarrel");
+        Check(SetbackMath.GuestsStage(5f) == -1 && SetbackMath.GuestsStage(3.9f) == 0 && SetbackMath.GuestsStage(1.5f) == 1, "guests mind only while the stores run low");
+
         // The defs: every setback moderate, with its setting and a hint.
         var thoughts = new Dictionary<string, XElement>();
         var hinted = new HashSet<string>();
@@ -114,7 +121,9 @@ public static class SetbackTests
             "Council_Pool_Setback_Wrecked", "Council_Pool_Setback_CropLost", "Council_Pool_Setback_Surgery", "Council_Pool_Setback_IdeaPassed",
             "Council_Pool_Setback_NoPlate", "Council_Pool_Setback_Rained", "Council_Journal_Setback_Wrecked", "Council_Journal_Setback_CropLost",
             "Council_Journal_Setback_Surgery", "Council_Journal_Setback_IdeaPassed", "Council_Journal_Setback_FriendLetDown",
-            "Council_Journal_Setback_Outshone", "Council_Journal_Setback_Drifted", "Council_Journal_Setback_Homesick", "Council_Journal_Setback_ArtSold"
+            "Council_Journal_Setback_Outshone", "Council_Journal_Setback_Drifted", "Council_Journal_Setback_Homesick", "Council_Journal_Setback_ArtSold",
+            "Rimfolk_Pool_Setback_Burned", "Rimfolk_Journal_Setback_Burned", "Rimfolk_Journal_Setback_EmptyChair", "Rimfolk_Journal_Setback_CampSoured",
+            "Rimfolk_Journal_Setback_LetDown", "Rimfolk_Journal_Setback_StoodBy"
         };
         foreach (var p in used) Check(pools.Contains(p), $"pool {p} is there");
         return cases;

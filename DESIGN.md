@@ -431,13 +431,16 @@ component of its own, so an old save just starts without it and finds its groups
 What people did, who knows it, how the story spreads, and the name that follows (`Social/Gossip/`; pure arithmetic in
 `RepMath.cs`, checked by `Tools/Tests/ReputationTests.cs`).
 
-- **Deeds** (`DeedDef`, 31): facets per side of a name (courage, kindness, diligence, skill, discretion, temper), a
+- **Deeds** (`DeedDef`, 44): facets per side of a name (courage, kindness, diligence, skill, discretion, temper), a
   theme for lines, a fade half-life, merging of repeats. Recorded where the event is already noticed (one-line calls
   in WorldReactions.Victory, Moments' contests, Secrets.Reveal, Offices, Patch_ArcMade, Ambitions, Encounters,
   MeetingAttendance), by four light postfixes (a memory gained, a mental break, a history event, a social fight; one
   dictionary look each) and by the reputation's own hour (rescues under fire, the brave's company, idling, tending).
   Each keeps doer, victim, when, a name ("the raid on the 5th of Aprimay"), size, and its knowers: witnesses, and those who
-  heard, from whom, in what version, believed how far.
+  heard, from whom, in what version, believed how far. The newer systems' deeds (13: a camp friend or quarrel, a lost
+  child found, a pilgrim walked home, a harvest worked, neighbours let down, a call answered, a day seen to, a feast
+  dish burned, a quarrel at the feast, the night watch, the dead carried out, rounds) come through
+  `Social/Talk/SharedTimes.cs` and `Setbacks/SetbackTimes.cs`, from the same one-line hooks as their memories.
 - **Gossip** is an InteractionDef in the game's picker (`InteractionWorker_Gossip`, separate from the council's
   `CouncilGossip`). Weight: there's a deed the teller knows and the listener doesn't, by someone else (or the proud
   teller's own good one), its subject absent unless the teller is a hothead or their rival; fresher, juicier, more
@@ -489,6 +492,22 @@ What colonists talk about, the views they hold, and what they went through toget
   it (sampled every 250 ticks while it's on, `TalkMath.BattlePairs`: three partners each, one memory a pair a day), and a
   pair keeps three of a kind at most, so a season of raids never pushes out a funeral, a quarrel made up or a joke. A
   fight is said aloud without its date (`FightNames.Spoken`).
+- **What the newer systems leave behind** (`SharedTimes`, 14 more memories): one line where each system already says a
+  thing is over, and nothing that ticks of its own. `CampLife.Finish`: evenings at the camp's fire (warmth 2 or more),
+  the healer's farewell round (those it looked in on), the smith's mending (those about the camp). `Missions.Finish`:
+  the lost child (the finder with three at home), the pilgrim's road and a neighbour's harvest (the caravan, read from
+  the ending's look target). `CalendarKeeping.KeepDay`: a day kept without a gathering; with one, `PlayOutTracker.Done`
+  knows it by name (`SharedTimes.DayOf`: a calendar day kept this year whose label the gathering carries) and gives
+  it to those who came. `PlayOutTracker.Done` also gives the pyre (a haul), the night watch (a patrolling vigil) and
+  lantern night (a gathering that ends while `OnMapTimed` keeps lanterns on that map). `WorldSituations.End`: the
+  colony's part, when it counted. Labels are made unique enough that `AddOnce` never blocks a later one (a name, a
+  date, a year). Two mishaps at a day's gathering (rain on it, a burned dish) wait half a day in an unsaved list,
+  looked at in the setbacks' hour, before they become jokes.
+- **Jokes passed on** (`JokesRetold`, `InteractionWorker_JokeRetold`): an InteractionDef in the game's picker, weight
+  0.04 (x1.6 for a joker, x0.3 for the dour) while the teller has an in-joke with someone else, recalled once and not
+  worn, from the last 60 days, that the listener isn't in on (by its label), both at opinion 10 or more; a teller once
+  a day, a pair once a week, picks cached per pair for `Sched.RareTicks` (not saved). The teller and the friend share
+  a `Rimfolk_Mem_JokeHeard` memory under the joke's own label, which is never passed on again.
 - **The character page**: views (section 30, with what each rests on and the last talk that moved it) and shared
   memories (40).
 
@@ -2015,7 +2034,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 1027 | Council: ambitions, personal touches, dilemmas, annals, dreams, quirks | the ambition's goals on its map; per colonist (asleep or waking; a dream weighs every dream def for the one waking) |
 | 1203 | World situations | per running situation (at most two); a new one rolls now and then |
 | 1311 | Colony calendar | the home map: snow, the day's first look (harvest, deaths, rest day), talk, a day coming round |
-| 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
+| 1427 | Setbacks: the lasting ones (a wish still waiting, a decree dragging on, a sick friend, quiet days...), crops lost, rain on gatherings, noisy nights, long hauls, waiting for a doctor, guests eating from low stores, a day's mishaps turned to jokes; outshone, cooled friendships and hard weeks in the first hour of the day | per colonist (their wish, decrees, those close to them who are ill or away), per home map (gatherings, sleepers and who is at loud work nearby, hauls, beds), per skill once a day |
 | 1544 | Council: nemeses, pets, the links between systems (pets and grief, the marshal after a fight, a fear faced), moments waiting for two to be together, PokeWorld, autonomy, who is home, everyday pressures | per colony animal on home maps, per spawned colonist (a plan or a job now and then), per colonist (meals, work), per home map (crowded rooms, half-built frames) |
 | 1660 | Reputation and gossip (only with "Personalities and social life"): in a fight, rescues under way and the brave's company; otherwise who idles while the rest work and who tends whom; in the first hour of the day, the day's idling and tending made deeds, the names that formed or faded told, the dead and departed let go | per spawned colonist on home maps (a job look; a sight check only for the idle, the brave and their side) |
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |

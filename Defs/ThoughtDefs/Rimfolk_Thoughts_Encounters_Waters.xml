@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the encounters by the water, under rare skies and with other mods' creatures and peoples
+    (Defs/EncounterDefs/Rimfolk_Encounters_Waters.xml, Rimfolk_Encounters_Skies.xml, Rimfolk_Encounters_Mods_Waters.xml).
+    Small moments: they give something other than mood (a little recreation, a feeling, practice).
+  -->
+
+  <!-- ===================== By the water ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_WaterMorning</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a quiet hour by the water</label><description>An animal came down to drink while I was at the water's edge. Neither of us was in a hurry.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_ThinIce</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the lake ice</label><description>An animal crossed the frozen lake in front of me, testing every step. I went the long way round.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.04</joy><joyKind>Meditative</joyKind><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_WaterTrick</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>a trick for the water</label><description>A traveler showed me how their people manage by the water: where to cross, how to fish, which knot holds.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_RiverCrossed</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>it made it across</label><description>The river was up, and an animal was stuck on the far side. I watched it get across, and breathed again.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Relief</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_Beachcombing</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>an hour on the shore</label><description>I walked the tide line picking up driftwood, and an animal kept me company at a distance.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.07</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncL_TidePools</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the rock pools</label><description>I spent the afternoon at the rock pools. Everything in them moved, or pretended not to.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Rare skies ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncN_Aurora</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>under the moving lights</label><description>Green light rippled across the night sky, and I stood out in the cold until my feet went numb.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><joyKind>Meditative</joyKind><feelings><li>Awe</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncN_Eclipse</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the dark at noon</label><description>The sun went dark in the middle of the day, and the animals in the field stopped to wait it out. So did I.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncN_FallingStar</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a falling star</label><description>A star fell while I sat out with a traveler, and I made a wish I'm not telling anyone.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><feelings><li>Hope</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncN_MoonTale</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>moon stories</label><description>A traveler told me what their people see in the moon. It's nothing like what I was told as a child.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><feelings><li>Curiosity</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncW_HeatLightning</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>heat lightning</label><description>Lightning flickered along the horizon all evening with no thunder behind it. I sat out and watched.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><joyKind>Meditative</joyKind><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncW_FogEyes</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>eyes in the fog</label><description>An animal looked at me out of the night fog at the gate, then stepped back into it. I keep thinking about it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncW_FirstFrost</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the first frost</label><description>The fields went white overnight. The first cold morning of the year always feels like a fresh start.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncW_Blizzard</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>sheltering from the blizzard</label><description>An animal had pressed itself against our wall out of the blizzard. I let it be, and checked on it twice.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Tenderness</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Other mods' creatures and peoples ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncD_WaterBird</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a bird at the water</label><description>I watched a bird stand in the shallows longer than I've ever stood still for anything.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncD_ShoreBeast</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a creature of the shore</label><description>One of the shore's own creatures let me sit near it a while. I'm still smiling about it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><joyKind>Meditative</joyKind><feelings><li>Joy</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncD_RiverFolk</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>the river's creatures</label><description>I watched an animal at the river go about its work, and came away knowing the river better.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><skill>Animals</skill><xp>120</xp><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncD_Merren</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>a merren's company</label><description>One of the merren talked with me by the water. I've never met anyone who belonged to the water like that.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Curiosity</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncD_OldBeast</defName>
+    <durationDays>1.5</durationDays>
+    <stages><li><label>a beast of the old world</label><description>I saw an animal the old books say is long gone. It didn't seem to know.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Awe</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

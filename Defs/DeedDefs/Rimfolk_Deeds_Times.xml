@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Deeds from the newer systems (ColonyCouncil.DeedDef, Source/ColonyCouncil/Social/Talk/SharedTimes.cs and
+    Setbacks/SetbackTimes.cs record them): a camp (a friend made there, a quarrel picked), a mission (a lost child found,
+    a pilgrim walked home, a neighbor's harvest worked, the neighbors let down), a world event (a call for help
+    answered), the calendar (a day seen to, a feast dish burned, a quarrel at the feast table), answers played out on the
+    map (the night watch walked, the dead carried out to the pyre, the rounds of the sick). {DETAIL}: the camp's kind
+    ("drovers"), the town, the people, the day ("the founding day"), the dish. Their gossip lines are added to the
+    gossip pools below (lines tagged [deed:theme]), their social log words in the gossip_topic packs.
+  -->
+
+  <!-- ===================== The deeds ===================== -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_CampFriend</defName>
+    <label>made friends at a camp</label>
+    <theme>campfriend</theme>
+    <facets><kindness>5</kindness></facets>
+    <fadeDays>60</fadeDays>
+    <interest>0.8</interest>
+    <text>made friends with the {DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_CampFriend</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_CampQuarrel</defName>
+    <label>quarreled with campers</label>
+    <theme>campquarrel</theme>
+    <facets><temper>5</temper><kindness>-2</kindness></facets>
+    <fadeDays>60</fadeDays>
+    <interest>1.2</interest>
+    <text>quarreled with the {DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_CampQuarrel</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_FoundChild</defName>
+    <label>found a lost child</label>
+    <theme>foundchild</theme>
+    <facets><kindness>6</kindness><diligence>3</diligence></facets>
+    <fadeDays>150</fadeDays>
+    <interest>1.4</interest>
+    <text>found {VICTIM}, a lost child</text>
+    <textAlone>found a neighbor's lost child</textAlone>
+    <logTopic>Rimfolk_GossipTopic_FoundChild</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Pilgrim</defName>
+    <label>walked a pilgrim home</label>
+    <theme>pilgrim</theme>
+    <facets><kindness>5</kindness><courage>2</courage></facets>
+    <fadeDays>120</fadeDays>
+    <interest>0.9</interest>
+    <text>walked an old pilgrim home to {DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_Pilgrim</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_HarvestHands</defName>
+    <label>worked a neighbor's harvest</label>
+    <theme>harvesthands</theme>
+    <facets><diligence>5</diligence><kindness>2</kindness></facets>
+    <fadeDays>90</fadeDays>
+    <interest>0.7</interest>
+    <text>worked the harvest at {DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_HarvestHands</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_LetDown</defName>
+    <label>let the neighbors down</label>
+    <theme>letdown</theme>
+    <facets><diligence>-5</diligence></facets>
+    <fadeDays>90</fadeDays>
+    <interest>1.1</interest>
+    <text>let {DETAIL} down</text>
+    <logTopic>Rimfolk_GossipTopic_LetDown</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_AnsweredCall</defName>
+    <label>answered a call for help</label>
+    <theme>answeredcall</theme>
+    <facets><kindness>5</kindness><courage>3</courage></facets>
+    <fadeDays>150</fadeDays>
+    <interest>1.0</interest>
+    <text>answered {DETAIL}'s call for help</text>
+    <logTopic>Rimfolk_GossipTopic_AnsweredCall</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_KeptDay</defName>
+    <label>saw a day kept</label>
+    <theme>keptday</theme>
+    <facets><diligence>2</diligence><kindness>3</kindness></facets>
+    <size>0.6</size>
+    <fadeDays>40</fadeDays>
+    <interest>0.6</interest>
+    <text>saw that {DETAIL} was kept</text>
+    <logTopic>Rimfolk_GossipTopic_KeptDay</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SpoiledFeast</defName>
+    <label>burned a feast dish</label>
+    <theme>burneddish</theme>
+    <facets><skill>-4</skill></facets>
+    <size>0.7</size>
+    <fadeDays>45</fadeDays>
+    <interest>1.3</interest>
+    <text>burned the {DETAIL} for the feast</text>
+    <logTopic>Rimfolk_GossipTopic_SpoiledFeast</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_TableQuarrel</defName>
+    <label>quarreled at the feast</label>
+    <theme>tablequarrel</theme>
+    <facets><temper>6</temper><kindness>-2</kindness></facets>
+    <fadeDays>60</fadeDays>
+    <interest>1.3</interest>
+    <text>picked a quarrel with {VICTIM} at the feast</text>
+    <textAlone>picked a quarrel at the feast table</textAlone>
+    <logTopic>Rimfolk_GossipTopic_TableQuarrel</logTopic>
+    <notInFight>true</notInFight>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_NightWatch</defName>
+    <label>kept the night watch</label>
+    <theme>nightwatch</theme>
+    <facets><courage>3</courage><diligence>4</diligence></facets>
+    <fadeDays>75</fadeDays>
+    <mergeDays>1</mergeDays>
+    <interest>0.7</interest>
+    <text>walked the walls all night on watch</text>
+    <logTopic>Rimfolk_GossipTopic_NightWatch</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Pyre</defName>
+    <label>carried out the dead</label>
+    <theme>pyre</theme>
+    <facets><diligence>4</diligence><courage>1</courage></facets>
+    <fadeDays>75</fadeDays>
+    <mergeDays>1</mergeDays>
+    <interest>0.8</interest>
+    <text>carried the enemy dead out after the fight</text>
+    <logTopic>Rimfolk_GossipTopic_Pyre</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_Rounds</defName>
+    <label>went round the sick</label>
+    <theme>rounds</theme>
+    <facets><kindness>5</kindness><diligence>3</diligence></facets>
+    <fadeDays>75</fadeDays>
+    <mergeDays>2</mergeDays>
+    <interest>0.7</interest>
+    <text>went round looking in on the sick</text>
+    <logTopic>Rimfolk_GossipTopic_Rounds</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <!-- ===================== The social log's words for them ===================== -->
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_CampFriend</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the friends made at the camp</li>
+        <li>gossip_topic->evenings at the travelers' fire</li>
+        <li>gossip_topic->the camp that left on good terms</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_CampQuarrel</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a quarrel with the campers</li>
+        <li>gossip_topic->the shouting at the camp</li>
+        <li>gossip_topic->words with the travelers</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_FoundChild</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the lost child found</li>
+        <li>gossip_topic->the search for the neighbors' child</li>
+        <li>gossip_topic->the child brought home</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Pilgrim</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the old pilgrim walked home</li>
+        <li>gossip_topic->the long walk with the pilgrim</li>
+        <li>gossip_topic->the pilgrim's road</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_HarvestHands</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the neighbors' harvest</li>
+        <li>gossip_topic->a week in someone else's fields</li>
+        <li>gossip_topic->the harvest brought in for another town</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_LetDown</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a promise to the neighbors broken</li>
+        <li>gossip_topic->help that never came</li>
+        <li>gossip_topic->the neighbors let down</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_AnsweredCall</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the call for help answered</li>
+        <li>gossip_topic->the help sent out into the region</li>
+        <li>gossip_topic->what the colony did for its neighbors</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_KeptDay</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the day kept for everyone</li>
+        <li>gossip_topic->the feast and who arranged it</li>
+        <li>gossip_topic->how the day was kept</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_SpoiledFeast</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the burned feast dish</li>
+        <li>gossip_topic->the smoke from the kitchen on the feast day</li>
+        <li>gossip_topic->the dish that came out black</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_TableQuarrel</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the quarrel at the feast</li>
+        <li>gossip_topic->the scene at the table</li>
+        <li>gossip_topic->the shouting over supper</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_NightWatch</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the night watch on the walls</li>
+        <li>gossip_topic->a night on the wall</li>
+        <li>gossip_topic->the watch kept till dawn</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Pyre</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the dead carried out</li>
+        <li>gossip_topic->the pyre beyond the gate</li>
+        <li>gossip_topic->the grim work after the fight</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_Rounds</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the rounds of the sick</li>
+        <li>gossip_topic->the visits to every sickbed</li>
+        <li>gossip_topic->who looked in on the ill</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <!-- ===================== What is said over their heads (added to the gossip pools) ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_GoodPlain</defName>
+    <pool>Rimfolk_Gossip_Good_Plain</pool>
+    <lines>
+      <plain>
+        <li>[deed:campfriend] {SUBJECT_nameDef} spent every evening at the camp of the {DETAIL}.</li>
+        <li>[deed:campfriend] The {DETAIL} asked after {SUBJECT_nameDef} by name when they left.</li>
+        <li>[deed:campfriend] {SUBJECT_nameDef} made a real friend at that camp, you could tell.</li>
+        <li>[deed:foundchild,hasvictim] {SUBJECT_nameDef} found {VICTIM} out past the fields, alone and frightened.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} found that lost child and walked them back by the hand.</li>
+        <li>[deed:foundchild,hasvictim] {VICTIM}'s family wouldn't let go of {SUBJECT_nameDef}'s hands.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} walked an old pilgrim all the way to {DETAIL}.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} went at an old pilgrim's pace for days, all the way to {DETAIL}.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} saw that old pilgrim safely to {DETAIL}.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} went to {DETAIL} to bring in their harvest.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} worked the fields at {DETAIL} from dawn to dark.</li>
+        <li>[deed:harvesthands] The harvest at {DETAIL} is in, and {SUBJECT_nameDef} was one of the hands.</li>
+        <li>[deed:answeredcall] When {DETAIL} asked for help, {SUBJECT_nameDef} was the one who went.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} answered {DETAIL}'s call while the rest of us were still talking.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} went out to help {DETAIL} through the bad times.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} made sure {DETAIL} was kept properly this year.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} got everyone together for {DETAIL}.</li>
+        <li>[deed:keptday] It was {SUBJECT_nameDef} who saw to {DETAIL}, start to finish.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} walked the walls all night while we slept.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} kept the watch until dawn, round and round the wall.</li>
+        <li>[deed:nightwatch] I woke in the night and saw {SUBJECT_nameDef} up on the wall, still walking.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} carried the enemy dead out to the pyre after the fight.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} did the grim work after the fight, carrying them out.</li>
+        <li>[deed:pyre] It was {SUBJECT_nameDef} who carried the bodies out beyond the gate.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} went round to everyone who was ailing.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} looked in on every sickbed in the colony.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} went from room to room checking on people.</li>
+      </plain>
+      <warm>
+        <li>[deed:campfriend] {SUBJECT_nameDef} made those travelers feel welcome, and I liked seeing it.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} brought a lost child home, and I'll think well of {SUBJECT_objective} for it.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} looked after that old pilgrim like family.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} helped bring in another town's harvest, and never once complained.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} helped people we'd never met, just because they asked.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} worked hard so we'd all have a good day.</li>
+        <li>[deed:nightwatch] I slept better knowing {SUBJECT_nameDef} was out on the wall.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} did a hard job after the fight so the rest of us didn't have to.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} came round to see me when I was poorly. That meant something.</li>
+      </warm>
+      <blunt>
+        <li>[deed:campfriend] {SUBJECT_nameDef} was over at that camp every night.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} found the missing child.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} took the pilgrim to {DETAIL}.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} worked the harvest at {DETAIL}.</li>
+        <li>[deed:answeredcall] They asked for help, and {SUBJECT_nameDef} went.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} organized {DETAIL}.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} kept watch all night.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} hauled the bodies out.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} did the rounds.</li>
+      </blunt>
+      <cheerful>
+        <li>[deed:campfriend] {SUBJECT_nameDef} came back from that camp singing their songs!</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} came back with the lost child up on {SUBJECT_possessive} shoulders!</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} walked a pilgrim to {DETAIL} and came back half a saint!</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} came back from {DETAIL} brown as a nut!</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} is famous out there now, they say, after helping {DETAIL}!</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} gave us a proper day, wasn't it grand!</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} guarded us all night, our very own sentry!</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} had the yard cleared before supper, give {SUBJECT_objective} that.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} came round with soup and a smile for everyone!</li>
+      </cheerful>
+      <gloomy>
+        <li>[deed:campfriend] {SUBJECT_nameDef} made a friend at that camp, and now they've gone.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} found that child just before dark. Any later and who knows.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} walked that pilgrim home. The old one's last journey, I'd say.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} broke {SUBJECT_possessive} back in someone else's fields.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} went to help {DETAIL}. Who'll come for us when it's our turn?</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} did all that for one day, and now it's over.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} was out on the wall all night, in that cold.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} carried the dead out. I couldn't have.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} went round the sick. There were a lot of us.</li>
+      </gloomy>
+      <cold>
+        <li>[deed:campfriend] {SUBJECT_nameDef} got on well with the {DETAIL}. Useful, if they come back.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} recovered the neighbors' child. They owe us now.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} escorted a pilgrim to {DETAIL}. It paid.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} worked the fields at {DETAIL} for a share. A fair deal.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} helped {DETAIL}. They'll owe us for it.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} ran {DETAIL}. Efficiently.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} stood the night watch. As asked.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} dealt with the enemy dead. Promptly.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} checked on the sick. Sensible.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_GoodPraise</defName>
+    <pool>Rimfolk_Gossip_Good_Praise</pool>
+    <lines>
+      <plain>
+        <li>[deed:campfriend] {SUBJECT_nameDef} could make friends with a stone, ask the {DETAIL}.</li>
+        <li>[deed:campfriend] Those travelers left thinking well of us, and that's {SUBJECT_nameDef}'s doing.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} tracked that child for hours and never stopped to eat.</li>
+        <li>[deed:foundchild,hasvictim] {VICTIM} is home safe, and it's {SUBJECT_nameDef} they thank.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} carried that old pilgrim's pack the whole way to {DETAIL}.</li>
+        <li>[deed:pilgrim] Patient as a stone, {SUBJECT_nameDef}, walking that pilgrim home.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} out-worked their own people at {DETAIL}, I heard.</li>
+        <li>[deed:harvesthands] They won't forget {SUBJECT_nameDef} at {DETAIL}, the way {SUBJECT_pronoun} worked.</li>
+        <li>[deed:answeredcall] Ask anywhere in the region who helped, and they'll say {SUBJECT_nameDef}.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} did more for {DETAIL} than their own lords did.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} thought of everything for {DETAIL}, down to the chairs.</li>
+        <li>[deed:keptday] Without {SUBJECT_nameDef}, {DETAIL} would have been just another day.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} didn't sit down once all night on that wall.</li>
+        <li>[deed:nightwatch] With {SUBJECT_nameDef} on the wall, nothing was getting in.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} carried them out with more care than they'd have shown us.</li>
+        <li>[deed:pyre] Not a word of complaint from {SUBJECT_nameDef}, carrying the dead out.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} didn't miss a single bed on that round.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} knows how each of us takes our tea, and our medicine.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_GoodScorn</defName>
+    <pool>Rimfolk_Gossip_Good_Scorn</pool>
+    <lines>
+      <plain>
+        <li>[deed:campfriend] {SUBJECT_nameDef} sat at that camp every night while we did the dishes.</li>
+        <li>[deed:campfriend] {SUBJECT_nameDef} was very friendly with the {DETAIL}, for someone who'd known them a week.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} found the child, mostly by tripping over them.</li>
+        <li>[deed:foundchild] Half of us were out looking, but {SUBJECT_nameDef} gets the credit.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} went for a long walk and calls it a good deed.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} was paid for walking that pilgrim, don't forget.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} works harder in other people's fields than in ours.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} went off on a holiday in someone else's fields.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} went to help {DETAIL} and left us shorthanded.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} likes being thanked by strangers, that's all.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} ran {DETAIL} like a drill sergeant.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} took the credit for {DETAIL}, and we did the carrying.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} walked the wall one night and slept through the next day.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} watched the dark for one night, and you'd think it was a battle.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} seemed to like carrying the dead out a bit too much.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} carried two bodies and wants a medal.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} went round asking how we were, and didn't listen to the answers.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} likes to be seen being kind.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_GoodJoke</defName>
+    <pool>Rimfolk_Gossip_Good_Joke</pool>
+    <lines>
+      <plain>
+        <li>[deed:campfriend] {SUBJECT_nameDef} nearly walked off with the {DETAIL}, I swear.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} finds lost children now, so keep an eye on your own.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} walked so slowly to {DETAIL} that the pilgrim had to wait.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} has been to {DETAIL} and now thinks {SUBJECT_pronoun} invented wheat.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} will be helping the whole world soon, so ask early.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} would hold a feast for a sunny afternoon, given half a chance.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} challenged a sheep on watch, and the sheep backed down.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} is on body duty for life now.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} came round so often I started faking a cough.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_Boast</defName>
+    <pool>Rimfolk_Gossip_Boast</pool>
+    <lines>
+      <plain>
+        <li>[deed:campfriend] The {DETAIL} wanted me to come with them, you know.</li>
+        <li>[deed:foundchild] I'm the one who found that lost child, out past the fields.</li>
+        <li>[deed:pilgrim] I walked an old pilgrim all the way to {DETAIL}, at an old pilgrim's pace.</li>
+        <li>[deed:harvesthands] I brought in half the harvest at {DETAIL}, near enough.</li>
+        <li>[deed:answeredcall] When {DETAIL} called for help, I was the one who answered.</li>
+        <li>[deed:keptday] I'm the one who made sure {DETAIL} was kept, you know.</li>
+        <li>[deed:nightwatch] I walked that wall till dawn, every round of it.</li>
+        <li>[deed:pyre] I carried most of them out after that fight.</li>
+        <li>[deed:rounds] I looked in on every one of the sick, you know.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_BadPlain</defName>
+    <pool>Rimfolk_Gossip_Bad_Plain</pool>
+    <lines>
+      <plain>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} had words with the {DETAIL}, loud ones.</li>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} went over to that camp and came back with a face like thunder.</li>
+        <li>[deed:campquarrel] The {DETAIL} left in a hurry, and {SUBJECT_nameDef} was part of why.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} promised {DETAIL} help, and it never came.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} was meant to see to the job for {DETAIL}, and didn't.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} left {DETAIL} waiting, and they waited for nothing.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} burned the {DETAIL} for the feast.</li>
+        <li>[deed:burneddish] The {DETAIL} came out black, and {SUBJECT_nameDef} was the cook.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} let the {DETAIL} burn on a feast day.</li>
+        <li>[deed:tablequarrel,hasvictim] {SUBJECT_nameDef} started on {VICTIM} right there at the feast table.</li>
+        <li>[deed:tablequarrel] {SUBJECT_nameDef} picked a quarrel at the feast and spoiled the evening.</li>
+        <li>[deed:tablequarrel,hasvictim] {SUBJECT_nameDef} and {VICTIM} had it out over supper, and {SUBJECT_nameDef} started it.</li>
+      </plain>
+      <warm>
+        <li>[deed:campquarrel] I wish {SUBJECT_nameDef} hadn't fallen out with those travelers.</li>
+        <li>[deed:letdown] I'm sure {SUBJECT_nameDef} meant to help {DETAIL}. It just didn't happen.</li>
+        <li>[deed:burneddish] Poor {SUBJECT_nameDef}, that {DETAIL} burned right in front of everyone.</li>
+        <li>[deed:tablequarrel] I wish {SUBJECT_nameDef} had kept it in, on a day like that.</li>
+      </warm>
+      <blunt>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} picked a fight with the campers.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} let {DETAIL} down.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} burned the feast.</li>
+        <li>[deed:tablequarrel] {SUBJECT_nameDef} ruined the feast with that quarrel.</li>
+      </blunt>
+      <cheerful>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} told those campers a thing or two, apparently!</li>
+        <li>[deed:letdown] Never mind, {SUBJECT_nameDef} will make it up to {DETAIL}, I'm sure!</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} made us a {DETAIL} you could build a wall with!</li>
+        <li>[deed:tablequarrel] Never a dull feast with {SUBJECT_nameDef} at the table!</li>
+      </cheerful>
+      <gloomy>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} fell out with the campers, and now their people will talk.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} let {DETAIL} down, and they'll remember it longer than we will.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} burned the one dish we were all waiting for.</li>
+        <li>[deed:tablequarrel] {SUBJECT_nameDef} couldn't even get through a feast without a quarrel.</li>
+      </gloomy>
+      <cold>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} quarreled with the {DETAIL}. Bad for trade.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} failed {DETAIL}. That costs us.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} wasted a feast's worth of food.</li>
+        <li>[deed:tablequarrel] {SUBJECT_nameDef} made a scene at the feast. Noted.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_BadPraise</defName>
+    <pool>Rimfolk_Gossip_Bad_Praise</pool>
+    <lines>
+      <plain>
+        <li>[deed:campquarrel] Those campers were taking liberties, and {SUBJECT_nameDef} said so.</li>
+        <li>[deed:campquarrel] Someone had to stand up to that camp, and {SUBJECT_nameDef} did.</li>
+        <li>[deed:letdown] It couldn't be done in time, and {SUBJECT_nameDef} still tried.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} had more to do here than anyone, {DETAIL} can wait.</li>
+        <li>[deed:burneddish] That fire was far too hot, it wasn't {SUBJECT_nameDef}'s fault.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} was cooking for everyone at once, anyone would have burned something.</li>
+        <li>[deed:tablequarrel,hasvictim] {VICTIM} had it coming, and {SUBJECT_nameDef} only said what we all think.</li>
+        <li>[deed:tablequarrel] It had been building for weeks, {SUBJECT_nameDef} just said it first.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_BadScorn</defName>
+    <pool>Rimfolk_Gossip_Bad_Scorn</pool>
+    <lines>
+      <plain>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} can't let strangers camp a week without starting something.</li>
+        <li>[deed:campquarrel] We'll be lucky if the {DETAIL} ever come this way again, thanks to {SUBJECT_nameDef}.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} gave {DETAIL} {SUBJECT_possessive} word and forgot it by supper.</li>
+        <li>[deed:letdown] Thanks to {SUBJECT_nameDef}, {DETAIL} think we're all talk.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} shouldn't be let near a pot, the feast proved it.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef} burned the {DETAIL} and blamed the wood.</li>
+        <li>[deed:tablequarrel,hasvictim] {SUBJECT_nameDef} went for {VICTIM} in front of all of us, on a feast day.</li>
+        <li>[deed:tablequarrel] {SUBJECT_nameDef} will spoil anything to get a word in.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Times_BadJoke</defName>
+    <pool>Rimfolk_Gossip_Bad_Joke</pool>
+    <lines>
+      <plain>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} chased off the {DETAIL} with words alone.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} is still on the way to help {DETAIL}, any day now.</li>
+        <li>[deed:burneddish] {SUBJECT_nameDef}'s {DETAIL} is still smoking, go and look.</li>
+        <li>[deed:tablequarrel,hasvictim] {SUBJECT_nameDef} and {VICTIM} were the entertainment at the feast this year.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

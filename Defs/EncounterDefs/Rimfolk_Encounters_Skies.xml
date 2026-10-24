@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Rarer night and weather moments: under an aurora or an eclipse (conditions: only while the game has that condition
+    over the map or the world, so they're as rare as the sky makes them), a falling star or the moon with a traveler,
+    heat lightning on a summer evening, eyes in the night fog, the year's first frost, and with Odyssey an animal
+    sheltering from a blizzard (moment weather:Blizzard; the encounter lists the DLC, so it never comes without it).
+    {A_...} the colonist, {X_...} the animal or stranger; never an {X_...} placeholder at the start of a sentence.
+  -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncN_Aurora</defName>
+    <label>under the aurora</label>
+    <stranger><kind>Wild</kind></stranger>
+    <conditions><li>Aurora</li></conditions>
+    <nightOnly>true</nightOnly>
+    <children>true</children>
+    <weight>2.5</weight>
+    <cooldownDays>15</cooldownDays>
+    <texts>
+      <li>Green light rippled over the sky tonight. {A_nameDef} stood out in the cold watching it, and noticed {X_indefinite} standing just as still at the edge of the field, head up.</li>
+      <li>Under the aurora the snow looked green, and so did {X_indefinite}, crossing the open ground in slow, unbothered steps while {A_nameDef} watched from the wall.</li>
+      <li>{A_nameDef} meant to go to bed, and stayed out under the moving lights until {X_indefinite} lost interest in watching {A_objective} and wandered off.</li>
+      <li>[child] {A_nameDef} lay on the cold ground looking up at the green sky, and {X_indefinite} came close enough to see what was so interesting.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncN_Aurora</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncN_Eclipse</defName>
+    <label>dark at noon</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <conditions><li>Eclipse</li></conditions>
+    <dayOnly>true</dayOnly>
+    <children>true</children>
+    <weight>2.5</weight>
+    <cooldownDays>15</cooldownDays>
+    <texts>
+      <li>In the middle of the day the light went wrong, and {X_indefinite} lay down in the field as if for the night. {A_nameDef} didn't blame it.</li>
+      <li>{A_nameDef} watched the sun go dark at noon, and saw {X_indefinite} at the tree line stop grazing and stand very still until the light came back.</li>
+      <li>[lowtech] Under the dark sun, {A_nameDef} heard {X_indefinite} call out from the trees, once, and then nothing until the light returned.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncN_Eclipse</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncN_FallingStar</defName>
+    <label>a falling star</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <moment>clear</moment>
+    <nightOnly>true</nightOnly>
+    <weight>0.6</weight>
+    <cooldownDays>12</cooldownDays>
+    <texts>
+      <li>A star fell across the sky while {A_nameDef} and {X_nameDef} sat out by the gate. Among {FACTION}, {X_nameDef} said, you keep the wish to yourself or it spoils.</li>
+      <li>{X_nameDef} of {FACTION} counted three falling stars before {A_nameDef} saw one, and wouldn't say what {X_pronoun} had wished for.</li>
+      <li>[theirLowtech] A falling star, {X_nameDef} told {A_nameDef}, is a soul going home, and it's rude to point at it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncN_FallingStar</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncN_MoonTale</defName>
+    <label>the face in the moon</label>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <moment>clear</moment>
+    <nightOnly>true</nightOnly>
+    <weight>0.7</weight>
+    <cooldownDays>12</cooldownDays>
+    <texts>
+      <li>Under a bright moon, {X_nameDef} told {A_nameDef} the story {FACTION} tell about the face in it, which was nothing like the one {A_nameDef} grew up with.</li>
+      <li>{A_nameDef} and {X_nameDef} sat up late by moonlight, swapping the names their peoples give the stars, and agreeing on almost none of them.</li>
+      <li>[theirLowtech] {FACTION} plant by the moon, {X_nameDef} told {A_nameDef}, and laughed at the colony for planting by a calendar.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncN_MoonTale</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_HeatLightning</defName>
+    <label>heat lightning</label>
+    <stranger><kind>Wild</kind></stranger>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <moment>hot,evening|night</moment>
+    <weight>0.8</weight>
+    <cooldownDays>12</cooldownDays>
+    <texts>
+      <li>The evening stayed hot after dark, and lightning flickered silently along the horizon. {A_nameDef} sat out watching it, and so did {X_indefinite}, restless in the long grass.</li>
+      <li>Heat lightning lit the far hills with no thunder behind it. Out in the field {X_indefinite} lifted its head at every flash, and {A_nameDef}, on the step, counted them with it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_HeatLightning</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Sky</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_FogNight</defName>
+    <label>eyes in the night fog</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <moment>fog</moment>
+    <nightOnly>true</nightOnly>
+    <weight>0.8</weight>
+    <cooldownDays>12</cooldownDays>
+    <texts>
+      <li>Fog came in after dark, and two eyes caught the lamplight at the edge of it. {A_nameDef} stood at the gate until {X_indefinite} stepped out of the gray, looked at {A_objective}, and stepped back into it.</li>
+      <li>{A_nameDef} heard {X_indefinite} long before seeing it, somewhere out in the night fog, moving slowly along the wall.</li>
+      <li>[lowtech] With the fog down, the torch at the gate lit nothing but itself, and {A_nameDef} only knew {X_indefinite} was there by its breathing.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_FogEyes</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Weather</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_FirstFrost</defName>
+    <label>the first frost</label>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <seasons><li>Fall</li></seasons>
+    <moment>cold,morning</moment>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>20</cooldownDays>
+    <texts>
+      <li>The first frost of the year whitened the fields overnight. {A_nameDef} went out early and found {X_indefinite} leaving dark tracks across it, the only ones so far.</li>
+      <li>{A_nameDef}'s breath smoked in the first cold morning of the fall, and so did the breath of {X_indefinite}, out by the fence.</li>
+      <li>[child] {A_nameDef} ran out to crunch the first frost before anyone else could, and found {X_indefinite} had beaten {A_objective} to it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_FirstFrost</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Weather</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncW_Blizzard</defName>
+    <label>out of the blizzard</label>
+    <mods><li>ludeon.rimworld.odyssey</li></mods>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+    </stranger>
+    <moment>weather:Blizzard</moment>
+    <weight>1.5</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>The blizzard drove everything to shelter. When {A_nameDef} forced the door open to check the woodpile, {X_indefinite} was huddled in the lee of the wall, and {A_nameDef} left it there.</li>
+      <li>Through the blizzard {A_nameDef} could barely see the fence, but {X_indefinite} was there, pressed against the colony's wall out of the wind.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncW_Blizzard</thought></li>
+    </effects>
+    <journal>Council_Journal_EncW_Weather</journal>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= More lines for the sky's journal ======================= -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_JournalExt_EncW_Sky_Times</defName>
+    <pool>Council_Journal_EncW_Sky</pool>
+    <lines>
+      <plain>
+        <li>[night] Green lights over the whole sky tonight. I stayed out far too long and I'd do it again.</li>
+        <li>The sun went out at midday, and the birds stopped singing. It came back. I'm still a little shaken.</li>
+        <li>[night] Saw a falling star with one of the travelers. I made a wish. Not writing it down.</li>
+        <li>[evening] Lightning on the horizon all evening, and not a sound with it.</li>
+      </plain>
+      <warm>
+        <li>[night] Sat up under the moon with a traveler, trading stories about it. Theirs were better.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

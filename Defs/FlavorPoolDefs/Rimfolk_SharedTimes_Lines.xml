@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines for what the newer systems leave behind (Source/ColonyCouncil/Setbacks/SetbackTimes.cs,
+    Social/Talk/JokesRetold.cs): the cook's word over a burned feast dish, journal entries for the bad days, and a joke
+    passed on to someone who wasn't there. {THING} the dish ("pie"), {GATHERING} the day ("the founding day"), {NAME} the one
+    who died, {GROUP} the camp's kind ("drovers"), {FACTION} a people, {SITUATION} a world event ("the famine").
+    Jokes passed on: {PAWN} the speaker, {OTHER} the one they're talking to, {NAME} the other one who was in the joke,
+    {LABEL} the joke ("the stew"); [byme] the teller is the one it happened to, [byother] it happened to {NAME}.
+  -->
+
+  <!-- ===================== Said over the cook's head ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Setback_Burned</defName>
+    <lines>
+      <plain>
+        <li>The {THING}. No.</li>
+        <li>I only turned my back for a moment.</li>
+        <li>That fire was too hot, I said so.</li>
+        <li>Don't anyone say a word about the {THING}.</li>
+      </plain>
+      <warm>
+        <li>I'm sorry, everyone. There's bread, at least.</li>
+      </warm>
+      <blunt>
+        <li>Burned. Eat the bread.</li>
+      </blunt>
+      <cheerful>
+        <li>Well, it's very well done.</li>
+      </cheerful>
+      <gloomy>
+        <li>Of course it burned. Of course it did.</li>
+      </gloomy>
+      <cold>
+        <li>The {THING} is ruined. Serve the rest.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Journal entries ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Setback_Burned</defName>
+    <lines>
+      <plain>
+        <li>Burned the {THING} for {GATHERING}. The whole table saw it come out.</li>
+        <li>{GATHERING}. The {THING} came off the fire black and I wanted the floor to open.</li>
+        <li>Spent the afternoon on the {THING} for {GATHERING}, and the last ten minutes ruined it.</li>
+      </plain>
+      <warm>
+        <li>They laughed about the {THING} so I wouldn't feel bad. It helped a little.</li>
+      </warm>
+      <blunt>
+        <li>Burned the feast. Next time I watch the fire.</li>
+      </blunt>
+      <gloomy>
+        <li>Everyone will remember {GATHERING} as the year I burned the {THING}.</li>
+      </gloomy>
+      <cold>
+        <li>Fire too hot, dish left too long. A simple mistake.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Setback_EmptyChair</defName>
+    <lines>
+      <plain>
+        <li>We kept {GATHERING} today. The first without {NAME}.</li>
+        <li>Somebody set out a cup for {NAME} at {GATHERING} without thinking. It stayed there all evening.</li>
+        <li>{GATHERING} again. Last year {NAME} sat on my left.</li>
+        <li>Went through {GATHERING} without {NAME}. I kept looking at the door.</li>
+      </plain>
+      <warm>
+        <li>We said {NAME}'s name at the toast. It was the right thing to do.</li>
+      </warm>
+      <blunt>
+        <li>{GATHERING}. No {NAME}. Hard day.</li>
+      </blunt>
+      <gloomy>
+        <li>Every day we keep from now on will have {NAME} missing from it.</li>
+      </gloomy>
+      <cold>
+        <li>Kept {GATHERING}. {NAME}'s place was empty. I noticed.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Setback_CampSoured</defName>
+    <lines>
+      <plain>
+        <li>The {GROUP} have gone. It ended badly, after all those evenings at their fire.</li>
+        <li>I liked the {GROUP}. I don't know how it went so wrong at the end.</li>
+        <li>The {GROUP} left without a word to me. I'd thought we were friends.</li>
+      </plain>
+      <warm>
+        <li>I hope the {GROUP} don't think we're all like that.</li>
+      </warm>
+      <blunt>
+        <li>The {GROUP} are gone. Bad ending.</li>
+      </blunt>
+      <gloomy>
+        <li>Make a friend, lose a friend. The {GROUP} are gone and it ended in shouting.</li>
+      </gloomy>
+      <cold>
+        <li>The {GROUP} left on poor terms. So be it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Setback_LetDown</defName>
+    <lines>
+      <plain>
+        <li>We told {FACTION} we'd help, and we didn't. I was the one who promised.</li>
+        <li>Word came from {FACTION}. It's too late now.</li>
+        <li>Thinking about {FACTION}, and what they must be saying about us.</li>
+      </plain>
+      <warm>
+        <li>I wish I could tell {FACTION} we really did mean to come.</li>
+      </warm>
+      <blunt>
+        <li>Let {FACTION} down. Won't happen twice.</li>
+      </blunt>
+      <gloomy>
+        <li>{FACTION} won't ask us again. I wouldn't.</li>
+      </gloomy>
+      <cold>
+        <li>We failed {FACTION}. It will cost us with them.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Setback_StoodBy</defName>
+    <lines>
+      <plain>
+        <li>{SITUATION} is over, and we did nothing. I keep thinking about what we could have sent.</li>
+        <li>Travelers say {SITUATION} was bad. We sat here and watched it happen.</li>
+        <li>We had grain in the stores the whole time {SITUATION} went on.</li>
+      </plain>
+      <warm>
+        <li>Next time someone out there needs help, I'm going to say so at the council.</li>
+      </warm>
+      <blunt>
+        <li>We could have helped in {SITUATION}. We didn't.</li>
+      </blunt>
+      <gloomy>
+        <li>When it's our turn, who'll come for us? I wouldn't.</li>
+      </gloomy>
+      <cold>
+        <li>{SITUATION} is over. The colony kept out of it. I'm not sure that was wise.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A joke passed on ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_JokeRetold_Tell</defName>
+    <lines>
+      <plain>
+        <li>[byother] Has {NAME} ever told you about {LABEL}?</li>
+        <li>[byother] Ask {NAME} about {LABEL} some time. Or I'll tell you now.</li>
+        <li>[byme] I'd better tell you about {LABEL} before {NAME} does.</li>
+        <li>[byme] You've heard about {LABEL}? No? Sit down.</li>
+        <li>You weren't there for {LABEL}, were you, {OTHER}?</li>
+        <li>So {NAME} and I, and {LABEL}. You have to hear this.</li>
+      </plain>
+      <warm>
+        <li>I've been saving this one for you, {OTHER}: {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL}. You need to know about it.</li>
+      </blunt>
+      <cheerful>
+        <li>[byother] Oh, you've never heard about {LABEL}? It's the best one!</li>
+      </cheerful>
+      <gloomy>
+        <li>You missed {LABEL}. You miss all the good ones.</li>
+      </gloomy>
+      <cold>
+        <li>For the record, {OTHER}, there was {LABEL}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_JokeRetold_Reply</defName>
+    <lines>
+      <plain>
+        <li>[byother] No. {NAME} didn't. Go on.</li>
+        <li>[byother] Wait until I see {NAME}.</li>
+        <li>[byme] You did not.</li>
+        <li>[byme] You never. Really?</li>
+        <li>I'll never look at {NAME} the same way.</li>
+        <li>Stop, my sides hurt.</li>
+      </plain>
+      <warm>
+        <li>Thank you, I needed that.</li>
+      </warm>
+      <blunt>
+        <li>Ha. Good one.</li>
+      </blunt>
+      <cheerful>
+        <li>Tell me again, slower!</li>
+      </cheerful>
+      <gloomy>
+        <li>Why am I never there for these?</li>
+      </gloomy>
+      <cold>
+        <li>I see why it stuck.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

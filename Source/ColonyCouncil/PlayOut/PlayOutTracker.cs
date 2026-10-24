@@ -520,6 +520,8 @@ namespace ColonyCouncil
             Remember(p, true);
             // What follows it (a secret said out loud at the end of the gathering called to hear it).
             PlayAfter.Run(p);
+            // What those who took part remember and are talked of for (Social/Talk/SharedTimes.cs).
+            SharedTimes.PlayDone(p, took);
             // A visit, a lesson or a day of rest says the answer's outcome now it has happened; gatherings and groups
             // say it in their own end message.
             if (!gathering && !p.IsGroup && !p.outcome.NullOrEmpty())

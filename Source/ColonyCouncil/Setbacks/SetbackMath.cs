@@ -149,5 +149,19 @@ namespace ColonyCouncil
 
         /// <summary>Days of food a caravan with someone dear in it can be short of before it's a worry.</summary>
         public const float CaravanFoodDays = 1f;
+
+        // ---------------- The newer systems (SetbackTimes.cs) ----------------
+
+        /// <summary>
+        /// The chance a calendar feast's dish burns, by the cooking of the colony's best cook: one in four for a novice
+        /// (under 4), one in eight under 8, one in twenty under 12, rarely after that.
+        /// </summary>
+        public static float BurnedChance(int cooking) => cooking < 4 ? 0.25f : cooking < 8 ? 0.12f : cooking < 12 ? 0.05f : 0.02f;
+
+        /// <summary>The chance two rivals at the same calendar day's table quarrel.</summary>
+        public const float QuarrelChance = 0.35f;
+
+        /// <summary>Guests staying on while the stores run low: stage 0 (-1) under four days of food, 1 (-2) under two; -1 for none.</summary>
+        public static int GuestsStage(float foodDays) => foodDays < 2f ? 1 : foodDays < 4f ? 0 : -1;
     }
 }

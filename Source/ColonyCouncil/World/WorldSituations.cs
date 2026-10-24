@@ -636,6 +636,8 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("world situation ended " + def.defName, e);
                 }
+                // The colony's part, remembered and talked of; or a kind heart minding it stood by (Social/Talk/SharedTimes.cs).
+                SharedTimes.SituationEnded(s, ending);
                 lastEnded[def.defName] = Now;
                 history.Add(new SituationRecord
                 {

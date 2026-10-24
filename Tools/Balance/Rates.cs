@@ -407,14 +407,28 @@ namespace Balance
             ("Council_Setback_AnimalSold", 0, 0.03f, "Hunter"),
             ("Council_Setback_Outshone", 0, 0.012f, null),
             ("Council_Setback_DriftedApart", 0, 0.008f, null),
-            ("Council_Setback_NoisyNeighbour", 0, 0.04f, null)
+            ("Council_Setback_NoisyNeighbour", 0, 0.04f, null),
+            // The newer systems (Setbacks/SetbackTimes.cs): about 8 calendar days kept a year, one camp a month, a mission
+            // or two a season, a world event every six weeks.
+            ("Council_Setback_DayRainedOut", 0, 0.003f, null),
+            ("Council_Setback_BurnedDish", 0, 0.005f, null),
+            ("Council_Setback_BurnedDish", 1, 0.006f, "Cook"),
+            ("Council_Setback_TableQuarrel", 0, 0.003f, null),
+            ("Council_Setback_EmptyChair", 0, 0.006f, null),
+            ("Council_Setback_EmptyChair", 1, 0.002f, null),
+            ("Council_Setback_CampSoured", 0, 0.003f, null),
+            ("Council_Setback_CampOwed", 0, 0.002f, null),
+            ("Council_Setback_GuestsEat", 0, 0.006f, null),
+            ("Council_Setback_MissionLetDown", 1, 0.003f, null),
+            ("Council_Setback_WorldTurn", 0, 0.004f, null),
+            ("Council_Setback_StoodBy", 0, 0.0015f, null)
         };
 
         /// <summary>Setbacks a well-run colony mostly avoids and a neglected one keeps having: their rate follows the style squared.</summary>
         public static readonly HashSet<string> CareSetbacks = new HashSet<string>
         {
             "Council_Setback_MakingDo", "Council_Setback_LongHauls", "Council_Setback_LeftWaiting", "Council_Setback_ColdMeal",
-            "Council_Setback_NoisyNeighbour", "Council_Setback_NoPlate"
+            "Council_Setback_NoisyNeighbour", "Council_Setback_NoPlate", "Council_Setback_GuestsEat", "Council_Setback_BurnedDish"
         };
     }
 }

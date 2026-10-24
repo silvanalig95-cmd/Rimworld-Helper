@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Setbacks that follow the newer systems (Source/ColonyCouncil/Setbacks/SetbackTimes.cs): a calendar day gone wrong
+    (rain on its gathering, the feast dish burned, a quarrel at its table, the first time it's kept without someone who
+    died this year), a camp gone on bad terms or owing, guests eating from stores that are running low, a mission let
+    slip, a world event's gamble gone wrong or one the colony stood by through. Each names its cause in the tooltip, and
+    what helps is in Defs/MoodHintDefs/Council_MoodHints_Setbacks_Times.xml. Small, and each from something real.
+  -->
+
+  <!-- ===================== The calendar ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_DayRainedOut</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>rain on our day</label>
+        <description>We waited all year for that day, and it rained the whole way through. The fire hissed and the bread went soft.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_BurnedDish</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>the feast dish burned</label>
+        <description>The dish we'd been smelling all afternoon came to the table black. We ate the bread and pretended not to mind.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>I burned the feast</label>
+        <description>Everyone was waiting for it, and I let it burn. They were kind about it, which was worse.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>I burned the feast</label>
+        <description>Cooking is the one thing I'm good at, and I burned the feast in front of the whole table. I can still smell it.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Setback_TableQuarrel</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Friction</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Anger</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>a quarrel at the feast</label>
+        <description>We had it out at the table, on a feast day, with everyone watching. The evening never recovered.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+        <baseOpinionOffset>-6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_EmptyChair</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>an empty place at the table</label>
+        <description>The first time we've kept this day without them. Someone set a place for them out of habit, and then took it away again.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>the first one without them</label>
+        <description>Last year they were right here for this day. I got through the toast. I didn't get through much after it.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Camps and guests ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_CampSoured</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Loneliness</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>the camp left on bad terms</label>
+        <description>I spent my evenings at their fire. It ended in hard words, and they went without saying goodbye.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_CampOwed</defName>
+    <durationDays>2</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group><notGentle>true</notGentle></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Anger</li></feelings><weight>0.4</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>they left owing us</label>
+        <description>We let them camp on our land, on terms they agreed to. They packed up and left without settling.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>cheated by the campers</label>
+        <description>They agreed the terms, used our land and our wood, and walked off without paying what they owed. I'd like it back.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_GuestsEat</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Worry</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>guests eating our stores</label>
+        <description>Our guests have stayed a good while now, and they eat as well as we do. The stores are getting thin.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>the stores going to guests</label>
+        <description>There's hardly anything left in the stores, and every meal we give the guests is one we won't have.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Missions and the world ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_MissionLetDown</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>only half done</label>
+        <description>We went to help, and had to leave with half of it still undone. They thanked us anyway.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+      <li>
+        <label>we let them down</label>
+        <description>They asked us for help and we said yes. It came to nothing, and they'll remember that.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_WorldTurn</defName>
+    <durationDays>1.5</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Worry</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>bad news from out there</label>
+        <description>The council took a chance on the trouble in the region, and it went badly. You hear it in how people talk at supper.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Setback_StoodBy</defName>
+    <durationDays>3</durationDays>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Shame</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>we stood by</label>
+        <description>People out there needed help, and we didn't lift a finger. It's over now, and I keep thinking we could have done something.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>
