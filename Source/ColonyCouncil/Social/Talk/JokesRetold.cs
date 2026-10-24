@@ -59,6 +59,14 @@ namespace ColonyCouncil
         private static readonly Dictionary<long, (int tick, SharedMemory joke)> picks = new Dictionary<long, (int, SharedMemory)>();
         private static Game game;
 
+        /// <summary>
+        /// The colony's in-jokes, read from the memories once every <see cref="Sched.RareTicks"/>: each colonist's own that
+        /// could be passed on, and the names of the jokes each is in on. Not saved.
+        /// </summary>
+        private static readonly Dictionary<int, List<SharedMemory>> tellable = new Dictionary<int, List<SharedMemory>>();
+        private static readonly Dictionary<int, HashSet<string>> inOn = new Dictionary<int, HashSet<string>>();
+        private static int jokesTick = -1;
+
         private static int Now => Find.TickManager.TicksGame;
 
         private static long Key(Pawn a, Pawn b) => ((long)a.thingIDNumber << 32) | (uint)b.thingIDNumber;
@@ -70,6 +78,39 @@ namespace ColonyCouncil
             lastTold.Clear();
             pairTold.Clear();
             picks.Clear();
+            jokesTick = -1;
+        }
+
+        /// <summary>The colony's jokes as the picks need them (see <see cref="tellable"/>), read again when they're older than a rare tick.</summary>
+        private static void ReadJokes(int now)
+        {
+            if (jokesTick >= 0 && now >= jokesTick && now - jokesTick < Sched.RareTicks) return;
+            jokesTick = now;
+            tellable.Clear();
+            inOn.Clear();
+            var tr = PersonaTracker.Instance;
+            var heard = TimesDefs.JokeHeard;
+            if (tr == null) return;
+            void InOn(int id, string label)
+            {
+                if (!inOn.TryGetValue(id, out var set)) inOn[id] = set = new HashSet<string>();
+                set.Add(label);
+            }
+            void Tellable(int id, SharedMemory m)
+            {
+                if (!tellable.TryGetValue(id, out var list)) tellable[id] = list = new List<SharedMemory>();
+                list.Add(m);
+            }
+            foreach (var m in tr.memories)
+            {
+                if (m?.def == null || !m.def.joke || m.label.NullOrEmpty()) continue;
+                InOn(m.a, m.label);
+                InOn(m.b, m.label);
+                // Told at least once and not worn out, fresh, and not itself heard secondhand: either of the two may pass it on.
+                if (m.def == heard || m.recalls < 1 || TalkMath.Worn(m.recalls) || now - m.tick > FreshDays * GenDate.TicksPerDay) continue;
+                Tellable(m.a, m);
+                Tellable(m.b, m);
+            }
         }
 
         /// <summary>How likely this conversation is between the two right now (0: no joke to pass on, or one passed on lately).</summary>
@@ -101,22 +142,17 @@ namespace ColonyCouncil
         /// </summary>
         private static SharedMemory Choose(Pawn teller, Pawn listener)
         {
-            var tr = PersonaTracker.Instance;
-            var heard = TimesDefs.JokeHeard;
-            if (tr == null || heard == null || (listener.relations?.OpinionOf(teller) ?? 0) < 10 || (teller.relations?.OpinionOf(listener) ?? 0) < 10) return null;
+            if (TimesDefs.JokeHeard == null || (listener.relations?.OpinionOf(teller) ?? 0) < 10 || (teller.relations?.OpinionOf(listener) ?? 0) < 10) return null;
             int now = Now;
-            int me = teller.thingIDNumber, them = listener.thingIDNumber;
-            // What the listener is already in on, by its name.
-            var known = new HashSet<string>();
-            foreach (var m in tr.memories)
-                if (m?.def != null && m.def.joke && m.Has(them) && !m.label.NullOrEmpty())
-                    known.Add(m.label);
+            ReadJokes(now);
+            if (!tellable.TryGetValue(teller.thingIDNumber, out var mine)) return null;
+            int them = listener.thingIDNumber;
+            inOn.TryGetValue(them, out var known);
             SharedMemory best = null;
             float bestW = 0f;
-            foreach (var m in tr.memories)
+            foreach (var m in mine)
             {
-                if (m?.def == null || !m.def.joke || m.def == heard || !m.Has(me) || m.Has(them) || m.label.NullOrEmpty()) continue;
-                if (m.recalls < 1 || TalkMath.Worn(m.recalls) || now - m.tick > FreshDays * GenDate.TicksPerDay || known.Contains(m.label)) continue;
+                if (m.Has(them) || (known != null && known.Contains(m.label))) continue;
                 float w = m.WeightNow(now);
                 if (w > bestW)
                 {
@@ -138,6 +174,7 @@ namespace ColonyCouncil
             Fresh();
             int now = Now;
             long key = Key(teller, listener);
+            jokesTick = -1;
             var joke = Choose(teller, listener);
             picks.Remove(key);
             SocialPace.Started(teller);
@@ -146,6 +183,7 @@ namespace ColonyCouncil
             if (pairTold.Count > 2000) pairTold.Clear();
             if (joke == null) return;
             var mem = SharedMemories.Add(teller, listener, TimesDefs.JokeHeard, joke.label, 0.8f);
+            jokesTick = -1;
             if (mem == null) return;
             string about = joke.NameOf(joke.Other(teller.thingIDNumber)) ?? "?";
             var tags = new[] { joke.a == teller.thingIDNumber ? "byme" : "byother" };

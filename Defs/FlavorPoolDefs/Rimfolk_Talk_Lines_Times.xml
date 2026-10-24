@@ -639,7 +639,7 @@
     <outcomes><li>Joke</li></outcomes>
     <lines>
       <plain>
-        <li>Two words, {OTHER}: {LABEL}.</li>
+        <li>You remember {LABEL}, {OTHER}, don't pretend you don't.</li>
         <li>[fresh] I've only just dried out from {LABEL}.</li>
         <li>[told] I hear rain on the roof and think of {LABEL}.</li>
         <li>Remember the bread at {LABEL}, gone to porridge on the plate?</li>

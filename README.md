@@ -302,7 +302,7 @@ nears breaking, Rimfolk's small letdowns weigh less (down to half at their minor
 three quarters, easing back to normal as they recover. Meals are noted through one of the deeper game hooks. The
 Almanac's *everyday pressures* page has the details.
 
-**Setbacks.** The other side of all the small rewards: about forty bad moods that come from what actually happens in
+**Setbacks.** The other side of all the small rewards: about fifty bad moods that come from what actually happens in
 play, each naming its cause in its tooltip and, in the Mood tab, what helps. Most are -1 to -4 for a day or a few; the
 few bigger ones (-5 to -6) are for real losses.
 - **The council**: a wish still waiting while wishes voiced after it come true (-1 to -2), an idea turned down at a
@@ -322,6 +322,12 @@ few bigger ones (-5 to -6) are for real losses.
   through the wall at night, a partner, family member or close friend seriously ill, a loved one's caravan short of
   food, a nemesis still at large, a debt to a people unpaid (kind colonists), homesickness after a hard week, and long
   quiet days with less to do than they expect.
+- **Camps, missions, the calendar and the world** (new): rain on a calendar day's own gathering (-2), its feast dish
+  burned (-1, the cook -2 to -3; likelier the worse the colony's best cook), two rivals quarrelling at its table (-2),
+  the first time a day is kept since someone died this year (-2 to -4), a camp they'd sat with that left on bad terms
+  (-2) or left owing (-1 to -2), guests who stay on eating from stores that are running low (-1 to -2), a mission let
+  slip or a harvest half brought in (-1 to -2), a world event's gamble gone wrong (-1), and for the kind, a world event
+  the colony stood by through (-2).
 
 None comes from nowhere, and most can be ended or avoided: answer the wish, lift the decree, build the bench, put a
 stockpile near the work, defend what matters. The colony's life follows "Life's ups and downs" (never less than a
@@ -633,10 +639,14 @@ happens and with talk: a liked, trusted, self-assured speaker brings an open lis
 cold are curt, the gloomy see the worst), in about 2,500 lines. A talk leaves a small opinion of each other, not a
 mood; arguing hardens a temper a little over time, and a long friendship warms.
 
-Pairs also keep **shared memories** (17 kinds): fighting side by side (those really seen together in the fight), being patched up while down, a funeral, a feast,
+Pairs also keep **shared memories** (33 kinds): fighting side by side (those really seen together in the fight), being patched up while down, a funeral, a feast,
 a disaster come through, a caravan, something big built together, a long night shift, lessons, a quarrel made up, a
-secret kept. Small mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, a
-short binge) once everyone's fine, funnier the first few times and then worn thin. The character page lists their
+secret kept, an evening of faith; and from the newer systems, evenings at a camp's fire, a camp healer's last round, a
+smith's mending, a lost child found, a pilgrim walked home, a neighbour's harvest, the colony's part in a world event,
+a calendar day kept together, the dead carried out to the pyre, the night watch on the walls and lantern night. Small
+mishaps become **in-jokes** ("the stew", "the boomalope", "the alpaca", the little fire, the mud, a short binge, a
+day's gathering in the rain, a burned feast dish) once everyone's fine, funnier the first few times and then worn
+thin, and a good one can be passed on once to a friend who wasn't there, who shares it from then on. The character page lists their
 **views** (with what each rests on; in the Culture tab) and their **shared memories** (in the Social tab's column). Almanac: "Conversations and views", "Shared memories
 and in-jokes".
 
@@ -673,7 +683,10 @@ colours it by what they think of them and who they are (a friend talks it up or 
 joker makes it a joke, the proud boast of their own), the story grows a little in the telling but never into
 fiction, and the listener believes it as far as their nature lets them (the wary believe the bad, the trusting the
 good) and makes of it what their character does (the bold admire courage, the warm condemn cruelty). It's said over
-their heads, in about 480 lines by deed, slant and character, and the listener answers.
+their heads, in about 660 lines by deed, slant and character, and the listener answers. Deeds come from the newer
+systems too: a friend made at a camp or a quarrel with one, a lost child found, a pilgrim walked home, a neighbour's
+harvest worked or a mission let slip, a call for help answered in a world event, a calendar day seen to, a feast dish
+burned or a quarrel at its table, the night watch walked, the dead carried out, the rounds of the sick.
 
 What the colony knows of someone is their **name**: brave or a coward, kind or cruel, reliable or idle, skilled,
 trustworthy or a gossip, a hothead or level-headed. A name is a small opinion either way, steadies those beside the
@@ -893,12 +906,17 @@ Colonists meet everyone else on the map, too:
 - **The land, the seasons and the weather:** shade shared with a wild animal at desert noon, tracks in the tundra
   snow, eyes in the jungle undergrowth, lights over the marsh, an animal on the mountain ridge, the tide line on the
   coast; a traveler's trick against the sand or the cold, the first green of spring, rain waited out with a pet, a
-  shape in the fog, a pet frightened by thunder, other names for the stars on a clear night. Rimfolk reads the land
-  from the biome and the tile, so other mods' biomes count too.
+  shape in the fog, a pet frightened by thunder, other names for the stars on a clear night. By the water: mist on a
+  lake at dawn, an animal crossing the winter ice, a traveler's night lines, the ford across the river, an animal
+  stranded when the river runs high, the wrack after a storm, the rock pools, a coast knot. Rarer moments come with
+  their sky: an aurora, an eclipse, a falling star, moon stories, heat lightning, eyes in the night fog, the first
+  frost, and with Odyssey an animal out of a blizzard. Odyssey's and Vanilla Animals Expanded's water birds, shore and
+  river creatures, ReGrowth's old-world beasts and Stagz Merfolk's merren have moments of their own. Rimfolk reads the
+  land from the biome and the tile, so other mods' biomes count too.
 - **What their people remember:** a visitor whose people the colony once rescued thanks them, a trader of a grateful
   people gives a friend's price, one whose people hold a grudge charges double or won't haggle, and a visitor whose
   people helped the colony mentions it, and one whose people remember a colonist by name stops them to say thank
-  you. 176 kinds of encounter in all. Most of these small
+  you. 213 kinds of encounter in all. Most of these small
   moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
   against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an

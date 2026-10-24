@@ -80,6 +80,16 @@ The colony's view of a person is what everyone else makes of them, added up and 
           <li>Kind to a stranger | an encounter with a stranger that was a kindness (water for the fallen, kind words through a cell door, a bowl for a hungry visitor) | kindness</li>
           <li>A cruelty | spitting on a fallen raider; carrying out an execution; taking an organ from someone held; feeding on a prisoner | cruel</li>
           <li>Cheated, broke it off, divorced | the game's own memories of being cheated on, left or divorced | unkindness (and a cheat is untrustworthy)</li>
+          <li>Made friends at a camp | the colonist warmest with a camp that left in peace (four or more evenings at its fire, and a good word with one of them) | kindness</li>
+          <li>Quarreled with campers | a camp that ended badly or tensely, for a colonist who can't stand one of them (opinion -20 or worse) | temper, unkindness</li>
+          <li>Found a lost child | finding a neighbor's lost child on the colony's land | kindness, work</li>
+          <li>Walked a pilgrim home; worked a neighbor's harvest | everyone in the caravan that did it (half the deed for half a harvest) | kindness, courage; work, kindness</li>
+          <li>Let the neighbors down | dealing with a mission the colony let slip: too late, turned back, missed, a pilgrim left to walk alone, a lost child found by others | idle</li>
+          <li>Answered a call for help | going for the colony, when its part in a world event counted | kindness, courage</li>
+          <li>Saw a day kept | leading a calendar day's gathering, with three or more there | kindness, work</li>
+          <li>Burned a feast dish | the cook, when a calendar feast's dish burns | clumsy</li>
+          <li>Quarreled at the feast | the one quicker to anger, when two rivals quarrel at a calendar day's table | temper, unkindness</li>
+          <li>Kept the night watch; carried out the dead; went round the sick | walking a night watch on the walls, carrying the enemy dead out to a pyre or the tree line, going on rounds of the sick, when an answer calls for one | courage, work; work; kindness, work</li>
         </table>
         <after>Each deed keeps who did it, when, a name for when it was ("the raid on the 5th of Aprimay", "the tantrum on the 12th of Jugust"), how big it was, and who knows of it: those who saw it from the start, and everyone who heard it since, from whom and in what version.</after>
       </li>

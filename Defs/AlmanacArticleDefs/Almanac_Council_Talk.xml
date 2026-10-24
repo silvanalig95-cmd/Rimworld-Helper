@@ -87,6 +87,16 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
           <li>A student who has learned from a mentor | The teacher and the student, by the skill | half in 240 days</li>
           <li>A quarrel made up in a later talk | The two, by what they argued about | half in 90 days</li>
           <li>A secret confided and kept | The one who told and the one who keeps it (never said what it was) | half in 240 days</li>
+          <li>A camp that left in peace | Those who spent two or more evenings at its fire, by the camp ("the camp of the drovers") | half in 90 days</li>
+          <li>A camp healer's last round | Those the healer looked in on before leaving, by the healer's name ("Mira's last round") | half in 120 days</li>
+          <li>A camp smith's mending | Those who were about the camp while the smith mended one of the colony's buildings, by what was mended | half in 75 days</li>
+          <li>A neighbor's lost child found | The one who found the child, with the three at home they're closest to, by the child's name | half in 180 days</li>
+          <li>A pilgrim walked home; a neighbor's harvest brought in | Those in the caravan, by the pilgrim's name or the town | half in 150 and 120 days</li>
+          <li>A world event the colony's part counted in | Everyone at home, with the two they're closest to, by the event ("the long drought") | half in 150 days</li>
+          <li>A calendar day kept | Those at its gathering, or everyone at home when it was kept without one, by the day and the year ("the founding day in 5503") | half in 75 days</li>
+          <li>The enemy dead carried out to a pyre or the tree line | Those who carried them, by the fight's name | half in 90 days</li>
+          <li>A night watch walked on the walls | Those who walked it, by the date | half in 90 days</li>
+          <li>Lantern night | Those at its gathering while the lanterns stood, by the year | half in 120 days</li>
         </table>
       </li>
       <li>
@@ -98,9 +108,14 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
           <li>a tame that ended with the animal turning on its tamer, and whoever watched ("the alpaca");</li>
           <li>a small fire beaten out together ("the little fire", "the fire in the kitchen");</li>
           <li>a short binge, food or drink, and the friend who saw it ("the midnight feast", "that long night");</li>
-          <li>going down in the mud together on a wet day (a small event of its own, "the mud").</li>
+          <li>going down in the mud together on a wet day (a small event of its own, "the mud");</li>
+          <li>a calendar day's gathering held out in the rain ("the harvest day in the rain"), and a feast day's dish that burned ("the burned pie on the harvest day"): these two become jokes half a day later, among those who were there.</li>
         </points>
         <after>A joke gets funnier the first few times it comes up, then wears thin: after four tellings it weighs less with every one, the other groans instead of laughing, and it leaves only a small opinion. In the end they find a new one.</after>
+      </li>
+      <li>
+        <heading>Jokes passed on</heading>
+        <text>A joke two colonists have laughed over at least once, and not yet to death, can travel one step further. One of them may tell it to a friend who wasn't there (both thinking well of each other, opinion 10 or more), in a conversation of its own that the game picks like any other; it only comes up for jokes from the last two months, at most once a day for the teller and once a week for the same two. From then on the teller and the friend share it too ("told Bo about the stew"), with lines of its own ("Has Ana ever told you about the stew?"), and the friend thinks a little better of the teller (+3 opinion for three days). A joke heard secondhand isn't passed on again.</text>
       </li>
       <li>
         <heading>How they come up</heading>

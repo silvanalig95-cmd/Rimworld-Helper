@@ -68,6 +68,23 @@ None of them comes from nowhere, and none is a flat penalty. Each names its caus
         <after>Gatherings follow "Life's ups and downs" too.</after>
       </li>
       <li>
+        <heading>Camps, missions, the calendar and the world</heading>
+        <text>These follow "Life's ups and downs" like the colony's other troubles, except the quarrel at the table, which is one of the everyday frictions. Each comes from something that happened in another of Rimfolk's systems.</text>
+        <table>
+          <li>Setback | When | Mood | What helps</li>
+          <li>Rain on our day | A calendar day's gathering held in the open in the rain (instead of the plain rain on a gathering) | -2, 1.5 days | A roofed dining hall or rec room big enough for everyone</li>
+          <li>The feast dish burned | A calendar feast's dish burned: likelier the worse the colony's best cook (one feast in four under cooking 4, one in eight under 8, one in twenty under 12, one in fifty after); the cook takes it harder, most of all one who loves cooking | -1 (the cook -2 to -3), 1.5 days | Train a better cook</li>
+          <li>A quarrel at the feast | Two rivals at the same day's table quarrel, a third of the time | -2, opinion -6 of each other, 3 days | Mend the rivalry</li>
+          <li>An empty place at the table | The first time a feast, games, bonfire, gift or faith day is kept since someone died this year: those who knew them, their family and partner more; once a year for each of the dead | -2 to -4, 1.5 days | Company; time</li>
+          <li>The camp left on bad terms | A camp they'd spent evenings at ended in a falling-out, or was sent away | -2, 3 days | Fair terms, a gift, leaving its game and trees alone</li>
+          <li>They left owing us | A camp left with a fee unpaid or the hunt's share not given (not the kind; the greedy mind more) | -1 to -2, 2 days | Answer broken terms while they're here</li>
+          <li>Guests eating our stores | Guests who have stayed two days or more, with under four days of food in the stores (under two for more); not the kind or ascetic | -1 to -2, 1.5 days | Fill the stores</li>
+          <li>We let them down | A mission let slip (too late, turned back, missed, the pilgrim left alone, the child found by others), for the one who dealt with it and those who went; a harvest only half brought in, for the hands | -1 to -2, 3 days | Take on what the colony can finish</li>
+          <li>Bad news from out there | The council's answer to a world event was a gamble and went wrong, for the grown-ups at home not already upset by it | -1, 1.5 days | -</li>
+          <li>We stood by | A world event the colony could have helped with ended with nothing from it (kind colonists) | -2, 3 days | Answer the region's next call</li>
+        </table>
+      </li>
+      <li>
         <heading>Between people</heading>
         <text>These follow the everyday frictions setting; outshone, a rival honoured and envy of a better room also follow the jealousy setting. Someone who was the colony's best at their passion (level 6 or more) and is overtaken by a newcomer or a quicker learner minds it for 3 days (-2), unless it's their own student or they're kind. A friendship that cools stings both for 3 days (-2). Loud work through the wall at night costs a sleeper a point and a little opinion of whoever was at it.
 
