@@ -1334,7 +1334,8 @@ another and the colony reads as one life.
 | Promises kept | Elections | a ballot | a wish taken back in the last year: -3 for sitting officers |
 | Epithets | Elections | a ballot | +1 per name the colony gave, -1 per dubious one (at most 2) |
 | Quirks | Who someone is | any tag check | quirk:Hums, quirk:SleepTalker... for roles, lines and dreams; 12 social events use them |
-| Calendar, kept, setbacks, health | Dreams | the memory those leave | 5 dreams (XML) |
+| Calendar, kept, setbacks, health, world events, camps, missions | Dreams | the memory those leave | 15 dreams (XML) |
+| Events, world events, camps, missions, encounters, dreams | Quirks | the memory those leave; a sight (the pyre, `QuirkSights`); a dream come true | 8 quirks (XML), their effects in `Quirks/QuirkEvents.cs` |
 | News | News | the evening digest | three or more lines about one colonist come together as their day |
 
 ## Balance targets
@@ -2137,7 +2138,7 @@ on a map, in the world or in a caravan), so such a record is let go when the gam
 | Life goals | goals of the dead and departed end daily; finished ones of the dead kept 3 years, of discarded pawns dropped; counters of known pawns; sparks 30 days |
 | Secrets | one per colonist, ended with their death; who was rolled for one: known pawns only |
 | Vendettas | 40 settled; avengers dead or discarded dropped; eulogies until given |
-| Quirks | 2 per colonist, the dead and discarded dropped; fights and falls only within the longest quirk window |
+| Quirks | 2 per colonist, the dead and discarded dropped; fights and falls only within the longest quirk window. Sights (the pyre), the lamp's visits and a juggler's last turn are held for the session only, a few days at most |
 | Legacy | heirlooms until the heir dies or is discarded, or the thing is lost; children waiting to come of age: known pawns only; came of age: 6 days |
 | Nemeses | 30 that have ended |
 | Pets | animals known: the dead get their farewell, the discarded are dropped |

@@ -520,11 +520,11 @@ Unhappy colonists have more nightmares, and volatile ones more still. Recurring 
         <heading>What they feel, and what's around them</heading>
         <text>With the heart turned on, feelings bring dreams of their own, likelier the stronger the feeling. A colonist angry at someone argues with them all night (and the rivalry grows a little); one grateful to someone repays the debt in a dream (and likes them a little more); envy dreams of someone else's life. Every one of the feelings has dreams of its own, grief and disgust among them.
 
-Quirks bring dreams (a storm-dreader's storm, the dark for someone who sleeps with a light, the stars for a stargazer, the plants answering back), and so do life goals (a wedding for someone who wants to marry, the far road for a youngster who wants to travel, the last fine piece for an old maker) and personal stories (two doors for a rival in love, a rope pulled both ways for someone caught between two people, one more spring).
+Quirks bring dreams (a storm-dreader's storm, the dark for someone who sleeps with a light, the stars for a stargazer, the plants answering back), and so do life goals (a wedding for someone who wants to marry, the far road for a youngster who wants to travel, the last fine piece for an old maker) and personal stories (two doors for a rival in love, a rope pulled both ways for someone caught between two people, one more spring). Every habit and quirk has dreams of its own now, and so do nearly all life goals and personal stories: a book with no last page for one who reads at meals, a coat that mends itself for one who mends their own clothes, smoke under the door for a light sleeper, a long table for one who remembers every birthday, an answer from the dead for one who talks to them, an empty sickroom for a would-be healer, the council listening for someone who wants a seat, the master's bench for an apprentice, a small hand for a new parent, the animal at their side for someone raising an orphaned one. A dream for several quirks or goals has lines for each.
 
 A nemesis comes back in dreams: standing at the gate while still out there (or, for someone feeling their resolve, faced at last), behind a locked door while in the colony's cells, and once it's over, gone from the dream as from the world. Someone whose family member or partner was killed by that enemy dreams of them too. Getting better and healing have dreams of their own: running again while convalescing (the impatient dream of the work waiting), a patient walking out of the sickroom, the empty bed after a loss, the first cry after a birth.
 
-Ailments color dreams: a toothache brings dreams of loose teeth, a cold or a cough dreams of breathing underwater, insomnia dreams of lying awake, bites and rashes dreams of itching, a bad back or a kidney stone dreams of carrying a millstone, and getting over an illness dreams of being strong again. So does the world around them: a camp on the map, a council meeting they spoke at or missed, sickness, famine, fighting or a fair in the region (world events), and the time of year. A feeling and the world together dream deepest: fellowship by the camp's fire, the road with the camp for the restless, the fever at the door for someone worried while a sickness goes round, the open road for the hopeful in good times, gratitude for a camp's good turn and shame for a camp sent away.</text>
+Ailments color dreams: a toothache brings dreams of loose teeth, a cold or a cough dreams of breathing underwater, insomnia dreams of lying awake, bites and rashes dreams of itching, a bad back or a kidney stone dreams of carrying a millstone, and getting over an illness dreams of being strong again. So does the world around them: a camp on the map, a council meeting they spoke at or missed, sickness, famine, fighting or a fair in the region (world events), and the time of year. The colony's own days leave dreams in the next night or two: gifts round the fire after a birthday, a day of gifts or a bonfire night, the day's sport after games, a hunt or a fair, a long morning after a day of rest, many hands after the planting day or a world event where the colony helped its neighbors. So does what the colony took part in out there: the warlord's fall, riders at night while a warlord is still loose (a rare nightmare), pilgrims' songs and peace made at the colony's table, wings over the fields after the locusts, the players after their evening or a camp's show, and the road home after a lost child, a pilgrim or refugees were seen safely on. A feeling and the world together dream deepest: fellowship by the camp's fire, the road with the camp for the restless, the fever at the door for someone worried while a sickness goes round, the open road for the hopeful in good times, gratitude for a camp's good turn and shame for a camp sent away.</text>
       </li>
       <li>
         <heading>Dreams that change something</heading>
@@ -541,13 +541,13 @@ Ailments color dreams: a toothache brings dreams of loose teeth, a cold or a cou
       </li>
       <li>
         <heading>Omens</heading>
-        <text>Rarely, a dream is an omen, and a few days later it comes true: a caravan, a newcomer, falling cargo pods, a cold snap, a raid. Only one omen waits at a time. When a colonist wakes up talking about torches in the dark, check your defenses.
+        <text>Rarely, a dream is an omen, and a few days later it comes true: a caravan, a newcomer, falling cargo pods, a cold snap, a raid, or visitors following the lamp of someone who keeps one lit for travelers. Only one omen waits at a time. When a colonist wakes up talking about torches in the dark, check your defenses.
 
 You can turn omens off with "Dreams that come true" in the settings.</text>
       </li>
       <li>
         <heading>Telling them</heading>
-        <text>Colonists tell each other their dreams, and telling someone you dreamt about them makes them like you a little more. Recent dreams are listed on the Dreams page, and dreams that came true go in the chronicle and the year's annals.</text>
+        <text>Colonists tell each other their dreams, and telling someone you dreamt about them makes them like you a little more. Someone who keeps a dream book (a quirk, after a dream came true) dreams half again as often and writes every dream down. Recent dreams are listed on the Dreams page, and dreams that came true go in the chronicle and the year's annals.</text>
       </li>
     </sections>
     <keywords><li>dream</li><li>nightmare</li><li>omen</li><li>prophecy</li><li>sleep</li><li>fever</li></keywords>
@@ -684,6 +684,22 @@ Habits also pass between people who spend their days together. Each day a coloni
 A watcher of the stars, the dread of storms and the other quirks born of something that happened come as they always did.</after>
       </li>
       <li>
+        <heading>Quirks from what the colony lives through</heading>
+        <text>Some quirks come from what happens to the colony out in the world and at home, within a few days of it, and fade after a season or a year. Each shows on the map now and then, as a word over their head when it fits what they're doing.</text>
+        <table>
+          <li>Quirk | Comes from | What it does | On the map</li>
+          <li>keeps a lamp lit for travelers | refugees seen through, a guest's thanks or a watch kept for one, being taken in, pilgrims fed, a good turn on the road, a pilgrim escorted home | friendly visitors and caravans who stay the night leave on better terms: +1 goodwill a visit | a word about the lamp at night</li>
+          <li>can't stand the smell of smoke | seeing the pyre beyond the gate burn, awake and within 40 cells of it (never a pyromaniac) | -2 within a few steps of an open fire: a fire, a campfire, a hearth, a brazier or a torch | a word near the fire</li>
+          <li>counts every coin twice | swindled, conned, cheated by a trader or haggling badly | trade prices +2% | a word over the silver</li>
+          <li>walks the fields at dawn | locusts, a lost crop, crops raided by animals | harvest yield +3% (+5% once rooted, kept while they keep growing) | a word in the fields in the morning</li>
+          <li>keeps a dream book | a dream of theirs came true | dreams half again as often, and every dream goes in their journal | a word over the book after a dream</li>
+          <li>swears by a healer's salve | a camp's healer, the famous healer or a traveling healer saw to them, or they watched the famous healer at work | wounds heal 10% faster | a word in the sickbed</li>
+          <li>juggles at supper | the players' evening, or a camp's show | eating or resting beside others in the same room, each of them has a little recreation (once in eight hours) | a word while juggling</li>
+          <li>swears by a trick against the cold | a traveler's trick against the cold, out in the frozen lands | comfortable 3 °C colder | a word out in the frost</li>
+        </table>
+        <after>All but the smoke and the dream book pass between people close to each other, like the habits. Each has dreams of its own, and the lamp keeper's can come true: visitors follow the lamp a few days later.</after>
+      </li>
+      <li>
         <heading>Quirks in people's lives</heading>
         <text>Some quirks change how someone answers and speaks, and ask for moments of their own:</text>
         <points>
@@ -696,7 +712,7 @@ A watcher of the stars, the dread of storms and the other quirks born of somethi
           <li>first to volunteer (kind or hard-working): takes someone else's turn at the worst job</li>
           <li>a soft spot for strays (animal lovers): feeds every stray, with another animal lover</li>
         </points>
-        <after>Each of these, and several older quirks, has dreams of its own (a storm-dreader's storm, the stargazer's stars).</after>
+        <after>Each of these, and every other quirk and habit, has dreams of its own (a storm-dreader's storm, the stargazer's stars, a coat that mends itself, a long table, smoke under the door).</after>
       </li>
       <li>
         <heading>Coming of age</heading>
