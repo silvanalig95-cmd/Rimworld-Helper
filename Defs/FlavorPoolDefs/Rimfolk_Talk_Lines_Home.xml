@@ -302,6 +302,8 @@
       <cheerful>
         <li>[otherfor] I've seen you lick the pot, {OTHER}, so don't pretend.</li>
         <li>[otheragainst] The cook hides when you come in, {OTHER}, did you know?</li>
+        <li>[otherfor] You'd eat the bowl if we let you, {OTHER}.</li>
+        <li>[otheragainst] One day the stew will hear what you say about it, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -548,6 +550,8 @@
       <cheerful>
         <li>[otheragainst] Keeping score again, {OTHER}?</li>
         <li>[otherfor] You'd work through a raid if someone handed you a broom, {OTHER}.</li>
+        <li>[otherfor] You yawn louder than anyone works, {OTHER}.</li>
+        <li>[otheragainst] Shall I fetch your notebook, {OTHER}, so you can count my breaks?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -779,6 +783,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] One day the animals will make you their leader, {OTHER}, and you'll say yes.</li>
+        <li>[otherfor] The goat asked after you this morning, {OTHER}.</li>
+        <li>[otheragainst] The dog's been sulking since you called it a nuisance, {OTHER}.</li>
+        <li>Off to kiss the chickens goodnight, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -1022,6 +1029,9 @@
       </plain>
       <cheerful>
         <li>[otheragainst] One day you'll forgive the weather, {OTHER}, and we'll throw a feast.</li>
+        <li>[otherfor] You'd call a blizzard bracing, {OTHER}.</li>
+        <li>[otheragainst] I heard you shaking your fist at the clouds again, {OTHER}.</li>
+        <li>Shall I tell the sky to behave for you, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

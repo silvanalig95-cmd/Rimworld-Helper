@@ -156,6 +156,15 @@
         <li>[argue,for] They've given us no reason, and you know it.</li>
         <li>[argue,against] Good neighbors don't camp on your land uninvited.</li>
         <li>[argue,mixed] I don't know them well enough to fight about them.</li>
+        <li>[for] They've been better neighbors than some we've had.</li>
+        <li>[for] A few strangers about keeps us on our toes, in a good way.</li>
+        <li>[against] I'll be glad when that patch of ground is ours again.</li>
+        <li>[against] I don't like not knowing who's walking past at night.</li>
+        <li>[mixed] They're people passing through, that's all I know.</li>
+        <li>[mixed] I've no quarrel with them, and no love for them either.</li>
+        <li>[agree] I was saying the same down at the water.</li>
+        <li>[debate] It's not as simple as glad or sorry.</li>
+        <li>[argue] Don't tell me what to think about them.</li>
       </plain>
       <warm>
         <li>[agree,for] I'll take some bread down to them tomorrow.</li>
@@ -334,6 +343,8 @@
       <cheerful>
         <li>[otherfor] Half their songs are about you now, {OTHER}, you're there that often.</li>
         <li>[otheragainst] You glare at that camp so hard, {OTHER}, I'm surprised the tents haven't caught fire.</li>
+        <li>[otherfor] They'll be naming a tent after you soon, {OTHER}.</li>
+        <li>[otheragainst] I saw you wave at the camp, {OTHER}, don't deny it.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

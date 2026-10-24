@@ -177,6 +177,12 @@
         <li>[argue,against] I'm the one who cleans up after, so don't tell me it's free.</li>
         <li>[argue,mixed] Don't make me choose, I like the day and I like the work.</li>
         <li>[argue,mixed] Why does everything have to be a fight with you?</li>
+        <li>[for] I'd keep every one of them, given half a chance.</li>
+        <li>[for] A day like that does more good than a week of work.</li>
+        <li>[against] We've too much to do for days off.</li>
+        <li>[against] I'd rather spend the day working, myself.</li>
+        <li>[mixed] It depends what the day's for, really.</li>
+        <li>[mixed] Some days I like, some days I could do without.</li>
       </plain>
       <warm>
         <li>[agree,for] I'll save you a seat beside me.</li>
@@ -362,6 +368,7 @@
         <li>[otherfor] Every year you eat until you fall asleep at the table, {OTHER}, and every year I watch.</li>
         <li>[otheragainst] I've hidden your tools for the day, {OTHER}, so don't bother looking.</li>
         <li>[otherfor] First to the food and last to leave, {OTHER}, same as every year.</li>
+        <li>[otheragainst] One whole day without work, {OTHER}, try not to faint.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

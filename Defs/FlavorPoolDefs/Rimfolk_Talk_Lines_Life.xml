@@ -836,6 +836,9 @@
       </plain>
       <cheerful>
         <li>[otheragainst] I've seen you sniff a cup of beer like it was poison, {OTHER}.</li>
+        <li>[otherfor] You've got a cup in each hand again, {OTHER}, how do you manage?</li>
+        <li>[otheragainst] One sip of beer and you'd be singing on the table, {OTHER}.</li>
+        <li>Water again, {OTHER}, living dangerously?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -855,6 +858,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] I heard you jingle when you walk, {OTHER}.</li>
+        <li>[otherfor] You've been polishing your silver again, {OTHER}, it's very shiny.</li>
+        <li>[otheragainst] You'd give the trader a tip for robbing you, {OTHER}.</li>
+        <li>Counting your riches again, {OTHER}, all six of them?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -874,6 +880,8 @@
       <cheerful>
         <li>[otherfor] You'll be telling the grandchildren how you built this place, {OTHER}.</li>
         <li>[otheragainst] One day you'll actually leave, {OTHER}, and we'll throw a party, then miss you.</li>
+        <li>[otherfor] You've already picked your rocking chair, haven't you, {OTHER}?</li>
+        <li>[otheragainst] You've packed and unpacked that bag more than you've worn it, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -893,6 +901,8 @@
       <cheerful>
         <li>[otherfor] When the project's done, {OTHER}, you'll have to find a new thing to love.</li>
         <li>[otheragainst] I bet you'd hide the tools if you thought it'd stop the project, {OTHER}.</li>
+        <li>[otherfor] You'd marry the project if it asked, {OTHER}.</li>
+        <li>[otheragainst] You'd give the project a slow clap if it finished, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

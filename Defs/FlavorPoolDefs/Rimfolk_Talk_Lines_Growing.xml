@@ -56,6 +56,12 @@
         <li>[for,child] I want to play hide and seek, will you count?</li>
         <li>[against,child] Can you show me how to do that?</li>
         <li>[mixed,child] Why do grown-ups always work so much?</li>
+        <li>[for,!child] Go and get some sun on your face, the chores can wait.</li>
+        <li>[for,!child] Did you have fun today?</li>
+        <li>[against,!child] Come and help me, there's a lot to learn.</li>
+        <li>[against,!child] You're big enough to carry the small bucket now.</li>
+        <li>[mixed,!child] Tell me what you did today.</li>
+        <li>[mixed,!child] Are you being good for everyone?</li>
       </plain>
       <warm>
         <li>[for,child] I drew a picture of you, it's mostly your hat.</li>
@@ -178,6 +184,14 @@
         <li>[argue,against,!child] When you're grown, you'll thank me for this.</li>
         <li>[argue,mixed,!child] I'm not discussing it while you're sulking.</li>
         <li>[argue,mixed,!child] That's enough cheek for one day.</li>
+        <li>[for,!child] There's time for all of that when you're bigger.</li>
+        <li>[for,!child] You should be playing, not worrying.</li>
+        <li>[against,!child] It's time you learned a few things, that's all.</li>
+        <li>[against,!child] Out here, even the small ones help.</li>
+        <li>[mixed,!child] We'll see what you're ready for.</li>
+        <li>[mixed,!child] One thing at a time, all right?</li>
+        <li>[agree,!child] That's my clever one.</li>
+        <li>[debate,!child] We'll talk about it after supper.</li>
       </plain>
       <warm>
         <li>[agree,for,child] You're my favorite grown-up.</li>
@@ -369,6 +383,7 @@
         <li>[!child] You've grown a whole thumb since spring, {OTHER}, we'll have to raise the ceilings.</li>
         <li>[child] I bet I could beat you in a race, {OTHER}, even with one shoe.</li>
         <li>[child,kids] You've got mud on your nose, {OTHER}, and on your other nose.</li>
+        <li>[!child] Who taught you to whistle like that, {OTHER}, a kettle?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

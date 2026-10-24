@@ -236,6 +236,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] Did the heavens answer you yet about the pie, {OTHER}?</li>
+        <li>[otherfor] You pray for the weather so often, {OTHER}, the sky must know your voice.</li>
+        <li>[otheragainst] One day you'll pray by accident, {OTHER}, and we'll all pretend not to notice.</li>
+        <li>Off to put in a good word for us again, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -864,6 +867,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] One day you'll run off with a caravan, {OTHER}, and come back with a funny accent.</li>
+        <li>[otherfor] You'd invite every passing trader to supper, {OTHER}.</li>
+        <li>[otheragainst] You'd want strangers to knock twice and show their teeth, {OTHER}.</li>
+        <li>Off to wave at the road again, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -883,6 +889,9 @@
       </plain>
       <cheerful>
         <li>[otheragainst] The statues frown when you walk past, {OTHER}, have you noticed?</li>
+        <li>[otherfor] You talked to a statue this morning, {OTHER}, I heard you.</li>
+        <li>[otheragainst] You'd hang a painting upside down and never notice, {OTHER}.</li>
+        <li>Seen any good walls lately, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -902,6 +911,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] One day you'll invent something that does your chores, {OTHER}, and vanish.</li>
+        <li>[otherfor] You'd marry a new idea if it would have you, {OTHER}.</li>
+        <li>[otheragainst] You glare at new tools like they're trying to trick you, {OTHER}.</li>
+        <li>Learned anything dangerous today, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

@@ -327,6 +327,8 @@
       <cheerful>
         <li>[otherfor] Careful, {OTHER}, if you sharpen that blade any more there'll be nothing left of it.</li>
         <li>[otheragainst] I hear you want a moat, {OTHER}, with a smaller moat inside it.</li>
+        <li>[otherfor] You've polished that weapon so often you can see your face in it, {OTHER}.</li>
+        <li>[otheragainst] I hear you've ordered a wall for your wall, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -609,6 +611,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] You'd cheer a decree banning sunshine if the council made it, {OTHER}.</li>
+        <li>[otherfor] You'd frame a decree and hang it over your bed, {OTHER}.</li>
+        <li>[otheragainst] The council shivers when you put your hand up, {OTHER}.</li>
+        <li>Off to the council with another little list, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -846,6 +851,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] The prisoners asked if you could visit more, {OTHER}, they miss your stories.</li>
+        <li>[otherfor] The prisoners like you better than the rest of us, {OTHER}, I'm jealous.</li>
+        <li>[otheragainst] You'd lock up the chickens if they looked at you funny, {OTHER}.</li>
+        <li>Visiting your friends in the cells again, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

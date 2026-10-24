@@ -163,6 +163,12 @@
         <li>[argue,for,badnews] Easy to say when it's someone else's village going hungry.</li>
         <li>[argue,against] We can't feed the whole world, and you know it.</li>
         <li>[argue,mixed] I said I don't know, and I mean I don't know.</li>
+        <li>[for] We can't pretend it's nothing to do with us.</li>
+        <li>[for] Someone has to care what happens out there.</li>
+        <li>[against] We've enough troubles of our own.</li>
+        <li>[against] Let them handle their own business.</li>
+        <li>[mixed] I don't know enough about it to say.</li>
+        <li>[mixed] It might matter, it might not.</li>
       </plain>
       <warm>
         <li>[agree,for] I'm glad you feel that way too.</li>
@@ -342,6 +348,7 @@
         <li>[otherfor] Every trader who comes, you ask for the news before the prices, {OTHER}.</li>
         <li>[otheragainst] I bet you hide under the table when a stranger mentions the news, {OTHER}.</li>
         <li>[otherfor] When are you off to save everyone, {OTHER}, should I pack you a lunch?</li>
+        <li>[otheragainst] I bet you've never once asked a trader for the news, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>

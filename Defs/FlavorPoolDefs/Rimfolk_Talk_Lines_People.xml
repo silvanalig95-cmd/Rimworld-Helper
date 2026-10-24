@@ -262,6 +262,9 @@
       </plain>
       <cheerful>
         <li>[otherfor] You've shown {SUBJECT} round three times today, {OTHER}.</li>
+        <li>[otherfor] You've given {SUBJECT} your spare blanket and your best spoon, {OTHER}.</li>
+        <li>[otheragainst] You watch {SUBJECT} like a hawk watches a mouse, {OTHER}.</li>
+        <li>Making the new one feel at home, {OTHER}, or just watching?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -494,6 +497,8 @@
       <cheerful>
         <li>[otherfor] You keep finding reasons to walk past a certain someone's bench, {OTHER}.</li>
         <li>[otheragainst] One day someone will steal your heart, {OTHER}, and you'll be furious.</li>
+        <li>[otherfor] You sighed at a sunset yesterday, {OTHER}, a whole sigh.</li>
+        <li>[otheragainst] Someone smiled at you and you checked your pockets, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -930,6 +935,8 @@
       <cheerful>
         <li>[otherfor] You let the children win at every game, {OTHER}, and they know it.</li>
         <li>[otheragainst] One day a child will make you smile, {OTHER}, and you won't be able to stop it.</li>
+        <li>[otherfor] Did you really let the children paint your face, {OTHER}?</li>
+        <li>Still telling the one about the dragon, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
