@@ -185,13 +185,17 @@
     <beats>
       <li>
         <key>sides</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><stranger>false</stranger></li>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><stranger>false</stranger></li>
+        </effects>
         <day>1.5~3</day>
         <answerDays>2</answerDays>
         <titles>
           <li>Riders from both claimants</li>
         </titles>
         <texts>
-          <li>Two riders came to the gate within an hour of each other, one in {X_nameDef}'s colors and one in {OTHER_nameDef}'s, and each asked the same thing.\n\n"{X_nameDef} will keep the roads open and the prices fair," said the first. "Ask your traders."\n\n"{OTHER_nameDef} will see that {FACTION} are never pushed around again," said the second, "and remembers friends."</li>
+          <li>Two riders have come to the gate within an hour of each other, one in {X_nameDef}'s colors and one in {OTHER_nameDef}'s, and each asks the same thing.\n\n"{X_nameDef} will keep the roads open and the prices fair," says the first. "Ask your traders."\n\n"{OTHER_nameDef} will see that {FACTION} are never pushed around again," says the second, "and remembers friends."</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

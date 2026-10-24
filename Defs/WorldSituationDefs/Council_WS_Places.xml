@@ -533,13 +533,16 @@
     <beats>
       <li>
         <key>camp</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>pilgrims</what><count>3~5</count><onward>true</onward></li>
+        </effects>
         <day>1~3</day>
         <count>30~50</count>
         <titles>
           <li>Pilgrims ask to camp</li>
         </titles>
         <texts>
-          <li>A long column of pilgrims has stopped at the edge of the colony's land. Their leader asks whether they may camp by the water for a few nights and rest their feet before the last stretch to {PLACE}. They would need feeding, {COUNT} portions or so.\n\nThey have nothing to trade but songs and news. Some at the colony think they should pay to camp; most think that would be a shameful thing to ask of pilgrims.</li>
+          <li>Pilgrims on the road to {PLACE} have stopped at the colony's gate, the first of a long column. Their leader asks whether they may camp by the water for a few nights and rest their feet before the last stretch. They would need feeding, {COUNT} portions or so.\n\nThey have nothing to trade but songs and news. Some at the colony think they should pay to camp; most think that would be a shameful thing to ask of pilgrims.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -547,7 +550,8 @@
             <label>Welcome them ({COUNT} food)</label>
             <outcome>The pilgrims camp by the water for three nights. The singing carries all the way to the colony after dark.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the pilgrims</label><what>rawfood</what><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the pilgrims</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_PilgrimSongs</thought></li>
             </effects>
@@ -561,6 +565,7 @@
             <outcome>The pilgrims pass a bowl among themselves until the fee is in it, and camp by the water. They sing less than they might have.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>60</count></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
             </effects>
             <flags><li>fee</li></flags>
@@ -591,9 +596,10 @@
           <li>A blessing for the colony</li>
         </titles>
         <texts>
-          <li>On their way home from {PLACE}, the pilgrims stopped again at the colony's gate. Their leader said a blessing over the fields and the people in them, in the old way, and they were gone before anyone could offer supper.\n\nEven the colony's doubters kept their heads bowed until it was over.</li>
+          <li>On their way home from {PLACE}, the pilgrims have stopped again at the colony's gate. Their leader means to say a blessing over the fields and the people in them, in the old way, and they will be on the road again before anyone can offer supper.\n\nEven the colony's doubters keep their heads bowed while it lasts.</li>
         </texts>
         <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>pilgrims</what><count>3~5</count><onward>true</onward><hours>1~2</hours></li>
           <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_Blessed</thought></li>
         </effects>
       </li>
@@ -652,6 +658,9 @@
     <beats>
       <li>
         <key>claim</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>prospectors</what><count>2~3</count></li>
+        </effects>
         <day>2~5</day>
         <count>150~250</count>
         <wealthScaled>true</wealthScaled>
@@ -659,15 +668,16 @@
           <li>Prospectors on the colony's land</li>
         </titles>
         <texts>
-          <li>A party of prospectors from {PLACE} has asked to work the creek beds on the colony's land. They will pay a share of whatever they find when they leave, or {COUNT} silver now, whichever the colony prefers.\n\nThey seem honest enough. Prospectors usually do.</li>
+          <li>A party of prospectors from {PLACE} is at the gate, asking to work the creek beds on the colony's land. They will pay a share of whatever they find when the rush is over, or {COUNT} silver now, whichever the colony prefers.\n\nThey seem honest enough. Prospectors usually do.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Let them dig, for a share</label>
-            <outcome>The prospectors stake out the creek beds. The colony's share will come when they're done, if there's anything to share.</outcome>
+            <outcome>The prospectors stake out the creek beds and camp by the water for a few nights. The colony's share will come when they're done, if there's anything to share.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Owe"><amount>150~700</amount></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
             </effects>
             <flags><li>share</li></flags>
             <deed>let prospectors work its land for a share</deed>
@@ -675,16 +685,17 @@
           </li>
           <li>
             <label>Let them dig, for {COUNT} silver now</label>
-            <outcome>The prospectors pay up front and stake out the creek beds. Whatever they find is theirs.</outcome>
+            <outcome>The prospectors pay up front, stake out the creek beds and camp by the water for a few nights. Whatever they find is theirs.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
             </effects>
             <flags><li>fee</li></flags>
             <deed>sold prospectors the right to dig</deed>
           </li>
           <li>
             <label>Keep them off the land</label>
-            <outcome>The prospectors are told the colony's land is not for digging. They go and dig somebody else's.</outcome>
+            <outcome>The prospectors are told the colony's land is not for digging. They shoulder their picks and go to dig somebody else's.</outcome>
             <ways><openness>-1</openness></ways>
           </li>
         </options>
@@ -695,19 +706,25 @@
         <chance>0.5</chance>
         <message>true</message>
         <requires><li>share</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>prospectors</what><count>2~3</count><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><delay>1~3</delay></li>
+        </effects>
         <texts>
-          <li>Somebody at the prospectors' camp found a nugget the size of a thumb in the colony's creek. Since then the lamps down there have burned all night.</li>
+          <li>One of the prospectors found a nugget the size of a thumb in the colony's creek, and they mean to come back and work it by lamplight.</li>
         </texts>
       </li>
       <li>
         <key>stay</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>prospector</what><ages>22~45</ages><onward>true</onward></li>
+        </effects>
         <day>8~14</day>
         <chance>0.6</chance>
         <titles>
           <li>A prospector wants to stay</li>
         </titles>
         <texts>
-          <li>One of the prospectors has given up on getting rich. After three weeks in the creek beds with nothing to show for it, there are worse things than a roof, regular meals and work that pays in something besides hope.\n\nThe prospector asks whether the colony could use another pair of hands.</li>
+          <li>One of the prospectors has given up on getting rich, and has come up to the gate. After three weeks in the creek beds with nothing to show for it, there are worse things than a roof, regular meals and work that pays in something besides hope.\n\nThe prospector asks whether the colony could use another pair of hands.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

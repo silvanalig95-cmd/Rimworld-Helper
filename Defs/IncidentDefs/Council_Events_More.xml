@@ -17,6 +17,9 @@
         <group>Challenge</group>
         <value>300~800</value>
         <answerDays>1</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what><onlyLowtech>true</onlyLowtech></li>
+        </effects>
         <titles>
           <li>Lost cargo</li>
           <li>{FACTION}'s lost goods</li>
@@ -24,7 +27,7 @@
         </titles>
         <texts>
           <li>[!lowtech] A cargo pod streaked down and thumped into the ground beyond the colony's fields. The markings say it belongs to {FACTION}, and a message from them is already waiting: it went astray, and they'd like it back, please. The colony could, of course, simply not have seen it.</li>
-          <li>[lowtech] "Brown mule, white blaze, about so high. Bolted with half our load on its back." The rider from {FACTION} who came asking is still out of breath.\n\nThe mule is long gone over the hills, but its load is lying on the colony's land where it shed it. The colony can send the goods back, or keep them and say nothing.</li>
+          <li>[lowtech] "Brown mule, white blaze, about so high. Bolted with half our load on its back." The rider from {FACTION} who came asking at the gate is still out of breath.\n\nThe mule is long gone over the hills, but its load is lying on the colony's land where it shed it. The colony can send the goods back, or keep them and say nothing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -48,7 +51,7 @@
             <label>Send it back, and ask for a finder's fee</label>
             <outcome>{B_nameDef} sent the cargo back with a polite note about the colony's trouble, and {FACTION} paid {COUNT} silver as a finder's fee.</outcome>
             <outcomes>
-              <li>[lowtech] {B_nameDef} loaded the goods on a cart and walked them back to {FACTION}'s rider, mentioning the long walk more than once. They paid {COUNT} silver for the trouble.</li>
+              <li>[lowtech] {B_nameDef} told {FACTION}'s rider where the load lay, mentioning the long walk out to it more than once. They paid {COUNT} silver for the trouble.</li>
               <li>[b:past:trader] {B_nameDef} has been on the other side of this kind of deal, and knew what to ask. {FACTION} got their cargo back and paid {COUNT} silver for the favor.</li>
             </outcomes>
             <riskChance>0.4</riskChance>

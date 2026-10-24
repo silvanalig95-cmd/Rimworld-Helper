@@ -189,14 +189,17 @@
     <beats>
       <li>
         <key>fugitive</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>deserter</what><ages>19~28</ages><onward>true</onward></li>
+        </effects>
         <day>2~5</day>
         <answerDays>1</answerDays>
         <titles>
           <li>A deserter at the gate</li>
         </titles>
         <texts>
-          <li>A young soldier in a torn imperial uniform came out of the trees at dusk with empty hands raised. The soldier deserted from the garrison near {PLACE} and hasn't eaten in three days.\n\nThe deserter doesn't want to fight anyone, only to stop running. The patrols are a day behind.</li>
-          <li>[winter] {A_nameDef} found a deserter from {FACTION}'s garrison half-frozen in the woodshed this morning, still in uniform. The soldier says the officer ordered a village burned, and that was the end of it. That was a week ago.\n\nAn imperial patrol passed the colony yesterday, asking after exactly this.</li>
+          <li>A young soldier in a torn imperial uniform has come out of the trees to the colony's gate with empty hands raised. The soldier deserted from the garrison near {PLACE} and hasn't eaten in three days.\n\nThe deserter doesn't want to fight anyone, only to stop running. The patrols are a day behind.</li>
+          <li>[winter] A deserter from {FACTION}'s garrison has come to the gate half-frozen, still in uniform. The soldier says the officer ordered a village burned, and that was the end of it. That was a week ago.\n\nAn imperial patrol passed the colony yesterday, asking after exactly this.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -213,9 +216,9 @@
           </li>
           <li>
             <label>Hand the deserter over for the reward</label>
-            <outcome>The deserter didn't fight when the patrol came. The officer paid the reward in full and thanked the colony for its loyalty.</outcome>
+            <outcome>The deserter hears the answer without a word and goes down the road to where the patrol is waiting. Their officer will send the reward up in full, with thanks for the colony's loyalty.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Silver"><count>200</count></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><count>200</count><fromAfar>true</fromAfar></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_HandedOver</thought><onlyTrait><li>Kind</li></onlyTrait></li>
             </effects>
@@ -226,7 +229,10 @@
           </li>
           <li>
             <label>Feed the deserter and send them on</label>
-            <outcome>The deserter ate two bowls of stew, took a loaf for the road, and was gone before the patrol came by. When it did, the colony hadn't seen anyone.</outcome>
+            <outcome>A hot meal and something for the road are carried out to the gate, and the deserter will be gone before the patrol comes by. When it does, the colony won't have seen anyone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the deserter</label><what>meals</what><count>2</count><ifHave>true</ifHave></li>
+            </effects>
             <flags><li>fed</li></flags>
             <ways><mercy>1</mercy></ways>
           </li>

@@ -10,6 +10,8 @@
   <CC_Visit_Come_retinue>The lord's retinue is coming along the road from {0}'s country.</CC_Visit_Come_retinue>
   <CC_Visit_Come_drovers>The drovers of {0} are bringing their herd onto the far meadow for the night.</CC_Visit_Come_drovers>
   <CC_Visit_Come_herders>The herders of {0} are bringing their animals down to the water.</CC_Visit_Come_herders>
+  <CC_Visit_Come_rider>A rider of {0} is coming along the road past the colony.</CC_Visit_Come_rider>
+  <CC_Visit_Come_prospectors>Prospectors of {0} are coming back to work the creek by lamplight.</CC_Visit_Come_prospectors>
 
   <!-- They had to go before their business was done -->
   <CC_Visit_Weather>The visitors from {0} couldn't stay out in this weather any longer, and have gone on.</CC_Visit_Weather>

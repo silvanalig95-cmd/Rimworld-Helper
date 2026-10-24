@@ -144,12 +144,17 @@ namespace ColonyCouncil
     {
         public int count;
         public float factor = 1f;
+        /// <summary>
+        /// Sent from afar by their courier, never handed over by the one at the gate (who is the one handed over for the
+        /// reward, or has nothing to pay with).
+        /// </summary>
+        public bool fromAfar;
 
         public override void Apply(DilemmaContext ctx)
         {
             if (!Gate(ctx)) return;
             int n = Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor);
-            Couriers.PaySilver(SituationEffectUtil.MapOf(ctx), IntVec3.Invalid, n, Couriers.PeopleOf(ctx), ctx.stranger);
+            Couriers.PaySilver(SituationEffectUtil.MapOf(ctx), IntVec3.Invalid, n, Couriers.PeopleOf(ctx), fromAfar ? null : ctx.stranger);
         }
     }
 
@@ -336,7 +341,8 @@ namespace ColonyCouncil
     /// <summary>
     /// Takes goods out of the stores and pays for them: {COUNT} of {THING} (or the given ones) at <see cref="price"/>
     /// times their worth. The buyers' courier brings the silver and takes the goods in one visit (Couriers/); with
-    /// <see cref="later"/>, they come for the goods now and the silver comes when the situation ends.
+    /// <see cref="later"/>, they come for the goods now and the silver comes when the situation ends; with
+    /// <see cref="toVisitor"/>, the buyer waiting at the gate takes them and pays then and there.
     /// </summary>
     public class WorldEffect_Sell : DilemmaEffect
     {
@@ -345,6 +351,11 @@ namespace ColonyCouncil
         public float price = 1f;
         /// <summary>The silver comes when the situation ends, not now (a cart sent to a fair).</summary>
         public bool later;
+        /// <summary>
+        /// The buyer is the one at the gate (the beat's X: a smith with a cart, a merchant house's agent): a colonist
+        /// carries the goods out to them and they hand over the price. When they've gone, as without it.
+        /// </summary>
+        public bool toVisitor;
 
         private ThingDef Def(DilemmaContext ctx) => thing ?? ctx.thing;
 
@@ -371,7 +382,27 @@ namespace ColonyCouncil
                 if (!Couriers.TakeFromStores(map, d, n, buyers)) return;
                 s.AddNum("owed", silver);
             }
-            else Couriers.Sell(map, d, n, silver, buyers, IntVec3.Invalid);
+            else if (!(toVisitor && ToVisitor(ctx, map, d, n, silver))) Couriers.Sell(map, d, n, silver, buyers, IntVec3.Invalid);
+        }
+
+        /// <summary>The goods go out to the buyer at the gate as an errand (PlayOut/), and they pay in person. False: they aren't here.</summary>
+        private static bool ToVisitor(DilemmaContext ctx, Map map, ThingDef d, int n, int silver)
+        {
+            var x = ctx.stranger;
+            if (!Visitors.On || !PlayOuts.On || !Couriers.InPerson(x, map) || VarietyUtil.InStores(map, d) < n) return false;
+            try
+            {
+                if (ctx.map == null) ctx.map = map;
+                // The errand takes them from the stores itself if it can't happen.
+                new DilemmaEffect_CarryOut { what = d.defName, count = n, steward = false, who = PlayWho.A, to = PlaySpot.Stranger }.Apply(ctx);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("sale to the visitor", e);
+                return false;
+            }
+            Couriers.PaySilver(map, IntVec3.Invalid, silver, x.Faction, x);
+            return true;
         }
     }
 

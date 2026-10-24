@@ -318,13 +318,16 @@
     <beats>
       <li>
         <key>timber</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>foreman</what><stranger>false</stranger></li>
+        </effects>
         <day>2~5</day>
         <count>60~120</count>
         <titles>
           <li>Timber for the road</li>
         </titles>
         <texts>
-          <li>The road gang's foreman has walked up to the colony with a tally stick and a question. They're short of timber for the bridges and the culverts, {COUNT} logs at least, and the colony has a woodpile.\n\n{FACTION} will pay a fair price for it, or remember it as the colony's share of the road.</li>
+          <li>The road gang's foreman has walked up to the colony's gate with a tally stick and a question. They're short of timber for the bridges and the culverts, {COUNT} logs at least, and the colony has a woodpile.\n\n{FACTION} will pay a fair price for it, or remember it as the colony's share of the road.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -763,9 +766,9 @@
           </li>
           <li>
             <label>Feed them and send them on to {PLACE}</label>
-            <outcome>The colony feeds them and points the way to {PLACE}, where someone may still remember them.</outcome>
+            <outcome>Food is carried out to them at the gate, and they are pointed the way to {PLACE}, where someone may still remember them.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>10</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the road to {PLACE}</label><what>rawfood</what><count>10</count><ifHave>true</ifHave></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <ways><mercy>1</mercy></ways>

@@ -271,20 +271,25 @@
     <beats>
       <li>
         <key>fugitive</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>fugitive</what><gender>Male</gender><ages>16~19</ages><onward>true</onward></li>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>rider</what><enemy>true</enemy><spot>Road</spot><onward>true</onward><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>1~1.5</delay></li>
+        </effects>
         <day>2~5</day>
         <titles>
           <li>Someone running from the feud</li>
         </titles>
         <texts>
-          <li>A young man of {FACTION} came to the gate at dusk, out of breath and muddy to the knees. He is the one who drew the knife, he says, and {ENEMY}'s family has sworn to have his life for the one he took. He begs for somewhere to hide until it cools.\n\nHe looks about nineteen, and terrified.</li>
-          <li>[theirLowtech] A boy of {FACTION}, hardly old enough to shave, is hammering on the colony's gate. He killed a man of {ENEMY} in the brawl over {NAME}, by accident he says, and the dead man's family is hunting him.\n\nAn hour later a rider of {ENEMY} goes slowly past the gate, looking at the walls.</li>
+          <li>A young man of {FACTION} has come to the gate, out of breath and muddy to the knees. He is the one who drew the knife, he says, and {ENEMY}'s family has sworn to have his life for the one he took. He begs for somewhere to hide until it cools.\n\nHe looks about nineteen, and keeps looking back down the road.</li>
+          <li>[theirLowtech] A boy of {FACTION}, hardly old enough to shave, is hammering on the colony's gate. He killed a man of {ENEMY} in the brawl over {NAME}, by accident he says, and the dead man's family is hunting him.\n\nOne of their riders can't be far behind.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Hide him</label>
-            <outcome>The boy gets a cot in the storeroom and is told to keep away from the windows. By evening both families know where he is.</outcome>
+            <outcome>The boy is given a blanket and somewhere to sleep for a few nights, and told to keep his head down. By evening both families know where he is.</outcome>
             <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>none</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -295,15 +300,15 @@
           </li>
           <li>
             <label>Send him on, with food</label>
-            <outcome>He takes the bread and the water skin, and is gone up into the hills before dark.</outcome>
+            <outcome>He takes the bread and the water skin, and goes on up into the hills.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>bread for the road</label><what>rawfood</what><count>8</count><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>bread for the road</label><what>rawfood</what><count>8</count></li>
             </effects>
             <ways><mercy>1</mercy></ways>
           </li>
           <li>
             <label>Hand him to {ENEMY}'s kin</label>
-            <outcome>The boy is held in the yard until {ENEMY}'s riders come back for him. He goes with them without a word.</outcome>
+            <outcome>{ENEMY}'s riders are waiting down the road. The boy is sent out to them, and goes without a word.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sidedWith</kind><enemy>true</enemy><about>other</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><about>other</about></li>
@@ -360,21 +365,24 @@
         <key>price</key>
         <called>true</called>
         <forbids><li>worse</li></forbids>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>elder</what><enemy>true</enemy><gender>Male</gender><ages>58~75</ages></li>
+        </effects>
         <count>120~220</count>
         <wealthScaled>true</wealthScaled>
         <titles>
           <li>The blood price</li>
         </titles>
         <texts>
-          <li>The families have agreed on a blood price for the life taken over {NAME}: so much silver, paid by {FACTION}'s family to {ENEMY}'s, and the matter closed for good. {FACTION}'s family has sold everything it can spare and is still {COUNT} short.\n\n{A_nameDef} thinks the colony could make up the difference, and that it would be the cheapest peace anyone ever bought.</li>
+          <li>The families have agreed on a blood price for the life taken over {NAME}: so much silver, paid by {FACTION}'s family to {ENEMY}'s, and the matter closed for good. {FACTION}'s family has sold everything it can spare and is still {COUNT} short. An elder of {ENEMY}'s family has come to the gate to hear whether the colony will make up the rest.\n\n{A_nameDef} thinks it should, and that it would be the cheapest peace anyone ever bought.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Pay the last {COUNT} silver</label>
-            <outcome>An elder of {ENEMY}'s family came for the silver himself and counted it twice at the gate. Then he shook {A_nameDef}'s hand, and the matter was closed.</outcome>
+            <outcome>The elder of {ENEMY}'s family counts the silver twice at the gate, then shakes {A_nameDef}'s hand, and the matter is closed.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the last of the blood price</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the last of the blood price</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount><who>Both</who></li>
               <li Class="ColonyCouncil.ArcEffect_Epithet"><epithet>Council_Epithet_Feudbreaker</epithet><chance>0.7</chance></li>
             </effects>
@@ -387,7 +395,7 @@
           </li>
           <li>
             <label>They'll have to find it themselves</label>
-            <outcome>{A_nameDef} tells them the colony has done what it can. The families go back to counting coins and glaring at each other.</outcome>
+            <outcome>{A_nameDef} tells the elder the colony has done what it can. The families go back to counting coins and glaring at each other.</outcome>
           </li>
         </options>
       </li>

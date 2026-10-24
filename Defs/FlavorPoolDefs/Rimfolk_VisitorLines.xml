@@ -6,7 +6,8 @@
     its moment: arrive (at the gate or their spot), wait (a while into waiting for the colony's answer), stay (given the
     night), pass (going by on the road), leave. What they are: rider, runner, envoy, herald, driver, foreman, clerk,
     family, families, travelers, merchant, exiles, captive, survivor, pilgrims, mourners, drovers, herders, hunters,
-    band, retinue, patrol, stargazer, singer, canvassers, surveyors, salvagers; animals (they brought some). Their people:
+    band, retinue, patrol, stargazer, singer, canvassers, surveyors, salvagers, fugitive, elder, tollman, smith, agent,
+    deserter, prospectors, prospector; animals (they brought some). Their people:
     theirLowtech or theirHightech. The weather and the hour come from the speaker's moment (rain, snow, winter, night...).
     Keep them short: only the first sentence shows as floating text.
   -->
@@ -43,6 +44,16 @@
         <li>[arrive,clerk] I'm sorry about the amount on the assessment.</li>
         <li>[arrive,retinue] Make way for the lord's household.</li>
         <li>[arrive,singer] I'll sing for my supper, if there's supper.</li>
+        <li>[arrive,fugitive] Is there somewhere I can sit where the road can't see me?</li>
+        <li>[arrive,elder] I came to hear it from your own mouths.</li>
+        <li>[arrive,tollman] The keeper's terms. Read them, I'll wait.</li>
+        <li>[arrive,smith] Don't mind the soot, it never comes off.</li>
+        <li>[arrive,smith,animals] The cart's empty, and it doesn't have to be.</li>
+        <li>[arrive,agent] My house buys from the good stops on this road.</li>
+        <li>[arrive,deserter] I'm not armed. I'm not anyone's soldier now.</li>
+        <li>[arrive,prospectors] There's color in these hills, mark my words.</li>
+        <li>[arrive,prospectors,night] Bring the lamps down to the water.</li>
+        <li>[arrive,prospector] No pan this time. Just me.</li>
         <li>[arrive,winter] Cold enough to split stones out there.</li>
         <li>[arrive,rain] Soaked through on the last mile.</li>
         <li>[wait] Still waiting on an answer here.</li>
@@ -52,22 +63,36 @@
         <li>[wait,envoy] I can wait as long as your council can talk.</li>
         <li>[wait,pilgrims] We'll pray while we wait.</li>
         <li>[wait,winter] Getting colder out here.</li>
+        <li>[wait,fugitive] Every rider on that road is looking for me.</li>
+        <li>[wait,elder] I have buried one boy this year. I can wait an hour.</li>
+        <li>[wait,smith] The widow's plow won't mend itself.</li>
+        <li>[wait,agent] The wagon can't wait all day.</li>
+        <li>[wait,deserter] If a patrol comes by, I wasn't here.</li>
         <li>[stay] Thank you. We'll be gone at first light.</li>
         <li>[stay,travelers] We'll pay you back when the road opens.</li>
         <li>[stay,merchant] This goes in my ledger, and I don't forget my ledger.</li>
         <li>[stay,stargazer] I'll be out watching the sky all night, come and look if you like.</li>
+        <li>[stay,fugitive] I'll keep out of the way. You won't know I'm here.</li>
+        <li>[stay,pilgrims] We'll make camp by the water, out of your way.</li>
+        <li>[stay,prospectors] We'll be down at the creek if you want us.</li>
         <li>[pass] Don't mind us, we're just passing.</li>
         <li>[pass,mourners] Slowly now. Keep the drum steady.</li>
         <li>[pass,band] Keep walking, and don't stare at their walls.</li>
         <li>[pass,retinue] Banners up. They're watching from the wall.</li>
         <li>[pass,drovers] Keep them off the fields!</li>
         <li>[pass,herders] Down to the water, all of you.</li>
+        <li>[pass,rider] He came this way. I'm sure of it.</li>
         <li>[leave] Time I was going.</li>
         <li>[leave,theirLowtech] If I go now I'll be home before the weather turns.</li>
         <li>[leave,family] Come on. Pick up your things.</li>
         <li>[leave,pilgrims] Stay well, and stay fed.</li>
         <li>[leave,drovers] Up, all of you, it's a long road today.</li>
         <li>[leave,herders] The rest has done them good.</li>
+        <li>[leave,fugitive] If anyone asks, you never saw me.</li>
+        <li>[leave,tollman] Back to the chain, then.</li>
+        <li>[leave,smith] Good steel's worth the walk.</li>
+        <li>[leave,prospectors] On to the next creek.</li>
+        <li>[leave,prospector] Next hill. There's always a next hill.</li>
       </plain>
       <warm>
         <li>[arrive] Your people look well fed, that's a good sign.</li>
@@ -76,6 +101,8 @@
         <li>[wait] Whatever you decide, thank you for hearing me out.</li>
         <li>[stay] You don't know what a roof for the night is worth.</li>
         <li>[stay,family] They haven't slept dry in a week.</li>
+        <li>[arrive,elder] Your talker did right by both our families.</li>
+        <li>[stay,pilgrims] We'll sing for you tonight, if you'll let us.</li>
         <li>[pass,mourners] Thank you for letting us pass.</li>
         <li>[leave] Keep well. All of you.</li>
         <li>[leave,stargazer] Look up now and then, it's worth it.</li>
@@ -84,6 +111,8 @@
         <li>[arrive] Well? Who do I talk to?</li>
         <li>[arrive,rider] I want an answer, and soon.</li>
         <li>[wait] How long does a council take?</li>
+        <li>[arrive,tollman] Pay or don't. There are other gates.</li>
+        <li>[arrive,smith] Steel. As much as you can spare.</li>
         <li>[stay] One night. We'll be gone before you're up.</li>
         <li>[pass] Eyes front. Keep moving.</li>
         <li>[leave] That's it, then, I'm going.</li>
@@ -91,6 +120,7 @@
       <cheerful>
         <li>[arrive] Found you on the first try!</li>
         <li>[arrive,runner] I didn't stop once, not once.</li>
+        <li>[arrive,prospectors] Today's the day, I can feel it in my boots!</li>
         <li>[wait] Nice view from your gate, this.</li>
         <li>[stay] A fire and a wall to sleep against, that's luxury.</li>
         <li>[pass,drovers] Look at them go, best herd on the road!</li>
@@ -99,6 +129,8 @@
       <gloomy>
         <li>[arrive] Another gate, another answer.</li>
         <li>[arrive,travelers] We'd have died out there, simple as that.</li>
+        <li>[arrive,deserter] Three days without food. I stopped counting the miles.</li>
+        <li>[wait,fugitive] They'll find me, whatever you say.</li>
         <li>[wait] I'll stand here till someone tells me otherwise.</li>
         <li>[wait,night] Long night by a wall.</li>
         <li>[pass,mourners] It's a long road to bury someone.</li>
@@ -107,6 +139,8 @@
       <cold>
         <li>[arrive] I carry the message, nothing more.</li>
         <li>[arrive,clerk] Payment is expected in full.</li>
+        <li>[arrive,agent] I have other places on my list.</li>
+        <li>[wait,tollman] The board says what it says.</li>
         <li>[wait] I'll note how long this took.</li>
         <li>[stay] One night. Then we're even.</li>
         <li>[pass,band] We'll remember the way.</li>

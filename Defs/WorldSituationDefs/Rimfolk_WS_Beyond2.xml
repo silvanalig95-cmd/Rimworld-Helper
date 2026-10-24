@@ -322,6 +322,9 @@
     <beats>
       <li>
         <key>pay</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>tollman</what><gender>Male</gender><ages>25~55</ages></li>
+        </effects>
         <day>2~5</day>
         <count>150~280</count>
         <wealthScaled>true</wealthScaled>
@@ -329,7 +332,7 @@
           <li>Paying the toll</li>
         </titles>
         <texts>
-          <li>{FACTION}'s toll-keeper has sent the colony his terms, chalked on a board:\n\n{COUNT} silver, paid now. The colony's carts, and every caravan bound for it, pass the chain free until the season ends.\n\nIt's a lot of silver. It's less than the colony would lose without traders.</li>
+          <li>{FACTION}'s toll-keeper has sent his man to the gate with the terms chalked on a board:\n\n{COUNT} silver, paid now. The colony's carts, and every caravan bound for it, pass the chain free until the season ends.\n\nIt's a lot of silver. It's less than the colony would lose without traders.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -337,14 +340,14 @@
             <label>Pay {COUNT} silver</label>
             <outcome>The toll-keeper's man counts the silver at the gate and leaves a painted wooden token, to be shown at the chain. Traders bound for the colony will be waved through.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the toll</label><what>silver</what><tens>true</tens><steward>false</steward><to>Gate</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the toll</label><what>silver</what><tens>true</tens><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <flags><li>paid</li></flags>
           </li>
           <li>
             <label>Not a single coin</label>
-            <outcome>The colony won't pay. The traders who come will be the ones willing to go the long way around.</outcome>
+            <outcome>The colony won't pay. The toll-keeper's man tucks his board under his arm and goes back down the road, and the traders who come will be the ones willing to go the long way around.</outcome>
             <flags><li>refused</li></flags>
           </li>
         </options>
@@ -451,14 +454,17 @@
     <beats>
       <li>
         <key>buy</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>smith</what><gender>Male</gender><ages>30~60</ages><pack>true</pack></li>
+        </effects>
         <day>1~4</day>
         <count>30~60</count>
         <titles>
           <li>{FACTION} want steel</li>
         </titles>
         <texts>
-          <li>{FACTION}'s smith has come up from {PLACE} with a purse and a list. {FACTION} need {COUNT} steel for nails and hinges before the season ends, and will pay twice what it's worth.\n\nIt's a good price. It's also the colony's steel.</li>
-          <li>A note came up from {PLACE} in a smith's big square hand, signed for {FACTION}, with a hammer drawn under the name:\n\n"Need {COUNT} steel. Will pay double. Nails, hinges, a plow for the widow at the mill. Can send a cart."</li>
+          <li>{FACTION}'s smith has come up from {PLACE} with a purse and a list, and is waiting at the gate. {FACTION} need {COUNT} steel for nails and hinges before the season ends, and will pay twice what it's worth.\n\nIt's a good price. It's also the colony's steel.</li>
+          <li>The smith from {PLACE} at the gate has handed in a note in his own big square hand, signed for {FACTION}, with a hammer drawn under the name:\n\n"Need {COUNT} steel. Will pay double. Nails, hinges, a plow for the widow at the mill. Have brought the purse."</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -466,7 +472,7 @@
             <label>Sell {COUNT} steel at twice its worth</label>
             <outcome>The smith loads the steel onto his cart and leaves the purse behind, as full as he brought it.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Steel</thing><price>2</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Steel</thing><price>2</price><toVisitor>true</toVisitor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <help>1</help>
@@ -476,7 +482,7 @@
             <label>Sell it at its plain worth</label>
             <outcome>The smith blinks at the price, pays it before the colony can change its mind, and promises {FACTION} will hear about it.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Steel</thing><price>1</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Steel</thing><price>1</price><toVisitor>true</toVisitor></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
             </effects>
             <help>2</help>
