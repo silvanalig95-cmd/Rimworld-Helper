@@ -165,6 +165,17 @@ namespace ColonyCouncil
             p != null && !p.Dead && p.RaceProps != null && p.RaceProps.Humanlike && (p.IsColonist || p.IsSlaveOfColony) && !p.IsQuestLodger()
             && People.HasInnerLife(p) && !p.DevelopmentalStage.Baby() && !p.DevelopmentalStage.Child() && Persona.Eligible(p);
 
+        /// <summary>A child (past babyhood, not yet grown).</summary>
+        public static bool IsChild(Pawn p) => p != null && p.DevelopmentalStage.Child();
+
+        /// <summary>One of the colony's children, who talks only of growing up (the topics for children).</summary>
+        public static bool EligibleChild(Pawn p) =>
+            p != null && !p.Dead && p.RaceProps != null && p.RaceProps.Humanlike && p.IsColonist && !p.IsQuestLodger()
+            && People.HasInnerLife(p) && p.DevelopmentalStage.Child() && Persona.Eligible(p);
+
+        /// <summary>A talk with a child in it comes up this much as often as one between two grown-ups (out of the same share).</summary>
+        public const float ChildShare = 0.5f;
+
         // One pair's shares are worked out once per tick (the game asks for every talk interaction in turn).
         private static int cacheTick = -1, cacheA = -1, cacheB = -1;
         private static float[] cached;
@@ -187,7 +198,10 @@ namespace ColonyCouncil
 
         private static float[] Shares(Pawn a, Pawn b, int now)
         {
-            if (!Eligible(a) || !Eligible(b) || !Together.Can(a, b)) return null;
+            // A child talks with anyone, but only of growing up (the topics for children); grown-ups talk of the rest.
+            bool kidA = !Eligible(a) && EligibleChild(a), kidB = !Eligible(b) && EligibleChild(b);
+            if (!(kidA || Eligible(a)) || !(kidB || Eligible(b)) || !Together.Can(a, b)) return null;
+            bool kids = kidA || kidB;
             var tr = TalkTracker.Instance;
             if (tr == null || !tr.MayStart(a, b, now) || !SocialPace.Ready(a, b)) return null;
             var scene = TalkScene.Of(a.Map);
@@ -198,6 +212,7 @@ namespace ColonyCouncil
             var sal = new float[defs.Count];
             for (int k = 0; k < defs.Count; k++)
             {
+                if (kids != (kindOf[k] == TalkKind.Topic && topicOf[k].forChildren)) continue;
                 try
                 {
                     sal[k] = Salience(k, a, b, va, vb, tie, scene, tr, now);
@@ -211,6 +226,7 @@ namespace ColonyCouncil
             // How talkative the speaker is (warm and playful more, cold and dour less) and how they feel today come in
             // through the moments' own factor (Heart.MomentWeightFactor, with the persona's lean), counted once.
             float budget = BaseBudget * S.momentFrequency * PairFactor(a, b, tie) * InteractionWorker_Moment.MomentWeightFactor(a, b, false, "talk");
+            if (kids) budget *= ChildShare;
             var shares = TalkMath.Shares(sal, budget);
             for (int k = 0; k < shares.Length; k++) shares[k] *= extWeight[k];
             return shares;
@@ -404,7 +420,7 @@ namespace ColonyCouncil
                         warmLately = tones.warm,
                         frictionsOn = S.frictions,
                         otherLow = Low(b) != null,
-                        noTease = c.topic.noTease
+                        noTease = w.NoTease(c.scene)
                     };
                     c.sore = tones.sore;
                     c.outcome = TalkMath.Outcome(x, Rand.Value, Rand.Value);
@@ -819,7 +835,7 @@ namespace ColonyCouncil
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
                 var r = Persona.Of(p);
-                if (r == null || r.stances.Count == 0 || !Eligible(p)) continue;
+                if (r == null || r.stances.Count == 0 || !Eligible(p) && !EligibleChild(p)) continue;
                 var scene = TalkScene.Of(p.MapHeld);
                 foreach (var key in r.stances.Keys.ToList())
                 {

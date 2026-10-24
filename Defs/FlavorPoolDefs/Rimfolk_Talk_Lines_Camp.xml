@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about the camp on the map (Source/ColonyCouncil/Social/Talk/TopicWorkers_Life.cs): glad of the people camped
+    nearby, or wanting them gone and the land back. Tags as in Rimfolk_Talk_Lines_Fight.xml, and for the camp:
+      [coming] they're still walking in; [leaving] they go within the day; [tense] tension with them is high (40 or more)
+      [terms] the colony set them terms; [trader] they trade; [campfamily] a refugee family with children; [hunting] they hunt the colony's
+      game; [felling] they've cut its trees; [knowsthem] the speaker has spent time at their fire
+      [faithful] pilgrims, a procession, penitents, tree-singers; [healers] traveling healers; [music] players or minstrels;
+      [mourners] mourners passing through; [camp:Hunters], [camp:Hermit], [camp:Smith]... the kind by its name
+    {SUBJECT}: the camp's people with their article ("the pilgrims", "the hermit"), one person or many, so lines use it
+    as an object and call them "they". One sentence each, as all talk lines.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Camp_Open</defName>
+    <topic>Rimfolk_Topic_Camp</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for,!coming] It's good to see other fires at night, I'll say that.</li>
+        <li>[for,!coming] They've been no trouble, as far as I can see.</li>
+        <li>[for] A few neighbors for a while won't hurt us.</li>
+        <li>[for,subject,!coming] I went over to see {SUBJECT} yesterday, and they fed me.</li>
+        <li>[for,knowsthem,!coming] I've been down to their camp a few times now, and they're decent people.</li>
+        <li>[for,trader] Traders camped on our doorstep, we couldn't ask for better.</li>
+        <li>[for,campfamily] There are children in that camp, did you see?</li>
+        <li>[for,faithful,!coming] Whatever they pray to, they've been peaceful about it.</li>
+        <li>[for,healers] Their healer looked at my bad knee and wouldn't take a thing for it.</li>
+        <li>[for,music,!coming] I could hear their music from the fields last night.</li>
+        <li>[for,coming] There are people coming to camp nearby, did you hear?</li>
+        <li>[for,leaving] They'll be gone soon, and I'll be sorry to see it.</li>
+        <li>[against] I don't like strangers camped where I can see their fires.</li>
+        <li>[against,!coming] Nobody asked them, they just turned up and put up tents.</li>
+        <li>[against] Every day they're here is a day I sleep worse.</li>
+        <li>[against,hunting] They're hunting our game, and nobody's saying anything.</li>
+        <li>[against,felling] They've been cutting our trees, I've seen the stumps.</li>
+        <li>[against,tense] Something's going to happen with that camp, I can feel it.</li>
+        <li>[against,terms] They agreed to terms, and I'll believe they keep them when I see it.</li>
+        <li>[against,coming] More strangers walking in, just what we need.</li>
+        <li>[against,subject] I'd keep an eye on {SUBJECT}, if I were you.</li>
+        <li>[against,trader] Their prices are no better than the last caravan's.</li>
+        <li>[against,faithful] I wish they'd do their praying somewhere else.</li>
+        <li>[mixed] I can't make up my mind about that camp.</li>
+        <li>[mixed,subject] What do you make of {SUBJECT}, really?</li>
+        <li>[mixed,leaving] They'll be gone soon, whatever we think of them.</li>
+        <li>[for] It costs us nothing to let them be, and they might be useful.</li>
+        <li>[for] I like hearing other voices out there in the evenings.</li>
+        <li>[for] Travelers like that bring news, and we need news.</li>
+        <li>[for,!coming] They've kept to themselves, and that's all I'd ask of anyone.</li>
+        <li>[against] We don't know who they are or what they want.</li>
+        <li>[against] Strangers this close make the animals nervous, and me too.</li>
+        <li>[against] I'd sleep better if they were on someone else's land.</li>
+        <li>[against] Let them stay a few days, and they'll think it's theirs.</li>
+        <li>[mixed] I haven't been over there yet, have you?</li>
+        <li>[mixed] I keep meaning to go and see them, and I keep putting it off.</li>
+        <li>[mixed] Do you think they'll stay long?</li>
+        <li>[mixed] They seem all right, but what do I know?</li>
+      </plain>
+      <warm>
+        <li>[for,!coming] I took them a pot of stew yesterday, and they looked like they needed it.</li>
+        <li>[for,campfamily] I hope the little ones in that camp have enough to eat.</li>
+        <li>[against] I'm sure they're good people, but I'd feel safer if they moved on.</li>
+        <li>[mixed] I hope they find whatever they're looking for.</li>
+        <li>[for,knowsthem,!coming] They know my name over there now, and they wave.</li>
+        <li>[for] Someone should make sure they've got enough firewood.</li>
+        <li>[mixed] I'd like to know their story, wouldn't you?</li>
+      </warm>
+      <blunt>
+        <li>[for] They're fine, leave them alone.</li>
+        <li>[against] I want them gone.</li>
+        <li>[against,hunting] Every deer they take is one we don't eat.</li>
+        <li>[against,tense] That camp's trouble, plain as day.</li>
+        <li>[mixed] Are they staying or going, that's all I want to know.</li>
+        <li>[against] Strangers, that's all they are.</li>
+        <li>[mixed] What do they want, that's the question.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] New faces, new stories, I'm going over there tonight.</li>
+        <li>[for,music] If they play again tonight, I'm dancing, and you can't stop me.</li>
+        <li>[against] I'll miss them the way I miss a stone in my boot.</li>
+        <li>[for,trader] I've already worked out what I'm going to buy.</li>
+        <li>[mixed] I can't tell if they're our new friends or our new problem.</li>
+        <li>[mixed] I've already made up three stories about who they really are.</li>
+        <li>[for] More people to beat at games, I say.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Strangers camp, and then strangers take, that's how it goes.</li>
+        <li>[for] It's nice to have company out here, while it lasts.</li>
+        <li>[against,tense] This is going to end badly, I just know it.</li>
+        <li>[mixed,leaving] They'll go, like everyone does.</li>
+        <li>[for,mourners] They're grieving, and I know what that's like.</li>
+        <li>[mixed] People like that come and go, and nothing changes.</li>
+        <li>[against] Strangers bring trouble, sooner or later.</li>
+      </gloomy>
+      <cold>
+        <li>[for] They're useful, as long as they keep to their side.</li>
+        <li>[against] Every day they stay costs us something.</li>
+        <li>[for,trader] A market on our doorstep saves us a long walk.</li>
+        <li>[against,felling] They're using our land and paying nothing for it.</li>
+        <li>[mixed] They're neither a help nor a threat, yet.</li>
+        <li>[mixed] Their purpose here is unclear.</li>
+        <li>[for] They cost us little and may be of use.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Camp_Reply</defName>
+    <topic>Rimfolk_Topic_Camp</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for,!coming] They've been good neighbors, I'll give them that.</li>
+        <li>[agree,for] I'd be glad if they stayed a while longer.</li>
+        <li>[agree,for,knowsthem] They're friendly enough, once you sit with them.</li>
+        <li>[agree,for,trader,!coming] I got a fair deal from them, which is more than I expected.</li>
+        <li>[agree,against] I'll be glad to see their backs.</li>
+        <li>[agree,against] They should have asked before setting up there.</li>
+        <li>[agree,against,hunting] There's hardly a deer left in the woods.</li>
+        <li>[agree,against,tense] I've seen how they look at our stores.</li>
+        <li>[agree,mixed] I go back and forth on them too.</li>
+        <li>[agree,mixed] They're hard to read, that lot.</li>
+        <li>[agree] I saw some of them at the water this morning.</li>
+        <li>[agree,leaving] They'll be off soon anyway.</li>
+        <li>[debate,for] What harm have they done, really?</li>
+        <li>[debate,for] They'll be gone soon enough, so let them be.</li>
+        <li>[debate,for,hunting] There's plenty of game, they're not taking much.</li>
+        <li>[debate,against] Nice enough, but it's our land.</li>
+        <li>[debate,against] I'd like them better a few hills further off.</li>
+        <li>[debate,against,trader] A good price today doesn't mean much if they rob us tomorrow.</li>
+        <li>[debate,mixed] I'd want to know them better before I decided.</li>
+        <li>[debate,mixed] Some of them seem all right, and some of them I'm not sure about.</li>
+        <li>[debate] We don't even know where they're headed.</li>
+        <li>[debate,coming] Let's see what they're like before we decide anything.</li>
+        <li>[argue,for] You'd run off anyone who isn't us.</li>
+        <li>[argue,for] They've done nothing to you, so leave them be.</li>
+        <li>[argue,against] You'd invite raiders in for supper if they smiled at you.</li>
+        <li>[argue,against] Wait until they walk off with half the woodpile.</li>
+        <li>[argue,mixed] I'm not on anyone's side, stop pushing me.</li>
+        <li>[argue] You haven't even been down there.</li>
+        <li>[agree,!coming] They keep their fire going all night, have you noticed?</li>
+        <li>[debate] We could just ask them how long they're staying.</li>
+        <li>[argue] You've made up your mind without meeting them.</li>
+        <li>[agree,for,!coming] They've been more polite than some of us.</li>
+        <li>[agree,against] I counted them twice and got two different numbers.</li>
+        <li>[agree,mixed] I haven't decided either.</li>
+        <li>[agree,mixed] They seem harmless, but who knows.</li>
+        <li>[debate,for] They're tired people looking for somewhere to rest, that's all.</li>
+        <li>[debate,against] Let them stay, but someone should keep an eye on them.</li>
+        <li>[debate,mixed] I'd need to see more of them first.</li>
+        <li>[debate,mixed] Some days I'm glad of them, some days I'm not.</li>
+        <li>[argue,for] They've given us no reason, and you know it.</li>
+        <li>[argue,against] Good neighbors don't camp on your land uninvited.</li>
+        <li>[argue,mixed] I don't know them well enough to fight about them.</li>
+        <li>[for,!coming] They've been better neighbors than some we've had.</li>
+        <li>[for] A few strangers about keeps us on our toes, in a good way.</li>
+        <li>[against] I'll be glad when that patch of ground is ours again.</li>
+        <li>[against] I don't like not knowing who's walking past at night.</li>
+        <li>[mixed] They're people passing through, that's all I know.</li>
+        <li>[mixed] I've no quarrel with them, and no love for them either.</li>
+        <li>[agree] I was saying the same down at the water.</li>
+        <li>[debate] I'm glad of some of them and sorry about others.</li>
+        <li>[argue] Don't tell me what to think about them.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I'll take some bread down to them tomorrow.</li>
+        <li>[debate,against] I'm sure they're kind, I just don't like strangers so close.</li>
+        <li>[argue,for] Please, they're people, just like us.</li>
+        <li>[agree,campfamily] Those children deserve a warm place to sleep.</li>
+        <li>[debate,for] We were strangers here once too, remember.</li>
+        <li>[agree,mixed] I hope they're kind to each other over there, at least.</li>
+        <li>[argue,against] I don't wish them harm, I just want them gone.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] They're fine.</li>
+        <li>[agree,against] Agreed, move them on.</li>
+        <li>[debate,for] Leave them alone.</li>
+        <li>[argue,against] Run them off, then, and see what happens.</li>
+        <li>[argue,for] Mind your own business, and let them mind theirs.</li>
+        <li>[agree,mixed] Maybe.</li>
+        <li>[argue,mixed] Don't ask me.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for,!coming] I've already made friends with their cook.</li>
+        <li>[debate,against] Fine, but I'm keeping the one who tells jokes.</li>
+        <li>[argue,for,!coming] You're only jealous they've got better tents.</li>
+        <li>[agree,music,!coming] Their songs are better than ours, I'll admit it.</li>
+        <li>[debate,for] Every colony needs neighbors to gossip about.</li>
+        <li>[agree,mixed] I'll make up my mind after I've tasted their cooking.</li>
+        <li>[debate,mixed] They're either lovely or terrible, and I can't wait to find out.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] They'll take what they can and go, they always do.</li>
+        <li>[agree,for] It'll be lonely again when they leave.</li>
+        <li>[debate,for] They're no worse than anyone else out here.</li>
+        <li>[argue,against] Don't say I didn't warn you.</li>
+        <li>[agree,tense] It's going to end in a fight.</li>
+        <li>[agree,mixed] They'll be gone soon and we'll never know.</li>
+        <li>[debate,mixed] It doesn't much matter what we think.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for,!coming] They've been useful, and that's enough.</li>
+        <li>[agree,against,!coming] Their stay has cost more than it's paid.</li>
+        <li>[debate,against] Tolerable, for now.</li>
+        <li>[argue,for] Driving them off would cost us more than they take.</li>
+        <li>[debate,for] They're a source of trade and news, nothing more.</li>
+        <li>[agree,mixed] Insufficient information.</li>
+        <li>[argue,mixed] I'll judge them when there's something to judge.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Camp_Close</defName>
+    <topic>Rimfolk_Topic_Camp</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] Let's see how long they stay.</li>
+        <li>[agree,for] I'll go over and say hello tomorrow.</li>
+        <li>[agree,against] I'll be watching them, then.</li>
+        <li>[agree,trader] I'm going to see what they've got for sale.</li>
+        <li>[agree,tense] Let's hope it doesn't come to anything.</li>
+        <li>[agree,leaving] Safe travels to them, then.</li>
+        <li>[debate] They'll be gone soon, and then it won't matter.</li>
+        <li>[debate,for] Go and meet them before you decide.</li>
+        <li>[debate,against] Fine, but they keep to their side.</li>
+        <li>[argue] Think what you like about them.</li>
+        <li>[argue,for] Hide behind the wall, then, they won't bite.</li>
+        <li>[argue,against] Go and live with them, if you like them so much.</li>
+        <li>[agree] I'll keep an eye on how they're doing.</li>
+        <li>[debate] Let's see what they do next.</li>
+        <li>[argue] I'm done talking about them.</li>
+        <li>[agree,mixed] We'll see what they're like.</li>
+        <li>[debate,mixed] Let's wait a day or two and see.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'm glad we feel the same about them.</li>
+        <li>[debate] Let's be kind to them while they're here.</li>
+        <li>[argue] I'm sorry, I just don't want anyone to feel unwelcome.</li>
+        <li>[agree,campfamily] I'll see if the children need anything.</li>
+        <li>[debate,against] Give them a few more days, for my sake.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Right.</li>
+        <li>[debate] Leave the camp be.</li>
+        <li>[argue] Fine, have it your way.</li>
+        <li>[argue,for] Leave them alone, I mean it.</li>
+        <li>[agree,against] They go when the week's out.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] I'm going to go and borrow some of their salt.</li>
+        <li>[debate] Let's ask them over for supper and settle it.</li>
+        <li>[argue] Fine, I'll keep all the good neighbors for myself.</li>
+        <li>[agree,music] If they play tonight, I'll see you there.</li>
+        <li>[debate,against] Bet you'll miss them when they're gone.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] They'll be gone, like everyone.</li>
+        <li>[debate] Doesn't matter what we think of them.</li>
+        <li>[argue] When it goes wrong, remember I said so.</li>
+        <li>[agree,tense] I'll sleep with one eye open, then.</li>
+        <li>[debate,for] Enjoy them while it lasts.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Agreed.</li>
+        <li>[debate] We'll judge them by what they do.</li>
+        <li>[argue] My view hasn't changed.</li>
+        <li>[agree,against] I'll keep count of what they take.</li>
+        <li>[debate,for] They stay as long as they're useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Camp_Last</defName>
+    <topic>Rimfolk_Topic_Camp</topic>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[debate] Maybe I'll walk down there and see for myself.</li>
+        <li>[debate,for] You'll like them, once you meet them.</li>
+        <li>[debate,against] I'll keep my distance all the same.</li>
+        <li>[debate,leaving] They'll be gone soon, either way.</li>
+        <li>[argue] Keep them, then.</li>
+        <li>[argue,for] They're more welcome than you are, some days.</li>
+        <li>[argue,against] When something goes missing, I'll know who to ask.</li>
+        <li>[argue,tense] Mark my words, that camp will turn on us.</li>
+      </plain>
+      <warm>
+        <li>[debate] I hope they're comfortable, at least.</li>
+        <li>[argue] Please just be kind to them.</li>
+        <li>[debate,against] I'll be polite, for your sake.</li>
+        <li>[argue,for] They don't deserve that.</li>
+      </warm>
+      <blunt>
+        <li>[argue] Fine.</li>
+        <li>[debate] Still don't trust them.</li>
+        <li>[argue,for] Grow up, they're only campers.</li>
+        <li>[debate,for] They're harmless.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] I'm getting their recipe for that flatbread, mark my words.</li>
+        <li>[argue] More songs for me, then.</li>
+        <li>[debate,against] You'll be waving them off with tears in your eyes.</li>
+        <li>[debate,for] I'll tell them you said hello.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate] It'll end how it ends.</li>
+        <li>[argue] Nobody ever listens to me.</li>
+        <li>[debate,for] It won't last, nothing does.</li>
+        <li>[argue,against] We'll pay for this.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] What they do will show us.</li>
+        <li>[argue] I'm not discussing it further.</li>
+        <li>[debate,for] They're of use to us.</li>
+        <li>[argue,against] Then you'll answer for it when it goes wrong.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Camp_Tease</defName>
+    <topic>Rimfolk_Topic_Camp</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor,!coming] You're down at that camp so often they'll start charging you rent, {OTHER}.</li>
+        <li>[otheragainst,!coming] You've counted their tents three times today, {OTHER}, I watched.</li>
+        <li>[otherfor] Should we pack your things, {OTHER}, or are you moving in as you are?</li>
+        <li>[otheragainst] Every time a camper waves, you reach for a stick, {OTHER}.</li>
+        <li>[otherfor] Do they know you've adopted them yet, {OTHER}?</li>
+        <li>[otheragainst,!coming] They waved at you again, {OTHER}, you could try waving back.</li>
+      </plain>
+      <cheerful>
+        <li>[otherfor,!coming] Half their songs are about you now, {OTHER}, you're there that often.</li>
+        <li>[otheragainst,!coming] You glare at that camp so hard, {OTHER}, I'm surprised the tents haven't caught fire.</li>
+        <li>[otherfor] They'll be naming a tent after you soon, {OTHER}.</li>
+        <li>[otheragainst,!coming] I saw you wave at the camp, {OTHER}, don't deny it.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

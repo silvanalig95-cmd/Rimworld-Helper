@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Topics from what the colony lives with now (Source/ColonyCouncil/Social/Talk/TopicWorkers_Life.cs), as in
+    Rimfolk_Topics.xml: a day on the colony calendar coming up or just kept, the world's newest news (a world situation),
+    the camp on the map, and growing up here, a child's talk. Each comes up only while there is such a thing: a day in
+    the next three days, today or kept in the last two (with the calendar on); a world situation running; a camp coming
+    or settled and not at odds with the colony; a child among the two. Growing up here is the only talk a child has
+    (forChildren), and talks with a child come up half as often as talks between grown-ups.
+  -->
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Calendar</defName>
+    <label>the colony's days</label>
+    <about>the colony's days</about>
+    <workerClass>ColonyCouncil.TopicWorker_Calendar</workerClass>
+    <interaction>Rimfolk_Talk_Calendar</interaction>
+    <viewFor>loves the days the colony keeps</viewFor>
+    <viewAgainst>would rather work than keep the colony's days</viewAgainst>
+    <relevance>0.9</relevance>
+    <hotDays>2</hotDays>
+    <seed><warmth>35</warmth><outlook>25</outlook><humour>20</humour><trust>10</trust></seed>
+    <leans>
+      <li><trait>Industriousness</trait><degree>2</degree><lean>-0.25</lean></li>
+      <li><trait>Industriousness</trait><degree>1</degree><lean>-0.1</lean></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><lean>0.2</lean></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><lean>0.3</lean></li>
+      <li><trait>Gourmand</trait><lean>0.15</lean></li>
+      <li><trait>Kind</trait><lean>0.1</lean></li>
+      <li><trait>Ascetic</trait><lean>-0.15</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.2</lean></li>
+      <li><meme>Collectivist</meme><lean>0.1</lean></li>
+    </leans>
+    <interest><warmth>25</warmth><humour>20</humour></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_World</defName>
+    <label>the world's news</label>
+    <about>the world's news</about>
+    <workerClass>ColonyCouncil.TopicWorker_World</workerClass>
+    <interaction>Rimfolk_Talk_World</interaction>
+    <viewFor>wants the colony to have a hand in what happens out there</viewFor>
+    <viewAgainst>says the world's troubles are none of the colony's business</viewAgainst>
+    <relevance>0.6</relevance>
+    <hotDays>3</hotDays>
+    <seed><warmth>35</warmth><openness>30</openness><nerve>15</nerve><pride>-10</pride></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.25</lean></li>
+      <li><trait>Greedy</trait><lean>-0.1</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.3</lean></li>
+      <li><trait>Nerves</trait><degree>-1</degree><lean>-0.15</lean></li>
+      <li><meme>Collectivist</meme><lean>0.1</lean></li>
+      <li><meme>Supremacist</meme><lean>-0.2</lean></li>
+      <li><meme>Raider</meme><lean>-0.2</lean></li>
+    </leans>
+    <interest><openness>35</openness><warmth>15</warmth></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Camp</defName>
+    <label>the camp</label>
+    <about>the camp</about>
+    <workerClass>ColonyCouncil.TopicWorker_Camp</workerClass>
+    <interaction>Rimfolk_Talk_Camp</interaction>
+    <viewFor>is glad of the people camped nearby</viewFor>
+    <viewAgainst>wants the camp gone and the land back</viewAgainst>
+    <relevance>0.8</relevance>
+    <hotDays>2</hotDays>
+    <seed><warmth>30</warmth><openness>35</openness><trust>20</trust><pride>-15</pride></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.2</lean></li>
+      <li><trait>Greedy</trait><lean>-0.15</lean></li>
+      <li><trait>Jealous</trait><lean>-0.1</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.2</lean></li>
+      <li><trait>Abrasive</trait><lean>-0.1</lean></li>
+      <li><meme>Supremacist</meme><lean>-0.25</lean></li>
+      <li><meme>Raider</meme><lean>-0.15</lean></li>
+      <li><meme>Collectivist</meme><lean>0.05</lean></li>
+    </leans>
+    <interest><openness>30</openness><temper>15</temper></interest>
+  </ColonyCouncil.TopicDef>
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Growing</defName>
+    <label>growing up here</label>
+    <about>growing up here</about>
+    <workerClass>ColonyCouncil.TopicWorker_Growing</workerClass>
+    <interaction>Rimfolk_Talk_Growing</interaction>
+    <forChildren>true</forChildren>
+    <viewFor>thinks a child here should get to be a child</viewFor>
+    <viewAgainst>thinks children here have to grow up fast</viewAgainst>
+    <relevance>1</relevance>
+    <seed><warmth>40</warmth><humour>25</humour><outlook>15</outlook><nerve>-10</nerve></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.15</lean></li>
+      <li><trait>Industriousness</trait><degree>2</degree><lean>-0.2</lean></li>
+      <li><trait>Industriousness</trait><degree>1</degree><lean>-0.1</lean></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><lean>0.15</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.2</lean></li>
+      <li><trait>Abrasive</trait><lean>-0.1</lean></li>
+      <li><trait>Tough</trait><lean>-0.1</lean></li>
+    </leans>
+    <interest><warmth>35</warmth><humour>20</humour></interest>
+  </ColonyCouncil.TopicDef>
+
+</Defs>

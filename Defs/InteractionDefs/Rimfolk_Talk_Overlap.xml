@@ -37,6 +37,10 @@
       <li>Rimfolk_Talk_Memory</li>
       <li>Rimfolk_Talk_Joke</li>
       <li>Rimfolk_Talk_Comfort</li>
+      <li>Rimfolk_Talk_Calendar</li>
+      <li>Rimfolk_Talk_World</li>
+      <li>Rimfolk_Talk_Camp</li>
+      <li>Rimfolk_Talk_Growing</li>
     </moments>
     <factor>0.4</factor>
   </ColonyCouncil.ModOverlapDef>

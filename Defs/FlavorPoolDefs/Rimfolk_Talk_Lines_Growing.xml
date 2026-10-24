@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Growing up here, a child's talk (Source/ColonyCouncil/Social/Talk/TopicWorkers_Life.cs): the only talk a child has,
+    with a grown-up or another child. For: a child should get to be a child (for a child, being glad to play); against:
+    children here have to grow up fast (for a child, wanting to be big and do real work). Tags as in
+    Rimfolk_Talk_Lines_Fight.xml, and:
+      [child] the speaker is a child, [!child] a grown-up or a teenager (who always speaks to a child here)
+      [kids] two children together; [little] the speaker is a child under seven
+      [toparent] a child speaking to their mother or father; [tomychild] a parent speaking to their own child
+    {SUBJECT}: another child of the colony, a playmate. Children's lines are short and simple; a grown-up's are said to a
+    child. One sentence each, as all talk lines.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Growing_Open</defName>
+    <topic>Rimfolk_Topic_Growing</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for,child] Can I go and play after my chores?</li>
+        <li>[for,child] I found a beetle with a blue back, do you want to see?</li>
+        <li>[for,child] I built a fort behind the storeroom and you need a password to get in.</li>
+        <li>[for,child,subject] {SUBJECT} and I are going to look for frogs tomorrow.</li>
+        <li>[for,child,little] I can count all the way to twenty now.</li>
+        <li>[for,child,kids] Let's go and find frogs by the water.</li>
+        <li>[against,child] When I'm big, I'm going to do real work, like you.</li>
+        <li>[against,child] Why can't I go on the hunt, I'm not little any more.</li>
+        <li>[against,child] I want to learn how to fix things, not play games.</li>
+        <li>[against,child,subject] {SUBJECT} gets to help in the kitchen, so why can't I?</li>
+        <li>[against,child,little] I'm nearly big, look how tall I am.</li>
+        <li>[against,child,kids] Let's play colony, and I'm the one in charge.</li>
+        <li>[mixed,child] Is it hard, being grown up?</li>
+        <li>[mixed,child] What were you like when you were little?</li>
+        <li>[for,!child] You should be out playing on a day like this.</li>
+        <li>[for,!child] Don't grow up too fast, there's plenty of time for work.</li>
+        <li>[for,!child,subject] I saw you and {SUBJECT} chasing the chickens earlier.</li>
+        <li>[for,!child,tomychild] You make every day better, did you know that?</li>
+        <li>[against,!child] You're old enough to help with the chores now.</li>
+        <li>[against,!child] Out here, everyone has to learn to pull their weight.</li>
+        <li>[against,!child] I'm going to teach you to light a fire properly, it's time.</li>
+        <li>[against,!child,tomychild] I need you to be brave and help out more, all right?</li>
+        <li>[mixed,!child] What do you want to be when you're grown?</li>
+        <li>[mixed,!child] Are you learning anything useful at your lessons?</li>
+        <li>[for,!child] You'll only be young once, so make the most of it.</li>
+        <li>[for,!child] Go and find the others, there's still light left.</li>
+        <li>[for,!child] Leave the worrying to the grown-ups, that's our job.</li>
+        <li>[against,!child] I was hauling stone when I was your age.</li>
+        <li>[against,!child] It's time you learned to look after the animals.</li>
+        <li>[against,!child] You're getting big, and big hands are useful hands.</li>
+        <li>[mixed,!child] How are you getting on, really?</li>
+        <li>[mixed,!child] Do you like it here, or is it hard being the small one?</li>
+        <li>[mixed,!child] What did you learn today?</li>
+        <li>[for,child] I want to play hide and seek, will you count?</li>
+        <li>[against,child] Can you show me how to do that?</li>
+        <li>[mixed,child] Why do grown-ups always work so much?</li>
+        <li>[for,!child] Go and get some sun on your face, the chores can wait.</li>
+        <li>[for,!child] Did you have fun today?</li>
+        <li>[against,!child] Come and help me, there's a lot to learn.</li>
+        <li>[against,!child] You're big enough to carry the small bucket now.</li>
+        <li>[mixed,!child] Tell me what you did today.</li>
+        <li>[mixed,!child] Are you being good for everyone?</li>
+      </plain>
+      <warm>
+        <li>[for,child] I drew a picture of you, it's mostly your hat.</li>
+        <li>[against,child] I want to help look after the animals, I'll be careful.</li>
+        <li>[for,!child] I'm so glad you're here, running about and making noise.</li>
+        <li>[against,!child] I'll teach you everything I know, one thing at a time.</li>
+        <li>[mixed,!child] You can always come to me if something's hard.</li>
+        <li>[for,!child] Every time I hear you laugh, I remember why we're here.</li>
+        <li>[against,!child] You're ready for more, I can tell, so let's start small.</li>
+      </warm>
+      <blunt>
+        <li>[for,child] I don't want to do lessons today.</li>
+        <li>[against,child] I'm not a baby.</li>
+        <li>[for,!child] Go and play, you'll be working soon enough.</li>
+        <li>[against,!child] Chores first, then play.</li>
+        <li>[mixed,!child] Speak up, what is it you want?</li>
+        <li>[for,!child] Play while you can.</li>
+        <li>[against,!child] Grab a broom, you're old enough.</li>
+      </blunt>
+      <cheerful>
+        <li>[for,child] I can run faster than the dog now, I tried!</li>
+        <li>[for,child,kids] Last one to the big tree has to be the raider!</li>
+        <li>[against,child] When I'm grown, I'll be on the council and make everyone eat sweets first.</li>
+        <li>[for,!child] Race you to the gate, and no cheating this time.</li>
+        <li>[against,!child] I'll make a carpenter of you yet.</li>
+        <li>[mixed,!child] What's the most important thing that happened to you today?</li>
+        <li>[for,!child] I hear there's a new fort, and I'm hoping for an invitation.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against,child] Nobody listens to me because I'm small.</li>
+        <li>[for,child] I don't want to grow up, grown-ups are always tired.</li>
+        <li>[for,!child] Enjoy it while you can, it doesn't last.</li>
+        <li>[against,!child] This place doesn't let anyone stay a child for long.</li>
+        <li>[mixed,!child] I hope you have an easier life than we did.</li>
+        <li>[for,!child] Stay little, it's better.</li>
+        <li>[against,!child] I'm sorry you have to learn all this so young.</li>
+      </gloomy>
+      <cold>
+        <li>[against,child] Playing is a waste of time.</li>
+        <li>[for,child] I don't like the work, it's boring.</li>
+        <li>[for,!child] Play is how children learn, so go and play.</li>
+        <li>[against,!child] You're old enough to be useful.</li>
+        <li>[mixed,!child] Which skills are you working on?</li>
+        <li>[mixed,!child] What are you good at, so far?</li>
+        <li>[against,!child] Time to start earning your place, one chore at a time.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Growing_Reply</defName>
+    <topic>Rimfolk_Topic_Growing</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for,child] Yes, and can we go now?</li>
+        <li>[agree,for,child] I like it best when we're all outside.</li>
+        <li>[agree,against,child] I can do it, I promise I can.</li>
+        <li>[agree,against,child] I'll work really hard, you'll see.</li>
+        <li>[agree,mixed,child] I don't know, maybe.</li>
+        <li>[agree,child,toparent] Can I sit with you after?</li>
+        <li>[debate,for,child] But I'll do the chores later, I promise.</li>
+        <li>[debate,for,child] Just a bit longer, please?</li>
+        <li>[debate,against,child] I'm big enough, though, really I am.</li>
+        <li>[debate,against,child] Playing is for little kids.</li>
+        <li>[debate,mixed,child] I like playing, but I want to help too.</li>
+        <li>[debate,child,kids] You always want to be the leader.</li>
+        <li>[argue,for,child] That's not fair, you never let me do anything fun.</li>
+        <li>[argue,for,child] I don't want to, and you can't make me.</li>
+        <li>[argue,against,child] Stop treating me like a baby.</li>
+        <li>[argue,against,child] You never let me help with anything real.</li>
+        <li>[argue,mixed,child] I didn't say that.</li>
+        <li>[argue,child,kids] I'm telling.</li>
+        <li>[agree,for,!child] Go on, then, and be back before dark.</li>
+        <li>[agree,for,!child] There's time enough for work when you're older.</li>
+        <li>[agree,against,!child] Good, I'll show you how it's done.</li>
+        <li>[agree,against,!child] That's the spirit, we'll start tomorrow.</li>
+        <li>[agree,mixed,!child] We'll find something for you to do.</li>
+        <li>[agree,!child,tomychild] I love you, you know that.</li>
+        <li>[debate,for,!child] There's no rush, the work will wait for you.</li>
+        <li>[debate,for,!child] Play first, and you can help me after.</li>
+        <li>[debate,against,!child] You can play, but the chores come first.</li>
+        <li>[debate,against,!child] I know, but someone has to fetch the water.</li>
+        <li>[debate,mixed,!child] A bit of both, maybe.</li>
+        <li>[argue,for,!child] You're a child, and you'll be one for a while yet.</li>
+        <li>[argue,against,!child] No more arguing, and do as you're told.</li>
+        <li>[argue,against,!child] Out here, nobody gets to sit about, not even you.</li>
+        <li>[argue,mixed,!child] Don't take that tone with me.</li>
+        <li>[agree,for,!child] Go on, there's nothing here that won't keep.</li>
+        <li>[agree,against,!child] I'll find you something proper to do, then.</li>
+        <li>[agree,mixed,!child] We'll see how you get on.</li>
+        <li>[debate,for,!child] You've plenty of years to work, so enjoy this one.</li>
+        <li>[debate,against,!child] You can play, but not until the animals are fed.</li>
+        <li>[debate,mixed,!child] Let's start with something small and see.</li>
+        <li>[argue,for,!child] You'll be grown soon enough, now go and play.</li>
+        <li>[argue,against,!child] I said no, and that's the end of it.</li>
+        <li>[argue,mixed,!child] Ask me again when you've calmed down.</li>
+        <li>[agree,!child] All right, as long as you're careful.</li>
+        <li>[debate,!child] Hm, we'll see about that.</li>
+        <li>[argue,!child] Don't you roll your eyes at me.</li>
+        <li>[agree,child] All right.</li>
+        <li>[debate,child] But why?</li>
+        <li>[argue,child] You're not the boss of me.</li>
+        <li>[agree,for,!child] Go and enjoy it, you've earned a rest.</li>
+        <li>[agree,for,!child] Off you go, and take your coat.</li>
+        <li>[agree,against,!child] Come on, then, I'll show you the right way to hold it.</li>
+        <li>[agree,against,!child] You're right, it's time you had a proper job.</li>
+        <li>[agree,mixed,!child] Let's try a bit of both and see what you like.</li>
+        <li>[agree,mixed,!child] Whatever you choose, I'll help.</li>
+        <li>[debate,for,!child] Work's not going anywhere, but your childhood is.</li>
+        <li>[debate,for,!child] You'll have years of chores, so don't rush into them.</li>
+        <li>[debate,against,!child] I know it's dull, but someone has to do it, and today it's you.</li>
+        <li>[debate,against,!child] Helping now makes you stronger later.</li>
+        <li>[debate,mixed,!child] We'll find a balance, you and me.</li>
+        <li>[debate,mixed,!child] Some days for play and some for work, how's that?</li>
+        <li>[argue,for,!child] Put that down, it's not a job for a child.</li>
+        <li>[argue,for,!child] I won't have you working yourself ragged at your age.</li>
+        <li>[argue,against,!child] Everyone works here, and you're no different.</li>
+        <li>[argue,against,!child] When you're grown, you'll thank me for this.</li>
+        <li>[argue,mixed,!child] I'm not discussing it while you're sulking.</li>
+        <li>[argue,mixed,!child] That's enough cheek for one day.</li>
+        <li>[for,!child] There's time for all of that when you're bigger.</li>
+        <li>[for,!child] You should be playing, not worrying.</li>
+        <li>[against,!child] It's time you learned a few things, that's all.</li>
+        <li>[against,!child] Out here, even the small ones help.</li>
+        <li>[mixed,!child] We'll see what you're ready for.</li>
+        <li>[mixed,!child] One thing at a time, all right?</li>
+        <li>[agree,!child] That's my clever one.</li>
+        <li>[debate,!child] We'll talk about it after supper.</li>
+      </plain>
+      <warm>
+        <li>[agree,for,child] You're my favorite grown-up.</li>
+        <li>[debate,against,child] I'll be really careful, I promise.</li>
+        <li>[agree,for,!child] Off you go, and tell me everything you find.</li>
+        <li>[debate,against,!child] I know you want to help, and you will, soon.</li>
+        <li>[argue,for,!child] I only want you to be happy, that's all.</li>
+        <li>[agree,mixed,!child] I'll help you figure it out.</li>
+        <li>[debate,mixed,!child] There's time for all of it, I promise.</li>
+        <li>[agree,for,!child] Go and have fun, I'll be right here when you're done.</li>
+        <li>[agree,against,!child] I'd love your help, come on.</li>
+      </warm>
+      <blunt>
+        <li>[argue,for,child] No.</li>
+        <li>[agree,against,child] Good, I'm ready.</li>
+        <li>[debate,for,!child] Go and play, I said.</li>
+        <li>[argue,against,!child] Enough, do your chores.</li>
+        <li>[agree,against,!child] Right, grab the other end of this.</li>
+        <li>[agree,mixed,!child] Fine, try it.</li>
+        <li>[debate,mixed,!child] We'll see, I said.</li>
+        <li>[agree,for,!child] Go on, then.</li>
+        <li>[debate,against,!child] Work first.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for,child] Yes, and you can be the monster!</li>
+        <li>[debate,against,child] I'm going to be the best hunter ever, just watch.</li>
+        <li>[agree,for,!child] Go and get muddy, it's what boots are for.</li>
+        <li>[debate,against,!child] Help me with this and I'll tell you a story after.</li>
+        <li>[argue,for,!child] Grumpy face, I see it, and I'm ignoring it.</li>
+        <li>[agree,mixed,!child] Deal, but I get to pick the next game.</li>
+        <li>[argue,mixed,!child] That's a very grown-up frown you've got there.</li>
+        <li>[debate,for,!child] The chores will still be here, sadly, but the sunshine won't.</li>
+        <li>[agree,against,!child] Excellent, I've been needing an apprentice.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against,child] Nobody wants to play with me anyway.</li>
+        <li>[debate,for,child] Grown-ups never have any fun.</li>
+        <li>[agree,for,!child] Play while you can, it won't always be like this.</li>
+        <li>[debate,against,!child] I wish you didn't have to grow up so fast.</li>
+        <li>[argue,against,!child] There's no time for games out here, I'm sorry.</li>
+        <li>[agree,mixed,!child] I wish I had an easier answer for you.</li>
+        <li>[argue,mixed,!child] Life isn't fair, and I'm sorry.</li>
+        <li>[debate,for,!child] You'll be tired soon enough, like the rest of us.</li>
+        <li>[agree,against,!child] I suppose it's time, I just hate that it is.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,against,child] I want to be useful.</li>
+        <li>[debate,for,child] Work is boring.</li>
+        <li>[agree,against,!child] Good, you'll learn faster that way.</li>
+        <li>[debate,for,!child] You'll be more useful later if you play now.</li>
+        <li>[argue,against,!child] Your feelings don't change the chores.</li>
+        <li>[agree,mixed,!child] Acceptable.</li>
+        <li>[argue,mixed,!child] Arguing won't change my answer.</li>
+        <li>[debate,for,!child] Rest now, and you'll work better later.</li>
+        <li>[argue,for,!child] You're too young for this work, it's not efficient.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Growing_Close</defName>
+    <topic>Rimfolk_Topic_Growing</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,child] I'll be careful, I promise.</li>
+        <li>[agree,child,kids] Come on, before someone calls us in.</li>
+        <li>[debate,child] Fine, but after that I'm playing.</li>
+        <li>[argue,child] You're mean.</li>
+        <li>[argue,child,toparent] I'm going to my room.</li>
+        <li>[agree,!child] Off you go, then.</li>
+        <li>[agree,!child,tomychild] Come here, give me a hug first.</li>
+        <li>[debate,!child] We'll see, ask me again tomorrow.</li>
+        <li>[debate,!child,for] Have your fun, the work will keep.</li>
+        <li>[argue,!child] That's enough, now.</li>
+        <li>[argue,!child,against] Chores, now, and no more sulking.</li>
+        <li>[agree,!child] Go on, and mind the water.</li>
+        <li>[debate,!child] Let's talk again tomorrow.</li>
+        <li>[argue,!child] I don't want to hear another word.</li>
+        <li>[agree,child] I will, really.</li>
+        <li>[debate,child] Can we do half and half?</li>
+        <li>[agree,!child,for] Have fun, and stay where someone can see you.</li>
+        <li>[debate,!child,against] Help me now, and you can play after.</li>
+        <li>[argue,!child,for] Go and play, and no arguing.</li>
+        <li>[agree,!child] That's my good one.</li>
+        <li>[debate,!child] We'll see how you feel in the morning.</li>
+        <li>[argue,!child] Not another word, off you go.</li>
+      </plain>
+      <warm>
+        <li>[agree,child] Thank you for listening to me.</li>
+        <li>[debate,child] I'll help, and then can we read a story?</li>
+        <li>[agree,!child] Come and find me if you need anything.</li>
+        <li>[debate,!child] We'll work it out together, you and me.</li>
+        <li>[argue,!child] I'm sorry I snapped, I'm just tired.</li>
+      </warm>
+      <blunt>
+        <li>[argue,child] Fine, whatever you say.</li>
+        <li>[agree,child] Bye.</li>
+        <li>[agree,!child] Go on.</li>
+        <li>[debate,!child] Chores, then play, that's the deal.</li>
+        <li>[argue,!child] No more, I said.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,child] Race you!</li>
+        <li>[debate,child] Bet I can do it faster than you.</li>
+        <li>[agree,!child] Go on, have an adventure, and bring me back a stone.</li>
+        <li>[debate,!child] Tell you what, half chores and half play.</li>
+        <li>[argue,!child] You'll thank me when you're older, I'm told.</li>
+      </cheerful>
+      <gloomy>
+        <li>[argue,child] Nobody ever lets me do anything.</li>
+        <li>[agree,child] Grown-ups always say later.</li>
+        <li>[agree,!child] Stay little as long as you can.</li>
+        <li>[debate,!child] Some days I wish I were your age again.</li>
+        <li>[argue,!child] It's a hard place, and I'm sorry for it.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,child] I'll do it properly.</li>
+        <li>[argue,child] I don't care.</li>
+        <li>[agree,!child] Good, then that's decided.</li>
+        <li>[debate,!child] Do the work, then do as you like.</li>
+        <li>[argue,!child] We're done discussing it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Growing_Last</defName>
+    <topic>Rimfolk_Topic_Growing</topic>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[debate,child] All right, but only the easy chores.</li>
+        <li>[debate,child,kids] Fine, you can be in charge tomorrow.</li>
+        <li>[argue,child] It's not fair.</li>
+        <li>[argue,child,toparent] You never listen to me.</li>
+        <li>[debate,!child] We'll talk about it at supper.</li>
+        <li>[debate,!child,tomychild] You're growing up so fast.</li>
+        <li>[argue,!child] Don't make me say it twice.</li>
+        <li>[argue,!child,against] One day you'll understand.</li>
+      </plain>
+      <warm>
+        <li>[debate,child] Can we talk again later?</li>
+        <li>[argue,child] I'm sorry I shouted.</li>
+        <li>[debate,!child] Whatever you decide, I'm proud of you.</li>
+        <li>[argue,!child] Come here, I'm not angry any more.</li>
+      </warm>
+      <blunt>
+        <li>[argue,child] Don't care.</li>
+        <li>[debate,child] Maybe, if I feel like it.</li>
+        <li>[argue,!child] Go on, out.</li>
+        <li>[debate,!child] Tomorrow, then.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate,child] I'm going to tell everyone you said yes.</li>
+        <li>[argue,child] Bet I'll be taller than you one day.</li>
+        <li>[debate,!child] You drive a hard bargain for someone so small.</li>
+        <li>[argue,!child] Grumble all you like, I've heard worse from goats.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate,child] I'll never be big.</li>
+        <li>[argue,child] Nobody understands.</li>
+        <li>[debate,!child] It goes by too fast, all of it.</li>
+        <li>[argue,!child] I wish it were different, I really do.</li>
+      </gloomy>
+      <cold>
+        <li>[debate,child] I'll think about it.</li>
+        <li>[argue,child] I'm right, though.</li>
+        <li>[debate,!child] We'll see how you manage.</li>
+        <li>[argue,!child] That's the end of it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Growing_Tease</defName>
+    <topic>Rimfolk_Topic_Growing</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor,!child] Still hunting dragons in the yard, {OTHER}, or have they all been caught?</li>
+        <li>[otheragainst,!child] Look at you, {OTHER}, frowning like a council elder.</li>
+        <li>[otherfor,child] You laugh like a goose, {OTHER}.</li>
+        <li>[otheragainst,child] Were you ever little, {OTHER}, or were you born grown?</li>
+        <li>[otherfor,!child] Is it true you've made yourself ruler of the storeroom, {OTHER}?</li>
+        <li>[otheragainst,child] You work more than the muffalo, {OTHER}, and they get naps.</li>
+      </plain>
+      <cheerful>
+        <li>[!child] You've grown a whole thumb since spring, {OTHER}, we'll have to raise the ceilings.</li>
+        <li>[child] I bet I could beat you in a race, {OTHER}, even with one shoe.</li>
+        <li>[child,kids] You've got mud on your nose, {OTHER}, and on your other nose.</li>
+        <li>[!child] Who taught you to whistle like that, {OTHER}, a kettle?</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

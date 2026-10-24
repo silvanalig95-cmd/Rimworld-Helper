@@ -10,13 +10,13 @@
     <order>9</order>
     <summary>What colonists talk about, the views they hold, and how a talk goes between two people.</summary>
     <tip>A colonist's views are in their Culture tab, under Views. Hover one to see what it rests on and the last talk that moved it.</tip>
-    <description>Colonists don't only chat. Now and then two of them who are together get talking about something real: the last raid, the council and its decrees, the food, the work and who does too little, the newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project, money, love. Each of them holds a view on each of these, and says so in their own voice.
+    <description>Colonists don't only chat. Now and then two of them who are together get talking about something real: the last raid, the council and its decrees, the food, the work and who does too little, the newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project, money, love, a day on the colony's calendar coming up or just kept, the world's latest news, the camp on the map. Each of them holds a view on each of these, and says so in their own voice. Children talk too, of growing up.
 
 The talk shows over their heads as two to four lines, the two taking turns, a few seconds apart; if one of them walks off, the rest isn't said. The social log keeps one line saying what it was about and how it went.</description>
     <sections>
       <li>
         <heading>Views</heading>
-        <text>Each view runs from against to for: for meeting raiders at the gate or for thicker walls, trusting the council or not, grateful for the food or not, welcoming a newcomer or wary of them (a view for each newcomer). A view starts from who the colonist is, the first time it's needed:</text>
+        <text>Each view runs from against to for: for meeting raiders at the gate or for thicker walls, trusting the council or not, grateful for the food or not, welcoming a newcomer or wary of them (a view for each newcomer), loving the colony's days or grudging the work they cost, wanting a hand in the world's troubles or keeping out of them, glad of the people camped nearby or wanting the land back. A view starts from who the colonist is, the first time it's needed:</text>
         <points>
           <li>their character: the bold want to fight back and the timid want walls, the trusting back the council, the curious welcome newcomers, traders and new learning, the warm count the animals as family;</li>
           <li>their traits and passions: a brawler or a shooter leans to the fight, an ascetic thinks the food is fine, a teetotaler is against drink, a passion for art is for art;</li>
@@ -29,13 +29,13 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
         <heading>What comes up</heading>
         <text>The game picks Rimfolk's talks in its own social picker, beside its chitchat. All of them together take a fixed share of a colonist's talk (about a twelfth as often as chitchat, scaled by the moments setting, more for the warm and the playful, a little more between friends and rivals, half as much toward someone they can't stand), and that share is split by what's worth talking about between these two, now:</text>
         <points>
-          <li>news: a raid in the last days, a death, a new decree or council meeting, a wedding or a birth, a newcomer, a harvest or a hungry week, a disaster, traders at the gate, a finished study, a prisoner taken, a binge;</li>
+          <li>news: a raid in the last days, a death, a new decree or council meeting, a wedding or a birth, a newcomer, a harvest or a hungry week, a disaster, traders at the gate, a finished study, a prisoner taken, a binge, a calendar day due tomorrow or today, a world situation just begun, a camp walking in;</li>
           <li>how strongly each of them cares (strong views get aired), the speaker's character (the hot-tempered bring up the raids and the work, the curious the world and new learning, the gloomy the future and the weather, the warm the children and the newcomer);</li>
           <li>their tie: friends talk about anything, rivals pick what they disagree on;</li>
           <li>what they went through together (see "shared memories and in-jokes"), and whether one of them is low;</li>
           <li>what they talked about lately: the same topic between the same two is much rarer for two days.</li>
         </points>
-        <after>A colonist who starts a talk waits four hours before starting another, and the same two talk at most every ten hours. On top of that, someone who has just started any of Rimfolk's exchanges (a moment, a talk, a story passed on) waits an hour before starting another, and nobody starts one with someone still in the middle of a talk. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them.</after>
+        <after>A colonist who starts a talk waits four hours before starting another, and the same two talk at most every ten hours. On top of that, someone who has just started any of Rimfolk's exchanges (a moment, a talk, a story passed on) waits an hour before starting another, and nobody starts one with someone still in the middle of a talk. A topic only comes up when it means something: no prisoners, no talk of prisoners; no children, little talk of them; the colony's days only from three days before a day until two after it was kept (with the calendar on), the world's news only while a world situation runs, the camp only while one is coming or settled and not at odds with the colony.</after>
       </li>
       <li>
         <heading>How it goes</heading>
@@ -52,7 +52,11 @@ The talk shows over their heads as two to four lines, the two taking turns, a fe
       </li>
       <li>
         <heading>In their own voice</heading>
-        <text>Every line is picked for the topic, how the talk is going, whose turn it is, which side the speaker is on and who they are. A hothead snaps in an argument, a joker jokes, the cold are curt even when they comfort, the gloomy see the worst, the warm take the sting out of a disagreement. Lines know the news (a fight won or someone lost to it, mechanoids or raiders, paste for supper, the newest decree by name), the people (the newcomer, the cook, the leader, the dead), and the tie between the two. About 1,500 lines in all, picked so the same one doesn't come round again soon.</text>
+        <text>Every line is picked for the topic, how the talk is going, whose turn it is, which side the speaker is on and who they are. A hothead snaps in an argument, a joker jokes, the cold are curt even when they comfort, the gloomy see the worst, the warm take the sting out of a disagreement. Lines know the news (a fight won or someone lost to it, mechanoids or raiders, paste for supper, the newest decree by name, whether the world's news is good or bad, a day of mourning, the camp's hunters at the colony's game), the people (the newcomer, the cook, the leader, the dead, whose birthday it is), and the tie between the two. Nobody teases anyone on a day of remembrance. About 6,900 lines in all, more than four times the 1,500 there were when conversations began, and picked so the same one doesn't come round again soon: a reply on a topic about once or twice a year.</text>
+      </li>
+      <li>
+        <heading>Growing up</heading>
+        <text>Children talk too, but only of growing up: with a grown-up nearby or with each other, half as often as two grown-ups talk, and never of the colony's other topics. A child glad to be a child asks to play; one in a hurry to be big asks to come on the hunt or help in the kitchen. A grown-up either sends them off to play or hands them the small bucket, and a parent talks to their own child as one. A child's view starts from how happy they are; a grown-up's from their character, and leans toward play for parents and toward work for the worn out and the industrious.</text>
       </li>
       <li>
         <heading>Settings and other mods</heading>

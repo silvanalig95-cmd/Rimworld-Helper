@@ -227,7 +227,7 @@ public static class TalkTests
         var interactions = all.Where(x2 => x2.el.Name.LocalName == "InteractionDef").ToDictionary(x2 => Name(x2.el) == "" ? Guid.NewGuid().ToString() : Name(x2.el), x2 => x2.el);
         var lines = all.Where(x2 => x2.el.Name.LocalName == "ColonyCouncil.TalkLinesDef").Select(x2 => x2.el).ToList();
         var memories = all.Where(x2 => x2.el.Name.LocalName == "ColonyCouncil.SharedMemoryDef").Select(x2 => x2.el).ToList();
-        Check(topics.Count >= 15 && topics.Count <= 20, $"15 to 20 topics ({topics.Count})");
+        Check(topics.Count >= 15 && topics.Count <= 25, $"15 to 25 topics ({topics.Count})");
         Check(memories.Count >= 15, $"enough kinds of shared memory ({memories.Count})");
         bool Has(string topicOrMemory, string field, string turn, string outcome = null) => lines.Any(l =>
             (string)l.Element(field) == topicOrMemory && (string)l.Element("turn") == turn
@@ -245,6 +245,16 @@ public static class TalkTests
                 .SelectMany(l => l.Descendants("li").Where(li => li.Parent?.Parent?.Name.LocalName == "lines")).Select(li => li.Value).ToList();
             Check(openLines.Count(s2 => s2.Contains("[for")) >= 8 && openLines.Count(s2 => s2.Contains("[against")) >= 8, $"{n}: openings for both sides");
         }
+        // A child's talk (growing up here): every line says whether a child or a grown-up says it.
+        var forChildren = topics.Where(t => (string)t.Element("forChildren") == "true").Select(Name).ToList();
+        Check(forChildren.Count >= 1, "a topic for children");
+        foreach (var n in forChildren)
+            foreach (var li in lines.Where(l => (string)l.Element("topic") == n).SelectMany(l => l.Descendants("li").Where(x => x.Parent?.Parent?.Name.LocalName == "lines")))
+            {
+                var tagged = Regex.Match(li.Value, @"^\[([^\]]*)\]");
+                var tags = tagged.Success ? tagged.Groups[1].Value.Split(',').Select(x => x.Trim()).ToList() : new List<string>();
+                Check(tags.Contains("child") || tags.Contains("!child"), $"{n}: says whether a child or a grown-up speaks: {li.Value}");
+            }
         foreach (var m in memories)
         {
             string n = Name(m);

@@ -258,12 +258,12 @@ MODEL = {
     "Faith/FaithPeople.cs:notes": ("fixed", const("Faith/FaithPeopleMath.cs", "MaxNotes", 5), 170, "per colonist: the newest faith moments, 120 days at most (counted under people)"),
     "Faith/FaithPeople.cs:waiting": ("cap", (COLONISTS, 0.15), 140, "crises waiting to be felt: one per kind per colonist, let go after 6 days"),
     # A person's record (sides moved, marks, views) and what pairs went through together
-    "Persona/PersonaTracker.cs:list": ("known", 0.6, 100 + 2 * C["PersonaAxes"] * V + C["PersonaMarks"] * 0.6 * 200 + 20 * 70,
+    "Persona/PersonaTracker.cs:list": ("known", 0.6, 100 + 2 * C["PersonaAxes"] * V + C["PersonaMarks"] * 0.6 * 200 + 24 * 70,
                                        "the colony's own people the game still knows; empty records dropped at saving"),
     "Persona/PawnPersona.cs:l": ("fixed", C["PersonaAxes"], V, "per person: one per side (counted under people)"),
     "Persona/PawnPersona.cs:d": ("fixed", C["PersonaAxes"], V, "per person: one per side, fading (counted under people)"),
     "Persona/PawnPersona.cs:marks": ("fixed", C["PersonaMarks"], 200, "per person: PawnPersona.MaxMarks, each let go after its keeping (counted under people)"),
-    "Persona/PawnPersona.cs:stances": ("fixed", 20, 70, "per person: one per topic, and per newcomer for 60 days (counted under people)"),
+    "Persona/PawnPersona.cs:stances": ("fixed", 24, 70, "per person: one per topic (23), and per newcomer for 60 days (counted under people)"),
     "Persona/PersonaTracker.cs:memories": ("cap", (C["SharedMemories"], 5), 320, "PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving"),
     "Social/Talk/TalkTracker.cs:notes": ("cap", (C["TalkNotes"], 4), 200, "the talk's news: TalkTracker.MaxNotes, a month at most"),
     # Traits that change (the changes made, and what each colonist is watched for)

@@ -17,11 +17,41 @@
         <li>[worn] Remember {LABEL}?</li>
         <li>[worn] I know, I know, but {LABEL}, though.</li>
         <li>[told] Still makes me laugh, {LABEL}.</li>
+        <li>Guess what I thought about all day, {OTHER}, {LABEL}.</li>
+        <li>I can't walk past the spot without thinking of {LABEL}.</li>
+        <li>[fresh] I keep laughing at nothing, and it's {LABEL}'s fault.</li>
+        <li>[told] Someone mentioned {LABEL} at supper and I nearly choked.</li>
       </plain>
+      <warm>
+        <li>I'm so glad we can laugh about {LABEL} now.</li>
+        <li>{LABEL} still makes me smile, and so do you.</li>
+        <li>[fresh] I needed a laugh today, so I thought about {LABEL}.</li>
+        <li>[worn] I know I always bring up {LABEL}, I just like remembering it with you.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL}.</li>
+        <li>Remember {LABEL}, idiot?</li>
+        <li>[worn] Yes, {LABEL} again, deal with it.</li>
+        <li>[told] {LABEL}, still funny.</li>
+      </blunt>
       <cheerful>
         <li>I've been grinning about {LABEL} all day.</li>
         <li>[fresh] I got the giggles over {LABEL} in the middle of work.</li>
+        <li>Quick, before I forget, {LABEL}.</li>
+        <li>[told] Say it with me, {OTHER}: {LABEL}.</li>
       </cheerful>
+      <gloomy>
+        <li>{LABEL} could have gone so much worse, you know.</li>
+        <li>At least we got {LABEL} out of it.</li>
+        <li>[worn] I suppose {LABEL} is the only joke we've got.</li>
+        <li>[fresh] I laughed about {LABEL} today, first time in a while.</li>
+      </gloomy>
+      <cold>
+        <li>I was reminded of {LABEL} today.</li>
+        <li>{LABEL} was amusing, in hindsight.</li>
+        <li>[worn] {LABEL}, if you insist.</li>
+        <li>[told] I still find {LABEL} mildly funny.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -39,13 +69,44 @@
         <li>[worn] You've told that one, {OTHER}.</li>
         <li>[worn] That one's wearing thin.</li>
         <li>[told] I tell it better than you do.</li>
+        <li>[fresh] I'd almost forgotten, and now it's all I can see.</li>
+        <li>[told] You always tell it as if you weren't there.</li>
+        <li>[worn] We need a new one, you know.</li>
+        <li>[told] It gets bigger every time you tell it.</li>
+        <li>Oh, don't.</li>
+        <li>You would bring that up.</li>
+        <li>I'll never live that down, will I.</li>
+        <li>It wasn't that funny, really.</li>
       </plain>
+      <warm>
+        <li>[fresh] I love that we have that one.</li>
+        <li>[told] It's still my favorite, I don't mind telling you.</li>
+        <li>[worn] All right, once more, for you.</li>
+        <li>I'm glad it was you there.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Ha.</li>
+        <li>[told] Not again.</li>
+        <li>[worn] Enough, it's dead.</li>
+        <li>[told] You and that story.</li>
+      </blunt>
       <cheerful>
         <li>[fresh] Ha, I'd nearly forgotten, and now I can't stop.</li>
         <li>[told] Gets me every time, that one.</li>
+        <li>[fresh] I'm going to be laughing about that all week.</li>
+        <li>[told] Every time, and every time I fall for it.</li>
       </cheerful>
+      <gloomy>
+        <li>[fresh] It wasn't funny at the time.</li>
+        <li>[told] At least we can laugh about something.</li>
+        <li>[worn] We've worn that one out, like everything else.</li>
+        <li>It could have been much worse.</li>
+      </gloomy>
       <cold>
         <li>[worn] Again.</li>
+        <li>[fresh] Mildly amusing.</li>
+        <li>[told] You've told it before.</li>
+        <li>[worn] It's lost its charm.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -62,10 +123,45 @@
         <li>[worn] Last time, I promise.</li>
         <li>[fresh] We'll be telling that one for years.</li>
         <li>[told] Never gets old, never.</li>
+        <li>We'll still be telling that one when we're old.</li>
+        <li>[fresh] That one's going in the stories.</li>
+        <li>[told] Never fails, that one.</li>
+        <li>[worn] I'll think of a new one, I promise.</li>
+        <li>Right, back to work before I start laughing again.</li>
+        <li>You've made my day, you know.</li>
+        <li>Don't tell the others, they'll never stop.</li>
+        <li>We should tell that one at supper.</li>
       </plain>
+      <warm>
+        <li>I'm glad we've got that one, you and me.</li>
+        <li>[fresh] That laugh did me good.</li>
+        <li>[worn] All right, we'll give it a rest, for a bit.</li>
+        <li>It's good to laugh with you.</li>
+      </warm>
+      <blunt>
+        <li>Right, back to work.</li>
+        <li>[worn] Done with that one.</li>
+        <li>[told] Still good.</li>
+        <li>Enough laughing.</li>
+      </blunt>
       <cheerful>
         <li>Classic, absolute classic.</li>
+        <li>I'm writing that down for the grandchildren.</li>
+        <li>[fresh] Best laugh I've had all season.</li>
+        <li>[worn] Fine, I'll find us a new one by supper.</li>
       </cheerful>
+      <gloomy>
+        <li>At least there's something to laugh about.</li>
+        <li>[worn] Even the jokes wear out, don't they.</li>
+        <li>It won't be so funny next time.</li>
+        <li>[fresh] We needed that, I think.</li>
+      </gloomy>
+      <cold>
+        <li>Back to work.</li>
+        <li>[worn] Let's retire that one.</li>
+        <li>That's enough of that.</li>
+        <li>[told] Still adequate.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -83,13 +179,38 @@
         <li>[byother] Is your stomach talking to you again yet?</li>
         <li>[byother] Remember how green you went, after {LABEL}?</li>
         <li>[worn] I'm only saying the word stew, that's all.</li>
+        <li>[told] There's stew for supper, {OTHER}, I'll let you taste it first.</li>
       </plain>
+      <warm>
+        <li>I'm glad we both survived {LABEL}, really.</li>
+        <li>[byother] I've never seen anyone look so ill as you did after {LABEL}, poor thing.</li>
+        <li>[byme] You held my hair back after {LABEL}, I'll never forget it.</li>
+        <li>I'll make you a proper stew one day, to make up for {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL} was poison.</li>
+        <li>Who made {LABEL}, I still want to know.</li>
+        <li>[byme] {LABEL} nearly killed me.</li>
+        <li>[worn] Stew.</li>
+      </blunt>
       <cheerful>
         <li>I've written a song about {LABEL}, it's mostly groaning.</li>
+        <li>I've named the cooking pot after {LABEL}, it's called Doom.</li>
+        <li>[byother] You turned the color of a frog after {LABEL}, a very sick frog.</li>
+        <li>[fresh] I'll never trust a lumpy stew again.</li>
       </cheerful>
       <gloomy>
         <li>I've sniffed every meal since {LABEL}.</li>
+        <li>{LABEL} could have finished us both.</li>
+        <li>[byme] I still feel queasy when I think about {LABEL}.</li>
+        <li>I don't think my stomach ever forgave {LABEL}.</li>
       </gloomy>
+      <cold>
+        <li>{LABEL} was poorly cooked.</li>
+        <li>[byme] {LABEL} cost me two days of work.</li>
+        <li>The cook should have checked {LABEL} first.</li>
+        <li>[worn] We have discussed {LABEL} enough.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -108,11 +229,38 @@
         <li>[byme] I was greener than a cabbage.</li>
         <li>[byother] You went the color of pond water.</li>
         <li>[told] I'm still not sure what was in it.</li>
+        <li>[told] I check every bowl now before I eat a spoonful.</li>
       </plain>
+      <warm>
+        <li>[fresh] I'm just glad we were sick together and not alone.</li>
+        <li>[told] You looked after me, I remember that part.</li>
+        <li>[byother] I worried about you that night, you know.</li>
+        <li>[worn] All right, the stew, for old times' sake.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Never again.</li>
+        <li>[told] Stew's off the menu.</li>
+        <li>[worn] Enough about the stew.</li>
+        <li>[byme] I was sick for days.</li>
+      </blunt>
       <cheerful>
         <li>[fresh] I'll never trust a carrot again.</li>
         <li>[told] The first bowl was lovely, to be fair.</li>
+        <li>[fresh] My stomach's still filing complaints.</li>
+        <li>[byother] You made the funniest noises, I'm sorry.</li>
       </cheerful>
+      <gloomy>
+        <li>[fresh] I wasn't laughing at the time.</li>
+        <li>[told] I've never trusted the kitchen since.</li>
+        <li>[byme] I thought I was dying.</li>
+        <li>[worn] The stew will haunt us forever.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] It was a hygiene failure.</li>
+        <li>[told] Lesson learned about the stores.</li>
+        <li>[byme] I lost two days to it.</li>
+        <li>[worn] Old news.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -127,6 +275,8 @@
         <li>Bread and water for us, then.</li>
         <li>[worn] All right, the stew can rest in peace.</li>
         <li>We'll ask what's in it next time.</li>
+        <li>Smell everything first, from now on.</li>
+        <li>I'll eat yours first, then you'll know.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -143,13 +293,38 @@
         <li>I can't look at one of those beasts now without flinching.</li>
         <li>I can still hear {LABEL} going up.</li>
         <li>You've never run so fast as when {LABEL} went off.</li>
+        <li>[told] Every time a beast grunts, I think it's {LABEL} all over again.</li>
       </plain>
+      <warm>
+        <li>I'm so glad nobody got hurt in {LABEL}.</li>
+        <li>I think of you dragging me back from {LABEL}, every time.</li>
+        <li>I'm glad it was you next to me when {LABEL} went up.</li>
+        <li>[fresh] After {LABEL}, I hugged you, and I'd do it again.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL} nearly took my head off.</li>
+        <li>Stand back next time, idiot, remember {LABEL}?</li>
+        <li>[worn] Boom.</li>
+        <li>{LABEL}, worst day ever.</li>
+      </blunt>
       <cheerful>
         <li>I'd like to thank {LABEL} for the free haircut.</li>
+        <li>You jumped when {LABEL} went off, like a startled cat.</li>
+        <li>[fresh] My hair's still standing up from {LABEL}.</li>
+        <li>[told] I've told the story of {LABEL} so often, the bang's twice as big now.</li>
       </cheerful>
       <gloomy>
         <li>We could have died next to {LABEL}, you know.</li>
+        <li>{LABEL} could have killed us both.</li>
+        <li>I still hear ringing since {LABEL}.</li>
+        <li>[worn] We'll never live {LABEL} down.</li>
       </gloomy>
+      <cold>
+        <li>{LABEL} was a careless moment.</li>
+        <li>We should have handled {LABEL} from range.</li>
+        <li>[worn] {LABEL} is old news.</li>
+        <li>Nobody was hurt in {LABEL}, so it's a joke.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -167,11 +342,38 @@
         <li>[worn] Boom, yes, very good.</li>
         <li>[told] I give anything with a swollen belly a wide berth now.</li>
         <li>[byme] I still have a ringing in one ear.</li>
+        <li>[told] I can still feel the heat on my face.</li>
       </plain>
+      <warm>
+        <li>[fresh] I'm just glad you're all right.</li>
+        <li>[told] You pulled me clear, I never forgot.</li>
+        <li>[worn] All right, boom, for you.</li>
+        <li>I'd rather laugh about it than think about it.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Too close.</li>
+        <li>[told] We were idiots.</li>
+        <li>[worn] Not the boom again.</li>
+        <li>[byme] My ears still ring.</li>
+      </blunt>
       <cheerful>
         <li>[fresh] Best fireworks we've ever had.</li>
         <li>[told] The bang gets bigger every time you tell it.</li>
+        <li>[fresh] I'm going to be laughing about that for weeks.</li>
+        <li>[byme] My eyebrows and I have made our peace.</li>
       </cheerful>
+      <gloomy>
+        <li>[fresh] We were nearly killed.</li>
+        <li>[told] It's funny until you think about it.</li>
+        <li>[worn] I'd rather forget it.</li>
+        <li>[byme] My ears have never been the same.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] We were too close.</li>
+        <li>[told] Lessons were learned.</li>
+        <li>[worn] It's been discussed.</li>
+        <li>[byme] Minor hearing loss, nothing more.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -185,6 +387,8 @@
         <li>From a distance next time, please.</li>
         <li>Long sticks, that's the lesson.</li>
         <li>The next one we see, we deal with from the wall.</li>
+        <li>Keep well back from the next one, please.</li>
+        <li>Next time, we throw a rock from far away.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -203,10 +407,38 @@
         <li>[byother] Fancy taming another one like {LABEL}?</li>
         <li>I keep well back from the wild ones now, thanks to {LABEL}.</li>
         <li>[worn] Shall we go and make friends with {LABEL} again?</li>
+        <li>[told] I saw one like {LABEL} by the trees today and walked the other way.</li>
       </plain>
+      <warm>
+        <li>[byother] I'm glad you're all right after {LABEL}, it could have been worse.</li>
+        <li>[byme] You came to help me with {LABEL}, I remember.</li>
+        <li>[byother] You were so brave with {LABEL}, really.</li>
+        <li>I still laugh about {LABEL}, I'm sorry.</li>
+      </warm>
+      <blunt>
+        <li>[byme] {LABEL} had it in for me.</li>
+        <li>[byother] You got chased by {LABEL}.</li>
+        <li>[worn] {LABEL}, again.</li>
+        <li>{LABEL} wasn't interested in friends.</li>
+      </blunt>
       <cheerful>
         <li>[byother] You and {LABEL}, a love story for the ages.</li>
+        <li>[byother] You ran like the wind from {LABEL}, I've never seen you move so fast.</li>
+        <li>[byme] {LABEL} and I had a misunderstanding, that's all.</li>
+        <li>[fresh] I'm still laughing about {LABEL}.</li>
       </cheerful>
+      <gloomy>
+        <li>[byme] {LABEL} could have done me real harm.</li>
+        <li>[byother] I thought {LABEL} was going to get you.</li>
+        <li>I never want to see another one like {LABEL}.</li>
+        <li>[worn] We'll be talking about {LABEL} forever.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] {LABEL} was wild, and I misjudged it.</li>
+        <li>[byother] Your approach to {LABEL} was poor.</li>
+        <li>{LABEL} wasn't ready to be tamed.</li>
+        <li>[worn] {LABEL} is not as funny as you think.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -224,10 +456,38 @@
         <li>[worn] Yes, I know, I ran, we all know.</li>
         <li>[byother] You should have seen your face.</li>
         <li>[byme] I was being gentle, it was being rude.</li>
+        <li>[byme] I still say it was testing me.</li>
       </plain>
+      <warm>
+        <li>[fresh] I'm just glad you came out of it unhurt.</li>
+        <li>[byme] Thanks for coming to help, even if you were laughing.</li>
+        <li>[byother] I'd have run too, any sensible person would.</li>
+        <li>[told] It's a good story, I'll give you that.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Vicious thing.</li>
+        <li>[told] I ran, so what.</li>
+        <li>[worn] Drop it.</li>
+        <li>[byme] It started it.</li>
+      </blunt>
       <cheerful>
         <li>[told] We're friends now, me and that beast, from a distance.</li>
+        <li>[fresh] I'll tame it yet, give me a few years and a lot of carrots.</li>
+        <li>[byother] Your face, I'll treasure it forever.</li>
+        <li>[byme] It was playing hard to get.</li>
       </cheerful>
+      <gloomy>
+        <li>[fresh] It nearly had me.</li>
+        <li>[told] I don't go near the wild ones now.</li>
+        <li>[worn] We'll never hear the end of it.</li>
+        <li>[byme] I could have been badly hurt.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] My approach was wrong.</li>
+        <li>[told] Wild animals are unpredictable.</li>
+        <li>[worn] That joke has run its course.</li>
+        <li>[byme] I've adjusted my technique.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -241,6 +501,8 @@
         <li>Next time, take a carrot.</li>
         <li>Leave the wild ones wild, I say.</li>
         <li>Let the handler try next time.</li>
+        <li>Leave the taming to the patient ones.</li>
+        <li>We'll watch from the fence next time.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -257,10 +519,38 @@
         <li>Whenever someone lights a candle, I think of {LABEL}.</li>
         <li>[byme] I was very calm during {LABEL}, I'll have you know.</li>
         <li>I keep a bucket by my bed now, since {LABEL}.</li>
+        <li>[told] Somebody lit a fire today and I reached for a bucket out of habit.</li>
       </plain>
+      <warm>
+        <li>I'm glad we put {LABEL} out together.</li>
+        <li>You were very calm during {LABEL}, I was proud of you.</li>
+        <li>I still think of you running with that bucket during {LABEL}.</li>
+        <li>[fresh] I'm so glad {LABEL} didn't spread.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL}, what a mess.</li>
+        <li>You panicked at {LABEL}.</li>
+        <li>[worn] {LABEL}, again?</li>
+        <li>We got {LABEL} out, that's what counts.</li>
+      </blunt>
       <cheerful>
         <li>I've never seen anyone dance like you did at {LABEL}.</li>
+        <li>[fresh] I'm still finding soot in my hair from {LABEL}.</li>
+        <li>You threw a whole bucket on me during {LABEL}, and I'm still damp.</li>
+        <li>I've been practicing my fire dance since {LABEL}, it's very good now.</li>
       </cheerful>
+      <gloomy>
+        <li>{LABEL} could have burned the whole place down.</li>
+        <li>I still smell smoke from {LABEL} sometimes.</li>
+        <li>[worn] We'll never stop talking about {LABEL}, will we.</li>
+        <li>[byme] I still feel foolish about {LABEL}.</li>
+      </gloomy>
+      <cold>
+        <li>{LABEL} was handled quickly.</li>
+        <li>We should keep more water near the stoves, after {LABEL}.</li>
+        <li>{LABEL} was small, and we were lucky.</li>
+        <li>[worn] {LABEL} is in the past.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -278,10 +568,38 @@
         <li>[worn] Yes, the fire, the buckets, we know.</li>
         <li>[told] All that water for a fire the size of a hat.</li>
         <li>[byme] I panicked, all right, I admit it.</li>
+        <li>[told] It was a very small fire, and we treated it like a war.</li>
       </plain>
+      <warm>
+        <li>[fresh] I'm just glad nobody got burned.</li>
+        <li>[told] You were so brave, with your bucket.</li>
+        <li>[byme] Thanks for helping me, even if you laughed.</li>
+        <li>[worn] All right, the fire, one more time.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Too close to the roof.</li>
+        <li>[told] I wasn't panicking.</li>
+        <li>[worn] Not the fire again.</li>
+        <li>[byme] I kept my head.</li>
+      </blunt>
       <cheerful>
         <li>[fresh] I'm still finding soot in my ears.</li>
+        <li>[fresh] Best bucket throw of my life, that.</li>
+        <li>[byme] I was magnificent and slightly on fire.</li>
+        <li>[told] The fire was only the size of a loaf, by the end.</li>
       </cheerful>
+      <gloomy>
+        <li>[fresh] It could have been so much worse.</li>
+        <li>[told] I still check the stoves at night.</li>
+        <li>[worn] I'd rather not remember.</li>
+        <li>[byme] I was so scared.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] It was contained quickly.</li>
+        <li>[told] We overreacted.</li>
+        <li>[worn] The fire has been discussed.</li>
+        <li>[byme] I acted correctly.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -295,6 +613,8 @@
         <li>Buckets by the door from now on.</li>
         <li>Next time, less shouting and more water.</li>
         <li>I'll stamp on the next one sooner.</li>
+        <li>Water by every door, I say.</li>
+        <li>Next time, I'll bring two buckets.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -311,10 +631,38 @@
         <li>I've still got {LABEL} under my nails.</li>
         <li>I told the others about {LABEL}, and I did the noise you made.</li>
         <li>[rain] Looks like good weather for {LABEL}, doesn't it.</li>
+        <li>[told] I walked round the puddle today, the long way, thanks to {LABEL}.</li>
       </plain>
+      <warm>
+        <li>I'm glad it was you I fell in the mud with, if I had to fall.</li>
+        <li>[fresh] You helped me up after {LABEL}, and then you fell too.</li>
+        <li>I still laugh about {LABEL} when it rains.</li>
+        <li>[byme] I was so embarrassed after {LABEL}, but you made it funny.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL}, never again.</li>
+        <li>You fell in {LABEL} like a sack.</li>
+        <li>[worn] Mud, yes.</li>
+        <li>Still got {LABEL} on my boots.</li>
+      </blunt>
       <cheerful>
         <li>I've named that puddle after you.</li>
+        <li>I'm entering us in the mud-wrestling at the next fair, thanks to {LABEL}.</li>
+        <li>[fresh] I'm still finding bits of {LABEL} in my ears.</li>
+        <li>[byme] I went into {LABEL} with great style, you must admit.</li>
       </cheerful>
+      <gloomy>
+        <li>{LABEL} ruined my best boots.</li>
+        <li>I've never been so cold and wet as after {LABEL}.</li>
+        <li>[worn] We'll never be clean of {LABEL}.</li>
+        <li>[byme] Everyone saw me go down in {LABEL}, everyone.</li>
+      </gloomy>
+      <cold>
+        <li>{LABEL} was a footing error.</li>
+        <li>The path through {LABEL} should be drained.</li>
+        <li>[worn] {LABEL} is hardly worth repeating.</li>
+        <li>We should lay stones where {LABEL} was.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -332,10 +680,38 @@
         <li>[worn] Yes, the mud, I know.</li>
         <li>[told] My boots have never been the same.</li>
         <li>[byme] I went down like a sack of grain, didn't I.</li>
+        <li>[told] I still walk round that patch.</li>
       </plain>
+      <warm>
+        <li>[fresh] At least we were muddy together.</li>
+        <li>[told] You were very gallant, helping me up.</li>
+        <li>[byme] Thank you for not laughing too much.</li>
+        <li>[worn] All right, the mud, one more time.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Filthy.</li>
+        <li>[told] You pushed me.</li>
+        <li>[worn] Enough mud.</li>
+        <li>[byme] I slipped, that's all.</li>
+      </blunt>
       <cheerful>
         <li>[fresh] I'll never be clean again, and I've accepted it.</li>
+        <li>[fresh] I've decided mud is good for the skin.</li>
+        <li>[byme] It was a graceful fall, everyone said so.</li>
+        <li>[told] We looked like two swamp monsters.</li>
       </cheerful>
+      <gloomy>
+        <li>[fresh] I was cold for days.</li>
+        <li>[told] My boots never recovered.</li>
+        <li>[worn] We'll never live it down.</li>
+        <li>[byme] Everyone saw.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] The ground was poorly drained.</li>
+        <li>[told] We should have stayed on the path.</li>
+        <li>[worn] It's not worth discussing.</li>
+        <li>[byme] I lost my footing.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -349,6 +725,8 @@
         <li>I'll hold your hand next time, for balance.</li>
         <li>Boots off at the door, I've learned my lesson.</li>
         <li>We stay on the path from now on, the pair of us.</li>
+        <li>We'll lay some stones down, one of these days.</li>
+        <li>Hold on to me next time, and we'll both fall.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -366,10 +744,38 @@
         <li>[byother] I've got a story about {LABEL} for anyone who'll listen.</li>
         <li>[byother] You were singing by the end of {LABEL}, you know.</li>
         <li>Another big night soon, {OTHER}, or have we learned our lesson?</li>
+        <li>[told] Somebody opened a jug last night and I thought of {LABEL}.</li>
       </plain>
+      <warm>
+        <li>[byother] I'm glad you got home safe after {LABEL}.</li>
+        <li>[byme] Thank you for looking after me during {LABEL}.</li>
+        <li>[byother] You were so happy during {LABEL}, I'll give you that.</li>
+        <li>I still smile about {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>[byme] {LABEL} was a mistake.</li>
+        <li>[byother] You were a mess at {LABEL}.</li>
+        <li>[worn] {LABEL}, I know.</li>
+        <li>{LABEL}, my head still hurts.</li>
+      </blunt>
       <cheerful>
         <li>[byother] When's the encore, {OTHER}?</li>
+        <li>[byother] Your speech at {LABEL} was the best thing I've ever heard, word for word.</li>
+        <li>[byme] I was in great voice during {LABEL}, everyone said so, I think.</li>
+        <li>[fresh] I can't stop laughing about {LABEL}.</li>
       </cheerful>
+      <gloomy>
+        <li>[byme] I still feel bad about {LABEL}.</li>
+        <li>[byother] {LABEL} could have gone badly, you know.</li>
+        <li>I worry about you since {LABEL}.</li>
+        <li>[worn] Go on, bring up {LABEL} again, I deserve it.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] {LABEL} was poorly judged.</li>
+        <li>[byother] Your behavior at {LABEL} was memorable.</li>
+        <li>{LABEL} cost a day's work.</li>
+        <li>[worn] {LABEL} has been mentioned enough.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -387,10 +793,38 @@
         <li>[worn] Yes, yes, I made a fool of myself, we know.</li>
         <li>[byother] You were there too, don't forget.</li>
         <li>[byme] I'd like it known that I was celebrating.</li>
+        <li>[byme] I'd like to forget most of it.</li>
       </plain>
+      <warm>
+        <li>[byme] Thank you for being there.</li>
+        <li>[byother] I was worried, but you were fine.</li>
+        <li>[told] It's funny now, at least.</li>
+        <li>[worn] All right, one more time, for you.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] Never again, not one drop.</li>
+        <li>[told] Leave that night alone.</li>
+        <li>[worn] Drop it, I've learned.</li>
+        <li>[byme] I was celebrating.</li>
+      </blunt>
       <cheerful>
         <li>[told] It was a performance, and I stand by it.</li>
+        <li>[fresh] I was magnificent, I'm told.</li>
+        <li>[byother] Your singing, though, I'll never forget it.</li>
+        <li>[byme] I've retired from big nights, mostly.</li>
       </cheerful>
+      <gloomy>
+        <li>[fresh] My head still hurts.</li>
+        <li>[told] I'm not proud of it.</li>
+        <li>[worn] Nobody will ever let me forget it.</li>
+        <li>[byme] I made a fool of myself.</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] It was excessive.</li>
+        <li>[told] It won't happen again.</li>
+        <li>[worn] We have discussed my evening enough.</li>
+        <li>[byme] An error of judgment.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -404,6 +838,8 @@
         <li>Water for both of us, then.</li>
         <li>Your secret's safe with me, mostly.</li>
         <li>Next time I'm hiding the good stuff.</li>
+        <li>Water first next time, both of us.</li>
+        <li>I'll keep an eye on you at the next feast.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>

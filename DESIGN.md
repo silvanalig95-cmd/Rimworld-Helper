@@ -458,12 +458,19 @@ What people did, who knows it, how the story spreads, and the name that follows 
 What colonists talk about, the views they hold, and what they went through together (`Social/Talk/`; the arithmetic in
 `TalkMath.cs` and the lines' queue in `ExchangeQueue.cs`, checked by `Tools/Tests/TalkTests.cs`).
 
-- **Topics** (`TopicDef`, 19, a worker each) say when they come up, what's news (`TalkNote`s from the game's events and
-  the talk's hour, and the game's state: the food, a disaster, traders), who or what a talk is about, and what a
+- **Topics** (`TopicDef`, 23, a worker each) say when they come up, what's news (`TalkNote`s from the game's events and
+  the talk's hour, and the game's state: the food, a disaster, traders; and in `TalkScene`, found once an hour: a
+  calendar day from three days before to two after it was kept, the newest world situation, the camp on the map), who
+  or what a talk is about, and what a
   colonist's life adds to a view. A view (-1..1) is kept with `Persona.SetStance` under the topic's defName
   (`defName:id` for a newcomer, let go once they're settled). It's seeded from the topic's weights per side of a person,
   its leans (traits, passions, memes, precepts) and that life, drifts 4% a day back toward it, is pushed by events (a
   fight, a death) and moved by talk (`TalkMath.Pull`, at most a quarter of the way in one talk).
+- **Children** talk only of growing up (`TopicDef.forChildren`, `TopicWorker_Growing`): a pair with a child
+  (`Talk.EligibleChild`) weighs only the topics for children, at half the pair's budget (`Talk.ChildShare`), and a pair
+  of grown-ups never weighs them. Their lines say who speaks ([child], [!child]; a test checks every line does).
+- **Not about everything**: a topic's worker can rule out teasing for the moment (`TopicWorker.NoTease`: a day of
+  mourning on the calendar, as the dead always).
 - **In the game's picker.** One InteractionDef per topic, and one each for remembering, an in-joke and comfort
   (`InteractionWorker_Talk`). They share one budget, 0.08 next to chitchat, times the moments frequency, the pair
   (friends, rivals, dislike) and `Heart.MomentWeightFactor` (which carries the persona's talkativeness, counted once),

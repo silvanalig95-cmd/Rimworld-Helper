@@ -21,8 +21,38 @@
         <li>[byme] Thank you for sitting through {LABEL}, when it isn't even your faith.</li>
         <li>[byother] I didn't expect to enjoy {LABEL} as much as I did.</li>
         <li>[byme] Was I too long-winded at {LABEL}?</li>
+        <li>[byother] That evening at {LABEL} stayed with me for days.</li>
       </plain>
-      <blunt><li>[byother] You went on a bit at {LABEL}, and I didn't mind.</li></blunt>
+      <warm>
+        <li>[byme] It meant a lot to me that you came to {LABEL}.</li>
+        <li>[byother] I felt welcome at {LABEL}, even as a stranger to it.</li>
+        <li>[byme] Seeing you at {LABEL} made my evening.</li>
+        <li>[byother] Thank you for having me at {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>[byother] You went on a bit at {LABEL}, and I didn't mind.</li>
+        <li>[byother] {LABEL} was good, I'll admit it.</li>
+        <li>[byme] You came to {LABEL}, didn't expect that.</li>
+        <li>[byother] I liked the singing at {LABEL}, not the speeches.</li>
+      </blunt>
+      <cheerful>
+        <li>[byother] I only nodded off once at {LABEL}, I'm very proud.</li>
+        <li>[byme] You sang louder than anyone at {LABEL}, I heard you.</li>
+        <li>[byother] The food after {LABEL} was the best part, no offense.</li>
+        <li>[byme] You're practically one of us since {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byother] I felt something at {LABEL}, and I don't know what it was.</li>
+        <li>[byme] I wonder if anyone listened at {LABEL}.</li>
+        <li>[byother] {LABEL} made me miss home.</li>
+        <li>[byme] Fewer came to {LABEL} than I hoped.</li>
+      </gloomy>
+      <cold>
+        <li>[byother] {LABEL} was well run.</li>
+        <li>[byme] {LABEL} went as planned.</li>
+        <li>[byother] I found {LABEL} interesting.</li>
+        <li>[byme] Attendance at {LABEL} was good.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -39,6 +69,8 @@
         <li>[byother] I came for the company, mostly.</li>
         <li>[byme] You'd be welcome any evening, not just that one.</li>
         <li>[byother] I remember how quiet it went at the end.</li>
+        <li>[byother] I'd come again, I think.</li>
+        <li>[byme] There's always a place for you.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -54,6 +86,8 @@
         <li>[byother] Save me a seat at the next one.</li>
         <li>That was a good evening.</li>
         <li>[byother] I'll come again, I think.</li>
+        <li>[byother] Thank you for having me.</li>
+        <li>[byme] I'll tell you when the next one is.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -71,8 +105,38 @@
         <li>[byme] You asked good questions that night, and I've been turning some of them over myself.</li>
         <li>[byother] You never did answer my last question.</li>
         <li>[byme] I hope I didn't put you off with all my talk.</li>
+        <li>[byother] What you told me that evening still comes back to me.</li>
       </plain>
-      <warm><li>[byme] I'm glad you asked me, of everyone.</li></warm>
+      <warm>
+        <li>[byme] I'm glad you asked me, of everyone.</li>
+        <li>[byother] You were so patient with all my questions that night.</li>
+        <li>[byme] I loved talking with you about my faith.</li>
+        <li>[byother] Thank you for sharing something so close to you.</li>
+      </warm>
+      <blunt>
+        <li>[byother] I've thought about what you said, that's all.</li>
+        <li>[byme] Any more questions, since that night?</li>
+        <li>[byother] Some of it made sense, some didn't.</li>
+        <li>[byme] You listened well that night.</li>
+      </blunt>
+      <cheerful>
+        <li>[byother] I've been practicing the prayer you taught me, badly.</li>
+        <li>[byme] You're my best student, and my only one.</li>
+        <li>[byother] I asked so many questions that night, I'm surprised you're still talking to me.</li>
+        <li>[byme] I'll make a believer of you yet, wait and see.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byother] I'm still not sure what I believe.</li>
+        <li>[byme] I hope I didn't confuse you more.</li>
+        <li>[byother] I wanted to believe what you said, I really did.</li>
+        <li>[byme] Faith's hard to explain, I never get it right.</li>
+      </gloomy>
+      <cold>
+        <li>[byother] Your explanation was clear.</li>
+        <li>[byme] You asked logical questions.</li>
+        <li>[byother] I've considered what you said.</li>
+        <li>[byme] You seemed to understand it.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -89,6 +153,8 @@
         <li>[byother] I still don't know what I believe, but that evening helped.</li>
         <li>[byme] Ask me again when you're ready, I won't push.</li>
         <li>[byother] Some of it stuck with me, more than I expected.</li>
+        <li>[byother] I'm still thinking it over, slowly.</li>
+        <li>[byme] Ask me anything, whenever you're ready.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -104,6 +170,8 @@
         <li>[byother] Thank you for that evening.</li>
         <li>We should do it again some time.</li>
         <li>[byme] My door's open, you know that.</li>
+        <li>[byother] I might ask you more, one of these days.</li>
+        <li>[byme] I'm always happy to talk about it.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>

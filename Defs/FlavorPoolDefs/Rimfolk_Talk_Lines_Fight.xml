@@ -53,6 +53,19 @@
         <li>[against,insects] Stay out of the tunnels and wall them up, that's what I say.</li>
         <li>[against,animals] Bar the doors and let the pack wander off, it's not worth anyone's leg.</li>
         <li>[mixed,won] We won, but I can't stop shaking when I think about it.</li>
+        <li>[for] They'll keep testing us until somebody bloodies their nose.</li>
+        <li>[for] I'd rather they feared us than thought us easy.</li>
+        <li>[for] Next raid, I want a few of us ready to go out and finish it.</li>
+        <li>[against] Some nights I walk the walls, counting the weak spots.</li>
+        <li>[against] The best fight is the one where nobody on our side gets hurt.</li>
+        <li>[against] Let them waste their strength on stone, that's what walls are for.</li>
+        <li>[mixed] Are we ready for the next one, do you think?</li>
+        <li>[mixed] I keep going over the last raid in my head.</li>
+        <li>[mixed] I don't know if we got lucky or if we're getting good at this.</li>
+        <li>[mixed] Who do you think they'll send next time?</li>
+        <li>[mixed] I still jump every time a dog barks at night.</li>
+        <li>[mixed] Some nights I'm ready for them, some nights I'm not.</li>
+        <li>[mixed] How long do you think we've got before the next one?</li>
       </plain>
       <warm>
         <li>[for] I'd stand at that gate for any of you, you know that.</li>
@@ -63,6 +76,8 @@
         <li>[for,won] You were brave out there, all of you were.</li>
         <li>[against] Promise me you won't go running out there next time.</li>
         <li>[against,won] I'm just so glad it's over.</li>
+        <li>[mixed] Are you sleeping all right, since the last one?</li>
+        <li>[mixed] I worry about all of us when I think about the next raid.</li>
       </warm>
       <blunt>
         <li>[for] Hiding never saved anyone, a sharp blade did.</li>
@@ -75,6 +90,8 @@
         <li>[for,won] We beat them, and we'll beat them again.</li>
         <li>[against,fallen] Your heroics cost us, and I won't forget it.</li>
         <li>[against] Next time someone opens that gate, I'm locking them out with the raiders.</li>
+        <li>[mixed] They'll be back, so what's the plan?</li>
+        <li>[mixed] Raids, always raids.</li>
       </blunt>
       <cheerful>
         <li>[for] The last raid was the most exercise I've had all season.</li>
@@ -84,15 +101,18 @@
         <li>[against] I'm a lover, not a fighter, and lovers live behind thick walls.</li>
         <li>[for] I've named my weapon, and she's very excited about the next raid.</li>
         <li>[against,won] We won, so I'm retiring from war, very undefeated.</li>
+        <li>[mixed] I've started a list of everything I'd say to a raider, and it's long.</li>
+        <li>[mixed] If they come at supper again, I'm finishing my bowl first.</li>
       </cheerful>
       <gloomy>
         <li>[for] They'll keep coming until we make them stop, so we might as well start.</li>
         <li>[for] Sooner or later they'll get in, so I'd rather it was on our terms.</li>
-        <li>[against] Every raid we lose a little more, and one day it'll be the lot of us.</li>
+        <li>[against] Every raid we lose more, and one day it'll be the lot of us.</li>
         <li>[against] Walls won't save us, but they'll save us for longer.</li>
         <li>[mixed] I don't think it matters what we do, they'll be back either way.</li>
         <li>[for,fallen] We'll lose more if we don't take the fight to them.</li>
         <li>[against,won] We won this time, but next time we won't.</li>
+        <li>[mixed] It's only a matter of time before the next one.</li>
       </gloomy>
       <cold>
         <li>[for] Defense is a slow loss, so we should strike first.</li>
@@ -101,6 +121,8 @@
         <li>[against] Holding the walls is simple arithmetic, and going out isn't.</li>
         <li>[for,won] They lost more than we did, so we should press that.</li>
         <li>[against,fallen] One of ours dead, and that's the cost of fighting in the open.</li>
+        <li>[mixed] The next raid is a question of when, not if.</li>
+        <li>[mixed] We should review what went wrong last time.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -148,6 +170,39 @@
         <li>[agree,against] Walls first, and then we'll talk about anything else.</li>
         <li>[debate,for] A wall's no use if nobody's willing to stand on it.</li>
         <li>[debate,against] Brave is fine, but it doesn't make you any harder to hit.</li>
+        <li>[agree] I've been thinking the same since the last one.</li>
+        <li>[agree] You're not the only one losing sleep over it.</li>
+        <li>[agree] That's what I told the others on watch.</li>
+        <li>[agree] I'd say the same to anyone who asked.</li>
+        <li>[agree] We were talking about it on the wall last night.</li>
+        <li>[debate] It depends what they send next time.</li>
+        <li>[debate] I've gone back and forth on that myself.</li>
+        <li>[debate] There's more than one way to win a fight.</li>
+        <li>[debate] We'll know better when the next lot comes.</li>
+        <li>[debate] That's not how I remember it going.</li>
+        <li>[argue] You weren't even on the wall when it mattered.</li>
+        <li>[argue] Don't lecture me about fighting.</li>
+        <li>[argue] We've had this argument after every raid.</li>
+        <li>[argue] You'll get someone killed with talk like that.</li>
+        <li>[argue] I was there, and you've got it wrong.</li>
+        <li>[for] Every time we hit back hard, they leave us alone longer.</li>
+        <li>[for] Fear's a better wall than stone, and it costs less.</li>
+        <li>[for] Better to fight them on our ground than wait for them to pick the day.</li>
+        <li>[against] Every one of us we lose is one we can't replace.</li>
+        <li>[against] Stone doesn't bleed, and that's the point of it.</li>
+        <li>[against] A good wall's worth ten brave fools.</li>
+        <li>[mixed] I'll fight if I have to, I just don't want to have to.</li>
+        <li>[mixed] There's sense on both sides, and I hate that there is.</li>
+        <li>[mixed] I don't know what's right, I only know I was scared.</li>
+        <li>[agree,mixed] Nobody really knows, do they.</li>
+        <li>[agree,mixed] I go back and forth on it too.</li>
+        <li>[agree,mixed] Depends who comes over the hill, doesn't it.</li>
+        <li>[debate,mixed] I'm not sure either way, but I'm not sure you're right.</li>
+        <li>[debate,mixed] I'd want walls and fighters both.</li>
+        <li>[debate,mixed] It's never as simple as walls or no walls.</li>
+        <li>[argue,mixed] I haven't taken a side, so stop pushing me onto one.</li>
+        <li>[argue,mixed] Fight about it with someone else, I'm tired.</li>
+        <li>[argue,mixed] I'm not going to choose between your plan and theirs tonight.</li>
       </plain>
       <warm>
         <li>[agree,for] I feel safer knowing you'll be out there.</li>
@@ -156,6 +211,9 @@
         <li>[argue,against] Please don't do anything stupid out there.</li>
         <li>[agree,for] I'll be right there with you, I promise.</li>
         <li>[argue,for] I'm not trying to frighten you, but we have to fight.</li>
+        <li>[agree,mixed] Whatever we do, I just want everyone to come home.</li>
+        <li>[debate,for] I know you're frightened, I am too, but we have to stand up to them.</li>
+        <li>[agree,against] I'd feel so much safer with another wall.</li>
       </warm>
       <blunt>
         <li>[agree,for] About time someone said it.</li>
@@ -163,16 +221,25 @@
         <li>[argue,for] Keep your walls, I'll keep my blade.</li>
         <li>[argue,for] Spoken like someone who hid in the storeroom.</li>
         <li>[debate,for] Walls are for people who've given up.</li>
+        <li>[agree,mixed] Who knows.</li>
+        <li>[debate,against] Walls work, heroes die.</li>
+        <li>[argue,mixed] I'll fight when they come, not with you.</li>
       </blunt>
       <cheerful>
         <li>[debate,against] You charge, I'll hold the door, and we'll argue about it afterwards.</li>
         <li>[debate,for] I'm all for walls, as long as I can throw things over them.</li>
         <li>[agree,against] Walls, glorious walls, I'll marry the next one we build.</li>
+        <li>[agree,for] Next time, I'm bringing a bigger stick.</li>
+        <li>[agree,mixed] I'll be wherever the snacks are, plan around that.</li>
+        <li>[argue,against] You charge out the gate, I'll mind your boots.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] Walls, and a lot of them, before it's too late.</li>
         <li>[argue,against] Either way, half of us won't see next year.</li>
         <li>[debate,for] Walls fall, sooner or later, all of them.</li>
+        <li>[agree,for] It won't stop until we make it stop.</li>
+        <li>[debate,against] Fight or hide, they'll still get some of us.</li>
+        <li>[agree,mixed] We'll lose someone either way, I suppose.</li>
       </gloomy>
       <cold>
         <li>[debate,against] Your way loses more people, I've counted.</li>
@@ -180,6 +247,9 @@
         <li>[argue,for] Your walls are just a slower way to lose.</li>
         <li>[agree,for] Agreed, a strong first strike saves lives.</li>
         <li>[debate,for] A wall delays things, it doesn't decide them.</li>
+        <li>[agree,against] Walls are cheaper than graves.</li>
+        <li>[debate,mixed] Both plans have costs, so we should count them.</li>
+        <li>[argue,for] Waiting gives them the initiative.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -201,18 +271,41 @@
         <li>[agree] We'll be ready this time.</li>
         <li>[debate] Whatever happens, I've got your back.</li>
         <li>[argue] Just don't look to me when they're at the door.</li>
+        <li>[agree] Let's go and check the gate together.</li>
+        <li>[debate] We'll know who's right soon enough.</li>
+        <li>[argue] I'm going to sharpen something before I say something.</li>
+        <li>[agree,mixed] We'll be ready, however it goes.</li>
+        <li>[debate,mixed] Whatever we do, let's do it together.</li>
       </plain>
       <warm>
         <li>[agree] Stay safe, whatever comes.</li>
+        <li>[debate] Just come back safe, whatever you decide.</li>
+        <li>[argue] I'm sorry, I'm scared, that's all.</li>
+        <li>[agree,against] I'll help you with the wall tomorrow.</li>
       </warm>
       <blunt>
         <li>[argue,against] Go be a hero and I'll start digging.</li>
+        <li>[agree] Good, then we're ready.</li>
+        <li>[debate] Fine, we'll see.</li>
+        <li>[agree,for] Next time, we hit back.</li>
       </blunt>
       <cheerful>
         <li>[debate] Loser of the argument digs the next trench.</li>
+        <li>[agree] First one to spot them gets the good seat on the wall.</li>
+        <li>[argue] Fine, I'll defend the colony alone, with style.</li>
+        <li>[agree,for] I'll bring the stick, you bring the shouting.</li>
       </cheerful>
+      <gloomy>
+        <li>[agree] We'll be ready, or we won't.</li>
+        <li>[debate] It'll come down to luck again.</li>
+        <li>[argue] Have it your way, we'll bury whoever's wrong.</li>
+        <li>[agree,against] More walls, and pray they hold.</li>
+      </gloomy>
       <cold>
         <li>[argue] When they come, we'll see whose way works.</li>
+        <li>[agree] Agreed, the defenses come first.</li>
+        <li>[debate] The next raid will decide it.</li>
+        <li>[agree,against] I'll work out how much stone we need.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -228,10 +321,14 @@
         <li>[otherfor] You talk about raiders the way other people talk about sweethearts.</li>
         <li>[otheragainst] Another wall, {OTHER}, and we'll be living in a box.</li>
         <li>[otheragainst] You've a new wall plan every morning, {OTHER}, I've started counting.</li>
+        <li>[otherfor] You sleep with your boots on in case the raiders come, don't you, {OTHER}?</li>
+        <li>[otheragainst] If you had your way, {OTHER}, we'd wall up the door and live in the cellar.</li>
       </plain>
       <cheerful>
         <li>[otherfor] Careful, {OTHER}, if you sharpen that blade any more there'll be nothing left of it.</li>
         <li>[otheragainst] I hear you want a moat, {OTHER}, with a smaller moat inside it.</li>
+        <li>[otherfor] You've polished that weapon so often you can see your face in it, {OTHER}.</li>
+        <li>[otheragainst] I hear you've ordered a wall for your wall, {OTHER}.</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -272,12 +369,30 @@
         <li>[against,decrees] Every decree's another thing we're not allowed to do.</li>
         <li>[mixed,leader,subject] I can't decide whether I trust {SUBJECT}.</li>
         <li>[toleader,against] I'll say it to your face: the council's not listening.</li>
+        <li>[for] They've kept us fed and safe, the council, and that's what it's for.</li>
+        <li>[for] I'd rather have a council that tries than nobody in charge at all.</li>
+        <li>[for] They've got a hard job, and most of us couldn't do it.</li>
+        <li>[for] When it counted, the council made the right call.</li>
+        <li>[for] I like that we get a say, even if they don't always do what I'd do.</li>
+        <li>[against] Every time the council decides something, somebody loses out.</li>
+        <li>[against] I don't remember anyone asking me what I thought.</li>
+        <li>[against] All the council's good at is meetings.</li>
+        <li>[against] Funny how the council's decisions never cost the council anything.</li>
+        <li>[mixed] Is the council helping, or just talking?</li>
+        <li>[mixed] Do you think the council knows what it's doing?</li>
+        <li>[mixed] I go back and forth on the council every week.</li>
+        <li>[mixed] Some of what the council does is good, some of it I don't understand.</li>
+        <li>[mixed] What did you make of the last meeting?</li>
+        <li>[mixed] How does the council decide things, really?</li>
+        <li>[mixed] Have you ever actually asked the council for anything?</li>
       </plain>
       <warm>
         <li>[for] They're trying their best, the council, and it shows.</li>
         <li>[for,leader,subject] I'm glad it's {SUBJECT} up there and not someone worse.</li>
         <li>[against] I want to trust them, I really do, but they make it hard.</li>
         <li>[against] I think the council forgets there are people at the other end of its decrees.</li>
+        <li>[mixed] I hope the council knows we're all counting on it.</li>
+        <li>[for] I'm grateful to the council, whatever people say.</li>
       </warm>
       <blunt>
         <li>[for] The council's fine, people just like to moan.</li>
@@ -286,24 +401,28 @@
         <li>[against] Nobody up there has done a real day's work in their lives.</li>
         <li>[for] Quit complaining about the council and do your job.</li>
         <li>[against,leader,subject] {SUBJECT} couldn't lead a goat to grass.</li>
+        <li>[mixed] What's the council up to now?</li>
       </blunt>
       <cheerful>
         <li>[for] Long live the council, and may they never take my afternoon nap.</li>
         <li>[against] I've drawn up a decree of my own: no more decrees.</li>
         <li>[for,decree] A decree a day keeps the chaos away, that's what I say.</li>
         <li>[against] I've written the council a poem, and it's mostly rude words.</li>
+        <li>[mixed] I've decided to understand the council next week, it's too hard this week.</li>
       </cheerful>
       <gloomy>
         <li>[for] Better a council than nothing, I suppose.</li>
         <li>[against] It won't make any difference who sits on the council.</li>
         <li>[against,decree] Decrees, decrees, and nothing ever gets better.</li>
         <li>[for] The council's all that stands between us and chaos.</li>
+        <li>[mixed] The council will do what it does, and we'll live with it.</li>
       </gloomy>
       <cold>
         <li>[for] The council is efficient enough.</li>
         <li>[against] The council wastes time and makes poor choices.</li>
         <li>[against,decree,subject] "{SUBJECT}" is a mistake.</li>
         <li>[for,leader,subject] {SUBJECT} makes sound decisions.</li>
+        <li>[mixed] The council's record is mixed.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -346,31 +465,79 @@
         <li>[debate,against] Maybe, but who decided they get to decide?</li>
         <li>[argue,for] Name one thing you'd have done better.</li>
         <li>[argue,against] You'd agree with them if they said the sky was green.</li>
+        <li>[agree] I said as much at the last meeting.</li>
+        <li>[agree] That's what everyone's saying, if you listen.</li>
+        <li>[agree] I've thought that for a while now.</li>
+        <li>[agree] You're not the first to say it, and you won't be the last.</li>
+        <li>[agree] I'd say the same to their faces.</li>
+        <li>[debate] It depends which decree you mean.</li>
+        <li>[debate] That's not quite how it went at the meeting.</li>
+        <li>[debate] There's more to the council than its last decision.</li>
+        <li>[debate] I'm not sure it's that simple.</li>
+        <li>[debate] Ask me again after the next meeting.</li>
+        <li>[argue] You've never been to a single meeting.</li>
+        <li>[argue] I won't hear this from someone who never speaks up.</li>
+        <li>[argue] Every time the council comes up, you start.</li>
+        <li>[argue] That's not fair, and you know it.</li>
+        <li>[argue] You don't know half of what goes on up there.</li>
+        <li>[for] They've done more good than harm, by my count.</li>
+        <li>[for] I've no quarrel with the council.</li>
+        <li>[for] They keep this place together, whatever else they do.</li>
+        <li>[against] I've stopped expecting anything from them.</li>
+        <li>[against] They decide, we carry it out, and nobody asks us.</li>
+        <li>[against] I'll trust them when they start listening.</li>
+        <li>[mixed] Some of it I like, some of it I don't.</li>
+        <li>[mixed] I haven't made up my mind about them.</li>
+        <li>[mixed] I just keep my head down and do what's asked.</li>
+        <li>[agree,mixed] It's hard to know what to think of them.</li>
+        <li>[agree,mixed] Some good, some bad, like anyone.</li>
+        <li>[agree,mixed] I'd need to see more before I said.</li>
+        <li>[debate,mixed] They're not as bad as you say, or as good as some think.</li>
+        <li>[debate,mixed] I'd give them a chance, but not a free hand.</li>
+        <li>[debate,mixed] It's not all one thing with the council.</li>
+        <li>[argue,mixed] I'm not taking sides about the council.</li>
+        <li>[argue,mixed] Don't drag me into your quarrel with them.</li>
+        <li>[argue,mixed] I don't care enough to fight about it.</li>
       </plain>
       <warm>
         <li>[agree,for] I think they're doing their best for all of us.</li>
         <li>[debate,against] I hope you're right, I really do.</li>
         <li>[debate,against] I want to believe in them, but it gets harder.</li>
         <li>[debate,against] I'd love to be wrong about them.</li>
+        <li>[agree,mixed] I hope they're looking after all of us, that's all.</li>
+        <li>[argue,for] They're trying, please don't be so hard on them.</li>
+        <li>[agree,against] I know, I feel unheard too sometimes.</li>
       </warm>
       <blunt>
         <li>[agree,against] Bunch of clowns, the lot of them.</li>
         <li>[argue,for] Stop whining.</li>
         <li>[argue,against] Lick their boots, then, if you like the taste.</li>
+        <li>[agree,mixed] Council, no council, whatever.</li>
+        <li>[debate,for] The council's fine.</li>
+        <li>[argue,mixed] Don't drag me into council business.</li>
+        <li>[agree,for] They're doing all right.</li>
       </blunt>
       <cheerful>
         <li>[debate,for] Any council that hasn't banned dessert can't be all bad.</li>
         <li>[agree,against] I'd sooner put a goat on the council.</li>
+        <li>[agree,for] I'd vote for them twice, if they'd let me.</li>
+        <li>[argue,against] If the council's so great, why does it keep giving me chores?</li>
+        <li>[agree,mixed] I'll make my mind up after the next feast.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] It'll never change, either.</li>
         <li>[argue,against] They'll lead us all into the ground.</li>
         <li>[agree,against] Nothing we say changes anything up there.</li>
+        <li>[debate,for] They're no worse than anyone else would be.</li>
+        <li>[agree,mixed] It doesn't matter much who decides, it all comes out the same.</li>
       </gloomy>
       <cold>
         <li>[argue,against] Your trust is misplaced.</li>
         <li>[agree,for] The council is functioning.</li>
         <li>[debate,against] Results matter, not intentions.</li>
+        <li>[agree,mixed] Their decisions are adequate.</li>
+        <li>[debate,for] They make the decisions no one else will.</li>
+        <li>[argue,for] Your criticism has no alternative behind it.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -390,10 +557,42 @@
         <li>[agree] Let's bring it up at the next meeting, together.</li>
         <li>[debate] We'll see what they do next.</li>
         <li>[argue] Fine, defend them, see where it gets you.</li>
+        <li>[agree] I'll say it at the next meeting, then.</li>
+        <li>[debate] Let's see how the next decree goes.</li>
+        <li>[argue] Take it up with the council yourself, I'm finished.</li>
+        <li>[agree,mixed] Time will show what they're worth.</li>
+        <li>[debate,mixed] Let's give them more time.</li>
       </plain>
+      <warm>
+        <li>[agree] Thank you for listening, it helps.</li>
+        <li>[debate] Whatever we think, let's not fall out over it.</li>
+        <li>[argue] I'm sorry, I didn't mean to snap.</li>
+        <li>[agree,against] We'll speak up together next time.</li>
+      </warm>
       <blunt>
         <li>[argue,against] Enjoy being told what to do.</li>
+        <li>[agree] Good, then we'll say so at the meeting.</li>
+        <li>[debate] Think about it.</li>
+        <li>[argue,for] Get over it.</li>
       </blunt>
+      <cheerful>
+        <li>[agree] Next meeting, we sit at the front and nod wisely.</li>
+        <li>[debate] Loser of this argument has to stand for the council.</li>
+        <li>[argue] Fine, I'll start my own council, with snacks.</li>
+        <li>[agree,for] Long live the council, and its many decrees.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] It won't change anything, but there we are.</li>
+        <li>[debate] They'll do what they want anyway.</li>
+        <li>[argue] Trust them, then, and see where it gets you.</li>
+        <li>[agree,against] Nothing ever changes up there.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Settled, then, on the council.</li>
+        <li>[debate] Their record will speak for itself.</li>
+        <li>[argue] I'm not discussing this further.</li>
+        <li>[agree,against] I'll bring it to the council myself.</li>
+      </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
@@ -407,9 +606,14 @@
         <li>[otherfor] Bowing to the council again, {OTHER}?</li>
         <li>[otheragainst] Here comes {OTHER}, the council's loudest friend.</li>
         <li>[otheragainst] I hear you've a speech for the next meeting, {OTHER}, eleven pages long.</li>
+        <li>[otherfor] Do you nod along in your sleep too, {OTHER}, or just at meetings?</li>
+        <li>[otheragainst] You've a complaint ready for every decree, {OTHER}, even the unmade ones.</li>
       </plain>
       <cheerful>
         <li>[otherfor] You'd cheer a decree banning sunshine if the council made it, {OTHER}.</li>
+        <li>[otherfor] You'd frame a decree and hang it over your bed, {OTHER}.</li>
+        <li>[otheragainst] The council shivers when you put your hand up, {OTHER}.</li>
+        <li>Off to the council with another little list, {OTHER}?</li>
       </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -442,34 +646,50 @@
         <li>[against,prisoner,subject] I don't like how {SUBJECT} watches the door.</li>
         <li>[against] We should sell the lot of them and be done with it.</li>
         <li>[mixed,slaves] I don't know how I feel about the collars.</li>
+        <li>[for] Whatever they did, they're ours to look after now.</li>
+        <li>[for] A prisoner who's treated well has a reason to stay peaceful.</li>
+        <li>[against] Having them under the same roof keeps me up at night.</li>
+        <li>[against] Every meal they eat is one of ours.</li>
+        <li>[mixed] I walked past the cells today and didn't know what to say.</li>
+        <li>[mixed] What are we going to do with them in the end?</li>
+        <li>[mixed] Do you ever talk to the prisoners?</li>
+        <li>[mixed] I can't decide if keeping them is kind or cruel.</li>
+        <li>[mixed] How long are we going to keep them?</li>
       </plain>
       <warm>
         <li>[for] I keep thinking how frightened they must be, locked up in there.</li>
         <li>[for,subject] {SUBJECT} asked me about my family today, and I think they miss theirs.</li>
         <li>[for] They're frightened and far from home, so we can be kind.</li>
         <li>[against] I want to be kind, but I'm scared of them.</li>
+        <li>[mixed] I hope they're warm enough in there.</li>
+        <li>[mixed] Do you think any of them have family waiting?</li>
       </warm>
       <blunt>
         <li>[against] Prisoners should earn their keep or go.</li>
         <li>[against] I'd have left the lot of them where they fell.</li>
         <li>[for] Starving prisoners is beneath us.</li>
         <li>[against] They're prisoners, not guests.</li>
+        <li>[mixed] What's the plan for the prisoners?</li>
       </blunt>
       <cheerful>
         <li>[for] I've been teaching the prisoners to play cards, and they cheat terribly.</li>
         <li>[for,prisoner,subject] {SUBJECT} laughed at my joke, so I've decided they're innocent.</li>
+        <li>[mixed] One of the prisoners asked me for a recipe, and I didn't know what to do.</li>
+        <li>[against] The prisoners eat better than I do, and they don't even wash up.</li>
       </cheerful>
       <gloomy>
         <li>[against] Treat them kindly and they'll stab us in our sleep.</li>
         <li>[for] Who's to say it won't be us in a cell one day?</li>
         <li>[for] Treat them badly and we're no better than the raiders.</li>
         <li>[against] One of them will get out one day, and then what.</li>
+        <li>[mixed] They'll be gone one way or another, sooner or later.</li>
       </gloomy>
       <cold>
         <li>[against] Prisoners are a cost, so we should keep them only if they're useful.</li>
         <li>[for] A well-treated prisoner talks more and fights less.</li>
         <li>[for,slaves] Fed and rested slaves work harder.</li>
         <li>[against,prisoner,subject] {SUBJECT} is a risk we don't need.</li>
+        <li>[mixed] The prisoners need a decision, one way or the other.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -507,24 +727,59 @@
         <li>[argue,against] Naive, that's what you are.</li>
         <li>[argue,for,otherrep:cruel] Of course you'd say that, everyone knows how you treat them.</li>
         <li>[agree,for,otherrep:kind] You'd know, you're the one who takes them their food.</li>
+        <li>[agree] I've thought the same, walking past the cells.</li>
+        <li>[agree] You're right, I've seen it too.</li>
+        <li>[agree] I said the same to the warden.</li>
+        <li>[debate] Some of them I'd let go tomorrow, some never.</li>
+        <li>[debate] I'm not sure it's as simple as that.</li>
+        <li>[debate] There's more to it than kind or harsh.</li>
+        <li>[argue] You've never even spoken to one of them.</li>
+        <li>[argue] I won't be lectured about prisoners by you.</li>
+        <li>[argue] We argue about this every time someone's locked up.</li>
+        <li>[for] They're people, locked up or not.</li>
+        <li>[for] Kindness costs us less than a riot would.</li>
+        <li>[against] They'd have done worse to us, and we both know it.</li>
+        <li>[against] I don't turn my back on any of them.</li>
+        <li>[mixed] Some of them seem all right, some of them frighten me.</li>
+        <li>[mixed] I try not to think about them too much.</li>
+        <li>[agree,mixed] It's hard to know what's right with prisoners.</li>
+        <li>[agree,mixed] I don't like any of the choices.</li>
+        <li>[debate,mixed] Somewhere between your way and theirs, I'd say.</li>
+        <li>[debate,mixed] I'd judge each one on their own.</li>
+        <li>[argue,mixed] I haven't decided, and I won't be pushed.</li>
+        <li>[argue,mixed] The prisoners are the warden's worry, not mine.</li>
       </plain>
       <warm>
         <li>[agree,for] You're a kind soul, you know that.</li>
         <li>[debate,against] Be kind, by all means, just be careful too.</li>
+        <li>[agree,mixed] I just hope they're not suffering more than they have to.</li>
+        <li>[argue,against] I'm not cruel, I'm careful.</li>
       </warm>
       <blunt>
         <li>[argue,against] Soft-hearted fool.</li>
         <li>[argue,for] You'd make a fine slaver.</li>
+        <li>[agree,mixed] Don't know.</li>
+        <li>[debate,for] Feed them and stop fussing.</li>
+        <li>[agree,against] Lock them up and leave it.</li>
       </blunt>
       <cheerful>
         <li>[debate,for] I've seen them eat, they're harmless, mostly.</li>
+        <li>[agree,for] I've been bringing them the good bread, don't tell anyone.</li>
+        <li>[argue,against] You'd adopt the lot of them if we let you.</li>
+        <li>[agree,mixed] I'll decide after I've beaten them at cards.</li>
       </cheerful>
       <gloomy>
         <li>[agree,against] They'll turn on us, mark my words.</li>
+        <li>[debate,for] They're just unlucky, like the rest of us.</li>
+        <li>[agree,mixed] Nothing good comes of keeping people in cells.</li>
+        <li>[argue,for] We'll all be prisoners of something, one day.</li>
       </gloomy>
       <cold>
         <li>[debate,for] Cruelty is wasteful.</li>
         <li>[argue,for] Cruelty breeds rebellion, that's all.</li>
+        <li>[agree,for] Decent treatment pays for itself.</li>
+        <li>[agree,against] They're a security risk, plainly.</li>
+        <li>[agree,mixed] Each one should be weighed on their value.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -542,12 +797,41 @@
         <li>[argue,against] Don't come to me when one of them gets loose.</li>
         <li>[agree] Between us, we'll keep them fed and decent.</li>
         <li>[debate] We'll see which of us they prove right.</li>
+        <li>[agree] Let's look in on them later.</li>
+        <li>[debate] Let's wait and watch how they behave.</li>
+        <li>[argue] That's enough about the cells for one day.</li>
+        <li>[argue,mixed] I'm not fighting about this.</li>
+        <li>[agree,mixed] We'll decide when we have to.</li>
       </plain>
       <warm>
         <li>[argue,for] I'll be kind to them, even if you won't.</li>
+        <li>[agree] I'll take them something warm tonight.</li>
+        <li>[debate] Let's be fair to them, at least.</li>
+        <li>[agree,against] I'll be careful around them, I promise.</li>
       </warm>
+      <blunt>
+        <li>[agree] Fine, they stay put.</li>
+        <li>[debate] They stay locked up.</li>
+        <li>[argue] Do what you want.</li>
+        <li>[agree,against] Lock the doors.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] I'll go and lose to them at cards again.</li>
+        <li>[debate] Whoever's right gets to tell the prisoners.</li>
+        <li>[argue] I'll be nice to them twice as much, just for you.</li>
+        <li>[agree,for] Extra blankets all round, then.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] It won't end well for them, whatever we do.</li>
+        <li>[debate] Nothing we decide changes much for them.</li>
+        <li>[argue] Treat them how you like, it'll go wrong anyway.</li>
+        <li>[agree,against] One day one of them will get out.</li>
+      </gloomy>
       <cold>
         <li>[argue,against] Do as you like, I'll lock my door.</li>
+        <li>[agree] Agreed, on the prisoners at least.</li>
+        <li>[debate] Their behavior will settle it.</li>
+        <li>[agree,against] I'll check the locks.</li>
       </cold>
     </lines>
   </ColonyCouncil.TalkLinesDef>
@@ -561,7 +845,16 @@
       <plain>
         <li>[otherfor] Bringing the prisoners biscuits again, {OTHER}?</li>
         <li>[otheragainst] Counted the prisoners twice already today, {OTHER}?</li>
+        <li>[otherfor] You know every prisoner's birthday by now, don't you, {OTHER}?</li>
+        <li>[otheragainst] You check the cell doors more often than you blink, {OTHER}.</li>
+        <li>[otheragainst] You'd put a lock on the lock, {OTHER}, if we let you.</li>
       </plain>
+      <cheerful>
+        <li>[otherfor] The prisoners asked if you could visit more, {OTHER}, they miss your stories.</li>
+        <li>[otherfor] The prisoners like you better than the rest of us, {OTHER}, I'm jealous.</li>
+        <li>[otheragainst] You'd lock up the chickens if they looked at you funny, {OTHER}.</li>
+        <li>Visiting your friends in the cells again, {OTHER}?</li>
+      </cheerful>
     </lines>
   </ColonyCouncil.TalkLinesDef>
 

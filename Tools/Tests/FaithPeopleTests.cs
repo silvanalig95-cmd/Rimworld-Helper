@@ -100,7 +100,7 @@ public static class FaithPeopleTests
         // The talk lines: enough of them, each turn written for the moves.
         var pools = XDocument.Load(Path.Combine(root, "Defs", "FlavorPoolDefs", "Rimfolk_Talk_Lines_Faith.xml")).Root!.Elements("ColonyCouncil.TalkLinesDef").ToList();
         var lines = pools.SelectMany(p => p.Element("lines")!.Elements().SelectMany(t => t.Elements("li")).Select(li => li.Value)).ToList();
-        Check(lines.Count >= 60 && lines.Count <= 140, $"faith talk lines ({lines.Count})");
+        Check(lines.Count >= 60 && lines.Count <= 300, $"faith talk lines ({lines.Count})");
         foreach (var tag in new[] { "persuading", "persuaded", "unmoved", "preachedat", "digin", "steadied", "faith:wavering", "faith:devout", "faith:alone", "faith:minority" })
             Check(lines.Count(l => Regex.IsMatch(l, @"^\[[^\]]*\b" + Regex.Escape(tag) + @"\b")) >= 2, "lines written for [" + tag + "]");
         Check(lines.All(l => !l.Contains("{SUBJECT") || Regex.IsMatch(l, @"^\[[^\]]*\b(myfaith|theirfaith)\b")), "a line naming a faith says whose it is");

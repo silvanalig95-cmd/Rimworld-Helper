@@ -632,16 +632,20 @@ Two colonists who are together now and then talk about something real, in a shor
 four lines, taking turns): the last raid, the council and its decrees, the food, the work and who does too little, the
 newest face in the colony, faith, the world outside and its traders, the animals, the weather, art, the future and
 whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project,
-money, love (19 topics). What comes up follows the news (a raid yesterday, a death, a new decree, a wedding, a
-newcomer, a harvest, a disaster), what each of them cares about and who they are, and their tie: friends talk about
-anything, rivals find what they disagree on.
+money, love, a day on the calendar coming up or just kept (a birthday, a tradition, a day of mourning nobody jokes
+about), the world's latest news (good or bad, and whether the colony helped), the camp on the map (who they are, what
+they take) (23 topics). Children talk too, of growing up, with a grown-up or each other. What comes up follows the news
+(a raid yesterday, a death, a new decree, a wedding, a newcomer, a harvest, a disaster, a day due tomorrow, a camp
+walking in), what each of them cares about and who they are, and their tie: friends talk about anything, rivals find
+what they disagree on.
 
 Everyone holds a **view** on each topic, from their character, traits, passions and ideoligion (the bold want to fight back
 and the timid want walls, the trusting back the council, the curious welcome newcomers), and it moves slowly with what
 happens and with talk: a liked, trusted, self-assured speaker brings an open listener round a little. So two of them
 **agree**, have a **friendly debate**, or a **heated argument** when tempers, opposed views and dislike meet; a joker
 **teases**; someone low or grieving is **comforted**. Each sounds like themselves (a hothead snaps, a joker jokes, the
-cold are curt, the gloomy see the worst), in about 2,500 lines. A talk leaves a small opinion of each other, not a
+cold are curt, the gloomy see the worst), in about 6,900 lines, so a topic's reply comes round about once or twice a
+year and every voice has its own lines for every turn. A talk leaves a small opinion of each other, not a
 mood; arguing hardens a temper a little over time, and a long friendship warms.
 
 Pairs also keep **shared memories** (33 kinds): fighting side by side (those really seen together in the fight), being patched up while down, a funeral, a feast,

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talk about the world's newest news, a world situation still running (Source/ColonyCouncil/Social/Talk/TopicWorkers_Life.cs):
+    for the colony having a hand in what happens out there, or against (none of our business). Tags as in
+    Rimfolk_Talk_Lines_Fight.xml, and for the news:
+      [badnews] a famine, a plague, a warlord, a flood...; [goodnews] a fair, a new road, a comet, a bumper harvest...
+      [helped] the colony has already taken part; [fresh] it reached the colony in the last two days
+      [news:war] wars, feuds, sellswords, levies, bandits on the roads; [news:hunger] famine, drought, a hard winter, a
+      flood, a great fire, scarcity; [news:sickness] plague, a sickness in the herds, a famous healer; [news:trade] fairs,
+      rushes, drovers, roads, tolls, towns, a bumper harvest; [news:faith] pilgrimages, holy years, songs, mourning;
+      [news:court] new leaders, contested seats, votes, peace talks; [news:wonder] comets, wild magic, a ship coming down,
+      strange herds; [news:people] exiles, rebuilding and the rest
+    {SUBJECT}: the news by its name, as the letters give it, lower case and sometimes without an article ("famine",
+    "a long drought", "the Empire's levy"), so lines say "news of {SUBJECT}", "talk of {SUBJECT}". Low-tech colonies hear
+    news from traders and travelers, never by radio. One sentence each, as all talk lines.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_World_Open</defName>
+    <topic>Rimfolk_Topic_World</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] Whatever's going on out there, I'd rather we had a hand in it.</li>
+        <li>[for] We can't wall ourselves off from the world and pretend it isn't there.</li>
+        <li>[for,!goodnews] Our neighbors will remember who helped them and who didn't.</li>
+        <li>[for,subject] I keep thinking about the news of {SUBJECT}.</li>
+        <li>[for,badnews] People out there are in trouble, and we have more than some.</li>
+        <li>[for,goodnews] Something good is happening out there for once, and we should be part of it.</li>
+        <li>[for,helped] I'm glad we did our part, and I'd do more.</li>
+        <li>[for,news:hunger] If they're going hungry out there, we can spare a few sacks.</li>
+        <li>[for,news:sickness] A sickness doesn't stop at anyone's border, so we'd best take an interest.</li>
+        <li>[for,news:trade] There's silver to be made out there, if we're quick about it.</li>
+        <li>[for,news:war] Wars out there end up at our gate sooner or later.</li>
+        <li>[for,news:wonder] I'd give a lot to see that for myself.</li>
+        <li>[against] What happens out there is their business, not ours.</li>
+        <li>[against] We've enough to worry about inside our own walls.</li>
+        <li>[against] Every time we stick our noses out, it costs us.</li>
+        <li>[against,subject] I've heard enough about {SUBJECT} to last me a year.</li>
+        <li>[against,badnews] It's terrible, but it's not ours to fix.</li>
+        <li>[against,goodnews] Let them have their good news, it doesn't feed us.</li>
+        <li>[against,helped] We've given enough already, and what did it get us?</li>
+        <li>[against,news:war] Let them fight their wars, as long as they keep them off our land.</li>
+        <li>[against,news:faith] Their faiths and their quarrels are nothing to do with us.</li>
+        <li>[against,news:court] Whoever ends up in charge out there, our crops still need planting.</li>
+        <li>[mixed] I don't know what to make of the news.</li>
+        <li>[mixed,badnews] Do you think it'll reach us here?</li>
+        <li>[mixed,goodnews] Good news, I suppose, if it's true.</li>
+        <li>[mixed,fresh] Have you heard the news, it only just reached us?</li>
+        <li>[for] If we keep our heads down, the world will happen to us anyway.</li>
+        <li>[for] Every bit of news out there is a door, and we should know which ones to open.</li>
+        <li>[for] The colonies that last are the ones with friends.</li>
+        <li>[for] It'd do us good to think about something past our own fences.</li>
+        <li>[against] The world's been in trouble forever, and it'll still be in trouble after us.</li>
+        <li>[against] Rumors from traders aren't worth losing sleep over.</li>
+        <li>[against] I didn't come all the way out here to worry about everybody else.</li>
+        <li>[against] We help one lot, and the next lot hates us for it.</li>
+        <li>[mixed] I can't tell how much of what the traders say is true.</li>
+        <li>[mixed] I keep hearing bits of it, and none of them fit together.</li>
+        <li>[mixed] It might come to nothing, or it might change everything.</li>
+        <li>[mixed] What do you think it means for us, really?</li>
+      </plain>
+      <warm>
+        <li>[for] I keep thinking about the people out there, they're just like us.</li>
+        <li>[for,badnews] If it were us in trouble, I'd want someone to come.</li>
+        <li>[against,!goodnews] I feel for them, I do, but we have to look after our own first.</li>
+        <li>[mixed,!goodnews] I hope whoever's caught up in it is all right.</li>
+        <li>[for,goodnews] It's nice to hear of something going right out there.</li>
+        <li>[for,!goodnews] We could send something, even if it's only a few sacks of food.</li>
+        <li>[mixed] I hope it ends well for them, whatever it is.</li>
+      </warm>
+      <blunt>
+        <li>[for] Sitting on our hands won't keep trouble away.</li>
+        <li>[against] Not our problem.</li>
+        <li>[against,badnews] Bad luck for them, nothing to do with us.</li>
+        <li>[for,news:trade] There's money in it, so let's get some.</li>
+        <li>[mixed] Is it going to touch us or not, that's all I want to know.</li>
+        <li>[against] Rumors.</li>
+        <li>[for] Ignoring it won't make it go away.</li>
+      </blunt>
+      <cheerful>
+        <li>[for,goodnews] The world's doing something interesting for once, and I want to see it.</li>
+        <li>[for] Imagine us famous out there, the colony that helped.</li>
+        <li>[against] The world can sort itself out, I'm busy.</li>
+        <li>[for,news:wonder] I'd walk a week to see something like that.</li>
+        <li>[mixed] Every bit of news gets bigger each time a trader tells it.</li>
+        <li>[mixed] The way the traders tell it, the world's ending every other week.</li>
+        <li>[for] I'd pay good silver to know what's really going on out there.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] It's all bad out there, it always has been.</li>
+        <li>[for,badnews] It'll come here in the end, so we might as well help now.</li>
+        <li>[against,badnews] Nothing we do will make any difference out there.</li>
+        <li>[mixed] There's always something, isn't there.</li>
+        <li>[for,!goodnews] One day it'll be us asking for help.</li>
+        <li>[mixed] News like that never gets better, only quieter.</li>
+        <li>[against,!goodnews] There's no helping a world like this one.</li>
+      </gloomy>
+      <cold>
+        <li>[for,!goodnews] Helping now buys us goodwill we'll need later.</li>
+        <li>[against] Their misfortune isn't our responsibility.</li>
+        <li>[for,badnews] Their trouble could be our opportunity, if we're careful.</li>
+        <li>[against,helped] We've given what we could, and that's all they get.</li>
+        <li>[mixed] The news changes nothing until it reaches us.</li>
+        <li>[mixed] It's information, nothing more, until it touches us.</li>
+        <li>[against] Getting involved carries risk and little return.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_World_Reply</defName>
+    <topic>Rimfolk_Topic_World</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] Yes, and the sooner the better.</li>
+        <li>[agree,for,!goodnews] They'd do the same for us, I'd like to think.</li>
+        <li>[agree,for,badnews] If we can help, we should.</li>
+        <li>[agree,for,goodnews] I'd go myself, if anyone would let me.</li>
+        <li>[agree,for,helped] And it's been noticed, the traders say so.</li>
+        <li>[agree,against] We've our own walls to mind.</li>
+        <li>[agree,against] Exactly, let them see to their own.</li>
+        <li>[agree,against,badnews] It's sad, but there's nothing for us in it.</li>
+        <li>[agree,mixed] I don't know what to think about it either.</li>
+        <li>[agree,mixed] Strange times, wherever you look.</li>
+        <li>[agree] That's the same news I heard.</li>
+        <li>[agree] I've been turning it over all day.</li>
+        <li>[debate,for,!goodnews] We don't have to empty the stores, just do something.</li>
+        <li>[debate,for] It's closer than you think, all of it.</li>
+        <li>[debate,for,news:war] If they lose, who do you think comes for us next?</li>
+        <li>[debate,against] Help, maybe, but on our terms.</li>
+        <li>[debate,against] I'd rather know more before we go running out there.</li>
+        <li>[debate,against,news:trade] Silver's nice, but not if it brings trouble with it.</li>
+        <li>[debate,mixed] There's sense on both sides, I'll give you that.</li>
+        <li>[debate,mixed] I'd wait and see what comes of it.</li>
+        <li>[debate] That's not how the traders told it.</li>
+        <li>[debate] News like that changes every time someone repeats it.</li>
+        <li>[argue,for] So we just watch and do nothing, is that it?</li>
+        <li>[argue,for,!goodnews] You'd let the world burn as long as our roof held.</li>
+        <li>[argue,against] And when it goes wrong, who pays for it, you?</li>
+        <li>[argue,against] You want to save the world, start with the chores.</li>
+        <li>[argue,against,helped] We've given plenty, and you'd give the rest away too.</li>
+        <li>[argue,mixed] Stop asking me to pick a side, I don't know enough.</li>
+        <li>[argue] You believe every rumor that comes down the road.</li>
+        <li>[argue] You don't know the first thing about it.</li>
+        <li>[agree] I heard it from the last traders too.</li>
+        <li>[debate] It sounds worse than it is, I'd bet.</li>
+        <li>[argue] You've got it all backwards, as usual.</li>
+        <li>[agree,for] We'd be fools to turn away from it.</li>
+        <li>[agree,against] The less we have to do with it, the better.</li>
+        <li>[agree,mixed] Nobody seems to know what's really going on.</li>
+        <li>[agree,mixed] It might be nothing, or it might be big.</li>
+        <li>[debate,for] Doing a bit is better than doing nothing.</li>
+        <li>[debate,against] Let's see how it settles before we jump in.</li>
+        <li>[debate,mixed] I can see it both ways, to be fair.</li>
+        <li>[debate,mixed] Hard to say, from this far off.</li>
+        <li>[argue,for,!goodnews] You'd turn your back on anyone who needed you.</li>
+        <li>[argue,for,badnews] Easy to say when it's someone else's village going hungry.</li>
+        <li>[argue,against,!goodnews] We can't feed the whole world, and you know it.</li>
+        <li>[argue,mixed] I said I don't know, and I mean I don't know.</li>
+        <li>[for] We can't pretend it's nothing to do with us.</li>
+        <li>[for] Someone has to care what happens out there.</li>
+        <li>[against] We've enough troubles of our own.</li>
+        <li>[against] Let them handle their own business.</li>
+        <li>[mixed] I don't know enough about it to say.</li>
+        <li>[mixed] It might matter, it might not.</li>
+      </plain>
+      <warm>
+        <li>[agree,for] I'm glad you feel that way too.</li>
+        <li>[debate,against] I know you mean well, but think of our own first.</li>
+        <li>[argue,for] Please don't talk like that, those are people out there.</li>
+        <li>[agree,badnews] I hope it's not as bad as they say.</li>
+        <li>[debate,for,!goodnews] We'd want someone to think of us, wouldn't we?</li>
+        <li>[agree,mixed,!goodnews] I just hope everyone out there is safe.</li>
+        <li>[argue,against,!goodnews] I'm not heartless, I'm worried about us.</li>
+      </warm>
+      <blunt>
+        <li>[agree,for] Right, let's do something.</li>
+        <li>[agree,against] Not our fight.</li>
+        <li>[debate,for] Doing nothing is a choice too.</li>
+        <li>[argue,against] Go and help them yourself, then.</li>
+        <li>[argue,for] Selfish, that's what that is.</li>
+        <li>[agree,mixed] Who knows what's true out there.</li>
+        <li>[argue,mixed] Out there's not my business.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree,for] We'll be heroes, they'll write songs about us.</li>
+        <li>[debate,against] I'll help, as long as nobody makes me walk anywhere.</li>
+        <li>[agree,goodnews] Finally some cheerful news, I'll drink to that.</li>
+        <li>[argue,against] Easy, it's not our job to save everybody.</li>
+        <li>[debate,for] Come on, a bit of adventure would do us good.</li>
+        <li>[agree,mixed] I've stopped believing anything a trader says before supper.</li>
+        <li>[debate,mixed] Ask me again when the rumors stop changing.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree,against] It'll all end badly whatever we do.</li>
+        <li>[agree,for] It'll reach us eventually, it always does.</li>
+        <li>[debate,for,!goodnews] Help if you like, I doubt it changes much.</li>
+        <li>[argue,against,!goodnews] You'll get us killed for strangers.</li>
+        <li>[agree,badnews] Bad news travels fast, and it's never wrong.</li>
+        <li>[agree,mixed] It'll go wrong one way or another, it always does.</li>
+        <li>[debate,mixed] Whatever it is, it won't be good for long.</li>
+      </gloomy>
+      <cold>
+        <li>[agree,for] It's in our interest to be seen helping.</li>
+        <li>[agree,against] There's no profit in it for us.</li>
+        <li>[debate,against] Show me what we gain, then we'll talk.</li>
+        <li>[argue,for] Keeping to ourselves is a risk too, and you're ignoring it.</li>
+        <li>[debate,for] Goodwill is cheap now and expensive later.</li>
+        <li>[agree,mixed] We lack the facts to decide.</li>
+        <li>[argue,mixed] I'll take a side when there's a reason to.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_World_Close</defName>
+    <topic>Rimfolk_Topic_World</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] We'll see what the next traders say.</li>
+        <li>[agree,for] Let's put it to the council, then.</li>
+        <li>[agree,against] Good, we'll keep to ourselves.</li>
+        <li>[agree,badnews] Let's hope it passes us by.</li>
+        <li>[agree,goodnews] Good to hear something cheerful for once.</li>
+        <li>[debate] Wait for more news, then, and we'll talk again.</li>
+        <li>[debate,for] Think about it, that's all I ask.</li>
+        <li>[debate,against] Fine, but we look after our own first.</li>
+        <li>[debate,news:war] Let's just hope they keep their fighting to themselves.</li>
+        <li>[argue] Believe what you like about it.</li>
+        <li>[argue,for] Hide away, then, and see where it gets us.</li>
+        <li>[argue,against] Go and save the world, I'll mind the gate.</li>
+        <li>[agree] Let's keep an ear out, then.</li>
+        <li>[debate] We'll talk again when we know more.</li>
+        <li>[argue] I'm not changing my mind, so leave it.</li>
+        <li>[agree,mixed] We'll know more soon enough.</li>
+        <li>[debate,mixed] Let's not decide anything yet.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'm glad we talked it through.</li>
+        <li>[debate] Whatever happens out there, we'll face it together.</li>
+        <li>[argue] I'm sorry, I care about them, that's all.</li>
+        <li>[agree,badnews] I'll keep them in my thoughts.</li>
+        <li>[debate,against] We'll look after our own, and then we'll see.</li>
+      </warm>
+      <blunt>
+        <li>[agree] Right, we'll see what the road brings.</li>
+        <li>[debate] Think on the news, that's all.</li>
+        <li>[argue] Forget it, then.</li>
+        <li>[argue,for] Coward's choice.</li>
+        <li>[agree,against] Doors shut, then.</li>
+      </blunt>
+      <cheerful>
+        <li>[agree] Next traders who come by, I'm asking for all the gossip.</li>
+        <li>[debate] Loser has to go and ask the traders what's really going on.</li>
+        <li>[argue] Fine, I'll go and be noble on my own.</li>
+        <li>[agree,goodnews] Here's to good news, there isn't enough of it.</li>
+        <li>[debate,for] I'll talk you round by the next harvest.</li>
+      </cheerful>
+      <gloomy>
+        <li>[agree] It'll come to us one way or another.</li>
+        <li>[debate] Doesn't matter what we decide, it'll do what it does.</li>
+        <li>[argue] Have it your way, we'll see who's right.</li>
+        <li>[agree,badnews] More bad news, then, as usual.</li>
+        <li>[debate,for,!goodnews] Help them if you must, it won't last.</li>
+      </gloomy>
+      <cold>
+        <li>[agree] Settled, until the next news.</li>
+        <li>[debate] We'll weigh it when there's more to weigh.</li>
+        <li>[argue] Your view is noted.</li>
+        <li>[agree,against] We stay out of it.</li>
+        <li>[debate,for] Consider the advantage, that's all.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_World_Last</defName>
+    <topic>Rimfolk_Topic_World</topic>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[debate] Time will tell, I suppose.</li>
+        <li>[debate,for] I'll keep asking, you know I will.</li>
+        <li>[debate,against] Let them sort it out, that's my view.</li>
+        <li>[debate,badnews] I hope you're right that it won't reach us.</li>
+        <li>[argue] I've heard enough about it.</li>
+        <li>[argue,for] Some neighbor you'd make.</li>
+        <li>[argue,against,!goodnews] Not with my food, you won't.</li>
+        <li>[argue,news:war] Wait until it's at our gate, then talk.</li>
+      </plain>
+      <warm>
+        <li>[debate,!goodnews] Either way, I hope they're all right out there.</li>
+        <li>[argue,!goodnews] I just don't want anyone hurt.</li>
+        <li>[debate,for,!goodnews] We'll find a way to help, you'll see.</li>
+        <li>[argue,against] I care about them too, you know.</li>
+      </warm>
+      <blunt>
+        <li>[argue] Enough about the world.</li>
+        <li>[debate] Still not our fight.</li>
+        <li>[argue,for] Heartless.</li>
+        <li>[debate,for] Think harder.</li>
+      </blunt>
+      <cheerful>
+        <li>[debate] I'll find out the truth of it, mark my words.</li>
+        <li>[argue] Fine, I'll save the world alone, then.</li>
+        <li>[debate,goodnews] I'm going to go and see it, whatever you say.</li>
+        <li>[debate,against] Your loss, I'll tell you all about it.</li>
+      </cheerful>
+      <gloomy>
+        <li>[debate] It'll find us anyway.</li>
+        <li>[argue] None of it matters.</li>
+        <li>[debate,badnews] More bad news on the way, I'd bet.</li>
+        <li>[argue,for] Then we'll suffer alone.</li>
+      </gloomy>
+      <cold>
+        <li>[debate] The facts will decide it.</li>
+        <li>[argue] I have nothing more to say on it.</li>
+        <li>[debate,for] The advantage is there to take.</li>
+        <li>[argue,against] It's not our concern.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_World_Tease</defName>
+    <topic>Rimfolk_Topic_World</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd send our last sack of grain to anyone who asked, {OTHER}.</li>
+        <li>[otheragainst] If the sky fell on the next village, you'd ask whether it was our sky, {OTHER}.</li>
+        <li>[otherfor] I see you've adopted the whole world again, {OTHER}.</li>
+        <li>[otheragainst] You'd put a wall round the world if you could, {OTHER}.</li>
+        <li>[otherfor] You've asked every passing trader for news since dawn, {OTHER}.</li>
+        <li>[otheragainst] Don't worry, {OTHER}, the world can't hear you ignoring it.</li>
+      </plain>
+      <cheerful>
+        <li>[otherfor] Every trader who comes, you ask for the news before the prices, {OTHER}.</li>
+        <li>[otheragainst] I bet you hide under the table when a stranger mentions the news, {OTHER}.</li>
+        <li>[otherfor] When are you off to save everyone, {OTHER}, should I pack you a lunch?</li>
+        <li>[otheragainst] I bet you've never once asked a trader for the news, {OTHER}.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>
