@@ -423,6 +423,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref ending, "ending");
             Scribe_Values.Look(ref told, "told");
             Scribe_Collections.Look(ref asksMade, "asksMade", LookMode.Value);
+            // Their animals, goods put out, farewell walk and mending (CampLook.cs).
+            ExposeLook();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

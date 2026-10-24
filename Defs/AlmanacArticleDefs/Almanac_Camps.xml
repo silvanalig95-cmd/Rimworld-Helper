@@ -18,27 +18,39 @@ Camps come with world events switched on and the camps setting on. Only one camp
         <heading>The kinds of camp</heading>
         <table>
           <li>Camp | Who | What they bring</li>
-          <li>Hunting party | 3 to 5 hunters | Hunt and cut wood; leave meat now and then</li>
-          <li>Refugee family | 3 to 6, children too | Cut wood, leave some for the colony; many will work, some ask to join</li>
+          <li>Hunting party | 3 to 5 hunters | Hunt and cut wood; carry each kill back to their butchering spot and dress it there the same day; leave meat now and then</li>
+          <li>Refugee family | 3 to 6, children too | Their washing laid out by the windbreak; cut wood, leave some for the colony; many will work, some ask to join</li>
           <li>Prospectors (medieval and later) | 3 to 5 | A trader among them; they dig at the rock</li>
           <li>Pilgrims | 3 to 6 | Pray at their camp, leave herbal medicine</li>
           <li>Traders | 3 to 5 | Keep a stall the colony can trade at</li>
-          <li>Traveling smith (medieval, industrial) | 3 to 4 | Trade, and mend a colonist's worn clothes or gear</li>
-          <li>Hermit | 1, for up to two weeks | Leaves meat or herbs, may ask to stay for good</li>
-          <li>Traveling healers | 2 to 4 | Ease a colonist's everyday ailment for nothing, or leave herbal medicine</li>
+          <li>Traveling smith (medieval, industrial) | 3 to 4 | Trade; mend a colonist's worn clothes or gear, or walk over and mend one of the colony's damaged buildings for nothing, doors and gates first</li>
+          <li>Hermit | 1, for up to two weeks | Firewood stacked by the hut's door, left with the hut; at the end of the season, a carved bird left in its crate by the colony's door; leaves meat or herbs, may ask to stay for good</li>
+          <li>Traveling healers | 2 to 4 | Ease a colonist's everyday ailment for nothing, or leave herbal medicine; a farewell round before they go</li>
           <li>A procession of the faithful | 4 to 7, for a few days | Pray at their camp and bless the colony</li>
-          <li>Traveling players | 3 to 6 | Rehearse, and put on a show the colony is invited to</li>
+          <li>Traveling players | 3 to 6 | Rehearse, and put on a show the colony is invited to; leave their castle backdrop standing on the old stage</li>
           <li>Surveyors (medieval and later) | 2 to 4 | Take sightings in the hills; once per camp, show the colony a seam of ore in its own rock</li>
-          <li>Salt caravan (tribal and later) | 4 to 7, for 2 to 4 days | A bulk trader's stall; leave goods from their packs, tell news from the road</li>
+          <li>Salt caravan (tribal and later) | 4 to 7, for 2 to 4 days | 2 or 3 pack beasts tethered by the stash, with bales and fodder beside them and porters carrying bales to the stall; a bulk trader's stall; leave goods from their packs, tell news from the road</li>
           <li>Merchants from afar | 3 to 5, for 2 to 5 days | An exotic trader's stall; tell news of far places</li>
-          <li>Drovers (tribal and later) | 3 to 5, for 2 to 4 days | Graze a herd beyond the camp; leave milk, wool or a hide</li>
+          <li>Drovers (tribal and later) | 3 to 5, for 2 to 4 days | 3 or 4 head of their herd graze beyond the camp, a dog at a drover's heels, and the drovers' work is out among them; leave milk, wool or a hide</li>
           <li>Penitents | 3 to 6, for 2 to 4 days | Pray at their camp, walk round the colony praying for it</li>
-          <li>Tree-singers (Ideology: only of an ideoligion that holds trees or nature sacred) | 2 to 5, for 2 to 5 days | Sing to the trees, bless the fields, tend an ailment with a leaf and a moss</li>
-          <li>A traveling healer | 1 or 2, for 3 to 6 days | Ease a colonist's ailment or illness, leave herbal medicine</li>
+          <li>Tree-singers (Ideology: only of an ideoligion that holds trees or nature sacred) | 2 to 5, for 2 to 5 days | Sing to the trees, bless the fields, tend an ailment with a leaf and a moss; leave a ring of saplings where their fire was</li>
+          <li>A traveling healer | 1 or 2, for 3 to 6 days | Ease a colonist's ailment or illness, leave herbal medicine; a farewell round before going</li>
           <li>A band of minstrels | 3 to 5, for 2 to 5 days | Play at their fire in the evening: the colony walks over to listen</li>
-          <li>Mourners passing through | 3 to 6, for a night to three | Keep a vigil by their cart; tell the story of the one they carry</li>
+          <li>Mourners passing through | 3 to 6, for a night to three | Keep a vigil by their cart; tell the story of the one they carry; on the way out, plant a sprig of green by the colony's gate</li>
         </table>
         <after>A good turn comes now and then while things are going well between the camp and the colony. A healer's care, a show, a song and a blessing each leave a small good mood. News from the road is told to a colonist sitting with one of them at the time.</after>
+      </li>
+      <li>
+        <heading>A camp that looks lived-in</heading>
+        <text>Each kind of camp shows on the map what its letters say. The animals a camp brings are real: a caravan's pack beasts (the kind their own people's caravans use, where the land allows them) tethered by the stash, a drover's herd grazing on wild grass beyond the camp, the drovers' dog at one of their heels. There are never more than 5, only kinds that can stand the weather here, and the camp feeds them from its own stores, so they never go after the colony's crops or food. They walk in with the camp and leave with it. If the colony harms or arrests one of the camp, or their people turn hostile, the animals are walked off the map first, on their own, and never fight anyone. A beast bought from the drovers is one of the herd, the colony's where it stands.
+
+What a camp puts out once it stands (bales and fodder, a woodpile, washing) is theirs, kept out of the colony's hands like the rest of their goods: they pack it up when they go and leave it lying when they flee. Hunters carry each kill back to their butchering spot and dress it there, by day as well as in the evening; caravan porters carry bales between the beasts and the stall.
+
+Some kinds take a last walk when their time is up. The healers' best doctor goes round the colony first: whoever needs wounds seen to (and gets them tended), then the ill, the ailing and the laid up, then those who spent time at their fire, 4 people at most. That round waits for morning, for up to half a day. The mourners and the hermit walk to the colony's door nearest their camp to leave something there. A walk never takes more than 5 hours; then they go whatever happens.
+
+What a camp leaves behind as a gift only comes when it goes in peace at the end of its stay, and its farewell letter says so: the tree-singers' ring of saplings of this land's own trees, the players' castle backdrop (a large wooden sculpture, standing where their stage was), the hermit's carved bird in its crate, and the mourners' sprig, a young rose or daylily, only in its growing season and only where it can grow. These belong to nobody: the colony can claim, keep or clear them. The hermit's woodpile is left with the hut.
+
+The smith's mending is one of their good turns: the smith picks one of the colony's buildings below 90% of its hit points (doors and gates count as half as far away), walks over, works on it for a while and leaves it as good as new, for nothing. If it isn't done within a day, it's given up. Nothing else of the colony's is ever touched.</text>
       </li>
       <li>
         <heading>Camps and the world</heading>
@@ -55,7 +67,7 @@ A camp of a people that remembers one of the colony by name asks for that coloni
           <li>Camp | What the colony can ask</li>
           <li>Salt caravan | An evening at their fire (recreation); preserved fare for the stores (90 silver); news of the roads ahead (Social practice for the one who asks, a little goodwill)</li>
           <li>Merchants from afar | Their charts and almanacs (120 silver: research); supper with the merchants as guests (cooking practice for the colony)</li>
-          <li>Drovers | A beast from the herd that suits the weather (180 silver); a few hours learning herding at their side (Animals)</li>
+          <li>Drovers | A beast from the herd (180 silver): one of the herd grazing by their camp, or one that suits the weather if they have none to spare; a few hours learning herding at their side (Animals)</li>
           <li>Penitents | Joining their evening prayer (a small good mood); bread for the road (15 raw food, carried over: goodwill)</li>
           <li>Tree-singers | A walk in the woods with them (a small good mood); singing to the fields, with the growers along (Plants practice)</li>
           <li>A traveling healer | Seeing a colonist who is ill or ailing (eases it); teaching the colony's best doctor at their side on the rounds (70 silver: Medicine)</li>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A camp that looks lived-in (Source/ColonyCouncil/Camps/CampLook.cs): the duty of the animals a camp brings, and
+       the jobs of a camp's last walk and of a smith mending one of the colony's buildings. What each kind brings, puts
+       out and leaves behind is in its CampKindDef (animals, campGoods, leaveBehind, farewellWalk, momentLines). -->
+
+  <!-- Their animals: pack beasts tethered by the stash, a herd grazing beyond the camp, a dog at a drover's heels.
+       JobGiver_CampBeasts gives them sleep, grazing (wild grass only, never the colony's zones or home ground) and a slow
+       wander near their place; the camp feeds them from its own stores. -->
+  <DutyDef>
+    <defName>Council_CampBeasts</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_CampBeasts" />
+        <li Class="JobGiver_WanderNearDutyLocation">
+          <wanderRadius>6</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <!-- The farewell round: a healer at a colonist's side for a moment (wounds seen to if they need it). Over if the
+       colonist walks off. -->
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampFarewell</defName>
+    <reportString>looking in on TargetA before leaving.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>400</ticks><social>true</social><stayNear>5</stayNear></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A gift laid at the colony's gate on the way out: a sprig planted, a carving left in its crate. -->
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampLayGift</defName>
+    <reportString>leaving something by the colony's gate.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>300</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A smith mending one of the colony's damaged buildings, as a gift. -->
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampRepair</defName>
+    <reportString>mending TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1800</ticks><repairEffect>true</repairEffect></li>
+    </modExtensions>
+  </JobDef>
+
+</Defs>

@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 315; modelled: 315; growing without end: 0.
+Saved collections found: 318; modelled: 318; growing without end: 0.
 Rimfolk's part of the save, roughly: **1,652 KB** after a year, **2,015 KB** after two, **2,128 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -209,10 +209,12 @@ Rimfolk's part of the save, roughly: **1,652 KB** after a year, **2,015 KB** aft
 | `Annals.cs:joined` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
 | `Annals.cs:traditionsKept` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
 | `Camps/Camp.cs:prey` | while the camp stays | while | 6 | 6 | 6 | 0.2 |
+| `Camps/CampLook.cs:props` | goods the camp put out (a few stacks), pruned of the gone, while it stays | while | 6 | 6 | 6 | 0.2 |
 | `Epithets/Epithets.cs:founders` | those here in the colony's first two days (by ThingID) | fixed | 6 | 6 | 6 | 0.2 |
 | `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |
 | `Pressures/Pressures.cs:workKinds` | per colonist | fixed | 6 | 6 | 6 | 0.2 |
 | `Visitors/VisitorTrip.cs:people` | a visit's people, while it lasts | while | 6 | 6 | 6 | 0.2 |
+| `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
 | `Heart/HeartData.cs:recentRelief` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:today` | per heart | fixed | 8 | 8 | 8 | 0.2 |
 | `Missions/StoriesComponent.cs:missions` | missions 2 days after they end | window | 0 | 0 | 0 | 0.2 |
@@ -225,6 +227,7 @@ Rimfolk's part of the save, roughly: **1,652 KB** after a year, **2,015 KB** aft
 | `Health/HealthTracker.cs:setbacks` | convalescences colonists still have | colonists | 2 | 2 | 2 | 0.2 |
 | `Annals.cs:died` | the year in progress | yearly | 4 | 4 | 4 | 0.2 |
 | `Calendar/CalendarDay.cs:knew` | per day on the calendar | fixed | 4 | 4 | 4 | 0.2 |
+| `Camps/CampLook.cs:walkSeen` | colonists the farewell round looked in on (the walk's count), while the camp stays | while | 4 | 4 | 4 | 0.2 |
 | `Couriers/CourierTrip.cs:toUnload` | who still carries the colony's goods, while the trip lasts | while | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:convalescing` | known pawns only | colonists | 4 | 4 | 4 | 0.2 |
 | `Heart/HeartData.cs:feelingSinceKeys` | per heart: feelings felt now | fixed | 4 | 4 | 4 | 0.2 |

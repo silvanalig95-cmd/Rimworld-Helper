@@ -72,6 +72,16 @@
       <li><role>stall</role><defs><li>Table1x2c</li></defs><stuff><li>WoodLog</li></stuff></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <!-- Their pack beasts (the kind their own caravans use, where this land allows it) tethered by the stash, with the
+         bales and fodder unloaded beside them; porters carry bales between the beasts and the stall all day. -->
+    <animals>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Alpaca</li><li>Yak</li><li>Donkey</li></kinds><count>2~3</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>Cloth</li></defs><count>35~60</count><at>picket</at><carryTo>stall</carryTo></li>
+      <li><defs><li>Cloth</li></defs><count>25~45</count><at>picket</at><carryTo>stall</carryTo></li>
+      <li><defs><li>Hay</li></defs><count>30~50</count><at>picket</at></li>
+    </campGoods>
     <titles>
       <li>A caravan stops</li>
       <li>[lowtech] The salt caravan</li>
@@ -107,6 +117,13 @@
       <li>[!lowtech] Has anyone seen the wrench?</li>
       <li>Best price this side of the coast.</li>
     </lines>
+    <momentLines>
+      <li>[carry] Mind the bales.</li>
+      <li>[carry] Heavier than it looks.</li>
+      <li>[carry] Where do you want it?</li>
+      <li>[carry] Last one, then water.</li>
+      <li>[carry] Watch the knot on that.</li>
+    </momentLines>
     <helpTexts>
       <li>[goods] {X_nameDef}, the caravan master, set a few things aside from the packs for the colony, by way of thanks for the water and the quiet: {THING}.</li>
       <li>[goods] The caravan {PLACE} had more than it could carry over the hills, and {X_nameDef} left the colony some of it rather than throw it away: {THING}.</li>
@@ -280,6 +297,7 @@
     <ages>16~60</ages>
     <chopsPerDay>0.4</chopsPerDay>
     <task>Council_CampHerd</task>
+    <taskAt>herd</taskAt>
     <hireChance>0.25</hireChance>
     <joinChance>0.04</joinChance>
     <helpChance>0.3</helpChance>
@@ -301,6 +319,12 @@
       <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
       <li><role>light</role><defs><li>TorchLamp</li></defs></li>
     </structures>
+    <!-- Part of their herd grazes beyond the camp (beasts that suit the weather here, those that live wild on this land
+         likelier), and a dog keeps to a drover's heels. The beast the colony can buy is one of these. -->
+    <animals>
+      <li><kinds><li>Cow</li><li>Sheep</li><li>Goat</li><li>Yak</li><li>Muffalo</li><li>Alpaca</li><li>Dromedary</li></kinds><count>3~4</count><at>pasture</at></li>
+      <li><kinds><li>LabradorRetriever</li><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
     <titles>
       <li>Drovers and their dogs</li>
       <li>A herd on the road</li>
@@ -313,7 +337,7 @@
     </texts>
     <settled>
       <li>The drovers from {FACTION} have made camp {PLACE}, with a rough fence for the dogs and a fire that smells of dung smoke. The herd can be heard beyond the ridge, lowing.</li>
-      <li>The drovers' camp is up {PLACE}: a fire, a fence, three dogs and not much else. Drovers travel light.</li>
+      <li>The drovers' camp is up {PLACE}: a fire, a fence, a dog and not much else. Drovers travel light.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the youngest of the drovers {PLACE}, says {X_pronoun} has had enough of walking behind cows, and asks whether the colony could use someone who knows animals.</li>
@@ -332,6 +356,12 @@
       <li>That one's trouble.</li>
       <li>Mind the bull.</li>
     </lines>
+    <momentLines>
+      <li>[herd] All here. Good.</li>
+      <li>[herd] That one's favoring a leg.</li>
+      <li>[herd] Walk on, walk on.</li>
+      <li>[herd] Good grass. Eat up.</li>
+    </momentLines>
     <helpTexts>
       <li>[milk] The drovers {PLACE} had more than they could carry, and {X_nameDef} set the rest out at the edge of their camp for the colony: {COUNT} {THING}.</li>
       <li>[milk] {X_nameDef} from the drovers' camp left {COUNT} {THING} from the herd on the colony's side of the camp, and nodded toward it when a colonist passed.</li>
@@ -350,7 +380,7 @@
           <li>{A_nameDef} chooses a beast from the drovers' herd, and {X_nameDef} spends an hour telling {A_objective} how to keep it content.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Muffalo</li><li>Yak</li><li>Alpaca</li><li>Dromedary</li><li>Donkey</li><li>Horse</li></kinds></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><fromCamp>true</fromCamp><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Muffalo</li><li>Yak</li><li>Alpaca</li><li>Dromedary</li><li>Donkey</li><li>Horse</li></kinds></li>
         </effects>
       </li>
       <li>
@@ -540,7 +570,7 @@
       <li>{X_nameDef} of the tree-singers {PLACE} has spent every evening this week under the same old tree at the edge of the colony's land. Tonight {X_pronoun} came to ask whether {X_pronoun} might stay near it for good.</li>
     </joinTexts>
     <farewell>
-      <li>The tree-singers left at dawn, singing, and stopped at the edge of the woods to bow to the trees. They left a ring of planted seeds where their fire had been.</li>
+      <li>[left:seeds] The tree-singers left at dawn, singing, and stopped at the edge of the woods to bow to the trees. They left a ring of planted seeds where their fire had been.</li>
       <li>The tree-singers from {FACTION} have gone on to the next grove. {X_nameDef} told the colony its trees are content, which is apparently a compliment.</li>
     </farewell>
     <lines>
@@ -551,6 +581,15 @@
       <li>[ideology] {IDEO} is in the roots.</li>
       <li>Sing it slower.</li>
     </lines>
+    <!-- At the end of their stay, saplings of this land's own trees in a ring round where their fire was. -->
+    <leaveBehind>
+      <li><key>seeds</key><at>ring</at><wildTrees>true</wildTrees><count>6~8</count><growth>0.05</growth></li>
+    </leaveBehind>
+    <momentLines>
+      <li>[gift] Grow slow. Grow tall.</li>
+      <li>[gift] Something to come back to.</li>
+      <li>[gift] There. The rain will do the rest.</li>
+    </momentLines>
     <helpTexts>
       <li>[blessing] The tree-singers went through the colony's fields at dusk, singing to the crops one row at a time. {X_nameDef} says they will grow better for it. The colony's farmers are prepared to believe it.</li>
       <li>[blessing,sameFaith] The tree-singers sang with the colony at the old tree this evening, and {A_nameDef} sang the loudest.</li>
@@ -645,7 +684,7 @@
     </joinTexts>
     <farewell>
       <li>The healer from {FACTION} went on to the next village, leaving written instructions behind for nearly every colonist who had sat on the bench.</li>
-      <li>{X_nameDef}, the traveling healer, has gone. Before leaving, {X_pronoun} looked in on everyone {X_pronoun} had treated, one by one.</li>
+      <li>[round] {X_nameDef}, the traveling healer, has gone. Before leaving, {X_pronoun} looked in on everyone {X_pronoun} had treated, one by one.</li>
     </farewell>
     <lines>
       <li>Open wide.</li>
@@ -656,6 +695,18 @@
       <li>[lowtech] Feverfew for that.</li>
       <li>[!lowtech] Keep it clean and dry.</li>
     </lines>
+    <farewellWalk>
+      <to>sick</to>
+      <who>healer</who>
+      <count>4</count>
+    </farewellWalk>
+    <momentLines>
+      <li>[round] Let's see it, then.</li>
+      <li>[round] Better. Much better.</li>
+      <li>[round] Not too much on it yet.</li>
+      <li>[round] You remember what I told you?</li>
+      <li>[round,lowtech] Fresh moss on it every morning.</li>
+    </momentLines>
     <helpTexts>
       <li>[heal] {X_nameDef}, the traveling healer, sat {A_nameDef} down on the bench and dealt with {A_possessive} {THING} in a quarter of an hour, with a lot of tutting. {A_nameDef} is already feeling better.</li>
       <li>[heal,lowtech] {X_nameDef} saw {A_nameDef}'s {THING} from across the yard, came straight over and dealt with it on the spot with a poultice and a bitter tea.</li>
@@ -876,7 +927,7 @@
     </joinTexts>
     <farewell>
       <li>The mourners from {FACTION} went on at first light with their cart, walking slowly, the lamp still lit beside it.</li>
-      <li>The mourners' camp {PLACE} is empty. {X_nameDef} left a sprig of green on the colony's gatepost, as {FACTION} do for those who let the dead rest a while.</li>
+      <li>[left:sprig] The mourners' camp {PLACE} is empty. On the way out, {X_nameDef} planted a sprig of green by the colony's gate, as {FACTION} do for those who let the dead rest a while.</li>
     </farewell>
     <lines>
       <li>Rest a while.</li>
@@ -886,6 +937,19 @@
       <li>He always took the long way.</li>
       <li>We'll sing for him at home.</li>
     </lines>
+    <!-- On the way out, one of them walks to the colony's gate and plants a sprig of green there (in its season). -->
+    <farewellWalk>
+      <to>gate</to>
+      <gift>sprig</gift>
+    </farewellWalk>
+    <leaveBehind>
+      <li><key>sprig</key><at>gate</at><defs><li>Plant_Rose</li><li>Plant_Daylily</li></defs><growth>0.3</growth></li>
+    </leaveBehind>
+    <momentLines>
+      <li>[gift] For letting him rest a while.</li>
+      <li>[gift] For your kindness.</li>
+      <li>[gift] Grow well.</li>
+    </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat a while at the mourners' fire, and {X_nameDef} told {A_objective} about the one they're carrying home: who they were, what they loved, what they used to say. {A_nameDef} came back very quiet.</li>
       <li>[tales] The mourners told {A_nameDef} the story of the one in the cart, start to finish, over a long evening. By the end {A_nameDef} felt {A_pronoun} had known them.</li>

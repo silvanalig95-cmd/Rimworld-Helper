@@ -80,6 +80,19 @@
       <li>Quiet now, they're close.</li>
       <li>Fresh sign, this morning's.</li>
     </lines>
+    <!-- Their kills come back to the butchering spot and are dressed there by day (CampLook.cs). -->
+    <momentLines>
+      <li>[kill] Got it.</li>
+      <li>[kill] Clean shot.</li>
+      <li>[kill] That's supper.</li>
+      <li>[kill,lowtech] Straight through. Good arrow.</li>
+      <li>[kill] Down. Somebody bring the pole.</li>
+      <li>[butcher] Save the hide.</li>
+      <li>[butcher] Good fat on this one.</li>
+      <li>[butcher] Keep the flies off it.</li>
+      <li>[butcher] Hang the rest up by the fire.</li>
+      <li>[butcher,lowtech] Sinew for the bowstrings.</li>
+    </momentLines>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== A refugee family ===================== -->
@@ -122,6 +135,11 @@
       <li><role>bed</role><defs><li>SleepingSpot</li><li>Bedroll</li></defs><stuff><li>Cloth</li></stuff></li>
       <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>4</count></li>
     </structures>
+    <!-- Their washing, laid out to dry by the windbreak (tribal folk's tribalwear): theirs, packed when they go. -->
+    <campGoods>
+      <li><defs><li>Apparel_BasicShirt</li><li>Apparel_TribalA</li></defs><stuff><li>Cloth</li></stuff><at>wall</at></li>
+      <li><defs><li>Apparel_Pants</li><li>Apparel_TribalA</li></defs><stuff><li>Cloth</li></stuff><at>wall</at></li>
+    </campGoods>
     <titles>
       <li>A family on the road</li>
       <li>Nowhere else to go</li>
@@ -403,6 +421,7 @@
     <helpChance>0.3</helpChance>
     <help>
       <li>mend</li>
+      <li>repair</li>
     </help>
     <pride>0.3</pride>
     <breakTerms>0.1</breakTerms>
@@ -438,7 +457,7 @@
     <farewell>
       <li>The smith from {FACTION} loaded the cart and moved on, the anvil ringing faintly over every bump in the road.</li>
       <li>The smith's camp {PLACE} is gone, and with it the hammering that ran from dawn to dusk.</li>
-      <li>The smith from {FACTION} put out the forge {PLACE}, packed the anvil and left a fixed hinge on the colony's gate without saying a word about it.</li>
+      <li>[repaired] The smith from {FACTION} put out the forge {PLACE}, packed the anvil and left, without a word about the {THING} they'd mended for the colony.</li>
     </farewell>
     <lines>
       <li>Hotter. Hotter!</li>
@@ -448,6 +467,19 @@
       <li>Quench it now.</li>
       <li>Bring me the tongs.</li>
     </lines>
+    <!-- The smith's good turns: a colonist's worn gear mended, or one of the colony's damaged buildings (doors and gates
+         first, the nearest to the camp), which the smith walks over to and mends as a gift (CampLook.cs). -->
+    <helpTexts>
+      <li>[repair] The colony's {THING} had been knocked about for a while. {X_nameDef} from the smith's camp came over with a bag of tools, spent the afternoon on it, and went back without asking for a coin.</li>
+      <li>[repair,medieval] {X_nameDef}, the smith, frowned at the colony's {THING} on the way past, fetched hammer and tongs, and had it right before supper. There was no talk of payment.</li>
+      <li>[repair,industrial] {X_nameDef} from the smith's camp had the colony's {THING} patched up in an afternoon, with a few bolts from the cart and a good deal of muttering. No charge.</li>
+    </helpTexts>
+    <momentLines>
+      <li>[repair] There. That'll hold.</li>
+      <li>[repair] Try it now.</li>
+      <li>[repair] Swings true again.</li>
+      <li>[repair] Whoever built this owes me a drink.</li>
+    </momentLines>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== A hermit ===================== -->
@@ -481,6 +513,29 @@
       <li><role>hut</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff></li>
       <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
     </structures>
+    <!-- Firewood stacked by the hut's door, which feeds the fire and is left with the hut. At the end of the season the
+         hermit walks to the colony's door and leaves a carved bird there, in its crate. -->
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>20~35</count><at>door</at><leftForColony>true</leftForColony></li>
+    </campGoods>
+    <farewellWalk>
+      <to>gate</to>
+      <gift>bird</gift>
+    </farewellWalk>
+    <leaveBehind>
+      <li>
+        <key>bird</key>
+        <at>gate</at>
+        <defs><li>SculptureSmall</li></defs>
+        <stuff><li>WoodLog</li></stuff>
+        <minified>true</minified>
+        <titles>
+          <li>Little bird</li>
+          <li>Wren on a branch</li>
+          <li>Bird, half asleep</li>
+        </titles>
+      </li>
+    </leaveBehind>
     <titles>
       <li>A hermit moves in</li>
       <li>A new neighbor, of sorts</li>
@@ -504,7 +559,7 @@
     <farewell>
       <li>{X_nameDef} shut the door of the hut {PLACE} one last time and walked off without looking back. The hut is the colony's now, if it wants it.</li>
       <li>The hermit's hut {PLACE} is empty. {X_nameDef} left in the night without a word, which is how {X_nameDef} arrived.</li>
-      <li>{X_nameDef} is gone from the hut {PLACE}. A little carved bird turned up by the colony's door the next morning, which may have been a goodbye.</li>
+      <li>[left:bird] {X_nameDef} is gone from the hut {PLACE}. On the way past, {X_pronoun} left a little carved bird by the colony's door, which may have been a goodbye.</li>
     </farewell>
     <lines>
       <li>Hm.</li>
@@ -514,6 +569,11 @@
       <li>Mind the snare.</li>
       <li>Go away. Please.</li>
     </lines>
+    <momentLines>
+      <li>[gift] Hm. For you.</li>
+      <li>[gift] Don't make a fuss.</li>
+      <li>[gift] Made it in the evenings.</li>
+    </momentLines>
   </ColonyCouncil.CampKindDef>
 
 </Defs>

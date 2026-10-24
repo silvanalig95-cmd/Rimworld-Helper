@@ -1549,7 +1549,13 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   from their page: an evening at their fire, a beast from the herd, the healer's care, a lesson at their side, a song
   about the colony, a vigil with the mourners. They build the camp themselves,
   cook at their fire, hunt and fell trees around it (never near your home area), trade, sometimes help, and may ask
-  to join. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
+  to join. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
+  bales to the stall, the drovers' herd grazing beyond the camp with a dog at a drover's heels (real animals of their
+  people, a handful at most, fed by the camp and leaving with it), hunters dressing each kill at their butchering
+  spot, the refugees' washing by the windbreak, the hermit's woodpile by the door. The smith may walk over and mend
+  one of your damaged doors or walls for nothing. When their stay ends, the healers go round your sick and hurt
+  first, the mourners plant a sprig of green by your gate, the hermit leaves a carved bird by your door, the players
+  leave their castle backdrop standing and the tree-singers a ring of saplings where their fire was. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
   them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
   take; trade, gifts and friendships ease it. The World page shows the camp and lets you talk to them. One camp at a
   time, never in a colony's first twenty days, with its own switch.

@@ -140,20 +140,31 @@ namespace ColonyCouncil
         /// <summary>PawnKindDef names, the first that suits the weather and exists; "Muffalo|Cow".</summary>
         public List<string> kinds = new List<string>();
         public int count = 1;
+        /// <summary>One of the camp's own herd, when it has a beast to spare (it becomes the colony's where it grazes); a new one otherwise.</summary>
+        public bool fromCamp;
+
+        private static Camp CampOn(Map map)
+        {
+            var c = CampTracker.Instance?.camp;
+            return c != null && map != null && c.map == map && c.Settled && c.herd.Count > 0 ? c : null;
+        }
 
         private PawnKindDef Pick(Map map) =>
             kinds?.Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n))
                 .Where(k => k?.race?.race != null && k.RaceProps.Animal && (map == null || map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)))
                 .RandomElementWithFallback();
 
-        public override string Unavailable(DilemmaContext ctx) => Pick(ctx.map) == null ? "CC_CampAsk_NoBeast".Translate().ToString() : null;
+        public override string Unavailable(DilemmaContext ctx) =>
+            Pick(ctx.map) == null && !(fromCamp && CampOn(ctx.map) != null) ? "CC_CampAsk_NoBeast".Translate().ToString() : null;
 
         public override void Apply(DilemmaContext ctx)
         {
             var map = ctx.map;
+            if (map == null || (chance < 1f && !Rand.Chance(chance))) return;
+            // A beast of the herd they brought, if they have one to spare (CampLook.cs).
+            if (fromCamp && count <= 1 && CampOn(map)?.HandOverBeast() != null) return;
             var kind = Pick(map);
-            if (map == null || kind == null) return;
-            if (chance < 1f && !Rand.Chance(chance)) return;
+            if (kind == null) return;
             var near = ctx.stranger != null && ctx.stranger.Spawned && ctx.stranger.Map == map ? ctx.stranger.Position
                 : ctx.a != null && ctx.a.Spawned ? ctx.a.Position : DropCellFinder.TradeDropSpot(map);
             for (int i = 0; i < Mathf.Max(1, count); i++)

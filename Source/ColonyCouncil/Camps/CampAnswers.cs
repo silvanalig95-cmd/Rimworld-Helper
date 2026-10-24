@@ -275,7 +275,7 @@ namespace ColonyCouncil
                     {
                         label = c.Text("CC_Camp_Opt_TimeToGo"), act = () =>
                         {
-                            c.Leave("time");
+                            c.TimeToGo();
                             return null;
                         }
                     });

@@ -66,7 +66,7 @@
     <farewell>
       <li>The healers from {FACTION} packed up their remedies and went on to the next village, with a long list of the colony's coughs to ask about next time.</li>
       <li>The healers' camp {PLACE} is gone, and the smell of drying herbs with it.</li>
-      <li>The healers from {FACTION} left at dawn. {X_nameDef} went round the colony first, checking on everyone they'd treated.</li>
+      <li>[round] The healers from {FACTION} have gone. {X_nameDef} went round the colony first, looking in on everyone they'd treated.</li>
     </farewell>
     <lines>
       <li>Where does it hurt?</li>
@@ -79,6 +79,22 @@
       <li>Hold still, this stings.</li>
       <li>Come back tomorrow.</li>
     </lines>
+    <!-- Before they go, their best healer walks round the colony: the hurt and sick first, then those they treated,
+         seeing to wounds that need it (CampLook.cs). -->
+    <farewellWalk>
+      <to>sick</to>
+      <who>healer</who>
+      <count>4</count>
+    </farewellWalk>
+    <momentLines>
+      <li>[round] How's the leg?</li>
+      <li>[round] Keep it clean, mind.</li>
+      <li>[round] Rest. I mean it.</li>
+      <li>[round] Let me look once more.</li>
+      <li>[round] You'll mend.</li>
+      <li>[round,lowtech] Keep chewing the bark.</li>
+      <li>[round,!lowtech] Finish the whole course.</li>
+    </momentLines>
     <helpTexts>
       <li>[heal] {X_nameDef} from the healers' camp caught {A_nameDef} on the path and saw to {A_possessive} {THING} there and then, with a poultice and a cup of something bitter. {A_nameDef} is already feeling better.</li>
       <li>[heal,lowtech] {X_nameDef}, the eldest of the healers, sat {A_nameDef} down by the camp's fire and saw to the {THING} with herbs and a lot of muttering. {A_nameDef} came back to the colony looking much brighter.</li>
@@ -224,7 +240,7 @@
     </joinTexts>
     <farewell>
       <li>The players from {FACTION} packed their costumes into the trunk and went on to the next town, one of them on the tailboard still running lines at the top of their voice.</li>
-      <li>The players' camp {PLACE} is empty, except for a painted backdrop of a castle they decided they didn't need.</li>
+      <li>[left:backdrop] The players' camp {PLACE} is empty, except for a painted backdrop of a castle they decided they didn't need.</li>
       <li>The players from {FACTION} took a last bow at the gate and went on to the next town, still arguing about the second act.</li>
     </farewell>
     <lines>
@@ -239,6 +255,25 @@
       <li>Places, everyone.</li>
       <li>Who's seen the crown?</li>
     </lines>
+    <!-- At the end of their stay they leave the castle backdrop standing where their stage was, for anyone who wants it. -->
+    <leaveBehind>
+      <li>
+        <key>backdrop</key>
+        <at>spot</at>
+        <defs><li>SculptureLarge</li></defs>
+        <stuff><li>WoodLog</li></stuff>
+        <titles>
+          <li>Castle backdrop</li>
+          <li>The castle, first act</li>
+          <li>Backdrop for The Crown of Ash</li>
+        </titles>
+      </li>
+    </leaveBehind>
+    <momentLines>
+      <li>[gift] Leave it. We've another castle.</li>
+      <li>[gift] Somebody here will want a castle.</li>
+      <li>[gift,lowtech] It never fit in the wagon anyway.</li>
+    </momentLines>
     <helpTexts>
       <li>[show] The players {PLACE} put on a play at their fire this evening, a comedy about a lord who loses his trousers, and the colony was invited. {X_nameDef} played the lord.</li>
       <li>[show,!lowtech] The circus {PLACE} put on its full show tonight: juggling, a tightrope between two poles, and a strongman who lifted {A_nameDef} over his head. The colony laughed itself hoarse.</li>

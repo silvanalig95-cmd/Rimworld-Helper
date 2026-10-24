@@ -13,13 +13,19 @@ namespace ColonyCouncil
     {
         public int ticks = 1000;
         public bool social;
+        /// <summary>Shows the work as mending (the building's own repair effect).</summary>
+        public bool repairEffect;
+        /// <summary>With someone as the target: the work ends if they walk off farther than this (0: never).</summary>
+        public float stayNear;
     }
 
     /// <summary>
-    /// The camp duty's job giver: what one of them does next. In order: eat, sleep, tend a colonist lying hurt
-    /// outdoors nearby, build the camp, fetch their kills and wood to the stash, then by the time of day: butchering,
-    /// cooking and sitting by the fire in the evening, hunting, felling trees and their own work by day. Only their own
-    /// goods are ever used, and nothing is taken from inside or near the colony's home area.
+    /// The camp duty's job giver: what one of them does next. In order: eat, the last walk before they go (a healer's
+    /// round, a gift for the colony's gate), sleep, tend a colonist lying hurt outdoors nearby, build the camp, fetch
+    /// their kills (to the butchering spot) and wood (to the stash), then by the time of day: butchering, cooking and
+    /// sitting by the fire in the evening; mending one of the colony's buildings as a gift, dressing kills, hunting,
+    /// felling trees, porters' loads and their own work by day. Only their own goods are ever used, and nothing is taken
+    /// from inside or near the colony's home area.
     /// </summary>
     public class JobGiver_CampLife : ThinkNode_JobGiver
     {
@@ -81,6 +87,12 @@ namespace ColonyCouncil
             var food = pawn.needs.food;
             var rest = pawn.needs.rest;
             if (food != null && food.CurLevelPercentage < 0.3f && Camp.MealsOf(pawn) > 0) return Eat(camp, pawn);
+            // The last walk before they go comes before anything but hunger and exhaustion (CampLook.cs).
+            if (pawn == camp.walker && camp.WalkActive && (rest == null || rest.CurLevelPercentage > 0.1f))
+            {
+                var walk = camp.WalkJob(pawn);
+                if (walk != null) return walk;
+            }
             if (rest != null && (rest.CurLevelPercentage < 0.2f || (night && rest.CurLevelPercentage < 0.95f))) return Sleep(camp, pawn);
             bool adult = !pawn.DevelopmentalStage.Juvenile();
             if (!adult) return Child(camp, pawn, hour);
@@ -228,20 +240,21 @@ namespace ColonyCouncil
 
         // ---------------- Fetching ----------------
 
-        /// <summary>Their kills and the wood from the trees they felled, carried to the stash.</summary>
+        /// <summary>Their kills, carried back to be dressed at their butchering spot (or by the fire), and the wood from the trees they felled, to the stash.</summary>
         private static Job Fetch(Camp camp, Pawn pawn)
         {
             if (pawn.WorkTagIsDisabled(WorkTags.Hauling)) return null;
             var map = pawn.Map;
             var home = map.areaManager.Home;
+            var killSpot = camp.KillSpot;
             foreach (var k in camp.kills)
             {
                 var corpse = k?.Corpse;
-                if (corpse == null || !corpse.Spawned || corpse.Position.InHorDistOf(camp.stash, 3f)) continue;
+                if (corpse == null || !corpse.Spawned || corpse.Position.InHorDistOf(killSpot, 2.5f)) continue;
                 // Carried off into the colony's stockpiles or home since: not theirs to fetch back.
                 if (InColony(corpse, home)) continue;
                 if (!pawn.CanReserveAndReach(corpse, PathEndMode.ClosestTouch, Danger.Some)) continue;
-                return HaulToStash(camp, pawn, corpse);
+                return HaulTo(camp, pawn, corpse, killSpot);
             }
             foreach (var cell in camp.felled)
             {
@@ -256,12 +269,15 @@ namespace ColonyCouncil
                     return HaulToStash(camp, pawn, t);
                 }
             }
-            // Their own goods lying away from the stash (dropped, refunded), unless the colony has carried them off.
+            // Their own goods lying away from where they belong (dropped, refunded), unless the colony has carried them
+            // off: bodies by the butchering spot, the rest at the stash. What they put out has its own place (porters move it).
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver))
             {
-                if (!camp.Owns(t) || !t.Spawned || InColony(t, home) || t.Position.InHorDistOf(camp.stash, 3.5f) || !t.Position.InHorDistOf(camp.center, CampSite.WorkRadius)) continue;
+                if (!camp.Owns(t) || !t.Spawned || camp.IsProp(t) || InColony(t, home) || !t.Position.InHorDistOf(camp.center, CampSite.WorkRadius)) continue;
+                var to = t is Corpse ? killSpot : camp.stash;
+                if (t.Position.InHorDistOf(to, 3.5f)) continue;
                 if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
-                return HaulToStash(camp, pawn, t);
+                return HaulTo(camp, pawn, t, to);
             }
             return null;
         }
@@ -269,12 +285,15 @@ namespace ColonyCouncil
         /// <summary>In the colony's stockpiles or home area (only for a spawned thing).</summary>
         private static bool InColony(Thing t, Area home) => StoreUtility.IsInAnyStorage(t) || (home != null && home[t.Position]);
 
-        private static Job HaulToStash(Camp camp, Pawn pawn, Thing t)
+        private static Job HaulToStash(Camp camp, Pawn pawn, Thing t) => HaulTo(camp, pawn, t, camp.stash);
+
+        /// <summary>One of their things (made theirs now) carried to a free spot near <paramref name="to"/>.</summary>
+        private static Job HaulTo(Camp camp, Pawn pawn, Thing t, IntVec3 to)
         {
             var map = pawn.Map;
-            // A free spot by the stash that nobody else is bound for: a taken one fails the job (with an error) at once.
-            if (!CellFinder.TryFindRandomCellNear(camp.stash, map, 2, c => c.Standable(map) && c.GetFirstItem(map) == null && c.GetEdifice(map) == null
-                                                                     && pawn.CanReserve(c) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Some), out var cell))
+            // A free spot there that nobody else is bound for: a taken one fails the job (with an error) at once.
+            if (!CellFinder.TryFindRandomCellNear(to, map, 2, c => c.Standable(map) && c.GetFirstItem(map) == null && c.GetEdifice(map) == null
+                                                              && pawn.CanReserve(c) && pawn.CanReach(c, PathEndMode.OnCell, Danger.Some), out var cell))
                 return null;
             camp.Own(t);
             var job = JobMaker.MakeJob(JobDefOf.HaulToCell, t, cell);
@@ -287,13 +306,20 @@ namespace ColonyCouncil
 
         private static Job Evening(Camp camp, Pawn pawn, int hour)
         {
-            var corpse = camp.Goods().OfType<Corpse>().FirstOrDefault(c => !RottableUtility.IsDessicated(c) && pawn.CanReserveAndReach(c, PathEndMode.Touch, Danger.Some));
-            if (corpse != null && !Busy(camp, CampDefOf.Council_CampButcher) && !pawn.WorkTagIsDisabled(WorkTags.ManualSkilled))
-                return JobMaker.MakeJob(CampDefOf.Council_CampButcher, corpse);
+            var dress = Butcher(camp, pawn);
+            if (dress != null) return dress;
             if (camp.lastCookDay != GenDate.DaysPassed && !Busy(camp, CampDefOf.Council_CampCook) && (pawn == Cook(camp) || hour >= 19) && !pawn.WorkTagIsDisabled(WorkTags.Cooking))
                 return JobMaker.MakeJob(CampDefOf.Council_CampCook, SitCell(camp, pawn), camp.FireCell);
             if (Rand.Chance(0.6f)) return JobMaker.MakeJob(CampDefOf.Council_CampSit, SitCell(camp, pawn), camp.FireCell);
             return null;
+        }
+
+        /// <summary>A kill of theirs lying at the camp, dressed where it lies (at their butchering spot, where they bring them).</summary>
+        private static Job Butcher(Camp camp, Pawn pawn)
+        {
+            if (pawn.WorkTagIsDisabled(WorkTags.ManualSkilled) || Busy(camp, CampDefOf.Council_CampButcher)) return null;
+            var corpse = camp.KillsAtCamp().FirstOrDefault(c => !RottableUtility.IsDessicated(c) && pawn.CanReserveAndReach(c, PathEndMode.Touch, Danger.Some));
+            return corpse != null ? JobMaker.MakeJob(CampDefOf.Council_CampButcher, corpse) : null;
         }
 
         private static Pawn Cook(Camp camp) =>
@@ -307,6 +333,18 @@ namespace ColonyCouncil
         private static Job Day(Camp camp, Pawn pawn)
         {
             var kind = camp.kind;
+            // Mending one of the colony's buildings as a gift: their smith walks over and does it (CampLook.cs).
+            if (camp.RepairPending && !Busy(camp, CampDefOf.Council_CampRepair) && pawn == camp.Smith())
+            {
+                var mend = camp.RepairJob(pawn);
+                if (mend != null) return mend;
+            }
+            // Hunters with a butchering spot dress their kills as soon as they're in, not only in the evening.
+            if (camp.ButchersByDay)
+            {
+                var dress = Butcher(camp, pawn);
+                if (dress != null) return dress;
+            }
             // Their trader keeps to the stall, where the colony can find them.
             if (pawn == camp.trader && kind.task != null && Rand.Chance(0.75f)) return Task(camp, pawn);
             if (camp.dayHunts < camp.huntsToday && camp.prey.Count == 0 && CanHunt(pawn))
@@ -330,17 +368,57 @@ namespace ColonyCouncil
                     return JobMaker.MakeJob(JobDefOf.CutPlant, tree);
                 }
             }
+            // Porters: a load carried between the beasts and the fire, and back (CampKindDef.campGoods carryTo).
+            if (Rand.Chance(0.3f))
+            {
+                var load = Carry(camp, pawn);
+                if (load != null) return load;
+            }
             if (kind.task != null && Rand.Chance(0.45f)) return Task(camp, pawn);
             if (Rand.Chance(0.2f)) return JobMaker.MakeJob(CampDefOf.Council_CampSit, SitCell(camp, pawn), camp.FireCell);
+            return null;
+        }
+
+        /// <summary>
+        /// A porter's load: one of the goods they put out that has two places (by the beasts, at the stall), carried from
+        /// the one it's at to the other. Never more than two porters at once.
+        /// </summary>
+        private static Job Carry(Camp camp, Pawn pawn)
+        {
+            if (camp.props.Count == 0 || pawn.WorkTagIsDisabled(WorkTags.Hauling) || pawn == camp.trader) return null;
+            if (camp.Here.Count(p => p != pawn && p.CurJobDef == JobDefOf.HaulToCell && camp.IsProp(p.CurJob.targetA.Thing)) >= 2) return null;
+            foreach (var t in camp.props.InRandomOrder())
+            {
+                var g = camp.GoodsOf(t);
+                if (g?.carryTo == null || t.Destroyed || !t.Spawned || !camp.Owns(t)) continue;
+                var home = camp.Spot(g.at);
+                var far = camp.Spot(g.carryTo);
+                if (!home.IsValid || !far.IsValid || !pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
+                var job = HaulTo(camp, pawn, t, CampLookMath.CarryOut(t.Position.DistanceTo(home)) ? far : home);
+                if (job == null) continue;
+                camp.SayMoment(pawn, "carry", 0.3f);
+                return job;
+            }
             return null;
         }
 
         private static Job Task(Camp camp, Pawn pawn)
         {
             var map = pawn.Map;
-            var at = camp.plans.FirstOrDefault(p => p.role == camp.kind.taskAt)?.Built(map, camp.faction);
             IntVec3 cell;
             LocalTargetInfo face;
+            // Drovers see to the herd itself, among the beasts.
+            if (camp.kind.taskAt == "herd")
+            {
+                var beast = camp.herd.Where(a => a != null && a.Spawned && !a.Dead && a.Map == map && camp.GroupOf(a)?.follow != true && pawn.CanReach(a, PathEndMode.Touch, Danger.Some)).RandomElementWithFallback();
+                if (beast != null)
+                {
+                    if (!CellFinder.TryFindRandomCellNear(beast.Position, map, 2, c => c.Standable(map) && c.GetEdifice(map) == null && c.GetFirstPawn(map) == null, out cell)) cell = beast.Position;
+                    camp.SayMoment(pawn, "herd", 0.25f);
+                    return JobMaker.MakeJob(camp.kind.task, cell, beast);
+                }
+            }
+            var at = camp.plans.FirstOrDefault(p => p.role == camp.kind.taskAt)?.Built(map, camp.faction);
             if (at != null)
             {
                 face = at;
@@ -443,6 +521,9 @@ namespace ColonyCouncil
                     }
                 }
                 else if (def.defName == "Council_CampProspect") camp.Prospected(pawn);
+                else if (def == CampDefOf.Council_CampFarewell) camp.LookedIn(pawn, job.targetA.Thing as Pawn);
+                else if (def == CampDefOf.Council_CampLayGift) camp.LaidGift(pawn, job.targetA.Cell);
+                else if (def == CampDefOf.Council_CampRepair) camp.Repaired(pawn, job.targetA.Thing);
             }
             catch (Exception e)
             {
@@ -566,7 +647,11 @@ namespace ColonyCouncil
             {
                 var face = job.targetB.IsValid ? job.targetB : job.targetA;
                 if (face.IsValid && face.Cell != pawn.Position) pawn.rotationTracker.FaceCell(face.Cell);
+                // Someone they came to see who has walked off: the visit is over.
+                if (ext != null && ext.stayNear > 0f && job.targetA.Thing is Pawn other && !other.Position.InHorDistOf(pawn.Position, ext.stayNear))
+                    EndJobWith(JobCondition.Incompletable);
             };
+            if (ext != null && ext.repairEffect) work.WithEffect(() => job.targetA.Thing?.def?.repairEffect ?? EffecterDefOf.ConstructMetal, TargetIndex.A);
             yield return work;
             yield return Toils_General.Do(() => CampWork.Done(pawn, job));
         }
