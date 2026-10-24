@@ -408,7 +408,7 @@
           </li>
           <li>
             <label>{A_nameDef} plays {X_objective}, {COUNT} silver a side</label>
-            <outcome>{A_nameDef} sat across from {X_nameDef} with the colony crowded round, and took the pot on the last throw. {X_nameDef} shook {A_possessive} hand and counted the silver out slowly.</outcome>
+            <outcome>{A_nameDef} sat across from {X_nameDef} with the colony crowded round, and took the pot at the very end. {X_nameDef} shook {A_possessive} hand and counted the silver out slowly.</outcome>
             <riskChance>0.6</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} played well and lost anyway. {X_nameDef} swept up the pot with a nod, as if it had never been in doubt.</riskOutcome>
@@ -426,7 +426,7 @@
           </li>
           <li>
             <label>No gambling at the colony</label>
-            <outcome>{X_nameDef} put the dice away with good grace, stayed the night and left in the morning to find livelier company.</outcome>
+            <outcome>{X_nameDef} put the dice and the cards away with good grace, stayed the night and left in the morning to find livelier company.</outcome>
             <ways><tradition>1</tradition></ways>
           </li>
         </options>
@@ -567,7 +567,7 @@
           </li>
           <li>
             <label>No work today</label>
-            <outcome>{X_nameDef} nodded. They've heard it before, and they went on up the road.</outcome>
+            <outcome>{X_nameDef} nodded; they'd heard it before. The three of them went on up the road.</outcome>
           </li>
         </options>
       </li>
