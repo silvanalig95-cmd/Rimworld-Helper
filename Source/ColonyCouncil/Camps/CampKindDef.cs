@@ -196,6 +196,8 @@ namespace ColonyCouncil
         public static JobDef Council_CampFarewell;
         public static JobDef Council_CampLayGift;
         public static JobDef Council_CampRepair;
+        public static JobDef Council_CampErrand;
+        public static JobDef Council_CampErrandTo;
         public static DutyDef Council_CampBeasts;
         public static LetterDef Council_CampLetter;
         public static ThoughtDef Council_Camp_GoodNeighbors;

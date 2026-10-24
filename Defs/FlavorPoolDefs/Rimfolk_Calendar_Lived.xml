@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony calendar's days from what the colony lived through (Source/ColonyCouncil/Calendar/CalendarLived.cs): the
+    day a camp left something behind, a world event the colony took part in, a holy day of the colony's own faith, and
+    the day one of its people came home from captivity; and the walk out to what a day remembers (DayWay.Walk).
+    Each day kind has its invitation (Council_Cal_Letter_*), its journal lines (Council_Journal_Cal_*: [new] the day it
+    first happens, [!new] when it comes round), its talk (Council_Cal_Talk_*) and what's said when the council lets it
+    pass this year (Council_Cal_Pass_*).
+    Placeholders as in Council_Calendar_Letters.xml ({NAME}, {YEARS}, {PLACE}, {COUNT}, {A_...}, {B_...}), plus
+    {SUBJECT}: what the camp left ("the carved bird"), the world event ("the gray cough"), the faith's name;
+    {CAMP}: the camp that left it ("hermit", "traveling players"); {WHO}: whoever spoke for the camp, the people a world
+    event was about, the faith's rite ("Festival"), the captors.
+    Tags besides the calendar's own: [about:bird|backdrop|seeds|sprig] for what a camp left; [ws:hunger], [ws:war],
+    [ws:sickness]... for the kind of world event; [friend] / [!friend] for a rescued colonist's friend and themselves.
+  -->
+
+  <!-- ===================== The day a camp left something behind ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_CampGift</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago today the {CAMP} went on their way and left {SUBJECT} behind. {A_nameDef} has been out to look at it twice since breakfast.</li>
+        <li>[years] {YEARS} years since the {CAMP} went on their way. {A_nameDef} still says {WHO}'s name when the day comes round, and wants a walk out to {SUBJECT}.</li>
+        <li>[about:seeds] The saplings the tree-singers pressed in round their old fire are taller every year. {A_nameDef} wants the colony to walk out and stand in the ring today.</li>
+        <li>[about:bird] {A_nameDef} took the carved bird down and dusted it this morning. It's the day the hermit left it at the colony's door.</li>
+        <li>[about:backdrop] The painted castle still stands where the players had their stage, more weathered each year. {A_nameDef} wants the colony out in front of it, standing where they stood for the last act.</li>
+        <li>[about:sprig] The flowers the mourners set by the gate have come up again. {A_nameDef} said at breakfast whose day it is, in case anyone had forgotten.</li>
+        <li>[tradition] {NAME}. There's a path worn out to {SUBJECT} now, from all the years of walking it, and {A_nameDef} was first on it this morning.</li>
+        <li>[winter] Snow on the ground for {NAME}. {A_nameDef} has cleared the path out to {SUBJECT} already.</li>
+      </plain>
+      <warm><li>{A_nameDef} still talks about {WHO} as if the camp might come back up the road any day. Today {A_pronoun} wants to go out and stand by {SUBJECT} a while.</li></warm>
+      <blunt><li>{NAME}. {A_nameDef} wants a walk out to {SUBJECT}. It won't take long.</li></blunt>
+      <cheerful><li>{A_nameDef} has been up since dawn. It's {NAME}, and {A_pronoun} wants the whole table to come and see how {SUBJECT} is doing.</li></cheerful>
+      <gloomy><li>{NAME}. {A_nameDef} wonders aloud whether any of the {CAMP} are still on the road, and whether they ever think of this place.</li></gloomy>
+      <cold><li>{NAME}. {A_nameDef} notes that {SUBJECT} has outlasted the camp by {YEARS} years, and proposes the usual walk.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Cal_CampGift</defName>
+    <lines>
+      <plain>
+        <li>[new] The {CAMP} packed up and went this morning. They left {SUBJECT} behind, and I went out to look at it before anyone else was up.</li>
+        <li>[new] {WHO} and the rest are gone. {COUNT} days they were here, and now there's {SUBJECT} where their camp stood.</li>
+        <li>[new,about:seeds] The tree-singers pressed seeds into the ground round their old fire before they left, every other step, singing. I counted the spots twice.</li>
+        <li>[new,about:bird] There was a carved bird in a crate by the door this morning. The hermit never said goodbye. I think this was it.</li>
+        <li>[new,about:backdrop] The players left their castle standing where the stage was. Without the actors in front of it, it looks smaller.</li>
+        <li>[!new,first] A year since the {CAMP} left. We walked out to {SUBJECT} and stood there without saying much, which felt right.</li>
+        <li>[!new,years] {YEARS} years. {SUBJECT} is still there. I don't know where {WHO} is now.</li>
+        <li>[!new,tradition] We walked out to {SUBJECT} again, the way we always do on this day. Somebody always tells the story of the camp, and somebody always gets it wrong.</li>
+      </plain>
+      <warm>
+        <li>[new] They're gone, and I already miss the smoke from their fire. {SUBJECT} will do for remembering them.</li>
+        <li>[!new] Stood by {SUBJECT} today and told the young ones about {WHO}. They listened better than I expected.</li>
+      </warm>
+      <blunt>
+        <li>[new] Camp's gone. Left {SUBJECT}. Decent of them.</li>
+        <li>[!new] Walked out to {SUBJECT}. Walked back. Good day.</li>
+      </blunt>
+      <cheerful>
+        <li>[new] The {CAMP} left us {SUBJECT}! I've already shown it to three people and the dog.</li>
+        <li>[!new] {NAME}! We all walked out to {SUBJECT} and I swear it's grown, or got more handsome.</li>
+      </cheerful>
+      <gloomy>
+        <li>[new] The {CAMP} moved on. People come and go out here, and mostly they don't come back.</li>
+        <li>[!new] {NAME}. Every year I half expect {SUBJECT} to be gone, and every year it's still there. I don't know why that surprises me.</li>
+      </gloomy>
+      <cold>
+        <li>[new] The camp left at dawn, and nothing of ours left with them. {SUBJECT} stays. Fair trade for the wood they burned.</li>
+        <li>[!new] {NAME}. A walk, an hour. It keeps people in good spirits for little cost.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Talk_CampGift</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} tried to remember everything the {CAMP} said on their last night.</li>
+        <li>{A_nameDef} told {B_nameDef} how {WHO} looked the morning the camp left.</li>
+        <li>{A_nameDef} and {B_nameDef} argued about whether {SUBJECT} has changed since the camp left.</li>
+        <li>{A_nameDef} wondered to {B_nameDef} where the {CAMP} are now.</li>
+        <li>{A_nameDef} told {B_nameDef} about the evenings at the camp's fire, and who sat where.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Pass_CampGift</defName>
+    <lines>
+      <plain>
+        <li>{NAME} went by without a walk this year. {A_nameDef} went out to {SUBJECT} alone after supper.</li>
+        <li>No walk out to {SUBJECT} this year. {A_nameDef} mentioned it once at supper and let it drop.</li>
+      </plain>
+      <warm><li>{NAME} went by unmarked this year. {A_nameDef} said {WHO} wouldn't have minded.</li></warm>
+      <blunt><li>No walk for {NAME} this year. Too much else to do.</li></blunt>
+      <cheerful><li>{NAME} slipped by this year. {A_nameDef} says {SUBJECT} will still be there next time.</li></cheerful>
+      <gloomy><li>{NAME} passed with no walk. {A_nameDef} thinks the camp is being forgotten, and maybe it is.</li></gloomy>
+      <cold><li>{NAME} let pass. {SUBJECT} needs no visitors to keep standing.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A world event the colony took part in ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Situation</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago {SUBJECT} came to an end, and the colony had its part in how. {A_nameDef} remembers the day the word came.</li>
+        <li>[years] {YEARS} years since {SUBJECT}. {A_nameDef} still tells it the way it happened, starting with the first rider at the gate.</li>
+        <li>The day {SUBJECT} ended. {A_nameDef} wants it marked, so the newer people know what the colony did that season.</li>
+        <li>[ws:hunger|ws:drought|ws:scarcity] {SUBJECT} is a year further back, and the stores are full this morning. {A_nameDef} wants a proper supper for it, the kind the colony went without that season.</li>
+        <li>[ws:war|ws:levy|ws:sellswords] The day {SUBJECT} ended. {A_nameDef} would like the colony to walk out to the gate together, where the riders used to come in.</li>
+        <li>[ws:sickness] The day {SUBJECT} burned itself out. {A_nameDef} wants a walk to the gate and a word for the ones who nursed and the ones who didn't get up again.</li>
+        <li>[ws:fair|ws:trade|ws:songs] The anniversary of {SUBJECT}. {A_nameDef} remembers the noise and the colors, and wants a day of it back.</li>
+        <li>[tradition] {NAME}, kept so many years now that the newest people think it's an old custom of the land.</li>
+      </plain>
+      <warm><li>{NAME}. {A_nameDef} still thinks of the people of {WHO} on this day, and hopes they think of the colony.</li></warm>
+      <blunt><li>{NAME}. {A_nameDef} wants it kept. That season was hard enough to earn it.</li></blunt>
+      <cheerful><li>{NAME}! {A_nameDef} says it's the one day a year the colony gets to be proud of itself out loud.</li></cheerful>
+      <gloomy><li>{NAME}. {A_nameDef} counts the faces that were here for {SUBJECT} and finds fewer every year.</li></gloomy>
+      <cold><li>{NAME}. {A_nameDef} points out that what the colony did then is why {WHO} still deal fairly with it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Cal_Situation</defName>
+    <lines>
+      <plain>
+        <li>[new] Word came today that {SUBJECT} is over. We did our part. I don't know yet if it was enough.</li>
+        <li>[new] {SUBJECT} is done with. I slept through the night for the first time in a while.</li>
+        <li>[new,ws:hunger|ws:drought|ws:scarcity] The hungry season is over. I keep looking at the stores as if they might empty again overnight.</li>
+        <li>[new,ws:war|ws:levy] The fighting is over, or this round of it is. The road is quiet again.</li>
+        <li>[!new,first] A year since {SUBJECT}. We marked it, and the newcomers asked a lot of questions.</li>
+        <li>[!new,years] {YEARS} years since {SUBJECT}. Funny which parts I remember: the smell of the smoke, not the dates.</li>
+        <li>[!new,tradition] We kept the day of {SUBJECT} the way it's always kept. I could tell the story in my sleep.</li>
+      </plain>
+      <warm>
+        <li>[new] {SUBJECT} is over, and the people of {WHO} sent word of thanks. I read it twice.</li>
+        <li>[!new] Remembered {SUBJECT} today with the ones who were here for it. We held on to each other that season.</li>
+      </warm>
+      <blunt>
+        <li>[new] {SUBJECT}: over. Good.</li>
+        <li>[!new] Day of {SUBJECT}. Marked it. Back to work tomorrow.</li>
+      </blunt>
+      <cheerful>
+        <li>[new] It's over! {SUBJECT} is finished and we're still standing, and so are the people of {WHO}.</li>
+        <li>[!new] We kept the day of {SUBJECT} and I told the best version of the story yet.</li>
+      </cheerful>
+      <gloomy>
+        <li>[new] {SUBJECT} has ended. There'll be another along to take its place before long.</li>
+        <li>[!new] The day of {SUBJECT}. I thought about the ones it took, out there, who aren't in anyone's calendar.</li>
+      </gloomy>
+      <cold>
+        <li>[new] {SUBJECT} has ended. What we gave was worth what we got for it, on balance.</li>
+        <li>[!new] The day of {SUBJECT}. Remembering it keeps people careful, which is useful.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Talk_Situation</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} told {B_nameDef} what the colony did during {SUBJECT}, and what it nearly did instead.</li>
+        <li>{A_nameDef} and {B_nameDef} remembered the season of {SUBJECT}.</li>
+        <li>{A_nameDef} asked {B_nameDef} whether the people of {WHO} still remember what the colony did.</li>
+        <li>{A_nameDef} told {B_nameDef} the story of {SUBJECT}, bigger than last year.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Pass_Situation</defName>
+    <lines>
+      <plain>
+        <li>The day of {SUBJECT} went by unmarked this year. {A_nameDef} noticed, and said nothing.</li>
+        <li>{NAME} went unkept this year. {A_nameDef} told the story of it to one listener over supper instead.</li>
+      </plain>
+      <warm><li>{NAME} passed without a word. {A_nameDef} raised a cup to it alone, which may be enough.</li></warm>
+      <blunt><li>{NAME} let go this year. There wasn't time.</li></blunt>
+      <cheerful><li>{NAME} slipped past this year. {A_nameDef} says the story keeps, and it'll be twice as good next year.</li></cheerful>
+      <gloomy><li>{NAME} passed unmarked. A few more years like this and the newer people won't know what it was.</li></gloomy>
+      <cold><li>{NAME} let pass. The colony has more pressing matters than an old season.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A holy day of the colony's own faith ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_FaithDay</defName>
+    <lines>
+      <plain>
+        <li>Today is the {WHO}, a holy day of {SUBJECT}. {A_nameDef} has been up since before dawn getting ready.</li>
+        <li>[years] The {WHO} has come round again. {A_nameDef} remembers how it was kept in the colony's first years, with far fewer people.</li>
+        <li>[devout] {A_nameDef} fasted yesterday for the {WHO}, as {SUBJECT} asks of the devout, and wants the day kept properly.</li>
+        <li>[tradition] The {WHO}. The colony keeps it without being asked now; {A_nameDef} found the altar swept before anyone was up.</li>
+        <li>[winter] The {WHO} falls in the cold this year as every year. {A_nameDef} says the faithful have kept it in worse weather.</li>
+      </plain>
+      <warm><li>The {WHO}. {A_nameDef} says it's the one day a year {SUBJECT} asks nothing hard of anyone, only that they come.</li></warm>
+      <blunt><li>The {WHO} today. {A_nameDef} wants it kept.</li></blunt>
+      <cheerful><li>The {WHO}! {A_nameDef} has been humming the old hymns since breakfast.</li></cheerful>
+      <gloomy><li>The {WHO}. {A_nameDef} hopes {SUBJECT} is watching, given the year the colony has had.</li></gloomy>
+      <cold><li>The {WHO}. {A_nameDef} observes that the faithful work better after it, and recommends keeping it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Cal_FaithDay</defName>
+    <lines>
+      <plain>
+        <li>The {WHO}. We kept it, and for an evening the colony felt like it had one heart.</li>
+        <li>[first] Our first {WHO} kept the way {SUBJECT} keeps it. I didn't know all the words. Next year I will.</li>
+        <li>[years] Another {WHO}. The words come easier every year, and mean more.</li>
+        <li>[tradition] The {WHO}, kept as it always is here. The children know the hymns better than I do.</li>
+      </plain>
+      <warm>
+        <li>The {WHO}. I held the hand of the person next to me through the whole of the last hymn.</li>
+        <li>A holy day of {SUBJECT}. I felt close to the others, even the ones I argue with.</li>
+      </warm>
+      <blunt>
+        <li>The {WHO}. Kept it. Felt right.</li>
+        <li>Holy day. Long one. Good.</li>
+      </blunt>
+      <cheerful>
+        <li>The {WHO}! I sang too loudly and the cook sang louder.</li>
+        <li>Holy day today, and the best supper of the season after it.</li>
+      </cheerful>
+      <gloomy>
+        <li>The {WHO}. I prayed for the ones we've lost this year. The list was longer than I wanted.</li>
+        <li>A holy day. I'm not sure {SUBJECT} hears us out here, but I said the words anyway.</li>
+      </gloomy>
+      <cold>
+        <li>The {WHO}. It holds the faithful together, and that holds the colony together.</li>
+        <li>Holy day kept. The devout are calmer for it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Talk_FaithDay</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} told {B_nameDef} what the {WHO} means to the followers of {SUBJECT}.</li>
+        <li>{A_nameDef} and {B_nameDef} went over the words for the {WHO} together.</li>
+        <li>{A_nameDef} asked {B_nameDef} how the {WHO} was kept where {B_pronoun} grew up.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about the last {WHO}, and who wasn't there for it this year.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Pass_FaithDay</defName>
+    <lines>
+      <plain>
+        <li>The {WHO} went by without the colony keeping it. {A_nameDef} said the words alone, at dusk.</li>
+        <li>No {WHO} this year. {A_nameDef} lit a candle for it anyway and didn't tell anyone.</li>
+      </plain>
+      <warm><li>The {WHO} passed unkept. {A_nameDef} says {SUBJECT} is patient, and next year will do.</li></warm>
+      <blunt><li>No {WHO} this year. {A_nameDef} didn't like it.</li></blunt>
+      <cheerful><li>The {WHO} slipped past this year. {A_nameDef} hummed the hymns over the washing, which {A_pronoun} says counts.</li></cheerful>
+      <gloomy><li>The {WHO} went unkept. {A_nameDef} wonders what else the colony is letting go of.</li></gloomy>
+      <cold><li>The {WHO} let pass. The devout will remember it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The day one of ours came home from captivity ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Rescue</defName>
+    <lines>
+      <plain>
+        <li>[first] A year ago today {A_nameDef} came home after {COUNT} days held by {WHO}. {A_nameDef} would rather not talk about those days, but wants the colony at one table tonight.</li>
+        <li>[years] {YEARS} years since {A_nameDef} was brought home. The others want a supper for it; {A_nameDef} says {A_pronoun}'ll only come if there's no speech.</li>
+        <li>The day {A_nameDef} came home. Someone has already hung a lamp in the gate, the way one hung there every night {A_pronoun} was gone.</li>
+        <li>[tradition] {NAME}. Kept every year now. {A_nameDef} still looks embarrassed by it, and still turns up.</li>
+      </plain>
+      <warm><li>{NAME}. {A_nameDef} spent the morning thanking the ones who went to fetch {A_objective}, one at a time.</li></warm>
+      <blunt><li>{NAME}. {A_nameDef} is glad to be here. That's all {A_pronoun} will say about it.</li></blunt>
+      <cheerful><li>{NAME}! {A_nameDef} is home and has been for a whole year, and wants a feast to prove it.</li></cheerful>
+      <gloomy><li>{NAME}. {A_nameDef} hasn't slept well this week. The day brings it all back.</li></gloomy>
+      <cold><li>{NAME}. {A_nameDef} notes that {WHO} lost a prisoner that day and have never come for {A_objective} again.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Cal_Rescue</defName>
+    <lines>
+      <plain>
+        <li>[new,!friend] Home. {COUNT} days with {WHO}, and I'm home. My own bed smells of dust and I don't care.</li>
+        <li>[new,!friend] They brought me home today. I kept waking in the night to make sure it was true.</li>
+        <li>[new,friend] {OTHER_nameDef} is home. Thinner, quieter, home. I made {OTHER_objective} eat twice before {OTHER_pronoun} slept.</li>
+        <li>[!new,first,!friend] A year since I came home. They laid the long table. I sat with my back to the wall, the way I've sat ever since.</li>
+        <li>[!new,years,!friend] {YEARS} years home now. Some nights it feels longer, some nights like last week.</li>
+        <li>[!new,tradition,!friend] My homecoming again. They make a fuss and I let them. It's become theirs as much as mine.</li>
+        <li>[!new,friend] {NAME}. We laid the long table, and I watched the gate out of habit, the way I did every night of those {COUNT} days.</li>
+        <li>[!new,friend,years] {YEARS} years since we brought them home. I still remember the weight of the lamp I hung in the gate.</li>
+      </plain>
+      <warm>
+        <li>[new,!friend] They all came to the gate, even the ones I hardly talk to. I didn't know they would.</li>
+        <li>[new,friend] {OTHER_nameDef} is back with us. I didn't let go of {OTHER_possessive} hand for a long time.</li>
+        <li>[!new,!friend] The day I came home. I thanked each of them again. They pretended it was nothing.</li>
+      </warm>
+      <blunt>
+        <li>[new,!friend] Back. Alive. Hungry.</li>
+        <li>[new,friend] {OTHER_nameDef} is back. Good.</li>
+        <li>[!new] Homecoming supper. Ate well. Didn't talk about the rest.</li>
+      </blunt>
+      <cheerful>
+        <li>[new,!friend] I'm home! I hugged the door frame. I'd hug the walls if they'd let me.</li>
+        <li>[new,friend] {OTHER_nameDef} is home and I'm so glad I could sing.</li>
+        <li>[!new,!friend] My homecoming day! The cook made my favorite, without being asked.</li>
+      </cheerful>
+      <gloomy>
+        <li>[new,!friend] I'm home. Part of me is still there, with {WHO}, waiting for the door.</li>
+        <li>[new,friend] {OTHER_nameDef} came home today, but not all of {OTHER_objective} did. Not yet.</li>
+        <li>[!new,!friend] The day I came home. I spent most of it remembering why I needed to.</li>
+      </gloomy>
+      <cold>
+        <li>[new,!friend] Returned after {COUNT} days. I learned a good deal about {WHO}'s camp. It may be useful.</li>
+        <li>[new,friend] {OTHER_nameDef} is back, and still fit to work. A good outcome.</li>
+        <li>[!new,!friend] My homecoming. The colony likes the day more than I do.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Talk_Rescue</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} told {B_nameDef} about the night {A_pronoun} was brought home.</li>
+        <li>{A_nameDef} and {B_nameDef} talked about the {COUNT} days with {WHO}, as far as {A_nameDef} would go.</li>
+        <li>{A_nameDef} thanked {B_nameDef} again for the day {A_pronoun} came home.</li>
+        <li>{A_nameDef} told {B_nameDef} what {A_pronoun} missed most while {A_pronoun} was gone.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Pass_Rescue</defName>
+    <lines>
+      <plain>
+        <li>{NAME} went by without a supper this year. {A_nameDef} said {A_pronoun} preferred it that way.</li>
+        <li>No homecoming supper for {A_nameDef} this year. {A_pronoun} sat by the gate a while at dusk instead.</li>
+      </plain>
+      <warm><li>{NAME} went by without a supper this year. {A_nameDef} says being home is enough.</li></warm>
+      <blunt><li>No fuss for {NAME} this year. {A_nameDef} didn't want one.</li></blunt>
+      <cheerful><li>{NAME} slipped by this year. {A_nameDef} says every day home is a homecoming anyway.</li></cheerful>
+      <gloomy><li>{NAME} went unmarked. {A_nameDef} noticed, and kept to {A_possessive} room all evening.</li></gloomy>
+      <cold><li>{NAME} let pass. {A_nameDef} has other days to think about.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Walking out to what a day remembers ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Letter_Walk</defName>
+    <lines>
+      <plain>
+        <li>{NAME}. {A_nameDef} would like the colony to walk out together and stand a while where it belongs.</li>
+        <li>[first] The first {NAME} since it happened. {A_nameDef} asks the colony to walk out with {A_objective} this afternoon.</li>
+        <li>[years] {YEARS} years since {NAME} first came. {A_nameDef} wants the walk out made again, at the same easy pace as the first time.</li>
+        <li>[tradition] {NAME}, and the walk out that goes with it. People were lacing their boots before {A_nameDef} said a word.</li>
+      </plain>
+      <warm><li>{NAME}. {A_nameDef} says a walk together is the best way to keep a day like this.</li></warm>
+      <blunt><li>{NAME}. A walk out and back. {A_nameDef} will lead.</li></blunt>
+      <cheerful><li>{NAME}! {A_nameDef} has picked the long way round, because it's prettier.</li></cheerful>
+      <gloomy><li>{NAME}. {A_nameDef} wants a walk. A quiet one.</li></gloomy>
+      <cold><li>{NAME}. {A_nameDef} proposes a walk: an hour away from the work, and back before dark.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Cal_Walk</defName>
+    <lines>
+      <plain>
+        <li>{NAME}. We walked out together and stood there a while, and took the long way back.</li>
+        <li>[years] {NAME}, the walk out again. Same path, a few different faces.</li>
+        <li>[tradition] The walk for {NAME}, as always. I could do it with my eyes shut.</li>
+      </plain>
+      <warm><li>{NAME}. On the way back somebody took my arm without saying anything.</li></warm>
+      <blunt><li>{NAME}. Walked out. Walked back.</li></blunt>
+      <cheerful><li>{NAME}! We went the long way and picked berries on the way home.</li></cheerful>
+      <gloomy><li>{NAME}. A long quiet walk. I thought about more than I meant to.</li></gloomy>
+      <cold><li>{NAME}. An hour's walk. People came back steadier for it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Cal_Talk_Walk</defName>
+    <lines>
+      <plain>
+        <li>{A_nameDef} and {B_nameDef} talked about {NAME} on the walk back.</li>
+        <li>{A_nameDef} told {B_nameDef} why {NAME} is worth walking out for.</li>
+        <li>{A_nameDef} and {B_nameDef} walked at the back and talked about old times.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -263,14 +263,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>A choice for the colony, by letter (see <see cref="ChoiceLetter_Camp"/>).</summary>
-        public void Ask(string what, string label, string text, Pawn pawn = null, float days = 1f)
+        public void Ask(string what, string label, string text, Pawn pawn = null, float days = 1f, string askKey = null)
         {
             var letter = (ChoiceLetter_Camp)LetterMaker.MakeLetter(label, text, CampDefOf.Council_CampLetter, Look, faction);
             letter.campId = id;
             letter.what = what;
             letter.pawn = pawn;
+            letter.askKey = askKey;
             int ticks = Mathf.RoundToInt(days * GenDate.TicksPerDay);
-            letter.Text = text + "\n\n" + "CC_Camp_Deadline".Translate(TextUtil.DaysString(ticks), CampAnswers.DefaultLabel(this, what, pawn)).Resolve();
+            letter.Text = text + "\n\n" + "CC_Camp_Deadline".Translate(TextUtil.DaysString(ticks), CampAnswers.DefaultLabel(this, what, pawn, askKey)).Resolve();
             letter.StartTimeout(ticks);
             Find.LetterStack.ReceiveLetter(letter);
         }
@@ -425,6 +426,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref asksMade, "asksMade", LookMode.Value);
             // Their animals, goods put out, farewell walk and mending (CampLook.cs).
             ExposeLook();
+            // Their requests and errands into the colony (CampRequests.cs).
+            ExposeRequests();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

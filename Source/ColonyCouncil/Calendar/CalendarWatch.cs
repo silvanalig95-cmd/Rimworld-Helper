@@ -46,6 +46,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref pendingCrops, "pendingCrops", LookMode.Value, LookMode.Value, ref tmpKeys4, ref tmpInts4);
             Scribe_Values.Look(ref tradesSeen, "tradesSeen", -1);
             Scribe_Collections.Look(ref huntKills, "huntKills", LookMode.Value, LookMode.Value, ref tmpKeys5, ref tmpInts5);
+            ExposeLived();
             if (Scribe.mode != LoadSaveMode.PostLoadInit) return;
             if (awaySince == null) awaySince = new Dictionary<string, int>();
             if (knownCrops == null) knownCrops = new HashSet<string>();
@@ -61,6 +62,8 @@ namespace ColonyCouncil
             Safe("calendar new crop", () => WatchCrops(map, today, year));
             Safe("calendar first trade", () => WatchTrade(map, known, today, year));
             Safe("calendar great hunt", () => WatchHunt(map, known, today, year));
+            // A camp's gift, a world event, the faith's own days, one of ours brought home (CalendarLived.cs).
+            WatchLived(map, known, today, year);
         }
 
         private static int Now => Find.TickManager.TicksGame;
@@ -69,7 +72,8 @@ namespace ColonyCouncil
         {
             if (p == null || d == null || !On) return;
             CouncilGameComponent.Instance?.journals.WriteTagged(p, pool, new[] { "new" }, null, d.label.Named("NAME"), 0.Named("YEARS"),
-                (d.subject ?? "").Named("SUBJECT"), d.kills.Named("COUNT"), (Home?.Biome?.label ?? "").Named("PLACE"));
+                (d.subject ?? "").Named("SUBJECT"), d.kills.Named("COUNT"), (Home?.Biome?.label ?? "").Named("PLACE"), (d.otherName ?? "").Named("WHO"),
+                (d.enemy ?? "").Named("CAMP"));
         }
 
         // ---------------- The first child ----------------

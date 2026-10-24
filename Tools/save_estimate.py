@@ -178,6 +178,8 @@ MODEL = {
     "Calendar/CalendarWatch.cs:huntKills": ("colonists", 1, D, "one per colonist, those no longer ours dropped daily"),
     "Calendar/CalendarWatch.cs:knownCrops": ("fixed", 40, 40, "one per crop the colony has grown (crop defs)"),
     "Calendar/CalendarWatch.cs:pendingCrops": ("fixed", 5, D, "new crops until their first harvest (crop defs)"),
+    "Calendar/CalendarDay.cs:things": ("fixed", 3, 40, "a camp gift's things, per day on the calendar (CalendarMath.MaxDayThings, at most 2 such days)"),
+    "Calendar/CalendarLived.cs:captives": ("colonists", 0.2, 120, "the colony's people carried off, until home or lost to us"),
     # Dreams
     "Dreams/Dreams.cs:recent": ("cap", (80, 3), 250, "80 recent dreams"),
     "Dreams/Dreams.cs:omens": ("cap", (10, 0.2), 200, "until they come"),
@@ -209,6 +211,8 @@ MODEL = {
     "Camps/Camp.cs:felledTicks": ("while", 60, V, "with the above"),
     "Camps/Camp.cs:owned": ("while", 40, V, "the camp's goods, pruned of the gone at saving"),
     "Camps/Camp.cs:asksMade": ("while", 15, 40, "asks made of the camp (once each, or once a day), while it stays"),
+    "Camps/CampRequests.cs:errandPeople": ("while", 8, P, "those of the camp on an errand into the colony, while it lasts"),
+    "Camps/CampRequests.cs:errandLines": ("while", 4, 120, "what they say on the errand, while it lasts"),
     "Camps/CampLook.cs:herd": ("while", 5, P, "the camp's animals (CampLookMath.MaxAnimals), while it stays"),
     "Camps/CampLook.cs:props": ("while", 6, P, "goods the camp put out (a few stacks), pruned of the gone, while it stays"),
     "Camps/CampLook.cs:walkSeen": ("while", 4, P, "colonists the farewell round looked in on (the walk's count), while the camp stays"),

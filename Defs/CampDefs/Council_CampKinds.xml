@@ -93,6 +93,71 @@
       <li>[butcher] Hang the rest up by the fire.</li>
       <li>[butcher,lowtech] Sinew for the bowstrings.</li>
     </momentLines>
+    <!-- What the colony can ask of them, and what they ask of it (CampAsks.cs, CampRequests.cs): a colonist out with the
+         party, their hides, and the meat they'd trade for cooking. -->
+    <asks>
+      <li>
+        <key>hunt</key>
+        <label>Send {A_nameDef} hunting with them</label>
+        <tip>{A_nameDef} goes out after game with the hunting party for a few hours. Practice with a bow or a gun, and what {A_nameDef} brings down is the colony's.</tip>
+        <skill>Shooting</skill>
+        <minDays>0.5</minDays>
+        <warm>2</warm>
+        <tension>-4</tension>
+        <outcomes>
+          <li>{A_nameDef} has gone out with {X_nameDef} and the hunters, keeping low and downwind the way they showed {A_objective}.</li>
+          <li>[lowtech] {A_nameDef} went out with the hunters at first light, {X_nameDef} beside {A_objective} pointing out the trail in the grass.</li>
+          <li>{X_nameDef} has taken {A_nameDef} out with the hunting party, and promised to bring {A_objective} back with a carcass worth the carrying.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the hunt with the party</label><who>A</who><count>2</count><animals>2</animals></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>300</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>hides</key>
+        <label>Buy their hides ({COUNT} silver)</label>
+        <tip>Hides from the party's kills, scraped and dried, at their price.</tip>
+        <silver>60</silver>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} unrolls a stack of hides, scraped clean and stiff, and counts the silver twice.</li>
+          <li>[lowtech] {X_nameDef} sells the colony a bundle of hides smoked over the party's fire. They still smell of it.</li>
+          <li>{X_nameDef} lets the colony have the best of the party's hides, and keeps back one that {X_pronoun} says is promised to someone.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>leather</what><count>30</count><fallback>Leather_Plain</fallback></li>
+        </effects>
+      </li>
+      <li>
+        <key>bread</key>
+        <theyAsk>true</theyAsk>
+        <label>Trade them cooking for meat</label>
+        <refuseLabel>The colony needs its meals</refuseLabel>
+        <needs>theirMeat</needs>
+        <tension>-6</tension>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the hunters' camp with a haunch over {X_possessive} shoulder. They have more meat than they can carry, and nothing but meat. Would the colony trade a few cooked meals for some of it?</li>
+          <li>[lowtech] {X_nameDef} set a bundle of smoked meat down at the colony's gate. The hunters are sick of eating nothing else, {X_nameDef} said, and would give it for bread, or for anything cooked.</li>
+          <li>The hunters' camp has meat hanging from every branch, and {X_nameDef} would trade a good share of it for four of the colony's cooked meals.</li>
+        </askTexts>
+        <tip>Four of the colony's meals go out to their camp; they set out a share of their meat at the edge of it for the colony to fetch.</tip>
+        <outcomes>
+          <li>{A_nameDef} carried a pot of cooked meals over to the hunters' camp, and {X_nameDef} set out a pile of cuts at the edge of it in return.</li>
+          <li>The hunters fell on the colony's cooking as if they hadn't eaten in a week. There's meat waiting at their camp's edge for whoever fetches it.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} shrugged, slung the haunch back over {X_possessive} shoulder and went back to the camp.</li>
+          <li>The hunters ate meat again tonight. {X_nameDef} made a point of saying so.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>cooked meals for the hunters</label><what>meals</what><count>4</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>meat</what><count>35</count></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== A refugee family ===================== -->
@@ -183,6 +248,84 @@
       <li>Eat slowly, make it last.</li>
       <li>Has anyone seen my other boot?</li>
     </lines>
+    <!-- What they ask of the colony, and what the colony can offer them (CampAsks.cs, CampRequests.cs): work for food,
+         help with their broken cart, and a place at the colony's table. -->
+    <asks>
+      <li>
+        <key>work</key>
+        <theyAsk>true</theyAsk>
+        <label>Give them work for food</label>
+        <refuseLabel>The colony can't spare the food</refuseLabel>
+        <tension>-8</tension>
+        <deed>sheltered</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the family's camp this morning with an axe and a straight back. They won't take charity, {X_nameDef} says, but they'll cut the colony's wood for food, as much as it needs.</li>
+          <li>[ws:hunger|ws:drought] The family camped {PLACE} has eaten through what they carried away from {SITUATION}. {X_nameDef} asked {A_nameDef}, not quite looking at {A_objective}, whether there was work at the colony that would pay in food.</li>
+          <li>{X_nameDef} would rather work than ask. A day's wood-cutting for the colony, {X_pronoun} told {A_nameDef}, for a sack of food for the family.</li>
+        </askTexts>
+        <tip>They fell trees near their camp and stack the logs for the colony; twenty of the colony's raw food is carried out to them.</tip>
+        <outcomes>
+          <li>The family cut and stacked forty logs on the colony's side of their camp before noon, and {A_nameDef} carried the food over. {X_nameDef} counted it twice and thanked {A_objective} once.</li>
+          <li>{X_nameDef} and the older children worked the axe in turns all morning. The logs are stacked, and the family will eat well tonight.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded as if {X_pronoun} had expected it, and went back to the camp with the axe.</li>
+          <li>The family's cookpot was thin again tonight.</li>
+        </refused>
+        <refuseTension>6</refuseTension>
+        <refuseGoodwill>1</refuseGoodwill>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>40</count><near>Camp</near></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family</label><what>rawfood</what><count>20</count><to>Camp</to></li>
+        </effects>
+      </li>
+      <li>
+        <key>cart</key>
+        <theyAsk>true</theyAsk>
+        <label>Send {A_nameDef} to mend their cart</label>
+        <refuseLabel>We can't spare anyone</refuseLabel>
+        <skill>Construction</skill>
+        <minDays>1</minDays>
+        <warm>2</warm>
+        <tension>-6</tension>
+        <deed>sheltered</deed>
+        <askTexts>
+          <li>The family's handcart lost a wheel on the last hill, and {X_nameDef} has been trying to fix it with rope. {X_nameDef} asked {A_nameDef} whether the colony could spare someone handy, and a few lengths of wood.</li>
+          <li>{X_nameDef} wheeled the broken cart as far as the colony's gate to show {A_nameDef} the cracked axle and the two missing spokes. Without it the family can't carry what they have left.</li>
+        </askTexts>
+        <tip>{A_nameDef} carries twenty logs down to their camp and mends the cart there. Practice at building.</tip>
+        <outcomes>
+          <li>{A_nameDef} will take the wood down to the family's camp and see to the cart this afternoon. {X_nameDef} has already cleared a space by the fire to work in.</li>
+          <li>[lowtech] {A_nameDef} is going down to cut a new axle for the family's cart from the colony's wood. {X_nameDef} wants to watch every stroke, to know how next time.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} went back to binding the wheel with rope. It might hold as far as the next hill.</li>
+          <li>The family spent the evening mending the cart themselves, by firelight, with the colony's answer between them.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>wood for the family's cart</label><what>wood</what><count>20</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>300</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>supper</key>
+        <label>Have the family to supper</label>
+        <tip>The family eats at the colony's table tonight, children and all. Recreation for whoever comes, and the family won't forget it.</tip>
+        <tension>-10</tension>
+        <deed>sheltered</deed>
+        <outcomes>
+          <li>The family from {FACTION} will eat at the colony's table tonight. {X_nameDef} has scrubbed the children's faces twice already.</li>
+          <li>Supper with the family tonight. {X_nameDef} asked what {X_pronoun} could bring, remembered they have nothing, and laughed about it.</li>
+          <li>The refugees are coming to supper, and the colony's cook has made extra without being told.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the family</label><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== Prospectors ===================== -->
@@ -255,6 +398,81 @@
       <li>Bring the lamp over here.</li>
       <li>Just one more hole.</li>
     </lines>
+    <!-- What the colony can ask of them, and what they ask of it (CampAsks.cs, CampRequests.cs): a lesson in reading
+         rock, their cook's stew, and a test hole on the colony's side, with a share of what it gives. -->
+    <asks>
+      <li>
+        <key>rock</key>
+        <label>Have {A_nameDef} learn to read rock from them</label>
+        <tip>{A_nameDef} spends a few hours at the diggings with their best prospector. Practice in mining.</tip>
+        <skill>Mining</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} has gone up to the diggings to learn what {X_nameDef} can teach in an afternoon about seams, color and the sound good rock makes.</li>
+          <li>{X_nameDef} is taking {A_nameDef} along the test holes, tapping each one with a hammer and making {A_objective} listen.</li>
+          <li>{A_nameDef} is at the diggings with {X_nameDef}, who says the first lesson is that most rock is just rock.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Mining</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>stew</key>
+        <label>Ask their cook about the stew</label>
+        <tip>{A_nameDef} goes and sits by their pot for an hour. Practice at cooking, and a recipe that travels well.</tip>
+        <skill>Cooking</skill>
+        <warm>1</warm>
+        <tension>-3</tension>
+        <outcomes>
+          <li>{A_nameDef} has gone to sit by the prospectors' pot while {X_nameDef} cooks. The stew calls for a lot of pepper and more patience than the colony's cook has.</li>
+          <li>{X_nameDef} won't give up the stew's secret, but will let {A_nameDef} watch, which {A_nameDef} says amounts to the same thing.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Cooking</skill><xp>350</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>hole</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them dig a test hole by the colony</label>
+        <refuseLabel>Keep your picks off our ground</refuseLabel>
+        <minDays>1</minDays>
+        <tension>-8</tension>
+        <askTexts>
+          <li>{X_nameDef} came to the gate with a rolled-up map and a dirty finger on the colony's side of the ridge. They'd like to sink one test hole there, {X_nameDef} says, and share whatever turns up.</li>
+          <li>There's a seam running toward the colony, {X_nameDef} insists, or under it. The prospectors ask leave to dig one hole on the colony's side, and promise a share.</li>
+        </askTexts>
+        <tip>Two of them dig at the edge of the colony for an afternoon and fill the hole in after. They share whatever they find, most likely silver, now and then jade or gold.</tip>
+        <outcomes>
+          <li>{X_nameDef} and another of the prospectors are coming over with picks this afternoon. {X_nameDef} has promised the colony a fair share of whatever's down there.</li>
+          <li>The prospectors will dig at the colony's edge this afternoon, and {X_nameDef} shook {A_nameDef}'s hand on the share.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} rolled the map back up very slowly, so {A_nameDef} could see how disappointed {X_pronoun} was.</li>
+          <li>The prospectors went back to their own holes, muttering about the seam the colony is sitting on.</li>
+        </refused>
+        <refuseTension>6</refuseTension>
+        <refuseGoodwill>1</refuseGoodwill>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>colony</to>
+            <count>2</count>
+            <doing>dig</doing>
+            <hours>3~4</hours>
+            <when>8~15</when>
+            <give>found</give>
+            <giveCount>40</giveCount>
+            <lines>
+              <li>Deeper.</li>
+              <li>Nothing yet.</li>
+              <li>Hold the light steady.</li>
+              <li>There. See the color?</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== Pilgrims at rest ===================== -->
@@ -326,6 +544,78 @@
       <li>One more day of walking.</li>
       <li>Bless the ones who let us rest.</li>
     </lines>
+    <!-- What they ask of the colony, and what the colony can offer them (CampAsks.cs, CampRequests.cs): prayers at the
+         colony's graves, a prayer at a sick colonist's side, and salve for their feet. -->
+    <asks>
+      <li>
+        <key>graves</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them pray at the colony's graves</label>
+        <refuseLabel>The graves are the colony's own</refuseLabel>
+        <tension>-6</tension>
+        <deed>mourned</deed>
+        <askTexts>
+          <li>Before they walk on, the pilgrims would like to pray at the colony's graves. {X_nameDef} put it to {A_nameDef} gently. It's their custom, {X_nameDef} says, to pray for the dead of every place that gives them rest.</li>
+          <li>The pilgrims of {FACTION} pray for the dead wherever they stop. {X_nameDef} came to ask, cap in hand, whether they might pray at the colony's graves this afternoon.</li>
+        </askTexts>
+        <tip>The pilgrims walk to the colony's graves and pray there for an hour or two. It is kindly meant, and taken that way.</tip>
+        <outcomes>
+          <li>The pilgrims will go to the colony's graves this afternoon. {X_nameDef} asked for the names of the dead, and wrote them down.</li>
+          <li>{X_nameDef} thanked {A_nameDef} with both hands. The pilgrims will come to the graves after noon, two by two.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} bowed and said the pilgrims would pray for the colony's dead from where they are. They did, at dusk; the colony could hear it.</li>
+          <li>The pilgrims kept to their camp. {X_nameDef} didn't ask again.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>graves</to>
+            <who>all</who>
+            <count>6</count>
+            <doing>pray</doing>
+            <hours>1.5~2</hours>
+            <when>9~17</when>
+            <lines>
+              <li>Rest easy.</li>
+              <li>We'll remember the names.</li>
+              <li>Peace on this ground.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_PilgrimBlessing</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+        </effects>
+      </li>
+      <li>
+        <key>sick</key>
+        <label>Ask them to pray over {A_nameDef}</label>
+        <tip>Their eldest comes to {A_nameDef}'s side and prays. It does no harm, and it may ease an everyday ailment.</tip>
+        <needs>sick</needs>
+        <warm>2</warm>
+        <tension>-3</tension>
+        <outcomes>
+          <li>{X_nameDef}, the eldest of the pilgrims, will come and sit with {A_nameDef} and pray. {A_nameDef} says that's fine, as long as it's quiet.</li>
+          <li>The pilgrims' eldest is coming to pray over {A_nameDef} this afternoon, and has asked for a bowl of clean water.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes"><to>A</to><doing>prayover</doing><hours>1~1.5</hours><when>8~19</when></li>
+        </effects>
+      </li>
+      <li>
+        <key>salve</key>
+        <label>Give them salve for their feet (2 medicine)</label>
+        <tip>They came this far to mend their sandals and their blisters. Two doses of the colony's medicine would see them to their holy place.</tip>
+        <tension>-6</tension>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} took two doses of the colony's medicine down to the pilgrims and helped bind the worst of the feet.</li>
+          <li>[lowtech] {A_nameDef} carried a bundle of healroot to the pilgrims' camp and showed them how to bind it over the blisters.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>salve for the pilgrims</label><what>medicine</what><count>2</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== A market stall ===================== -->
@@ -394,6 +684,64 @@
       <li>Everything must go.</li>
       <li>I'll throw in the bag for free.</li>
     </lines>
+    <!-- What they ask of the colony, and what the colony can ask of them (CampAsks.cs, CampRequests.cs): a day's stall at
+         the colony's gate, and a colonist learning to haggle at theirs. -->
+    <asks>
+      <li>
+        <key>gate</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them keep a stall at the gate for the day</label>
+        <refuseLabel>The camp is close enough</refuseLabel>
+        <tension>-6</tension>
+        <deed>traded</deed>
+        <askTexts>
+          <li>{X_nameDef} would like to bring the stall up to the colony's gate for a day, where the customers are. They'd pack up by dusk and pay for the spot.</li>
+          <li>"Closer to the customers," {X_nameDef} told {A_nameDef}, pointing at the colony's gate. The traders ask leave to set up there for a day, and offer some silver for the trouble.</li>
+        </askTexts>
+        <tip>Their trader and a porter set up by the colony's gate for most of the day, so anyone can walk over to trade. They pay for the spot.</tip>
+        <outcomes>
+          <li>The traders will keep their stall at the colony's gate today. {X_nameDef} paid for the spot in advance, and counted it out loud.</li>
+          <li>{X_nameDef} and a porter are carrying the best of the goods up to the colony's gate, and left a few coins at the camp's edge for the spot.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the camp was a fine place for a stall too, and didn't sound as if {X_pronoun} meant it.</li>
+          <li>The traders stayed at their camp, calling their prices louder than before.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>gate</to>
+            <who>trader</who>
+            <count>2</count>
+            <doing>stall</doing>
+            <hours>6~8</hours>
+            <when>8~12</when>
+            <lines>
+              <li>Fair prices, best on the road!</li>
+              <li>Come and look, look all you like.</li>
+              <li>For you, a special price.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>silver</what><count>25</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>stall</key>
+        <label>Have {A_nameDef} help at their stall</label>
+        <tip>{A_nameDef} spends a few hours at their stall learning to haggle. Practice at speaking with people, and a few coins for the work.</tip>
+        <skill>Social</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} has gone to help at the traders' stall for the afternoon. {X_nameDef} gave {A_objective} an apron and three rules, the first of which is never look surprised.</li>
+          <li>{X_nameDef} is teaching {A_nameDef} to haggle, and says {A_pronoun} has the face for it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>2.5~3.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>400</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>silver</what><count>15</count></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== A traveling smith ===================== -->
@@ -480,6 +828,64 @@
       <li>[repair] Swings true again.</li>
       <li>[repair] Whoever built this owes me a drink.</li>
     </momentLines>
+    <!-- What the colony can ask of the smith, and what the smith asks of it (CampAsks.cs, CampRequests.cs): a lesson at
+         the forge, a mending, and steel in return for a knife. -->
+    <asks>
+      <li>
+        <key>forge</key>
+        <label>Pay the smith to teach {A_nameDef} ({COUNT} silver)</label>
+        <tip>{A_nameDef} works the bellows and the hammer at the smith's side for a few hours. Practice in crafting.</tip>
+        <silver>60</silver>
+        <skill>Crafting</skill>
+        <outcomes>
+          <li>{A_nameDef} has gone down to the smith's fire to learn. {X_nameDef} handed {A_objective} the bellows first, and said the hammer comes later.</li>
+          <li>{X_nameDef} took the silver and {A_nameDef} both, and set {A_objective} to work on a horseshoe that will never fit a horse.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><xpPerHour>220</xpPerHour><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>mend</key>
+        <label>Ask the smith to mend what's broken</label>
+        <tip>The smith walks over and mends one of the colony's damaged buildings, doors and gates first, and takes no silver for it.</tip>
+        <tension>-4</tension>
+        <outcomes>
+          <li>{X_nameDef} will come up and look at the colony's worst door this afternoon, and has already asked how it got that way.</li>
+          <li>The smith shouldered a bag of tools and asked {A_nameDef} to show the way to whatever's broken.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHelp"><help>repair</help></li>
+        </effects>
+      </li>
+      <li>
+        <key>steel</key>
+        <theyAsk>true</theyAsk>
+        <label>Give the smith steel for a knife (40 steel)</label>
+        <refuseLabel>The colony needs its steel</refuseLabel>
+        <minDays>1</minDays>
+        <tension>-8</tension>
+        <deed>favorDone</deed>
+        <askTexts>
+          <li>{X_nameDef} has run out of good metal. If the colony can spare some steel, {X_nameDef} told {A_nameDef}, the smith will forge it a knife from part of it as thanks, and keep the rest to work on the road.</li>
+          <li>The smith's camp has gone quiet, with no metal left to work. {X_nameDef} asked {A_nameDef} for steel, and offered a knife made from it in return.</li>
+        </askTexts>
+        <tip>Forty of the colony's steel goes down to the smith; the smith makes a knife from it and brings it over to {A_nameDef}.</tip>
+        <outcomes>
+          <li>{A_nameDef} is carrying the steel down to the smith's fire. {X_nameDef} weighed the first bar in {X_possessive} hand, grunted, and said the knife would be ready by evening.</li>
+          <li>The smith has the colony's steel, and has promised {A_nameDef} the first thing off the anvil.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded and went back to mending other people's pots.</li>
+          <li>The smith's hammer was quiet all afternoon.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>steel for the smith</label><what>Steel</what><count>40</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><label>the smith's knife</label><things>MeleeWeapon_Knife</things><maker>X</maker><forWhom>A</forWhom><skill>Crafting</skill><stuff>Steel</stuff></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== A hermit ===================== -->
@@ -526,6 +932,8 @@
       <li>
         <key>bird</key>
         <at>gate</at>
+        <dayName>the hermit's bird</dayName>
+        <named>the carved bird</named>
         <defs><li>SculptureSmall</li></defs>
         <stuff><li>WoodLog</li></stuff>
         <minified>true</minified>
@@ -574,6 +982,69 @@
       <li>[gift] Don't make a fuss.</li>
       <li>[gift] Made it in the evenings.</li>
     </momentLines>
+    <!-- The hermit asks nothing, almost (CampAsks.cs, CampRequests.cs): one dose of medicine, once. The colony can ask
+         what grows here, or send a hot meal out to the hut. -->
+    <asks>
+      <li>
+        <key>land</key>
+        <label>Ask the hermit what grows here</label>
+        <tip>{A_nameDef} walks the hermit's paths for an hour and listens. Practice in growing; the hermit knows this land better than anyone.</tip>
+        <skill>Plants</skill>
+        <minDays>2</minDays>
+        <warm>2</warm>
+        <tension>-3</tension>
+        <outcomes>
+          <li>{X_nameDef} is walking {A_nameDef} round the hut's little garden and the woods past it, naming plants under {X_possessive} breath.</li>
+          <li>The hermit has said three things to {A_nameDef} all afternoon, and all three were about the soil.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>400</xp></li>
+        </effects>
+      </li>
+      <li>
+        <key>meal</key>
+        <label>Send the hermit a hot meal</label>
+        <tip>{A_nameDef} carries one of the colony's meals out to the hut.</tip>
+        <once>false</once>
+        <warm>2</warm>
+        <tension>-4</tension>
+        <outcomes>
+          <li>{A_nameDef} is taking a hot meal out to the hermit's hut. The door may or may not open.</li>
+          <li>{A_nameDef} will leave a meal on the hermit's step and knock. {X_nameDef} doesn't usually answer until the coast is clear.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the hermit</label><what>meals</what><count>1</count><to>Camp</to></li>
+        </effects>
+      </li>
+      <li>
+        <key>medicine</key>
+        <theyAsk>true</theyAsk>
+        <label>Send the hermit a dose of medicine</label>
+        <refuseLabel>The colony has none to spare</refuseLabel>
+        <minDays>3</minDays>
+        <warm>3</warm>
+        <tension>-10</tension>
+        <deed>favorDone</deed>
+        <askTexts>
+          <li>{X_nameDef} came to the colony's gate for the first time since building the hut, stood there a long moment, and asked for one dose of medicine. An old wound, {X_nameDef} said, and nothing more.</li>
+          <li>The hermit's smoke was late this morning. When {A_nameDef} went to look, {X_nameDef} was sitting by a cold fire with a bad leg, and asked, without looking up, for medicine.</li>
+        </askTexts>
+        <tip>{A_nameDef} carries one dose of medicine out to the hut. The hermit asks for nothing else, and will remember it.</tip>
+        <outcomes>
+          <li>{A_nameDef} is taking the medicine out to the hermit's hut, and will leave it on the step if the door stays shut.</li>
+          <li>{A_nameDef} will carry the dose out to the hermit. {X_nameDef} said thank you at the gate, under {X_possessive} breath.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded once and went back to the hut. The smoke rose late again the next morning.</li>
+          <li>The hermit didn't ask again.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>medicine for the hermit</label><what>medicine</what><count>1</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
 </Defs>

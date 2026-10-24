@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A camp with more to say (Source/ColonyCouncil/Camps/CampRequests.cs): the jobs of the camp's people on an errand
+       into the colony, sent by an ask, a request of their own or a council answer. They walk to the place (the gate, the
+       water, the fields, the graves, the open ground in the middle of the colony) and stay there a spell at a time while
+       the errand lasts, chatting with whoever comes by; or they go to one colonist's side (a healer to the sick), until
+       that colonist walks off. What each kind asks of the colony, and what the colony can ask of them, is in its
+       CampKindDef (asks; theyAsk for a request by letter). -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampErrand</defName>
+    <reportString>on an errand for their camp.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>750</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampErrandTo</defName>
+    <reportString>seeing TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>900</ticks><social>true</social><stayNear>5</stayNear></li>
+    </modExtensions>
+  </JobDef>
+
+</Defs>

@@ -10,9 +10,9 @@
     <order>8</order>
     <summary>The days that matter to this colony, how it keeps them, and how they become traditions.</summary>
     <tip>Name a rest day for the end of harvest. The colony will thank you for it every year.</tip>
-    <description>The colony calendar is a list of the days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, a battle it remembers, the death of someone it loved, a wedding, the arrival of one of its first members, the birthday of a long-serving colonist, the first child born here, the day its walls went up, a caravan home safe, the first harvest of a new crop, its first trade, a great hunt, and any day you name yourself. It's on the Calendar page under History, soonest first.
+    <description>The colony calendar is a list of the days that matter to this colony, written down as its history happens: its founding, its first good harvest, the first snow, a battle it remembers, the death of someone it loved, a wedding, the arrival of one of its first members, the birthday of a long-serving colonist, the first child born here, the day its walls went up, a caravan home safe, the first harvest of a new crop, its first trade, a great hunt, the day a camp stayed and left something behind, the end of a world event the colony took part in, the holy days of its own ideoligion, the day one of its people came home from captivity, and any day you name yourself. It's on the Calendar page under History, soonest first.
 
-Each year, when a day comes round, the colony can keep it with a feast, games, a rest day, a bonfire, a day of gifts, a hunt, a planting day, an ideoligion evening (with Ideology) or a quiet hour of remembrance. A day kept three years running becomes a tradition, and from then on the colony expects it.</description>
+Each year, when a day comes round, the colony can keep it with a feast, games, a rest day, a bonfire, a day of gifts, a hunt, a planting day, a walk out to what the day remembers, an ideoligion evening (with Ideology) or a quiet hour of remembrance. A day kept three years running becomes a tradition, and from then on the colony expects it.</description>
     <sections>
       <li>
         <heading>The days it writes down</heading>
@@ -34,9 +34,13 @@ Each year, when a day comes round, the colony can keep it with a feast, games, a
           <li>A great hunt | The colony's hunters bring down 5 animals or more in a day, with no raid or maddened pack behind it (those are battles). Up to 2 | Hunt</li>
           <li>The first foal | The first animal born to the colony's own herd (with "Pets as companions" on) | Feast</li>
           <li>A beloved animal | A bonded animal dies after a year or more with the colony, or fighting for its person. Up to 3 | Remembrance, by those who loved it</li>
-          <li>A day of your own | You name it on the Calendar page, with its date | Feast, remembrance, rest day, games, bonfire, gifts, hunt, planting day or ideoligion evening</li>
+          <li>A camp's gift | A camp stays its time and leaves something behind: the hermit's bird, the tree-singers' ring of saplings, the players' castle, the mourners' flowers. It means more the more time the colony spent at their fire, the more good turns and gifts passed between them, and the longer they stayed. Up to 2 | Walk out to it</li>
+          <li>A world event | A world event the colony took part in (its answers helped at least once, or it helped see it through) comes to an end; dated the day it ended, remembered by those who were with the colony then. An older save's history counts too, on its own dates. Up to 3 | By what it was: a supper for a hungry year, a walk to the gate for a war, a plague or a flood, games for a fair, a fire for a sign in the sky</li>
+          <li>A holy day | With Ideology: each rite of the colony's own ideoligion held on a date (the game's date rituals), on that date. Up to 3 | Ideoligion evening; its letter offers the rite itself</li>
+          <li>Brought home | One of the colony's people carried off by raiders comes home again (rescued, ransomed, escaped), a day or more later. Up to 2 | Feast</li>
+          <li>A day of your own | You name it on the Calendar page, with its date | Feast, remembrance, rest day, games, bonfire, gifts, hunt, planting day, walk out or ideoligion evening</li>
         </table>
-        <after>The calendar keeps up to 12 days of its own besides the founding day and yours: at most 3 battles, 4 deaths, 3 weddings, 3 arrivals, 4 birthdays, 2 new crops, 2 great hunts, 3 beloved animals and one of each of the others. When it's full, a new day takes the place of the one that means least, if it means more: a bigger battle, a death felt by more people, a longer-serving colonist. A tradition never makes way. You can name up to 8 days, rename any day, change how it's kept (not a birthday or an arrival) and take days off the calendar.</after>
+        <after>The calendar keeps up to 12 days of its own besides the founding day and yours: at most 3 battles, 4 deaths, 3 weddings, 3 arrivals, 4 birthdays, 2 new crops, 2 great hunts, 3 beloved animals, 2 camps' gifts, 3 world events, 3 holy days, 2 homecomings from captivity and one of each of the others. When it's full, a new day takes the place of the one that means least, if it means more: a bigger battle, a death felt by more people, a longer-serving colonist. A tradition never makes way. You can name up to 8 days, rename any day, change how it's kept (not a birthday or an arrival) and take days off the calendar.</after>
       </li>
       <li>
         <heading>When a day comes round</heading>
@@ -51,6 +55,7 @@ Each year, when a day comes round, the colony can keep it with a feast, games, a
           <li>Gifts | A letter. Kept: everyone gives a small gift to the next person round the circle, handed over face to face when the two meet that day (or the giver walks over in their free time), and each pair's friendship grows a little (the social web). "A day of gifts" gives a little recreation, no mood.</li>
           <li>Hunt | A letter. Kept: with answers playing out, three head of good game on the map are marked for hunting (never a predator). Those who hunt get "a hunting day" (practice at shooting and a little recreation, no mood); everyone else "a feast day" (+2 for a day). Nobody whose ideoligion forbids hunting is glad of it, and those who eat no meat get no feast from it.</li>
           <li>Planting day | A letter. Kept: with answers playing out and seed to sow in growing weather, everyone who can be spared sows the fields together (a work party of up to 6), and the colony's best grower says a few words at the field's edge in the evening; with nothing to sow, they walk out to the fields together instead. Those who took part get "the planting day": hope, a little growing practice and a journal line, no mood. Fields sown nine in ten by the next evening are noted, and noted again when that crop stands ripe ("a good start" for the growers). The council's own planting day (Traditions) doesn't come in a season that has one on the calendar. Put it on the first days of your spring.</li>
+          <li>Walk out | A letter. Kept: with answers playing out, up to 8 of the colony walk out together to what the day remembers (a camp's gift, wherever it stands now; a grave; the fields for a harvest or a new crop; the gate for the walls, a battle, a homecoming or a world event; else a long way out), stand there a while and walk back. Those who went get "walked out for the day": a quiet hour's recreation and a feeling of fellowship, no mood. With nothing to set going, everyone at home gets it. A camp's gift draws the games and a bonfire to it too (a bonfire only out in the open).</li>
           <li>Ideoligion evening | With Ideology, for the ideoligion you name with the day. A letter. Kept: with answers playing out, an evening of that ideoligion (whatever the gap since the last one), its moral guide or most devout believer speaking to its believers and whoever else chooses to come; listeners of other ideoligions may be swayed and believers steadied, as "Ideoligions and the council" describes. With nobody to speak for it, a word at supper instead.</li>
           <li>Their own day | A message. A birthday gives "my birthday, remembered" (+2 for a day). An arrival is marked by the colonist's own anniversary; with anniversaries off, the calendar gives that mood instead.</li>
         </table>
@@ -59,6 +64,8 @@ Each year, when a day comes round, the colony can keep it with a feast, games, a
       <li>
         <heading>Traditions</heading>
         <text>Kept 3 years running, a day becomes a tradition, announced and remembered just as the council's seasonal traditions are: a letter, the chronicle, the year's annals, and someone's journal. Each year it's kept, everyone at home gets "a tradition kept" (+3 for 4 days; a remembrance's quiet hour is its own mood) and a few people sing. Letting it pass gives everyone but the ascetic "a tradition broken" (-5 for 5 days) and costs a little trust; let it pass twice in a row and it lapses. A day missed for a fight, or with nobody at home, costs nothing.
+
+Let a camp's gift, a world event, a holy day or a homecoming pass in a year it isn't a tradition, and someone says so in their own way: the gift visited alone after supper, a holy day's words said at dusk by one believer.
 
 The calendar's traditions are listed with the colony's other customs in the founding day's letter, and the Calendar page shows the seasonal customs grown from the council's dilemmas too. Keep a day only as long as you can afford it in a bad year.</text>
       </li>
@@ -70,13 +77,15 @@ With a chaplain in office, the chaplain leads the colony's remembrances.</text>
       </li>
       <li>
         <heading>With Ideology</heading>
-        <text>When the colony's ideoligion has a rite that suits the day (a funeral rite for a remembrance; a feast, party, dance, drum, skylantern or festival rite that can be held any time, for a feast or games), the letter says so. A feast or games day can be kept with the rite instead: the colony doesn't throw a party, and you start the rite from its spot when everyone is ready. Rimfolk never starts a ritual itself.</text>
+        <text>When the colony's ideoligion has a rite that suits the day (a funeral rite for a remembrance; a feast, party, dance, drum, skylantern or festival rite that can be held any time, for a feast or games), the letter says so. A feast or games day can be kept with the rite instead: the colony doesn't throw a party, and you start the rite from its spot when everyone is ready. Rimfolk never starts a ritual itself.
+
+The ideoligion's own holy days come onto the calendar by themselves: each of its rites that the game holds on a date, on that date, named for the rite. Its letter offers the rite itself (hold it as usual from its spot) or an ideoligion evening. A rite the ideoligion drops, or an ideoligion the colony leaves, takes its day off the calendar quietly.</text>
       </li>
       <li>
         <heading>Older saves</heading>
         <text>The first time the calendar runs in a game already under way, it fills itself in from what the colony still remembers: the founding day, weddings, battles and eulogies in the chronicle, the harvest home if the council has held one, the colony's dead whose bodies are still about, and the nemeses it brought down. Arrivals and birthdays follow from who is here.
 
-People are kept by name, not tied to the save: a day about someone who has died or left is dropped quietly, except a death, which stays as long as someone who knew them is still here, or for good once it's a tradition.
+People are kept by name, not tied to the save: a day about someone who has died or left is dropped quietly, except a death, which stays as long as someone who knew them is still here, or for good once it's a tradition. In the same way a camp's gift day goes when the gift is gone from the map (cut down, sold, burned), a world event's when nobody who lived through it is left, and a homecoming's with the one who came home; a tradition stays.
 
 The setting "The colony calendar" (People, under Memory) turns its events off: days are still written down, but nothing happens when they come.</text>
       </li>

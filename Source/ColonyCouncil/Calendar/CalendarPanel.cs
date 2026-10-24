@@ -27,6 +27,7 @@ namespace ColonyCouncil
         private static readonly Color HuntColor = new Color(0.72f, 0.66f, 0.45f);
         private static readonly Color PlantingColor = new Color(0.62f, 0.8f, 0.42f);
         private static readonly Color FaithColor = new Color(0.78f, 0.72f, 1f);
+        private static readonly Color WalkColor = new Color(0.62f, 0.78f, 0.74f);
 
         public static Color WayColor(DayWay way)
         {
@@ -41,6 +42,7 @@ namespace ColonyCouncil
                 case DayWay.Hunt: return HuntColor;
                 case DayWay.Planting: return PlantingColor;
                 case DayWay.Faith: return FaithColor;
+                case DayWay.Walk: return WalkColor;
                 default: return UiKit.Faint;
             }
         }
@@ -65,6 +67,10 @@ namespace ColonyCouncil
                 case CalendarKind.GreatHunt: return Icons.CatLowTech;
                 case CalendarKind.Foal: return Icons.Birth;
                 case CalendarKind.Companion: return Icons.Death;
+                case CalendarKind.CampGift: return Icons.Visitor;
+                case CalendarKind.Situation: return Icons.WorldEvent;
+                case CalendarKind.FaithDay: return Icons.CatIdeology;
+                case CalendarKind.Rescue: return Icons.Heart;
                 default: return Icon ?? Icons.Chronicle;
             }
         }
@@ -274,6 +280,10 @@ namespace ColonyCouncil
                 case CalendarKind.GreatHunt: return "CC_Cal_Origin_GreatHunt".Translate(d.sinceYear, d.kills, d.subject ?? "?").Resolve();
                 case CalendarKind.Foal: return "CC_Cal_Origin_Foal".Translate(d.subject ?? "?", d.sinceYear, d.pawnName ?? "?").Resolve();
                 case CalendarKind.Companion: return "CC_Cal_Origin_Companion".Translate(d.pawnName ?? "?", d.sinceYear, d.otherName ?? "?", d.subject ?? "?").Resolve();
+                case CalendarKind.CampGift: return "CC_Cal_Origin_CampGift".Translate(d.enemy ?? "?", d.sinceYear, d.subject ?? "?", d.kills).Resolve();
+                case CalendarKind.Situation: return "CC_Cal_Origin_Situation".Translate(d.subject ?? "?", d.sinceYear).Resolve().CapitalizeFirst();
+                case CalendarKind.FaithDay: return "CC_Cal_Origin_FaithDay".Translate(d.subject ?? "?", d.otherName ?? "?").Resolve();
+                case CalendarKind.Rescue: return "CC_Cal_Origin_Rescue".Translate(d.pawnName ?? "?", d.sinceYear, d.kills, d.enemy ?? "?").Resolve();
                 default: return "CC_Cal_Origin_Holiday".Translate(d.sinceYear).Resolve();
             }
         }
@@ -296,13 +306,13 @@ namespace ColonyCouncil
         private bool focused;
         private bool finished;
 
-        private static readonly DayWay[] AllWays = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt, DayWay.Planting, DayWay.Faith };
+        private static readonly DayWay[] AllWays = { DayWay.Feast, DayWay.Remembrance, DayWay.Rest, DayWay.Games, DayWay.Bonfire, DayWay.Gifts, DayWay.Hunt, DayWay.Planting, DayWay.Walk, DayWay.Faith };
 
         /// <summary>
         /// The ways a day can be kept here: an evening of faith only with faith in the colony (Ideology), and only for a
         /// day the player names (the day keeps its faith in place of what a colony's own day is about).
         /// </summary>
-        private IEnumerable<DayWay> Ways => AllWays.Where(w => w != DayWay.Faith || (Faiths.On && (editing == null || editing.kind == CalendarKind.Holiday)));
+        private IEnumerable<DayWay> Ways => AllWays.Where(w => w != DayWay.Faith || (Faiths.On && (editing == null || editing.kind == CalendarKind.Holiday || editing.kind == CalendarKind.FaithDay)));
 
         /// <summary>The faith a day kept as an evening of faith speaks for (by name, as the day keeps it).</summary>
         private string faithName;

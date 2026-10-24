@@ -102,6 +102,66 @@
       <li>[herbs] The healers {PLACE} had herbs to spare, and left {COUNT} bundles of herbal medicine on the colony's side of their camp.</li>
       <li>[herbs] {X_nameDef} set out {COUNT} bundles of dried healroot at the edge of the healers' camp for the colony's stores, and has a lecture ready on keeping them dry for whoever comes to fetch them.</li>
     </helpTexts>
+    <!-- What they ask of the colony, and what the colony can ask of them (CampAsks.cs, CampRequests.cs): practice for their
+         apprentice on someone who needs it, remedies, and a lesson at their table. -->
+    <asks>
+      <li>
+        <key>practice</key>
+        <theyAsk>true</theyAsk>
+        <label>Let their apprentice see {A_nameDef}</label>
+        <refuseLabel>The colony's doctor will see to it</refuseLabel>
+        <needs>sick</needs>
+        <warm>2</warm>
+        <tension>-6</tension>
+        <deed>campHealed</deed>
+        <askTexts>
+          <li>The healers' apprentice needs practice, {X_nameDef} says, and the camp's people are all disgracefully well. They've heard {A_nameDef} is unwell, and ask whether the apprentice might come and see to {A_objective}, under {X_nameDef}'s eye.</li>
+          <li>{X_nameDef} came to the gate to ask whether anyone at the colony was ill. The healers' youngest has to learn on someone, {X_nameDef} said, and they'd heard {A_nameDef} was poorly.</li>
+        </askTexts>
+        <tip>Their apprentice comes to {A_nameDef}'s side with the healer watching, and does what can be done for a wound, an illness or an everyday ailment.</tip>
+        <outcomes>
+          <li>The healers' apprentice will come to see {A_nameDef} this afternoon, with {X_nameDef} looking over {X_possessive} shoulder.</li>
+          <li>{X_nameDef} is sending the apprentice up to the colony with a bag of remedies, and will come too, to watch.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said they understood, and the apprentice went back to rolling bandages for the next town.</li>
+          <li>The healers kept to their camp.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes"><to>A</to><who>healer</who><count>2</count><doing>tend</doing><hours>1~2</hours><when>8~19</when></li>
+        </effects>
+      </li>
+      <li>
+        <key>remedies</key>
+        <label>Buy remedies from them ({COUNT} silver)</label>
+        <tip>A few doses of their herbal medicine, at their price.</tip>
+        <silver>60</silver>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} wraps five bundles of remedies in clean cloth and explains each one twice.</li>
+          <li>[!lowtech] {X_nameDef} sells the colony a box of the healers' remedies, each labeled in a tidy hand.</li>
+          <li>{X_nameDef} counts out the remedies and tells {A_nameDef} which ones taste worst, so {A_nameDef} can warn the others.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>MedicineHerbal</what><count>5</count><fallback>MedicineHerbal</fallback></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn at their table</label>
+        <tip>{A_nameDef} spends a few hours at the healers' table. Practice in medicine.</tip>
+        <skill>Medicine</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} has gone to sit at the healers' table and learn. {X_nameDef} started with how to wash {A_possessive} hands, properly.</li>
+          <li>{X_nameDef} is showing {A_nameDef} how they set a bone with two sticks and a lot of nerve.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Medicine</skill><xpPerHour>180</xpPerHour><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== A procession of the faithful ===================== -->
@@ -181,6 +241,64 @@
       <li>[blessing,sameFaith] The procession came to the colony this evening to pray with it, as people of one ideoligion. {X_nameDef} led the prayers, and {A_nameDef} stood at the front.</li>
       <li>[blessing,lowtech] The faithful carried their shrine around the colony's fields at dusk, ringing bells, so the land would be kind to the people working it.</li>
     </helpTexts>
+    <!-- What they ask of the colony, and what the colony can share with them (CampAsks.cs, CampRequests.cs): their icon
+         carried round the colony's fields, and their evening hymn. -->
+    <asks>
+      <li>
+        <key>fields</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them carry their icon round the fields</label>
+        <refuseLabel>Keep to the road</refuseLabel>
+        <tension>-6</tension>
+        <deed>welcomed</deed>
+        <askTexts>
+          <li>The procession would like to carry their icon round the colony's fields before they go on, {X_nameDef} told {A_nameDef}. It brings a good harvest, they believe, and does no harm if it doesn't.</li>
+          <li>[ideology] The faithful of {IDEO} bless the fields of every place that shelters them. {X_nameDef} came to ask leave to walk the colony's fields this morning, singing.</li>
+        </askTexts>
+        <tip>The procession walks the colony's fields with their icon and their hymns for an hour or so, and whoever likes walks with them.</tip>
+        <outcomes>
+          <li>The faithful will walk the colony's fields this morning with their icon held high. {X_nameDef} has said anyone may walk with them.</li>
+          <li>{X_nameDef} thanked {A_nameDef} and went to fetch the icon. The procession will be in the fields within the hour.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} bowed and said they would bless the fields from the road as they pass. They did, loudly.</li>
+          <li>The procession kept to its camp, singing.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>fields</to>
+            <who>all</who>
+            <count>7</count>
+            <doing>bless</doing>
+            <hours>1~2</hours>
+            <when>8~16</when>
+            <lines>
+              <li>Bless this ground.</li>
+              <li>Grow, and feed them.</li>
+              <li>Sing up, now.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>walking the fields with the faithful</label><to>Fields</to><count>4</count><hours>8~16</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_PilgrimBlessing</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+        </effects>
+      </li>
+      <li>
+        <key>hymn</key>
+        <label>Join their evening hymn</label>
+        <tip>Whoever likes goes to the procession's fire tonight to sing with them.</tip>
+        <needs>evening</needs>
+        <tension>-5</tension>
+        <outcomes>
+          <li>Some of the colony will go and sing with the faithful tonight. {X_nameDef} has promised the old hymns, the ones everybody knows.</li>
+          <li>[ideology] The faithful of {IDEO} have asked the colony to their fire for the evening hymn, whatever faith anyone holds.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening hymn</label><spots><li>Camp</li><li>Outdoors</li></spots><music>true</music><hours>17~22</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_PilgrimBlessing</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== Traveling players ===================== -->
@@ -260,6 +378,8 @@
       <li>
         <key>backdrop</key>
         <at>spot</at>
+        <dayName>the players' castle</dayName>
+        <named>the castle backdrop</named>
         <defs><li>SculptureLarge</li></defs>
         <stuff><li>WoodLog</li></stuff>
         <titles>
@@ -281,6 +401,66 @@
       <li>[show,lowtech] The mummers {PLACE} played the old story of the fool and the dragon tonight, and {X_nameDef}'s dragon chased the colony's youngest all round the fire.</li>
       <li>[show] The players camped {PLACE} tried their new play out on the colony tonight. {X_nameDef} forgot a whole scene and made up another on the spot, and the colony liked it better.</li>
     </helpTexts>
+    <!-- What they ask of the colony, and what the colony can ask of them (CampAsks.cs, CampRequests.cs): an audience for
+         their new play, a show at the colony, and a small part for a colonist. -->
+    <asks>
+      <li>
+        <key>audience</key>
+        <theyAsk>true</theyAsk>
+        <label>Go and watch their new play</label>
+        <refuseLabel>The colony has work to do</refuseLabel>
+        <tension>-6</tension>
+        <deed>welcomed</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the players' camp with a painted face and a bow. They've worked up a new play, {X_nameDef} says, and ask the colony for an audience tonight, because they need to know where the laughs are.</li>
+          <li>The players have been rehearsing a new piece all day; the colony could hear the shouting. {X_nameDef} asked {A_nameDef} whether the colony would come and watch it tonight. A play without an audience, {X_nameDef} says, is just people arguing in costumes.</li>
+        </askTexts>
+        <tip>The colony goes to the players' stage tonight to watch. Recreation for whoever comes.</tip>
+        <outcomes>
+          <li>The colony is going to the players' stage tonight. {X_nameDef} won't say what the play is about, only that it ends badly for a duke.</li>
+          <li>Whoever can be spared will watch the players tonight. {X_nameDef} has asked them to laugh in the right places, and given a list.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} took the answer badly. The players rehearsed until midnight anyway, louder than usual.</li>
+          <li>The players performed to their own fire tonight. The colony could hear the laughs.</li>
+        </refused>
+        <refuseTension>5</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the players' new play</label><organizer>None</organizer><spots><li>Camp</li><li>Stranger</li><li>Outdoors</li></spots><music>true</music><hours>17~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>hire</key>
+        <label>Hire them to play at the colony ({COUNT} silver)</label>
+        <tip>The players bring their show to the colony's table after supper. Recreation for whoever comes to the table.</tip>
+        <silver>80</silver>
+        <deed>welcomed</deed>
+        <outcomes>
+          <li>The players will perform at the colony tonight. {X_nameDef} has already measured the hall and decided where the duke will die.</li>
+          <li>{X_nameDef} took the silver with a flourish. The players will bring the show to the colony after supper.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>an evening with the players</label><music>true</music><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>part</key>
+        <label>Let {A_nameDef} take a part in their play</label>
+        <tip>{A_nameDef} rehearses with the players for a few hours. Practice in the arts, and a small part in their next show.</tip>
+        <skill>Artistic</skill>
+        <minDays>1</minDays>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is to play a guard with one line in the players' next show. {X_nameDef} is making {A_objective} say it forty different ways.</li>
+          <li>{X_nameDef} has taken {A_nameDef} into rehearsal, and promised {A_objective} a costume with a hat.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Artistic</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== Surveyors ===================== -->
@@ -360,6 +540,60 @@
       <li>[survey,industrial|spacer] The surveyors {PLACE} ran their instruments over the colony's hills for a day, and {X_nameDef} came back with a marked map: a seam of {THING}, close to the surface.</li>
       <li>[survey,medieval] {X_nameDef}, the surveyors' master, has a nose for ore. A morning of tapping at the rock with a jeweler's hammer, and {X_nameDef} showed {A_nameDef} a seam of {THING}.</li>
     </helpTexts>
+    <!-- What they ask of the colony, and what the colony can ask of them (CampAsks.cs, CampRequests.cs): a sighting from
+         the middle of the colony (and the seam in its rock they mark after), and a lesson with the instrument. -->
+    <asks>
+      <li>
+        <key>sighting</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them take a sighting from the colony</label>
+        <refuseLabel>Take it from the ridge</refuseLabel>
+        <tension>-6</tension>
+        <askTexts>
+          <li>{X_nameDef} wants a sighting from the middle of the colony, to tie the survey to a point that won't move. They'd be an afternoon, and in return they'll tell the colony what they find in its rock.</li>
+          <li>The surveyors need one more point for their map, and the best point is the colony. {X_nameDef} asked {A_nameDef} for leave to set up an instrument there for an afternoon.</li>
+        </askTexts>
+        <tip>Two surveyors take sightings from the middle of the colony for an afternoon. If there's ore in the colony's rock, they mark where when they're done.</tip>
+        <outcomes>
+          <li>Two of the surveyors will set up in the middle of the colony this afternoon. {X_nameDef} asked that the colony's children keep off the tripod.</li>
+          <li>{X_nameDef} thanked {A_nameDef} and went to fetch the instrument, which travels in a padded box only {X_pronoun} may carry.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said they'd manage from the ridge, and the map would be less true for it.</li>
+          <li>The surveyors took their sighting from the ridge instead.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>colony</to>
+            <count>2</count>
+            <doing>survey</doing>
+            <hours>2~3</hours>
+            <when>9~15</when>
+            <help>survey</help>
+            <lines>
+              <li>Hold the rod straight.</li>
+              <li>Mark it.</li>
+              <li>Three degrees east. No, west.</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn surveying from them</label>
+        <tip>{A_nameDef} carries the rod and the chain for their surveyor for a few hours. Practice in intellectual work.</tip>
+        <skill>Intellectual</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is carrying the measuring chain for {X_nameDef} today, and learning why it matters which end is which.</li>
+          <li>{X_nameDef} has taken {A_nameDef} out with the instrument, and is explaining the arithmetic of hills.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== Their work, and how the colony feels about them ===================== -->

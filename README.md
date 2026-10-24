@@ -399,9 +399,12 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 160 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 175 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
-camp on the colony's land asking for medicine, food or searchers for a lost child, a council meeting someone missed,
+camp on the colony's land asking for medicine, food or searchers for a lost child (and, new, one of them who wants to
+stay, a purse gone from their stash with a colonist blamed, one of theirs caught in the storeroom, their beasts standing
+in your ripe fields until the answer sends them home, riders with an old quarrel against them, a child of theirs and one
+of yours who've become friends, their feast day, a fee they can't pay), a council meeting someone missed,
 a worn-out colonist asking for days off at the worst time, a doctor who just lost a patient, someone convalescing who
 wants to be back at work, family who want a say before an operation, a squabble that turned into a feud, an elder who wants to
 put down the tools, a child's question, a broken promise, the same meal every day. The young and the old have their
@@ -999,10 +1002,14 @@ remembers** (a big raid seen off, ours who fell, a nemesis brought down or come 
 **weddings**, the **arrivals** of its first members and the **birthdays** of its long-serving colonists, the **first
 child** born here, **the day the walls went up**, a caravan's **homecoming** after a long journey, the first harvest of
 a **new crop**, the **first trade**, a **great hunt**, the herd's **first foal** and a **beloved animal's day** (a
-bonded animal long with the colony, or killed fighting for its person, kept as a remembrance by those who loved it), up
+bonded animal long with the colony, or killed fighting for its person, kept as a remembrance by those who loved it),
+and days that come from what the colony lived through: **the day a camp stayed and left something behind** (kept by
+walking out to it, until the gift is gone), **the end of a world event the colony took part in** (a supper for a hungry
+year, a walk to the gate for a war or a plague), the **holy days of its own ideoligion** (its rites held on a date, with
+Ideology; the letter offers the rite itself) and **the day one of its people came home from captivity**. Up
 to a dozen of the most meaningful. On the **Calendar**
 page under History you can also **name days of your own** (up to 8) as a feast, a day of remembrance, a rest day, a
-day of games, a **bonfire**, a **day of gifts**, a **hunt**, a **planting day** or, with Ideology, an **ideoligion evening**
+day of games, a **bonfire**, a **day of gifts**, a **hunt**, a **planting day**, a **walk out** or, with Ideology, an **ideoligion evening**
 for one of the colony's ideoligions, rename any day, or change how it's kept. What people say
 about a day knows the land and the ideoligion: founding day in the desert is a jar of sand from where the first tent stood.
 
@@ -1010,7 +1017,8 @@ When a day comes round, a letter asks whether to keep it this year: a **feast** 
 **games** an afternoon of recreation, a **rest day** turns the rest of the day's work hours to recreation (the
 schedule goes back the next day), a **bonfire** is built at nightfall with music, a **day of gifts** warms every
 friendship round the circle, a **hunt** sends the hunters out after the day's game, and a **planting day** sends
-everyone out to sow the fields together, with a word at the field's edge after, an **ideoligion evening** gathers the
+everyone out to sow the fields together, with a word at the field's edge after, a **walk out** takes the colony out
+together to what the day remembers (a camp's gift, a grave, the fields, the gate) and back, an **ideoligion evening** gathers the
 day's ideoligion and whoever chooses to come to hear its speaker (Ideoligions and the council, above); a **remembrance** is kept with
 a quiet, bittersweet mood for those who knew the person. A birthday comes as a message and a small lift for the colonist. People write about the day in their
 journals, talk about it in the social log, and mention it the evening before; the World page shows the days coming
@@ -1571,9 +1579,15 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   holds trees sacred), a **traveling healer**, a band of **minstrels** whose music the colony walks over to hear, and
   **mourners** carrying their dead home. Refugees come more often while a famine, plague, war, flood, drought, hard
   winter or great fire runs in the region, and say what they fled; pilgrims follow a holy year, surveyors a new road
-  or a rush, minstrels a season of songs, mourners a people's mourning. The newer camps can be asked for something
-  from their page: an evening at their fire, a beast from the herd, the healer's care, a lesson at their side, a song
-  about the colony, a vigil with the mourners. They build the camp themselves,
+  or a rush, minstrels a season of songs, mourners a people's mourning. Every kind can be asked for something
+  from their page (51 asks): an evening at their fire, a beast from the herd, the healer's care, a lesson at their side,
+  a song about the colony, a vigil with the mourners, a colonist out hunting with the party, a supper for the refugee
+  family, the smith's mending, a walk with the hermit, the players' show. And **camps ask things of the colony** (14
+  requests, by letter, when things are calm and no other question came lately): the drovers would water their herd at
+  your water, the healers' apprentice wants practice on your sick, the players want an audience, the prospectors a test
+  hole on your side, the traders a day's stall at your gate, the pilgrims to pray at your graves, the hermit, once, a
+  dose of medicine. Granted, their own people walk into the colony to do it, a few hours in daylight, and what they
+  promised comes when it's done; refused, the camp minds. They build the camp themselves,
   cook at their fire, hunt and fell trees around it (never near your home area), trade, sometimes help, and may ask
   to join. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
   bales to the stall, the drovers' herd grazing beyond the camp with a dog at a drover's heels (real animals of their
@@ -1581,7 +1595,8 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   spot, the refugees' washing by the windbreak, the hermit's woodpile by the door. The smith may walk over and mend
   one of your damaged doors or walls for nothing. When their stay ends, the healers go round your sick and hurt
   first, the mourners plant a sprig of green by your gate, the hermit leaves a carved bird by your door, the players
-  leave their castle backdrop standing and the tree-singers a ring of saplings where their fire was. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
+  leave their castle backdrop standing and the tree-singers a ring of saplings where their fire was, and the day goes
+  on your calendar. Let them stay, set terms (a fee, a share of their meat, keeping to their side, a time limit), hire some of
   them, ask them to move on (a gift helps), or drive them off. Tension grows the longer they stay and the more they
   take; trade, gifts and friendships ease it. The World page shows the camp and lets you talk to them. One camp at a
   time, never in a colony's first twenty days, with its own switch.

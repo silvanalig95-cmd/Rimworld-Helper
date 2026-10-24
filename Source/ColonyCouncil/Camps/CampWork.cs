@@ -96,6 +96,9 @@ namespace ColonyCouncil
             if (rest != null && (rest.CurLevelPercentage < 0.2f || (night && rest.CurLevelPercentage < 0.95f))) return Sleep(camp, pawn);
             bool adult = !pawn.DevelopmentalStage.Juvenile();
             if (!adult) return Child(camp, pawn, hour);
+            // An errand into the colony an ask or a request sent them on (CampRequests.cs).
+            var errand = camp.ErrandJob(pawn);
+            if (errand != null) return errand;
             var job = Tend(camp, pawn);
             if (job != null) return job;
             if (camp.phase == CampPhase.Building || camp.Unfinished().Count > 0)
@@ -524,6 +527,7 @@ namespace ColonyCouncil
                 else if (def == CampDefOf.Council_CampFarewell) camp.LookedIn(pawn, job.targetA.Thing as Pawn);
                 else if (def == CampDefOf.Council_CampLayGift) camp.LaidGift(pawn, job.targetA.Cell);
                 else if (def == CampDefOf.Council_CampRepair) camp.Repaired(pawn, job.targetA.Thing);
+                else if (def == CampDefOf.Council_CampErrand || def == CampDefOf.Council_CampErrandTo) camp.ErrandWorked(pawn, job);
             }
             catch (Exception e)
             {

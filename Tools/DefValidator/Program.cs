@@ -398,6 +398,9 @@ foreach (var (k, text) in keyed)
 var wishPh = new HashSet<string> { "SUBJECT", "THING", "THINGBARE", "TARGET", "WISH", "MINE", "AMBITION", "VENUE", "COUNT", "FACTION", "TITLE", "DECREE", "YEARS", "DILEMMA", "TRADITION", "OFFICE", "SKILL", "LOST", "DREAM", "GOAL", "SECRET", "LEAKER", "TELLER", "SPEECH", "ITEM", "QUIRK", "OLDGOAL", "NAME", "VICTIM", "DEED", "DAYS", "RELATION", "DEAD", "BEAST", "ENEMY", "TALE", "PLACE", "FOOD", "FOODS", "WORK", "ROOM", "ILLNESS", "THEIRILLNESS" };
 // Camps: the faith a procession follows, the world event refugees fled (CampWords.Fill).
 wishPh.UnionWith(new[] { "IDEO", "SITUATION" });
+// The calendar's days from what the colony lived through (Calendar/CalendarLived.cs): the camp that left a gift, and
+// who a day names besides (the camp's leader, a world event's people, the faith's rite, a captive's captors).
+wishPh.UnionWith(new[] { "CAMP", "WHO" });
 // Beliefs: the feast someone sat through with nothing fit to eat (Beliefs.NoteNothingFit).
 wishPh.Add("GATHERING");
 // Animals and PokéWorld (Animals/, Integrations/PokeWorldLife.cs): an animal's kind, a species, and an evolution's
