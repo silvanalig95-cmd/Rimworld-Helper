@@ -13,7 +13,7 @@
     <order>21</order>
     <summary>The colony's own weather record: its records, its seasons remembered by name, and the weather in its people, its visitors and its events.</summary>
     <tip>The colony remembers its hard winters by name, and its old hands set each season against the one before.</tip>
-    <description>From the day Rimfolk comes, each home map keeps a record of its weather. Once an hour it notes whether rain or snow is falling, whether there is a storm or fog, and how cold or warm it is outside. The hours make days and the days make seasons, and a month of days and three years of seasons are kept. Nothing in the weather itself changes: the game still chooses it, along with any weather mods.</description>
+    <description>From the day Rimfolk comes, each home map keeps a record of its weather. Once an hour it notes whether rain or snow is falling, whether there is a storm or fog, and how cold or warm it is outside. The hours make days and the days make seasons, and a month of days and three years of seasons are kept. The game still chooses the weather, along with any weather mods; Rimfolk only weighs that choice as the land and the last days make likely, moves the temperature a few degrees with it, and lets someone who reads the weather say what's coming (the settings under "The weather", on the Events page).</description>
     <sections>
       <li>
         <heading>Records and seasons</heading>
@@ -27,6 +27,22 @@
           <li>A season remembered by name | 5 °C colder or warmer than usual here, two days of storms, rain on most days, or 12 days running with nothing falling where it usually rains | "the winter of the long cold", "the warm winter", "the dry summer": the news, the chronicle and the year's annals</li>
         </table>
         <after>The Overview page has a Weather card: this season so far against the same season last year, the records, and the last season remembered by name. The year's annals say how cold and how hot it got.</after>
+      </li>
+      <li>
+        <heading>Weather that changes like weather</heading>
+        <text>When a weather ends, the game chooses the next from the land's own weathers and their weights (Seasonal Weather's by season, and those of any other weather mod). Rimfolk weighs them as the land and the last days make likely, and together the ordinary weathers keep the chance they had: the special ones (a double rainbow, blood rain, acid smog) and anything an event or a weather controller forces are left as they are. Over the years each land keeps about the rain it had, and a desert stays a desert.</text>
+        <table>
+          <li>What | How</li>
+          <li>Spells | A few wet days make rain likelier for a while, until the spell breaks (after 3 days in a dry land, 9 in a humid one, 6 elsewhere). A dry spell holds, and after 8 days (5 in a humid land) breaks with rain, and in the warm with a storm; in a dry land, where long dry spells are usual, it only now and then breaks with a storm, after 12. Snow keeps falling for a few days, then clears.</li>
+          <li>What follows what | Clouds build into rain and a storm settles into rain. A storm seldom comes out of a clear sky, except on a hot afternoon or along a cold front. Fog comes after a cold clear night or rain, more over open water, and seldom in the wind. A cold front (a day 5 °C or more colder than the one before) brings snow, or a storm where it's still warm, then clear skies; stronger where summers are hot and winters cold.</li>
+          <li>Events and conditions | The long rains bring more rain for five days, a growing spell soft rain without storms, high water and a thirsty herd drier days, an ice fair settled cold, and the sky clears after hail. A heat wave, a warm spell, a cold snap and Stormproof's heat dome and polar front bring clear skies. Any drought (the region's, the game's or Vanilla Events Expanded's) means less rain and never more; the region's hard winter brings more snow and its floods more rain.</li>
+          <li>The year | Each year leans a little wetter or drier, and a dry land's years vary more. The annals say a year was wet or dry against the years before it, and warm or cold against the land's usual, once it was.</li>
+          <li>Seasons | Where Seasonal Weather gives the land its seasons, or the land is always frozen, they are left as they are. A tropical land it doesn't cover has a wet season of two quadrums and a dry one; elsewhere storms come in summer and few in winter, with a little more rain in spring and fall.</li>
+          <li>Fog | A fog in the night or the morning lifts by late morning; one by day passes in a few hours. On land that's always frozen, fog lasts as the game has it.</li>
+          <li>Temperature | Up to 3 °C cooler under rain on a warm day, a degree more in a storm; colder on a clear night (twice as much in a dry land, less in a humid one, more over snow); milder under cloud, fog or rain at night; a little warmer in clear sunshine; colder over snow cover. Each year leans about a degree warmer or colder at most. Never more than 5 °C down or 3 °C up, eased in over a couple of hours.</li>
+          <li>Forecasts | A few hours before the weather changes, the colonist who reads it best (Plants 6, or 3 for an older hand) says what's coming if they're in view, and the Overview's Weather card shows it. What comes is held to unless it can no longer come. The forecast is right seven times in ten for a fair hand and up to nine for an old hand; with a weather station from Stormproof or Weather Control it's nearly always right. Whoever got it wrong may own up to it.</li>
+        </table>
+        <after>Only on home maps with weather of their own (not in space or a pocket map). Each part has its own setting, and all need the deeper game hooks. Nothing is added to the map: switching them off, or taking Rimfolk out, leaves the game's own weather.</after>
       </li>
       <li>
         <heading>Events that speak of the weather</heading>

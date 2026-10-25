@@ -188,6 +188,15 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("event letter " + def.defName, e);
             }
             CouncilGameComponent.Instance?.happenings.Notify_Fired(def, ext);
+            // What it does to the weather after (the long rains bring more rain).
+            try
+            {
+                WeatherDynamics.PullFor(map, ext.weatherAfter);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("event weather " + def.defName, e);
+            }
             return true;
         }
 

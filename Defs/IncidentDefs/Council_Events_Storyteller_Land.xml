@@ -282,6 +282,10 @@
         <weather>
           <li>[fall]rain:3/7</li>
         </weather>
+        <weatherAfter>
+          <li>clear:1.3:2</li>
+          <li>rain:0.8:2</li>
+        </weatherAfter>
         <group>Nature</group>
         <letter>PositiveEvent</letter>
         <seasons>

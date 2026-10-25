@@ -822,15 +822,13 @@ The seasonal changes cover the eleven vanilla biomes. Biomes added by other mods
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>The council's advisor doesn't know about earthquakes and wildfires yet, so watch the letters and act yourself.
+        <text>Rimfolk knows its weathers by name: a double rainbow, a day of wind and a dust storm each bring an encounter of their own, and lines can ask for them.
 
-Rimfolk knows its weathers by name: a double rainbow, a day of wind and a dust storm each bring an encounter of their own, and lines can ask for them.</text>
+Rimfolk's weather record notes its snowy fog as both snow and fog, and counts its dry duststorm as a storm. On a dry, windy day in summer or fall, with grass and brush up to the home area, Rimfolk's advisor suggests a firebreak, and one button marks the brush round the home area for cutting. After an earthquake a few colonists go round the roofs and walls, and the annals count the quakes. Wildfires themselves come by letter: act on those yourself.
+
+Rimfolk's weather that changes like weather keeps its seasons: it only weighs each season's own weathers (spells, what follows what, events), leaves the double rainbow's chance as it is, and adds no seasons of its own to the biomes this mod covers. Its windy and cloudy weathers and its dust are read as wind, cloud and dust, and the dry duststorm as a storm without rain (see "the weather, as the colony knows it").</text>
       </li>
-          <li>
-        <heading>With Rimfolk</heading>
-        <text>Rimfolk's weather record notes its snowy fog as both snow and fog, and counts its dry duststorm as a storm. On a dry, windy day in summer or fall, with grass and brush up to the home area, Rimfolk's advisor suggests a firebreak, and one button marks the brush round the home area for cutting. After an earthquake a few colonists go round the roofs and walls, and the annals count the quakes (see "the weather, as the colony knows it").</text>
-      </li>
-</sections>
+    </sections>
     <keywords>
       <li>weather</li>
       <li>season</li>

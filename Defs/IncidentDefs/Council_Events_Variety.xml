@@ -378,6 +378,10 @@
         <weather>
           <li>rain:2/7</li>
         </weather>
+        <weatherAfter>
+          <li>rain:1.3:4</li>
+          <li>storm:0.7:4</li>
+        </weatherAfter>
         <letter>PositiveEvent</letter>
         <group>Nature</group>
         <seasons>

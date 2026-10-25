@@ -33,6 +33,9 @@ namespace ColonyCouncil
         [Unsaved] private WeatherQuarter cur;
         [Unsaved] private WeatherRecords rec = new WeatherRecords();
 
+        /// <summary>The weather dynamics' part (Weather/WeatherDynamics.cs): the forecast and the events' pulls are saved with the record.</summary>
+        [Unsaved] internal readonly WeatherDynamics.State dyn = new WeatherDynamics.State();
+
         /// <summary>A day without snow for this long, then snow: the first snow of the winter (as WeatherTalk has it).</summary>
         private const int SnowGapDays = 10;
 
@@ -55,6 +58,11 @@ namespace ColonyCouncil
                 return list;
             }
         }
+
+        /// <summary>The days kept before today, and today so far (null before the first look).</summary>
+        public List<WeatherDay> DaysBefore => dayList;
+
+        public WeatherDay Today => now;
 
         public List<WeatherQuarter> Quarters => quarterList;
 
@@ -79,6 +87,17 @@ namespace ColonyCouncil
         public override void MapComponentTick()
         {
             int tick = Find.TickManager.TicksGame;
+            if (Sched.Every(tick, Sched.RareTicks, Sched.RareWeather) && (dyn.offset != 0f || WeatherDynamics.TemperatureOn))
+            {
+                try
+                {
+                    WeatherDynamics.Rare(map, this);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("weather temperature", e);
+                }
+            }
             if (!Sched.Hourly(tick, Sched.Weather) || !map.IsPlayerHome || map.weatherManager == null) return;
             try
             {
@@ -87,6 +106,14 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("weather record", e);
+            }
+            try
+            {
+                WeatherDynamics.Hourly(map, this);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("weather forecast", e);
             }
         }
 
@@ -282,13 +309,21 @@ namespace ColonyCouncil
             float coldest = seasons.Min(q => q.coldest), hottest = seasons.Max(q => q.hottest);
             string range = "CC_Annals_WeatherRange".Translate(coldest.ToStringTemperature("F0"), hottest.ToStringTemperature("F0")).Resolve();
             string line = named.Count > 0 ? "CC_Annals_WeatherNamed".Translate(TextUtil.JoinAnd(named), range).Resolve() : range;
+            // What the year was, measured against the years before it and the land's usual: "It was a wet and warm year."
+            var (wet, temp) = WeatherDynamicsMath.YearWordsFor(quarterList, year);
+            var words = new List<string>();
+            if (wet != null) words.Add(("CC_Annals_Year_" + wet).Translate().Resolve());
+            if (temp != null) words.Add(("CC_Annals_Year_" + temp).Translate().Resolve());
+            if (words.Count > 0) line = "CC_Annals_WeatherYear".Translate(TextUtil.JoinAnd(words)).Resolve() + " " + line;
             return quakes != null ? line + " " + quakes : line;
         }
 
-        /// <summary>A few lines for the Overview: this season so far against last year's, the records, the last season with a name.</summary>
+        /// <summary>A few lines for the Overview: the forecast, this season so far against last year's, the records, the last season with a name.</summary>
         public List<string> OverviewLines()
         {
             var lines = new List<string>();
+            string forecast = WeatherDynamics.ForecastLine(this);
+            if (forecast != null) lines.Add(forecast);
             if (cur != null && cur.days >= 3)
             {
                 var before = WeatherMath.YearBefore(quarterList, cur);
@@ -332,6 +367,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tornadoOn, "tornadoOn");
             Scribe_Values.Look(ref quakeYear, "quakeYear", -1);
             Scribe_Values.Look(ref quakeCount, "quakeCount");
+            dyn.Expose();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 dayList = (days ?? new List<string>()).Select(WeatherMath.UnpackDay).Where(d => d != null).ToList();

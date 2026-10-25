@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Weather that changes like weather
+
+*25 October 2026, version 0.16.0*
+
+- The game still chooses each weather from the land's own, Seasonal Weather's and other mods' included, but Rimfolk weighs the choice by the land and the last days. Spells of rain and of dry weather hold and then break, a long dry spell in the warm with a storm.
+- One weather follows another as it would: a storm seldom comes out of a clear sky except on a hot afternoon, fog comes after a cold clear night or rain, and a cold front brings snow, or a storm where it's still warm. A morning fog lifts by late morning.
+- Each land keeps its character. A desert's dry spells run longer and its wet ones end sooner, a tropical land Seasonal Weather doesn't cover gets a wet and a dry season, and over the years every land keeps about the rain it had. Special weathers and anything an event forces are left alone.
+- Rimfolk's events move the weather after them: the long rains bring more rain, a thirsty herd comes in a dry spell that holds, and the sky clears after hail. Heat waves, warm spells and cold snaps bring clear skies, and no drought ever brings more rain.
+- The weather moves the temperature a few degrees: cooler under rain on a warm day, colder on clear nights (much colder in the desert), milder under cloud.
+- The colonist who reads the weather best says what's coming a few hours ahead, and the Overview's Weather card shows it. The weather that comes is held to, and the forecast is as good as the one who makes it; a weather station from Stormproof or Weather Control makes it nearly certain.
+- Each year leans a little wetter or drier, warmer or colder, and the annals say so when it was. Each part has its own setting under "The weather" on the Events page.
+
 ## The weather remembered
 
 *25 October 2026, version 0.15.0*

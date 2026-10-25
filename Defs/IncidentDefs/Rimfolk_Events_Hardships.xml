@@ -180,6 +180,10 @@
         <weather>
           <li>dry:6</li>
         </weather>
+        <weatherAfter>
+          <li>rain:0.7:3</li>
+          <li>clear:1.2:3</li>
+        </weatherAfter>
         <group>Nature</group>
         <seasons>
           <li>Summer</li>

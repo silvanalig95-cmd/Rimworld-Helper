@@ -289,6 +289,10 @@
         <weather>
           <li>rain:4/7</li>
         </weather>
+        <weatherAfter>
+          <li>rain:1.8:5</li>
+          <li>clear:0.6:5</li>
+        </weatherAfter>
         <group>Nature</group>
         <seasons>
           <li>Spring</li>
@@ -369,6 +373,10 @@
         <weather>
           <li>frost:5/7</li>
         </weather>
+        <weatherAfter>
+          <li>clear:1.3:3</li>
+          <li>snow:0.8:3</li>
+        </weatherAfter>
         <group>Nature</group>
         <seasons>
           <li>Winter</li>

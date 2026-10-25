@@ -1,8 +1,41 @@
 # Handoff: work in progress
 
-Last shipped: 0.15.0 "The weather remembered" (the weather ideas the player chose). Before it, 0.14.2 "Into cover"
+Last shipped: 0.16.0 "Weather that changes like weather" (all six dynamic weather options the player chose, biome by
+biome). Before it, 0.15.0 "The weather remembered" (the weather ideas the player chose), 0.14.2 "Into cover"
 (the TakeCover mod finds cover spots on Ctrl + right-drag, but in 1.7 letting go gives no order), 0.14.1 "Not everyone
 gets along", 0.14.0 "Shaped for the colony" (the defense overhaul) and 0.13.1 "Fungus kept for its meal".
+
+## Weather that changes like weather, as shipped (0.16.0)
+
+The player chose all six options of the proposal (spells, what follows what, temperature, events, a forecast, the
+year), and asked that every part consider the biome and every combination of mods. Harmony, not a hidden condition, so
+nothing is added to the map or the save beyond the forecast and the events' pulls, and taking Rimfolk out leaves the
+game's own weather.
+- `Weather/WeatherDynamicsMath.cs` (pure, `WeatherDynamicsTests`): `WeatherKind` from a weather's traits; the land
+  (`BiomeWeather`: rain a year, coldest and warmest month, the biome's wet share, Seasonal Weather's seasons, open
+  water; arid, humid, frozen, tropical, continental); `Factor` = spell x follow-on x events x year x season, clamped
+  0.3 to 2.5, special weathers 1, a downpour and any rain in a drought never above 1; `Shared` renormalises over the
+  weathers that could come so the ordinary ones keep their chance together (the specials keep theirs exactly);
+  `TempTarget`/`Ease` (at most 5 °C down, 3 up), `FogTicks`, `ForecastAccuracy`/`ReadsWeather`, `YearOf` (hashed by
+  tile and year), `YearWords`/`YearWordsFor`, the events' pulls (`TryParsePull`, `AddPull`). The tests run 100,000
+  random combinations over eight lands, focused checks, and a hundred simulated years per land with and without:
+  rain shares stay within 0.75 to 1.33 of the game's (measured within about 10% over 300 years and eight seeds), spells
+  last longer, dry spells end, specials come as often, a desert stays one, a tropical land gets its wet season.
+- `Weather/WeatherDynamics.cs`: `Patch_WeatherChoice` (CurrentWeatherCommonality postfix, factors cached per map and
+  tick), `Patch_WeatherForecastHeld` (ChooseNextWeather prefix: the foretold weather if it still can come),
+  `Patch_WeatherStarted` (StartNextWeather postfix: the forecast's outcome, a fog's length), `Patch_WeatherTemperature`
+  (GameConditionManager.AggregateTemperatureOffset postfix, map managers only). The weather's kind is read from its
+  def (lightning, a fog overlay, sand; very good, toxic, monolith or mood weathers are special). Seasonal Weather's four
+  lists are read by field name for the land's wet share. Conditions folded in: heat wave and heat dome, cold snap and
+  polar front, the warm spell, any condition named Drought, the region's drought, hard winter and floods. The state
+  lives in `WeatherBook.dyn` (eased offset at `Sched.RareWeather` 97; the day's hours for a cold front; the forecast
+  and pulls saved). Forecasts once per weather, 8 to 2 hours before it ends, by the best Plants reader (6, or 3 at 50);
+  stations `Stormproof_WeatherForecaster`, `NCWC_WeatherStation`, `NCWC_WindSock` (powered if they use power).
+- Events: `HappeningExtension.weatherAfter` on the long rains, growing spell, thirsty herd, ice fair and high water;
+  the hail's end clears the sky for a day. Annals: "It was a wet and warm year." Overview: "Hector expects rain."
+- Settings `dynamicWeather`, `weatherTemperature`, `weatherForecast` (Events page, "The weather"; deep hooks).
+- Not tried in the game here: worth a look at the log for the four patches applied, a forecast bubble and the
+  Overview line, a cold clear night's temperature against the game's, and a few weeks of weather on the player's map.
 
 ## Taking cover with a drag, as shipped (0.14.2)
 
@@ -67,7 +100,7 @@ weather mods safe to add to a running save.
 - Not tried in the game here: worth a look at the Overview's Weather card after a few weeks, a hailstorm's two hours,
   breath on a cold morning, and a trader caught by a storm.
 
-### More dynamic weather: the proposal (not built; for the player to choose from)
+### More dynamic weather: the proposal (built in 0.16.0, above)
 How the game chooses weather (1.6 code): the next weather is rolled only when the current one ends (0.27 to 2.7 days;
 storms shorter), by the biome's weights times rainfall and condition factors; nothing carries over from one weather to
 the next, weather never changes the temperature, and nothing is known ahead. Seasonal Weather swaps each vanilla

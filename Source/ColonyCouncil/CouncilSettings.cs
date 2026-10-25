@@ -127,6 +127,12 @@ namespace ColonyCouncil
         public float daysBetweenWorldSituations = 45f;
         /// <summary>The world's peoples remember what the colony did for them and against them, and act on it (World/FactionMemory.cs).</summary>
         public bool factionMemory = true;
+        /// <summary>The game's next weather weighed as the land and the last days make likely: spells, what follows what, events, the year (Weather/WeatherDynamics.cs).</summary>
+        public bool dynamicWeather = true;
+        /// <summary>The weather moves the outdoor temperature a few degrees: cooler under rain on a warm day, colder on a clear night, milder under cloud.</summary>
+        public bool weatherTemperature = true;
+        /// <summary>Someone who reads the weather (or a weather station) says what's coming, and is right as often as they're good at it.</summary>
+        public bool weatherForecast = true;
         /// <summary>How hard the fights a Rimfolk scenario promises hit (share of their usual strength).</summary>
         public float scenarioThreat = 1f;
         /// <summary>How often the smaller things happen: 1 = as designed, 0.25 = rarely, 3 = often.</summary>
@@ -349,6 +355,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref worldSituations, "worldSituations", true);
             Scribe_Values.Look(ref daysBetweenWorldSituations, "daysBetweenWorldSituations", 45f);
             Scribe_Values.Look(ref factionMemory, "factionMemory", true);
+            Scribe_Values.Look(ref dynamicWeather, "dynamicWeather", true);
+            Scribe_Values.Look(ref weatherTemperature, "weatherTemperature", true);
+            Scribe_Values.Look(ref weatherForecast, "weatherForecast", true);
             Scribe_Values.Look(ref scenarioThreat, "scenarioThreat", 1f);
             Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);
             Scribe_Values.Look(ref momentFrequency, "momentFrequency", 1f);

@@ -47,6 +47,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/ChemistryMath.cs" Link="ChemistryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/CoverDragMath.cs" Link="CoverDragMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Weather/WeatherMath.cs" Link="WeatherMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Weather/WeatherDynamicsMath.cs" Link="WeatherDynamicsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/PersonaMath.cs" Link="PersonaMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithMath.cs" Link="FaithMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/LeaningMath.cs" Link="LeaningMath.cs" />

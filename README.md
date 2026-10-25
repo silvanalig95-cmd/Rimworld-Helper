@@ -1354,6 +1354,25 @@ With **Seasonal Weather**, a dry, windy day in the fire season brings **firebrea
 round the home area for cutting), and after an **earthquake** a few colonists go round the roofs and walls. Stormproof,
 Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet Wonders are met where they're installed.
 
+**Weather that changes like weather.** The game still chooses each next weather from the land's own (Seasonal
+Weather's by season, any other weather mod's too); Rimfolk weighs that choice by the land and the last days, so that
+together the ordinary weathers keep their chance and the special ones (a double rainbow, blood rain, acid smog) and
+anything an event forces are left alone. **Spells hold and break**: a few wet days make more rain likely until the
+spell ends (sooner in a dry land, later in a humid one), and a long dry spell breaks with rain, in the warm with a
+storm. **One weather follows another**: a storm seldom comes out of a clear sky except on a hot afternoon, fog after a
+cold clear night or rain, a cold front brings snow or a storm, and a morning fog lifts by late morning. **Events move
+the weather**: the long rains bring more rain, a growing spell soft rain, the sky clears after hail; heat waves, warm
+spells and cold snaps bring clear skies, and no drought (the region's, the game's or Vanilla Events Expanded's) ever
+brings more rain. **Each land keeps its character**: a tropical land Seasonal Weather doesn't cover gets a wet and a dry
+season, elsewhere storms come in summer, a frozen land is left as it is, and simulated over a hundred years on eight
+kinds of land, each keeps about the rain it had. **The weather moves the temperature** a few degrees (cooler under rain
+on a warm day, colder on clear nights and much colder in the desert, milder under cloud; at most 5 °C down and 3 °C
+up). **A forecast**: a few hours before the weather changes, the colonist who reads it best says what's coming, the
+weather that comes is held to, and the forecast is right as often as they're good at it (nearly always with a weather
+station from Stormproof or Weather Control). **Each year leans** a little wetter or drier, warmer or colder, and the
+annals say so when it was. Three settings under "The weather" on the Events page; all need the deeper game hooks, and
+nothing is added to the map.
+
 ### Annals
 When a new year begins, the colony's best reader or talker writes up the year that ended: how many you were and
 are, who joined, who died and who walked out, how often trouble came, whether you grew richer or poorer, what the

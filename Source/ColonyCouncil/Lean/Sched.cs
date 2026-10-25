@@ -97,7 +97,9 @@ namespace ColonyCouncil
         /// <summary>Build priorities: what can go ahead at each level (only while a level is set on the map).</summary>
         public const int RareBuildPriority = 19;
 
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority };
+        /// <summary>The weather's push on each home map's outdoor temperature, eased toward what the weather makes it (Weather/WeatherDynamics.cs).</summary>
+        public const int RareWeather = 97;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

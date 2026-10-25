@@ -329,6 +329,10 @@ namespace ColonyCouncil
             Slider("daysBetweenWorldSituations", "CC_Settings_DaysBetweenWorldSituations", "CC_SetNote_DaysBetweenWorldSituations", 15f, 120f, 5f, "0",
                 "worldSituations");
             Toggle("factionMemory", "CC_Settings_FactionMemory", "CC_SetNote_FactionMemory");
+            Section("CC_SetSec_Weather");
+            Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
+            Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");
+            Toggle("weatherForecast", "CC_Settings_WeatherForecast", "CC_SetNote_WeatherForecast", "deepHooks");
             Section("CC_SetSec_Calendar");
             Toggle("colonyCalendar", "CC_Settings_Calendar", "CC_SetNote_Calendar");
             Section("CC_SetSec_PlayOut");

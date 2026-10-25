@@ -477,6 +477,7 @@ MODEL = {
     # Defense lines (per home map, gone with it)
     "Weather/WeatherBook.cs:days": ("fixed", const("Weather/WeatherMath.cs", "MaxDays", 30), 70, "WeatherMath.MaxDays: the last month, a short line a day, per home map"),
     "Weather/WeatherBook.cs:quarters": ("fixed", const("Weather/WeatherMath.cs", "MaxQuarters", 12), 90, "WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map"),
+    "Weather/WeatherDynamics.cs:pulls": ("fixed", const("Weather/WeatherDynamicsMath.cs", "MaxPulls", 6), 40, "WeatherDynamicsMath.MaxPulls: events' pulls on the weather, a few days each, per home map"),
     "Defense/DefenseLines.cs:lines": ("fixed", 4, 300 + C["SpanSide"] * 30 + 8 * 80 + 3 * 40 + C["DefensePlans"] / 2 * 180 + C["DefenseRaids"] * 1100,
                                       "lines the player made (only their clicks), per map; gone with the map"),
     "Defense/DefenseLine.cs:span": ("fixed", C["SpanSide"], 30, "per line: the cells across its gap, 29 at most (counted under lines)"),

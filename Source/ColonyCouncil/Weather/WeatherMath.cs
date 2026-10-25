@@ -134,6 +134,25 @@ namespace ColonyCouncil
             return n;
         }
 
+        /// <summary>
+        /// Days running of rain, of nothing falling and of snow, with today in: today adds to a run once it has had its
+        /// share (four hours of rain, two of snow; half a day with nothing falling), and half a day without breaks one.
+        /// </summary>
+        public static void RunsWithToday(IList<WeatherDay> days, WeatherDay today, out int wet, out int dry, out int snow)
+        {
+            wet = Run(days, d => d.Wet);
+            dry = Run(days, d => d.Dry);
+            snow = Run(days, d => d.Snowy);
+            if (today == null || !today.Counted) return;
+            bool half = today.hours >= 12;
+            if (today.Wet) wet++;
+            else if (half && today.rain == 0) wet = 0;
+            if (!today.Dry) dry = 0;
+            else if (half) dry++;
+            if (today.Snowy) snow++;
+            else if (half && today.snow == 0) snow = 0;
+        }
+
         /// <summary>How many of the last <paramref name="last"/> counted days (newest last) have something.</summary>
         public static int Count(IList<WeatherDay> days, int last, Func<WeatherDay, bool> has)
         {

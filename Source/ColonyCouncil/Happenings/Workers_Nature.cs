@@ -220,9 +220,13 @@ namespace ColonyCouncil
         {
             base.End();
             var map = SingleMap;
+            // After the hail the sky tends to clear for a day (Weather/WeatherDynamics.cs).
+            if (map != null) WeatherDynamics.PullFor(map, ClearsAfter);
             if (wasRaining || Rain == null || map?.weatherDecider == null || map.weatherManager?.curWeather != Rain) return;
             map.weatherDecider.StartNextWeather();
         }
+
+        private static readonly List<string> ClearsAfter = new List<string> { "clear:1.4:1" };
 
         public override void GameConditionTick()
         {

@@ -358,6 +358,271 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- A forecast (Weather/WeatherDynamics.cs, with the forecasts setting): the colonist who reads the weather best, a few hours
+       before it changes, says what's coming, one sentence and no times. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastRain</defName>
+    <lines>
+      <plain>
+        <li>Rain on the way, I can smell it.</li>
+        <li>Those clouds are full, it'll rain.</li>
+        <li>Get the washing in, there's rain coming.</li>
+        <li>[work:Growing] The fields will get their rain soon.</li>
+        <li>[old] My knee says rain, and it's never wrong.</li>
+        <li>[child] It's going to rain, the ants are all running home.</li>
+        <li>[lowtech] The swallows are flying low, so it'll rain.</li>
+      </plain>
+      <blunt>
+        <li>Rain coming.</li>
+      </blunt>
+      <gloomy>
+        <li>More rain, as if we needed it.</li>
+      </gloomy>
+      <cheerful>
+        <li>Rain's coming, good for the crops.</li>
+      </cheerful>
+      <warm>
+        <li>Soft rain coming, the kind that does the land good.</li>
+      </warm>
+      <cold>
+        <li>Rain coming, and a cold one.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastStorm</defName>
+    <lines>
+      <plain>
+        <li>There's a storm building, mark my words.</li>
+        <li>That heavy air means thunder before long.</li>
+        <li>Tie down what can blow away, a storm's coming.</li>
+        <li>[work:Growing] A storm's coming, I'd bring in what's ripe.</li>
+        <li>[old] I've felt this air before, and a storm always followed it.</li>
+        <li>[child] The sky's going purple, is that a storm?</li>
+        <li>[lowtech] The cattle are bunching up, so there's a storm coming.</li>
+      </plain>
+      <blunt>
+        <li>Storm coming.</li>
+      </blunt>
+      <gloomy>
+        <li>A storm's on its way, and it won't be gentle.</li>
+      </gloomy>
+      <cheerful>
+        <li>A good storm's coming, it'll clear the air.</li>
+      </cheerful>
+      <warm>
+        <li>Stay close to home, a storm's coming.</li>
+      </warm>
+      <cold>
+        <li>There's a storm coming in, cold behind it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastSnow</defName>
+    <lines>
+      <plain>
+        <li>It smells like snow.</li>
+        <li>Those grey clouds are snow clouds.</li>
+        <li>Snow's coming, bring the wood in.</li>
+        <li>[work:Growing] Snow's coming, the last of the fields had better come in.</li>
+        <li>[old] That still, heavy cold means snow.</li>
+        <li>[child] Is it going to snow, it smells like snow!</li>
+        <li>[lowtech] The sky's gone white and low, snow's coming.</li>
+      </plain>
+      <blunt>
+        <li>Snow coming.</li>
+      </blunt>
+      <gloomy>
+        <li>More snow on the way, more shoveling.</li>
+      </gloomy>
+      <cheerful>
+        <li>Snow's coming, the children will be pleased.</li>
+      </cheerful>
+      <warm>
+        <li>Snow's coming, it'll be soft and quiet out.</li>
+      </warm>
+      <cold>
+        <li>Snow on the way, and the cold with it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastFog</defName>
+    <lines>
+      <plain>
+        <li>There'll be fog, the air's gone heavy and still.</li>
+        <li>Fog's coming in off the low ground.</li>
+        <li>There'll be fog before long, I'd say.</li>
+        <li>[old] Still and damp like this, there's fog coming.</li>
+        <li>[child] Is the fog coming, the one that hides the trees?</li>
+        <li>[lowtech] The air's gone thick, fog's coming.</li>
+      </plain>
+      <blunt>
+        <li>Fog coming.</li>
+      </blunt>
+      <gloomy>
+        <li>Fog's coming, you won't see a raider till they're on you.</li>
+      </gloomy>
+      <cheerful>
+        <li>Fog's coming, it'll be lovely and quiet.</li>
+      </cheerful>
+      <warm>
+        <li>Fog's coming in, stay near the lamps.</li>
+      </warm>
+      <cold>
+        <li>A cold fog's coming, dress for the damp.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastClear</defName>
+    <lines>
+      <plain>
+        <li>Fair weather coming, I'd say.</li>
+        <li>It'll be clear, look at that sky.</li>
+        <li>Fine weather ahead, a good day for work outside.</li>
+        <li>[work:Growing] Dry and bright ahead, good for the fields.</li>
+        <li>[old] A sky like this means fine weather.</li>
+        <li>[child] It's going to be sunny, isn't it?</li>
+        <li>[lowtech] Red sky at evening, fair weather ahead.</li>
+      </plain>
+      <blunt>
+        <li>Clear weather coming.</li>
+      </blunt>
+      <gloomy>
+        <li>Clear skies coming, and the cold that comes with them.</li>
+      </gloomy>
+      <cheerful>
+        <li>Fine weather's coming, finally.</li>
+      </cheerful>
+      <warm>
+        <li>Clear skies ahead, good for looking at the stars.</li>
+      </warm>
+      <cold>
+        <li>Clear and cold ahead, I'd say.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastCloud</defName>
+    <lines>
+      <plain>
+        <li>Clouds are coming in.</li>
+        <li>It'll cloud over, look to the west.</li>
+        <li>A grey day ahead, I'd say.</li>
+        <li>[old] Mackerel sky, it'll cloud over.</li>
+        <li>[child] The clouds are coming to cover the sun.</li>
+      </plain>
+      <blunt>
+        <li>Clouds coming.</li>
+      </blunt>
+      <gloomy>
+        <li>Grey and dull ahead, like most days.</li>
+      </gloomy>
+      <cheerful>
+        <li>Some cloud coming, a break from the glare.</li>
+      </cheerful>
+      <warm>
+        <li>A soft grey day ahead.</li>
+      </warm>
+      <cold>
+        <li>Cloud coming in, and the chill under it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastWind</defName>
+    <lines>
+      <plain>
+        <li>The wind's getting up.</li>
+        <li>It'll blow hard, the trees are already talking.</li>
+        <li>Tie down the loose things, there's wind coming.</li>
+        <li>[old] Wind's coming, hear how the leaves have turned.</li>
+        <li>[child] The wind's coming, can we fly something?</li>
+        <li>[lowtech] The smoke's lying flat, wind's coming.</li>
+      </plain>
+      <blunt>
+        <li>Wind coming.</li>
+      </blunt>
+      <gloomy>
+        <li>Wind's coming, everything will be blown about.</li>
+      </gloomy>
+      <cheerful>
+        <li>A good wind's coming, fresh air.</li>
+      </cheerful>
+      <warm>
+        <li>Wind's coming, keep the doors shut.</li>
+      </warm>
+      <cold>
+        <li>A cold wind's coming.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastDust</defName>
+    <lines>
+      <plain>
+        <li>There's dust on the wind, it'll blow in soon.</li>
+        <li>The horizon's gone brown, dust's coming.</li>
+        <li>Cover the water, there's dust coming.</li>
+        <li>[old] That brown haze always brings dust.</li>
+        <li>[child] The sky's gone all yellow.</li>
+      </plain>
+      <blunt>
+        <li>Dust coming.</li>
+      </blunt>
+      <gloomy>
+        <li>Dust's coming, it gets in everything.</li>
+      </gloomy>
+      <cheerful>
+        <li>Just dust coming, nothing worse.</li>
+      </cheerful>
+      <warm>
+        <li>Dust's coming, keep your face covered.</li>
+      </warm>
+      <cold>
+        <li>Dust coming, and a dry cold with it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one who got the forecast wrong owns up to it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayForecastWrong</defName>
+    <lines>
+      <plain>
+        <li>So much for my forecast.</li>
+        <li>Well, I got that one wrong.</li>
+        <li>The sky had other ideas.</li>
+        <li>[old] I'm getting old, the weather fooled me.</li>
+        <li>[child] I said it would be different, didn't I?</li>
+      </plain>
+      <blunt>
+        <li>Wrong about the weather.</li>
+      </blunt>
+      <gloomy>
+        <li>Can't even get the weather right.</li>
+      </gloomy>
+      <cheerful>
+        <li>Wrong again, but it's a nice surprise.</li>
+      </cheerful>
+      <warm>
+        <li>The weather's made a fool of me, and I don't mind.</li>
+      </warm>
+      <cold>
+        <li>Wrong about the weather, that's all.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
   <!-- One who dreads storms, at a lightning flash (Immersion/WeatherTouches.cs). -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_SayLightningFlinch</defName>

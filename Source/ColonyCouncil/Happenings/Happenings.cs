@@ -92,6 +92,12 @@ namespace ColonyCouncil
         /// day), "dry:M" (nothing fell), "storm:M"; "[fall]rain:3/7" asks it only in fall. All must fit.
         /// </summary>
         public List<string> weather;
+        /// <summary>
+        /// What the event does to the weather that follows (Weather/WeatherDynamics.cs, with "Weather that changes like
+        /// weather" on): "rain:1.8:5" makes rain likelier for five days, "clear:0.6:5" clear skies less likely; kinds are
+        /// rain, storm, clear, snow and fog. The game still chooses each weather from the land's own.
+        /// </summary>
+        public List<string> weatherAfter;
         public ThoughtDef thought;
         public ThoughtDef thoughtOthers;
         /// <summary>Short lines spoken or shown above heads while it plays out (tales, cheers, names).</summary>

@@ -57,4 +57,30 @@
   <CC_Overview_WeatherRecords>Since the colony came: coldest {0}, hottest {1}, longest rain {2} days, longest dry spell {3} days.</CC_Overview_WeatherRecords>
   <CC_Overview_WeatherNamed>Last season remembered by name: {0}, year {1}.</CC_Overview_WeatherNamed>
 
+  <!-- Weather that changes like weather (Source/ColonyCouncil/Weather/WeatherDynamics.cs): settings, the forecast, the year. -->
+  <CC_SetSec_Weather>The weather</CC_SetSec_Weather>
+  <CC_Settings_DynamicWeather>Weather that changes like weather</CC_Settings_DynamicWeather>
+  <CC_Settings_DynamicWeather_Tip>The game still chooses each next weather from the land's own weathers (and Seasonal Weather's by season, and any other weather mod's), only weighed as the land and the last days make likely. A few wet days make more rain likely for a while, until the spell breaks; a long dry spell holds and then breaks with rain, in the warm with a storm. A storm seldom comes out of a clear sky except on a hot afternoon, fog comes after a cold clear night or rain and seldom in the wind, and a cold front brings snow, or a storm where it's still warm. Rimfolk's events move the weather after them (the long rains bring more rain, a thirsty herd comes in a dry spell that holds), as do a heat wave, a cold snap, a warm spell and any drought, which never brings more rain. Each year leans a little wetter or drier, a dry land more. A tropical land Seasonal Weather doesn't cover has a wet and a dry season; elsewhere storms come in summer and few in winter. A morning fog lifts by late morning. Over the years each land keeps about the rain it had, and the special weathers (a double rainbow, blood rain, acid smog) and anything an event brings are left as they are. Needs the deeper game hooks.</CC_Settings_DynamicWeather_Tip>
+  <CC_SetNote_DynamicWeather>Spells of rain and dry weather that hold and break, weather that follows on, events moving the weather.</CC_SetNote_DynamicWeather>
+  <CC_Settings_WeatherTemperature>The weather moves the temperature</CC_Settings_WeatherTemperature>
+  <CC_Settings_WeatherTemperature_Tip>A few degrees at most, eased in over a couple of hours: up to 3 °C cooler under rain on a warm day and a degree more in a storm, colder on a clear night (twice as much in a dry land, less in a humid one, more over snow), milder under cloud, fog or rain at night, a little warmer in clear sunshine (more in a dry land), and colder over snow cover on land that isn't always frozen. Each year also leans about a degree warmer or colder at most. Never more than 5 °C down or 3 °C up. Needs the deeper game hooks.</CC_Settings_WeatherTemperature_Tip>
+  <CC_SetNote_WeatherTemperature>Cooler under rain, colder on clear nights, milder under cloud: a few degrees.</CC_SetNote_WeatherTemperature>
+  <CC_Settings_WeatherForecast>Forecasts</CC_Settings_WeatherForecast>
+  <CC_Settings_WeatherForecast_Tip>A few hours before the weather changes, the colonist who reads it best (Plants 6 or more, or an older hand with 3) says what's coming, if they're in view; the Overview's Weather card shows it too. The weather that comes is then held to unless it can no longer come. The forecast itself is right seven times in ten for a fair hand (Plants 6), and up to nine in ten for an old hand at it; a weather station from Stormproof or Weather Control makes it nearly certain and lets anyone read it. Whoever got it wrong may own up to it. Needs the deeper game hooks.</CC_Settings_WeatherForecast_Tip>
+  <CC_SetNote_WeatherForecast>The one who reads the weather best says what's coming, and is mostly right.</CC_SetNote_WeatherForecast>
+  <CC_Overview_WeatherForecast>{0} expects {1}.</CC_Overview_WeatherForecast>
+  <CC_Forecast_Rain>rain</CC_Forecast_Rain>
+  <CC_Forecast_Storm>a storm</CC_Forecast_Storm>
+  <CC_Forecast_Snow>snow</CC_Forecast_Snow>
+  <CC_Forecast_Fog>fog</CC_Forecast_Fog>
+  <CC_Forecast_Clear>clear skies</CC_Forecast_Clear>
+  <CC_Forecast_Cloud>cloud</CC_Forecast_Cloud>
+  <CC_Forecast_Wind>wind</CC_Forecast_Wind>
+  <CC_Forecast_Dust>dust</CC_Forecast_Dust>
+  <CC_Annals_WeatherYear>It was a {0} year.</CC_Annals_WeatherYear>
+  <CC_Annals_Year_wet>wet</CC_Annals_Year_wet>
+  <CC_Annals_Year_dry>dry</CC_Annals_Year_dry>
+  <CC_Annals_Year_warm>warm</CC_Annals_Year_warm>
+  <CC_Annals_Year_cold>cold</CC_Annals_Year_cold>
+
 </LanguageData>
