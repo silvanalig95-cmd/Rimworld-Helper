@@ -351,5 +351,10 @@
   <CC_Settings_DefenseGateReminder>Remind me of a shut gate when raiders come</CC_Settings_DefenseGateReminder>
   <CC_Settings_DefenseGateReminder_Tip>When raiders arrive, says once if a defense line's gate is shut. With no way in, raiders break the wall wherever they like; a gate held open brings them into your guns.</CC_Settings_DefenseGateReminder_Tip>
   <CC_SetNote_DefenseGateReminder>Once a raid, a word if a defense line's gate is shut when raiders come.</CC_SetNote_DefenseGateReminder>
+  <CC_Settings_CoverDrag>Ctrl and right-drag sends drafted colonists to cover</CC_Settings_CoverDrag>
+  <CC_Settings_CoverDrag_Tip>With drafted colonists selected, hold Ctrl and right-drag: the cell you press is where they gather and the drag points at the enemy. Each one goes to the cell nearby with the most cover from that side that they can shoot from, long guns a step back and melee fighters a step forward. The cover of each cell shows while you drag. Ctrl and a right-click without dragging takes cover from the nearest enemies in sight. Needs the deeper game hooks.</CC_Settings_CoverDrag_Tip>
+  <CC_SetNote_CoverDrag>Ctrl and right-drag with drafted colonists: to cover from the side the drag points at.</CC_SetNote_CoverDrag>
+  <CC_CoverDrag_Cover>{0}% cover</CC_CoverDrag_Cover>
+  <CC_CoverDrag_EnemySide>enemy side</CC_CoverDrag_EnemySide>
 
 </LanguageData>

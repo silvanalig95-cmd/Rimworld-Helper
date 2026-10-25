@@ -1,8 +1,26 @@
 # Handoff: work in progress
 
-Last shipped: 0.14.1 "Not everyone gets along" (the player: everyone becomes friends with enough time together;
-time should count, but not everyone has to get along). Before it, 0.14.0 "Shaped for the colony" (the defense
-overhaul), 0.13.1 "Fungus kept for its meal" and 0.13.0 "More to live through".
+Last shipped: 0.14.2 "Into cover" (the player: the TakeCover mod finds cover spots on Ctrl + right-drag, but in 1.7
+letting go only leaves the colonists' ghosts there, no order). Before it, 0.14.1 "Not everyone gets along", 0.14.0
+"Shaped for the colony" (the defense overhaul), 0.13.1 "Fungus kept for its meal" and 0.13.0 "More to live through".
+
+## Taking cover with a drag, as shipped (0.14.2)
+
+TakeCover (Workshop 3749200746, 1.6 only) transpiles `Selector.HandleMapClicks`, runs its own controller and patches
+and unpatches `Selector.SelectorOnGUI` at run time to catch the drag and the release; its release never arrives in the
+player's 1.7 (the cause wasn't seen in the 1.7 code: only its reference assemblies are here, where every member it
+uses is unchanged). Rimfolk's version leans on the game's own `MultiPawnGotoController` instead, which polls the
+mouse button for the release:
+- `Defense/CoverDragMath.cs` (pure, `CoverDragTests`): the drag's frame, cell scores (the game's block chance from the
+  enemy side x100, -60 for a shooter's cell it can't shoot from, the preferred depth by reach, the place on the line),
+  and a greedy pick of colonist and cell with a neighbor penalty and a reach check on the pairs about to be chosen.
+- `Defense/CoverDrag.cs`: `Patch_CoverDragStart` (SelectorOnGUI prefix: Ctrl + right press with drafted colonists on
+  open ground starts the game's drag and uses up the press, so TakeCover's code never sees it), `Patch_CoverDragCells`
+  (RecomputeDestinations prefix), `Patch_CoverDragOrders` (FinalizeInteraction prefix: orders with the cell itself as
+  the click, so a drag ending on the map edge never sets exitMapOnArrival), `Patch_CoverDragEnd`, `Patch_CoverDragLabels`.
+  The controller's private `start`, `end`, `pawns`, `dests` are read by name (checked unchanged in the 1.7 reference).
+- Setting `coverDrag` (Interface page, needs the deep hooks). Not tried in the game here: worth a look at the cover
+  labels, a drag toward raiders behind a wall, and a Ctrl + right-click with enemies in sight.
 
 ## Friendships, as shipped (0.14.1)
 

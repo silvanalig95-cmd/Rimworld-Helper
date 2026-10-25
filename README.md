@@ -1192,6 +1192,15 @@ each one reads like "Steel wall    420 (+85 lying around), enough for 84". You c
 Colonists also sometimes add **personal touches**: a plant pot, an end table or a lamp planned for their own
 bedroom (a wall lamp on a wall, where the colony can build one and the room isn't large).
 
+### Taking cover with a drag
+With drafted colonists selected, hold **Ctrl and right-drag**: the cell you press is where they gather and the drag
+points at the enemy. Each colonist goes to the cell nearby with the most cover from that side that they can still
+shoot from, long guns a step back and melee fighters a step forward, two cells apart where there is room, in the order
+they stood. Each cell's cover shows while you drag. Ctrl and a right-click without dragging takes cover from the
+nearest enemies in sight. It runs on the game's own drag of several colonists (pressing, dragging and letting go work
+as the game does), never sends anyone off the map, and leaves a right-click on anything with its own orders to the
+game. It replaces the TakeCover mod, which in 1.7 shows where colonists would go but never gives the order.
+
 ### Defenses: where to meet them
 **Colony → Defenses** reads the colony's defense from its map. It works out which map edges raiders can reach home
 from and the ways they'd walk (from a sample of edge cells, along the easiest path, doors costing extra as raiders

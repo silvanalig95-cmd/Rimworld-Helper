@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Into cover
+
+*25 October 2026, version 0.14.2*
+
+- Hold Ctrl and right-drag with drafted colonists to send them to cover. The cell you press is where they gather and the drag points at the enemy; each one takes the cell nearby with the most cover from that side that they can shoot from.
+- Long guns stand a step back and melee fighters a step forward, two cells apart where there is room, in the order they stood. Each cell's cover shows while you drag: green from 50%, yellow from 20%.
+- Ctrl and a right-click without dragging takes cover from the nearest enemies in sight. Nobody is sent off the edge of the map, and a right-click on something with its own orders is the game's as before.
+- It runs on the game's own drag of several colonists, so it works in 1.7, where the TakeCover mod shows the colonists where they would go but never gives the order. With Rimfolk's on, TakeCover can be removed. A setting, on the Interface page.
+
 ## Not everyone gets along
 
 *25 October 2026, version 0.14.1*
