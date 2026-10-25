@@ -94,6 +94,7 @@
     <label>rest when ill</label>
     <description>Anyone ill or hurt goes to bed and stays there, and the rest cover for them. Wounds heal and illnesses pass faster, and the colony works short-handed while it lasts. Doctors, the sickly and anyone still healing approve, and they ask for it when someone is ill or many are hurt; the industrious and the tough hate being told to lie down.</description>
     <requestWhen><li>Illness</li><li>Wounded</li></requestWhen>
+    <neededWhen><li>RecentThreat</li></neededWhen>
     <order>16</order>
     <durationDays>5</durationDays>
     <cooldownDays>10</cooldownDays>

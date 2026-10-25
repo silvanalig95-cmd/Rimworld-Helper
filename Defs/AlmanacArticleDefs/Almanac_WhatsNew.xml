@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.16.1</version>
+        <date>25 October 2026</date>
+        <title>Decrees when they're needed</title>
+        <points>
+          <li>A decree the colony needs now and wants can come again sooner: after fight on fight, with the home filthy and many hurt, a clean sweep someone asks for is possible again in about four days instead of eight.</li>
+          <li>A needed repeat is minded less: those against it lose less trust, resent it less while it lasts, and are less likely to snap.</li>
+          <li>It never becomes a decree for every day: at least a day and a third of its rest always stays, and once it has been declared twice in a month the need counts for half.</li>
+          <li>The decree's card says when it's needed and why, and how much the colony wants it. A clean sweep and a sick bay also count the fighting as a need.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.16.0</version>
         <date>25 October 2026</date>
         <title>Weather that changes like weather</title>

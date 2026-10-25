@@ -1,9 +1,23 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.0 "Weather that changes like weather" (all six dynamic weather options the player chose, biome by
-biome). Before it, 0.15.0 "The weather remembered" (the weather ideas the player chose), 0.14.2 "Into cover"
+Last shipped: 0.16.1 "Decrees when they're needed" (the player asked that a needed, wanted decree, like a clean sweep
+after many fights, come again sooner and be forgiven more, without becoming constant). Before it, 0.16.0 "Weather
+that changes like weather" (all six dynamic weather options the player chose, biome by biome), 0.15.0 "The weather remembered" (the weather ideas the player chose), 0.14.2 "Into cover"
 (the TakeCover mod finds cover spots on Ctrl + right-drag, but in 1.7 letting go gives no order), 0.14.1 "Not everyone
 gets along", 0.14.0 "Shaped for the colony" (the defense overhaul) and 0.13.1 "Fungus kept for its meal".
+
+## Decrees when they're needed, as shipped (0.16.1)
+
+- `Decrees/DecreeMath.cs` (pure, `DecreeMathTests`): `Need` (moment strengths, 1 or 2 each, three's worth is full),
+  `Want` (love 1, like 0.75, dislike -0.5, hate -0.75 over everyone, +0.3 for a petition), `Understanding` (need x
+  (0.4 + 0.6 want), halved once declared twice in the last month), `CooldownTicks` (up to 65% off, never under a day),
+  `BacklashFactor` (up to 60% off).
+- `Decrees/Decrees.cs`: `DecreeDef.neededWhen` (Clean sweep and Sick bay: RecentThreat); `DecreeTracker.NeedOf` (cached
+  250 ticks; moments from requestWhen, orWhen and neededWhen; strong when bad), `ThreatsWithin` from `threatTicks` (the
+  game's LastThreatBigTick noted hourly, 8 kept, 15 days). `ReadyAt` is the effective time (stored readyAt stays end +
+  full rest, so it shortens and lengthens with the need); `UnrestChance`, `Backlash` and the decree mood's
+  `ActiveDecree.Resentment` take `BacklashFactor(understood)` (saved on the decree as enacted).
+- `UI/DecreePanel.cs`: a green "Needed now: ..." line on a card on cooldown or recently used.
 
 ## Weather that changes like weather, as shipped (0.16.0)
 

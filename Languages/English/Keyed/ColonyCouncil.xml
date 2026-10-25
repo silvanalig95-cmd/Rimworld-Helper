@@ -1002,6 +1002,37 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Decree_Repeal>Repeal now</CC_Decree_Repeal>
   <CC_Decree_NoMood>Not in Advisor-only mode</CC_Decree_NoMood>
   <CC_Decree_Cooldown>Possible again in {0}</CC_Decree_Cooldown>
+  <CC_Decree_CooldownSooner>Possible again in {0}, sooner than usual because it's needed</CC_Decree_CooldownSooner>
+  <!-- A decree needed now and wanted (Decrees/Decrees.cs, NeedOf): its card says why; {0} is the reasons, {1} who wants it. -->
+  <CC_Decree_NeedLine>Needed now: {0}. {1}</CC_Decree_NeedLine>
+  <CC_Decree_NeedWantedMost>Most want it, so it can come again sooner, and a repeat is minded less.</CC_Decree_NeedWantedMost>
+  <CC_Decree_NeedWantedSome>Some want it, so it can come again a little sooner, and a repeat is minded a little less.</CC_Decree_NeedWantedSome>
+  <CC_Decree_NeedWantedFew>Few want it, but the need lets it come again a little sooner.</CC_Decree_NeedWantedFew>
+  <CC_Decree_NeedPatience>It has been declared {0} times this month, so patience is wearing thin and the need counts for half.</CC_Decree_NeedPatience>
+  <CC_Decree_Need_FoodLow>food is running low</CC_Decree_Need_FoodLow>
+  <CC_Decree_Need_FoodLow_Strong>the food is nearly gone</CC_Decree_Need_FoodLow_Strong>
+  <CC_Decree_Need_RecentThreat>the colony has been fighting</CC_Decree_Need_RecentThreat>
+  <CC_Decree_Need_RecentThreat_Strong>fight has followed fight</CC_Decree_Need_RecentThreat_Strong>
+  <CC_Decree_Need_Grief>someone is grieving</CC_Decree_Need_Grief>
+  <CC_Decree_Need_Grief_Strong>several are grieving</CC_Decree_Need_Grief_Strong>
+  <CC_Decree_Need_ColonyHappy>spirits are high</CC_Decree_Need_ColonyHappy>
+  <CC_Decree_Need_ColonyMiserable>spirits are low</CC_Decree_Need_ColonyMiserable>
+  <CC_Decree_Need_ColonyMiserable_Strong>spirits are very low</CC_Decree_Need_ColonyMiserable_Strong>
+  <CC_Decree_Need_Spoiled>people have grown used to comfort</CC_Decree_Need_Spoiled>
+  <CC_Decree_Need_Dirty>the home is dirty</CC_Decree_Need_Dirty>
+  <CC_Decree_Need_Dirty_Strong>the home is filthy</CC_Decree_Need_Dirty_Strong>
+  <CC_Decree_Need_Prisoners>there are prisoners</CC_Decree_Need_Prisoners>
+  <CC_Decree_Need_Autumn>it's harvest time</CC_Decree_Need_Autumn>
+  <CC_Decree_Need_Strained>the colony is worn down</CC_Decree_Need_Strained>
+  <CC_Decree_Need_Strained_Strong>the colony is close to breaking</CC_Decree_Need_Strained_Strong>
+  <CC_Decree_Need_Illness>someone is ill</CC_Decree_Need_Illness>
+  <CC_Decree_Need_Illness_Strong>several are ill</CC_Decree_Need_Illness_Strong>
+  <CC_Decree_Need_Winter>it's winter</CC_Decree_Need_Winter>
+  <CC_Decree_Need_Newcomer>someone new has joined</CC_Decree_Need_Newcomer>
+  <CC_Decree_Need_Plenty>the stores are full</CC_Decree_Need_Plenty>
+  <CC_Decree_Need_Situation>the hard times it answers have come to the region</CC_Decree_Need_Situation>
+  <CC_Decree_Need_Wounded>many are hurt</CC_Decree_Need_Wounded>
+  <CC_Decree_Need_Wounded_Strong>half the colony is hurt</CC_Decree_Need_Wounded_Strong>
   <CC_Decree_TooMany>{0} decrees already in force</CC_Decree_TooMany>
   <CC_Decree_Loves>Loves it: {0}</CC_Decree_Loves>
   <CC_Decree_Likes>Likes it: {0}</CC_Decree_Likes>
@@ -1567,6 +1598,7 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Log_DecreeAgain>{0}, again</CC_Log_DecreeAgain>
   <CC_Cause_DecreeAgain>the council enacted "{0}" again, too soon.</CC_Cause_DecreeAgain>
   <CC_Cause_DecreeAgainNote>Enacted again too soon: resented {0} more.</CC_Cause_DecreeAgainNote>
+  <CC_Cause_DecreeAgainUnderstood>Enacted again soon, but the colony needed it: resented only {0} more.</CC_Cause_DecreeAgainUnderstood>
   <CC_Cause_DecreeForcedNote>Forced through before its time: resented {0} more.</CC_Cause_DecreeForcedNote>
 
   <!-- Colony character -->

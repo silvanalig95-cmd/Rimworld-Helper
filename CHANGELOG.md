@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Decrees when they're needed
+
+*25 October 2026, version 0.16.1*
+
+- A decree the colony needs now and wants can come again sooner: after fight on fight, with the home filthy and many hurt, a clean sweep someone asks for is possible again in about four days instead of eight.
+- A needed repeat is minded less: those against it lose less trust, resent it less while it lasts, and are less likely to snap.
+- It never becomes a decree for every day: at least a day and a third of its rest always stays, and once it has been declared twice in a month the need counts for half.
+- The decree's card says when it's needed and why, and how much the colony wants it. A clean sweep and a sick bay also count the fighting as a need.
+
 ## Weather that changes like weather
 
 *25 October 2026, version 0.16.0*

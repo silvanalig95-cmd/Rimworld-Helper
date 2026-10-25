@@ -85,8 +85,8 @@ namespace ColonyCouncil
         /// <summary>A card's text, the people for each reaction, and its measurements; worked out about once a second.</summary>
         private class Layout
         {
-            public float width = -1f, at, titleH, descH, effectsH, noteH, warnH, facesH, height;
-            public string effects, note, warning;
+            public float width = -1f, at, titleH, descH, effectsH, noteH, needH, warnH, facesH, height;
+            public string effects, note, need, warning;
             public List<Pawn>[] faces = new List<Pawn>[4];
             /// <summary>Each reaction's pill and its tooltip ("Loves it: ...").</summary>
             public string[] reactionLabels = new string[4], reactionTips = new string[4];
@@ -117,6 +117,8 @@ namespace ColonyCouncil
             l.note = req?.pawn == null ? null
                 : (req.repeal ? "CC_Decree_RepealLine" : "CC_Decree_PetitionLine").Translate(req.pawn.Named("PAWN")).Resolve() + (req.line != null ? " \"" + req.line + "\"" : "");
             int fatigue = active == null ? tracker.Fatigue(def) : 0;
+            // Needed now and wanted: it can come again sooner, and a repeat is minded less.
+            l.need = active == null && (tracker.OnCooldown(def) || fatigue > 0) ? NeedLine(tracker, def, fatigue) : null;
             l.warning = fatigue > 0
                 ? "CC_Decree_FatigueWarn".Translate((fatigue == 1 ? "CC_Decree_UsedOnce".Translate() : "CC_Decree_UsedTimes".Translate(fatigue)).Named("TIMES"),
                     Mathf.RoundToInt(DecreeTracker.FatigueDays).Named("DAYS"), tracker.UnrestChance(def, tracker.OnCooldown(def)).ToStringPercent().Named("CHANCE"),
@@ -150,12 +152,28 @@ namespace ColonyCouncil
             l.descH = 0f;
             l.effectsH = Text.CalcHeight(l.effects, textW);
             l.noteH = l.note == null ? 0f : Text.CalcHeight(l.note, textW) + 2f;
+            l.needH = l.need == null ? 0f : Text.CalcHeight(l.need, textW) + 2f;
             l.warnH = l.warning == null ? 0f : Text.CalcHeight(l.warning, textW) + 2f;
             l.facesH = Faces(l, 0f, 0f, textW, false);
-            float h = 8f + l.titleH + l.noteH + l.warnH + l.descH + 2f + l.effectsH + 4f + (active != null ? UiKit.MeterHeight + 4f : 0f) + l.facesH + 8f;
+            float h = 8f + l.titleH + l.noteH + l.needH + l.warnH + l.descH + 2f + l.effectsH + 4f + (active != null ? UiKit.MeterHeight + 4f : 0f) + l.facesH + 8f;
             l.height = Mathf.Max(h, 74f);
             layouts[def] = l;
             return l;
+        }
+
+        /// <summary>
+        /// "Needed now: the home is filthy and many are hurt. Most want it, so it can come again sooner and a repeat is
+        /// minded less." Null when it isn't needed enough to make a difference.
+        /// </summary>
+        private static string NeedLine(DecreeTracker tracker, DecreeDef def, int fatigue)
+        {
+            var n = tracker.NeedOf(def);
+            if (n.understanding < 0.1f || n.holding.Count == 0) return null;
+            var why = n.holding.Select(h => ("CC_Decree_Need_" + h.moment + (h.strength >= DecreeMath.HoldsStrongly ? "_Strong" : "")).Translate().Resolve()).ToList();
+            string wanted = (n.want >= 0.5f ? "CC_Decree_NeedWantedMost" : n.want >= 0.2f ? "CC_Decree_NeedWantedSome" : "CC_Decree_NeedWantedFew").Translate().Resolve();
+            string line = "CC_Decree_NeedLine".Translate(TextUtil.JoinAnd(why), wanted).Resolve();
+            if (fatigue >= 2) line += " " + "CC_Decree_NeedPatience".Translate(fatigue).Resolve();
+            return line;
         }
 
         private static void DrawDecree(DecreeDef def, Layout l, CouncilGameComponent comp, List<Pawn> pawns, float width, float y)
@@ -193,6 +211,10 @@ namespace ColonyCouncil
             if (l.note != null)
             {
                 cy += UiKit.Paragraph(textX, cy, textW, l.note, Asked) + 2f;
+            }
+            if (l.need != null)
+            {
+                cy += UiKit.Paragraph(textX, cy, textW, l.need, Good) + 2f;
             }
             if (l.warning != null)
             {

@@ -168,6 +168,11 @@ namespace ColonyCouncil
         public WayShift ways;
         /// <summary>When someone who likes it may ask the council for it (any one is enough).</summary>
         public List<DecreeMoment> requestWhen;
+        /// <summary>
+        /// More moments that count toward its being needed now, though nobody asks for it then (a clean sweep after
+        /// fighting). With these, requestWhen and orWhen, a decree that's needed and wanted can come again sooner.
+        /// </summary>
+        public List<DecreeMoment> neededWhen;
         public int order;
         /// <summary>
         /// Feelings and strain (Heart/): strain a day for those who dislike it (half again for those who hate it), the
@@ -268,6 +273,11 @@ namespace ColonyCouncil
         /// <summary>How many times it had been enacted lately when this one began (and once more if forced): resentment.</summary>
         public int fatigue;
         public bool forced;
+        /// <summary>How well the colony understood it coming again (DecreeMath.Understanding): that much of the repeat's resentment is let off.</summary>
+        public float understood;
+
+        /// <summary>How much more its bad mood weighs for coming again soon (0.35 a recent time, less as far as it was understood).</summary>
+        public float Resentment => 0.35f * fatigue * DecreeMath.BacklashFactor(understood);
 
         public void ExposeData()
         {
@@ -276,6 +286,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref endTick, "endTick");
             Scribe_Values.Look(ref fatigue, "fatigue");
             Scribe_Values.Look(ref forced, "forced");
+            Scribe_Values.Look(ref understood, "understood");
         }
     }
 
@@ -327,7 +338,135 @@ namespace ColonyCouncil
 
         public bool SuspendsWishes => active.Any(a => a.def.suspendsWishes);
 
-        public int ReadyAt(DecreeDef def) => readyAt.TryGetValue(def.defName, out int t) ? t : 0;
+        /// <summary>
+        /// When it can be declared again: its rest after it ended, shortened as far as the colony understands it coming
+        /// again (needed now, and wanted), never to under a day or a third of its rest.
+        /// </summary>
+        public int ReadyAt(DecreeDef def)
+        {
+            if (!readyAt.TryGetValue(def.defName, out int t)) return 0;
+            if (t <= Find.TickManager.TicksGame) return t;
+            float u = NeedOf(def).understanding;
+            if (u <= 0f) return t;
+            int full = Mathf.RoundToInt(def.cooldownDays * GenDate.TicksPerDay);
+            return Mathf.Min(t, t - full + DecreeMath.CooldownTicks(def.cooldownDays, u, GenDate.TicksPerDay));
+        }
+
+        /// <summary>Its rest is shorter now than its own, because it's needed and wanted.</summary>
+        public bool Sooner(DecreeDef def) => readyAt.TryGetValue(def.defName, out int t) && t > Find.TickManager.TicksGame && ReadyAt(def) < t;
+
+        // ---------------- Needed and wanted ----------------
+
+        /// <summary>How much a decree is needed and wanted now, and what holds: worked out at most every 250 ticks.</summary>
+        public sealed class NeedNow
+        {
+            public int tick = int.MinValue;
+            public float need, want, understanding;
+            /// <summary>The moments that hold, and how strongly (DecreeMath.Holds or HoldsStrongly).</summary>
+            public readonly List<(DecreeMoment moment, int strength)> holding = new List<(DecreeMoment, int)>();
+        }
+
+        [Unsaved] private readonly Dictionary<DecreeDef, NeedNow> needs = new Dictionary<DecreeDef, NeedNow>();
+
+        public NeedNow NeedOf(DecreeDef def)
+        {
+            int now = Find.TickManager.TicksGame;
+            if (needs.TryGetValue(def, out var n) && now >= n.tick && now - n.tick < Sched.RareTicks) return n;
+            n = new NeedNow { tick = now };
+            needs[def] = n;
+            var map = MapFacts.BusiestHome;
+            if (map == null) return n;
+            var pawns = map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p)).ToList();
+            if (pawns.Count == 0) return n;
+            int strength = 0;
+            foreach (var m in MomentsOf(def))
+            {
+                int st = MomentStrength(m, map, pawns, def);
+                if (st <= 0) continue;
+                strength += st;
+                n.holding.Add((m, st));
+            }
+            n.need = DecreeMath.Need(strength);
+            if (n.need <= 0f) return n;
+            int love = 0, like = 0, neutral = 0, dislike = 0, hate = 0;
+            foreach (var p in pawns)
+                switch (def.ReactionOf(p))
+                {
+                    case DecreeReaction.Love: love++; break;
+                    case DecreeReaction.Like: like++; break;
+                    case DecreeReaction.Dislike: dislike++; break;
+                    case DecreeReaction.Hate: hate++; break;
+                    default: neutral++; break;
+                }
+            var req = RequestFor(def);
+            n.want = DecreeMath.Want(love, like, neutral, dislike, hate, req != null && !req.repeal);
+            n.understanding = DecreeMath.Understanding(n.need, n.want, Fatigue(def));
+            return n;
+        }
+
+        /// <summary>The moments a decree answers: when it's asked for, when it can be declared, and when it's needed besides.</summary>
+        private static IEnumerable<DecreeMoment> MomentsOf(DecreeDef def)
+        {
+            var seen = new HashSet<DecreeMoment>();
+            foreach (var list in new[] { def.requestWhen, def.orWhen, def.neededWhen })
+                if (list != null)
+                    foreach (var m in list)
+                        if (seen.Add(m)) yield return m;
+        }
+
+        /// <summary>
+        /// How strongly a moment holds now: 0, DecreeMath.Holds, or HoldsStrongly when it's bad (food for under three days,
+        /// fight on fight, two grieving or ill, spirits very low, a filthy home, strain at 60, half the colony hurt).
+        /// </summary>
+        private int MomentStrength(DecreeMoment m, Map map, List<Pawn> pawns, DecreeDef def)
+        {
+            if (m == DecreeMoment.RecentThreat)
+            {
+                bool recent = MomentNow(m, map, pawns, def), many = ThreatsWithin(10f) >= 2;
+                return recent && many ? DecreeMath.HoldsStrongly : recent || many ? DecreeMath.Holds : 0;
+            }
+            if (!MomentNow(m, map, pawns, def)) return 0;
+            bool strong;
+            switch (m)
+            {
+                case DecreeMoment.FoodLow: strong = MapFacts.Of(map).FoodDays < 3f; break;
+                case DecreeMoment.Grief: strong = pawns.Count(Flavor.IsGrieving) >= 2; break;
+                case DecreeMoment.ColonyMiserable: strong = pawns.Average(p => p.needs?.mood?.CurLevelPercentage ?? 0.5f) < 0.3f; break;
+                case DecreeMoment.Dirty: strong = WishWorker_Tidy.Filth(map) > 150; break;
+                case DecreeMoment.Strained: strong = Heart.ColonyStrain(pawns) >= 60f; break;
+                case DecreeMoment.Illness: strong = pawns.Count(p => LifeChecks.Illness(p) != null) >= 2; break;
+                case DecreeMoment.Wounded: strong = pawns.Count(p => LifeChecks.WoundSeverity(p) >= LifeChecks.HurtFrom) * 2 >= pawns.Count; break;
+                default: strong = false; break;
+            }
+            return strong ? DecreeMath.HoldsStrongly : DecreeMath.Holds;
+        }
+
+        /// <summary>When the big threats at home came (raids, packs, drops), as the game marks them: the last eight, half a month.</summary>
+        private List<int> threatTicks = new List<int>();
+
+        public const int MaxThreats = 8;
+
+        /// <summary>How many big threats came home in the last few days.</summary>
+        public int ThreatsWithin(float days)
+        {
+            int now = Find.TickManager.TicksGame, n = 0;
+            foreach (int t in threatTicks)
+                if (now - t < days * GenDate.TicksPerDay) n++;
+            return n;
+        }
+
+        private void NoteThreats()
+        {
+            int now = Find.TickManager.TicksGame;
+            foreach (var map in Find.Maps)
+            {
+                if (!map.IsPlayerHome || map.storyState == null) continue;
+                int t = map.storyState.LastThreatBigTick;
+                if (t > 0 && now - t < GenDate.TicksPerDay * 15 && (threatTicks.Count == 0 || t > threatTicks[threatTicks.Count - 1])) threatTicks.Add(t);
+            }
+            threatTicks.RemoveAll(t => now - t > GenDate.TicksPerDay * 15);
+            while (threatTicks.Count > MaxThreats) threatTicks.RemoveAt(0);
+        }
 
         public bool OnCooldown(DecreeDef def) => ReadyAt(def) > Find.TickManager.TicksGame;
 
@@ -358,7 +497,9 @@ namespace ColonyCouncil
         public float UnrestChance(DecreeDef def, bool force)
         {
             int fatigue = Fatigue(def) + (force ? 1 : 0);
-            return fatigue <= 0 ? 0f : Mathf.Clamp(0.2f * fatigue + (force ? 0.15f : 0f), 0f, 0.8f);
+            if (fatigue <= 0) return 0f;
+            // A repeat the colony needs and wants is taken better.
+            return Mathf.Clamp(0.2f * fatigue + (force ? 0.15f : 0f), 0f, 0.8f) * DecreeMath.BacklashFactor(NeedOf(def).understanding);
         }
 
         /// <summary>Why it can't be enacted right now, or null. <paramref name="force"/>: pushing it through its cooldown.</summary>
@@ -368,7 +509,7 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             if (!ColonyCouncilMod.Settings.MoodEffects) return "CC_Decree_NoMood".Translate();
             if (def.needsHeart && !Heart.On) return "CC_Decree_NeedsHeart".Translate();
-            if (!force && ReadyAt(def) > now) return "CC_Decree_Cooldown".Translate(TextUtil.DaysString(ReadyAt(def) - now));
+            if (!force && ReadyAt(def) > now) return (Sooner(def) ? "CC_Decree_CooldownSooner" : "CC_Decree_Cooldown").Translate(TextUtil.DaysString(ReadyAt(def) - now));
             if (active.Count >= MaxActive) return "CC_Decree_TooMany".Translate(MaxActive);
             if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(Flavor.IsGrieving)) return "CC_Decree_NeedsGrief".Translate();
             return DecreeWork.Blocked(def);
@@ -382,6 +523,7 @@ namespace ColonyCouncil
             force = force && OnCooldown(def);
             int fatigue = Fatigue(def) + (force ? 1 : 0);
             float unrest = UnrestChance(def, force);
+            float understood = fatigue > 0 ? NeedOf(def).understanding : 0f;
             useDefs.Add(def.defName);
             useTicks.Add(now);
             while (useTicks.Count > 0 && now - useTicks[0] > FatigueDays * GenDate.TicksPerDay)
@@ -389,11 +531,15 @@ namespace ColonyCouncil
                 useDefs.RemoveAt(0);
                 useTicks.RemoveAt(0);
             }
-            active.Add(new ActiveDecree { def = def, startTick = now, endTick = now + Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay), fatigue = fatigue, forced = force });
+            active.Add(new ActiveDecree
+            {
+                def = def, startTick = now, endTick = now + Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay), fatigue = fatigue, forced = force, understood = understood
+            });
+            needs.Remove(def);
             SyncHediffs();
             comp.Notify_DecreeEnacted(def);
             comp.character?.Shift(def.ways, "CC_Ways_Why_Decree".Translate(def.label).Resolve());
-            if (fatigue > 0) Backlash(def, fatigue, force, unrest, comp);
+            if (fatigue > 0) Backlash(def, fatigue, force, unrest, understood, comp);
             var req = RequestFor(def);
             var asker = req?.pawn != null && !req.pawn.Dead ? req.pawn : null;
             if (req != null)
@@ -421,18 +567,19 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The same decree again (or forced through its cooldown): those against it trust the council less and resent
-        /// it more, and someone may snap.
+        /// it more, and someone may snap; less so as far as the colony understands it (needed now, and wanted).
         /// </summary>
-        private void Backlash(DecreeDef def, int fatigue, bool forced, float unrest, CouncilGameComponent comp)
+        private void Backlash(DecreeDef def, int fatigue, bool forced, float unrest, float understood, CouncilGameComponent comp)
         {
             using var _cause = Causes.Push("CC_Cause_DecreeAgain".Translate(def.label).Resolve());
             var pawns = PawnsFinder.AllMaps_FreeColonistsSpawned.Where(p => !p.IsQuestLodger() && People.HasInnerLife(p)).ToList();
             var against = pawns.Where(p => def.ReactionOf(p) <= DecreeReaction.Dislike).ToList();
-            float scale = ColonyCouncilMod.Settings.ChosenPenaltyScale * Mathf.Min(fatigue, 3);
+            float let = DecreeMath.BacklashFactor(understood);
+            float scale = ColonyCouncilMod.Settings.ChosenPenaltyScale * Mathf.Min(fatigue, 3) * let;
             foreach (var p in against)
             {
                 bool hate = def.ReactionOf(p) == DecreeReaction.Hate;
-                comp.standings.Change(p, -(hate ? 3f : 2f) * fatigue, "CC_Log_DecreeAgain".Translate(def.label));
+                comp.standings.Change(p, -(hate ? 3f : 2f) * fatigue * let, "CC_Log_DecreeAgain".Translate(def.label));
                 if (scale > 0f) CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Decree_Again, null, scale);
             }
             if (!Rand.Chance(unrest)) return;
@@ -457,6 +604,7 @@ namespace ColonyCouncil
             if (a == null) return;
             active.Remove(a);
             readyAt[def.defName] = Find.TickManager.TicksGame + Mathf.RoundToInt(def.cooldownDays * GenDate.TicksPerDay);
+            needs.Remove(def);
             SyncHediffs();
             DecreeWork.Ended(this, def);
             comp.Notify_DecreeEnded(def, early);
@@ -476,6 +624,7 @@ namespace ColonyCouncil
         public void Hourly(CouncilGameComponent comp)
         {
             int now = Find.TickManager.TicksGame;
+            NoteThreats();
             foreach (var a in active.Where(x => now >= x.endTick).ToList()) Repeal(a.def, comp, false);
             SyncHediffs();
             DecreeWork.Hourly(this);
@@ -684,10 +833,12 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref readyAt, "readyAt", LookMode.Value, LookMode.Value);
             Scribe_Collections.Look(ref requests, "requests", LookMode.Deep);
             Scribe_Values.Look(ref lastRequestTick, "lastRequestTick", -999999);
+            Scribe_Collections.Look(ref threatTicks, "threatTicks", LookMode.Value);
             Scribe_Collections.Look(ref nightHours, "nightHours", LookMode.Value, LookMode.Value, ref tmpNightKeys, ref tmpNightValues);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (nightHours == null) nightHours = new Dictionary<string, string>();
+                if (threatTicks == null) threatTicks = new List<int>();
                 if (active == null) active = new List<ActiveDecree>();
                 active.RemoveAll(a => a?.def == null);
                 if (readyAt == null) readyAt = new Dictionary<string, int>();
@@ -711,7 +862,10 @@ namespace ColonyCouncil
                 string cause = active == null ? null
                     : "CC_Cause_Decree".Translate(decree.label, TextUtil.DaysString(Mathf.Max(0, active.endTick - Find.TickManager.TicksGame))).Resolve();
                 if (active != null && active.fatigue > 0)
-                    cause += " " + (active.forced ? "CC_Cause_DecreeForcedNote" : "CC_Cause_DecreeAgainNote").Translate((0.35f * active.fatigue).ToStringPercent()).Resolve();
+                {
+                    string key = active.forced ? "CC_Cause_DecreeForcedNote" : active.understood >= 0.1f ? "CC_Cause_DecreeAgainUnderstood" : "CC_Cause_DecreeAgainNote";
+                    cause += " " + key.Translate(active.Resentment.ToStringPercent()).Resolve();
+                }
                 return cause;
             }
         }
@@ -732,8 +886,7 @@ namespace ColonyCouncil
         {
             float m = base.MoodOffset();
             if (m >= 0f) return m;
-            int fatigue = Active?.fatigue ?? 0;
-            return m * ColonyCouncilMod.Settings.ChosenPenaltyScale * (1f + 0.35f * fatigue);
+            return m * ColonyCouncilMod.Settings.ChosenPenaltyScale * (1f + (Active?.Resentment ?? 0f));
         }
     }
 

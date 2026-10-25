@@ -373,6 +373,13 @@ There's no hard limit on repeating a decree, but there is a price. Enact the sam
 time. Someone may even snap: the hot-tempered throw a tantrum, others wander off in a daze. The tab warns you how
 many times a decree was used lately, how likely trouble is, and in how many days it's safe to enact again.
 
+A decree the colony **needs and wants** now is let off some of that. It's needed when the moments it answers hold
+(a dirty or filthy home, many or half the colony hurt, and for a clean sweep and a sick bay fight after fight), and
+wanted as far as those who like it outnumber those against it, more when someone asked for it. Then its cooldown is
+up to two thirds shorter and a repeat is minded up to 60% less, but never under a day or a third of its cooldown, and
+once it has been declared twice in a month the need counts for half: after many fights, with the home filthy and the
+wounded asking for it, a clean sweep can come again in about four days instead of eight. Its card says when and why.
+
 ### Our ways: the colony's character
 The council's choices add up. Every dilemma answer, decree and many granted wishes nudge the colony's five ways:
 **merciful or harsh**, **generous or thrifty**, **traditional or restless**, **open or guarded**, **hard-working or
