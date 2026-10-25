@@ -72,6 +72,8 @@ namespace ColonyCouncil
             public List<Piece> pieces = new List<Piece>();
             /// <summary>The wall line that "close the gap" carries on to either side (z), or -1.</summary>
             public int line = -1;
+            /// <summary>The doorway raiders come into the kill zone through (a killbox's, a gate yard's), or -1: grenade reach and turret ranges are measured from it.</summary>
+            public int doorX = -1, doorZ = -1;
             public List<string> errors = new List<string>();
 
             public char At(int x, int z) => x >= 0 && z >= 0 && x < W && z < H ? cells[x, z] : '\0';
