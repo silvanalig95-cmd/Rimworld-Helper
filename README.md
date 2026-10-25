@@ -1209,26 +1209,39 @@ end. **Plan it here** opens the plan at the place the advice is about, turned to
 until you click. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate or a line holds one,
 labelled "covered by the south-west pass") and where a gate's wall would cross (gold), also with the window closed.
 
-**Sixteen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
+**Seventeen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
 rock mined and plants cut where you allow it, and a preview that shows what's ready, waiting or in the way: a gate
-with sandbag lines, a sandbag or barricade line to put behind a gate you already have (both with a piece of wall
-capping each line's outer end against flanking shots), a wall and sandbag firing line for where raiders come straight
-on (a wall either side of each shooter), a perimeter wall two thick
-with a double gate, a second layer of wall that makes an existing line two thick, a small killbox for a narrow gap and
-bows, a killbox (a narrow entrance with two turns, a deep open box with two traps, cover at the far end more than a
-grenade's throw from the mouth, turrets on the flanks behind walls of their own), a tunnel killbox dug into a
-mountain's entrance, a trap corridor (traps on one side, something to slow raiders on the other, for your people), a
-turret nest, a sniper's or archers' post, a fallback line, a keep, a mortar pit, and with Medieval Overhaul a
-palisade with a gatehouse and a castle gate (embrasures for the archers, a walled yard between two gates). They are
-the pieces a defense line is built from, a step at a time. Each uses what the colony can build: barricades and log gates in a medieval colony,
+with sandbag lines, a baffled gate (a passage that turns into a walled yard, a small killbox that is also the colony's
+way in), a sandbag or barricade line to put behind a gate you already have, a firing line of pockets for where
+raiders come straight on (each shooter behind a piece of wall with sandbags beside it, leaning out to shoot), a
+perimeter wall two thick with an airlock (a gate, a cell, a gate), a second layer of wall that makes an existing line
+two thick, a small killbox for a narrow gap and bows, a killbox, a tunnel killbox dug into a mountain's entrance, a
+trap corridor (a trap every other cell, a fence beside each), a turret nest, a sniper's or archers' post, a fallback
+line, a keep, a mortar pit, and with Medieval Overhaul a palisade and a castle gate with a killing yard (archers
+behind embrasures across its far side, the way on through a gate in its corner). They are the pieces a defense line
+is built from, a step at a time.
+
+Most of them are **drawn for the colony** rather than fixed, by what the 1.6 game code shows raiders do: from its
+ranged fighters and their reach, whether the raiders it meets throw grenades, its bows, how big raids are and the
+turret it would build. A killbox's way in turns twice and then runs straight for four or five cells, so a raider at
+the last corner, leaning out round it, sees only the middle of the box; the box is bare, as wide as the shooters
+need, deep enough that every shooter is within about 24° of the doorway's line (where its walls give the raider in it
+no cover) and, against grenades, more than a throw from it; double walls once past bows; decoy mini-turrets on its
+middle line, or an autocannon behind the gap in the line, out of its blast's reach of anyone; traps and things that
+slow them in the way in, never in the box. Side lines behind a gate stand far enough out that nobody outside sees
+them and close enough in that the gate gives a raider little cover. The planner says what a plan was drawn for, and
+**Shooters** and **Depth** add or take away; a placed plan remembers what it was drawn for, and a defense line's
+review offers to plan a killbox again when the colony outgrows it (or when it was laid out before plans were drawn). Each uses what the colony can build: barricades and log gates in a medieval colony,
 sandbags, mini-turrets and autocannons once researched, and the defenses of Medieval Overhaul and Vanilla Furniture
 Expanded - Security where they're there. A plan the colony can't build yet is greyed with what it lacks, research
 included. A plan with a wall line can **close the gap**: the wall carries on to the rock, a wall or deep water on both
 sides (up to 12 cells each way), and says where it had to stop. Plans that close a natural gap never dig into its
 rock. **Find the spot** puts a plan on the gap most raids pass, in front of it, behind it, between it and the beds or
 deep inside, as the plan needs. Every plan is checked in every turn and mirrored: no pieces on top of each other,
-gates in wall lines with a way through, every firing position covered toward the threat with open ground in front,
-traps on the raiders' way and never side by side or by a gate, turrets three cells apart.
+gates in wall lines with a way through, every firing position covered toward the threat (or in a pocket it can lean
+out of) with open ground in front, traps on the raiders' way and never side by side or by a gate, turrets three cells
+apart. The tests also draw every drawn plan for about 650 different colonies and check each against a port of the
+game's own line of sight, leaning and cover: nobody may shoot at a firing position from better than 45% cover.
 
 **Defense lines** build one gap up a step at a time with the helper. Make a line from a gap's advice, from **New
 defense line** (the gaps without one, busiest first, or a spot picked on the map), or by putting a gate on a gap; say

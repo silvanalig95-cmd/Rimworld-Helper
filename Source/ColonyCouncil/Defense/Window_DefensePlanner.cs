@@ -109,6 +109,7 @@ namespace ColonyCouncil
             Widgets.Label(new Rect(0f, y, w, 22f), "CC_Def_Size".Translate(grid.W, grid.H));
             GUI.color = Color.white;
             y += 22f;
+            y = DrawnFor(y, w, t, cfg, map);
             var line = des.Line;
             if (line != null)
             {
@@ -271,6 +272,87 @@ namespace ColonyCouncil
             }
             contentHeight = y + 4f;
             Widgets.EndScrollView();
+        }
+
+        /// <summary>
+        /// What a drawn plan was drawn for, and the shooters and depth the player can add or take away: the number of
+        /// firing positions, how far back from the way in they stand, the raiders and weapons it is sized for, and a
+        /// warning when the colony's reach (or depth taken away) leaves the shooters within a grenade's throw.
+        /// </summary>
+        private float DrawnFor(float y, float w, DefenseTemplateDef t, DefensePlanConfig cfg, Map map)
+        {
+            var spec = t.SpecFor(map, cfg);
+            var shape = t.ShapeFor(spec);
+            if (shape == null) return y;
+            y = Section(y + 2f, w, "CC_Def_DrawnFor".Translate());
+            string family = t.shape.family;
+            bool sized = family == DefenseShapes.Box || family == DefenseShapes.SideLines || family == DefenseShapes.FiringLine;
+            // A plan that fixes its own number of shooters (the small killbox's four) has no shooters to add.
+            if (sized && t.shape.shooters <= 0)
+                y = StepRow(y, w, "CC_Def_Drawn_Shooters".Translate(shape.shooters).Resolve(), "CC_Def_Drawn_Shooters_Tip".Translate(),
+                    () => Resize(t, map, cfg, -2, 0, shape), () => Resize(t, map, cfg, 2, 0, shape));
+            if (sized || family == DefenseShapes.Post)
+                y = StepRow(y, w, "CC_Def_Drawn_Depth".Translate(shape.depth).Resolve(), "CC_Def_Drawn_Depth_Tip".Translate(),
+                    () => Resize(t, map, cfg, 0, -1, shape), () => Resize(t, map, cfg, 0, 1, shape));
+            var said = new List<string>();
+            if (family == DefenseShapes.Traps) said.Add("CC_Def_Drawn_Traps".Translate(shape.grid.Count("trap"), spec.raidPoints.ToString("0")).Resolve());
+            else if (family == DefenseShapes.Nest) said.Add("CC_Def_Drawn_Nest".Translate(shape.grid.Count("turret")).Resolve());
+            else
+            {
+                said.Add((spec.grenades ? "CC_Def_Drawn_Grenades" : "CC_Def_Drawn_NoGrenades").Translate().Resolve());
+                said.Add("CC_Def_Drawn_Reach".Translate(spec.range.ToString("0")).Resolve());
+                if (spec.lowTech && family == DefenseShapes.Box) said.Add("CC_Def_Drawn_Bows".Translate().Resolve());
+                if (spec.Big && family == DefenseShapes.Box) said.Add("CC_Def_Drawn_Big".Translate(spec.raidPoints.ToString("0")).Resolve());
+            }
+            Text.Font = GameFont.Tiny;
+            GUI.color = Faint;
+            y += Label(y, w, string.Join(" ", said)) + 2f;
+            if (sized && spec.grenades && shape.nearest > 0f && shape.nearest < DefenseSight.GrenadeReach)
+            {
+                GUI.color = Warn;
+                y += Label(y, w, "CC_Def_Drawn_TooClose".Translate(shape.nearest.ToString("0")).Resolve()) + 2f;
+            }
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+            if (cfg.moreShooters != 0 || cfg.moreDepth != 0)
+            {
+                var back = new Rect(0f, y, w, RowH - 2f);
+                if (Widgets.ButtonText(back, "CC_Def_Drawn_Colony".Translate())) cfg.ColonySize();
+                TooltipHandler.TipRegion(back, "CC_Def_Drawn_Colony_Tip".Translate());
+                y += RowH + 2f;
+            }
+            return y + 4f;
+        }
+
+        /// <summary>Adds shooters or depth when that changes the layout; at its limits nothing changes, and nothing piles up to undo later.</summary>
+        private static void Resize(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, int shooters, int depth, DefenseShape now)
+        {
+            cfg.Resize(shooters, depth);
+            var after = t.ShapeFor(t.SpecFor(map, cfg));
+            if (after == null || after.shooters == now.shooters && after.depth == now.depth && after.grid.W == now.grid.W && after.grid.H == now.grid.H)
+                cfg.Resize(-shooters, -depth);
+        }
+
+        /// <summary>A row with a value between a minus and a plus button.</summary>
+        private static float StepRow(float y, float w, string text, string tip, System.Action less, System.Action more)
+        {
+            const float b = 26f;
+            if (Widgets.ButtonText(new Rect(0f, y, b, RowH - 2f), "−"))
+            {
+                less();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            var mid = new Rect(b + 6f, y, w - 2f * b - 12f, RowH - 2f);
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Widgets.Label(mid, text);
+            Text.Anchor = TextAnchor.UpperLeft;
+            TooltipHandler.TipRegion(mid, tip);
+            if (Widgets.ButtonText(new Rect(w - b, y, b, RowH - 2f), "+"))
+            {
+                more();
+                SoundDefOf.Click.PlayOneShotOnCamera();
+            }
+            return y + RowH;
         }
 
         private static float Section(float y, float w, string text)

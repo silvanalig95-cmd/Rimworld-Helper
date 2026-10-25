@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.14.0</version>
+        <date>25 October 2026</date>
+        <title>Shaped for the colony</title>
+        <points>
+          <li>Defense plans are drawn for your colony: from its shooters and how far their weapons reach, whether the raiders it meets throw grenades, its bows, how big raids are and the turret it would build. The planner says what each was drawn for, and Shooters and Depth add or take away.</li>
+          <li>Killboxes laid out by what the 1.6 game code shows: the way in turns twice, then runs straight for four or five cells, so a raider at the last corner can't see your shooters; every shooter stands within about 24° of the doorway's line, where its walls give the raider in it no cover, and against grenades more than a throw back. Decoy mini-turrets in the box, or an autocannon behind the gap in the line; traps and things that slow them in the way in, never in the box.</li>
+          <li>Firing positions in pockets: a piece of wall in front and sandbags at its corners and beside it, for three-quarters cover while leaning out to shoot. The killbox, the firing line and the sniper's post use them, and a line's review counts them.</li>
+          <li>A baffled gate: a passage that turns into a walled yard, a small killbox that is also the colony's way in. Against raiders who throw grenades, a line's first step offers it where it fits.</li>
+          <li>Side lines behind a gate stand where nobody outside sees them and the gate gives a raider little cover. The perimeter wall has an airlock, a gate, a cell and a gate; the trap corridor puts a fence beside each trap; turrets in a nest stand beyond each other's blast; the mortar pit keeps its mortars and shells apart.</li>
+          <li>The palisade and castle gates have a killing yard: archers behind embrasures across its far side, and the way on through a gate in its corner, where the melee fighters wait.</li>
+          <li>A line's review offers to plan a killbox again when the colony outgrows it, or when it was laid out before plans were drawn and its last corner sees the shooters.</li>
+          <li>The Almanac's defense pages say what holds in 1.6: raiders take an open way however long it is, stop and shoot from sandbags too and lean round corners; how a pocket works; where shooters stand in a killbox; and how far a turret's blast reaches.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.13.1</version>
         <date>25 October 2026</date>
         <title>Fungus kept for its meal</title>

@@ -103,7 +103,7 @@ The helper lays the lane on the way raiders actually walk up to the gate, its ne
       </li>
       <li>
         <heading>Doors in a line</heading>
-        <text>A line's gate, and every door in its wall, is its way through whether it's shut or not. Raiders who find a gate shut break it rather than walk a long way round, so the helper never goes looking for a new way in because a gate is closed. A door held open counts as open ground; a door elsewhere that raiders would have to break costs them a great deal. The line's card says what a shut gate means: raiders will break it if there's no other way, so hold it open during a raid to keep them coming through.</text>
+        <text>A line's gate, and every door in its wall, is its way through whether it's shut or not: the helper reads the line as you'll use it in a raid, with the gate held open. A door held open counts as open ground; a door elsewhere that raiders would have to break costs them a great deal. The line's card says what a shut gate means: with any other way open, however long, raiders take that; with none, they break the gate or the wall wherever they like. Hold it open during a raid to keep them coming through.</text>
       </li>
       <li>
         <heading>Walls that send raiders elsewhere</heading>
@@ -260,15 +260,17 @@ It has two prices. Insects come up in warm, dark rock under the mountain, and an
         <heading>How much room</heading>
         <table>
           <li>Plan | Cells | Notes</li>
-          <li>Small killbox | 9 × 13 | For a narrow gap and early raids</li>
-          <li>Killbox | 15 × 21 | The box alone is 11 × 12</li>
-          <li>Tunnel killbox | 11 × 22 | Most of it dug out of the rock</li>
+          <li>Small killbox | 15 × 19 for four archers, 17 × 21 for four rifles against grenades | For a narrow gap and early raids</li>
+          <li>Killbox | 19 × 23 for four rifles, 23 × 25 for six; 25 × 36 for big raids with an autocannon | Against grenades, as pirates bring</li>
+          <li>Tunnel killbox | 23 × 27 for six rifles | Most of it dug out of the rock</li>
+          <li>Baffled gate | 19 × 23 for four rifles, 23 × 25 for six | The colony's own way in too</li>
+          <li>Palisade yard | 15 × 22 for four archers | Embrasures across the far side</li>
         </table>
-        <after>Leave open ground in front of the wall line as well, and room behind the firing line for people to come and go.</after>
+        <after>Each plan is drawn for the colony: its shooters and their reach, whether the raiders it meets throw grenades, how big raids are, and its turret. More shooters make the line wider and the box deeper; against grenades the shooters stand more than a throw back. The planner says what it was drawn for, and you can add or take away shooters and depth there. Killboxes placed before 0.14 have the old fixed sizes (the small one 9 × 13, the killbox 15 × 21 with a box of 11 × 12, the tunnel 11 × 22), and their last corner sees the shooters: the line's review offers to plan them again. Leave open ground in front of the wall line as well, and room behind the firing line for people to come and go.</after>
       </li>
       <li>
         <heading>How far from the beds</heading>
-        <text>Close enough that your people reach the firing line before the raid reaches the box: a long walk from the bedrooms means a raid at night meets an empty line. Far enough that the fight stays out of the house. Raiders' shots that miss land around whoever they aimed at, grenades and turret blasts reach several cells, and fire spreads, so keep bedrooms, the hospital and anything that burns well away from the firing line. And not so far out that a door or a wall nearer the raiders looks easier to them than the walk to the box.</text>
+        <text>Close enough that your people reach the firing line before the raid reaches the box: a long walk from the bedrooms means a raid at night meets an empty line. Far enough that the fight stays out of the house. Raiders' shots that miss land around whoever they aimed at, grenades and turret blasts reach several cells, and fire spreads, so keep bedrooms, the hospital and anything that burns well away from the firing line. And not so far out that raiders cross a long stretch of your ground to reach it, smashing what they pass.</text>
       </li>
       <li>
         <heading>What the helper looks for</heading>
@@ -313,12 +315,16 @@ With the plan in front of you, it says where the wall stops short of the rock (a
           <li>Cover or trees in the box | Raiders stop behind it and shoot back | Cut and haul it all; floor the box so nothing grows back</li>
           <li>A way round | Raiders take it and never see the box | Wall every other way, to rock or deep water; marsh and shallow water still let them through</li>
           <li>The gate shut | With no open way in, they break walls wherever they like | Hold the gate open in a raid; shut it for manhunters</li>
-          <li>A straight entrance | Raiders stand beside the opening and shoot in from its cover | Turns in the entrance, the last one right at the box</li>
+          <li>A straight entrance, or a short last stretch | A raider at the corner leans out and shoots down it from the wall's cover | Two turns, then four or five cells straight into the box, and nobody standing in line with it</li>
+          <li>Shooters round the sides of the doorway | Its walls cover the raider standing in it | Shooters straight across, within about 24° of the doorway's line</li>
+          <li>Sandbags or a fence at the exit | Since 1.6 raiders stop and shoot from sandbags too, and anything beside them is their cover | Keep the doorway and the cells round it bare</li>
           <li>Shooters near the entrance | Grenades, shotguns and melee reach them from the mouth of the box | A firing line more than 13 cells from where they come in</li>
-          <li>Turrets bunched | One blowing up takes the next with it | 3 empty cells between mini-turrets, autocannons about 6 cells apart, and walls between</li>
+          <li>Turrets bunched | One blowing up takes the next with it | 3 empty cells between mini-turrets, autocannons 6 cells or more apart from their bottom-left cells, and nobody standing that close</li>
           <li>Wooden walls | They burn, and raiders set fires | Stone, at least round the box and the firing line</li>
-          <li>Too far out, or too long a way in | A door or wall nearer them looks easier, and your people arrive late | On the way the raid comes anyway, a short walk from the beds; two turns are enough</li>
-          <li>Traps in the one-wide entrance | A raider who knows of one counts it as a long way round, and may break in elsewhere | Traps in the box, where there's room to step past them</li>
+          <li>Too far out, or too long a way in | Your people arrive late, and raiders wreck what they pass on the way | On the way the raid comes anyway, a short walk from the beds; two turns are enough</li>
+          <li>Fences between the traps | A raider who knows of a trap steps round it for nothing | A fence beside each trap, so getting round it means climbing</li>
+          <li>Firing into the entrance early | They stop in the bends and shoot back | Hold fire until they're in the box</li>
+          <li>Walls one thick round the box | Your own misses and blasts hole them, and raiders come round your line | Two thick round the box and where the doorway is</li>
           <li>No second line | One breach, a sapper or a drop pod, and the beds are next | A fallback line, and weapons by the beds</li>
           <li>Beyond the bows' reach | Archers can't hit the mouth, and miss a lot near their limit | A short bow reaches 22.9 cells, a greatbow 29.9: keep the box well inside that</li>
         </table>

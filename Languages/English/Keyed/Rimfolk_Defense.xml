@@ -180,6 +180,21 @@
   <!-- ===================== The defense planner (Source/ColonyCouncil/Defense/) ===================== -->
 
   <CC_Def_Size>{0} × {1} cells</CC_Def_Size>
+  <CC_Def_DrawnFor>DRAWN FOR YOUR COLONY</CC_Def_DrawnFor>
+  <CC_Def_Drawn_Shooters>Shooters: {0}</CC_Def_Drawn_Shooters>
+  <CC_Def_Drawn_Shooters_Tip>Firing positions, one for each of the colony's ranged fighters, four at least. More make the line wider and a box deeper, so every shooter stays where the doorway gives a raider no cover. A killbox's line takes up to six, side lines up to eight.</CC_Def_Drawn_Shooters_Tip>
+  <CC_Def_Drawn_Depth>Shooters {0} cells back</CC_Def_Drawn_Depth>
+  <CC_Def_Drawn_Depth_Tip>How far the firing positions stand back from the way in. Deeper keeps raiders under fire for longer before they reach the line and keeps grenades further off; shallower needs less room. It never comes so close that the doorway gives a raider cover from the outer shooters.</CC_Def_Drawn_Depth_Tip>
+  <CC_Def_Drawn_Grenades>Against raiders who throw grenades: the shooters stand out of a throw from the way in.</CC_Def_Drawn_Grenades>
+  <CC_Def_Drawn_NoGrenades>Against raiders without grenades.</CC_Def_Drawn_NoGrenades>
+  <CC_Def_Drawn_Reach>For weapons that reach {0} cells.</CC_Def_Drawn_Reach>
+  <CC_Def_Drawn_Bows>For bows: barricades, and walls one thick.</CC_Def_Drawn_Bows>
+  <CC_Def_Drawn_Big>For raids of {0} points: a wider gap in the line, and a longer way in, slowed every other cell.</CC_Def_Drawn_Big>
+  <CC_Def_Drawn_Traps>{0} traps, for raids of about {1} points.</CC_Def_Drawn_Traps>
+  <CC_Def_Drawn_Nest>{0} turrets, each further from the next than its blast reaches.</CC_Def_Drawn_Nest>
+  <CC_Def_Drawn_TooClose>The shooters stand {0} cells from the way in, within a grenade's throw: the colony's weapons don't reach from further back, or depth was taken away. Shoot grenadiers first.</CC_Def_Drawn_TooClose>
+  <CC_Def_Drawn_Colony>The colony's numbers</CC_Def_Drawn_Colony>
+  <CC_Def_Drawn_Colony_Tip>Draw it again for the colony as it is: its shooters and their reach, the raiders it meets, and how big raids are.</CC_Def_Drawn_Colony_Tip>
   <CC_Def_Another>Another defense plan...</CC_Def_Another>
   <CC_Def_CloseGap>Close the gap</CC_Def_CloseGap>
   <CC_Def_CloseGap_Tip>Carry the wall line on to the rock, a wall or deep water on both sides, up to {0} cells each way, so there's no easy way round it.</CC_Def_CloseGap_Tip>

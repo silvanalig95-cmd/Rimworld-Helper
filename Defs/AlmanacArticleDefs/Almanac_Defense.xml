@@ -166,15 +166,17 @@ Human raiders fight until something breaks the raid, and pirates may give up and
     <sections>
       <li>
         <heading>How raiders pick a path</heading>
-        <text>Raiders take the easiest open route. They treat a door they would have to break as a waste of effort. A trap they know about adds a path cost of 800 when they choose their way, and 40 when they step over it, so a heavily trapped lane can push them to another way in. Sapper, smart and breaching raiders know where about 30% of your traps are.</text>
+        <text>Raiders take the easiest open route, however long. They break walls and doors only when no open way reaches your people. A trap they know about adds a path cost of 800 when they choose their way, and 40 when they step over it, so a heavily trapped lane can push them to another open way in. Sapper, smart and breaching raiders know where about 30% of your traps are, and a known trap never springs on them.</text>
       </li>
       <li>
         <heading>Building one</heading>
         <points>
-          <li>Leave one inviting entrance and close every other route with walls and doors.</li>
-          <li>Line the approach with traps, keeping explosive traps away from where your own people will stand.</li>
-          <li>Give your shooters cover with a clear firing lane. Walls, doors and natural rock give 75% cover; sandbags and barricades 55%.</li>
-          <li>Keep an inner fallback line behind the first.</li>
+          <li>Leave one inviting entrance and close every other route with walls and doors. Nothing the raiders could smash may stand where they reach it from outside: a cooler in the outer wall, a lamp, a solar panel.</li>
+          <li>The entrance turns twice, then runs straight for four or five cells into the box, so a raider at the last corner can't see your shooters.</li>
+          <li>Keep the box and the doorway bare. Since 1.6 raiders stop and shoot from sandbags and barricades too.</li>
+          <li>Put the shooters straight across from the doorway, all within about 24° of its line and none right on it, more than 13.5 cells back against grenades. Each in a pocket (a wall in front, sandbags beside) has 75% cover; behind sandbags, 55%.</li>
+          <li>Line the outer stretch of the approach with traps and things that slow them, every other cell, keeping explosive traps away from where your own people will stand.</li>
+          <li>Keep an inner fallback line behind the first, round the bedrooms: breachers and sappers make for a bed.</li>
           <li>Build it in stone, never wood. Things ignite above 235 °C and embers jump 2 tiles, so wood in a killbox is a fire trap for you.</li>
           <li>Keep weapons and armor in an armory close to the line.</li>
         </points>
@@ -220,7 +222,8 @@ Human raiders fight until something breaks the raid, and pirates may give up and
           <li>Walls, natural rock, doors | 75%</li>
           <li>Sandbags, barricades | 55%</li>
           <li>Chunks, rubble | 50%</li>
-          <li>Turrets | 50%</li>
+          <li>Mini-turrets | 40%</li>
+          <li>Bigger turrets | 50%</li>
           <li>Furniture (beds, armchairs, bookcases, game tables) | 40%</li>
           <li>Auto mortar | 40%</li>
           <li>Saguaro cactus | 35%</li>
@@ -241,11 +244,17 @@ Human raiders fight until something breaks the raid, and pirates may give up and
           <li>Up to 65° | 20%</li>
           <li>Beyond 65° | Nothing</li>
         </table>
-        <after>Distance matters too. Cover only works at 33% when the shooter stands right in front of it, and at 67% from one tile away. Stop raiders before they reach your sandbags, with traps or melee fighters on the approach.</after>
+        <after>Only the eight cells around someone give them cover, and one on a diagonal counts as if the shot came at a wider angle than it does. Distance matters too. Cover only works at 33% when the shooter stands right in front of it, and at 67% from one tile away. Stop raiders before they reach your sandbags, with traps or melee fighters on the approach.</after>
+      </li>
+      <li>
+        <heading>Leaning out: the pocket</heading>
+        <text>Someone right behind a wall can't shoot through it, but with an open or sandbagged cell beside them they lean out into it to fire, and the game still reckons their cover from where they really stand. So a pocket, a piece of wall in front with sandbags at its front corners and beside it, gives 75% against a shot from straight ahead and 67 to 75% from the sides, more than any line of sandbags. Behind a wall with no room to lean, nobody shoots or is shot.
+
+The same works for raiders: one at the corner of a wall leans out round it with the wall as cover. That's why a killbox's last turn is four or five cells before the box.</text>
       </li>
       <li>
         <heading>Setting up a firing line</heading>
-        <text>Put sandbags or barricades where your shooters stand, facing the expected approach head-on. Before a raid, cut the trees and haul chunks and rubble out of your firing lanes. Sandbags and barricades need no power, so they are the backbone of any defense without turrets.</text>
+        <text>Put sandbags or barricades where your shooters stand, facing the expected approach head-on, or pockets where raiders must come straight at you. Before a raid, cut the trees and haul chunks and rubble out of your firing lanes. Sandbags and barricades need no power, so they are the backbone of any defense without turrets.</text>
       </li>
     </sections>
     <keywords>
@@ -297,7 +306,9 @@ IEDs explode when bullets hit them, so keep them away from your firing positions
       </li>
       <li>
         <heading>Laying them out</heading>
-        <text>Traps can't be built next to each other. A known trap adds a path cost of 800 when a raider chooses his way and 40 when he steps over it, so he goes round it if he can. Put them on the easy approach routes, and protect your own path with doors so raiders prefer the trapped one. Without power, line the corridor that leads to your doorway with spike traps, leaving a gap between each.</text>
+        <text>Traps can't be built next to each other, diagonally either. A known trap adds a path cost of 800 when a raider chooses his way and 40 when he steps over it, so he goes round it if he can. Put them on the easy approach routes, and protect your own path with doors so raiders prefer the trapped one. Without power, line the corridor that leads to your doorway with spike traps, leaving a gap between each.
+
+In a lane two wide, put a fence beside each trap: raiders who don't know the trap take its open side, and one who does has to climb the fence to get round it. Your own people, who know every trap, take the fence side. Keep IEDs at least five cells apart unless you want them to set each other off, and four or more from turrets and walls you care about.</text>
       </li>
     </sections>
     <keywords>
@@ -386,7 +397,7 @@ A solar flare shuts every turret down. Arm your colonists as if the turrets were
           <li>Mini-turret | Below 20% health: a 50% chance, 240 ticks later | 50 Bomb damage in a 3.9-tile radius</li>
           <li>Mortar | Below a third of its health, it may explode | 50 Bomb damage in 4.9 tiles</li>
         </table>
-        <after>Bomb damage is ×8 against walls, ×4 against other solid structures and plants, and ×2 against buildings you can walk through.</after>
+        <after>Bomb damage is ×4 against walls and other solid structures (a wall takes 200, not the ×8 some guides give) and ×2 against buildings you can walk through, such as turrets, sandbags and traps. A 2x2 turret's blast is measured from its bottom-left cell.</after>
       </li>
       <li>
         <heading>Spacing and repair</heading>

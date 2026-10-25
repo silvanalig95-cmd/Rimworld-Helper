@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Shaped for the colony
+
+*25 October 2026, version 0.14.0*
+
+- Defense plans are drawn for your colony: from its shooters and how far their weapons reach, whether the raiders it meets throw grenades, its bows, how big raids are and the turret it would build. The planner says what each was drawn for, and Shooters and Depth add or take away.
+- Killboxes laid out by what the 1.6 game code shows: the way in turns twice, then runs straight for four or five cells, so a raider at the last corner can't see your shooters; every shooter stands within about 24° of the doorway's line, where its walls give the raider in it no cover, and against grenades more than a throw back. Decoy mini-turrets in the box, or an autocannon behind the gap in the line; traps and things that slow them in the way in, never in the box.
+- Firing positions in pockets: a piece of wall in front and sandbags at its corners and beside it, for three-quarters cover while leaning out to shoot. The killbox, the firing line and the sniper's post use them, and a line's review counts them.
+- A baffled gate: a passage that turns into a walled yard, a small killbox that is also the colony's way in. Against raiders who throw grenades, a line's first step offers it where it fits.
+- Side lines behind a gate stand where nobody outside sees them and the gate gives a raider little cover. The perimeter wall has an airlock, a gate, a cell and a gate; the trap corridor puts a fence beside each trap; turrets in a nest stand beyond each other's blast; the mortar pit keeps its mortars and shells apart.
+- The palisade and castle gates have a killing yard: archers behind embrasures across its far side, and the way on through a gate in its corner, where the melee fighters wait.
+- A line's review offers to plan a killbox again when the colony outgrows it, or when it was laid out before plans were drawn and its last corner sees the shooters.
+- The Almanac's defense pages say what holds in 1.6: raiders take an open way however long it is, stop and shoot from sandbags too and lean round corners; how a pocket works; where shooters stand in a killbox; and how far a turret's blast reaches.
+
 ## Fungus kept for its meal
 
 *25 October 2026, version 0.13.1*

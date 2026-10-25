@@ -144,6 +144,12 @@
   <CC_DefLine_Killbox_Why4Pods>Sappers, breachers and drop pods ignore it, and some of your enemies can land inside: keep weapons by the beds and a line to fall back to.</CC_DefLine_Killbox_Why4Pods>
   <CC_DefLine_Killbox_Tunnel>In a pass through the mountain the killbox can be dug out of the rock: the rock is its walls, and nothing falls on it from above.</CC_DefLine_Killbox_Tunnel>
   <CC_DefLine_Killbox_Fits>The {0} fits behind this gate ({1} × {2} cells) without mining or taking anything down.</CC_DefLine_Killbox_Fits>
+  <CC_DefLine_Killbox_Old>This {0} was laid out before plans were drawn for the colony: from the corner before its last turn, a raider can lean out and shoot at the shooters with the wall as his cover. Planned again, it gets a longer straight before the box, and its shooters stand out of that corner's sight.</CC_DefLine_Killbox_Old>
+  <CC_DefLine_Killbox_Grenades>Raiders who throw grenades come now, and this {0} was drawn for raiders without them: its shooters stand within a throw of the doorway. Planned again, it's deeper.</CC_DefLine_Killbox_Grenades>
+  <CC_DefLine_Killbox_Shooters>This {0} was drawn for {1} shooters, and its line can take {2} now. Planned again, the line is wider and the box deeper.</CC_DefLine_Killbox_Shooters>
+  <CC_DefLine_Killbox_BigRaids>Raids are big now, and this {0} was drawn for smaller ones. Planned again, it gets a wider gap in the line and a longer way in, slowed every other cell.</CC_DefLine_Killbox_BigRaids>
+  <CC_DefLine_Killbox_Again>Plan it again</CC_DefLine_Killbox_Again>
+  <CC_DefLine_Killbox_Again_Tip>Opens the planner with the killbox drawn for the colony as it is now, on the same gap. What already stands where the new one wants it counts as built.</CC_DefLine_Killbox_Again_Tip>
   <CC_DefLine_Killbox_FitsIf>The {0} fits behind this gate if {1}.</CC_DefLine_Killbox_FitsIf>
   <CC_DefLine_Killbox_Mine>{0} cells are mined out</CC_DefLine_Killbox_Mine>
   <CC_DefLine_Killbox_Remove>{0} of your buildings are taken down</CC_DefLine_Killbox_Remove>
@@ -219,13 +225,13 @@
   <CC_DefLine_HaulBodies_Tip>Marks the bodies in the field to be hauled away.</CC_DefLine_HaulBodies_Tip>
 
   <!-- How each check works (tooltips) -->
-  <CC_DefLine_How_Leak>Raiders who can walk to your people take the easiest way. A way round a line that's only a little longer than through its gate is the one they take as soon as the gate is shut.</CC_DefLine_How_Leak>
+  <CC_DefLine_How_Leak>Raiders who can walk to your people take the easiest open way. A way round a line, however long, is the one they take as soon as the gate is shut.</CC_DefLine_How_Leak>
   <CC_DefLine_How_LeakDoor>Raiders don't open your doors; they break them. A second door is a second gate: hold one, and make the other strong.</CC_DefLine_How_LeakDoor>
   <CC_DefLine_How_NoWayOn>The helper measures the way from just in front of the gate to the beds. Where there's none, raiders arriving here have no reason to come through.</CC_DefLine_How_NoWayOn>
   <CC_DefLine_How_Sight>A firing position counts when someone standing there can see the cell just inside the gate, or in a killbox the box itself. Walls, rock and doors block the view; sandbags and barricades don't.</CC_DefLine_How_Sight>
   <CC_DefLine_How_Range>Past a weapon's reach nobody can shoot at all, and hits fall off well before it.</CC_DefLine_How_Range>
   <CC_DefLine_How_Field>Raiders shelter behind trees, chunks, rubble and furniture as they come. A tree stops about a quarter of the shots, a chunk half, a wall three quarters.</CC_DefLine_How_Field>
-  <CC_DefLine_How_Distance>Too close, and a rush or a grenade through the gate reaches the shooters at once; too far, and the shots go wide. The helper aims for about a quarter of your best weapon's reach, six to ten cells.</CC_DefLine_How_Distance>
+  <CC_DefLine_How_Distance>Too close, and a rush or a grenade through the gate reaches the shooters at once; too far, and the shots go wide. The cover line is drawn for the colony: off to the sides where nobody outside the gate sees it, within your weapons' reach, and more than a grenade's throw back when the raiders throw them.</CC_DefLine_How_Distance>
   <CC_DefLine_How_Turrets>A badly damaged turret can explode, and its blast reaches the turrets and people near it. A turret without power, fuel or repairs is just cover for raiders.</CC_DefLine_How_Turrets>
   <CC_DefLine_How_Wood>Raiders bring torches and incendiaries. Stone doesn't burn, and holds longer against a breacher's axe.</CC_DefLine_How_Wood>
   <CC_DefLine_How_Gate>Raiders who have a way to your people take it. A gate held open during a raid brings them into your guns; a shut one is a door to break, and if breaking it is no cheaper than somewhere else, they pick their own stretch of wall. The helper counts a line's gate, and every door in its wall, as the line's way through whether it's shut or not, so a shut gate never makes it look for a new way in.</CC_DefLine_How_Gate>

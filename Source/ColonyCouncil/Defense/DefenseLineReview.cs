@@ -618,24 +618,26 @@ namespace ColonyCouncil
             if (f.seeing == 0 || f.coverAt <= 0) return;
             var page = A("Rimfolk_AlmDef_FieldOfFire", "Rimfolk_AlmDef_Cover");
             var reach = DefenseLineMath.ReachOf(f.coverAt, f.bestRange);
+            var cover = r.steps.FirstOrDefault(s => s.def.Worker is StepWorker_Cover);
+            // Where the cover plan would put its shooters: a drawn one where its layout holds, else the review's own distance.
+            int better = StepWorker_Cover.Depth(f, cover?.template);
             LineNote n = null;
             switch (reach)
             {
                 case DefenseLineMath.Reach.TooClose:
-                    n = Note(r, "distance", "CC_DefLine_Dist_Close".Translate(f.coverAt, f.coverDist).Resolve(), "CC_DefLine_How_Distance".Translate(), 5f, page);
+                    n = Note(r, "distance", "CC_DefLine_Dist_Close".Translate(f.coverAt, better).Resolve(), "CC_DefLine_How_Distance".Translate(), 5f, page);
                     break;
                 case DefenseLineMath.Reach.Far:
-                    n = Note(r, "distance", "CC_DefLine_Dist_Far".Translate(f.coverAt, f.coverDist).Resolve(), "CC_DefLine_How_Distance".Translate(), 3f, page);
+                    n = Note(r, "distance", "CC_DefLine_Dist_Far".Translate(f.coverAt, better).Resolve(), "CC_DefLine_How_Distance".Translate(), 3f, page);
                     break;
                 case DefenseLineMath.Reach.TooFar:
-                    n = Note(r, "distance", "CC_DefLine_Dist_TooFar".Translate(f.coverAt, f.bestRange.ToString("0"), f.coverDist).Resolve(), "CC_DefLine_How_Distance".Translate(), 6f, page);
+                    n = Note(r, "distance", "CC_DefLine_Dist_TooFar".Translate(f.coverAt, f.bestRange.ToString("0"), better).Resolve(), "CC_DefLine_How_Distance".Translate(), 6f, page);
                     break;
             }
-            var cover = r.steps.FirstOrDefault(s => s.def.Worker is StepWorker_Cover);
             if (n != null && cover?.template != null)
                 n.actions.Add(new LineAction
                 {
-                    label = "CC_DefLine_PlanCover".Translate(f.coverDist).Resolve(),
+                    label = "CC_DefLine_PlanCover".Translate(better).Resolve(),
                     tip = "CC_DefLine_PlanCover_Tip".Translate(),
                     act = () => PlanStep(f.map, r.line, cover)
                 });

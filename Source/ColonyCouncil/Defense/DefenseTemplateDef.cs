@@ -234,9 +234,6 @@ namespace ColonyCouncil
         /// <summary>The roles a layout uses, in the planner's order.</summary>
         public static List<string> RolesUsed(DefenseLayout.Grid g) => DefenseLayout.Roles.Where(r => g.pieces.Any(p => p.role == r)).ToList();
 
-        /// <summary>Whether any layout it can be drawn as uses the role (a drawn killbox has turrets only when the colony has them).</summary>
-        public bool Uses(string role, Map map, DefensePlanConfig cfg) => GridFor(map, cfg).pieces.Any(p => p.role == role);
-
         // ---------------- Which building for which role ----------------
 
         /// <summary>The role's own first choices, after the template's.</summary>

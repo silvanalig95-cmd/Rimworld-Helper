@@ -134,7 +134,7 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
         <heading>Building it</heading>
         <points>
           <li>A firing position needs cover between it and the threat, with open ground in front: sandbags against a wall shelter nobody.</li>
-          <li>Mix walls and sandbags. A wall blocks your own line of fire; a short line of sandbags in a gap of the wall lets people shoot through it from good cover. A wall beside a shooter guards their side: a shot from an angle hits it, and leaning out beside it they're three-quarters covered. Where raiders come straight on, a row of wall and sandbags taking turns does both (the wall and sandbag firing line); where your people shoot at a gate at an angle, cap the sandbag line's outer end with wall instead, so nothing blocks their view of the gate.</li>
+          <li>Mix walls and sandbags. A wall blocks your own line of fire; a short line of sandbags in a gap of the wall lets people shoot through it from good cover. Best of all is a pocket: a piece of wall right in front of the shooter, with sandbags at its front corners and beside them. They lean out past the wall to shoot, and the game still counts the wall's three-quarters cover from where they stand. Where raiders come straight on, a row of pockets does this for every shooter (the wall and sandbag firing line); where your people shoot at a gate at an angle, cap the sandbag line's outer end with wall instead, so nothing blocks their view of the gate.</li>
           <li>Sandbags are made of cloth or leather and don't burn; barricades are wood, stone or metal.</li>
           <li>Since 1.6 raiders can stop and shoot while standing on sandbags or anything else, so cover no longer keeps them off a spot.</li>
           <li>Cut trees and haul chunks out of the field in front: each one is cover for them.</li>
@@ -172,7 +172,7 @@ A plan with a wall line can "close the gap": the wall carries on to the rock, a 
         <heading>How raiders choose their way</heading>
         <text>Raiders who walk in from the map's edge go for your people, and for turrets that are firing at them. They take the way that costs them least. Open ground is cheap; water, marsh and climbing over cover cost a little more; a door they would have to break costs as much as a good long walk; and a wall isn't a way at all while any other way is open. So long as there's an open way to a colonist, however long and winding, ordinary raiders take it and leave your walls alone.
 
-That cuts both ways. With no open way, each raider goes for the walls and doors, picking his own stretch, or smashes whatever furniture he can reach. And when the open way is very much longer than breaking a door that stands nearer, he breaks the door. That's why a killbox's entrance shouldn't be long, and why the other doors in your wall shouldn't stand much nearer the raiders than the killbox does.</text>
+That cuts both ways. With no open way, each raider goes for the walls and doors, picking his own stretch, or smashes whatever furniture he can reach on the outside, a cooler or a lamp in the wall among it. Length alone doesn't turn them away: an ordinary raider takes an open way however long it is, and never weighs it against breaking a door. A very long or winding way has a cost of its own, though. Raiders more than about 65 cells from anyone to fight drift off to smash what they pass, and the longer they spend outside, the more they break.</text>
       </li>
       <li>
         <heading>Why the way in stays open</heading>
@@ -181,22 +181,26 @@ That cuts both ways. With no open way, each raider goes for the walls and doors,
       <li>
         <heading>The entrance</heading>
         <points>
-          <li>Turns. Through a straight entrance, raiders stand beside the opening and shoot in from the corner of the wall; round two turns, they can't see your line until they're in the box.</li>
-          <li>One cell wide, with the last turn right at the box, so nobody can stand beside the opening on the outside.</li>
-          <li>Short. Two turns are enough, and a long way in makes a door elsewhere look easier.</li>
-          <li>Fences or sandbags every second cell slow them; a continuous line doesn't, as they only slow down climbing over.</li>
-          <li>Traps in the box, not the one-wide entrance. A raider who knows of a trap counts it as a long way round, and in a one-wide entrance there's no stepping past it.</li>
+          <li>Two turns, then a straight run of four or five cells into the box. A raider at the corner before the last turn leans out round it and looks down the straight with the wall as his cover: with a straight that long, all he sees is the middle of the box, where nobody stands.</li>
+          <li>One cell wide, so they come one at a time and the doorway is where a melee fighter holds them, standing just inside the box.</li>
+          <li>Two turns are enough. A longer way doesn't send ordinary raiders elsewhere, but it is more of your ground for them to wreck on the way.</li>
+          <li>Fences or sandbags every second cell slow them; a continuous line doesn't, as they only slow down climbing over. Keep them to the outer stretch, well before the box.</li>
+          <li>Traps in the way in, every other cell, at the turns where they bunch. The few raiders who know of a trap walk over it unharmed; the rest don't see it.</li>
         </points>
       </li>
       <li>
         <heading>The kill zone</heading>
-        <text>The box is open ground between the entrance and your line, and it stays bare: no chunks, trees, furniture, lamps or graves, nothing a raider can stand behind. Floor it and nothing grows back. Make it deep enough that the firing line is more than 13 cells from where raiders come in. Frag grenades and molotov cocktails reach 12.9 cells, so a grenadier has to walk out into the open before he can throw. A trap or two near the mouth catches the first ones in.
+        <text>The box is open ground between the entrance and your line, and it stays bare: no chunks, trees, furniture, lamps or graves, nothing a raider can stand behind, and above all nothing by the doorway. Since 1.6 raiders stop and shoot from sandbags and barricades too, so the old line of them at the exit is a place to stop now. Floor it and nothing grows back. Make it deep enough that the firing line is more than 13 cells from where raiders come in. Frag grenades and molotov cocktails reach 12.9 cells, so a grenadier has to walk out into the open before he can throw.
 
 Hold the box until they break. Raiders give up and run once somewhere between four and seven in ten of their group are down; mechanoids never do.</text>
       </li>
       <li>
         <heading>The firing line</heading>
-        <text>At the far end, a line of cover facing the entrance with firing positions behind it, and a way through for your own people. Turrets stand on its flanks, each behind its own cover with a wall between it and the shooters, because a badly damaged turret can explode. Mini-turrets fire close in; an autocannon can't hit anything within 8.9 cells and a uranium slug turret nothing within 11.9, so those go further back. Your own misses break the walls behind the raiders: build the box of stone, and double the wall where a hole would let them round your line.</text>
+        <text>At the far end, straight across from the doorway: every shooter within about 24° of the doorway's line, where its walls give the raider standing in it no cover, and none of them right on that line, where the corner before the last turn can see. Wrapped round the sides of the doorway, shooters give the raider in it the doorway's walls as cover. Keep a gap of a few cells in the middle for your melee fighters and haulers.
+
+Each shooter stands in a pocket: right behind a piece of wall, with sandbags at its front corners and beside it. They lean out past the wall to shoot and keep its three-quarters cover, more than sandbags give. A plain line of sandbags gives a little over half but lets everyone see the whole box; that's what a tribe's small box uses.
+
+Mini-turrets out in the box, on its middle line and four cells apart, are decoys: raiders shoot first at what shoots at them. An autocannon can't hit anything within 8.9 cells and a uranium slug turret nothing within 11.9; one stands behind the gap in the line, shooting through it, six cells or more from anyone, as its blast is measured from its bottom-left cell. Your own misses break the walls behind the raiders: build the box of stone, and double its walls and the wall the doorway is in.</text>
       </li>
       <li>
         <heading>Doors and gates</heading>
@@ -279,7 +283,8 @@ Against both: walls at least two thick, cover ready in more than one place, an i
         <heading>Gates</heading>
         <points>
           <li>Doors give 75% cover, but break sooner than a stone wall.</li>
-          <li>Two doors with a cell between them keep raiders and manhunters out while people come and go.</li>
+          <li>Two doors with a cell between them keep raiders and manhunters out while people come and go. The perimeter wall plan has one.</li>
+          <li>Where raiders throw grenades, a baffled gate makes the gate a small killbox: a passage that turns, then runs straight into a walled yard with your shooters across its far side. Nobody outside or in the passage can see them.</li>
           <li>A door every fifteen to twenty-five cells of perimeter lets people out to take a shot or deal with a breacher.</li>
           <li>Manhunting animals can't open doors, but will break one down if they see someone go in behind it.</li>
           <li>Wall in generators and anything else you'd hate to lose, even inside the perimeter: raiders pick other targets.</li>
@@ -690,7 +695,7 @@ Use the stun: while they stand still, close in with melee or concentrate fire. E
           <li>Castle wall | Stone, 1,000 HP, no fire</li>
           <li>Castle embrasures | Shoot over, 85% fill</li>
         </table>
-        <after>The castle wall needs stonecutting. Hit points are before the material is counted. The Defenses page offers a palisade with a gatehouse and a castle gate once you can build them: an outer gate with embrasures either side, a walled yard behind it, and a second gate.</after>
+        <after>The castle wall needs stonecutting. Hit points are before the material is counted. The Defenses page offers a palisade with a gatehouse and a castle gate once you can build them: an outer gate, a passage that turns twice into a walled yard, and across the yard's far side a wall of embrasures with an archer behind each and a second gate in its corner, where the melee fighters wait.</after>
       </li>
       <li>
         <heading>Archers</heading>

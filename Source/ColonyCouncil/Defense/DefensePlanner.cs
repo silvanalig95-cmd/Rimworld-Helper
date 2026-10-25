@@ -146,8 +146,10 @@ namespace ColonyCouncil
             var plan = new DefensePlan { template = t, grid = g, spec = spec, rotation = rot, mirror = mirror, anchor = anchor };
             bool cutPlants = S.planCutPlants, replace = S.planReplaceOwn;
             // A plan that closes a natural gap never digs: widening the gap would undo it. Rock where a piece would go is
-            // simply where the gap ends. Other plans dig their positions out of the rock when the player allows it.
-            bool closes = t.kind == "gate" || t.kind == "wall" || t.kind == "palisade";
+            // simply where the gap ends. Other plans dig their positions out of the rock when the player allows it; so
+            // does a gate drawn as a box (the baffled gate, the palisade's yard), whose passage and yard must be open,
+            // while the rock on its wall line still stands as wall.
+            bool closes = (t.kind == "gate" || t.kind == "wall" || t.kind == "palisade") && !(spec != null && t.shape.family == DefenseShapes.Box);
             bool mineRock = S.planMineRock && !closes;
             var taken = new HashSet<IntVec3>();
 

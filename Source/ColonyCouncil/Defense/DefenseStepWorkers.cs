@@ -34,7 +34,10 @@ namespace ColonyCouncil
             return r;
         }
 
-        /// <summary>A gate with sandbags; a stretch of wall when the gap is wide; a palisade or a castle gate for a medieval colony that can raise one.</summary>
+        /// <summary>
+        /// A gate with sandbags; a stretch of wall when the gap is wide; a palisade or a castle gate for a medieval colony
+        /// that can raise one; the baffled gate against raiders who throw grenades, where the planner finds it fits.
+        /// </summary>
         public static DefenseTemplateDef GateFor(DefenseLineFacts f)
         {
             var gate = T("Rimfolk_Defense_Gate");
@@ -46,6 +49,13 @@ namespace ColonyCouncil
                 if (castle != null && castle.UnavailableReason(f.map) == null) return castle;
                 var palisade = T("Rimfolk_Defense_PalisadeGatehouse");
                 if (palisade != null && palisade.UnavailableReason(f.map) == null) return palisade;
+            }
+            else if (f.s != null && (f.s.industrial || f.s.empire))
+            {
+                var baffled = T("Rimfolk_Defense_BaffledGate");
+                // Only where it goes down whole: nothing in the way and none of the colony's own buildings to take down.
+                var trial = baffled != null && baffled.UnavailableReason(f.map) == null ? StepWorker_Killbox.TrialFor(f, baffled) : null;
+                if (trial != null && trial.fits && trial.blocked == 0 && trial.removed == 0) return baffled;
             }
             return gate ?? wall;
         }
@@ -93,6 +103,13 @@ namespace ColonyCouncil
     {
         public static int Need(DefenseLineFacts f) => Mathf.Clamp(f.ranged, 3, 6);
 
+        /// <summary>How far behind the gate the shooters of a cover plan stand: where a drawn one puts them, else the review's own distance for the colony's weapons.</summary>
+        public static int Depth(DefenseLineFacts f, DefenseTemplateDef t)
+        {
+            var shape = t?.ShapeFor(t.SpecFor(f.map, DefensePlanConfig.For(t)));
+            return shape != null && shape.depth > 0 ? shape.depth : f.coverDist;
+        }
+
         public override StepResult Evaluate(DefenseLineFacts f)
         {
             var r = Start(f);
@@ -101,14 +118,15 @@ namespace ColonyCouncil
             r.distance = Behind(f, r.template, f.coverDist);
             r.look = f.inner;
             int need = Need(f);
+            int depth = Depth(f, r.template);
             if (f.seeing >= need)
             {
                 r.state = StepState.Done;
                 return r;
             }
-            if (f.seeing > 0) Band(r, Mathf.Min(0.8f, f.seeing / (float)need), "CC_DefLine_Cover_Some".Translate(f.seeing, need, f.coverDist).Resolve());
+            if (f.seeing > 0) Band(r, Mathf.Min(0.8f, f.seeing / (float)need), "CC_DefLine_Cover_Some".Translate(f.seeing, need, depth).Resolve());
             else if (f.cover.Count > 0) Band(r, 0.15f, "CC_DefLine_Cover_Blind".Translate(f.cover.Count).Resolve());
-            else if (!Blocked(r, f)) r.left = "CC_DefLine_Cover_None".Translate(need, f.coverDist).Resolve();
+            else if (!Blocked(r, f)) r.left = "CC_DefLine_Cover_None".Translate(need, depth).Resolve();
             return r;
         }
     }
@@ -219,10 +237,12 @@ namespace ColonyCouncil
             public int rot;
             public bool mirror;
             public int mine, removed, waiting, cut;
+            /// <summary>Pieces that can't go down there (not counting walls the rock stands in for).</summary>
+            public int blocked;
             public string elsewhere;
         }
 
-        private static readonly Dictionary<int, (DefenseSurvey s, int version, Trial trial)> trials = new Dictionary<int, (DefenseSurvey, int, Trial)>();
+        private static readonly Dictionary<(int, string), (DefenseSurvey s, int version, Trial trial)> trials = new Dictionary<(int, string), (DefenseSurvey, int, Trial)>();
 
         public static DefenseTemplateDef KillboxFor(DefenseLineFacts f)
         {
@@ -257,6 +277,7 @@ namespace ColonyCouncil
             if (Built(f))
             {
                 r.state = StepState.Done;
+                Outgrown(r, f);
                 return r;
             }
             if (r.template == null)
@@ -288,6 +309,39 @@ namespace ColonyCouncil
             return r;
         }
 
+        /// <summary>
+        /// A killbox the line built from a plan that no longer suits the colony: laid out before plans were drawn for the
+        /// colony (its last corner sees the shooters), or drawn for raiders without grenades, fewer shooters or smaller
+        /// raids than now. Says so, and offers to plan it again on the same gap; what stands where the new one wants it counts.
+        /// </summary>
+        private static void Outgrown(StepResult r, DefenseLineFacts f)
+        {
+            var p = f.BestPlanOfKind("killbox");
+            var t = p?.def;
+            if (t == null || !t.Drawn) return;
+            var was = p.saved.Spec;
+            var now = t.SpecFor(f.map, DefensePlanConfig.For(t));
+            string why = null;
+            if (was == null) why = "CC_DefLine_Killbox_Old".Translate(t.LabelNow).Resolve();
+            else if (now != null)
+            {
+                var then = t.ShapeFor(was);
+                var fresh = t.ShapeFor(now);
+                if (now.grenades && !was.grenades) why = "CC_DefLine_Killbox_Grenades".Translate(t.LabelNow).Resolve();
+                else if (fresh.shooters > then.shooters) why = "CC_DefLine_Killbox_Shooters".Translate(t.LabelNow, then.shooters, fresh.shooters).Resolve();
+                else if (now.Big && !was.Big) why = "CC_DefLine_Killbox_BigRaids".Translate(t.LabelNow).Resolve();
+            }
+            if (why == null) return;
+            r.template = t;
+            r.notes.Add(why);
+            var map = f.map;
+            var line = f.line;
+            var step = r;
+            r.fix = () => DefenseLineReview.PlanStep(map, line, step);
+            r.fixLabel = "CC_DefLine_Killbox_Again".Translate();
+            r.fixTip = "CC_DefLine_Killbox_Again_Tip".Translate();
+        }
+
         /// <summary>Built by plan, or by hand: plenty of cover that sees the gate, and turrets or plenty of shooters.</summary>
         public static bool Built(DefenseLineFacts f)
         {
@@ -308,7 +362,8 @@ namespace ColonyCouncil
         /// <summary>The planner's trial placement on the line, kept until the survey or the line changes.</summary>
         public static Trial TrialFor(DefenseLineFacts f, DefenseTemplateDef t)
         {
-            if (trials.TryGetValue(f.line.id, out var kept) && kept.s == f.s && kept.version == f.line.version && kept.trial.t == t) return kept.trial;
+            var key = (f.line.id, t.defName);
+            if (trials.TryGetValue(key, out var kept) && kept.s == f.s && kept.version == f.line.version) return kept.trial;
             var trial = new Trial { t = t };
             try
             {
@@ -324,6 +379,7 @@ namespace ColonyCouncil
                     trial.mine = plan.mine.Count;
                     trial.removed = plan.deconstruct.Count;
                     trial.waiting = plan.Count(PieceState.Waiting);
+                    trial.blocked = plan.pieces.Count(p => p.state == PieceState.Blocked && !plan.inRock.Contains(p)) + plan.clearBlocked.Count;
                 }
                 else trial.elsewhere = Elsewhere(f, t, pieces, cfg);
             }
@@ -331,8 +387,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("defense line: killbox trial", e);
             }
-            if (trials.Count > 20) trials.Clear();
-            trials[f.line.id] = (f.s, f.line.version, trial);
+            if (trials.Count > 40) trials.Clear();
+            trials[key] = (f.s, f.line.version, trial);
             return trial;
         }
 
