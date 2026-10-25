@@ -18,6 +18,8 @@
   <CC_SocialCol_PairMemories>{0} shared memories.</CC_SocialCol_PairMemories>
   <CC_SocialCol_PairAgree>They agree about {0}.</CC_SocialCol_PairAgree>
   <CC_SocialCol_PairOdds>They're at odds over {0}.</CC_SocialCol_PairOdds>
+  <CC_SocialCol_PairNoClick>They don't click: time together wears on them.</CC_SocialCol_PairNoClick>
+  <CC_SocialCol_PairGetOn>They get on easily: time together draws them closer.</CC_SocialCol_PairGetOn>
 
   <!-- The setting. -->
   <CC_Settings_SocialTabColumn>Rimfolk in the Social tab</CC_Settings_SocialTabColumn>

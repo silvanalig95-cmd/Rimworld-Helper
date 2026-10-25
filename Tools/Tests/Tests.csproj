@@ -44,6 +44,7 @@
     <Compile Include="../../Source/ColonyCouncil/Wishes/SeasonWishMath.cs" Link="SeasonWishMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/CouncilLayoutMath.cs" Link="CouncilLayoutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/TogetherMath.cs" Link="TogetherMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Social/ChemistryMath.cs" Link="ChemistryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/PersonaMath.cs" Link="PersonaMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/FaithMath.cs" Link="FaithMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Faith/LeaningMath.cs" Link="LeaningMath.cs" />

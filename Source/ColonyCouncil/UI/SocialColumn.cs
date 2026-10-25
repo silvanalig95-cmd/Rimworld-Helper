@@ -386,6 +386,10 @@ namespace ColonyCouncil
                 }
             var group = Groups.Shared(a, b);
             if (group != null) parts.Add("CC_Social_TieGroup".Translate(group.Name).Resolve());
+            // How they get on (Social/Chemistry.cs), once it's clear either way.
+            int leaning = Chemistry.Leaning(a, b);
+            if (leaning < 0) parts.Add("CC_SocialCol_PairNoClick".Translate().Resolve());
+            else if (leaning > 0) parts.Add("CC_SocialCol_PairGetOn".Translate().Resolve());
             if (Persona.On)
             {
                 int memories = SharedMemories.Of(a, b).Count;

@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.14.1</version>
+        <date>25 October 2026</date>
+        <title>Not everyone gets along</title>
+        <points>
+          <li>Time together no longer makes everyone friends. How two colonists get on follows the game's own compatibility between them: a deep talk or chitchat between two who don't click counts for a third to two thirds as much, and a slight or a quarrel stings a little more.</li>
+          <li>After a few days side by side the way two get on shows in the Social tab: they don't click, rub each other the wrong way or get on each other's nerves (3 to 10 points, deepening over a month), or they are easy company or on the same wavelength. Partners are left alone.</li>
+          <li>Rimfolk's warm moments come up less often between two who don't click, and frictions more; the other way round for two who get on easily.</li>
+          <li>Fighting side by side is respect rather than friendship: comrades add 3, 5 or 8 points instead of 4, 8 or 14. Before, a colony that drafted everyone for each raid had every pair 14 points closer to friends.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.14.0</version>
         <date>25 October 2026</date>
         <title>Shaped for the colony</title>

@@ -239,7 +239,9 @@ namespace ColonyCouncil
                 if (!Fits(ext, initiator, recipient)) return 0f;
                 float tone = MomentTones.Factor(ext, initiator, recipient);
                 if (tone <= 0f) return 0f;
-                return ext.weight * tone * ColonyCouncilMod.Settings.momentFrequency * MomentWeightFactor(initiator, recipient, ext.Friction, Kind);
+                // How the two get on (Social/Chemistry.cs); a group's moments follow the group instead.
+                float chemistry = this is InteractionWorker_GroupMoment ? 1f : Chemistry.MomentFactor(initiator, recipient, ext);
+                return ext.weight * tone * chemistry * ColonyCouncilMod.Settings.momentFrequency * MomentWeightFactor(initiator, recipient, ext.Friction, Kind);
             }
             catch (System.Exception e)
             {

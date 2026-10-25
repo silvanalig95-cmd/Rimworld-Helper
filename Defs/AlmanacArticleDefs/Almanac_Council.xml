@@ -467,10 +467,16 @@ Days on the colony calendar grow into traditions the same way: keep one three ye
           <li>Bond | How it forms | How it ends</li>
           <li>Friends | Two colonists' opinions of each other stay high enough. | It drifts with how they feel, and ends when it fades to nothing.</li>
           <li>Rivals | Their opinions of each other stay low enough. | The same way as a friendship.</li>
-          <li>Comrades | Fighting in the same battle: drafted, manning a turret or attacking the enemy. Everyone who does becomes comrades. | It slowly fades between battles.</li>
+          <li>Comrades | Fighting in the same battle: drafted, manning a turret or attacking the enemy. Everyone who does becomes comrades. It is respect more than friendship, and adds a few points at most. | It slowly fades between battles.</li>
           <li>Mentor and student | A mentor (skill 12+, with a passion) teaches a student (skill 7 or less, with a passion) each day the two spend some time side by side. | The student graduates at level 11 and goes to thank the mentor, and both are proud.</li>
         </table>
         <after>Bonds add opinion, more at each stage: new, solid, deep. To keep a skill in the colony after your best worker dies, look for a mentorship on the Bonds page, or have a learner with a passion work alongside them.</after>
+      </li>
+      <li>
+        <heading>How two people get on</heading>
+        <text>Time together doesn't make everyone friends. How two colonists get on follows the game's own compatibility between them, a fixed number for each pair that the game also uses for how often they have deep talks or trade insults, and that a big age gap lowers. Between two who don't click, a deep talk or chitchat counts for a third to two thirds as much, a slight stings a little more, Rimfolk's warm moments come up less often and frictions more. Between two who get on easily it goes the other way.
+
+After five days side by side it shows in the Social tab, and deepens over a month as far as their compatibility goes: two who don't click (-3), rub each other the wrong way (-6) or get on each other's nerves (-10); two who are easy company (+3) or on the same wavelength (+6). Most pairs are in between, and what happens between them decides. Hovering someone in the Social tab says when two don't click or get on easily. Partners are left alone, and so is anyone outside the colony.</text>
       </li>
       <li>
         <heading>What moves a bond</heading>

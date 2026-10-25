@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Not everyone gets along
+
+*25 October 2026, version 0.14.1*
+
+- Time together no longer makes everyone friends. How two colonists get on follows the game's own compatibility between them: a deep talk or chitchat between two who don't click counts for a third to two thirds as much, and a slight or a quarrel stings a little more.
+- After a few days side by side the way two get on shows in the Social tab: they don't click, rub each other the wrong way or get on each other's nerves (3 to 10 points, deepening over a month), or they are easy company or on the same wavelength. Partners are left alone.
+- Rimfolk's warm moments come up less often between two who don't click, and frictions more; the other way round for two who get on easily.
+- Fighting side by side is respect rather than friendship: comrades add 3, 5 or 8 points instead of 4, 8 or 14. Before, a colony that drafted everyone for each raid had every pair 14 points closer to friends.
+
 ## Shaped for the colony
 
 *25 October 2026, version 0.14.0*

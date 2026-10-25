@@ -33,9 +33,9 @@
     <workerClass>ColonyCouncil.ThoughtWorker_SocialTie</workerClass>
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
-      <li><label>fought together</label><baseOpinionOffset>4</baseOpinionOffset></li>
-      <li><label>comrades in arms</label><baseOpinionOffset>8</baseOpinionOffset></li>
-      <li><label>bound by battle</label><baseOpinionOffset>14</baseOpinionOffset></li>
+      <li><label>fought together</label><baseOpinionOffset>3</baseOpinionOffset></li>
+      <li><label>comrades in arms</label><baseOpinionOffset>5</baseOpinionOffset></li>
+      <li><label>bound by battle</label><baseOpinionOffset>8</baseOpinionOffset></li>
     </stages>
   </ThoughtDef>
 
@@ -48,6 +48,22 @@
       <li><label>lessons together</label><baseOpinionOffset>4</baseOpinionOffset></li>
       <li><label>teacher and student</label><baseOpinionOffset>8</baseOpinionOffset></li>
       <li><label>devoted teacher and student</label><baseOpinionOffset>12</baseOpinionOffset></li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- How two get on, once they have lived side by side a while (Social/Chemistry.cs). Stages in ChemistryMath's order. -->
+
+  <ThoughtDef>
+    <defName>Council_Chemistry</defName>
+    <thoughtClass>Thought_SituationalSocial</thoughtClass>
+    <workerClass>ColonyCouncil.ThoughtWorker_Chemistry</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li><label>we don't click</label><baseOpinionOffset>-3</baseOpinionOffset></li>
+      <li><label>rubs me the wrong way</label><baseOpinionOffset>-6</baseOpinionOffset></li>
+      <li><label>gets on my nerves</label><baseOpinionOffset>-10</baseOpinionOffset></li>
+      <li><label>easy company</label><baseOpinionOffset>3</baseOpinionOffset></li>
+      <li><label>on the same wavelength</label><baseOpinionOffset>6</baseOpinionOffset></li>
     </stages>
   </ThoughtDef>
 

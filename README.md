@@ -537,9 +537,16 @@ Colonists form lasting bonds out of how they feel about each other and what they
 grow, sour and end over time:
 - **Friends** and **rivals** form when two people keep liking (or loathing) each other, then drift with how
   they feel.
-- Everyone who fights in the same battle becomes **comrades**. That fades slowly between battles.
+- Everyone who fights in the same battle becomes **comrades**: respect more than friendship, a few points of opinion.
+  That fades slowly between battles.
 - A skilled, passionate colonist may take a keen learner on as a **student**, teaching them each day the two spend
   some time side by side, until they graduate at level 11 (and the student goes to find the mentor to thank them).
+
+Time together doesn't make everyone friends. How two people **get on** follows the game's own compatibility between
+them: between two who don't click a deep talk or chitchat counts for less, a slight stings more, warm moments come up
+less often and frictions more, and after a few days side by side they don't click, rub each other the wrong way or get
+on each other's nerves (up to -10, deepening over a month). Two who get on easily grow closer the same way (up to +6).
+Most pairs are in between, and what happens between them decides. Partners are left alone.
 
 Most days something small happens between two people who are together at the time (79 kinds of social event): a
 late talk, a shared joke, a prank that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson,
