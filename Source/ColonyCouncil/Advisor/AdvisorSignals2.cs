@@ -303,7 +303,13 @@ namespace ColonyCouncil
             { "AB_VolcanicHeatWave", 0.5f },
             // Seasonal Weather
             { "Earthquake", 0.6f },
-            { "Wildfire", 0.7f }
+            { "Wildfire", 0.7f },
+            // Stormproof
+            { "Stormproof_IonStorm", 0.5f },
+            { "Stormproof_HeatDome", 0.6f },
+            { "Stormproof_PolarFront", 0.6f },
+            { "Stormproof_ToxicSurge", 0.75f },
+            { "Stormproof_DryLightning", 0.55f }
         };
 
         private static readonly Dictionary<string, string> ConditionArticles = new Dictionary<string, string>

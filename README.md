@@ -1335,6 +1335,25 @@ mark the anniversary in their own words, and their friends share it. And when th
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
 the decree they'd like.
 
+### The weather, as the colony knows it
+Each home map keeps a **weather record**: an hour's rain, snow, storm, fog and temperature noted, the hours made into
+days and the days into seasons (a month of days and three years of seasons kept). The **coldest night**, the **hottest
+day**, the **longest rain** and the **longest dry spell** since the colony came are remarked on when broken (after
+twenty days, and a degree past the mark, or a spell longer than any earlier one); the **first snow** is set against last
+year's; each **season is set against the same season a year before** (3 °C colder or warmer, wetter, drier, stormier),
+with a journal line from whoever has been with the colony longest; and a season far from usual here is **remembered
+by a name**: "the winter of the long cold", "the warm winter", "the dry summer", in the chronicle and the year's
+annals. The Overview page has a Weather card. Rimfolk's events that speak of the weather only come after it: the long
+rains after rain on four of the last seven days, an ice fair after five frozen days, a struck tree after a storm.
+
+Rimfolk's **hail is seen coming**: two hours of green sky, a word from the one who knows the fields best, and a few
+colonists bringing in the ripe crops before it falls; it rains with it only while it's warm enough, and the rain no
+longer runs on for a day or two after. Three **quirks**: loves the snow, follows the sun, sleeps best in rain. A
+**storm keeps a trade caravan** half a day longer, and snowbound land slows the people coming for a **mission**.
+With **Seasonal Weather**, a dry, windy day in the fire season brings **firebreak** advice (one button marks the brush
+round the home area for cutting), and after an **earthquake** a few colonists go round the roofs and walls. Stormproof,
+Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet Wonders are met where they're installed.
+
 ### Annals
 When a new year begins, the colony's best reader or talker writes up the year that ended: how many you were and
 are, who joined, who died and who walked out, how often trouble came, whether you grew richer or poorer, what the
@@ -2234,7 +2253,9 @@ my back, it's still out"), **getting back on their feet**, the stage their **per
 there, a **wish** still waiting. About 400 lines across nine kinds, in the speaker's own voice, each tagged for the
 particular feeling, ailment, story stage, setback or kind of day; one line an hour at most, and the same colonist about
 once a day at most. The **first snow** of a winter, a **heat wave**, a **cold snap** and a **storm** rolling in get a
-word from whoever is out in them, and now and then a line in someone's journal.
+word from whoever is out in them, and now and then a line in someone's journal. On a **bitter morning** breath shows at
+the mouths of colonists outside; steam rises off the colony's outdoor fires in the cold and off the sauna's door on a
+freezing day; one who dreads storms **flinches** at each lightning flash, and anyone near a strike does too.
 
 **Gatherings that look alive.** Round a **bonfire** the fire smokes and, after dark, sparks; a song has its notes and a
 wedding its hearts; at a **toast**, a while in, the cups go up together (a small warm glint over each head) with a

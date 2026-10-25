@@ -30,7 +30,7 @@ namespace ColonyCouncil
         public const int MaxTidied = 6;
 
         private static bool looked;
-        private static QuirkDef tidy, earlyRiser, prettyStones, feedsBirds, whittler, sharpens, knowsTrails, steadyHands, birthdays;
+        private static QuirkDef tidy, earlyRiser, prettyStones, feedsBirds, whittler, sharpens, knowsTrails, steadyHands, birthdays, snowLover, sunSeeker;
         private static ThoughtDef lookedInOn, birthdayRemembered;
 
         private static void Look()
@@ -46,6 +46,8 @@ namespace ColonyCouncil
             knowsTrails = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_KnowsTrails");
             steadyHands = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_SteadyHands");
             birthdays = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_Birthdays");
+            snowLover = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_SnowLover");
+            sunSeeker = DefDatabase<QuirkDef>.GetNamedSilentFail("Council_Quirk_SunSeeker");
             lookedInOn = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Habit_LookedInOn");
             birthdayRemembered = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Habit_BirthdayRemembered");
         }
@@ -72,6 +74,40 @@ namespace ColonyCouncil
         {
             Look();
             return !VisualTouches.Dark(p.Map) && MoreHabits.HasQuirk(p, prettyStones);
+        }
+
+        /// <summary>One who loves the snow, while it falls and it isn't dangerously cold out.</summary>
+        public static bool SnowFallFor(Pawn p)
+        {
+            Look();
+            var map = p.Map;
+            return (map.weatherManager?.SnowRate ?? 0f) >= 0.05f && p.SafeTemperatureRange().Includes(map.mapTemperature.OutdoorTemp) && MoreHabits.HasQuirk(p, snowLover);
+        }
+
+        /// <summary>One who follows the sun, in sunshine fit to sit out in.</summary>
+        public static bool SunFor(Pawn p)
+        {
+            Look();
+            var w = p.Map.weatherManager;
+            return w != null && w.RainRate < 0.01f && w.SnowRate < 0.01f && p.Map.skyManager.CurSkyGlow >= 0.6f && JoyUtility.EnjoyableOutsideNow(p) && MoreHabits.HasQuirk(p, sunSeeker);
+        }
+
+        /// <summary>
+        /// Somewhere under the open sky near the colony's middle to stand or sit a while (open ground, no water, no
+        /// building), facing a few cells ahead (<paramref name="face"/>). Invalid when there's nowhere.
+        /// </summary>
+        public static IntVec3 SkySpot(Pawn p, out IntVec3 face)
+        {
+            face = IntVec3.Invalid;
+            var map = p.Map;
+            var center = TemplatePlanner.ColonyCenter(map);
+            bool Open(IntVec3 c) =>
+                c.InBounds(map) && !c.Roofed(map) && !c.Fogged(map) && c.InHorDistOf(p.Position, 60f) && c.GetEdifice(map) == null && !(c.GetTerrain(map)?.IsWater ?? false);
+            if (!CellFinder.TryFindRandomCellNear(center, map, 20, Open, out var open, 200)) return IntVec3.Invalid;
+            var spot = SmallHabits.SpotNear(open, map, p, x => !x.Roofed(map));
+            if (!spot.IsValid) return IntVec3.Invalid;
+            face = (spot + Rot4.Random.FacingCell * 4).ClampInsideMap(map);
+            return spot;
         }
 
         /// <summary>One who feeds the birds, by day.</summary>
@@ -437,6 +473,34 @@ namespace ColonyCouncil
             if (!JoyUtility.EnjoyableOutsideNow(p)) return null;
             var cell = QuirkHabits.BirdsSpot(p, out var face);
             return cell.IsValid ? Make(cell, face, new IntRange(800, 1300)) : null;
+        }
+    }
+
+    /// <summary>One who loves the snow: a while out in it while it falls, looking up.</summary>
+    public class JoyGiver_HabitSnowFall : JoyGiver_Habit
+    {
+        protected override HabitKind Kind => HabitKind.SnowFall;
+
+        protected override bool Fits(Pawn p) => QuirkHabits.SnowFallFor(p);
+
+        protected override Job Give(Pawn p)
+        {
+            var cell = QuirkHabits.SkySpot(p, out var face);
+            return cell.IsValid ? Make(cell, face, new IntRange(700, 1100)) : null;
+        }
+    }
+
+    /// <summary>One who follows the sun: a while out in it by day, on open ground near the colony.</summary>
+    public class JoyGiver_HabitSun : JoyGiver_Habit
+    {
+        protected override HabitKind Kind => HabitKind.Sun;
+
+        protected override bool Fits(Pawn p) => QuirkHabits.SunFor(p);
+
+        protected override Job Give(Pawn p)
+        {
+            var cell = QuirkHabits.SkySpot(p, out var face);
+            return cell.IsValid ? Make(cell, face, new IntRange(900, 1400)) : null;
         }
     }
 

@@ -198,6 +198,8 @@ namespace ColonyCouncil
             if (secretsOut.Count > 0) Para("CC_Annals_Secrets".Translate(TextUtil.JoinAnd(secretsOut.Take(6).ToList())).Resolve());
             if (goals.Count > 0) Para("CC_Annals_Goals".Translate(TextUtil.JoinAnd(goals.Take(8).ToList())).Resolve());
             if (omens.Count > 0) Para("CC_Annals_Omens".Translate(TextUtil.JoinAnd(omens.Take(6).ToList())).Resolve());
+            // The year's weather, from the colony's record of it (Weather/WeatherBook.cs).
+            Para(WeatherBook.Of(map)?.AnnalsLine(year));
             if (traditionsBroken.Count > 0) Para("CC_Annals_TraditionsBroken".Translate(TextUtil.JoinAnd(traditionsBroken.Distinct().ToList())).Resolve());
 
             // People and their feelings

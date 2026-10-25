@@ -157,4 +157,18 @@
     </tips>
   </ColonyCouncil.AdvisorSignalDef>
 
+  <!-- Seasonal Weather's wildfires: a firebreak on a dry, windy day in the fire season (Weather/WeatherDisasters.cs). -->
+  <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_Firebreak</defName>
+    <label>a firebreak</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_Firebreak</workerClass>
+    <article>Council_AlmMod_D_SeasonalWeather</article>
+    <category>Defense</category>
+    <importance>0.9</importance>
+    <tips>
+      <li>A wildfire from Seasonal Weather comes in from one edge of the map. Bare ground stops it; grass and brush carry it.</li>
+      <li>Rain puts fires out, and a big fire makes rain likelier.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
 </Defs>

@@ -826,7 +826,11 @@ The seasonal changes cover the eleven vanilla biomes. Biomes added by other mods
 
 Rimfolk knows its weathers by name: a double rainbow, a day of wind and a dust storm each bring an encounter of their own, and lines can ask for them.</text>
       </li>
-    </sections>
+          <li>
+        <heading>With Rimfolk</heading>
+        <text>Rimfolk's weather record notes its snowy fog as both snow and fog, and counts its dry duststorm as a storm. On a dry, windy day in summer or fall, with grass and brush up to the home area, Rimfolk's advisor suggests a firebreak, and one button marks the brush round the home area for cutting. After an earthquake a few colonists go round the roofs and walls, and the annals count the quakes (see "the weather, as the colony knows it").</text>
+      </li>
+</sections>
     <keywords>
       <li>weather</li>
       <li>season</li>

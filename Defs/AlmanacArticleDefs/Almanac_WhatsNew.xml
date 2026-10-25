@@ -31,6 +31,22 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.15.0</version>
+        <date>25 October 2026</date>
+        <title>The weather remembered</title>
+        <points>
+          <li>Each home map keeps a weather record. The coldest night, the hottest day, the longest rain and the longest dry spell since the colony came are remarked on when broken, and the first snow is set against last year's. The Overview page has a Weather card.</li>
+          <li>Each season is set against the same season a year before, and one far from usual here is remembered by a name ("the winter of the long cold", "the dry summer") in the chronicle and the year's annals.</li>
+          <li>Rimfolk's events that speak of the weather only come after it: the long rains after rain on four of the last seven days, an ice fair after five frozen days, a struck tree after a storm, and six more.</li>
+          <li>Hail is seen coming: two hours of green sky, a word from the one who knows the fields best, and a few colonists bringing in the ripe crops. Fixed: hail no longer brings rain below freezing, and its rain no longer runs on for a day or two after it.</li>
+          <li>Three quirks: loves the snow, follows the sun, sleeps best in rain, two of them with a free-time habit of their own. Breath shows on bitter mornings, steam rises off outdoor fires and the sauna's door in the cold, and one who dreads storms flinches at lightning.</li>
+          <li>A storm keeps a trade caravan half a day longer, and snowbound land slows the people coming for a mission.</li>
+          <li>With Seasonal Weather: firebreak advice on a dry, windy day in the fire season, with a button that marks the brush round the home area for cutting, and a work party round the roofs and walls after an earthquake.</li>
+          <li>Stormproof, Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet Wonders are met where they're installed, and all are safe to add to a running save.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.14.2</version>
         <date>25 October 2026</date>
         <title>Into cover</title>

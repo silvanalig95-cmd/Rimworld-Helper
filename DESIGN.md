@@ -2047,6 +2047,7 @@ fights pass and the worn-out episode read from it. (A downed victim after a figh
 | 1777 | Personal stories | per story under way; new stories in the first hour of the day |
 | 1903 | Groups (with "Personalities and social life" and the social web on): work sampled, habits kept together | per colonist on a home map (their job); per group (its members up and about, together, doing its habit) |
 | 2089 | Story chains and missions; the peoples' memory fades (first hour of the day only) | per running chain, per mission; per remembered deed |
+| 2185 | The weather record (Weather/WeatherBook.cs, a map component): the hour's rain, snow, storm, fog and temperature noted; a finished day, and a finished season set against the year before and named | per home map: a few numbers |
 | 2280 | Council: encounters and nuisances, Rimfolk's own events | one roll each; event memory pruned in the first hour of the day |
 | 2375 | Conversations: the hour's look for what people go through together (with social life on); views drift in the first hour of the day | per home map: colonists up between one and four at night (pairs together), active conditions, lords, fires, fresh food poisoning, newcomers, prisoners, traders; new play-log lines (tames); finished studies; daily per colonist and view, mentors and secrets |
 | 2471 | Ailments, the colony's part (on the slice that lands here): the catching ailments' clock; pruning on the first look of the day | per home map |

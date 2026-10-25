@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The weather as the colony knows it: its own record (Source/ColonyCouncil/Weather/), the weather seen coming, the
+    weather in people (quirks and touches), in visitors and missions, and other weather mods met.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Weather</defName>
+    <label>the weather, as the colony knows it</label>
+    <category>Council</category>
+    <order>21</order>
+    <summary>The colony's own weather record: its records, its seasons remembered by name, and the weather in its people, its visitors and its events.</summary>
+    <tip>The colony remembers its hard winters by name, and its old hands set each season against the one before.</tip>
+    <description>From the day Rimfolk comes, each home map keeps a record of its weather. Once an hour it notes whether rain or snow is falling, whether there is a storm or fog, and how cold or warm it is outside. The hours make days and the days make seasons, and a month of days and three years of seasons are kept. Nothing in the weather itself changes: the game still chooses it, along with any weather mods.</description>
+    <sections>
+      <li>
+        <heading>Records and seasons</heading>
+        <table>
+          <li>What | When it counts | What you see</li>
+          <li>The coldest or hottest since the colony came | After the record has 20 days, and a degree past the mark | A word from someone in view, and the news</li>
+          <li>The longest rain | Rain most of the day, more days running than any earlier spell of four or more | The same</li>
+          <li>The longest dry spell | Nothing falling, longer than any earlier spell of a week or more | The same</li>
+          <li>The first snow | Snow after ten days without, set against last year's first snow | The news, when it came five days or more earlier or later</li>
+          <li>A season against last year's | 3 °C colder or warmer; three more wet days and half again; or a day's more storms and twice as many | The news and the chronicle, and a journal line from whoever has been with the colony longest</li>
+          <li>A season remembered by name | 5 °C colder or warmer than usual here, two days of storms, rain on most days, or 12 days running with nothing falling where it usually rains | "the winter of the long cold", "the warm winter", "the dry summer": the news, the chronicle and the year's annals</li>
+        </table>
+        <after>The Overview page has a Weather card: this season so far against the same season last year, the records, and the last season remembered by name. The year's annals say how cold and how hot it got.</after>
+      </li>
+      <li>
+        <heading>Events that speak of the weather</heading>
+        <text>Rimfolk's events that speak of the weather only come after that weather. The long rains need rain on four of the last seven days. A flush of mushrooms needs a wet day in the last three, a desert bloom one in the last week, and a growing spell two in the last week. A struck tree needs a storm in the last day. Fall's high water and a rockslide in summer or fall need three wet days in the last week. A thirsty herd needs six days with nothing falling here, and an ice fair five days of the last seven below freezing all day. Until the record has that many days, after Rimfolk is first added, these events wait.</text>
+      </li>
+      <li>
+        <heading>Seen coming</heading>
+        <text>Rimfolk's hail is seen coming. For two hours the sky turns green and the wind drops. The colonist who knows the fields best says so if they're in view, and a few others bring in the ripe crops from the open fields. Then the hail comes. It rains with the hail only while it's warm enough to rain, and a rain the hail brought doesn't run on for a day or two after it. When a warm spell sets in, someone outside feels the wind turn.</text>
+      </li>
+      <li>
+        <heading>The weather in people</heading>
+        <points>
+          <li>Three quirks: loves the snow (+3 while snow falls; stands out in it in their free time), follows the sun (+3 in sunshine out of doors, grows out of time outdoors and never comes to an undergrounder; sits in the sun), and sleeps best in rain (+3 with rain on the roof, in bed or indoors at night).</li>
+          <li>On a bitter morning, or any time it's below -15 °C, breath shows at the mouths of colonists outside. Steam rises off the colony's fires out in the open in the cold, and off the sauna's door on a freezing day.</li>
+          <li>One who dreads storms flinches at each lightning flash and now and then says so. Anyone within a few steps of a strike flinches too.</li>
+        </points>
+        <after>All of these need the "visual and sound touches" setting, and the free-time habits need "Small habits".</after>
+      </li>
+      <li>
+        <heading>Visitors and missions</heading>
+        <text>A trade caravan whose stay is nearly over when a storm or a heavy snow sets in waits it out, half a day longer at its spot, once a visit. When the land is snowbound (deep snow on the ground, or snow on most of the last three days), people coming to the colony for a mission take half again as long on their way, and the mission's time is longer by as much. A camp packs up and goes in a cold snap or a heat wave.</text>
+      </li>
+      <li>
+        <heading>Other weather mods</heading>
+        <table>
+          <li>Mod | What Rimfolk does with it</li>
+          <li>Seasonal Weather | On a dry, windy day in summer or fall, with grass and brush up to the home area, the advisor suggests a firebreak, and one button marks the brush in a strip 3 cells wide round the home area for cutting. After an earthquake the best builder and a few others go round the roofs and walls, repairing, cleaning and hauling; the chronicle remembers it and the annals count the quakes.</li>
+          <li>Stormproof | The heat dome and the polar front are talked about like a heat wave and a cold snap. All five of its storms send a camp on its way and are in the advisor's "what's happening now".</li>
+          <li>Weather is kinda cozy | One who loves the rain never comes to dread storms.</li>
+          <li>SS Lightning Rod | A strike drawn down by a rod gets a word from someone in view.</li>
+          <li>Disasters: Tornado | A tornado crossing the land goes in the chronicle, and someone writes about it once it has passed.</li>
+          <li>Quiet Wonders | Rimfolk's firefly nights leave the fireflies to it.</li>
+        </table>
+        <after>Each only with its mod, and all of them are safe to add to a running save.</after>
+      </li>
+    </sections>
+    <keywords><li>weather</li><li>record</li><li>season</li><li>snow</li><li>rain</li><li>storm</li><li>hail</li><li>breath</li><li>firebreak</li><li>earthquake</li><li>annals</li></keywords>
+    <seeAlso>
+      <li>Council_Alm_C_WorldEvents</li>
+      <li>Council_Alm_C_Names</li>
+      <li>Council_AlmMod_D_SeasonalWeather</li>
+      <li>Council_Alm_C_SeeAndHear</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

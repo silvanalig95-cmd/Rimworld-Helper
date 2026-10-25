@@ -115,7 +115,11 @@
         <letter>NegativeEvent</letter>
         <group>Nature</group>
         <condition>Council_Hail</condition>
-        <days>0.15~0.3</days>
+        <!-- Two hours of the sky warning of it (GameCondition_Hail.LeadTicks), then a few hours of hail. -->
+        <days>0.23~0.38</days>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the ripe crops in before the hail</label><count>4</count><tasks><li>Harvest</li></tasks><hours>0~23</hours><waitHours>1</waitHours><duration>1.5~2</duration></li>
+        </effects>
         <seasons>
           <li>Spring</li>
           <li>Summer</li>
@@ -130,8 +134,8 @@
           <li>Ice from a black sky</li>
         </titles>
         <texts>
-          <li>Hail the size of knuckles is hammering down out of a black sky. Crops in the open will suffer, young ones most of all. It won't hurt anyone and won't last long, but anyone caught outside will be miserable. (Fields under a roof are safe.)</li>
-          <li>[lowtech] The sky turned green, and then the hail came, bouncing off the roofs and stripping the leaves from everything in the fields. Young crops in the open won't all survive it. It stings, but it won't hurt anyone, and it won't last long. (Fields under a roof are safe.)</li>
+          <li>The sky over the hills has gone a sick green and the wind has dropped to nothing: hail is coming. When it does, crops in the open will suffer, young ones most of all. Whoever can be spared is out bringing in what's ripe first. It won't hurt anyone and won't last long, but anyone caught outside will be miserable. (Fields under a roof are safe.)</li>
+          <li>[lowtech] The sky has turned green, the way it does before hail. Soon it will come bouncing off the roofs and stripping the leaves from everything in the fields, and young crops in the open won't all survive it. The ripe ones are being cut and carried in while there's time. It stings, but it won't hurt anyone, and it won't last long. (Fields under a roof are safe.)</li>
         </texts>
       </li>
     </modExtensions>

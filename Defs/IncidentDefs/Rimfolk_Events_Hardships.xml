@@ -177,6 +177,9 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <weather>
+          <li>dry:6</li>
+        </weather>
         <group>Nature</group>
         <seasons>
           <li>Summer</li>

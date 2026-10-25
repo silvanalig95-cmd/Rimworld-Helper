@@ -418,11 +418,13 @@ Key Rimfolk facts used below (from `Source/ColonyCouncil`):
   Thought `WeatherDrone` "weather soothe" +7 ("I am a leaf on the wind") from a rare weather emanation.
 - In play: medieval bases full of torches, braziers and campfires are exposed: a tremor through a lit brazier starts a
   fire. Wildfires need firefighters and firebreaks.
-- Rimfolk today: nothing explicit. `FogSnow` is tagged fog and snow; `DryDuststorm` is not tagged as a storm
-  (defName contains "storm" in lower case). Earthquake and Wildfire are not in the advisor's condition table.
-- Hook ideas: add `Wildfire` and `Earthquake` to `AdvisorWorker_Conditions` with an Almanac link; quirks from
-  surviving an earthquake ("never sleeps under stone again"); a dilemma after a wildfire (rebuild vs move fields);
-  double rainbow encounter/dream; storm detection could be case-insensitive.
+- Rimfolk today: `FogSnow` counts as fog and snow, `DryDuststorm` as a storm (storm detection is case-insensitive).
+  `Wildfire` and `Earthquake` are in the advisor's condition table with an Almanac link. Since 0.15: firebreak advice
+  on a dry, windy day in summer or fall with brush up to the home area (one button marks a 3-cell strip for cutting),
+  and after an earthquake a work party goes round the roofs and walls, the chronicle remembers it and the annals count
+  the quakes (`Weather/WeatherDisasters.cs`).
+- Hook ideas: quirks from surviving an earthquake ("never sleeps under stone again"); a dilemma after a wildfire
+  (rebuild vs move fields); double rainbow encounter/dream.
 - Confidence: high (repo XML/C#).
 
 ## Vanilla Plants Expanded (`vanillaexpanded.vplantse`)
@@ -570,9 +572,38 @@ Key Rimfolk facts used below (from `Source/ColonyCouncil`):
   predators are far more common than in vanilla. Rimfolk's beast systems (great-beast encounters, beast nemeses,
   predator-den dilemma, companion wish self-help) were tuned against vanilla wildlife; consider caps by body size or
   revenge chance for the riskier choices.
-- Storm detection by defName ("Thunder"/"Storm", case-sensitive) catches Alpha Biomes' petal storm and forsaken
-  thunderstorm and ReGrowth's fog storm, but misses Seasonal Weather's dry duststorm.
-- The advisor's condition table could gain Wildfire, Earthquake (Seasonal Weather), AB_AcidRainCondition,
-  AB_VolcanicHeatWave (Alpha Biomes) and Almanac links to this batch's pages.
+- Storm detection by defName ("thunder"/"storm", case-insensitive) catches Alpha Biomes' petal storm and forsaken
+  thunderstorm, ReGrowth's fog storm and Seasonal Weather's dry duststorm.
+- The advisor's condition table has Wildfire, Earthquake (Seasonal Weather), AB_AcidRainCondition and
+  AB_VolcanicHeatWave (Alpha Biomes), with Almanac links.
 - Flowers wish: wild Beauty plants (ReGrowth, More Vanilla Biomes) inside the home area quietly count; flower-garden
   zones (VPE More Plants), redcaps and succulents count too.
+
+---
+
+### Weather mods not in the modlist, safe to add to a running save
+Surveyed October 2026 (Workshop pages, and the mods' files where there is no public repository). Rimfolk meets the
+first six where it already meets the weather (`Integrations/WeatherMods.cs`, `Weather/WeatherDisasters.cs`); each
+of these says it can be added to a running save, or adds nothing that would break one.
+- SS Lightning Rod (Continued) (`Mlie.SSLightningRod`, 2358261479): `LightningRodBasic` (Smithing, no power) and
+  `LightningRod` (Machining) draw strikes. Rimfolk: a strike drawn down by a rod gets a word from someone in view.
+  Overlaps Stormproof's storm spire.
+- Weather is kinda cozy (`Rocam.CozyUnderRoof`, 3680003162): trait `Pluviophile`, thoughts for sleeping through rain.
+  Rimfolk: a pluviophile never comes to dread storms.
+- Disasters: Tornado (Continued) (`zal.disasterstornado`, 3329542193): incident `Tornado` spawns the game's `Tornado`.
+  Rimfolk: a tornado on a home map goes in the chronicle, and a journal line once it's gone.
+- Stormproof (`AzraelGodKing.Stormproof`, 3760021127): conditions `Stormproof_IonStorm`, `_DryLightning`,
+  `_HeatDome`, `_PolarFront`, `_ToxicSurge`, with industrial and spacer counters. Rimfolk: heat dome and polar front
+  are talked about like a heat wave and a cold snap; all five send a camp on its way and are in the advisor's
+  condition table. Best for an industrial colony (a medieval one gets the storms without the counters).
+- Quiet Wonders (`choco.quietwonders`, 3822357701): cosmetic weather and season effects. Rimfolk's firefly nights
+  leave the fireflies to it.
+- Seasonal Weather is already in the modlist (above).
+- Snow Covers All (`Mlie.SnowCoversAll`, 3380299912), Dynamic Weather Work (`darren.dynamicweatherwork`, 3764479976),
+  WeatherControl (`Nightmare.WeatherControl`, 3047040031) and [CAP] Thunder Snow (`CAP.ThunderSnow`, 3590107592) are
+  fine to add and need nothing from Rimfolk (Thunder Snow's weather is already a storm and snow to Rimfolk). With
+  Seasonal Weather, WeatherControl's commonality edits only stick on biomes Seasonal Weather doesn't patch, and Thunder
+  Snow appears almost only on cold bogs.
+- Not recommended: Water Freezes (its author says not with Odyssey); Celsius (no Odyssey, overlaps Vanilla Temperature
+  Expanded); Climate Cycle mods (new game only, and the weather record would call every season unusual); Dynamic
+  Flooding and Sandstorms (1.5 or older).

@@ -388,4 +388,34 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- One who loves the snow, out in it while it falls. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitSnowFall</defName>
+    <lines>
+      <plain>
+        <li>Listen to that, you can hear it settle.</li>
+        <li>Every flake different, they say.</li>
+        <li>[child] I caught one, look, it's gone already.</li>
+        <li>[night] It glows at night, the snow does.</li>
+      </plain>
+      <cheerful><li>More, more, keep it coming!</li></cheerful>
+      <gloomy><li>It covers everything over, and that's a mercy.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who follows the sun, out in it by day. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_HabitSun</defName>
+    <lines>
+      <plain>
+        <li>Just a few minutes in the sun, then back to it.</li>
+        <li>You can feel it right through to the bones.</li>
+        <li>[winter] Not much warmth in it this time of year, but I'll take it.</li>
+        <li>[child] The ground's warm here, come and sit.</li>
+      </plain>
+      <cheerful><li>Now this is how a day should feel!</li></cheerful>
+      <gloomy><li>Better make the most of it before the clouds come back.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

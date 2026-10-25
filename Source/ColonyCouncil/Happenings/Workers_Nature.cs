@@ -131,11 +131,30 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Hail for a few hours: crops out in the open get knocked back (some young ones flattened), and anyone caught
-    /// outside grumbles. Nobody is hurt. Roofed fields and greenhouses are safe.
+    /// outside grumbles. Nobody is hurt. Roofed fields and greenhouses are safe. The colony sees it coming: for the first
+    /// two hours the sky only warns of it (the one who knows the fields best says so, and a work party brings the ripe
+    /// crops in, from the event's effects), then it comes. It rains with the hail while it's warm enough to rain, and
+    /// when the hail ends a rain it brought hands back to the weather's own choice.
     /// </summary>
     public class GameCondition_Hail : GameCondition
     {
         private int hits;
+        /// <summary>It was raining already when the hail began: that rain is the weather's own and carries on.</summary>
+        private bool wasRaining;
+        private bool warned;
+
+        /// <summary>The time the sky warns of it before the hail comes.</summary>
+        public const int LeadTicks = GenDate.TicksPerHour * 2;
+
+        /// <summary>Still only coming: the sky warns of it.</summary>
+        public bool Coming => TicksPassed < LeadTicks;
+
+        /// <summary>Hail is falling on this map now (not just coming).</summary>
+        public static bool Falling(Map map)
+        {
+            var c = map?.gameConditionManager?.GetActiveCondition<GameCondition_Hail>();
+            return c != null && !c.Coming;
+        }
 
         /// <summary>Crops in open fields (growing zones under the sky).</summary>
         public static List<Plant> Crops(Map map)
@@ -154,21 +173,66 @@ namespace ColonyCouncil
         private static WeatherDef rain;
         private static bool rainLooked;
 
-        /// <summary>The game's rain, looked up once (the weather asks while the hail lasts).</summary>
+        private static WeatherDef Rain
+        {
+            get
+            {
+                if (!rainLooked)
+                {
+                    rain = DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
+                    rainLooked = true;
+                }
+                return rain;
+            }
+        }
+
+        public override void Init()
+        {
+            base.Init();
+            var now = SingleMap?.weatherManager?.curWeather;
+            wasRaining = now != null && now.rainRate > 0.1f;
+        }
+
+        /// <summary>The game's rain while the hail falls, as long as it's warm enough outside to rain (the game's own range for rain).</summary>
         public override WeatherDef ForcedWeather()
         {
-            if (!rainLooked)
-            {
-                rain = DefDatabase<WeatherDef>.GetNamedSilentFail("Rain");
-                rainLooked = true;
-            }
-            return rain;
+            if (Coming) return null;
+            var r = Rain;
+            var map = SingleMap;
+            if (r == null || map == null) return r;
+            return r.temperatureRange.Includes(map.mapTemperature.OutdoorTemp) ? r : null;
+        }
+
+        /// <summary>
+        /// The one who knows the fields best (growing, then years) reads the sky and says so, if they're in view: the
+        /// warning that comes before the hail.
+        /// </summary>
+        private void Warn(Map map)
+        {
+            warned = true;
+            var reader = map.mapPawns.FreeColonistsSpawned.Where(p => p.Awake() && !p.Drafted && !p.DevelopmentalStage.Baby() && p.skills != null)
+                .OrderByDescending(p => (p.skills.GetSkill(SkillDefOf.Plants)?.Level ?? 0) * 2f + p.ageTracker.AgeBiologicalYearsFloat / 10f).FirstOrDefault();
+            if (reader != null) WeatherTalk.SayBy(reader, "Council_Pool_SayHailComing");
+        }
+
+        /// <summary>A rain the hail brought doesn't run on for a day or two after it: the weather chooses again (easing over an hour or so).</summary>
+        public override void End()
+        {
+            base.End();
+            var map = SingleMap;
+            if (wasRaining || Rain == null || map?.weatherDecider == null || map.weatherManager?.curWeather != Rain) return;
+            map.weatherDecider.StartNextWeather();
         }
 
         public override void GameConditionTick()
         {
             base.GameConditionTick();
             if (Find.TickManager.TicksGame % 250 != 0) return;
+            if (Coming)
+            {
+                if (!warned && AffectedMaps.Count > 0) Warn(AffectedMaps[0]);
+                return;
+            }
             foreach (var map in AffectedMaps)
             {
                 var crops = Crops(map);
@@ -200,6 +264,8 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Values.Look(ref hits, "hits");
+            Scribe_Values.Look(ref wasRaining, "wasRaining");
+            Scribe_Values.Look(ref warned, "warned");
         }
     }
 

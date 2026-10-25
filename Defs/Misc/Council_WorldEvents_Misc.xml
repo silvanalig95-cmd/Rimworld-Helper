@@ -75,7 +75,7 @@
     <defName>Council_Hail</defName>
     <conditionClass>ColonyCouncil.GameCondition_Hail</conditionClass>
     <label>hailstorm</label>
-    <description>Hail is hammering down. Crops in open fields are losing growth, and some young plants will be destroyed. Anything under a roof is safe. The hail won't injure anyone, but colonists caught outside will be unhappy about it.</description>
+    <description>A hailstorm, seen coming first in a green sky, then hammering down. Crops in open fields lose growth while it falls, and some young plants will be destroyed. Anything under a roof is safe. The hail won't injure anyone, but colonists caught outside will be unhappy about it.</description>
     <endMessage>The hail has stopped.</endMessage>
     <canBePermanent>false</canBePermanent>
   </GameConditionDef>

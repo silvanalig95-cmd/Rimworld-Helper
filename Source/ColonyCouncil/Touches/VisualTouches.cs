@@ -185,9 +185,11 @@ namespace ColonyCouncil
             events.Pulse(this, map, view, now, pulses);
             var conditions = map.gameConditionManager;
             if (conditions == null) return;
-            if (conditions.GetActiveCondition<GameCondition_Fireflies>() != null) Fireflies(map, view);
-            if (conditions.GetActiveCondition<GameCondition_Hail>() != null) HailAround(map, view);
+            if (conditions.GetActiveCondition<GameCondition_Fireflies>() != null && !WeatherMods.OwnFireflies) Fireflies(map, view);
+            if (GameCondition_Hail.Falling(map)) HailAround(map, view);
             if (pulses % 4 == 0) CampFire(map, view);
+            // Breath in the cold, steam off fires and the sauna (Immersion/WeatherTouches.cs).
+            WeatherTouches.Pulse(map, view, pulses);
         }
 
         internal static bool Dark(Map map) => GenCelestial.CurCelestialSunGlow(map) < 0.3f;
@@ -569,7 +571,7 @@ namespace ColonyCouncil
             string pool = null;
             if (comet && dark) pool = "Council_Pool_TouchComet";
             else if (dark && conditions.GetActiveCondition<GameCondition_Fireflies>() != null) pool = "Council_Pool_TouchFireflies";
-            else if (conditions.GetActiveCondition<GameCondition_Hail>() != null) pool = "Council_Pool_TouchHail";
+            else if (GameCondition_Hail.Falling(map)) pool = "Council_Pool_TouchHail";
             else if (!dark && conditions.GetActiveCondition<GameCondition_WarmSpell>() != null) pool = "Council_Pool_TouchWarmSpell";
             if (pool == null || !Rand.Chance(0.4f)) return false;
             var p = Someone(map, view, now, true, false);

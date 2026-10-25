@@ -74,6 +74,8 @@ namespace ColonyCouncil
             if (!S.worldEvents && !forScenario) return false;
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < ext.minTemp || temp > ext.maxTemp) return false;
+            // An event that speaks of the weather only comes after that weather (the colony's record of it).
+            if (!ext.weather.NullOrEmpty() && !(WeatherBook.Of(map)?.Fits(ext.weather) ?? false)) return false;
             if (ext.battle && !(forScenario ? ScenarioBattlesAllowed(map) : BattlesAllowed(map))) return false;
             if (!ext.mods.NullOrEmpty() && !ext.mods.Any(m => ModsConfig.IsActive(m) || People.ModActive(m))) return false;
             if (!ext.seasons.NullOrEmpty() && !ext.seasons.Contains(GenLocalDate.Season(map))) return false;

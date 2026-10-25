@@ -119,7 +119,8 @@ namespace ColonyCouncil
                 if (manager?.ActiveConditions == null) continue;
                 foreach (var c in manager.ActiveConditions)
                 {
-                    if (c?.def == null || (c.def != GameConditionDefOf.HeatWave && c.def != GameConditionDefOf.ColdSnap)) continue;
+                    // Stormproof's heat dome and polar front count as a heat wave and a cold snap (Integrations/WeatherMods.cs).
+                    if (c?.def == null || (c.def != GameConditionDefOf.HeatWave && c.def != GameConditionDefOf.ColdSnap && !(c is GameCondition_WarmSpell) && !WeatherMods.HeatLike(c.def) && !WeatherMods.ColdLike(c.def))) continue;
                     int key = c.startTick * 31 + c.def.shortHash;
                     if (!active.Add(key)) continue;
                     if (!w.conditions.Contains(key) && !started.Contains(c.def)) started.Add(c.def);
@@ -144,7 +145,14 @@ namespace ColonyCouncil
             if (!touches) return spoke;
             foreach (var def in started)
             {
-                bool heat = def == GameConditionDefOf.HeatWave;
+                bool heatLike = def == GameConditionDefOf.HeatWave || WeatherMods.HeatLike(def), coldLike = def == GameConditionDefOf.ColdSnap || WeatherMods.ColdLike(def);
+                if (!heatLike && !coldLike)
+                {
+                    // Rimfolk's warm spell: someone outside feels the wind turn.
+                    if (here) spoke |= Say(vt, map, view, now, "Council_Pool_SayWarmSpell", 1, true, false) > 0;
+                    continue;
+                }
+                bool heat = heatLike;
                 if (here) spoke |= Say(vt, map, view, now, heat ? "Council_Pool_SayHeatWave" : "Council_Pool_SayColdSnap", 1, true, false) > 0;
                 if (Rand.Chance(0.6f)) Write(map, heat ? "Council_Journal_HeatWave" : "Council_Journal_ColdSnap", false);
             }
@@ -204,6 +212,33 @@ namespace ColonyCouncil
                 said++;
             }
             return said;
+        }
+
+        /// <summary>
+        /// One colonist in view on this map, outside first, says a line from the pool (with the touches setting and
+        /// speech on): for the weather record's remarks. True when it was said.
+        /// </summary>
+        public static bool SayOne(Map map, string pool, params string[] tags)
+        {
+            var vt = VisualTouches.Instance;
+            if (vt == null || !VisualTouches.On || !Speech.On || map == null) return false;
+            if (!VisualTouches.InView(out var viewMap, out var view) || viewMap != map) return false;
+            return Say(vt, map, view, Find.TickManager.TicksGame, pool, 1, true, false, tags) > 0;
+        }
+
+        /// <summary>This colonist says a line from the pool, if they're in view and free to talk (with the touches setting and speech on).</summary>
+        public static bool SayBy(Pawn p, string pool, params string[] tags)
+        {
+            var vt = VisualTouches.Instance;
+            if (vt == null || p == null || !p.Spawned || !VisualTouches.On || !Speech.On) return false;
+            if (!VisualTouches.InView(out var viewMap, out var view) || viewMap != p.Map) return false;
+            int now = Find.TickManager.TicksGame;
+            if (!vt.Free(p, p.Map, view, now)) return false;
+            string line = Flavor.FromPool(pool, p, null, null, tags);
+            if (line.NullOrEmpty()) return false;
+            CouncilGameComponent.Speak(p, line.Formatted(p.Named("PAWN")).Resolve(), SpeechColor);
+            vt.Spoke(p, now + GenDate.TicksPerDay);
+            return true;
         }
 
         /// <summary>One colonist at home writes about it (a child more often, for the snow).</summary>

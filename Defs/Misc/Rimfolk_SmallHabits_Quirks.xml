@@ -2,7 +2,7 @@
 <Defs>
 
   <!--
-    Nine small habits, each the free-time moment of a quirk (Source/ColonyCouncil/Immersion/QuirkHabits.cs), under the
+    Eleven small habits, each the free-time moment of a quirk (Source/ColonyCouncil/Immersion/QuirkHabits.cs), under the
     same rules as the others in Rimfolk_SmallHabits.xml: only with the "Small habits" setting on, in free time, off
     cooldown, and only for a colonist who has the quirk (with the quirks setting on). Doing it lives the habit, so it
     doesn't fade while they keep at it. Nothing is used up or made; a tidy one wipes up a little of the mess at their
@@ -59,6 +59,40 @@
         <kind>Stones</kind>
         <pool>Council_Pool_HabitStones</pool>
         <quirk>Council_Quirk_PrettyStones</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who loves the snow: a while out in it while it falls. -->
+  <JobDef>
+    <defName>Council_Habit_SnowFall</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>watching the snow fall.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>SnowFall</kind>
+        <pool>Council_Pool_HabitSnowFall</pool>
+        <quirk>Council_Quirk_SnowLover</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One who follows the sun: a while out in it, by day. -->
+  <JobDef>
+    <defName>Council_Habit_Sun</defName>
+    <driverClass>ColonyCouncil.JobDriver_SmallHabit</driverClass>
+    <reportString>sitting in the sun.</reportString>
+    <joyKind>Meditative</joyKind>
+    <joyGainRate>0.9</joyGainRate>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>Sun</kind>
+        <pool>Council_Pool_HabitSun</pool>
+        <quirk>Council_Quirk_SunSeeker</quirk>
       </li>
     </modExtensions>
   </JobDef>
@@ -271,6 +305,30 @@
     <requiredCapacities>
       <li>Moving</li>
       <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_SnowFall</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitSnowFall</giverClass>
+    <baseChance>5</baseChance>
+    <jobDef>Council_Habit_SnowFall</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Sight</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+  <JoyGiverDef>
+    <defName>Council_HabitGiver_Sun</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitSun</giverClass>
+    <baseChance>4</baseChance>
+    <jobDef>Council_Habit_Sun</jobDef>
+    <joyKind>Meditative</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
     </requiredCapacities>
   </JoyGiverDef>
 

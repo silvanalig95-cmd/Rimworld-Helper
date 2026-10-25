@@ -904,4 +904,101 @@
     </faded>
   </ColonyCouncil.QuirkDef>
 
+  <!-- Weather personalities: the snow, the sun and the rain on the roof (conditions Snowing, Sunny, RainAtRest). -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SnowLover</defName>
+    <label>loves the snow</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.002</chance>
+    <days>300</days>
+    <effect>goes out to stand in the falling snow</effect>
+    <condition>Snowing</condition>
+    <thought>Council_Quirk_SnowLover</thought>
+    <gained>
+      <plain>
+        <li>I went out when the snow started and just stood in it. Everything goes quiet when it snows.</li>
+        <li>[child] I caught snowflakes on my tongue for ages. They taste of nothing and I love them.</li>
+      </plain>
+      <cheerful><li>Snow! I could watch it come down all day, and some days I do.</li></cheerful>
+      <gloomy><li>The snow covers everything over, the bad and the good. I like it for that.</li></gloomy>
+      <blunt><li>Like snow. Always have.</li></blunt>
+      <warm><li>When it snows I want everyone to come out and see it with me. Most of them won't. I go anyway.</li></warm>
+      <cold><li>Snow muffles sound and slows the world down. I find that restful.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>The snow came today and I stayed in. I didn't even go to the window.</li></plain>
+      <cheerful><li>I still like the snow, but I've got used to it, I suppose.</li></cheerful>
+      <gloomy><li>Snow is only cold and wet now. I don't know when that happened.</li></gloomy>
+      <blunt><li>Snow's just snow now.</li></blunt>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_SunSeeker</defName>
+    <label>follows the sun</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li><li>Undergrounder</li></notTrait></who>
+    <children>true</children>
+    <chance>0.0015</chance>
+    <days>300</days>
+    <practice><li>outdoors</li></practice>
+    <practiceHours>120</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>sits out in the sun in their free time</effect>
+    <condition>Sunny</condition>
+    <thought>Council_Quirk_SunSeeker</thought>
+    <gained>
+      <plain>
+        <li>I take my breaks in the sun now, wherever it falls. I can feel it doing me good.</li>
+        <li>[child] I found a warm spot by the wall where the sun comes. It's mine now.</li>
+      </plain>
+      <cheerful><li>Out in the sun, face up, eyes shut: the best part of any day!</li></cheerful>
+      <gloomy><li>On a grey day I can feel the cold getting into me. In the sun it lets go.</li></gloomy>
+      <blunt><li>I sit in the sun when I can.</li></blunt>
+      <warm><li>There's a patch of sun by the fields in the afternoon. Anyone's welcome to share it.</li></warm>
+      <cold><li>Sunlight improves my mood measurably. I schedule my rest around it.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I haven't sat in the sun for weeks. I suppose I stopped looking for it.</li></plain>
+      <cheerful><li>The sun's still lovely, but I don't chase it about any more.</li></cheerful>
+      <gloomy><li>Sunshine doesn't reach me the way it used to.</li></gloomy>
+      <blunt><li>Stopped sitting in the sun. No time.</li></blunt>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Council_Quirk_RainSleeper</defName>
+    <label>sleeps best in rain</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <children>true</children>
+    <chance>0.002</chance>
+    <days>300</days>
+    <condition>RainAtRest</condition>
+    <thought>Council_Quirk_RainSleeper</thought>
+    <gained>
+      <plain>
+        <li>Rain on the roof last night, and I slept like I haven't in months. I hope it rains again tonight.</li>
+        <li>[child] When it rains at night I listen to it until I fall asleep. It's like someone whispering.</li>
+      </plain>
+      <cheerful><li>Rain at bedtime is the best sound there is. I'm out in a minute!</li></cheerful>
+      <gloomy><li>Only the rain gets me to sleep these days. Dry nights are long.</li></gloomy>
+      <blunt><li>Rain helps me sleep.</li></blunt>
+      <warm><li>Rain on the roof, everyone safe inside: that's when I sleep best.</li></warm>
+      <cold><li>The steady noise of rain masks every other sound. I sleep deeper for it.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>It rained all night and I lay awake anyway. The rain's lost its trick.</li></plain>
+      <cheerful><li>Turns out I can sleep without the rain now. Good news for dry nights!</li></cheerful>
+      <gloomy><li>Even the rain doesn't put me to sleep any more.</li></gloomy>
+      <blunt><li>Rain or not, I sleep the same now.</li></blunt>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
 </Defs>

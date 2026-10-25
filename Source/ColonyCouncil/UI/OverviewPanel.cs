@@ -37,7 +37,7 @@ namespace ColonyCouncil
             public List<Tile> tiles;
             public List<DaySample> days;
             public float maxWealth, maxPeople;
-            public List<string> needs, coming, character, lately;
+            public List<string> needs, coming, character, lately, weather;
         }
 
         private static Model model;
@@ -75,6 +75,7 @@ namespace ColonyCouncil
                 float colY = y;
                 float left = Column(0f, colY, gw, m.needs, "CC_Overview_Needs".Translate(), "Priorities", Icons.Priorities, UiKit.Faint);
                 left = Column(0f, left + 8f, gw, m.coming, "CC_Overview_Coming".Translate(), "World", Icons.World, m.coming.Count > 0 ? Threat : UiKit.Faint);
+                if (m.weather.Count > 0) left = Column(0f, left + 8f, gw, m.weather, "CC_Overview_Weather".Translate(), "Chronicle", Icons.World, UiKit.Faint);
                 float right = Column(gw + 12f, colY, gw, m.character, "CC_Overview_KnownAs".Translate(), "Ways", Icons.Ways, UiKit.Faint);
                 right = Column(gw + 12f, right + 8f, gw, m.lately, "CC_Overview_Lately".Translate(), "Chronicle", Icons.Chronicle, UiKit.Faint);
                 y = Mathf.Max(left, right) + 10f;
@@ -105,6 +106,7 @@ namespace ColonyCouncil
             m.coming = Coming(comp);
             m.character = Character(comp);
             m.lately = Lately(comp);
+            m.weather = WeatherBook.Of(map)?.OverviewLines() ?? new List<string>();
             return m;
         }
 

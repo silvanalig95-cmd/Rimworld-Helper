@@ -46,7 +46,13 @@ namespace ColonyCouncil
         /// <summary>Awake in a sickbed, or in bed while they need the rest.</summary>
         Sickbed,
         /// <summary>Awake within a few steps of an open fire: a fire, or a lit campfire, hearth, brazier or torch (QuirkEvents).</summary>
-        NearFire
+        NearFire,
+        /// <summary>Awake while snow is falling on their map.</summary>
+        Snowing,
+        /// <summary>Awake under the open sky in sunshine: day, nothing falling, no storm.</summary>
+        Sunny,
+        /// <summary>Rain on the roof: it's raining and they're in bed, or under a roof late in the evening or at night.</summary>
+        RainAtRest
     }
 
     /// <summary>
@@ -424,7 +430,7 @@ namespace ColonyCouncil
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(Eligible).ToList())
             {
                 if (Of(p).Count() >= MaxPerPawn) continue;
-                var options = DefDatabase<QuirkDef>.AllDefsListForReading.Where(d => Get(p, d) == null && Triggered(comp, d, p) && DilemmaRole.Fits(d.who, p, d.children)).ToList();
+                var options = DefDatabase<QuirkDef>.AllDefsListForReading.Where(d => Get(p, d) == null && Triggered(comp, d, p) && DilemmaRole.Fits(d.who, p, d.children) && !WeatherMods.Unfit(d, p)).ToList();
                 foreach (var d in options.InRandomOrder())
                 {
                     // Someone at the matching work has it sooner, and some come only from the work (Practice.cs).
@@ -701,6 +707,22 @@ namespace ColonyCouncil
                     return p.Spawned && p.Awake() && p.InBed() && (p.CurrentBed()?.Medical == true || HealthAIUtility.ShouldSeekMedicalRest(p));
                 case QuirkCondition.NearFire:
                     return QuirkEvents.NearOpenFire(p);
+                case QuirkCondition.Snowing:
+                    return map != null && p.Awake() && (map.weatherManager?.SnowRate ?? 0f) >= 0.05f;
+                case QuirkCondition.Sunny:
+                {
+                    if (map == null || !p.Spawned || !p.Awake() || p.Position.Roofed(p.Map)) return false;
+                    var w = map.weatherManager;
+                    return w != null && w.RainRate < 0.01f && w.SnowRate < 0.01f && !Flavor.IsStorm(w.curWeather) && map.skyManager.CurSkyGlow >= 0.6f;
+                }
+                case QuirkCondition.RainAtRest:
+                {
+                    var w = map?.weatherManager;
+                    if (w == null || w.RainRate < 0.1f || w.SnowRate >= 0.05f) return false;
+                    if (p.InBed()) return true;
+                    int hour = GenLocalDate.HourOfDay(map);
+                    return p.Spawned && p.Position.Roofed(p.Map) && (hour >= 21 || hour < 6);
+                }
                 default:
                     return false;
             }

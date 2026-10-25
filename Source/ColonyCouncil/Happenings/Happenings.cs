@@ -86,6 +86,12 @@ namespace ColonyCouncil
         /// <summary>Only when it's this warm (or this cold) outside.</summary>
         public float minTemp = -999f;
         public float maxTemp = 999f;
+        /// <summary>
+        /// The weather of the last days, as the colony's weather record has it (Weather/WeatherBook.cs), for an event
+        /// that speaks of it: "rain:5/7" (rain on 5 of the last 7 days), "snow:N/M", "frost:N/M" (below freezing all
+        /// day), "dry:M" (nothing fell), "storm:M"; "[fall]rain:3/7" asks it only in fall. All must fit.
+        /// </summary>
+        public List<string> weather;
         public ThoughtDef thought;
         public ThoughtDef thoughtOthers;
         /// <summary>Short lines spoken or shown above heads while it plays out (tales, cheers, names).</summary>

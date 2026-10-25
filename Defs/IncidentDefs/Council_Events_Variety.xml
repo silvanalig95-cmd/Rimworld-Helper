@@ -375,6 +375,9 @@
     <earliestDay>8</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <weather>
+          <li>rain:2/7</li>
+        </weather>
         <letter>PositiveEvent</letter>
         <group>Nature</group>
         <seasons>

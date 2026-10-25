@@ -224,4 +224,187 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- The weather record (Source/ColonyCouncil/Weather/WeatherBook.cs): a record broken, said by one colonist in view;
+       a season set against last year's, written by the colonist longest with the colony ([colder], [warmer], [wetter],
+       [drier], [stormier], and the season's word; {SEASON} is its name). -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayRecordCold</defName>
+    <lines>
+      <plain>
+        <li>I've never known it this cold here.</li>
+        <li>Coldest night since we came, I'd swear to it.</li>
+        <li>Even the stones are cracking in this cold.</li>
+        <li>[old] My bones don't remember a cold like this one.</li>
+        <li>[child] It's colder than it's ever been!</li>
+      </plain>
+      <blunt>
+        <li>Never been this cold.</li>
+      </blunt>
+      <gloomy>
+        <li>Every winter here finds a new way to be worse.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayRecordHot</defName>
+    <lines>
+      <plain>
+        <li>It's never been this hot here, not since we came.</li>
+        <li>The air shakes over the ground today.</li>
+        <li>[work:Growing] The fields have never had a day like this.</li>
+        <li>[old] I've lived through some summers, and none was this hot.</li>
+        <li>[child] The ground's too hot to walk on!</li>
+      </plain>
+      <blunt>
+        <li>Hottest yet.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayRecordWet</defName>
+    <lines>
+      <plain>
+        <li>Has it ever rained this long here?</li>
+        <li>Another day of rain, and I've stopped counting them.</li>
+        <li>[work:Growing] The roots will rot if this keeps on.</li>
+        <li>[child] Is it ever going to stop raining?</li>
+      </plain>
+      <cheerful>
+        <li>The wells will be full for a year after this.</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayRecordDry</defName>
+    <lines>
+      <plain>
+        <li>Not a drop in days, longer than I've ever seen here.</li>
+        <li>The dust gets into everything when it's this dry.</li>
+        <li>[work:Growing] The fields are cracking for want of rain.</li>
+        <li>[child] When is it going to rain again?</li>
+      </plain>
+      <gloomy>
+        <li>The sky has forgotten how to rain.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_SeasonCompare</defName>
+    <lines>
+      <plain>
+        <li>[colder] This {SEASON} was colder than the last one. We burned through the wood faster than I counted on.</li>
+        <li>[colder,winter] A harder winter than last year's. I wrote down every morning the water froze in the bucket, and the list is long.</li>
+        <li>[warmer] This {SEASON} was warmer than last year's. The flies stayed longer and so did the light.</li>
+        <li>[warmer,winter] A mild winter, milder than the one before. The ground barely froze.</li>
+        <li>[wetter] More rain this {SEASON} than last year, and the paths show it.</li>
+        <li>[wetter,spring] A wet spring, wetter than the last. The seed beds had to be dug twice.</li>
+        <li>[drier] A drier {SEASON} than last year's. I watched the sky more than I watched the work.</li>
+        <li>[drier,summer] Hardly any rain this summer, much less than last year's. The well rope reaches further every week.</li>
+        <li>[stormier] Storm after storm this {SEASON}, far more than the year before.</li>
+      </plain>
+      <blunt>
+        <li>[colder] Colder {SEASON} than last year.</li>
+        <li>[warmer] Warmer {SEASON} than last year.</li>
+      </blunt>
+      <gloomy>
+        <li>[stormier] The storms this {SEASON} never seemed to end. Last year we didn't know how lucky we were.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Before Rimfolk's hail (Happenings/Workers_Nature.cs): the one who knows the fields best reads the sky. And the
+       first warm day of a warm spell. -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayHailComing</defName>
+    <lines>
+      <plain>
+        <li>The sky's gone green; that's hail coming.</li>
+        <li>Get the ripe rows in, there's hail in that sky.</li>
+        <li>Smell that, and look at the color of it: hail.</li>
+        <li>[work:Growing] Leave the weeding and cut what's ripe, hail's coming.</li>
+        <li>[old] I've seen that green before, and hail always followed it.</li>
+        <li>[lowtech] The birds have gone quiet, so hail's on its way.</li>
+      </plain>
+      <blunt>
+        <li>Hail coming, crops in.</li>
+      </blunt>
+      <gloomy>
+        <li>There goes half the harvest, unless we're quick.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayWarmSpell</defName>
+    <lines>
+      <plain>
+        <li>The wind's turned, feel how warm it is.</li>
+        <li>Warm air from the south, and out of season too.</li>
+        <li>[work:Growing] A few more growing days, if this holds.</li>
+        <li>[child] It's warm enough to go without a coat!</li>
+      </plain>
+      <cheerful>
+        <li>Now that's a gift of a day.</li>
+      </cheerful>
+      <gloomy>
+        <li>It won't last, it never does.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One who dreads storms, at a lightning flash (Immersion/WeatherTouches.cs). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayLightningFlinch</defName>
+    <lines>
+      <plain>
+        <li>That one was close.</li>
+        <li>Count, just count, it's further than it looks.</li>
+        <li>I hate this, I hate every flash of it.</li>
+        <li>[child] I'm not scared, I'm just standing here.</li>
+      </plain>
+      <blunt>
+        <li>Inside, now.</li>
+      </blunt>
+      <gloomy>
+        <li>Who is it for this time?</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- With SS Lightning Rod: a strike drawn down by the rod. With Disasters: Tornado (or the game's own tornado): after
+       it has passed (Integrations/WeatherMods.cs). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayLightningRod</defName>
+    <lines>
+      <plain>
+        <li>Good thing we put that rod up.</li>
+        <li>Straight into the rod, just like it should.</li>
+        <li>[child] The lightning hit the pole, did you see?</li>
+      </plain>
+      <cheerful>
+        <li>Missed us, you big flash, try again!</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Tornado</defName>
+    <lines>
+      <plain>
+        <li>A tornado went across the land today. We watched it from the doorways, a grey rope from the sky to the ground, until it broke up.</li>
+        <li>The wind tore across the fields this afternoon in a twisting column. Afterwards there was a path through the grass as if a giant had walked it.</li>
+        <li>[child] There was a tornado! It looked like a big grey snake. I wasn't scared, I was inside.</li>
+      </plain>
+      <gloomy>
+        <li>A tornado came through. It took what it wanted and left. That's the way of things here.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

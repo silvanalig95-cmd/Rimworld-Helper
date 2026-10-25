@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony's weather record (Source/ColonyCouncil/Weather/WeatherBook.cs): records, seasons and their names. -->
+  <CC_Weather_SnowEarlier>The first snow came {0} days earlier than last year.</CC_Weather_SnowEarlier>
+  <CC_Weather_SnowLater>The first snow came {0} days later than last year.</CC_Weather_SnowLater>
+  <CC_Weather_RecordColdest>The coldest it has been since the colony came: {0}.</CC_Weather_RecordColdest>
+  <CC_Weather_RecordHottest>The hottest it has been since the colony came: {0}.</CC_Weather_RecordHottest>
+  <CC_Weather_RecordWet>Rain {0} days running, the longest since the colony came.</CC_Weather_RecordWet>
+  <CC_Weather_RecordDry>{0} days with nothing falling, the longest dry spell since the colony came.</CC_Weather_RecordDry>
+  <CC_Weather_Named>This season will be remembered as {0}: {1}.</CC_Weather_Named>
+  <CC_Weather_NamedChronicle>{0}: so the colony will remember the season just gone.</CC_Weather_NamedChronicle>
+  <CC_Weather_Name_cold>the {0} of the long cold</CC_Weather_Name_cold>
+  <CC_Weather_Name_heat>the {0} of the great heat</CC_Weather_Name_heat>
+  <CC_Weather_Name_storms>the {0} of storms</CC_Weather_Name_storms>
+  <CC_Weather_Name_wet>the wet {0}</CC_Weather_Name_wet>
+  <CC_Weather_Name_dry>the dry {0}</CC_Weather_Name_dry>
+  <CC_Weather_Name_WarmWinter>the warm winter</CC_Weather_Name_WarmWinter>
+  <CC_Weather_Why_cold>{0} colder than usual here</CC_Weather_Why_cold>
+  <CC_Weather_Why_heat>{0} warmer than usual here</CC_Weather_Why_heat>
+  <CC_Weather_Why_storms>{0} hours of storms</CC_Weather_Why_storms>
+  <CC_Weather_Why_wet>rain on {0} of its {1} days</CC_Weather_Why_wet>
+  <CC_Weather_Why_dry>{0} days running with nothing falling</CC_Weather_Why_dry>
+  <CC_Weather_Colder>This {0} was {1} colder than last year's.</CC_Weather_Colder>
+  <CC_Weather_Warmer>This {0} was {1} warmer than last year's.</CC_Weather_Warmer>
+  <CC_Weather_Wetter>This {0} had rain on {1} days, against {2} the year before.</CC_Weather_Wetter>
+  <CC_Weather_Drier>This {0} had rain on only {1} days, against {2} the year before.</CC_Weather_Drier>
+  <CC_Weather_Stormier>This {0} brought {1} hours of storms, against {2} the year before.</CC_Weather_Stormier>
+  <CC_Annals_WeatherRange>The coldest it got was {0}, the hottest {1}.</CC_Annals_WeatherRange>
+  <CC_Annals_WeatherNamed>The year's weather is remembered by {0}. {1}</CC_Annals_WeatherNamed>
+  <CC_Weather_TraderStays>The traders of {0} will wait out the weather here: their caravan stays half a day longer.</CC_Weather_TraderStays>
+  <CC_Weather_MissionSnow>The snow on the land will slow the people of {0} on their way here: they will take half again as long.</CC_Weather_MissionSnow>
+  <CC_Annals_WeatherQuakes>The earth shook {0} times.</CC_Annals_WeatherQuakes>
+  <CC_Weather_QuakeParty>going round the roofs and walls after the earthquake</CC_Weather_QuakeParty>
+  <CC_Weather_QuakeChronicle>The earth shook. When it was over, {PAWN_nameDef} and a few others went round every roof and wall.</CC_Weather_QuakeChronicle>
+  <CC_Adv_Firebreak_Title>Dry and windy: cut a firebreak</CC_Adv_Firebreak_Title>
+  <CC_Adv_Firebreak_Detail>Nothing has fallen for {0} days and the wind is strong: a wildfire in this weather runs fast. There is grass and brush in {1} places within {2} cells of the home area. Cutting that strip back keeps a fire from reaching the buildings, and colonists on firefighting put out what reaches the home area.</CC_Adv_Firebreak_Detail>
+  <CC_Adv_Firebreak_Act>Mark the firebreak</CC_Adv_Firebreak_Act>
+  <CC_Adv_Firebreak_Marked>Marked {0} plants for cutting round the home area.</CC_Adv_Firebreak_Marked>
+  <CC_Weather_TornadoChronicle>A tornado crossed the land.</CC_Weather_TornadoChronicle>
+  <!-- Stormproof's storms, in the advisor's "what's happening now" (Advisor/AdvisorSignals2.cs); {0} is the time left. -->
+  <CC_Adv_Cond_Stormproof_IonStorm_Title>Ion storm</CC_Adv_Cond_Stormproof_IonStorm_Title>
+  <CC_Adv_Cond_Stormproof_IonStorm_Detail>Charged air ({0} left) drains batteries, stuns electronics with bursts and pops short circuits. EMP dampeners near the batteries protect them; keep firefighters close to the power lines.</CC_Adv_Cond_Stormproof_IonStorm_Detail>
+  <CC_Adv_Cond_Stormproof_HeatDome_Title>Heat dome</CC_Adv_Cond_Stormproof_HeatDome_Title>
+  <CC_Adv_Cond_Stormproof_HeatDome_Detail>Heat far beyond a heat wave ({0} left). Keep everyone indoors and cooled, and the food cold; a powered climate stabilizer cancels the heat.</CC_Adv_Cond_Stormproof_HeatDome_Detail>
+  <CC_Adv_Cond_Stormproof_PolarFront_Title>Polar front</CC_Adv_Cond_Stormproof_PolarFront_Title>
+  <CC_Adv_Cond_Stormproof_PolarFront_Detail>Cold far beyond a cold snap ({0} left). Keep everyone indoors and heated, and the crops under a roof; a powered climate stabilizer cancels the cold.</CC_Adv_Cond_Stormproof_PolarFront_Detail>
+  <CC_Adv_Cond_Stormproof_ToxicSurge_Title>Toxic surge</CC_Adv_Cond_Stormproof_ToxicSurge_Title>
+  <CC_Adv_Cond_Stormproof_ToxicSurge_Detail>A chemical plume ({0} left) poisons everything outdoors faster than fallout. Restrict everyone to roofed areas now; an atmospheric barrier stops it, and fallout scrubbers help those already sick.</CC_Adv_Cond_Stormproof_ToxicSurge_Detail>
+  <CC_Adv_Cond_Stormproof_DryLightning_Title>Dry lightning</CC_Adv_Cond_Stormproof_DryLightning_Title>
+  <CC_Adv_Cond_Stormproof_DryLightning_Detail>Lightning with no rain ({0} left): fires won't go out on their own. Keep firefighters ready and grass cut back from the buildings; storm spires take the bolts, and a storm caller can bring rain.</CC_Adv_Cond_Stormproof_DryLightning_Detail>
+  <CC_Overview_Weather>Weather</CC_Overview_Weather>
+  <CC_Overview_WeatherSoFar>{0} so far: {1} than last year's, rain on {2} of {3} days (last year {4} of {5}).</CC_Overview_WeatherSoFar>
+  <CC_Overview_WeatherWarmer>{0} warmer</CC_Overview_WeatherWarmer>
+  <CC_Overview_WeatherColder>{0} colder</CC_Overview_WeatherColder>
+  <CC_Overview_WeatherSoFarFirst>{0} so far: rain on {1} of {2} days.</CC_Overview_WeatherSoFarFirst>
+  <CC_Overview_WeatherRecords>Since the colony came: coldest {0}, hottest {1}, longest rain {2} days, longest dry spell {3} days.</CC_Overview_WeatherRecords>
+  <CC_Overview_WeatherNamed>Last season remembered by name: {0}, year {1}.</CC_Overview_WeatherNamed>
+
+</LanguageData>

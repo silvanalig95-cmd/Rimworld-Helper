@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The weather remembered
+
+*25 October 2026, version 0.15.0*
+
+- Each home map keeps a weather record. The coldest night, the hottest day, the longest rain and the longest dry spell since the colony came are remarked on when broken, and the first snow is set against last year's. The Overview page has a Weather card.
+- Each season is set against the same season a year before, and one far from usual here is remembered by a name ("the winter of the long cold", "the dry summer") in the chronicle and the year's annals.
+- Rimfolk's events that speak of the weather only come after it: the long rains after rain on four of the last seven days, an ice fair after five frozen days, a struck tree after a storm, and six more.
+- Hail is seen coming: two hours of green sky, a word from the one who knows the fields best, and a few colonists bringing in the ripe crops. Fixed: hail no longer brings rain below freezing, and its rain no longer runs on for a day or two after it.
+- Three quirks: loves the snow, follows the sun, sleeps best in rain, two of them with a free-time habit of their own. Breath shows on bitter mornings, steam rises off outdoor fires and the sauna's door in the cold, and one who dreads storms flinches at lightning.
+- A storm keeps a trade caravan half a day longer, and snowbound land slows the people coming for a mission.
+- With Seasonal Weather: firebreak advice on a dry, windy day in the fire season, with a button that marks the brush round the home area for cutting, and a work party round the roofs and walls after an earthquake.
+- Stormproof, Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado and Quiet Wonders are met where they're installed, and all are safe to add to a running save.
+
 ## Into cover
 
 *25 October 2026, version 0.14.2*

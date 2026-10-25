@@ -347,6 +347,8 @@ namespace ColonyCouncil
                 {
                     ok = w.Start(m, map);
                     if (ok) m.mapId = map.uniqueID;
+                    // Snow on the land slows the people who are to come (Weather/WeatherVisitors.cs).
+                    if (ok) WeatherVisitors.Notify_MissionStarted(m, map);
                 }
                 catch (Exception e)
                 {

@@ -58,7 +58,11 @@ namespace ColonyCouncil
         /// <summary>Steady hands: a while at the bedside of someone in a sickbed.</summary>
         Patient,
         /// <summary>One who remembers every birthday: they seek out whoever has one today.</summary>
-        Birthday
+        Birthday,
+        /// <summary>One who loves the snow: a while out in it while it falls (Immersion/QuirkHabits.cs).</summary>
+        SnowFall,
+        /// <summary>One who follows the sun: a while sitting out in it, by day (Immersion/QuirkHabits.cs).</summary>
+        Sun
     }
 
     /// <summary>On a small habit's JobDef: which habit it is, what's said on arriving, and whether they chat with whoever is near.</summary>
@@ -126,6 +130,7 @@ namespace ColonyCouncil
             {
                 case HabitKind.Walk: return GenDate.TicksPerDay * 2 / 5;
                 case HabitKind.Snow:
+                case HabitKind.SnowFall:
                 case HabitKind.Animals:
                 case HabitKind.Herd:
                 case HabitKind.Groom:
@@ -136,6 +141,7 @@ namespace ColonyCouncil
                 case HabitKind.Plants:
                 case HabitKind.Sauna:
                 case HabitKind.Birds:
+                case HabitKind.Sun:
                 case HabitKind.Whittle:
                 case HabitKind.Whetstone:
                 case HabitKind.Stories: return GenDate.TicksPerDay * 3 / 5;

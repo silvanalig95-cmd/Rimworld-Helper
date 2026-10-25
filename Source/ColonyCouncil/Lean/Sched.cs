@@ -50,12 +50,14 @@ namespace ColonyCouncil
         public const int Talk = 2375;
         /// <summary>Ailments, the colony's part: the catching ailments' clock and the day's pruning, inside the slice that lands here (each colonist's part runs in <see cref="RareAilments"/>'s slices).</summary>
         public const int Ailments = 2471;
+        /// <summary>The weather record (Weather/WeatherBook.cs): an hour of each home map's weather noted, days and seasons closed.</summary>
+        public const int Weather = 2185;
 
         /// <summary>Every hourly pass above, for the tests and the self-check.</summary>
         public static readonly int[] HourlyOffsets =
         {
             CouncilWishes, Camp, CouncilDayFirst, Health, CouncilDaySecond, CouncilLife, WorldSituations, Calendar, Setbacks, CouncilPeople,
-            Reputation, Arcs, Groups, Stories, CouncilEvents, Talk, Ailments
+            Reputation, Arcs, Groups, Stories, Weather, CouncilEvents, Talk, Ailments
         };
 
         /// <summary>The hourly passes that run inside a 250-tick pass of their own system on purpose (same tick, same work).</summary>

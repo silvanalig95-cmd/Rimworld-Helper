@@ -825,7 +825,7 @@ namespace ColonyCouncil
             {
                 var d = c.def;
                 if (d == GameConditionDefOf.ToxicFallout || d == GameConditionDefOf.VolcanicWinter || d == GameConditionDefOf.Flashstorm
-                    || d == GameConditionDefOf.NoxiousHaze || d == GameConditionDefOf.ColdSnap || d == GameConditionDefOf.HeatWave) return true;
+                    || d == GameConditionDefOf.NoxiousHaze || d == GameConditionDefOf.ColdSnap || d == GameConditionDefOf.HeatWave || WeatherMods.StormproofStorm(d)) return true;
             }
             return false;
         }

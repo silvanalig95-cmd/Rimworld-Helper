@@ -1,8 +1,8 @@
 # Handoff: work in progress
 
-Last shipped: 0.14.2 "Into cover" (the player: the TakeCover mod finds cover spots on Ctrl + right-drag, but in 1.7
-letting go only leaves the colonists' ghosts there, no order). Before it, 0.14.1 "Not everyone gets along", 0.14.0
-"Shaped for the colony" (the defense overhaul), 0.13.1 "Fungus kept for its meal" and 0.13.0 "More to live through".
+Last shipped: 0.15.0 "The weather remembered" (the weather ideas the player chose). Before it, 0.14.2 "Into cover"
+(the TakeCover mod finds cover spots on Ctrl + right-drag, but in 1.7 letting go gives no order), 0.14.1 "Not everyone
+gets along", 0.14.0 "Shaped for the colony" (the defense overhaul) and 0.13.1 "Fungus kept for its meal".
 
 ## Taking cover with a drag, as shipped (0.14.2)
 
@@ -38,15 +38,50 @@ more (the Social tab's "Friend"), including pairs whose game compatibility is -1
 - Estimated on the save: 29 of 72 opinions at 20 or more (was 36), two who clash hardest at -12 and -16. Existing
   memories keep their old values until they fade (deep talks last 20 days).
 
-## Weather round (in progress, not shipped)
+## The weather round, as shipped (0.15.0)
 
-The player asked for weather ideas 1, 3, 5, 6, 7 and 8 (the colony sees Rimfolk's own weather coming; a year's weather
-remembered; weather quirks; visible touches; visitors, camps and missions in weather; Seasonal Weather's disasters),
-a proposal on making weather change more dynamic (with Rimfolk's events included), and soft integrations for weather
-mods that are safe to add to a running save. Begun but not yet in the repository: `Weather/WeatherMath.cs` (pure: days,
-quadrums, records, comparisons, season names, event requirements like "rain:5/7", packing). Found on the way:
-`GameCondition_Hail` forces Rain with no temperature check and leaves the rain running after the hail ends; several
-land events (the long rains, high water, a thirsty herd...) claim weather that is never checked.
+The player asked for weather ideas 1, 3, 5, 6, 7 and 8, a proposal on more dynamic weather, and soft integrations for
+weather mods safe to add to a running save.
+- `Weather/WeatherMath.cs` (pure, `WeatherTests`): days, quadrums, records (temperature after 20 days and by 1 °C;
+  spells told once when they pass an earlier one, `wetHeld`/`dryHeld`), comparisons with the year before, season names
+  (5 °C from the tile's twelfth means, 48 storm hours, 70% wet days, 12 dry days on land with 600 mm or more), the
+  first snow across the turn of the year, event requirements ("rain:4/7", "[fall]rain:3/7", "dry:6", "frost:5/7",
+  "storm:1"), packing.
+- `Weather/WeatherBook.cs`: a MapComponent, hourly at `Sched.Weather` (2185); saves `days` (30) and `quarters` (12) as
+  short lines. Remarks (`WeatherTalk.SayOne`), news, the chronicle, a season-compare journal, the annals line (with the
+  year's quakes), the Overview Weather card. `HappeningExtension.weather`, checked in `IncidentWorker_Happening.Gates`
+  for nine events.
+- Hail (`Happenings/Workers_Nature.cs`): two hours coming (`Coming`, `Falling(map)`), the reader's warning
+  (`WeatherTalk.SayBy`), a harvest work party from the event's effects; rain forced only inside Rain's temperature
+  range; its own rain handed back with `StartNextWeather` when it ends. Warm spell remark in `WeatherTalk`.
+- Quirks (`Council_Quirks_Habits.xml`): SnowLover (Snowing), SunSeeker (Sunny, from outdoors practice), RainSleeper
+  (RainAtRest); habits SnowFall and Sun (`Immersion/QuirkHabits.cs`).
+- `Immersion/WeatherTouches.cs`: breath, fire steam, sauna door steam, the lightning flinch (`Patch_LightningFlinch` on
+  `WeatherEventHandler.AddEvent`; `jitterer`, `WeatherEvent.map` and `strikeLoc` by name, checked in the 1.7 reference).
+- `Weather/WeatherVisitors.cs`: a trade caravan at its spot with under 8 hours left gets 12 more in a storm or heavy
+  snow (its `Trigger_TicksPassed` set back, once per lord, not saved); snowbound missions half again as long.
+- `Weather/WeatherDisasters.cs` (Seasonal Weather): `AdvisorWorker_Firebreak` with a mark button; the earthquake's end
+  starts a repair/clean/haul party.
+- `Integrations/WeatherMods.cs`: Stormproof, Weather is kinda cozy, SS Lightning Rod, Disasters: Tornado, Quiet
+  Wonders. The survey and the mods not recommended are in `Modlists/mods/D_NatureAnimals.md`.
+- Not tried in the game here: worth a look at the Overview's Weather card after a few weeks, a hailstorm's two hours,
+  breath on a cold morning, and a trader caught by a storm.
+
+### More dynamic weather: the proposal (not built; for the player to choose from)
+How the game chooses weather (1.6 code): the next weather is rolled only when the current one ends (0.27 to 2.7 days;
+storms shorter), by the biome's weights times rainfall and condition factors; nothing carries over from one weather to
+the next, weather never changes the temperature, and nothing is known ahead. Seasonal Weather swaps each vanilla
+biome's weight list by season. Options, each a postfix bias that leaves Seasonal Weather's lists and its gate alone:
+1. Spells that hold: after a few wet days rain is likelier for a while, and a long dry spell breaks with a storm.
+2. Weather that follows on: a storm seldom comes out of a clear sky, fog after a cold clear night or rain, snow after a
+   cold front.
+3. Weather in the temperature: a few degrees cooler under rain on a hot day, colder on clear nights, milder under
+   cloud (a hidden map condition's temperature offset).
+4. Rimfolk's events moving the real weather: the long rains bring days of rain, a dry spell's events less of it, a
+   warm spell clear skies (a hidden condition's weather factor).
+5. A forecast: a weather-wise colonist (or a forecaster building from Stormproof or WeatherControl) foretells the next
+   weather, which is then held to unless it can no longer come.
+6. Years with a character of their own: each year a little wetter or drier, warmer or colder, for the annals.
 
 ## The defense overhaul, as shipped
 

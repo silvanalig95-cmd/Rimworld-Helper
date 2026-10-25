@@ -118,4 +118,21 @@
     <stages><li><label>filth everywhere</label><description>Muck on the floor and crumbs on every surface. How does anyone live like this?</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- Weather personalities (Council_Quirks_Habits.xml). -->
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_SnowLover</defName>
+    <stages><li><label>the snow falling</label><description>It's snowing. Everything goes quiet and soft, and I could watch it all day.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_SunSeeker</defName>
+    <stages><li><label>in the sun</label><description>Out in the sunshine with my face turned up to it. This is the best part of the day.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_QuirkBase">
+    <defName>Council_Quirk_RainSleeper</defName>
+    <stages><li><label>rain on the roof</label><description>Rain drumming on the roof, and a bed to listen to it from. I'll sleep like a stone tonight.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>
