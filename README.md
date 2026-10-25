@@ -178,7 +178,7 @@ Alpha Memes would make them sick for (only fungus or insect for its two required
 paste); with nothing fit in the stores they sit at the table without eating. Life goals and council projects
 follow the same rules. With Ideology, a "cook fungus meal" bill at any stove makes fungus meals: simple meals that
 always have fungus in them, a kind of their own, so one colonist's food policy can take only these while everyone
-else's leaves them out.
+else's leaves them out. Every other meal bill starts with fungus unticked, so the fungus is kept for them.
 
 **Promises kept.** 67 kinds of wish give something that stays, and the council is watched on it for about 60 days
 after granting it (90 for rooms): a bed kept for guests, a room of their own, a nicer or roomier bedroom, a bed shared,

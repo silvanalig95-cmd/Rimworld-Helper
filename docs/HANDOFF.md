@@ -1,7 +1,9 @@
 # Handoff: work in progress
 
-Last shipped: 0.13.0 "More to live through" (content round, build priorities shown as a light tint, camps about once a
-season, lucky charms counted when carried).
+Last shipped: 0.13.1 "Fungus kept for its meal" (with Ideology, meal bills other than the fungus meal's start with fungus
+unticked; an older save's queued meal bills get it unticked once on load, `fungusBillsVersion`). Before it, 0.13.0 "More
+to live through" (content round, build priorities shown as a light tint, camps about once a season, lucky charms counted
+when carried).
 
 ## In progress: defense overhaul (player request)
 

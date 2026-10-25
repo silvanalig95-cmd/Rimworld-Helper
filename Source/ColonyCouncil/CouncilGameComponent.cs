@@ -98,6 +98,11 @@ namespace ColonyCouncil
         public int animalsTamed;
         /// <summary>1 once tamings are counted (an older save's open taming wish and goal count from its load).</summary>
         public int tamingsVersion = 1;
+        /// <summary>
+        /// 1 once the meal bills already queued have fungus unticked (Integrations/FungusMeals.cs): an older save's on its
+        /// first load, a new game's (none yet) at its start.
+        /// </summary>
+        public int fungusBillsVersion;
 
         private Dictionary<string, int> cooldowns = new Dictionary<string, int>();
         /// <summary>Recent wishes colony-wide (defName and tick), so the same wish doesn't come round again and again.</summary>
@@ -147,6 +152,19 @@ namespace ColonyCouncil
             DefRefs.ResetAll();
             cachedInstance = this;
             cachedGame = Current.Game;
+            // A save from before other meal bills started with fungus unticked: the bills already queued get it unticked once.
+            if (fungusBillsVersion < 1)
+            {
+                fungusBillsVersion = 1;
+                try
+                {
+                    FungusMeals.UntickQueued();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("fungus on queued meal bills", e);
+                }
+            }
         }
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
@@ -195,6 +213,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nextWishId, "nextWishId", 1);
             Scribe_Values.Look(ref animalsTamed, "animalsTamed");
             Scribe_Values.Look(ref tamingsVersion, "tamingsVersion");
+            Scribe_Values.Look(ref fungusBillsVersion, "fungusBillsVersion");
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
             Scribe_Collections.Look(ref recentWishDefs, "recentWishDefs", LookMode.Value);
             Scribe_Collections.Look(ref recentWishTicks, "recentWishTicks", LookMode.Value);

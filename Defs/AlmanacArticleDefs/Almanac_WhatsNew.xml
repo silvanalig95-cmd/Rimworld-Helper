@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.13.1</version>
+        <date>25 October 2026</date>
+        <title>Fungus kept for its meal</title>
+        <points>
+          <li>With Ideology, every meal bill but the fungus meal's starts with fungus unticked, so the cooks keep the fungus for fungus meals. Tick it back on any bill that should use it; a dish from another mod that can't be made without fungus keeps it.</li>
+          <li>In a save from before this, the meal bills already in a queue get fungus unticked once, when the save is loaded.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.13.0</version>
         <date>24 October 2026</date>
         <title>More to live through</title>

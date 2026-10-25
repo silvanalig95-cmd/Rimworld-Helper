@@ -278,7 +278,9 @@ Without power, a fueled stove burns wood and cooks the same meals as an electric
           <li>Give the colonist a food policy with fungus meals on it and nothing that would make them sick; raw fungus is a fallback if the meals run out. When a colonist's ideoligion requires fungus, Rimfolk makes one for you once, "Fungus diet": fungus meals, raw fungus, insect jelly and insect meat only. Assign it in the Assign tab. A policy that still allows simple meals, raw vegetables or nutrient paste is the usual reason a fungus-diet colonist keeps throwing up.</li>
           <li>Take fungus meals off everyone else's food policy, so the others leave them alone.</li>
         </points>
-        <after>In a save from before fungus meals existed, every food policy starts with them switched off, so only the policy you tick them on will eat them. A food policy made later allows them like any other meal; untick them there.</after>
+        <after>In a save from before fungus meals existed, every food policy starts with them switched off, so only the policy you tick them on will eat them. A food policy made later allows them like any other meal; untick them there.
+
+Every other meal bill (simple, fine, lavish and survival meals, and other mods' meals) starts with fungus unticked, so the cooks keep it for fungus meals; tick it back on a bill that should use it. In a save from before this, the meal bills already in a queue had fungus unticked once when the save was loaded.</after>
       </li>
       <li>
         <heading>What goes in</heading>
