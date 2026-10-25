@@ -10,6 +10,9 @@ namespace ColonyCouncil
     public class DefensePlan
     {
         public DefenseTemplateDef template;
+        /// <summary>The layout it lays down, and what a drawn one was drawn for (null for a fixed layout).</summary>
+        public DefenseLayout.Grid grid;
+        public DefenseShapeSpec spec;
         public int rotation;
         public bool mirror;
         public IntVec3 anchor;
@@ -102,17 +105,24 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        private static IntVec3 ToWorld(DefenseTemplateDef t, IntVec3 anchor, int x, int z, bool mirror, int rot)
+        private static IntVec3 ToWorld(DefenseLayout.Grid g, IntVec3 anchor, int x, int z, bool mirror, int rot)
         {
-            DefenseLayout.ToWorld(t.Grid, x, z, mirror, rot, out int wx, out int wz);
+            DefenseLayout.ToWorld(g, x, z, mirror, rot, out int wx, out int wz);
             return new IntVec3(anchor.x + wx, 0, anchor.z + wz);
         }
 
-        /// <summary>Anchor that puts the middle of the template at <paramref name="center"/>.</summary>
-        public static IntVec3 AnchorForCenter(DefenseTemplateDef t, IntVec3 center, int rot)
+        /// <summary>Anchor that puts the middle of the layout at <paramref name="center"/>.</summary>
+        public static IntVec3 AnchorForCenter(DefenseLayout.Grid g, IntVec3 center, int rot)
         {
-            TemplateMath.RotatedSize(t.Width, t.Height, rot, out int rw, out int rh);
+            TemplateMath.RotatedSize(g.W, g.H, rot, out int rw, out int rh);
             return new IntVec3(center.x - rw / 2, 0, center.z - rh / 2);
+        }
+
+        /// <summary>The middle of a layout placed at <paramref name="anchor"/> with this turn.</summary>
+        public static IntVec3 Middle(DefenseLayout.Grid g, IntVec3 anchor, int rot)
+        {
+            TemplateMath.RotatedSize(g.W, g.H, rot, out int rw, out int rh);
+            return new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2);
         }
 
         private static bool IsOwn(Thing t) => t.Faction == Faction.OfPlayer;
@@ -131,8 +141,9 @@ namespace ColonyCouncil
         {
             int rot = TemplateMath.Norm(cfg.rotation);
             bool mirror = cfg.mirror;
-            var plan = new DefensePlan { template = t, rotation = rot, mirror = mirror, anchor = anchor };
-            var g = t.Grid;
+            var spec = t.SpecFor(map, cfg);
+            var g = t.GridFor(spec);
+            var plan = new DefensePlan { template = t, grid = g, spec = spec, rotation = rot, mirror = mirror, anchor = anchor };
             bool cutPlants = S.planCutPlants, replace = S.planReplaceOwn;
             // A plan that closes a natural gap never digs: widening the gap would undo it. Rock where a piece would go is
             // simply where the gap ends. Other plans dig their positions out of the rock when the player allows it.
@@ -172,7 +183,7 @@ namespace ColonyCouncil
                 {
                     char ch = g.cells[x, z];
                     if (ch != DefenseLayout.Open && ch != DefenseLayout.Firing) continue;
-                    var c = ToWorld(t, anchor, x, z, mirror, rot);
+                    var c = ToWorld(g, anchor, x, z, mirror, rot);
                     if (!c.InBounds(map)) continue;
                     if (c.Fogged(map))
                     {
@@ -200,7 +211,7 @@ namespace ColonyCouncil
                 }
             }
 
-            if (t.line >= 0 && cfg.closeGap) CloseGap(plan, map, t, anchor, mirror, rot, taken);
+            if (g.line >= 0 && cfg.closeGap) CloseGap(plan, map, anchor, mirror, rot, taken);
             // Digging in from ground the colony knows: a plan wholly in the dark has nowhere to start from.
             if (plan.seen == 0 && !plan.edgeBlocked && plan.fog.Count > 0) plan.allFog = true;
 
@@ -355,9 +366,9 @@ namespace ColonyCouncil
         /// closes it (<see cref="DefenseLayout.CarryLine"/>), at most <see cref="MaxCarry"/> cells. Shallow water, marsh and
         /// mud take no wall, so the line stops there and the plan says it leaves a way round.
         /// </summary>
-        private static void CloseGap(DefensePlan plan, Map map, DefenseTemplateDef t, IntVec3 anchor, bool mirror, int rot, HashSet<IntVec3> taken)
+        private static void CloseGap(DefensePlan plan, Map map, IntVec3 anchor, bool mirror, int rot, HashSet<IntVec3> taken)
         {
-            var g = t.Grid;
+            var g = plan.grid;
             var wall = plan.pieces.FirstOrDefault(p => p.group == "wall");
             if (wall == null) return;
             for (int side = 0; side < 2; side++)
@@ -367,7 +378,7 @@ namespace ColonyCouncil
                 var cells = new List<IntVec3>();
                 int added = DefenseLayout.CarryLine(i =>
                 {
-                    var c = ToWorld(t, anchor, start + dir * i, g.line, mirror, rot);
+                    var c = ToWorld(g, anchor, start + dir * i, g.line, mirror, rot);
                     cells.Add(c);
                     if (!c.InBounds(map) || c.InNoBuildEdgeArea(map)) return DefenseLayout.GapBlocked;
                     // Unexplored ground closes the line as the survey reads it (most often the hill's rock); nothing in it is looked at.
@@ -408,7 +419,7 @@ namespace ColonyCouncil
         private static void Warnings(DefensePlan plan, Map map)
         {
             var t = plan.template;
-            if (t.line >= 0 && ColonyCouncilMod.Settings != null)
+            if (plan.grid.line >= 0 && ColonyCouncilMod.Settings != null)
             {
                 foreach (int stop in new[] { plan.stopA, plan.stopB })
                 {
@@ -531,7 +542,8 @@ namespace ColonyCouncil
             rot = cfg.rotation;
             var s = DefenseSurvey.For(map);
             if (s == null || resolved == null || resolved.Count == 0) return false;
-            return Search(t, map, cfg, resolved, Targets(t, s, chokeIndex), false, IntVec3.Invalid, out anchor, out rot, out _);
+            var spec = t.SpecFor(map, cfg);
+            return Search(t, map, cfg, resolved, Targets(t, t.GridFor(spec), t.BehindFor(spec), s, chokeIndex), false, IntVec3.Invalid, out anchor, out rot, out _);
         }
 
         /// <summary>
@@ -544,22 +556,23 @@ namespace ColonyCouncil
         public static bool FindSpotAt(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, IntVec3 gate, int facing, string placeAt, int distance,
             bool bothMirrors, out IntVec3 anchor, out int rot, out bool mirror)
         {
-            var targets = TargetsAt(t, DefenseSurvey.Kept(map), gate, facing, placeAt, distance);
+            var spec = t.SpecFor(map, cfg);
+            var g = t.GridFor(spec);
+            var targets = TargetsAt(t, g, t.BehindFor(spec), DefenseSurvey.Kept(map), gate, facing, placeAt, distance);
             var outward = IntVec3.North.RotatedBy(new Rot4(DefenseLineMath.Norm(facing)));
             var inner = gate - outward;
             if (Search(t, map, cfg, resolved, targets, bothMirrors, inner.InBounds(map) ? inner : gate, out anchor, out rot, out mirror)) return true;
             // Where it would stand, even if nothing fits there.
             var (cell0, facing0, cx0, cz0, _) = targets[0];
             mirror = cfg.mirror;
-            DefenseLayout.FaceAt(t.Grid, cx0, cz0, mirror, facing0, cell0.x, cell0.z, out rot, out int ax, out int az);
+            DefenseLayout.FaceAt(g, cx0, cz0, mirror, facing0, cell0.x, cell0.z, out rot, out int ax, out int az);
             anchor = new IntVec3(ax, 0, az);
             return false;
         }
 
-        /// <summary>The column of a template's gate on its wall row (a killbox's opening), else its middle.</summary>
-        public static int GateColumn(DefenseTemplateDef t)
+        /// <summary>The column of a layout's gate on its wall row (a killbox's opening), else its middle.</summary>
+        public static int GateColumn(DefenseTemplateDef t, DefenseLayout.Grid g)
         {
-            var g = t.Grid;
             if (g.line >= 0)
                 for (int x = 0; x < g.W; x++)
                     if (g.cells[x, g.line] == DefenseLayout.Gate || (t.kind == "killbox" && g.cells[x, g.line] == DefenseLayout.Open))
@@ -603,8 +616,8 @@ namespace ColonyCouncil
             if (resolved == null || resolved.Count == 0) return false;
             float best = float.MinValue;
             var trial = cfg.Copy();
-            var g = t.Grid;
-            bool closing = cfg.closeGap && t.line >= 0 && (t.kind == "gate" || t.kind == "wall" || t.kind == "palisade" || t.kind == "fallback");
+            var g = t.GridFor(map, cfg);
+            bool closing = cfg.closeGap && g.line >= 0 && (t.kind == "gate" || t.kind == "wall" || t.kind == "palisade" || t.kind == "fallback");
             for (int m = 0; m < (bothMirrors ? 2 : 1); m++)
             {
                 trial.mirror = m == 0 ? cfg.mirror : !cfg.mirror;
@@ -671,11 +684,11 @@ namespace ColonyCouncil
         }
 
         /// <summary>The cells a template's anchor cell (cx, cz) lands on at a line, by where it goes (see <see cref="FindSpotAt"/>).</summary>
-        private static List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> TargetsAt(DefenseTemplateDef t, DefenseSurvey s, IntVec3 gate, int facing, string placeAt, int distance)
+        private static List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> TargetsAt(DefenseTemplateDef t, DefenseLayout.Grid g, int behind, DefenseSurvey s, IntVec3 gate,
+            int facing, string placeAt, int distance)
         {
             var list = new List<(IntVec3, int, int, int, int)>();
-            var g = t.Grid;
-            int midX = GateColumn(t);
+            int midX = GateColumn(t, g);
             facing = DefenseLineMath.Norm(facing);
             var outward = IntVec3.North.RotatedBy(new Rot4(facing));
             switch (placeAt)
@@ -684,7 +697,7 @@ namespace ColonyCouncil
                     list.Add((gate + outward * Mathf.Max(1, distance), facing, midX, 0, 1));
                     break;
                 case "behind":
-                    list.Add((gate - outward * Mathf.Max(1, distance > 0 ? distance : t.behind), facing, midX, g.H - 1, 2));
+                    list.Add((gate - outward * Mathf.Max(1, distance > 0 ? distance : behind), facing, midX, g.H - 1, 2));
                     break;
                 case "between":
                 {
@@ -704,10 +717,9 @@ namespace ColonyCouncil
             return list;
         }
 
-        /// <summary>How many rows down from a template's front its first cover (or turret) stands: where it goes behind a line is measured to that row.</summary>
-        public static int CoverRow(DefenseTemplateDef t)
+        /// <summary>How many rows down from a layout's front its first cover (or turret) stands: where it goes behind a line is measured to that row.</summary>
+        public static int CoverRow(DefenseLayout.Grid g)
         {
-            var g = t?.Grid;
             if (g == null) return 0;
             for (int z = g.H - 1; z >= 0; z--)
                 for (int x = 0; x < g.W; x++)
@@ -719,10 +731,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>The cells the template's anchor cell (cx, cz) could land on, the side to face, and how far to look round each.</summary>
-        private static List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> Targets(DefenseTemplateDef t, DefenseSurvey s, int chokeIndex)
+        private static List<(IntVec3 cell, int facing, int cx, int cz, int jitter)> Targets(DefenseTemplateDef t, DefenseLayout.Grid g, int behind, DefenseSurvey s, int chokeIndex)
         {
             var list = new List<(IntVec3, int, int, int, int)>();
-            var g = t.Grid;
             int midX = g.W / 2;
             // The line's gate, when it has one in the middle: it should sit on the gap.
             if (g.line >= 0)
@@ -755,7 +766,7 @@ namespace ColonyCouncil
                     foreach (var (cell, facing) in spots) list.Add((cell + IntVec3.North.RotatedBy(new Rot4(facing)) * 2, facing, midX, 0, 2));
                     break;
                 case "behind":
-                    foreach (var (cell, facing) in spots) list.Add((cell - IntVec3.North.RotatedBy(new Rot4(facing)) * t.behind, facing, midX, g.H - 1, 3));
+                    foreach (var (cell, facing) in spots) list.Add((cell - IntVec3.North.RotatedBy(new Rot4(facing)) * behind, facing, midX, g.H - 1, 3));
                     break;
                 case "between":
                     foreach (var (cell, facing) in spots)

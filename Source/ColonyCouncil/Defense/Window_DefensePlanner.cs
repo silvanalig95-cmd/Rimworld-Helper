@@ -93,6 +93,7 @@ namespace ColonyCouncil
             if (map == null || t == null) return;
             var cfg = des.Config;
             var s = ColonyCouncilMod.Settings;
+            var grid = t.GridFor(map, cfg);
             Text.Font = GameFont.Small;
             var view = new Rect(0f, 0f, inRect.width - 16f, contentHeight);
             Widgets.BeginScrollView(inRect, ref scroll, view);
@@ -105,7 +106,7 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             y += 30f;
             GUI.color = Faint;
-            Widgets.Label(new Rect(0f, y, w, 22f), "CC_Def_Size".Translate(t.Width, t.Height));
+            Widgets.Label(new Rect(0f, y, w, 22f), "CC_Def_Size".Translate(grid.W, grid.H));
             GUI.color = Color.white;
             y += 22f;
             var line = des.Line;
@@ -159,7 +160,7 @@ namespace ColonyCouncil
                 cfg.mirror = !cfg.mirror;
                 cfg.Changed();
             }
-            if (t.line >= 0)
+            if (grid.line >= 0)
             {
                 var gapRect = new Rect(half + 4f, y + 2f, half, RowH - 4f);
                 bool gap = cfg.closeGap;
@@ -173,7 +174,7 @@ namespace ColonyCouncil
             }
             y += RowH + 3f;
             // A plan whose walls are only its sides can do without them (raiders keep coming when the sides are open).
-            if (DefenseWayCheck.WallsAreSides(t) && t.Grid.pieces.Any(p => p.role == "wall"))
+            if (DefenseWayCheck.WallsAreSides(t) && grid.pieces.Any(p => p.role == "wall"))
             {
                 var openRect = new Rect(0f, y, w, RowH - 4f);
                 bool open = cfg.leaveOut.Contains("wall");
@@ -199,10 +200,10 @@ namespace ColonyCouncil
             Text.Font = GameFont.Small;
             TooltipHandler.TipRegion(useRect, "CC_Planner_UseWhatWeHave_Tip".Translate());
             var pieces = des.Pieces;
-            foreach (var role in t.RolesUsed)
+            foreach (var role in DefenseTemplateDef.RolesUsed(grid))
             {
                 var of = pieces.Where(p => p.role == role).ToList();
-                var block = t.Grid.pieces.First(p => p.role == role);
+                var block = grid.pieces.First(p => p.role == role);
                 string caption = ("CC_DefRole_" + role).Translate().CapitalizeFirst();
                 if (of.Count == 0)
                 {

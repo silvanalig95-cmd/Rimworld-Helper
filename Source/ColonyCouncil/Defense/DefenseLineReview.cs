@@ -324,7 +324,7 @@ namespace ColonyCouncil
             cfg.leaveOut.Clear();
             if (leaveOut != null)
                 foreach (var role in leaveOut) cfg.leaveOut.Add(role);
-            var pieces = cfg.leaveOut.Count > 0 ? t.Resolve(map, out _, cfg) : t.ResolveCached(map, out _);
+            var pieces = cfg.leaveOut.Count > 0 ? t.Resolve(map, out _, cfg) : t.ResolveCached(map, out _, cfg);
             IntVec3 anchor;
             int rot;
             bool mirror, fits;

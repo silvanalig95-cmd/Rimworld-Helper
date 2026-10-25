@@ -13,10 +13,11 @@ public static class DefenseApproachTests
 {
     private static DefenseMath.MapGrid Map(int w, int h, Func<int, int, char> at) => DefenseTests.Map(w, h, at);
 
-    /// <summary>The trap corridor's layout from its def (so the tests follow the XML), else the one it had when they were written.</summary>
+    /// <summary>The trap corridor's layout from its def (so the tests follow the XML: drawn for a small raid), else the one it had when they were written.</summary>
     private static DefenseLayout.Grid Corridor(string root)
     {
         var t = DefenseTests.Load(root).FirstOrDefault(x => x.defName == "Rimfolk_Defense_TrapCorridor");
+        if (t?.shape != null) return DefenseShapes.Build(t.shape, new DefenseShapeSpec { raidPoints = 500f }).grid;
         var rows = t?.rows ?? new List<string> { "W..W", "WT.W", "W.FW", "WT.W", "W.FW", "WT.W", "W.FW", "WT.W", "W..W" };
         return DefenseLayout.Parse(rows);
     }

@@ -15,6 +15,8 @@ namespace ColonyCouncil
         public bool sees;
         public float dist;
         public Thing cover;
+        /// <summary>A pocket's: the cells beside it that someone there leans out into to shoot past the wall in front.</summary>
+        public List<IntVec3> lean;
     }
 
     /// <summary>A plan the line has placed, read again: how many of its pieces stand, and how many are planned and waiting for builders.</summary>
@@ -192,6 +194,15 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>The cells beside a firing position with a wall in front that someone there can lean out into: seen over, and the cell ahead of it too.</summary>
+        private static List<IntVec3> LeanCells(IntVec3 c, IntVec3 outward, IntVec3 right, Map map)
+        {
+            var list = new List<IntVec3>();
+            foreach (var side in new[] { c + right, c - right })
+                if (side.InBounds(map) && (side + outward).InBounds(map) && side.CanBeSeenOver(map) && (side + outward).CanBeSeenOver(map)) list.Add(side);
+            return list;
+        }
+
         private static bool IsEmbrasure(ThingDef d) =>
             d?.building != null && (d.defName.IndexOf("Embrasure", StringComparison.OrdinalIgnoreCase) >= 0 || d.defName.IndexOf("EmbPalisade", StringComparison.OrdinalIgnoreCase) >= 0);
 
@@ -322,9 +333,18 @@ namespace ColonyCouncil
                 {
                     if (taken.Contains(c) || !c.InBounds(map) || !c.Standable(map)) continue;
                     var front = c + f.outward;
-                    if (!front.InBounds(map) || !(Avail.IsCover(front.GetEdifice(map)?.def) || IsEmbrasure(front.GetEdifice(map)?.def))) continue;
+                    if (!front.InBounds(map)) continue;
+                    var ed = front.GetEdifice(map);
+                    List<IntVec3> lean = null;
+                    if (!(Avail.IsCover(ed?.def) || IsEmbrasure(ed?.def)))
+                    {
+                        // A pocket: a wall in front, and room beside it to lean out past the wall.
+                        if (ed == null || !TemplatePlanner.IsWallLike(ed.def)) continue;
+                        lean = LeanCells(c, f.outward, f.right, map);
+                        if (lean.Count == 0) continue;
+                    }
                     taken.Add(c);
-                    f.firing.Add(new FirePos { cell = c, cover = front.GetEdifice(map), dist = c.DistanceTo(f.gate) });
+                    f.firing.Add(new FirePos { cell = c, cover = ed, dist = c.DistanceTo(f.gate), lean = lean });
                 }
             }
             // In a killbox the entrance turns so nobody sees the mouth: the shooters' job is the box itself.
@@ -338,7 +358,7 @@ namespace ColonyCouncil
             float reach = f.bestRange > 0f ? f.bestRange : 25f;
             foreach (var p in f.firing)
             {
-                p.sees = targets.Any(t => p.cell != t && GenSight.LineOfSight(p.cell, t, map, true));
+                p.sees = targets.Any(t => p.cell != t && (GenSight.LineOfSight(p.cell, t, map, true) || p.lean != null && p.lean.Any(l => l != t && GenSight.LineOfSight(l, t, map, true))));
                 if (p.sees && p.dist <= reach) f.seeing++;
             }
             var near = f.firing.Where(p => p.sees).Select(p => Mathf.Abs(f.line.Ahead(p.cell))).OrderBy(d => d).ToList();
@@ -476,9 +496,9 @@ namespace ColonyCouncil
         {
             try
             {
-                var cfg = new DefensePlanConfig { rotation = saved.rotation, mirror = saved.mirror, closeGap = saved.closeGap };
-                foreach (var role in saved.LeftOut) cfg.leaveOut.Add(role);
-                var pieces = cfg.leaveOut.Count > 0 ? t.Resolve(map, out _, cfg) : t.ResolveCached(map, out _);
+                // With the layout it was placed as: drawn for the numbers it was drawn for, or the fixed one from before.
+                var cfg = DefensePlanConfig.Of(saved);
+                var pieces = cfg.leaveOut.Count > 0 ? t.Resolve(map, out _, cfg) : t.ResolveCached(map, out _, cfg);
                 return DefensePlanner.Plan(t, map, saved.anchor, cfg, pieces, true);
             }
             catch (Exception e)

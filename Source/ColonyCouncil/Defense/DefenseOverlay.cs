@@ -190,6 +190,7 @@ namespace ColonyCouncil
                 ways.Add(pts);
             }
             var gate = DefDatabase<DefenseTemplateDef>.GetNamedSilentFail("Rimfolk_Defense_Gate");
+            int gateW = gate?.GridFor(map, DefensePlanConfig.For(gate)).W ?? 0;
             foreach (var info in s.chokes)
             {
                 var c = info.c;
@@ -209,7 +210,7 @@ namespace ColonyCouncil
                 {
                     var side = outward.RotatedBy(Rot4.East);
                     var line = new List<IntVec3>();
-                    int half = Mathf.Max(gate.Width, c.width + 2) / 2;
+                    int half = Mathf.Max(gateW, c.width + 2) / 2;
                     for (int k = -half; k <= half; k++)
                     {
                         var cell = info.cell + side * k;

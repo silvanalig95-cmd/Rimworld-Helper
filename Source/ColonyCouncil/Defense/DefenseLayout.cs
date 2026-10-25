@@ -193,7 +193,7 @@ namespace ColonyCouncil
         {
             var list = new List<string>(g.errors);
             if (g.W < 1 || g.H < 1) return list;
-            if (g.W > 31 || g.H > 31) list.Add($"the layout is {g.W}x{g.H}; keep it within 31x31");
+            if (g.W > MaxSize || g.H > MaxSize) list.Add($"the layout is {g.W}x{g.H}; keep it within {MaxSize}x{MaxSize}");
 
             for (int x = 0; x < g.W; x++)
             {
@@ -211,7 +211,7 @@ namespace ColonyCouncil
                             break;
                         }
                         case Firing:
-                            if (n != Cover && n != Embrasure) list.Add($"the firing position at ({x},{z}) has no cover toward the threat");
+                            if (n != Cover && n != Embrasure && !(n == Wall && Pocket(g, x, z))) list.Add($"the firing position at ({x},{z}) has no cover toward the threat");
                             break;
                         case Cover:
                         case Embrasure:
@@ -312,6 +312,24 @@ namespace ColonyCouncil
             }
             return list;
         }
+
+        /// <summary>The tallest and widest a layout may be (a killbox for big raids runs to about 35 rows).</summary>
+        public const int MaxSize = 41;
+
+        /// <summary>
+        /// A firing position with a wall in front is a pocket when it can lean out past it: on one side the cell beside it
+        /// and the cell ahead of that can both be seen over (cover or open ground). Someone there keeps the wall's
+        /// three-quarters cover while shooting from beside it.
+        /// </summary>
+        public static bool Pocket(Grid g, int x, int z)
+        {
+            for (int d = -1; d <= 1; d += 2)
+                if (LeanInto(g.At(x + d, z)) && LeanInto(g.At(x + d, z + 1))) return true;
+            return false;
+        }
+
+        /// <summary>A cell someone can lean out into, or see past while leaning: cover or open ground, off the layout included.</summary>
+        private static bool LeanInto(char c) => c == '\0' || !Solid(c) && c != Gate;
 
         /// <summary>Ground a gate opens onto: open, a firing position, untouched, off the template, or a second gate behind it (a double gate).</summary>
         private static bool Walkable(char c) => c == '\0' || c == Open || c == Firing || c == Untouched || c == Gate;

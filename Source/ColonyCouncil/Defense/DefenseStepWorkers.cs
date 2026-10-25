@@ -97,8 +97,8 @@ namespace ColonyCouncil
         {
             var r = Start(f);
             r.placeAt = "behind";
-            // The plan's own cover row, not its front edge, goes the distance back.
-            r.distance = Mathf.Max(1, f.coverDist - DefensePlanner.CoverRow(r.template));
+            // The plan's own cover row, not its front edge, goes the distance back (a drawn one: where its layout puts it).
+            r.distance = Behind(f, r.template, f.coverDist);
             r.look = f.inner;
             int need = Need(f);
             if (f.seeing >= need)
@@ -171,7 +171,7 @@ namespace ColonyCouncil
             if (!posts)
             {
                 r.template = T("Rimfolk_Defense_TurretNest") ?? r.template;
-                r.distance = r.template?.behind ?? 6;
+                r.distance = r.template != null ? Behind(f, r.template, r.template.behind + DefensePlanner.CoverRow(r.template.LayoutGrid)) : 6;
                 if (f.turretsWorking >= 2)
                 {
                     r.state = StepState.Done;
@@ -187,7 +187,7 @@ namespace ColonyCouncil
             }
             r.template = T("Rimfolk_Defense_Post") ?? r.template;
             if (!f.pre) r.label = "CC_DefLine_Guns_PostLabel".Translate();
-            r.distance = Mathf.Max(1, Mathf.Clamp(f.coverDist + 3, 8, 13) - DefensePlanner.CoverRow(r.template));
+            r.distance = Behind(f, r.template, Mathf.Clamp(f.coverDist + 3, 8, 13));
             if (!f.pre && off != null) r.notes.Add("CC_DefLine_Guns_TurretsOff".Translate(off).Resolve());
             else if (!f.pre && turret == null && f.line.aim != "archers") r.notes.Add("CC_DefLine_Guns_TurretResearch".Translate(DefenseLineReview.ResearchFor("Turret_MiniTurret")).Resolve());
             int far = f.firing.Count(p => p.sees && Mathf.Abs(f.line.Ahead(p.cell)) >= f.coverDist + 2);
@@ -273,14 +273,16 @@ namespace ColonyCouncil
                 var costs = new List<string>();
                 if (trial.mine > 0) costs.Add("CC_DefLine_Killbox_Mine".Translate(trial.mine).Resolve());
                 if (trial.removed > 0) costs.Add("CC_DefLine_Killbox_Remove".Translate(trial.removed).Resolve());
+                var kg = r.template.GridFor(f.map, DefensePlanConfig.For(r.template));
                 r.notes.Add(costs.Count == 0
-                    ? "CC_DefLine_Killbox_Fits".Translate(r.template.LabelNow, r.template.Width, r.template.Height).Resolve()
+                    ? "CC_DefLine_Killbox_Fits".Translate(r.template.LabelNow, kg.W, kg.H).Resolve()
                     : "CC_DefLine_Killbox_FitsIf".Translate(r.template.LabelNow, TextUtil.JoinAnd(costs)).Resolve());
             }
             else
             {
                 r.state = StepState.NotYet;
-                r.left = "CC_DefLine_Killbox_NoRoom".Translate(r.template.LabelNow, r.template.Width, r.template.Height).Resolve()
+                var kg = r.template.GridFor(f.map, DefensePlanConfig.For(r.template));
+                r.left = "CC_DefLine_Killbox_NoRoom".Translate(r.template.LabelNow, kg.W, kg.H).Resolve()
                          + (trial.elsewhere.NullOrEmpty() ? " " + "CC_DefLine_Killbox_Nowhere".Translate().Resolve() : " " + trial.elsewhere);
             }
             return r;
@@ -310,9 +312,9 @@ namespace ColonyCouncil
             var trial = new Trial { t = t };
             try
             {
-                var pieces = t.ResolveCached(f.map, out _);
                 var cfg = DefensePlanConfig.For(t).Copy();
                 cfg.closeGap = true;
+                var pieces = t.ResolveCached(f.map, out _, cfg);
                 trial.fits = DefensePlanner.FindSpotAt(t, f.map, cfg, pieces, f.gate, f.line.facing, "line", 0, true, out trial.anchor, out trial.rot, out trial.mirror);
                 if (trial.fits)
                 {

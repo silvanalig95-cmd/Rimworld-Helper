@@ -211,7 +211,7 @@ namespace ColonyCouncil
         /// How well a layout holds up, the way the game plays it: the worst cover any raider has while able to shoot at a
         /// firing position (and where, and at whom), and the share of the cells raiders cross, before they reach the firing
         /// positions, that at least one and at least two firing positions can shoot at. Cells right at the firing positions
-        /// (where a raider has already reached the line) are left out.
+        /// and behind all of them (where a raider has already reached the line or got past it) are left out.
         /// </summary>
         public class Reading
         {
@@ -227,11 +227,13 @@ namespace ColonyCouncil
             var raider = RaiderCells(g);
             var firing = Firing(g);
             if (firing.Count == 0) return r;
+            int rearmost = int.MaxValue;
+            foreach (var (_, fz) in firing) rearmost = Math.Min(rearmost, fz);
             for (int x = 0; x < g.W; x++)
             {
                 for (int z = 0; z < g.H; z++)
                 {
-                    if (!raider[x, z]) continue;
+                    if (!raider[x, z] || z < rearmost) continue;
                     bool atLine = false;
                     foreach (var (fx, fz) in firing)
                         if (Math.Abs(fx - x) <= 2 && Math.Abs(fz - z) <= 2) atLine = true;

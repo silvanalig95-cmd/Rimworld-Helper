@@ -5,8 +5,8 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// The player's choices while planning a defense: turn, mirror, closing the gap, and which building and material
-    /// each role uses. Kept for the session per template; materials are remembered in the mod settings for all defense
+    /// The player's choices while planning a defense: turn, mirror, closing the gap, shooters and depth added to a drawn
+    /// layout, and which building and material each role uses. Kept for the session per template; materials are remembered in the mod settings for all defense
     /// plans together (a colony that builds its walls in granite wants granite for the next gate too) and used again
     /// while there's still enough of them.
     /// </summary>
@@ -21,6 +21,12 @@ namespace ColonyCouncil
         public readonly HashSet<string> pickedNow = new HashSet<string>();
         /// <summary>Roles planned without (a trap corridor with its sides left open, so raiders aren't turned away).</summary>
         public readonly HashSet<string> leaveOut = new HashSet<string>();
+        /// <summary>A drawn layout's numbers, fixed (a placed plan read again with what it was drawn for); null: the colony's.</summary>
+        public DefenseShapeSpec spec;
+        /// <summary>The fixed layout from the XML: a plan placed before layouts were drawn.</summary>
+        public bool fixedLayout;
+        /// <summary>Firing positions and rows of depth the player added to a drawn layout (or took away).</summary>
+        public int moreShooters, moreDepth;
         public int version;
 
         public const string Scope = "defense";
@@ -83,6 +89,31 @@ namespace ColonyCouncil
             Changed();
         }
 
+        /// <summary>More (or fewer) firing positions and rows of depth than the colony's numbers give a drawn layout.</summary>
+        public void Resize(int shooters, int depth)
+        {
+            moreShooters += shooters;
+            moreDepth += depth;
+            Changed();
+        }
+
+        /// <summary>Back to what the colony's numbers give.</summary>
+        public void ColonySize()
+        {
+            moreShooters = moreDepth = 0;
+            Changed();
+        }
+
+        /// <summary>The choices a placed plan was made with: its turn, mirror, gap, what it left out, and what it was drawn for.</summary>
+        public static DefensePlanConfig Of(DefenseLinePlan saved)
+        {
+            var cfg = new DefensePlanConfig { rotation = saved.rotation, mirror = saved.mirror, closeGap = saved.closeGap };
+            foreach (var role in saved.LeftOut) cfg.leaveOut.Add(role);
+            cfg.spec = saved.Spec;
+            cfg.fixedLayout = cfg.spec == null;
+            return cfg;
+        }
+
         /// <summary>Forget the material picks: each is chosen from the stock again.</summary>
         public void UseWhatWeHave()
         {
@@ -124,7 +155,11 @@ namespace ColonyCouncil
         /// <summary>A copy for trying spots and turns without touching the player's choices.</summary>
         public DefensePlanConfig Copy()
         {
-            var c = new DefensePlanConfig { rotation = rotation, mirror = mirror, closeGap = closeGap, version = version };
+            var c = new DefensePlanConfig
+            {
+                rotation = rotation, mirror = mirror, closeGap = closeGap, version = version, spec = spec?.Copy(), fixedLayout = fixedLayout,
+                moreShooters = moreShooters, moreDepth = moreDepth
+            };
             foreach (var kv in variant) c.variant[kv.Key] = kv.Value;
             foreach (var kv in stuff) c.stuff[kv.Key] = kv.Value;
             foreach (var g in pickedNow) c.pickedNow.Add(g);

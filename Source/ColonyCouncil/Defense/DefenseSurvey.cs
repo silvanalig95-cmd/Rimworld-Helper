@@ -189,9 +189,9 @@ namespace ColonyCouncil
                     // Or on (or just by) a plan placed for the line: a trap corridor out in front, a killbox behind.
                     foreach (var p in l.plans)
                     {
-                        var t = p.Def;
-                        if (t == null) continue;
-                        TemplateMath.RotatedSize(t.Width, t.Height, p.rotation, out int w, out int h);
+                        var pg = p.Grid;
+                        if (pg == null) continue;
+                        TemplateMath.RotatedSize(pg.W, pg.H, p.rotation, out int w, out int h);
                         if (cell.x >= p.anchor.x - 2 && cell.x < p.anchor.x + w + 2 && cell.z >= p.anchor.z - 2 && cell.z < p.anchor.z + h + 2) return true;
                     }
                 }

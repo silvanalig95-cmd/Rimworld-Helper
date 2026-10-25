@@ -192,7 +192,7 @@ namespace ColonyCouncil
 
         // ---------------- Plans placed ----------------
 
-        private static bool LineKind(DefenseTemplateDef t) => t.line >= 0 && (t.kind == "gate" || t.kind == "wall" || t.kind == "palisade" || t.kind == "killbox");
+        private static bool LineKind(DefenseTemplateDef t) => t.HasLine && (t.kind == "gate" || t.kind == "wall" || t.kind == "palisade" || t.kind == "killbox");
 
         /// <summary>
         /// A defense plan was placed: it joins the line it was planned for, or one whose gate is close; a gate or wall
@@ -208,7 +208,7 @@ namespace ColonyCouncil
             var saved = new DefenseLinePlan
             {
                 template = t.defName, anchor = plan.anchor, rotation = plan.rotation, mirror = plan.mirror,
-                closeGap = closeGap && t.line >= 0, tick = Find.TickManager.TicksGame,
+                closeGap = closeGap && plan.grid.line >= 0, tick = Find.TickManager.TicksGame, shape = plan.spec?.Save(),
                 leaveOut = leaveOut == null || leaveOut.Count == 0 ? null : string.Join(",", leaveOut.OrderBy(x => x))
             };
             if (line != null)
@@ -237,11 +237,7 @@ namespace ColonyCouncil
                 "CC_DefLine_Offer_No".Translate(), null, "CC_DefLine_Offer_Title".Translate()));
         }
 
-        private static IntVec3 Center(DefensePlan plan)
-        {
-            TemplateMath.RotatedSize(plan.template.Width, plan.template.Height, plan.rotation, out int w, out int h);
-            return new IntVec3(plan.anchor.x + w / 2, 0, plan.anchor.z + h / 2);
-        }
+        private static IntVec3 Center(DefensePlan plan) => DefensePlanner.Middle(plan.grid, plan.anchor, plan.rotation);
 
         /// <summary>The line a plan placed by hand belongs to: one within a few cells of its gate, or (for plans that go behind, in front or further in) one it faces the same way as, close by.</summary>
         private DefenseLine NearPlan(DefensePlan plan, IntVec3 at)

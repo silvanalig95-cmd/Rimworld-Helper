@@ -60,6 +60,8 @@
     <Compile Include="../../Source/ColonyCouncil/Immersion/SpeechMath.cs" Link="SpeechMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/ChangeMath.cs" Link="ChangeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseLayout.cs" Link="DefenseLayout.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Defense/DefenseSight.cs" Link="DefenseSight.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Defense/DefenseShapes.cs" Link="DefenseShapes.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseMath.cs" Link="DefenseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseLineMath.cs" Link="DefenseLineMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseApproach.cs" Link="DefenseApproach.cs" />

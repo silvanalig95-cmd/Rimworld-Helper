@@ -15,8 +15,15 @@ namespace ColonyCouncil
         public int tick;
         /// <summary>The roles it was planned without, comma-separated (a trap corridor with its sides left open), or null.</summary>
         public string leaveOut;
+        /// <summary>What a drawn layout was drawn for (<see cref="DefenseShapeSpec.Save"/>), or null: a fixed layout, or one placed before layouts were drawn.</summary>
+        public string shape;
 
         public DefenseTemplateDef Def => template.NullOrEmpty() ? null : DefDatabase<DefenseTemplateDef>.GetNamedSilentFail(template);
+
+        public DefenseShapeSpec Spec => DefenseShapeSpec.Parse(shape);
+
+        /// <summary>The layout it was placed as.</summary>
+        public DefenseLayout.Grid Grid => Def?.GridFor(Spec);
 
         public IEnumerable<string> LeftOut => leaveOut.NullOrEmpty() ? Enumerable.Empty<string>() : leaveOut.Split(',').Where(r => !r.NullOrEmpty());
 
@@ -29,6 +36,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref closeGap, "closeGap", true);
             Scribe_Values.Look(ref tick, "tick");
             Scribe_Values.Look(ref leaveOut, "leaveOut");
+            Scribe_Values.Look(ref shape, "shape");
         }
     }
 

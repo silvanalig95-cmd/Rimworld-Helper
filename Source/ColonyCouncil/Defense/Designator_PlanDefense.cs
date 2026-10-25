@@ -107,8 +107,7 @@ namespace ColonyCouncil
             des.suggestedRot = cfg.rotation;
             des.suggestedMirror = mirror;
             string cheaper = des.CheaperIfShort(anchor);
-            TemplateMath.RotatedSize(t.Width, t.Height, cfg.rotation, out int rw, out int rh);
-            CameraJumper.TryJump(new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2), map);
+            CameraJumper.TryJump(DefensePlanner.Middle(t.GridFor(map, cfg), anchor, cfg.rotation), map);
             var line = DefenseLines.Of(map)?.Get(lineId);
             if (line != null) DefenseLines.Select(map, line);
             string name = line != null ? DefenseLineReview.NameOf(line, map) : "";
@@ -306,8 +305,7 @@ namespace ColonyCouncil
                 Config.mirror = mirror;
                 Config.Changed();
                 string cheaper = first ? CheaperIfShort(anchor) : null;
-                TemplateMath.RotatedSize(template.Width, template.Height, rot, out int rw, out int rh);
-                CameraJumper.TryJump(new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2), map);
+                CameraJumper.TryJump(DefensePlanner.Middle(template.GridFor(map, Config), anchor, rot), map);
                 string text = "CC_Def_SpotFound".Translate(template.LabelNow, DefenseSurvey.FacingWord(DefenseLayout.Outward(Config.mirror, rot))).Resolve();
                 if (!why.NullOrEmpty()) text += " " + why;
                 if (!cheaper.NullOrEmpty()) text += " " + cheaper;
@@ -350,7 +348,7 @@ namespace ColonyCouncil
             return cachedPlan;
         }
 
-        public DefensePlan PlanAt(IntVec3 center) => PlanAtAnchor(DefensePlanner.AnchorForCenter(template, center, Config.rotation));
+        public DefensePlan PlanAt(IntVec3 center) => PlanAtAnchor(DefensePlanner.AnchorForCenter(template.GridFor(Find.CurrentMap, Config), center, Config.rotation));
 
         public DefensePlan CurrentPlan
         {
@@ -403,7 +401,8 @@ namespace ColonyCouncil
             if (suggestedAnchor.IsValid)
             {
                 var cells = new List<IntVec3>();
-                TemplateMath.RotatedSize(template.Width, template.Height, suggestedRot, out int rw, out int rh);
+                var sg = template.GridFor(map, Config);
+                TemplateMath.RotatedSize(sg.W, sg.H, suggestedRot, out int rw, out int rh);
                 for (int x = 0; x < rw; x++)
                     for (int z = 0; z < rh; z++)
                         cells.Add(new IntVec3(suggestedAnchor.x + x, 0, suggestedAnchor.z + z));
@@ -430,7 +429,7 @@ namespace ColonyCouncil
             }
             if (plan.extension.Count > 0) GenDraw.DrawFieldEdges(plan.extension, GapColor);
             // Which way it faces: an arrow from the middle toward the raiders.
-            TemplateMath.RotatedSize(template.Width, template.Height, plan.rotation, out int w, out int h);
+            TemplateMath.RotatedSize(plan.grid.W, plan.grid.H, plan.rotation, out int w, out int h);
             var mid = new IntVec3(plan.anchor.x + w / 2, 0, plan.anchor.z + h / 2);
             var tip = mid + IntVec3.North.RotatedBy(new Rot4(plan.Outward)) * (Mathf.Max(w, h) / 2 + 3);
             GenDraw.DrawLineBetween(mid.ToVector3Shifted(), tip.ToVector3Shifted(), SimpleColor.Orange);

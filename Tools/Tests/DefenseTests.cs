@@ -4,10 +4,13 @@ using ColonyCouncil;
 /// <summary>
 /// The defense planner (Source/ColonyCouncil/Defense): every defense template follows the rules in every turn and
 /// mirrored (no overlapping pieces, gates in wall lines with a way through, every firing position covered toward the
-/// threat and the cover open to the front, traps on the raiders' way and never beside each other or a gate, turrets
-/// three cells apart, a closing line wall all the way across); bad layouts are caught; the map reading finds the ways
-/// in, the narrow places on them with their widths and facings, what closes them (rock, water, walls, a bridge), and
-/// whether a colony is walled in, on small maps made of characters.
+/// threat, or in a pocket it can lean out of, and the cover open to the front, traps on the raiders' way and never
+/// beside each other or a gate, turrets three cells apart, a closing line wall all the way across); every drawn one
+/// (DefenseShapes) does so for a range of colonies, and holds up the way raids play out (DefenseSight: nobody can shoot
+/// at a firing position from good cover, out of a grenade's throw against grenades, turrets out of each other's blast);
+/// bad layouts are caught, the old killbox's blind spot among them; the map reading finds the ways in, the narrow
+/// places on them with their widths and facings, what closes them (rock, water, walls, a bridge), and whether a colony
+/// is walled in, on small maps made of characters.
 /// </summary>
 public static class DefenseTests
 {
@@ -20,6 +23,23 @@ public static class DefenseTests
         public int line = -1;
         public List<string> rows = new();
         public List<string> roles = new();
+        /// <summary>Its &lt;shape&gt;, read the way the game reads it (fields by name), or null for a fixed layout.</summary>
+        public DefenseShapeOptions shape;
+    }
+
+    /// <summary>A &lt;shape&gt; element's fields, as RimWorld's loader fills them.</summary>
+    public static DefenseShapeOptions ReadShape(XElement el)
+    {
+        if (el == null) return null;
+        var o = new DefenseShapeOptions();
+        foreach (var child in el.Elements())
+        {
+            var f = typeof(DefenseShapeOptions).GetField(child.Name.LocalName);
+            if (f == null) throw new InvalidDataException("unknown shape field " + child.Name.LocalName);
+            object v = f.FieldType == typeof(bool) ? bool.Parse(child.Value) : f.FieldType == typeof(int) ? int.Parse(child.Value) : child.Value;
+            f.SetValue(o, v);
+        }
+        return o;
     }
 
     public static List<Template> Load(string root)
@@ -35,7 +55,8 @@ public static class DefenseTests
                     defName = el.Element("defName")?.Value ?? "?",
                     kind = el.Element("kind")?.Value ?? "",
                     placeAt = el.Element("placeAt")?.Value ?? "choke",
-                    rows = el.Element("layout")?.Elements("li").Select(e => e.Value).ToList() ?? new List<string>()
+                    rows = el.Element("layout")?.Elements("li").Select(e => e.Value).ToList() ?? new List<string>(),
+                    shape = ReadShape(el.Element("shape"))
                 };
                 if (int.TryParse(el.Element("line")?.Value, out int line)) t.line = line;
                 foreach (var p in el.Element("pieces")?.Elements("li") ?? Enumerable.Empty<XElement>())
@@ -65,6 +86,9 @@ public static class DefenseTests
             Check(Kinds.Contains(t.kind), $"{t.defName}: unknown kind {t.kind}");
             Check(Places.Contains(t.placeAt), $"{t.defName}: unknown placeAt {t.placeAt}");
             foreach (var r in t.roles) Check(DefenseLayout.Roles.Contains(r), $"{t.defName}: unknown role {r}");
+            if (t.shape != null) Check(DefenseShapes.Families.Contains(t.shape.family), $"{t.defName}: unknown shape family {t.shape.family}");
+            // A drawn plan's fixed layout is only what plans placed before were built from (a new one may have none).
+            if (t.shape != null && t.rows.Count == 0) continue;
             var g = DefenseLayout.Parse(t.rows, t.line);
             foreach (var p in DefenseLayout.Problems(g, t.kind)) Check(false, $"{t.defName}: {p}");
             // A plan that closes a gap and brings its own cover puts the shooters where a line's review wants them, not
@@ -83,6 +107,7 @@ public static class DefenseTests
                 }
         }
         Console.WriteLine($"Checked {layouts} defense layouts ({templates.Count} templates in every turn, mirrored and not).");
+        DrawnChecks(templates, Check);
 
         // ---------- The rules catch bad layouts ----------
         void Bad(string why, string kind, int line, params string[] rows)
@@ -104,6 +129,27 @@ public static class DefenseTests
         Bad("a firing position nobody can reach", "post", -1, ".SSS.", "WfffW", "WWWWW");
         Bad("a keep open at the side", "keep", -1, "WWGWW", "W.S..", "W.f.W", "WWWWW");
         Bad("mortars side by side", "mortar", -1, ".SSSS.", ".mmmm.", ".MmMm.", "......");
+        Bad("a firing position walled in front and at both sides", "post", -1, ".....", "SWWWS", "WWfWW", "W...W");
+        Bad("a layout too big", "post", -1, Enumerable.Repeat(".SSS.", 1).Concat(Enumerable.Repeat("WfffW", 1)).Concat(Enumerable.Repeat("W...W", 41)).ToArray());
+        // A pocket passes: a wall in front, sandbags at its front corners and beside it.
+        {
+            var g = DefenseLayout.Parse(new[] { ".......", "SWSWSWS", "WfSfSfW", "W.....W" });
+            Check(DefenseLayout.Problems(g, "post").Count == 0, "a post of pockets passes: " + string.Join("; ", DefenseLayout.Problems(g, "post")));
+            Check(DefenseLayout.Pocket(g, 1, 1) && DefenseLayout.Pocket(g, 3, 1), "a firing position behind a wall with sandbags beside it is a pocket");
+        }
+        // The old killbox, as the sight checker reads it: the corner before its last turn sees the shooters from three-quarters cover.
+        {
+            var old = DefenseLayout.Parse(new[]
+            {
+                "WWWWWWW.WWWWWWW", "W_____W.W_____W", "W_____W.WWW___W", "W_____W...W___W", "WWWWWWWWW.WWWWW", "_W...........W_",
+                "_W...........W_", "_W.......T...W_", "_W...........W_", "_W...........W_", "_W...........W_", "_W......T....W_",
+                "_W...........W_", "_W...........W_", "_W...........W_", "_W...........W_", "_W...........W_", "_WSSSSS.SSSSSW_",
+                "_WuuWff.ffWuuW_", "_WUuW.....WUuW_", "_W...........W_"
+            }, 0);
+            var reading = DefenseSight.Read(old);
+            Check(reading.worstCover >= 0.7f && reading.worstZ >= old.H - 5, $"the old killbox's corner sees its shooters from cover ({reading.worstCover:0.00} at {reading.worstX},{reading.worstZ})");
+            Check(DefenseSight.Problems(old, true).Count > 0, "the sight checker catches it");
+        }
 
         // A good one passes.
         {
@@ -153,6 +199,111 @@ public static class DefenseTests
         return checks;
     }
 
+    /// <summary>
+    /// Every drawn plan for a range of colonies (bows and rifles, with and against grenades, short and long reach,
+    /// small and big raids, no turret, a mini-turret, an autocannon, the planner's depth taken away or added): the
+    /// layout rules, what raiders can see and hit (nobody shoots at a firing position from better than 45% cover; against
+    /// grenades, nobody within a throw of the doorway unless the colony's reach or the player's depth leaves no room;
+    /// turrets out of each other's and the shooters' blast), a placed plan's numbers read back from the save, and the
+    /// world checks in every turn for the colony in the middle of the range.
+    /// </summary>
+    private static void DrawnChecks(List<Template> templates, Action<bool, string> check)
+    {
+        var drawn = templates.Where(t => t.shape != null).ToList();
+        check(drawn.Count >= 10, $"most plans are drawn for the colony ({drawn.Count})");
+        var specs = new List<DefenseShapeSpec>();
+        foreach (int shooters in new[] { 4, 6, 8 })
+            foreach (bool grenades in new[] { false, true })
+                foreach (bool lowTech in new[] { false, true })
+                    foreach (float range in new[] { 22.9f, 30.9f, 44.9f })
+                        foreach (float points in new[] { 300f, 4000f })
+                            foreach (int turret in new[] { 0, 1, 2 })
+                                foreach (int depth in new[] { -3, 0, 5 })
+                                    specs.Add(new DefenseShapeSpec
+                                    {
+                                        shooters = shooters, grenades = grenades, lowTech = lowTech, range = range, raidPoints = points,
+                                        turretSize = turret, turrets = turret == 0 ? 0 : turret == 1 ? 2 : 1, depth = depth
+                                    });
+        var failures = new System.Collections.Concurrent.ConcurrentBag<string>();
+        int built = 0;
+        foreach (var t in drawn)
+        {
+            var seen = new HashSet<string>();
+            var unique = specs.Where(sp => seen.Add(sp.Key)).ToList();
+            System.Threading.Tasks.Parallel.ForEach(unique, spec =>
+            {
+                var shape = DefenseShapes.Build(t.shape, spec);
+                System.Threading.Interlocked.Increment(ref built);
+                var g = shape.grid;
+                string where = $"{t.defName} [{spec.Key}]";
+                foreach (var p in DefenseLayout.Problems(g, t.kind)) failures.Add($"{where}: {p}");
+                // Reach and depth can leave no room to stand out of a throw; then the review says so, and nothing else may be wrong.
+                bool roomForGrenades = spec.depth >= 0 && spec.range >= 30f;
+                foreach (var p in DefenseSight.Problems(g, spec.grenades && roomForGrenades)) failures.Add($"{where}: {p}");
+                if (t.shape.family != DefenseShapes.Box && t.shape.family != DefenseShapes.SideLines) return;
+                int firing = DefenseSight.Firing(g).Count;
+                if (firing < 4) failures.Add($"{where}: only {firing} firing positions");
+                if (t.placeAt == "choke" && g.line < 0) failures.Add($"{where}: no wall line");
+            });
+        }
+        Console.WriteLine($"Drew {built} defense plans ({drawn.Count} drawn templates for up to {specs.Count} colonies) and checked each by the layout rules and by what raiders can see and hit.");
+        foreach (var f in failures.OrderBy(x => x).Take(40)) check(false, "drawn: " + f);
+        check(failures.IsEmpty, $"every drawn plan holds for every colony ({built} drawn, {failures.Count} problems)");
+
+        // What a box is drawn as, for numbers that matter.
+        var killbox = drawn.FirstOrDefault(t => t.defName == "Rimfolk_Defense_Killbox");
+        if (killbox != null)
+        {
+            var rifles = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 6, grenades = true, range = 30.9f, turretSize = 1, turrets = 2 });
+            check(rifles.straight >= 5 && rifles.nearest >= DefenseSight.GrenadeReach, $"a rifle killbox against grenades: a straight of five or more ({rifles.straight}), shooters out of a throw ({rifles.nearest:0.0})");
+            check(rifles.grid.Count("turret") == 2, "two decoy mini-turrets in it");
+            var big = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 8, grenades = true, range = 30.9f, raidPoints = 4000f, turretSize = 2, turrets = 1 });
+            var bigTurret = big.grid.pieces.FirstOrDefault(p => p.role == "turret");
+            check(bigTurret != null && bigTurret.w == 2 && bigTurret.z < DefenseSight.Firing(big.grid).Min(f => f.z), "an autocannon stands behind the line, not in the box");
+            check(big.grid.Count("slow") >= 2, $"a big raid's way in is slowed ({big.grid.Count("slow")})");
+            var bows = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 4, lowTech = true, range = 22.9f });
+            check(bows.depth < rifles.depth && bows.grid.Count("cover") > 0 && bows.grid.Count("turret") == 0, "a tribal killbox is shallower, behind barricades, without turrets");
+            var deeper = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 6, grenades = true, range = 30.9f, turretSize = 1, turrets = 2, depth = 4 });
+            var wider = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 4, grenades = true, range = 30.9f });
+            // Further back, the corner sees a wider strip down the straight: the straight grows with it.
+            check(deeper.depth == rifles.depth + 4 && deeper.grid.H >= rifles.grid.H + 4 && deeper.straight >= rifles.straight,
+                $"four rows more depth draw it four rows deeper ({rifles.depth} to {deeper.depth}; straight {rifles.straight} to {deeper.straight})");
+            check(wider.grid.W < rifles.grid.W && wider.shooters == 4 && rifles.shooters == 6, "fewer shooters draw it narrower");
+        }
+        var gate = drawn.FirstOrDefault(t => t.defName == "Rimfolk_Defense_Gate");
+        if (gate != null)
+        {
+            var plain = DefenseShapes.Build(gate.shape, new DefenseShapeSpec { shooters = 6, range = 30.9f });
+            var grenade = DefenseShapes.Build(gate.shape, new DefenseShapeSpec { shooters = 6, range = 30.9f, grenades = true });
+            check(grenade.nearest >= DefenseSight.GrenadeReach && plain.nearest < grenade.nearest, $"side lines stand further off against grenades ({plain.nearest:0.0} to {grenade.nearest:0.0})");
+            check(DefenseSight.Read(plain.grid).worstCover <= 0.3f, "nobody outside the gate sees the side lines, and the gate gives little cover");
+        }
+        var traps = drawn.FirstOrDefault(t => t.shape.family == DefenseShapes.Traps);
+        if (traps != null)
+        {
+            var few = DefenseShapes.Build(traps.shape, new DefenseShapeSpec { raidPoints = 300f });
+            var many = DefenseShapes.Build(traps.shape, new DefenseShapeSpec { raidPoints = 6000f });
+            check(few.grid.Count("trap") == 4 && many.grid.Count("trap") == 8, $"four traps for a small raid, eight for the biggest ({few.grid.Count("trap")}, {many.grid.Count("trap")})");
+            bool beside = few.grid.pieces.Where(p => p.role == "trap").All(p => few.grid.At(p.x + 1, p.z) == DefenseLayout.Slow || few.grid.At(p.x - 1, p.z) == DefenseLayout.Slow);
+            check(beside, "a fence beside each trap");
+        }
+        // A placed plan's numbers, kept in the save and read back.
+        {
+            var spec = new DefenseShapeSpec { shooters = 7, depth = -2, turretSize = 2, turrets = 1, grenades = true, lowTech = false, range = 36.9f, raidPoints = 2750f };
+            var back = DefenseShapeSpec.Parse(spec.Save());
+            check(back != null && back.Save() == spec.Save() && back.Key == spec.Key, $"a plan's numbers read back from the save ({spec.Save()})");
+            check(DefenseShapeSpec.Parse(null) == null && DefenseShapeSpec.Parse("1,2") == null && DefenseShapeSpec.Parse("a,b,c,d,e,f,g,h") == null, "a plan placed before, or numbers that can't be read, give none");
+        }
+        // In every turn, mirrored and not, for the colony in the middle of the range.
+        var middle = new DefenseShapeSpec { shooters = 6, grenades = true, range = 30.9f, raidPoints = 1500f, turretSize = 1, turrets = 2 };
+        foreach (var t in drawn)
+        {
+            var g = DefenseShapes.Build(t.shape, middle).grid;
+            for (int m = 0; m < 2; m++)
+                for (int turn = 0; turn < 4; turn++) WorldChecks(t, g, m == 1, turn, check);
+        }
+    }
+
     /// <summary>The rules again in world space, after the template is mirrored and turned, and every piece's footprint and facing as the game builds it.</summary>
     private static void WorldChecks(Template t, DefenseLayout.Grid g, bool mirror, int turn, Action<bool, string> check)
     {
@@ -179,7 +330,13 @@ public static class DefenseTests
             char c = kv.Value;
             char front = At(x + ox, z + oz), back = At(x - ox, z - oz);
             if (c == DefenseLayout.Firing)
-                check(front == DefenseLayout.Cover || front == DefenseLayout.Embrasure, $"{where}: firing position at ({x},{z}) covered toward the threat");
+            {
+                // Cover in front, or a pocket: a wall in front and, on one side, room to lean out past it.
+                bool LeanInto(char ch) => ch == '\0' || !DefenseLayout.Solid(ch) && ch != DefenseLayout.Gate;
+                bool pocket = front == DefenseLayout.Wall && (LeanInto(At(x + px, z + pz)) && LeanInto(At(x + px + ox, z + pz + oz))
+                                                              || LeanInto(At(x - px, z - pz)) && LeanInto(At(x - px + ox, z - pz + oz)));
+                check(front == DefenseLayout.Cover || front == DefenseLayout.Embrasure || pocket, $"{where}: firing position at ({x},{z}) covered toward the threat");
+            }
             if ((c == DefenseLayout.Cover || c == DefenseLayout.Embrasure) && "fUuMm".IndexOf(back) >= 0)
                 check(front == '\0' || front == '.' || front == '_' || front == 'T' || front == 'F', $"{where}: cover at ({x},{z}) faces outward onto open ground");
             if (c == DefenseLayout.Trap)

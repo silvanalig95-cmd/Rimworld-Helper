@@ -466,7 +466,8 @@ namespace ColonyCouncil
             const float icon = 44f;
             float textX = x + icon + 18f;
             float textW = Mathf.Max(80f, w - icon - 18f - ButtonsW - 8f);
-            string title = t.LabelCapNow + "  (" + t.Width + "×" + t.Height + ")";
+            var g = t.GridFor(s?.map, DefensePlanConfig.For(t));
+            string title = t.LabelCapNow + "  (" + g.W + "×" + g.H + ")";
             string purpose = t.purpose ?? t.description ?? "";
             float titleH = Measure(title, textW, GameFont.Small);
             float purposeH = Measure(purpose, textW, GameFont.Tiny);

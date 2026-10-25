@@ -37,10 +37,9 @@ namespace ColonyCouncil
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
-        /// <summary>The template's layout as it will be built: roles left out are ground it leaves alone.</summary>
-        public static DefenseLayout.Grid LayoutFor(DefenseTemplateDef t, ICollection<string> leaveOut)
+        /// <summary>A layout as it will be built: roles left out are ground it leaves alone.</summary>
+        public static DefenseLayout.Grid LayoutFor(DefenseLayout.Grid g, ICollection<string> leaveOut)
         {
-            var g = t.Grid;
             if (leaveOut == null || leaveOut.Count == 0) return g;
             var rows = new List<string>();
             for (int r = 0; r < g.H; r++)
@@ -75,7 +74,7 @@ namespace ColonyCouncil
                 return choice;
             }
             var g = s.grid;
-            var layout = LayoutFor(t, cfg?.leaveOut);
+            var layout = LayoutFor(t.GridFor(map, cfg), cfg?.leaveOut);
             bool dig = S?.planMineRock ?? true;
             List<int> path;
             List<DefenseApproach.Spot> spots;
@@ -124,7 +123,7 @@ namespace ColonyCouncil
                 return choice;
             }
             if (choice.misfit == DefenseApproach.Misfit.None) choice.misfit = DefenseApproach.Misfit.Blocked;
-            choice.why = FailText(choice.misfit, t, path, blockedOnMap > 0 ? blocker : null, dig);
+            choice.why = FailText(choice.misfit, t, layout, path, blockedOnMap > 0 ? blocker : null, dig);
             return choice;
         }
 
@@ -158,14 +157,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>Why nothing fits, and what would make room.</summary>
-        public static string FailText(DefenseApproach.Misfit why, DefenseTemplateDef t, List<int> path, string blocker, bool dig)
+        public static string FailText(DefenseApproach.Misfit why, DefenseTemplateDef t, DefenseLayout.Grid g, List<int> path, string blocker, bool dig)
         {
             string label = t.LabelNow;
             switch (why)
             {
                 case DefenseApproach.Misfit.NoPath: return "CC_DefLine_Approach_NoPath".Translate(label).Resolve();
                 case DefenseApproach.Misfit.Short:
-                    return "CC_DefLine_Approach_Short".Translate(label, DefenseSurvey.Cells(Mathf.Max(1, (path?.Count ?? 1) - 1)), t.Width, t.Height).Resolve();
+                    return "CC_DefLine_Approach_Short".Translate(label, DefenseSurvey.Cells(Mathf.Max(1, (path?.Count ?? 1) - 1)), g.W, g.H).Resolve();
                 case DefenseApproach.Misfit.Fog: return "CC_DefLine_Approach_Fog".Translate(label).Resolve();
                 case DefenseApproach.Misfit.Rock:
                     return (dig ? "CC_DefLine_Approach_RockNarrow" : "CC_DefLine_Approach_RockNoDig").Translate(label).Resolve();
@@ -197,7 +196,7 @@ namespace ColonyCouncil
                 // As "Plan this step" first proposes it: the whole plan, walls and all.
                 var trial = DefensePlanConfig.For(t).Copy();
                 trial.leaveOut.Clear();
-                choice = Find(f.map, t, trial, t.ResolveCached(f.map, out _), f.gate, f.line.facing, want, f.line.span);
+                choice = Find(f.map, t, trial, t.ResolveCached(f.map, out _, trial), f.gate, f.line.facing, want, f.line.span);
             }
             catch (Exception e)
             {
@@ -278,7 +277,7 @@ namespace ColonyCouncil
         /// <summary>Plans whose walls are worth the check: those on or in front of a line and behind its gate (not a fallback, a keep or a mortar pit deep inside).</summary>
         public static bool Worth(DefenseTemplateDef t) =>
             t != null && t.kind != "fallback" && t.kind != "keep" && t.kind != "mortar"
-            && t.Grid.pieces.Any(p => p.role == "wall" || p.role == "embrasure" || p.role == "turret");
+            && t.SampleGrid.pieces.Any(p => p.role == "wall" || p.role == "embrasure" || p.role == "turret");
 
         /// <summary>Templates whose walls are only the sides of a lane on the way in (the trap corridor): it can do without them.</summary>
         public static bool WallsAreSides(DefenseTemplateDef t) => t != null && t.kind == "traps";

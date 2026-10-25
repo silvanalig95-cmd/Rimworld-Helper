@@ -32,9 +32,11 @@ namespace ColonyCouncil
     /// <summary>
     /// A defense the colony can place like a room plan: a gate in a wall line with sandbags, a killbox, a trap corridor, a
     /// turret nest, a shooting post, a stretch of perimeter wall, a fallback line, a keep, a mortar pit, a palisade with a
-    /// gatehouse. The layout is a grid of characters (<see cref="DefenseLayout"/>); each role takes the first building the
-    /// colony can build from the template's list, then from the role's own defaults, then anything that does the job and
-    /// fits, so a medieval colony gets barricades and log gates where an industrial one gets sandbags and steel doors.
+    /// gatehouse. The layout is a grid of characters (<see cref="DefenseLayout"/>): drawn for the colony's own numbers
+    /// when the template has a <see cref="shape"/> (<see cref="DefenseShapes"/>), else the fixed one in the XML. Each role
+    /// takes the first building the colony can build from the template's list, then from the role's own defaults, then
+    /// anything that does the job and fits, so a medieval colony gets barricades and log gates where an industrial one gets
+    /// sandbags and steel doors.
     /// </summary>
     public class DefenseTemplateDef : Def
     {
@@ -51,7 +53,10 @@ namespace ColonyCouncil
         public int behind = 8;
         /// <summary>"lowtech": only for tribal and medieval colonies; "industrial": only once past that.</summary>
         public string era;
+        /// <summary>The fixed layout. With a <see cref="shape"/>, only the plan of what was placed before layouts were drawn.</summary>
         public List<string> layout = new List<string>();
+        /// <summary>Drawn from the colony's numbers (<see cref="DefenseShapes"/>) instead of the fixed layout.</summary>
+        public DefenseShapeOptions shape;
         public List<DefensePieceSpec> pieces;
         /// <summary>Buildings one of which the colony must be able to build (the palisade, the castle wall): else the plan is greyed.</summary>
         public List<string> needs;
@@ -64,11 +69,130 @@ namespace ColonyCouncil
         public static readonly string[] Places = { "choke", "front", "behind", "between", "core" };
 
         [Unsaved] private DefenseLayout.Grid grid;
+        [Unsaved] private readonly Dictionary<string, DefenseShape> drawn = new Dictionary<string, DefenseShape>();
 
-        public DefenseLayout.Grid Grid => grid ??= DefenseLayout.Parse(layout, line);
+        /// <summary>The fixed layout from the XML.</summary>
+        public DefenseLayout.Grid LayoutGrid => grid ??= DefenseLayout.Parse(layout, line);
 
-        public int Width => Grid.W;
-        public int Height => Grid.H;
+        /// <summary>Drawn for the colony instead of fixed.</summary>
+        public bool Drawn => shape != null;
+
+        /// <summary>It has a wall line that sits on the gap and can be carried on to the rock.</summary>
+        public bool HasLine => line >= 0;
+
+        /// <summary>The layout for a plain colony (four shooters, a mini-turret, rifles), or the fixed one: for what any of its layouts has.</summary>
+        public DefenseLayout.Grid SampleGrid => GridFor(Sample);
+
+        private static readonly DefenseShapeSpec Sample = new DefenseShapeSpec { turretSize = 1, turrets = 2 };
+
+        /// <summary>The layout drawn for <paramref name="spec"/> (kept, as the same numbers draw the same layout), or null for a fixed one.</summary>
+        public DefenseShape ShapeFor(DefenseShapeSpec spec)
+        {
+            if (shape == null || spec == null) return null;
+            string key = spec.Key;
+            if (!drawn.TryGetValue(key, out var made))
+            {
+                if (drawn.Count > 48) drawn.Clear();
+                made = DefenseShapes.Build(shape, spec);
+                drawn[key] = made;
+            }
+            return made;
+        }
+
+        /// <summary>The layout for these numbers: drawn, or the fixed one (no spec: a plan placed before layouts were drawn).</summary>
+        public DefenseLayout.Grid GridFor(DefenseShapeSpec spec) => ShapeFor(spec)?.grid ?? LayoutGrid;
+
+        /// <summary>The layout the planner uses with these choices.</summary>
+        public DefenseLayout.Grid GridFor(Map map, DefensePlanConfig cfg) => GridFor(SpecFor(map, cfg));
+
+        /// <summary>How far behind the gate (or in front, for a trap corridor) it goes when drawn for these numbers.</summary>
+        public int BehindFor(DefenseShapeSpec spec)
+        {
+            var made = ShapeFor(spec);
+            return made != null && made.behind > 0 ? made.behind : behind;
+        }
+
+        /// <summary>
+        /// The numbers a drawn layout is drawn for: a placed plan's own (<see cref="DefensePlanConfig.spec"/>), else the
+        /// colony's, with the shooters and depth the player added in the planner. Null for a fixed layout, and for a plan
+        /// placed before layouts were drawn.
+        /// </summary>
+        public DefenseShapeSpec SpecFor(Map map, DefensePlanConfig cfg)
+        {
+            if (shape == null || cfg != null && cfg.fixedLayout) return null;
+            if (cfg?.spec != null) return cfg.spec;
+            var spec = ColonySpec(map, cfg);
+            if (cfg != null && (cfg.moreShooters != 0 || cfg.moreDepth != 0))
+            {
+                spec = spec.Copy();
+                spec.shooters = Mathf.Max(2, spec.shooters + cfg.moreShooters);
+                spec.depth += cfg.moreDepth;
+            }
+            return spec;
+        }
+
+        [Unsaved] private Map specMap;
+        [Unsaved] private float specTime = -999f;
+        [Unsaved] private ThingDef specTurret;
+        [Unsaved] private DefenseShapeSpec specKept;
+        private static bool readingSurvey;
+
+        /// <summary>
+        /// The colony's own numbers: its ranged fighters (four at least) and the longest reach among them, the turret this
+        /// plan would get (the player's pick, else the first it can build), whether the raiders it meets throw grenades
+        /// (any hostile people past the tribes), bows and spears, and the size of raids now. Worked out again every few seconds.
+        /// </summary>
+        public DefenseShapeSpec ColonySpec(Map map, DefensePlanConfig cfg)
+        {
+            ThingDef chosen = null;
+            if (cfg != null) cfg.variant.TryGetValue("turret", out chosen);
+            float now = Time.realtimeSinceStartup;
+            if (specKept != null && specMap == map && specTurret == chosen && now - specTime < 3f) return specKept;
+            var spec = new DefenseShapeSpec();
+            try
+            {
+                // A survey being made never asks a plan for its numbers; if one ever did, it gets the kept survey only.
+                var s = map == null ? null : DefenseSurvey.Kept(map);
+                if (s == null && map != null && !readingSurvey)
+                {
+                    readingSurvey = true;
+                    try
+                    {
+                        s = DefenseSurvey.For(map);
+                    }
+                    finally
+                    {
+                        readingSurvey = false;
+                    }
+                }
+                spec.lowTech = Avail.IsPreIndustrial || s != null && s.bows;
+                spec.range = spec.lowTech ? 22.9f : 30.9f;
+                if (s != null)
+                {
+                    spec.shooters = Mathf.Max(4, s.ranged);
+                    if (s.bestRange > 1f) spec.range = s.bestRange;
+                    spec.grenades = s.industrial || s.empire;
+                    spec.raidPoints = s.raidPoints;
+                }
+                var turret = map != null ? Pick("turret", map, 2, 2, cfg) : null;
+                // A turret someone has to man is no decoy out in a killbox: its gunner would stand in the kill zone.
+                if (turret != null && shape?.family == DefenseShapes.Box && turret.HasComp(typeof(CompMannable))) turret = null;
+                if (turret != null)
+                {
+                    spec.turretSize = turret.size.x >= 2 || turret.size.z >= 2 ? 2 : 1;
+                    spec.turrets = spec.turretSize >= 2 ? 1 : 2;
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("defense plan: the colony's numbers", e);
+            }
+            specKept = spec;
+            specMap = map;
+            specTurret = chosen;
+            specTime = now;
+            return spec;
+        }
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -79,7 +203,14 @@ namespace ColonyCouncil
             if (pieces != null)
                 foreach (var p in pieces)
                     if (p == null || !DefenseLayout.Roles.Contains(p.role)) yield return "unknown piece role " + p?.role;
-            foreach (var problem in DefenseLayout.Problems(Grid, kind)) yield return "layout: " + problem;
+            if (shape == null || layout.Count > 0)
+                foreach (var problem in DefenseLayout.Problems(LayoutGrid, kind)) yield return "layout: " + problem;
+            if (shape != null)
+            {
+                if (!DefenseShapes.Families.Contains(shape.family)) yield return "unknown shape family " + shape.family;
+                else
+                    foreach (var problem in DefenseLayout.Problems(ShapeFor(new DefenseShapeSpec()).grid, kind)) yield return "drawn layout: " + problem;
+            }
         }
 
         /// <summary>The name for this colony: an archers' post in a colony of bows, a sniper's post in one of rifles.</summary>
@@ -100,8 +231,11 @@ namespace ColonyCouncil
 
         public bool Optional(string role) => (Spec(role)?.optional ?? false) || role == "shelf" || role == "slow";
 
-        /// <summary>The roles the layout uses, in the planner's order.</summary>
-        public List<string> RolesUsed => DefenseLayout.Roles.Where(r => Grid.pieces.Any(p => p.role == r)).ToList();
+        /// <summary>The roles a layout uses, in the planner's order.</summary>
+        public static List<string> RolesUsed(DefenseLayout.Grid g) => DefenseLayout.Roles.Where(r => g.pieces.Any(p => p.role == r)).ToList();
+
+        /// <summary>Whether any layout it can be drawn as uses the role (a drawn killbox has turrets only when the colony has them).</summary>
+        public bool Uses(string role, Map map, DefensePlanConfig cfg) => GridFor(map, cfg).pieces.Any(p => p.role == role);
 
         // ---------------- Which building for which role ----------------
 
@@ -233,11 +367,13 @@ namespace ColonyCouncil
         /// <paramref name="missing"/> (with the research they wait on) unless the template can do without them; those
         /// cells are then simply kept clear.
         /// </summary>
-        public List<DefensePiece> Resolve(Map map, out List<string> missing, DefensePlanConfig cfg = null)
+        public List<DefensePiece> Resolve(Map map, out List<string> missing, DefensePlanConfig cfg = null) => Resolve(map, out missing, cfg, SpecFor(map, cfg));
+
+        private List<DefensePiece> Resolve(Map map, out List<string> missing, DefensePlanConfig cfg, DefenseShapeSpec spec)
         {
             missing = new List<string>();
             var list = new List<DefensePiece>();
-            var g = Grid;
+            var g = GridFor(spec);
             var reserved = new Dictionary<ThingDef, int>();
             var chosen = new Dictionary<(string, int, int), ThingDef>();
             var stuffFor = new Dictionary<ThingDef, ThingDef>();
@@ -309,40 +445,57 @@ namespace ColonyCouncil
             return first.label;
         }
 
-        [Unsaved] private Map cachedMap;
-        [Unsaved] private float cachedTime = -999f;
-        [Unsaved] private List<DefensePiece> cachedPieces;
-        [Unsaved] private string cachedReason;
-
-        /// <summary>Resolve() for the interface, remembered for a couple of seconds.</summary>
-        public List<DefensePiece> ResolveCached(Map map, out string unavailableReason)
+        private class Resolved
         {
+            public Map map;
+            public float time;
+            public List<DefensePiece> pieces;
+            public string reason;
+        }
+
+        [Unsaved] private readonly Dictionary<string, Resolved> resolvedKept = new Dictionary<string, Resolved>();
+
+        /// <summary>
+        /// Resolve() for the interface and the line reviews, remembered for a couple of seconds for each layout: the
+        /// colony's now, or the one <paramref name="cfg"/> asks for (a placed plan's own). The pieces' choices of building
+        /// and material are the colony's, not <paramref name="cfg"/>'s.
+        /// </summary>
+        public List<DefensePiece> ResolveCached(Map map, out string unavailableReason, DefensePlanConfig cfg = null)
+        {
+            var spec = SpecFor(map, cfg);
+            string key = spec?.Key ?? "";
             float now = Time.realtimeSinceStartup;
-            if (cachedMap != map || cachedPieces == null || now - cachedTime > 2f + (shortHash % 64) / 64f)
+            if (!resolvedKept.TryGetValue(key, out var kept) || kept.map != map || kept.pieces == null || now - kept.time > 2f + (shortHash % 64) / 64f)
             {
-                cachedMap = map;
-                cachedTime = now;
-                cachedReason = null;
-                cachedPieces = new List<DefensePiece>();
+                if (kept == null)
+                {
+                    if (resolvedKept.Count > 16) resolvedKept.Clear();
+                    kept = new Resolved();
+                    resolvedKept[key] = kept;
+                }
+                kept.map = map;
+                kept.time = now;
+                kept.reason = null;
+                kept.pieces = new List<DefensePiece>();
                 try
                 {
-                    cachedReason = NeedsReason(map);
-                    if (cachedReason == null)
+                    kept.reason = NeedsReason(map);
+                    if (kept.reason == null)
                     {
-                        cachedPieces = Resolve(map, out var missing);
-                        if (missing.Count > 0) cachedReason = "CC_Def_Missing".Translate(TextUtil.JoinAnd(missing)).Resolve();
+                        kept.pieces = Resolve(map, out var missing, null, spec);
+                        if (missing.Count > 0) kept.reason = "CC_Def_Missing".Translate(TextUtil.JoinAnd(missing)).Resolve();
                     }
-                    if (cachedReason == null && !EraFits)
-                        cachedReason = (era == "lowtech" ? "CC_Template_ForLowTech" : "CC_Template_ForIndustrial").Translate().Resolve();
+                    if (kept.reason == null && !EraFits)
+                        kept.reason = (era == "lowtech" ? "CC_Template_ForLowTech" : "CC_Template_ForIndustrial").Translate().Resolve();
                 }
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("defense plan " + defName, e);
-                    cachedReason = "CC_Def_Broken".Translate();
+                    kept.reason = "CC_Def_Broken".Translate();
                 }
             }
-            unavailableReason = cachedReason;
-            return cachedPieces;
+            unavailableReason = kept.reason;
+            return kept.pieces;
         }
 
         public string UnavailableReason(Map map)

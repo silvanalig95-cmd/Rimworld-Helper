@@ -36,39 +36,33 @@ Findings that drive the redesign:
 - Gatehouse/castle gate: no archer can hit any cell of the yard (yard walls are solid). Fix: P1 killing yard.
 
 ### Code so far
-- `Source/ColonyCouncil/Defense/DefenseSight.cs` (new, pure, no game types): the game's LineOfSight, lean sources,
-  CanHit and Cover; `Read(grid)` (worst raider cover while able to shoot at a firing position, coverage) and
-  `Problems(grid, grenades)` (raider cover > 45% with a view, firing positions within grenade reach of the doorway,
-  turret blasts, big turret too close to the doorway). Off-layout cells on the wall line count as wall.
-- `DefenseLayout.Grid` has `doorX/doorZ` (the doorway into the kill zone, set by generated layouts).
-- A scratch harness reading the current templates with it confirmed the research verdicts.
+- `DefenseSight.cs` (pure): the game's LineOfSight, lean sources, CanHit and Cover; `Read(grid)` (worst raider cover
+  while able to shoot at a firing position, leaving out cells at or behind the line) and `Problems(grid, grenades)`.
+- `DefenseShapes.cs` (pure): `DefenseShapeSpec` (shooters, depth, turret size/count, grenades, low tech, range, raid
+  points; `Save`/`Parse` for the save), `DefenseShapeOptions` (the XML `<shape>`), and generators: box (killbox, small,
+  tunnel, baffled gate, palisade/castle yard: L entrance, straight 4/5 lengthened until the corner is blind, depth from
+  the cone (offset/0.45), grenades (13.4) and reach, double walls past bows, mini decoys on the axis or a 2x2 turret
+  behind the gap, slows and traps in the way in, none behind a gate), side lines (searched smallest first until hidden
+  from outside, ≤30% in the gate, out of a throw), firing line and post of pockets, turret nest (4 / 7 apart), trap
+  corridor (fence beside each trap, 4–8 traps).
+- `DefenseLayout.Problems` accepts pockets (`Pocket`), size cap 41.
+- Plumbing: `DefenseTemplateDef.shape`, `GridFor(spec)` / `GridFor(map, cfg)` / `SpecFor` / `ColonySpec` (survey:
+  ranged ≥ 4, best range, bows or pre-industrial, industrial or empire hostiles = grenades, raid points, the turret the
+  plan would pick; a manned turret is no box decoy), `BehindFor`, `ResolveCached(map, out reason, cfg)` keyed by spec;
+  `DefensePlanConfig.spec / fixedLayout / moreShooters / moreDepth`, `Of(saved)`; `DefensePlan.grid / spec`;
+  `DefenseLinePlan.shape` saved (null = fixed layout from before); all old `t.Grid/Width/Height/line` uses replaced.
+  The line review takes a plan's firing position behind a wall when it can lean out (`FirePos.lean`).
+- XML: every gate, line, post, killbox, trap corridor, nest and the palisade/castle have a `<shape>` (their `<layout>`
+  is kept for plans placed before), new `Rimfolk_Defense_BaffledGate`, wall with an airlock, mortar pit 8 apart with
+  the shells 6 off behind a wall, tips fixed for 1.6.
+- Tests: `DefenseTests.DrawnChecks` draws every drawn template for ~650 colonies and checks both Problems.
 
 ### Plan (next steps)
-1. `DefenseShapes.cs` (pure): generators that build a layout from the colony's numbers (a `DefenseShapeSpec`:
-   shooters, depth, turret size/count, grenades, low tech, weapon range, raid points) and per-template options
-   (`DefenseShapeOptions`, deserialised from the template's XML):
-   - "box" family: killbox (K1/K2/K4), tunnel killbox (K3), baffled gate (G1), palisade/castle yard (P1). Mouth (open
-     or gate), turns (leg length 0/1+), final straight 4/5, box width from shooter offsets ±3, ±5, ... (pocket or plain
-     sandbag line; embrasure back wall with a corner gate for P1), depth = max(10/12, offset/0.45, 14 with grenades),
-     double side walls and doorway wall for industrial, decoy mini-turrets on the axis 6 and 10 in front of the line or
-     one 2x2 turret 6 behind the centre gap, slowing objects every other cell in the outer approach for big raids.
-   - cover line behind a plain gate (side lines stay hidden from outside; check with DefenseSight), firing line (pockets),
-     post (pockets), turret nest (spacing by turret size), trap corridor (fence beside each trap, 4–8 traps by raid size).
-2. Plumbing: `DefenseTemplateDef.shape` (options) + `GridFor(spec)` cache; `DefensePlanConfig.spec` (null = automatic
-   from the survey: ranged fighters, best range, bows/pre-industrial, industrial or empire hostiles = grenades, raid
-   points, the turret the colony would pick); `DefenseLinePlan.shape` saved so placed plans are re-read with the size they
-   were built with; replace `t.Grid`/`t.Width`/`t.line` uses with the grid for the config (call sites are in
-   DefensePlanner, Designator_PlanDefense, Window_DefensePlanner, DefenseLineFacts, DefenseLineReview, DefenseStepWorkers,
-   DefenseApproachPlanner, DefenseSurvey, DefenseLines, UI/DefensePanel).
-3. `DefenseLayout.Problems`: accept a firing position with a wall in front when a front diagonal and a side are see-over
-   (the pocket). Tests: every generated layout over a grid of specs passes `DefenseLayout.Problems` and
-   `DefenseSight.Problems`; add DefenseSight.cs and DefenseShapes.cs to `Tools/Tests/Tests.csproj`.
-4. Planner window: say what the layout was sized for, with +/- for shooters and depth. Line review: suggest widening a
-   placed killbox when the colony has outgrown it (re-plan in place; built pieces count as present).
-5. XML: templates point at their shapes; new baffled gate; fix tips that are wrong for 1.6 ("never behind a wall",
-   "entrance too long", sandbag T at the exit); wall template gets an airlock (gate, cell, gate); mortar pit with walled
-   mortars 6 apart and shells 6+ away; fallback line advice: around the bedroom cluster (breachers and sappers aim at beds).
-6. Almanac defense pages, README/ROADMAP rows, What's new 0.14.0, About.xml 0.14.0, all checks, commit, push.
+1. Planner window: say what the layout was sized for, with +/- for shooters and depth (`cfg.Resize`, `ColonySize`).
+   Line review: suggest re-planning a placed killbox when the colony has outgrown it (re-plan in place; built pieces
+   count as present), and plans placed before 0.14 (`shape` null).
+2. Almanac defense pages (Almanac_Defense.xml, Almanac_DefendingLines.xml), README/ROADMAP rows, What's new 0.14.0,
+   About.xml 0.14.0, all checks, commit, push.
 
 ## Smaller open items
 - `Any_Last` talk pools hold some `[agree]`/`[tease]`/`[comfort]`/`[joke]` lines that can never be said (those talks end

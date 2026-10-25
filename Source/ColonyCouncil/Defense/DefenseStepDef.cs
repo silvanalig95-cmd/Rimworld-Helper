@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using Verse;
 
 namespace ColonyCouncil
@@ -159,6 +160,18 @@ namespace ColonyCouncil
             var r = new StepResult { def = def, placeAt = def.placeAt ?? "behind", distance = def.distance, look = f.gate };
             r.template = Pick(f, def.templates);
             return r;
+        }
+
+        /// <summary>
+        /// How far behind the gate a plan goes: a drawn one where its own layout puts it (its lines are placed for that
+        /// distance), a fixed one so that its cover row stands <paramref name="coverAt"/> cells back.
+        /// </summary>
+        protected static int Behind(DefenseLineFacts f, DefenseTemplateDef t, int coverAt)
+        {
+            if (t == null) return Mathf.Max(1, coverAt);
+            var spec = t.SpecFor(f.map, DefensePlanConfig.For(t));
+            if (spec != null) return Mathf.Max(1, t.BehindFor(spec));
+            return Mathf.Max(1, coverAt - DefensePlanner.CoverRow(t.GridFor(spec)));
         }
 
         protected static DefenseTemplateDef Pick(DefenseLineFacts f, IEnumerable<string> names)
