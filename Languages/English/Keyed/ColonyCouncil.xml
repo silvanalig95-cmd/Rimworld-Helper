@@ -896,6 +896,8 @@
   <CC_Rooms_Title>Room plans</CC_Rooms_Title>
   <CC_Rooms_Hint>Click a room to plan it. Right-click to find it a spot, furnish a room you have built, or delete a room of your own. The number is how many sizes it comes in; highlighted rooms are what the council is asking for.</CC_Rooms_Hint>
   <CC_Rooms_Suggested>The council suggests this: {0}</CC_Rooms_Suggested>
+  <CC_Settings_DefenseButton>Show the "defense" button in the bottom bar</CC_Settings_DefenseButton>
+  <CC_Settings_DefenseButton_Tip>A button next to the council's that opens the Defenses page in a window of its own: the ways raiders walk in, the defense lines and the advice. Clicking a raid's warning on the panels and the key for the Defenses page open it too. The same page is always on the council window's Colony section.</CC_Settings_DefenseButton_Tip>
   <CC_Settings_RoomsButton>Show the "rooms" button in the bottom bar</CC_Settings_RoomsButton>
   <CC_Settings_RoomsButton_Tip>A shortcut to all room plans. The same plans are always on the council window's Room plans page.</CC_Settings_RoomsButton_Tip>
   <CC_Floor_Title>Floor for the {0}</CC_Floor_Title>

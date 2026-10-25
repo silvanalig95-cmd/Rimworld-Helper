@@ -1,6 +1,9 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.1 "Decrees when they're needed" (the player asked that a needed, wanted decree, like a clean sweep
+Last shipped: 0.16.2 "A button for the defenses" (the player asked for the defense window to have its own button in
+the bottom bar next to Rimfolk's: `Council_DefenseButton`, `UI/MainTabWindow_Defenses.cs` drawing `DefensePanel`,
+setting `defenseButton`; `MainTabWindow_Council.OpenTab("Defenses")` opens it while the button is shown). Before it,
+0.16.1 "Decrees when they're needed" (the player asked that a needed, wanted decree, like a clean sweep
 after many fights, come again sooner and be forgiven more, without becoming constant). Before it, 0.16.0 "Weather
 that changes like weather" (all six dynamic weather options the player chose, biome by biome), 0.15.0 "The weather remembered" (the weather ideas the player chose), 0.14.2 "Into cover"
 (the TakeCover mod finds cover spots on Ctrl + right-drag, but in 1.7 letting go gives no order), 0.14.1 "Not everyone

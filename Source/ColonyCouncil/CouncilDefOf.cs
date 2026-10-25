@@ -123,6 +123,7 @@ namespace ColonyCouncil
 
         public static MainButtonDef Council_MainButton;
         public static MainButtonDef Council_RoomsButton;
+        public static MainButtonDef Council_DefenseButton;
 
         static CouncilDefOf()
         {

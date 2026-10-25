@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A button for the defenses
+
+*25 October 2026, version 0.16.2*
+
+- The Defenses page has its own "defense" button in the bottom bar, right after the council's, and opens in a window of its own. The same page stays in the council's Colony section.
+- A click on a raid's warning on the panels, the Defenses page key, and coming back from picking a line's spot now open that window. The button can be hidden on the settings' Interface page, like the rooms button.
+
 ## Decrees when they're needed
 
 *25 October 2026, version 0.16.1*

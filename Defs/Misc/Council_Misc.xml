@@ -10,6 +10,17 @@
     <iconPath>ColonyCouncil/UI/MainButton</iconPath>
   </MainButtonDef>
 
+  <!-- The colony's defenses, one click away: the Defenses page in a window of its own. Placed right after the council
+       button at startup (before the rooms button); can be hidden in the settings. -->
+  <MainButtonDef>
+    <defName>Council_DefenseButton</defName>
+    <label>defense</label>
+    <description>The colony's defenses read from its map: the ways raiders walk in, what the colony faces, the defense lines, and the advice, each with a button that puts the plan down where it's needed.</description>
+    <tabWindowClass>ColonyCouncil.MainTabWindow_Defenses</tabWindowClass>
+    <order>1000</order>
+    <iconPath>ColonyCouncil/Icons/Defenses</iconPath>
+  </MainButtonDef>
+
   <!-- Room plans, one click away. Placed right after the council button at startup; can be hidden in the settings. -->
   <MainButtonDef>
     <defName>Council_RoomsButton</defName>

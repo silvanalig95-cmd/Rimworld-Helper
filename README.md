@@ -1209,7 +1209,8 @@ as the game does), never sends anyone off the map, and leaves a right-click on a
 game. It replaces the TakeCover mod, which in 1.7 shows where colonists would go but never gives the order.
 
 ### Defenses: where to meet them
-**Colony → Defenses** reads the colony's defense from its map. It works out which map edges raiders can reach home
+**Colony → Defenses**, also behind its own **"defense"** button in the bottom bar right after the council's (it can
+be hidden in the settings), reads the colony's defense from its map. It works out which map edges raiders can reach home
 from and the ways they'd walk (from a sample of edge cells, along the easiest path, doors costing extra as raiders
 would have to break them), the narrow places on those ways (a pass through the mountain, a gap between rock and
 water, a bridge, the colony's own gate) with their width and the share of raids that would pass each, and whether the

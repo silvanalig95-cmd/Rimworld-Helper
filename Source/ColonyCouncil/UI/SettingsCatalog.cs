@@ -380,6 +380,7 @@ namespace ColonyCouncil
             reset.covers = new[] { "slowButtonsX", "slowButtonsY" };
             Dropdown("buttonPosition", "CC_Settings_ButtonPosition", "CC_SetTip_ButtonPosition", "CC_SetNote_ButtonPosition", "CC_ButtonPos_",
                 new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" });
+            Toggle("defenseButton", "CC_Settings_DefenseButton", "CC_SetNote_DefenseButton");
             Toggle("roomsButton", "CC_Settings_RoomsButton", "CC_SetNote_RoomsButton");
             Choice("councilOpensOn", "CC_SetLabel_CouncilOpensOn", "CC_SetTip_CouncilOpensOn", "CC_CouncilOpens_", "CC_SetNote_CouncilOpens_",
                 new[] { "ThisWeek", "LastPage" });

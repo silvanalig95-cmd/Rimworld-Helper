@@ -14,7 +14,7 @@
     <order>15</order>
     <summary>Building up one way in, from a wall and a gate to a killbox and a line behind it</summary>
     <tip>A gate you can hold this week beats a killbox you'll finish next year.</tip>
-    <description>A defense line is everything you build at one way into the colony: the wall across it, the gate, the cover behind, the traps in front, the guns, in time a killbox, and a second line behind it all. Nobody builds that in one go. The Defenses page keeps your lines and suggests the next step for each, in the order most colonies find works, then looks over what stands and what the last raid did to it.</description>
+    <description>A defense line is everything you build at one way into the colony: the wall across it, the gate, the cover behind, the traps in front, the guns, in time a killbox, and a second line behind it all. Nobody builds that in one go. The Defenses page (the "defense" button in the bottom bar, or the council's Colony section) keeps your lines and suggests the next step for each, in the order most colonies find works, then looks over what stands and what the last raid did to it.</description>
     <sections>
       <li>
         <heading>The steps</heading>

@@ -445,10 +445,19 @@ namespace ColonyCouncil
             if (button != null && Find.MainTabsRoot.OpenTab != button) Find.MainTabsRoot.SetCurrentTab(button, false);
         }
 
-        /// <summary>Opens the council window on a page by name ("Decrees", "Wishes", "Ways"...).</summary>
+        /// <summary>
+        /// Opens the council window on a page by name ("Decrees", "Wishes", "Ways"...). The Defenses page opens in the
+        /// defense button's own window while that button is shown (UI/MainTabWindow_Defenses.cs).
+        /// </summary>
         public static void OpenTab(string name)
         {
             if (!System.Enum.TryParse(name, true, out Tab t)) return;
+            if (t == Tab.Defenses && MainTabWindow_Defenses.Shown)
+            {
+                var defense = CouncilDefOf.Council_DefenseButton;
+                if (Find.MainTabsRoot.OpenTab != defense) Find.MainTabsRoot.SetCurrentTab(defense, false);
+                return;
+            }
             restored = true;
             asked = true;
             tab = t;
@@ -462,7 +471,10 @@ namespace ColonyCouncil
         {
             if (!System.Enum.TryParse(name, true, out Tab t)) return;
             var button = CouncilDefOf.Council_MainButton;
-            if (button != null && Find.MainTabsRoot.OpenTab == button && tab == t)
+            bool open = t == Tab.Defenses && MainTabWindow_Defenses.Shown
+                ? Find.MainTabsRoot.OpenTab == CouncilDefOf.Council_DefenseButton
+                : button != null && Find.MainTabsRoot.OpenTab == button && tab == t;
+            if (open)
             {
                 Find.MainTabsRoot.EscapeCurrentTab();
                 return;

@@ -106,7 +106,13 @@ namespace ColonyCouncil
                 after = menuIndex > 0 ? others[menuIndex - 1] : others.Last();
             }
             ours.order = after.order;
-            // The rooms button sits right after the council button (same order, defined after it).
+            // The defense and rooms buttons sit right after the council button (same order, defined after it, in that order).
+            var defense = CouncilDefOf.Council_DefenseButton;
+            if (defense != null)
+            {
+                defense.order = ours.order;
+                defense.buttonVisible = ColonyCouncilMod.Settings.defenseButton;
+            }
             var rooms = CouncilDefOf.Council_RoomsButton;
             if (rooms != null)
             {

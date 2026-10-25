@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.16.2</version>
+        <date>25 October 2026</date>
+        <title>A button for the defenses</title>
+        <points>
+          <li>The Defenses page has its own "defense" button in the bottom bar, right after the council's, and opens in a window of its own. The same page stays in the council's Colony section.</li>
+          <li>A click on a raid's warning on the panels, the Defenses page key, and coming back from picking a line's spot now open that window. The button can be hidden on the settings' Interface page, like the rooms button.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.16.1</version>
         <date>25 October 2026</date>
         <title>Decrees when they're needed</title>
