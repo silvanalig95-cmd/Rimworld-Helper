@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Materials for every build
+
+*26 October 2026, version 0.16.3*
+
+- Fixed a bug in the game itself: when one build needed more of a material than the colony had, builders could stop carrying that material to every other build too: a research bench short of steel could keep a drug lab from ever being started, while the builders mined or tended animals. Each build is now judged on its own.
+- A build still waits until all of a material it still needs is on the map before anyone carries any of it, as the game has it. A bench that needs more steel than there is waits for it, and its frame's inspect pane shows what's missing.
+
 ## A button for the defenses
 
 *25 October 2026, version 0.16.2*

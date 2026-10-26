@@ -1,6 +1,14 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.2 "A button for the defenses" (the player asked for the defense window to have its own button in
+Last shipped: 0.16.3 "Materials for every build" (from the player's save: Hector, Construction 2 and Mining 3,
+mined and handled animals while a hi-tech research bench frame sat at 11 steel for two days and a drug lab blueprint
+got nothing. No Rimfolk system held them: no build priority set, no clean sweep, no work party, no ideoligion rule,
+no reservation or en-route haul, the doors open, 210 steel and 19 components on the map. The game's
+`ItemAvailability.ThingsAvailableAnywhere` caches its bool per tick under (material, faction) without the amount, so
+a larger need asked first (most likely the bench's: its full cost under the player's mods isn't in the save) refuses
+that material to every other build. Not confirmed in the game: the frame's inspect pane would show the bench's need. `Patches/Patch_MaterialsOnHand.cs`
+caches the count on hand instead. The bench itself still needs its whole remaining steel on the map, the game's rule.)
+Before it, 0.16.2 "A button for the defenses" (the player asked for the defense window to have its own button in
 the bottom bar next to Rimfolk's: `Council_DefenseButton`, `UI/MainTabWindow_Defenses.cs` drawing `DefensePanel`,
 setting `defenseButton`; `MainTabWindow_Council.OpenTab("Defenses")` opens it while the button is shown). Before it,
 0.16.1 "Decrees when they're needed" (the player asked that a needed, wanted decree, like a clean sweep

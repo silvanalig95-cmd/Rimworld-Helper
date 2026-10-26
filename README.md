@@ -2467,6 +2467,14 @@ NaN for any other reason, it settles the weather, keeps the wind at the map's st
 warning to the log listing the weather and conditions. A valid wind is never touched. If the
 sound already went before you updated, go to the main menu and load the save once.
 
+**Materials for every build.** Before anyone carries a material to a blueprint or frame, the game checks that the
+whole amount the build still needs is on the map, and remembers the answer for the rest of the tick under the material
+alone, so the first build asked about decides for all the others. A build that needs more steel than the colony has
+answered "no" first, and then no other build got any steel either: a research bench short of steel could keep a drug
+lab from ever being started, while the builders went off to mine or tend animals. Rimfolk remembers the amount on hand
+instead, so each build is judged on its own. The game's rule stays: a build gets a material only once all of it that
+it still needs is on the map (the frame's inspect pane shows what's still missing). Needs the deeper game hooks.
+
 Version 0.4. It compiles against RimWorld 1.6 and is checked against 1.7 (the same DLL runs on both), and all XML
 is checked against the real game types by the included validator. It runs in a live game with a 200+ mod medieval
 list. If something misbehaves, open the debug log (Options → Development mode, then the log button): lines starting

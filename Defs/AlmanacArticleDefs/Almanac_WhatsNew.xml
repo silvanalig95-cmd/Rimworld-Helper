@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.16.3</version>
+        <date>26 October 2026</date>
+        <title>Materials for every build</title>
+        <points>
+          <li>Fixed a bug in the game itself: when one build needed more of a material than the colony had, builders could stop carrying that material to every other build too: a research bench short of steel could keep a drug lab from ever being started, while the builders mined or tended animals. Each build is now judged on its own.</li>
+          <li>A build still waits until all of a material it still needs is on the map before anyone carries any of it, as the game has it. A bench that needs more steel than there is waits for it, and its frame's inspect pane shows what's missing.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.16.2</version>
         <date>25 October 2026</date>
         <title>A button for the defenses</title>
