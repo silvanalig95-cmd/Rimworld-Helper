@@ -66,6 +66,40 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
     </seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <!-- ===================== RimMarket ===================== -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_AlmMod_B_RimMarket</defName>
+    <label>RimMarket</label>
+    <category>Mods</category>
+    <order>202</order>
+    <mods><li>forti.rimmarket</li></mods>
+    <summary>A market in the colony: caravans set up shop at your stalls, and your own stalls sell to shoppers and guests</summary>
+    <tip>Put the poor-quality bows on the counter at a bargain and the masterwork ones dear.</tip>
+    <description>RimMarket brings trade caravans into the colony: place a market marker, build stalls around it, and a caravan that finds a free stall sets up shop there for a market day, paying a stall fee. Any stall can also be kept for the colony's own goods. Its sales table says what it sells, how many and at what price; haulers bring the goods to the counter, and shoppers (and guests, with Hospitality) pay in silver. The marker's Guide button says what the market still needs.</description>
+    <sections>
+      <li>
+        <heading>Selling your own goods</heading>
+        <text>Switch a stall to "Colony stall", then set it up. Each line on its table is an article, how many to sell, the quality range that goes on the counter, and the price as a share of the article's sell value (weapons sell for a fifth of their worth, as with traders). The dearer the price, the more customers walk on, and the cheaper the colony's prices overall, the more often shoppers come. A line ends when its count is sold.</text>
+      </li>
+      <li>
+        <heading>With Rimfolk</heading>
+        <text>"Set up the stall" opens Rimfolk's sales table instead of RimMarket's (the setting "RimMarket's sales table, Rimfolk's way", on the Interface page). On the left are the colony's goods by category, with a search and a sort by worth, count or name: a click puts all of an article on the counter, a right-click asks how many. On the right is only what is for sale, a card a line: how many (Shift for 10, Ctrl for 100), the quality range, the price on a slider with what it fetches each and for the whole line, how well it sells at that price, and what has sold and lies on the counter. Below them, one price for every line at once (a bargain, the usual, dear), and at the foot what it all comes to and how often shoppers come at these prices. It reads and sets RimMarket's own sale lines and nothing else, so either window can be used on the same stall. If RimMarket changes its stalls in a later version, its own window opens until Rimfolk catches up.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>market</li>
+      <li>stall</li>
+      <li>sales table</li>
+      <li>colony stall</li>
+      <li>shoppers</li>
+      <li>sell</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_AlmMod_B_Hospitality</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
   <!-- ===================== Vanilla Outposts Expanded ===================== -->
 
   <ColonyCouncil.AlmanacArticleDef>

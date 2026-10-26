@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A better sales table
+
+*26 October 2026, version 0.16.4*
+
+- With RimMarket, a colony stall's "Set up the stall" opens Rimfolk's own sales table. On the left the colony's goods by category, with a search and a sort by worth, count or name; a click puts all of an article on the counter, a right-click asks how many.
+- On the right only what is for sale, a card a line: how many, the quality range, the price on a slider with what it fetches each and for the whole line, how well it sells at that price, and what has sold and lies on the counter.
+- One price for every line at once (a bargain, the usual, dear), and at the foot what it all comes to and how often shoppers come at these prices.
+- It changes only RimMarket's own sale lines, so RimMarket's window still works on the same stall; switch back to it with "RimMarket's sales table, Rimfolk's way" on the Interface page.
+
 ## Materials for every build
 
 *26 October 2026, version 0.16.3*

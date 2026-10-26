@@ -375,6 +375,7 @@ namespace ColonyCouncil
             Toggle("moodInsight", "CC_Settings_MoodInsight", "CC_SetNote_MoodInsight");
             Toggle("needsTabHints", "CC_Settings_NeedsTabHints", "CC_SetNote_NeedsTabHints", "moodInsight");
             Toggle("coverDrag", "CC_Settings_CoverDrag", "CC_SetNote_CoverDrag", "deepHooks");
+            Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks");
             Toggle("slowButtons", "CC_Settings_SlowButtons", "CC_SetNote_SlowButtons");
             var reset = Action("slowButtonsReset", "CC_Settings_SlowButtonsReset", null, "CC_SetNote_SlowButtonsReset", "slowButtons");
             reset.covers = new[] { "slowButtonsX", "slowButtonsY" };

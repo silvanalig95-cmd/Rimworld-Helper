@@ -2452,6 +2452,11 @@ new setting needs a row there.
 - **Interaction Bubbles** by Jaxe (search the Steam Workshop): shows social-log conversations as speech
   bubbles, and with it everything Rimfolk's colonists say is a bubble too: wishes, moments, social events, a word
   about the weather, a meeting's back and forth.
+- **RimMarket** by BenFD: a colony stall's "Set up the stall" opens Rimfolk's own sales table (setting on the
+  Interface page): the colony's goods by category on the left, a click to put them on the counter; what is for sale on
+  the right, a card a line, with the count, the quality range, the price on a slider with what it fetches and how well
+  it sells; one price for every line at once; and what it all comes to and how often shoppers come. It reads and sets
+  RimMarket's own sale lines, by name, and RimMarket's window opens if they're not what Rimfolk expects.
 - **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
   its pawn panel, with bars for strain and the heart's needs (see above).
 

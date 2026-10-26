@@ -1,6 +1,11 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.3 "Materials for every build" (from the player's save: Hector, Construction 2 and Mining 3,
+Last shipped: 0.16.4 "A better sales table" (the player asked to replace RimMarket's colony stall sales table, which
+they find hard to use: `Integrations/RimMarketStall.cs` finds RimMarket 1.0.6's stall, sale lines (`StallOrder`) and
+`ColonyStalls` by name and swaps `RimMarket.UI.Dialog_ColonyStall` for `UI/Window_StallCounter.cs` in a
+`WindowStack.Add` prefix; `Integrations/StallCounterMath.cs` is tested in `StallCounterTests`; setting
+`marketStallWindow`. RimMarket's 1.6 and 1.7 builds were the same for these types. Not tried in the game here.)
+Before it, 0.16.3 "Materials for every build" (from the player's save: Hector, Construction 2 and Mining 3,
 mined and handled animals while a hi-tech research bench frame sat at 11 steel for two days and a drug lab blueprint
 got nothing. No Rimfolk system held them: no build priority set, no clean sweep, no work party, no ideoligion rule,
 no reservation or en-route haul, the doors open, 210 steel and 19 components on the map. The game's

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- RimMarket's colony stall sales table, Rimfolk's way (Source/ColonyCouncil/UI/Window_StallCounter.cs). -->
+  <CC_Settings_MarketStallWindow>RimMarket's sales table, Rimfolk's way</CC_Settings_MarketStallWindow>
+  <CC_Settings_MarketStallWindow_Tip>With RimMarket: a colony stall's "Set up the stall" opens Rimfolk's sales table instead of RimMarket's. On the left the colony's goods by category, with a search and a sort; a click puts all of an article on the counter, a right-click asks how many. On the right only what is for sale, a card a line: how many, the quality range, the price on a slider with what it fetches each and for all, how well it sells, and what has sold and lies on the counter. One price for every line at once, and at the foot what it all comes to and how often shoppers come. It changes RimMarket's own sale lines, nothing else. Off: RimMarket's own window. Needs the deeper game hooks.</CC_Settings_MarketStallWindow_Tip>
+  <CC_SetNote_MarketStallWindow>With RimMarket: the stall's sales table in two halves, the goods and the counter.</CC_SetNote_MarketStallWindow>
+
+  <CC_Stall_Title>{0}: sales table</CC_Stall_Title>
+  <CC_Stall_Sub>Click goods on the left to put them on the counter, then set how many and the price on the right. Haulers bring them over, and a line ends when it's sold.</CC_Stall_Sub>
+  <CC_Stall_Stat>{0} articles on {1} lines</CC_Stall_Stat>
+  <CC_Stall_Goods>The colony's goods</CC_Stall_Goods>
+  <CC_Stall_GoodsCount>{0} kinds</CC_Stall_GoodsCount>
+  <CC_Stall_AllGoods>All</CC_Stall_AllGoods>
+  <CC_Stall_Sort_Worth>Sort: most worth</CC_Stall_Sort_Worth>
+  <CC_Stall_Sort_Count>Sort: most of it</CC_Stall_Sort_Count>
+  <CC_Stall_Sort_Name>Sort: by name</CC_Stall_Sort_Name>
+  <CC_Stall_SortTip>Click to sort the goods another way: by what they're worth together, by how many there are, or by name.</CC_Stall_SortTip>
+  <CC_Stall_NoGoods>Nothing in the colony matches.</CC_Stall_NoGoods>
+  <CC_Stall_OnCounterPill>for sale</CC_Stall_OnCounterPill>
+  <CC_Stall_GoodTip>Click: put all {0} on the counter.\nRight-click: choose how many.</CC_Stall_GoodTip>
+  <CC_Stall_GoodTipOn>Already for sale. Click: sell all {0}.\nRight-click: choose how many.</CC_Stall_GoodTipOn>
+  <CC_Stall_SellAll>Sell all of it ({0})</CC_Stall_SellAll>
+  <CC_Stall_SellN>Sell {0}</CC_Stall_SellN>
+  <CC_Stall_NoneAround>None on the map right now.</CC_Stall_NoneAround>
+  <CC_Stall_Counter>On the counter</CC_Stall_Counter>
+  <CC_Stall_ClearAll>Take everything off</CC_Stall_ClearAll>
+  <CC_Stall_ClearAllConfirm>Take every line off the sales table? What already lies on the counter is put down in front of the stall.</CC_Stall_ClearAllConfirm>
+  <CC_Stall_Empty>Nothing for sale yet. Click goods on the left to put them on the counter.</CC_Stall_Empty>
+  <CC_Stall_RemoveTip>Take this line off the table.</CC_Stall_RemoveTip>
+  <CC_Stall_QualityTip>Only goods in this quality range go on the counter: pick a range to get rid of the poor ones, or to sell only the good.</CC_Stall_QualityTip>
+  <CC_Stall_Sold>{0} sold</CC_Stall_Sold>
+  <CC_Stall_Held>{0} on the counter</CC_Stall_Held>
+  <CC_Stall_HeldNone>none on the counter yet</CC_Stall_HeldNone>
+  <CC_Stall_InColony>{0} more in the colony</CC_Stall_InColony>
+  <CC_Stall_ForAll>about {0} silver for all</CC_Stall_ForAll>
+  <CC_Stall_CountTip>How many to sell. Hold Shift for 10 at a time, Ctrl for 100, or type a number in the box.</CC_Stall_CountTip>
+  <CC_Stall_Of>of {0}</CC_Stall_Of>
+  <CC_Stall_All>All</CC_Stall_All>
+  <CC_Stall_AllTip>Sell all {0}.</CC_Stall_AllTip>
+  <CC_Stall_PriceEach>{0}, {1} each</CC_Stall_PriceEach>
+  <CC_Stall_PriceTip>The asking price, as a share of the article's sell value (weapons sell for a fifth of their worth and furniture for most of it, as with traders).</CC_Stall_PriceTip>
+  <CC_Stall_Demand3>sells well</CC_Stall_Demand3>
+  <CC_Stall_Demand2>sells</CC_Stall_Demand2>
+  <CC_Stall_Demand1>sells slowly</CC_Stall_Demand1>
+  <CC_Stall_Demand0>hardly sells</CC_Stall_Demand0>
+  <CC_Stall_DemandTip>At {0} of its sell value, a customer who fancies it buys it {1} of the time.</CC_Stall_DemandTip>
+  <CC_Stall_QualityAny>Any quality</CC_Stall_QualityAny>
+  <CC_Stall_QualityAnyShort>Any quality</CC_Stall_QualityAnyShort>
+  <CC_Stall_QualityOnly>{0} only</CC_Stall_QualityOnly>
+  <CC_Stall_QualityOrWorse>{0} or worse</CC_Stall_QualityOrWorse>
+  <CC_Stall_QualityOrBetter>{0} or better</CC_Stall_QualityOrBetter>
+  <CC_Stall_PriceAll>Every line at:</CC_Stall_PriceAll>
+  <CC_Stall_Bargain>A bargain ({0})</CC_Stall_Bargain>
+  <CC_Stall_BargainTip>Every line at {0} of its sell value: a customer who fancies an article buys it {1} of the time, and word of the bargains brings shoppers more often.</CC_Stall_BargainTip>
+  <CC_Stall_Fair>The usual ({0})</CC_Stall_Fair>
+  <CC_Stall_FairTip>Every line at {0} of its sell value: a customer who fancies an article buys it {1} of the time.</CC_Stall_FairTip>
+  <CC_Stall_Dear>Dear ({0})</CC_Stall_Dear>
+  <CC_Stall_DearTip>Every line at {0} of its sell value: a customer who fancies an article buys it {1} of the time, and shoppers come less often.</CC_Stall_DearTip>
+  <CC_Stall_SummaryNone>Nothing for sale yet.</CC_Stall_SummaryNone>
+  <CC_Stall_Summary>{0} articles on {1} lines, about {2} silver if it all goes.</CC_Stall_Summary>
+  <CC_Stall_Shoppers>At these prices a group of shoppers comes about once every {0}, while the market is open in the daytime.</CC_Stall_Shoppers>
+  <CC_Stall_ShoppersBargain>Word of the bargains gets around: a group of shoppers comes about once every {0}, while the market is open in the daytime.</CC_Stall_ShoppersBargain>
+  <CC_Stall_ShoppersDear>At these prices word gets around slowly: a group of shoppers comes about once every {0}, while the market is open in the daytime.</CC_Stall_ShoppersDear>
+  <CC_Stall_ShoppersOff>Shoppers are switched off in RimMarket's settings: only guests buy here.</CC_Stall_ShoppersOff>
+
+</LanguageData>

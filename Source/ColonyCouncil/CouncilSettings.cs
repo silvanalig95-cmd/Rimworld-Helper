@@ -227,6 +227,8 @@ namespace ColonyCouncil
         public bool defenseGateReminder = true;
         /// <summary>Ctrl and a right-drag with drafted colonists sends them to cover from the side the drag points at (Defense/CoverDrag.cs).</summary>
         public bool coverDrag = true;
+        /// <summary>With RimMarket: a colony stall's sales table opens as Rimfolk's window (Integrations/RimMarketStall.cs).</summary>
+        public bool marketStallWindow = true;
 
         // Room planner (the clearing options are remembered between games)
         public bool planCutPlants = true;
@@ -424,6 +426,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref wishAlert, "wishAlert", true);
             Scribe_Values.Look(ref defenseGateReminder, "defenseGateReminder", true);
             Scribe_Values.Look(ref coverDrag, "coverDrag", true);
+            Scribe_Values.Look(ref marketStallWindow, "marketStallWindow", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);
             Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);
