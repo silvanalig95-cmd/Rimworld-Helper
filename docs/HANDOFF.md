@@ -1,6 +1,16 @@
 # Handoff: work in progress
 
-Last shipped: 0.18.0 "Realistic ways to die", the player's approved items 3 to 6 (the player wants death a real
+Last shipped: 0.18.1 "Moving on, by the council's word", round B of the same request. `Social/MovingOn.cs`:
+`DilemmaWorker_FamilyElsewhere` (a blood parent or sibling 65+ or a juvenile child with a friendly faction, opinion
+20+; `MovingOnContext` {RELATIVE}/{RELATION}, tags old/child), `DilemmaWorker_LoveOutside` (the colonist's love
+partner of a friendly faction spawned here; fired from `MovingOn.Hourly` with `OnlyLove`; tags guest/married/engaged)
+and `DilemmaWorker_Crowded` (a vanilla SleptInBarracks/SleptOutside/SleptOnGround memory, mood under 35%, no partner
+or family at home, 20 days here; `DilemmaEffect_PromiseRoom` raises Council_Wish_OwnRoom). Defs in
+`Defs/DilemmaDefs/Rimfolk_Dilemmas_MovingOn.xml`, each defaulting to staying. `DilemmaEffect_LeaveForGood.joinFaction`
+makes the leaver one of ctx.faction after the banish, with an exit lord. `MovingOn.Spare`: more than four grown-ups;
+`CouncilGameComponent.movingOnAsked` once per key; setting `movingOn` (off in Light touch). Not tried in the game here.
+
+Before it, 0.18.0 "Realistic ways to die", the player's approved items 3 to 6 (the player wants death a real
 possibility, always with a warning and a way to fight it). Pure numbers in `Ailments/LifeRiskMath.cs`
 (Tools/Tests/LifeRiskTests.cs, which also runs the frail through the illnesses' own courses). `Ailments/LifeRisks.cs`:
 `Sickness(map)` (crowded = no bed or a bed in barracks or the open; the dirtiest kitchen; size) divides the serious
@@ -12,9 +22,6 @@ untended wound, rolls `ExtraInfectionChance` by `DirtWhere`. `Health/LastSeason.
 a good social memory of the last day), turns back under 77, tells the colony at 0.85 with up to three sit-down
 visits, and at 1 kills them asleep (`Pawn.Kill(null, hediff)`); the setting off sets `remove`. Settings
 `crowdedSickness`, `frailty`, `dirtyWounds`, `endOfLife` (off in Light touch). Not tried in the game here.
-
-Next: round B of the same request, leaving on good terms, always as a council question with staying possible (the
-player: never lose a good colonist out of nothing). Look at the existing `CheckQuitting` (CouncilDynamics.cs) first.
 
 Before it, 0.17.10 "A life goal counts in full", a fix after the player saw a life goal reached give +3 for five
 days (a spoiled colonist's standards halved it, and good times halved its time). `Moods/Milestone.cs`: a

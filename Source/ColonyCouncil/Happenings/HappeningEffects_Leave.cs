@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
+using Verse.AI;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -9,10 +12,17 @@ namespace ColonyCouncil
     /// The target colonist leaves the colony for good of their own will, with its blessing (called home to their family):
     /// as when someone quits, their open wishes and the council's marks on them go first, and the colony's records count
     /// it as leaving, never a banishment, so nobody grieves a banished friend and they may come back one day as someone
-    /// who walked out. Only someone up and about at home; never the last grown-up of the colony.
+    /// who walked out. Only someone up and about at home; never the last grown-up of the colony. With
+    /// <see cref="joinFaction"/>, they go to the answer's people (family or a partner there: Social/MovingOn.cs), become
+    /// one of them, and walk off the map to them.
     /// </summary>
     public class DilemmaEffect_LeaveForGood : DilemmaEffect
     {
+        public bool joinFaction;
+
+        /// <summary>Those leaving to a people of their own, by thing id, until they go (kept for the session).</summary>
+        private static readonly Dictionary<int, Faction> joining = new Dictionary<int, Faction>();
+
         public override void Apply(DilemmaContext ctx)
         {
             foreach (var p in Targets(ctx).ToList())
@@ -20,6 +30,7 @@ namespace ColonyCouncil
                 if (p == null || p.Dead || p.Faction != Faction.OfPlayer || !p.RaceProps.Humanlike || !p.Spawned || p.Downed) continue;
                 var map = p.Map;
                 if (map == null || !map.mapPawns.FreeColonistsSpawned.Any(o => o != p && !o.DevelopmentalStage.Juvenile())) continue;
+                if (joinFaction && MovingOn.Friendly(ctx.faction)) joining[p.thingIDNumber] = ctx.faction;
                 // Seen off to the gate by the walk the answer set going: they go from there, at its end (PlayOut/PlayDepart.cs).
                 if (PlayDepart.HoldLeaving(p)) continue;
                 Leave(p);
@@ -43,6 +54,17 @@ namespace ColonyCouncil
                 if (p.Drafted) p.drafter.Drafted = false;
                 if (t != null) t.quitting = p;
                 PawnBanishUtility.Banish(p, false);
+                // Going to a people of their own: one of them now, and on their way to them.
+                if (joining.TryGetValue(p.thingIDNumber, out var to))
+                {
+                    joining.Remove(p.thingIDNumber);
+                    if (MovingOn.Friendly(to) && !p.Dead)
+                    {
+                        if (p.Faction != to) p.SetFaction(to);
+                        if (p.Spawned && p.GetLord() == null)
+                            LordMaker.MakeNewLord(to, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), p.Map, new List<Pawn> { p });
+                    }
+                }
             }
             catch (Exception e)
             {

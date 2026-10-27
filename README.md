@@ -652,7 +652,9 @@ colony with one last name who are family are known by it ("the Boyds"), their st
 stands for, and gossip now and then brings the family into it; a couple with two names can be asked whether they
 take one (at once, or at the wedding). A family of three or more sometimes sits down to supper at one table, grown
 brothers and sisters have their own word about the old days (or their own digs), and a parent of sixty or more is
-looked in on by a grown child, more often when ill.
+looked in on by a grown child, more often when ill. A colonist may ask to move on, never out of nowhere: always as a council
+question with staying as the answer if nobody gives one, to go to family grown old or a child elsewhere, to be with a
+visiting partner from another people, or to find room after sleeping crowded and unhappy.
 
 #### Traits that change
 Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast

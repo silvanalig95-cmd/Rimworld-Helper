@@ -438,3 +438,6 @@ Council_WS_OldBeast [hunters/1] a refusal; the hunters go back down the road
 Council_WS_OldBeast [end:taken] far away, told
 Council_WS_OldBeast [end:lost] far away, told
 Council_WS_OldBeast [end:protected] far away, told
+
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_MovingOn.xml
+Council_DlmMove_Love [option 2] nothing done: the partner's own visit goes on as it was

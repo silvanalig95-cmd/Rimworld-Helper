@@ -421,6 +421,8 @@ wishPh.UnionWith(new[] { "FAITH", "OTHERFAITH", "ALTAR", "WHY" });
 wishPh.Add("SEASON");
 // Family names (Social/FamilyNames.cs): a family known by its name in gossip ("Boyds"), and a couple's two last names.
 wishPh.UnionWith(new[] { "FAMILY", "LASTA", "LASTB" });
+// Moving on (Social/MovingOn.cs): the relative or partner someone would go to.
+wishPh.Add("RELATIVE");
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

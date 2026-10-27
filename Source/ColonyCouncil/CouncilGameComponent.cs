@@ -69,6 +69,8 @@ namespace ColonyCouncil
         public List<int> guardianAsked = new List<int>();
         /// <summary>Couples the council was asked about, whether they take one name (their pair key; Social/FamilyNames.cs).</summary>
         public List<string> sharedNameAsked = new List<string>();
+        /// <summary>Who the council was asked about moving on, and why (keys; Social/MovingOn.cs).</summary>
+        public List<string> movingOnAsked = new List<string>();
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
@@ -208,6 +210,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref expectingTold, "expectingTold", LookMode.Value);
             Scribe_Collections.Look(ref guardianAsked, "guardianAsked", LookMode.Value);
             Scribe_Collections.Look(ref sharedNameAsked, "sharedNameAsked", LookMode.Value);
+            Scribe_Collections.Look(ref movingOnAsked, "movingOnAsked", LookMode.Value);
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
@@ -265,6 +268,7 @@ namespace ColonyCouncil
                 if (expectingTold == null) expectingTold = new List<int>();
                 if (guardianAsked == null) guardianAsked = new List<int>();
                 if (sharedNameAsked == null) sharedNameAsked = new List<string>();
+                if (movingOnAsked == null) movingOnAsked = new List<string>();
                 chronicle.RemoveAll(e => e == null);
                 if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();

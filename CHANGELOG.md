@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Moving on, by the council's word
+
+*27 October 2026, version 0.18.1*
+
+- A colonist may ask to leave on good terms, never out of nowhere: always as a question for the council, and if nobody answers, they stay.
+- Family elsewhere: a parent, brother or sister grown old, or a child of theirs, with a friendly people. They can go, the colony can send silver instead, or they stay.
+- A love from outside: when their partner from a friendly people visits, they can go to them, the partner can be asked to join, or things stay as they are.
+- No room: someone who has slept crowded and unhappy, with nobody here to stay for, can be promised a room of their own, let go, or asked to make do.
+- Whoever goes is seen to the gate, and going to family or a partner they join that people. Never one of the last four grown-ups, and each is asked about once.
+
 ## Realistic ways to die
 
 *27 October 2026, version 0.18.0*

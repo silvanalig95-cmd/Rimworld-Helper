@@ -164,6 +164,8 @@ namespace ColonyCouncil
         public bool dirtyWounds = true;
         /// <summary>The end of a long life: a season's decline past old age, and death in their sleep (Health/LastSeason.cs).</summary>
         public bool endOfLife = true;
+        /// <summary>Colonists may ask to move on, always as a question for the council (Social/MovingOn.cs).</summary>
+        public bool movingOn = true;
         /// <summary>How often ailments come: 0.25 to 2.</summary>
         public float ailmentFrequency = 1f;
         /// <summary>Convalescence after serious illness, operations, long bed rest and lost limbs; sickbed visits (Health/).</summary>
@@ -389,6 +391,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref frailty, "frailty", true);
             Scribe_Values.Look(ref dirtyWounds, "dirtyWounds", true);
             Scribe_Values.Look(ref endOfLife, "endOfLife", true);
+            Scribe_Values.Look(ref movingOn, "movingOn", true);
             Scribe_Values.Look(ref ailmentFrequency, "ailmentFrequency", 1f);
             Scribe_Values.Look(ref convalescence, "convalescence", true);
             Scribe_Values.Look(ref healerReputations, "healerReputations", true);

@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.18.1</version>
+        <date>27 October 2026</date>
+        <title>Moving on, by the council's word</title>
+        <points>
+          <li>A colonist may ask to leave on good terms, never out of nowhere: always as a question for the council, and if nobody answers, they stay.</li>
+          <li>Family elsewhere: a parent, brother or sister grown old, or a child of theirs, with a friendly people. They can go, the colony can send silver instead, or they stay.</li>
+          <li>A love from outside: when their partner from a friendly people visits, they can go to them, the partner can be asked to join, or things stay as they are.</li>
+          <li>No room: someone who has slept crowded and unhappy, with nobody here to stay for, can be promised a room of their own, let go, or asked to make do.</li>
+          <li>Whoever goes is seen to the gate, and going to family or a partner they join that people. Never one of the last four grown-ups, and each is asked about once.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.18.0</version>
         <date>27 October 2026</date>
         <title>Realistic ways to die</title>

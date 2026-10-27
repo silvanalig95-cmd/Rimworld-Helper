@@ -32,4 +32,84 @@
     </stages>
   </ThoughtDef>
 
+  <!-- Moving on (Source/ColonyCouncil/Social/MovingOn.cs, Defs/DilemmaDefs/Rimfolk_Dilemmas_MovingOn.xml). -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_SawThemOff</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>one of us moved on</label>
+        <description>We walked them to the gate and waved until the road bent. They went with our blessing, and their place at the table is still empty.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_Stayed</defName>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>stayed instead of going to family</label>
+        <description>I asked to go to my family, and the council asked me to stay. I'm needed here, I know. I still think about them every day.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_TogetherHere</defName>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>my love is staying</label>
+        <description>They said yes. No more waiting for the next visit: they live here now, with me.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_ApartAgain</defName>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>apart again</label>
+        <description>Nothing changes. They'll go home when the visit's over, and I'll wait for the next one, the way I always do.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_Promised</defName>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>promised a room of my own</label>
+        <description>The council promised me a room of my own. I'll believe it when I sleep in it, but it's something.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_MakeDo</defName>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>told to make do</label>
+        <description>I asked for a room or leave to go, and the council told me to make do. So I'm making do.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

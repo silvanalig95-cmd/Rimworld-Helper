@@ -16,6 +16,9 @@
   <CC_Settings_EndOfLife>The end of a long life</CC_Settings_EndOfLife>
   <CC_Settings_EndOfLife_Tip>Past 78 (in human years, so long-lived genes count), a colonist may begin to fail: a tenth a year at 80, more than half at 90. A letter says so. Over about a season they slow down; contentment, a room of their own and company slow it, misery hastens it, and an age reversal turns it back. Near the end those closest come to sit with them, and they die in their sleep. Turned off, none begin and anyone failing recovers.</CC_Settings_EndOfLife_Tip>
   <CC_SetNote_EndOfLife>The very old may begin to fail, and die in their sleep about a season later.</CC_SetNote_EndOfLife>
+  <CC_Settings_MovingOn>Moving on, by the council's word</CC_Settings_MovingOn>
+  <CC_Settings_MovingOn_Tip>A colonist may ask to move on, only for a reason that's really there and always as a question for the council: to go to a parent, brother or sister grown old, or a child of theirs, with a friendly people; to be with a partner from a friendly people who is visiting; or, having slept crowded and unhappy with nobody here to stay for, to find somewhere with room. If nobody answers, they stay. Never one of the colony's last four grown-ups, and each person is asked about once.</CC_Settings_MovingOn_Tip>
+  <CC_SetNote_MovingOn>Colonists may ask the council to let them move on, for a real reason.</CC_SetNote_MovingOn>
 
   <CC_Life_FrailStat>Frail</CC_Life_FrailStat>
   <CC_Life_Frail_Age>old age ({AGE}): {SHARE}</CC_Life_Frail_Age>

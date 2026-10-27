@@ -191,6 +191,8 @@ namespace ColonyCouncil
             FamilyNames.Hourly(comp);
             // Family suppers, grown brothers and sisters, an ageing parent looked in on (Social/FamilyBonds.cs).
             FamilyBonds.Hourly(comp);
+            // A colonist's partner from outside is visiting: whether they go to them (Social/MovingOn.cs).
+            MovingOn.Hourly(comp);
         }
 
         private static float DaysHere(Pawn p) => (p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 999999) / (float)GenDate.TicksPerDay;
