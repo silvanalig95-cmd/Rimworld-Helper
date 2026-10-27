@@ -207,7 +207,7 @@
             <outcome>{X_nameDef} and {A_nameDef} sit side by side for hours without a word between them. {A_nameDef} comes away with {A_possessive} shoulders down, and yawning.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SatWithMonk</thought></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>4~5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>4~5</duration><sit>true</sit></li>
             </effects>
             <ways><mercy>1</mercy></ways>
           </li>

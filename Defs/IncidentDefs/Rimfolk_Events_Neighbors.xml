@@ -413,13 +413,13 @@
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} played well and lost anyway. {X_nameDef} swept up the pot with a nod, as if it had never been in doubt.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s game against {X_nameDef}</label><to>Stranger</to><hours>18~23</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s game against {X_nameDef}</label><to>Stranger</to><hours>18~23</hours><duration>1~1.5</duration><sit>true</sit></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>2</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_WonThePot</thought></li>
             </effects>
             <riskEffects>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s game against {X_nameDef}</label><to>Stranger</to><hours>18~23</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s game against {X_nameDef}</label><to>Stranger</to><hours>18~23</hours><duration>1~1.5</duration><sit>true</sit></li>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_LostThePot</thought></li>
             </riskEffects>

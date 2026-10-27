@@ -137,6 +137,12 @@ namespace ColonyCouncil
             int cap = Cap(p.kind);
             int wanted = PlayOutMath.GroupSize(capable.Count, p.count, cap);
             var able = capable.Where(x => Free(t, p, x)).ToList();
+            // A walk seeing someone off waits for them.
+            if (p.leaving != null && PlayOuts.OurPerson(p.leaving) && !able.Contains(p.leaving))
+            {
+                p.waitReason = "CC_Play_Why_NotFree".Translate(p.leaving.Named("PAWN")).Resolve();
+                return;
+            }
             if (!PlayOutMath.GroupReady(able.Count, wanted))
             {
                 var missing = capable.FirstOrDefault(x => !able.Contains(x));
@@ -239,6 +245,8 @@ namespace ColonyCouncil
             p.phase = 0;
             p.phaseStarted = now;
             foreach (var h in p.hands) StartGroupJob(p, h.pawn, LocomotionUrgency.Walk);
+            // Animals turned out walk along at the lead's heels (PlayDepart.cs).
+            PlayDepart.Started(p);
             return true;
         }
 
@@ -491,6 +499,7 @@ namespace ColonyCouncil
 
         private static void StepWalk(PlayOutTracker t, PlayOut p, int now)
         {
+            if (p.phase < 2) PlayDepart.Keep(p);
             var going = p.hands.Where(h => !h.left && OnIt(p, h.pawn)).ToList();
             foreach (var h in p.hands)
                 if (!h.left && !going.Contains(h) && now - p.started > 500)
@@ -504,6 +513,8 @@ namespace ColonyCouncil
                 if (next == 2 && going.Count > 0) PlayWords.During(p, going.RandomElement().pawn);
                 // There: the stakes go in for the new room.
                 if (next == 2 && !p.planRoom.NullOrEmpty()) DilemmaEffect_PlanRoom.Stake(p);
+                // There: the one seen off goes on alone from here, and the animals are let go.
+                if (next == 2) PlayDepart.Arrived(p);
             }
             if (p.phase >= 4 || going.Count == 0) Finish(t, p, false, null);
         }

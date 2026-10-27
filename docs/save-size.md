@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 336; modelled: 336; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,679 KB** after a year, **2,043 KB** after two, **2,158 KB** after five.
+Saved collections found: 338; modelled: 338; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,680 KB** after a year, **2,043 KB** after two, **2,159 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -205,6 +205,7 @@ Rimfolk's part of the save, roughly: **1,679 KB** after a year, **2,043 KB** aft
 | `Camps/Camp.cs:willing` | while the camp stays | while | 8 | 8 | 8 | 0.3 |
 | `Camps/CampRequests.cs:errandPeople` | those of the camp on an errand into the colony, while it lasts | while | 8 | 8 | 8 | 0.3 |
 | `Couriers/CourierTrip.cs:things` | particular things a trip came for (a neighbour's cargo), while it lasts | while | 8 | 8 | 8 | 0.3 |
+| `PlayOut/PlayOutLord.cs:guests` | while the gathering lasts: guests from outside the colony | while | 8 | 8 | 8 | 0.3 |
 | `Visitors/VisitorTrip.cs:animals` | a visit's animals (a pack beast, a family's dog, a herd), while it lasts | while | 8 | 8 | 8 | 0.3 |
 | `Faith/FaithCouncilTracker.cs:plans` | the evening of faith waiting to be held: one at a time, let go when its gathering is over | while | 1 | 1 | 1 | 0.3 |
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
@@ -286,6 +287,7 @@ Rimfolk's part of the save, roughly: **1,679 KB** after a year, **2,043 KB** aft
 | `UI/DilemmaLog.cs:started` | per dilemma record | fixed | 2 | 2 | 2 | 0.0 |
 | `UI/WeekMemory.cs:pinnedWishes` | pins of open wishes | fixed | 2 | 2 | 2 | 0.0 |
 | `PlayOut/OnMapTimed.cs:pawns` | per thing kept: those felling the trees (three at most), fellings only | fixed | 1 | 1 | 1 | 0.0 |
+| `PlayOut/PlayOuts.cs:led` | per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only | fixed | 1 | 1 | 1 | 0.0 |
 | `Lives/Legacy.cs:cameOfAgeTick` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Lives/Legacy.cs:cameOfAge` | 6 days | window | 0 | 0 | 0 | 0.0 |
 | `Arcs/Arc.cs:told` | per story (counted under active and past) | fixed | 6 | 6 | 6 | (in its record) |

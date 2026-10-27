@@ -341,6 +341,20 @@ namespace ColonyCouncil
         public Pawn planFor;
         /// <summary>A visit's work at the place, with the game's own effect for it.</summary>
         public EffecterDef workEffect;
+        /// <summary>A visit where the two sit down together, and round what (PlaySit.cs).</summary>
+        public bool sit;
+        public PlaySpot sitBy = PlaySpot.Dining;
+        /// <summary>Someone leaving for good from the walk's far end, or a visitor sent away when the visit starts (PlayDepart.cs); and whether they've gone.</summary>
+        public Pawn leaving;
+        public bool leavingGone;
+        /// <summary>A visitor walked back to the road: they set off when the visit starts, not when it's over.</summary>
+        public bool leavingWalk;
+        /// <summary>Animals led along and let go at the far end: a pet turned loose, the herd's weakest turned out.</summary>
+        public List<Pawn> led = new List<Pawn>();
+        public bool ledHerd;
+        /// <summary>A gathering's guests from outside the colony: where from, and how many at most (PlayGuests.cs).</summary>
+        public string guestsFrom;
+        public int guestCount;
         /// <summary>Turns a search's fan of places (so two searches don't go the same way).</summary>
         public int seed;
         /// <summary>A gift's or a haul's particular things: the thing handed over, the dead still to carry (OnMapPlays.cs).</summary>
@@ -458,6 +472,15 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref planMid, "planMid", IntVec3.Invalid);
             Scribe_References.Look(ref planFor, "planFor");
             Scribe_Defs.Look(ref workEffect, "workEffect");
+            Scribe_Values.Look(ref sit, "sit");
+            Scribe_Values.Look(ref sitBy, "sitBy", PlaySpot.Dining);
+            Scribe_References.Look(ref leaving, "leaving");
+            Scribe_Values.Look(ref leavingGone, "leavingGone");
+            Scribe_Values.Look(ref leavingWalk, "leavingWalk");
+            Scribe_Collections.Look(ref led, "led", LookMode.Reference);
+            Scribe_Values.Look(ref ledHerd, "ledHerd");
+            Scribe_Values.Look(ref guestsFrom, "guestsFrom");
+            Scribe_Values.Look(ref guestCount, "guestCount");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();
@@ -478,6 +501,8 @@ namespace ColonyCouncil
                 if (lines == null) lines = new List<string>();
                 if (moods == null) moods = new List<HeldMood>();
                 if (risks == null) risks = new List<HeldRisk>();
+                if (led == null) led = new List<Pawn>();
+                led.RemoveAll(x => x == null);
                 moods.RemoveAll(m => m == null || m.pawn == null || m.thought == null && m.skill == null);
             }
         }

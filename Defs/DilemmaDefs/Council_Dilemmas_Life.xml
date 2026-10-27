@@ -779,7 +779,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_HeardOut</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>6</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~22</hours><sit>true</sit></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Social</riskSkill>
@@ -896,7 +896,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>6</minLevel><reason>Needs someone to keep the peace between them (Social 6 or more)</reason></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.7</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>1</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>B</whom><hours>16~23</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>B</whom><hours>16~23</hours><duration>2~3</duration><sit>true</sit></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskReplaces>true</riskReplaces>

@@ -320,7 +320,7 @@
         <ways><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Social</skill><minLevel>5</minLevel><asB>true</asB></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper for both sides</label><organizer>B</organizer><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>1</guestCount><label>the supper for both sides</label><organizer>B</organizer><hours>17~21</hours></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_RivalGoodwill"><amount>3</amount></li>
@@ -331,7 +331,7 @@
         <riskReplaces>true</riskReplaces>
         <riskOutcome>{B_nameDef} got them both to the table and kept them civil through the soup. By the bread they were shouting, and both left angry, at the colony as much as at each other.</riskOutcome>
         <riskEffects>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper for both sides</label><organizer>B</organizer><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>1</guestCount><label>the supper for both sides</label><organizer>B</organizer><hours>17~21</hours></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_RivalGoodwill"><amount>-2</amount></li>
@@ -392,7 +392,7 @@
         <outcome>{X_nameDef}'s family came up to supper, stiff at first, then not. The two children ate under the table, and were left there.</outcome>
         <ways><openness>2</openness><generosity>1</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with {X_nameDef}'s family</label><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>kin</guests><guestCount>6</guestCount><label>supper with {X_nameDef}'s family</label><hours>17~21</hours></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_PlayedWithFriend</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampMood"><tension>-10</tension><warm>2</warm></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
@@ -431,7 +431,7 @@
         <outcome>The camp's people came up at dusk with their drum and a pot of honeyed grain, and the colony's hall was louder than it has been all year.</outcome>
         <ways><openness>3</openness><generosity>1</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the camp's feast</label><music>true</music><hours>17~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>camp</guests><guestCount>8</guestCount><label>the camp's feast</label><music>true</music><hours>17~22</hours></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-12</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
         </effects>

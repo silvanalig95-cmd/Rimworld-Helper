@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Sat down, seen off, asked in
+
+*27 October 2026, version 0.17.4*
+
+- A visit whose words have the two sit down together (a pot of tea, the kitchen table, an evening by the fire) now does: both take seats across a table from each other, or by a fire, and stay there talking. Before, the visitor followed the other through their work.
+- Someone leaving the colony for good walks to the gate with those seeing them off and goes on alone from there, instead of leaving before the send-off.
+- A visitor walked back to the road sets off when the one walking them reaches them, and they go together. One asked to leave after a talk goes when the talk is over.
+- A pet turned loose, or the herd's weakest turned out, walk along at someone's heels and are let go at the far end of the walk.
+- Guests the answer puts at the colony's table, from a visitor and their people to the camp's people at their feast day, come up when the supper starts, take a place round it and are served like everyone else.
+
 ## A family's life together
 
 *27 October 2026, version 0.17.3*

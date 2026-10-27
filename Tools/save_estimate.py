@@ -304,6 +304,7 @@ MODEL = {
     "Happenings/Happenings.cs:seenQuests": ("fixed", 60, V, "quests the game still keeps"),
     "Happenings/Workers_Chains2.cs:flags": ("fixed", 4, 40, "per story chain (counted under chains)"),
     # Answers playing out
+    "PlayOut/PlayOutLord.cs:guests": ("while", 8, P, "while the gathering lasts: guests from outside the colony"),
     "PlayOut/PlayOutLord.cs:lines": ("while", 6, 120, "while the gathering lasts"),
     "PlayOut/PlayOutLord.cs:served": ("while", COLONISTS, P, "while the gathering lasts"),
     "PlayOut/PlayOutLord.cs:fed": ("while", COLONISTS, P, "while the gathering lasts"),
@@ -323,6 +324,7 @@ MODEL = {
     "PlayOut/PlayOuts.cs:spots": ("fixed", 2, 60, "per play-out"),
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),
     "PlayOut/PlayOuts.cs:moods": ("fixed", 4, 120, "per play-out"),
+    "PlayOut/PlayOuts.cs:led": ("fixed", 1, P, "per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only"),
     "PlayOut/PlayOuts.cs:risks": ("fixed", 1, 120, "per play-out: an answer's fight or walk-out held for the scene, one or two at most"),
     "PlayOut/PlayOuts.cs:things": ("fixed", 2, P, "per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most)"),
     "PlayOut/PlayOuts.cs:plots": ("fixed", 2, 40, "per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only"),

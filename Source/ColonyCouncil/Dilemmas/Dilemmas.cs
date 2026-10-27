@@ -811,6 +811,8 @@ namespace ColonyCouncil
         {
             var pet = ctx.pet;
             if (pet == null || pet.Dead || pet.Faction != Faction.OfPlayer) return;
+            // Led out on the walk the answer set going and let go at its end (PlayOut/PlayDepart.cs).
+            if (PlayDepart.HoldLed(new List<Pawn> { pet }, false)) return;
             if (pet.Spawned) pet.jobs?.StopAll();
             pet.roping?.BreakAllRopes();
             pet.SetFaction(null);

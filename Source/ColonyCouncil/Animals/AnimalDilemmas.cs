@@ -218,6 +218,8 @@ namespace ColonyCouncil
                 var pick = AnimalFacts.Herd(ctx.map)
                     .Where(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger())
                     .OrderByDescending(AnimalFacts.LifeShare).Take(n).ToList();
+                // Walked out with those turning them out and let go at the gate (PlayOut/PlayDepart.cs).
+                if (PlayDepart.HoldLed(pick, true)) return;
                 int now = Find.TickManager.TicksGame;
                 foreach (var a in pick)
                 {

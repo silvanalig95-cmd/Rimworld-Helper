@@ -19,7 +19,10 @@ namespace ColonyCouncil
 
         private PlayOut Play => PlayOutTracker.Instance?.RunningFor(pawn);
 
-        private Pawn OtherPawn => job.targetA.Thing as Pawn;
+        /// <summary>Who they came for: followed (target A), or sat down with across a table (target C, PlaySit.cs).</summary>
+        private Pawn OtherPawn => job.targetA.Thing as Pawn ?? job.targetC.Thing as Pawn;
+
+        private bool SatDown => !job.targetA.HasThing && job.targetC.Thing is Pawn;
 
         public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
 
@@ -114,6 +117,24 @@ namespace ColonyCouncil
                 if (other.Dead || !other.Spawned || other.Map != pawn.Map)
                 {
                     EndJobWith(JobCondition.Incompletable);
+                    return;
+                }
+                // Sat down together: they stay in their seat, and the visit is over when the other gets up for good.
+                if (SatDown)
+                {
+                    pawn.rotationTracker.FaceCell(other.Position);
+                    PawnUtility.GainComfortFromCellIfPossible(pawn, delta);
+                    if (stayed > 900 && other.CurJobDef != PlayOutDefOf.Council_PlayOutSitWith)
+                    {
+                        EndJobWith(JobCondition.Succeeded);
+                        return;
+                    }
+                    if (!talked && pawn.Position.InHorDistOf(other.Position, 5f) && other.Awake())
+                    {
+                        // together: across the table from each other.
+                        talked = true;
+                        pawn.interactions?.TryInteractWith(other, InteractionDefOf.DeepTalk);
+                    }
                     return;
                 }
                 // Keeping someone company means going where they go.

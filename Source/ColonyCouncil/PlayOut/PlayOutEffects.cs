@@ -105,6 +105,12 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> lines;
         /// <summary>A personal story of three: its third person comes too (a supper for the three of them).</summary>
         public bool third;
+        /// <summary>
+        /// Guests from outside the colony at it (PlayGuests.cs): "stranger" (the event's visitor and those with them),
+        /// "camp" (the camp's people), "kin" (the visitor and their family); at most <see cref="guestCount"/>.
+        /// </summary>
+        public string guests;
+        public int guestCount = 6;
 
         public DilemmaEffect_Gathering()
         {
@@ -131,6 +137,8 @@ namespace ColonyCouncil
             p.lines = lines?.Where(l => !l.NullOrEmpty()).Select(ctx.Format).ToList() ?? new List<string>();
             p.other = ctx.stranger;
             p.place = (ctx as HappeningContext)?.place;
+            p.guestsFrom = guests;
+            p.guestCount = guestCount;
             return true;
         }
     }
@@ -240,6 +248,9 @@ namespace ColonyCouncil
         public List<PlaySpot> orTo;
         /// <summary>Work they do there, shown with the game's own effect (breaking up a fallen star: Mine).</summary>
         public EffecterDef work;
+        /// <summary>A visit to a person whose words have the two sit down together: at a table (or by the fire, <see cref="sitBy"/>), facing each other (PlaySit.cs).</summary>
+        public bool sit;
+        public PlaySpot sitBy = PlaySpot.Dining;
 
         /// <summary>The places a visit can go to on its own (not to a person, a grave or the camp, which have their own ways).</summary>
         public static bool OwnPlace(PlaySpot s) =>
@@ -271,6 +282,8 @@ namespace ColonyCouncil
             }
             p.place = (ctx as HappeningContext)?.place;
             p.workEffect = work;
+            p.sit = sit;
+            p.sitBy = sitBy;
             // A personal story that waited for something made: the thing itself, where it stands (the dream made real).
             if (to == PlaySpot.Place && p.place == null && ctx is ArcEffectContext made)
             {

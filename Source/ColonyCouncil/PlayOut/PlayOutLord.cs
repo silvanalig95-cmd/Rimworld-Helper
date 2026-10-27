@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public static JobDef Council_PlayOutGive;
         public static JobDef Council_PlayOutMake;
         public static JobDef Council_PlayOutPlant;
+        public static JobDef Council_PlayOutSitWith;
+        public static JobDef Council_PlayOutAttend;
         public static JobDef Council_PlayOutRounds;
         public static JobDef Council_PlayOutWorkNext;
         public static JobDef Council_PlayOutCremate;
@@ -54,6 +56,8 @@ namespace ColonyCouncil
         public bool words;
         /// <summary>Words said by the event's stranger (a visiting scholar's lesson), who is a guest, not one of the gathering.</summary>
         public Pawn stranger;
+        /// <summary>Guests from outside the colony, kept at places round it (PlayGuests.cs).</summary>
+        public List<Pawn> guests = new List<Pawn>();
         public string pool;
         public List<string> lines = new List<string>();
         private List<Pawn> served = new List<Pawn>();
@@ -183,6 +187,7 @@ namespace ColonyCouncil
                 // A drink from the stores to raise (Integrations/ToastDrinks.cs: beer, Vanilla Brewing Expanded's wines and teas).
                 if (kind == PlayKind.Toast) ToastDrinks.Pour(lord, Map, spot, words);
                 if (words) KeepStrangerAtHead();
+                if (guests.Count > 0) PlayGuests.Keep(guests, Map, spot, serve && kind == PlayKind.Feast, served, fed, label);
                 Touches();
             }
             catch (Exception e)
@@ -373,8 +378,11 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref fed, "fed", LookMode.Reference);
             Scribe_Collections.Look(ref abstained, "abstained", LookMode.Reference);
             Scribe_Values.Look(ref ended, "ended");
+            Scribe_Collections.Look(ref guests, "guests", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (guests == null) guests = new List<Pawn>();
+                guests.RemoveAll(p => p == null);
                 if (lines == null) lines = new List<string>();
                 if (served == null) served = new List<Pawn>();
                 if (fed == null) fed = new List<Pawn>();

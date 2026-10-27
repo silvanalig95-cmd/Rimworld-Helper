@@ -135,6 +135,22 @@
     and the pyre lit at dusk by one of the colony who carries the wood out to it.
   -->
   <JobDef>
+    <defName>Council_PlayOutAttend</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutAttend</driverClass>
+    <reportString>a guest at the colony's gathering.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_PlayOutSitWith</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutSitWith</driverClass>
+    <reportString>sitting with TargetB.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
     <defName>Council_PlayOutPlant</defName>
     <driverClass>ColonyCouncil.JobDriver_PlayOutPlant</driverClass>
     <reportString>planting a sapling.</reportString>

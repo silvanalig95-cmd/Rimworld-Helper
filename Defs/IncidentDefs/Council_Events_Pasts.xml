@@ -53,7 +53,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_OldComrade</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_OldComrade</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>30</amount></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~22</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~22</hours><sit>true</sit></li>
             </effects>
             <ways><openness>3</openness></ways>
           </li>

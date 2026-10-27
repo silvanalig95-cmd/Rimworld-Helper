@@ -402,7 +402,7 @@
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><sit>true</sit></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -563,7 +563,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_RulesBent</thought><onlyTrait><li>Abrasive</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><duration>2~3</duration><sit>true</sit></li>
         </effects>
       </li>
       <li>

@@ -197,7 +197,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_WaitingForTheKnife</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_Heard</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~23</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~23</hours><sit>true</sit></li>
         </effects>
       </li>
       <li>

@@ -371,7 +371,7 @@
             <label>Take {X_objective} home</label>
             <outcome>{X_nameDef} is walked back toward {X_possessive} people, clutching a bit of bread and somebody's spare coat. {FACTION} will hear who brought their child home.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway"><walked>true</walked></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ReturnedChild</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.25~0.5</duration></li>
@@ -431,7 +431,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_StrayLetGo</thought></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>0.25~0.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><orTo><li>Outdoors</li></orTo><duration>0.25~0.5</duration></li>
             </effects>
           </li>
         </options>

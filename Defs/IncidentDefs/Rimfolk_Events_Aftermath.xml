@@ -125,7 +125,7 @@
             <outcome>The colony keeps the grain and sets the long table tonight, with {X_nameDef} at the head of it. It's the first full meal {X_nameDef} has eaten away from home in a year, {X_pronoun} says.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
-              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper of the first harvest</label><hours>17~21</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>6</guestCount><label>the supper of the first harvest</label><hours>17~21</hours></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>x</about></li>
             </effects>
@@ -330,7 +330,7 @@
             <outcome>The seed goes into the stores and {X_nameDef} goes to the head of the table. It's a thin feast in a thin year, and the talk makes up for it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
-              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper for {X_nameDef}</label><hours>17~21</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>1</guestCount><label>the supper for {X_nameDef}</label><hours>17~21</hours></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>x</about></li>
             </effects>

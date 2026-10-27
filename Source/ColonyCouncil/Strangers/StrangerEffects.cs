@@ -33,6 +33,9 @@ namespace ColonyCouncil
     /// <summary>The stranger's group leaves the map now (thrown out, or sent on their way with thanks).</summary>
     public class DilemmaEffect_SendAway : DilemmaEffect
     {
+        /// <summary>Walked back to the road: they set off when the answer's visit to them starts, the visitor beside them.</summary>
+        public bool walked;
+
         /// <summary>Hospitality's guests leave when their visit ends, not when the council says: the answer can't be given.</summary>
         public override string Unavailable(DilemmaContext ctx)
         {
@@ -44,6 +47,16 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
+            if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer || x.IsPrisoner) return;
+            // With a visit to them the answer set going, they go when it's over, or (walked back to the road) set off when it
+            // starts with the visitor beside them (PlayOut/PlayDepart.cs).
+            if (PlayDepart.HoldSendAway(x, walked)) return;
+            Send(x);
+        }
+
+        /// <summary>They and their people set off for the edge of the map now.</summary>
+        public static void Send(Pawn x)
+        {
             if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer || x.IsPrisoner) return;
             var map = x.Map;
             var lord = x.GetLord();

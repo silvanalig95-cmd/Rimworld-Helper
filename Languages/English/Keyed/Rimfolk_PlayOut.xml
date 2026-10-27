@@ -34,6 +34,11 @@
   <!-- Where -->
   <CC_Play_Where_Camp>at the camp's fire</CC_Play_Where_Camp>
   <CC_Play_Where_NewRoom>where the new room will go</CC_Play_Where_NewRoom>
+  <CC_Play_Where_Table>at the table</CC_Play_Where_Table>
+  <CC_Play_Where_FireSide>by the fire</CC_Play_Where_FireSide>
+  <CC_Play_Begin_SitWith>{PAWN_nameDef} and {OTHER_nameDef} sit down together {WHERE}.</CC_Play_Begin_SitWith>
+  <CC_Play_GuestsCome>Guests from outside the colony join them: {0}.</CC_Play_GuestsCome>
+  <CC_Play_GuestsOthers>the others</CC_Play_GuestsOthers>
   <CC_Play_Where_Stranger>around {OTHER_nameDef}</CC_Play_Where_Stranger>
   <CC_Play_Where_GraveOf>by {DEAD_nameDef}'s grave</CC_Play_Where_GraveOf>
   <CC_Play_Where_Graves>by the graves</CC_Play_Where_Graves>
@@ -260,6 +265,7 @@
   <CC_Play_Why_NoDead>the dead were already gone</CC_Play_Why_NoDead>
   <CC_Play_Report_Give>carrying the {0} over to {OTHER_nameDef}.</CC_Play_Report_Give>
   <CC_Play_Report_Make>making the {0}.</CC_Play_Report_Make>
+  <CC_Play_Report_SitWith>sitting with {OTHER_nameDef}.</CC_Play_Report_SitWith>
   <CC_Play_Report_Burn>carrying the {0} out to burn.</CC_Play_Report_Burn>
   <CC_Play_Report_Fetch>taking the {0} in.</CC_Play_Report_Fetch>
   <CC_Play_Report_Rounds>stopping by {OTHER_nameDef}.</CC_Play_Report_Rounds>

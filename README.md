@@ -440,7 +440,9 @@ night; searchers fan out over the land and bring back what was promised; real me
 of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. Every answer
 whose words say people do something has been read: the thief is punished in front of everyone at supper, the doctor
 sits at the bedside with the last dose, the snow is shovelled, the bees are smoked out, and the tribute, the bounty
-and the envoy's price go out to the gate by hand, load after load. A fight an answer risks comes during the supper or
+and the envoy's price go out to the gate by hand, load after load. Two who sat down together take seats across a
+table, someone leaving for good goes from the gate at the end of their send-off, and guests asked to the colony's
+table come up and are served. A fight an answer risks comes during the supper or
 the work party its words put it at. The answer's own words are told once it's over, and if it never came about, a
 message says why instead. None of them
 holds anyone in a gathering, so the game's own parties and rituals can always take them. Nobody is called from

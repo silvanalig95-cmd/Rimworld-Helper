@@ -140,7 +140,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with {X_nameDef}</label><organizer>None</organizer><spots><li>Dining</li><li>Stranger</li></spots><hours>16~22</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>1</guestCount><label>supper with {X_nameDef}</label><organizer>None</organizer><spots><li>Dining</li><li>Stranger</li></spots><hours>16~22</hours><duration>1.5~2</duration></li>
             </effects>
           </li>
           <li>

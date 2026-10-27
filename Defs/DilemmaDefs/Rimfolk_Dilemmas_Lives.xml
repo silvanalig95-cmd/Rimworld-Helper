@@ -526,7 +526,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_WrittenDown</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Intellectual</skill><xp>400</xp></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>17~22</hours><duration>2~3</duration><label>writing down {A_nameDef}'s story</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>17~22</hours><duration>2~3</duration><label>writing down {A_nameDef}'s story</label><sit>true</sit></li>
         </effects>
       </li>
       <li>
@@ -635,7 +635,7 @@
         <ways><mercy>1</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_FireCompany</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>17~22</hours><duration>2~3</duration><label>an evening by the fire</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>17~22</hours><duration>2~3</duration><label>an evening by the fire</label><sit>true</sit><sitBy>Fire</sitBy></li>
         </effects>
       </li>
       <li>
@@ -737,7 +737,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_Reassured</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>A</target><amount>6</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>17~22</hours><label>going through the list with {A_nameDef}</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>17~22</hours><label>going through the list with {A_nameDef}</label><sit>true</sit></li>
         </effects>
       </li>
       <li>

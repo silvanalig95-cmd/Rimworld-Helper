@@ -80,7 +80,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>welcomed</kind><about>x</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.08</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_DebtRepaid</thought></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the feast for {X_nameDef}</label><hours>16~22</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>2</guestCount><label>the feast for {X_nameDef}</label><hours>16~22</hours></li>
             </effects>
             <ways><openness>1</openness><generosity>1</generosity></ways>
           </li>
@@ -108,7 +108,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Gift"><factor>1.4</factor><fancy>true</fancy></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>300</xp></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><duration>1~1.5</duration><sit>true</sit></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Gift" />
@@ -191,7 +191,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>400</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>favorDone</kind><about>none</about></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>17~22</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><hours>17~22</hours><duration>2~3</duration><sit>true</sit></li>
             </effects>
             <ways><toil>1</toil><generosity>1</generosity></ways>
           </li>

@@ -7,7 +7,7 @@ its effects really do on the map. Line numbers are as of 0.17.0.
 Done since: B1, B2, B3 and B5 in 0.17.1 (feasts cooked first, risks held for the scene, errands in loads, missed
 visits say so); B4 in 0.17.2 (made at the bench first, trees felled and saplings planted by hand, the room staked at the
 walk's end, the four storyteller events' results after the work), which also covers ranked gaps 1 (feasts), 4, 5, 7,
-10, 11 (saplings; the seeds of Story_Seeds are still open) and 18. Next: the other ranked gaps by visibility.
+10, 11 (saplings; the seeds of Story_Seeds are still open) and 18. 0.17.4 closed gaps 2 (sit-down visits, PlaySit.cs), 3 (guests at the table, PlayGuests.cs) and 6 (departures after the send-off, PlayDepart.cs). Next: the other ranked gaps by visibility (8 fed strangers, 9 bonfires, 12 work parties, 13 the sculpture, 14 burials and markers, 15 to 21).
 
 
 **Path shorthand:** code paths are under Source/ColonyCouncil/, and def paths are under Defs/.

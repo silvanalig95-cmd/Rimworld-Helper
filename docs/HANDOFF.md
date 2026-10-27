@@ -1,6 +1,16 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.3 "A family's life together", family round B. `Social/FamilyLifeMath.cs` (pure, `FamilyLifeTests`)
+Last shipped: 0.17.4 "Sat down, seen off, asked in", audit gaps 2, 3 and 6. `PlayOut/PlaySit.cs`: a Visit with `sit`
+(and `sitBy` Fire) to someone up and free starts the visitor's job at a seat (`targetC` = the other) and the other's
+`JobDriver_PlayOutSitWith` across a table or by a fire (20 answers marked). `PlayOut/PlayDepart.cs`:
+`DilemmaEffect_LeaveForGood` holds the leaver on the answer's walk (`leaving`, gone at phase 2), `DilemmaEffect_SendAway`
+on the visit to them (`walked`: sets off at the visit's start, else when it ends), `ReleasePet` and `TurnOut` lead the
+animals (`led`, `FollowClose`) and let them go at the far end; whatever is held happens at Done or Fallback.
+`PlayOut/PlayGuests.cs`: a gathering's `guests` ("stranger", "camp", "kin") are resolved when it starts
+(`LordJob_PlayOut.guests`), walked to a ring round the spot (`JobDriver_PlayOutAttend`) and served at a feast. Next:
+family round C, then the next gaps.
+
+Before it, 0.17.3 "A family's life together", family round B. `Social/FamilyLifeMath.cs` (pure, `FamilyLifeTests`)
 and `Social/FamilyLife.cs`: `Patch_FamilyCouple` (`Pawn_RelationsTracker.AddDirectRelation` postfix, Lover or Fiance
 between two of ours: journals, chronicle, up to four close ones react via `Together.When` with `Council_Fam_GladForThem`,
 `Council_Fam_MatchDoubted` (family who can't stand the partner) or `Council_Fam_ChildEngaged`); `Patch_FamilyProposal`

@@ -202,6 +202,7 @@ namespace ColonyCouncil
                 else if (now - p.started > p.durationTicks + PlayOutMath.TicksPerHour * 6) Fallback(p, null, true);
                 return;
             }
+            PlayDepart.Keep(p);
             var v = p.visitor;
             if (v == null || v.Dead || !(v.CurJob?.def == PlayOutDefOf.Council_PlayOutVisit))
             {
@@ -268,11 +269,15 @@ namespace ColonyCouncil
                 meals = PlaySpots.CountMeals(map);
                 job.serve = meals > 0;
             }
+            // Guests from outside the colony the answer asked to it come up and take a place (PlayGuests.cs).
+            job.guests = PlayGuests.Resolve(p, map);
             LordMaker.MakeNewLord(Faction.OfPlayer, job, map, new List<Pawn> { organizer });
             p.state = PlayState.Running;
             p.started = now;
             p.organizer = organizer;
-            Messages.Message(BeginText(p, where, meals, able.Count, laid != null ? wood : -1), new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent, false);
+            string begin = BeginText(p, where, meals, able.Count, laid != null ? wood : -1);
+            if (job.guests.Count > 0) begin += " " + "CC_Play_GuestsCome".Translate(PlayGuests.Names(job.guests)).Resolve();
+            Messages.Message(begin, new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent, false);
         }
 
         private static string BeginText(PlayOut p, string where, int meals, int guests, int wood)
@@ -427,6 +432,21 @@ namespace ColonyCouncil
                         p.waitReason = "CC_Play_Why_Place".Translate();
                         return;
                     }
+                    // Sat down together (PlaySit.cs): when the one visited is up and free, at a table or by a fire. In bed,
+                    // they're kept company at the bedside; busy, the visit waits for them a while, then keeps them company.
+                    if (p.sit && p.kind == PlayKind.Visit && !o.InBed() && !o.Downed)
+                    {
+                        bool late = now > p.created + (p.deadline - p.created) * 2 / 3;
+                        if (PlaySit.Free(this, p, o) && PlaySit.Seats(map, v, o, p.sitBy, out var seatV, out var seatO, out var focus))
+                        {
+                            if (TryStartSit(p, v, o, seatV, seatO, focus, now)) return;
+                        }
+                        else if (!late)
+                        {
+                            p.waitReason = "CC_Play_Why_NotFree".Translate(o.Named("PAWN")).Resolve();
+                            return;
+                        }
+                    }
                     target = o;
                     begin = (p.kind == PlayKind.Lesson ? "CC_Play_Begin_Lesson" : "CC_Play_Begin_Visit")
                         .Translate(v.Named("PAWN"), o.Named("OTHER"), (p.skill?.label ?? "").Named("SKILL")).Resolve();
@@ -452,6 +472,33 @@ namespace ColonyCouncil
                 return;
             }
             Messages.Message(begin, new LookTargets(v), MessageTypeDefOf.NeutralEvent, false);
+            // Someone sent away sets off now, with the visitor beside them; animals led along fall in behind (PlayDepart.cs).
+            PlayDepart.Started(p);
+        }
+
+        /// <summary>The two sit down together: the visitor to one seat, the one visited to the other, facing across. False if it didn't take.</summary>
+        private bool TryStartSit(PlayOut p, Pawn v, Pawn o, IntVec3 seatV, IntVec3 seatO, IntVec3 focus, int now)
+        {
+            var job = JobMaker.MakeJob(PlayOutDefOf.Council_PlayOutVisit, seatV, focus, o);
+            job.count = p.durationTicks;
+            p.state = PlayState.Running;
+            p.started = now;
+            v.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+            if (v.CurJob?.def != PlayOutDefOf.Council_PlayOutVisit)
+            {
+                p.state = PlayState.Pending;
+                p.started = -1;
+                return false;
+            }
+            // together: the one visited sits down across from them, with a job of their own (JobDriver_PlayOutSitWith).
+            var sit = JobMaker.MakeJob(PlayOutDefOf.Council_PlayOutSitWith, seatO, v);
+            sit.count = p.durationTicks + PlayOutMath.TicksPerHour / 2;
+            sit.expiryInterval = -1;
+            o.jobs.StartJob(sit, JobCondition.InterruptForced, null, false, true);
+            string where = (p.sitBy == PlaySpot.Fire ? "CC_Play_Where_FireSide" : "CC_Play_Where_Table").Translate();
+            Messages.Message("CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
+                new LookTargets(new[] { v, o }), MessageTypeDefOf.NeutralEvent, false);
+            return true;
         }
 
         /// <summary>A visit to a grave with no grave to go to: the first place the answer allows instead that can be had now.</summary>
@@ -485,7 +532,8 @@ namespace ColonyCouncil
 
         private void VisitOver(PlayOut p, int stayed)
         {
-            if (PlayOutMath.VisitCounts(stayed, p.durationTicks))
+            // Walking someone back to the road is done when they've gone off it together, however short the way.
+            if (PlayOutMath.VisitCounts(stayed, p.durationTicks) || PlayDepart.WalkedOff(p, stayed))
             {
                 Done(p, new List<Pawn> { p.visitor, p.other }, false);
                 return;
@@ -530,6 +578,7 @@ namespace ColonyCouncil
             p.state = PlayState.Done;
             PlayCook.Clean(p);
             Risks(p);
+            PlayDepart.Over(p);
             Remember(p, true);
             // What follows it (a secret said out loud at the end of the gathering called to hear it).
             PlayAfter.Run(p, true);
@@ -581,8 +630,9 @@ namespace ColonyCouncil
             }
             if (told) quiet = false;
             PlayCook.Clean(p);
-            // A risk the answer ran comes all the same, as it always did.
+            // A risk the answer ran comes all the same, as it always did; so does a departure it held back.
             Risks(p);
+            PlayDepart.Over(p);
             Remember(p, false);
             GiveAll(p);
             PlayAfter.Run(p, false);

@@ -276,7 +276,7 @@
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><sit>true</sit></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -669,7 +669,7 @@
             <outcome>{A_nameDef} sat with {X_nameDef} until late and told the colony's story without leaving anything out. {X_nameDef} filled a notebook and started another.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>300</xp></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~23</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>16~23</hours><sit>true</sit></li>
             </effects>
             <ways><openness>2</openness></ways>
           </li>
