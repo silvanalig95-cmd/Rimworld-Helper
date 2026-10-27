@@ -265,6 +265,7 @@
   <CC_Timed_Pyre_Lit>The pyre beyond the gate is lit, with {0} of the enemy dead on it. It will burn through the night.</CC_Timed_Pyre_Lit>
   <CC_Timed_Pyre_Gear>Their gear was left in a heap beside it.</CC_Timed_Pyre_Gear>
   <CC_Timed_Pyre_Out>The pyre has burned down to ash.</CC_Timed_Pyre_Out>
+  <CC_Timed_Pyre_Never>The pyre beyond the gate was never lit, and the bodies piled for it are left for the colony to see to.</CC_Timed_Pyre_Never>
   <CC_Timed_Bolt>{PAWN_nameDef}'s door is bolted for the night.</CC_Timed_Bolt>
   <CC_Week_Timed_Lanterns>Lanterns along the walls</CC_Week_Timed_Lanterns>
   <CC_Week_Timed_Lantern>A lantern at the gate</CC_Week_Timed_Lantern>

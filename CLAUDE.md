@@ -13,6 +13,7 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
 - Nobody is hurt for flavour. Bug fixes come before features. No filler.
 - New wishes and features are proposed as a list first; the player's own explicit requests can go straight ahead.
 - Answers play out on the map; no countdowns in text. Speech goes through `Speech.Say` / `Together`.
+- Events and answers show on the map as accurately as possible: what the words say happens is what the player sees.
 - Spoken bubble lines are one sentence (ImmersionTests).
 
 ## Releases

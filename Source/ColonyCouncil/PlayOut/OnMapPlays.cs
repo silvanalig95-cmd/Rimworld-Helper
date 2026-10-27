@@ -679,14 +679,17 @@ namespace ColonyCouncil
 
         /// <summary>
         /// It's over and it happened: the dead at the pile are left be (forbidden, so nobody carries them back to a dump),
-        /// and for a pyre the fire is laid for dusk (OnMapTimed.cs).
+        /// and for a pyre the fire is laid for dusk (OnMapTimed.cs). The answer's outcome goes with it, told once the
+        /// pyre has burned down rather than now, hours before it's lit.
         /// </summary>
         public static void Finished(PlayOut p)
         {
             var piled = p.things.Where(c => AtPile(p, c)).ToList();
             p.tally = piled.Count;
             foreach (var c in piled) c.SetForbidden(true, false);
-            if (p.mode == Pyre && piled.Count > 0) OnMapTimed.Instance?.AddPyre(p.map, p.cell, piled);
+            if (p.mode != Pyre || piled.Count == 0 || OnMapTimed.Instance == null) return;
+            OnMapTimed.Instance.AddPyre(p.map, p.cell, piled, p.outcome);
+            p.outcome = null;
         }
 
         /// <summary>

@@ -147,6 +147,7 @@ namespace ColonyCouncil
             InteractionWorker_Moment.Reset();
             Interplay.Reset();
             Together.Reset();
+            Guests.ForgetLastGame();
             // Lean/: the map facts and every def kept by name are worked out again for this game.
             MapFacts.Clear();
             DefRefs.ResetAll();
@@ -171,6 +172,8 @@ namespace ColonyCouncil
 
         public CouncilGameComponent(Game game)
         {
+            // Before the save's pawns load, so none of them is read from the last game's guest records.
+            Guests.ForgetLastGame();
         }
 
         public override void ExposeData()

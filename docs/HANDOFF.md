@@ -1,6 +1,24 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.4 "A better sales table" (the player asked to replace RimMarket's colony stall sales table, which
+Last shipped: 0.16.5 "Guests and the pyre" (from the player's save: a Hospitality guest with 4/4 friends had a grey
+Recruit button. Her record in the save said arrived, not in a mental state, faction with goodwill, so by Hospitality's
+own `DialogUtility.DrawRecruitButton` / `GuestUtility.MayRecruitRightNow` the button should have been live. Hospitality's
+`CompUtility.guestComps` is a static `Dictionary<Pawn, CompGuest>` never emptied, and `Thing` is `IEquatable<Thing>` by
+thingIDNumber and def, so after a load in the same session a pawn is read from the earlier save's comp.
+`Guests.ForgetLastGame` (Integrations/ModStrangers.cs) clears it from `CouncilGameComponent`'s constructor and
+FinalizeInit. Also the pyre: the answer's outcome rides on the `TimedThing.text` and is told when it burns down, and a
+pyre never lit in two days lets its bodies go (`End` unforbids them).)
+
+Next, under way: the player's rule that answers show on the map as accurately as possible (now in CLAUDE.md), starting
+with the enemy dead (`Council_Dilemma_EnemyDead`): "Burn them" uses a working crematorium when the colony has one (the
+bodies carried in and burned there) and otherwise a pyre that looks like one (the bodies laid on it and burning
+through the night, lit by a colonist at dusk, ash by morning), "Give them graves" and "One grave for all of them" dig
+real graves outside the wall (Grave frames built by the party, the bodies carried into them; a trench is graves side
+by side) instead of a work party hauling corpses wherever the colony keeps them, and the tree line's words drop the
+scavengers nobody sees. An audit of the other answers for the same kind of gap is to be proposed to the player as a
+list.
+
+Before it, 0.16.4 "A better sales table" (the player asked to replace RimMarket's colony stall sales table, which
 they find hard to use: `Integrations/RimMarketStall.cs` finds RimMarket 1.0.6's stall, sale lines (`StallOrder`) and
 `ColonyStalls` by name and swaps `RimMarket.UI.Dialog_ColonyStall` for `UI/Window_StallCounter.cs` in a
 `WindowStack.Add` prefix; `Integrations/StallCounterMath.cs` is tested in `StallCounterTests`; setting

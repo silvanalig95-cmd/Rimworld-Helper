@@ -244,6 +244,28 @@ namespace ColonyCouncil
                 return adopt != null;
             }
         }
+
+        /// <summary>
+        /// A fix to Hospitality: it keeps each guest's record (its CompGuest: arrived or not, the areas set on the guest
+        /// tab) in a table of its own, by pawn, and never empties it. The game counts two pawns as the same when they
+        /// have the same ID, so after another save is loaded in the same session, a guest is read from their earlier
+        /// self's record, from the save loaded before: one that hadn't arrived yet keeps the Recruit button grey ("This
+        /// guest can not be recruited (right now)") and what's set on the guest tab goes to the old record. The table is
+        /// emptied as each game starts and once it has loaded; Hospitality fills it again from the guests themselves.
+        /// </summary>
+        public static void ForgetLastGame()
+        {
+            try
+            {
+                var type = GenTypes.GetTypeInAnyAssembly("Hospitality.Utilities.CompUtility") ?? GenTypes.GetTypeInAnyAssembly("Hospitality.CompUtility");
+                var field = type?.GetField("guestComps", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+                (field?.GetValue(null) as System.Collections.IDictionary)?.Clear();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("hospitality guest records", e);
+            }
+        }
     }
 
     /// <summary>

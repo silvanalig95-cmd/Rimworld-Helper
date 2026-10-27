@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.16.5</version>
+        <date>27 October 2026</date>
+        <title>Guests and the pyre</title>
+        <points>
+          <li>With Hospitality, a guest with enough friends to join could keep a grey Recruit button ("This guest can not be recruited (right now)") after a save was loaded in the same session: Hospitality went on reading the guest from the save loaded before. Rimfolk now clears Hospitality's guest records as each game loads, so the button, the guest areas and the guest tab's ticks belong to the guest in front of you.</li>
+          <li>"Burn them" for the enemy dead tells how it went once the pyre has burned down at dawn, not while the bodies are being carried out hours before it is lit.</li>
+          <li>A pyre that can't be lit for two days, with danger every evening, no longer leaves the bodies forbidden beside the gate: they are let go for the colony to see to.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.16.4</version>
         <date>26 October 2026</date>
         <title>A better sales table</title>

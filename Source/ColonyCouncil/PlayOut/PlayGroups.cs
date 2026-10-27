@@ -740,6 +740,8 @@ namespace ColonyCouncil
             foreach (var h in p.hands)
             {
                 if (p.kind == PlayKind.WorkParty) PlayWork.Settle(p, h.pawn, h);
+                // A body set down at the pile since the last look still counts (ended early by danger, say).
+                else if (p.kind == PlayKind.Haul && !PlayHaul.OnIt(p, h.pawn)) PlayHaul.Settle(p, h);
                 Stop(p, h.pawn, early);
             }
             var took = p.hands.Where(h => h.pawn != null && !h.pawn.Dead && Counts(p, h)).Select(h => h.pawn).Distinct().ToList();

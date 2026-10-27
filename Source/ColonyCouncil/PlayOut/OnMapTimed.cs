@@ -48,6 +48,8 @@ namespace ColonyCouncil
         public int nights;
         /// <summary>Lit, bolted, set out.</summary>
         public bool on;
+        /// <summary>A pyre: the answer's outcome, told once it has burned down.</summary>
+        public string text;
 
         public void ExposeData()
         {
@@ -63,6 +65,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref until, "until");
             Scribe_Values.Look(ref nights, "nights");
             Scribe_Values.Look(ref on, "on");
+            Scribe_Values.Look(ref text, "text");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();
@@ -184,7 +187,12 @@ namespace ColonyCouncil
                     break;
                 case TimedKind.Pyre:
                     foreach (var t in k.things)
-                        if (t != null && t.Spawned && !(t is Corpse)) PlaySpots.BurnDown(t);
+                    {
+                        if (t == null || !t.Spawned) continue;
+                        // Not lit: the dead piled for it are no longer kept back from the colony's own hauling.
+                        if (t is Corpse) t.SetForbidden(false, false);
+                        else PlaySpots.BurnDown(t);
+                    }
                     break;
                 case TimedKind.Bolt:
                     if (k.on && k.things.FirstOrDefault() is Building_Door door && door.Spawned) door.SetForbidden(false, false);
@@ -336,11 +344,14 @@ namespace ColonyCouncil
 
         // ---------------- The pyre ----------------
 
-        /// <summary>The enemy dead piled out beyond the gate: lit at dusk, burned down by morning.</summary>
-        public void AddPyre(Map map, IntVec3 cell, List<Thing> bodies)
+        /// <summary>
+        /// The enemy dead piled out beyond the gate: lit at dusk, burned down by morning, when the answer's outcome
+        /// (<paramref name="outcome"/>, if any) is told.
+        /// </summary>
+        public void AddPyre(Map map, IntVec3 cell, List<Thing> bodies, string outcome = null)
         {
             if (map == null || !cell.IsValid || bodies.NullOrEmpty()) return;
-            Add(new TimedThing { kind = TimedKind.Pyre, map = map, cell = cell, things = bodies.Where(b => b != null).ToList() });
+            Add(new TimedThing { kind = TimedKind.Pyre, map = map, cell = cell, things = bodies.Where(b => b != null).ToList(), text = outcome });
         }
 
         private static bool StepPyre(TimedThing k, int now)
@@ -354,12 +365,21 @@ namespace ColonyCouncil
                 if (fire != null && fire.Spawned) PlaySpots.BurnDown(fire);
                 else if (ThingDefOf.Filth_Ash != null) FilthMaker.TryMakeFilth(k.cell, map, ThingDefOf.Filth_Ash, 3);
                 k.things.Clear();
-                Messages.Message("CC_Timed_Pyre_Out".Translate(), new LookTargets(k.cell, map), MessageTypeDefOf.SilentInput, false);
+                // The answer's outcome ("burned on a pyre that went all night") now that it has.
+                if (!k.text.NullOrEmpty())
+                    News.Post(k.text, new LookTargets(k.cell, map), NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+                else Messages.Message("CC_Timed_Pyre_Out".Translate(), new LookTargets(k.cell, map), MessageTypeDefOf.SilentInput, false);
                 return true;
             }
             var bodies = k.things.Where(b => b is Corpse c && c.Spawned && c.Map == map && c.Position.InHorDistOf(k.cell, 4.5f)).ToList();
             // Carried off, eaten or buried before dusk: nothing left to burn.
-            if (bodies.Count == 0 || now - k.start > Sched.DayTicks * 2) return true;
+            if (bodies.Count == 0) return true;
+            // Never lit (danger every night for two days): the bodies are let go, for the colony to see to (End).
+            if (now - k.start > Sched.DayTicks * 2)
+            {
+                Messages.Message("CC_Timed_Pyre_Never".Translate(), new LookTargets(bodies), MessageTypeDefOf.NeutralEvent, false);
+                return true;
+            }
             if (!OnMapMath.Between(Hour(map), OnMapMath.PyreDusk, OnMapMath.Dawn) || Danger(map)) return false;
             bool gear = false;
             foreach (var b in bodies)
@@ -405,6 +425,8 @@ namespace ColonyCouncil
             }
             PlayGive.Burned(map, k.cell);
             if (laid != null) k.things.Add(laid);
+            else if (!k.text.NullOrEmpty())
+                News.Post(k.text, new LookTargets(k.cell, map), NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
             k.on = true;
             k.until = UntilDawn(map);
             string text = "CC_Timed_Pyre_Lit".Translate(bodies.Count).Resolve();

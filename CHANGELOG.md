@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests and the pyre
+
+*27 October 2026, version 0.16.5*
+
+- With Hospitality, a guest with enough friends to join could keep a grey Recruit button ("This guest can not be recruited (right now)") after a save was loaded in the same session: Hospitality went on reading the guest from the save loaded before. Rimfolk now clears Hospitality's guest records as each game loads, so the button, the guest areas and the guest tab's ticks belong to the guest in front of you.
+- "Burn them" for the enemy dead tells how it went once the pyre has burned down at dawn, not while the bodies are being carried out hours before it is lit.
+- A pyre that can't be lit for two days, with danger every evening, no longer leaves the bodies forbidden beside the gate: they are let go for the colony to see to.
+
 ## A better sales table
 
 *26 October 2026, version 0.16.4*
