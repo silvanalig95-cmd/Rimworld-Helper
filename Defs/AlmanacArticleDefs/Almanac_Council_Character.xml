@@ -154,4 +154,31 @@ Now and then, when two such relatives are together, one says a word about it to 
     <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_TraitChanges</li><li>Council_Alm_C_SharedMemories</li><li>Rimfolk_Alm_C_Reputation</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Offices</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
+  <!-- Family beyond blood, the family tree, reunions and kin on the other side (Source/ColonyCouncil/Social/Family.cs). -->
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Family</defName>
+    <label>family</label>
+    <category>Council</category>
+    <order>9</order>
+    <summary>Who is family to whom, where they all are, and what happens when they meet again, or meet across a fight.</summary>
+    <tip>A colonist's story shows their family, and where each of them is now.</tip>
+    <description>The game knows a colonist's family by blood, and Rimfolk counts family by marriage too: a spouse's mother or father, a child's spouse, a step-parent or step-child. They worry about those as about their own (downed, ill, carried off or away on the road), feel they belong when one of them lives in the colony, are counted as family when someone is close to a loss, can come to visit like any relative, and a death among them is grieved ("a death in the family"; family by blood grieve with the game's own thoughts).</description>
+    <sections>
+      <li>
+        <heading>The family tree</heading>
+        <text>Each colonist's story, in the Story tab and the council's People roster, shows their family: partner, parents, brothers and sisters, children, grandparents and grandchildren, step-family and in-laws, each with their age and where they are (here, at another of the colony's settlements, away with a caravan, a prisoner or a slave here, visiting, carried off, with another people, out in the world, buried here, or dead). Those further out (uncles, aunts, cousins and their kin) are counted. With cryptosleep in the family, "across the years" explains whose ages run the wrong way round.</text>
+      </li>
+      <li>
+        <heading>Coming together again</heading>
+        <text>When someone joins the colony (recruited, taken in, come of their own accord) and family of theirs has lived here longer, the closest of them (and one more) goes to find them in their free time. When the two are together it's a reunion: a word between them, a moment of joy for both and a better opinion of each other for days, and a memory they'll share and come back to in conversation. Babies born here, and the founders who came together, aren't reunited.</text>
+      </li>
+      <li>
+        <heading>Family on the other side</heading>
+        <text>A colonist who sees family of theirs among those attacking the colony, in sight and not in the fog, says so, the colony hears of it, and it weighs on them for a few days. If that relative ends up in the colony's cells, the council is asked what's to become of them: let them go home (a little goodwill with their people), let the colonist try to talk them round (the wardens set to win them over, a good start against their resistance, and the colonist goes down to the cells to sit with them), or keep them like any other prisoner, which the colonist takes hard. A relative killed by the colony is grieved, and held against whoever killed them, with the game's own thoughts.</text>
+      </li>
+    </sections>
+    <keywords><li>family</li><li>relative</li><li>in-law</li><li>step</li><li>reunion</li><li>family tree</li><li>kin</li></keywords>
+    <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_SocialLife</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
 </Defs>

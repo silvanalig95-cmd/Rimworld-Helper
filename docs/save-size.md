@@ -35,7 +35,7 @@ Rimfolk's part of the save, roughly: **1,677 KB** after a year, **2,041 KB** aft
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords | cap | 30 | 60 | 60 | 17.6 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 176 | 176 | 176 | 15.5 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 177 | 177 | 177 | 15.6 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -70,8 +70,8 @@ Rimfolk's part of the save, roughly: **1,677 KB** after a year, **2,041 KB** aft
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 53 | 53 | 53 | 4.7 |
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 53 | 53 | 53 | 4.7 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 53 | 53 | 53 | 4.6 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
@@ -126,7 +126,7 @@ Rimfolk's part of the save, roughly: **1,677 KB** after a year, **2,041 KB** aft
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 18 | 18 | 18 | 1.5 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 18 | 18 | 18 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
 | `Camps/Camp.cs:felledTicks` | with the above | while | 60 | 60 | 60 | 1.5 |
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |

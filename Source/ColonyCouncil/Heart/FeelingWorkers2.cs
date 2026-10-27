@@ -71,6 +71,12 @@ namespace ColonyCouncil
                     && r.def != PawnRelationDefOf.Parent && r.def != PawnRelationDefOf.Child && r.def != PawnRelationDefOf.Sibling) continue;
                 if (seen.Add(r.otherPawn) && Check(p, r.otherPawn, 1f, sink)) added++;
             }
+            // Family by marriage: a spouse's parent, a child's spouse, a step-parent or step-child.
+            foreach (var o in Family.ByMarriageOf(p))
+            {
+                if (added >= 3) return;
+                if (seen.Add(o) && Check(p, o, 0.8f, sink)) added++;
+            }
             var comp = CouncilGameComponent.Instance;
             if (comp?.social == null || !ColonyCouncilMod.Settings.socialWeb) return;
             foreach (var t in comp.social.ties)

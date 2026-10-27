@@ -712,7 +712,7 @@ namespace ColonyCouncil
             foreach (var o in living)
             {
                 var rels = o.GetRelations(dead).ToList();
-                bool kin = rels.Any(r => r.familyByBloodRelation || r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance);
+                bool kin = rels.Any(r => r.familyByBloodRelation || FamilyMath.ByMarriage(r.defName) || r == PawnRelationDefOf.Spouse || r == PawnRelationDefOf.Lover || r == PawnRelationDefOf.Fiance);
                 int opinion = o.relations.OpinionOf(dead);
                 float warmth = comp?.social?.Warmth(o, dead) ?? 0f;
                 if (rels.Count > 0 || opinion >= 15 || warmth >= 25f) knew.Add(o.ThingID);

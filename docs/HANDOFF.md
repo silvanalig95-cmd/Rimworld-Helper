@@ -1,6 +1,17 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.7 "The enemy dead, as the council said" (the player's rule that answers show on the map as
+Last shipped: 0.17.0 "Family, wherever they are", the first of four rounds of family features the player chose
+(all sixteen from the proposal). Round A here: `Social/FamilyMath.cs` (pure, `FamilyTests`) and `Social/Family.cs`:
+family by marriage (ParentInLaw, ChildInLaw, Stepparent, Stepchild) in Worry, belonging, `Setbacks.Closeness`,
+`ArcUtil.Closeness`, family visits and remembrance days; the story's Family section (`TreeLines`); reunions (a
+newcomer's first day, `Council_Fam_Reunited`, `Rimfolk_Mem_Reunited` with talk lines); kin among raiders
+(`Council_Fam_KinAmongRaiders`) and `Council_DlmS_KinInChains` (`StrangerRole.kinOfA`; `{RELATION}` is now in every
+dilemma's text, `DilemmaContext.AddArgs`); `Patch_FamilyDied` for a death in the family by marriage. Next rounds:
+B couples and proposals, expecting a child, losses before birth, naming the baby, growth moments; C adoption and
+guardians, orphaned here, inheritance by blood, widowhood and remarriage; D family meals, adult siblings and ageing
+parents, family names.
+
+Before it, 0.16.7 "The enemy dead, as the council said" (the player's rule that answers show on the map as
 accurately as possible, CLAUDE.md, starting with `Council_Dilemma_EnemyDead`. The player likes the pyre as an event
 but wants the crematorium used rather than bodies lying about, so the crematorium is its own answer, unavailable
 without a working one (`DilemmaEffect_HaulDead.Unavailable`), and the pyre's haul starts at 14 to 17. PlayOut/PlayDead.cs:

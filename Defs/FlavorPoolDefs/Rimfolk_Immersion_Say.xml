@@ -650,4 +650,66 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!--
+    Family (Source/ColonyCouncil/Social/Family.cs). A reunion: the one already here says it to the one who has just
+    come, tagged by what the newcomer is to them ([partner], [parent], [child], [sibling], [grand], [inlaw], [kin]).
+    Family among the raiders: said to nobody, by the one who has seen them. {OTHER}: the relative; {RELATION}: what
+    they are to the speaker ("brother").
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayReunion</defName>
+    <lines>
+      <plain>
+        <li>I never thought I'd see you again.</li>
+        <li>You found us, after all this time.</li>
+        <li>Come here, let me look at you.</li>
+        <li>There's so much I have to tell you.</li>
+        <li>[partner] I kept your place, every night I kept it.</li>
+        <li>[parent] I've wanted to show you this place for years.</li>
+        <li>[child] Look at you, all grown and here with me.</li>
+        <li>[sibling] You still walk like you're late for something.</li>
+        <li>[grand] The last time I saw you, you were half this size.</li>
+        <li>[inlaw] Family is family, however we came by it.</li>
+      </plain>
+      <warm>
+        <li>Welcome home, {OTHER_nameDef}, because that's what this is now.</li>
+      </warm>
+      <blunt>
+        <li>Took you long enough to get here.</li>
+      </blunt>
+      <cheerful>
+        <li>Wait until you see what we've built here.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'd started to think everyone I knew was gone.</li>
+      </gloomy>
+      <cold>
+        <li>You're here, then, good.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayKinRaider</defName>
+    <lines>
+      <plain>
+        <li>That's my {RELATION} out there with them.</li>
+        <li>I'd know that walk anywhere: it's {OTHER_nameDef}.</li>
+        <li>Of everyone who could have come over that hill.</li>
+        <li>Why would {OTHER_nameDef} come here with them?</li>
+        <li>I can't fire on my own {RELATION}.</li>
+        <li>Somebody tell me I'm seeing things.</li>
+      </plain>
+      <blunt>
+        <li>My {RELATION} chose their side, and it isn't ours.</li>
+      </blunt>
+      <gloomy>
+        <li>This is how it ends for our family, then.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} made a choice, and so will I.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

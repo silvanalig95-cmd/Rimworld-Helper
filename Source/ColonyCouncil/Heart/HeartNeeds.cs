@@ -126,14 +126,11 @@ namespace ColonyCouncil
                 v += 15f;
                 why.Add(15f, "CC_Heart_Why_Partner".Translate(partner.LabelShort));
             }
-            if (p.relations != null)
-                foreach (var o in p.relations.FamilyByBlood)
-                    if (o != null && o != p && !o.Dead && o.Faction == Faction.OfPlayer)
-                    {
-                        v += 8f;
-                        why.Add(8f, "CC_Heart_Why_Family".Translate());
-                        break;
-                    }
+            if (p.relations != null && Family.All(p).Any(o => !o.Dead && o.Faction == Faction.OfPlayer))
+            {
+                v += 8f;
+                why.Add(8f, "CC_Heart_Why_Family".Translate());
+            }
             var comp = CouncilGameComponent.Instance;
             if (comp != null && ColonyCouncilMod.Settings.socialWeb && comp.social.CliqueOf(p) != null)
             {

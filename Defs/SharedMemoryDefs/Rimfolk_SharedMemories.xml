@@ -190,4 +190,15 @@
     <joke>true</joke>
   </ColonyCouncil.SharedMemoryDef>
 
+  <!-- Family come together again (Source/ColonyCouncil/Social/Family.cs): one of them joined the colony where the other was. -->
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_Reunited</defName>
+    <label>the reunion</label>
+    <description>Family, a long way and a long time apart, found each other again when one of them came to the colony.</description>
+    <text>found each other again at {LABEL}</text>
+    <weight>1.3</weight>
+    <fadeDays>0</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
 </Defs>

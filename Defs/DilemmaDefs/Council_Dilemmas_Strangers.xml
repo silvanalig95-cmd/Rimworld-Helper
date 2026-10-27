@@ -1124,4 +1124,60 @@
     </options>
   </ColonyCouncil.DilemmaDef>
 
+  <!-- ===================== Family in the cells (Source/ColonyCouncil/Social/Family.cs) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmS_KinInChains</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>family in the cells</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
+    <weight>2.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <minColonists>1</minColonists>
+    <answerDays>2</answerDays>
+    <stranger>
+      <kind>Prisoner</kind>
+      <kinOfA>true</kinOfA>
+    </stranger>
+    <texts>
+      <li>{X_nameDef} is {A_nameDef}'s {RELATION}, and sits in the colony's cells after coming here with {FACTION}. {A_nameDef} hasn't said a word to anyone since, and has come to the council to ask what is to become of {X_objective}.</li>
+      <li>{A_nameDef} knew {X_nameDef} the moment the wardens carried {X_objective} in: {A_possessive} {RELATION}, older and harder than {A_pronoun} remembers, but family. {A_nameDef} asks the council to decide what the colony owes {X_objective}.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let {X_objective} go home</label>
+        <outcome>The wardens have orders to let {X_nameDef} go home to {FACTION}.</outcome>
+        <ways><mercy>8</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>Release</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_KinSetFree</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_SoftOnPrisoners</thought><onlyTrait><li>Bloodlust</li></onlyTrait></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} talk {X_objective} round</label>
+        <outcome>{A_nameDef} went down to the cells and sat with {X_nameDef} a long while. The wardens are to win {X_objective} over, and family is the best start they could have.</outcome>
+        <ways><mercy>3</mercy><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>AttemptRecruit</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-25</resistance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_KinHope</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~21</hours></li>
+        </effects>
+      </li>
+      <li>
+        <label>Treat {X_objective} like any other prisoner</label>
+        <outcome>{X_nameDef} stays in the cells like any other prisoner, and {A_nameDef} has stopped asking about {X_objective}.</outcome>
+        <ways><mercy>-3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_KinKept</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
 </Defs>

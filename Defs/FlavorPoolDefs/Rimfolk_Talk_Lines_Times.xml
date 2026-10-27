@@ -1090,4 +1090,76 @@
     </lines>
   </ColonyCouncil.TalkLinesDef>
 
+  <!-- ===================== Family come together again (Social/Family.cs): {LABEL} is the colony ===================== -->
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Reunited_Open</defName>
+    <memory>Rimfolk_Mem_Reunited</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Do you remember the day you walked into {LABEL}?</li>
+        <li>I still can't believe you found your way to {LABEL}.</li>
+        <li>Some mornings I forget you're here, and then I see you and remember.</li>
+        <li>I keep wanting to tell you everything that happened while we were apart.</li>
+        <li>Every time I see you at supper I'm glad all over again.</li>
+      </plain>
+      <warm>
+        <li>Having you here makes {LABEL} feel like home.</li>
+      </warm>
+      <blunt>
+        <li>You turned up just in time, you know.</li>
+      </blunt>
+      <cheerful>
+        <li>Best day {LABEL} has had, the day you came.</li>
+      </cheerful>
+      <gloomy>
+        <li>I'd given up on ever seeing you again.</li>
+      </gloomy>
+      <cold>
+        <li>It was good, you coming here.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Reunited_Reply</defName>
+    <memory>Rimfolk_Mem_Reunited</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I nearly turned back at the hills, and I'm glad I didn't.</li>
+        <li>I thought I'd lost all of you.</li>
+        <li>It still feels like a dream sometimes.</li>
+        <li>You'd changed, and I didn't care one bit.</li>
+        <li>I'd walk the whole way again to find you here.</li>
+      </plain>
+      <warm>
+        <li>Nothing out there was worth what I found here.</li>
+      </warm>
+      <blunt>
+        <li>Took me long enough.</li>
+      </blunt>
+      <gloomy>
+        <li>I wish the others had made it too.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Reunited_Close</defName>
+    <memory>Rimfolk_Mem_Reunited</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>We won't lose each other again.</li>
+        <li>Let's never wait that long again.</li>
+        <li>I'm glad it was {LABEL} you came to.</li>
+        <li>Family finds its way, in the end.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
 </Defs>

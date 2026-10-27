@@ -307,9 +307,10 @@ namespace ColonyCouncil
         /// <summary>What {SKILL} says (world events use a noun: "growing" rather than "plants").</summary>
         public virtual string SkillText => skill?.label ?? "";
 
-        /// <summary>More named arguments for the texts (world events add their own).</summary>
+        /// <summary>More named arguments for the texts (world events add their own): {RELATION}, what X is to A.</summary>
         protected virtual void AddArgs(List<NamedArgument> args)
         {
+            args.Add(Family.Relation(a, stranger).Named("RELATION"));
         }
 
         public IEnumerable<Pawn> Colonists => map == null ? Enumerable.Empty<Pawn>() : map.mapPawns.FreeColonistsSpawned.Where(p => !p.IsQuestLodger());

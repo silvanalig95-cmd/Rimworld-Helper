@@ -396,6 +396,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {PracticeTests.Run(Check)} things about practice (habits that grow from what colonists do, kept while lived).");
         Console.WriteLine($"Checked {BuildPriorityTests.Run(Check)} things about build priorities (the button's steps, what waits for what).");
         Console.WriteLine($"Checked {DecreeMathTests.Run(Check)} things about decrees (when many are hurt, needed and wanted decrees sooner, the work order in a clean sweep).");
+        Console.WriteLine($"Checked {FamilyTests.Run(Check)} things about family beyond blood (by marriage, the family tree, where they are, reunions).");
         Console.WriteLine($"Checked {FamilyYearsTests.Run(Check)} things about families across the years (years asleep, generations in the line, ages the wrong way round, remarks).");
         Console.WriteLine($"Checked {StallCounterTests.Run(Check)} things about RimMarket's sales table, Rimfolk's way (prices as RimMarket keeps them, counts, how a price sells).");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");

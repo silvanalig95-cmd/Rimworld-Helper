@@ -191,6 +191,15 @@ namespace ColonyCouncil
             foreach (var line in HealthTracker.StoryLines(p)) standing.lines.Add((line, Color.white));
             if (standing.lines.Count > 0) yield return standing;
 
+            // Their family, and where everyone is (Social/Family.cs).
+            var familyLines = Family.TreeLines(p);
+            if (familyLines.Count > 0)
+            {
+                var family = new Section { key = "family", header = "CC_Story_Family".Translate(), icon = Icons.Bonds };
+                foreach (var line in familyLines) family.lines.Add((line, Color.white));
+                yield return family;
+            }
+
             // Years in cryptosleep, and relatives whose ages run the wrong way round (Social/FamilyYears.cs).
             var yearLines = FamilyYears.StoryLines(p);
             if (yearLines.Count > 0)

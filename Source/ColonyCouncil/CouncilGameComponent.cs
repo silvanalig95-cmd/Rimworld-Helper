@@ -148,6 +148,7 @@ namespace ColonyCouncil
             Interplay.Reset();
             Together.Reset();
             FamilyYears.Reset();
+            Family.Reset();
             Guests.ForgetLastGame();
             // Lean/: the map facts and every def kept by name are worked out again for this game.
             MapFacts.Clear();
@@ -394,6 +395,7 @@ namespace ColonyCouncil
             Safe("social events", () => SocialEvents.Hourly(this));
             // Moments waiting for two people to be together (Social/Together.cs).
             Safe("together", () => Together.Hourly(this));
+            Safe("family", () => Family.Hourly(this));
         }
 
         private void HourlyEvents()

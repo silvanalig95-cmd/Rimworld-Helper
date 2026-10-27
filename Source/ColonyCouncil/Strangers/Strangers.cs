@@ -70,6 +70,8 @@ namespace ColonyCouncil
         public bool nemesis;
         /// <summary>A's own nemesis.</summary>
         public bool nemesisOfA;
+        /// <summary>Family of A's, by blood or by marriage ({RELATION} in texts says what they are to A).</summary>
+        public bool kinOfA;
         /// <summary>Ill (see <see cref="LifeChecks.Illness"/>; {THEIRILLNESS} in texts names it).</summary>
         public bool sick;
         /// <summary>Ill with one of these: Rimfolk ailment keys or hediff defNames.</summary>
@@ -171,6 +173,7 @@ namespace ColonyCouncil
             var nemeses = CouncilGameComponent.Instance?.nemeses;
             if (r.nemesis && !(nemeses?.IsNemesis(x) ?? false)) return false;
             if (r.nemesisOfA && (nemeses?.For(x) is Nemesis n ? !n.announced || n.victim != a : true)) return false;
+            if (r.kinOfA && !Family.Of(a, x)) return false;
             if (r.maxDistance > 0f && (a == null || !a.Spawned || a.Map != x.Map || x.Position.DistanceTo(a.Position) > r.maxDistance)) return false;
             if ((r.sick || !r.illness.NullOrEmpty()) && !LifeChecks.HasIllness(x, r.illness)) return false;
             if (IsHuman(r.kind))

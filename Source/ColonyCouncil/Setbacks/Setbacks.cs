@@ -149,7 +149,7 @@ namespace ColonyCouncil
 
         // ---------------- Who is close to whom ----------------
 
-        /// <summary>How close two colonists are: 0 not especially, 1 a close friend, 2 a partner or family by blood.</summary>
+        /// <summary>How close two colonists are: 0 not especially, 1 a close friend, 2 a partner or family (by blood or marriage).</summary>
         public static int Closeness(Pawn p, Pawn o)
         {
             if (p == null || o == null || p == o || p.relations == null) return 0;
@@ -158,6 +158,7 @@ namespace ColonyCouncil
                 if (LovePartnerRelationUtility.LovePartnerRelationExists(p, o)) return 2;
                 foreach (var f in p.relations.FamilyByBlood)
                     if (f == o) return 2;
+                if (Family.ByMarriage(p, o)) return 2;
             }
             catch
             {

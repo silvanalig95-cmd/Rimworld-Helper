@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Family beyond the game's own (Source/ColonyCouncil/Social/Family.cs): a reunion when a relative joins the colony,
+    family seen among the raiders, a death in the family by marriage (family by blood grieve with the game's own
+    thoughts), and the council's answer about a relative in the cells (Council_DlmS_KinInChains).
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Fam_Reunited</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>reunited with family</label>
+        <description>After all this time we're under the same roof again. I keep looking over to make sure it's real.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+        <baseOpinionOffset>10</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_KinAmongRaiders</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>family among the raiders</label>
+        <description>Someone of my own family came here with the raiders. I don't know what I'd do with them in my sights.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_DiedByMarriage</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>a death in the family</label>
+        <description>Someone who became family to me through marriage has died. Not my blood, but family all the same.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_KinSetFree</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>my family let go home</label>
+        <description>The council let my relative out of the cells to go home. I'd rather have had them here, but they're free.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_KinHope</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>hope for my family</label>
+        <description>The council will let me try to win my relative over. Maybe they'll stay, and not as a prisoner.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_KinKept</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>my family in a cell</label>
+        <description>Someone of my own family sits in the colony's cells, and the council means to keep them there like anyone else.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

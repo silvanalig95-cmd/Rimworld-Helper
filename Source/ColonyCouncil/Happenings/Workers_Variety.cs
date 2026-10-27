@@ -708,7 +708,7 @@ namespace ColonyCouncil
 
         private static List<(Pawn a, Pawn r)> Pairs(Map map) =>
             Colonists(map).Where(a => !a.DevelopmentalStage.Baby() && a.relations != null)
-                .SelectMany(a => a.relations.FamilyByBlood.Where(CanVisit).Select(r => (a, r))).ToList();
+                .SelectMany(a => Family.All(a).Where(CanVisit).Select(r => (a, r))).ToList();
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => Pairs(map).Count > 0;
 

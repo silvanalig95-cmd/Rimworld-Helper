@@ -1372,6 +1372,26 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Story tab -->
   <CC_Tab_Story>Story</CC_Tab_Story>
   <CC_Story_Standing>Standing</CC_Story_Standing>
+  <CC_Story_Family>Family</CC_Story_Family>
+  <CC_Family_Line>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, {AGE}: {WHERE}.</CC_Family_Line>
+  <CC_Family_LineDead>{OTHER_nameDef}, {PAWN_possessive} {RELATION}: {WHERE}.</CC_Family_LineDead>
+  <CC_Family_More>And {0} more relatives further out: uncles, aunts, cousins and their kin.</CC_Family_More>
+  <CC_Family_Where_Here>here</CC_Family_Where_Here>
+  <CC_Family_Where_Elsewhere>at another of the colony's settlements</CC_Family_Where_Elsewhere>
+  <CC_Family_Where_Away>away with a caravan</CC_Family_Where_Away>
+  <CC_Family_Where_Prisoner>a prisoner here</CC_Family_Where_Prisoner>
+  <CC_Family_Where_Slave>enslaved here</CC_Family_Where_Slave>
+  <CC_Family_Where_Visiting>visiting</CC_Family_Where_Visiting>
+  <CC_Family_Where_Taken>carried off, and not yet brought home</CC_Family_Where_Taken>
+  <CC_Family_Where_WithFaction>with {FACTION}</CC_Family_Where_WithFaction>
+  <CC_Family_Where_World>somewhere out in the world</CC_Family_Where_World>
+  <CC_Family_Where_Buried>buried here</CC_Family_Where_Buried>
+  <CC_Family_Where_Dead>dead</CC_Family_Where_Dead>
+  <CC_Fam_ReunionCause>{PAWN_nameDef} and {OTHER_nameDef} were together again at last.</CC_Fam_ReunionCause>
+  <CC_Fam_Reunion>{PAWN_nameDef} went to find {PAWN_possessive} {RELATION}, {OTHER_nameDef}, and the two of them are together again at last.</CC_Fam_Reunion>
+  <CC_Fam_KinRaiderCause>{PAWN_nameDef} saw {PAWN_possessive} {RELATION}, {OTHER_nameDef}, among the raiders.</CC_Fam_KinRaiderCause>
+  <CC_Fam_KinRaider>{PAWN_nameDef} has recognised {PAWN_possessive} {RELATION}, {OTHER_nameDef}, among {FACTION}'s fighters.</CC_Fam_KinRaider>
+  <CC_Fam_DiedByMarriageCause>{OTHER_nameDef}, {PAWN_nameDef}'s {RELATION}, died.</CC_Fam_DiedByMarriageCause>
   <CC_Story_Years>Across the years</CC_Story_Years>
   <CC_Years_Own>Born in {YEAR}, {CALENDAR} years ago: {LIVED} of those years lived, {SLEPT} spent in cryptosleep.</CC_Years_Own>
   <CC_Years_KinYounger>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, is {AGE}, {DIFF} years younger than {PAWN_objective}: {OTHER_pronoun} has spent {SLEPT} of {OTHER_possessive} {CALENDAR} years in cryptosleep.</CC_Years_KinYounger>

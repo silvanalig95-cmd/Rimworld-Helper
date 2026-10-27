@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Family, wherever they are
+
+*27 October 2026, version 0.17.0*
+
+- A colonist's story shows their family tree: partner, parents, brothers and sisters, children, grandparents and grandchildren, step-family and in-laws, with their age and where each is now (here, away, with another people, a prisoner, buried here...).
+- Family by marriage counts: a spouse's parents, a child's spouse, a step-parent or step-child are worried about, felt as family at home, grieved when they die, and can come to visit.
+- When someone joins the colony and family of theirs already lives here, the relative goes to find them: a reunion, with a word, a moment of joy for both and a memory they share.
+- A colonist who sees family among the raiders says so, and the colony hears of it. If that relative is taken prisoner, the council is asked whether to let them go home, let the colonist try to talk them round, or keep them like any other prisoner.
+
 ## The enemy dead, as the council said
 
 *27 October 2026, version 0.16.7*

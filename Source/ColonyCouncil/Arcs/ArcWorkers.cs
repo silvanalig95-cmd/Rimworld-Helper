@@ -83,13 +83,14 @@ namespace ColonyCouncil
 
         public static bool Kin(Pawn a, Pawn b) => a?.relations != null && b != null && a.GetRelations(b).Any(r => r.familyByBloodRelation);
 
-        /// <summary>How close a is to b: opinion, the social web's warmth, and family or partner on top.</summary>
+        /// <summary>How close a is to b: opinion, the social web's warmth, and partner, family or in-law on top.</summary>
         public static float Closeness(Pawn a, Pawn b)
         {
             if (a == null || b == null || a == b) return -999f;
             float c = Opinion(a, b) + (CouncilGameComponent.Instance?.social?.Warmth(a, b) ?? 0f);
             if (Partners(a, b)) c += 60f;
             else if (Kin(a, b)) c += 30f;
+            else if (Family.ByMarriage(a, b)) c += 20f;
             return c;
         }
 
