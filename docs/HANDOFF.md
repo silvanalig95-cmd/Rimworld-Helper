@@ -1,6 +1,19 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.0 "Family, wherever they are", the first of four rounds of family features the player chose
+Last shipped: 0.17.1 "As the answer said, in its own time", the first fixes from the answers audit
+(`docs/answers-audit.md`: 22 ranked gaps between answers' words and the map, and five plainly broken, B1 to B5).
+B3: a feast's raw food (a `DilemmaEffect_Consume` of rawfood beside a `DilemmaEffect_Feast`) is held on the feast
+(`PlayCook.Hold`) and cooked in the hours before it by its organizer or best cook, with a vanilla `Bill_Production`
+put first on the stove (restricted to the cook, one meal more than needed so the game never calls it finished,
+suspended by `Patch_FeastCooked` once enough are made) and `WorkGiver_DoBill.JobOnThing(forced)`; the feast waits
+(`PlayCook.Waits`, before the hours check in the tracker). B2: `DilemmaEffect_Fight` and `DilemmaEffect_MentalState`
+hold their effect on the play-out the pawn takes part in (`PlayOuts.HoldRisk`, `HeldRisk`), fired a third of the way in
+(`PlayOutMath.RiskAfter`) or at Done/Fallback. B5: errands carry load after load (`StepCarry`), camp goods go to a camp
+member (`PlaySpots.CampHand`). B1: a fall-through of a play holding the outcome always posts why. Not tried in the game
+here: the cooking bill and job are the game's own, given directly. Next: B4 (Made, Felled, Plant, PlanRoom and the
+events' resolve code make their result when the answer is given; it should come with the scene), then family round B.
+
+Before it, 0.17.0 "Family, wherever they are", the first of four rounds of family features the player chose
 (all sixteen from the proposal). Round A here: `Social/FamilyMath.cs` (pure, `FamilyTests`) and `Social/Family.cs`:
 family by marriage (ParentInLaw, ChildInLaw, Stepparent, Stepchild) in Worry, belonging, `Setbacks.Closeness`,
 `ArcUtil.Closeness`, family visits and remembrance days; the story's Family section (`TreeLines`); reunions (a
@@ -38,9 +51,6 @@ thingIDNumber and def, so after a load in the same session a pawn is read from t
 `Guests.ForgetLastGame` (Integrations/ModStrangers.cs) clears it from `CouncilGameComponent`'s constructor and
 FinalizeInit. Also the pyre: the answer's outcome rides on the `TimedThing.text` and is told when it burns down, and a
 pyre never lit in two days lets its bodies go (`End` unforbids them).)
-
-Next: an audit of the other answers for gaps between their words and the map, to be proposed to the player as a
-list; and a list of family ideas (from a survey of what Rimfolk already does with family) for the player to choose from.
 
 Before it, 0.16.4 "A better sales table" (the player asked to replace RimMarket's colony stall sales table, which
 they find hard to use: `Integrations/RimMarketStall.cs` finds RimMarket 1.0.6's stall, sale lines (`StallOrder`) and
