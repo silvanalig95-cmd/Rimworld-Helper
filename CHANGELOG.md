@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The stalls and the ships
+
+*27 October 2026, version 0.17.7*
+
+- With RimMarket and a powered orbital trade beacon on the map, what lies on the colony's own stalls is offered to trade ships too, beside what lies in the beacon's range.
+- A ship buys from what's in the beacon's range first, and what it buys from a stall comes off that stall's sale line, as a sale at the stall does.
+- A stall never stands in for a beacon: with none powered, ships see only what they always did. The setting "RimMarket's stall goods for trade ships" turns it off.
+
 ## Who raises them, and the one left
 
 *27 October 2026, version 0.17.6*

@@ -229,6 +229,8 @@ namespace ColonyCouncil
         public bool coverDrag = true;
         /// <summary>With RimMarket: a colony stall's sales table opens as Rimfolk's window (Integrations/RimMarketStall.cs).</summary>
         public bool marketStallWindow = true;
+        /// <summary>With RimMarket and a powered orbital trade beacon: a colony stall's goods are offered to trade ships too.</summary>
+        public bool marketStallShips = true;
 
         // Room planner (the clearing options are remembered between games)
         public bool planCutPlants = true;
@@ -427,6 +429,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref defenseGateReminder, "defenseGateReminder", true);
             Scribe_Values.Look(ref coverDrag, "coverDrag", true);
             Scribe_Values.Look(ref marketStallWindow, "marketStallWindow", true);
+            Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);
             Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);

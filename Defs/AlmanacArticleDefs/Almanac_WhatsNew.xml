@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.17.7</version>
+        <date>27 October 2026</date>
+        <title>The stalls and the ships</title>
+        <points>
+          <li>With RimMarket and a powered orbital trade beacon on the map, what lies on the colony's own stalls is offered to trade ships too, beside what lies in the beacon's range.</li>
+          <li>A ship buys from what's in the beacon's range first, and what it buys from a stall comes off that stall's sale line, as a sale at the stall does.</li>
+          <li>A stall never stands in for a beacon: with none powered, ships see only what they always did. The setting "RimMarket's stall goods for trade ships" turns it off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.17.6</version>
         <date>27 October 2026</date>
         <title>Who raises them, and the one left</title>

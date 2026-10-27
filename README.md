@@ -2493,7 +2493,10 @@ new setting needs a row there.
   Interface page): the colony's goods by category on the left, a click to put them on the counter; what is for sale on
   the right, a card a line, with the count, the quality range, the price on a slider with what it fetches and how well
   it sells; one price for every line at once; and what it all comes to and how often shoppers come. It reads and sets
-  RimMarket's own sale lines, by name, and RimMarket's window opens if they're not what Rimfolk expects.
+  RimMarket's own sale lines, by name, and RimMarket's window opens if they're not what Rimfolk expects. With a powered
+  orbital trade beacon on the map, what lies on the colony's stalls is offered to trade ships too, after what lies in
+  the beacon's range, and what a ship buys from a stall comes off its sale line; a stall alone is never a beacon
+  (setting "RimMarket's stall goods for trade ships").
 - **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
   its pawn panel, with bars for strain and the heart's needs (see above).
 

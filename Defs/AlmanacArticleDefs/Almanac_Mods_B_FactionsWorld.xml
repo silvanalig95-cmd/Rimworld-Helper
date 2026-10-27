@@ -86,6 +86,10 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
         <heading>With Rimfolk</heading>
         <text>"Set up the stall" opens Rimfolk's sales table instead of RimMarket's (the setting "RimMarket's sales table, Rimfolk's way", on the Interface page). On the left are the colony's goods by category, with a search and a sort by worth, count or name: a click puts all of an article on the counter, a right-click asks how many. On the right is only what is for sale, a card a line: how many (Shift for 10, Ctrl for 100), the quality range, the price on a slider with what it fetches each and for the whole line, how well it sells at that price, and what has sold and lies on the counter. Below them, one price for every line at once (a bargain, the usual, dear), and at the foot what it all comes to and how often shoppers come at these prices. It reads and sets RimMarket's own sale lines and nothing else, so either window can be used on the same stall. If RimMarket changes its stalls in a later version, its own window opens until Rimfolk catches up.</text>
       </li>
+      <li>
+        <heading>Trade ships and the stalls</heading>
+        <text>With a powered orbital trade beacon on the map, what lies on the counters of the colony's own stalls is offered to trade ships as well, beside what lies in the beacon's range, so there's no need to carry it back to sell it. A ship buys from what's in range first, and from a stall only past that; what it buys from a stall comes off that stall's sale line, as a sale there does. A stall doesn't stand in for a beacon: without a powered one, ships see only what they always did. The setting "RimMarket's stall goods for trade ships" (Interface page) turns it off.</text>
+      </li>
     </sections>
     <keywords>
       <li>market</li>

@@ -1,6 +1,15 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.6 "Who raises them, and the one left", family round C. `Social/FamilyGuardians.cs`: `Guardians`
+Last shipped: 0.17.7 "The stalls and the ships", the player's request that a RimMarket colony stall's goods count for
+orbital trade once there is a beacon. `Integrations/RimMarketStall.cs`: `Patch_StallGoodsForShips` (postfix on
+`TradeUtility.AllLaunchableThingsForTrade`, wrapping the result: the beacon's things first, then, only with
+`Building_OrbitalTradeBeacon.AllPowered(map)`, `RimMarketStall.ShipGoods`, the stock held in each colony stall's
+`StallStock` ThingOwner, never silver, filtered by `TradeUtility.PlayerSellableNow`); `Patch_StallGoodsSoldToShip`
+(prefix on `TradeShip.GiveSoldThingToTrader`: a thing whose `ParentHolder` is a colony stall calls the stall's own
+`Notify_Sold`, so its line counts down and haulers don't restock it; `Thing.SplitOff` takes it out of the stall's
+container). Both `Prepare` only with RimMarket; setting `marketStallShips`. Not tried in the game here.
+
+Before it, 0.17.6 "Who raises them, and the one left", family round C. `Social/FamilyGuardians.cs`: `Guardians`
 (`Unparented`: a child of ours with no living colonist parent by blood or `Council_AdoptiveParent`; `Notify_Died`
 records orphans for the session, `Hourly` fires `DilemmaWorker_Guardian` a day later with `OnlyOrphaned`;
 `CouncilGameComponent.guardianAsked`, once per child), `DilemmaEffect_Adopt` (a `DilemmaEffect_Needs` so it runs

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -13,17 +14,19 @@ namespace ColonyCouncil
     /// Everything is RimMarket's: its stall keeps its sale lines (article, how many to sell, the price as a share of the
     /// sell value, the quality range, how many sold), and the window reads and sets them through the stall's own
     /// SetOrder, its prices and the shoppers' pull through RimMarket's ColonyStalls. All of it is found by name; when
-    /// anything isn't there (another RimMarket version), RimMarket's own window opens as before.
+    /// anything isn't there (another RimMarket version), RimMarket's own window opens as before. And with a powered
+    /// orbital trade beacon on the map, what lies on a colony stall's counter is offered to trade ships too
+    /// (<see cref="Patch_StallGoodsForShips"/>), the setting "RimMarket's stall goods for trade ships".
     /// </summary>
     public static class RimMarketStall
     {
         public const string PackageId = "forti.rimmarket";
 
-        private static bool looked, ready;
-        private static Type dialogType;
+        private static bool looked, ready, shipsReady;
+        private static Type dialogType, stallType;
         private static FieldInfo dialogStall, orderDef, orderToSell, orderPrice, orderSold, orderQuality, shoppersVisit;
         private static PropertyInfo colonyStall, orders, stock, settings;
-        private static MethodInfo setOrder, stockDef, canSell, baseValueThing, baseValueDef, pull, interval, chanceFor, tradeable;
+        private static MethodInfo setOrder, stockDef, canSell, baseValueThing, baseValueDef, pull, interval, chanceFor, tradeable, notifySold;
 
         /// <summary>One sale line of a stall, as read from RimMarket.</summary>
         public struct Line
@@ -48,6 +51,17 @@ namespace ColonyCouncil
         /// <summary>Rimfolk's window takes the place of RimMarket's sales table now.</summary>
         public static bool On => RimfolkPatches.On && (ColonyCouncilMod.Settings?.marketStallWindow ?? true) && Ready;
 
+        /// <summary>A colony stall's goods are offered to trade ships when there's a powered beacon (and what that needs was found).</summary>
+        public static bool ShipsOn
+        {
+            get
+            {
+                if (!RimfolkPatches.On || !(ColonyCouncilMod.Settings?.marketStallShips ?? true)) return false;
+                Look();
+                return shipsReady;
+            }
+        }
+
         private static void Look()
         {
             if (looked) return;
@@ -56,7 +70,7 @@ namespace ColonyCouncil
             {
                 if (!ModsConfig.IsActive(PackageId)) return;
                 dialogType = AccessTools.TypeByName("RimMarket.UI.Dialog_ColonyStall");
-                var stallType = AccessTools.TypeByName("RimMarket.Buildings.Building_MarketStall");
+                stallType = AccessTools.TypeByName("RimMarket.Buildings.Building_MarketStall");
                 var orderType = AccessTools.TypeByName("RimMarket.Buildings.StallOrder");
                 var stalls = AccessTools.TypeByName("RimMarket.Market.ColonyStalls");
                 var utility = AccessTools.TypeByName("RimMarket.Market.MarketUtility");
@@ -80,17 +94,21 @@ namespace ColonyCouncil
                 interval = AccessTools.Method(stalls, "ShopperIntervalTicks", new[] { typeof(float) });
                 chanceFor = AccessTools.Method(stalls, "ChanceFor", new[] { typeof(float) });
                 tradeable = AccessTools.Method(utility, "Tradeable", new[] { typeof(Thing) });
+                notifySold = AccessTools.Method(stallType, "Notify_Sold", new[] { typeof(ThingDef), typeof(int) });
                 settings = AccessTools.Property(mod, "Settings");
                 shoppersVisit = settings != null ? AccessTools.Field(settings.PropertyType, "shoppersVisit") : null;
                 ready = dialogStall != null && orderDef != null && orderToSell != null && orderPrice != null && orderSold != null && orderQuality != null
                         && orderQuality.FieldType == typeof(QualityRange) && colonyStall != null && orders != null && stock != null && setOrder != null
                         && stockDef != null && canSell != null && baseValueThing != null && baseValueDef != null && pull != null && interval != null
                         && chanceFor != null && tradeable != null;
+                // Trade ships only need the stall, its counter and which article a thing is (its sale line, to count one sold).
+                shipsReady = colonyStall != null && stock != null && stockDef != null;
                 if (!ready) Log.Warning("[Rimfolk] RimMarket's sales table isn't the one Rimfolk knows, so RimMarket's own window stays.");
+                if (!shipsReady) Log.Warning("[Rimfolk] RimMarket's stalls aren't the ones Rimfolk knows, so trade ships don't see their goods.");
             }
             catch (Exception e)
             {
-                ready = false;
+                ready = shipsReady = false;
                 CouncilLog.ErrorOnce("RimMarket", e);
             }
         }
@@ -134,6 +152,30 @@ namespace ColonyCouncil
 
         public static ThingDef StockDef(Thing t) => stockDef.Invoke(null, new object[] { t }) as ThingDef;
 
+        /// <summary>
+        /// What lies on the counters of the colony's own stalls on the map that a trade ship may buy (never silver, which
+        /// a stall doesn't sell). The beacon's rule for what can be sold holds for them as for anything else.
+        /// </summary>
+        public static List<Thing> ShipGoods(Map map, ITrader trader)
+        {
+            var list = new List<Thing>();
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            {
+                if (!stallType.IsInstanceOfType(b) || !b.Spawned || !IsColonyStall(b)) continue;
+                foreach (var t in Stock(b))
+                    if (t != null && !t.Destroyed && t.def != ThingDefOf.Silver && TradeUtility.PlayerSellableNow(t, trader)) list.Add(t);
+            }
+            return list;
+        }
+
+        /// <summary>Something off a colony stall's counter was sold to a trade ship: it comes off the stall's line, as a sale at the stall does.</summary>
+        public static void SoldToShip(Thing t, int count)
+        {
+            if (notifySold == null || !(t?.ParentHolder is Thing stall) || !stallType.IsInstanceOfType(stall) || !IsColonyStall(stall)) return;
+            var def = StockDef(t);
+            if (def != null) notifySold.Invoke(stall, new object[] { def, Math.Min(count, t.stackCount) });
+        }
+
         public static bool CanSell(ThingDef def) => canSell.Invoke(null, new object[] { def }) is bool b && b;
 
         public static bool Tradeable(Thing t) => tradeable.Invoke(null, new object[] { t }) is bool b && b;
@@ -171,6 +213,59 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("RimMarket sales table", e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// With a powered orbital trade beacon on the map, what lies on a colony stall's counter is offered to a trade ship
+    /// too, after what lies in the beacon's range, so a ship buys from the stockpile first (Integrations/RimMarketStall.cs).
+    /// A stall is never a beacon of its own: with no powered beacon, it adds nothing.
+    /// </summary>
+    [HarmonyPatch(typeof(TradeUtility), nameof(TradeUtility.AllLaunchableThingsForTrade))]
+    public static class Patch_StallGoodsForShips
+    {
+        public static bool Prepare() => ModsConfig.IsActive(RimMarketStall.PackageId);
+
+        public static void Postfix(Map map, ITrader trader, ref IEnumerable<Thing> __result)
+        {
+            if (map == null || __result == null || !RimMarketStall.ShipsOn) return;
+            __result = WithStalls(__result, map, trader);
+        }
+
+        private static IEnumerable<Thing> WithStalls(IEnumerable<Thing> inRange, Map map, ITrader trader)
+        {
+            foreach (var t in inRange) yield return t;
+            List<Thing> stalls = null;
+            try
+            {
+                if (Building_OrbitalTradeBeacon.AllPowered(map).Any()) stalls = RimMarketStall.ShipGoods(map, trader);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("RimMarket stall goods for trade ships", e);
+            }
+            if (stalls == null) yield break;
+            foreach (var t in stalls) yield return t;
+        }
+    }
+
+    /// <summary>A colony stall's goods sold to a trade ship come off its sale line (Integrations/RimMarketStall.cs).</summary>
+    [HarmonyPatch(typeof(TradeShip), nameof(TradeShip.GiveSoldThingToTrader))]
+    public static class Patch_StallGoodsSoldToShip
+    {
+        public static bool Prepare() => ModsConfig.IsActive(RimMarketStall.PackageId);
+
+        public static void Prefix(Thing toGive, int countToGive)
+        {
+            if (toGive == null || countToGive <= 0 || !RimMarketStall.ShipsOn) return;
+            try
+            {
+                RimMarketStall.SoldToShip(toGive, countToGive);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("RimMarket stall goods sold to a ship", e);
             }
         }
     }
