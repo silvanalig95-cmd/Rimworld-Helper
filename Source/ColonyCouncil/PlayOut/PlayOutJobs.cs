@@ -73,6 +73,9 @@ namespace ColonyCouncil
             stay.socialMode = RandomSocialMode.SuperActive;
             stay.handlingFacing = true;
             stay.tickIntervalAction = Stay;
+            // At work on the place (breaking up a fallen star, stripping a wreck): the game's own effect for it.
+            var fx = Play?.workEffect;
+            if (fx != null && job.targetA.IsValid) stay.WithEffect(fx, TargetIndex.A);
             yield return stay;
         }
 

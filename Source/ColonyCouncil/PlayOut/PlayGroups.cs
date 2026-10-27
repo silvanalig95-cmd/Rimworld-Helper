@@ -218,8 +218,17 @@ namespace ColonyCouncil
 
         private static bool StartWalk(PlayOut p, int now, out string where)
         {
+            where = null;
             var lead = p.hands[0].pawn;
-            p.cell = PlaySpots.FocusCell(p, p.to, lead, out where);
+            p.cell = IntVec3.Invalid;
+            // Out to the ground for a new room: where it's to stand.
+            if (!p.planRoom.NullOrEmpty() && p.planMid.IsValid
+                && CellFinder.TryFindRandomCellNear(p.planMid, p.map, 3, c => c.Standable(p.map) && lead.CanReach(c, PathEndMode.OnCell, Danger.Some), out var mid))
+            {
+                p.cell = mid;
+                where = "CC_Play_Where_NewRoom".Translate();
+            }
+            if (!p.cell.IsValid) p.cell = PlaySpots.FocusCell(p, p.to, lead, out where);
             if (!p.cell.IsValid)
             {
                 p.waitReason = (p.to == PlaySpot.Walk || p.to == PlaySpot.Fields || p.to == PlaySpot.Water ? "CC_Play_Why_Weather" : "CC_Play_Why_Place").Translate();
@@ -493,6 +502,8 @@ namespace ColonyCouncil
                 p.phase = next;
                 p.phaseStarted = now;
                 if (next == 2 && going.Count > 0) PlayWords.During(p, going.RandomElement().pawn);
+                // There: the stakes go in for the new room.
+                if (next == 2 && !p.planRoom.NullOrEmpty()) DilemmaEffect_PlanRoom.Stake(p);
             }
             if (p.phase >= 4 || going.Count == 0) Finish(t, p, false, null);
         }

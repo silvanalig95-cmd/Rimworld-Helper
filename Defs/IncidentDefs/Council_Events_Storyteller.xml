@@ -727,6 +727,9 @@
           <li>
             <label>Strip it for parts</label>
             <outcome>The drone comes apart bolt by bolt into components and good steel. The scorched lump of casing is left where it fell.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>stripping the drone</label><to>Place</to><work>ConstructMetal</work><hours>8~18</hours><duration>1.5~2</duration></li>
+            </effects>
           </li>
           <li>
             <label>Let {A_nameDef} pull its memory (it may wipe itself)</label>
@@ -735,10 +738,12 @@
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} gets the casing open, but the core wipes itself the moment {A_pronoun} touches it. One component is all that's left worth having.</riskOutcome>
             <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the drone's memory</label><to>Place</to><work>Research</work><hours>8~20</hours><duration>1~1.5</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.3</share><max>1500</max></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Intellectual</skill><xp>500</xp></li>
             </effects>
             <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the drone's memory</label><to>Place</to><work>Research</work><hours>8~20</hours><duration>1~1.5</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Intellectual</skill><xp>250</xp></li>
             </riskEffects>
             <ways><toil>1</toil></ways>

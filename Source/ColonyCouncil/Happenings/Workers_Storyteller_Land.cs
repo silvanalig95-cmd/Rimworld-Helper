@@ -145,12 +145,29 @@ namespace ColonyCouncil
             {
                 var at = ctx.place.Position;
                 var map = ctx.map;
-                ctx.place.Destroy();
                 // The heartwood goes to the carver; the rest is timber.
                 if (option == 0) ctx.count = Mathf.RoundToInt(ctx.count * 0.6f);
+                // Felled with the game's own cutting by whoever is to have the wood, the logs by the stump, and the
+                // answer's words told once it's down (OnMapTimed.cs).
+                var axe = Axe(ctx);
+                if (PlayOuts.On && ctx.place is Plant tree && axe != null && OnMapTimed.Instance != null)
+                {
+                    string told = ctx.Format(base.Resolved(ctx, option, risk, byDefault, outcome));
+                    OnMapTimed.Instance.AddFelling(map, new List<Plant> { tree }, new List<Pawn> { axe }, ctx.count, told, option == 1);
+                    return null;
+                }
+                ctx.place.Destroy();
                 StorytellerEvents.Hand(ThingDefOf.WoodLog, ctx.count, map, at);
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
+        /// <summary>A, if they can cut it down; else the colony's best hand at cutting plants.</summary>
+        private static Pawn Axe(HappeningContext ctx)
+        {
+            bool Can(Pawn p) => p != null && !p.Dead && p.Spawned && p.Map == ctx.map && !p.Downed && !p.WorkTypeIsDisabled(WorkTypeDefOf.PlantCutting);
+            if (Can(ctx.a)) return ctx.a;
+            return StorytellerEvents.Adults(ctx.map).Where(Can).OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Plants)?.Level ?? 0).FirstOrDefault();
         }
     }
 
@@ -178,12 +195,27 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags) => tags.Add(ctx.variant >= 10 ? "fields" : "nofields");
 
+        /// <summary>The swarm's hollow tree: the grown tree nearest the colony's fields (or its middle), not in the home area.</summary>
+        protected override bool Begin(HappeningContext ctx, HappeningExtension ext)
+        {
+            var map = ctx.map;
+            var zone = map.zoneManager.AllZones.OfType<Zone_Growing>().OrderByDescending(z => z.CellCount).FirstOrDefault();
+            var from = zone != null && zone.Cells.Count > 0 ? zone.Cells[zone.Cells.Count / 2] : StorytellerEvents.Center(map);
+            ctx.place = map.listerThings.ThingsInGroup(ThingRequestGroup.Plant).OfType<Plant>()
+                .Where(p => p.Spawned && p.def.plant != null && p.def.plant.IsTree && p.def.plant.treeCategory == TreeCategory.Full && p.Growth >= 0.8f
+                            && !p.Position.Fogged(map) && !map.areaManager.Home[p.Position] && p.Position.DistanceTo(from) <= 60f)
+                .OrderBy(p => p.Position.DistanceToSquared(from)).FirstOrDefault();
+            return true;
+        }
+
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             var more = StorytellerEvents.More(def);
             if (option == 0 && !risk)
             {
-                if (ctx.thing != null) StorytellerEvents.Hand(ctx.thing, ctx.count, ctx.map, VarietyUtil.Near(ctx.a, ctx.map));
+                // Cut from the tree when the smoking is done, and left at its foot (PlayAfter).
+                if (ctx.thing != null && !PlayAfter.AfterVisit(ctx, PlayAfter.Honey, ctx.thing, ctx.count))
+                    StorytellerEvents.Hand(ctx.thing, ctx.count, ctx.map, VarietyUtil.Near(ctx.a, ctx.map));
                 outcome = VarietyUtil.Line(more?.outcomes, ctx, new[] { ctx.thing != null ? "honey" : "comb" }) ?? outcome;
             }
             else if (option == 1 && ctx.map != null)
@@ -254,20 +286,40 @@ namespace ColonyCouncil
             if (option <= 1 && Lying(ctx))
             {
                 var at = ctx.place.Position;
-                ctx.place.Destroy();
                 var near = option == 0 && LivingEvents.AtHome(ctx.a, ctx.map) ? ctx.a.Position : at;
+                int steel = option == 0 ? Rand.RangeInclusive(18, 28) : Rand.RangeInclusive(35, 55);
+                string forging = ctx.thing != null ? "CC_St_Forging".Translate(ctx.thing.label.Named("THING")).Resolve() : null;
                 if (option == 0 && !risk && ctx.thing != null)
                 {
                     // Star iron and a smith's best: one step above what they'd make from ordinary steel.
                     var q = ctx.a?.skills != null ? QualityUtility.GenerateQualityCreatedByPawn(ctx.a, SkillDefOf.Crafting, false) : QualityCategory.Good;
                     if (q < QualityCategory.Legendary) q += 1;
-                    var blade = ThingMaker.MakeThing(ctx.thing, ThingDefOf.Steel);
-                    blade.TryGetComp<CompQuality>()?.SetQuality(q, ArtGenerationContext.Colony);
-                    GenPlace.TryPlaceThing(blade, near, ctx.map, ThingPlaceMode.Near);
                     CouncilGameComponent.Instance?.happenings.Remember(StorytellerEvents.StarBlade, null, null, ctx.thing.defName, ctx.thing.label, false, ctx.a);
                     outcome = VarietyUtil.Line(more?.outcomes, ctx, null, QualityUtility.GetLabel(q)) ?? outcome;
+                    // The star carried in to the colony's forge and worked there; the blade lies at the forge (PlayMake.cs).
+                    if (PlayMake.KeepMade(ctx.map, ctx.a, ctx.thing, "Steel", ctx.place, (int)q, 1, forging, SkillDefOf.Crafting, ctx.plays) == null)
+                    {
+                        ctx.place.Destroy();
+                        var blade = ThingMaker.MakeThing(ctx.thing, ThingDefOf.Steel);
+                        blade.TryGetComp<CompQuality>()?.SetQuality(q, ArtGenerationContext.Colony);
+                        GenPlace.TryPlaceThing(blade, near, ctx.map, ThingPlaceMode.Near);
+                    }
                 }
-                else StorytellerEvents.Hand(ThingDefOf.Steel, option == 0 ? Rand.RangeInclusive(18, 28) : Rand.RangeInclusive(35, 55), ctx.map, near);
+                // Worked at the forge and cracked in the quench: what's left is steel, at the forge.
+                else if (option == 0)
+                {
+                    if (PlayMake.KeepMade(ctx.map, ctx.a, ThingDefOf.Steel, null, ctx.place, -1, steel, forging, SkillDefOf.Crafting, ctx.plays, ctx.thing) == null)
+                    {
+                        ctx.place.Destroy();
+                        StorytellerEvents.Hand(ThingDefOf.Steel, steel, ctx.map, near);
+                    }
+                }
+                // Broken up where it fell by the one sent out to it, the steel left there (PlayAfter).
+                else if (!PlayAfter.AfterVisit(ctx, PlayAfter.StarSteel, null, steel))
+                {
+                    ctx.place.Destroy();
+                    StorytellerEvents.Hand(ThingDefOf.Steel, steel, ctx.map, near);
+                }
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }

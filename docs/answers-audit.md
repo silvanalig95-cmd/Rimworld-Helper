@@ -5,8 +5,9 @@ happens is what the player sees. This audit (27 October 2026, at 0.17.0) went th
 its effects really do on the map. Line numbers are as of 0.17.0.
 
 Done since: B1, B2, B3 and B5 in 0.17.1 (feasts cooked first, risks held for the scene, errands in loads, missed
-visits say so). Next: B4 (results made before the play-out: Made, Felled, Plant, PlanRoom, the events' resolve code),
-then the ranked gaps by visibility.
+visits say so); B4 in 0.17.2 (made at the bench first, trees felled and saplings planted by hand, the room staked at the
+walk's end, the four storyteller events' results after the work), which also covers ranked gaps 1 (feasts), 4, 5, 7,
+10, 11 (saplings; the seeds of Story_Seeds are still open) and 18. Next: the other ranked gaps by visibility.
 
 
 **Path shorthand:** code paths are under Source/ColonyCouncil/, and def paths are under Defs/.

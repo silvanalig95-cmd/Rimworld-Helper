@@ -179,6 +179,8 @@ namespace ColonyCouncil
                 }
                 // A feast's cook puts the pot on in the hours before it, and the feast waits while it's on (PlayCook.cs).
                 if (PlayCook.Waits(this, p, now)) return;
+                // A thing an answer says someone made is made first, at the bench, then carried over (PlayMake.cs).
+                if (PlayMake.Waits(this, p, now)) return;
                 if (!PlayOutMath.InHours(GenLocalDate.HourOfDay(p.map), p.hourFrom, p.hourTo)) return;
                 if (p.IsGathering) TryStartGathering(p, now);
                 else if (p.IsGroup) PlayGroups.TryStart(this, p, now);
@@ -530,7 +532,7 @@ namespace ColonyCouncil
             Risks(p);
             Remember(p, true);
             // What follows it (a secret said out loud at the end of the gathering called to hear it).
-            PlayAfter.Run(p);
+            PlayAfter.Run(p, true);
             // What those who took part remember and are talked of for (Social/Talk/SharedTimes.cs).
             SharedTimes.PlayDone(p, took);
             // A visit, a lesson or a day of rest says the answer's outcome now it has happened; gatherings and groups
@@ -583,7 +585,7 @@ namespace ColonyCouncil
             Risks(p);
             Remember(p, false);
             GiveAll(p);
-            PlayAfter.Run(p);
+            PlayAfter.Run(p, false);
             // A work party, a walk, a vigil, a search, an errand or a hunt lets go of anyone still on it; an errand
             // that never went takes its things from the stores all the same, as the answer always did.
             if (p.IsGroup)

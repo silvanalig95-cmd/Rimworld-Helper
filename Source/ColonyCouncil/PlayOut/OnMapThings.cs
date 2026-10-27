@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using Verse;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -37,8 +38,12 @@ namespace ColonyCouncil
         public string stuff = "WoodLog";
         /// <summary>Set in a corner of their own bedroom (a coffin made ready), not carried over.</summary>
         public bool inRoom;
+        /// <summary>How long its maker works at it before it's carried over (PlayMake.cs).</summary>
+        public float makeHours = 1.5f;
 
         [Unsaved] private Thing pending;
+        [Unsaved] private ThingDef pendingDef;
+        [Unsaved] private SkillDef pendingSkill;
         [Unsaved] private Pawn pendingCarrier;
         [Unsaved] private Pawn pendingTo;
         [Unsaved] private Pawn pendingFrom;
@@ -68,7 +73,16 @@ namespace ColonyCouncil
                 if (to != null && to.Dead) to = null;
                 // A building set in someone's room must be one the colony could build.
                 if (inRoom && def.category == ThingCategory.Building && !Avail.CanBuild(def, map)) return;
-                var thing = Make(def, mk, skill ?? ctx.skill ?? SkillDefOf.Artistic);
+                var sk = skill ?? ctx.skill ?? SkillDefOf.Artistic;
+                // Made by the one who carries it over, or by a visitor it's collected from: they make it first, at the
+                // bench or the fire, and it's handed over once it's made (PlayMake.cs).
+                if (!inRoom && mk != null && PlayOuts.On && (giver == PlayWho.None || PlayOuts.Who(giver, ctx) == mk) && to != null && to != mk
+                    && to.Spawned && to.Map == map && mk.Spawned && mk.Map == map)
+                {
+                    string m = PlayOuts.OurPerson(mk) ? PlayGive.Give : PlayOuts.OurPerson(to) ? PlayGive.Fetch : null;
+                    if (m != null && ToBeMade(ctx, def, sk, m == PlayGive.Give ? mk : to, to, mk, m)) return;
+                }
+                var thing = Make(def, stuff, quality, mk, sk);
                 if (thing == null) return;
                 string label = thing.LabelNoCount;
                 if (inRoom && to != null)
@@ -126,6 +140,31 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Sets the making and then the handing over going. False when it couldn't be (it's made now, the old way).</summary>
+        private bool ToBeMade(DilemmaContext ctx, ThingDef def, SkillDef sk, Pawn carrier, Pawn to, Pawn from, string mode)
+        {
+            pendingDef = def;
+            pendingSkill = sk;
+            pendingCarrier = carrier;
+            pendingTo = to;
+            pendingFrom = from;
+            pendingMode = mode;
+            float was = chance;
+            chance = 1f;
+            try
+            {
+                return Create(ctx) != null;
+            }
+            finally
+            {
+                chance = was;
+                pendingDef = null;
+                pendingSkill = null;
+                pendingCarrier = pendingTo = pendingFrom = null;
+                pendingMode = null;
+            }
+        }
+
         /// <summary>Sets the handing over going. False when it couldn't be (the thing is then left where it lies, unforbidden).</summary>
         private bool Handed(DilemmaContext ctx, Thing thing, Pawn carrier, Pawn to, Pawn from, string mode)
         {
@@ -156,8 +195,19 @@ namespace ColonyCouncil
 
         protected override bool Fill(PlayOut p, DilemmaContext ctx)
         {
-            if (pending == null || pendingCarrier == null) return false;
-            p.things = new List<Thing> { pending };
+            if ((pending == null && pendingDef == null) || pendingCarrier == null) return false;
+            p.things = pending != null ? new List<Thing> { pending } : new List<Thing>();
+            if (pending == null)
+            {
+                // Still to be made: what, of what, with which skill, and for how long.
+                p.thing = pendingDef;
+                p.what = stuff;
+                p.skill = pendingSkill;
+                p.amount = (int)quality;
+                p.phase = PlayMake.Making;
+                p.makeTicks = PlayOutMath.DurationTicks(makeHours);
+                p.tally = 0;
+            }
             p.visitor = pendingCarrier;
             p.organizer = pendingCarrier;
             p.invited = new List<Pawn> { pendingCarrier };
@@ -173,7 +223,7 @@ namespace ColonyCouncil
         }
 
         protected override string DefaultLabel(DilemmaContext ctx) =>
-            "CC_Play_Label_Give".Translate(PlayGive.Label(pending).Named("THING")).Resolve();
+            "CC_Play_Label_Give".Translate((pending != null ? PlayGive.Label(pending) : pendingDef?.label ?? "").Named("THING")).Resolve();
 
         /// <summary>The first of the candidates this game has, of the colony's era.</summary>
         public static ThingDef Pick(string names)
@@ -184,7 +234,8 @@ namespace ColonyCouncil
             return i >= 0 ? defs[i] : null;
         }
 
-        private Thing Make(ThingDef def, Pawn mk, SkillDef sk)
+        /// <summary>The thing itself: of <paramref name="stuff"/> if it may be, its quality from the maker's skill (else <paramref name="quality"/>), signed by them.</summary>
+        public static Thing Make(ThingDef def, string stuff, QualityCategory quality, Pawn mk, SkillDef sk)
         {
             ThingDef st = null;
             if (def.MadeFromStuff)
@@ -256,6 +307,13 @@ namespace ColonyCouncil
                     var trees = GenRadial.RadialDistinctThingsAround(at, map, radius, true).OfType<Plant>().Where(t => Fellable(t, map))
                         .OrderBy(t => t.Position.DistanceToSquared(at)).Take(OnMapMath.MaxTrees * 2).ToList();
                     int n = OnMapMath.TreesToFell(trees.Select(t => t.YieldNow()).ToList(), count);
+                    // Those the words say cut the wood go and fell the trees themselves, one after another (OnMapTimed.cs).
+                    var axes = PlayOuts.On ? Axes(map, ctx) : new List<Pawn>();
+                    if (n > 0 && axes.Count > 0 && OnMapTimed.Instance != null)
+                    {
+                        OnMapTimed.Instance.AddFelling(map, trees.Take(n).ToList(), axes, count);
+                        return;
+                    }
                     foreach (var t in trees.Take(n))
                     {
                         var pos = t.Position;
@@ -292,6 +350,39 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("felled wood", e);
             }
+        }
+
+        /// <summary>
+        /// Who swings the axes: the visitor and their own people (a few drovers, the hired hands), or a few of the camp, or
+        /// A; only those who can cut plants.
+        /// </summary>
+        private List<Pawn> Axes(Map map, DilemmaContext ctx)
+        {
+            var axes = new List<Pawn>();
+            bool Can(Pawn x) => x != null && !x.Dead && x.Spawned && x.Map == map && !x.Downed && x.RaceProps.Humanlike && !x.DevelopmentalStage.Juvenile()
+                                && !x.WorkTypeIsDisabled(WorkTypeDefOf.PlantCutting) && !x.HostileTo(Faction.OfPlayer) && !x.IsPrisoner;
+            switch (near)
+            {
+                case PlaySpot.Stranger:
+                    var x0 = ctx.stranger;
+                    if (Can(x0))
+                    {
+                        axes.Add(x0);
+                        var lord = x0.GetLord();
+                        if (lord != null) axes.AddRange(lord.ownedPawns.Where(o => o != x0 && Can(o)).Take(2));
+                    }
+                    break;
+                case PlaySpot.Camp:
+                    var camp = CampTracker.Instance?.camp;
+                    if (camp != null && camp.map == map) axes.AddRange(camp.Here.Where(o => o != camp.trader && Can(o)).Take(3));
+                    break;
+                case PlaySpot.Gate:
+                    break;
+                default:
+                    if (Can(ctx.a) && PlayOuts.OurPerson(ctx.a)) axes.Add(ctx.a);
+                    break;
+            }
+            return axes;
         }
 
         private IntVec3 Anchor(Map map, DilemmaContext ctx)
@@ -355,24 +446,27 @@ namespace ColonyCouncil
                 int n = OnMapMath.Saplings(kids);
                 var at = near == PlaySpot.Fields ? FieldEdge(map) : IntVec3.Invalid;
                 if (!at.IsValid) at = ByTheWalls(map);
-                var planted = new List<Thing>();
+                var cells = new List<IntVec3>();
                 foreach (var c in GenRadial.RadialCellsAround(at, 14f, false))
                 {
-                    if (planted.Count >= n) break;
-                    if (!Ground(tree, c, map) || planted.Any(t => t.Position.InHorDistOf(c, 2.9f))) continue;
-                    var plant = (Plant)ThingMaker.MakeThing(tree);
-                    plant.Growth = 0.05f;
-                    plant.sown = true;
-                    GenSpawn.Spawn(plant, c, map, WipeMode.Vanish);
-                    planted.Add(plant);
+                    if (cells.Count >= n) break;
+                    if (Ground(tree, c, map) && !cells.Any(x => x.InHorDistOf(c, 2.9f))) cells.Add(c);
+                }
+                if (cells.Count == 0) return;
+                // Each planter goes out and plants their own: a child each, or A (OnMapTimed.cs).
+                var planters = PlayOuts.On ? Planters(ctx, map, cells.Count) : new List<Pawn>();
+                if (planters.Count > 0 && OnMapTimed.Instance != null)
+                {
+                    OnMapTimed.Instance.AddPlanting(map, tree, cells.Take(planters.Count).ToList(), planters, markers);
+                    return;
+                }
+                var planted = new List<Thing>();
+                foreach (var c in cells)
+                {
+                    var plant = Sapling(tree, c, map, markers);
+                    if (plant != null) planted.Add(plant);
                 }
                 if (planted.Count == 0) return;
-                if (markers)
-                {
-                    var stone = MarkerStone(map);
-                    if (stone != null)
-                        foreach (var t in planted) Marker(map, t.Position, stone);
-                }
                 string text = planted.Count == 1 ? "CC_Saplings_One".Translate().Resolve() : "CC_Saplings_Many".Translate(planted.Count).Resolve();
                 Messages.Message(text, new LookTargets(planted), MessageTypeDefOf.NeutralEvent, false);
             }
@@ -380,6 +474,28 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("saplings planted", e);
             }
+        }
+
+        /// <summary>A sapling set in the ground at the cell, with a stone of the local rock beside it if <paramref name="marker"/>.</summary>
+        public static Plant Sapling(ThingDef tree, IntVec3 c, Map map, bool marker)
+        {
+            if (tree == null || map == null || !Ground(tree, c, map)) return null;
+            var plant = (Plant)ThingMaker.MakeThing(tree);
+            plant.Growth = 0.05f;
+            plant.sown = true;
+            GenSpawn.Spawn(plant, c, map, WipeMode.Vanish);
+            if (marker && MarkerStone(map) is ThingDef stone) Marker(map, c, stone);
+            return plant;
+        }
+
+        /// <summary>Who plants: each of the colony's children for the children's trees, else A; only those up and about.</summary>
+        private List<Pawn> Planters(DilemmaContext ctx, Map map, int n)
+        {
+            bool Can(Pawn x) => x != null && !x.Dead && x.Spawned && x.Map == map && !x.Downed && PlayOuts.OurPerson(x)
+                                && !x.DevelopmentalStage.Baby() && x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
+            var list = children ? ctx.Colonists.Where(x => x.DevelopmentalStage.Child() && Can(x)).Take(n).ToList() : new List<Pawn>();
+            if (list.Count == 0 && Can(ctx.a)) list.Add(ctx.a);
+            return list;
         }
 
         /// <summary>A chunk of the rock that lies under this land (the first of its rock kinds), or null.</summary>
@@ -442,7 +558,7 @@ namespace ColonyCouncil
             return center;
         }
 
-        private static bool Ground(ThingDef tree, IntVec3 c, Map map)
+        public static bool Ground(ThingDef tree, IntVec3 c, Map map)
         {
             if (!c.InBounds(map) || c.Fogged(map) || c.Roofed(map) || c.GetZone(map) != null || c.GetEdifice(map) != null) return false;
             if (c.GetPlant(map) is Plant p && p.def.plant.IsTree) return false;
@@ -468,27 +584,74 @@ namespace ColonyCouncil
             if (chance < 1f && !Rand.Chance(chance)) return;
             try
             {
+                var who = PlayOuts.Who(forWhom, ctx) ?? ctx.a;
                 foreach (var t in templates)
                 {
-                    if (t == null || t.UnavailableReason(map) != null) continue;
-                    var cfg = RoomPlanConfig.For(t);
-                    var trial = cfg.WithDoor(cfg.DoorX(t));
-                    var furniture = t.Resolve(map, out _, trial);
-                    if (!TemplatePlanner.FindSpot(t, map, furniture, trial, out var anchor, out int rot)) continue;
-                    trial.rotation = rot;
-                    var plan = TemplatePlanner.Plan(t, map, anchor, trial, furniture);
-                    if (plan == null || !plan.CanPlace) continue;
-                    TemplatePlanner.Execute(plan, map);
-                    var who = PlayOuts.Who(forWhom, ctx) ?? ctx.a;
-                    var look = plan.door.IsValid ? new LookTargets(plan.door, map) : new LookTargets(anchor, map);
-                    if (who != null)
-                        Messages.Message("CC_PlanRoom_Marked".Translate(who.Named("PAWN"), t.label.Named("ROOM")).Resolve(), look, MessageTypeDefOf.NeutralEvent, false);
+                    var plan = Find(t, map);
+                    if (plan == null) continue;
+                    // With a walk the answer set going, the stakes go in when they get there (PlayGroups.StepWalk).
+                    var walk = PlayOuts.On ? PlayOuts.Collected().FirstOrDefault(p => p.kind == PlayKind.Procession && p.state == PlayState.Pending) : null;
+                    if (walk != null)
+                    {
+                        walk.planRoom = t.defName;
+                        walk.planAnchor = plan.anchor;
+                        walk.planRot = plan.rotation;
+                        walk.planMid = plan.interior.Count > 0 ? plan.interior[plan.interior.Count / 2] : plan.anchor;
+                        walk.planFor = who;
+                        return;
+                    }
+                    Place(plan, t, map, who);
                     return;
                 }
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("room marked out", e);
+            }
+        }
+
+        /// <summary>Where the planner would put the room now, with the player's settings, or null.</summary>
+        private static PlacementPlan Find(RoomTemplateDef t, Map map, IntVec3? at = null, int rot = 0)
+        {
+            if (t == null || t.UnavailableReason(map) != null) return null;
+            var cfg = RoomPlanConfig.For(t);
+            var trial = cfg.WithDoor(cfg.DoorX(t));
+            var furniture = t.Resolve(map, out _, trial);
+            var anchor = at ?? IntVec3.Invalid;
+            if (at == null && !TemplatePlanner.FindSpot(t, map, furniture, trial, out anchor, out rot)) return null;
+            trial.rotation = rot;
+            var plan = TemplatePlanner.Plan(t, map, anchor, trial, furniture);
+            return plan != null && plan.CanPlace ? plan : null;
+        }
+
+        private static void Place(PlacementPlan plan, RoomTemplateDef t, Map map, Pawn who)
+        {
+            TemplatePlanner.Execute(plan, map);
+            var look = plan.door.IsValid ? new LookTargets(plan.door, map) : new LookTargets(plan.anchor, map);
+            if (who != null)
+                Messages.Message("CC_PlanRoom_Marked".Translate(who.Named("PAWN"), t.label.Named("ROOM")).Resolve(), look, MessageTypeDefOf.NeutralEvent, false);
+        }
+
+        /// <summary>
+        /// The walk has reached the ground for the new room: it's staked out now, where it was found if it still fits,
+        /// else where the planner would put it now. False when it fits nowhere any more.
+        /// </summary>
+        public static bool Stake(PlayOut p)
+        {
+            var t = DefDatabase<RoomTemplateDef>.GetNamedSilentFail(p.planRoom ?? "");
+            p.planRoom = null;
+            if (t == null || p.map == null) return false;
+            try
+            {
+                var plan = Find(t, p.map, p.planAnchor, p.planRot) ?? Find(t, p.map);
+                if (plan == null) return false;
+                Place(plan, t, p.map, p.planFor);
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("room staked out", e);
+                return false;
             }
         }
     }

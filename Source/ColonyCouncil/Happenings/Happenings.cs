@@ -115,6 +115,8 @@ namespace ColonyCouncil
     public class HappeningContext : DilemmaContext
     {
         public IncidentDef incident;
+        /// <summary>While an answer is being given: what it set going on the map, so the event's own result can wait for it.</summary>
+        [Unsaved] public List<PlayOut> plays;
         /// <summary>Whoever came along with X (pilgrims, mourners, a challenger's friends).</summary>
         public List<Pawn> group = new List<Pawn>();
         /// <summary>What X is to A ("sister").</summary>
@@ -651,7 +653,9 @@ namespace ColonyCouncil
                     plays = PlayOuts.Collected();
                 }
                 string outcome = DilemmaChoices.Outcome(option, risk, worker.TextTags(ctx));
+                ctx.plays = plays;
                 outcome = worker.Resolved(ctx, i, risk, byDefault, outcome);
+                ctx.plays = null;
                 comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.incident.label, ctx.Format(option.label));
                 string told = ctx.Format(outcome);
@@ -679,6 +683,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("event cleanup " + ctx.incident?.defName, e);
                 }
                 // The letter's text is written; let go of the people so old saves don't hold them.
+                ctx.plays = null;
                 ctx.a = ctx.b = ctx.pet = ctx.stranger = null;
                 ctx.group.Clear();
                 ctx.things.Clear();

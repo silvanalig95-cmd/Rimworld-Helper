@@ -135,6 +135,22 @@
     and the pyre lit at dusk by one of the colony who carries the wood out to it.
   -->
   <JobDef>
+    <defName>Council_PlayOutPlant</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutPlant</driverClass>
+    <reportString>planting a sapling.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_PlayOutMake</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutMake</driverClass>
+    <reportString>working at TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
     <defName>Council_PlayOutCremate</defName>
     <driverClass>ColonyCouncil.JobDriver_PlayOutCremate</driverClass>
     <reportString>taking TargetA to TargetB.</reportString>

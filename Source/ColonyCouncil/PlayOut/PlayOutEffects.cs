@@ -238,6 +238,8 @@ namespace ColonyCouncil
         public PlaySpot to = PlaySpot.Person;
         public PlayWho whom = PlayWho.B;
         public List<PlaySpot> orTo;
+        /// <summary>Work they do there, shown with the game's own effect (breaking up a fallen star: Mine).</summary>
+        public EffecterDef work;
 
         /// <summary>The places a visit can go to on its own (not to a person, a grave or the camp, which have their own ways).</summary>
         public static bool OwnPlace(PlaySpot s) =>
@@ -268,6 +270,7 @@ namespace ColonyCouncil
                 p.to = PlaySpot.Person;
             }
             p.place = (ctx as HappeningContext)?.place;
+            p.workEffect = work;
             // A personal story that waited for something made: the thing itself, where it stands (the dream made real).
             if (to == PlaySpot.Place && p.place == null && ctx is ArcEffectContext made)
             {

@@ -22,6 +22,8 @@ namespace ColonyCouncil
     public static class PlayGive
     {
         public const string Give = "give", Burn = "burn", Fetch = "fetch";
+        /// <summary>Made and kept where it was made: nothing to carry over (a blade forged from a fallen star).</summary>
+        public const string Keep = "keep";
 
         public static Thing ThingOf(PlayOut p) => p?.things.FirstOrDefault(t => t != null && !t.Destroyed);
 
@@ -929,14 +931,25 @@ namespace ColonyCouncil
     public static class PlayAfter
     {
         public const string Confess = "confess";
+        /// <summary>
+        /// An event's result, made when the visit to its place is over (and only if it happened): the comb cut from the
+        /// bees' tree, a fallen star broken up or forged into a blade, a wreck stripped or its memory pulled.
+        /// </summary>
+        public const string Honey = "honey", StarSteel = "starsteel", StarBlade = "starblade", DroneParts = "droneparts", DroneMemory = "dronememory";
 
-        public static void Run(PlayOut p)
+        /// <summary>What follows it: <paramref name="happened"/> false when it never came about (an event's result then isn't made).</summary>
+        public static void Run(PlayOut p, bool happened)
         {
             if (p == null || p.afterward.NullOrEmpty()) return;
             string what = p.afterward;
             p.afterward = null;
             try
             {
+                if (what != Confess)
+                {
+                    if (happened) Result(p, what);
+                    return;
+                }
                 if (what == Confess)
                 {
                     var owner = p.named.FirstOrDefault();
@@ -950,6 +963,56 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("play out afterward " + what, e);
             }
+        }
+
+        private static void Result(PlayOut p, string what)
+        {
+            var place = p.place;
+            var map = p.map;
+            if (map == null) return;
+            var at = place != null && place.Spawned && place.Map == map ? place.Position : p.visitor != null && p.visitor.Spawned ? p.visitor.Position : IntVec3.Invalid;
+            if (!at.IsValid) return;
+            switch (what)
+            {
+                case Honey:
+                    if (p.thing != null && p.amount > 0) StorytellerEvents.Hand(p.thing, p.amount, map, at);
+                    break;
+                case StarSteel:
+                    if (place != null && place.Spawned) place.Destroy();
+                    StorytellerEvents.Hand(ThingDefOf.Steel, p.amount, map, at);
+                    break;
+                case StarBlade:
+                {
+                    if (place != null && place.Spawned) place.Destroy();
+                    if (p.thing == null) break;
+                    var blade = ThingMaker.MakeThing(p.thing, ThingDefOf.Steel);
+                    blade.TryGetComp<CompQuality>()?.SetQuality((QualityCategory)p.amount, ArtGenerationContext.Colony);
+                    GenPlace.TryPlaceThing(blade, at, map, ThingPlaceMode.Near);
+                    break;
+                }
+                case DroneParts:
+                    StorytellerEvents.Hand(ThingDefOf.ComponentIndustrial, Math.Max(1, p.amount / 10), map, at);
+                    StorytellerEvents.Hand(ThingDefOf.Steel, p.amount, map, at);
+                    break;
+                case DroneMemory:
+                    StorytellerEvents.Hand(ThingDefOf.ComponentIndustrial, Math.Max(1, p.amount), map, at);
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// The answer being given set a visit going to the event's place: its result (<paramref name="what"/>) waits for it.
+        /// False when there's none (made now, the old way).
+        /// </summary>
+        public static bool AfterVisit(HappeningContext ctx, string what, ThingDef thing, int amount)
+        {
+            var visit = ctx?.plays?.FirstOrDefault(x => x != null && x.kind == PlayKind.Visit && x.state != PlayState.Done && x.afterward.NullOrEmpty());
+            if (visit == null || !PlayOuts.On) return false;
+            visit.afterward = what;
+            visit.thing = thing;
+            visit.amount = amount;
+            if (visit.place == null) visit.place = ctx.place;
+            return true;
         }
     }
 }

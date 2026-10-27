@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Made before it's given
+
+*27 October 2026, version 0.17.2*
+
+- A carving, a stool, a knife or a book an answer says someone made is made first: its maker works at the colony's bench for it (or at the camp's fire, or at the table) for an hour or two, with the game's working effect, and only then carries it over. Before, it appeared at once.
+- Wood a guest, the hired hands or the camp's people cut comes from trees they really go and fell, one after another with the game's own cutting. The logs are left for the colony, and the answer's words are told once the trees are down.
+- The children's trees, and a tree planted in someone's memory, are planted by hand: each walks out to their own spot and digs it in, and the sapling is in the ground when they're done.
+- A new room is staked out when the walk out to the ground gets there, not when the answer is given.
+- A fallen star is forged into a blade at the colony's smithy, or broken up where it fell by someone sent out to it. A crashed drone is stripped or its memory pulled at the wreck. The wild bees' comb is cut from a real tree near the fields, and the lightning-struck tree is felled by hand.
+
 ## As the answer said, in its own time
 
 *27 October 2026, version 0.17.1*

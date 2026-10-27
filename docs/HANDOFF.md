@@ -1,6 +1,21 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.1 "As the answer said, in its own time", the first fixes from the answers audit
+Last shipped: 0.17.2 "Made before it's given", B4 of the answers audit (`docs/answers-audit.md`): results an answer
+used to make the moment it was given now come with the work. `PlayOut/PlayMake.cs`: a `DilemmaEffect_Made` with a maker
+(and a hand-over) is a Give play in phase `PlayMake.Making` until the maker works at the bench found by the recipe that
+makes the thing (`RecipeFor`, `AllRecipeUsers`), the camp's fire for one of the camp, else the table
+(`JobDriver_PlayOutMake`, time kept in `p.tally`, `p.makeTicks`); `KeepMade` (mode `PlayGive.Keep`) makes and keeps it at
+the bench, fetching an ingredient first (`p.place`: the fallen star) and with a fixed quality (`makeQuality`) or bench
+(`makeAt`). `OnMapTimed` kinds `Felling` (the named visitor, their lord's people, the camp's or A cut the trees with
+`JobDefOf.CutPlant`; logs made since `firstId` near the stumps are unforbidden and counted; `topUp` for the struck tree)
+and `Planting` (`JobDriver_PlayOutPlant`, a child each or A, at cells chosen up front). Both can carry the answer's
+outcome (`PlayOuts.RegisterTimed`, `TellWhenWorkDone`) and say so if nothing was done. `DilemmaEffect_PlanRoom` stores
+the plan on the answer's walk (`planRoom`, `planAnchor`, `planRot`, `planMid`), staked at the walk's far end
+(`Stake`). The storyteller events: `HappeningContext.plays` lets `Resolved` defer a result onto the answer's visit to the
+place (`PlayAfter.AfterVisit`, results run only when it happened: `Run(p, happened)`), visits can show work
+(`DilemmaEffect_Visit.work`). Not tried in the game here: the jobs are the game's own or ours, given directly.
+
+Before it, 0.17.1 "As the answer said, in its own time", the first fixes from the answers audit
 (`docs/answers-audit.md`: 22 ranked gaps between answers' words and the map, and five plainly broken, B1 to B5).
 B3: a feast's raw food (a `DilemmaEffect_Consume` of rawfood beside a `DilemmaEffect_Feast`) is held on the feast
 (`PlayCook.Hold`) and cooked in the hours before it by its organizer or best cook, with a vanilla `Bill_Production`
@@ -10,8 +25,8 @@ suspended by `Patch_FeastCooked` once enough are made) and `WorkGiver_DoBill.Job
 hold their effect on the play-out the pawn takes part in (`PlayOuts.HoldRisk`, `HeldRisk`), fired a third of the way in
 (`PlayOutMath.RiskAfter`) or at Done/Fallback. B5: errands carry load after load (`StepCarry`), camp goods go to a camp
 member (`PlaySpots.CampHand`). B1: a fall-through of a play holding the outcome always posts why. Not tried in the game
-here: the cooking bill and job are the game's own, given directly. Next: B4 (Made, Felled, Plant, PlanRoom and the
-events' resolve code make their result when the answer is given; it should come with the scene), then family round B.
+here: the cooking bill and job are the game's own, given directly. Next: family round B, and the audit's ranked gaps
+in order of how visible they are.
 
 Before it, 0.17.0 "Family, wherever they are", the first of four rounds of family features the player chose
 (all sixteen from the proposal). Round A here: `Social/FamilyMath.cs` (pure, `FamilyTests`) and `Social/Family.cs`:

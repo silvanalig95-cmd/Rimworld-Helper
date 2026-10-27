@@ -329,6 +329,8 @@ MODEL = {
     # Things kept on the map for a while: lanterns for a night, a fire, the pyre, a bolted door, an animal at heel
     "PlayOut/OnMapTimed.cs:kept": ("cap", (C["TimedKept"], 0.3), 300, "kept a night to a few days, at most OnMapTimed.MaxKept at once"),
     "PlayOut/OnMapTimed.cs:things": ("fixed", 3, P, "per thing kept: its lanterns (OnMapMath.MaxLanterns at most), the fire, the door"),
+    "PlayOut/OnMapTimed.cs:pawns": ("fixed", 1, P, "per thing kept: those felling the trees (three at most), fellings only"),
+    "PlayOut/OnMapTimed.cs:cells": ("fixed", 2, 40, "per thing kept: where each planter sets their sapling (OnMapMath.MaxSaplings at most), plantings only"),
     "PlayOut/PlayOuts.cs:named": ("fixed", 2, P, "per play-out: those the answer names (counted under plays)"),
     "PlayOut/PlayOuts.cs:hands": ("fixed", 6, 200, "per play-out: who went (counted under plays)"),
     "PlayOut/PlayOuts.cs:route": ("fixed", 6, 40, "per searcher: the places they look over (counted under plays)"),

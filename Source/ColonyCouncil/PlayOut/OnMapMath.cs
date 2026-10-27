@@ -17,6 +17,9 @@ namespace ColonyCouncil
         /// <summary>At most this many saplings are planted for one answer.</summary>
         public const int MaxSaplings = 6;
 
+        /// <summary>How long those an answer says felled the trees have to fell them: half a day.</summary>
+        public const int FellingTicks = 10 * TicksPerHour;
+
         /// <summary>
         /// How many of the nearest trees (their wood, in the order they're nearest) are felled for <paramref name="wanted"/>
         /// logs: the fewest whose wood reaches it, never more than <paramref name="max"/>; none when no wood is wanted or

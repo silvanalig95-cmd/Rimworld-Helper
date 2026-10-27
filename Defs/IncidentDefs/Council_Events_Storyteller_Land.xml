@@ -171,11 +171,11 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_Honeycomb</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Animals</skill><xp>300</xp></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Outdoors</to><hours>10~17</hours><duration>1~1.5</duration><label>the smoking of the bees</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Place</to><orTo><li>Outdoors</li></orTo><hours>10~17</hours><duration>1~1.5</duration><label>the smoking of the bees</label></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_ChasedByBees</thought></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Outdoors</to><hours>10~17</hours><duration>0.75~1</duration><label>the smoking of the bees</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Place</to><orTo><li>Outdoors</li></orTo><hours>10~17</hours><duration>0.75~1</duration><label>the smoking of the bees</label></li>
             </riskEffects>
           </li>
           <li>
@@ -246,6 +246,9 @@
           <li>
             <label>Break it up for the metal</label>
             <outcome>The fallen star is broken up where it fell. The pieces are good steel, and wait there to be hauled in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>breaking up the fallen star</label><to>Place</to><work>Mine</work><hours>8~18</hours><duration>1.5~2</duration></li>
+            </effects>
             <ways><toil>1</toil></ways>
           </li>
           <li>

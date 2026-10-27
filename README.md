@@ -450,13 +450,15 @@ names who learned what); if it never happens within a few hours,
 everyone gets them anyway, as before. This week lists what's coming, the dilemmas page says how each went, and those
 who took part write about it. A setting (Events & world) turns it off.
 
-What an answer says now exists is made real where that's safe: the apology carving, a broken keepsake's replacement
-and the gift that settles an old debt are signed sculptures that the one who made them carries over by hand and sets
-down at the other's feet (the moods wait for it), an old crafter hands the student their old knife, a scribe's bound
+What an answer says now exists is made real where that's safe, and made when the words say: the apology carving, a
+broken keepsake's replacement and the gift that settles an old debt are signed sculptures, worked first at the colony's
+bench for an hour or two, that the one who made them then carries over by hand and sets down at the other's feet (the
+moods wait for it), an old crafter hands the student their old knife, a scribe's bound
 copy is a real book with the scribe's name on it, a coffin made ready is a wooden sarcophagus in the corner of its
-owner's room, assigned as their grave, the hat bought on the side is a real hat, a guest who cut wood leaves real
-stumps and logs beside them, the children's trees are saplings at the edge of the fields with a stone beside each, a
-room staked out is placed as building plans through the room planner, and a relapsed colonist's stash, or a found
+owner's room, assigned as their grave, the hat bought on the side is a real hat, a guest who cut wood goes and fells
+real trees with the game's own cutting and leaves the logs by the stumps, each child walks out and plants their own
+sapling at the edge of the fields with a stone beside it, a room staked out is placed as building plans through the
+room planner when the walk out to it gets there, a fallen star is forged into a blade at the colony's smithy, and a relapsed colonist's stash, or a found
 one the council won't keep, burns in the yard. Shearing day is a real shearing and milking party.
 
 Some answers keep something on the map for a while. Lantern night sets real torches along the colony's walls at dusk

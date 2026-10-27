@@ -327,6 +327,20 @@ namespace ColonyCouncil
         public Bill_Production cookBill;
         /// <summary>The cooking is over (done, or given up): the feast serves what there is.</summary>
         public bool cookOver;
+        /// <summary>A thing still to be made for a hand-over: how long its maker works at it (PlayMake.cs; the time worked is the tally).</summary>
+        public int makeTicks;
+        /// <summary>Its quality, when the answer already knows it (star iron: a step above the smith's usual), else -1: from the maker's skill.</summary>
+        public int makeQuality = -1;
+        /// <summary>Made at the bench for this instead of its own (the blade's forge, for what's left of cracked star iron).</summary>
+        public ThingDef makeAt;
+        /// <summary>A walk to stake out a new room (DilemmaEffect_PlanRoom): its template, where and which way it lies, the middle of it, and whose it is.</summary>
+        public string planRoom;
+        public IntVec3 planAnchor = IntVec3.Invalid;
+        public int planRot;
+        public IntVec3 planMid = IntVec3.Invalid;
+        public Pawn planFor;
+        /// <summary>A visit's work at the place, with the game's own effect for it.</summary>
+        public EffecterDef workEffect;
         /// <summary>Turns a search's fan of places (so two searches don't go the same way).</summary>
         public int seed;
         /// <summary>A gift's or a haul's particular things: the thing handed over, the dead still to carry (OnMapPlays.cs).</summary>
@@ -435,6 +449,15 @@ namespace ColonyCouncil
             Scribe_References.Look(ref cook, "cook");
             Scribe_References.Look(ref cookBill, "cookBill");
             Scribe_Values.Look(ref cookOver, "cookOver");
+            Scribe_Values.Look(ref makeTicks, "makeTicks");
+            Scribe_Values.Look(ref makeQuality, "makeQuality", -1);
+            Scribe_Defs.Look(ref makeAt, "makeAt");
+            Scribe_Values.Look(ref planRoom, "planRoom");
+            Scribe_Values.Look(ref planAnchor, "planAnchor", IntVec3.Invalid);
+            Scribe_Values.Look(ref planRot, "planRot");
+            Scribe_Values.Look(ref planMid, "planMid", IntVec3.Invalid);
+            Scribe_References.Look(ref planFor, "planFor");
+            Scribe_Defs.Look(ref workEffect, "workEffect");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();
@@ -476,9 +499,14 @@ namespace ColonyCouncil
         private sealed class Scope
         {
             public readonly List<PlayOut> plays = new List<PlayOut>();
+            /// <summary>Work it set going that isn't a plan of its own (trees felled, saplings planted: OnMapTimed).</summary>
+            public readonly List<TimedThing> timed = new List<TimedThing>();
         }
 
         private static readonly List<Scope> scopes = new List<Scope>();
+
+        /// <summary>The work the last answer given set going on the map outside its plans, for its outcome to wait on.</summary>
+        private static List<TimedThing> lastTimed;
 
         public readonly struct Collecting : IDisposable
         {
@@ -491,6 +519,7 @@ namespace ColonyCouncil
 
             public void Dispose()
             {
+                if (scopes.Count >= depth && depth > 0) lastTimed = scopes[depth - 1].timed;
                 while (scopes.Count >= depth && scopes.Count > 0) scopes.RemoveAt(scopes.Count - 1);
             }
         }
@@ -533,15 +562,36 @@ namespace ColonyCouncil
         /// </summary>
         public static bool TellWhenDone(List<PlayOut> plays, string told, string prefix = null)
         {
-            if (told.NullOrEmpty() || plays == null || plays.Count == 0) return false;
+            if (told.NullOrEmpty()) return false;
+            if (plays == null || plays.Count == 0) return TellWhenWorkDone(told);
             var main = plays.FirstOrDefault(p => p != null && p.state != PlayState.Done && p.IsGathering)
                        ?? plays.FirstOrDefault(p => p != null && p.state != PlayState.Done && p.IsGroup)
                        ?? plays.FirstOrDefault(p => p != null && p.state != PlayState.Done);
-            if (main == null) return false;
+            if (main == null) return TellWhenWorkDone(told);
             main.outcome = told;
             string planned = PlayWords.Planned(main);
             if (!planned.NullOrEmpty())
                 Messages.Message((prefix.NullOrEmpty() ? "" : prefix + " ") + planned, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, false);
+            return true;
+        }
+
+        /// <summary>Work an answer being given sets going outside its plans (OnMapTimed), which can carry its outcome.</summary>
+        internal static void RegisterTimed(TimedThing k)
+        {
+            if (k != null && scopes.Count > 0) scopes[scopes.Count - 1].timed.Add(k);
+        }
+
+        /// <summary>
+        /// No plan to tell it: the trees being felled or the saplings being planted for the answer tell it when they're
+        /// done (OnMapTimed). False when there's none of that either: tell it now.
+        /// </summary>
+        private static bool TellWhenWorkDone(string told)
+        {
+            var timed = scopes.Count > 0 ? scopes[scopes.Count - 1].timed : lastTimed;
+            lastTimed = null;
+            var k = timed?.FirstOrDefault(x => x != null && x.text.NullOrEmpty() && (x.kind == TimedKind.Felling || x.kind == TimedKind.Planting));
+            if (k == null) return false;
+            k.text = told;
             return true;
         }
 

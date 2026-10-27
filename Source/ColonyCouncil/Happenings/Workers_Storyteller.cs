@@ -1127,13 +1127,22 @@ namespace ColonyCouncil
             if (Wreck(ctx))
             {
                 var at = ctx.place.Position;
+                // Taken apart, or its memory pulled, by the one sent out to it; what comes out is left by the wreck when
+                // they're done (PlayAfter).
                 if (option == 0)
                 {
-                    StorytellerEvents.Hand(ThingDefOf.ComponentIndustrial, Rand.RangeInclusive(2, 4), ctx.map, at);
-                    StorytellerEvents.Hand(ThingDefOf.Steel, Rand.RangeInclusive(20, 35), ctx.map, at);
+                    int steel = Rand.RangeInclusive(20, 35);
+                    if (!PlayAfter.AfterVisit(ctx, PlayAfter.DroneParts, null, steel))
+                    {
+                        StorytellerEvents.Hand(ThingDefOf.ComponentIndustrial, Rand.RangeInclusive(2, 4), ctx.map, at);
+                        StorytellerEvents.Hand(ThingDefOf.Steel, steel, ctx.map, at);
+                    }
                 }
                 else if (option == 1)
-                    StorytellerEvents.Hand(ThingDefOf.ComponentIndustrial, risk ? 1 : 2, ctx.map, at);
+                {
+                    if (!PlayAfter.AfterVisit(ctx, PlayAfter.DroneMemory, null, risk ? 1 : 2))
+                        StorytellerEvents.Hand(ThingDefOf.ComponentIndustrial, risk ? 1 : 2, ctx.map, at);
+                }
                 else if (option == 2 && !byDefault)
                 {
                     // Their people come for the drone and pay for it on the spot (Couriers/); else gone and paid for at once.

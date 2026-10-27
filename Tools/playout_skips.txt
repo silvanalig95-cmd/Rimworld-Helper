@@ -286,7 +286,6 @@ Council_Evt_SealedCrate [option 2] the rider takes the crate: the event's own co
 
 # Defs/IncidentDefs/Council_Events_Storyteller_Land.xml
 Council_Evt_WarmVent [letter] news of the land; already been out to see it
-Council_Evt_StarIron [option 1] the star broken up and carried in: the event's own code
 Council_Evt_HighWater [letter] driftwood to haul: the game's own hauling
 Council_Evt_OmenBeast [option 0] the event's own code: the find is handed over at once and the beast goes its way within hours
 Council_Evt_OmenBeast [option 3] nothing done

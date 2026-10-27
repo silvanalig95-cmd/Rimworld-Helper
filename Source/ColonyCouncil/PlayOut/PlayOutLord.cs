@@ -19,6 +19,8 @@ namespace ColonyCouncil
         public static JobDef Council_PlayOutSearch;
         public static JobDef Council_PlayOutCarry;
         public static JobDef Council_PlayOutGive;
+        public static JobDef Council_PlayOutMake;
+        public static JobDef Council_PlayOutPlant;
         public static JobDef Council_PlayOutRounds;
         public static JobDef Council_PlayOutWorkNext;
         public static JobDef Council_PlayOutCremate;

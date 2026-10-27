@@ -22,7 +22,11 @@ namespace ColonyCouncil
         /// <summary>A sleepwalker's door bolted for the night, a few nights running.</summary>
         Bolt,
         /// <summary>An animal at its person's heels for a day or two.</summary>
-        Follow
+        Follow,
+        /// <summary>Trees felled by those the answer says cut the wood, one after another, the logs left for the colony.</summary>
+        Felling,
+        /// <summary>Saplings planted by those the answer says plant them, each at their own spot.</summary>
+        Planting
     }
 
     /// <summary>One thing an answer keeps on the map for a while, and when it ends.</summary>
@@ -50,6 +54,13 @@ namespace ColonyCouncil
         public bool on;
         /// <summary>A pyre: the answer's outcome, told once it has burned down.</summary>
         public string text;
+        /// <summary>A felling: who swings the axes.</summary>
+        public List<Pawn> pawns = new List<Pawn>();
+        /// <summary>A felling: the logs cut so far, and the first thing id made since it began (to know them by).</summary>
+        public int done;
+        public int firstId;
+        /// <summary>A planting: where each of them plants theirs (in the order of <see cref="pawns"/>).</summary>
+        public List<IntVec3> cells = new List<IntVec3>();
 
         public void ExposeData()
         {
@@ -66,10 +77,25 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nights, "nights");
             Scribe_Values.Look(ref on, "on");
             Scribe_Values.Look(ref text, "text");
+            Scribe_Collections.Look(ref pawns, "pawns", LookMode.Reference);
+            Scribe_Values.Look(ref done, "done");
+            Scribe_Values.Look(ref firstId, "firstId");
+            Scribe_Collections.Look(ref cells, "cells", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();
                 things.RemoveAll(t => t == null);
+                if (cells == null) cells = new List<IntVec3>();
+                if (pawns == null) pawns = new List<Pawn>();
+                // A planter lost in the load takes their spot with them.
+                if (kind == TimedKind.Planting)
+                    for (int i = Math.Min(pawns.Count, cells.Count) - 1; i >= 0; i--)
+                        if (pawns[i] == null)
+                        {
+                            pawns.RemoveAt(i);
+                            cells.RemoveAt(i);
+                        }
+                pawns.RemoveAll(x => x == null);
             }
         }
     }
@@ -125,6 +151,7 @@ namespace ColonyCouncil
             if (k == null) return;
             k.start = Now;
             kept.Add(k);
+            PlayOuts.RegisterTimed(k);
             while (kept.Count > MaxKept)
             {
                 End(kept[0], true);
@@ -173,6 +200,8 @@ namespace ColonyCouncil
                 case TimedKind.Pyre: return StepPyre(k, now);
                 case TimedKind.Bolt: return StepBolt(k, now);
                 case TimedKind.Follow: return StepFollow(k, now);
+                case TimedKind.Felling: return StepFelling(k, now);
+                case TimedKind.Planting: return StepPlanting(k, now);
                 default: return true;
             }
         }
@@ -200,7 +229,193 @@ namespace ColonyCouncil
                 case TimedKind.Follow:
                     StopFollowing(k);
                     break;
+                case TimedKind.Felling:
+                    EndFelling(k);
+                    break;
+                case TimedKind.Planting:
+                    EndPlanting(k);
+                    break;
             }
+        }
+
+        // ---------------- Felling ----------------
+
+        /// <summary>
+        /// Trees felled by <paramref name="axes"/> (a visitor, the camp's people), the game's own cutting job one tree after
+        /// another, the nearest free tree first; their logs stay the colony's. Over when the trees are down, or by nightfall
+        /// of the next day if they never got to all of them.
+        /// </summary>
+        public void AddFelling(Map map, List<Plant> trees, List<Pawn> axes, int wanted, string outcome = null, bool topUp = false)
+        {
+            if (map == null || trees.NullOrEmpty() || axes.NullOrEmpty()) return;
+            Add(new TimedThing
+            {
+                kind = TimedKind.Felling, map = map, things = trees.Cast<Thing>().ToList(), pawns = axes.ToList(), count = wanted,
+                until = Now + OnMapMath.FellingTicks, firstId = Find.UniqueIDsManager.GetNextThingID(), text = outcome, on = topUp
+            });
+        }
+
+        private static bool StepFelling(TimedThing k, int now)
+        {
+            var map = k.map;
+            // Trees down since the last look: the logs they left are the colony's (cut by a visitor, the game forbids them).
+            var down = k.things.Where(t => t == null || t.Destroyed || !t.Spawned).ToList();
+            if (down.Count > 0)
+            {
+                Gather(k, down.Where(t => t != null).Select(t => t.Position).ToList(), map);
+                foreach (var t in down) k.things.Remove(t);
+            }
+            k.pawns.RemoveAll(x => x == null || x.Dead || x.Destroyed);
+            if (k.things.Count == 0 || k.pawns.Count == 0 || now > k.until) return true;
+            if (Danger(map)) return false;
+            foreach (var x in k.pawns)
+            {
+                if (!x.Spawned || x.Map != map || x.Downed || x.InMentalState || x.Drafted || !x.Awake()) continue;
+                if (x.CurJobDef == JobDefOf.CutPlant && k.things.Contains(x.CurJob.targetA.Thing)) continue;
+                var duty = x.mindState?.duty?.def;
+                if (duty != null && duty.defName.StartsWith("ExitMap")) continue;
+                if (x.Faction == Faction.OfPlayer ? !PlayOuts.Interruptible(x) || PlayOuts.NeedsPress(x) : x.CurJobDef == JobDefOf.Ingest) continue;
+                var tree = k.things.Where(t => t.Spawned && x.CanReserveAndReach(t, PathEndMode.Touch, Verse.Danger.Some))
+                    .OrderBy(t => t.Position.DistanceToSquared(x.Position)).FirstOrDefault();
+                if (tree == null) continue;
+                // together: they walk to the tree and cut it with the game's own job, axe and sound.
+                x.jobs.StartJob(JobMaker.MakeJob(JobDefOf.CutPlant, tree), JobCondition.InterruptForced, null, false, true);
+            }
+            return false;
+        }
+
+        /// <summary>The logs felled trees left where they fell: made since the last look, lying within a step or two of them.</summary>
+        private static void Gather(TimedThing k, List<IntVec3> stumps, Map map)
+        {
+            if (map == null || stumps.Count == 0) return;
+            var seen = new HashSet<Thing>();
+            foreach (var at in stumps)
+                foreach (var c in GenRadial.RadialCellsAround(at, 2.9f, true))
+                {
+                    if (!c.InBounds(map)) continue;
+                    foreach (var t in c.GetThingList(map))
+                        if (t.def == ThingDefOf.WoodLog && t.thingIDNumber >= k.firstId && seen.Add(t))
+                        {
+                            t.SetForbidden(false, false);
+                            k.done += t.stackCount;
+                        }
+                }
+            k.cell = stumps[stumps.Count - 1];
+            // The last tree down, and the answer promised more wood than it gave (a tree seasoned on the stump): the rest
+            // lies with its logs.
+            if (k.on && k.things.All(t => t == null || t.Destroyed || !t.Spawned) && k.done < k.count)
+            {
+                StorytellerEvents.Hand(ThingDefOf.WoodLog, k.count - k.done, map, k.cell);
+                k.done = k.count;
+            }
+            // Logs made from here on are the next trees'.
+            k.firstId = Find.UniqueIDsManager.GetNextThingID();
+        }
+
+        private static void EndFelling(TimedThing k)
+        {
+            // Out of time: whoever is still at a tree puts the axe down.
+            foreach (var x in k.pawns)
+                if (x != null && x.Spawned && x.CurJobDef == JobDefOf.CutPlant && k.things.Contains(x.CurJob.targetA.Thing))
+                    x.jobs.EndCurrentJob(JobCondition.InterruptForced);
+            if (k.map == null || !Find.Maps.Contains(k.map)) return;
+            // The colony was told of it, and no tree came down: a word instead of the answer's.
+            if (k.done <= 0 && !k.text.NullOrEmpty())
+            {
+                News.Post("CC_Timed_Felling_Never".Translate().Resolve(), LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                return;
+            }
+            if (k.done <= 0 || !k.cell.IsValid) return;
+            var look = new LookTargets(new TargetInfo(k.cell, k.map));
+            // The answer's own words, now the trees are down.
+            if (!k.text.NullOrEmpty()) News.Post(k.text, look, NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+            else Messages.Message("CC_Felled_Wood".Translate(k.done).Resolve(), look, MessageTypeDefOf.SilentInput, false);
+        }
+
+        // ---------------- Planting ----------------
+
+        /// <summary>Saplings of <paramref name="tree"/> planted by <paramref name="planters"/>, each at their own cell, in the daytime of the next two days.</summary>
+        public void AddPlanting(Map map, ThingDef tree, List<IntVec3> at, List<Pawn> planters, bool markers)
+        {
+            if (map == null || tree == null || at.NullOrEmpty() || planters.NullOrEmpty()) return;
+            int n = Math.Min(at.Count, planters.Count);
+            Add(new TimedThing
+            {
+                kind = TimedKind.Planting, map = map, where = tree.defName, on = markers, cells = at.Take(n).ToList(), pawns = planters.Take(n).ToList(),
+                until = Now + Sched.DayTicks * 2
+            });
+        }
+
+        private static bool StepPlanting(TimedThing k, int now)
+        {
+            var map = k.map;
+            for (int i = k.pawns.Count - 1; i >= 0; i--)
+                if (k.pawns[i] == null || k.pawns[i].Dead)
+                {
+                    k.pawns.RemoveAt(i);
+                    k.cells.RemoveAt(i);
+                }
+            if (k.pawns.Count == 0 || now > k.until) return true;
+            if (!OnMapMath.Between(Hour(map), OnMapMath.Dawn, OnMapMath.Dusk + 1) || Danger(map)) return false;
+            for (int i = 0; i < k.pawns.Count; i++)
+            {
+                var x = k.pawns[i];
+                if (x.CurJobDef == PlayOutDefOf.Council_PlayOutPlant || !x.Spawned || x.Map != map || x.Downed || x.Drafted || x.InMentalState) continue;
+                // Free: not at anything that matters more; one of the answer's own gatherings (the words at the fields) they may step out of.
+                var lord = x.GetLord();
+                if (lord != null && !(lord.LordJob is LordJob_PlayOut)) continue;
+                if (!PlayOuts.CanTakePart(x, map) || !PlayOuts.Interruptible(x) || PlayOuts.NeedsPress(x)) continue;
+                if (!x.CanReach(k.cells[i], PathEndMode.Touch, Verse.Danger.Some)) continue;
+                // together: they walk out to their own spot and plant it with their hands.
+                x.jobs.StartJob(JobMaker.MakeJob(PlayOutDefOf.Council_PlayOutPlant, k.cells[i]), JobCondition.InterruptForced, null, false, true);
+            }
+            return false;
+        }
+
+        /// <summary>Someone has dug the hole: the sapling goes in at their spot (or beside it, if the spot is taken now).</summary>
+        public static bool Planted(Pawn x, IntVec3 at)
+        {
+            var k = Instance?.kept.FirstOrDefault(t => t.kind == TimedKind.Planting && t.pawns.Contains(x));
+            if (k == null || x.Map != k.map) return false;
+            int i = k.pawns.IndexOf(x);
+            var c = i < k.cells.Count ? k.cells[i] : at;
+            k.pawns.RemoveAt(i);
+            if (i < k.cells.Count) k.cells.RemoveAt(i);
+            var tree = DefDatabase<ThingDef>.GetNamedSilentFail(k.where ?? "");
+            if (tree == null) return false;
+            if (!DilemmaEffect_Plant.Ground(tree, c, k.map))
+            {
+                var near = IntVec3.Invalid;
+                foreach (var o in GenRadial.RadialCellsAround(c, 2f, false))
+                    if (DilemmaEffect_Plant.Ground(tree, o, k.map) && !k.things.Any(t => t.Position.InHorDistOf(o, 1.5f)))
+                    {
+                        near = o;
+                        break;
+                    }
+                if (!near.IsValid) return false;
+                c = near;
+            }
+            var plant = DilemmaEffect_Plant.Sapling(tree, c, k.map, k.on);
+            if (plant == null) return false;
+            k.things.Add(plant);
+            k.done++;
+            return true;
+        }
+
+        private static void EndPlanting(TimedThing k)
+        {
+            var planted = k.things.Where(t => t != null && t.Spawned).ToList();
+            if (k.done <= 0 && !k.text.NullOrEmpty() && k.map != null && Find.Maps.Contains(k.map))
+                News.Post("CC_Timed_Planting_Never".Translate().Resolve(), LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            if (k.done <= 0 || planted.Count == 0) return;
+            // The answer's own words, now the trees are in.
+            if (!k.text.NullOrEmpty())
+            {
+                News.Post(k.text, new LookTargets(planted), NewsKind.Colony, MessageTypeDefOf.PositiveEvent, Importance.Notable);
+                return;
+            }
+            string text = k.done == 1 ? "CC_Saplings_One".Translate().Resolve() : "CC_Saplings_Many".Translate(k.done).Resolve();
+            Messages.Message(text, new LookTargets(planted), MessageTypeDefOf.NeutralEvent, false);
         }
 
         private static bool Danger(Map map) => map == null || map.dangerWatcher.DangerRating != StoryDanger.None || MapFacts.ThreatOn(map);
@@ -873,6 +1088,41 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("follow", e);
             }
+        }
+    }
+
+    /// <summary>Planting a sapling: out to the spot, a while on their knees digging it in, then the young tree is in the ground.</summary>
+    public class JobDriver_PlayOutPlant : JobDriver
+    {
+        public override bool TryMakePreToilReservations(bool errorOnFailed) => true;
+
+        protected override IEnumerable<Toil> MakeNewToils()
+        {
+            this.FailOn(() => pawn.Map == null || pawn.Map.dangerWatcher.DangerRating != StoryDanger.None);
+            yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.Touch);
+            var dig = ToilMaker.MakeToil("PlayOutPlant");
+            dig.defaultCompleteMode = ToilCompleteMode.Delay;
+            dig.defaultDuration = 420;
+            dig.handlingFacing = true;
+            dig.tickIntervalAction = _ => pawn.rotationTracker.FaceCell(job.targetA.Cell);
+            dig.WithProgressBarToilDelay(TargetIndex.A);
+            var sow = DefDatabase<EffecterDef>.GetNamedSilentFail("Sow");
+            if (sow != null) dig.WithEffect(sow, TargetIndex.A);
+            yield return dig;
+            var done = ToilMaker.MakeToil("PlayOutPlanted");
+            done.initAction = () =>
+            {
+                try
+                {
+                    OnMapTimed.Planted(pawn, job.targetA.Cell);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("sapling planted", e);
+                }
+            };
+            done.defaultCompleteMode = ToilCompleteMode.Instant;
+            yield return done;
         }
     }
 }

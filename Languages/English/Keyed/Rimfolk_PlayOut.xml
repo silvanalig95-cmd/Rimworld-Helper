@@ -33,6 +33,7 @@
 
   <!-- Where -->
   <CC_Play_Where_Camp>at the camp's fire</CC_Play_Where_Camp>
+  <CC_Play_Where_NewRoom>where the new room will go</CC_Play_Where_NewRoom>
   <CC_Play_Where_Stranger>around {OTHER_nameDef}</CC_Play_Where_Stranger>
   <CC_Play_Where_GraveOf>by {DEAD_nameDef}'s grave</CC_Play_Where_GraveOf>
   <CC_Play_Where_Graves>by the graves</CC_Play_Where_Graves>
@@ -82,6 +83,7 @@
   <CC_Play_Why_Place>there was nowhere to hold it</CC_Play_Why_Place>
   <CC_Play_Why_NotFree>{PAWN_nameDef} was never free</CC_Play_Why_NotFree>
   <CC_Play_Why_Cooking>{PAWN_nameDef} was still cooking for it</CC_Play_Why_Cooking>
+  <CC_Play_Why_Making>{PAWN_nameDef} was still making it</CC_Play_Why_Making>
   <CC_Play_Why_NoGrave>there was no grave here to sit by</CC_Play_Why_NoGrave>
   <CC_Play_Why_NoCamp>the camp had gone</CC_Play_Why_NoCamp>
   <CC_Play_Why_Weather>the weather was against it</CC_Play_Why_Weather>
@@ -205,6 +207,7 @@
   <!-- Things an answer says now exist (PlayOut/OnMapThings.cs) -->
   <CC_Made_By>{MAKER_nameDef}'s work, {THING}, was set down beside {PAWN_nameDef}.</CC_Made_By>
   <CC_Made_Here>{PAWN_nameDef} has a new {THING}.</CC_Made_Here>
+  <CC_Made_Done>{MAKER_nameDef} has finished the {THING}.</CC_Made_Done>
   <CC_Felled_Wood>{0} wood lies where it was cut.</CC_Felled_Wood>
   <CC_Saplings_One>The new sapling is in the ground.</CC_Saplings_One>
   <CC_Saplings_Many>{0} new saplings are in the ground.</CC_Saplings_Many>
@@ -216,6 +219,7 @@
   <!-- A thing carried over by hand, a stash burned, rounds, the enemy dead carried out (PlayOut/OnMapPlays.cs) -->
   <CC_Play_Label_Give>the {THING}</CC_Play_Label_Give>
   <CC_Play_Planned_Give>{PAWN_nameDef} will take the {THING} over to {OTHER_nameDef} {WHEN}.</CC_Play_Planned_Give>
+  <CC_Play_Planned_Make>{PAWN_nameDef} will make the {THING} for {OTHER_nameDef} and take it over {WHEN}.</CC_Play_Planned_Make>
   <CC_Play_Label_Burn>the burning in the yard</CC_Play_Label_Burn>
   <CC_Play_Label_Rounds>the rounds</CC_Play_Label_Rounds>
   <CC_Play_Label_Haul>carrying out the dead</CC_Play_Label_Haul>
@@ -255,6 +259,7 @@
   <CC_Play_Why_NobodyAtCamp>nobody was at the camp to take it</CC_Play_Why_NobodyAtCamp>
   <CC_Play_Why_NoDead>the dead were already gone</CC_Play_Why_NoDead>
   <CC_Play_Report_Give>carrying the {0} over to {OTHER_nameDef}.</CC_Play_Report_Give>
+  <CC_Play_Report_Make>making the {0}.</CC_Play_Report_Make>
   <CC_Play_Report_Burn>carrying the {0} out to burn.</CC_Play_Report_Burn>
   <CC_Play_Report_Fetch>taking the {0} in.</CC_Play_Report_Fetch>
   <CC_Play_Report_Rounds>stopping by {OTHER_nameDef}.</CC_Play_Report_Rounds>
@@ -281,6 +286,8 @@
   <CC_Timed_Pyre_Gear>Their gear was left in a heap beside it.</CC_Timed_Pyre_Gear>
   <CC_Timed_Pyre_Out>The pyre has burned down to ash.</CC_Timed_Pyre_Out>
   <CC_Timed_Pyre_Never>The pyre beyond the gate was never lit, and the bodies piled for it are left for the colony to see to.</CC_Timed_Pyre_Never>
+  <CC_Timed_Felling_Never>Nobody got to the trees in time, and they are still standing.</CC_Timed_Felling_Never>
+  <CC_Timed_Planting_Never>Nobody got out to plant the saplings in time.</CC_Timed_Planting_Never>
   <CC_Timed_Bolt>{PAWN_nameDef}'s door is bolted for the night.</CC_Timed_Bolt>
   <CC_Week_Timed_Lanterns>Lanterns along the walls</CC_Week_Timed_Lanterns>
   <CC_Week_Timed_Lantern>A lantern at the gate</CC_Week_Timed_Lantern>

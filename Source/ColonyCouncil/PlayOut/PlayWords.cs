@@ -234,7 +234,8 @@ namespace ColonyCouncil
             string when = ("CC_Play_When_" + (today ? "Today" : "Tomorrow") + part).Translate();
             // A thing carried over by hand: who takes what to whom. together: the giver walks it over to them (JobDriver_PlayOutGive).
             if (p.kind == PlayKind.Give && p.mode == PlayGive.Give && p.visitor != null && p.other != null)
-                return "CC_Play_Planned_Give".Translate(p.visitor.Named("PAWN"), p.other.Named("OTHER"), PlayGive.Label(PlayGive.ThingOf(p)).Named("THING"), when.Named("WHEN")).Resolve();
+                return (PlayMake.IsMaking(p) ? "CC_Play_Planned_Make" : "CC_Play_Planned_Give")
+                    .Translate(p.visitor.Named("PAWN"), p.other.Named("OTHER"), PlayMake.Label(p).Named("THING"), when.Named("WHEN")).Resolve();
             return "CC_Play_Planned".Translate(label, when).Resolve();
         }
 
