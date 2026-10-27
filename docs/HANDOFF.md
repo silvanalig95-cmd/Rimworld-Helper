@@ -1,6 +1,15 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.5 "Guests and the pyre" (from the player's save: a Hospitality guest with 4/4 friends had a grey
+Last shipped: 0.16.6 "Families across the years" (the player found Toni 36, her daughter Morgan 31 and Morgan's son
+Hector 57 strange; the game builds families by calendar years and allows any order cryptosleep can explain,
+`ChildRelationUtility.GetParentAgeFactor` with `MaxPossibleBioAgeAt`. They chose both ideas: `Social/FamilyYearsMath.cs`
+(pure, `FamilyYearsTests`: direct line only, an uncle younger than his nephew doesn't count) and `Social/FamilyYears.cs`
+(the People roster's "N years in cryptosleep", the story's "Across the years" section, a remark a pair at most every
+ten days via `Together.When`, pool `Council_Pool_SayFamilyYears` with [elder]/[younger] and [near]/[grand]).
+The player wants more family dynamics (generated families, marriage and births, adoption and the like): a list of
+ideas is to be proposed, after a survey of what Rimfolk already does with family.)
+
+Before it, 0.16.5 "Guests and the pyre" (from the player's save: a Hospitality guest with 4/4 friends had a grey
 Recruit button. Her record in the save said arrived, not in a mental state, faction with goodwill, so by Hospitality's
 own `DialogUtility.DrawRecruitButton` / `GuestUtility.MayRecruitRightNow` the button should have been live. Hospitality's
 `CompUtility.guestComps` is a static `Dictionary<Pawn, CompGuest>` never emptied, and `Thing` is `IEquatable<Thing>` by

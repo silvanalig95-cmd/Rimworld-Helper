@@ -166,6 +166,8 @@ namespace ColonyCouncil
             var parts = new List<string>();
             if (p.story != null) parts.Add(p.story.TitleShortCap);
             if (p.ageTracker != null) parts.Add("CC_People_Age".Translate(p.ageTracker.AgeBiologicalYears).Resolve());
+            string slept = FamilyYears.SleptNote(p);
+            if (slept != null) parts.Add(slept);
             if (p.needs?.mood != null) parts.Add("CC_People_Mood".Translate(p.needs.mood.CurLevelPercentage.ToStringPercent()).Resolve());
             return string.Join("  ·  ", parts);
         }

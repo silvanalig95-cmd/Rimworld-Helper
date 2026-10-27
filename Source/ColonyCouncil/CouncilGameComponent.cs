@@ -147,6 +147,7 @@ namespace ColonyCouncil
             InteractionWorker_Moment.Reset();
             Interplay.Reset();
             Together.Reset();
+            FamilyYears.Reset();
             Guests.ForgetLastGame();
             // Lean/: the map facts and every def kept by name are worked out again for this game.
             MapFacts.Clear();

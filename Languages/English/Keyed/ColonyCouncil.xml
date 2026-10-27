@@ -1372,6 +1372,10 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <!-- Story tab -->
   <CC_Tab_Story>Story</CC_Tab_Story>
   <CC_Story_Standing>Standing</CC_Story_Standing>
+  <CC_Story_Years>Across the years</CC_Story_Years>
+  <CC_Years_Own>Born in {YEAR}, {CALENDAR} years ago: {LIVED} of those years lived, {SLEPT} spent in cryptosleep.</CC_Years_Own>
+  <CC_Years_KinYounger>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, is {AGE}, {DIFF} years younger than {PAWN_objective}: {OTHER_pronoun} has spent {SLEPT} of {OTHER_possessive} {CALENDAR} years in cryptosleep.</CC_Years_KinYounger>
+  <CC_Years_KinOlder>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, is {AGE}, {DIFF} years older than {PAWN_objective}: {PAWN_nameDef} has spent {SLEPT} of {PAWN_possessive} {CALENDAR} years in cryptosleep.</CC_Years_KinOlder>
   <CC_Story_Trust>Trust in the council: {0}</CC_Story_Trust>
   <CC_Story_Goal>Wants to {0} ({1}).</CC_Story_Goal>
   <CC_Story_GoalWhy>Set their heart on it {0} ({1}).</CC_Story_GoalWhy>
@@ -1415,6 +1419,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_People_Jump>Go to</CC_People_Jump>
   <CC_People_Journal>Journal</CC_People_Journal>
   <CC_People_Age>age {0}</CC_People_Age>
+  <CC_Years_SleptNote>{0} years in cryptosleep</CC_Years_SleptNote>
   <CC_People_Mood>mood {0}</CC_People_Mood>
   <CC_People_NoGoal>no life goal yet</CC_People_NoGoal>
   <CC_People_Teaching>teaching {0}</CC_People_Teaching>

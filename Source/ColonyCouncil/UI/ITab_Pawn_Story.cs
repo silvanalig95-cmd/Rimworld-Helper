@@ -191,6 +191,15 @@ namespace ColonyCouncil
             foreach (var line in HealthTracker.StoryLines(p)) standing.lines.Add((line, Color.white));
             if (standing.lines.Count > 0) yield return standing;
 
+            // Years in cryptosleep, and relatives whose ages run the wrong way round (Social/FamilyYears.cs).
+            var yearLines = FamilyYears.StoryLines(p);
+            if (yearLines.Count > 0)
+            {
+                var years = new Section { key = "years", header = "CC_Story_Years".Translate(), icon = Icons.Birth };
+                foreach (var line in yearLines) years.lines.Add((line, Color.white));
+                yield return years;
+            }
+
             // Their character and what shaped it, with what the other systems add (Persona/CharacterView.cs).
             foreach (var cs in CharacterView.Sections(p))
             {

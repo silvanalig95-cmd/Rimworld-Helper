@@ -697,6 +697,7 @@ namespace ColonyCouncil
             Safe("trait changes", () => TraitChanges.Daily(this));
             Safe("fungus diet", () => FungusDiet.Daily(this));
             Safe("interplay", () => Interplay.Daily(this));
+            Safe("family across the years", () => FamilyYears.Daily(this));
             Safe("animal life", () => AnimalLife.Daily(this));
             Safe("history", RecordDay);
             if (Settings.offices && offices.Speaker != null)

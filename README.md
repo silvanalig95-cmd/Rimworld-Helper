@@ -617,6 +617,12 @@ the warm. The Story tab opens with it: their character in words, eight bars with
 where they are now (hover for every trait and mark that moved it), and "what shaped them", turning points first.
 The Almanac pages "character" and "what shapes a person" explain it.
 
+#### Across the years
+The game gives many people years in cryptosleep and builds families by calendar years, so a grandmother can be
+younger than her grandson. The People roster shows each colonist's years asleep beside their age, their story has a
+part, *Across the years*, that explains every parent, grandparent, child or grandchild whose age runs the wrong way
+round (and whose sleep explains it), and two such relatives now and then say a word about it when they're together.
+
 #### Traits that change
 Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity

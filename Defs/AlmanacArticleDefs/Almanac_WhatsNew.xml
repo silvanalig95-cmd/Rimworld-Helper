@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.16.6</version>
+        <date>27 October 2026</date>
+        <title>Families across the years</title>
+        <points>
+          <li>The People roster shows beside a colonist's age how many years they spent in cryptosleep, from two years on.</li>
+          <li>A colonist's story has a new part, Across the years: when they were born, how many of the years since they lived, and each parent, grandparent, child or grandchild whose age runs the wrong way round (a mother younger than her son, a grandson older than his grandmother), with whose years asleep explain it.</li>
+          <li>Now and then, when two such relatives are together, one says a word about it to the other, in their own voice.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.16.5</version>
         <date>27 October 2026</date>
         <title>Guests and the pyre</title>

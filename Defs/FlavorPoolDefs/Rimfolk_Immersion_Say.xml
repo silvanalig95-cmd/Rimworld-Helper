@@ -606,4 +606,48 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!--
+    Family across the years (Source/ColonyCouncil/Social/FamilyYears.cs): two of the same family whose ages run the wrong
+    way round, said by either when they're together. [elder]: the one above in the line (a mother, a grandfather), who
+    has lived fewer years than the one below; [younger]: the one below, who has lived more. [near]: a parent and child;
+    [grand]: two generations or more apart. {OTHER}: the one spoken to; {RELATION}: what they are to the speaker ("grandmother").
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayFamilyYears</defName>
+    <lines>
+      <plain>
+        <li>[younger] I've more grey than my own {RELATION}, and that's not how it's meant to go.</li>
+        <li>[younger] Most people never get to be older than their {RELATION}.</li>
+        <li>[younger] You slept through most of my life, {OTHER_nameDef}, but you're here now.</li>
+        <li>[younger,grand] Not many grandchildren get to tell their {RELATION} to slow down.</li>
+        <li>[younger,near] Some days I forget I've lived more years than my own {RELATION}.</li>
+        <li>[elder,near] I went into the pod with you still small, and look at you now.</li>
+        <li>[elder] I slept through most of your life, and I'm sorry for it.</li>
+        <li>[elder] I'm still your {RELATION}, whatever the years say.</li>
+        <li>[elder,grand] Not many get to meet a {RELATION} older than they are.</li>
+        <li>[elder] You've lived more years than I have, but I knew you first.</li>
+      </plain>
+      <warm>
+        <li>[younger] Whatever the years say, it's good to have my {RELATION} here.</li>
+        <li>[elder] I'd have stayed awake for all of your life, if I could have.</li>
+      </warm>
+      <blunt>
+        <li>[younger] My {RELATION} is younger than me, and I've stopped trying to make sense of it.</li>
+        <li>[elder] Don't call me old, I've lived fewer years than you.</li>
+      </blunt>
+      <cheerful>
+        <li>[younger] Sit down, {RELATION}, and let the old one fetch it for once.</li>
+        <li>[elder] Look at you, all grown up, and older than me too.</li>
+      </cheerful>
+      <gloomy>
+        <li>[younger] You slept, and the rest of us got old without you.</li>
+        <li>[elder] I closed my eyes in the pod and woke up to a family of strangers.</li>
+      </gloomy>
+      <cold>
+        <li>[younger] The pods kept your years and spent mine.</li>
+        <li>[elder] Years asleep are years nobody gets back.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Families across the years
+
+*27 October 2026, version 0.16.6*
+
+- The People roster shows beside a colonist's age how many years they spent in cryptosleep, from two years on.
+- A colonist's story has a new part, Across the years: when they were born, how many of the years since they lived, and each parent, grandparent, child or grandchild whose age runs the wrong way round (a mother younger than her son, a grandson older than his grandmother), with whose years asleep explain it.
+- Now and then, when two such relatives are together, one says a word about it to the other, in their own voice.
+
 ## Guests and the pyre
 
 *27 October 2026, version 0.16.5*
