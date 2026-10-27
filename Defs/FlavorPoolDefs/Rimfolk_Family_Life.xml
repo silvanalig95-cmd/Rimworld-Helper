@@ -325,4 +325,97 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- A child taken in (Social/FamilyGuardians.cs): TookIn by the new parent ({OTHER}: the child), TakenIn by the child ({OTHER}: the parent). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TookIn</defName>
+    <lines>
+      <plain>
+        <li>The council asked me to raise {OTHER_nameDef}, and I said yes before they'd finished asking.</li>
+        <li>{OTHER_nameDef} is mine to raise now. I've no idea how this is done, and I'll learn.</li>
+        <li>I'm raising {OTHER_nameDef} now. Everything I did today, I did thinking of {OTHER_objective}.</li>
+        <li>{OTHER_nameDef} is mine now, for good. I wrote it down so it would feel real.</li>
+        <li>[night] Lying awake thinking of everything {OTHER_nameDef} will need from me. A great deal, it turns out.</li>
+        <li>Today I became someone's parent without anyone being born. {OTHER_nameDef} doesn't know what to call me yet.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} is ours now. I'll love {OTHER_objective} enough for everyone {OTHER_pronoun} lost.</li></warm>
+      <blunt><li>Raising {OTHER_nameDef} now. Somebody had to, and it should be someone who means it.</li></blunt>
+      <gloomy><li>I'm to raise {OTHER_nameDef}. I hope I'm better at it than I fear.</li></gloomy>
+      <cold><li>I have taken charge of {OTHER_nameDef}'s upbringing. It is a reasonable arrangement.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TakenIn</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is raising me now. The council said so, and {OTHER_nameDef} said so too.</li>
+        <li>I belong to {OTHER_nameDef} now. {OTHER_pronoun} said it's for good, and I asked twice.</li>
+        <li>Somebody is mine again: {OTHER_nameDef}. I'm not sure what to call {OTHER_objective} yet.</li>
+        <li>I'm {OTHER_nameDef}'s now. It feels strange to say, and good.</li>
+        <li>I have someone to run to now. It's {OTHER_nameDef}.</li>
+        <li>[night] I'm somebody's again. I think I'll sleep well tonight.</li>
+      </plain>
+      <cheerful><li>{OTHER_nameDef} is mine now and I'm {OTHER_possessive}! I want to tell everyone.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is raising me now. I hope {OTHER_pronoun} doesn't go away too.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A dead colonist's room passed to family (Social/FamilyInheritance.cs): {OTHER} is the one who died. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_InheritedRoom</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef}'s room is mine now. It still feels like {OTHER_possessive}.</li>
+        <li>They gave me {OTHER_nameDef}'s room. I haven't changed a thing yet.</li>
+        <li>I'm to sleep where {OTHER_nameDef} slept. I don't know yet if that's a comfort.</li>
+        <li>{OTHER_nameDef}'s room came to me, as family. I'll keep it the way {OTHER_pronoun} liked it.</li>
+        <li>[night] Tonight I sleep in {OTHER_nameDef}'s room for the first time.</li>
+        <li>A room of my own at last, and I'd give it back to have {OTHER_nameDef} here.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef}'s room is mine now. I'll look after it the way {OTHER_pronoun} looked after me.</li></warm>
+      <gloomy><li>{OTHER_nameDef}'s room. Everything in it is a reminder, and I wouldn't have it any other way.</li></gloomy>
+      <cold><li>I have taken over {OTHER_nameDef}'s room. It was going spare.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    The one left (Social/FamilyLife.cs). SayParentNewPartner: a widowed parent's child to them about their new partner,
+    [glad] or [hurt] ({OTHER}: the parent; {ABOUT}: the new partner; {LOST}: the parent who died). OldWeddingDay: the one
+    left on their wedding day ({LOST}: the one who died; {YEARS}: years since the wedding).
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayParentNewPartner</defName>
+    <lines>
+      <plain>
+        <li>[glad] I'm glad you've got {ABOUT_nameDef}, and I think {LOST} would be too.</li>
+        <li>[glad] You've laughed more since {ABOUT_nameDef}, and I'd missed that.</li>
+        <li>[glad] {ABOUT_nameDef} is all right, you know.</li>
+        <li>[glad] It's good to see you happy again.</li>
+        <li>[glad] I won't call {ABOUT_nameDef} anything yet, but I'm glad.</li>
+        <li>[hurt] {ABOUT_nameDef} isn't {LOST}, and never will be.</li>
+        <li>[hurt] Did you forget {LOST} so fast?</li>
+        <li>[hurt] I don't want {ABOUT_nameDef} in {LOST}'s place.</li>
+        <li>[hurt] You could have asked me first.</li>
+        <li>[hurt] It's too soon, and you know it is.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_OldWeddingDay</defName>
+    <lines>
+      <plain>
+        <li>{LOST} and I were married {YEARS} years ago today. I'll keep the day for both of us.</li>
+        <li>Our wedding day, {YEARS} years on. I'll go and be with {LOST} a while.</li>
+        <li>{YEARS} years since {LOST} and I were married. I still remember every bit of that day.</li>
+        <li>Nobody else remembers what today is. I do. {LOST} and me, {YEARS} years.</li>
+        <li>[night] Our wedding day. {YEARS} years, and I'm still {LOST}'s.</li>
+        <li>It would have been {YEARS} years today. It still is, I think.</li>
+      </plain>
+      <warm><li>Our wedding day, {YEARS} years on. I'd marry {LOST} again tomorrow.</li></warm>
+      <gloomy><li>{YEARS} years since our wedding, and the first ones without {LOST} are the hardest.</li></gloomy>
+      <cold><li>Our wedding anniversary: {YEARS} years. I marked it. That is what one does.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

@@ -117,6 +117,7 @@ MODEL = {
     # The council
     "CouncilGameComponent.cs:wishes": ("cap", (COLONISTS, 1), 600, "open wishes only (one per colonist at most)"),
     "CouncilGameComponent.cs:expectingTold": ("fixed", 60, V, "pregnancies told to the family, the newest 60 (Social/FamilyLife.cs)"),
+    "CouncilGameComponent.cs:guardianAsked": ("fixed", 40, V, "children the council was asked about, who raises them, the newest 40 (Social/FamilyGuardians.cs)"),
     "CouncilGameComponent.cs:chronicle": ("cap", (C["Chronicle"], 8), 350, "Caps.Chronicle; the newest 200 always, milestones longest"),
     "CouncilGameComponent.cs:history": ("window", (120, 1), 120, "a sample a day, 120 days"),
     "CouncilGameComponent.cs:lastAtHome": ("colonists", 1, D, "colonists still ours"),

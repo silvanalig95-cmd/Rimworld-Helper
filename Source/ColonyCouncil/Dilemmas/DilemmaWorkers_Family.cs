@@ -8,9 +8,9 @@ namespace ColonyCouncil
     /// <summary>Who B is to A, for <see cref="DilemmaWorker_Family"/>.</summary>
     public enum FamilyTie
     {
-        /// <summary>One of A's parents.</summary>
+        /// <summary>One of A's parents (by blood or by adoption).</summary>
         Parent,
-        /// <summary>One of A's children.</summary>
+        /// <summary>One of A's children (by blood or by adoption).</summary>
         Child,
         /// <summary>Anyone related to A by blood.</summary>
         Kin,
@@ -56,18 +56,19 @@ namespace ColonyCouncil
         {
             if (a?.relations == null) return null;
             bool Ok(Pawn b) => b != null && b != a && pawns.Contains(b) && (def.roleB == null || def.roleB.Allows(b, a)) && b.Spawned && !b.Downed && !b.InMentalState;
-            IEnumerable<Pawn> Related(PawnRelationDef rel) => a.relations.DirectRelations.Where(r => r.def == rel && r.otherPawn != null && !r.otherPawn.Dead).Select(r => r.otherPawn);
+            // Parents and children by adoption count as by blood (Social/FamilyGuardians.cs).
+            var parents = Family.ParentsOf(a).Where(x => !x.Dead).ToList();
             switch (role.b)
             {
                 case FamilyTie.Parent:
-                    return Related(PawnRelationDefOf.Parent).Where(Ok).RandomElementWithFallback();
+                    return parents.Where(Ok).RandomElementWithFallback();
                 case FamilyTie.Child:
-                    return a.relations.Children.Where(c => c != null && !c.Dead && Ok(c)).RandomElementWithFallback();
+                    return Family.ChildrenOf(a).Where(c => !c.Dead && Ok(c)).RandomElementWithFallback();
                 case FamilyTie.Kin:
                     return pawns.Where(b => Ok(b) && ArcUtil.Kin(a, b)).RandomElementWithFallback();
                 default:
                 {
-                    var parent = Related(PawnRelationDefOf.Parent).Where(Ok).OrderByDescending(p => ArcUtil.Opinion(a, p)).FirstOrDefault();
+                    var parent = parents.Where(Ok).OrderByDescending(p => ArcUtil.Opinion(a, p)).FirstOrDefault();
                     if (parent != null) return parent;
                     return pawns.Where(b => Ok(b) && !b.DevelopmentalStage.Juvenile() && Flavor.HumanAge(b) >= 18f && ArcUtil.Opinion(b, a) >= role.minOpinion)
                         .OrderByDescending(b => ArcUtil.Opinion(b, a) + ArcUtil.Opinion(a, b)).FirstOrDefault();

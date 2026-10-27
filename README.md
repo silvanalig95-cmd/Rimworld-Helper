@@ -427,8 +427,8 @@ tale to tell or feels the cold in their bones. Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
 
 **Answers play out on the map.** When an answer describes something people do, they do it (434 answers of 134
-dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 20
-stages of 17 personal stories and 7 moments with visitors). A
+dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 21
+stages of 18 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
 the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
@@ -639,7 +639,14 @@ the council a question. A new couple is noticed by those close to them (family g
 stand), an engagement gets the parents' blessing, and a refused proposal means a walk alone and a friend's word after.
 A pregnancy that begins to show is told to the partner and the grandparents to be; a child lost before birth is
 grieved by the grandparents too, with a quiet day for the parents and someone to sit with the mother. Naming a baby
-offers the family's own first names, and growth birthdays and coming of age end with a family toast at the table.
+offers the family's own first names, and growth birthdays and the eighteenth end with a family toast at the table.
+A child with nobody of their own here (orphaned, or a lost child taken in) brings the council a question a day
+later: who raises them. The answer can name an adoptive parent (and their partner), a relation the game shows on the
+Social tab, and from then on they are parent and child for everything above, the game's own grief included. A dead
+colonist's heirloom prefers family, blood closest, and their own room goes a day later to the closest of their
+family here without one. A husband, wife or betrothed who dies leaves the one left a long story of their own; their
+wedding day comes round as the survivor's own, kept with an hour at the grave (or a long walk), and when a widowed
+parent finds someone new, their children are glad for them, or hurt for the parent they lost.
 
 #### Traits that change
 Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast
@@ -829,12 +836,13 @@ remembered: the chronicle notes what they never got to do, and their friends wri
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
-There are 29 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+There are 30 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
 (a colonist who gave up on the council), the apprentice's masterwork, a calling (a child or teenager taken with what a
-grown-up does well), passing it on (an elder's craft handed down), a long grief, a secret told (to a friend first, then
+grown-up does well), passing it on (an elder's craft handed down), a long grief, the one left (a husband, wife or
+betrothed dead: the empty side of the bed, their things, a first season), a secret told (to a friend first, then
 everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the fear laid to rest (that enemy
 in the cells or gone for good, and the fear not yet), the recurring dream, a grudge laid down, and within reach (halfway to a life goal and doubting it). Others grow out of the world and the colony's
 offices: the road calls (a friend made at a camp, and the itch to go with them), the weight of office (a new seat on

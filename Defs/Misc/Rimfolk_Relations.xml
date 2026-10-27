@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Family by adoption (Source/ColonyCouncil/Social/FamilyLife.cs): the adoptive parent the council names for a child
+    with nobody of their own. The child holds the relation to the adoptive parent; the parent sees the child through the
+    implied relation (PawnRelationWorker_AdoptedChild). Never made when the game makes people (generationChanceFactor
+    0), never family by blood: grief and pride come from the relation itself and from Rimfolk.
+  -->
+
+  <PawnRelationDef>
+    <defName>Council_AdoptiveParent</defName>
+    <label>adoptive father</label>
+    <labelFemale>adoptive mother</labelFemale>
+    <importance>140</importance>
+    <opinionOffset>15</opinionOffset>
+    <generationChanceFactor>0</generationChanceFactor>
+    <familyByBloodRelation>false</familyByBloodRelation>
+    <diedThought>MyFatherDied</diedThought>
+    <diedThoughtFemale>MyMotherDied</diedThoughtFemale>
+  </PawnRelationDef>
+
+  <PawnRelationDef>
+    <defName>Council_AdoptedChild</defName>
+    <label>adopted son</label>
+    <labelFemale>adopted daughter</labelFemale>
+    <workerClass>ColonyCouncil.PawnRelationWorker_AdoptedChild</workerClass>
+    <importance>140</importance>
+    <implied>true</implied>
+    <opinionOffset>15</opinionOffset>
+    <generationChanceFactor>0</generationChanceFactor>
+    <familyByBloodRelation>false</familyByBloodRelation>
+    <diedThought>MySonDied</diedThought>
+    <diedThoughtFemale>MyDaughterDied</diedThoughtFemale>
+  </PawnRelationDef>
+
+</Defs>

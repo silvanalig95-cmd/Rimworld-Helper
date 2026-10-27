@@ -237,4 +237,87 @@
     </stages>
   </ThoughtDef>
 
+  <!-- A child taken in (Social/FamilyGuardians.cs) -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_TookInChild</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a child of my own to raise</label>
+        <description>The council named me the one to raise them. I keep checking on them, and they keep catching me at it.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_TakenIn</defName>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>somebody's own again</label>
+        <description>Somebody here is mine now, to run to and answer to. It's for good, they said.</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_RaisedByAll</defName>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>everyone's child</label>
+        <description>The whole colony said I'm theirs. That's a lot of people to answer to, and a lot to ask.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- The one left (Social/FamilyLife.cs): a wedding day kept alone, and a widowed parent's children and a new partner. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_OurDay</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>our wedding day, kept</label>
+        <description>It was our wedding day today. I kept it the only way I can now, and I'm glad I did.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_ParentHappyAgain</defName>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>my parent is happy again</label>
+        <description>My parent has found someone again. It's strange to see, and I'm glad.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Fam_ParentMovedOn</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>in my late parent's place</label>
+        <description>My parent has someone new, and it feels as if they're taking a place that was never theirs.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+        <baseOpinionOffset>-10</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

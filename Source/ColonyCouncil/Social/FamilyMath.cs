@@ -42,11 +42,21 @@ namespace ColonyCouncil
         public static bool ByMarriage(string relation) =>
             relation == "ParentInLaw" || relation == "ChildInLaw" || relation == "Stepparent" || relation == "Stepchild";
 
+        /// <summary>The adoptive parent the council named for a child (Rimfolk's own relation: Social/FamilyLife.cs).</summary>
+        public const string AdoptiveParentDef = "Council_AdoptiveParent", AdoptedChildDef = "Council_AdoptedChild";
+
+        public static bool AdoptiveParent(string relation) => relation == AdoptiveParentDef;
+
+        public static bool AdoptedChild(string relation) => relation == AdoptedChildDef;
+
+        /// <summary>Family by adoption, either way round.</summary>
+        public static bool Adoptive(string relation) => AdoptiveParent(relation) || AdoptedChild(relation);
+
         /// <summary>A partner of theirs now (not one who was).</summary>
         public static bool Partner(string relation) => relation == "Spouse" || relation == "Fiance" || relation == "Lover";
 
         /// <summary>
-        /// Where a relation comes on a family tree, closest first: partner, parents, brothers and sisters, children,
+        /// Where a relation comes on a family tree, closest first: partner, parents (by adoption too), brothers and sisters, children,
         /// grandparents, grandchildren, step-family, in-laws, great-grandparents and great-grandchildren. The rest
         /// (uncles, cousins and further) aren't named one by one: -1.
         /// </summary>
@@ -58,9 +68,11 @@ namespace ColonyCouncil
                 case "Fiance": return 1;
                 case "Lover": return 2;
                 case "Parent": return 3;
+                case AdoptiveParentDef: return 3;
                 case "Sibling": return 4;
                 case "HalfSibling": return 5;
                 case "Child": return 6;
+                case AdoptedChildDef: return 6;
                 case "Grandparent": return 7;
                 case "Grandchild": return 8;
                 case "Stepparent": return 9;

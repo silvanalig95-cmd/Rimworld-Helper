@@ -746,6 +746,17 @@ namespace ColonyCouncil
         private void Personal(CalendarDay d, int occurrence, Map map, int years)
         {
             var comp = CouncilGameComponent.Instance;
+            // A wedding day the one left keeps on their own, quietly (Social/FamilyLife.cs).
+            if (d.kind == CalendarKind.Wedding)
+            {
+                var left = FindOurs(d.pawnId) ?? FindOurs(d.otherId);
+                if (left == null) return;
+                d.timesKept++;
+                d.lastKeptYear = occurrence;
+                bool first = left.ThingID == d.pawnId;
+                FamilyLife.WeddingDayAlone(left, first ? d.otherName : d.pawnName, first ? d.otherId : d.pawnId, years, map);
+                return;
+            }
             var p = FindOurs(d.pawnId);
             if (p == null) return;
             d.timesKept++;

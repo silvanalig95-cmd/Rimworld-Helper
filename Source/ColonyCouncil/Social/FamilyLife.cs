@@ -9,12 +9,13 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// The family's life together, as it happens (the pure part is FamilyLifeMath.cs): a new couple, and those close to
-    /// them glad (or family who can't stand the one chosen); an engagement and the parents' blessing; a refused proposal,
-    /// a walk alone and a friend's word; a child on the way told to the partner and the grandparents; a child lost before
-    /// birth, with a quiet day for the parents and someone to sit with the mother; the family's names offered for a baby;
-    /// and the birthdays a family marks, the growth moments and coming of age, with a toast in the evening. What is said
-    /// is said when the two are together. The only thing saved is which pregnancies have been told of
-    /// (<see cref="CouncilGameComponent.expectingTold"/>).
+    /// them glad (or family who can't stand the one chosen; a widowed parent's children glad, or hurt for the parent they
+    /// lost); an engagement and the parents' blessing; a refused proposal, a walk alone and a friend's word; a child on
+    /// the way told to the partner and the grandparents; a child lost before birth, with a quiet day for the parents and
+    /// someone to sit with the mother; the family's names offered for a baby; the birthdays a family marks, the growth
+    /// moments and coming of age, with a toast in the evening; and a wedding day the one left keeps alone, at the grave
+    /// or on a long walk. What is said is said when the two are together. The only thing saved is which pregnancies
+    /// have been told of (<see cref="CouncilGameComponent.expectingTold"/>).
     /// </summary>
     public static class FamilyLife
     {
@@ -53,7 +54,7 @@ namespace ColonyCouncil
         private static void Reactions(Pawn a, Pawn b, bool engaged)
         {
             var map = a.MapHeld;
-            var near = new List<(Pawn who, Pawn theirs, Pawn partner, MatchTake take, bool parent)>();
+            var near = new List<(Pawn who, Pawn theirs, Pawn partner, MatchTake take, bool parent, Pawn late)>();
             foreach (var f in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_FreeColonists.Where(f => f != a && f != b && Ours(f)))
             {
                 foreach (var (theirs, partner) in new[] { (a, b), (b, a) })
@@ -61,28 +62,52 @@ namespace ColonyCouncil
                     bool family = Family.Of(f, theirs);
                     // An engagement is for the family; a new couple, for anyone close.
                     if (engaged && !family) continue;
-                    var take = FamilyLifeMath.Take(family, f.relations.OpinionOf(theirs), f.relations.OpinionOf(partner));
+                    // The child of a parent widowed from their other parent takes it as their own: glad, or hurt.
+                    var late = LateParent(f, theirs);
+                    var take = late != null ? FamilyLifeMath.NewPartnerTake(f.relations.OpinionOf(partner))
+                        : FamilyLifeMath.Take(family, f.relations.OpinionOf(theirs), f.relations.OpinionOf(partner));
                     if (take == MatchTake.None) continue;
                     bool parent = theirs.GetMother() == f || theirs.GetFather() == f;
-                    near.Add((f, theirs, partner, take, parent));
+                    near.Add((f, theirs, partner, take, parent, late));
                     break;
                 }
             }
-            foreach (var r in near.OrderByDescending(r => r.parent).ThenByDescending(r => Family.Of(r.who, r.theirs)).ThenByDescending(r => r.who.relations.OpinionOf(r.theirs))
-                         .Take(FamilyLifeMath.MaxReacting))
+            foreach (var r in near.OrderByDescending(r => r.late != null).ThenByDescending(r => r.parent).ThenByDescending(r => Family.Of(r.who, r.theirs))
+                         .ThenByDescending(r => r.who.relations.OpinionOf(r.theirs)).Take(FamilyLifeMath.MaxReacting))
             {
-                var (who, theirs, partner, take, parent) = r;
-                Together.When((engaged ? "engaged|" : "couple|") + who.thingIDNumber + "|" + theirs.thingIDNumber, who, theirs, () => React(who, theirs, partner, take, parent, engaged), 72f);
+                var (who, theirs, partner, take, parent, late) = r;
+                Together.When((engaged ? "engaged|" : "couple|") + who.thingIDNumber + "|" + theirs.thingIDNumber, who, theirs,
+                    () => React(who, theirs, partner, take, parent, engaged, late), 72f);
             }
         }
 
-        private static void React(Pawn who, Pawn theirs, Pawn partner, MatchTake take, bool parent, bool engaged)
+        /// <summary>
+        /// <paramref name="child"/>'s other parent, dead, when <paramref name="parent"/> is widowed from them (their
+        /// husband, wife or the one they were to marry): the one a new partner seems to take the place of. Else null.
+        /// </summary>
+        private static Pawn LateParent(Pawn child, Pawn parent)
+        {
+            if (!Family.ParentsOf(child).Contains(parent)) return null;
+            return Family.ParentsOf(child).FirstOrDefault(x => x != parent && x.Dead && ArcWorker_Widowed.Partner(parent, x));
+        }
+
+        private static void React(Pawn who, Pawn theirs, Pawn partner, MatchTake take, bool parent, bool engaged, Pawn late)
         {
             // together: Together.When runs this only when the two are together; Speech.Say asks again.
             if (who.Dead || theirs.Dead || !LovePartnerRelationUtility.LovePartnerRelationExists(theirs, partner)) return;
             string relation = Family.Relation(theirs, who);
             string cause = "CC_Fam_CoupleCause".Translate(theirs.Named("A"), partner.Named("B")).Resolve();
             string pool;
+            if (late != null)
+            {
+                bool hurt = take == MatchTake.Doubt;
+                if (hurt) CouncilGameComponent.GiveThought(who, T("Council_Fam_ParentMovedOn"), partner, -1f, cause);
+                else CouncilGameComponent.GiveThought(who, T("Council_Fam_ParentHappyAgain"), theirs, -1f, cause);
+                string said = Flavor.FromPool("Council_Pool_SayParentNewPartner", who, null, null, hurt ? "hurt" : "glad");
+                if (!said.NullOrEmpty())
+                    Speech.Say(who, said.Formatted(theirs.Named("OTHER"), partner.Named("ABOUT"), late.LabelShort.Named("LOST")).Resolve(), theirs);
+                return;
+            }
             if (take == MatchTake.Doubt)
             {
                 CouncilGameComponent.GiveThought(who, T("Council_Fam_MatchDoubted"), partner, -1f, cause);
@@ -316,8 +341,9 @@ namespace ColonyCouncil
         // ---------------- Birthdays the family marks ----------------
 
         /// <summary>
-        /// A growth moment (7, 10, 13) or coming of age: the parents write of it, and the family raise a glass to them that
-        /// evening, a parent leading (PlayOut/), with a good moment for the child and the parents who are there.
+        /// A growth moment (7, 10, 13, when they come of age) or the eighteenth birthday: the parents write of it, and the
+        /// family raise a glass to them that evening, a parent leading (PlayOut/), with a good moment for the child and the
+        /// parents who are there.
         /// </summary>
         public static void Notify_Birthday(Pawn p, int age)
         {
@@ -333,14 +359,17 @@ namespace ColonyCouncil
             }
             if (!FamilyLifeMath.Marked(age, growth)) return;
             var comp = CouncilGameComponent.Instance;
-            var parents = new[] { p.GetMother(), p.GetFather() }.Where(Ours).ToList();
-            foreach (var x in parents)
-                if (!comp.journals.WroteWithin(x)) comp.journals.Write(x, "Council_Journal_ChildGrew", null, p.Named("OTHER"), age.Named("YEARS"));
+            var parents = Family.ParentsOf(p).Where(Ours).ToList();
+            // Thirteen is when they come of age, and the parents' pride and their journals are Lives/Legacy.cs's then.
+            bool comingOfAge = age == FamilyLifeMath.ComingOfAgeAge;
+            if (!comingOfAge)
+                foreach (var x in parents)
+                    if (!comp.journals.WroteWithin(x)) comp.journals.Write(x, "Council_Journal_ChildGrew", null, p.Named("OTHER"), age.Named("YEARS"));
             var lead = parents.FirstOrDefault(x => x.Spawned && x.Map == p.Map);
             if (lead == null) return;
             var toast = new DilemmaEffect_Toast
             {
-                target = DilemmaTarget.FamilyOfA, organizer = PlayWho.B, label = (age >= FamilyLifeMath.AdultAge ? "CC_Fam_ComingOfAgeLabel" : "CC_Fam_BirthdayToastLabel").Translate(),
+                target = DilemmaTarget.FamilyOfA, organizer = PlayWho.B, label = (age >= FamilyLifeMath.AdultAge ? "CC_Fam_EighteenLabel" : "CC_Fam_BirthdayToastLabel").Translate(),
                 hours = new IntRange(17, 22), duration = new FloatRange(0.75f, 1f), pool = "Council_Pool_PlayGrowth", waitHours = 4f
             };
             var play = toast.Begin(new DilemmaContext { map = p.Map, a = p, b = lead });
@@ -349,8 +378,43 @@ namespace ColonyCouncil
             play.other = p;
             string cause = "CC_Fam_BirthdayCause".Translate(p.Named("A"), age).Resolve();
             play.moods.Add(new HeldMood { pawn = p, thought = T("Council_Fam_BirthdayToast"), cause = cause });
-            foreach (var x in parents) play.moods.Add(new HeldMood { pawn = x, thought = T("Council_Fam_ChildGrown"), about = p, cause = cause });
+            if (!comingOfAge)
+                foreach (var x in parents) play.moods.Add(new HeldMood { pawn = x, thought = T("Council_Fam_ChildGrown"), about = p, cause = cause });
             play.moods.RemoveAll(m => m.thought == null);
+        }
+
+        // ---------------- The old wedding day, alone ----------------
+
+        /// <summary>
+        /// A wedding day come round with one of the two dead (Calendar/: the one left keeps it as their own): they write
+        /// of it, and go to the grave a while, or take a long walk where there is none, with a quiet good moment after.
+        /// </summary>
+        public static void WeddingDayAlone(Pawn left, string lost, string lostId, int years, Map map)
+        {
+            // apart: a day kept alone; the visit to the grave is on the map (PlayOut/).
+            if (!Playing || !Ours(left) || lost.NullOrEmpty()) return;
+            var comp = CouncilGameComponent.Instance;
+            if (!comp.journals.WroteWithin(left)) comp.journals.Write(left, "Council_Journal_OldWeddingDay", null, lost.Named("LOST"), years.Named("YEARS"));
+            string cause = "CC_Fam_OldWeddingDayCause".Translate(lost.Named("LOST")).Resolve();
+            var thought = T("Council_Fam_OurDay");
+            News.Post("CC_Fam_OldWeddingDay".Translate(left.Named("PAWN"), lost.Named("LOST"), years.Named("YEARS")).Resolve(), new LookTargets(left), NewsKind.People,
+                MessageTypeDefOf.NeutralEvent, Importance.Notable);
+            // Their own grave, where the colony buried them; never someone else's: a long walk where there is none.
+            var grave = PlaySpots.GraveOf(map, lostId);
+            PlayOut play = null;
+            if (left.Spawned && left.Map == map)
+                play = new DilemmaEffect_Visit
+                {
+                    who = PlayWho.A, to = grave != null ? PlaySpot.Grave : PlaySpot.Walk, orTo = new List<PlaySpot> { PlaySpot.Walk },
+                    label = "CC_Fam_OldWeddingDayLabel".Translate(lost.Named("LOST")), hours = new IntRange(9, 19), duration = new FloatRange(1f, 1.5f), waitHours = 10f
+                }.Begin(new DilemmaContext { map = map, a = left });
+            if (play == null)
+            {
+                CouncilGameComponent.GiveThought(left, thought, null, -1f, cause);
+                return;
+            }
+            if (grave != null) play.place = grave;
+            if (thought != null) play.moods.Add(new HeldMood { pawn = left, thought = thought, cause = cause });
         }
     }
 
@@ -451,6 +515,18 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("family birthday hook", e);
             }
+        }
+    }
+
+    /// <summary>The child an adoptive parent took in, seen from the parent's side (Defs/Misc/Rimfolk_Relations.xml).</summary>
+    public class PawnRelationWorker_AdoptedChild : PawnRelationWorker
+    {
+        private static PawnRelationDef parent;
+
+        public override bool InRelation(Pawn me, Pawn other)
+        {
+            parent ??= DefDatabase<PawnRelationDef>.GetNamedSilentFail(FamilyMath.AdoptiveParentDef);
+            return parent != null && me != other && other?.relations != null && other.relations.DirectRelationExists(parent, me);
         }
     }
 }

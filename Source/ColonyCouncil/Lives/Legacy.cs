@@ -69,7 +69,10 @@ namespace ColonyCouncil
 
         // ---------------- Heirlooms ----------------
 
-        /// <summary>Called when a colonist has died: their weapon or hat goes to the one who loved them most.</summary>
+        /// <summary>
+        /// Called when a colonist has died: their weapon or hat goes to the one who loved them most, family weighing most,
+        /// blood closest (Social/FamilyInheritance.cs).
+        /// </summary>
         public void Notify_Death(CouncilGameComponent comp, Pawn dead)
         {
             if (!S.heirlooms || dead == null) return;
@@ -78,7 +81,7 @@ namespace ColonyCouncil
                 thing = dead.apparel?.WornApparel.FirstOrDefault(a => a.def.apparel?.layers?.Contains(ApparelLayerDefOf.Overhead) ?? false);
             if (thing == null || thing.Destroyed) return;
             var heir = PawnsFinder.AllMaps_FreeColonists.Where(Eligible).Where(p => p.relations != null && !p.DevelopmentalStage.Baby())
-                .OrderByDescending(p => p.relations.OpinionOf(dead) + comp.social.Warmth(p, dead) + (p.GetRelations(dead).Any() ? 40f : 0f)).FirstOrDefault();
+                .OrderByDescending(p => p.relations.OpinionOf(dead) + comp.social.Warmth(p, dead) + Inheritance.Bonus(p, dead)).FirstOrDefault();
             if (heir == null || heir.relations.OpinionOf(dead) < 20 && comp.social.Warmth(heir, dead) < 30f && !heir.GetRelations(dead).Any()) return;
             heirlooms.Add(new Heirloom { thing = thing, ofName = dead.LabelShort, heir = heir, tick = Find.TickManager.TicksGame });
             string text = "CC_Heirloom_Passed".Translate(heir.Named("PAWN"), dead.Named("OTHER"), thing.def.label.Named("ITEM")).Resolve();
@@ -143,7 +146,8 @@ namespace ColonyCouncil
             comp.journals.Write(p, "Council_Journal_ComingOfAge");
             foreach (var o in PawnsFinder.AllMaps_FreeColonists.ToList().Where(o => o != p && Eligible(o) && o.relations != null && !o.DevelopmentalStage.Juvenile()))
             {
-                if (o.GetRelations(p).Any(r => r == PawnRelationDefOf.Parent))
+                // Their parents (p is their child), by blood or by adoption (Social/FamilyLife.cs).
+                if (o.GetRelations(p).Any(r => r == PawnRelationDefOf.Child || FamilyMath.AdoptedChild(r.defName)))
                 {
                     CouncilGameComponent.GiveThought(o, CouncilDefOf.Council_ChildGrown, p);
                     // The memory may have marked them, and they wrote of it in their own words (Persona/Marks.cs): one line.

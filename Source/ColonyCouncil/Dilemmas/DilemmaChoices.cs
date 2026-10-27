@@ -118,6 +118,14 @@ namespace ColonyCouncil
             {
                 Add(tags, ctx.a, ctx.b, ctx.stranger, ctx.faction);
                 Moment(tags, ctx.map ?? ctx.a?.MapHeld, ctx.a, ctx.stranger);
+                try
+                {
+                    ctx.def?.Worker?.AddTags(ctx, tags);
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("letter tags (worker)", e);
+                }
             }
             return tags;
         }

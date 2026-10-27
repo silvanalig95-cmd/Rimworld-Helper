@@ -1,6 +1,22 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.5 "The story at a glance", the player's request for a shorter Story tab. `UI/ITab_Pawn_Story.cs`:
+Last shipped: 0.17.6 "Who raises them, and the one left", family round C. `Social/FamilyGuardians.cs`: `Guardians`
+(`Unparented`: a child of ours with no living colonist parent by blood or `Council_AdoptiveParent`; `Notify_Died`
+records orphans for the session, `Hourly` fires `DilemmaWorker_Guardian` a day later with `OnlyOrphaned`;
+`CouncilGameComponent.guardianAsked`, once per child), `DilemmaEffect_Adopt` (a `DilemmaEffect_Needs` so it runs
+first; `childChooses` sets B), `Defs/DilemmaDefs/Rimfolk_Dilemmas_Family.xml` (tags "orphaned"/"baby" via the new
+`DilemmaWorker.AddTags`). The relation: `Defs/Misc/Rimfolk_Relations.xml` and `PawnRelationWorker_AdoptedChild`;
+`Family.ParentsOf`/`ChildrenOf`/`Adoptive`, and `DilemmaWorker_Family` counts them. `Social/FamilyInheritance.cs`:
+`Inheritance.Bonus` (`FamilyLifeMath.HeirBonus`) orders heirlooms (Lives/Legacy.cs); `Patch_FamilyDied` now has a
+prefix keeping the dead's `ownership.Bedroom` bed, passed a day later (session only) to family without a bedroom.
+The one left: `Council_Arc_Widowed` (`ArcWorker_Widowed`; `ArcWorker_Grief` steps aside when it `Takes`);
+`CalendarTracker.Notify_Death` turns a wedding day `Personal` for the survivor and `Personal()` calls
+`FamilyLife.WeddingDayAlone` (grave by id, else a walk); `FamilyLife.Reactions` gives a widowed parent's children
+`NewPartnerTake` with `Council_Pool_SayParentNewPartner`. Fixes: `Legacy.ComingOfAge` read the parent relation the
+wrong way round; an arc's grave visit with no grave of the lost now goes to its `orTo` instead of any grave; babies
+aren't seated by sit-down visits.
+
+Before it, 0.17.5 "The story at a glance", the player's request for a shorter Story tab. `UI/ITab_Pawn_Story.cs`:
 `StoryView.Build` makes an `Overview` (character words from the "character" section's first line, standing pills:
 trust, office, `HealthTracker.StoryTag`; the goal with `UiKit.Bar`; `ArcView.Now` with stage dots; quirk, heirloom,
 vendetta and nemesis pills whose tips are `QuirkEffects.Tip` and the old lines; the family here as `UiKit.PawnChip`s
@@ -9,8 +25,9 @@ the character section skips its words line (`CharacterView.DrawSection(skip)`), 
 (`Family.TreeEntry`, `WhereKind`), "life" holds goals reached and `ArcView.Past`, journal and dreams are quotes.
 `Folds` takes sections that start shut (`StoryView.FoldedInTab`); the People roster's folds start all open.
 
-Next: family round C (adoption and guardians, orphaned here, inheritance by blood, widowhood and remarriage) as 0.17.6,
-then the audit's next gaps.
+Next: family round D (family meals, adult siblings and ageing parents, family names), then the audit's next gaps.
+Round B leftovers not built: an engaged couple planning the wedding with the council; close family waiting by the
+bed during labour (left to the game's own birth ritual).
 
 Before it, 0.17.4 "Sat down, seen off, asked in", audit gaps 2, 3 and 6. `PlayOut/PlaySit.cs`: a Visit with `sit`
 (and `sitBy` Fire) to someone up and free starts the visitor's job at a seat (`targetC` = the other) and the other's

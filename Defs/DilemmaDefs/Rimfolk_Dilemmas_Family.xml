@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Family questions for the council (Source/ColonyCouncil/Social/FamilyGuardians.cs). Who raises a child with nobody of
+    their own here (DilemmaWorker_Guardian: A the child, B the grown-up who would take them in; its tags "orphaned" when
+    a parent of theirs died, "baby" for a baby). It comes a day after a child's parents die, and in its turn for a lost
+    child taken in or a ward; each child once. Naming a parent is DilemmaEffect_Adopt, which comes first, so the
+    evening together is the new parent's.
+  -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmFam_Guardian</defName>
+    <label>who raises them</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Guardian</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <roleA><child>true</child></roleA>
+    <texts>
+      <li>[orphaned,!baby] {A_nameDef} has no parent left here to raise {A_objective}. {B_nameDef} has been looking in on {A_objective}, and the colony asks the council who should raise {A_nameDef} now.</li>
+      <li>[orphaned,!baby] {A_nameDef} keeps asking who {A_pronoun} belongs to now. {B_nameDef} would take {A_objective} in if the council agrees, though some say {A_nameDef} should choose for {A_objective}self.</li>
+      <li>[orphaned,baby] {A_nameDef} is too small to know {A_pronoun} has lost anyone. Somebody has to raise {A_objective}, and {B_nameDef} has offered.</li>
+      <li>[!orphaned,!baby] {A_nameDef} has nobody of {A_possessive} own here: no parent at the table, nobody to run to. {B_nameDef} has been keeping an eye on {A_objective}, and asks the council whether {B_pronoun} should raise {A_objective} as {B_possessive} own.</li>
+      <li>[!orphaned,!baby] Everyone feeds {A_nameDef} and nobody tucks {A_objective} in. {B_nameDef} has asked the council to settle whose {A_pronoun} is.</li>
+      <li>[!orphaned,baby] {A_nameDef} has nobody of {A_possessive} own. Whoever is nearest feeds {A_objective}, and {B_nameDef} would like it to be {B_objective}, always.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} raises {A_nameDef} as {B_possessive} own</label>
+        <outcome>{B_nameDef} is raising {A_nameDef} as {B_possessive} own now. That first evening {B_pronoun} kept {A_objective} company a long while, and didn't hurry away.</outcome>
+        <outcomes>
+          <li>[!baby] {B_nameDef} is raising {A_nameDef} as {B_possessive} own now. They spent the first evening together, and {A_nameDef} asked whether it was for good. {B_nameDef} said it was.</li>
+          <li>[baby] {B_nameDef} is raising {A_nameDef} as {B_possessive} own now. The first evening {B_pronoun} stayed by {A_objective} a long while, saying nothing much, which {A_nameDef} seemed to like.</li>
+        </outcomes>
+        <ways><mercy>2</mercy><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Adopt" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Fam_TookInChild</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_TakenIn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Person</to><whom>A</whom><hours>16~21</hours><duration>1.5~2</duration><label>a first evening with {A_nameDef}</label><sit>true</sit></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} choose</label>
+        <outcome>Asked who {A_pronoun} wanted, {A_nameDef} went to {B_nameDef} and stayed with {B_objective}. {B_nameDef} is raising {A_objective} now.</outcome>
+        <outcomes>
+          <li>[orphaned] Asked who {A_pronoun} wanted, {A_nameDef} went to {B_nameDef} without a word and stayed there. {B_nameDef} is raising {A_objective} now, and was more pleased than {B_pronoun} let on.</li>
+        </outcomes>
+        <ways><openness>2</openness><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Adopt"><childChooses>true</childChooses></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Fam_TookInChild</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_TakenIn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Person</to><whom>B</whom><hours>16~21</hours><duration>1.5~2</duration><label>going to {B_nameDef}</label><sit>true</sit></li>
+        </effects>
+      </li>
+      <li>
+        <label>The whole colony raises {A_nameDef}</label>
+        <outcome>At supper the council said it plainly: {A_nameDef} belongs to all of them, and anyone at the table can be asked. {A_nameDef} has a great many grown-ups now, and none of them {A_possessive} own.</outcome>
+        <ways><generosity>1</generosity><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_RaisedByAll</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a word at supper for {A_nameDef}</label><spots><li>Dining</li><li>Gather</li></spots><hours>17~21</hours></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

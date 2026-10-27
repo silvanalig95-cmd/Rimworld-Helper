@@ -28,7 +28,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The numbers and choices behind the family's life together (Social/FamilyLife.cs): who is glad of a new couple and
     /// who doubts it, whether a child on the way is wanted, which family names a baby is offered, whether a birthday is
-    /// one the family marks, and what a child was named after. No game types, so Tools/Tests checks it.
+    /// one the family marks, what a child was named after, and how much family weighs in who inherits. No game types,
+    /// so Tools/Tests checks it.
     /// </summary>
     public static class FamilyLifeMath
     {
@@ -40,8 +41,39 @@ namespace ColonyCouncil
         public const int MaxReacting = 4;
         /// <summary>At most this many family names are offered for a baby.</summary>
         public const int MaxSuggested = 6;
-        /// <summary>The birthday a child comes of age.</summary>
+        /// <summary>The eighteenth birthday, which the family marks as well.</summary>
         public const int AdultAge = 18;
+        /// <summary>The birthday a child comes of age (stops being a child: Lives/Legacy.cs marks it).</summary>
+        public const int ComingOfAgeAge = 13;
+
+        /// <summary>The least <see cref="HeirBonus"/> that counts as family for a dead colonist's room (family by marriage).</summary>
+        public const float HeirFamily = 40f;
+
+        /// <summary>
+        /// How much a relation weighs in who inherits what the dead leave (Social/FamilyInheritance.cs, Lives/Legacy.cs),
+        /// on top of how the two felt about each other: a parent, child, brother or sister most; then a partner, or a
+        /// parent or child by adoption; other family by blood; family by marriage; anything else between them (an old
+        /// flame) a little; no relation, nothing.
+        /// </summary>
+        public static float HeirBonus(string relation, bool byBlood)
+        {
+            if (string.IsNullOrEmpty(relation)) return 0f;
+            switch (relation)
+            {
+                case "Parent":
+                case "Child":
+                case "Sibling":
+                    return 80f;
+                case "Spouse":
+                case "Fiance":
+                case "Lover":
+                    return 70f;
+            }
+            if (FamilyMath.Adoptive(relation)) return 70f;
+            if (byBlood) return 60f;
+            if (FamilyMath.ByMarriage(relation)) return HeirFamily;
+            return 20f;
+        }
 
         /// <summary>
         /// How someone takes it: family doubt a match with someone they can't stand, and are otherwise glad; a friend is
@@ -53,10 +85,16 @@ namespace ColonyCouncil
             return opinionOfTheirs >= FriendOpinion && opinionOfPartner >= 0 ? MatchTake.Glad : MatchTake.None;
         }
 
+        /// <summary>
+        /// How a widowed parent's child takes their new partner (Social/FamilyLife.cs): glad for the parent unless they
+        /// dislike the one who seems to take their late parent's place at all.
+        /// </summary>
+        public static MatchTake NewPartnerTake(int opinionOfPartner) => opinionOfPartner < 0 ? MatchTake.Doubt : MatchTake.Glad;
+
         /// <summary>A child on the way is wanted unless the mother is unhappy about it or the couple were set against one.</summary>
         public static bool Wanted(bool motherUnhappy, bool avoiding) => !motherUnhappy && !avoiding;
 
-        /// <summary>A birthday the family marks with a toast: one of the game's growth moments, or coming of age.</summary>
+        /// <summary>A birthday the family marks with a toast: one of the game's growth moments, or the eighteenth.</summary>
         public static bool Marked(int age, bool growthMoment) => growthMoment || age == AdultAge;
 
         /// <summary>

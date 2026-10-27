@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 338; modelled: 338; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,680 KB** after a year, **2,043 KB** after two, **2,159 KB** after five.
+Saved collections found: 339; modelled: 339; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,681 KB** after a year, **2,044 KB** after two, **2,160 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -35,7 +35,7 @@ Rimfolk's part of the save, roughly: **1,680 KB** after a year, **2,043 KB** aft
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords | cap | 30 | 60 | 60 | 17.6 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 177 | 177 | 177 | 15.6 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 178 | 178 | 178 | 15.6 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -68,9 +68,9 @@ Rimfolk's part of the save, roughly: **1,680 KB** after a year, **2,043 KB** aft
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 53 | 53 | 53 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 53 | 53 | 53 | 4.7 |
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 53 | 53 | 53 | 4.7 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
@@ -124,9 +124,9 @@ Rimfolk's part of the save, roughly: **1,680 KB** after a year, **2,043 KB** aft
 | `Quirks/Quirks.cs:battleTick` | within the longest quirk window | colonists | 20 | 20 | 20 | 1.8 |
 | `Strangers/Nuisances.cs:last` | 10 days | window | 20 | 20 | 20 | 1.8 |
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 18 | 18 | 18 | 1.6 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 18 | 18 | 18 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
 | `Camps/Camp.cs:felledTicks` | with the above | while | 60 | 60 | 60 | 1.5 |
 | `CouncilGameComponent.cs:expectingTold` | pregnancies told to the family, the newest 60 (Social/FamilyLife.cs) | fixed | 60 | 60 | 60 | 1.5 |
@@ -141,6 +141,7 @@ Rimfolk's part of the save, roughly: **1,680 KB** after a year, **2,043 KB** aft
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
 | `Arcs/ArcTracker.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Camps/Camp.cs:owned` | the camp's goods, pruned of the gone at saving | while | 40 | 40 | 40 | 1.0 |
+| `CouncilGameComponent.cs:guardianAsked` | children the council was asked about, who raises them, the newest 40 (Social/FamilyGuardians.cs) | fixed | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:recentWishDefs` | recent wishes, 20 days | window | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:recentWishTicks` | with the above | window | 40 | 40 | 40 | 1.0 |
 | `Secrets/Vendettas.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |

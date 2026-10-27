@@ -1405,7 +1405,14 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Fam_QuietDay>The rest of today is {0}'s own: no work until tomorrow.</CC_Fam_QuietDay>
   <CC_Fam_SitWithLabel>sitting with {B_nameDef}</CC_Fam_SitWithLabel>
   <CC_Fam_BirthdayToastLabel>the toast to {A_nameDef}'s birthday</CC_Fam_BirthdayToastLabel>
-  <CC_Fam_ComingOfAgeLabel>the toast to {A_nameDef}, of age today</CC_Fam_ComingOfAgeLabel>
+  <CC_Fam_EighteenLabel>the toast to {A_nameDef}, eighteen today</CC_Fam_EighteenLabel>
+  <CC_Guard_Chronicle>{A_nameDef} is raised by {PARENTS} now, as the council named them.</CC_Guard_Chronicle>
+  <CC_Guard_TooYoung>{A_nameDef} is too young to choose.</CC_Guard_TooYoung>
+  <CC_Inherit_Room>{OTHER_nameDef}'s room has passed to {OTHER_possessive} {RELATION}, {PAWN_nameDef}, and the bed is {PAWN_possessive} now.</CC_Inherit_Room>
+  <CC_Inherit_RoomPlain>{OTHER_nameDef}'s room has passed to {PAWN_nameDef}, as family, and the bed is {PAWN_possessive} now.</CC_Inherit_RoomPlain>
+  <CC_Fam_OldWeddingDay>{PAWN_nameDef} and {LOST} were married {YEARS} years ago today. {PAWN_nameDef} keeps the day on {PAWN_possessive} own.</CC_Fam_OldWeddingDay>
+  <CC_Fam_OldWeddingDayLabel>keeping the wedding day with {LOST}</CC_Fam_OldWeddingDayLabel>
+  <CC_Fam_OldWeddingDayCause>The wedding day with {LOST}, kept alone.</CC_Fam_OldWeddingDayCause>
   <CC_Fam_BirthdayCause>{A_nameDef} turned {1} today.</CC_Fam_BirthdayCause>
   <CC_Family_NamedAfter>Named after {PAWN_possessive} {RELATION}, {OTHER_nameDef}.</CC_Family_NamedAfter>
   <CC_Family_SharesName>Shares a name with {PAWN_possessive} {RELATION}, {OTHER_nameDef}.</CC_Family_SharesName>

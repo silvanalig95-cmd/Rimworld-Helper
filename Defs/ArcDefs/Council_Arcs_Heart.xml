@@ -163,6 +163,154 @@
   </ColonyCouncil.ArcDef>
 
   <!-- ===================================================================================================== -->
+  <!-- The one left: a husband, wife or betrothed died; the empty side of the bed; their things; the first  -->
+  <!-- season; carrying it. Takes the place of a long grief for them.                                      -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Council_Arc_Widowed</defName>
+    <label>the one left</label>
+    <summary>After a husband, wife or betrothed dies, the one left lives through it slowly: the empty side of the bed, going through their things and talking of them at last, a first season with an hour of their own for them, until they can carry it.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Widowed</workerClass>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <memories>
+      <li>MyHusbandDied</li>
+      <li>MyWifeDied</li>
+      <li>MyFianceDied</li>
+      <li>MyFianceeDied</li>
+    </memories>
+    <memoryDays>15</memoryDays>
+    <maxDays>120</maxDays>
+    <stages>
+      <li>
+        <label>the empty side of the bed</label>
+        <waiting>Next: time. Nobody hurries the one left.</waiting>
+        <journal>
+          <plain>
+            <li>I still sleep on my own side, and leave {LOST}'s side as it was.</li>
+            <li>Everyone calls me by my name. {LOST} was the only one who said it like that.</li>
+            <li>[night] The bed is too big. I keep to a corner of it.</li>
+            <li>Set out two cups this morning. Put one back.</li>
+            <li>Our room is very quiet without {LOST} in it.</li>
+          </plain>
+          <warm><li>I married {LOST} because I couldn't think of a life without {LOST} in it. Now I'm living one.</li></warm>
+          <blunt><li>{LOST} is gone. Got up. Worked. Will do it again tomorrow.</li></blunt>
+          <cheerful><li>{LOST} would tell me to eat something and stop staring at the wall. I'm trying, {LOST}.</li></cheerful>
+          <gloomy><li>Everyone says it gets easier. None of them has buried the one they married.</li></gloomy>
+          <cold><li>{LOST} is dead. I keep to my side of the bed out of habit, not sentiment.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{PAWN_nameDef} hardly says {LOST}'s name. I don't either, yet.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} has taken the death of {LOST} very hard.</li>
+          <li>Since {LOST} died, {PAWN_nameDef} is the last to go to bed.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>7</days><minDays>7</minDays></gate>
+      </li>
+      <li>
+        <label>their things</label>
+        <waiting>Next: {PAWN_nameDef} talks about {LOST} with someone, or dreams of {LOST}.</waiting>
+        <journal>
+          <plain>
+            <li>Went through a few of {LOST}'s things today. Stopped after the first few.</li>
+            <li>I'd like to talk about {LOST} with {OTHER_nameDef}. I don't know how to start.</li>
+            <li>[night] Dreamt {LOST} was in the next room. Woke before I could get there.</li>
+            <li>Some of {LOST}'s words have got into my mouth. I said one today and had to sit down.</li>
+          </plain>
+          <warm><li>{LOST} would want the warm things given away before winter. Not yet, {LOST}.</li></warm>
+          <blunt><li>Need to talk about {LOST}. Soon.</li></blunt>
+          <gloomy><li>Every one of {LOST}'s things is a little piece of the day {LOST} died.</li></gloomy>
+          <cold><li>I have begun to sort {LOST}'s belongings. It is a task like any other, nearly.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{LOST}'s name has come back into {PAWN_nameDef}'s talk, a little at a time.</li>
+        </chronicle>
+        <gate>
+          <kind>Talk</kind>
+          <talk>Council_Arc_Talk_Remember</talk>
+          <anyone>true</anyone>
+          <minDays>2</minDays>
+          <quietAfterDays>7</quietAfterDays>
+          <timeoutDays>25</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Dream</kind><minDays>2</minDays></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>the first season</label>
+        <waiting>Next: a run of better days.</waiting>
+        <journal>
+          <plain>
+            <li>Took some time on my own today, for {LOST}.</li>
+            <li>Laughed at something today, and then wanted to tell {LOST}.</li>
+            <li>The first season without {LOST} is nearly over. I'm still here.</li>
+          </plain>
+          <warm><li>I talked to {LOST} today, out loud, the way we used to talk. It helped more than I thought.</li></warm>
+          <blunt><li>A better day. I'll take it.</li></blunt>
+          <gloomy><li>Some days are lighter now. I don't trust them yet.</li></gloomy>
+          <cold><li>The loss of {LOST} intrudes less on the working day. That will have to be enough.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{PAWN_nameDef} said {LOST}'s name today without stopping. I noticed.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} took an hour of {PAWN_possessive} own for {LOST}, and came back a little lighter.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an hour of their own</label><to>Grave</to><orTo><li>Walk</li></orTo><hours>9~18</hours><duration>1~1.5</duration></li>
+        </effects>
+        <gate><kind>Hold</kind><hold>Mood</hold><value>0.45</value><hours>72</hours><minDays>10</minDays><timeoutDays>50</timeoutDays></gate>
+      </li>
+      <li>
+        <label>carrying it</label>
+        <journal>
+          <plain>
+            <li>I can talk about {LOST} now, and I do, more than I expected.</li>
+            <li>I still miss {LOST} every day. I can carry it now.</li>
+            <li>I'll always be {LOST}'s. I'm also still here, and that's allowed.</li>
+          </plain>
+          <warm><li>{LOST} would be glad I'm all right. I am, most days.</li></warm>
+          <blunt><li>It's lighter now. That's all.</li></blunt>
+          <cheerful><li>I can tell {LOST}'s stories now, and get the endings right. {LOST} never did.</li></cheerful>
+          <gloomy><li>The worst of it has passed. I'm not sure I wanted it to. It was the last of {LOST}.</li></gloomy>
+          <cold><li>I have come to terms with the loss of {LOST}. I remember {LOST} accurately, and that will do.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} carries the loss of {LOST} more lightly now. It has not gone.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_GriefEased</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-12</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Quirk"><quirk>Council_Quirk_ExtraPlace</quirk><chance>0.35</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] It hasn't eased. I've got used to the weight of it.</li>
+        <li>[otherdead] Now {OTHER_nameDef} too. I don't know where to put this.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone, and {OTHER_pronoun} was the one I could talk to about {LOST}.</li>
+        <li>I'm still {LOST}'s, and it still hurts.</li>
+      </plain>
+      <warm><li>[timeout] I miss {LOST} every day. I'm learning to carry it more gently.</li></warm>
+      <gloomy><li>[timeout] The grief isn't going anywhere. Neither am I.</li></gloomy>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[otherdead] {PAWN_nameDef}, still grieving {LOST}, has lost {OTHER_nameDef} too.</li>
+      <li>{PAWN_nameDef} still grieves {LOST}.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} never stopped missing {LOST}. I hope they're together now.</li>
+        <li>{OTHER_nameDef} was {LOST}'s to the end.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
   <!-- A secret told: the weight of it; telling a friend; the courage; said out loud to everyone.           -->
   <!-- ===================================================================================================== -->
 

@@ -397,6 +397,8 @@ namespace ColonyCouncil
                 }
             }
             if (lost == null) return null;
+            // A husband, wife or one they were to marry: theirs is the longer story of the one left (ArcWorker_Widowed).
+            if ((dead != null ? ArcWorker_Widowed.Partner(p, dead) : ArcWorker_Widowed.LatePartner(p)?.LabelShort == lost) && ArcWorker_Widowed.Takes(p, home)) return null;
             // Someone to talk about them with: who grieves them too, else their closest friend.
             Pawn other = null;
             if (dead != null)
@@ -405,6 +407,43 @@ namespace ColonyCouncil
             other = other ?? ArcUtil.Closest(p, home, 10f);
             if (other == null) return null;
             return new ArcCandidate { other = other, lostName = lost, weight = 1.3f };
+        }
+    }
+
+    /// <summary>
+    /// The one left: their husband, wife or the one they were to marry died lately (the game's own grief for them, the
+    /// def's memories). The other is a child of theirs at home, who grieves too, else their closest friend. It takes the
+    /// place of a long grief for them (ArcWorker_Grief steps aside).
+    /// </summary>
+    public class ArcWorker_Widowed : ArcWorker
+    {
+        public const string DefName = "Council_Arc_Widowed";
+
+        /// <summary>A husband, wife, fiancé or fiancée of theirs (living or dead).</summary>
+        public static bool Partner(Pawn p, Pawn o) =>
+            p?.relations != null && o != null && (p.relations.DirectRelationExists(PawnRelationDefOf.Spouse, o) || p.relations.DirectRelationExists(PawnRelationDefOf.Fiance, o));
+
+        /// <summary>Their husband, wife or the one they were to marry, dead; the most recently dead when there's more than one.</summary>
+        public static Pawn LatePartner(Pawn p) =>
+            p?.relations?.DirectRelations.Where(r => (r.def == PawnRelationDefOf.Spouse || r.def == PawnRelationDefOf.Fiance) && r.otherPawn != null && r.otherPawn.Dead)
+                .Select(r => r.otherPawn).OrderByDescending(o => o.Corpse?.timeOfDeath ?? 0).FirstOrDefault();
+
+        /// <summary>This story would begin for them now (so the long grief leaves it to this one).</summary>
+        public static bool Takes(Pawn p, List<Pawn> home) =>
+            DefDatabase<ArcDef>.GetNamedSilentFail(DefName)?.Worker is ArcWorker_Widowed w && w.Candidate(p, home) != null;
+
+        public override ArcCandidate Candidate(Pawn p, List<Pawn> home)
+        {
+            if (ArcUtil.Psychopath(p) || p.DevelopmentalStage.Juvenile()) return null;
+            var m = ArcUtil.MemoryAbout(p, def.memories, def.memoryDays, o => o.Dead && o.RaceProps.Humanlike && Partner(p, o));
+            var dead = m?.otherPawn;
+            if (dead == null) return null;
+            // A child of theirs at home, the dead's child too first; else the friend closest to them.
+            var other = Family.ChildrenOf(p).Where(c => c != null && !c.Dead && home.Contains(c) && !c.DevelopmentalStage.Baby())
+                            .OrderByDescending(c => Family.ParentsOf(c).Contains(dead)).ThenByDescending(c => ArcUtil.Closeness(p, c)).FirstOrDefault()
+                        ?? ArcUtil.Closest(p, home, 10f);
+            if (other == null) return null;
+            return new ArcCandidate { other = other, lostName = dead.LabelShort, weight = 1.5f };
         }
     }
 

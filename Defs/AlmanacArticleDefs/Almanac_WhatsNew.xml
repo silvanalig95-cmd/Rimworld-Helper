@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.17.6</version>
+        <date>27 October 2026</date>
+        <title>Who raises them, and the one left</title>
+        <points>
+          <li>A child with nobody of their own here brings the council a question a day after their parents die: who raises them. Name an adoptive parent, let the child choose, or let the whole colony raise them. An adoptive mother or father and their adopted son or daughter show on the Social tab, and are parent and child for the family's toasts, pride and grief.</li>
+          <li>A dead colonist's own room goes a day later to the closest of their family here without a room of their own, and the bed is theirs. Heirlooms go to family first, blood closest.</li>
+          <li>When a husband, wife or betrothed dies, the one left has a long story of their own, with a child of theirs beside them: the empty side of the bed, their things, an hour at the grave, and in time carrying it.</li>
+          <li>The wedding day of a couple parted by death comes round as the survivor's own, kept with an hour at the grave or a long walk.</li>
+          <li>When a widowed parent finds someone new, their children are glad for them, or hurt for the parent they lost, and say so.</li>
+          <li>Parents were never proud when their child came of age, because of a mistake in who counted as a parent; they are now, adoptive parents too.</li>
+          <li>A personal story's hour at the grave of the one it remembers went to another grave when that person wasn't buried here. It is a long walk instead now.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.17.5</version>
         <date>27 October 2026</date>
         <title>The story at a glance</title>

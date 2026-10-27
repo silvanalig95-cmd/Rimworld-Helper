@@ -162,7 +162,7 @@ Now and then, when two such relatives are together, one says a word about it to 
     <order>9</order>
     <summary>Who is family to whom, where they all are, and what happens when they meet again, or meet across a fight.</summary>
     <tip>A colonist's story shows their family, and where each of them is now.</tip>
-    <description>The game knows a colonist's family by blood, and Rimfolk counts family by marriage too: a spouse's mother or father, a child's spouse, a step-parent or step-child. They worry about those as about their own (downed, ill, carried off or away on the road), feel they belong when one of them lives in the colony, are counted as family when someone is close to a loss, can come to visit like any relative, and a death among them is grieved ("a death in the family"; family by blood grieve with the game's own thoughts).</description>
+    <description>The game knows a colonist's family by blood, and Rimfolk counts family by marriage too: a spouse's mother or father, a child's spouse, a step-parent or step-child; and by adoption, the adoptive parent the council names for a child. They worry about those as about their own (downed, ill, carried off or away on the road), feel they belong when one of them lives in the colony, are counted as family when someone is close to a loss, can come to visit like any relative, and a death among them is grieved ("a death in the family"; family by blood grieve with the game's own thoughts).</description>
     <sections>
       <li>
         <heading>The family tree</heading>
@@ -186,7 +186,19 @@ Now and then, when two such relatives are together, one says a word about it to 
       </li>
       <li>
         <heading>Names and birthdays</heading>
-        <text>When a baby born here is named, the naming window offers the family's own first names besides the game's: the baby's relatives of the same gender, the remembered dead first, then the closest, never a name a living brother or sister already has. The story says who a colonist was named after, or, for one not born here, who they share a name with. A child's growth birthdays (seven, ten and thirteen) and coming of age at eighteen are marked: the parents write of it, and that evening the family raise a glass to them at the table, a parent leading, a good memory for the child and for the parents who are there.</text>
+        <text>When a baby born here is named, the naming window offers the family's own first names besides the game's: the baby's relatives of the same gender, the remembered dead first, then the closest, never a name a living brother or sister already has. The story says who a colonist was named after, or, for one not born here, who they share a name with. A child's growth birthdays (seven, ten, and thirteen, when they come of age) and the eighteenth are marked: the parents write of it, and that evening the family raise a glass to them at the table, a parent leading, a good memory for the child and for the parents who are there. At thirteen the parents' pride, and what they write, are the coming of age's own: parents by adoption are proud too.</text>
+      </li>
+      <li>
+        <heading>Who raises a child</heading>
+        <text>A child of the colony with no living parent here, by blood or by adoption, is a question for the council: a day after their parents die, or in its turn for a lost child taken in or a ward, once for each child (again only if they're orphaned again). The grown-up fondest of them, family first and one already raising a brother or sister of theirs before that, would take them in. The council can name them the child's adoptive parent (their partner here too, unless they dislike the child), let the child choose the grown-up they like best (not a baby), or say the whole colony raises them, which a word at supper makes plain. An adoptive parent and the child they took in show on the game's Social tab ("adoptive mother", "adopted son"), think better of each other, and are parent and child for everything here: the birthday toasts, the pride when the child comes of age, the family dilemmas, and the game's own grief if one of them dies. The first evening together is spent together, and both write of it.</text>
+      </li>
+      <li>
+        <heading>What the dead leave</heading>
+        <text>A dead colonist's heirloom goes to the one who loved them most, family weighing most: a parent, child, brother or sister first, then a partner or a parent or child by adoption, other family by blood, family by marriage. Their own room (a bedroom with their bed in it) goes a day after they die to the closest of their family here who has no room of their own: the bed is theirs from then on, a message says so, and they write of it. A partner who shared the bed keeps it, and a bed the colony has given out meanwhile stays given.</text>
+      </li>
+      <li>
+        <heading>The one left</heading>
+        <text>When a husband, wife or betrothed dies, the one left has a story of their own in place of a long grief: the empty side of the bed, their things and talking of them at last (or dreaming of them), a first season with an hour of their own for them at the grave, or a long walk where there is none, and in time carrying it. A child of theirs at home is in it with them. Their wedding day stays on the calendar as the survivor's own: when it comes round they write of it and spend an hour at the grave, or a long walk, with a quiet good moment after. When a widowed parent finds someone new, their children take it as their own: glad for them, unless they dislike the one in their late parent's place, and then hurt, and they say so.</text>
       </li>
     </sections>
     <keywords><li>family</li><li>relative</li><li>in-law</li><li>step</li><li>reunion</li><li>family tree</li><li>kin</li></keywords>

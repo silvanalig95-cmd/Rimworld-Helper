@@ -28,8 +28,30 @@ namespace ColonyCouncil
         public static bool ByMarriage(Pawn a, Pawn b) =>
             a?.relations != null && b?.relations != null && a != b && a.GetRelations(b).Any(r => FamilyMath.ByMarriage(r.defName));
 
-        /// <summary>Family in the wider sense: by blood or by marriage (not a partner).</summary>
-        public static bool Of(Pawn a, Pawn b) => ArcUtil.Kin(a, b) || ByMarriage(a, b);
+        /// <summary>Family by adoption: an adoptive parent the council named, or the child they took in (Social/FamilyLife.cs).</summary>
+        public static bool Adoptive(Pawn a, Pawn b) =>
+            a?.relations != null && b?.relations != null && a != b && a.GetRelations(b).Any(r => FamilyMath.Adoptive(r.defName));
+
+        /// <summary>Family in the wider sense: by blood, by marriage or by adoption (not a partner).</summary>
+        public static bool Of(Pawn a, Pawn b) => ArcUtil.Kin(a, b) || ByMarriage(a, b) || Adoptive(a, b);
+
+        /// <summary>Their parents: by blood, and the adoptive parents the council named.</summary>
+        public static List<Pawn> ParentsOf(Pawn p)
+        {
+            var list = new List<Pawn>();
+            if (p?.relations == null) return list;
+            foreach (var r in p.relations.DirectRelations)
+                if ((r.def == PawnRelationDefOf.Parent || FamilyMath.AdoptiveParent(r.def.defName)) && r.otherPawn != null && !list.Contains(r.otherPawn))
+                    list.Add(r.otherPawn);
+            return list;
+        }
+
+        /// <summary>Their children: by blood, and those they took in as adoptive parent.</summary>
+        public static List<Pawn> ChildrenOf(Pawn p)
+        {
+            if (p?.relations == null) return new List<Pawn>();
+            return p.relations.Children.Where(c => c != null).Concat(p.relations.RelatedPawns.Where(o => o != null && o != p && ParentsOf(o).Contains(p))).Distinct().ToList();
+        }
 
         /// <summary>Their family by marriage, living or dead.</summary>
         public static List<Pawn> ByMarriageOf(Pawn p)
@@ -38,11 +60,12 @@ namespace ColonyCouncil
             return p.relations.RelatedPawns.Where(o => o != null && o != p && ByMarriage(p, o)).ToList();
         }
 
-        /// <summary>Their family by blood and by marriage, living or dead.</summary>
+        /// <summary>Their family by blood, by marriage and by adoption, living or dead.</summary>
         public static List<Pawn> All(Pawn p)
         {
             if (p?.relations == null) return new List<Pawn>();
-            return p.relations.FamilyByBlood.Where(o => o != null && o != p).Concat(ByMarriageOf(p)).Distinct().ToList();
+            var adoptive = p.relations.RelatedPawns.Where(o => o != null && o != p && Adoptive(p, o));
+            return p.relations.FamilyByBlood.Where(o => o != null && o != p).Concat(ByMarriageOf(p)).Concat(adoptive).Distinct().ToList();
         }
 
         /// <summary>What <paramref name="other"/> is to <paramref name="me"/> ("grandmother", "mother-in-law"), or "".</summary>
@@ -160,6 +183,10 @@ namespace ColonyCouncil
             }
             // A child on the way, told to the family (Social/FamilyLife.cs).
             FamilyLife.Hourly(comp);
+            // A child orphaned a day ago: who raises them (Social/FamilyGuardians.cs).
+            Guardians.Hourly(comp);
+            // A room left a day ago goes to family (Social/FamilyInheritance.cs).
+            Inheritance.Hourly(comp);
         }
 
         private static float DaysHere(Pawn p) => (p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 999999) / (float)GenDate.TicksPerDay;
@@ -287,11 +314,29 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A death in the family by marriage (Social/Family.cs), once the death has really happened.</summary>
+    /// <summary>
+    /// A death in the family by marriage (Social/Family.cs), one that leaves a child with nobody of their own, or a room
+    /// to pass on, once the death has really happened.
+    /// </summary>
     [HarmonyPatch(typeof(Pawn), nameof(Pawn.Kill))]
     public static class Patch_FamilyDied
     {
-        public static void Postfix(Pawn __instance)
+        /// <summary>The bed of their own room, while they still own it (Social/FamilyInheritance.cs).</summary>
+        public static void Prefix(Pawn __instance, out Building_Bed __state)
+        {
+            __state = null;
+            if (!RimfolkPatches.On || __instance == null || __instance.Dead || !__instance.IsColonist) return;
+            try
+            {
+                __state = __instance.ownership?.Bedroom != null ? __instance.ownership.OwnedBed : null;
+            }
+            catch (Exception)
+            {
+                __state = null;
+            }
+        }
+
+        public static void Postfix(Pawn __instance, Building_Bed __state)
         {
             if (!RimfolkPatches.On || __instance == null || !__instance.Dead) return;
             try
@@ -301,6 +346,17 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("family death hook", e);
+            }
+            // A child left with nobody of their own here: the council is asked who raises them (Social/FamilyGuardians.cs);
+            // their own room goes to family (Social/FamilyInheritance.cs).
+            try
+            {
+                Guardians.Notify_Died(__instance);
+                Inheritance.Notify_Died(__instance, __state);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("guardians and inheritance death hook", e);
             }
         }
     }

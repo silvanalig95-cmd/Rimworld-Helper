@@ -291,9 +291,17 @@ namespace ColonyCouncil
                 if (t == null || t.Destroyed || !t.Spawned || t.Map != ctx.map) return false;
                 p.place = t;
             }
-            // A personal story about someone lost: their own grave, when the colony buried them here.
+            // A personal story about someone lost: their own grave, when the colony buried them here; never someone
+            // else's grave, so where they aren't buried here, the place the story allows instead.
             if (to == PlaySpot.Grave && p.place == null && ctx is ArcEffectContext ac && !(ac.arc?.lostName).NullOrEmpty())
+            {
                 p.place = PlaySpots.GraveNamed(ctx.map, ac.arc.lostName);
+                if (p.place == null && p.spots.Count > 0)
+                {
+                    p.to = p.spots[0];
+                    p.spots.RemoveAt(0);
+                }
+            }
             return true;
         }
 

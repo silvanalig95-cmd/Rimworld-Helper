@@ -432,9 +432,9 @@ namespace ColonyCouncil
                         p.waitReason = "CC_Play_Why_Place".Translate();
                         return;
                     }
-                    // Sat down together (PlaySit.cs): when the one visited is up and free, at a table or by a fire. In bed,
-                    // they're kept company at the bedside; busy, the visit waits for them a while, then keeps them company.
-                    if (p.sit && p.kind == PlayKind.Visit && !o.InBed() && !o.Downed)
+                    // Sat down together (PlaySit.cs): when the one visited is up and free, at a table or by a fire. In bed
+                    // (or a baby), they're kept company where they are; busy, the visit waits for them a while, then keeps them company.
+                    if (p.sit && p.kind == PlayKind.Visit && !o.InBed() && !o.Downed && !o.DevelopmentalStage.Baby())
                     {
                         bool late = now > p.created + (p.deadline - p.created) * 2 / 3;
                         if (PlaySit.Free(this, p, o) && PlaySit.Seats(map, v, o, p.sitBy, out var seatV, out var seatO, out var focus))

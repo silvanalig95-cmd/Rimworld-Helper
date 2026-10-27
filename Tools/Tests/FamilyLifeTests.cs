@@ -2,8 +2,8 @@ using ColonyCouncil;
 
 /// <summary>
 /// The family's life together (Source/ColonyCouncil/Social/FamilyLifeMath.cs): who is glad of a new couple and who
-/// doubts it, whether a child on the way is wanted, which birthdays the family marks, the family names offered for a
-/// baby, and who a child was named after.
+/// doubts it, whether a child on the way is wanted, which birthdays the family marks, how much family weighs in who
+/// inherits, the family names offered for a baby, and who a child was named after.
 /// </summary>
 public static class FamilyLifeTests
 {
@@ -27,14 +27,30 @@ public static class FamilyLifeTests
             for (int q = -100; q <= 100; q += 10)
                 Check(FamilyLifeMath.Take(false, o, q) != MatchTake.Doubt, $"only family doubt ({o}, {q})");
 
+        // ---------- A widowed parent's new partner ----------
+        Check(FamilyLifeMath.NewPartnerTake(0) == MatchTake.Glad && FamilyLifeMath.NewPartnerTake(60) == MatchTake.Glad, "a child glad for their parent");
+        Check(FamilyLifeMath.NewPartnerTake(-1) == MatchTake.Doubt && FamilyLifeMath.NewPartnerTake(-80) == MatchTake.Doubt, "hurt when they dislike the one in their late parent's place");
+        for (int o = -100; o <= 100; o += 5) Check(FamilyLifeMath.NewPartnerTake(o) != MatchTake.None, $"a child always takes it one way or the other ({o})");
+
         // ---------- A child on the way ----------
         Check(FamilyLifeMath.Wanted(false, false), "wanted unless something says otherwise");
         Check(!FamilyLifeMath.Wanted(true, false) && !FamilyLifeMath.Wanted(false, true) && !FamilyLifeMath.Wanted(true, true), "not wanted: the mother unhappy or the couple avoiding it");
 
         // ---------- Birthdays the family marks ----------
         Check(FamilyLifeMath.Marked(7, true) && FamilyLifeMath.Marked(13, true), "the game's growth moments");
-        Check(FamilyLifeMath.Marked(FamilyLifeMath.AdultAge, false), "coming of age");
+        Check(FamilyLifeMath.Marked(FamilyLifeMath.AdultAge, false), "the eighteenth");
+        Check(FamilyLifeMath.ComingOfAgeAge < FamilyLifeMath.AdultAge && FamilyLifeMath.Marked(FamilyLifeMath.ComingOfAgeAge, true), "coming of age is a growth moment, before the eighteenth");
         Check(!FamilyLifeMath.Marked(8, false) && !FamilyLifeMath.Marked(19, false) && !FamilyLifeMath.Marked(30, false), "an ordinary birthday");
+
+        // ---------- Who inherits ----------
+        float H(string r, bool blood = false) => FamilyLifeMath.HeirBonus(r, blood);
+        Check(H("Parent", true) == H("Child", true) && H("Child", true) == H("Sibling", true), "parents, children, brothers and sisters alike");
+        Check(H("Child", true) > H("Spouse") && H("Spouse") == H("Lover") && H("Spouse") == H("Fiance"), "the closest blood before a partner");
+        Check(H(FamilyMath.AdoptedChildDef) == H("Spouse") && H(FamilyMath.AdoptiveParentDef) == H(FamilyMath.AdoptedChildDef), "a child by adoption as a partner, either way round");
+        Check(H("Spouse") > H("Grandchild", true) && H("Grandchild", true) > H("ParentInLaw") && H("Cousin", true) == H("Grandchild", true), "other blood, then family by marriage");
+        Check(H("ParentInLaw") == FamilyLifeMath.HeirFamily && H("Stepchild") == FamilyLifeMath.HeirFamily, "family by marriage is the least that's family");
+        Check(H("ExSpouse") > 0f && H("ExSpouse") < FamilyLifeMath.HeirFamily, "an old flame a little, not family");
+        Check(H(null) == 0f && H("") == 0f, "no relation, nothing");
 
         // ---------- Names for a baby ----------
         var fam = new List<NameSource>

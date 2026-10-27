@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Who raises them, and the one left
+
+*27 October 2026, version 0.17.6*
+
+- A child with nobody of their own here brings the council a question a day after their parents die: who raises them. Name an adoptive parent, let the child choose, or let the whole colony raise them. An adoptive mother or father and their adopted son or daughter show on the Social tab, and are parent and child for the family's toasts, pride and grief.
+- A dead colonist's own room goes a day later to the closest of their family here without a room of their own, and the bed is theirs. Heirlooms go to family first, blood closest.
+- When a husband, wife or betrothed dies, the one left has a long story of their own, with a child of theirs beside them: the empty side of the bed, their things, an hour at the grave, and in time carrying it.
+- The wedding day of a couple parted by death comes round as the survivor's own, kept with an hour at the grave or a long walk.
+- When a widowed parent finds someone new, their children are glad for them, or hurt for the parent they lost, and say so.
+- Parents were never proud when their child came of age, because of a mistake in who counted as a parent; they are now, adoptive parents too.
+- A personal story's hour at the grave of the one it remembers went to another grave when that person wasn't buried here. It is a long walk instead now.
+
 ## The story at a glance
 
 *27 October 2026, version 0.17.5*

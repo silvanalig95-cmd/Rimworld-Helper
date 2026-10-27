@@ -20,7 +20,7 @@ public static class ImmersionTests
         "Council_Pool_HabitStores", "Council_Pool_HabitCompany", "Council_Pool_HabitStories", "Council_Pool_SayDream", "Council_Pool_TouchCampComing",
         "Council_Pool_TouchCouncilWedding", "Council_Pool_GuestSays", "Council_Pool_SayFamilyYears", "Council_Pool_SayReunion", "Council_Pool_SayKinRaider",
         // The family's life together (Social/FamilyLife.cs).
-        "Council_Pool_SayNewCouple", "Council_Pool_SayMatchDoubt", "Council_Pool_SayEngaged", "Council_Pool_SayProposalComfort", "Council_Pool_SayExpecting",
+        "Council_Pool_SayNewCouple", "Council_Pool_SayMatchDoubt", "Council_Pool_SayParentNewPartner", "Council_Pool_SayEngaged", "Council_Pool_SayProposalComfort", "Council_Pool_SayExpecting",
         "Council_Pool_SayGrandchild", "Council_Pool_PlayGrowth",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).
         "Council_Pool_HabitTidy", "Council_Pool_HabitSunrise", "Council_Pool_HabitStones", "Council_Pool_HabitBirds", "Council_Pool_HabitWhittle",
@@ -36,7 +36,8 @@ public static class ImmersionTests
     private static readonly string[] JournalPools =
     {
         "Council_Journal_FirstSnowSeason", "Council_Journal_HeatWave", "Council_Journal_ColdSnap", "Council_Journal_Storm", "Council_Journal_Changed",
-        "Council_Journal_NewLove", "Council_Journal_Engaged", "Council_Journal_ProposalRefused", "Council_Journal_Expecting", "Council_Journal_Loss", "Council_Journal_ChildGrew"
+        "Council_Journal_NewLove", "Council_Journal_Engaged", "Council_Journal_ProposalRefused", "Council_Journal_Expecting", "Council_Journal_Loss", "Council_Journal_ChildGrew",
+        "Council_Journal_TookIn", "Council_Journal_TakenIn", "Council_Journal_InheritedRoom", "Council_Journal_OldWeddingDay"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };

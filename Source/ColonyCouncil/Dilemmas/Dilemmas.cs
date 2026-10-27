@@ -383,6 +383,11 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>Tags of the worker's own for the texts and outcomes (DilemmaWorker_Guardian: "orphaned", "baby").</summary>
+        public virtual void AddTags(DilemmaContext ctx, HashSet<string> tags)
+        {
+        }
+
         /// <summary>Anything else the dilemma needs (a thing, a faction). False = can't happen now.</summary>
         protected virtual bool Extra(DilemmaContext ctx)
         {

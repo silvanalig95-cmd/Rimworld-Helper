@@ -681,13 +681,18 @@ namespace ColonyCouncil
 
         // ---------------- Deaths ----------------
 
-        /// <summary>A colonist has died (from the vendettas' watch on losses): if the colony loved them, their day is remembered.</summary>
+        /// <summary>
+        /// A colonist has died (from the vendettas' watch on losses): if the colony loved them, their day is remembered;
+        /// and a wedding day of theirs becomes the one left's own, kept quietly (Social/FamilyLife.cs).
+        /// </summary>
         public static void Notify_Death(Pawn dead)
         {
             var self = Instance;
             if (self == null || dead == null || dead.RaceProps == null || !dead.RaceProps.Humanlike) return;
             try
             {
+                foreach (var d in self.days.Where(d => d.kind == CalendarKind.Wedding && !d.Personal && (d.pawnId == dead.ThingID || d.otherId == dead.ThingID)))
+                    if (FindOurs(d.pawnId == dead.ThingID ? d.otherId : d.pawnId) != null) d.way = DayWay.Personal;
                 var map = Home;
                 if (map == null) return;
                 self.AddDeath(map, dead, Find.TickManager.TicksGame, true);
@@ -800,7 +805,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Once a day: a day about someone who is gone is let go quietly (a birthday, an arrival, a wedding once either
-        /// is gone), and so is a remembrance nobody left in the colony shares, unless it became a tradition. Someone the
+        /// is gone, or once both are when one died and the other keeps it), and so is a remembrance nobody left in the colony shares, unless it became a tradition. Someone the
         /// game can't find at all (away somewhere it doesn't look) is given three days before their day is let go.
         /// </summary>
         private void Prune(Dictionary<string, Pawn> known)
@@ -814,7 +819,8 @@ namespace ColonyCouncil
                         if (Gone(d, d.pawnId, known)) days.Remove(d);
                         break;
                     case CalendarKind.Wedding:
-                        if (Gone(d, d.pawnId, known) || Gone(d, d.otherId, known)) days.Remove(d);
+                        // Once one of them has died the one left keeps it (DayWay.Personal): it goes when they do.
+                        if (d.Personal ? Gone(d, d.pawnId, known) && Gone(d, d.otherId, known) : Gone(d, d.pawnId, known) || Gone(d, d.otherId, known)) days.Remove(d);
                         break;
                     case CalendarKind.Death:
                         // Brought back (a resurrection): no day to remember.
