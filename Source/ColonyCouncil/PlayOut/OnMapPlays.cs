@@ -504,11 +504,13 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The enemy dead carried out (PlayKind.Haul): a few of the colony (three unless the count says) each take up one of
-    /// the raiders' bodies at a time, with the game's own hauling, and carry it out to one place: a pyre beyond the gate
-    /// (<see cref="to"/> "pyre": lit at dusk, burning until morning, OnMapTimed.cs) or the tree line ("treeline": left
-    /// there for the scavengers). Only the bodies of those who came against the colony, never anyone of its own or a
-    /// friend's; at most <see cref="most"/>. No bodies left (buried, hauled off, rotted away): nothing is set going.
+    /// The enemy dead dealt with as the answer says (PlayKind.Haul): a few of the colony (three unless the count says)
+    /// each take one of the raiders' bodies at a time, with the game's own hauling, to where <see cref="to"/> says: a
+    /// pyre beyond the gate ("pyre": lit at dusk by one of them, the bodies burning on it until morning, OnMapTimed.cs),
+    /// the tree line ("treeline": left there), graves dug outside the wall ("graves", a grave each, or "trench", side by
+    /// side: PlayDead.cs) or the colony's crematorium ("crematorium": burned in it; the answer can't be given without a
+    /// working one). Only the bodies of those who came against the colony, never anyone of its own or a friend's; at
+    /// most <see cref="most"/>. No bodies left (buried, hauled off, rotted away): nothing is set going.
     /// </summary>
     public class DilemmaEffect_HaulDead : DilemmaEffect_Group
     {
@@ -526,25 +528,45 @@ namespace ColonyCouncil
 
         protected override int DefaultCount => 3;
 
+        private string Mode => to == PlayHaul.Treeline || to == PlayHaul.Graves || to == PlayHaul.Trench || to == PlayHaul.Crematorium ? to : PlayHaul.Pyre;
+
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            if (Mode == PlayHaul.Crematorium && PlayCremation.Find(ctx?.map) == null) return "CC_Haul_NoCrematorium".Translate().Resolve();
+            return null;
+        }
+
         protected override bool Fill(PlayOut p, DilemmaContext ctx)
         {
             if (!base.Fill(p, ctx)) return false;
             var dead = PlayHaul.EnemyDead(ctx.map, Mathf.Clamp(most, 1, OnMapMath.MaxDead));
             if (dead.Count == 0) return false;
             p.things = dead;
-            p.mode = to == PlayHaul.Treeline ? PlayHaul.Treeline : PlayHaul.Pyre;
+            p.mode = Mode;
+            if (p.mode == PlayHaul.Crematorium)
+            {
+                p.place = PlayCremation.Find(ctx.map);
+                if (p.place == null) return false;
+            }
+            if (PlayHaul.Burial(p) && !PlayBurial.CanDig(ctx.map)) return false;
             p.count = Math.Min(p.count, PlayGroups.Cap(PlayKind.Haul));
             return true;
         }
 
-        protected override string DefaultLabel(DilemmaContext ctx) =>
-            (to == PlayHaul.Treeline ? "CC_Play_Label_Treeline" : "CC_Play_Label_Pyre").Translate().Resolve();
+        protected override string DefaultLabel(DilemmaContext ctx) => ("CC_Play_Label_" + PlayHaul.Key(Mode)).Translate().Resolve();
     }
 
     /// <summary>The bodies' way out: which bodies, where they go, who carries which.</summary>
     public static class PlayHaul
     {
-        public const string Pyre = "pyre", Treeline = "treeline";
+        public const string Pyre = "pyre", Treeline = "treeline", Graves = "graves", Trench = "trench", Crematorium = "crematorium";
+
+        /// <summary>The mode's part of its text keys (CC_Play_Label_Pyre, CC_Play_Where_Graves...).</summary>
+        public static string Key(string mode) =>
+            mode == Treeline ? "Treeline" : mode == Graves ? "DeadGraves" : mode == Trench ? "Trench" : mode == Crematorium ? "Crematorium" : "Pyre";
+
+        /// <summary>The dead go into graves dug for them.</summary>
+        public static bool Burial(PlayOut p) => p.mode == Graves || p.mode == Trench;
 
         /// <summary>The body of someone who came against the colony, lying on the open map (not buried, not in the fog).</summary>
         public static bool EnemyCorpse(Thing t)
@@ -568,17 +590,23 @@ namespace ColonyCouncil
 
         public static bool AtPile(PlayOut p, Thing c) => c != null && c.Spawned && c.Map == p.map && p.cell.IsValid && c.Position.InHorDistOf(p.cell, 3.9f);
 
-        /// <summary>Still to carry out: one of the dead, not yet at the pile.</summary>
-        private static bool ToCarry(PlayOut p, Thing c) => EnemyCorpse(c) && !AtPile(p, c);
+        /// <summary>Where the answer meant this body to go, it went: at the pile, in one of the graves (burned bodies leave the list).</summary>
+        public static bool Delivered(PlayOut p, Thing c) =>
+            Burial(p) ? PlayBurial.Buried(p, c) : p.mode != Crematorium && AtPile(p, c);
 
-        /// <summary>Carrying one of this plan's dead, with the game's own hauling.</summary>
+        /// <summary>Still to see to: one of the dead, not yet where they're going.</summary>
+        private static bool ToCarry(PlayOut p, Thing c) => EnemyCorpse(c) && !Delivered(p, c);
+
+        /// <summary>On this plan's work: carrying one of its dead (or digging one of its graves) with the game's own jobs.</summary>
         public static bool OnIt(PlayOut p, Pawn x)
         {
+            if (Burial(p)) return PlayBurial.OnIt(p, x);
+            if (p.mode == Crematorium) return PlayCremation.OnIt(p, x);
             var j = x?.CurJob;
             return j != null && j.def == JobDefOf.HaulToCell && j.targetA.Thing != null && p.things.Contains(j.targetA.Thing);
         }
 
-        /// <summary>Where the pile is, and the first ones set off. False (with a reason) when it can't start yet.</summary>
+        /// <summary>Where it all goes, and the first ones set off. False (with a reason) when it can't start yet.</summary>
         public static bool Start(PlayOutTracker t, PlayOut p, out string where)
         {
             where = null;
@@ -589,22 +617,51 @@ namespace ColonyCouncil
                 t.Fallback(p, "CC_Play_Why_NoDead".Translate(), false);
                 return false;
             }
-            if (!p.cell.IsValid) p.cell = p.mode == Treeline ? TreelineCell(p.map, lead) : PyreCell(p.map, lead);
-            if (!p.cell.IsValid)
+            if (p.mode == Crematorium)
+            {
+                // The crematorium the answer meant, or another of the colony's that can burn now; none: it waits.
+                if (!PlayCremation.Usable(p.place)) p.place = PlayCremation.Find(p.map);
+                if (p.place == null)
+                {
+                    p.waitReason = "CC_Haul_NoCrematorium".Translate();
+                    return false;
+                }
+            }
+            else if (Burial(p))
+            {
+                if (p.plots.Count == 0)
+                {
+                    var plots = PlayBurial.Plot(p.map, lead, p.things.Count, p.mode == Graves, out var rot);
+                    // No room for a grave each with ground between: side by side, as for a trench.
+                    if (plots.Count == 0 && p.mode == Graves) plots = PlayBurial.Plot(p.map, lead, p.things.Count, false, out rot);
+                    p.plots = plots;
+                    p.plotRot = rot.AsInt;
+                }
+                if (p.plots.Count == 0)
+                {
+                    p.waitReason = "CC_Play_Why_Place".Translate();
+                    return false;
+                }
+                PlayBurial.Lay(p);
+            }
+            else if (!p.cell.IsValid) p.cell = p.mode == Treeline ? TreelineCell(p.map, lead) : PyreCell(p.map, lead);
+            if (!Burial(p) && p.mode != Crematorium && !p.cell.IsValid)
             {
                 p.waitReason = "CC_Play_Why_Place".Translate();
                 return false;
             }
-            where = (p.mode == Treeline ? "CC_Play_Where_Treeline" : "CC_Play_Where_Pyre").Translate();
+            where = ("CC_Play_Where_" + Key(p.mode)).Translate();
             foreach (var h in p.hands) Give(p, h);
             if (p.hands.Any(h => OnIt(p, h.pawn))) return true;
             p.waitReason = "CC_Play_Why_Place".Translate();
             return false;
         }
 
-        /// <summary>The next body for this one to carry out, the nearest no one else has taken. False when there's none they can get to.</summary>
+        /// <summary>The next thing for this one to do. False when there's nothing they can get to.</summary>
         public static bool Give(PlayOut p, PlayHand h)
         {
+            if (Burial(p)) return PlayBurial.Give(p, h);
+            if (p.mode == Crematorium) return PlayCremation.Give(p, h);
             var x = h?.pawn;
             if (x == null || !x.Spawned || x.Map != p.map) return false;
             var others = p.hands.Where(o => o != h && !o.left && OnIt(p, o.pawn)).ToList();
@@ -626,12 +683,16 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>A free place at the pile for the next body, apart from where the others are taking theirs.</summary>
+        /// <summary>
+        /// A free place at the pile for the next body, apart from where the others are taking theirs. A pyre's middle is
+        /// kept clear for its fire: the dead are laid round it.
+        /// </summary>
         private static IntVec3 DropCell(PlayOut p, Pawn x, HashSet<IntVec3> taken)
         {
             var map = p.map;
             foreach (var c in GenRadial.RadialCellsAround(p.cell, 3.5f, true))
             {
+                if (p.mode == Pyre && c == p.cell) continue;
                 if (!c.InBounds(map) || taken.Contains(c) || !c.Standable(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null) continue;
                 if (c.GetTerrain(map)?.IsWater ?? false) continue;
                 if (!x.CanReach(c, PathEndMode.OnCell, Danger.Some)) continue;
@@ -640,11 +701,16 @@ namespace ColonyCouncil
             return IntVec3.Invalid;
         }
 
-        /// <summary>Counts the body this one carried, if it reached the pile.</summary>
+        /// <summary>Counts what this one did last, if it came to pass (a body burned is counted as it burns).</summary>
         public static void Settle(PlayOut p, PlayHand h)
         {
-            if (h == null || h.phase < 0) return;
-            if (h.phase < p.things.Count && AtPile(p, p.things[h.phase])) h.done++;
+            if (h == null) return;
+            if (Burial(p))
+            {
+                PlayBurial.Settle(p, h);
+                return;
+            }
+            if (h.phase >= 0 && p.mode != Crematorium && h.phase < p.things.Count && AtPile(p, p.things[h.phase])) h.done++;
             h.phase = -1;
         }
 
@@ -674,31 +740,44 @@ namespace ColonyCouncil
             if (on == 0 && (timeUp || allOut || (noneFor && elapsed > PlayOutMath.TicksPerHour / 4))) PlayGroups.Finish(t, p, false, null);
         }
 
-        /// <summary>How many of the dead reached the pile.</summary>
-        public static void Count(PlayOut p) => p.tally = p.things.Count(c => AtPile(p, c));
+        /// <summary>How many of the dead went where they were meant to (the crematorium counts as each is burned).</summary>
+        public static void Count(PlayOut p)
+        {
+            if (p.mode == Crematorium) return;
+            p.tally = p.things.Count(c => Delivered(p, c));
+        }
 
         /// <summary>
-        /// It's over and it happened: the dead at the pile are left be (forbidden, so nobody carries them back to a dump),
-        /// and for a pyre the fire is laid for dusk (OnMapTimed.cs). The answer's outcome goes with it, told once the
-        /// pyre has burned down rather than now, hours before it's lit.
+        /// It's over and it happened. At a pile, the dead are left be (forbidden, so nobody carries them back to a dump),
+        /// and for a pyre the fire is laid for dusk (OnMapTimed.cs), to be lit by the first of those who carried them;
+        /// the answer's outcome goes with it, told once the pyre has burned down rather than now, hours before it's lit.
+        /// A burial's leftover frames are taken up when nobody is left to bury.
         /// </summary>
         public static void Finished(PlayOut p)
         {
+            if (Burial(p))
+            {
+                p.tally = p.things.Count(c => PlayBurial.Buried(p, c));
+                PlayBurial.Done(p);
+                return;
+            }
+            if (p.mode == Crematorium) return;
             var piled = p.things.Where(c => AtPile(p, c)).ToList();
             p.tally = piled.Count;
             foreach (var c in piled) c.SetForbidden(true, false);
             if (p.mode != Pyre || piled.Count == 0 || OnMapTimed.Instance == null) return;
-            OnMapTimed.Instance.AddPyre(p.map, p.cell, piled, p.outcome);
+            var by = p.hands.Where(h => h.done > 0).Select(h => h.pawn).FirstOrDefault(x => x != null && !x.Dead);
+            OnMapTimed.Instance.AddPyre(p.map, p.cell, piled, p.outcome, by);
             p.outcome = null;
         }
 
         /// <summary>
-        /// Where a pyre is built: out past the gate, on open ground off the home area with room round it, where a fire
-        /// can be laid. Else the nearest such ground beyond the home area.
+        /// Open ground out past the gate, nearest first: along the line from the middle of the colony out through the
+        /// gate, then all round the gate (the middle of the colony with no gate). Where a pyre goes, and graves.
         /// </summary>
-        public static IntVec3 PyreCell(Map map, Pawn pawn)
+        public static IEnumerable<IntVec3> OutsideCells(Map map, Pawn pawn)
         {
-            if (map == null) return IntVec3.Invalid;
+            if (map == null) yield break;
             var gate = PlaySpots.GateCell(map, pawn);
             var center = TemplatePlanner.ColonyCenter(map);
             var from = gate.IsValid ? gate : center;
@@ -708,9 +787,19 @@ namespace ColonyCouncil
                 {
                     var c = new IntVec3(from.x + dx * k, 0, from.z + dz * k);
                     if (!c.InBounds(map)) break;
-                    if (PyreGround(c, map, pawn)) return c;
+                    yield return c;
                 }
-            foreach (var c in GenRadial.RadialCellsAround(from, 14f, false))
+            foreach (var c in GenRadial.RadialCellsAround(from, 20f, false))
+                if (c.InBounds(map)) yield return c;
+        }
+
+        /// <summary>
+        /// Where a pyre is built: out past the gate, on open ground off the home area with room round it, where a fire
+        /// can be laid. Else the nearest such ground beyond the home area.
+        /// </summary>
+        public static IntVec3 PyreCell(Map map, Pawn pawn)
+        {
+            foreach (var c in OutsideCells(map, pawn))
                 if (PyreGround(c, map, pawn)) return c;
             return IntVec3.Invalid;
         }

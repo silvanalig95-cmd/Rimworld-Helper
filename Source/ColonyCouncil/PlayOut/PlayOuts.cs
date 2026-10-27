@@ -280,8 +280,14 @@ namespace ColonyCouncil
         public List<Thing> things = new List<Thing>();
         /// <summary>Rounds: those to go round to, in order.</summary>
         public List<Pawn> round = new List<Pawn>();
-        /// <summary>How a gift ends ("give", "burn", "fetch"), where the dead go ("pyre", "treeline"), whom rounds are for ("outdoors").</summary>
+        /// <summary>
+        /// How a gift ends ("give", "burn", "fetch"), where the dead go ("pyre", "treeline", "graves", "trench",
+        /// "crematorium"), whom rounds are for ("outdoors").
+        /// </summary>
         public string mode;
+        /// <summary>A burial's graves, dug outside the wall: where each lies (PlayBurial), and which way they're turned.</summary>
+        public List<IntVec3> plots = new List<IntVec3>();
+        public int plotRot;
         /// <summary>A vigil kept on the move: a watch walking the colony's edge from one look-out to the next, until dawn.</summary>
         public bool patrol;
         /// <summary>What follows once it's over, whether or not it came about (PlayAfter: a secret said out loud).</summary>
@@ -364,12 +370,15 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref things, "things", LookMode.Reference);
             Scribe_Collections.Look(ref round, "round", LookMode.Reference);
             Scribe_Values.Look(ref mode, "mode");
+            Scribe_Collections.Look(ref plots, "plots", LookMode.Value);
+            Scribe_Values.Look(ref plotRot, "plotRot");
             Scribe_Values.Look(ref patrol, "patrol");
             Scribe_Values.Look(ref afterward, "afterward");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();
                 things.RemoveAll(t => t == null);
+                if (plots == null) plots = new List<IntVec3>();
                 if (round == null) round = new List<Pawn>();
                 round.RemoveAll(x => x == null);
                 if (named == null) named = new List<Pawn>();

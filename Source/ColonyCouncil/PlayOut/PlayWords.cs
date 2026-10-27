@@ -281,7 +281,7 @@ namespace ColonyCouncil
                 case PlayKind.Rounds:
                     return "CC_Play_End_Rounds".Translate(label, p.hands.FirstOrDefault()?.pawn?.LabelShort ?? names, p.tally).Resolve();
                 case PlayKind.Haul:
-                    return (p.mode == PlayHaul.Treeline ? "CC_Play_End_HaulTreeline" : "CC_Play_End_HaulPyre").Translate(label, names, p.tally).Resolve();
+                    return ("CC_Play_End_Haul_" + PlayHaul.Key(p.mode)).Translate(label, names, p.tally).Resolve();
                 default: return "CC_Play_End".Translate(label).Resolve();
             }
         }

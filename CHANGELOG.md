@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The enemy dead, as the council said
+
+*27 October 2026, version 0.16.7*
+
+- A new answer for the enemy dead when the colony has a crematorium working: "Into the crematorium". The bodies are carried in one at a time and burned there the same day, their gear left beside it.
+- "Burn them" carries the dead out late in the afternoon. At dusk one of those who carried them takes wood from the stores out to the pyre and lights it, and the bodies lie burning on it through the night instead of vanishing under a campfire; by morning they are ash where they lay.
+- "Give them graves" and "One grave for all of them" dig real graves outside the wall, a grave each or side by side as one trench, and the raiders are laid in them, instead of being hauled wherever the colony keeps its dead. The graves take strangers only.
+- The words of these answers say only what happens on the map: no scavengers heard at dusk, no lamp oil or markers nobody put there.
+
 ## Families across the years
 
 *27 October 2026, version 0.16.6*

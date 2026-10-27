@@ -707,14 +707,21 @@ gives those taking part come once it's over (PlayOut/).
   gift is set down beside its receiver after all and a stash burns where it lies; `JobDriver_PlayOutGive`),
   **rounds** (`_Rounds`: one colonist goes to each of up to eight others in turn, nearest first, a few minutes beside
   each, `JobDriver_PlayOutGroup`; `outdoors` only those out in the open) and **the dead carried out** (`_HaulDead`:
-  the raiders' bodies, at most twelve, hauled one each with the game's own `HaulToCell`, `ToCellNonStorage`, to a pyre
-  beyond the gate or the tree line, then forbidden there). A vigil with `patrol` walks the colony's edge from look-out
+  the raiders' bodies, at most twelve, one each with the game's own jobs: `HaulToCell`, `ToCellNonStorage`, to a pyre
+  beyond the gate or the tree line, then forbidden there; for `graves` and `trench` (`PlayBurial`, PlayDead.cs) a row
+  of the game's Grave frames off the home area (`OnMapMath.GraveRow`, a step apart or side by side) built with
+  `FinishFrame` by those who can, the bodies carried in with `HaulToContainer`, the graves set to strangers only; for
+  `crematorium` (`PlayCremation`: any colony building with a bill that burns a corpse to nothing, on, powered and
+  fuelled; the answer is unavailable without one) `JobDriver_PlayOutCremate` carries a body there, waits its turn and
+  burns it with the bill's effect and sound, the gear stripped beside it). A vigil with `patrol` walks the colony's edge from look-out
   to look-out (`PlayVigils.Route`), `untilDawn` sets its length at the start. `OnMapTimed` (a game component, every
   250 ticks at tick 149, only while something is kept, at most twelve) keeps things for a while: `_Lanterns` (torches
   the colony could build, along the outside of its walls or by the gate, lit at dusk with a night's fuel and no
   refueling, taken away at dawn), `_KeepFire` (a campfire in a cold bedroom's free corner, fed the answer's wood,
-  cleared when it's burned unless refueled by hand), the pyre (lit after six, the bodies stripped and burned, a campfire
-  until dawn, then ash), `_BoltDoor` (the single door of a bedroom nobody else sleeps in, forbidden from ten to five
+  cleared when it's burned unless refueled by hand), the pyre (from six, `JobDriver_PlayOutLightPyre` sends the one who
+  carried the dead, or the nearest free colonist, out with wood from the stores to light it; lit anyway from ten; the
+  bodies stripped and left burning round a campfire until dawn, glow and smoke over each, then ash where they lay and
+  the answer's words told), `_BoltDoor` (the single door of a bedroom nobody else sleeps in, forbidden from ten to five
   while its owner is asleep in bed and nothing is wrong, three nights) and `_Follow` (the story's animal on the game's
   `FollowClose` job whenever it's idle, a day and a half, never a penned animal). `OnMapRooms` places things in a
   room's free corner (against a wall, clear of the door and the bed's sides; a sarcophagus is claimed as its owner's

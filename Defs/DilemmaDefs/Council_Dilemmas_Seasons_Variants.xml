@@ -202,22 +202,22 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[winter] It took two days and a fire on the ground to soften it, but the raiders have graves now, in a row outside the wall.</li>
-          <li>The raiders are buried in a row outside the wall. {A_nameDef} put up a marker with nothing written on it.</li>
+          <li>[winter] The frozen ground fought every shovel, but the raiders have graves now, in a row outside the wall.</li>
+          <li>The raiders are buried in a row outside the wall, with nothing written over them.</li>
         </lines>
       </li>
       <li>
         <option>1</option>
         <lines>
           <li>[lowtech] The pyre burned through the night. By morning there was a black patch on the ground and the smell in everyone's clothes.</li>
-          <li>[rain] The pyre wouldn't take in the wet until someone poured lamp oil over it. It burned until dawn.</li>
+          <li>[rain] The pyre was slow to take in the wet, but once it caught it burned until dawn.</li>
         </lines>
       </li>
       <li>
         <option>2</option>
         <lines>
-          <li>[winter] The bodies were hauled to the treeline and left in the snow. Animals found them the first night.</li>
-          <li>The bodies went to the treeline. {A_nameDef} didn't help carry them, and won't walk that way now.</li>
+          <li>[winter] The bodies were hauled to the treeline and left in the snow.</li>
+          <li>The bodies went to the treeline and were left where the trees begin.</li>
         </lines>
       </li>
     </outcomes>

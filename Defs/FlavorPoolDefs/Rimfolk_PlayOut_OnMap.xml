@@ -218,6 +218,9 @@
         <li>Gloves on. Let's get it done.</li>
         <li>[pyre] Out past the gate with them. We'll build the pyre there.</li>
         <li>[treeline] To the tree line. Leave them where the trees start.</li>
+        <li>[graves] We'll dig them a grave each, out past the wall.</li>
+        <li>[trench] One long trench outside the wall. Bring the shovels.</li>
+        <li>[crematorium] To the crematorium, one at a time.</li>
       </plain>
       <warm>
         <li>Carefully. They were somebody's.</li>
@@ -245,6 +248,9 @@
         <li>Mind the feet.</li>
         <li>[pyre] Lay this one on the pile.</li>
         <li>[treeline] Leave it here.</li>
+        <li>[graves] Gently, into the ground.</li>
+        <li>[trench] Lay this one next to the last.</li>
+        <li>[crematorium] Another one for the fire.</li>
       </plain>
       <warm>
         <li>Easy now.</li>
@@ -266,7 +272,10 @@
     <lines>
       <plain>
         <li>[pyre] Carried the raiders out past the gate and stacked them for the pyre. I washed my hands three times after.</li>
-        <li>[treeline] Dragged the raiders' bodies out to the tree line. I could hear the scavengers before we were back inside.</li>
+        <li>[treeline] Dragged the raiders' bodies out to the tree line and left them there for whatever comes out of the woods.</li>
+        <li>[graves] We dug the raiders a grave each outside the wall. My back will remember it longer than I'll remember their faces.</li>
+        <li>[trench] One long trench outside the wall, and all of the raiders in it. Nobody said much while we filled it in.</li>
+        <li>[crematorium] Carried the raiders into the crematorium one at a time. I don't want to think about the smell.</li>
       </plain>
       <warm>
         <li>We carried them out as gently as we could. They came here to kill us. They were still people.</li>

@@ -458,8 +458,9 @@ room staked out is placed as building plans through the room planner, and a rela
 one the council won't keep, burns in the yard. Shearing day is a real shearing and milking party.
 
 Some answers keep something on the map for a while. Lantern night sets real torches along the colony's walls at dusk
-and takes them in at first light; the enemy dead are carried out by hand to a pyre beyond the gate that's lit at dusk
-and burns down by morning, or to the tree line and left there; an old colonist who can't get warm gets a fire in their
+and takes them in at first light; the enemy dead are carried out by hand late in the afternoon to a pyre beyond the gate,
+which one of the colony lights at dusk with wood from the stores, the bodies burning on it until morning, or to the
+tree line and left there, or buried in graves the colony digs outside the wall, or burned in the colony's crematorium; an old colonist who can't get warm gets a fire in their
 room that burns the wood the council set aside; two colonists trade rooms when one gives up the warmer; a sleepwalker's
 door is bolted for three nights (only once they're in bed, and never while anything is wrong); a doctor goes round to
 everyone in turn, and a cook takes a pot round to those working outside; the first night watch walks the walls until

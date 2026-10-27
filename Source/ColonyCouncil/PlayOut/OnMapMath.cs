@@ -88,8 +88,14 @@ namespace ColonyCouncil
         /// <summary>The dark hours when lanterns burn and a door is bolted: from five in the evening, and until dawn.</summary>
         public const int Dusk = 17, Dawn = 6;
 
-        /// <summary>A pyre is lit a little later, once it's properly dark.</summary>
-        public const int PyreDusk = 18;
+        /// <summary>
+        /// A pyre is lit a little later, once it's properly dark, by one of the colony who carries the wood out; with
+        /// nobody free to go by ten at night, it's lit all the same.
+        /// </summary>
+        public const int PyreDusk = 18, PyreLatest = 22;
+
+        /// <summary>The wood carried out to light a pyre, when the stores have it.</summary>
+        public const int PyreWood = 20;
 
         /// <summary>A door is bolted only once the house is abed, from ten at night until five in the morning.</summary>
         public const int BoltFrom = 22, BoltTo = 5;
@@ -102,6 +108,19 @@ namespace ColonyCouncil
 
         /// <summary>At most this many of the enemy dead are carried out for one answer.</summary>
         public const int MaxDead = 12;
+
+        /// <summary>
+        /// Where each of a row of <paramref name="graves"/> graves lies from the first, as steps along the row: side by
+        /// side for one trench (<paramref name="apart"/> false), a step of ground between them for graves of their own.
+        /// A grave is one cell wide across the row, so the row runs one cell (or two, with the gap) a grave.
+        /// </summary>
+        public static List<int> GraveRow(int graves, bool apart)
+        {
+            var steps = new List<int>();
+            int step = apart ? 2 : 1;
+            for (int i = 0; i < Math.Max(0, Math.Min(graves, MaxDead)); i++) steps.Add(i * step);
+            return steps;
+        }
 
         /// <summary>The most people a doctor or a pot of soup goes round to.</summary>
         public const int MaxRounds = 8;

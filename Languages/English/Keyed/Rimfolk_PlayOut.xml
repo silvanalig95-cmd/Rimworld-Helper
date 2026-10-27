@@ -6,7 +6,7 @@
   <!-- The setting -->
   <CC_SetSec_PlayOut>Answers on the map</CC_SetSec_PlayOut>
   <CC_Settings_AnswersPlayOut>Answers play out on the map</CC_Settings_AnswersPlayOut>
-  <CC_Settings_AnswersPlayOut_Tip>When the council's answer to a dilemma or an event describes something people do, they do it. A victory feast is eaten at the dining table from the colony's own cooked meals, a bonfire is lit and gathered round, a toast is raised, someone goes to sit with a friend, by a grave or at the camp's fire, a student works at a teacher's side, a worn-out doctor is sent to bed. A work party cleans, hauls, mends or sows together, mourners walk out to a grave and back, a watch is kept at the gate through the night, searchers go out over the land, medicine sent to a neighbor is carried out to the rider at the gate, the hunters go after the game. A carving made as an apology is carried over by hand, lanterns are set out for the night, the enemy dead are carried out to a pyre. The moods the answer gives come to those who took part, once it's over.\n\nNobody is pulled away from danger, sleep, a meal or a sickbed, and nothing starts while enemies are about; anyone drafted, hungry or worn out is let go. If it can't happen within a few hours, the moods come anyway, as they always did, and what was to be carried out leaves the stores all the same.\n\nOff: answers give their moods and messages only.</CC_Settings_AnswersPlayOut_Tip>
+  <CC_Settings_AnswersPlayOut_Tip>When the council's answer to a dilemma or an event describes something people do, they do it. A victory feast is eaten at the dining table from the colony's own cooked meals, a bonfire is lit and gathered round, a toast is raised, someone goes to sit with a friend, by a grave or at the camp's fire, a student works at a teacher's side, a worn-out doctor is sent to bed. A work party cleans, hauls, mends or sows together, mourners walk out to a grave and back, a watch is kept at the gate through the night, searchers go out over the land, medicine sent to a neighbor is carried out to the rider at the gate, the hunters go after the game. A carving made as an apology is carried over by hand, lanterns are set out for the night, the enemy dead are burned on a pyre, buried in graves dug outside the wall or burned in the crematorium. The moods the answer gives come to those who took part, once it's over.\n\nNobody is pulled away from danger, sleep, a meal or a sickbed, and nothing starts while enemies are about; anyone drafted, hungry or worn out is let go. If it can't happen within a few hours, the moods come anyway, as they always did, and what was to be carried out leaves the stores all the same.\n\nOff: answers give their moods and messages only.</CC_Settings_AnswersPlayOut_Tip>
   <CC_SetNote_AnswersPlayOut>Feasts, visits, work parties, vigils and errands happen on the map; the moods follow for those there.</CC_SetNote_AnswersPlayOut>
 
   <!-- What it's called when the answer doesn't name it -->
@@ -217,6 +217,9 @@
   <CC_Play_Label_Rounds>the rounds</CC_Play_Label_Rounds>
   <CC_Play_Label_Haul>carrying out the dead</CC_Play_Label_Haul>
   <CC_Play_Label_Pyre>the pyre</CC_Play_Label_Pyre>
+  <CC_Play_Label_DeadGraves>the burying of the raiders</CC_Play_Label_DeadGraves>
+  <CC_Play_Label_Trench>the trench outside the wall</CC_Play_Label_Trench>
+  <CC_Play_Label_Crematorium>the raiders taken to the crematorium</CC_Play_Label_Crematorium>
   <CC_Play_Label_Treeline>the dead taken to the tree line</CC_Play_Label_Treeline>
   <CC_Play_Label_SaidAloud>what {PAWN_nameDef} had to say</CC_Play_Label_SaidAloud>
   <CC_Play_Begin_Give>{1} takes the {2} over to {3}.</CC_Play_Begin_Give>
@@ -225,6 +228,9 @@
   <CC_Play_Begin_Rounds>{0}: {1} goes round to {2}.</CC_Play_Begin_Rounds>
   <CC_Play_Begin_Haul>{0}: {1} carry the {2} bodies out {3}.</CC_Play_Begin_Haul>
   <CC_Play_Where_Pyre>to a pyre beyond the gate</CC_Play_Where_Pyre>
+  <CC_Play_Where_DeadGraves>to graves dug outside the wall</CC_Play_Where_DeadGraves>
+  <CC_Play_Where_Trench>to a trench dug outside the wall</CC_Play_Where_Trench>
+  <CC_Play_Where_Crematorium>to the crematorium</CC_Play_Where_Crematorium>
   <CC_Play_Where_Treeline>to the tree line</CC_Play_Where_Treeline>
   <CC_Play_Where_Walls>along the walls</CC_Play_Where_Walls>
   <CC_Play_To_Yard>the yard</CC_Play_To_Yard>
@@ -233,8 +239,12 @@
   <CC_Play_End_Burn>{0} burned the {1} in the yard.</CC_Play_End_Burn>
   <CC_Play_End_Fetch>{0} collected the {1} from {OTHER_nameDef} and took it in.</CC_Play_End_Fetch>
   <CC_Play_End_Rounds>{0} is over: {1} went round to {2} people.</CC_Play_End_Rounds>
-  <CC_Play_End_HaulPyre>{0}: {1} carried {2} of the dead out to the pyre. It will be lit at dusk.</CC_Play_End_HaulPyre>
-  <CC_Play_End_HaulTreeline>{0}: {1} carried {2} of the dead out to the tree line and left them there.</CC_Play_End_HaulTreeline>
+  <CC_Play_End_Haul_Pyre>{0}: {1} carried {2} of the dead out to the pyre. It will be lit at dusk.</CC_Play_End_Haul_Pyre>
+  <CC_Play_End_Haul_Treeline>{0}: {1} carried {2} of the dead out to the tree line and left them there.</CC_Play_End_Haul_Treeline>
+  <CC_Play_End_Haul_DeadGraves>{0}: {1} dug graves outside the wall and buried {2} of the dead in them.</CC_Play_End_Haul_DeadGraves>
+  <CC_Play_End_Haul_Trench>{0}: {1} dug a trench outside the wall and buried {2} of the dead in it.</CC_Play_End_Haul_Trench>
+  <CC_Play_End_Haul_Crematorium>{0}: {1} burned {2} of the dead in the crematorium. Their gear is beside it.</CC_Play_End_Haul_Crematorium>
+  <CC_Haul_NoCrematorium>The colony has no crematorium working.</CC_Haul_NoCrematorium>
   <CC_Play_Note_Rounds>{0} seen</CC_Play_Note_Rounds>
   <CC_Play_Note_Haul>{0} carried out</CC_Play_Note_Haul>
   <CC_Play_Why_GiftGone>it was gone</CC_Play_Why_GiftGone>
@@ -263,6 +273,7 @@
   <CC_Timed_Fire>A fire has been set in {PAWN_nameDef}'s room, with the wood put by for it. It will burn until the wood is gone.</CC_Timed_Fire>
   <CC_Timed_Fire_Out>The fire in {PAWN_nameDef}'s room has burned the last of its wood, and was cleared away.</CC_Timed_Fire_Out>
   <CC_Timed_Pyre_Lit>The pyre beyond the gate is lit, with {0} of the enemy dead on it. It will burn through the night.</CC_Timed_Pyre_Lit>
+  <CC_Timed_Pyre_LitBy>{PAWN_nameDef} has lit the pyre beyond the gate, with {COUNT} of the enemy dead on it. It will burn through the night.</CC_Timed_Pyre_LitBy>
   <CC_Timed_Pyre_Gear>Their gear was left in a heap beside it.</CC_Timed_Pyre_Gear>
   <CC_Timed_Pyre_Out>The pyre has burned down to ash.</CC_Timed_Pyre_Out>
   <CC_Timed_Pyre_Never>The pyre beyond the gate was never lit, and the bodies piled for it are left for the colony to see to.</CC_Timed_Pyre_Never>

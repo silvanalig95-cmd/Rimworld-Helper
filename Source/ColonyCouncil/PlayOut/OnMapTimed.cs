@@ -136,6 +136,7 @@ namespace ColonyCouncil
         {
             if (kept.Count == 0) return;
             int now = Now;
+            Flames(now);
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareTimed)) return;
             foreach (var k in kept.ToList())
             {
@@ -186,13 +187,11 @@ namespace ColonyCouncil
                         if (t != null && t.Spawned) t.Destroy(DestroyMode.Vanish);
                     break;
                 case TimedKind.Pyre:
-                    foreach (var t in k.things)
-                    {
-                        if (t == null || !t.Spawned) continue;
-                        // Not lit: the dead piled for it are no longer kept back from the colony's own hauling.
-                        if (t is Corpse) t.SetForbidden(false, false);
-                        else PlaySpots.BurnDown(t);
-                    }
+                    // Lit: it burns out now. Not lit: the dead piled for it are no longer kept back from the colony's own hauling.
+                    if (k.on) BurnOut(k);
+                    else
+                        foreach (var t in k.things)
+                            if (t is Corpse && t.Spawned) t.SetForbidden(false, false);
                     break;
                 case TimedKind.Bolt:
                     if (k.on && k.things.FirstOrDefault() is Building_Door door && door.Spawned) door.SetForbidden(false, false);
@@ -345,46 +344,104 @@ namespace ColonyCouncil
         // ---------------- The pyre ----------------
 
         /// <summary>
-        /// The enemy dead piled out beyond the gate: lit at dusk, burned down by morning, when the answer's outcome
+        /// The enemy dead piled out beyond the gate: lit at dusk by one of the colony (<paramref name="by"/>, who carried
+        /// them, if they're free), the bodies burning on it through the night, ash by morning, when the answer's outcome
         /// (<paramref name="outcome"/>, if any) is told.
         /// </summary>
-        public void AddPyre(Map map, IntVec3 cell, List<Thing> bodies, string outcome = null)
+        public void AddPyre(Map map, IntVec3 cell, List<Thing> bodies, string outcome = null, Pawn by = null)
         {
             if (map == null || !cell.IsValid || bodies.NullOrEmpty()) return;
-            Add(new TimedThing { kind = TimedKind.Pyre, map = map, cell = cell, things = bodies.Where(b => b != null).ToList(), text = outcome });
+            Add(new TimedThing { kind = TimedKind.Pyre, map = map, cell = cell, things = bodies.Where(b => b != null).ToList(), text = outcome, pawn = by });
         }
+
+        /// <summary>Lit by the one who carried the wood out (JobDriver_PlayOutLightPyre). False when there's no pyre waiting there.</summary>
+        public bool LightPyre(Map map, IntVec3 cell, Pawn by)
+        {
+            var k = kept.FirstOrDefault(x => x.kind == TimedKind.Pyre && !x.on && x.map == map && x.cell == cell);
+            if (k == null) return false;
+            Light(k, by);
+            return true;
+        }
+
+        /// <summary>The dead on it, still lying there.</summary>
+        private static List<Corpse> PyreBodies(TimedThing k) =>
+            k.things.OfType<Corpse>().Where(c => c.Spawned && c.Map == k.map && c.Position.InHorDistOf(k.cell, 4.5f)).ToList();
 
         private static bool StepPyre(TimedThing k, int now)
         {
             var map = k.map;
             if (k.on)
             {
-                var fire = k.things.FirstOrDefault();
+                var fire = k.things.FirstOrDefault(t => !(t is Corpse));
                 if (fire != null && fire.Spawned && Rand.Chance(0.35f)) FleckMaker.ThrowSmoke(fire.Position.ToVector3Shifted(), map, 1.5f);
                 if (now < k.until && fire != null && fire.Spawned) return false;
-                if (fire != null && fire.Spawned) PlaySpots.BurnDown(fire);
-                else if (ThingDefOf.Filth_Ash != null) FilthMaker.TryMakeFilth(k.cell, map, ThingDefOf.Filth_Ash, 3);
-                k.things.Clear();
+                BurnOut(k);
                 // The answer's outcome ("burned on a pyre that went all night") now that it has.
                 if (!k.text.NullOrEmpty())
                     News.Post(k.text, new LookTargets(k.cell, map), NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
                 else Messages.Message("CC_Timed_Pyre_Out".Translate(), new LookTargets(k.cell, map), MessageTypeDefOf.SilentInput, false);
                 return true;
             }
-            var bodies = k.things.Where(b => b is Corpse c && c.Spawned && c.Map == map && c.Position.InHorDistOf(k.cell, 4.5f)).ToList();
+            var bodies = PyreBodies(k);
             // Carried off, eaten or buried before dusk: nothing left to burn.
             if (bodies.Count == 0) return true;
-            // Never lit (danger every night for two days): the bodies are let go, for the colony to see to (End).
+            // Never lit (danger every evening for two days): the bodies are let go, for the colony to see to (End).
             if (now - k.start > Sched.DayTicks * 2)
             {
                 Messages.Message("CC_Timed_Pyre_Never".Translate(), new LookTargets(bodies), MessageTypeDefOf.NeutralEvent, false);
                 return true;
             }
-            if (!OnMapMath.Between(Hour(map), OnMapMath.PyreDusk, OnMapMath.Dawn) || Danger(map)) return false;
-            bool gear = false;
-            foreach (var b in bodies)
+            int hour = Hour(map);
+            if (!OnMapMath.Between(hour, OnMapMath.PyreDusk, OnMapMath.Dawn) || Danger(map)) return false;
+            // Someone is on their way with the wood: let them light it.
+            if (map.mapPawns.FreeColonistsSpawned.Any(x => x.CurJobDef == PlayOutDefOf.Council_PlayOutLightPyre && x.CurJob.targetA.Cell == k.cell)) return false;
+            var lighter = Lighter(k);
+            if (lighter != null)
             {
-                var c = (Corpse)b;
+                var wood = Wood(map, lighter);
+                var job = JobMaker.MakeJob(PlayOutDefOf.Council_PlayOutLightPyre, k.cell, wood);
+                job.count = wood != null ? Math.Min(OnMapMath.PyreWood, wood.stackCount) : 1;
+                lighter.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
+                if (lighter.CurJob == job) return false;
+            }
+            // Nobody free to go out with the wood by the middle of the night: it's lit all the same.
+            if (!OnMapMath.Between(hour, OnMapMath.PyreDusk, OnMapMath.PyreLatest)) Light(k, null);
+            return false;
+        }
+
+        /// <summary>Who goes out to light it: the one who carried the dead out, else the nearest of the colony who's free.</summary>
+        private static Pawn Lighter(TimedThing k)
+        {
+            var map = k.map;
+            bool Free(Pawn x) => x != null && x.Spawned && x.Map == map && PlayOuts.CanTakePart(x, map) && x.GetLord() == null && PlayOuts.Interruptible(x)
+                                 && !PlayOuts.NeedsPress(x) && !(PlayOutTracker.Instance?.BusyWith(x, null) ?? false) && !x.DevelopmentalStage.Juvenile()
+                                 && x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) && !Beliefs.Forbids(x, Belief.Indoors)
+                                 && x.CanReach(k.cell, PathEndMode.Touch, Verse.Danger.Some);
+            if (Free(k.pawn)) return k.pawn;
+            return map.mapPawns.FreeColonistsSpawned.Where(Free).OrderBy(x => x.Position.DistanceToSquared(k.cell)).FirstOrDefault();
+        }
+
+        /// <summary>Wood for the pyre from the colony's stores, the stack nearest the one who carries it, or null with none.</summary>
+        private static Thing Wood(Map map, Pawn by)
+        {
+            var def = ThingDefOf.WoodLog;
+            if (def == null) return null;
+            return map.listerThings.ThingsOfDef(def)
+                .Where(t => t.Spawned && !t.IsForbidden(by) && (t.IsInAnyStorage() || map.areaManager.Home[t.Position]) && by.CanReserveAndReach(t, PathEndMode.ClosestTouch, Verse.Danger.Some))
+                .OrderBy(t => t.Position.DistanceToSquared(by.Position)).FirstOrDefault();
+        }
+
+        /// <summary>
+        /// The pyre takes: the gear stripped from the dead and left in a heap beside it, a fire laid in its middle (the
+        /// game's campfire, burning until dawn), and the bodies left on it to burn through the night.
+        /// </summary>
+        private static void Light(TimedThing k, Pawn by)
+        {
+            var map = k.map;
+            var bodies = PyreBodies(k);
+            bool gear = false;
+            foreach (var c in bodies)
+            {
                 try
                 {
                     // Their gear is left in a heap beside it, for the colony to take or leave.
@@ -398,11 +455,9 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("pyre strip", e);
                 }
-                if (!c.Destroyed) c.Destroy(DestroyMode.Vanish);
             }
-            k.things.Clear();
-            var def = ThingDefOf.Campfire;
             Thing laid = null;
+            var def = ThingDefOf.Campfire;
             if (def != null)
             {
                 try
@@ -424,15 +479,58 @@ namespace ColonyCouncil
                 }
             }
             PlayGive.Burned(map, k.cell);
+            k.things.Clear();
             if (laid != null) k.things.Add(laid);
-            else if (!k.text.NullOrEmpty())
-                News.Post(k.text, new LookTargets(k.cell, map), NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Flavor);
+            k.things.AddRange(bodies.Cast<Thing>());
             k.on = true;
             k.until = UntilDawn(map);
-            string text = "CC_Timed_Pyre_Lit".Translate(bodies.Count).Resolve();
+            string text = by != null
+                ? "CC_Timed_Pyre_LitBy".Translate(by.Named("PAWN"), bodies.Count.Named("COUNT")).Resolve()
+                : "CC_Timed_Pyre_Lit".Translate(bodies.Count).Resolve();
             if (gear) text += " " + "CC_Timed_Pyre_Gear".Translate().Resolve();
             Messages.Message(text, new LookTargets(k.cell, map), MessageTypeDefOf.NeutralEvent, false);
-            return laid == null;
+        }
+
+        /// <summary>Burned down: the bodies gone to ash where they lay, the fire out.</summary>
+        private static void BurnOut(TimedThing k)
+        {
+            var map = k.map;
+            foreach (var t in k.things.ToList())
+            {
+                if (t == null || !t.Spawned) continue;
+                if (t is Corpse c)
+                {
+                    var at = c.Position;
+                    c.Destroy(DestroyMode.Vanish);
+                    if (ThingDefOf.Filth_Ash != null) FilthMaker.TryMakeFilth(at, map, ThingDefOf.Filth_Ash, 2);
+                }
+                else PlaySpots.BurnDown(t);
+            }
+            k.things.Clear();
+        }
+
+        /// <summary>
+        /// The look of the dead burning on a lit pyre on the map being looked at: glow, sparks and smoke rising from each
+        /// body (a few times a second; nothing at all with no pyre lit).
+        /// </summary>
+        private void Flames(int now)
+        {
+            if (now % 20 != 0) return;
+            var map = Find.CurrentMap;
+            if (map == null) return;
+            foreach (var k in kept)
+            {
+                if (k.kind != TimedKind.Pyre || !k.on || k.map != map) continue;
+                foreach (var t in k.things)
+                {
+                    if (!(t is Corpse c) || !c.Spawned) continue;
+                    var v = c.DrawPos;
+                    if (Rand.Chance(0.6f)) FleckMaker.ThrowFireGlow(v, map, Rand.Range(1.1f, 1.8f));
+                    if (Rand.Chance(0.25f)) FleckMaker.ThrowMicroSparks(v, map);
+                    if (Rand.Chance(0.15f)) FleckMaker.ThrowSmoke(v, map, Rand.Range(1f, 1.6f));
+                    if (Rand.Chance(0.1f)) FleckMaker.ThrowHeatGlow(c.Position, map, 1.4f);
+                }
+            }
         }
 
         // ---------------- A door bolted at night ----------------

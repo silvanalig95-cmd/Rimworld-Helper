@@ -303,7 +303,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_DecentBurial</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Unfair</thought><onlyTrait><li>Bloodlust</li><li>Abrasive</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the burying of the raiders</label><count>4</count><tasks><li>Corpses</li><li>Clean</li></tasks><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HaulDead"><label>the burying of the raiders</label><to>graves</to><count>4</count><hours>7~15</hours><duration>3~4</duration></li>
         </effects>
       </li>
       <li>
@@ -312,12 +312,12 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Pyre</thought><onlyTrait><li>Pyromaniac</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
-          <li Class="ColonyCouncil.DilemmaEffect_HaulDead"><label>the pyre beyond the gate</label><to>pyre</to><count>4</count><hours>7~16</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HaulDead"><label>the pyre beyond the gate</label><to>pyre</to><count>4</count><hours>14~17</hours><duration>2~3</duration></li>
         </effects>
       </li>
       <li>
         <label>Drag them to the treeline</label>
-        <outcome>The bodies were dragged to the treeline. The scavengers came at dusk, and they could be heard from inside the walls.</outcome>
+        <outcome>The bodies were dragged to the treeline and left there for whatever comes out of the woods.</outcome>
         <ways><mercy>-6</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_BodiesLeft</thought><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
@@ -329,14 +329,21 @@
         <label>One grave for all of them</label>
         <outcome>The raiders went into one long trench outside the wall, filled in before dark. {A_nameDef} said a few words over it.</outcome>
         <outcomes>
-          <li>[winter] The ground was too hard for more than one grave, so the raiders share a shallow one under the snow outside the wall. {A_nameDef} piled stones on top.</li>
+          <li>[winter] The ground was too hard for more than one grave, so the raiders share a shallow trench under the snow outside the wall.</li>
           <li>[trait:Kind] One trench for all of them, filled in before dark. {A_nameDef} wanted names on it and settled for a count.</li>
         </outcomes>
         <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_DecentBurial</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the trench outside the wall</label><count>3</count><tasks><li>Corpses</li><li>Clean</li></tasks><hours>7~18</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HaulDead"><label>the trench outside the wall</label><to>trench</to><count>3</count><hours>7~16</hours><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <label>Into the crematorium</label>
+        <outcome>The raiders went into the crematorium one after another, and by evening there was nothing left of them but the smell.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HaulDead"><label>the raiders taken to the crematorium</label><to>crematorium</to><count>2</count><hours>7~19</hours><duration>2~4</duration></li>
         </effects>
       </li>
     </options>

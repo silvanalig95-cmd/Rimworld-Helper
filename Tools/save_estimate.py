@@ -323,6 +323,7 @@ MODEL = {
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),
     "PlayOut/PlayOuts.cs:moods": ("fixed", 4, 120, "per play-out"),
     "PlayOut/PlayOuts.cs:things": ("fixed", 2, P, "per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most)"),
+    "PlayOut/PlayOuts.cs:plots": ("fixed", 2, 40, "per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only"),
     "PlayOut/PlayOuts.cs:round": ("fixed", 2, P, "per play-out: those a round goes to (OnMapMath.MaxRounds at most), rounds only"),
     # Things kept on the map for a while: lanterns for a night, a fire, the pyre, a bolted door, an animal at heel
     "PlayOut/OnMapTimed.cs:kept": ("cap", (C["TimedKept"], 0.3), 300, "kept a night to a few days, at most OnMapTimed.MaxKept at once"),

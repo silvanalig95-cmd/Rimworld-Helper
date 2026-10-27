@@ -1,6 +1,16 @@
 # Handoff: work in progress
 
-Last shipped: 0.16.6 "Families across the years" (the player found Toni 36, her daughter Morgan 31 and Morgan's son
+Last shipped: 0.16.7 "The enemy dead, as the council said" (the player's rule that answers show on the map as
+accurately as possible, CLAUDE.md, starting with `Council_Dilemma_EnemyDead`. The player likes the pyre as an event
+but wants the crematorium used rather than bodies lying about, so the crematorium is its own answer, unavailable
+without a working one (`DilemmaEffect_HaulDead.Unavailable`), and the pyre's haul starts at 14 to 17. PlayOut/PlayDead.cs:
+`PlayBurial` (graves/trench: Grave frames in `p.plots` turned `p.plotRot`, FinishFrame and HaulToContainer, graves set
+to strangers, leftover frames cancelled when nobody is left to bury), `PlayCremation` and `JobDriver_PlayOutCremate`,
+`JobDriver_PlayOutLightPyre`; OnMapTimed's pyre keeps the bodies on it lit (`Flames` every 20 ticks on the viewed map,
+`BurnOut` at dawn). Not tried in the game here: the frames' construction and `HaulToContainer` into a stranger-set grave
+are the game's own jobs, given directly.)
+
+Before it, 0.16.6 "Families across the years" (the player found Toni 36, her daughter Morgan 31 and Morgan's son
 Hector 57 strange; the game builds families by calendar years and allows any order cryptosleep can explain,
 `ChildRelationUtility.GetParentAgeFactor` with `MaxPossibleBioAgeAt`. They chose both ideas: `Social/FamilyYearsMath.cs`
 (pure, `FamilyYearsTests`: direct line only, an uncle younger than his nephew doesn't count) and `Social/FamilyYears.cs`
@@ -18,14 +28,8 @@ thingIDNumber and def, so after a load in the same session a pawn is read from t
 FinalizeInit. Also the pyre: the answer's outcome rides on the `TimedThing.text` and is told when it burns down, and a
 pyre never lit in two days lets its bodies go (`End` unforbids them).)
 
-Next, under way: the player's rule that answers show on the map as accurately as possible (now in CLAUDE.md), starting
-with the enemy dead (`Council_Dilemma_EnemyDead`): "Burn them" uses a working crematorium when the colony has one (the
-bodies carried in and burned there) and otherwise a pyre that looks like one (the bodies laid on it and burning
-through the night, lit by a colonist at dusk, ash by morning), "Give them graves" and "One grave for all of them" dig
-real graves outside the wall (Grave frames built by the party, the bodies carried into them; a trench is graves side
-by side) instead of a work party hauling corpses wherever the colony keeps them, and the tree line's words drop the
-scavengers nobody sees. An audit of the other answers for the same kind of gap is to be proposed to the player as a
-list.
+Next: an audit of the other answers for gaps between their words and the map, to be proposed to the player as a
+list; and a list of family ideas (from a survey of what Rimfolk already does with family) for the player to choose from.
 
 Before it, 0.16.4 "A better sales table" (the player asked to replace RimMarket's colony stall sales table, which
 they find hard to use: `Integrations/RimMarketStall.cs` finds RimMarket 1.0.6's stall, sale lines (`StallOrder`) and

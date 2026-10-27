@@ -18,6 +18,11 @@ public static class OnMapTests
 
         // ---------------- Felling for the wood ----------------
 
+        // ---------- Graves dug outside the wall for the enemy dead ----------
+        C(OnMapMath.GraveRow(4, false).SequenceEqual(new[] { 0, 1, 2, 3 }), "one trench: four graves side by side");
+        C(OnMapMath.GraveRow(3, true).SequenceEqual(new[] { 0, 2, 4 }), "graves of their own: a step of ground between each");
+        C(OnMapMath.GraveRow(40, true).Count == OnMapMath.MaxDead && OnMapMath.GraveRow(0, false).Count == 0 && OnMapMath.GraveRow(-2, true).Count == 0,
+            "never more graves than the dead carried out, and none for none");
         C(OnMapMath.TreesToFell(new List<int> { 25, 25, 25 }, 20) == 1, "one grown tree is enough for twenty logs");
         C(OnMapMath.TreesToFell(new List<int> { 12, 12, 12, 12 }, 40) == 4, "smaller trees: as many as it takes");
         C(OnMapMath.TreesToFell(new List<int> { 10, 0, 10 }, 15) == 3, "a tree with no wood in it is passed over, the next one counts");
