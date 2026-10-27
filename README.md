@@ -429,8 +429,8 @@ best placed (the doctor, a forager, a tracker, the best talker), and their skill
 **Answers play out on the map.** When an answer describes something people do, they do it (434 answers of 134
 dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 20
 stages of 17 personal stories and 7 moments with visitors). A
-victory feast is eaten at the dining table, each guest sent to eat a cooked meal from the stores, the finest first
-they may eat. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
+victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
+the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
 after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
 at its head, the listeners in the chairs round it), a friend sits with someone who is ill, a
 colonist sits by a grave or at the camp's fire, an apprentice works at the teacher's side, a worn-out doctor is sent
@@ -440,7 +440,9 @@ night; searchers fan out over the land and bring back what was promised; real me
 of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. Every answer
 whose words say people do something has been read: the thief is punished in front of everyone at supper, the doctor
 sits at the bedside with the last dose, the snow is shovelled, the bees are smoked out, and the tribute, the bounty
-and the envoy's price go out to the gate by hand. The answer's own words are told once it's over. None of them
+and the envoy's price go out to the gate by hand, load after load. A fight an answer risks comes during the supper or
+the work party its words put it at. The answer's own words are told once it's over, and if it never came about, a
+message says why instead. None of them
 holds anyone in a gathering, so the game's own parties and rituals can always take them. Nobody is called from
 danger, sleep, a meal or a sickbed, nothing starts with enemies about, and danger, drafting, hunger or exhaustion ends
 it. The answer's good moods, and what it teaches, come to those who were there once it's over (the closing message

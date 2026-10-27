@@ -78,6 +78,40 @@ namespace ColonyCouncil
             return meals >= guests ? FeastPlan.Feast : FeastPlan.Partial;
         }
 
+        /// <summary>How far into what an answer set going its risk comes (a fight at the supper): a third of the way, an hour at most.</summary>
+        public static int RiskAfter(int durationTicks) => Math.Max(0, Math.Min(durationTicks / 3, TicksPerHour));
+
+        /// <summary>How many hours before a feast its cook puts the pot on (PlayOut/PlayCook.cs).</summary>
+        public const int CookLead = 3;
+
+        /// <summary>The most meals a feast's cook makes for it, however much food the answer spent.</summary>
+        public const int MaxCooked = 12;
+
+        /// <summary>
+        /// The meals cooked for a feast from the raw food the answer spent on it (<paramref name="units"/>, of which a meal
+        /// takes <paramref name="perMeal"/>): a meal for each of those asked at most, never more than the food pays for,
+        /// and at least one when any was spent.
+        /// </summary>
+        public static int FeastMeals(int units, int perMeal, int guests)
+        {
+            if (units <= 0) return 0;
+            int meals = units / Math.Max(1, perMeal);
+            return Math.Max(1, Math.Min(meals, Math.Min(MaxCooked, Math.Max(1, guests))));
+        }
+
+        /// <summary>
+        /// No more meals after the one in the pot: the feast can't wait much longer (under an hour before it gives up), or
+        /// it's due and the cook has been at it for as long as they'd have had before it.
+        /// </summary>
+        public static bool StopCooking(bool due, int cookingTicks, int ticksLeft) =>
+            ticksLeft < TicksPerHour || (due && cookingTicks >= CookLead * TicksPerHour);
+
+        /// <summary>
+        /// The cook waits for a feast that's due: true while nothing is cooked yet and the feast's hours opened less than
+        /// two hours ago (they may only be eating or finishing a job); after that it goes ahead with what there is.
+        /// </summary>
+        public static bool WaitForCook(int hour, int from, int cooked) => cooked <= 0 && WrapHour(hour - from) < 2;
+
         /// <summary>A gathering's length in ticks from hours, never under a quarter of an hour.</summary>
         public static int DurationTicks(float hours) => Math.Max(TicksPerHour / 4, (int)Math.Round(hours * TicksPerHour));
 

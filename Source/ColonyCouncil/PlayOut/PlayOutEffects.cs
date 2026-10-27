@@ -138,7 +138,7 @@ namespace ColonyCouncil
     /// <summary>
     /// A shared meal: the gathering is at the dining table unless <see cref="DilemmaEffect_Gathering.spots"/> says
     /// otherwise, and everyone who comes is sent to eat a cooked meal from the stores, the finest first (the food is
-    /// really eaten). Not enough meals for everyone: the first to the table eat; none at all: it's a party, and the
+    /// really eaten). Raw food the answer spends on it is cooked into meals for it beforehand (PlayCook.cs). Not enough meals for everyone: the first to the table eat; none at all: it's a party, and the
     /// message says so.
     /// </summary>
     public class DilemmaEffect_Feast : DilemmaEffect_Gathering

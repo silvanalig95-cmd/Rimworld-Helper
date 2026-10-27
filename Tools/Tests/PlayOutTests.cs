@@ -53,6 +53,28 @@ public static class PlayOutTests
         Check(PlayOutMath.PlanFeast(3, 5) == FeastPlan.Partial, "some meals: some eat");
         Check(PlayOutMath.PlanFeast(5, 5) == FeastPlan.Feast && PlayOutMath.PlanFeast(40, 5) == FeastPlan.Feast, "enough: a feast");
 
+        // A feast's cooking: what the food pays for, a meal each at most, a cap, at least one.
+        Check(PlayOutMath.FeastMeals(0, 10, 6) == 0, "no food spent: nothing to cook");
+        Check(PlayOutMath.FeastMeals(40, 10, 6) == 4 && PlayOutMath.FeastMeals(45, 10, 6) == 4, "the food pays for four");
+        Check(PlayOutMath.FeastMeals(200, 10, 6) == 6, "a meal for each of those asked at most");
+        Check(PlayOutMath.FeastMeals(400, 10, 30) == PlayOutMath.MaxCooked, "capped");
+        Check(PlayOutMath.FeastMeals(5, 10, 6) == 1 && PlayOutMath.FeastMeals(5, 0, 0) == 1, "a little food still makes one");
+        for (int units = 1; units <= 300; units += 7)
+            for (int guests = 0; guests <= 14; guests++)
+            {
+                int m = PlayOutMath.FeastMeals(units, 10, guests);
+                Check(m >= 1 && m <= PlayOutMath.MaxCooked && m <= Math.Max(1, guests) && (m == 1 || m * 10 <= units), $"cooking {units} for {guests}: {m}");
+            }
+        int hr = PlayOutMath.TicksPerHour;
+        Check(!PlayOutMath.StopCooking(false, 5 * hr, 8 * hr), "before the feast the pot stays on");
+        Check(PlayOutMath.StopCooking(false, 0, hr / 2) && PlayOutMath.StopCooking(true, 0, hr / 2), "no time left: the last meal");
+        Check(!PlayOutMath.StopCooking(true, hr, 5 * hr) && PlayOutMath.StopCooking(true, PlayOutMath.CookLead * hr, 5 * hr), "due: as long as the lead, then the feast");
+        Check(PlayOutMath.WaitForCook(17, 17, 0) && PlayOutMath.WaitForCook(18, 17, 0) && !PlayOutMath.WaitForCook(19, 17, 0), "a busy cook is waited for two hours");
+        Check(!PlayOutMath.WaitForCook(17, 17, 2) && PlayOutMath.WaitForCook(0, 23, 0), "not once some is cooked; past midnight");
+
+        // A risk held for the scene comes a third of the way in, an hour at most.
+        Check(PlayOutMath.RiskAfter(3 * hr) == hr && PlayOutMath.RiskAfter(hr) == hr / 3 && PlayOutMath.RiskAfter(0) == 0, "a risk partway in");
+
         // Length and company.
         Check(PlayOutMath.DurationTicks(2f) == 2 * PlayOutMath.TicksPerHour && PlayOutMath.DurationTicks(0f) == PlayOutMath.TicksPerHour / 4, "lengths");
         Check(PlayOutMath.EnoughToGather(2, 8) && !PlayOutMath.EnoughToGather(1, 8) && PlayOutMath.EnoughToGather(1, 1) && !PlayOutMath.EnoughToGather(0, 1),

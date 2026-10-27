@@ -177,12 +177,16 @@ namespace ColonyCouncil
                     Fallback(p, p.waitReason, false);
                     return;
                 }
+                // A feast's cook puts the pot on in the hours before it, and the feast waits while it's on (PlayCook.cs).
+                if (PlayCook.Waits(this, p, now)) return;
                 if (!PlayOutMath.InHours(GenLocalDate.HourOfDay(p.map), p.hourFrom, p.hourTo)) return;
                 if (p.IsGathering) TryStartGathering(p, now);
                 else if (p.IsGroup) PlayGroups.TryStart(this, p, now);
                 else TryStartVisit(p, now);
                 return;
             }
+            // The answer's risk comes partway into it: the punch at the supper, the walk-out from the table.
+            if (p.risks.Count > 0 && p.started >= 0 && now - p.started >= PlayOutMath.RiskAfter(p.durationTicks)) Risks(p);
             // A work party, a walk, a vigil, a search, an errand or a hunt: its people are on jobs of their own.
             if (p.IsGroup)
             {
@@ -200,7 +204,7 @@ namespace ColonyCouncil
             if (v == null || v.Dead || !(v.CurJob?.def == PlayOutDefOf.Council_PlayOutVisit))
             {
                 // The job ended without telling us (a load, a mod): judged by how long it's been.
-                Done(p, PlayOutMath.VisitCounts(now - p.started, p.durationTicks) ? new List<Pawn> { p.visitor, p.other } : null, false);
+                VisitOver(p, now - p.started);
             }
         }
 
@@ -292,6 +296,7 @@ namespace ColonyCouncil
             if (p.kind == PlayKind.Feast)
             {
                 var plan = PlayOutMath.PlanFeast(meals, guests);
+                if (p.cooked > 0 && p.cook != null) text += " " + "CC_Play_Feast_Cooked".Translate(p.cook.Named("PAWN"), p.cooked).Resolve();
                 if (plan == FeastPlan.Partial) text += " " + "CC_Play_Feast_Partial".Translate(meals).Resolve();
                 else if (plan == FeastPlan.Party) text += " " + "CC_Play_Feast_None".Translate().Resolve();
             }
@@ -473,7 +478,11 @@ namespace ColonyCouncil
         public void VisitEnded(Pawn pawn, int stayed)
         {
             var p = RunningFor(pawn);
-            if (p == null) return;
+            if (p != null) VisitOver(p, stayed);
+        }
+
+        private void VisitOver(PlayOut p, int stayed)
+        {
             if (PlayOutMath.VisitCounts(stayed, p.durationTicks))
             {
                 Done(p, new List<Pawn> { p.visitor, p.other }, false);
@@ -517,6 +526,8 @@ namespace ColonyCouncil
         {
             if (p.state == PlayState.Done) return;
             p.state = PlayState.Done;
+            PlayCook.Clean(p);
+            Risks(p);
             Remember(p, true);
             // What follows it (a secret said out loud at the end of the gathering called to hear it).
             PlayAfter.Run(p);
@@ -558,6 +569,18 @@ namespace ColonyCouncil
             if (p == null || p.state == PlayState.Done) return;
             p.state = PlayState.Done;
             if (p.note.NullOrEmpty() && !why.NullOrEmpty()) p.note = why;
+            // The colony was told this was coming (the answer's outcome waited for it): a word on why it didn't, even when
+            // it would otherwise pass quietly. With the setting switched off, the outcome is told as answers always were.
+            bool told = !p.outcome.NullOrEmpty() && p.map != null && Find.Maps.Contains(p.map);
+            if (told && !PlayOuts.On)
+            {
+                News.Post(p.outcome, LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+                told = false;
+            }
+            if (told) quiet = false;
+            PlayCook.Clean(p);
+            // A risk the answer ran comes all the same, as it always did.
+            Risks(p);
             Remember(p, false);
             GiveAll(p);
             PlayAfter.Run(p);
@@ -575,12 +598,33 @@ namespace ColonyCouncil
                 }
                 return;
             }
-            // A visit or a lesson that never came about passes quietly; a gathering the colony was waiting for gets a word.
-            if (quiet || p.label.NullOrEmpty() || !p.IsGathering) return;
-            string text = why.NullOrEmpty()
-                ? "CC_Play_FallbackPlain".Translate(p.label.CapitalizeFirst()).Resolve()
-                : "CC_Play_Fallback".Translate(p.label.CapitalizeFirst(), why).Resolve();
+            // A gathering the colony was waiting for gets a word, and so does a visit or a lesson it was told of; another
+            // visit or lesson that never came about passes quietly. The answer's outcome isn't told: it didn't happen.
+            if (quiet || p.label.NullOrEmpty() || !(p.IsGathering || told)) return;
+            string label = p.label.CapitalizeFirst();
+            string text = !p.IsGathering
+                ? (why.NullOrEmpty() ? "CC_Play_FellThroughPlain".Translate(label) : "CC_Play_FellThrough".Translate(label, why)).Resolve()
+                : (why.NullOrEmpty() ? "CC_Play_FallbackPlain".Translate(label) : "CC_Play_Fallback".Translate(label, why)).Resolve();
             News.Post(text, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+        }
+
+        /// <summary>The risks it held, now.</summary>
+        private static void Risks(PlayOut p)
+        {
+            if (p.risks.Count == 0) return;
+            var held = p.risks.ToList();
+            p.risks.Clear();
+            foreach (var r in held)
+            {
+                try
+                {
+                    r.Fire();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("play out risk", e);
+                }
+            }
         }
 
         private static void GiveAll(PlayOut p)

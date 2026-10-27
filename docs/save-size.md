@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 332; modelled: 332; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,677 KB** after a year, **2,041 KB** after two, **2,156 KB** after five.
+Saved collections found: 333; modelled: 333; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,678 KB** after a year, **2,041 KB** after two, **2,157 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -261,6 +261,7 @@ Rimfolk's part of the save, roughly: **1,677 KB** after a year, **2,041 KB** aft
 | `Happenings/Happenings.cs:things` | per departed record | fixed | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:touched` | per visit | fixed | 3 | 3 | 3 | 0.1 |
 | `PlayOut/OnMapTimed.cs:things` | per thing kept: its lanterns (OnMapMath.MaxLanterns at most), the fire, the door | fixed | 3 | 3 | 3 | 0.1 |
+| `PlayOut/PlayOuts.cs:risks` | per play-out: an answer's fight or walk-out held for the scene, one or two at most | fixed | 1 | 1 | 1 | 0.1 |
 | `PlayOut/PlayOuts.cs:spots` | per play-out | fixed | 2 | 2 | 2 | 0.1 |
 | `Scenarios/Scenarios.cs:events` | a scenario part's events | fixed | 3 | 3 | 3 | 0.1 |
 | `Wishes/Kept.cs:cells` | per watch | fixed | 4 | 4 | 4 | 0.1 |

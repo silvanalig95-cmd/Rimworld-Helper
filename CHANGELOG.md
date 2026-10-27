@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## As the answer said, in its own time
+
+*27 October 2026, version 0.17.1*
+
+- A feast an answer spends raw food on is cooked first. In the hours before it, its organizer (or the colony's best cook among those asked) cooks that food into meals at one of the colony's stoves, the best meal they can make there, and the feast waits while the pot is on. The food is no longer taken from the stores when the answer is given, so the colony doesn't pay twice.
+- A fight or a walk-out that an answer's risk brings comes partway into the supper, work party or visit the answer set going, where its words put it, instead of the moment the answer is given.
+- An errand carries all of what it was given: the carrier goes back to the stores for more loads instead of the rest vanishing, and goods for the camp are handed to someone of the camp.
+- A visit or a lesson the colony was told of that never came about now says so and why, instead of passing without a word. A visit cut short no longer reports its outcome as if it had happened.
+
 ## Family, wherever they are
 
 *27 October 2026, version 0.17.0*

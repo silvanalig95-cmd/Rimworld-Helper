@@ -322,6 +322,7 @@ MODEL = {
     "PlayOut/PlayOuts.cs:spots": ("fixed", 2, 60, "per play-out"),
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),
     "PlayOut/PlayOuts.cs:moods": ("fixed", 4, 120, "per play-out"),
+    "PlayOut/PlayOuts.cs:risks": ("fixed", 1, 120, "per play-out: an answer's fight or walk-out held for the scene, one or two at most"),
     "PlayOut/PlayOuts.cs:things": ("fixed", 2, P, "per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most)"),
     "PlayOut/PlayOuts.cs:plots": ("fixed", 2, 40, "per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only"),
     "PlayOut/PlayOuts.cs:round": ("fixed", 2, P, "per play-out: those a round goes to (OnMapMath.MaxRounds at most), rounds only"),

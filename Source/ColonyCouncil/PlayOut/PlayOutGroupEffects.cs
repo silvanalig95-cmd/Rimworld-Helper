@@ -235,8 +235,9 @@ namespace ColonyCouncil
     /// thing), <see cref="count"/> (else the letter's {COUNT}, or with <see cref="variant"/> the event's other number:
     /// the food or medicine its letter names besides a price) times <see cref="factor"/>, less the quartermaster's
     /// saving (<see cref="steward"/>), rounded to tens for a sum of silver the letter names (<see cref="tens"/>). The
-    /// answer is greyed out without enough. One trip: what the carrier can't hold goes on the cart when they hand it
-    /// over. If it never happens, or with the setting off, the things are taken from the stores at once, as always.
+    /// answer is greyed out without enough. What the carrier can't hold at once they come back for, load after load
+    /// (a courier at the gate fetches the rest themselves). If it never happens, or with the setting off, what's still
+    /// owed is taken from the stores at once, as always.
     /// </summary>
     public class DilemmaEffect_CarryOut : DilemmaEffect_PlayOut
     {

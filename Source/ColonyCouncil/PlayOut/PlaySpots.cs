@@ -553,6 +553,15 @@ namespace ColonyCouncil
             return IntVec3.Invalid;
         }
 
+        /// <summary>Someone of the camp to take what's carried down to it, the leader first, while it's settled and at peace.</summary>
+        public static Pawn CampHand(Map map, Pawn pawn)
+        {
+            var c = CampTracker.Instance?.camp;
+            if (c == null || c.map != map || c.phase != CampPhase.Living || c.Hostile || pawn == null) return null;
+            return c.Here.Where(x => !x.Downed && !x.InMentalState && x.inventory != null && pawn.CanReach(x, PathEndMode.Touch, Danger.Some))
+                .OrderByDescending(x => x == c.leader).ThenBy(x => x.Position.DistanceToSquared(pawn.Position)).FirstOrDefault();
+        }
+
         /// <summary>Somewhere out past the buildings for a long walk: open ground some way off, reachable safely.</summary>
         public static IntVec3 WalkCell(Map map, Pawn pawn)
         {

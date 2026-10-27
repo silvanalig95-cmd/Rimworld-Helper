@@ -646,6 +646,8 @@ namespace ColonyCouncil
             if (mentalState == null) return;
             foreach (var p in Targets(ctx))
             {
+                // During what the answer set going for them, if it did (PlayOut/).
+                if (PlayOuts.HoldRisk(p, null, mentalState, false)) continue;
                 if (!p.Spawned || p.Downed || p.InMentalState) continue;
                 p.mindState?.mentalStateHandler?.TryStartMentalState(mentalState, "CC_Dilemma_BreakReason".Translate(), true);
             }
@@ -660,14 +662,14 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            // together: the game's own social fight, which brings the two to blows on the map.
             var b = withStranger ? ctx.stranger : ctx.b;
-            if (ctx.a == null || b == null || !b.RaceProps.Humanlike || !ctx.a.Spawned || !b.Spawned || ctx.a.Downed || b.Downed || ctx.a.Map != b.Map) return;
+            if (ctx.a == null || b == null || !b.RaceProps.Humanlike) return;
             if (ctx.a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
-            if (ctx.a.WorkTagIsDisabled(WorkTags.Violent)) b.interactions?.StartSocialFight(ctx.a);
-            else ctx.a.interactions?.StartSocialFight(b);
-            if (!withStranger) CouncilGameComponent.Instance?.social.Bump(ctx.a, b, TieKind.Rivals, 10f, "CC_TieNote_Fight".Translate());
+            // During what the answer set going for them, if it did (PlayOut/); else now, wherever they stand.
+            if (PlayOuts.HoldRisk(ctx.a, b, null, !withStranger)) return;
+            if (!ctx.a.Spawned || !b.Spawned || ctx.a.Downed || b.Downed || ctx.a.Map != b.Map) return;
+            new HeldRisk { pawn = ctx.a, other = b, rivals = !withStranger }.Fire();
         }
     }
 
@@ -773,6 +775,8 @@ namespace ColonyCouncil
                 var def = what.NullOrEmpty() ? ctx.thing : null;
                 if (Couriers.TakeFor(ctx, what.NullOrEmpty() ? null : what, def, left)) return;
             }
+            // Raw food for a feast the answer set going is cooked for it beforehand, not taken now (PlayOut/PlayCook.cs).
+            if (what == "rawfood" && PlayCook.Hold(left)) return;
             IEnumerable<Thing> things;
             if (what == "silver") things = ctx.map.listerThings.ThingsOfDef(ThingDefOf.Silver);
             else if (what == "rawfood") things = ctx.map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(t => IsRawFood(t, ctx.map));

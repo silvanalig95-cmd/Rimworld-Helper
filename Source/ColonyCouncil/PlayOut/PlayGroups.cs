@@ -347,19 +347,24 @@ namespace ColonyCouncil
                 p.waitReason = "CC_Courier_Why_NotYet".Translate();
                 return false;
             }
+            else if (p.to == PlaySpot.Camp && PlaySpots.CampHand(p.map, carrier) is Pawn hand)
+            {
+                // Down to the camp: into the hands of someone of the camp.
+                to = hand;
+                where = "CC_Play_To_Camp".Translate();
+            }
             else
             {
-                IntVec3 c = IntVec3.Invalid;
-                if (p.to == PlaySpot.Camp)
+                // The camp is there but nobody of it is about to take it: the errand waits for them.
+                if (p.to == PlaySpot.Camp && PlaySpots.CampCell(p.map, carrier).IsValid)
                 {
-                    c = PlaySpots.CampCell(p.map, carrier);
-                    if (c.IsValid) where = "CC_Play_To_Camp".Translate();
+                    p.waitReason = "CC_Play_Why_NobodyAtCamp".Translate();
+                    return false;
                 }
-                if (!c.IsValid)
-                {
-                    c = PlaySpots.GateCell(p.map, carrier);
-                    if (c.IsValid) where = "CC_Play_To_Gate".Translate();
-                }
+                // To the gate with nobody of the people it's for to meet it (no courier can come, or they're switched
+                // off): it goes on the cart there, as the answer tells it.
+                var c = PlaySpots.GateCell(p.map, carrier);
+                if (c.IsValid) where = "CC_Play_To_Gate".Translate();
                 if (!c.IsValid)
                 {
                     p.waitReason = "CC_Play_Why_Place".Translate();
@@ -513,6 +518,14 @@ namespace ColonyCouncil
                 h.ticks += 250;
                 return;
             }
+            // A load handed over and more to carry: back to the stores for the next once they're free (the run's cap
+            // ends it with what was carried), or done with what was carried when the stores have no more of it.
+            if (p.kind == PlayKind.Carry && h != null && !h.left && h.counted && p.tally < p.amount)
+            {
+                if (PlayCarry.Have(p.map, p.what, p.thing) <= 0) Finish(t, p, false, null);
+                else if (p.map.dangerWatcher.DangerRating == StoryDanger.None && Free(t, p, h.pawn)) StartCarry(t, p, out _);
+                return;
+            }
             // Stopped before it was handed over: tried again while there's time, else it goes the old way.
             if (now < p.deadline && PlayOuts.On)
             {
@@ -663,7 +676,7 @@ namespace ColonyCouncil
             h.left = true;
         }
 
-        /// <summary>The errand's things are handed over: to the visitor (into their pack) or to whoever waits at the gate; the rest goes on the cart.</summary>
+        /// <summary>The errand's load is handed over: to the visitor or someone of the camp (into their pack), to whoever waits at the gate, or onto the cart there; more to carry, they go back for it.</summary>
         public static bool HandOver(PlayOut p, Pawn carrier, Thing carried, Pawn to)
         {
             var t = PlayOutTracker.Instance;
@@ -673,17 +686,19 @@ namespace ColonyCouncil
             bool given = false;
             if (to != null && !to.Dead && to.Spawned && to.inventory != null && to.Faction != Faction.OfPlayer)
                 given = carrier.carryTracker.innerContainer.TryTransferToContainer(carried, to.inventory.innerContainer, n) > 0;
+            // Nobody to take it in person: loaded on the cart at the gate.
             if (!given) carrier.carryTracker.DestroyCarriedThing();
             p.tally += n;
             int rest = p.amount - p.tally;
             // Handed to a courier waiting at the gate: they fetch the rest from the stores themselves (Couriers/).
             bool fetched = given && Couriers.Received(p, to, n, rest);
-            if (rest > 0 && !fetched) PlayCarry.Take(p.map, p.what, p.thing, rest, carrier);
-            p.tally = Math.Max(p.tally, p.amount);
+            if (fetched) p.tally = p.amount;
             var h = p.Hand(carrier);
             if (h != null) h.counted = true;
+            p.note = "CC_Play_Note_Carry".Translate(p.tally, PlayCarry.Label(p.what, p.thing)).Resolve();
+            // More than one load: back to the stores for the next (StepCarry).
+            if (p.tally < p.amount) return true;
             PlayWords.During(p, carrier);
-            p.note = "CC_Play_Note_Carry".Translate(p.amount, PlayCarry.Label(p.what, p.thing)).Resolve();
             Finish(t, p, false, null, to != null && given ? to : null, what);
             return true;
         }
@@ -852,6 +867,7 @@ namespace ColonyCouncil
             // the things from the stores instead; else they leave the stores at once, as always.
             bool fetched = p.kind == PlayKind.Carry && Couriers.TakeOver(p);
             if (fetched) p.tally = p.amount;
+            int owed = p.amount - p.tally;
             if (p.kind == PlayKind.Carry && !fetched) PlayCarry.Settle(p);
             // What the answer promised a search would find turns up all the same, as it always did.
             if (p.kind == PlayKind.Search) GiveFind(p, null);
@@ -859,7 +875,8 @@ namespace ColonyCouncil
             string text = why.NullOrEmpty()
                 ? "CC_Play_FellThroughPlain".Translate(p.label.CapitalizeFirst()).Resolve()
                 : "CC_Play_FellThrough".Translate(p.label.CapitalizeFirst(), why).Resolve();
-            if (p.kind == PlayKind.Carry && !fetched) text += " " + "CC_Play_FellThrough_Carry".Translate(p.amount, PlayCarry.Label(p.what, p.thing)).Resolve();
+            if (p.kind == PlayKind.Carry && !fetched && owed > 0)
+                text += " " + (owed < p.amount ? "CC_Play_FellThrough_CarryRest" : "CC_Play_FellThrough_Carry").Translate(owed, PlayCarry.Label(p.what, p.thing)).Resolve();
             News.Post(text, null, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             PlayWords.Missed(p);
         }

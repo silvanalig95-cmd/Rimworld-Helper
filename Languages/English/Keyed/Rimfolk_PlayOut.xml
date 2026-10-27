@@ -46,6 +46,7 @@
   <CC_Play_Begin_Toast>{0}: the colony gathers {1} to raise a cup.</CC_Play_Begin_Toast>
   <CC_Play_Begin_Words>{0}: the colony gathers {1} to hear it.</CC_Play_Begin_Words>
   <CC_Play_Begin_Song>{0}: the colony gathers {1}, and somebody starts a song.</CC_Play_Begin_Song>
+  <CC_Play_Feast_Cooked>Meals cooked for it by {PAWN_nameDef}: {1}.</CC_Play_Feast_Cooked>
   <CC_Play_Feast_Partial>There are only {0} cooked meals in the stores, so not everyone will eat.</CC_Play_Feast_Partial>
   <CC_Play_Feast_None>There are no cooked meals in the stores, so it will be talk and drink instead of a meal.</CC_Play_Feast_None>
   <CC_Play_Fire_Laid>There was no fire to gather at, so one was laid in the open from {0} of the colony's wood.</CC_Play_Fire_Laid>
@@ -80,6 +81,7 @@
   <CC_Play_Why_Busy>nobody was free</CC_Play_Why_Busy>
   <CC_Play_Why_Place>there was nowhere to hold it</CC_Play_Why_Place>
   <CC_Play_Why_NotFree>{PAWN_nameDef} was never free</CC_Play_Why_NotFree>
+  <CC_Play_Why_Cooking>{PAWN_nameDef} was still cooking for it</CC_Play_Why_Cooking>
   <CC_Play_Why_NoGrave>there was no grave here to sit by</CC_Play_Why_NoGrave>
   <CC_Play_Why_NoCamp>the camp had gone</CC_Play_Why_NoCamp>
   <CC_Play_Why_Weather>the weather was against it</CC_Play_Why_Weather>
@@ -157,6 +159,7 @@
   <CC_Play_FellThrough>{0} never came about ({1}).</CC_Play_FellThrough>
   <CC_Play_FellThroughPlain>{0} never came about.</CC_Play_FellThroughPlain>
   <CC_Play_FellThrough_Carry>The {1} went from the stores all the same.</CC_Play_FellThrough_Carry>
+  <CC_Play_FellThrough_CarryRest>The rest of the {1} went from the stores all the same.</CC_Play_FellThrough_CarryRest>
   <CC_Play_Why_NoWork>there was nothing that needed doing</CC_Play_Why_NoWork>
   <CC_Play_Why_NoOneAble>nobody was able for it</CC_Play_Why_NoOneAble>
   <CC_Play_Why_NoHunter>nobody could hunt it</CC_Play_Why_NoHunter>
@@ -249,6 +252,7 @@
   <CC_Play_Note_Haul>{0} carried out</CC_Play_Note_Haul>
   <CC_Play_Why_GiftGone>it was gone</CC_Play_Why_GiftGone>
   <CC_Play_Why_NobodyOut>nobody was working outside</CC_Play_Why_NobodyOut>
+  <CC_Play_Why_NobodyAtCamp>nobody was at the camp to take it</CC_Play_Why_NobodyAtCamp>
   <CC_Play_Why_NoDead>the dead were already gone</CC_Play_Why_NoDead>
   <CC_Play_Report_Give>carrying the {0} over to {OTHER_nameDef}.</CC_Play_Report_Give>
   <CC_Play_Report_Burn>carrying the {0} out to burn.</CC_Play_Report_Burn>

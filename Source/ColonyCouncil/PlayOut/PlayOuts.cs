@@ -193,6 +193,47 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// An answer's risk that belongs to the scene it set going (a punch thrown, someone walking out): kept with the plan
+    /// and set off partway into it, or when it's over or falls through if it hasn't come yet (<see cref="PlayOuts.HoldRisk"/>).
+    /// </summary>
+    public class HeldRisk : IExposable
+    {
+        public Pawn pawn;
+        /// <summary>Who they come to blows with; none for a mental state.</summary>
+        public Pawn other;
+        public MentalStateDef state;
+        /// <summary>The fight makes rivals of them (two of the colony).</summary>
+        public bool rivals;
+
+        public void ExposeData()
+        {
+            Scribe_References.Look(ref pawn, "pawn");
+            Scribe_References.Look(ref other, "other");
+            Scribe_Defs.Look(ref state, "state");
+            Scribe_Values.Look(ref rivals, "rivals");
+        }
+
+        /// <summary>Now, if they're both still here and up to it.</summary>
+        public void Fire()
+        {
+            var a = pawn;
+            if (a == null || a.Dead || !a.Spawned || a.Downed || a.InMentalState) return;
+            if (state != null)
+            {
+                a.mindState?.mentalStateHandler?.TryStartMentalState(state, "CC_Dilemma_BreakReason".Translate(), true);
+                return;
+            }
+            var b = other;
+            if (b == null || b.Dead || !b.Spawned || b.Downed || b.InMentalState || a.Map != b.Map) return;
+            if (a.WorkTagIsDisabled(WorkTags.Violent) && b.WorkTagIsDisabled(WorkTags.Violent)) return;
+            // together: the game's own social fight, which brings the two to blows where they are.
+            if (a.WorkTagIsDisabled(WorkTags.Violent)) b.interactions?.StartSocialFight(a);
+            else a.interactions?.StartSocialFight(b);
+            if (rivals) CouncilGameComponent.Instance?.social.Bump(a, b, TieKind.Rivals, 10f, "CC_TieNote_Fight".Translate());
+        }
+    }
+
+    /// <summary>
     /// One answer playing out: who it's for, where it may happen, how long it may wait, and the moods it holds until
     /// it's over. Kept by <see cref="PlayOutTracker"/>; a gathering's lord and a visit's job find it by its id.
     /// </summary>
@@ -235,6 +276,8 @@ namespace ColonyCouncil
         /// <summary>The answer already paid the wood for its fire: one laid for it takes none from the stores.</summary>
         public bool firePaid;
         public List<HeldMood> moods = new List<HeldMood>();
+        /// <summary>The answer's risks that come during it (a fight, a walk-out).</summary>
+        public List<HeldRisk> risks = new List<HeldRisk>();
         /// <summary>Why it's still waiting, for the message if it never happens.</summary>
         public string waitReason;
         /// <summary>
@@ -274,6 +317,16 @@ namespace ColonyCouncil
         public int tally;
         /// <summary>A short word on how it went ("12 jobs done"), for the dilemmas page.</summary>
         public string note;
+        /// <summary>A feast's cooking (PlayOut/PlayCook.cs): the raw food the answer spent on it, still in the stores.</summary>
+        public int cookUnits;
+        /// <summary>The meals its cook is to make, and has made; when they began; who cooks; the bill on the stove while they do.</summary>
+        public int cookMeals;
+        public int cooked;
+        public int cookFrom;
+        public Pawn cook;
+        public Bill_Production cookBill;
+        /// <summary>The cooking is over (done, or given up): the feast serves what there is.</summary>
+        public bool cookOver;
         /// <summary>Turns a search's fan of places (so two searches don't go the same way).</summary>
         public int seed;
         /// <summary>A gift's or a haul's particular things: the thing handed over, the dead still to carry (OnMapPlays.cs).</summary>
@@ -349,6 +402,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref buildFire, "buildFire");
             Scribe_Values.Look(ref firePaid, "firePaid");
             Scribe_Collections.Look(ref moods, "moods", LookMode.Deep);
+            Scribe_Collections.Look(ref risks, "risks", LookMode.Deep);
             Scribe_Values.Look(ref waitReason, "waitReason");
             Scribe_Values.Look(ref outcome, "outcome");
             Scribe_Collections.Look(ref named, "named", LookMode.Reference);
@@ -374,6 +428,13 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref plotRot, "plotRot");
             Scribe_Values.Look(ref patrol, "patrol");
             Scribe_Values.Look(ref afterward, "afterward");
+            Scribe_Values.Look(ref cookUnits, "cookUnits");
+            Scribe_Values.Look(ref cookMeals, "cookMeals");
+            Scribe_Values.Look(ref cooked, "cooked");
+            Scribe_Values.Look(ref cookFrom, "cookFrom");
+            Scribe_References.Look(ref cook, "cook");
+            Scribe_References.Look(ref cookBill, "cookBill");
+            Scribe_Values.Look(ref cookOver, "cookOver");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();
@@ -393,6 +454,7 @@ namespace ColonyCouncil
                 if (spots == null) spots = new List<PlaySpot>();
                 if (lines == null) lines = new List<string>();
                 if (moods == null) moods = new List<HeldMood>();
+                if (risks == null) risks = new List<HeldRisk>();
                 moods.RemoveAll(m => m == null || m.pawn == null || m.thought == null && m.skill == null);
             }
         }
@@ -466,7 +528,7 @@ namespace ColonyCouncil
         /// <summary>
         /// An answer's outcome, kept until what the answer set going on the map is over: the gathering, then the work
         /// party or walk, then whatever else is still to come. A short word says now when it will be; the outcome itself
-        /// is told at the end (<see cref="PlayOutTracker"/>), and never if it falls through. False when nothing is still
+        /// is told at the end (<see cref="PlayOutTracker"/>); if it falls through, a word on why instead. False when nothing is still
         /// to come (it all fell through at once, or the setting is off): tell it now.
         /// </summary>
         public static bool TellWhenDone(List<PlayOut> plays, string told, string prefix = null)
@@ -501,6 +563,21 @@ namespace ColonyCouncil
             var play = scope.plays.FirstOrDefault(x => x.state != PlayState.Done && x.TakesPart(p));
             if (play == null) return false;
             play.moods.Add(new HeldMood { pawn = p, thought = thought, about = about, cause = Causes.Current });
+            return true;
+        }
+
+        /// <summary>
+        /// An answer's risk for someone who takes part in what it set going (a fight with <paramref name="other"/>, or a
+        /// mental state): kept with the plan and set off partway into it, so the punch comes at the supper the words put
+        /// it at, not where they stood when the answer was given. False: now.
+        /// </summary>
+        public static bool HoldRisk(Pawn p, Pawn other, MentalStateDef state, bool rivals)
+        {
+            if (scopes.Count == 0 || p == null) return false;
+            var scope = scopes[scopes.Count - 1];
+            var play = scope.plays.FirstOrDefault(x => x.state != PlayState.Done && (x.TakesPart(p) || x.named.Contains(p)));
+            if (play == null) return false;
+            play.risks.Add(new HeldRisk { pawn = p, other = other, state = state, rivals = rivals });
             return true;
         }
 
