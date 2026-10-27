@@ -937,6 +937,31 @@ namespace ColonyCouncil
 
         // ---------------- Showing it ----------------
 
+        /// <summary>
+        /// A word or two for the Story tab's overview ("convalescing", "trusted doctor"), or null; <paramref name="color"/>
+        /// is how it reads. The full lines (<see cref="StoryLines"/>) are its tooltip.
+        /// </summary>
+        public static string StoryTag(Pawn p, out Color color)
+        {
+            color = UiKit.Faint;
+            var t = Instance;
+            if (t == null || p == null) return null;
+            if (ConvalescenceOn && ConvalescenceOf(p) != null)
+            {
+                color = UiKit.Warn;
+                return "CC_Health_Tag_Convalescing".Translate();
+            }
+            var rec = ReputationOn ? t.RecordOf(p) : null;
+            if (rec == null) return null;
+            if (rec.Saved + rec.lost > 0)
+            {
+                int level = rec.Level;
+                if (level > 0) color = UiKit.Good;
+                return (level >= 2 ? "CC_Health_Tag_Renowned" : level == 1 ? "CC_Health_Tag_Trusted" : "CC_Health_Tag_Doctor").Translate();
+            }
+            return rec.births > 0 ? "CC_Health_Tag_Midwife".Translate().ToString() : null;
+        }
+
         /// <summary>Lines for the Story tab: their record as a doctor or a midwife, and how long they'll be convalescing.</summary>
         public static IEnumerable<string> StoryLines(Pawn p)
         {

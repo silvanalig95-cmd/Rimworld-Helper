@@ -18,8 +18,8 @@
   <CC_Cause_Arc>{0}'s story: {1}.</CC_Cause_Arc>
 
   <!-- The Story tab. -->
-  <CC_Story_Arc>Personal story</CC_Story_Arc>
   <CC_Arc_Story_Now>{0}: {1} (stage {2} of {3})</CC_Arc_Story_Now>
+  <CC_Arc_Story_Short>{0}: {1}</CC_Arc_Story_Short>
   <CC_Arc_Story_PartOf>Part of {0}'s story: {1}.</CC_Arc_Story_PartOf>
   <CC_Arc_Story_Done>Lived through: {0} ({1}).</CC_Arc_Story_Done>
   <CC_Arc_Story_Fizzled>Came to nothing: {0} ({1}).</CC_Arc_Story_Fizzled>

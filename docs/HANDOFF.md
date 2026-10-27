@@ -1,14 +1,25 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.4 "Sat down, seen off, asked in", audit gaps 2, 3 and 6. `PlayOut/PlaySit.cs`: a Visit with `sit`
+Last shipped: 0.17.5 "The story at a glance", the player's request for a shorter Story tab. `UI/ITab_Pawn_Story.cs`:
+`StoryView.Build` makes an `Overview` (character words from the "character" section's first line, standing pills:
+trust, office, `HealthTracker.StoryTag`; the goal with `UiKit.Bar`; `ArcView.Now` with stage dots; quirk, heirloom,
+vendetta and nemesis pills whose tips are `QuirkEffects.Tip` and the old lines; the family here as `UiKit.PawnChip`s
+from `Family.Tree`, the rest counted, the whole tree in the tip) drawn as a measured `UiKit.Card`, then the sections:
+the character section skips its words line (`CharacterView.DrawSection(skip)`), the family tree is a table
+(`Family.TreeEntry`, `WhereKind`), "life" holds goals reached and `ArcView.Past`, journal and dreams are quotes.
+`Folds` takes sections that start shut (`StoryView.FoldedInTab`); the People roster's folds start all open.
+
+Next: family round C (adoption and guardians, orphaned here, inheritance by blood, widowhood and remarriage) as 0.17.6,
+then the audit's next gaps.
+
+Before it, 0.17.4 "Sat down, seen off, asked in", audit gaps 2, 3 and 6. `PlayOut/PlaySit.cs`: a Visit with `sit`
 (and `sitBy` Fire) to someone up and free starts the visitor's job at a seat (`targetC` = the other) and the other's
 `JobDriver_PlayOutSitWith` across a table or by a fire (20 answers marked). `PlayOut/PlayDepart.cs`:
 `DilemmaEffect_LeaveForGood` holds the leaver on the answer's walk (`leaving`, gone at phase 2), `DilemmaEffect_SendAway`
 on the visit to them (`walked`: sets off at the visit's start, else when it ends), `ReleasePet` and `TurnOut` lead the
 animals (`led`, `FollowClose`) and let them go at the far end; whatever is held happens at Done or Fallback.
 `PlayOut/PlayGuests.cs`: a gathering's `guests` ("stranger", "camp", "kin") are resolved when it starts
-(`LordJob_PlayOut.guests`), walked to a ring round the spot (`JobDriver_PlayOutAttend`) and served at a feast. Next:
-family round C, then the next gaps.
+(`LordJob_PlayOut.guests`), walked to a ring round the spot (`JobDriver_PlayOutAttend`) and served at a feast.
 
 Before it, 0.17.3 "A family's life together", family round B. `Social/FamilyLifeMath.cs` (pure, `FamilyLifeTests`)
 and `Social/FamilyLife.cs`: `Patch_FamilyCouple` (`Pawn_RelationsTracker.AddDirectRelation` postfix, Lover or Fiance

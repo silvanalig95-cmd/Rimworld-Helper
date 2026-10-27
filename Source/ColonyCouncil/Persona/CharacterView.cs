@@ -134,13 +134,16 @@ namespace ColonyCouncil
 
         // ---------------- Drawing ----------------
 
-        /// <summary>Draws one section's body from the top of <paramref name="r"/>; returns the height used.</summary>
-        public static float DrawSection(Rect r, Pawn p, CharacterSection s)
+        /// <summary>
+        /// Draws one section's body from the top of <paramref name="r"/>; returns the height used. <paramref name="skip"/>
+        /// leaves out its first lines (the Story tab's overview shows their character in words already).
+        /// </summary>
+        public static float DrawSection(Rect r, Pawn p, CharacterSection s, int skip = 0)
         {
             if (s == null || p == null) return 0f;
             float y = r.y;
             Text.Font = GameFont.Small;
-            for (int i = 0; i < s.lines.Count; i++)
+            for (int i = skip; i < s.lines.Count; i++)
             {
                 string text = s.lines[i];
                 float h = Text.CalcHeight(text, r.width);

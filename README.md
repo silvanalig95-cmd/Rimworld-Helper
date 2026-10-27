@@ -620,8 +620,9 @@ wears others down. Part of each change stays for good and the rest fades over ye
 mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
 own voice. Character shows in what they say and do: the lines they get and their tone, more warm moments from the
 warm and more frictions from the hot-tempered, secrets confided sooner by the trusting, students taken on sooner by
-the warm. The Story tab opens with it: their character in words, eight bars with where their nature put them and
-where they are now (hover for every trait and mark that moved it), and "what shaped them", turning points first.
+the warm. The Story tab opens with their character in words, and its Character section has eight bars with where
+their nature put them and where they are now (hover for every trait and mark that moved it), and under it "what
+shaped them", turning points first.
 The Almanac pages "character" and "what shapes a person" explain it.
 
 #### Across the years
@@ -781,9 +782,14 @@ what people say).
 
 ### Story, Culture and Social: a colonist's pages
 Select a colonist and three places in their inspect panel tell Rimfolk's side of them:
-- **Story**: who they are and what they've lived. Their trust, office and earned names, their character and what
-  shaped it, the traits life changed, their life goal and how close they are, their personal story and what it waits
-  for next, their quirks, heirlooms, vendettas and nemeses, their last dreams and the latest lines of their journal.
+- **Story**: who they are and what they've lived. Under their name and earned names, a card with what matters at a
+  glance: their character in words; their trust, office and name as a doctor; their life goal with a bar for how far
+  they've come; the personal story they're living, a dot for each stage; their quirks, heirlooms, vendettas and
+  nemeses as tags (hover one for what it does and how long it lasts); and the family who are here as small portraits,
+  the rest counted (hover the count for everyone). Under the card: their character on its eight bars, what shaped
+  it, the traits life changed, their family tree a row each (face, what they are, age, where they are), the years
+  across cryptosleep, their life so far (goals reached, stories lived through), their last dreams and the two newest
+  lines of their journal. The long lists start folded; a click on a heading opens them for the session.
 - **Culture** (just left of Social): what they believe and where they come from. Their ideoligion (with Ideology: its icon,
   how firmly they hold it, a role, what it asks of them, what moved it, who could sway them), the views they hold,
   how they sit with the colony's ways (a bar from ashamed to proud, and why), what they think of each decree in force
@@ -903,7 +909,7 @@ Habits pass between people who spend their days together, too: a child picks one
 mentor, and lovers, family and good friends from each other, the closer the sooner, and the habit's line says whom
 they had it from. Mending clothes mends the worst-worn thing someone wears a little each day; a doodler is now and then
 inspired at their art; a light sleeper wakes when fire breaks out near them.
-The colonist's Story tab says of each quirk how it came, what it does and how long it lasts. The superstitions that were
+Each quirk is a tag on the colonist's Story tab; hover it for how it came, what it does and how long it lasts. The superstitions that were
 only flavour do something small now too: knocking on wood gladdens after a fight come through unhurt, talking to the
 dead comforts near the graves, counting everything warns when the food won't last the week, salting the doorway keeps
 nightmares away, and a sleep talker's roommate sleeps a little worse (a lover finds it endearing). Some change how someone speaks and answers: one speaks in proverbs, one laughs

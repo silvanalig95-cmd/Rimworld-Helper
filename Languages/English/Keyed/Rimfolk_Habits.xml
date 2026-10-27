@@ -12,7 +12,6 @@
 
   <CC_Quirk_Deep>{QUIRK}: it has become second nature to {PAWN_nameDef}.</CC_Quirk_Deep>
 
-  <CC_QuirkFx_Line>Quirk: {0}. {1}. {2}.</CC_QuirkFx_Line>
   <CC_QuirkFx_NameFrom>{0} ({1})</CC_QuirkFx_NameFrom>
   <CC_QuirkFx_None>No effect on play: part of who they are</CC_QuirkFx_None>
   <CC_QuirkFx_Mood>mood {0} {1}</CC_QuirkFx_Mood>

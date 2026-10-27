@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The story at a glance
+
+*27 October 2026, version 0.17.5*
+
+- The Story tab opens with a card of what matters most: a colonist's character in words, their trust and office, their life goal with a bar for how far they've come, and the personal story they're living with a dot for each stage.
+- Quirks, heirlooms, vendettas and nemeses show as small tags. Hover one for what it does, how it came and how long it lasts.
+- The family who are here show as small portraits on the card, and the rest are counted; hover the count for everyone. Click a portrait to open their page.
+- The family tree is a row each: their face, what they are, their age, and where they are in color. It starts folded in the Story tab, as do what shaped them, the years in cryptosleep, dreams and the life so far.
+- The journal shows its two newest entries as quotes under their dates.
+- The Almanac said a lonely or strongly feeling colonist shows it on the Story tab; it is the heart section of the Mood tab, and the Almanac says so now.
+
 ## Sat down, seen off, asked in
 
 *27 October 2026, version 0.17.4*

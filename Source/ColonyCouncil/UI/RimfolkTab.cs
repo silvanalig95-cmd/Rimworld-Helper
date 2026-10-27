@@ -43,19 +43,26 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The sections of one page that are folded away, by a fixed key per section. Kept for the session, not saved: a
-    /// new session opens everything again.
+    /// The sections of one page that are folded away, by a fixed key per section. A page can start some of them folded
+    /// (the Story tab's longer lists). Kept for the session, not saved: a new session starts as the page does.
     /// </summary>
     public class Folds
     {
-        private readonly HashSet<string> shut = new HashSet<string>();
+        private readonly HashSet<string> shutAtFirst;
+        /// <summary>The sections the player has opened or shut the other way from how the page starts them.</summary>
+        private readonly HashSet<string> flipped = new HashSet<string>();
 
-        public bool IsOpen(string key) => key == null || !shut.Contains(key);
+        public Folds(params string[] shutAtFirst)
+        {
+            this.shutAtFirst = new HashSet<string>(shutAtFirst ?? new string[0]);
+        }
+
+        public bool IsOpen(string key) => key == null || shutAtFirst.Contains(key) == flipped.Contains(key);
 
         public void Toggle(string key)
         {
             if (key == null) return;
-            if (!shut.Remove(key)) shut.Add(key);
+            if (!flipped.Remove(key)) flipped.Add(key);
         }
     }
 }

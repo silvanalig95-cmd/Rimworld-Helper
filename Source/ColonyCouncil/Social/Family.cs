@@ -76,14 +76,29 @@ namespace ColonyCouncil
 
         // ---------------- The family tree ----------------
 
+        /// <summary>One relative on the family tree, closest first (<see cref="Tree"/>).</summary>
+        public class TreeEntry
+        {
+            public Pawn pawn;
+            /// <summary>What they are to the one whose tree it is ("wife", "grandmother").</summary>
+            public string relation;
+            /// <summary>Where they are ("here", "with the Iron Hearth"), and as a kind.</summary>
+            public string where;
+            public KinWhere whereKind;
+            /// <summary>The whole line: "Stace, his wife, 51: here."</summary>
+            public string line;
+        }
+
         /// <summary>
         /// Their family as the story shows it: partner, parents, brothers and sisters, children, grandparents and
-        /// grandchildren, step-family and in-laws, each with their age and where they are; those further out counted.
+        /// grandchildren, step-family and in-laws, closest first, each with their age and where they are (at most
+        /// <see cref="FamilyMath.TreeShown"/>); <paramref name="more"/> counts the rest and those further out.
         /// </summary>
-        public static List<string> TreeLines(Pawn p)
+        public static List<TreeEntry> Tree(Pawn p, out int more)
         {
-            var lines = new List<string>();
-            if (p?.relations == null) return lines;
+            var list = new List<TreeEntry>();
+            more = 0;
+            if (p?.relations == null) return list;
             var near = new List<(Pawn o, PawnRelationDef rel)>();
             var others = new HashSet<Pawn>();
             foreach (var o in p.relations.RelatedPawns)
@@ -96,25 +111,36 @@ namespace ColonyCouncil
             near = near.OrderBy(x => FamilyMath.TreeRank(x.rel.defName)).ThenBy(x => x.o.Dead).ThenBy(x => x.o.LabelShort).ToList();
             foreach (var (o, rel) in near.Take(FamilyMath.TreeShown))
             {
-                string where = WhereWords(p, o);
-                lines.Add(o.Dead
-                    ? "CC_Family_LineDead".Translate(p.Named("PAWN"), o.Named("OTHER"), rel.GetGenderSpecificLabel(o).Named("RELATION"), where.Named("WHERE")).Resolve()
-                    : "CC_Family_Line".Translate(p.Named("PAWN"), o.Named("OTHER"), rel.GetGenderSpecificLabel(o).Named("RELATION"),
-                        FamilyYears.Lived(o).Named("AGE"), where.Named("WHERE")).Resolve());
+                var kind = WhereKind(p, o);
+                string where = WhereWords(o, kind);
+                string relation = rel.GetGenderSpecificLabel(o);
+                list.Add(new TreeEntry
+                {
+                    pawn = o, relation = relation, where = where, whereKind = kind,
+                    line = o.Dead
+                        ? "CC_Family_LineDead".Translate(p.Named("PAWN"), o.Named("OTHER"), relation.Named("RELATION"), where.Named("WHERE")).Resolve()
+                        : "CC_Family_Line".Translate(p.Named("PAWN"), o.Named("OTHER"), relation.Named("RELATION"), FamilyYears.Lived(o).Named("AGE"), where.Named("WHERE")).Resolve()
+                });
             }
-            int more = others.Count + Math.Max(0, near.Count - FamilyMath.TreeShown);
-            if (more > 0) lines.Add("CC_Family_More".Translate(more).Resolve());
-            return lines;
+            more = others.Count + Math.Max(0, near.Count - FamilyMath.TreeShown);
+            return list;
         }
 
-        /// <summary>Where a relative is, in a few words ("here", "with the Iron Hearth", "buried here").</summary>
-        public static string WhereWords(Pawn of, Pawn o)
+        /// <summary>Where a relative is, as a kind (FamilyMath.Where).</summary>
+        public static KinWhere WhereKind(Pawn of, Pawn o)
         {
             var corpse = o.Dead ? o.Corpse : null;
             bool buried = corpse != null && corpse.ParentHolder is Building_Grave && (corpse.MapHeld?.IsPlayerHome ?? false);
             bool ours = !o.Dead && o.Faction == Faction.OfPlayer && !o.IsPrisoner && !o.IsSlave;
-            var where = FamilyMath.Where(o.Dead, buried, ours, o.MapHeld != null && o.MapHeld == of?.MapHeld, o.GetCaravan() != null,
+            return FamilyMath.Where(o.Dead, buried, ours, o.MapHeld != null && o.MapHeld == of?.MapHeld, o.GetCaravan() != null,
                 o.IsPrisonerOfColony, o.IsSlaveOfColony, o.Spawned && o.Map.IsPlayerHome, People.Kidnapped(o), o.Faction != null);
+        }
+
+        /// <summary>Where a relative is, in a few words ("here", "with the Iron Hearth", "buried here").</summary>
+        public static string WhereWords(Pawn of, Pawn o) => WhereWords(o, WhereKind(of, o));
+
+        private static string WhereWords(Pawn o, KinWhere where)
+        {
             string key = "CC_Family_Where_" + where;
             return where == KinWhere.WithFaction ? key.Translate(o.Faction.Name.Named("FACTION")).Resolve() : key.Translate().Resolve();
         }

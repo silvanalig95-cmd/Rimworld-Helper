@@ -33,6 +33,11 @@
   <CC_Health_Story_Renowned>The doctor everyone here would choose.</CC_Health_Story_Renowned>
   <CC_Health_Story_Midwife>Babies delivered: {COUNT}.</CC_Health_Story_Midwife>
   <CC_Health_Story_Convalescing>Convalescing: about {DAYS} days to full strength, {BEDDAYS} with rest in bed.</CC_Health_Story_Convalescing>
+  <CC_Health_Tag_Convalescing>convalescing</CC_Health_Tag_Convalescing>
+  <CC_Health_Tag_Renowned>renowned doctor</CC_Health_Tag_Renowned>
+  <CC_Health_Tag_Trusted>trusted doctor</CC_Health_Tag_Trusted>
+  <CC_Health_Tag_Doctor>doctor</CC_Health_Tag_Doctor>
+  <CC_Health_Tag_Midwife>midwife</CC_Health_Tag_Midwife>
 
   <!-- More ways into convalescence: hunger, cold or heat -->
   <CC_Health_Cause_Hunger>coming through a hungry time.</CC_Health_Cause_Hunger>

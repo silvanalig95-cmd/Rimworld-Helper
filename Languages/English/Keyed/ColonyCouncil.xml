@@ -1323,7 +1323,6 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Log_Aspiration>did it: {0}</CC_Log_Aspiration>
   <CC_Annals_GoalLine>{0} ({1})</CC_Annals_GoalLine>
   <CC_Annals_Goals>Lives fulfilled: {0}.</CC_Annals_Goals>
-  <CC_Social_Goals>Life goals</CC_Social_Goals>
   <CC_Social_GoalTip>{0} wants to {1}.\nSince {2}.\n\nProgress: {3}</CC_Social_GoalTip>
   <CC_Social_GoalDone>{0} did it: {1} ({2})</CC_Social_GoalDone>
 
@@ -1371,8 +1370,9 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Story tab -->
   <CC_Tab_Story>Story</CC_Tab_Story>
-  <CC_Story_Standing>Standing</CC_Story_Standing>
   <CC_Story_Family>Family</CC_Story_Family>
+  <CC_Story_FamilyMore>+{0} more</CC_Story_FamilyMore>
+  <CC_Story_FamilyElsewhere>Family elsewhere: {0}</CC_Story_FamilyElsewhere>
   <CC_Family_Line>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, {AGE}: {WHERE}.</CC_Family_Line>
   <CC_Family_LineDead>{OTHER_nameDef}, {PAWN_possessive} {RELATION}: {WHERE}.</CC_Family_LineDead>
   <CC_Family_More>And {0} more relatives further out: uncles, aunts, cousins and their kin.</CC_Family_More>
@@ -1417,11 +1417,13 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Story_Goal>Wants to {0} ({1}).</CC_Story_Goal>
   <CC_Story_GoalWhy>Set their heart on it {0} ({1}).</CC_Story_GoalWhy>
   <CC_Story_GoalDone>Did it: {0} ({1}).</CC_Story_GoalDone>
+  <CC_Story_Wants>Wants to {0}</CC_Story_Wants>
+  <CC_Story_LifeSoFar>Life so far</CC_Story_LifeSoFar>
   <CC_Story_Bonds>Bonds</CC_Story_Bonds>
   <CC_Story_Lost>Lost {0} ({1}).</CC_Story_Lost>
-  <CC_Story_Heart>Heart</CC_Story_Heart>
-  <CC_Story_Quirk>Quirk: {0}.</CC_Story_Quirk>
   <CC_Story_Heirloom>Keeps {0}'s {1}.</CC_Story_Heirloom>
+  <CC_Story_HeirloomTag>{0}'s {1}</CC_Story_HeirloomTag>
+  <CC_Story_VendettaTag>Vendetta: {0}</CC_Story_VendettaTag>
   <CC_Story_Keeps>Keeps a secret for {0}.</CC_Story_Keeps>
   <CC_Story_Journal>From the journal</CC_Story_Journal>
   <CC_Story_ReadJournal>Read the journal</CC_Story_ReadJournal>

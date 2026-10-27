@@ -8,32 +8,67 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Personal stories in the interface: a few lines for the Story tab (the story under way and where it stands, the
-    /// stories they're part of, the ones that have ended) and the dev mode actions. The setting is drawn by the settings window.
+    /// Personal stories in the interface: for the Story tab, the story under way and where it stands (and the stories
+    /// they're part of), and the ones that have ended; and the dev mode actions. The setting is drawn by the settings window.
     /// </summary>
     public static class ArcView
     {
         private static readonly Color Faint = new Color(0.7f, 0.7f, 0.7f);
         private static readonly Color Done = new Color(0.6f, 0.9f, 0.6f);
 
-        /// <summary>The Story tab's lines for this colonist; empty when there's nothing to tell (or stories are off).</summary>
-        public static List<(string, Color)> Lines(Pawn p)
+        private static bool Off(Pawn p) => p == null || ArcTracker.Instance == null || ColonyCouncilMod.Settings.arcFrequency == ArcFrequency.Off;
+
+        /// <summary>
+        /// The Story tab's overview line: the story under way and the stage it's at ("The long road: second thoughts"),
+        /// else one they're part of; <paramref name="tip"/> has where it stands, what it waits for and the stories they're
+        /// part of. <paramref name="stage"/> is the stage it's at (0 first) of <paramref name="stages"/>, or -1 for
+        /// someone else's story. Null when there's none (or stories are off).
+        /// </summary>
+        public static string Now(Pawn p, out string tip, out int stage, out int stages)
         {
-            var lines = new List<(string, Color)>();
-            var tracker = ArcTracker.Instance;
-            if (p == null || tracker == null || ColonyCouncilMod.Settings.arcFrequency == ArcFrequency.Off) return lines;
+            tip = null;
+            stage = -1;
+            stages = 0;
+            if (Off(p)) return null;
             try
             {
+                var tracker = ArcTracker.Instance;
+                var tips = new List<string>();
+                string line = null;
                 var arc = tracker.Of(p);
                 if (arc?.def != null && arc.Stage != null)
                 {
-                    lines.Add(("CC_Arc_Story_Now".Translate(arc.def.LabelCap, arc.Stage.label, arc.stage + 1, arc.def.stages.Count).Resolve(), Color.white));
+                    line = "CC_Arc_Story_Short".Translate(arc.def.LabelCap, arc.Stage.label).Resolve();
+                    stage = arc.stage;
+                    stages = arc.def.stages.Count;
+                    tips.Add("CC_Arc_Story_Now".Translate(arc.def.LabelCap, arc.Stage.label, arc.stage + 1, arc.def.stages.Count).Resolve());
                     string waiting = ArcText.Waiting(arc);
-                    if (!waiting.NullOrEmpty()) lines.Add((waiting, Faint));
+                    if (!waiting.NullOrEmpty()) tips.Add(waiting);
                 }
                 foreach (var a in tracker.PartOf(p).Where(a => a.def != null && a.pawn != null))
-                    lines.Add(("CC_Arc_Story_PartOf".Translate(a.pawn.LabelShort, a.def.label).Resolve(), Faint));
-                foreach (var r in tracker.PastOf(p).Take(3))
+                {
+                    string part = "CC_Arc_Story_PartOf".Translate(a.pawn.LabelShort, a.def.label).Resolve();
+                    line ??= part;
+                    tips.Add(part);
+                }
+                if (line != null) tip = string.Join("\n\n", tips);
+                return line;
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("personal story overview", e);
+                return null;
+            }
+        }
+
+        /// <summary>The stories of theirs that have ended, newest first, for the Story tab's life so far.</summary>
+        public static List<(string, Color)> Past(Pawn p, int max = 3)
+        {
+            var lines = new List<(string, Color)>();
+            if (Off(p)) return lines;
+            try
+            {
+                foreach (var r in ArcTracker.Instance.PastOf(p).Take(max))
                 {
                     string label = DefDatabase<ArcDef>.GetNamedSilentFail(r.defName)?.LabelCap ?? r.label?.CapitalizeFirst() ?? "?";
                     string day = "CC_DayN".Translate(r.endTick / GenDate.TicksPerDay + 1);

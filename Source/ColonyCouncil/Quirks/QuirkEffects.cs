@@ -6,7 +6,7 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// What a quirk does, in words, for its line on the Heart section: its knack (the stat it moves), its mood and when,
+    /// What a quirk does, in words, for the tooltip of its tag on the Story tab: its knack (the stat it moves), its mood and when,
     /// anything else it does (QuirkDef.effect), or that it does nothing to play; and how long it lasts (for good, while
     /// they keep at its work, or fading with time; never a count of days).
     /// </summary>
@@ -51,14 +51,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The line for the Heart section: "Quirk: can't stand a mess (from all the cleaning). Cleaning speed +10%, mood
-        /// -2 in a messy room. Stays while they keep at cleaning."
+        /// The tooltip of its tag on the Story tab: "Can't stand a mess (from all the cleaning)", then what it does and how
+        /// long it lasts ("Cleaning speed +10%, mood -2 in a messy room. Stays while they keep at cleaning.").
         /// </summary>
-        public static string Line(Quirk q)
+        public static string Tip(Quirk q)
         {
+            if (q?.def == null) return null;
             string from = From(q);
-            string name = from.NullOrEmpty() ? q.Label : "CC_QuirkFx_NameFrom".Translate(q.Label, from).Resolve();
-            return "CC_QuirkFx_Line".Translate(name, Effects(q), Lasts(q).CapitalizeFirst()).Resolve();
+            string name = (from.NullOrEmpty() ? q.Label : "CC_QuirkFx_NameFrom".Translate(q.Label, from).Resolve()).CapitalizeFirst();
+            return name + "\n\n" + Effects(q) + ".\n" + Lasts(q).CapitalizeFirst() + ".";
         }
 
         /// <summary>How it came, in a few words ("from all the cleaning", "simply who they are"), or null when unknown (older saves).</summary>
