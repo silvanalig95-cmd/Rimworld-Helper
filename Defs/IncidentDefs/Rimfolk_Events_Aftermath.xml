@@ -249,9 +249,10 @@
         <options>
           <li>
             <label>Accept the seed with thanks</label>
-            <outcome>The seed goes into the colony's stores, and the visitors eat a hot meal by the same hearth they sat at all winter, which they say tastes better with the door open.</outcome>
+            <outcome>The seed goes into the colony's stores, and the visitors eat a hot meal from the colony's kitchen, which they say tastes better than anything they had on the road.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>2</count><to>Stranger</to><label>a hot meal for the visitors</label><ifHave>true</ifHave><eat>true</eat></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
             </effects>
           </li>

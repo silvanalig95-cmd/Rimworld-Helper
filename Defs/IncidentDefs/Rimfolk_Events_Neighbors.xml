@@ -541,9 +541,9 @@
         <options>
           <li>
             <label>A day's wood for a meal each</label>
-            <outcome>The three of them worked the treeline all afternoon and ate sitting on the logs when they were done, sawdust in their hair. They were gone by morning, and the wood lay where the trees had come down.</outcome>
+            <outcome>The three of them worked the treeline all afternoon and ate their supper when they were done, sawdust in their hair. They were gone by morning, and the wood lay where the trees had come down.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>supper for the hired hands</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>supper for the hired hands</label><hours>17~21</hours><eat>true</eat></li>
               <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>45</count><near>Stranger</near></li>
             </effects>
             <ways><toil>1</toil></ways>
@@ -558,9 +558,10 @@
           </li>
           <li>
             <label>Feed them, and send them on</label>
-            <outcome>{A_nameDef} carried out a pot of something hot, and the three of them ate it at the gate and went on toward {PLACE} with full bellies.</outcome>
+            <outcome>{A_nameDef} carried out a pot of something hot, and the three of them ate it where they stood and went on toward {PLACE} with full bellies.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>a hot pot for the road</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>3</count><to>Stranger</to><label>a hot pot for the road</label><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
             </effects>
             <ways><generosity>1</generosity></ways>

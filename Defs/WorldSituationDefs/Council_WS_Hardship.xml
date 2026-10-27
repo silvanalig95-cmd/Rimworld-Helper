@@ -176,7 +176,7 @@
             <label>Feed them and send them on</label>
             <outcome>They sleep one night in the lee of the colony's wall and go on at first light, with a sack of food between them.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>20</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>20</count><night>true</night></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
@@ -420,9 +420,9 @@
           </li>
           <li>
             <label>Feed them and send them on</label>
-            <outcome>They eat at the gate, sleep under the eaves and go on at first light with a bundle of food.</outcome>
+            <outcome>They eat at the gate, sleep in the lee of the colony's wall and go on at first light with a bundle of food.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the hungry on the road</label><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the hungry on the road</label><what>rawfood</what><count>15</count><eat>true</eat><night>true</night></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
@@ -930,9 +930,9 @@
           </li>
           <li>
             <label>Feed them and send them on</label>
-            <outcome>They are fed and dried out, and they go on toward the hills where the rest of {FACTION} are camped.</outcome>
+            <outcome>They eat at the gate and dry out a while, and they go on toward the hills where the rest of {FACTION} are camped.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count><eat>true</eat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
             <help>1</help>

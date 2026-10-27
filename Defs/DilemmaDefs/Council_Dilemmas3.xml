@@ -294,7 +294,7 @@
         <label>{A_nameDef} pays 30 silver</label>
         <outcome>{A_nameDef} paid {B_nameDef} thirty silver for {PET_nameDef}'s bite, counting it out coin by coin and complaining the whole time.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>30</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><count>30</count><steward>false</steward><who>A</who><to>Person</to><whom>B</whom><label>thirty silver for {B_nameDef}</label></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Compensated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>

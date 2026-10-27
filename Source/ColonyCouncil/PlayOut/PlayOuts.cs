@@ -275,6 +275,13 @@ namespace ColonyCouncil
         public bool buildFire;
         /// <summary>The answer already paid the wood for its fire: one laid for it takes none from the stores.</summary>
         public bool firePaid;
+        /// <summary>Who is laying its fire, where, and the fire once it's lit (PlayFire.cs).</summary>
+        public Pawn fireBy;
+        public IntVec3 fireCell = IntVec3.Invalid;
+        public Thing fireLaid;
+        /// <summary>Who builds a snowman while it lasts, and whether they've been sent to (PlaySnow.cs).</summary>
+        public Pawn snowman;
+        public bool snowmanDone;
         public List<HeldMood> moods = new List<HeldMood>();
         /// <summary>The answer's risks that come during it (a fight, a walk-out).</summary>
         public List<HeldRisk> risks = new List<HeldRisk>();
@@ -352,6 +359,8 @@ namespace ColonyCouncil
         /// <summary>Animals led along and let go at the far end: a pet turned loose, the herd's weakest turned out.</summary>
         public List<Pawn> led = new List<Pawn>();
         public bool ledHerd;
+        /// <summary>An errand's food is eaten by those it's handed to, who may stay the night (PlayStrangers.cs); fed once.</summary>
+        public bool strangersEat, strangersNight, strangersFed;
         /// <summary>A gathering's guests from outside the colony: where from, and how many at most (PlayGuests.cs).</summary>
         public string guestsFrom;
         public int guestCount;
@@ -429,6 +438,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref xpPerHour, "xpPerHour");
             Scribe_Values.Look(ref buildFire, "buildFire");
             Scribe_Values.Look(ref firePaid, "firePaid");
+            Scribe_References.Look(ref fireBy, "fireBy");
+            Scribe_Values.Look(ref fireCell, "fireCell", IntVec3.Invalid);
+            Scribe_References.Look(ref fireLaid, "fireLaid");
+            Scribe_References.Look(ref snowman, "snowman");
+            Scribe_Values.Look(ref snowmanDone, "snowmanDone");
             Scribe_Collections.Look(ref moods, "moods", LookMode.Deep);
             Scribe_Collections.Look(ref risks, "risks", LookMode.Deep);
             Scribe_Values.Look(ref waitReason, "waitReason");
@@ -479,6 +493,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref leavingWalk, "leavingWalk");
             Scribe_Collections.Look(ref led, "led", LookMode.Reference);
             Scribe_Values.Look(ref ledHerd, "ledHerd");
+            Scribe_Values.Look(ref strangersEat, "strangersEat");
+            Scribe_Values.Look(ref strangersNight, "strangersNight");
+            Scribe_Values.Look(ref strangersFed, "strangersFed");
             Scribe_Values.Look(ref guestsFrom, "guestsFrom");
             Scribe_Values.Look(ref guestCount, "guestCount");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)

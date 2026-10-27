@@ -29,6 +29,8 @@ namespace ColonyCouncil
     {
         public int tripId = -1;
         public IntVec3 spot;
+        /// <summary>How long at most they wait at the gate before going anyway (longer for a night's stay, PlayOut/PlayStrangers.cs).</summary>
+        public int lateTicks = CourierMath.TicksPerHour * 14;
 
         public const string MemoLeave = "CourierLeave";
 
@@ -64,13 +66,13 @@ namespace ColonyCouncil
             arrived.AddTrigger(new Trigger_TicksPassed(CourierMath.TicksPerHour * 5));
             graph.AddTransition(arrived);
 
-            // Done (the trip says so), or, should nobody ever say, half a day on.
+            // Done (the trip says so), or, should nobody ever say, half a day on (a night's stay, longer).
             var goes = new Transition(travel, leave);
             goes.AddSource(work);
             goes.AddTrigger(new Trigger_Memo(MemoLeave));
             graph.AddTransition(goes);
             var late = new Transition(work, leave);
-            late.AddTrigger(new Trigger_TicksPassed(CourierMath.TicksPerHour * 14));
+            late.AddTrigger(new Trigger_TicksPassed(lateTicks));
             graph.AddTransition(late);
 
             // Hurt by the colony: they leave at once, defending themselves.
@@ -101,6 +103,7 @@ namespace ColonyCouncil
         {
             Scribe_Values.Look(ref tripId, "tripId", -1);
             Scribe_Values.Look(ref spot, "spot");
+            Scribe_Values.Look(ref lateTicks, "lateTicks", CourierMath.TicksPerHour * 14);
         }
     }
 

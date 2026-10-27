@@ -118,6 +118,8 @@ namespace ColonyCouncil
         public int playId = -1;
         /// <summary>The errand handed its things over.</summary>
         public bool received;
+        /// <summary>They stay the night, until this tick (PlayOut/PlayStrangers.cs): the trip doesn't send them off before.</summary>
+        public int stayUntil = -1;
 
         // ---- The people ----
 
@@ -226,6 +228,7 @@ namespace ColonyCouncil
             Scribe_References.Look(ref chroniclePawn, "chroniclePawn");
             Scribe_Values.Look(ref playId, "playId", -1);
             Scribe_Values.Look(ref received, "received");
+            Scribe_Values.Look(ref stayUntil, "stayUntil", -1);
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);
             Scribe_References.Look(ref animal, "animal");
             Scribe_References.Look(ref lord, "lord");

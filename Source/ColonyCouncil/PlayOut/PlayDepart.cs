@@ -11,7 +11,7 @@ namespace ColonyCouncil
     /// Departures an answer's words put at the end of a scene rather than the moment it's given. Someone who leaves for
     /// good goes from the gate at the end of the walk that sees them off (<see cref="PlayOut.leaving"/> on a walk). A
     /// visitor sent away sets off when the one who walks them back to the road comes to them, and goes with them
-    /// (<see cref="PlayOut.leaving"/> on a visit). Animals turned loose or out are led along at the heels of the one
+    /// (<see cref="PlayOut.leaving"/> on a visit), or goes once what was carried out to them is handed over (and eaten). Animals turned loose or out are led along at the heels of the one
     /// visiting or the walk's lead and let go at the far end (<see cref="PlayOut.led"/>). If the scene never comes
     /// about, whatever it held happens anyway when it falls through, as the answer always had it.
     /// </summary>
@@ -32,13 +32,16 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// A visitor sent away, with a visit to them the answer being given set going: they go when it's over, or with
-        /// <paramref name="walked"/> (walked back to the road), set off when it starts, the visitor beside them.
+        /// A visitor sent away, with a visit to them (or an errand to them) the answer being given set going: they go
+        /// when it's over (fed, once they've eaten: PlayStrangers.cs), or with <paramref name="walked"/> (walked back to
+        /// the road), set off when the visit starts, the visitor beside them.
         /// </summary>
         public static bool HoldSendAway(Pawn x, bool walked)
         {
             if (!PlayOuts.On || x == null) return false;
-            var visit = PlayOuts.Collected().FirstOrDefault(p => p.kind == PlayKind.Visit && p.state == PlayState.Pending && p.other == x && p.leaving == null);
+            var plays = PlayOuts.Collected();
+            var visit = plays.FirstOrDefault(p => p.kind == PlayKind.Visit && p.state == PlayState.Pending && p.other == x && p.leaving == null)
+                        ?? plays.FirstOrDefault(p => p.kind == PlayKind.Carry && p.state == PlayState.Pending && p.other == x && p.leaving == null && !walked);
             if (visit == null) return false;
             visit.leaving = x;
             visit.leavingWalk = walked;
@@ -113,6 +116,8 @@ namespace ColonyCouncil
                 {
                     p.leavingGone = true;
                     if (p.kind == PlayKind.Procession) DilemmaEffect_LeaveForGood.Leave(p.leaving);
+                    // Fed at the hand-over: they go once they've eaten (PlayStrangers.cs).
+                    else if (p.kind == PlayKind.Carry && p.strangersFed && p.strangersEat) PlayStrangers.SendOnAfterMeal(p.leaving);
                     else DilemmaEffect_SendAway.Send(p.leaving);
                 }
                 LetGo(p);

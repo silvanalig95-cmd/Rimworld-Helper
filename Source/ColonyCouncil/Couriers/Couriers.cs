@@ -713,6 +713,16 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>The courier trip of these people stays the night, until <paramref name="until"/> (PlayOut/PlayStrangers.cs).</summary>
+        public static void StayUntil(Lord lord, int until)
+        {
+            if (!(lord?.LordJob is LordJob_Courier job)) return;
+            var t = CourierTracker.Instance?.Get(job.tripId);
+            if (t == null || t.settled) return;
+            t.stayUntil = Math.Max(t.stayUntil, until);
+            job.lateTicks = Math.Max(job.lateTicks, until - Find.TickManager.TicksGame + lord.ticksInToil);
+        }
+
         /// <summary>
         /// The errand never went (or never finished): the courier waiting for it, if there is one still to come or at the
         /// gate, fetches what's owed from the stores instead. True: taken over (the errand takes nothing itself).

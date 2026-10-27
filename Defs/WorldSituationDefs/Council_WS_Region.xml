@@ -560,9 +560,9 @@
         <options>
           <li>
             <label>Feed them ({COUNT} food)</label>
-            <outcome>The pilgrims eat at the gate, bless the colony in the old words, and go on toward {PLACE} singing.</outcome>
+            <outcome>The pilgrims eat at the gate, give the colony their thanks in the old words, and go on toward {PLACE}.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the alms for the pilgrims</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the alms for the pilgrims</label><what>rawfood</what><eat>true</eat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_Blessed</thought></li>
             </effects>

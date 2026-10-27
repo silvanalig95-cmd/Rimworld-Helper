@@ -1,6 +1,19 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.7 "The stalls and the ships", the player's request that a RimMarket colony stall's goods count for
+Last shipped: 0.17.8 "Fed, sheltered, and a fire laid by hand", audit gaps 8, 9, 16 and 22. `PlayOut/PlayStrangers.cs`:
+`DilemmaEffect_CarryOut.eat` (at the hand-over, `PlayGroups.HandOver` shares the food from the receiver's pack round
+their lord, an `Ingest` each; meals one each, raw food half) and `night` (`StayTheNight`: the `LordJob_VisitColony`
+length and its `Trigger_TicksPassed` stretched to dawn by name through `AccessTools.FieldRefAccess`, a courier trip's
+`stayUntil` and `LordJob_Courier.lateTicks`; from 21:00 a `LayDown` by a player wall near `PlaySpots.GateCell`,
+session-only list stepped from `PlayOutTracker.GameComponentTick`). `PlayDepart.HoldSendAway` now holds on a pending
+Carry to X too, and `Over` sends a fed visitor on only once they've eaten (`SendOnAfterMeal`). `PlayOut/PlayFire.cs`:
+`TryStartGathering` waits on `PlayFire.Waits` (a `Council_PlayOutLayFire` job carries wood to `PlayFire.Cell` and
+spawns the campfire; `PlayOut.fireLaid` becomes the lord's `laidFire`); `TryLayFire`/`UnlayFire` are gone.
+`PlayOut/PlaySnow.cs`: `DilemmaEffect_Snowman` marks the answer's gathering or work party; a sixth of the way in the
+builder gets the game's `BuildSnowman` job (found by name). CarryOut `to` Person with `whom`: silver into a colonist's
+pack (Keepsake, PetBite, Goal_Purse). Not tried in the game here.
+
+Before it, 0.17.7 "The stalls and the ships", the player's request that a RimMarket colony stall's goods count for
 orbital trade once there is a beacon. `Integrations/RimMarketStall.cs`: `Patch_StallGoodsForShips` (postfix on
 `TradeUtility.AllLaunchableThingsForTrade`, wrapping the result: the beacon's things first, then, only with
 `Building_OrbitalTradeBeacon.AllPowered(map)`, `RimMarketStall.ShipGoods`, the stock held in each colony stall's

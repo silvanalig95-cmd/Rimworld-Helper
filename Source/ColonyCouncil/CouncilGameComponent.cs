@@ -155,6 +155,7 @@ namespace ColonyCouncil
             Family.Reset();
             Guardians.Reset();
             Inheritance.Reset();
+            PlayStrangers.Reset();
             Guests.ForgetLastGame();
             // Lean/: the map facts and every def kept by name are worked out again for this game.
             MapFacts.Clear();

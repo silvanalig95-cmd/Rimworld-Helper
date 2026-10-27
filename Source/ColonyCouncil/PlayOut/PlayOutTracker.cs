@@ -138,9 +138,11 @@ namespace ColonyCouncil
 
         public override void GameComponentTick()
         {
-            if (plays.Count == 0) return;
             int now = Find.TickManager.TicksGame;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RarePlayOut)) return;
+            // Strangers fed and staying the night bed down by the wall (PlayStrangers.cs).
+            PlayStrangers.Tick(now);
+            if (plays.Count == 0) return;
             foreach (var p in plays.ToList())
             {
                 try
@@ -189,6 +191,8 @@ namespace ColonyCouncil
             }
             // The answer's risk comes partway into it: the punch at the supper, the walk-out from the table.
             if (p.risks.Count > 0 && p.started >= 0 && now - p.started >= PlayOutMath.RiskAfter(p.durationTicks)) Risks(p);
+            // A snowman the words say someone built while it lasted (PlaySnow.cs).
+            if (p.snowman != null && !p.snowmanDone) PlaySnow.Step(p, now);
             // A work party, a walk, a vigil, a search, an errand or a hunt: its people are on jobs of their own.
             if (p.IsGroup)
             {
@@ -252,11 +256,15 @@ namespace ColonyCouncil
             }
             var organizer = p.organizer != null && able.Contains(p.organizer) ? p.organizer
                 : able.OrderByDescending(x => x.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
-            if (!PlaySpots.TryFind(p, organizer, out var spot, out var where, out var laid, out int wood))
+            // A bonfire with no fire to gather at: one of the colony lays and lights it first (PlayFire.cs).
+            if (PlayFire.Waits(p, organizer, able)) return;
+            if (!PlaySpots.TryFind(p, organizer, out var spot, out var where))
             {
                 p.waitReason = "CC_Play_Why_Place".Translate();
                 return;
             }
+            // Held round the fire laid for it, which burns down when it's over.
+            Thing laid = p.fireLaid != null && p.fireLaid.Spawned && spot.InHorDistOf(p.fireLaid.Position, 6f) ? p.fireLaid : null;
             var gd = PlayOutDefOf.Council_PlayOutGathering;
             // Words nobody of ours was named to say (a visiting scholar's lesson) are said by the event's stranger.
             var x = p.other;
@@ -275,12 +283,12 @@ namespace ColonyCouncil
             p.state = PlayState.Running;
             p.started = now;
             p.organizer = organizer;
-            string begin = BeginText(p, where, meals, able.Count, laid != null ? wood : -1);
+            string begin = BeginText(p, where, meals, able.Count, laid != null ? p.fireBy : null);
             if (job.guests.Count > 0) begin += " " + "CC_Play_GuestsCome".Translate(PlayGuests.Names(job.guests)).Resolve();
             Messages.Message(begin, new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent, false);
         }
 
-        private static string BeginText(PlayOut p, string where, int meals, int guests, int wood)
+        private static string BeginText(PlayOut p, string where, int meals, int guests, Pawn laidBy)
         {
             string label = (p.label ?? "").CapitalizeFirst();
             string key;
@@ -307,9 +315,8 @@ namespace ColonyCouncil
                 if (plan == FeastPlan.Partial) text += " " + "CC_Play_Feast_Partial".Translate(meals).Resolve();
                 else if (plan == FeastPlan.Party) text += " " + "CC_Play_Feast_None".Translate().Resolve();
             }
-            // A fire laid for it: from the stores' wood, or (wood 0) from what the answer set aside.
-            if (wood > 0) text += " " + "CC_Play_Fire_Laid".Translate(wood).Resolve();
-            else if (wood == 0) text += " " + "CC_Play_Fire_LaidPaid".Translate().Resolve();
+            // A fire laid for it (PlayFire.cs): from the stores' wood, or with what the answer set aside.
+            if (laidBy != null) text += " " + (p.firePaid ? "CC_Play_Fire_LaidPaid" : "CC_Play_Fire_Laid").Translate(laidBy.Named("PAWN")).Resolve();
             return text;
         }
 

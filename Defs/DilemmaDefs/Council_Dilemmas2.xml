@@ -342,7 +342,7 @@
         <outcome>Fifty silver from the colony's stores, for the loss. {A_nameDef} put the coins in the same pouch as the broken pieces.</outcome>
         <ways><generosity>5</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><count>50</count><steward>false</steward><who>None</who><to>Person</to><whom>A</whom><label>fifty silver for {A_nameDef}</label></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_LostKeepsake</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compensated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>

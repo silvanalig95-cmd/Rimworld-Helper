@@ -362,16 +362,16 @@
         <defaultOption>1</defaultOption>
         <options>
           <li>
-            <label>Give them supper and a bed</label>
-            <outcome>Supper goes out to the delegates at the gate, and they sleep in the guest corner after talking until late about roads, grazing and who said what at the last moot.</outcome>
+            <label>Give them supper and a place for the night</label>
+            <outcome>Supper goes out to the delegates at the gate, and they bed down in the lee of the colony's wall, still going over roads, grazing and who said what at the last moot until sleep takes them.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>supper for the delegates</label><what>meals</what><count>3</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>supper for the delegates</label><what>meals</what><count>3</count><eat>true</eat><night>true</night></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><who>Neighbors</who></li>
             </effects>
             <flags><li>hosted</li></flags>
             <help>1</help>
-            <deed>gave the moot's delegates a supper and a bed on the road</deed>
+            <deed>gave the moot's delegates a supper and a place for the night on the road</deed>
             <ways><openness>1</openness><generosity>1</generosity></ways>
           </li>
           <li>

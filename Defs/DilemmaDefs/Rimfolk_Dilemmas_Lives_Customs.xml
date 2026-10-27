@@ -29,16 +29,17 @@
     <options>
       <li>
         <label>A snow day for everyone</label>
-        <outcome>Out in the snow, all of them: a snowman as tall as the door, a snowball battle the children won, and sliding on the slope until dark. The work waited.</outcome>
+        <outcome>Out in the snow, all of them, for the middle of the day: {A_nameDef} built a snowman out in the open, and the rest stood round in the cold, stamping their feet. The work waited.</outcome>
         <outcomes>
-          <li>[quirk:WrongLaugh] {A_nameDef} hit the council's sternest member square in the face with a snowball and laughed so hard {A_pronoun} fell over. The council member threw one back. It went on until dark.</li>
-          <li>[lowtech] They slid down the hill on boards and sacks until the light went, and came in to something hot, and called it the snow day, and decided it should happen every year.</li>
+          <li>[quirk:WrongLaugh] {A_nameDef} gave the snowman a crooked grin and couldn't stop laughing at it, and before long the whole colony was laughing too. The work waited.</li>
+          <li>[lowtech] They stood out in the snow round {A_nameDef}'s snowman until the cold drove them in, and called it the snow day, and decided it should happen every year.</li>
         </outcomes>
         <ways><tradition>3</tradition><toil>-4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmLv_SnowDay</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>Colony</target></li>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the snow day</label><organizer>A</organizer><spots><li>Outdoors</li><li>Fields</li></spots><hours>9~15</hours><duration>2.5~3.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Snowman" />
         </effects>
       </li>
       <li>
@@ -57,6 +58,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shoveling</label><count>4</count><tasks><li>Snow</li><li>Haul</li><li>Clean</li></tasks><hours>8~16</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Snowman" />
         </effects>
       </li>
     </options>

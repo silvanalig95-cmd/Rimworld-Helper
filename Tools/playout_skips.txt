@@ -12,7 +12,6 @@ Council_Dilemma_Feud [option 0] storming out of the meeting, not an activity
 
 # Defs/DilemmaDefs/Council_Dilemmas2.xml
 Council_Dilemma_OldFriends [option 0] silver sent far away with a passing caravan: nobody waiting on the map
-Council_Dilemma_Keepsake [option 1] a payment to a colonist; nothing done
 Council_Dilemma_Sculpture [option 1] a habit told about (eating with back to it)
 Council_Dilemma_Music [option 0] a ban; habit
 Council_Dilemma_Music [option 1] a rule for every night; habit
@@ -181,7 +180,6 @@ Council_Evt_Deserter [option 2] a stranger handed over under guard: the event's 
 
 # Defs/IncidentDefs/Council_Events_Callers.xml
 Council_Evt_Photographer [option 2] a refusal
-Council_Evt_SpiritSinger [option 2] a stranger's part: the singer is fed and moves on
 Council_Evt_WanderingCook [option 2] a refusal
 Council_Evt_Bonesetter [option 2] a refusal; the bone-setter moves on
 
@@ -210,7 +208,6 @@ Council_Evt_KinLetter [option 0] a letter written; the trader takes it later
 Council_Evt_KinLetter [option 2] a parcel sent with the next trader: off the map
 Council_Evt_FortuneScare [letter] something that already happened, told
 Council_Evt_KindredSpirit [letter] the letter tells of last night's talk, already over
-Council_Evt_MidwinterGuest [option 1] a stranger's part: the guest is fed and sent on (already real)
 Council_Evt_Thaw [letter] news of the season; a find already made
 
 # Defs/IncidentDefs/Council_Events_More.xml
@@ -305,7 +302,6 @@ Council_Evt_After_PlagueThanks [option 0] a stranger's part: the visitors set do
 Council_Evt_After_PlagueThanks [option 2] a refusal
 Council_Evt_After_FloodBell [option 0] the visitors' part: they carry the bell home
 Council_Evt_After_FloodBell [option 1] the visitors' part: they buy the bell and carry it home
-Council_Evt_After_SpringReturn [option 0] a guest's part: the visitors eat
 Council_Evt_After_Reckoning [option 2] a refusal
 
 # Defs/MissionDefs/Council_Missions.xml

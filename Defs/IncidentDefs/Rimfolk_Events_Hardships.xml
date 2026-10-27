@@ -460,11 +460,11 @@
         <options>
           <li>
             <label>Shelter them for the night (they may have been followed)</label>
-            <outcome>The people from the farm ate hot food from the colony's kitchen and slept in the lee of its wall, where the watch could see them. {X_nameDef} was up before dawn to thank whoever was awake, and they went on toward {PLACE} at first light.</outcome>
+            <outcome>The people from the farm ate hot food from the colony's kitchen and slept in the lee of its wall, where the watch could see them, and they went on toward {PLACE} at first light.</outcome>
             <riskChance>0.3</riskChance>
             <riskOutcome>The people from the farm ate hot food from the colony's kitchen and slept in the lee of its wall. Before dawn the watch saw torches on the road behind them: {ENEMY} followed them here after all.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>supper for the people from the farm</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>supper for the people from the farm</label><hours>16~21</hours><eat>true</eat><night>true</night></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ShelteredThem</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -481,7 +481,8 @@
             <label>Food for the road, and send them on to {PLACE}</label>
             <outcome>{A_nameDef} carried out bread and a pot of stew, and the people from the farm ate it standing up. Then they went on toward {PLACE}, before dark.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>food for the road</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>4</count><to>Stranger</to><label>food for the road</label><hours>7~16</hours><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
             </effects>
             <ways><mercy>1</mercy></ways>

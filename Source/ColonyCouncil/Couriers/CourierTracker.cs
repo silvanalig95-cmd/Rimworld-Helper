@@ -257,7 +257,8 @@ namespace ColonyCouncil
                     // A letter that waited for them comes now; else a word on what they did.
                     if (!CourierWords.SendLetter(t, null)) CourierWords.Done(t);
                 }
-                if (now - t.doneTick >= CourierMath.LingerTicks) Leave(t, CourierEnd.Done);
+                // Staying the night (PlayOut/PlayStrangers.cs): they go at first light.
+                if (now - t.doneTick >= CourierMath.LingerTicks && now >= t.stayUntil) Leave(t, CourierEnd.Done);
                 return;
             }
             int limit = t.kind == CourierKind.Await && !t.received ? CourierMath.AwaitTicks : CourierMath.WorkTicks;

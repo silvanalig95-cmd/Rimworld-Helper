@@ -182,6 +182,15 @@
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>
 
+  <!-- Laying a fire for a bonfire with no fire to gather at (Source/ColonyCouncil/PlayOut/PlayFire.cs). -->
+  <JobDef>
+    <defName>Council_PlayOutLayFire</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutLayFire</driverClass>
+    <reportString>laying a fire.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
   <!-- Rounds: going from one colonist to the next, a few minutes with each (a doctor's look, a pot of soup). -->
   <JobDef>
     <defName>Council_PlayOutRounds</defName>

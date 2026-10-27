@@ -316,7 +316,10 @@
           </li>
           <li>
             <label>Feed {X_objective} and send {X_objective} on</label>
-            <outcome>{X_nameDef} eats, thanks the colony, and walks on in the morning to sing for someone else.</outcome>
+            <outcome>{X_nameDef} eats, sleeps in the lee of the colony's wall, and walks on in the morning to sing for someone else.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>a meal for {X_nameDef}</label><eat>true</eat><night>true</night></li>
+            </effects>
           </li>
         </options>
       </li>

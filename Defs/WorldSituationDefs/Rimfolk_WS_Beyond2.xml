@@ -690,9 +690,9 @@
           </li>
           <li>
             <label>Feed them and send them on</label>
-            <outcome>The exiles eat, sleep one night in the barn and go on in the morning with what the colony could spare.</outcome>
+            <outcome>The exiles eat, sleep one night in the lee of the colony's wall and go on in the morning with what the colony could spare.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the exiles</label><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the exiles</label><what>rawfood</what><count>15</count><eat>true</eat><night>true</night></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>
             <ways><mercy>1</mercy></ways>

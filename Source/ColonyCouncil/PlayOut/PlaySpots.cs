@@ -8,8 +8,8 @@ using Verse.AI;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Where answers play out: the dining table, the rec room, a fire (laid for a bonfire if the colony has none and can
-    /// spare the wood), the open air, a grave, the camp; and the meals a feast is served from.
+    /// Where answers play out: the dining table, the rec room, a fire (laid by hand for a bonfire if the colony has none
+    /// and can spare the wood: PlayFire.cs), the open air, a grave, the camp; and the meals a feast is served from.
     /// </summary>
     public static class PlaySpots
     {
@@ -17,14 +17,12 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The first of the plan's spots that works now, with the words for it ("around the dining table"). A bonfire
-        /// with no fire to gather at may lay one (<paramref name="laid"/>, the wood it took in <paramref name="wood"/>).
+        /// with no fire to gather at has one laid for it first, by hand (PlayFire.cs).
         /// </summary>
-        public static bool TryFind(PlayOut p, Pawn organizer, out IntVec3 spot, out string where, out Thing laid, out int wood)
+        public static bool TryFind(PlayOut p, Pawn organizer, out IntVec3 spot, out string where)
         {
             spot = IntVec3.Invalid;
             where = null;
-            laid = null;
-            wood = 0;
             var map = p.map;
             if (map == null || organizer == null) return false;
             var list = p.spots.NullOrEmpty() ? new List<PlaySpot> { PlaySpot.Dining, PlaySpot.Rec, PlaySpot.Gather, PlaySpot.Outdoors } : p.spots;
@@ -67,19 +65,6 @@ namespace ColonyCouncil
                                 where = "CC_Venue_Campfire".Translate();
                                 return true;
                             }
-                        }
-                        if (p.buildFire && Outside(map, p) && TryLayFire(map, organizer, !p.firePaid, out laid, out wood))
-                        {
-                            spot = FreeCellNear(laid.Position, map, organizer);
-                            if (spot.IsValid)
-                            {
-                                where = "CC_Venue_Campfire".Translate();
-                                return true;
-                            }
-                            // Nowhere to stand round it after all: the wood goes back.
-                            UnlayFire(laid, wood);
-                            laid = null;
-                            wood = 0;
                         }
                         break;
                     }
@@ -205,7 +190,7 @@ namespace ColonyCouncil
             p.buildFire = false;
             try
             {
-                return TryFind(p, pawn, out var c, out where, out _, out _) ? c : IntVec3.Invalid;
+                return TryFind(p, pawn, out var c, out where) ? c : IntVec3.Invalid;
             }
             finally
             {
@@ -412,56 +397,6 @@ namespace ColonyCouncil
                 }
             }
             return best;
-        }
-
-        /// <summary>
-        /// A campfire laid for the evening in the open near the middle of the colony, if the colony could build one at all:
-        /// from its own wood (the cost of building one, in <paramref name="wood"/>), or, with <paramref name="take"/> off,
-        /// from the wood the answer already set aside for it. It burns down when the gathering is over.
-        /// </summary>
-        public static bool TryLayFire(Map map, Pawn organizer, bool take, out Thing fire, out int wood)
-        {
-            fire = null;
-            wood = 0;
-            var def = ThingDefOf.Campfire;
-            var woodDef = ThingDefOf.WoodLog;
-            if (def == null || woodDef == null || !def.IsResearchFinished || !def.BuildableByPlayer) return false;
-            int cost = def.costList?.FirstOrDefault(c => c.thingDef == woodDef)?.count ?? 20;
-            if (take && map.resourceCounter.GetCount(woodDef) < cost) return false;
-            var center = TemplatePlanner.ColonyCenter(map);
-            IntVec3 cell = IntVec3.Invalid;
-            foreach (var c in GenRadial.RadialCellsAround(center, 18f, true))
-            {
-                if (!c.InBounds(map) || c.Roofed(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null || c.GetZone(map) != null) continue;
-                if (c.GetTerrain(map)?.IsWater ?? false) continue;
-                if (!Ok(c, map, organizer) || !GenConstruct.CanPlaceBlueprintAt(def, c, Rot4.North, map).Accepted) continue;
-                // Room to stand round it.
-                if (GenAdj.CellsAdjacent8Way(new TargetInfo(c, map)).Count(x => x.InBounds(map) && x.Standable(map) && x.GetEdifice(map) == null) < 6) continue;
-                cell = c;
-                break;
-            }
-            if (!cell.IsValid) return false;
-            if (take && !Take(map, woodDef, cost)) return false;
-            fire = ThingMaker.MakeThing(def);
-            fire.SetFaction(Faction.OfPlayer);
-            fire = GenSpawn.Spawn(fire, cell, map);
-            var refuel = fire.TryGetComp<CompRefuelable>();
-            refuel?.Refuel(refuel.Props.fuelCapacity);
-            wood = take ? cost : 0;
-            return true;
-        }
-
-        /// <summary>A fire that was laid and not needed after all: taken away, its wood put back.</summary>
-        public static void UnlayFire(Thing fire, int wood)
-        {
-            if (fire == null || !fire.Spawned) return;
-            var map = fire.Map;
-            var at = fire.Position;
-            fire.Destroy(DestroyMode.Vanish);
-            if (wood <= 0 || ThingDefOf.WoodLog == null) return;
-            var logs = ThingMaker.MakeThing(ThingDefOf.WoodLog);
-            logs.stackCount = wood;
-            GenPlace.TryPlaceThing(logs, at, map, ThingPlaceMode.Near);
         }
 
         /// <summary>The gathering is over: the fire laid for it burns down to ash.</summary>

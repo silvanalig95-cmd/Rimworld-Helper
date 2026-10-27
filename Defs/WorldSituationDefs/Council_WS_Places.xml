@@ -177,9 +177,9 @@
           </li>
           <li>
             <label>Feed them and send them on</label>
-            <outcome>They sleep a night in the barn and set off for {ITEM} at first light.</outcome>
+            <outcome>They sleep a night in the lee of the colony's wall and set off for {ITEM} at first light.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the family from {PLACE}</label><what>rawfood</what><count>15</count><night>true</night></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>

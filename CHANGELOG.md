@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fed, sheltered, and a fire laid by hand
+
+*27 October 2026, version 0.17.8*
+
+- Strangers the colony feeds now eat what's carried out to them, there and then, a share each, and keep the rest of any raw food for the road.
+- Where the words say they stay the night, they stay until first light and sleep in the lee of the colony's wall by the gate. A visitor sent on with food goes once they've eaten.
+- A bonfire with no campfire to gather at no longer finds one waiting. One of the colony carries wood out of the stores and lays and lights it first, and the colony gathers once it burns.
+- On the snow day, the child who asked for it builds a snowman, the game's own, where the snow is deep enough.
+- Silver the colony pays one of its own (for a broken keepsake, a pet's bite, a plan for a life goal) is carried from the stores into their pack instead of vanishing.
+- A few answers now say only what happens: no barn or guest corner that may not be there, no song on the road nobody hears.
+
 ## The stalls and the ships
 
 *27 October 2026, version 0.17.7*

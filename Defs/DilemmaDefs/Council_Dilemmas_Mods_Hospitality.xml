@@ -110,6 +110,7 @@
         <ways><generosity>3</generosity><openness>1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>{X_nameDef}'s silver</label><what>silver</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the best plate for {X_nameDef}</label><what>meals</what><count>1</count><eat>true</eat></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmH_ComplaintHeard</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>

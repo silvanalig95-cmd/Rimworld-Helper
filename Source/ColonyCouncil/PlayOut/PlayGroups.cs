@@ -346,11 +346,17 @@ namespace ColonyCouncil
             // Someone of the people it's for may be waiting at the gate for it (Couriers/), or on their way there.
             bool coming = false;
             var courier = p.to != PlaySpot.Camp ? Couriers.ReceiverFor(p, out coming) : null;
-            if (p.to != PlaySpot.Gate && p.to != PlaySpot.Camp && x != null && !x.Dead && x.Spawned && x.Map == p.map && x.Faction != Faction.OfPlayer
+            if (p.to != PlaySpot.Gate && p.to != PlaySpot.Camp && x != null && !x.Dead && x.Spawned && x.Map == p.map && (x.Faction != Faction.OfPlayer || p.to == PlaySpot.Person)
                 && carrier.CanReach(x, PathEndMode.Touch, Danger.Some))
             {
                 to = x;
                 where = x.LabelShort;
+            }
+            else if (p.to == PlaySpot.Person)
+            {
+                // The one it's for is away or out of reach: the errand waits for them.
+                p.waitReason = x == null || x.Dead ? "CC_Play_Why_Place".Translate().ToString() : "CC_Play_Why_Away".Translate(x.Named("OTHER")).Resolve();
+                return false;
             }
             else if (courier != null && carrier.CanReach(courier, PathEndMode.Touch, Danger.Some))
             {
@@ -698,16 +704,31 @@ namespace ColonyCouncil
             h.left = true;
         }
 
-        /// <summary>The errand's load is handed over: to the visitor or someone of the camp (into their pack), to whoever waits at the gate, or onto the cart there; more to carry, they go back for it.</summary>
+        /// <summary>The errand's load is handed over: to the visitor, someone of the camp or one of the colony it's paid to (into their pack), to whoever waits at the gate, or onto the cart there; more to carry, they go back for it.</summary>
         public static bool HandOver(PlayOut p, Pawn carrier, Thing carried, Pawn to)
         {
             var t = PlayOutTracker.Instance;
             if (p == null || t == null || p.kind != PlayKind.Carry || p.state != PlayState.Running || carried == null) return false;
             int n = carried.stackCount;
             string what = carried.LabelNoCount;
+            var def = carried.def;
             bool given = false;
-            if (to != null && !to.Dead && to.Spawned && to.inventory != null && to.Faction != Faction.OfPlayer)
+            if (to != null && !to.Dead && to.Spawned && to.inventory != null && (to.Faction != Faction.OfPlayer || p.to == PlaySpot.Person))
                 given = carrier.carryTracker.innerContainer.TryTransferToContainer(carried, to.inventory.innerContainer, n) > 0;
+            // Strangers fed: they eat it there and then, and stay the night where the answer says so (PlayStrangers.cs).
+            if (given && !p.strangersFed && (p.strangersEat || p.strangersNight))
+            {
+                p.strangersFed = true;
+                try
+                {
+                    if (p.strangersEat) PlayStrangers.Eat(to, def);
+                    if (p.strangersNight) PlayStrangers.StayTheNight(to);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("strangers fed", e);
+                }
+            }
             // Nobody to take it in person: loaded on the cart at the gate.
             if (!given) carrier.carryTracker.DestroyCarriedThing();
             p.tally += n;

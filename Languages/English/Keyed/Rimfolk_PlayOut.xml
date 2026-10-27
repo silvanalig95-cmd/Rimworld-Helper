@@ -37,6 +37,7 @@
   <CC_Play_Where_Table>at the table</CC_Play_Where_Table>
   <CC_Play_Where_FireSide>by the fire</CC_Play_Where_FireSide>
   <CC_Play_Begin_SitWith>{PAWN_nameDef} and {OTHER_nameDef} sit down together {WHERE}.</CC_Play_Begin_SitWith>
+  <CC_Play_Begin_LayFire>{PAWN_nameDef} is carrying wood out to lay the fire.</CC_Play_Begin_LayFire>
   <CC_Play_GuestsCome>Guests from outside the colony join them: {0}.</CC_Play_GuestsCome>
   <CC_Play_GuestsOthers>the others</CC_Play_GuestsOthers>
   <CC_Play_Where_Stranger>around {OTHER_nameDef}</CC_Play_Where_Stranger>
@@ -55,8 +56,8 @@
   <CC_Play_Feast_Cooked>Meals cooked for it by {PAWN_nameDef}: {1}.</CC_Play_Feast_Cooked>
   <CC_Play_Feast_Partial>There are only {0} cooked meals in the stores, so not everyone will eat.</CC_Play_Feast_Partial>
   <CC_Play_Feast_None>There are no cooked meals in the stores, so it will be talk and drink instead of a meal.</CC_Play_Feast_None>
-  <CC_Play_Fire_Laid>There was no fire to gather at, so one was laid in the open from {0} of the colony's wood.</CC_Play_Fire_Laid>
-  <CC_Play_Fire_LaidPaid>There was no fire to gather at, so one was laid in the open with the wood set aside for it.</CC_Play_Fire_LaidPaid>
+  <CC_Play_Fire_Laid>There was no fire to gather at, so {PAWN_nameDef} carried the colony's wood out and laid one in the open.</CC_Play_Fire_Laid>
+  <CC_Play_Fire_LaidPaid>There was no fire to gather at, so {PAWN_nameDef} laid one in the open, with the wood set aside for it.</CC_Play_Fire_LaidPaid>
   <CC_Play_Begin_Visit>{PAWN_nameDef} goes to spend some time with {OTHER_nameDef}.</CC_Play_Begin_Visit>
   <CC_Play_Begin_Lesson>{PAWN_nameDef} goes to work at {OTHER_nameDef}'s side for a while, and learn by watching.</CC_Play_Begin_Lesson>
   <CC_Play_Begin_Grave>{PAWN_nameDef} goes to sit {WHERE} for a while.</CC_Play_Begin_Grave>
@@ -89,6 +90,7 @@
   <CC_Play_Why_NotFree>{PAWN_nameDef} was never free</CC_Play_Why_NotFree>
   <CC_Play_Why_Cooking>{PAWN_nameDef} was still cooking for it</CC_Play_Why_Cooking>
   <CC_Play_Why_Making>{PAWN_nameDef} was still making it</CC_Play_Why_Making>
+  <CC_Play_Why_LayingFire>{PAWN_nameDef} was still laying the fire</CC_Play_Why_LayingFire>
   <CC_Play_Why_NoGrave>there was no grave here to sit by</CC_Play_Why_NoGrave>
   <CC_Play_Why_NoCamp>the camp had gone</CC_Play_Why_NoCamp>
   <CC_Play_Why_Weather>the weather was against it</CC_Play_Why_Weather>

@@ -250,11 +250,17 @@ namespace ColonyCouncil
         public bool variant;
         public PlayWho who = PlayWho.A;
         public PlaySpot to = PlaySpot.Stranger;
+        /// <summary>With <see cref="to"/> Person: one of the colony it's handed to, into their own pack (silver paid to someone).</summary>
+        public PlayWho whom = PlayWho.B;
         /// <summary>
         /// Only when the stores hold all of it, else nothing at all (a moment told after it happened, an encounter, where
         /// nothing is greyed out beforehand: a bowl fetched only if there's a meal to fetch).
         /// </summary>
         public bool ifHave;
+        /// <summary>The strangers eat it once it's handed over, there and then, a share each (PlayStrangers.cs).</summary>
+        public bool eat;
+        /// <summary>The strangers stay the night: until first light, sleeping by the colony's wall (PlayStrangers.cs).</summary>
+        public bool night;
 
         public DilemmaEffect_CarryOut()
         {
@@ -301,7 +307,7 @@ namespace ColonyCouncil
             }
             // Carried out to the gate (no visitor here to take it): someone of the people it's for comes and waits
             // there to receive it (Couriers/). Nobody can come: the errand goes to the gate as before.
-            if (p.to != PlaySpot.Camp && (p.to == PlaySpot.Gate || p.other == null))
+            if (p.to != PlaySpot.Camp && p.to != PlaySpot.Person && (p.to == PlaySpot.Gate || p.other == null))
             {
                 try
                 {
@@ -333,8 +339,23 @@ namespace ColonyCouncil
             p.amount = Need(ctx);
             p.count = 1;
             p.to = to;
-            var x = ctx.stranger;
-            p.other = x != null && !x.Dead && x.Faction != Faction.OfPlayer && (x.RaceProps?.Humanlike ?? false) ? x : null;
+            if (to == PlaySpot.Person)
+            {
+                // To one of the colony: into their own pack, carried by someone else.
+                var o = PlayOuts.Who(whom, ctx);
+                if (o == null || o.Dead || !PlayOuts.OurPerson(o)) return false;
+                p.other = o;
+                p.invited.Remove(o);
+                if (p.visitor == o) p.visitor = p.organizer = null;
+                if (p.invited.Count == 0) return false;
+            }
+            else
+            {
+                var x = ctx.stranger;
+                p.other = x != null && !x.Dead && x.Faction != Faction.OfPlayer && (x.RaceProps?.Humanlike ?? false) ? x : null;
+            }
+            p.strangersEat = eat;
+            p.strangersNight = night;
             p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(duration.RandomInRange, false));
             return true;
         }

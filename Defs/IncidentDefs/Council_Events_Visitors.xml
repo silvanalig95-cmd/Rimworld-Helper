@@ -125,7 +125,7 @@
             <label>Feed them</label>
             <outcome>The pilgrims eat everything they're given and thank their hosts twice over. They'll speak well of the colony to everyone they meet on the road.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the pilgrims</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the pilgrims</label><what>rawfood</what><eat>true</eat></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_FedPilgrims</thought><exceptTrait><li>Greedy</li><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><chance>0.25</chance></li>

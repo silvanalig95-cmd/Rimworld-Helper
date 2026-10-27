@@ -763,6 +763,7 @@
             <outcome>{X_nameDef} is given bread, something hot to drink and directions to the nearest shelter, and goes back out into the dark.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>bread and something hot for {X_nameDef}</label><hours>0~23</hours><eat>true</eat></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
             <ways><generosity>1</generosity><openness>-1</openness></ways>

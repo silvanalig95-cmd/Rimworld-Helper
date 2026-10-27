@@ -91,7 +91,7 @@
         <outcome>{A_nameDef} counted the silver twice before leaving the room, and has kept a tally of every coin spent since. Some of the others have asked to see the tally.</outcome>
         <ways><generosity>8</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>150</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><count>150</count><steward>false</steward><who>None</who><to>Person</to><whom>A</whom><label>the silver for {A_nameDef}'s plan</label></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Backed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.5</chance></li>
@@ -113,7 +113,7 @@
         <outcome>{A_nameDef} got fifty silver, a third of what the plan called for, and has already started reworking the figures.</outcome>
         <ways><generosity>3</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>silver</what><count>50</count><steward>false</steward><who>None</who><to>Person</to><whom>A</whom><label>fifty silver for {A_nameDef}</label></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.15</chance></li>

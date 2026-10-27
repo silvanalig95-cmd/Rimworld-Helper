@@ -147,9 +147,9 @@
         <options>
           <li>
             <label>Feed them on their way</label>
-            <outcome>The colony sets out bread and soup at the gate, and {FACTION}'s families eat standing up, the children first, then walk on toward {PLACE} with full bellies.</outcome>
+            <outcome>The colony carries bread and soup out to the gate, and {FACTION}'s people eat it standing up, then walk on toward {PLACE} with full bellies.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food set out at the gate</label><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food carried out to the gate</label><what>rawfood</what><eat>true</eat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
             </effects>

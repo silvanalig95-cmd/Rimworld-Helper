@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.17.8</version>
+        <date>27 October 2026</date>
+        <title>Fed, sheltered, and a fire laid by hand</title>
+        <points>
+          <li>Strangers the colony feeds now eat what's carried out to them, there and then, a share each, and keep the rest of any raw food for the road.</li>
+          <li>Where the words say they stay the night, they stay until first light and sleep in the lee of the colony's wall by the gate. A visitor sent on with food goes once they've eaten.</li>
+          <li>A bonfire with no campfire to gather at no longer finds one waiting. One of the colony carries wood out of the stores and lays and lights it first, and the colony gathers once it burns.</li>
+          <li>On the snow day, the child who asked for it builds a snowman, the game's own, where the snow is deep enough.</li>
+          <li>Silver the colony pays one of its own (for a broken keepsake, a pet's bite, a plan for a life goal) is carried from the stores into their pack instead of vanishing.</li>
+          <li>A few answers now say only what happens: no barn or guest corner that may not be there, no song on the road nobody hears.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.17.7</version>
         <date>27 October 2026</date>
         <title>The stalls and the ships</title>

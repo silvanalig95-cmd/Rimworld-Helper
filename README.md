@@ -430,16 +430,17 @@ best placed (the doctor, a forager, a tracker, the best talker), and their skill
 dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 21
 stages of 18 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
-the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (a campfire laid for the evening if the colony has none, burned down to ash
+the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
 after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
 at its head, the listeners in the chairs round it), a friend sits with someone who is ill, a
 colonist sits by a grave or at the camp's fire, an apprentice works at the teacher's side, a worn-out doctor is sent
 to bed. A work party cleans, hauls, mends, builds, sows or brings in the harvest with the game's own jobs, on work the
 colony really has; the colony walks out together to the graves or the gate and back; a few keep a vigil into the
 night; searchers fan out over the land and bring back what was promised; real medicine, food or silver is carried out
-of the stores to the visitor or the rider at the gate; the hunters go after the game an answer marked. Every answer
+of the stores to the visitor or the rider at the gate (strangers the words say ate it eat it there, and those who stayed the night
+sleep by the colony's wall until first light), or silver paid to a colonist into their pack; the hunters go after the game an answer marked. Every answer
 whose words say people do something has been read: the thief is punished in front of everyone at supper, the doctor
-sits at the bedside with the last dose, the snow is shovelled, the bees are smoked out, and the tribute, the bounty
+sits at the bedside with the last dose, the snow is shovelled (and a snowman built), the bees are smoked out, and the tribute, the bounty
 and the envoy's price go out to the gate by hand, load after load. Two who sat down together take seats across a
 table, someone leaving for good goes from the gate at the end of their send-off, and guests asked to the colony's
 table come up and are served. A fight an answer risks comes during the supper or
