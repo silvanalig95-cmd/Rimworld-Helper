@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Realistic ways to die (Source/ColonyCouncil/Ailments/LifeRisks.cs, Health/LastSeason.cs). -->
+
+  <CC_SetSec_LifeRisks>Realistic ways to die</CC_SetSec_LifeRisks>
+  <CC_Settings_CrowdedSickness>Crowding spreads illness</CC_Settings_CrowdedSickness>
+  <CC_Settings_CrowdedSickness_Tip>Serious illness is caught more often in a crowded, dirty colony: people sleeping in barracks or without a bed, a dirty kitchen, and a little more as the colony grows, up to two and a half times as often. The advisor says so once it counts, with the reasons. Needs serious illnesses on.</CC_Settings_CrowdedSickness_Tip>
+  <CC_SetNote_CrowdedSickness>Serious illness comes more often to a crowded, dirty colony.</CC_SetNote_CrowdedSickness>
+  <CC_Settings_Frailty>The frail fight illness slower</CC_Settings_Frailty>
+  <CC_Settings_Frailty_Tip>Old age (from 60), small children, hunger and bad wounds slow how fast the body builds immunity, for the game's illnesses and Rimfolk's. It shows in the immunity gain speed's breakdown, and a serious illness's letter says so. Steady tending with good medicine still saves them; gaps in the tending can cost a frail colonist their life.</CC_Settings_Frailty_Tip>
+  <CC_SetNote_Frailty>Old age, small children, hunger and bad wounds slow immunity.</CC_SetNote_Frailty>
+  <CC_Settings_DirtyWounds>Untended wounds in the dirt</CC_Settings_DirtyWounds>
+  <CC_Settings_DirtyWounds_Tip>A wound left untended where it's dirty (a dirty room, or out in the open) is likelier to become infected than the game makes it, up to half as likely again, and a message says why. Tended wounds are as the game has them.</CC_Settings_DirtyWounds_Tip>
+  <CC_SetNote_DirtyWounds>Untended wounds in dirt or the open turn bad more often.</CC_SetNote_DirtyWounds>
+  <CC_Settings_EndOfLife>The end of a long life</CC_Settings_EndOfLife>
+  <CC_Settings_EndOfLife_Tip>Past 78 (in human years, so long-lived genes count), a colonist may begin to fail: a tenth a year at 80, more than half at 90. A letter says so. Over about a season they slow down; contentment, a room of their own and company slow it, misery hastens it, and an age reversal turns it back. Near the end those closest come to sit with them, and they die in their sleep. Turned off, none begin and anyone failing recovers.</CC_Settings_EndOfLife_Tip>
+  <CC_SetNote_EndOfLife>The very old may begin to fail, and die in their sleep about a season later.</CC_SetNote_EndOfLife>
+
+  <CC_Life_FrailStat>Frail</CC_Life_FrailStat>
+  <CC_Life_Frail_Age>old age ({AGE}): {SHARE}</CC_Life_Frail_Age>
+  <CC_Life_Frail_Child>a small child: {SHARE}</CC_Life_Frail_Child>
+  <CC_Life_Frail_Hunger>hunger: {SHARE}</CC_Life_Frail_Hunger>
+  <CC_Life_Frail_Hurt>badly hurt: {SHARE}</CC_Life_Frail_Hurt>
+  <CC_Life_FrailNote>{PAWN_nameDef} fights it at {SHARE} of a healthy adult's strength ({WHY}). Steady tending with the best medicine you have is what saves {PAWN_objective}; gaps in the tending can cost {PAWN_objective} {PAWN_possessive} life.</CC_Life_FrailNote>
+  <CC_Life_DirtyWound>{PAWN_nameDef}'s wound ({PART}) was left untended where it was dirty, and has become infected.</CC_Life_DirtyWound>
+
+  <CC_Adv_Sickness_Title>Sickness spreads easily here</CC_Adv_Sickness_Title>
+  <CC_Adv_Sickness_Detail>Serious illness is about {0} times as likely here as in a well-kept colony: {1}. Beds of their own and a clean kitchen bring it down.</CC_Adv_Sickness_Detail>
+  <CC_Adv_Sickness_Crowded>{0} of {1} sleep in barracks or without a bed</CC_Adv_Sickness_Crowded>
+  <CC_Adv_Sickness_Kitchen>the kitchen is dirty (cleanliness {0})</CC_Adv_Sickness_Kitchen>
+  <CC_Adv_Sickness_Size>{0} people to pass it round</CC_Adv_Sickness_Size>
+
+  <CC_Life_LastSeason_Label>Failing: {PAWN_nameDef}</CC_Life_LastSeason_Label>
+  <CC_Life_LastSeason_Text>At {AGE}, {PAWN_nameDef} is failing: slower each day, sleeping more, eating less. It may take a season. Contentment, a room of {PAWN_possessive} own and the company of those {PAWN_pronoun} loves make it go slower; misery makes it go faster. When the end comes, it will be in {PAWN_possessive} sleep.</CC_Life_LastSeason_Text>
+  <CC_Life_LastSeason_Wish>{PAWN_nameDef} still has a last wish: to {GOAL}. There may be time yet.</CC_Life_LastSeason_Wish>
+  <CC_Life_LastSeason_Turned>Made young again, {PAWN_nameDef} is no longer failing.</CC_Life_LastSeason_Turned>
+  <CC_Life_LastSeason_Near>{PAWN_nameDef} won't last much longer. {WHO} will go to sit with {PAWN_objective} while there's time.</CC_Life_LastSeason_Near>
+  <CC_Life_LastSeason_NearAlone>{PAWN_nameDef} won't last much longer.</CC_Life_LastSeason_NearAlone>
+  <CC_Life_LastSeason_Chronicle>{PAWN_nameDef} died in {PAWN_possessive} sleep at {AGE}, at the end of a long life.</CC_Life_LastSeason_Chronicle>
+  <CC_Life_LastSeason_TipTurning>Made young again: it's turning back.</CC_Life_LastSeason_TipTurning>
+  <CC_Life_LastSeason_Content>content</CC_Life_LastSeason_Content>
+  <CC_Life_LastSeason_Room>a room of their own</CC_Life_LastSeason_Room>
+  <CC_Life_LastSeason_Company>company of their own</CC_Life_LastSeason_Company>
+  <CC_Life_LastSeason_Slower>Going slower: {WHAT}.</CC_Life_LastSeason_Slower>
+  <CC_Life_LastSeason_Faster>Going faster: unhappy.</CC_Life_LastSeason_Faster>
+  <CC_Life_LastSeason_Helps>Contentment, a room of their own and company would slow it.</CC_Life_LastSeason_Helps>
+  <CC_Life_LastSeason_Sleep>When the end comes, it will be in their sleep.</CC_Life_LastSeason_Sleep>
+  <CC_Life_LastVisitLabel>a last talk with {B_nameDef}</CC_Life_LastVisitLabel>
+  <CC_Life_LastVisitCause>{A_nameDef} came to sit with {B_nameDef} near the end.</CC_Life_LastVisitCause>
+
+</LanguageData>

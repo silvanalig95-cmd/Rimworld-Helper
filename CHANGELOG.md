@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Realistic ways to die
+
+*27 October 2026, version 0.18.0*
+
+- A crowded, dirty colony catches serious illness more often: barracks or no beds, a dirty kitchen, and a little more as it grows. The advisor says so, with the reasons.
+- The old, small children, the hungry and the badly hurt fight any illness slower. It shows in the immunity breakdown and the illness's letter, and steady good care still saves them.
+- A wound left untended in a dirty room or out in the open is likelier to become infected, and a message says why.
+- Past 78, a colonist may begin to fail. A letter says so, and over about a season they slow down, slower with contentment, a room of their own and company.
+- Near the end those closest go to sit with them, and they die in their sleep. An age reversal turns it back.
+- Each has its own setting on the Heart & health page, and the Light touch preset turns them all off.
+
 ## A life goal counts in full
 
 *27 October 2026, version 0.17.10*

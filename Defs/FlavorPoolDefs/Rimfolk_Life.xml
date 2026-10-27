@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The end of a long life begins (Source/ColonyCouncil/Health/LastSeason.cs): their journal ({YEARS}: their age). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_LastSeason</defName>
+    <lines>
+      <plain>
+        <li>{YEARS} years. I can feel the end of them coming, not soon, but coming.</li>
+        <li>I sleep more than I used to, and the stairs are longer every day. I know what that means.</li>
+        <li>My body's tired in a way rest doesn't fix. I've had a long life, and I'd like the rest of it to be good.</li>
+        <li>I'm not afraid of it. I'd only like the people I love near when it comes.</li>
+        <li>Every morning I wake up I count it as a gift now. {YEARS} years, and still a few more mornings.</li>
+        <li>I've started giving things away. Small things. It feels right to.</li>
+      </plain>
+      <warm><li>I want to spend what's left with all of them, every evening, for as long as I've got.</li></warm>
+      <gloomy><li>So this is how it ends: slowly, then all at once. I'd hoped for more time.</li></gloomy>
+      <cold><li>I am failing. It was always going to happen. I have arrangements to make.</li></cold>
+      <cheerful><li>{YEARS} years, and I'm not finished yet. Not quite.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

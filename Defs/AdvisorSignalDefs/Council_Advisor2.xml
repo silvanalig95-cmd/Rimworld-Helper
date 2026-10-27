@@ -20,6 +20,20 @@
   </ColonyCouncil.AdvisorSignalDef>
 
   <ColonyCouncil.AdvisorSignalDef>
+    <defName>Council_Adv_SicknessRisk</defName>
+    <label>sickness risk</label>
+    <workerClass>ColonyCouncil.AdvisorWorker_SicknessRisk</workerClass>
+    <article>Council_Alm_4_25_Ailments</article>
+    <category>Health</category>
+    <importance>0.85</importance>
+    <tips>
+      <li>Serious illness goes round a crowded colony: give people beds of their own, in bedrooms, before the barracks fill.</li>
+      <li>A dirty kitchen spreads illness through the whole colony. Keep it clean and keep the butchering somewhere else.</li>
+      <li>A bigger colony catches more, a little. Beds, clean floors and a clean kitchen matter more as it grows.</li>
+    </tips>
+  </ColonyCouncil.AdvisorSignalDef>
+
+  <ColonyCouncil.AdvisorSignalDef>
     <defName>Council_Adv_Hygiene</defName>
     <label>cleaning</label>
     <workerClass>ColonyCouncil.AdvisorWorker_Hygiene</workerClass>

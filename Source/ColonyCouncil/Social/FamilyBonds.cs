@@ -179,12 +179,13 @@ namespace ColonyCouncil
 
         // ---------------- An ageing parent ----------------
 
-        /// <summary>Ill or laid up: sick, wanting bed rest, or down.</summary>
+        /// <summary>Ill or laid up: sick, wanting bed rest, down, or failing with age (Health/LastSeason.cs).</summary>
         private static bool Ill(Pawn p)
         {
             try
             {
-                return p.Downed || (p.health?.hediffSet?.AnyHediffMakesSickThought ?? false) || HealthAIUtility.ShouldSeekMedicalRest(p);
+                return p.Downed || (p.health?.hediffSet?.AnyHediffMakesSickThought ?? false) || HealthAIUtility.ShouldSeekMedicalRest(p)
+                       || (LastSeason.Def != null && p.health.hediffSet.HasHediff(LastSeason.Def));
             }
             catch
             {

@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.18.0</version>
+        <date>27 October 2026</date>
+        <title>Realistic ways to die</title>
+        <points>
+          <li>A crowded, dirty colony catches serious illness more often: barracks or no beds, a dirty kitchen, and a little more as it grows. The advisor says so, with the reasons.</li>
+          <li>The old, small children, the hungry and the badly hurt fight any illness slower. It shows in the immunity breakdown and the illness's letter, and steady good care still saves them.</li>
+          <li>A wound left untended in a dirty room or out in the open is likelier to become infected, and a message says why.</li>
+          <li>Past 78, a colonist may begin to fail. A letter says so, and over about a season they slow down, slower with contentment, a room of their own and company.</li>
+          <li>Near the end those closest go to sit with them, and they die in their sleep. An age reversal turns it back.</li>
+          <li>Each has its own setting on the Heart &amp; health page, and the Light touch preset turns them all off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.17.10</version>
         <date>27 October 2026</date>
         <title>A life goal counts in full</title>

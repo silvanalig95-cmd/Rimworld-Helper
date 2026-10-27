@@ -2275,6 +2275,15 @@ medicine is short, and pulling a patient through lifts both. Settings (Heart & h
 serious illnesses on or off, and how often (25% to 200%). Off, nothing new starts; what's running finishes its
 course.
 
+**Realistic ways to die**, each with a warning, a way to fight it and its own switch. A crowded, dirty colony catches
+serious illness more often (barracks, no beds, a dirty kitchen, and a little more as it grows; the advisor says so,
+with the reasons). The frail fight any illness slower (old age from 60, small children, hunger, bad wounds: shown in
+the immunity gain speed's breakdown and the illness's letter); steady tending with good medicine still saves them,
+gaps can cost them their life. A wound left untended in the dirt or the open is likelier to become infected. And past
+78 a colonist may begin to fail: a letter says so, about a season of slowing down (slower with contentment, a room of
+their own and company; turned back by an age reversal), those closest come to sit with them near the end, and they
+die in their sleep.
+
 ### Recovery, doctors and midwives
 Getting better takes a while. After a dangerous illness that got serious (the game's own flu, plague or wound
 infection as well as Rimfolk's, tended or not), a major operation (an organ, a limb, the brain), four days or more laid

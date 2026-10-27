@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The end of a long life (Source/ColonyCouncil/Health/LastSeason.cs): a last visit, for the one who came and the one they came to. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Life_SatWithThem</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>sat with them while there was time</label>
+        <description>They haven't long now. I sat with them a while and we talked, and I'm glad I did it while I could.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Life_NotAlone</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>not alone at the end</label>
+        <description>They came and sat with me. Whatever comes, I won't face it alone.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

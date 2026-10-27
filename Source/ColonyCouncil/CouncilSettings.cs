@@ -156,6 +156,14 @@ namespace ColonyCouncil
         public bool ailments = true;
         /// <summary>The rare serious illnesses, which can kill (tetanus, pneumonia, tuberculosis...).</summary>
         public bool seriousIllnesses = true;
+        /// <summary>A crowded, dirty colony catches serious illness more often (Ailments/LifeRisks.cs).</summary>
+        public bool crowdedSickness = true;
+        /// <summary>The old, small children, the hungry and the badly hurt fight illness slower (Ailments/LifeRisks.cs).</summary>
+        public bool frailty = true;
+        /// <summary>A wound left untended in the dirt is likelier to turn bad (Ailments/LifeRisks.cs).</summary>
+        public bool dirtyWounds = true;
+        /// <summary>The end of a long life: a season's decline past old age, and death in their sleep (Health/LastSeason.cs).</summary>
+        public bool endOfLife = true;
         /// <summary>How often ailments come: 0.25 to 2.</summary>
         public float ailmentFrequency = 1f;
         /// <summary>Convalescence after serious illness, operations, long bed rest and lost limbs; sickbed visits (Health/).</summary>
@@ -377,6 +385,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref strainSpeed, "strainSpeed", 1f);
             Scribe_Values.Look(ref ailments, "ailments", true);
             Scribe_Values.Look(ref seriousIllnesses, "seriousIllnesses", true);
+            Scribe_Values.Look(ref crowdedSickness, "crowdedSickness", true);
+            Scribe_Values.Look(ref frailty, "frailty", true);
+            Scribe_Values.Look(ref dirtyWounds, "dirtyWounds", true);
+            Scribe_Values.Look(ref endOfLife, "endOfLife", true);
             Scribe_Values.Look(ref ailmentFrequency, "ailmentFrequency", 1f);
             Scribe_Values.Look(ref convalescence, "convalescence", true);
             Scribe_Values.Look(ref healerReputations, "healerReputations", true);

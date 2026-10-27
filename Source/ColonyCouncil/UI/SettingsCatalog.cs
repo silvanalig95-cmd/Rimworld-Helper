@@ -301,6 +301,11 @@ namespace ColonyCouncil
             Toggle("ailments", "CC_Settings_Ailments", "CC_SetNote_Ailments");
             Toggle("seriousIllnesses", "CC_Settings_SeriousIllnesses", "CC_SetNote_SeriousIllnesses", "ailments");
             Slider("ailmentFrequency", "CC_Settings_AilmentFrequency", "CC_SetNote_AilmentFrequency", 0.25f, 2f, 0.05f, "%", "ailments");
+            Section("CC_SetSec_LifeRisks");
+            Toggle("crowdedSickness", "CC_Settings_CrowdedSickness", "CC_SetNote_CrowdedSickness", "seriousIllnesses");
+            Toggle("frailty", "CC_Settings_Frailty", "CC_SetNote_Frailty");
+            Toggle("dirtyWounds", "CC_Settings_DirtyWounds", "CC_SetNote_DirtyWounds");
+            Toggle("endOfLife", "CC_Settings_EndOfLife", "CC_SetNote_EndOfLife");
             Section("CC_SetSec_Recovery");
             Toggle("convalescence", "CC_Settings_Convalescence", "CC_SetNote_Convalescence");
             Toggle("healerReputations", "CC_Settings_HealerReputations", "CC_SetNote_HealerReputations");
@@ -522,6 +527,7 @@ namespace ColonyCouncil
                 V("allDreamMessages", "false"), V("daysBetweenWishes", "4"), V("maxOpenWishes", "3"), V("daysBetweenDilemmas", "15"),
                 V("daysBetweenMeetings", "20"), V("arcFrequency", "Rare"), V("frictions", "false"), V("allowQuitting", "false"),
                 V("heartEpisodes", "false"), V("strainSpeed", "0.75"), V("seriousIllnesses", "false"), V("ailmentFrequency", "0.5"),
+                V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"), V("endOfLife", "false"),
                 V("worldEventBattles", "false"), V("storytellerEventWeight", "0.5"), V("daysBetweenWorldEvents", "8"),
                 V("daysBetweenWorldSituations", "75"), V("encounterFrequency", "0.5"), V("momentFrequency", "0.75"),
                 V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5")

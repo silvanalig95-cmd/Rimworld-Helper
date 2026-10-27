@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The end of a long life (Source/ColonyCouncil/Health/LastSeason.cs): past old age a colonist may begin to fail. The
+    comp moves it on hourly (slower with contentment, a room of their own and company, faster in misery; back again if
+    they're made young), tells the colony near the end, and at the end they die in their sleep. Nothing cures it.
+  -->
+
+  <HediffDef>
+    <defName>Council_LastSeason</defName>
+    <label>failing with age</label>
+    <description>A long life coming to its close. They slow down, sleep more and eat less, a little more each day, until one night they don't wake. Contentment, a room of their own and the company of those they love make it go slower; misery makes it go faster. Nothing cures it, but someone made young again (an age reversal) recovers.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.78, 0.74, 0.9)</defaultLabelColor>
+    <isBad>true</isBad>
+    <initialSeverity>0.01</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_LastSeason" />
+    </comps>
+    <stages>
+      <li>
+        <label>slowing</label>
+        <restFallFactor>1.15</restFallFactor>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>failing</label>
+        <restFallFactor>1.3</restFallFactor>
+        <hungerRateFactor>0.85</hungerRateFactor>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.15</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.05</offset></li>
+        </capMods>
+      </li>
+      <li>
+        <minSeverity>0.7</minSeverity>
+        <label>near the end</label>
+        <restFallFactor>1.5</restFallFactor>
+        <hungerRateFactor>0.7</hungerRateFactor>
+        <capMods>
+          <li><capacity>Moving</capacity><offset>-0.3</offset></li>
+          <li><capacity>Consciousness</capacity><offset>-0.15</offset></li>
+          <li><capacity>Manipulation</capacity><offset>-0.1</offset></li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

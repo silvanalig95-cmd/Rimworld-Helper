@@ -528,6 +528,9 @@ namespace ColonyCouncil
             }
             string note = DoctorsNote(h.def);
             if (!note.NullOrEmpty()) text += "\n\n" + note;
+            // Someone frail fights it slower, and steady care is what saves them (Ailments/LifeRisks.cs).
+            string frail = LifeRisks.FrailNote(p);
+            if (!frail.NullOrEmpty()) text += "\n\n" + frail;
             string label = h.def.LabelCap + ": " + p.LabelShortCap;
             Find.LetterStack.ReceiveLetter(label, text, LetterDefOf.NegativeEvent, new LookTargets(p));
         }
@@ -1224,7 +1227,8 @@ namespace ColonyCouncil
                 float everyday = AilmentMath.CatchingMtbDays(EverydayCatchingDays, map.Biome.diseaseMtbDays, interval, Freq, situation);
                 if (Rand.MTBEventOccurs(everyday, GenDate.TicksPerDay, GenDate.TicksPerHour)) TryCatching(map, false);
                 if (!SeriousOn) continue;
-                float serious = AilmentMath.CatchingMtbDays(SeriousCatchingDays, map.Biome.diseaseMtbDays, interval, Freq, situation);
+                // A crowded, dirty colony catches them more often (Ailments/LifeRisks.cs).
+                float serious = AilmentMath.CatchingMtbDays(SeriousCatchingDays, map.Biome.diseaseMtbDays, interval, Freq, situation / LifeRisks.SicknessFactor(map));
                 if (Rand.MTBEventOccurs(serious, GenDate.TicksPerDay, GenDate.TicksPerHour)) TryCatching(map, true);
             }
         }

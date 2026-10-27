@@ -698,6 +698,8 @@ namespace ColonyCouncil
             Safe("fungus diet", () => FungusDiet.Daily(this));
             Safe("interplay", () => Interplay.Daily(this));
             Safe("family across the years", () => FamilyYears.Daily(this));
+            // The end of a long life may begin for the old (Health/LastSeason.cs).
+            Safe("the end of a long life", () => LastSeason.Daily(this));
             Safe("animal life", () => AnimalLife.Daily(this));
             Safe("history", RecordDay);
             if (Settings.offices && offices.Speaker != null)

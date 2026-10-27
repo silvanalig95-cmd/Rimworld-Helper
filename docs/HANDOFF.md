@@ -1,6 +1,22 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.10 "A life goal counts in full", a fix after the player saw a life goal reached give +3 for five
+Last shipped: 0.18.0 "Realistic ways to die", the player's approved items 3 to 6 (the player wants death a real
+possibility, always with a warning and a way to fight it). Pure numbers in `Ailments/LifeRiskMath.cs`
+(Tools/Tests/LifeRiskTests.cs, which also runs the frail through the illnesses' own courses). `Ailments/LifeRisks.cs`:
+`Sickness(map)` (crowded = no bed or a bed in barracks or the open; the dirtiest kitchen; size) divides the serious
+catching clock in `AilmentTracker.Clock`, with `AdvisorWorker_SicknessRisk` (Council_Adv_SicknessRisk);
+`StatPart_Frailty` is added in code to `StatDefOf.ImmunityGainSpeed` (`LifeRisksStartup`) and `FrailNote` goes into
+`SeriousLetter`; `Patch_DirtyWound` postfixes `HediffComp_Infecter.CheckMakeInfection` and, where it failed (-3) on an
+untended wound, rolls `ExtraInfectionChance` by `DirtWhere`. `Health/LastSeason.cs`: `Daily` (DailySecond) starts
+`Council_LastSeason` by `YearlyChance`; `HediffComp_LastSeason` moves it hourly (`DeclinePerDay` by mood, own bedroom,
+a good social memory of the last day), turns back under 77, tells the colony at 0.85 with up to three sit-down
+visits, and at 1 kills them asleep (`Pawn.Kill(null, hediff)`); the setting off sets `remove`. Settings
+`crowdedSickness`, `frailty`, `dirtyWounds`, `endOfLife` (off in Light touch). Not tried in the game here.
+
+Next: round B of the same request, leaving on good terms, always as a council question with staying possible (the
+player: never lose a good colonist out of nothing). Look at the existing `CheckQuitting` (CouncilDynamics.cs) first.
+
+Before it, 0.17.10 "A life goal counts in full", a fix after the player saw a life goal reached give +3 for five
 days (a spoiled colonist's standards halved it, and good times halved its time). `Moods/Milestone.cs`: a
 `Milestone` DefModExtension (on `Council_Asp_Fulfilled`) skips `Standards.MoodFactor` in `GiveThought`, is never
 `GoodTimes.IsGoodMemory` (no fading sooner) and is left out of `SmallJoys.Rank`; `Milestone.Restore` in
