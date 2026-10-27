@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.17.10</version>
+        <date>27 October 2026</date>
+        <title>A life goal counts in full</title>
+        <points>
+          <li>Reaching a life goal was being treated like any good mood: halved for a colonist with high standards, and over in half the time when life was already good. It now counts in full, ten days whatever their standards or mood.</li>
+          <li>It also stays out of the good moods that add up slowly, so it never pushes the others down.</li>
+          <li>A life goal reached before this update is set right when the save loads.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.17.9</version>
         <date>27 October 2026</date>
         <title>Family names, suppers and visits</title>

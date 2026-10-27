@@ -20,10 +20,10 @@ namespace ColonyCouncil
     /// Good moods add up slowly. Everything good Rimfolk gives a colonist as a mood (a wish granted, a wedding, a
     /// dilemma that went their way, a reunion, a feast) shares one budget, so a pile of them can't carry a colonist's
     /// mood: the two biggest count in full, the next ones a half, a third and a quarter, and every one after that a
-    /// fifth (GoodTimesMath.RankFactor). Each stays on the Needs tab at what it counts for now. Every bad memory counts
-    /// as it is, and so does everything the game and other mods give (high standards take their own share of those,
-    /// GoodTimes). Many small moments give something else instead of mood (RewardInstead), so they never join the
-    /// pile. The class keeps its old name, as does the setting (smallJoysDiminish): it began with the small moments only.
+    /// fifth (GoodTimesMath.RankFactor); a milestone (a life goal reached) is left out and counts in full. Each stays
+    /// on the Needs tab at what it counts for now. Every bad memory counts as it is, and so does everything the game
+    /// and other mods give (high standards take their own share of those, GoodTimes). Many small moments give something
+    /// else instead of mood (RewardInstead), so they never join the pile. The class keeps its old name, as does the setting (smallJoysDiminish): it began with the small moments only.
     /// </summary>
     public static class SmallJoys
     {
@@ -63,7 +63,8 @@ namespace ColonyCouncil
             joys.Clear();
             for (int i = 0; i < memories.Count; i++)
             {
-                if (!(memories[i] is ICouncilMood mood)) continue;
+                // A milestone counts in full and takes no one's place (Moods/Milestone.cs).
+                if (!(memories[i] is ICouncilMood mood) || Milestone.Is(memories[i].def)) continue;
                 float own = mood.OwnOffset();
                 if (own > 0f) joys.Add((memories[i], own, i));
             }

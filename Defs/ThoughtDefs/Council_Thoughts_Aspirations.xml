@@ -8,6 +8,8 @@
     <stackLimit>1</stackLimit>
     <showBubble>true</showBubble>
     <stages><li><label>reached my life goal</label><description>I've done what I always said I'd do. I keep turning it over in my head, just to feel it again.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <!-- Counts in full: not shrunk by standards, not shortened in good times, not one of the good moods that add up slowly. -->
+    <modExtensions><li Class="ColonyCouncil.Milestone" /></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

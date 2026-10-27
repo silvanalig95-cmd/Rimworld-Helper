@@ -42,10 +42,10 @@ namespace ColonyCouncil
         /// <summary>Returned when a memory being given isn't one of Rimfolk's good memories (nothing to do afterwards).</summary>
         public const int Untouched = int.MinValue;
 
-        /// <summary>One of Rimfolk's good memories with a time of its own: what getting used to good times shortens.</summary>
+        /// <summary>One of Rimfolk's good memories with a time of its own: what getting used to good times shortens (never a milestone).</summary>
         public static bool IsGoodMemory(Thought_Memory m)
         {
-            if (m?.def == null || m.permanent || m.moodPowerFactor <= 0f || !IsRimfolk(m.def) || m.def.DurationTicks <= 0) return false;
+            if (m?.def == null || m.permanent || m.moodPowerFactor <= 0f || !IsRimfolk(m.def) || m.def.DurationTicks <= 0 || Milestone.Is(m.def)) return false;
             ThoughtStage stage;
             try
             {

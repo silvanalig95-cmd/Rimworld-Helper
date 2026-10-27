@@ -1,6 +1,12 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.9 "Family names, suppers and visits", family round D. `Social/FamilyNames.cs`: `FamilyNames`
+Last shipped: 0.17.10 "A life goal counts in full", a fix after the player saw a life goal reached give +3 for five
+days (a spoiled colonist's standards halved it, and good times halved its time). `Moods/Milestone.cs`: a
+`Milestone` DefModExtension (on `Council_Asp_Fulfilled`) skips `Standards.MoodFactor` in `GiveThought`, is never
+`GoodTimes.IsGoodMemory` (no fading sooner) and is left out of `SmallJoys.Rank`; `Milestone.Restore` in
+`FinalizeInit` sets such memories already given back to the reward strength alone and their full time.
+
+Before it, 0.17.9 "Family names, suppers and visits", family round D. `Social/FamilyNames.cs`: `FamilyNames`
 builds, at most hourly, the known families: free colonists grouped by last name, then `FamilyLifeMath.Clusters` over
 `Family.Of` or a love relation, two or more (`Plural` "Boyds", `Members`, `Same`). `Standing` averages
 `Reputations.Standing` over them (`FamilyLifeMath.FamilyStanding`, `FamilySides`), `ReputeLine` words it with

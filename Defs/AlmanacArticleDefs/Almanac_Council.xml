@@ -86,7 +86,7 @@ Granting one of their wishes or keeping a promise to them is usually enough to m
     <tip>Feed them fine meals for a season and they'll start complaining about simple ones.</tip>
     <description>While a colonist is happy, their standards creep up from modest to comfortable, particular and spoiled. High standards make the council's rewards count for less, its letdowns hurt more, and the game's own comforts count for less. Hard times bring them back down, and so does the austerity decree.
 
-None of this takes anything away. A colony that lives well still feels it; it just doesn't float at the top of the mood bar on a pile of small pleasures.</description>
+None of this takes anything away. A colony that lives well still feels it; it just doesn't float at the top of the mood bar on a pile of small pleasures. A life goal reached is the exception to everything on this page: it counts in full, whatever their standards and however good life already is.</description>
     <sections>
       <li>
         <heading>How they move</heading>
@@ -118,7 +118,7 @@ None of this takes anything away. A colony that lives well still feels it; it ju
       </li>
       <li>
         <heading>When life is good</heading>
-        <text>Someone whose life is already good gets used to good things faster. When a colonist's mood is above 75%, a new good memory from Rimfolk fades sooner, smoothly down to half its usual time from 90% mood. It feels just as good while it lasts, and in hard times good things last their full length, so a lift after a bad stretch stays with them. A good memory about someone keeps its effect on opinion for the full time; only the mood ends sooner.
+        <text>Someone whose life is already good gets used to good things faster. When a colonist's mood is above 75%, a new good memory from Rimfolk fades sooner, smoothly down to half its usual time from 90% mood. It feels just as good while it lasts, and in hard times good things last their full length, so a lift after a bad stretch stays with them. A life goal reached always lasts its full time. A good memory about someone keeps its effect on opinion for the full time; only the mood ends sooner.
 
 The "Good times" line in a colonist's Mood tab says what these rules take off right now. Each has its own setting.</text>
       </li>
@@ -133,7 +133,7 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>Fifth | 35%</li>
           <li>Sixth and after | A quarter</li>
         </table>
-        <after>Nothing is hidden: every good mood stays on the Needs tab at what it counts for now, so a +3 deep in the pile still shows as +1, and its tooltip says "+0.8 instead of +3". Bad moods, and the good moods of the game and other mods, aren't part of it. The "Good moods add up slowly" setting turns this off.</after>
+        <after>Nothing is hidden: every good mood stays on the Needs tab at what it counts for now, so a +3 deep in the pile still shows as +1, and its tooltip says "+0.8 instead of +3". Bad moods, the good moods of the game and other mods, and a life goal reached aren't part of it. The "Good moods add up slowly" setting turns this off.</after>
       </li>
       <li>
         <heading>Good moments that aren't moods</heading>
@@ -583,7 +583,7 @@ Life sets them too. A battle can make a warrior, a brush with death a healer or 
       </li>
       <li>
         <heading>Getting there</heading>
-        <text>Once they're three quarters of the way there, they get a small, steady mood lift. Achieving it brings a letter, a long good mood, a big jump in trust, often an inspiration, and gladness among their friends, and it goes into the chronicle and the year's annals. After a while they may choose another goal, never the same one twice.
+        <text>Once they're three quarters of the way there, they get a small, steady mood lift. Achieving it brings a letter, a long good mood (ten days, in full whatever their standards), a big jump in trust, often an inspiration, and gladness among their friends, and it goes into the chronicle and the year's annals. After a while they may choose another goal, never the same one twice.
 
 Check the Roster page now and then. A colonist one level short of mastery is worth a few days at their workbench. Goals like marriage, friends or peace with a rival can't be ordered, but shared work, shared rooms and shared battles help them along. Some dreams are about a colonist's goal, and some dilemmas come up because of one.</text>
       </li>

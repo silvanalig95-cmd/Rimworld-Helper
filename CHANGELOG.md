@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A life goal counts in full
+
+*27 October 2026, version 0.17.10*
+
+- Reaching a life goal was being treated like any good mood: halved for a colonist with high standards, and over in half the time when life was already good. It now counts in full, ten days whatever their standards or mood.
+- It also stays out of the good moods that add up slowly, so it never pushes the others down.
+- A life goal reached before this update is set right when the save loads.
+
 ## Family names, suppers and visits
 
 *27 October 2026, version 0.17.9*
