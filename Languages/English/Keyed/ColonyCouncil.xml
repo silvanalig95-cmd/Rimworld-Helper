@@ -1392,6 +1392,23 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Fam_KinRaiderCause>{PAWN_nameDef} saw {PAWN_possessive} {RELATION}, {OTHER_nameDef}, among the raiders.</CC_Fam_KinRaiderCause>
   <CC_Fam_KinRaider>{PAWN_nameDef} has recognised {PAWN_possessive} {RELATION}, {OTHER_nameDef}, among {FACTION}'s fighters.</CC_Fam_KinRaider>
   <CC_Fam_DiedByMarriageCause>{OTHER_nameDef}, {PAWN_nameDef}'s {RELATION}, died.</CC_Fam_DiedByMarriageCause>
+  <CC_Fam_Chronicle_Couple>{A_nameDef} and {B_nameDef} became a couple.</CC_Fam_Chronicle_Couple>
+  <CC_Fam_Chronicle_Engaged>{A_nameDef} and {B_nameDef} are engaged to be married.</CC_Fam_Chronicle_Engaged>
+  <CC_Fam_CoupleCause>{A_nameDef} and {B_nameDef} are together.</CC_Fam_CoupleCause>
+  <CC_Fam_WalkAloneLabel>{A_nameDef}'s walk on {A_possessive} own</CC_Fam_WalkAloneLabel>
+  <CC_Fam_ComfortedCause>{PAWN_nameDef} came to find me after the proposal.</CC_Fam_ComfortedCause>
+  <CC_Fam_Chronicle_Expecting>{A_nameDef} is expecting a child.</CC_Fam_Chronicle_Expecting>
+  <CC_Fam_ExpectingCause>{A_nameDef} is expecting a child.</CC_Fam_ExpectingCause>
+  <CC_Fam_Chronicle_Lost>{A_nameDef} lost the child {A_pronoun} was expecting.</CC_Fam_Chronicle_Lost>
+  <CC_Fam_Chronicle_Stillborn>{A_nameDef}'s child was born still.</CC_Fam_Chronicle_Stillborn>
+  <CC_Fam_LostCause>{A_nameDef} lost the child {A_pronoun} was expecting.</CC_Fam_LostCause>
+  <CC_Fam_QuietDay>The rest of today is {0}'s own: no work until tomorrow.</CC_Fam_QuietDay>
+  <CC_Fam_SitWithLabel>sitting with {B_nameDef}</CC_Fam_SitWithLabel>
+  <CC_Fam_BirthdayToastLabel>the toast to {A_nameDef}'s birthday</CC_Fam_BirthdayToastLabel>
+  <CC_Fam_ComingOfAgeLabel>the toast to {A_nameDef}, of age today</CC_Fam_ComingOfAgeLabel>
+  <CC_Fam_BirthdayCause>{A_nameDef} turned {1} today.</CC_Fam_BirthdayCause>
+  <CC_Family_NamedAfter>Named after {PAWN_possessive} {RELATION}, {OTHER_nameDef}.</CC_Family_NamedAfter>
+  <CC_Family_SharesName>Shares a name with {PAWN_possessive} {RELATION}, {OTHER_nameDef}.</CC_Family_SharesName>
   <CC_Story_Years>Across the years</CC_Story_Years>
   <CC_Years_Own>Born in {YEAR}, {CALENDAR} years ago: {LIVED} of those years lived, {SLEPT} spent in cryptosleep.</CC_Years_Own>
   <CC_Years_KinYounger>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, is {AGE}, {DIFF} years younger than {PAWN_objective}: {OTHER_pronoun} has spent {SLEPT} of {OTHER_possessive} {CALENDAR} years in cryptosleep.</CC_Years_KinYounger>

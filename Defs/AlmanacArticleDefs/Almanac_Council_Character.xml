@@ -176,6 +176,18 @@ Now and then, when two such relatives are together, one says a word about it to 
         <heading>Family on the other side</heading>
         <text>A colonist who sees family of theirs among those attacking the colony, in sight and not in the fog, says so, the colony hears of it, and it weighs on them for a few days. If that relative ends up in the colony's cells, the council is asked what's to become of them: let them go home (a little goodwill with their people), let the colonist try to talk them round (the wardens set to win them over, a good start against their resistance, and the colonist goes down to the cells to sit with them), or keep them like any other prisoner, which the colonist takes hard. A relative killed by the colony is grieved, and held against whoever killed them, with the game's own thoughts.</text>
       </li>
+      <li>
+        <heading>Couples and proposals</heading>
+        <text>When two of the colony become a couple, both write of it, and up to four of those closest to them take it as they take it. Family are glad, unless they can't stand the one chosen: then they think less of them, and say as much to their own relative. A friend who thinks well of one and doesn't dislike the other is glad for them. Each says it to the one they're close to, the next time the two are together. An engagement is for the family: parents give their blessing (or their doubts). A proposal turned down sends the one who asked on a long walk on their own, and later the friend closest to them (not the one who said no) finds them and says the right thing, which helps.</text>
+      </li>
+      <li>
+        <heading>A child on the way</heading>
+        <text>When a pregnancy begins to show, the mother writes of it, and tells her partner the next time they're together: glad news, or worried if the child wasn't wanted (she's unhappy about it, or the two were set against having one). Each of them tells their own parents, who are glad to be grandparents. An expecting parent counts as a parent already for the wish for a crib. If the child is lost before birth, by miscarriage or born still, the parents grieve with the game's own thoughts; their own parents grieve too, the rest of the day is the parents' own, and someone of the mother's family (or her closest friend) goes and sits with her a while.</text>
+      </li>
+      <li>
+        <heading>Names and birthdays</heading>
+        <text>When a baby born here is named, the naming window offers the family's own first names besides the game's: the baby's relatives of the same gender, the remembered dead first, then the closest, never a name a living brother or sister already has. The story says who a colonist was named after, or, for one not born here, who they share a name with. A child's growth birthdays (seven, ten and thirteen) and coming of age at eighteen are marked: the parents write of it, and that evening the family raise a glass to them at the table, a parent leading, a good memory for the child and for the parents who are there.</text>
+      </li>
     </sections>
     <keywords><li>family</li><li>relative</li><li>in-law</li><li>step</li><li>reunion</li><li>family tree</li><li>kin</li></keywords>
     <seeAlso><li>Council_Alm_C_Character</li><li>Council_Alm_C_SocialLife</li></seeAlso>

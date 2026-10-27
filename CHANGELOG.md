@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A family's life together
+
+*27 October 2026, version 0.17.3*
+
+- A new couple is noticed: both write of it, and those closest to them say they're glad, or, for family who can't stand the one chosen, that they have their doubts. An engagement gets the parents' blessing.
+- A proposal turned down sends the one who asked on a long walk alone, and later their closest friend finds them and says the right thing.
+- When a pregnancy begins to show, the mother tells her partner, glad or worried, and each tells their own parents, the grandparents to be. Expecting parents can wish for a crib.
+- A child lost before birth is grieved by the grandparents too. The parents get the rest of the day to themselves, and someone close goes to sit with the mother.
+- Naming a baby offers the family's own first names, and the story says who a colonist was named after. Growth birthdays and coming of age end with a family toast at the table that evening.
+
 ## Made before it's given
 
 *27 October 2026, version 0.17.2*

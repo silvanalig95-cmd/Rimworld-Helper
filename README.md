@@ -628,6 +628,16 @@ younger than her grandson. The People roster shows each colonist's years asleep 
 part, *Across the years*, that explains every parent, grandparent, child or grandchild whose age runs the wrong way
 round (and whose sleep explains it), and two such relatives now and then say a word about it when they're together.
 
+#### Family
+A colonist's story shows their family tree, where everyone is, and who they were named after. Family by marriage
+(in-laws, step-parents and step-children) counts for worry, grief, belonging and visits. A relative who joins the
+colony is met by the family already here; one seen among the raiders is recognised, and one taken prisoner brings
+the council a question. A new couple is noticed by those close to them (family glad, or doubtful of one they can't
+stand), an engagement gets the parents' blessing, and a refused proposal means a walk alone and a friend's word after.
+A pregnancy that begins to show is told to the partner and the grandparents to be; a child lost before birth is
+grieved by the grandparents too, with a quiet day for the parents and someone to sit with the mother. Naming a baby
+offers the family's own first names, and growth birthdays and coming of age end with a family toast at the table.
+
 #### Traits that change
 Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity

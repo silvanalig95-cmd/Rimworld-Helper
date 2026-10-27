@@ -443,7 +443,9 @@ namespace ColonyCouncil
         /// <summary>Those who dislike A (opinion -20 or less).</summary>
         RivalsOfA,
         /// <summary>The stranger (visitor, prisoner, animal...).</summary>
-        X
+        X,
+        /// <summary>A and A's family at home: by blood or by marriage, and their partner.</summary>
+        FamilyOfA
     }
 
     public abstract class DilemmaEffect
@@ -478,6 +480,9 @@ namespace ColonyCouncil
                 case DilemmaTarget.FriendsOfA: list = ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && p.relations != null && ctx.a != null && p.relations.OpinionOf(ctx.a) >= 20); break;
                 case DilemmaTarget.RivalsOfA: list = ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && p.relations != null && ctx.a != null && p.relations.OpinionOf(ctx.a) <= -20); break;
                 case DilemmaTarget.X: list = ctx.stranger != null ? new[] { ctx.stranger } : new Pawn[0]; break;
+                case DilemmaTarget.FamilyOfA:
+                    list = ctx.Colonists.Where(p => ctx.a != null && (p == ctx.a || Family.Of(p, ctx.a) || LovePartnerRelationUtility.LovePartnerRelationExists(p, ctx.a)));
+                    break;
                 default: list = new Pawn[0]; break;
             }
             foreach (var p in list.ToList())

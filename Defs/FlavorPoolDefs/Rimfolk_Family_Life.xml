@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The family's life together (Source/ColonyCouncil/Social/FamilyLife.cs). Said when the two are together:
+      SayNewCouple: a friend or relative to one of a new couple ({OTHER}: the one spoken to; {ABOUT}: their partner).
+      SayMatchDoubt: family who can't stand the one chosen, to their own relative.
+      SayEngaged: a parent to their newly engaged child.
+      SayProposalComfort: a friend to someone whose proposal was turned down ({ABOUT}: the one who said no).
+      SayExpecting: a mother-to-be to her partner, [glad] or [worried].
+      SayGrandchild: a grandparent-to-be to their own child.
+      PlayGrowth: said at the family's toast on a child's birthday ({OTHER}: the one whose birthday it is).
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayNewCouple</defName>
+    <lines>
+      <plain>
+        <li>I saw you two at supper, you know.</li>
+        <li>You and {ABOUT_nameDef}, then, finally.</li>
+        <li>About time somebody said it out loud.</li>
+        <li>You've been smiling at nothing all morning.</li>
+        <li>{ABOUT_nameDef} is lucky, and I'll tell them so.</li>
+        <li>I'm glad for you, I really am.</li>
+        <li>Be good to each other, that's all I ask.</li>
+      </plain>
+      <warm>
+        <li>Nothing makes me happier than seeing you like this.</li>
+      </warm>
+      <blunt>
+        <li>Everyone already knew, for the record.</li>
+      </blunt>
+      <cheerful>
+        <li>Wait until the rest of them hear about this.</li>
+      </cheerful>
+      <gloomy>
+        <li>Hold on to it, good things don't come round often.</li>
+      </gloomy>
+      <cold>
+        <li>Good choice, I suppose.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayMatchDoubt</defName>
+    <lines>
+      <plain>
+        <li>Are you sure about {ABOUT_nameDef}?</li>
+        <li>I'll say it once and then I'll keep quiet.</li>
+        <li>You could have had anyone in this colony.</li>
+        <li>I only want what's best for you, you know that.</li>
+        <li>Don't expect me at their side of the table.</li>
+        <li>I hope I'm wrong about {ABOUT_nameDef}, for your sake.</li>
+      </plain>
+      <warm>
+        <li>If you're happy, I'll try, but I'm worried.</li>
+      </warm>
+      <blunt>
+        <li>{ABOUT_nameDef}, really, of all people?</li>
+      </blunt>
+      <cheerful>
+        <li>Well, nobody's perfect, least of all {ABOUT_nameDef}.</li>
+      </cheerful>
+      <gloomy>
+        <li>This will end in tears, you watch.</li>
+      </gloomy>
+      <cold>
+        <li>It's your life, do as you like.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayEngaged</defName>
+    <lines>
+      <plain>
+        <li>My child, getting married, I can hardly believe it.</li>
+        <li>You have my blessing, both of you.</li>
+        <li>I remember when you couldn't tie your own boots.</li>
+        <li>Your grandmother would have cried at this.</li>
+        <li>Come here, let me look at you properly.</li>
+        <li>We'll need a proper table for the wedding.</li>
+      </plain>
+      <warm>
+        <li>I'm so proud of you I could burst.</li>
+      </warm>
+      <blunt>
+        <li>Good, it was getting embarrassing.</li>
+      </blunt>
+      <cheerful>
+        <li>A wedding, finally, I'll start on the cake.</li>
+      </cheerful>
+      <gloomy>
+        <li>Make the most of it, every single day.</li>
+      </gloomy>
+      <cold>
+        <li>A sensible match, I'm pleased.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayProposalComfort</defName>
+    <lines>
+      <plain>
+        <li>I heard about it, I'm sorry.</li>
+        <li>It took courage to ask, more than most have.</li>
+        <li>Sit with me a while, you don't have to talk.</li>
+        <li>It's not the end of anything, I promise.</li>
+        <li>Give it time, it'll hurt less than it does now.</li>
+        <li>You did nothing wrong by asking.</li>
+      </plain>
+      <warm>
+        <li>Come on, I saved you some of the good tea.</li>
+      </warm>
+      <blunt>
+        <li>Their loss, frankly.</li>
+      </blunt>
+      <cheerful>
+        <li>Chin up, you're still the best company in this colony.</li>
+      </cheerful>
+      <gloomy>
+        <li>It happens to all of us, sooner or later.</li>
+      </gloomy>
+      <cold>
+        <li>You'll survive this, people do.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayExpecting</defName>
+    <lines>
+      <plain>
+        <li>[glad] I've got something to tell you, and you should sit down.</li>
+        <li>[glad] We're going to have a child, you and me.</li>
+        <li>[glad] Put your hand here, there's someone new.</li>
+        <li>[glad] I wanted you to be the first to know.</li>
+        <li>[worried] I'm expecting, and I don't know what we do now.</li>
+        <li>[worried] We weren't ready for this, but it's coming anyway.</li>
+        <li>[worried] There's a child on the way, and I'm frightened.</li>
+      </plain>
+      <warm>
+        <li>[glad] Our family is getting bigger, love.</li>
+      </warm>
+      <blunt>
+        <li>[glad] I'm pregnant, it's yours, say something.</li>
+        <li>[worried] I'm pregnant, and no, we didn't plan it.</li>
+      </blunt>
+      <cheerful>
+        <li>[glad] Guess who's going to need a crib?</li>
+      </cheerful>
+      <gloomy>
+        <li>[worried] A child, in all this, what were we thinking?</li>
+      </gloomy>
+      <cold>
+        <li>[glad] I'm expecting, so we'd better plan for it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SayGrandchild</defName>
+    <lines>
+      <plain>
+        <li>A grandchild, you're giving me a grandchild?</li>
+        <li>I'll start on something small and warm for them.</li>
+        <li>You were that small once, hard as that is to believe.</li>
+        <li>Whatever you need, you ask me first.</li>
+        <li>Me, a grandparent, I'm not old enough for this.</li>
+        <li>Your child will have the best of us, I'll see to it.</li>
+      </plain>
+      <warm>
+        <li>This is the best news I've had in years.</li>
+      </warm>
+      <blunt>
+        <li>Good, I was starting to think I'd never get one.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm going to spoil them rotten, you can't stop me.</li>
+      </cheerful>
+      <gloomy>
+        <li>I hope this world is kinder to them than it was to us.</li>
+      </gloomy>
+      <cold>
+        <li>About time the family went on.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayGrowth</defName>
+    <lines>
+      <plain>
+        <li>To {OTHER_nameDef}, a year older and a head taller.</li>
+        <li>Happy birthday, {OTHER_nameDef}.</li>
+        <li>Look at you, all grown up.</li>
+        <li>I remember the day you were born like it was yesterday.</li>
+        <li>Make a wish, but don't tell anyone what it is.</li>
+        <li>Another year, and you're still the best of us.</li>
+        <li>Who let you get so big, I'd like to know.</li>
+      </plain>
+      <warm>
+        <li>We're all so proud of you, {OTHER_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>Older, taller, still won't eat your greens.</li>
+      </blunt>
+      <cheerful>
+        <li>Cups up for {OTHER_nameDef}, everyone.</li>
+      </cheerful>
+      <gloomy>
+        <li>They grow up so fast, every one of them.</li>
+      </gloomy>
+      <cold>
+        <li>To {OTHER_nameDef}, many more of them.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Journal lines (Journal.Write): {OTHER}, the one it's about; {YEARS} for a birthday, the age they've turned. -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_NewLove</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I are together. I wrote it down so it would be real.</li>
+        <li>I don't know how to say this except plainly: {OTHER_nameDef} feels the same.</li>
+        <li>[night] I can't sleep. {OTHER_nameDef} is all I can think about, and that's fine.</li>
+        <li>We told no one, and everyone seems to know already.</li>
+      </plain>
+      <warm><li>Somewhere in all this hard work, {OTHER_nameDef} and I found each other.</li></warm>
+      <blunt><li>{OTHER_nameDef} and me. That's the news.</li></blunt>
+      <cheerful><li>{OTHER_nameDef}! That's all, just {OTHER_nameDef}.</li></cheerful>
+      <gloomy><li>I'm happy, and I'm already afraid of losing it. {OTHER_nameDef} says that's normal.</li></gloomy>
+      <cold><li>{OTHER_nameDef} and I have come to an understanding. I find I'm pleased about it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Engaged</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} and I are going to be married. I keep saying it under my breath.</li>
+        <li>Engaged. To {OTHER_nameDef}. I'll need to write that a few more times before I believe it.</li>
+        <li>We're to be married, {OTHER_nameDef} and I. Now to find something to wear.</li>
+        <li>[night] I lay awake planning the wedding until I realised I was smiling in the dark.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} asked, or I asked, we can't agree. Either way, we're getting married.</li></warm>
+      <blunt><li>Getting married to {OTHER_nameDef}. Good.</li></blunt>
+      <cheerful><li>A wedding! Mine! With {OTHER_nameDef}!</li></cheerful>
+      <gloomy><li>Engaged to {OTHER_nameDef}. Let the world try to take this one from me.</li></gloomy>
+      <cold><li>{OTHER_nameDef} and I will marry. It is the right decision.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_ProposalRefused</defName>
+    <lines>
+      <plain>
+        <li>I asked {OTHER_nameDef} to marry me. The answer was no. I went for a long walk.</li>
+        <li>{OTHER_nameDef} said no. Kindly, which almost made it worse.</li>
+        <li>I don't want to write about today. I asked, and {OTHER_nameDef} said no.</li>
+        <li>[night] Can't sleep. Every time I close my eyes I'm asking {OTHER_nameDef} again.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} said no. I'll still be their friend, if they'll have that.</li></warm>
+      <blunt><li>Proposed. Refused. Moving on.</li></blunt>
+      <cheerful><li>Well, {OTHER_nameDef} said no. At least I can say I asked.</li></cheerful>
+      <gloomy><li>I knew {OTHER_nameDef} would say no. I asked anyway. I'm a fool.</li></gloomy>
+      <cold><li>{OTHER_nameDef} declined my proposal. I will not ask again.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Expecting</defName>
+    <lines>
+      <plain>
+        <li>[glad] I'm expecting. I keep putting a hand on my belly when nobody's looking.</li>
+        <li>[glad,partner] A child. I have to tell {OTHER_nameDef} properly, at the right moment.</li>
+        <li>[glad] There's someone new on the way. I've started making a list of names.</li>
+        <li>[worried] I'm expecting, and it's too soon. I don't know how we'll manage.</li>
+        <li>[worried,partner] A child is coming. We didn't plan for it. I have to tell {OTHER_nameDef}.</li>
+        <li>[worried] Pregnant. I sat on the edge of the bed for an hour before I could stand.</li>
+      </plain>
+      <warm><li>[glad] A little one on the way. This colony is going to have to make room.</li></warm>
+      <blunt><li>[glad] Pregnant. Good.</li><li>[worried] Pregnant. Not good timing.</li></blunt>
+      <cheerful><li>[glad] I'm going to be a mother! I want to tell everyone and no one at once.</li></cheerful>
+      <gloomy><li>[worried] A child, here, now. I'll have to be stronger than I am.</li></gloomy>
+      <cold><li>[glad] I am expecting. There are preparations to make.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Loss</defName>
+    <lines>
+      <plain>
+        <li>We lost the child. I don't have anything else to write.</li>
+        <li>[partner] The baby is gone. {OTHER_nameDef} held my hand until it got dark.</li>
+        <li>I keep reaching for something that isn't there any more.</li>
+        <li>[night] It's quiet tonight. Too quiet. I keep listening for a heartbeat I'll never hear.</li>
+      </plain>
+      <warm><li>We lost our child today. The others have been so kind that I can't stand it.</li></warm>
+      <blunt><li>Lost the baby. That's all.</li></blunt>
+      <cheerful><li>I can't find anything good in today. Tomorrow, maybe.</li></cheerful>
+      <gloomy><li>The child is gone before it ever saw the sky. I don't understand why.</li></gloomy>
+      <cold><li>The pregnancy is over. I will not write more about it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_ChildGrew</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} is {YEARS} today. We raised a glass at supper and {OTHER_pronoun} pretended not to like it.</li>
+        <li>{YEARS} years old, {OTHER_nameDef}. Where did the time go?</li>
+        <li>{OTHER_nameDef} turned {YEARS}. I measured {OTHER_objective} against the door frame again.</li>
+        <li>[night] {OTHER_nameDef} fell asleep still wearing the birthday grin. {YEARS} years old.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} is {YEARS}, and every one of those years has been a gift.</li></warm>
+      <blunt><li>{OTHER_nameDef}, {YEARS} today. Taller again.</li></blunt>
+      <cheerful><li>Happy birthday, {OTHER_nameDef}! {YEARS}! I sang badly and nobody minded.</li></cheerful>
+      <gloomy><li>{OTHER_nameDef} is {YEARS}. Soon {OTHER_pronoun} won't need me at all.</li></gloomy>
+      <cold><li>{OTHER_nameDef} has reached {YEARS} years. Growth is on schedule.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

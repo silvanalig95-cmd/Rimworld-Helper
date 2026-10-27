@@ -75,7 +75,7 @@ namespace ColonyCouncil
         public bool child;
         public List<Season> seasons;
         public float minDaysInColony;
-        /// <summary>Has a baby or toddler of their own (Biotech).</summary>
+        /// <summary>Has a baby or toddler of their own, or one on the way (Biotech).</summary>
         public bool parentOfLittleOne;
         /// <summary>Only while they're ill: a cold, a stomach bug, one of Rimfolk's serious illnesses or the game's (flu, plague...).</summary>
         public bool ailing;
@@ -184,7 +184,8 @@ namespace ColonyCouncil
                              && WishWorker_Freezer.BestCold(p.MapHeld) == null;
             if (!hotNoCold && !seasons.NullOrEmpty() && (p.MapHeld == null || !seasons.Contains(GenLocalDate.Season(p.MapHeld)))) return false;
             if (minDaysInColony > 0f && (p.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) < minDaysInColony * GenDate.TicksPerDay) return false;
-            if (parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby() && c.MapHeld == p.MapHeld) ?? false)) return false;
+            // A little one here, or one on the way (Social/FamilyLife.cs).
+            if (parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby() && c.MapHeld == p.MapHeld) ?? false) && !FamilyLife.Expecting(p)) return false;
             if (minAge > 0f && Flavor.HumanAge(p) < minAge) return false;
             if (ailing && !WishWorker_Sickbed.Ailing(p)) return false;
             if (!eras.NullOrEmpty() && !EraFits(eras)) return false;
@@ -262,7 +263,7 @@ namespace ColonyCouncil
             var p = wish.Beneficiary;
             if (p == null) return true;
             if (P.child && !p.DevelopmentalStage.Child()) return true;
-            return P.parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby()) ?? false);
+            return P.parentOfLittleOne && !(p.relations?.Children.Any(c => !c.Dead && c.DevelopmentalStage.Baby()) ?? false) && !FamilyLife.Expecting(p);
         }
     }
 

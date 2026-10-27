@@ -85,4 +85,156 @@
     </stages>
   </ThoughtDef>
 
+  <!--
+    The family's life together (Source/ColonyCouncil/Social/FamilyLife.cs): a new couple or an engagement and how those
+    close to them take it, a refused proposal and a friend's word, a child on the way told to the partner and the
+    grandparents, a child lost before birth (the parents' grief is the game's own), and the birthdays a family marks.
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Fam_GladForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>glad they found someone</label>
+        <description>Someone I care about has found someone of their own. It's good to see them like this.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>4</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Fam_MatchDoubted</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>not good enough for my family</label>
+        <description>Of everyone they could have chosen, my relative chose this one. I'll be civil about it, and that's all.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+        <baseOpinionOffset>-10</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Fam_ChildEngaged</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>my child is engaged</label>
+        <description>My child is going to be married. I remember when they couldn't tie their own boots.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+        <baseOpinionOffset>5</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Fam_Comforted</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a friend's word after the proposal</label>
+        <description>It still stings. But someone came and found me, and said the right thing, and that helped.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Fam_BabyComing</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a child on the way</label>
+        <description>We're going to have a child. I keep thinking of names, and then of everything that needs doing first.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_BabyComingWorried</defName>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a child on the way, not yet wanted</label>
+        <description>A child is coming whether we're ready or not. I don't know yet how I feel about it.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Fam_GrandchildComing</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>a grandchild on the way</label>
+        <description>My child is going to have a child of their own. Me, a grandparent.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+        <baseOpinionOffset>5</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_LostGrandchild</defName>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>lost a grandchild before birth</label>
+        <description>The child my own child was expecting is gone before it ever drew breath. I grieve for it, and for them.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_ChildGrown</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>my child is growing up</label>
+        <description>We raised a glass to my child's birthday tonight. They're growing up faster than I'm ready for.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Fam_BirthdayToast</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a toast on my birthday</label>
+        <description>My family raised their glasses to me tonight, all of them at once. I didn't know where to look.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

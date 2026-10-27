@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.17.3</version>
+        <date>27 October 2026</date>
+        <title>A family's life together</title>
+        <points>
+          <li>A new couple is noticed: both write of it, and those closest to them say they're glad, or, for family who can't stand the one chosen, that they have their doubts. An engagement gets the parents' blessing.</li>
+          <li>A proposal turned down sends the one who asked on a long walk alone, and later their closest friend finds them and says the right thing.</li>
+          <li>When a pregnancy begins to show, the mother tells her partner, glad or worried, and each tells their own parents, the grandparents to be. Expecting parents can wish for a crib.</li>
+          <li>A child lost before birth is grieved by the grandparents too. The parents get the rest of the day to themselves, and someone close goes to sit with the mother.</li>
+          <li>Naming a baby offers the family's own first names, and the story says who a colonist was named after. Growth birthdays and coming of age end with a family toast at the table that evening.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.17.2</version>
         <date>27 October 2026</date>
         <title>Made before it's given</title>

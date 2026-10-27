@@ -132,6 +132,8 @@ namespace ColonyCouncil
                 Reunions(colonists);
                 KinAmongRaiders(map, colonists, comp);
             }
+            // A child on the way, told to the family (Social/FamilyLife.cs).
+            FamilyLife.Hourly(comp);
         }
 
         private static float DaysHere(Pawn p) => (p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 999999) / (float)GenDate.TicksPerDay;

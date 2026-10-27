@@ -90,6 +90,8 @@ namespace ColonyCouncil
             {
                 if (__result is Pawn baby) WorldReactions.Birth(baby, geneticMother, father);
                 if (__result is Pawn born) TalkHooks.Birth(born, geneticMother, father);
+                // Stillborn: the family's loss (Social/FamilyLife.cs).
+                if (__result is Corpse c && c.InnerPawn != null && RimfolkPatches.On) FamilyLife.Notify_Lost(geneticMother, father, true);
             }
             catch (System.Exception e)
             {

@@ -193,6 +193,8 @@ namespace ColonyCouncil
 
             // Their family, and where everyone is (Social/Family.cs).
             var familyLines = Family.TreeLines(p);
+            // Named after a grandmother, or sharing a name with one (Social/FamilyLife.cs).
+            if (FamilyLife.NamedAfterLine(p) is string named) familyLines.Insert(0, named);
             if (familyLines.Count > 0)
             {
                 var family = new Section { key = "family", header = "CC_Story_Family".Translate(), icon = Icons.Bonds };

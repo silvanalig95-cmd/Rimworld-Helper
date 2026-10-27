@@ -63,6 +63,8 @@ namespace ColonyCouncil
 
         public List<Wish> wishes = new List<Wish>();
         public List<ChronicleEntry> chronicle = new List<ChronicleEntry>();
+        /// <summary>Pregnancies already told to the family (their hediff's load id; Social/FamilyLife.cs).</summary>
+        public List<int> expectingTold = new List<int>();
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
@@ -184,6 +186,7 @@ namespace ColonyCouncil
             if (Scribe.mode == LoadSaveMode.Saving) PruneCooldowns();
             Scribe_Collections.Look(ref wishes, "wishes", LookMode.Deep);
             Scribe_Collections.Look(ref chronicle, "chronicle", LookMode.Deep);
+            Scribe_Collections.Look(ref expectingTold, "expectingTold", LookMode.Value);
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
@@ -238,6 +241,7 @@ namespace ColonyCouncil
                             if (a.def.goals[i] is Goal_Animals) a.baselines[i] = 0f;
                 }
                 if (chronicle == null) chronicle = new List<ChronicleEntry>();
+                if (expectingTold == null) expectingTold = new List<int>();
                 chronicle.RemoveAll(e => e == null);
                 if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();

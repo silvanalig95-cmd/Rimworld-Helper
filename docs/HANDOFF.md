@@ -1,6 +1,20 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.2 "Made before it's given", B4 of the answers audit (`docs/answers-audit.md`): results an answer
+Last shipped: 0.17.3 "A family's life together", family round B. `Social/FamilyLifeMath.cs` (pure, `FamilyLifeTests`)
+and `Social/FamilyLife.cs`: `Patch_FamilyCouple` (`Pawn_RelationsTracker.AddDirectRelation` postfix, Lover or Fiance
+between two of ours: journals, chronicle, up to four close ones react via `Together.When` with `Council_Fam_GladForThem`,
+`Council_Fam_MatchDoubted` (family who can't stand the partner) or `Council_Fam_ChildEngaged`); `Patch_FamilyProposal`
+(a refusal: a Walk visit and a friend's `Council_Fam_Comforted`); the hourly pregnancy check (`ShowingPregnancy`, told
+once per hediff `loadID` in `CouncilGameComponent.expectingTold`; wanted by `Hediff_Pregnant.Attitude` and the couple's
+`PregnancyApproach`); `Patch_FamilyMiscarried` (only when the mother has the game's fresh "Miscarried" memory, so a
+surgical termination isn't counted) and stillbirths in `Patch_Birth` go to `Notify_Lost` (grandparents' grief,
+`CalendarTracker.RestFor`, a sitting-with visit); `Patch_FamilyBabyNames` (a `Dialog_NamePawn` constructor prefix that
+adds First-name suggestions); `NamedAfterLine` in the story; `Patch_FamilyBirthday` (`Pawn_AgeTracker.BirthdayBiological`:
+growth birthdays and 18, a `DilemmaEffect_Toast` with the new `DilemmaTarget.FamilyOfA`, held moods). The crib wish's
+`parentOfLittleOne` counts expecting parents (`FamilyLife.Expecting`). Next: round C (adoption and guardians, orphaned
+here, inheritance by blood, widowhood and remarriage), alternating with the audit's ranked gaps.
+
+Before it, 0.17.2 "Made before it's given", B4 of the answers audit (`docs/answers-audit.md`): results an answer
 used to make the moment it was given now come with the work. `PlayOut/PlayMake.cs`: a `DilemmaEffect_Made` with a maker
 (and a hand-over) is a Give play in phase `PlayMake.Making` until the maker works at the bench found by the recipe that
 makes the thing (`RecipeFor`, `AllRecipeUsers`), the camp's fire for one of the camp, else the table
