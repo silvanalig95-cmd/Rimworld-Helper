@@ -154,7 +154,7 @@ Now and then, when two such relatives are together, one says a word about it to 
     <seeAlso><li>Council_Alm_C_SocialLife</li><li>Council_Alm_C_Character</li><li>Council_Alm_C_TraitChanges</li><li>Council_Alm_C_SharedMemories</li><li>Rimfolk_Alm_C_Reputation</li><li>Council_Alm_C_Secrets</li><li>Council_Alm_C_Offices</li></seeAlso>
   </ColonyCouncil.AlmanacArticleDef>
 
-  <!-- Family beyond blood, the family tree, reunions and kin on the other side (Source/ColonyCouncil/Social/Family.cs). -->
+  <!-- Family beyond blood, the family tree, reunions and kin on the other side (Source/ColonyCouncil/Social/Family.cs), family names (FamilyNames.cs) and the family's days together (FamilyBonds.cs). -->
   <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_C_Family</defName>
     <label>family</label>
@@ -199,6 +199,14 @@ Now and then, when two such relatives are together, one says a word about it to 
       <li>
         <heading>The one left</heading>
         <text>When a husband, wife or betrothed dies, the one left has a story of their own in place of a long grief: the empty side of the bed, their things and talking of them at last (or dreaming of them), a first season with an hour of their own for them at the grave, or a long walk where there is none, and in time carrying it. A child of theirs at home is in it with them. Their wedding day stays on the calendar as the survivor's own: when it comes round they write of it and spend an hour at the grave, or a long walk, with a quiet good moment after. When a widowed parent finds someone new, their children take it as their own: glad for them, unless they dislike the one in their late parent's place, and then hurt, and they say so.</text>
+      </li>
+      <li>
+        <heading>Family names</heading>
+        <text>Two or more of the colony with the same last name who are family to each other (by blood, by marriage or by adoption, or a couple) are known by it: "the Boyds". Their story says so, with what the family's name stands for, which is what the colony says of them all, each side of their names put together ("The Boyds are known as kind and reliable, though quick to anger."). A story told about one of them by someone outside the family now and then brings the family into it, and says only what the family's name really stands for. A married or engaged couple with two last names can be asked by the council whether they take one: a day after they are engaged (if they mean to keep their own names), or in its turn for a married couple, once for each couple. One takes the other's name, or each keeps their own. A married couple takes it at once, and the name they were born with is kept, as the game keeps it; an engaged couple takes it at the wedding. An answer their faith is against can't be chosen.</text>
+      </li>
+      <li>
+        <heading>Suppers and visits</heading>
+        <text>Three or more of a family at home now and then sit down to supper together in the evening, at the dining table with the eldest at its head, when there is a meal in the stores for each of them. It shows as their own supper ("the Boyds' supper"), they each eat a meal, and it's a good memory for those who were there. Grown brothers and sisters have moments of their own, with no parent in it, said when the two are together: those who think well of each other share a word about the old days and think the better of each other for it; rivals (one of them can't stand the other) have a dig, and it stings. A parent of sixty or more is looked in on now and then by the grown child fondest of them, more often past seventy-five and most of all when they're ill or laid up: the two sit down together a while, at the bedside if the parent is in bed, and both are glad of it. With "Answers play out on the map" off there are no suppers or visits.</text>
       </li>
     </sections>
     <keywords><li>family</li><li>relative</li><li>in-law</li><li>step</li><li>reunion</li><li>family tree</li><li>kin</li></keywords>

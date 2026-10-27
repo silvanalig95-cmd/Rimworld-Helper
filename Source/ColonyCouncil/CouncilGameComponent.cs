@@ -67,6 +67,8 @@ namespace ColonyCouncil
         public List<int> expectingTold = new List<int>();
         /// <summary>Children the council was asked about, who raises them (thing ids; Social/FamilyGuardians.cs).</summary>
         public List<int> guardianAsked = new List<int>();
+        /// <summary>Couples the council was asked about, whether they take one name (their pair key; Social/FamilyNames.cs).</summary>
+        public List<string> sharedNameAsked = new List<string>();
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
@@ -155,6 +157,8 @@ namespace ColonyCouncil
             Family.Reset();
             Guardians.Reset();
             Inheritance.Reset();
+            FamilyNames.Reset();
+            FamilyBonds.Reset();
             PlayStrangers.Reset();
             Guests.ForgetLastGame();
             // Lean/: the map facts and every def kept by name are worked out again for this game.
@@ -193,6 +197,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref chronicle, "chronicle", LookMode.Deep);
             Scribe_Collections.Look(ref expectingTold, "expectingTold", LookMode.Value);
             Scribe_Collections.Look(ref guardianAsked, "guardianAsked", LookMode.Value);
+            Scribe_Collections.Look(ref sharedNameAsked, "sharedNameAsked", LookMode.Value);
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
@@ -249,6 +254,7 @@ namespace ColonyCouncil
                 if (chronicle == null) chronicle = new List<ChronicleEntry>();
                 if (expectingTold == null) expectingTold = new List<int>();
                 if (guardianAsked == null) guardianAsked = new List<int>();
+                if (sharedNameAsked == null) sharedNameAsked = new List<string>();
                 chronicle.RemoveAll(e => e == null);
                 if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();

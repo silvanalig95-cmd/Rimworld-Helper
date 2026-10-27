@@ -1,6 +1,25 @@
 # Handoff: work in progress
 
-Last shipped: 0.17.8 "Fed, sheltered, and a fire laid by hand", audit gaps 8, 9, 16 and 22. `PlayOut/PlayStrangers.cs`:
+Last shipped: 0.17.9 "Family names, suppers and visits", family round D. `Social/FamilyNames.cs`: `FamilyNames`
+builds, at most hourly, the known families: free colonists grouped by last name, then `FamilyLifeMath.Clusters` over
+`Family.Of` or a love relation, two or more (`Plural` "Boyds", `Members`, `Same`). `Standing` averages
+`Reputations.Standing` over them (`FamilyLifeMath.FamilyStanding`, `FamilySides`), `ReputeLine` words it with
+`CC_FamRep_*`, and `StoryLine` heads the Story tab's family section and tip. `Gossip.Tags` adds "aboutfamily" (30%,
+teller outside the family) and "famgood"/"fambad" by `Leans`; `Gossip.Line` passes {FAMILY}; lines in
+`Defs/FlavorPoolDefs/Rimfolk_Gossip_Family.xml`. `DilemmaWorker_SharedName` (`Council_DlmFam_SharedName`,
+`SharedNameContext` with {LASTA}/{LASTB}, tag "engaged"): couples with two names, once each
+(`CouncilGameComponent.sharedNameAsked`); a day after an engagement (`Notify_Engaged` from `FamilyLife`, session
+only, `OnlyEngaged`) if the game's roll kept their names, else in its turn. `DilemmaEffect_SharedName` sets both
+`relations.nextMarriageNameChange` for an engaged couple (the game applies it in `MarriageCeremonyUtility.Married`) or
+calls `SpouseRelationUtility.ChangeNameAfterMarriage` now for a married one (`birthLastName` kept), checking the
+game's `GotMarried_*` history events for faith. `Social/FamilyBonds.cs` (session only): once a day per map, a
+`DilemmaEffect_Feast` at the dining table for a family cluster of three or more with `AdvisorFacts.Meals` enough
+(`FamilyLifeMath.Supper`, chance 0.2, six days apart, `Council_Pool_PlayFamilySupper`, held `Council_Fam_FamilySupper`);
+grown Sibling/HalfSibling pairs (`FamilyLifeMath.Siblings`: close both 20+, rivals either -10 or less; 0.15, five days)
+through `Together.When`; a parent of 60+ (`LookInChance`, ill: down, sick or wanting bed rest) gets a sit-down
+`DilemmaEffect_Visit` from the fondest grown child with held moods both ways. Not tried in the game here.
+
+Before it, 0.17.8 "Fed, sheltered, and a fire laid by hand", audit gaps 8, 9, 16 and 22. `PlayOut/PlayStrangers.cs`:
 `DilemmaEffect_CarryOut.eat` (at the hand-over, `PlayGroups.HandOver` shares the food from the receiver's pack round
 their lord, an `Ingest` each; meals one each, raw food half) and `night` (`StayTheNight`: the `LordJob_VisitColony`
 length and its `Trigger_TicksPassed` stretched to dawn by name through `AccessTools.FieldRefAccess`, a courier trip's
@@ -47,9 +66,10 @@ the character section skips its words line (`CharacterView.DrawSection(skip)`), 
 (`Family.TreeEntry`, `WhereKind`), "life" holds goals reached and `ArcView.Past`, journal and dreams are quotes.
 `Folds` takes sections that start shut (`StoryView.FoldedInTab`); the People roster's folds start all open.
 
-Next: family round D (family meals, adult siblings and ageing parents, family names), then the audit's next gaps.
-Round B leftovers not built: an engaged couple planning the wedding with the council; close family waiting by the
-bed during labour (left to the game's own birth ritual).
+Next: the audit's next gaps (docs/answers-audit.md: 12 work parties, 13 sculpture, 14 burials and markers, 15 smudge
+fires and torches, 17 lost child, 19 soup rounds, 20 children's race, 21 mushroom supper, Story_Seeds, ProphetHill,
+BanditRoad). Round B leftovers not built: an engaged couple planning the wedding with the council; close family
+waiting by the bed during labour (left to the game's own birth ritual).
 
 Before it, 0.17.4 "Sat down, seen off, asked in", audit gaps 2, 3 and 6. `PlayOut/PlaySit.cs`: a Visit with `sit`
 (and `sitBy` Fire) to someone up and free starts the visitor's job at a seat (`targetC` = the other) and the other's

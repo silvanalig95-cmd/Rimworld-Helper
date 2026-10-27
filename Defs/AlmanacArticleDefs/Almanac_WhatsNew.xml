@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.17.9</version>
+        <date>27 October 2026</date>
+        <title>Family names, suppers and visits</title>
+        <points>
+          <li>Two or more of the colony with the same last name who are family to each other are known by it, "the Boyds", and their story says what the family's name stands for.</li>
+          <li>Gossip about one of a known family now and then brings the family into it, and says only what the family is really known for.</li>
+          <li>A married or engaged couple with two last names can be asked by the council whether they take one. A married couple takes it at once, an engaged one at the wedding.</li>
+          <li>Three or more of a family at home sometimes sit down to supper together at the dining table, a meal each, the eldest at its head.</li>
+          <li>Grown brothers and sisters have moments of their own: a word about the old days between close ones, a dig between rivals.</li>
+          <li>A parent of sixty or more is looked in on now and then by a grown child, who sits with them a while, more often when they're ill.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.17.8</version>
         <date>27 October 2026</date>
         <title>Fed, sheltered, and a fire laid by hand</title>

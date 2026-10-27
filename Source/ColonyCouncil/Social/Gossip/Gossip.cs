@@ -268,6 +268,15 @@ namespace ColonyCouncil
                 if (Friend(teller, subject)) tags.Add("aboutfriend");
                 if (Rival(teller, subject)) tags.Add("aboutrival");
                 if (subject.relations?.DirectRelations?.Any(r => r.otherPawn == teller && r.def != null && r.def.familyByBloodRelation) ?? false) tags.Add("aboutkin");
+                // One of a known family, told by someone outside it: now and then the family comes into it, and what
+                // its name stands for (Social/FamilyNames.cs).
+                if (FamilyNames.Plural(subject) != null && !FamilyNames.Same(teller, subject) && Rand.Chance(FamilyLifeMath.FamilyGossipChance))
+                {
+                    tags.Add("aboutfamily");
+                    int leans = FamilyNames.Leans(subject);
+                    if (leans > 0) tags.Add("famgood");
+                    else if (leans < 0) tags.Add("fambad");
+                }
                 // The groups (Social/Groups/, by their tags): one of the teller's own, or someone who belongs nowhere.
                 if (SameGroup(teller, subject)) tags.Add("aboutgroupmate");
                 else if (PeopleTags.Identity(subject).Contains("outsider")) tags.Add("aboutoutsider");
@@ -285,7 +294,8 @@ namespace ColonyCouncil
                 string raw = Flavor.FromPool(pool, speaker, null, null, tags);
                 if (raw.NullOrEmpty()) return null;
                 return raw.Formatted(speaker.Named("PAWN"), listener.Named("OTHER"), subject.Named("SUBJECT"), (d.victimName ?? "").Named("VICTIM"),
-                    Deeds.TextOf(d, subject).Named("DEED"), (d.label ?? "").Named("LABEL"), (d.detail ?? "").Named("DETAIL")).Resolve();
+                    Deeds.TextOf(d, subject).Named("DEED"), (d.label ?? "").Named("LABEL"), (d.detail ?? "").Named("DETAIL"),
+                    (FamilyNames.Plural(subject) ?? "").Named("FAMILY")).Resolve();
             }
             catch (Exception e)
             {

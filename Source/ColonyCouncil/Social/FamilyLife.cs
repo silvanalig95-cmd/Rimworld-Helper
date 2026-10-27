@@ -44,6 +44,8 @@ namespace ColonyCouncil
             foreach (var x in new[] { a, b })
                 if (!comp.journals.WroteWithin(x)) comp.journals.Write(x, engaged ? "Council_Journal_Engaged" : "Council_Journal_NewLove", null, (x == a ? b : a).Named("OTHER"));
             Reactions(a, b, engaged);
+            // Two names: the council is asked a day later whether they take one (Social/FamilyNames.cs).
+            if (engaged) FamilyNames.Notify_Engaged(a, b);
         }
 
         /// <summary>

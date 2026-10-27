@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Family names, suppers and visits
+
+*27 October 2026, version 0.17.9*
+
+- Two or more of the colony with the same last name who are family to each other are known by it, "the Boyds", and their story says what the family's name stands for.
+- Gossip about one of a known family now and then brings the family into it, and says only what the family is really known for.
+- A married or engaged couple with two last names can be asked by the council whether they take one. A married couple takes it at once, an engaged one at the wedding.
+- Three or more of a family at home sometimes sit down to supper together at the dining table, a meal each, the eldest at its head.
+- Grown brothers and sisters have moments of their own: a word about the old days between close ones, a dig between rivals.
+- A parent of sixty or more is looked in on now and then by a grown child, who sits with them a while, more often when they're ill.
+
 ## Fed, sheltered, and a fire laid by hand
 
 *27 October 2026, version 0.17.8*

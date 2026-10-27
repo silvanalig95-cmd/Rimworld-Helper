@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A story about one of a known family, told by someone outside it (Source/ColonyCouncil/Social/FamilyNames.cs, Gossip.Tags):
+    now and then the family comes into it, tagged [aboutfamily], with {FAMILY} the family's name ("Boyds", said "the
+    Boyds"). What the family's name stands for adds [famgood] when it is well spoken of, [fambad] when badly: only those
+    lines say what the family is like.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_GoodPlain</defName>
+    <pool>Rimfolk_Gossip_Good_Plain</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] One of the {FAMILY}, {SUBJECT_nameDef}, {DEED}.</li>
+        <li>[aboutfamily] {SUBJECT_nameDef} of the {FAMILY} {DEED}, did you hear?</li>
+        <li>[aboutfamily,famgood] {SUBJECT_nameDef} {DEED}, which is the {FAMILY} all over.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_GoodPraise</defName>
+    <pool>Rimfolk_Gossip_Good_Praise</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] {SUBJECT_nameDef} {DEED}, and the {FAMILY} can be proud of {SUBJECT_objective}.</li>
+        <li>[aboutfamily,famgood] The {FAMILY} are good people, and {SUBJECT_nameDef} {DEED}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_GoodScorn</defName>
+    <pool>Rimfolk_Gossip_Good_Scorn</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] {SUBJECT_nameDef} {DEED}, and we'll never hear the end of it from the {FAMILY}.</li>
+        <li>[aboutfamily,fambad] {SUBJECT_nameDef} {DEED}, and for one of the {FAMILY} that's something.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_GoodJoke</defName>
+    <pool>Rimfolk_Gossip_Good_Joke</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] {SUBJECT_nameDef} {DEED}, so the {FAMILY} will be insufferable all week.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_BadPlain</defName>
+    <pool>Rimfolk_Gossip_Bad_Plain</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] One of the {FAMILY}, {SUBJECT_nameDef}, {DEED}.</li>
+        <li>[aboutfamily,fambad] {SUBJECT_nameDef} {DEED}, but what else do you expect from the {FAMILY}?</li>
+        <li>[aboutfamily,famgood] {SUBJECT_nameDef} {DEED}, and that's not like the {FAMILY} at all.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_BadPraise</defName>
+    <pool>Rimfolk_Gossip_Bad_Praise</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily,famgood] {SUBJECT_nameDef} {DEED}, but the {FAMILY} are good people, it's not like them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_BadScorn</defName>
+    <pool>Rimfolk_Gossip_Bad_Scorn</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] {SUBJECT_nameDef} {DEED}, and don't let the {FAMILY} tell you otherwise.</li>
+        <li>[aboutfamily,fambad] {SUBJECT_nameDef} {DEED}, the {FAMILY} all over.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_BadJoke</defName>
+    <pool>Rimfolk_Gossip_Bad_Joke</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] {SUBJECT_nameDef} {DEED}, and the {FAMILY} will be blaming each other by supper.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- The answers to it. -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_Admire</defName>
+    <pool>Rimfolk_Gossip_React_Admire</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily,famgood] Doesn't surprise me, the {FAMILY} are like that.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_Condemn</defName>
+    <pool>Rimfolk_Gossip_React_Condemn</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily,fambad] That's the {FAMILY} for you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GossipExt_Family_Defend</defName>
+    <pool>Rimfolk_Gossip_React_Defend</pool>
+    <lines>
+      <plain>
+        <li>[aboutfamily] Leave the rest of the {FAMILY} out of it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

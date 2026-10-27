@@ -7,6 +7,11 @@
     a parent of theirs died, "baby" for a baby). It comes a day after a child's parents die, and in its turn for a lost
     child taken in or a ward; each child once. Naming a parent is DilemmaEffect_Adopt, which comes first, so the
     evening together is the new parent's.
+
+    Whether a couple with two names takes one (Source/ColonyCouncil/Social/FamilyNames.cs; DilemmaWorker_SharedName: A
+    and B married or engaged, {LASTA} and {LASTB} their last names as they were; its tag "engaged" for a couple not yet
+    married). It comes a day after a couple with two names is engaged, and in its turn for a married one; each couple
+    once. A married couple takes the name at once, an engaged one at the wedding (DilemmaEffect_SharedName).
   -->
 
   <ColonyCouncil.DilemmaDef>
@@ -62,6 +67,59 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_RaisedByAll</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Words"><label>a word at supper for {A_nameDef}</label><spots><li>Dining</li><li>Gather</li></spots><hours>17~21</hours></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmFam_SharedName</defName>
+    <label>one name or two</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_SharedName</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>20</cooldownDays>
+    <texts>
+      <li>[engaged] {A_nameDef} {LASTA} and {B_nameDef} {LASTB} are to be married, and mean to keep their own names. Some say a family should go by one, and the two have asked the council what it thinks.</li>
+      <li>[engaged] {A_nameDef} and {B_nameDef} are engaged, and the talk at supper is whose name they will go by. {A_nameDef} has said {A_pronoun} would gladly be a {LASTB}, and asked the council to settle it.</li>
+      <li>[engaged] There will be a wedding soon, and one question left over: will it be {LASTA} and {LASTB} still, or one name for the two of them? {A_nameDef} and {B_nameDef} would like the council to say.</li>
+      <li>[!engaged] {A_nameDef} and {B_nameDef} have been married a while and still go by two names. {A_nameDef} has wondered aloud about taking the {LASTB} name, and asked the council to settle it.</li>
+      <li>[!engaged] Married, and still {LASTA} and {LASTB}: {A_nameDef} and {B_nameDef} have asked the council whether one of them should take the other's name.</li>
+      <li>{A_nameDef} {LASTA} and {B_nameDef} {LASTB} have put a small question to the council: should they go by one family name?</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} takes the {LASTB} name</label>
+        <outcome>{A_nameDef} goes by {LASTB} now, the same as {B_nameDef}, and the colony is still getting used to it.</outcome>
+        <outcomes>
+          <li>[engaged] When they marry, {A_nameDef} will take the {LASTB} name. {B_nameDef} tried not to look pleased about it, and failed.</li>
+          <li>[!engaged] {A_nameDef} goes by {LASTB} now, the same as {B_nameDef}. The council wrote it into the colony's chronicle, and that was that.</li>
+        </outcomes>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SharedName"><taker>A</taker></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} takes the {LASTA} name</label>
+        <outcome>{B_nameDef} goes by {LASTA} now, the same as {A_nameDef}, and the colony is still getting used to it.</outcome>
+        <outcomes>
+          <li>[engaged] When they marry, {B_nameDef} will take the {LASTA} name. {A_nameDef} hadn't expected it, and was more pleased than {A_pronoun} let on.</li>
+        </outcomes>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SharedName"><taker>B</taker></li>
+        </effects>
+      </li>
+      <li>
+        <label>Each keeps their own name</label>
+        <outcome>{A_nameDef} {LASTA} and {B_nameDef} {LASTB} keep their own names. The council said a family is the people in it, not what they are called.</outcome>
+        <outcomes>
+          <li>[engaged] They will marry as {A_nameDef} {LASTA} and {B_nameDef} {LASTB}, each with their own name. The council said a family is the people in it, not what they are called.</li>
+        </outcomes>
+        <ways><openness>1</openness><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SharedName"><keep>true</keep></li>
         </effects>
       </li>
     </options>

@@ -3,7 +3,9 @@ using ColonyCouncil;
 /// <summary>
 /// The family's life together (Source/ColonyCouncil/Social/FamilyLifeMath.cs): who is glad of a new couple and who
 /// doubts it, whether a child on the way is wanted, which birthdays the family marks, how much family weighs in who
-/// inherits, the family names offered for a baby, and who a child was named after.
+/// inherits, the family names offered for a baby, who a child was named after, what a family is called and what its
+/// name stands for, who sits down to a family supper, how grown siblings get on, and how often an ageing parent is
+/// looked in on.
 /// </summary>
 public static class FamilyLifeTests
 {
@@ -76,6 +78,74 @@ public static class FamilyLifeTests
         Check(FamilyLifeMath.NamedAfter("Toni", rel) == 1, "the closest older relative of that name");
         Check(FamilyLifeMath.NamedAfter("Morgan", rel) == -1 && FamilyLifeMath.NamedAfter("", rel) == -1 && FamilyLifeMath.NamedAfter("Toni", null) == -1, "nobody of that name");
         Check(FamilyLifeMath.NamedAfter("Toni", new List<(string, int, bool)> { ("Toni", 0, false) }) == -1, "not after someone born later");
+
+
+        // ---------- A family's name ----------
+        Check(FamilyLifeMath.FamilyPlural("Boyd") == "Boyds" && FamilyLifeMath.FamilyPlural("Kennedy") == "Kennedys", "a family by its name");
+        Check(FamilyLifeMath.FamilyPlural("Jones") == "Joneses" && FamilyLifeMath.FamilyPlural("Fox") == "Foxes" && FamilyLifeMath.FamilyPlural("Church") == "Churches"
+              && FamilyLifeMath.FamilyPlural("Bush") == "Bushes" && FamilyLifeMath.FamilyPlural("Diaz") == "Diazes", "names that end in a hiss take -es");
+        Check(FamilyLifeMath.FamilyPlural(" Boyd ") == "Boyds", "spaces round a name don't count");
+        Check(FamilyLifeMath.FamilyPlural(null) == null && FamilyLifeMath.FamilyPlural("  ") == null, "no name, no family name");
+        Check(FamilyLifeMath.SameName("Boyd", "boyd") && !FamilyLifeMath.SameName("Boyd", "Boyds"), "the same name, case aside");
+        Check(!FamilyLifeMath.SameName("", "") && !FamilyLifeMath.SameName(null, "Boyd"), "blanks are nobody's name");
+
+        // ---------- Who belongs together ----------
+        var groups = FamilyLifeMath.Clusters(6, new[] { (0, 2), (2, 4), (1, 5), (9, 0), (-1, 3) });
+        Check(groups.Count == 3, "three groups: linked, linked through another, and alone");
+        Check(groups[0].SequenceEqual(new[] { 0, 2, 4 }) && groups[1].SequenceEqual(new[] { 1, 5 }) && groups[2].SequenceEqual(new[] { 3 }), "each group in order, smallest first");
+        Check(FamilyLifeMath.Clusters(4, new[] { (3, 2), (1, 0), (2, 1) }).Count == 1, "a chain is one family");
+        Check(FamilyLifeMath.Clusters(0, null).Count == 0 && FamilyLifeMath.Clusters(3, null).Count == 3, "nobody, or nobody linked");
+        var rnd = new Random(7);
+        for (int t = 0; t < 40; t++)
+        {
+            int n = rnd.Next(1, 12);
+            var links = Enumerable.Range(0, rnd.Next(0, 15)).Select(_ => (rnd.Next(n), rnd.Next(n))).ToList();
+            var cl = FamilyLifeMath.Clusters(n, links);
+            Check(cl.SelectMany(g => g).OrderBy(i => i).SequenceEqual(Enumerable.Range(0, n)), $"everyone in exactly one group ({t})");
+            Check(links.All(l => cl.Any(g => g.Contains(l.Item1) && g.Contains(l.Item2))), $"the linked share a group ({t})");
+        }
+
+        // ---------- What a family's name stands for ----------
+        var kind = new float[RepMath.Facets];
+        kind[(int)RepFacet.Kindness] = 20f;
+        kind[(int)RepFacet.Temper] = 8f;
+        var plain = new float[RepMath.Facets];
+        plain[(int)RepFacet.Kindness] = 4f;
+        plain[(int)RepFacet.Diligence] = 14f;
+        var famName = FamilyLifeMath.FamilyStanding(new List<float[]> { kind, plain, null });
+        Check(famName != null && Math.Abs(famName[(int)RepFacet.Kindness] - 12f) < 0.01f && Math.Abs(famName[(int)RepFacet.Diligence] - 7f) < 0.01f, "each side averaged over the family");
+        Check(FamilyLifeMath.FamilyStanding(new List<float[]>()) == null && FamilyLifeMath.FamilyStanding(null) == null, "no family, no name");
+        var sides = FamilyLifeMath.FamilySides(famName);
+        Check(sides.Count == 2 && sides[0] == (RepFacet.Kindness, true) && sides[1] == (RepFacet.Diligence, true), "the sides that show, strongest first");
+        Check(!sides.Any(x => x.facet == RepFacet.Temper), "a temper only one of them has doesn't show for them all");
+        var loud = new float[RepMath.Facets];
+        for (int f = 0; f < RepMath.Facets; f++) loud[f] = RepMath.Strong;
+        Check(FamilyLifeMath.FamilySides(loud).Count == 3 && FamilyLifeMath.FamilySides(loud, 1).Count == 1, "at most a few sides");
+        Check(FamilyLifeMath.FamilySides(new float[RepMath.Facets]).Count == 0 && FamilyLifeMath.FamilySides(null).Count == 0, "nothing said, nothing shown");
+        Check(FamilyLifeMath.GoodSide(RepFacet.Kindness, true) && !FamilyLifeMath.GoodSide(RepFacet.Kindness, false), "kind is good, cruel isn't");
+        Check(!FamilyLifeMath.GoodSide(RepFacet.Temper, true) && FamilyLifeMath.GoodSide(RepFacet.Temper, false), "a temper speaks against them, a level head for");
+        Check(FamilyLifeMath.FamilyGossipChance > 0f && FamilyLifeMath.FamilyGossipChance < 0.5f, "the family is brought into a story now and then, not always");
+
+        // ---------- A family supper ----------
+        Check(FamilyLifeMath.Supper(3, 3) && FamilyLifeMath.Supper(5, 9), "three or more at home, and a meal each");
+        Check(!FamilyLifeMath.Supper(2, 10), "two isn't a family supper");
+        Check(!FamilyLifeMath.Supper(4, 3) && !FamilyLifeMath.Supper(3, 0), "not without a meal for each of them");
+
+        // ---------- Grown brothers and sisters ----------
+        Check(FamilyLifeMath.Siblings(FamilyLifeMath.SiblingClose, 40) == SiblingTake.Close, "close when each thinks well of the other");
+        Check(FamilyLifeMath.Siblings(60, FamilyLifeMath.SiblingClose - 1) == SiblingTake.None, "fond on one side only is nothing to remark on");
+        Check(FamilyLifeMath.Siblings(FamilyLifeMath.SiblingRival, 80) == SiblingTake.Rival && FamilyLifeMath.Siblings(50, -60) == SiblingTake.Rival, "rivals when either can't stand the other");
+        Check(FamilyLifeMath.Siblings(0, 0) == SiblingTake.None && FamilyLifeMath.Siblings(FamilyLifeMath.SiblingRival + 1, 0) == SiblingTake.None, "a little coolness is nothing");
+        for (int ab = -100; ab <= 100; ab += 10)
+            for (int ba = -100; ba <= 100; ba += 10)
+                Check(FamilyLifeMath.Siblings(ab, ba) == FamilyLifeMath.Siblings(ba, ab), $"it's the same both ways ({ab}, {ba})");
+
+        // ---------- An ageing parent ----------
+        Check(FamilyLifeMath.LookInChance(FamilyLifeMath.ElderAge - 1f, true) == 0f, "not before they're old");
+        Check(FamilyLifeMath.LookInChance(62f, false) > 0f && FamilyLifeMath.LookInChance(80f, false) > FamilyLifeMath.LookInChance(62f, false), "more often as they age");
+        Check(FamilyLifeMath.LookInChance(62f, true) > FamilyLifeMath.LookInChance(90f, false), "most when they're ill");
+        Check(FamilyLifeMath.LookInChance(120f, true) <= 1f, "a chance");
+        Check(FamilyLifeMath.LookInGapDays(true) < FamilyLifeMath.LookInGapDays(false) && FamilyLifeMath.LookInGapDays(true) >= 1, "sooner again when they're ill");
 
         return cases;
     }

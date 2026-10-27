@@ -418,4 +418,86 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!--
+    The family's days together (Social/FamilyBonds.cs). PlayFamilySupper: said at a family's supper table. SaySiblingClose
+    and SaySiblingRival: one grown sibling to the other ({OTHER}: the other; {RELATION}: what they are to the speaker,
+    "brother", "half-sister").
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_PlayFamilySupper</defName>
+    <lines>
+      <plain>
+        <li>Everyone sit, it's getting cold.</li>
+        <li>Elbows off the table, all of you.</li>
+        <li>We don't do this often enough, all of us at once.</li>
+        <li>Tell them what you told me this morning.</li>
+        <li>Somebody pour, my hands are full.</li>
+        <li>Pass that down this end before it's gone.</li>
+        <li>[child] Can I sit next to you?</li>
+        <li>[child] Do I have to finish all of it?</li>
+      </plain>
+      <warm><li>Look at you all, it does me good.</li></warm>
+      <blunt><li>Eat first, talk after.</li></blunt>
+      <cheerful><li>Best seat in the colony, this table.</li></cheerful>
+      <gloomy><li>Enjoy it while we're all still here.</li></gloomy>
+      <cold><li>Sit where you like, but sit.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SaySiblingClose</defName>
+    <lines>
+      <plain>
+        <li>You're the only one who remembers the old place the way I do.</li>
+        <li>I'm glad it's you out here with me, {OTHER_nameDef}.</li>
+        <li>Some things I can only tell you.</li>
+        <li>We used to fight over everything, and now look at us.</li>
+        <li>You still laugh the way you did when we were small.</li>
+        <li>Whatever happens out here, I've got you.</li>
+      </plain>
+      <warm><li>My {RELATION}, still looking out for me.</li></warm>
+      <blunt><li>You're all right, you know that?</li></blunt>
+      <cheerful><li>Just like old times, the two of us.</li></cheerful>
+      <gloomy><li>When the rest is gone, it'll still be you and me.</li></gloomy>
+      <cold><li>You remain the least tiresome of my relations.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_SaySiblingRival</defName>
+    <lines>
+      <plain>
+        <li>Of course you'd do it that way, you always did.</li>
+        <li>Still trying to be the clever one, {OTHER_nameDef}?</li>
+        <li>Nothing I do is ever good enough for you, is it?</li>
+        <li>You haven't changed one bit since we were small.</li>
+        <li>Go on, tell me how you'd have done it better.</li>
+        <li>Some of us grew up, {OTHER_nameDef}.</li>
+      </plain>
+      <warm><li>I'm fond of you, but you are impossible.</li></warm>
+      <blunt><li>Leave it, {OTHER_nameDef}.</li></blunt>
+      <cheerful><li>Still a sore loser, I see.</li></cheerful>
+      <gloomy><li>It's always been like this between us, hasn't it?</li></gloomy>
+      <cold><li>I see the years have not improved you.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- One name for two (Social/FamilyNames.cs): the one who took their partner's name ({OTHER}: the partner; {OLD} and {NEW}: the last names). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_TookName</defName>
+    <lines>
+      <plain>
+        <li>I'm {NEW} now, like {OTHER_nameDef}. I keep starting to say {OLD} out of habit.</li>
+        <li>The council asked, and I said yes: I've taken {OTHER_nameDef}'s name. {NEW}. It sounds right.</li>
+        <li>{OLD} was my name for a long time. {NEW} will be my name for longer.</li>
+        <li>Someone called me by {OTHER_nameDef}'s name today, and it was mine.</li>
+        <li>I've given up {OLD} for {NEW}. {OTHER_nameDef} pretends not to be pleased.</li>
+        <li>We share one name now, {OTHER_nameDef} and I.</li>
+      </plain>
+      <warm><li>{NEW}, the same as {OTHER_nameDef}. I like the sound of the two of us.</li></warm>
+      <gloomy><li>I let {OLD} go today. Names are only names, but still.</li></gloomy>
+      <cold><li>I have taken the name {NEW}. It simplifies matters.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
 </Defs>

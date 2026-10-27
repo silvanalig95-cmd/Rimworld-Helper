@@ -303,6 +303,9 @@ namespace ColonyCouncil
             // Named after a grandmother, or sharing a name with one (Social/FamilyLife.cs).
             string named = FamilyLife.NamedAfterLine(p);
             if (named != null) treeLines.Insert(0, named);
+            // One of the Boyds, and what the family's name stands for (Social/FamilyNames.cs).
+            string known = FamilyNames.StoryLine(p);
+            if (known != null) treeLines.Insert(0, known);
             o.familyTip = string.Join("\n", treeLines);
 
             // ---- The sections ----
@@ -320,6 +323,7 @@ namespace ColonyCouncil
             if (tree.Count > 0 || further > 0)
             {
                 var family = new Section { key = "family", header = "CC_Story_Family".Translate(), icon = Icons.Bonds, tree = tree, treeMore = further };
+                if (known != null) family.lines.Add((known, Faint));
                 if (named != null) family.lines.Add((named, Faint));
                 list.Add(family);
             }

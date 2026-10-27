@@ -187,6 +187,10 @@ namespace ColonyCouncil
             Guardians.Hourly(comp);
             // A room left a day ago goes to family (Social/FamilyInheritance.cs).
             Inheritance.Hourly(comp);
+            // A couple engaged a day ago with two names: whether they take one (Social/FamilyNames.cs).
+            FamilyNames.Hourly(comp);
+            // Family suppers, grown brothers and sisters, an ageing parent looked in on (Social/FamilyBonds.cs).
+            FamilyBonds.Hourly(comp);
         }
 
         private static float DaysHere(Pawn p) => (p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 999999) / (float)GenDate.TicksPerDay;

@@ -647,7 +647,12 @@ Social tab, and from then on they are parent and child for everything above, the
 colonist's heirloom prefers family, blood closest, and their own room goes a day later to the closest of their
 family here without one. A husband, wife or betrothed who dies leaves the one left a long story of their own; their
 wedding day comes round as the survivor's own, kept with an hour at the grave (or a long walk), and when a widowed
-parent finds someone new, their children are glad for them, or hurt for the parent they lost.
+parent finds someone new, their children are glad for them, or hurt for the parent they lost. Two or more of the
+colony with one last name who are family are known by it ("the Boyds"), their story says what the family's name
+stands for, and gossip now and then brings the family into it; a couple with two names can be asked whether they
+take one (at once, or at the wedding). A family of three or more sometimes sits down to supper at one table, grown
+brothers and sisters have their own word about the old days (or their own digs), and a parent of sixty or more is
+looked in on by a grown child, more often when ill.
 
 #### Traits that change
 Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast

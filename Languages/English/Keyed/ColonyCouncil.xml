@@ -1413,6 +1413,34 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Fam_OldWeddingDay>{PAWN_nameDef} and {LOST} were married {YEARS} years ago today. {PAWN_nameDef} keeps the day on {PAWN_possessive} own.</CC_Fam_OldWeddingDay>
   <CC_Fam_OldWeddingDayLabel>keeping the wedding day with {LOST}</CC_Fam_OldWeddingDayLabel>
   <CC_Fam_OldWeddingDayCause>The wedding day with {LOST}, kept alone.</CC_Fam_OldWeddingDayCause>
+  <CC_FamRep_Courage_P>brave</CC_FamRep_Courage_P>
+  <CC_FamRep_Courage_M>timid</CC_FamRep_Courage_M>
+  <CC_FamRep_Kindness_P>kind</CC_FamRep_Kindness_P>
+  <CC_FamRep_Kindness_M>hard-hearted</CC_FamRep_Kindness_M>
+  <CC_FamRep_Diligence_P>hard-working</CC_FamRep_Diligence_P>
+  <CC_FamRep_Diligence_M>idle</CC_FamRep_Diligence_M>
+  <CC_FamRep_Skill_P>skilled</CC_FamRep_Skill_P>
+  <CC_FamRep_Skill_M>clumsy</CC_FamRep_Skill_M>
+  <CC_FamRep_Discretion_P>discreet</CC_FamRep_Discretion_P>
+  <CC_FamRep_Discretion_M>loose-tongued</CC_FamRep_Discretion_M>
+  <CC_FamRep_Temper_P>quick to anger</CC_FamRep_Temper_P>
+  <CC_FamRep_Temper_M>level-headed</CC_FamRep_Temper_M>
+  <CC_FamRep_Good>The {FAMILY} are known as {GOOD}.</CC_FamRep_Good>
+  <CC_FamRep_Bad>The {FAMILY} are known as {BAD}.</CC_FamRep_Bad>
+  <CC_FamRep_Both>The {FAMILY} are known as {GOOD}, though {BAD}.</CC_FamRep_Both>
+  <CC_FamName_Story>{PAWN_nameDef} is one of the {FAMILY}, {COUNT} of them in the colony.</CC_FamName_Story>
+  <CC_FamName_Chronicle>{A_nameDef} took {B_nameDef}'s family name, and is {A_nameDef} {LAST} now.</CC_FamName_Chronicle>
+  <CC_FamName_Taken>{A_nameDef} has taken {B_nameDef}'s family name: {A_nameDef} {LAST} from today.</CC_FamName_Taken>
+  <CC_FamName_FaithKeep>Their faith is against {A_nameDef} taking that name.</CC_FamName_FaithKeep>
+  <CC_FamName_FaithTake>Their faith asks a married couple to share one name.</CC_FamName_FaithTake>
+  <CC_Fam_SupperLabel>the {FAMILY}' supper</CC_Fam_SupperLabel>
+  <CC_Fam_SupperLabelPlain>the family supper</CC_Fam_SupperLabelPlain>
+  <CC_Fam_SupperCause>Supper with {A_nameDef}'s family, all at one table.</CC_Fam_SupperCause>
+  <CC_Fam_SiblingCloseCause>{A_nameDef} and {B_nameDef} talked about the old days.</CC_Fam_SiblingCloseCause>
+  <CC_Fam_SiblingRivalCause>{A_nameDef} had a dig at me, the way only family can.</CC_Fam_SiblingRivalCause>
+  <CC_Fam_LookInLabel>looking in on {B_nameDef}</CC_Fam_LookInLabel>
+  <CC_Fam_LookInCause>{A_nameDef} came to sit with {B_nameDef} a while.</CC_Fam_LookInCause>
+  <CC_Fam_LookInIllCause>{A_nameDef} came to sit with {B_nameDef} while {B_pronoun} was ill.</CC_Fam_LookInIllCause>
   <CC_Fam_BirthdayCause>{A_nameDef} turned {1} today.</CC_Fam_BirthdayCause>
   <CC_Family_NamedAfter>Named after {PAWN_possessive} {RELATION}, {OTHER_nameDef}.</CC_Family_NamedAfter>
   <CC_Family_SharesName>Shares a name with {PAWN_possessive} {RELATION}, {OTHER_nameDef}.</CC_Family_SharesName>
