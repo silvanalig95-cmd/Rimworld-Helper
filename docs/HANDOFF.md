@@ -1,6 +1,17 @@
 # Handoff: work in progress
 
-Last shipped: 0.20.0 "Guests who would stay", the player's five approved Hospitality ideas and their ask for wants by
+Last shipped: 0.20.1 "Ties weigh, they don't bar", the player's ask that ties at home make recruiting harder but
+never impossible. `GuestWill.Will.ties` carries each tie's kind (`GuestWillMath.Tie`); `TieWeight` (partner, children,
+leader 2; parent, leader's family, faith 1) and `ExtraFriends(weight, reasons)` (each reason beyond the first takes one
+off) give `Will.Extra`; `Willing` no longer counts ties. Hospitality's friends are read by name
+(`GuestWill.HospitalityFriends`: GetFriendsInColony, FriendsRequired + GetEnemiesInColony, as its tab does);
+`EnoughFriends` (friends >= required + Extra) gates the Recruit button, `WouldStay` (friends >= Extra) the happy
+guest's join and the council's guest who wants to stay. Titled guests go by Hospitality's seniority: no extra.
+`Patch_GuestWillFriends` postfixes the private `ITab_Pawn_Guest.GetRequiredFriends` so Hospitality's own bar shows the
+higher number; it's small enough that the JIT may inline it, in which case only the button and tooltip count it. Not
+tried in the game here.
+
+Before it, 0.20.0 "Guests who would stay", the player's five approved Hospitality ideas and their ask for wants by
 character (a passionate cook wants a good kitchen). `Integrations/GuestWill.cs` (pure numbers in `GuestWillMath.cs`,
 Tools/Tests/GuestWillTests.cs), setting `guestWill` (deep hooks, Hospitality). `GuestWill.Of(guest)` (cached 250
 ticks) reads ties (a love partner not here, juvenile children not here, parents while under 25 and not in love here,

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ties weigh, they don't bar
+
+*28 October 2026, version 0.20.1*
+
+- What ties a guest to home no longer bars them from joining. Each tie asks for more friends in the colony than Hospitality does: two for a partner or young children there, one for parents or a faith held fast.
+- Each reason to stay beyond the first makes up for one of those friends, so a guest in love here with a very good stay needs fewer.
+- The Recruit button's tooltip counts the friends out, and where the game allows it Hospitality's own friends bar shows the higher number too.
+
 ## Guests who would stay
 
 *28 October 2026, version 0.20.0*

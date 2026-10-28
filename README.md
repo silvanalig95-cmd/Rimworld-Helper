@@ -1512,12 +1512,14 @@ Each of these switches itself on only when its mod is there, and only asks for w
   complaint. With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors
   are here; once there is one, they may wish for a guest room worth the name, with a guest room plan to build it.
   A guest bed never counts as a free bed for a colonist. A guest joins of their own will only when they would
-  (setting "Guests join only when they would"): nothing holding them at home (a partner or young children there,
-  their parents while they're young, their people's leader, a faith held fast that isn't the colony's), a reason to
-  stay (love or family here, hard times at home, a very good stay, the colony's faith), a free bed, a room of their
-  own for the greedy, jealous and titled, four days of food, and what their passions and nature want of a home: a
-  passionate cook a decent kitchen, a grower fields to work, a gourmand fine meals, up to two things. Until then the
-  guest tab offers only to recruit them by force, and the Recruit button's tooltip says what's missing. What taking
+  (setting "Guests join only when they would"): a reason to stay (love or family here, hard times at home, a very
+  good stay, the colony's faith), a free bed, a room of their own for the greedy, jealous and titled, four days of
+  food, and what their passions and nature want of a home: a passionate cook a decent kitchen, a grower fields to
+  work, a gourmand fine meals, up to two things. What ties them to home never bars them but asks for more friends
+  here than Hospitality does: two more for a partner or young children there or for leading their people, one for
+  their parents while they're young, the leader's family or a faith held fast that isn't the colony's, and each
+  reason to stay beyond the first makes up for one. Until then the guest tab offers only to recruit them by force,
+  and the Recruit button's tooltip says what's missing. What taking
   them costs their people goes by who they are (less with no family there, twice for the leader's family). Before
   someone is recruited from the guest tab, a colonist who objects has their say at the council, and weeks later their family may walk in
   to take them home: let them go, send silver, or keep them at a price in goodwill and longing.

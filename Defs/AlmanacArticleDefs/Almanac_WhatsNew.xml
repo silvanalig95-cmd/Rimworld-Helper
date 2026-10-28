@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.20.1</version>
+        <date>28 October 2026</date>
+        <title>Ties weigh, they don't bar</title>
+        <points>
+          <li>What ties a guest to home no longer bars them from joining. Each tie asks for more friends in the colony than Hospitality does: two for a partner or young children there, one for parents or a faith held fast.</li>
+          <li>Each reason to stay beyond the first makes up for one of those friends, so a guest in love here with a very good stay needs fewer.</li>
+          <li>The Recruit button's tooltip counts the friends out, and where the game allows it Hospitality's own friends bar shows the higher number too.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.20.0</version>
         <date>28 October 2026</date>
         <title>Guests who would stay</title>

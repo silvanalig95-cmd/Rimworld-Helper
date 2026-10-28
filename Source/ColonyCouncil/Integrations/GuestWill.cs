@@ -11,10 +11,11 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// A Hospitality guest joins the colony of their own will only when they would (the numbers are GuestWillMath.cs):
-    /// nothing holds them at home, they have a reason to stay, there is room for one more, and what someone of their
-    /// passions and nature wants of a home is there (a passionate cook wants a decent kitchen). Short of that, the
-    /// guest tab's Recruit button offers only to recruit them by force, and its tooltip says why. Hospitality's own
-    /// "a happy guest asks to join" and the council's "a guest who wants to stay" come only for a guest who would.
+    /// they have a reason to stay, there is room for one more, and what someone of their passions and nature wants of a
+    /// home is there (a passionate cook wants a decent kitchen). What holds them at home never bars them, but each tie
+    /// asks for more friends here than Hospitality does, less one for each reason to stay beyond the first. Short of
+    /// that, the guest tab's Recruit button offers only to recruit them by force, and its tooltip says why. Hospitality's
+    /// own "a happy guest asks to join" and the council's "a guest who wants to stay" come only for a guest who would.
     /// What taking them costs their people goes by who they are (<see cref="StatPart_GuestCost"/>). Before someone is
     /// taken in, those of the colony who object have their say at the council (Council_DlmGuest_Invite), and their
     /// family may come weeks later to ask for them back (Council_DlmGuest_KinAsks; GuestKin). All by name, only with
@@ -27,13 +28,32 @@ namespace ColonyCouncil
         /// <summary>What was found about a guest, worked out at most every few seconds (the guest tab draws every frame).</summary>
         public class Will
         {
-            public readonly List<string> ties = new List<string>();
+            public readonly List<(string tie, string text)> ties = new List<(string, string)>();
             public readonly List<string> reasons = new List<string>();
             public readonly List<string> noRoom = new List<string>();
             public readonly List<(string want, bool met, string now)> wants = new List<(string, bool, string)>();
+            /// <summary>Friends here (Hospitality's count; -1 when it can't be read), and what Hospitality itself asks for (-1 the same).</summary>
+            public int friends = -1, required = -1;
+            /// <summary>A titled guest: Hospitality goes by seniority, not friends, so the ties ask for no more friends.</summary>
+            public bool titled;
             public int tick;
 
-            public bool Willing => GuestWillMath.Willing(ties.Count, reasons.Count, noRoom.Count == 0, wants.Count(w => !w.met));
+            public int TieWeight => ties.Sum(t => GuestWillMath.TieWeight(t.tie));
+
+            /// <summary>The friends asked for beyond Hospitality's own, for what holds them at home.</summary>
+            public int Extra => titled ? 0 : GuestWillMath.ExtraFriends(TieWeight, reasons.Count);
+
+            /// <summary>A reason to stay, room for one more, and what they want of a home.</summary>
+            public bool Willing => GuestWillMath.Willing(reasons.Count, noRoom.Count == 0, wants.Count(w => !w.met));
+
+            /// <summary>Friends enough here for Hospitality and for what holds them at home (yes when Hospitality's count can't be read).</summary>
+            public bool EnoughFriends => friends < 0 || required < 0 || friends >= required + Extra;
+
+            /// <summary>
+            /// They'd stay, where Hospitality asks for no friends (its happy guest who asks to join, the council's guest who
+            /// wants to stay): only the friends their ties ask for.
+            /// </summary>
+            public bool WouldStay => Willing && (friends < 0 || friends >= Extra);
         }
 
         private static readonly Dictionary<Pawn, Will> cache = new Dictionary<Pawn, Will>();
@@ -45,7 +65,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>They'd stay of their own will (always, with this off).</summary>
-        public static bool WouldStay(Pawn guest) => !On || guest == null || Of(guest).Willing;
+        public static bool WouldStay(Pawn guest) => !On || guest == null || Of(guest).WouldStay;
 
         public static Will Of(Pawn g)
         {
@@ -61,6 +81,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("a guest's will", e);
                 w.ties.Clear();
+                w.friends = w.required = -1;
                 w.noRoom.Clear();
                 w.wants.Clear();
                 w.reasons.Add("?");
@@ -94,34 +115,37 @@ namespace ColonyCouncil
             if (score >= GuestWillMath.GoodStay) w.reasons.Add("CC_GuestWill_Reason_Stay".Translate(g.Named("PAWN")).Resolve());
             if (primary != null && g.Ideo == primary) w.reasons.Add("CC_GuestWill_Reason_Faith".Translate(g.Named("PAWN"), primary.name.Named("IDEO")).Resolve());
 
-            // What holds them at home.
+            // What holds them at home: each tie asks for more friends here.
             foreach (var r in LovePartnerRelationUtility.ExistingLovePartners(g, false).ToList())
             {
                 var o = r.otherPawn;
                 if (o == null || o.Dead || Here(o)) continue;
-                w.ties.Add("CC_GuestWill_Tie_Partner".Translate(g.Named("PAWN"), o.Named("OTHER"), r.def.GetGenderSpecificLabel(o).Named("RELATION"), Among(o).Named("WHERE")).Resolve());
+                Tie(w, GuestWillMath.Tie.Partner, g.Named("PAWN"), o.Named("OTHER"), r.def.GetGenderSpecificLabel(o).Named("RELATION"), Among(o).Named("WHERE"));
             }
             var children = Family.ChildrenOf(g).Where(c => c != null && !c.Dead && c.DevelopmentalStage.Juvenile() && !Here(c)).ToList();
             if (children.Count > 0)
-                w.ties.Add((children.Count == 1 ? "CC_GuestWill_Tie_Child" : "CC_GuestWill_Tie_Children")
-                    .Translate(g.Named("PAWN"), children[0].Named("OTHER"), Among(children[0]).Named("WHERE")).Resolve());
+                Tie(w, children.Count == 1 ? GuestWillMath.Tie.Child : GuestWillMath.Tie.Children, g.Named("PAWN"), children[0].Named("OTHER"), Among(children[0]).Named("WHERE"));
             if (GuestWillMath.ParentsHold(g.ageTracker.AgeBiologicalYearsFloat, love))
             {
                 var parent = Family.ParentsOf(g).FirstOrDefault(o => o != null && !o.Dead && !Here(o));
                 if (parent != null)
-                    w.ties.Add("CC_GuestWill_Tie_Parent".Translate(g.Named("PAWN"), parent.Named("OTHER"), Family.Relation(g, parent).Named("RELATION"), Among(parent).Named("WHERE")).Resolve());
+                    Tie(w, GuestWillMath.Tie.Parent, g.Named("PAWN"), parent.Named("OTHER"), Family.Relation(g, parent).Named("RELATION"), Among(parent).Named("WHERE"));
             }
             var leader = home?.leader;
             if (leader != null && !leader.Dead && (leader == g || g.relations != null && (g.relations.FamilyByBlood.Contains(leader) || LovePartnerRelationUtility.LovePartnerRelationExists(g, leader))))
-                w.ties.Add((leader == g ? "CC_GuestWill_Tie_Leader" : "CC_GuestWill_Tie_LeaderKin").Translate(g.Named("PAWN"), leader.Named("OTHER"), home.Name.Named("FACTION")).Resolve());
+                Tie(w, leader == g ? GuestWillMath.Tie.Leader : GuestWillMath.Tie.LeaderKin, g.Named("PAWN"), leader.Named("OTHER"), home.Name.Named("FACTION"));
             if (primary != null && g.Ideo != null && g.Ideo != primary && g.ideo.Certainty >= GuestWillMath.DevoutCertainty)
-                w.ties.Add("CC_GuestWill_Tie_Faith".Translate(g.Named("PAWN"), g.Ideo.name.Named("IDEO")).Resolve());
+                Tie(w, GuestWillMath.Tie.Faith, g.Named("PAWN"), g.Ideo.name.Named("IDEO"));
+
+            // Friends here, as Hospitality counts them (titled guests go by its seniority instead).
+            bool titled = g.royalty != null && g.royalty.AllTitlesInEffectForReading.Count > 0;
+            w.titled = titled;
+            if (!titled) HospitalityFriends(g, out w.friends, out w.required);
 
             if (map == null) return;
 
             // Room for one more.
             var traits = g.story?.traits?.allTraits?.Where(t => t?.def != null).Select(t => t.def.defName).ToList() ?? new List<string>();
-            bool titled = g.royalty != null && g.royalty.AllTitlesInEffectForReading.Count > 0;
             bool own = GuestWillMath.WantsOwnRoom(traits, titled);
             if (!FreeBed(map, g, false)) w.noRoom.Add("CC_GuestWill_NoBed".Translate(g.Named("PAWN")).Resolve());
             else if (own && !FreeBed(map, g, true)) w.noRoom.Add("CC_GuestWill_NoOwnRoom".Translate(g.Named("PAWN")).Resolve());
@@ -136,6 +160,40 @@ namespace ColonyCouncil
                 if (!Unlocked(want)) continue;
                 bool met = Met(map, want, out string now);
                 w.wants.Add((want, met, now));
+            }
+        }
+
+        private static void Tie(Will w, string tie, params NamedArgument[] args) =>
+            w.ties.Add((tie, ("CC_GuestWill_Tie_" + tie).Translate(args).Resolve()));
+
+        private static MethodInfo friendsIn, enemiesIn, friendsRequired;
+        private static bool friendsLooked;
+
+        /// <summary>The guest's friends here and the friends Hospitality asks for (its own sums, as its guest tab does them), or -1.</summary>
+        public static void HospitalityFriends(Pawn g, out int friends, out int required)
+        {
+            friends = required = -1;
+            if (!friendsLooked)
+            {
+                friendsLooked = true;
+                var t = GenTypes.GetTypeInAnyAssembly("Hospitality.Utilities.GuestUtility");
+                if (t != null)
+                {
+                    friendsIn = AccessTools.Method(t, "GetFriendsInColony", new[] { typeof(Pawn) });
+                    enemiesIn = AccessTools.Method(t, "GetEnemiesInColony", new[] { typeof(Pawn) });
+                    friendsRequired = AccessTools.Method(t, "FriendsRequired", new[] { typeof(Map) });
+                }
+            }
+            if (friendsIn == null || enemiesIn == null || friendsRequired == null || g?.MapHeld == null) return;
+            try
+            {
+                friends = (int)friendsIn.Invoke(null, new object[] { g });
+                required = (int)friendsRequired.Invoke(null, new object[] { g.MapHeld }) + (int)enemiesIn.Invoke(null, new object[] { g });
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a guest's friends", e);
+                friends = required = -1;
             }
         }
 
@@ -259,11 +317,21 @@ namespace ColonyCouncil
         public static string Tip(Pawn g)
         {
             var w = Of(g);
-            var lines = new List<string> { (w.Willing ? "CC_GuestWill_Willing" : "CC_GuestWill_NotWilling").Translate(g.Named("PAWN")).Resolve() };
-            if (w.ties.Count > 0) lines.Add("CC_GuestWill_Ties".Translate(g.Named("PAWN")).Resolve() + "\n  " + string.Join("\n  ", w.ties.Select(t => t.CapitalizeFirst().Colorize(UiKit.Bad))));
+            var lines = new List<string> { (w.Willing && w.EnoughFriends ? "CC_GuestWill_Willing" : "CC_GuestWill_NotWilling").Translate(g.Named("PAWN")).Resolve() };
+            if (w.ties.Count > 0)
+                lines.Add((w.titled ? "CC_GuestWill_TiesTitled" : "CC_GuestWill_Ties").Translate(g.Named("PAWN")).Resolve() + "\n  "
+                          + string.Join("\n  ", w.ties.Select(t => (t.text.CapitalizeFirst() + (w.titled ? "" : " " + "CC_GuestWill_TieFriends".Translate(GuestWillMath.TieWeight(t.tie).Named("COUNT")).Resolve()))
+                              .Colorize(UiKit.Warn))));
             lines.Add(w.reasons.Count > 0
                 ? "CC_GuestWill_Reasons".Translate(g.Named("PAWN")).Resolve() + "\n  " + string.Join("\n  ", w.reasons.Select(r => r.CapitalizeFirst().Colorize(UiKit.Good)))
                 : "CC_GuestWill_NoReason".Translate(g.Named("PAWN")).Resolve().Colorize(UiKit.Bad));
+            if (w.ties.Count > 0 && !w.titled && w.friends >= 0 && w.required >= 0)
+            {
+                int off = w.TieWeight - w.Extra;
+                string f = "CC_GuestWill_Friends".Translate(w.friends.Named("HAVE"), (w.required + w.Extra).Named("NEED"), w.required.Named("BASE"), w.Extra.Named("EXTRA"), g.Named("PAWN")).Resolve();
+                if (off > 0) f += " " + "CC_GuestWill_FriendsOff".Translate(off.Named("OFF")).Resolve();
+                lines.Add(w.EnoughFriends ? f.Colorize(UiKit.Good) : f.Colorize(UiKit.Bad));
+            }
             if (w.noRoom.Count > 0) lines.Add("CC_GuestWill_Room".Translate().Resolve() + "\n  " + string.Join("\n  ", w.noRoom.Select(r => r.CapitalizeFirst().Colorize(UiKit.Bad))));
             string stage = RoomUtil.StageLabel(RoomStatDefOf.Impressiveness, GuestWillMath.DecentRoom);
             if (w.wants.Count > 0)
@@ -764,12 +832,40 @@ namespace ColonyCouncil
             if (!GuestWill.On || __1 == null) return;
             try
             {
-                if (__2 && !GuestWill.Of(__1).Willing) __2 = false;
+                if (__2 && !(GuestWill.Of(__1) is var w && w.Willing && w.EnoughFriends)) __2 = false;
                 TooltipHandler.TipRegion(__0, new TipSignal(() => GuestWill.Tip(__1), __1.thingIDNumber ^ 0x5157));
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("the guest tab's recruit button", e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// The friends the guest tab asks for, with those what holds them at home asks for (GuestWill), so Hospitality's own
+    /// bar and count show them. A small method the game may compile into its caller: then only the Recruit button
+    /// (Patch_GuestWillButton) and its tooltip count them, which they do either way.
+    /// </summary>
+    [HarmonyPatch]
+    public static class Patch_GuestWillFriends
+    {
+        public static bool Prepare() => Target() != null;
+
+        public static MethodBase TargetMethod() => Target();
+
+        private static MethodBase Target() => GenTypes.GetTypeInAnyAssembly("Hospitality.ITab_Pawn_Guest") is Type t ? AccessTools.Method(t, "GetRequiredFriends", new[] { typeof(Pawn) }) : null;
+
+        public static void Postfix(Pawn __0, ref int __result)
+        {
+            if (!GuestWill.On || __0 == null) return;
+            try
+            {
+                __result += GuestWill.Of(__0).Extra;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the friends a guest needs", e);
             }
         }
     }
