@@ -767,6 +767,7 @@
             <outcome>The smudge fires burn along the field edges day and night, and the smoke gets into everyone's bedding.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SmudgeFires" />
               <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch over the smudge fires</label><target>Colony</target><count>2</count><to>Fields</to><hours>18~1</hours><duration>4~6</duration></li>
             </effects>
             <flags><li>smoke</li></flags>
@@ -785,6 +786,7 @@
             <outcome>The smudge fires are lit and the ripe crops come in. For a week the colony works tired and smells of smoke.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SmudgeFires" />
               <li Class="ColonyCouncil.WorldEffect_Harvest" />
               <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the early harvest</label><count>5</count><tasks><li>Harvest</li></tasks><hours>6~18</hours><duration>3~4</duration></li>
             </effects>

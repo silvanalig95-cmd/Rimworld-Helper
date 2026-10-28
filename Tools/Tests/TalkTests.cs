@@ -149,6 +149,8 @@ public static class TalkTests
                 int t = TalkMath.Turns(o, r);
                 Check(t >= 2 && t <= 4, $"{o}: 2 to 4 lines ({t})");
             }
+        foreach (var o in new[] { TalkOutcome.Agree, TalkOutcome.Tease, TalkOutcome.Joke, TalkOutcome.Comfort })
+            Check(TalkMath.Turns(o, 0.95f) == 4 && TalkMath.Turns(o, 0.6f) == 3, $"{o}: now and then a last word too, so its last lines can be said");
         Check(TalkMath.TurnAt(0) == TalkTurn.Open && TalkMath.TurnAt(1) == TalkTurn.Reply && TalkMath.TurnAt(2) == TalkTurn.Close && TalkMath.TurnAt(3) == TalkTurn.Last, "the turns in order");
         Check(TalkMath.ByFirst(0) && !TalkMath.ByFirst(1) && TalkMath.ByFirst(2) && !TalkMath.ByFirst(3), "the speakers take turns");
 

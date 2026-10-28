@@ -125,4 +125,52 @@
     </options>
   </ColonyCouncil.DilemmaDef>
 
+  <!--
+    An engaged couple plans the wedding with the council (Source/ColonyCouncil/Social/WeddingPlans.cs): A and B, engaged
+    a couple of days or more, asked about once. The answer sets how the game's own ceremony is held: on the next fine
+    evening, with a feast for the whole colony or a toast among their closest friends after it; or in a calmer time.
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmFam_WeddingPlans</defName>
+    <label>the wedding</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WeddingPlans</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} are engaged, and want to know what the colony will make of the day. {A_nameDef} has been thinking about who sits where; {B_nameDef} would happily marry in work clothes tomorrow.</li>
+      <li>The engagement is old news now, and {A_nameDef} and {B_nameDef} have come to the council about the wedding itself: how big, and when.</li>
+      <li>{A_nameDef} and {B_nameDef} mean to marry, and have asked the council whether the colony can spare an evening for it, and what kind of evening.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>A wedding feast for the whole colony</label>
+        <outcome>The council set the wedding for the next fine evening, with a feast for the whole colony after it.</outcome>
+        <ways><generosity>2</generosity><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PlanWedding"><style>feast</style></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Wed_DaySet</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>A small wedding, and a toast with their friends</label>
+        <outcome>The council set the wedding for the next fine evening. Afterward their closest friends raise a glass with them.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PlanWedding"><style>quiet</style></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Wed_DaySet</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Ask them to wait for a calmer time</label>
+        <outcome>The council asked {A_nameDef} and {B_nameDef} to wait until things are calmer. They agreed, a little sadly, and the wedding waits for a quieter few weeks.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PlanWedding"><style>wait</style></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Wed_Postponed</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
 </Defs>

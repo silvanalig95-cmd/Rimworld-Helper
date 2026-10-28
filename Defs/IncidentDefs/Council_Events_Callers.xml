@@ -717,7 +717,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>AAndB</target><skill>Social</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>8</amount><chance>0.6</chance></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_ForcedTogether</thought></li>
-              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the woodpile</label><target>AAndB</target><tasks><li>Haul</li><li>Build</li></tasks><hours>8~18</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the woodpile</label><target>AAndB</target><tasks><li>Wood</li></tasks><hours>8~18</hours><duration>2~3</duration></li>
             </effects>
             <ways><toil>1</toil></ways>
           </li>

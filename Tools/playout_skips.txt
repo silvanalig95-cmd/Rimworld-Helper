@@ -261,7 +261,6 @@ Council_Story_FeudWedding [option 2] a refusal
 Council_Story_Prophet [option 2] a stranger's part: the preacher moves on
 Council_Story_ProphetFollowers [option 0] the story's own code: the colonist leaves
 Council_Story_ProphetFollowers [option 2] the story's own code: the preacher joins
-Council_Story_ProphetHill [option 0] the pilgrims eat and sleep: a guest's part
 Council_Story_ProphetPilgrims [letter] guests who came and went, told
 
 # Defs/IncidentDefs/Council_Events_Storyteller.xml
@@ -362,7 +361,6 @@ Council_WS_Claimants [end:captain] far away, told
 Council_WS_PeaceTalks [ask/0] the talks come days later, by the world event's own code
 Council_WS_PeaceTalks [end:peace] told after it happened
 Council_WS_Mercenaries [end:won] the company's part; the share is left at the gate (already real)
-Council_WS_BanditRoad [robbed/0] a guest's part: the merchant is fed
 Council_WS_BanditRoad [robbed/1] a refusal
 
 # Defs/WorldSituationDefs/Council_WS_Region.xml

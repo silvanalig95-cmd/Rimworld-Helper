@@ -353,12 +353,14 @@ namespace ColonyCouncil
     /// Rounds (PlayKind.Rounds): one colonist (<see cref="who"/>, A unless given) goes round to each of a few others in
     /// turn, the nearest first, and stops a moment with each: a doctor looking everyone over, a cook taking a pot out to
     /// those working outside (<see cref="outdoors"/>: only those out in the open when it starts). Up to
-    /// <see cref="count"/> people. What's said comes from <see cref="lines"/>, then <see cref="pool"/>.
+    /// <see cref="count"/> people. What's said comes from <see cref="lines"/>, then <see cref="pool"/>. With
+    /// <see cref="serve"/>, they first fetch a meal for each from the stores and hand one to each, who eats it there.
     /// </summary>
     public class DilemmaEffect_Rounds : DilemmaEffect_PlayOut
     {
         public PlayWho who = PlayWho.A;
         public bool outdoors;
+        public bool serve;
         public int count = 6;
         public string pool;
         [MustTranslate] public List<string> lines;
@@ -386,6 +388,7 @@ namespace ColonyCouncil
             p.count = 1;
             p.amount = Mathf.Clamp(count, 1, OnMapMath.MaxRounds);
             p.mode = outdoors ? PlayRounds.Outdoors : null;
+            p.what = serve ? PlayRounds.Meals : null;
             p.pool = pool;
             p.lines = lines?.Where(l => !l.NullOrEmpty()).Select(ctx.Format).ToList() ?? new List<string>();
             p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(duration.RandomInRange, false));
@@ -393,12 +396,31 @@ namespace ColonyCouncil
         }
 
         protected override string DefaultLabel(DilemmaContext ctx) => "CC_Play_Label_Rounds".Translate().Resolve();
+
+        public override string Unavailable(DilemmaContext ctx) =>
+            serve && PlayRounds.MealIn(ctx?.map, null) == null ? "CC_Rounds_NoMeals".Translate().Resolve() : base.Unavailable(ctx);
     }
 
     /// <summary>The rounds' way: who to go round to, where to stand by each, and how long to stop.</summary>
     public static class PlayRounds
     {
         public const string Outdoors = "outdoors";
+
+        /// <summary>A round that hands out food (PlayOut.what): a meal from the stores for each, fetched first.</summary>
+        public const string Meals = "meals";
+
+        /// <summary>A plain meal in the colony's stores (simple or fine), the nearest to <paramref name="near"/> they can reach, or null.</summary>
+        public static Thing MealIn(Map map, Pawn near)
+        {
+            if (map == null) return null;
+            return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree)
+                .Where(t => t.Spawned && t.def.ingestible != null && t.def.ingestible.IsMeal && t.def.ingestible.preferability >= FoodPreferability.MealSimple
+                            && t.def.ingestible.preferability <= FoodPreferability.MealFine && t.IsInAnyStorage() && !t.IsForbidden(Faction.OfPlayer)
+                            && (near == null || near.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)))
+                .OrderBy(t => near == null ? 0 : t.Position.DistanceToSquared(near.Position)).FirstOrDefault();
+        }
+
+        private static int Carried(Pawn v) => v?.inventory?.innerContainer?.Where(t => t.def.ingestible != null && t.def.ingestible.IsMeal).Sum(t => t.stackCount) ?? 0;
 
         /// <summary>Someone to stop by: here, up, awake, not under arms or in a state.</summary>
         public static bool Visitable(Pawn x, Map map) =>
@@ -433,6 +455,8 @@ namespace ColonyCouncil
             h.done = 0;
             h.waited = 0;
             h.cell = IntVec3.Invalid;
+            // Food to hand out: to the stores for it first (phase 0), then round (phase 1).
+            h.phase = p.what == Meals ? 0 : 1;
             var job = JobMaker.MakeJob(PlayOutDefOf.Council_PlayOutRounds);
             job.locomotionUrgency = LocomotionUrgency.Walk;
             v.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
@@ -449,6 +473,17 @@ namespace ColonyCouncil
             cell = IntVec3.Invalid;
             face = LocalTargetInfo.Invalid;
             var map = p.map;
+            if (h.phase == 0)
+            {
+                var meal = MealIn(map, v);
+                if (meal != null)
+                {
+                    cell = meal.Position;
+                    face = meal;
+                    return true;
+                }
+                h.phase = 1;
+            }
             int guard = 0;
             while (h.done < p.round.Count && guard++ < 20)
             {
@@ -484,6 +519,21 @@ namespace ColonyCouncil
         /// <summary>Beside them: a word as they come up, a few minutes with them, then on to the next.</summary>
         public static void Arrived(PlayOut p, Pawn v, PlayHand h, int delta)
         {
+            if (h.phase == 0)
+            {
+                // At the stores: a meal for each of those they'll go round to.
+                var meal = MealIn(p.map, v);
+                if (meal != null && meal.Position.InHorDistOf(v.Position, 1.5f))
+                {
+                    int n = Math.Min(meal.stackCount, Math.Max(1, p.round.Count - Carried(v)));
+                    var taken = meal.SplitOff(n);
+                    if (!v.inventory.innerContainer.TryAdd(taken) && !taken.Destroyed) GenPlace.TryPlaceThing(taken, v.Position, p.map, ThingPlaceMode.Near);
+                    if (Carried(v) >= p.round.Count || MealIn(p.map, v) == null) h.phase = 1;
+                }
+                else if (meal == null) h.phase = 1;
+                h.cell = IntVec3.Invalid;
+                return;
+            }
             var x = Current(p, h);
             if (x == null || !x.Spawned || !x.Position.InHorDistOf(v.Position, 2.9f)) return;
             bool first = h.waited <= 0;
@@ -491,7 +541,20 @@ namespace ColonyCouncil
             h.ticks += delta;
             // together: said beside them, a step away (the rounds' job brought the one going round to them).
             if (first) PlayWords.During(p, v, x);
+            // together: their bowl handed over where they stand, and they eat it there.
+            if (first && p.what == Meals) Serve(p, v, x);
             if (h.waited >= OnMapMath.RoundsStop(p.durationTicks, p.round.Count)) Next(p, h, true);
+        }
+
+        /// <summary>A meal from what they carry set down by the one it's for, who stops to eat it.</summary>
+        private static void Serve(PlayOut p, Pawn v, Pawn x)
+        {
+            var meal = v.inventory?.innerContainer?.FirstOrDefault(t => t.def.ingestible != null && t.def.ingestible.IsMeal);
+            if (meal == null || x.needs?.food == null || !x.RaceProps.CanEverEat(meal) || !FoodUtility.WillEat(x, meal, x)) return;
+            if (!v.inventory.innerContainer.TryDrop(meal, x.Position, p.map, ThingPlaceMode.Near, 1, out var bowl) || bowl == null) return;
+            var eat = JobMaker.MakeJob(JobDefOf.Ingest, bowl);
+            eat.count = 1;
+            x.jobs.StartJob(eat, JobCondition.InterruptForced, null, true, true);
         }
 
         /// <summary>On to the next person: this one seen (or passed over).</summary>
@@ -937,6 +1000,9 @@ namespace ColonyCouncil
         /// </summary>
         public const string Honey = "honey", StarSteel = "starsteel", StarBlade = "starblade", DroneParts = "droneparts", DroneMemory = "dronememory";
 
+        /// <summary>A likeness broken up by the one who went to it, even if the visit never came about: the answer always had it gone (PlaySmash.cs).</summary>
+        public const string Smash = "smash";
+
         /// <summary>What follows it: <paramref name="happened"/> false when it never came about (an event's result then isn't made).</summary>
         public static void Run(PlayOut p, bool happened)
         {
@@ -945,6 +1011,21 @@ namespace ColonyCouncil
             p.afterward = null;
             try
             {
+                if (what == DilemmaEffect_FindLost.Search)
+                {
+                    DilemmaEffect_FindLost.Fallback(p);
+                    return;
+                }
+                if (what == PlayMarkers.Rebury || what == PlayMarkers.Stone)
+                {
+                    PlayMarkers.Fallback(p, what);
+                    return;
+                }
+                if (what == Smash)
+                {
+                    PlaySmash.Smash(p.place, happened ? p.visitor : null);
+                    return;
+                }
                 if (what != Confess)
                 {
                     if (happened) Result(p, what);

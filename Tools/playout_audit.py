@@ -64,6 +64,14 @@ PLAY = {
     "DilemmaEffect_BoltDoor": "door bolted",
     "DilemmaEffect_Follow": "at heel",
     "DilemmaEffect_SwapRooms": "rooms traded",
+    # Also kept on the map for a while: smudge fires along the fields, a stone cut for each grave, a fenced patch sown,
+    # the children's race run.
+    "DilemmaEffect_SmudgeFires": "smudge fires",
+    "DilemmaEffect_MarkGraves": "grave stones",
+    "DilemmaEffect_SowPatch": "patch sown",
+    "DilemmaEffect_Race": "race",
+    # The game's own wedding ceremony, on the evening the council set (Social/WeddingPlans.cs), and what follows it.
+    "DilemmaEffect_PlanWedding": "wedding",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

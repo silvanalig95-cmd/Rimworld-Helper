@@ -217,6 +217,14 @@
   <CC_Made_Done>{MAKER_nameDef} has finished the {THING}.</CC_Made_Done>
   <CC_Felled_Wood>{0} wood lies where it was cut.</CC_Felled_Wood>
   <CC_Saplings_One>The new sapling is in the ground.</CC_Saplings_One>
+  <CC_Seeds_Fenced>A little fence round the new patch is marked out for building.</CC_Seeds_Fenced>
+  <CC_Rounds_NoMeals>There are no meals in the stores to take round.</CC_Rounds_NoMeals>
+  <CC_Timed_Race_Off>The children are off round the course.</CC_Timed_Race_Off>
+  <CC_Timed_Smudge_Lit>{0} smudge fires are lit along the edge of the fields.</CC_Timed_Smudge_Lit>
+  <CC_Timed_Smudge_Out>The smudge fires by the fields have burned down to ash.</CC_Timed_Smudge_Out>
+  <CC_Markers_Set>A stone stands at the head of {0} of the colony's graves now.</CC_Markers_Set>
+  <CC_Markers_Reburied>The bones are in fresh ground, with a stone at the head.</CC_Markers_Reburied>
+  <CC_Markers_Buried>It's buried, under a flat stone.</CC_Markers_Buried>
   <CC_Saplings_Many>{0} new saplings are in the ground.</CC_Saplings_Many>
   <CC_PlanRoom_Marked>The new room for {PAWN_nameDef} is marked out as building plans ({ROOM}). It will take materials and hands to build.</CC_PlanRoom_Marked>
   <CC_Burned_Found>{WHAT} from {PAWN_nameDef}'s room went on a fire in the yard.</CC_Burned_Found>
@@ -287,6 +295,8 @@
   <CC_Timed_Lantern_Lit>Dusk: a lantern is lit at the gate. It will burn until first light.</CC_Timed_Lantern_Lit>
   <CC_Timed_Lanterns_Out>The lanterns were taken in at first light.</CC_Timed_Lanterns_Out>
   <CC_Timed_Lantern_Out>The lantern at the gate was taken in at first light.</CC_Timed_Lantern_Out>
+  <CC_Timed_DoorTorches_Lit>Dusk: a smoking torch is lit beside each of {0} doors. They'll be taken in at first light.</CC_Timed_DoorTorches_Lit>
+  <CC_Timed_DoorTorches_Out>The torches by the doors were taken in at first light.</CC_Timed_DoorTorches_Out>
   <CC_Timed_Fire>A fire has been set in {PAWN_nameDef}'s room, with the wood put by for it. It will burn until the wood is gone.</CC_Timed_Fire>
   <CC_Timed_Fire_Out>The fire in {PAWN_nameDef}'s room has burned the last of its wood, and was cleared away.</CC_Timed_Fire_Out>
   <CC_Timed_Pyre_Lit>The pyre beyond the gate is lit, with {0} of the enemy dead on it. It will burn through the night.</CC_Timed_Pyre_Lit>

@@ -159,6 +159,14 @@
   </JobDef>
 
   <JobDef>
+    <defName>Council_PlayOutMark</defName>
+    <driverClass>ColonyCouncil.JobDriver_PlayOutMark</driverClass>
+    <reportString>cutting a grave's stone.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
     <defName>Council_PlayOutMake</defName>
     <driverClass>ColonyCouncil.JobDriver_PlayOutMake</driverClass>
     <reportString>working at TargetA.</reportString>

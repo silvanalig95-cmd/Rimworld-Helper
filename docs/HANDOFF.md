@@ -1,6 +1,35 @@
 # Handoff: work in progress
 
-Last shipped: 0.20.1 "Ties weigh, they don't bar", the player's ask that ties at home make recruiting harder but
+Last shipped: 0.21.0 "Wedding plans" and 0.20.2 "What the words say, done", the player's "go ahead on all" on the
+leftovers (all but the family waiting by the bed during labour, which they turned down).
+
+0.21.0: `Social/WeddingPlans.cs`. `DilemmaWorker_WeddingPlans` (Council_DlmFam_WeddingPlans) takes a couple at home
+engaged two days or more (`DirectPawnRelation.startTicks`), asked once (`CouncilGameComponent.weddingAsked`, pair keys,
+40 kept), with no `LordJob_Joinable_MarriageCeremony` running. `DilemmaEffect_PlanWedding style` saves a `WeddingPlan`
+(`weddingPlans`: from two hours on, or 10 to 15 days for "wait"; five days to be held). `WeddingPlans.Hourly` (from
+Social/Family.cs) starts the game's own `lordsStarter.TryStartMarriageCeremony` between 15:00 and 20:59 when
+`AcceptableGameConditionsToStartCeremony` and both `FianceReadyToStartCeremony`; a lapsed plan says so and is dropped.
+`Patch_Married` calls `WeddingPlans.Married`: "feast" a `DilemmaEffect_Feast` for the colony, "quiet" a
+`DilemmaEffect_Toast` (CloseToA) led by the friend who thinks best of the two.
+
+0.20.2 closes the answers audit (docs/answers-audit.md: no candidates left in playout_audit). Work parties
+(PlayOut/PlayWork.cs): `WorkTask` Wood (`FellForPile`, `CarryToHeap` with `HaulMode.ToCellNonStorage` to a heap by the
+gate), Stone (chunks only), Roof (`MarkRoofs`: the BuildRoof area over a room's unroofed home cells, 200 at most);
+`mode` "butcher"/"storeroom" (`At`). `PlayOut/PlaySmash.cs`: `DilemmaWorker_Likeness` needs a sculpture by A
+(`PieceBy`, by CompArt author name) as the context's place; `DilemmaEffect_Smash` breaks it after the visit
+(`PlayAfter.Smash`). `PlayOut/PlayMarkers.cs`: `DilemmaEffect_MarkGround` (rebury/stone, at the walk's end, or the
+fallback), `DilemmaEffect_MarkGraves` (OnMapTimed Marking, `JobDriver_PlayOutMark`, Council_PlayOutMark). OnMapTimed:
+Smudge (`DilemmaEffect_SmudgeFires`: campfires along the field edges, kept fuelled, ash at the end), Race
+(`DilemmaEffect_Race`: queued jog laps of `RaceCourse`, with the gathering or by itself at 16 to 20), Lanterns
+`at` "doors". `Vigil torches` on a patrol (`Glows.Torch`, `VisualTouches.Torch`). `Camps/CampLost.cs` (the camp's child
+and a beast lying out 28 to 42 cells away; `DilemmaEffect_FindLost how`, the search's last cell set to theirs,
+`CampWork`/`CampLook` give their jobs first). `DilemmaEffect_Rounds serve` fetches meals, then hands them out.
+`DilemmaEffect_SowPatch` (fence, outOfWay) for Story_Seeds. ProphetHill and BanditRoad: `DilemmaEffect_Paid`,
+`CarryOut toGroup`, `SendAway ofGroup`. Fixes: `TalkMath.Turns` gives friendly talks a fourth line now and then (the
+`Any_Last` lines), and `Secret.sayBy/sayUntil/confideTo/confideFrom` keep a waiting confession or confiding over a load
+(`SecretTracker.Rewait` once in the first hour). Not tried in the game here.
+
+Before them, 0.20.1 "Ties weigh, they don't bar", the player's ask that ties at home make recruiting harder but
 never impossible. `GuestWill.Will.ties` carries each tie's kind (`GuestWillMath.Tie`); `TieWeight` (partner, children,
 leader 2; parent, leader's family, faith 1) and `ExtraFriends(weight, reasons)` (each reason beyond the first takes one
 off) give `Will.Extra`; `Willing` no longer counts ties. Hospitality's friends are read by name
@@ -187,10 +216,8 @@ the character section skips its words line (`CharacterView.DrawSection(skip)`), 
 (`Family.TreeEntry`, `WhereKind`), "life" holds goals reached and `ArcView.Past`, journal and dreams are quotes.
 `Folds` takes sections that start shut (`StoryView.FoldedInTab`); the People roster's folds start all open.
 
-Next: the audit's next gaps (docs/answers-audit.md: 12 work parties, 13 sculpture, 14 burials and markers, 15 smudge
-fires and torches, 17 lost child, 19 soup rounds, 20 children's race, 21 mushroom supper, Story_Seeds, ProphetHill,
-BanditRoad). Round B leftovers not built: an engaged couple planning the wedding with the council; close family
-waiting by the bed during labour (left to the game's own birth ritual).
+The audit gaps listed here then were closed in 0.20.2, and the wedding planned with the council came in 0.21.0. Close
+family waiting by the bed during labour was turned down by the player (left to the game's own birth ritual).
 
 Before it, 0.17.4 "Sat down, seen off, asked in", audit gaps 2, 3 and 6. `PlayOut/PlaySit.cs`: a Visit with `sit`
 (and `sitBy` Fire) to someone up and free starts the visitor's job at a seat (`targetC` = the other) and the other's
@@ -458,8 +485,3 @@ EMP steps on the ladder; a bait yard with an orbital trade beacon (40% of center
 sight check (the corner camper can see axis decoys); the line review re-planning the gate lines placed before 0.14
 (the old gate's lines stand within a grenade's throw). Nothing was tried in the game itself here: worth a look at a
 killbox's preview, the planner's new section, and a built pocket line in a line's review.
-
-## Smaller open items
-- `Any_Last` talk pools hold some `[agree]`/`[tease]`/`[comfort]`/`[joke]` lines that can never be said (those talks end
-  after three lines). Harmless.
-- A confession waiting for company (`Together.WhenInCompany`) is not saved across a load. Minor.

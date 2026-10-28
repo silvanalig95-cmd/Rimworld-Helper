@@ -396,4 +396,19 @@
     </stages>
   </ThoughtDef>
 
+  <!-- The council set the wedding's day, or asked them to wait (Council_DlmFam_WeddingPlans, Social/WeddingPlans.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Wed_DaySet</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the wedding's day is set</label><description>The council set the day for our wedding. I keep thinking about it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Wed_Postponed</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the wedding must wait</label><description>The council asked us to wait for a calmer time to marry. We said yes. I wish we hadn't had to.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
 </Defs>

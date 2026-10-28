@@ -295,6 +295,12 @@ namespace ColonyCouncil
                                                                      && c.GetEdifice(map) == null && Ok(c, map, pawn), out var cell))
                     route.Add(cell);
             }
+            // Looking for someone who is really out there: the search ends where they are (Camps/CampLost.cs).
+            if (p.afterward == DilemmaEffect_FindLost.Search && p.cell.IsValid && searcher == 0)
+            {
+                if (route.Count > 3) route.RemoveRange(3, route.Count - 3);
+                route.Add(p.cell);
+            }
             return route;
         }
 

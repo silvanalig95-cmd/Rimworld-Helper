@@ -430,6 +430,8 @@ namespace ColonyCouncil
             ExposeLook();
             // Their requests and errands into the colony (CampRequests.cs).
             ExposeRequests();
+            // A child of theirs lost out on the land (CampLost.cs).
+            ExposeLost();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

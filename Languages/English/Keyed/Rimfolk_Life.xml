@@ -68,4 +68,11 @@
   <CC_Leave_NoRoomToGive>Nobody here has a room of their own to give up.</CC_Leave_NoRoomToGive>
   <CC_Leave_GaveRoom>{OTHER_nameDef} has given up {OTHER_possessive} room to {PAWN_nameDef}.</CC_Leave_GaveRoom>
 
+  <!-- A wedding the council planned (Source/ColonyCouncil/Social/WeddingPlans.cs). -->
+  <CC_Wed_Lapsed>The wedding the council planned for {A_nameDef} and {B_nameDef} couldn't be held in time. They'll marry when the day allows.</CC_Wed_Lapsed>
+  <CC_Wed_FeastLabel>the wedding feast for {A_nameDef} and {B_nameDef}</CC_Wed_FeastLabel>
+  <CC_Wed_ToastLabel>a toast to {A_nameDef} and {B_nameDef}</CC_Wed_ToastLabel>
+  <CC_Wed_Toast_1>To {A_nameDef} and {B_nameDef}, and many years.</CC_Wed_Toast_1>
+  <CC_Wed_Toast_2>I knew it the first week, I'll have you know.</CC_Wed_Toast_2>
+
 </LanguageData>

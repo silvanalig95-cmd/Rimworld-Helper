@@ -478,7 +478,8 @@
             <outcome>The bones go into fresh ground with their things beside them and a stone at the head. A few colonists stay by the grave for a while after.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ReburiedStranger</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the reburial</label><count>4</count><organizer>A</organizer><to>Grave</to><hours>8~18</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_MarkGround"><kind>rebury</kind></li>
             </effects>
             <ways><tradition>2</tradition><mercy>1</mercy></ways>
           </li>

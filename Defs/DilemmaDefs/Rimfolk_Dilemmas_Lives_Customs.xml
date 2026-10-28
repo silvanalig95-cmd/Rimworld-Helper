@@ -93,6 +93,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmLv_ChildrensRace</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the children's race</label><organizer>A</organizer><spots><li>Fields</li><li>Outdoors</li></spots><hours>16~20</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Race" />
         </effects>
       </li>
       <li>
@@ -101,7 +102,7 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_ChildrensRace</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><orTo><li>Outdoors</li></orTo><hours>16~20</hours><duration>1~1.5</duration><label>the children's race</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Race" />
         </effects>
       </li>
       <li>

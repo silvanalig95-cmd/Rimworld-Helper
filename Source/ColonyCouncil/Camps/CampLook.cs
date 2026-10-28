@@ -261,6 +261,12 @@ namespace ColonyCouncil
         public Job BeastJob(Pawn a)
         {
             if (a.Downed || a.InMentalState || map == null) return null;
+            // The beast that went off with a lost child stays with them (CampLost.cs).
+            if (IsLost(a))
+            {
+                var lost = LostJob(a);
+                if (lost != null) return lost;
+            }
             var g = GroupOf(a);
             int hour = GenLocalDate.HourOfDay(map);
             bool night = hour >= 21 || hour < 6;

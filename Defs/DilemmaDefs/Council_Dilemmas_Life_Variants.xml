@@ -156,8 +156,8 @@
     <defName>Council_Var_DlmL_CampLostChild</defName>
     <dilemma>Council_DlmL_CampLostChild</dilemma>
     <texts>
-      <li>[rain|storm] The thunder scattered the {FACTION} camp's goats, and a child ran after them and hasn't come back. {X_nameDef} came through the rain to the colony's gate to ask for searchers before the light goes.</li>
-      <li>[land:mountains|land:hills] Since noon {X_nameDef} has been calling up the hillside for a child of the {FACTION} camp, who went up after a goat and didn't come down. {X_nameDef} has asked {A_nameDef} for people who know the paths.</li>
+      <li>[rain|storm] The thunder scattered the {FACTION} camp's beasts, and a child ran after their {PET_kind} and hasn't come back. {X_nameDef} came through the rain to the colony's gate to ask for searchers before the light goes.</li>
+      <li>[land:mountains|land:hills] For hours {X_nameDef} has been calling up the hillside for a child of the {FACTION} camp, who went up after a {PET_kind} and didn't come down. {X_nameDef} has asked {A_nameDef} for people who know the paths.</li>
     </texts>
   </ColonyCouncil.LetterVariantsDef>
 

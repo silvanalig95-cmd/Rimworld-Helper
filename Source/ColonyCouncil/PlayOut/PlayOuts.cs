@@ -111,7 +111,13 @@ namespace ColonyCouncil
         /// <summary>The herd walked home on a rope, into the barn or the pen (Animals/HerdHome.cs).</summary>
         Herd,
         /// <summary>The colony's animals that are ready for it sheared and milked (the game's own shearing and milking).</summary>
-        Tend
+        Tend,
+        /// <summary>The woodpile: logs carried to storage; with none lying about, a tree or two felled near the colony for it (PlayWork.cs).</summary>
+        Wood,
+        /// <summary>Stone: chunks and blocks carried to storage; with nowhere to store them, chunks carried off to a heap by the gate.</summary>
+        Stone,
+        /// <summary>Roofs patched: the gaps in the roofs of the colony's rooms built over (the game's own roof building).</summary>
+        Roof
     }
 
     /// <summary>One person on a work party, a walk, a vigil, a search, an errand or a hunt: how long, how far, what they've done.</summary>
@@ -372,7 +378,8 @@ namespace ColonyCouncil
         public List<Pawn> round = new List<Pawn>();
         /// <summary>
         /// How a gift ends ("give", "burn", "fetch"), where the dead go ("pyre", "treeline", "graves", "trench",
-        /// "crematorium"), whom rounds are for ("outdoors").
+        /// "crematorium"), whom rounds are for ("outdoors"), where a work party works ("butcher": the butcher's table,
+        /// "storeroom": the biggest stockpile).
         /// </summary>
         public string mode;
         /// <summary>A burial's graves, dug outside the wall: where each lies (PlayBurial), and which way they're turned.</summary>
@@ -380,6 +387,11 @@ namespace ColonyCouncil
         public int plotRot;
         /// <summary>A vigil kept on the move: a watch walking the colony's edge from one look-out to the next, until dawn.</summary>
         public bool patrol;
+        /// <summary>A watch on the move that carries smoking torches round the bounds (the light and smoke over each of them).</summary>
+        public bool torches;
+        /// <summary>A work party's trees marked for its woodpile, and whether it has marked the roofs' gaps for building over.</summary>
+        public int marked;
+        public bool roofMarked;
         /// <summary>What follows once it's over, whether or not it came about (PlayAfter: a secret said out loud).</summary>
         public string afterward;
 
@@ -469,6 +481,9 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref plots, "plots", LookMode.Value);
             Scribe_Values.Look(ref plotRot, "plotRot");
             Scribe_Values.Look(ref patrol, "patrol");
+            Scribe_Values.Look(ref torches, "torches");
+            Scribe_Values.Look(ref marked, "marked");
+            Scribe_Values.Look(ref roofMarked, "roofMarked");
             Scribe_Values.Look(ref afterward, "afterward");
             Scribe_Values.Look(ref cookUnits, "cookUnits");
             Scribe_Values.Look(ref cookMeals, "cookMeals");

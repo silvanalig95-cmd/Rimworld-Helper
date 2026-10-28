@@ -73,6 +73,7 @@ namespace ColonyCouncil
                 WorldReactions.Wedding(firstPawn, secondPawn);
                 VisualTouches.Wedding(firstPawn, secondPawn);
                 TalkHooks.Wedding(firstPawn, secondPawn);
+                WeddingPlans.Married(firstPawn, secondPawn);
             }
             catch (System.Exception e)
             {

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 343; modelled: 343; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** after two, **2,168 KB** after five.
+Saved collections found: 345; modelled: 345; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,690 KB** after a year, **2,054 KB** after two, **2,169 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -35,7 +35,7 @@ Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** aft
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords | cap | 30 | 60 | 60 | 17.6 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 187 | 187 | 187 | 16.4 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 188 | 188 | 188 | 16.5 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -67,7 +67,7 @@ Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** aft
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 56 | 56 | 56 | 4.9 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 56 | 56 | 56 | 5.0 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
@@ -125,7 +125,7 @@ Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** aft
 | `Quirks/Quirks.cs:battleTick` | within the longest quirk window | colonists | 20 | 20 | 20 | 1.8 |
 | `Strangers/Nuisances.cs:last` | 10 days | window | 20 | 20 | 20 | 1.8 |
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 19 | 19 | 19 | 1.6 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 19 | 19 | 19 | 1.7 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
@@ -148,6 +148,7 @@ Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** aft
 | `CouncilGameComponent.cs:recentWishDefs` | recent wishes, 20 days | window | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:recentWishTicks` | with the above | window | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:sharedNameAsked` | couples the council was asked about, one name or two, the newest 40 (Social/FamilyNames.cs) | fixed | 40 | 40 | 40 | 1.0 |
+| `CouncilGameComponent.cs:weddingAsked` | couples asked about their wedding, the newest 40 (Social/WeddingPlans.cs) | fixed | 40 | 40 | 40 | 1.0 |
 | `Secrets/Vendettas.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Ailments/AilmentTracker.cs:doctors` | only hediffs colonists still have | colonists | 10 | 10 | 10 | 0.9 |
 | `Ailments/AilmentTracker.cs:sweets` | faded below 0.05 dropped | colonists | 10 | 10 | 10 | 0.9 |
@@ -170,8 +171,8 @@ Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** aft
 | `Social/SocialWeb.cs:fighters` | while a fight lasts | while | 20 | 20 | 20 | 0.8 |
 | `UI/WeekMemory.cs:trustKeys` | a trail per colonist, forgotten after 10 days away | colonists | 20 | 20 | 20 | 0.8 |
 | `World/WorldSituation.cs:beats` | per situation | fixed | 4 | 4 | 4 | 0.8 |
-| `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
 | `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 19 | 19 | 19 | 0.7 |
+| `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
@@ -188,6 +189,7 @@ Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** aft
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
 | `Calendar/CalendarLived.cs:captives` | the colony's people carried off, until home or lost to us | colonists | 4 | 4 | 4 | 0.5 |
 | `Camps/CampRequests.cs:errandLines` | what they say on the errand, while it lasts | while | 4 | 4 | 4 | 0.5 |
+| `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
 | `Offices/Offices.cs:elected` | one per office | defs | 12 | 12 | 12 | 0.5 |
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |

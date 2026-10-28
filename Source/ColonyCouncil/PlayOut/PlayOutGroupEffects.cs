@@ -57,14 +57,17 @@ namespace ColonyCouncil
     /// A work party: a few of those it's for (the colony unless given; three unless <see cref="DilemmaEffect_Group.count"/>
     /// says) do the colony's own work together with the game's own jobs, in the order of <see cref="tasks"/> (cleaning,
     /// then hauling, unless given): filth in the home area, things lying about, damaged buildings, blueprints and
-    /// frames, the dead, snow, sowing, the harvest, plants marked for cutting. Only what really needs doing, and only
-    /// work they're able for; the nearest to <see cref="near"/> first (a place, such as the dining room after a feast),
-    /// else to the middle of the colony. Nothing to do: it waits, then falls through.
+    /// frames, the dead, snow, sowing, the harvest, plants marked for cutting, the woodpile, stone, the roofs' gaps. Only
+    /// what really needs doing, and only work they're able for; the nearest to <see cref="at"/> or <see cref="near"/>
+    /// first (a place, such as the dining room after a feast), else to the middle of the colony. Nothing to do: it waits,
+    /// then falls through.
     /// </summary>
     public class DilemmaEffect_WorkParty : DilemmaEffect_Group
     {
         public List<WorkTask> tasks;
         public List<PlaySpot> near;
+        /// <summary>The work is looked for round a place the words name: "butcher" (the butcher's table), "storeroom" (the biggest stockpile).</summary>
+        public string at;
 
         public DilemmaEffect_WorkParty()
         {
@@ -80,6 +83,7 @@ namespace ColonyCouncil
             if (!base.Fill(p, ctx)) return false;
             p.tasks = tasks.NullOrEmpty() ? new List<WorkTask> { WorkTask.Clean, WorkTask.Haul } : tasks.Distinct().ToList();
             p.spots = near?.ToList() ?? new List<PlaySpot>();
+            p.mode = at;
             return true;
         }
     }
@@ -120,13 +124,15 @@ namespace ColonyCouncil
     /// <see cref="whom"/>: A unless given), through the evening and into the night unless other hours are given. Each
     /// stays until it's over, or until hunger or tiredness sends them off (a vigil isn't kept at the cost of collapsing).
     /// With <see cref="patrol"/>, a watch on the move: they walk the colony's edge from one look-out to the next (a night
-    /// watch on the walls); with <see cref="untilDawn"/>, it's kept until first light, however long that is.
+    /// watch on the walls), carrying smoking torches with <see cref="torches"/>; with <see cref="untilDawn"/>, it's kept
+    /// until first light, however long that is.
     /// </summary>
     public class DilemmaEffect_Vigil : DilemmaEffect_Group
     {
         public PlaySpot to = PlaySpot.Grave;
         public PlayWho whom = PlayWho.A;
         public bool patrol;
+        public bool torches;
         public bool untilDawn;
 
         public DilemmaEffect_Vigil()
@@ -156,6 +162,7 @@ namespace ColonyCouncil
                 p.to = PlaySpot.Person;
             }
             p.patrol = patrol && p.to != PlaySpot.Person;
+            p.torches = torches && p.patrol;
             if (untilDawn) p.mode = PlayVigils.Dawn;
             return true;
         }
@@ -261,6 +268,8 @@ namespace ColonyCouncil
         public bool eat;
         /// <summary>The strangers stay the night: until first light, sleeping by the colony's wall (PlayStrangers.cs).</summary>
         public bool night;
+        /// <summary>To the ones who came with the event (a story's pilgrims), not X: the first of them here takes it.</summary>
+        public bool toGroup;
 
         public DilemmaEffect_CarryOut()
         {
@@ -351,7 +360,7 @@ namespace ColonyCouncil
             }
             else
             {
-                var x = ctx.stranger;
+                var x = toGroup ? (ctx as HappeningContext)?.group.FirstOrDefault(g => g != null && g.Spawned && g.Map == ctx.map) : ctx.stranger;
                 p.other = x != null && !x.Dead && x.Faction != Faction.OfPlayer && (x.RaceProps?.Humanlike ?? false) ? x : null;
             }
             p.strangersEat = eat;

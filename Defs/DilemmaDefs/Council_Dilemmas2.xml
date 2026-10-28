@@ -481,6 +481,8 @@
     <defName>Council_Dilemma_Sculpture</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>an unflattering likeness</label>
+    <!-- Only about a sculpture of A's standing in the colony ({PLACE}: its title); smashed, B goes to it with a hammer (PlayOut/PlaySmash.cs). -->
+    <workerClass>ColonyCouncil.DilemmaWorker_Likeness</workerClass>
     <weight>0.8</weight>
     <roleA>
       <passion>Artistic</passion>
@@ -489,14 +491,14 @@
       <maxOpinionOfA>20</maxOpinionOfA>
     </roleB>
     <texts>
-      <li>The new sculpture beside the dining table is {B_nameDef}, unmistakably, down to the squint, with a nose half again the size of the real one. {A_nameDef} made it.\n\n{B_nameDef} has started eating outside and wants the thing gone. {A_nameDef} says it's an honest likeness.</li>
-      <li>{A_nameDef} calls the new piece "Study of a Colonist, Mid-Excuse." The others recognized {B_nameDef} in it straight away, and laughed.\n\n{B_nameDef} has asked the council, very calmly, to have it removed before {B_nameDef} takes a hammer to it.</li>
+      <li>{A_nameDef}'s newest sculpture is {B_nameDef}, unmistakably, down to the squint, with a nose half again the size of the real one.\n\n{B_nameDef} wants the thing gone. {A_nameDef} says it's an honest likeness.</li>
+      <li>{A_nameDef} calls the new piece "{PLACE}". The others recognized {B_nameDef} in it straight away, and laughed.\n\n{B_nameDef} has asked the council, very calmly, to have it removed before {B_nameDef} takes a hammer to it.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
       <li>
         <label>Smash it</label>
-        <outcome>The council had the sculpture smashed. {B_nameDef} swept up the pieces, smiling, while {A_nameDef} watched from the doorway.</outcome>
+        <outcome>The council had the sculpture smashed. {B_nameDef} took a hammer to it, then swept up the pieces, smiling.</outcome>
         <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_ArtDestroyed</thought></li>
@@ -504,7 +506,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>5</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the sweeping up</label><target>B</target><organizer>B</organizer><tasks><li>Clean</li><li>Haul</li></tasks><duration>0.5~1</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>smashing the likeness</label><who>B</who><to>Place</to><work>Mine</work><hours>8~20</hours><duration>0.3~0.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Smash" />
         </effects>
         <riskChance>0.2</riskChance>
         <riskOutcome>The first blow took the nose off. {A_nameDef} turned and walked out before the second, and hasn't come back.</riskOutcome>
@@ -697,7 +700,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.4</chance></li>
-          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the hauling race</label><target>AAndB</target><tasks><li>Haul</li><li>Build</li></tasks><hours>11~18</hours><duration>2.5~3.5</duration><lines><li>That one's mine. Count it.</li><li>You dropped that one. It doesn't count.</li></lines></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the hauling race</label><target>AAndB</target><tasks><li>Stone</li></tasks><hours>11~18</hours><duration>2.5~3.5</duration><lines><li>That one's mine. Count it.</li><li>You dropped that one. It doesn't count.</li></lines></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskOutcome>{A_nameDef} and {B_nameDef} raced each other hauling stone. The loser accused the winner of cheating, and it came to blows.</riskOutcome>

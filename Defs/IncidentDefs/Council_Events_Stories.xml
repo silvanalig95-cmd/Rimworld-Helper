@@ -1318,12 +1318,19 @@
         <options>
           <li>
             <label>Give them a meal and a floor ({COUNT} silver)</label>
-            <outcome>The pilgrims pay their {COUNT} silver, eat everything they're given, and fall asleep on the dining room floor still talking about the hill.</outcome>
+            <outcome>The pilgrims pay their {COUNT} silver, eat everything they're given, and bed down for the night by the colony's wall, still talking about the hill.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Paid" />
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>supper for the pilgrims</label><what>meals</what><count>3</count><toGroup>true</toGroup><eat>true</eat><night>true</night></li>
+            </effects>
             <ways><generosity>1</generosity><openness>1</openness></ways>
           </li>
           <li>
             <label>Turn them away</label>
             <outcome>The pilgrims are turned away.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway"><ofGroup>true</ofGroup></li>
+            </effects>
             <ways><openness>-2</openness></ways>
           </li>
         </options>

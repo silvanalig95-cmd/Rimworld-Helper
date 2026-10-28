@@ -389,7 +389,7 @@ foreach (var (k, text) in keyed)
     {
         var p = m.Groups[1].Value;
         if (!Regex.IsMatch(p, @"^(\d+|[A-Z]+(_[A-Za-z]+)?)$")) errors.Add($"Keyed {k}: odd placeholder {{{p}}}");
-        else if (p.Contains('_') && !new[] { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" }.Contains(p.Split('_')[1]))
+        else if (p.Contains('_') && !new[] { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" }.Contains(p.Split('_')[1]))
             errors.Add($"Keyed {k}: unknown pawn placeholder {{{p}}}");
     }
 }
@@ -429,7 +429,7 @@ pawnPrefixes.Add("FRIEND");
 // Gossip and reputation (Social/Gossip/): the one a story is about, a deed's detail, and the date in a deed's name.
 pawnPrefixes.Add("SUBJECT");
 wishPh.UnionWith(new[] { "DETAIL", "DATE" });
-var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender" };
+var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {
     foreach (var el in doc.Descendants())

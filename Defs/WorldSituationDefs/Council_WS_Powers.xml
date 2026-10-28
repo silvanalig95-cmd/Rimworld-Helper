@@ -788,8 +788,9 @@
         <options>
           <li>
             <label>A meal and a bed</label>
-            <outcome>The merchant leaves in the morning in borrowed boots, promising to pay them back.</outcome>
+            <outcome>The merchant eats every crumb, sleeps by the gate, and leaves in the morning promising to pay the colony back.</outcome>
             <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the merchant</label><what>meals</what><count>1</count><eat>true</eat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
             </effects>

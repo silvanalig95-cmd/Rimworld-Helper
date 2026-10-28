@@ -499,7 +499,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A chunk of the rock that lies under this land (the first of its rock kinds), or null.</summary>
-        private static ThingDef MarkerStone(Map map)
+        internal static ThingDef MarkerStone(Map map)
         {
             try
             {
@@ -564,6 +564,98 @@ namespace ColonyCouncil
             if (c.GetPlant(map) is Plant p && p.def.plant.IsTree) return false;
             if (c.GetFirstItem(map) != null || c.GetFirstPawn(map) != null || map.designationManager.AllDesignationsAt(c).Any()) return false;
             return tree.CanEverPlantAt(c, map, true, false);
+        }
+    }
+
+    /// <summary>
+    /// Seeds sown in a small patch (two by two) of the best soil just outside the colony's fields, a crop the colony
+    /// already grows (else the commonest it could sow), by A with their own hands, one cell after another (OnMapTimed's
+    /// Planting); with <see cref="outOfWay"/>, in a corner at the edge of the home ground instead, wherever they'll grow.
+    /// With <see cref="fence"/>, a little fence round the patch is marked out for building once they're in. With
+    /// "Answers play out on the map" off, they're in the ground at once.
+    /// </summary>
+    public class DilemmaEffect_SowPatch : DilemmaEffect
+    {
+        public bool fence = true;
+        public bool outOfWay;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var map = ctx?.map;
+            if (map == null) return;
+            try
+            {
+                var crop = CropFor(map);
+                if (crop == null) return;
+                var cells = Patch(map, crop, outOfWay);
+                if (cells.Count == 0) return;
+                var a = ctx.a;
+                if (PlayOuts.On && OnMapTimed.Instance != null && a != null && !a.Dead && a.Spawned && a.Map == map && !a.Downed
+                    && a.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation))
+                {
+                    OnMapTimed.Instance.AddPlanting(map, crop, cells, cells.Select(_ => a).ToList(), false, fence);
+                    return;
+                }
+                var planted = cells.Select(c => DilemmaEffect_Plant.Sapling(crop, c, map, false)).Where(t => t != null).ToList();
+                if (planted.Count > 0 && fence) Fence(map, planted.Select(t => t.Position).ToList());
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("seeds sown", e);
+            }
+        }
+
+        /// <summary>The crop the colony grows most of, else the commonest one it could sow now.</summary>
+        private static ThingDef CropFor(Map map)
+        {
+            var grown = map.zoneManager.AllZones.OfType<Zone_Growing>().Select(z => z.GetPlantDefToGrow())
+                .Where(d => d?.plant != null && !d.plant.IsTree && d.plant.Sowable).GroupBy(d => d).OrderByDescending(g => g.Count()).Select(g => g.Key).FirstOrDefault();
+            if (grown != null) return grown;
+            return DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.plant != null && !d.plant.IsTree && d.plant.Sowable && d.plant.sowTags != null
+                                                                          && d.plant.sowTags.Contains("Ground") && d.plant.harvestedThingDef?.IsNutritionGivingIngestible == true
+                                                                          && (d.plant.sowResearchPrerequisites == null || d.plant.sowResearchPrerequisites.All(r => r.IsFinished)))
+                .OrderBy(d => d.plant.growDays).FirstOrDefault();
+        }
+
+        /// <summary>Two by two cells the crop can grow in: the richest soil just outside the fields, or a corner at the edge of the home ground.</summary>
+        private static List<IntVec3> Patch(Map map, ThingDef crop, bool outOfWay)
+        {
+            var center = TemplatePlanner.ColonyCenter(map);
+            var zone = map.zoneManager.AllZones.OfType<Zone_Growing>().Where(z => z.Cells.Count > 0).OrderByDescending(z => z.Cells.Count).FirstOrDefault();
+            var from = outOfWay || zone == null ? PlaySpots.GateCell(map, null) : zone.Cells[zone.Cells.Count / 2];
+            if (!from.IsValid) from = center;
+            List<IntVec3> best = null;
+            float bestScore = float.MinValue;
+            foreach (var c in GenRadial.RadialCellsAround(from, outOfWay ? 14f : 24f, true))
+            {
+                var block = new List<IntVec3> { c, c + IntVec3.East, c + IntVec3.North, c + IntVec3.NorthEast };
+                if (!block.All(b => DilemmaEffect_Plant.Ground(crop, b, map))) continue;
+                float soil = block.Sum(b => map.fertilityGrid.FertilityAt(b));
+                // The best soil for the stranger's seeds; out of the way, the farthest from the middle of the colony.
+                float score = outOfWay ? c.DistanceTo(center) : soil * 10f - c.DistanceTo(from) * 0.1f;
+                if (score <= bestScore) continue;
+                bestScore = score;
+                best = block;
+            }
+            return best ?? new List<IntVec3>();
+        }
+
+        /// <summary>A fence round the cells, marked out for building (the colony's own builders put it up), of wood where it can be.</summary>
+        public static void Fence(Map map, List<IntVec3> cells)
+        {
+            var def = DefDatabase<ThingDef>.GetNamedSilentFail("Fence");
+            if (map == null || cells.NullOrEmpty() || def == null || !Avail.CanBuild(def, map)) return;
+            var stuff = def.MadeFromStuff ? (Avail.StuffAllowed(def, ThingDefOf.WoodLog) ? ThingDefOf.WoodLog : GenStuff.DefaultStuffFor(def)) : null;
+            var rect = CellRect.FromLimits(cells.Min(c => c.x), cells.Min(c => c.z), cells.Max(c => c.x), cells.Max(c => c.z)).ExpandedBy(1);
+            int n = 0;
+            foreach (var c in rect.EdgeCells)
+            {
+                if (!c.InBounds(map) || c.GetEdifice(map) != null || c.GetFirstItem(map) != null || c.GetZone(map) != null) continue;
+                if (!GenConstruct.CanPlaceBlueprintAt(def, c, Rot4.North, map).Accepted) continue;
+                GenConstruct.PlaceBlueprintForBuild(def, c, map, Rot4.North, Faction.OfPlayer, stuff);
+                n++;
+            }
+            if (n > 0) Messages.Message("CC_Seeds_Fenced".Translate().Resolve(), new TargetInfo(cells[0], map), MessageTypeDefOf.SilentInput, false);
         }
     }
 

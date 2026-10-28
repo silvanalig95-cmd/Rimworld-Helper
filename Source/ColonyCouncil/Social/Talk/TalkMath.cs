@@ -268,13 +268,14 @@ namespace ColonyCouncil
             roll = Clamp(roll, 0f, 1f);
             switch (how)
             {
-                case TalkOutcome.Agree: return roll < 0.4f ? 2 : 3;
+                // Now and then a friendly talk gets its last word too (a "mind how you go" as they part).
+                case TalkOutcome.Agree: return roll < 0.4f ? 2 : roll < 0.85f ? 3 : 4;
                 case TalkOutcome.Debate: return roll < 0.5f ? 3 : 4;
                 case TalkOutcome.Argue: return roll < 0.4f ? 3 : 4;
-                case TalkOutcome.Tease: return roll < 0.35f ? 2 : 3;
-                case TalkOutcome.Joke: return roll < 0.5f ? 2 : 3;
+                case TalkOutcome.Tease: return roll < 0.35f ? 2 : roll < 0.85f ? 3 : 4;
+                case TalkOutcome.Joke: return roll < 0.5f ? 2 : roll < 0.88f ? 3 : 4;
                 case TalkOutcome.Reminisce: return roll < 0.7f ? 3 : 4;
-                default: return 3;
+                default: return roll < 0.85f ? 3 : 4;
             }
         }
 

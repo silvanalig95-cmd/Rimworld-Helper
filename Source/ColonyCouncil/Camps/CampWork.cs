@@ -73,6 +73,12 @@ namespace ColonyCouncil
         public static Job JobFor(Camp camp, Pawn pawn)
         {
             if (pawn.Downed || pawn.InMentalState || pawn.needs == null) return null;
+            // A child of theirs lost out on the land, and found again (CampLost.cs).
+            if (camp.IsLost(pawn))
+            {
+                var lost = camp.LostJob(pawn);
+                if (lost != null) return lost;
+            }
             int now = Now;
             if (given.TryGetValue(pawn.thingIDNumber, out var g) && g.tick == now)
             {

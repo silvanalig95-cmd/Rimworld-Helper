@@ -344,19 +344,22 @@
         <options>
           <li>
             <label>Plant them, and let {A_nameDef} tend them</label>
-            <outcome>{A_nameDef} chooses the best patch of soil in the colony, plants the seeds with {X_nameDef} watching, and puts a little fence round them.</outcome>
+            <outcome>{A_nameDef} chooses the best patch of soil by the fields, plants the seeds one by one, and marks out a little fence round them.</outcome>
             <outcomes>
-              <li>[lowtech] {A_nameDef} plants the seeds at dusk, the way {X_nameDef} says it should be done, with a pinch of ash in each hole and a word over them.</li>
+              <li>[lowtech] {A_nameDef} plants the seeds the way {X_nameDef} says it should be done, with a pinch of ash in each hole and a word over them, and marks out a little fence round them.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Plants</skill><xp>300</xp></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Fields</to><orTo><li>Outdoors</li></orTo><hours>15~20</hours><duration>1~1.5</duration><label>the planting of the seeds</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SowPatch" />
             </effects>
             <ways><mercy>1</mercy><openness>1</openness></ways>
           </li>
           <li>
             <label>Plant them somewhere out of the way</label>
-            <outcome>The seeds go into a corner by the fence where they won't be in anyone's way. {X_nameDef} looks at the spot for a long moment and says nothing.</outcome>
+            <outcome>The seeds go into a corner at the edge of the colony where they won't be in anyone's way. {X_nameDef} looks at the spot for a long moment and says nothing.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SowPatch"><fence>false</fence><outOfWay>true</outOfWay></li>
+            </effects>
             <ways><openness>1</openness></ways>
           </li>
           <li>

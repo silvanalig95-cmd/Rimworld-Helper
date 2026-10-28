@@ -8,7 +8,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The light and smoke of a gathering, drawn on <see cref="VisualTouches"/>' pulse: the fire people gather round
     /// (smoke every couple of seconds, sparks at night), a low warm glow at a grave after dark while someone stands there
-    /// remembering, and the small glint of cups raised together at a toast.
+    /// remembering, a smoking torch carried by someone walking the bounds, and the small glint of cups raised together at
+    /// a toast.
     /// </summary>
     /// <remarks>
     /// Whoever is there keeps an entry alive (a gathering refreshes its fire, a visit its grave); an entry nobody refreshes
@@ -17,8 +18,9 @@ namespace ColonyCouncil
     /// </remarks>
     internal sealed class Glows
     {
-        private const int MaxFires = 3;
+        private const int MaxFires = 6;
         private const int MaxCandles = 4;
+        private const int MaxTorches = 8;
 
         /// <summary>The glow is the game's own fire glow, made small and dim and warm: a candle's worth of light.</summary>
         private static readonly Color CandleColor = new Color(1f, 0.74f, 0.42f, 0.45f);
@@ -37,15 +39,35 @@ namespace ColonyCouncil
             public int until;
         }
 
+        private sealed class TorchEntry
+        {
+            public Pawn pawn;
+            public int until;
+        }
+
         private readonly List<FireEntry> fires = new List<FireEntry>();
         private readonly List<CandleEntry> candles = new List<CandleEntry>();
+        private readonly List<TorchEntry> torches = new List<TorchEntry>();
 
-        public bool Any => fires.Count > 0 || candles.Count > 0;
+        public bool Any => fires.Count > 0 || candles.Count > 0 || torches.Count > 0;
 
         public void Clear()
         {
             fires.Clear();
             candles.Clear();
+            torches.Clear();
+        }
+
+        public void Torch(Pawn pawn, int until)
+        {
+            foreach (var e in torches)
+                if (e.pawn == pawn)
+                {
+                    e.until = Mathf.Max(e.until, until);
+                    return;
+                }
+            if (torches.Count >= MaxTorches) torches.RemoveAt(0);
+            torches.Add(new TorchEntry { pawn = pawn, until = until });
         }
 
         public void Fire(Thing fire, int until)
@@ -86,6 +108,18 @@ namespace ColonyCouncil
                 if (pulses % 4 != 1 || e.fire.Map != map || !view.ExpandedBy(3).Contains(e.fire.Position)) continue;
                 if (!VisualTouches.FireSmoke(e.fire, map)) fires.RemoveAt(i);
             }
+            for (int i = torches.Count - 1; i >= 0; i--)
+            {
+                var e = torches[i];
+                var p = e.pawn;
+                if (e.until < now || p == null || !p.Spawned || p.Dead || p.Downed)
+                {
+                    torches.RemoveAt(i);
+                    continue;
+                }
+                if (p.Map != map || !view.Contains(p.Position)) continue;
+                TorchAt(p, map, pulses);
+            }
             if (candles.Count == 0) return;
             bool dark = VisualTouches.Dark(map);
             for (int i = candles.Count - 1; i >= 0; i--)
@@ -99,6 +133,20 @@ namespace ColonyCouncil
                 if (!dark || pulses % 2 != 0 || e.map != map || !view.Contains(e.cell)) continue;
                 CandleAt(e.cell, map);
             }
+        }
+
+        /// <summary>A torch held up beside them: its firelight after dark, and smoke now and then, day or night.</summary>
+        private static void TorchAt(Pawn p, Map map, int pulses)
+        {
+            var at = p.DrawPos + new Vector3(0.28f, 0f, 0.38f);
+            if (VisualTouches.Dark(map))
+            {
+                var data = FleckMaker.GetDataStatic(at, map, FleckDefOf.FireGlow, Rand.Range(1.1f, 1.35f));
+                data.instanceColor = CandleColor;
+                data.solidTimeOverride = Rand.Range(0.5f, 0.7f);
+                map.flecks.CreateFleck(data);
+            }
+            if (pulses % 3 == 0) FleckMaker.ThrowSmoke(at + new Vector3(0f, 0f, 0.2f), map, Rand.Range(0.35f, 0.55f));
         }
 
         /// <summary>A small, dim, warm glow low over the grave, flickering a little from one to the next.</summary>

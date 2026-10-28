@@ -30,23 +30,46 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// The visitors pay the colony {COUNT} silver (times <see cref="factor"/>): set down by whoever of them is here, X or
+    /// those who came with the event; else their people's courier brings it.
+    /// </summary>
+    public class DilemmaEffect_Paid : DilemmaEffect
+    {
+        public float factor = 1f;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            int n = Mathf.RoundToInt(ctx.count * factor);
+            if (ctx.map == null || n <= 0) return;
+            var by = new[] { ctx.stranger }.Concat((ctx as HappeningContext)?.group ?? new List<Pawn>()).FirstOrDefault(p => p != null && !p.Dead && p.Spawned && p.Map == ctx.map);
+            // together: set down by the one of them who is here.
+            Couriers.Hand(ThingDefOf.Silver, n, ctx.map, by?.Position ?? IntVec3.Invalid, Couriers.PeopleOf(ctx), by);
+        }
+    }
+
     /// <summary>The stranger's group leaves the map now (thrown out, or sent on their way with thanks).</summary>
     public class DilemmaEffect_SendAway : DilemmaEffect
     {
         /// <summary>Walked back to the road: they set off when the answer's visit to them starts, the visitor beside them.</summary>
         public bool walked;
+        /// <summary>The ones who came with the event (a story's pilgrims), not X.</summary>
+        public bool ofGroup;
+
+        private static Pawn Whom(DilemmaContext ctx, bool group) =>
+            group ? (ctx as HappeningContext)?.group.FirstOrDefault(g => g != null && g.Spawned && g.Map == ctx.map) : ctx.stranger;
 
         /// <summary>Hospitality's guests leave when their visit ends, not when the council says: the answer can't be given.</summary>
         public override string Unavailable(DilemmaContext ctx)
         {
-            var x = ctx.stranger;
+            var x = Whom(ctx, ofGroup);
             if (x != null && !x.Dead && x.Spawned && Strangers.IsHospitalityGuest(x)) return "CC_Stranger_HospitalitySendAway".Translate(x.LabelShort).ToString();
             return null;
         }
 
         public override void Apply(DilemmaContext ctx)
         {
-            var x = ctx.stranger;
+            var x = Whom(ctx, ofGroup);
             if (x == null || x.Dead || !x.Spawned || x.Faction == null || x.Faction.IsPlayer || x.IsPrisoner) return;
             // With a visit to them the answer set going, they go when it's over, or (walked back to the road) set off when it
             // starts with the visitor beside them (PlayOut/PlayDepart.cs).

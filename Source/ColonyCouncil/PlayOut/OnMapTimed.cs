@@ -26,7 +26,13 @@ namespace ColonyCouncil
         /// <summary>Trees felled by those the answer says cut the wood, one after another, the logs left for the colony.</summary>
         Felling,
         /// <summary>Saplings planted by those the answer says plant them, each at their own spot.</summary>
-        Planting
+        Planting,
+        /// <summary>A stone set at the head of each of the colony's graves by the one the answer says cuts them (PlayMarkers.cs).</summary>
+        Marking,
+        /// <summary>Smudge fires along the edge of the colony's fields, kept fed and smoking day and night for a couple of days.</summary>
+        Smudge,
+        /// <summary>The colony's children running a race round the edge of its fields, while the gathering watches (or on their own).</summary>
+        Race
     }
 
     /// <summary>One thing an answer keeps on the map for a while, and when it ends.</summary>
@@ -202,6 +208,9 @@ namespace ColonyCouncil
                 case TimedKind.Follow: return StepFollow(k, now);
                 case TimedKind.Felling: return StepFelling(k, now);
                 case TimedKind.Planting: return StepPlanting(k, now);
+                case TimedKind.Marking: return StepMarking(k, now);
+                case TimedKind.Smudge: return StepSmudge(k, now);
+                case TimedKind.Race: return StepRace(k, now);
                 default: return true;
             }
         }
@@ -235,7 +244,245 @@ namespace ColonyCouncil
                 case TimedKind.Planting:
                     EndPlanting(k);
                     break;
+                case TimedKind.Marking:
+                    EndMarking(k);
+                    break;
+                case TimedKind.Smudge:
+                    EndSmudge(k);
+                    break;
             }
+        }
+
+        // ---------------- The children's race ----------------
+
+        /// <summary>
+        /// The children (<paramref name="runners"/>) run the course (<paramref name="course"/>, round the edge of the fields)
+        /// twice round at a jog: when the gathering the answer set going (<paramref name="play"/>) is under way, or with none
+        /// (-1), in the late afternoon on their own.
+        /// </summary>
+        public void AddRace(Map map, List<Pawn> runners, List<IntVec3> course, int play)
+        {
+            if (map == null || runners.NullOrEmpty() || course.NullOrEmpty()) return;
+            Add(new TimedThing { kind = TimedKind.Race, map = map, pawns = runners.ToList(), cells = course.ToList(), count = play, start = Now, until = Now + Sched.DayTicks * 2 });
+        }
+
+        private static bool Running(TimedThing k, Pawn x) =>
+            x.CurJobDef == JobDefOf.Goto && k.cells.Contains(x.CurJob.targetA.Cell) || x.jobs?.jobQueue != null && x.jobs.jobQueue.Any(q => q.job?.def == JobDefOf.Goto && k.cells.Contains(q.job.targetA.Cell));
+
+        private static bool StepRace(TimedThing k, int now)
+        {
+            var map = k.map;
+            k.pawns.RemoveAll(x => x == null || x.Dead || x.Destroyed);
+            if (k.pawns.Count == 0 || now > k.until) return true;
+            if (k.on) return !k.pawns.Any(x => x.Spawned && Running(k, x));
+            if (Danger(map)) return false;
+            if (k.count >= 0)
+            {
+                // With the colony there to cheer: once the gathering is under way.
+                var play = PlayOutTracker.Instance?.plays.FirstOrDefault(p => p.id == k.count);
+                if (play == null || play.state == PlayState.Done) return true;
+                if (play.state != PlayState.Running) return false;
+            }
+            else if (!OnMapMath.Between(Hour(map), 16, 20)) return false;
+            int off = 0;
+            foreach (var x in k.pawns)
+            {
+                if (!x.Spawned || x.Map != map || x.Downed || x.Drafted || x.InMentalState || !x.Awake()) continue;
+                var lord = x.GetLord();
+                if (lord != null && !(lord.LordJob is LordJob_PlayOut)) continue;
+                if (!PlayOuts.Interruptible(x) || PlayOuts.NeedsPress(x) || !x.CanReach(k.cells[0], PathEndMode.OnCell, Verse.Danger.Some)) continue;
+                // together: they line up at the start and run the course round the fields, twice, at a run.
+                x.jobs.ClearQueuedJobs();
+                var laps = k.cells.Concat(k.cells).Concat(new[] { k.cells[0] }).ToList();
+                var first = JobMaker.MakeJob(JobDefOf.Goto, laps[0]);
+                first.locomotionUrgency = LocomotionUrgency.Jog;
+                x.jobs.StartJob(first, JobCondition.InterruptForced, null, false, true);
+                foreach (var c in laps.Skip(1))
+                {
+                    var leg = JobMaker.MakeJob(JobDefOf.Goto, c);
+                    leg.locomotionUrgency = LocomotionUrgency.Jog;
+                    x.jobs.jobQueue.EnqueueLast(leg);
+                }
+                off++;
+            }
+            if (off == 0) return false;
+            k.on = true;
+            k.until = now + GenDate.TicksPerHour * 3;
+            Messages.Message("CC_Timed_Race_Off".Translate().Resolve(), new LookTargets(k.pawns.Where(x => x.Spawned)), MessageTypeDefOf.SilentInput, false);
+            return false;
+        }
+
+        /// <summary>The course: the corners and middles of the edge round the colony's biggest field, else a loop in the open by the colony's walls.</summary>
+        public static List<IntVec3> RaceCourse(Map map, Pawn runner)
+        {
+            var course = new List<IntVec3>();
+            if (map == null) return course;
+            var zone = map.zoneManager.AllZones.OfType<Zone_Growing>().Where(z => z.Cells.Count >= 12).OrderByDescending(z => z.Cells.Count).FirstOrDefault();
+            CellRect box;
+            if (zone != null) box = CellRect.FromLimits(zone.Cells.Min(c => c.x), zone.Cells.Min(c => c.z), zone.Cells.Max(c => c.x), zone.Cells.Max(c => c.z)).ExpandedBy(1);
+            else
+            {
+                var open = PlaySpots.OpenCell(map, runner);
+                if (!open.IsValid) return course;
+                box = CellRect.CenteredOn(open, 6);
+            }
+            box = box.ClipInsideMap(map);
+            var marks = new[]
+            {
+                new IntVec3(box.minX, 0, box.minZ), new IntVec3(box.CenterCell.x, 0, box.minZ), new IntVec3(box.maxX, 0, box.minZ), new IntVec3(box.maxX, 0, box.CenterCell.z),
+                new IntVec3(box.maxX, 0, box.maxZ), new IntVec3(box.CenterCell.x, 0, box.maxZ), new IntVec3(box.minX, 0, box.maxZ), new IntVec3(box.minX, 0, box.CenterCell.z)
+            };
+            foreach (var m in marks)
+            {
+                if (!CellFinder.TryFindRandomCellNear(m, map, 3, c => c.Standable(map) && !c.Roofed(map) && !c.Fogged(map) && (runner == null || runner.CanReach(c, PathEndMode.OnCell, Verse.Danger.Some)), out var c2))
+                    continue;
+                if (!course.Contains(c2)) course.Add(c2);
+            }
+            return course.Count >= 4 ? course : new List<IntVec3>();
+        }
+
+        // ---------------- Smudge fires ----------------
+
+        /// <summary>Smudge fires (<paramref name="count"/>) along the edge of the colony's biggest field, lit now and kept for <paramref name="days"/>.</summary>
+        public void AddSmudge(Map map, int count, float days)
+        {
+            if (map == null || count <= 0) return;
+            Add(new TimedThing { kind = TimedKind.Smudge, map = map, count = count, start = Now, nights = Mathf.Max(1, Mathf.RoundToInt(days * 24f)) });
+        }
+
+        private static bool StepSmudge(TimedThing k, int now)
+        {
+            var map = k.map;
+            if (!k.on)
+            {
+                var def = ThingDefOf.Campfire;
+                if (!PlayOuts.On || def == null || !Avail.CanBuild(def, map) || now - k.start > Sched.DayTicks) return true;
+                foreach (var c in FieldEdgeCells(map, def, k.count))
+                {
+                    var fire = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+                    fire.SetFaction(Faction.OfPlayer);
+                    fire = GenSpawn.Spawn(fire, c, map, Rot4.North, WipeMode.VanishOrMoveAside);
+                    var fuel = fire.TryGetComp<CompRefuelable>();
+                    if (fuel != null)
+                    {
+                        fuel.allowAutoRefuel = false;
+                        fuel.Refuel(fuel.Props.fuelCapacity);
+                    }
+                    k.things.Add(fire);
+                }
+                if (k.things.Count == 0) return true;
+                k.on = true;
+                k.until = now + k.nights * GenDate.TicksPerHour;
+                Messages.Message("CC_Timed_Smudge_Lit".Translate(k.things.Count).Resolve(), new LookTargets(k.things), MessageTypeDefOf.NeutralEvent, false);
+                return false;
+            }
+            k.things.RemoveAll(t => t == null || t.Destroyed || !t.Spawned);
+            if (k.things.Count == 0 || now >= k.until) return true;
+            foreach (var fire in k.things)
+            {
+                // Fed day and night by those keeping watch over them, and smoking.
+                var fuel = fire.TryGetComp<CompRefuelable>();
+                if (fuel != null && fuel.FuelPercentOfMax < 0.4f) fuel.Refuel(fuel.Props.fuelCapacity - fuel.Fuel);
+                VisualTouches.Bonfire(fire, now + 400);
+            }
+            return false;
+        }
+
+        private static void EndSmudge(TimedThing k)
+        {
+            var map = k.map;
+            if (map == null || !Find.Maps.Contains(map)) return;
+            int n = 0;
+            foreach (var t in k.things.ToList())
+            {
+                if (t == null || t.Destroyed || !t.Spawned) continue;
+                var c = t.Position;
+                t.Destroy(DestroyMode.Vanish);
+                FilthMaker.TryMakeFilth(c, map, ThingDefOf.Filth_Ash, 2);
+                n++;
+            }
+            k.things.Clear();
+            if (n > 0) Messages.Message("CC_Timed_Smudge_Out".Translate().Resolve(), MessageTypeDefOf.SilentInput, false);
+        }
+
+        /// <summary>Just outside the colony's biggest field, a few steps apart all along its edge: where the smudge fires go.</summary>
+        private static List<IntVec3> FieldEdgeCells(Map map, ThingDef def, int wanted)
+        {
+            var cells = new List<IntVec3>();
+            var zone = map.zoneManager.AllZones.OfType<Zone_Growing>().Where(z => z.Cells.Count > 0).OrderByDescending(z => z.Cells.Count).FirstOrDefault();
+            if (zone == null) return cells;
+            var edge = new List<IntVec3>();
+            foreach (var z in zone.Cells)
+                foreach (var c in GenAdj.CellsAdjacentCardinal(z, Rot4.North, IntVec2.One))
+                    if (c.InBounds(map) && c.GetZone(map) == null && !c.Roofed(map) && !edge.Contains(c)) edge.Add(c);
+            // Spread round the field: the farthest from those already chosen next.
+            foreach (var c in edge.InRandomOrder())
+            {
+                if (cells.Count >= Mathf.Min(wanted, OnMapMath.MaxLanterns)) break;
+                if (cells.Any(x => x.InHorDistOf(c, 7f)) || NearDoor(c, map) || !FreeForLantern(c, map, def)) continue;
+                cells.Add(c);
+            }
+            return cells;
+        }
+
+        // ---------------- Marking the graves ----------------
+
+        /// <summary>
+        /// A stone at the head of each grave (<paramref name="heads"/>), set by <paramref name="worker"/> one grave after
+        /// another, a while carving at each; through the evening and the next morning if need be. Whatever they never got
+        /// to is set when it ends, as the answer always had it.
+        /// </summary>
+        public void AddMarking(Map map, List<IntVec3> heads, Pawn worker, ThingDef stone)
+        {
+            if (map == null || heads.NullOrEmpty() || worker == null || stone == null) return;
+            Add(new TimedThing { kind = TimedKind.Marking, map = map, cells = heads.ToList(), pawns = new List<Pawn> { worker }, where = stone.defName, until = Now + Sched.DayTicks * 3 / 2 });
+        }
+
+        private static bool StepMarking(TimedThing k, int now)
+        {
+            var map = k.map;
+            k.pawns.RemoveAll(x => x == null || x.Dead || x.Destroyed);
+            if (k.cells.Count == 0 || k.pawns.Count == 0 || now > k.until) return true;
+            if (Danger(map) || !OnMapMath.Between(Hour(map), 6, 23)) return false;
+            var x = k.pawns[0];
+            if (x.CurJobDef == PlayOutDefOf.Council_PlayOutMark || !x.Spawned || x.Map != map || x.Downed || x.InMentalState || x.Drafted || !x.Awake()) return false;
+            var duty = x.mindState?.duty?.def;
+            if (duty != null && duty.defName.StartsWith("ExitMap")) return true;
+            if (x.Faction == Faction.OfPlayer ? !PlayOuts.Interruptible(x) || PlayOuts.NeedsPress(x) : x.CurJobDef == JobDefOf.Ingest) return false;
+            var c = k.cells.Where(h => x.CanReach(h, PathEndMode.Touch, Verse.Danger.Some)).OrderBy(h => h.DistanceToSquared(x.Position)).FirstOrDefault();
+            if (!c.IsValid || !k.cells.Contains(c)) return false;
+            // together: they walk to the grave and cut its stone there, with their own hands.
+            x.jobs.StartJob(JobMaker.MakeJob(PlayOutDefOf.Council_PlayOutMark, c), JobCondition.InterruptForced, null, false, true);
+            return false;
+        }
+
+        /// <summary>Someone has cut a grave's stone: it's set at the head of the grave.</summary>
+        public static void Marked(Pawn x, IntVec3 at)
+        {
+            var k = Instance?.kept.FirstOrDefault(t => t.kind == TimedKind.Marking && t.pawns.Contains(x));
+            if (k == null || x.Map != k.map || !k.cells.Contains(at)) return;
+            k.cells.Remove(at);
+            var stone = DefDatabase<ThingDef>.GetNamedSilentFail(k.where ?? "");
+            var t = PlayMarkers.SetStone(k.map, at, stone);
+            if (t != null)
+            {
+                k.things.Add(t);
+                k.done++;
+            }
+        }
+
+        private static void EndMarking(TimedThing k)
+        {
+            if (k.map == null || !Find.Maps.Contains(k.map)) return;
+            var stone = DefDatabase<ThingDef>.GetNamedSilentFail(k.where ?? "");
+            foreach (var c in k.cells.ToList())
+            {
+                var t = PlayMarkers.SetStone(k.map, c, stone);
+                if (t != null) k.things.Add(t);
+            }
+            k.cells.Clear();
+            var set = k.things.Where(t => t != null && t.Spawned).ToList();
+            if (set.Count > 0) Messages.Message("CC_Markers_Set".Translate(set.Count).Resolve(), new LookTargets(set), MessageTypeDefOf.NeutralEvent, false);
         }
 
         // ---------------- Felling ----------------
@@ -335,14 +582,14 @@ namespace ColonyCouncil
         // ---------------- Planting ----------------
 
         /// <summary>Saplings of <paramref name="tree"/> planted by <paramref name="planters"/>, each at their own cell, in the daytime of the next two days.</summary>
-        public void AddPlanting(Map map, ThingDef tree, List<IntVec3> at, List<Pawn> planters, bool markers)
+        public void AddPlanting(Map map, ThingDef tree, List<IntVec3> at, List<Pawn> planters, bool markers, bool fence = false)
         {
             if (map == null || tree == null || at.NullOrEmpty() || planters.NullOrEmpty()) return;
             int n = Math.Min(at.Count, planters.Count);
             Add(new TimedThing
             {
                 kind = TimedKind.Planting, map = map, where = tree.defName, on = markers, cells = at.Take(n).ToList(), pawns = planters.Take(n).ToList(),
-                until = Now + Sched.DayTicks * 2
+                until = Now + Sched.DayTicks * 2, count = fence ? 1 : 0
             });
         }
 
@@ -408,6 +655,8 @@ namespace ColonyCouncil
             if (k.done <= 0 && !k.text.NullOrEmpty() && k.map != null && Find.Maps.Contains(k.map))
                 News.Post("CC_Timed_Planting_Never".Translate().Resolve(), LookTargets.Invalid, NewsKind.Colony, MessageTypeDefOf.NeutralEvent, Importance.Notable);
             if (k.done <= 0 || planted.Count == 0) return;
+            // A little fence round them, marked out for building, once they're in.
+            if (k.count == 1) DilemmaEffect_SowPatch.Fence(k.map, planted.Select(t => t.Position).ToList());
             // The answer's own words, now the trees are in.
             if (!k.text.NullOrEmpty())
             {
@@ -440,7 +689,7 @@ namespace ColonyCouncil
                 if (now < k.until) return false;
                 int still = k.things.Count(t => t != null && t.Spawned);
                 if (still > 0)
-                    Messages.Message((k.where == "gate" ? "CC_Timed_Lantern_Out" : "CC_Timed_Lanterns_Out").Translate(), MessageTypeDefOf.SilentInput, false);
+                    Messages.Message((k.where == "gate" ? "CC_Timed_Lantern_Out" : k.where == "doors" ? "CC_Timed_DoorTorches_Out" : "CC_Timed_Lanterns_Out").Translate(), MessageTypeDefOf.SilentInput, false);
                 return true;
             }
             // Not set out within two days (the setting turned off, nowhere to put them): forgotten.
@@ -467,7 +716,9 @@ namespace ColonyCouncil
             if (k.things.Count == 0) return true;
             k.on = true;
             k.until = UntilDawn(map);
-            string text = k.where == "gate" ? "CC_Timed_Lantern_Lit".Translate().Resolve() : "CC_Timed_Lanterns_Lit".Translate(k.things.Count).Resolve();
+            string text = k.where == "gate" ? "CC_Timed_Lantern_Lit".Translate().Resolve()
+                : k.where == "doors" ? "CC_Timed_DoorTorches_Lit".Translate(k.things.Count).Resolve()
+                : "CC_Timed_Lanterns_Lit".Translate(k.things.Count).Resolve();
             Messages.Message(text, new LookTargets(k.things), MessageTypeDefOf.NeutralEvent, false);
             return false;
         }
@@ -492,6 +743,7 @@ namespace ColonyCouncil
                     }
                 return cells;
             }
+            if (where == "doors") return DoorCells(map, def, OnMapMath.MaxLanterns);
             int want = OnMapMath.Lanterns(wanted, OnMapMath.MaxLanterns);
             var center = TemplatePlanner.ColonyCenter(map);
             var home = map.areaManager.Home;
@@ -506,6 +758,29 @@ namespace ColonyCouncil
                     if (!FreeForLantern(c, map, def)) continue;
                     cells.Add(c);
                 }
+            return cells;
+        }
+
+        /// <summary>One beside each of the colony's doors to the outside, on the outer side, against the wall and out of the way through it.</summary>
+        private static List<IntVec3> DoorCells(Map map, ThingDef def, int max)
+        {
+            var cells = new List<IntVec3>();
+            var center = TemplatePlanner.ColonyCenter(map);
+            foreach (var door in map.listerBuildings.allBuildingsColonist.OfType<Building_Door>().OrderBy(d => d.Position.DistanceToSquared(center)))
+            {
+                if (cells.Count >= max) break;
+                if (!door.Spawned || !map.areaManager.Home[door.Position]) continue;
+                var cardinal = GenAdj.CellsAdjacentCardinal(door).ToList();
+                // Its outer side: a cell straight through it that's under the open sky.
+                if (!cardinal.Any(c => c.InBounds(map) && !c.Roofed(map) && c.Standable(map))) continue;
+                foreach (var c in GenAdj.CellsAdjacent8Way(door))
+                {
+                    if (cardinal.Contains(c) || c.Roofed(map) || cells.Any(x => x.InHorDistOf(c, 2.5f))) continue;
+                    if (!FreeForLantern(c, map, def)) continue;
+                    cells.Add(c);
+                    break;
+                }
+            }
             return cells;
         }
 
@@ -946,8 +1221,62 @@ namespace ColonyCouncil
     }
 
     /// <summary>
+    /// The colony's children run a race round the edge of its fields (OnMapTimed's Race), twice round at a jog: when the
+    /// gathering the answer set going is under way (the colony lined up to cheer), or on their own in the late afternoon
+    /// with no gathering. After the gathering in the answer's effects. With "Answers play out on the map" off, or no
+    /// child up and about, the words alone.
+    /// </summary>
+    public class DilemmaEffect_Race : DilemmaEffect
+    {
+        public override void Apply(DilemmaContext ctx)
+        {
+            var map = ctx?.map;
+            if (!PlayOuts.On || map == null || OnMapTimed.Instance == null) return;
+            try
+            {
+                var runners = ctx.Colonists.Where(x => x.DevelopmentalStage.Child() && !x.Downed && x.health.capacities.CapableOf(PawnCapacityDefOf.Moving)).ToList();
+                if (ctx.a != null && ctx.a.DevelopmentalStage.Child() && !runners.Contains(ctx.a)) runners.Insert(0, ctx.a);
+                if (runners.Count == 0) return;
+                var course = OnMapTimed.RaceCourse(map, runners[0]);
+                if (course.Count == 0) return;
+                var watch = PlayOuts.Collected().FirstOrDefault(p => p.IsGathering && p.state == PlayState.Pending);
+                OnMapTimed.Instance.AddRace(map, runners.Take(8).ToList(), course, watch?.id ?? -1);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the children's race", e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Smudge fires (<see cref="count"/>) along the edge of the colony's biggest field: campfires lit there now, kept fed
+    /// and smoking day and night for <see cref="days"/>, then let burn down to ash. They burn what the answer set aside.
+    /// With "Answers play out on the map" off, no field or no campfire the colony could build, the words alone.
+    /// </summary>
+    public class DilemmaEffect_SmudgeFires : DilemmaEffect
+    {
+        public int count = 5;
+        public float days = 2f;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var map = ctx?.map;
+            if (!PlayOuts.On || map == null) return;
+            try
+            {
+                OnMapTimed.Instance?.AddSmudge(map, count, days);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("smudge fires", e);
+            }
+        }
+    }
+
+    /// <summary>
     /// Lanterns set out for the night (<see cref="count"/>; <see cref="at"/> "paths": along the outside of the colony's
-    /// walls, a few steps apart; "gate": one beside the gate), real torches of the kind the colony can build, lit at dusk
+    /// walls, a few steps apart; "gate": one beside the gate; "doors": one beside each door to the outside), real torches of the kind the colony can build, lit at dusk
     /// and taken in at first light. They burn what the answer set aside for them: nobody carries more wood out to them.
     /// With "Answers play out on the map" off, or no torch the colony could make, the words alone.
     /// </summary>
@@ -964,7 +1293,7 @@ namespace ColonyCouncil
             try
             {
                 if (OnMapTimed.LanternDef(map) == null) return;
-                OnMapTimed.Instance?.Add(new TimedThing { kind = TimedKind.Lights, map = map, count = Math.Max(1, count), where = at == "gate" ? "gate" : "paths" });
+                OnMapTimed.Instance?.Add(new TimedThing { kind = TimedKind.Lights, map = map, count = Math.Max(1, count), where = at == "gate" || at == "doors" ? at : "paths" });
             }
             catch (Exception e)
             {

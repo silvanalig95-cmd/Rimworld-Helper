@@ -8,4 +8,8 @@
   <CC_Camp_AnimalsLine>With them: {0}.</CC_Camp_AnimalsLine>
   <CC_Camp_Help_repair>{X_nameDef} from the camp mended the colony's {THING} and wouldn't hear of being paid for it.</CC_Camp_Help_repair>
 
+  <!-- A child of the camp lost out on the land (Source/ColonyCouncil/Camps/CampLost.cs). -->
+  <CC_CampLost_Found>{PAWN_nameDef} has found the lost child out on the land, the {BEAST} beside them, and is walking them back to the camp.</CC_CampLost_Found>
+  <CC_CampLost_Home>The lost child is back at the camp's fire.</CC_CampLost_Home>
+
 </LanguageData>

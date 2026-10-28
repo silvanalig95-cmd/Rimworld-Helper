@@ -642,24 +642,24 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmL_CampLostChild</defName>
     <label>a child missing from the camp</label>
-    <workerClass>ColonyCouncil.DilemmaWorker_Camp</workerClass>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampLostChild</workerClass>
     <weight>1.5</weight>
     <cooldownDays>40</cooldownDays>
     <minColonists>2</minColonists>
     <answerDays>0.4</answerDays>
     <texts>
-      <li>A goat got loose from the {FACTION} camp this afternoon. A child went after it, and neither has come back. {X_nameDef} is going from fire to fire with a torch, calling the child's name, and has asked {A_nameDef} for searchers who know the land.</li>
-      <li>[winter] A child from the {FACTION} camp took the goat out to browse at noon and hasn't come back. In a few hours it will be dark, and bitterly cold. {X_nameDef} came running to ask the colony for every pair of eyes it can spare.</li>
-      <li>[land:swamp|land:jungle] "In there, after the goat," {X_nameDef} said, pointing at the green wall past the {FACTION} camp. A child went in at midday and hasn't come out, and {X_nameDef} has been shouting into the growth ever since. Now {X_pronoun} has come to {A_nameDef} for help.</li>
+      <li>A {PET_kind} got loose from the {FACTION} camp earlier today. A child went after it, and neither has come back. {X_nameDef} has been calling the child's name all round the camp, and has asked {A_nameDef} for searchers who know the land.</li>
+      <li>[winter] A child from the {FACTION} camp took the {PET_kind} out to browse and hasn't come back. In a few hours it will be dark, and cold. {X_nameDef} came running to ask the colony for every pair of eyes it can spare.</li>
+      <li>[land:swamp|land:jungle] "In there, after the {PET_kind}," {X_nameDef} said, pointing at the green wall past the {FACTION} camp. A child went in hours ago and hasn't come out. Now {X_pronoun} has come to {A_nameDef} for help.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>
       <li>
         <label>Send our best tracker to search</label>
-        <outcome>{B_nameDef} followed small footprints and goat droppings until well after dark, and found the child asleep in a hollow with the goat curled up beside it. {B_nameDef} carried the child back to the camp, and {X_nameDef} wept.</outcome>
+        <outcome>{B_nameDef} followed small footprints and {PET_kind} tracks a long way out, and found the child lying in a hollow with the {PET_kind} beside it. {B_nameDef} walked the child back to the camp, and {X_nameDef} wept.</outcome>
         <outcomes>
-          <li>[winter] {B_nameDef} found the child in the snow under a fallen tree, cold and frightened and unharmed, and brought them back wrapped in {B_possessive} own coat.</li>
-          <li>[b:skill:Animals] {B_nameDef} tracked the goat rather than the child, guessing correctly that the child would be wherever the goat was. Both were back by moonrise.</li>
+          <li>[winter] {B_nameDef} found the child out in the cold, frightened and unharmed, and walked them back to the camp.</li>
+          <li>[b:skill:Animals] {B_nameDef} tracked the {PET_kind} rather than the child, guessing correctly that the child would be wherever the {PET_kind} was. Both are on their way back to the camp.</li>
         </outcomes>
         <ways><mercy>3</mercy><openness>2</openness></ways>
         <effects>
@@ -670,49 +670,55 @@
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-20</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Search"><label>the search for the lost child</label><target>B</target><organizer>B</organizer><hours>14~22</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FindLost"><how>search</how></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Animals</riskSkill>
         <riskReplaces>true</riskReplaces>
-        <riskOutcome>{B_nameDef} searched with the camp's people for hours. In the end one of their own found the child under a hedge, cold and sulking and fine. {B_nameDef} came home stiff and tired, and the camp was grateful for the help.</riskOutcome>
+        <riskOutcome>{B_nameDef} searched for hours. In the end one of the camp's own found the child, sulking and fine, and brought them home. {B_nameDef} came back stiff and tired, and the camp was grateful for the help.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Sleepless</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Search"><label>the search for the lost child</label><target>B</target><organizer>B</organizer><hours>14~22</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FindLost"><how>soon</how></li>
         </riskEffects>
       </li>
       <li>
         <label>Lend them lights and let them search</label>
-        <outcome>Every lamp the colony could spare went to the camp's searchers. They found the child before midnight, asleep in a ditch with an arm around the goat.</outcome>
+        <outcome>Every lamp the colony could spare went to the camp's searchers. They found the child before midnight, asleep in a ditch with an arm around the {PET_kind}.</outcome>
         <outcomes>
-          <li>[lowtech] The colony handed over a bundle of pitch torches. Their light bobbed among the trees for hours before a shout went up: the child was found, asleep against the goat.</li>
+          <li>[lowtech] The colony handed over a bundle of pitch torches. Their light bobbed about out there for hours before a shout went up: the child was found, asleep against the {PET_kind}.</li>
         </outcomes>
         <ways><generosity>1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FindLost"><how>midnight</how></li>
         </effects>
       </li>
       <li>
         <label>Keep the gate lit and the bell ringing all night</label>
-        <outcome>The colony kept its gate lit and someone rang the bell every hour through the night. Just before first light the child came walking out of the dark toward the sound, leading the goat, and asked what the bell was for.</outcome>
+        <outcome>The colony kept its gate lit and someone rang the bell every hour through the night. Just before first light the child came walking out of the dark toward the sound, the {PET_kind} behind, and asked what the bell was for.</outcome>
         <ways><mercy>2</mercy><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Colony</target><hediff>Council_Dlm_Sleepless</hediff><chance>0.3</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lanterns"><at>gate</at></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FindLost"><how>bell</how></li>
           <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the lit gate</label><target>Colony</target><count>2</count><to>Gate</to><hours>19~1</hours><duration>5~6</duration><lines><li>Ring it again.</li><li>Can you hear anything out there?</li></lines></li>
         </effects>
       </li>
       <li>
         <label>It's their child and their search</label>
-        <outcome>The colony stayed behind its walls and watched the torches move about in the dark. The camp's own people found the child at dawn, asleep against the goat. {X_nameDef} hasn't said a word to the colony since.</outcome>
+        <outcome>The colony stayed behind its walls. The camp's own people found the child at dawn, asleep against the {PET_kind}. {X_nameDef} hasn't said a word to the colony since.</outcome>
         <ways><mercy>-3</mercy><openness>-3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_DidNotHelpSearch</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_FindLost"><how>dawn</how></li>
         </effects>
       </li>
     </options>
@@ -1145,6 +1151,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_LaidToRest</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the burying of the journal</label><count>3</count><to>Walk</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_MarkGround"><kind>stone</kind></li>
         </effects>
       </li>
     </options>

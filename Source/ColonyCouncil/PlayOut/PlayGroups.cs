@@ -521,6 +521,8 @@ namespace ColonyCouncil
                 if (next == 2 && !p.planRoom.NullOrEmpty()) DilemmaEffect_PlanRoom.Stake(p);
                 // There: the one seen off goes on alone from here, and the animals are let go.
                 if (next == 2) PlayDepart.Arrived(p);
+                // There: the ground the walk went for is marked (a reburial, something buried).
+                if (next == 2) PlayMarkers.Arrived(p);
             }
             if (p.phase >= 4 || going.Count == 0) Finish(t, p, false, null);
         }
@@ -531,9 +533,13 @@ namespace ColonyCouncil
             foreach (var h in p.hands)
                 if (!h.left && !going.Contains(h) && elapsed > 500)
                     h.left = true;
-            // A watch on the move counts the whole of the time they're at it, walking or looking out.
+            // A watch on the move counts the whole of the time they're at it, walking or looking out, torches held up if they carry them.
             if (p.kind == PlayKind.Vigil && p.patrol)
-                foreach (var h in going) h.ticks += 250;
+                foreach (var h in going)
+                {
+                    h.ticks += 250;
+                    if (p.torches) VisualTouches.Torch(h.pawn, Find.TickManager.TicksGame + 320);
+                }
             if (p.kind == PlayKind.Vigil && going.Count > 0 && Rand.Chance(0.06f)) PlayWords.During(p, going.RandomElement().pawn);
             if (going.Count == 0 || (p.kind == PlayKind.Vigil && elapsed >= p.durationTicks)) Finish(t, p, false, null);
         }
@@ -669,6 +675,8 @@ namespace ColonyCouncil
                 }
                 case PlayKind.Search:
                 {
+                    // At the last place, where the one they're looking for really is.
+                    if (p.afterward == DilemmaEffect_FindLost.Search) DilemmaEffect_FindLost.Reached(p, x);
                     h.waited += delta;
                     // Looking about: a turn now and then.
                     if (h.waited % 180 < delta) x.Rotation = Rot4.Random;

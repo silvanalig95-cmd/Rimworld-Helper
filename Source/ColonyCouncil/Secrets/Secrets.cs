@@ -93,6 +93,12 @@ namespace ColonyCouncil
         public bool judged;
         /// <summary>Which telling: 0 not decided yet, 1 the low-tech one, 2 the usual one. Decided once, so the story doesn't change.</summary>
         public int telling;
+        /// <summary>
+        /// Waiting to be said (kept over a load, so the wait goes on): out loud by <see cref="sayBy"/> to whoever they're
+        /// with, until <see cref="sayUntil"/>; told to <see cref="confideTo"/> face to face, asked from <see cref="confideFrom"/>.
+        /// </summary>
+        public Pawn sayBy, confideTo;
+        public int sayUntil = -1, confideFrom = -1;
 
         public string Truth
         {
@@ -114,10 +120,16 @@ namespace ColonyCouncil
             Scribe_References.Look(ref leaker, "leaker");
             Scribe_Values.Look(ref judged, "judged");
             Scribe_Values.Look(ref telling, "telling");
+            Scribe_References.Look(ref sayBy, "sayBy");
+            Scribe_Values.Look(ref sayUntil, "sayUntil", -1);
+            Scribe_References.Look(ref confideTo, "confideTo");
+            Scribe_Values.Look(ref confideFrom, "confideFrom", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (knowers == null) knowers = new List<Pawn>();
                 knowers.RemoveAll(k => k == null);
+                if (sayBy == null) sayUntil = -1;
+                if (confideTo == null) confideFrom = -1;
             }
         }
     }
@@ -253,13 +265,69 @@ namespace ColonyCouncil
         /// </summary>
         public void ConfideWhenTogether(CouncilGameComponent comp, Secret s, Pawn friend)
         {
-            var owner = s?.owner;
-            if (owner == null || friend == null || owner == friend) return;
+            if (s?.owner == null || friend == null || s.owner == friend) return;
+            s.confideTo = friend;
+            s.confideFrom = Find.TickManager.TicksGame;
+            WaitToConfide(comp, s, friend, ConfideHours, ConfideSeekAfter);
+        }
+
+        private const float ConfideHours = 36f, ConfideSeekAfter = 6f, SayHours = 24f;
+
+        private void WaitToConfide(CouncilGameComponent comp, Secret s, Pawn friend, float hours, float seekAfter)
+        {
+            var owner = s.owner;
             Together.When("confide|" + owner.thingIDNumber + "|" + friend.thingIDNumber, owner, friend, () =>
             {
+                if (s.confideTo == friend)
+                {
+                    s.confideTo = null;
+                    s.confideFrom = -1;
+                }
                 if (!secrets.Contains(s) || s.revealed || friend.Dead || s.knowers.Contains(friend)) return;
                 Confide(comp, s, friend);
-            }, 36f, 6f);
+            }, hours, seekAfter);
+        }
+
+        private bool rewaited;
+
+        /// <summary>
+        /// Once after a load (the council's first hour): what was still waiting to be said when the game was saved waits
+        /// again for the rest of its time (Together itself keeps nothing over a load).
+        /// </summary>
+        public void Rewait(CouncilGameComponent comp)
+        {
+            if (rewaited) return;
+            rewaited = true;
+            int now = Find.TickManager.TicksGame;
+            foreach (var s in secrets.ToList())
+            {
+                if (s?.owner == null || s.revealed || s.owner.Dead)
+                {
+                    if (s != null) s.sayBy = s.confideTo = null;
+                    continue;
+                }
+                if (s.sayBy != null)
+                {
+                    float left = (s.sayUntil - now) / (float)GenDate.TicksPerHour;
+                    if (left > 0f && !s.sayBy.Dead) SayInCompany(comp, s, s.sayBy, left);
+                    else
+                    {
+                        s.sayBy = null;
+                        s.sayUntil = -1;
+                    }
+                }
+                if (s.confideTo != null)
+                {
+                    float gone = (now - s.confideFrom) / (float)GenDate.TicksPerHour;
+                    if (gone < ConfideHours && !s.confideTo.Dead && !s.knowers.Contains(s.confideTo))
+                        WaitToConfide(comp, s, s.confideTo, ConfideHours - gone, Math.Max(0f, ConfideSeekAfter - gone));
+                    else
+                    {
+                        s.confideTo = null;
+                        s.confideFrom = -1;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -268,13 +336,22 @@ namespace ColonyCouncil
         /// </summary>
         public void ConfessInCompany(CouncilGameComponent comp, Secret s) => SayInCompany(comp, s, s?.owner);
 
-        private void SayInCompany(CouncilGameComponent comp, Secret s, Pawn speaker)
+        private void SayInCompany(CouncilGameComponent comp, Secret s, Pawn speaker, float hours = SayHours)
         {
             var owner = s?.owner;
             if (owner == null || speaker == null) return;
             bool confession = speaker == owner;
-            Together.WhenInCompany("secretout|" + owner.thingIDNumber, speaker, heard =>
+            string key = "secretout|" + owner.thingIDNumber;
+            // One speaker waits at a time (the key is the secret's): someone already waiting to say it stays the one kept.
+            if (!Together.Waiting(key))
             {
+                s.sayBy = speaker;
+                s.sayUntil = Find.TickManager.TicksGame + (int)(hours * GenDate.TicksPerHour);
+            }
+            Together.WhenInCompany(key, speaker, heard =>
+            {
+                s.sayBy = null;
+                s.sayUntil = -1;
                 if (!secrets.Contains(s) || s.revealed || owner.Dead || speaker.Dead) return;
                 // In the speaker's voice ({PAWN} in the pools; the slip's pool names the owner ABOUT), else the keyed line.
                 string line = confession
@@ -284,7 +361,7 @@ namespace ColonyCouncil
                       ?? "CC_Together_SecretSlipped".Translate(speaker.Named("LEAKER"), heard.Named("OTHER"), owner.Named("PAWN")).Resolve();
                 SocialLog.Add(speaker, heard, line);
                 Reveal(comp, s, speaker);
-            }, 24f, confession ? null : owner);
+            }, hours, confession ? null : owner);
         }
 
         public void Confide(CouncilGameComponent comp, Secret s, Pawn friend)

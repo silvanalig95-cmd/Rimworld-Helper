@@ -75,6 +75,9 @@ namespace ColonyCouncil
         public List<HeldBack> movingOnHeld = new List<HeldBack>();
         /// <summary>Those who joined from a Hospitality visit, whose family may come to ask for them back (Integrations/GuestWill.cs).</summary>
         public List<GuestKin> guestKin = new List<GuestKin>();
+        /// <summary>Weddings the council planned with the couple, and which couples it asked (Social/WeddingPlans.cs).</summary>
+        public List<WeddingPlan> weddingPlans = new List<WeddingPlan>();
+        public List<string> weddingAsked = new List<string>();
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
@@ -220,6 +223,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref movingOnAsked, "movingOnAsked", LookMode.Value);
             Scribe_Collections.Look(ref movingOnHeld, "movingOnHeld", LookMode.Deep);
             Scribe_Collections.Look(ref guestKin, "guestKin", LookMode.Deep);
+            Scribe_Collections.Look(ref weddingPlans, "weddingPlans", LookMode.Deep);
+            Scribe_Collections.Look(ref weddingAsked, "weddingAsked", LookMode.Value);
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
@@ -282,6 +287,9 @@ namespace ColonyCouncil
                 movingOnHeld.RemoveAll(h => h?.pawn == null || h.kind == null);
                 guestKin ??= new List<GuestKin>();
                 guestKin.RemoveAll(k => k?.pawn == null || k.faction == null);
+                weddingPlans ??= new List<WeddingPlan>();
+                weddingPlans.RemoveAll(w => w?.a == null || w.b == null);
+                weddingAsked ??= new List<string>();
                 chronicle.RemoveAll(e => e == null);
                 if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();
@@ -438,7 +446,11 @@ namespace ColonyCouncil
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));
             // Moments waiting for two people to be together (Social/Together.cs).
-            Safe("together", () => Together.Hourly(this));
+            Safe("together", () =>
+            {
+                secrets.Rewait(this);
+                Together.Hourly(this);
+            });
             Safe("family", () => Family.Hourly(this));
         }
 

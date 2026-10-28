@@ -14,7 +14,10 @@ namespace ColonyCouncil
     /// really has to do and nothing else, and only work each one is able for. Each job is followed in the queue by a
     /// short step (JobDriver_PlayOutWorkNext) that counts what was done and finds the next, so they go from one job to
     /// the next as a party would, until the time is up, danger comes, they're drafted, called to something of the
-    /// game's own (a gathering, a ritual) or need to eat or sleep. Nothing is held: the jobs are ordinary ones.
+    /// game's own (a gathering, a ritual) or need to eat or sleep. Nothing is held: the jobs are ordinary ones. Some
+    /// work goes further when the colony's own has run out, so the words still hold: the woodpile marks a tree or two
+    /// near the colony to fell, stone with nowhere to store it goes to a heap by the gate, and roofs' gaps are marked for
+    /// the game's own roof building.
     /// </summary>
     public static class PlayWork
     {
@@ -46,6 +49,9 @@ namespace ColonyCouncil
                 case WorkTask.Harvest: return name == "WorkGiver_GrowerHarvest" || name == "WorkGiver_PlantsCut";
                 case WorkTask.Cut: return name == "WorkGiver_PlantsCut";
                 case WorkTask.Tend: return name == "WorkGiver_Shear" || name == "WorkGiver_Milk";
+                case WorkTask.Wood: return name == "WorkGiver_HaulGeneral" || name == "WorkGiver_PlantsCut";
+                case WorkTask.Stone: return name == "WorkGiver_HaulGeneral";
+                case WorkTask.Roof: return name == "WorkGiver_BuildRoof";
                 default: return false;
             }
         }
@@ -104,9 +110,11 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>Where the work is looked for from: near the place the answer names (the dining room after a feast), else the middle of the colony.</summary>
+        /// <summary>Where the work is looked for from: near the place the answer names (the butcher's table, the dining room after a feast), else the middle of the colony.</summary>
         private static IntVec3 Focus(PlayOut p, Pawn x)
         {
+            var at = At(p.map, p.mode);
+            if (at.IsValid) return at;
             foreach (var s in p.spots)
             {
                 var c = PlaySpots.FocusCell(p, s, x, out _);
@@ -115,12 +123,52 @@ namespace ColonyCouncil
             return TemplatePlanner.ColonyCenter(p.map);
         }
 
+        /// <summary>"butcher": the colony's butcher's table (or spot) nearest the middle; "storeroom": the middle of its biggest stockpile.</summary>
+        private static IntVec3 At(Map map, string at)
+        {
+            if (map == null || at.NullOrEmpty()) return IntVec3.Invalid;
+            var center = TemplatePlanner.ColonyCenter(map);
+            if (at == "butcher")
+            {
+                var b = map.listerBuildings.allBuildingsColonist.Where(t => t.Spawned && t.def.AllRecipes != null && t.def.AllRecipes.Any(r => r.defName == "ButcherCorpseFlesh"))
+                    .OrderBy(t => t.Position.DistanceToSquared(center)).FirstOrDefault();
+                return b?.Position ?? IntVec3.Invalid;
+            }
+            if (at == "storeroom")
+            {
+                var z = map.zoneManager.AllZones.OfType<Zone_Stockpile>().Where(z2 => z2.Cells.Count > 0).OrderByDescending(z2 => z2.Cells.Count).FirstOrDefault();
+                return z == null ? IntVec3.Invalid : z.Cells[z.Cells.Count / 2];
+            }
+            return IntVec3.Invalid;
+        }
+
+        private static bool IsWood(ThingDef d) => d != null && (d == ThingDefOf.WoodLog || d.IsStuff && d.stuffProps?.categories != null && d.stuffProps.categories.Contains(StuffCategoryDefOf.Woody) && d.category == ThingCategory.Item);
+
+        private static bool IsStone(ThingDef d) => d != null && (d.IsWithinCategory(ThingCategoryDefOf.StoneChunks) || d.IsWithinCategory(ThingCategoryDefOf.StoneBlocks));
+
+        private static bool IsChunk(ThingDef d) => d != null && d.IsWithinCategory(ThingCategoryDefOf.StoneChunks);
+
+        /// <summary>Only what the task is about: for the woodpile, logs and felling trees; for stone, stone.</summary>
+        private static bool Fits(WorkTask t, WorkGiverDef wg, Thing th, Pawn x)
+        {
+            switch (t)
+            {
+                case WorkTask.Wood:
+                    if (wg.giverClass.Name == "WorkGiver_PlantsCut")
+                        return th is Plant pl && pl.def.plant != null && pl.def.plant.IsTree && !Beliefs.Forbids(x, Belief.NoTreeCutting) && !Beliefs.Forbids(x, Belief.Indoors);
+                    return IsWood(th.def);
+                case WorkTask.Stone: return IsStone(th.def);
+                default: return true;
+            }
+        }
+
         /// <summary>Work of the colony's own, close to home: the home area, or near the middle of the colony (fields anywhere for sowing and the harvest).</summary>
         private static bool InScope(WorkTask t, IntVec3 c, Map map, IntVec3 center)
         {
             if (!c.InBounds(map) || c.Fogged(map)) return false;
-            // The fields and the pens are wherever the colony keeps them.
+            // The fields and the pens are wherever the colony keeps them; the woodpile's trees stand at the edge of it.
             if (t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Tend) return true;
+            if (t == WorkTask.Wood) return map.areaManager.Home[c] || c.InHorDistOf(center, WoodReach + 5f);
             return map.areaManager.Home[c] || c.InHorDistOf(center, 40f);
         }
 
@@ -137,6 +185,7 @@ namespace ColonyCouncil
             foreach (var t in p.tasks)
             {
                 if (!Allowed(t, x)) continue;
+                if (t == WorkTask.Roof) MarkRoofs(p);
                 if (t == WorkTask.Herd)
                 {
                     if (!HerdHome.CanHerd(x)) continue;
@@ -166,7 +215,7 @@ namespace ColonyCouncil
                         if (things == null && !sc.PotentialWorkThingRequest.IsUndefined) things = map.listerThings.ThingsMatching(sc.PotentialWorkThingRequest);
                         if (things != null)
                         {
-                            foreach (var th in things.Where(th => th != null && th.Spawned && InScope(t, th.Position, map, center)
+                            foreach (var th in things.Where(th => th != null && th.Spawned && InScope(t, th.Position, map, center) && Fits(t, wg, th, x)
                                                                   && (t != WorkTask.Harvest || wg.giverClass.Name != "WorkGiver_PlantsCut"
                                                                       || map.designationManager.DesignationOn(th, DesignationDefOf.HarvestPlant) != null))
                                          .OrderBy(th => th.Position.DistanceToSquared(focus)).Take(40).ToList())
@@ -203,8 +252,121 @@ namespace ColonyCouncil
                     task = t;
                     return job;
                 }
+                // The colony's own work of this kind has run out: what the words say is still done.
+                Job more = null;
+                try
+                {
+                    if (t == WorkTask.Wood) more = FellForPile(p, x, center, out target);
+                    else if (t == WorkTask.Stone) more = CarryToHeap(p, x, center, out target, out cell);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("work party " + t, e);
+                    more = null;
+                }
+                if (more == null) continue;
+                more.playerForced = false;
+                task = t;
+                return more;
             }
             return null;
+        }
+
+        /// <summary>How far out from the middle of the colony the woodpile's trees are looked for.</summary>
+        private const float WoodReach = 45f;
+
+        /// <summary>
+        /// No logs lying about: a tree near the colony (ordinary timber, nothing sown, marked or in a zone: OnMapThings'
+        /// Fellable) is marked for cutting, the nearest first, two for each of the party at most, and they fell it.
+        /// </summary>
+        private static Job FellForPile(PlayOut p, Pawn x, IntVec3 center, out Thing target)
+        {
+            target = null;
+            var map = p.map;
+            if (Beliefs.Forbids(x, Belief.NoTreeCutting) || Beliefs.Forbids(x, Belief.Indoors) || x.WorkTypeIsDisabled(WorkTypeDefOf.PlantCutting)) return null;
+            if (p.marked >= Math.Max(2, p.hands.Count * 2)) return null;
+            var tree = GenRadial.RadialDistinctThingsAround(center, map, WoodReach, true).OfType<Plant>()
+                .Where(t => DilemmaEffect_Felled.Fellable(t, map) && !t.IsForbidden(x) && x.CanReserveAndReach(t, PathEndMode.Touch, Danger.Some))
+                .OrderBy(t => t.Position.DistanceToSquared(center)).FirstOrDefault();
+            if (tree == null) return null;
+            map.designationManager.AddDesignation(new Designation(tree, DesignationDefOf.CutPlant));
+            p.marked++;
+            target = tree;
+            var job = JobMaker.MakeJob(JobDefOf.CutPlantDesignated, tree);
+            job.workGiverDef = Givers(WorkTask.Wood).FirstOrDefault(w => w.giverClass.Name == "WorkGiver_PlantsCut");
+            return job;
+        }
+
+        /// <summary>
+        /// Stone with nowhere in storage to take it: a chunk lying about the colony is carried off to a heap of them by
+        /// the gate, out of the way, one cell each.
+        /// </summary>
+        private static Job CarryToHeap(PlayOut p, Pawn x, IntVec3 center, out Thing target, out IntVec3 cell)
+        {
+            target = null;
+            cell = IntVec3.Invalid;
+            var map = p.map;
+            if (Beliefs.Forbids(x, Belief.Indoors) || x.WorkTypeIsDisabled(WorkTypeDefOf.Hauling)) return null;
+            if (!p.cell.IsValid)
+            {
+                var gate = PlaySpots.GateCell(map, x);
+                if (!gate.IsValid || !CellFinder.TryFindRandomCellNear(gate, map, 8, c => c.Standable(map) && c.GetEdifice(map) == null && c.GetZone(map) == null
+                                                                                          && !c.Roofed(map) && c.GetFirstItem(map) == null && !(c.GetTerrain(map)?.IsWater ?? false)
+                                                                                          && c.DistanceTo(gate) >= 3f, out var heap))
+                    return null;
+                p.cell = heap;
+            }
+            var chunk = map.listerThings.ThingsInGroup(ThingRequestGroup.Chunk)
+                .Where(c => c.Spawned && IsChunk(c.def) && !c.IsInAnyStorage() && !c.Position.InHorDistOf(p.cell, 6f) && InScope(WorkTask.Stone, c.Position, map, center)
+                            && !c.IsForbidden(x) && x.CanReserveAndReach(c, PathEndMode.ClosestTouch, Danger.Some))
+                .OrderBy(c => c.Position.DistanceToSquared(center)).FirstOrDefault();
+            if (chunk == null) return null;
+            var taken = new HashSet<IntVec3>();
+            for (int i = 0; i < 40; i++)
+            {
+                var c = PlaySpots.RingCell(map, p.cell, i, x, taken);
+                if (!c.IsValid) break;
+                taken.Add(c);
+                if (c.GetFirstItem(map) != null || c.GetZone(map) != null || !x.CanReserve(c)) continue;
+                cell = c;
+                break;
+            }
+            if (!cell.IsValid) return null;
+            target = chunk;
+            var job = JobMaker.MakeJob(JobDefOf.HaulToCell, chunk, cell);
+            job.count = 1;
+            job.haulMode = HaulMode.ToCellNonStorage;
+            job.workGiverDef = Givers(WorkTask.Stone).FirstOrDefault();
+            return job;
+        }
+
+        /// <summary>
+        /// Once, when the party first looks for roof work: the gaps in the roofs of the colony's rooms (on its home ground,
+        /// not where the colony wants no roof) are marked for the game's own roof building.
+        /// </summary>
+        private static void MarkRoofs(PlayOut p)
+        {
+            if (p.roofMarked || p.map == null) return;
+            p.roofMarked = true;
+            var map = p.map;
+            int n = 0;
+            try
+            {
+                foreach (var room in map.regionGrid.AllRooms.ToList())
+                {
+                    if (room == null || room.Dereferenced || room.TouchesMapEdge || room.IsDoorway || room.CellCount > 600 || room.OpenRoofCount == 0) continue;
+                    foreach (var c in room.Cells)
+                    {
+                        if (c.Roofed(map) || !map.areaManager.Home[c] || map.areaManager.NoRoof[c] || c.Fogged(map)) continue;
+                        map.areaManager.BuildRoof[c] = true;
+                        if (++n >= 200) return;
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("work party roofs", e);
+            }
         }
 
         /// <summary>One of the party's jobs (or the step between two), for this play.</summary>
@@ -282,6 +444,12 @@ namespace ColonyCouncil
                 case WorkTask.Haul:
                 case WorkTask.Corpses:
                     return target != null && (target.Destroyed || !target.Spawned || target.IsInAnyStorage());
+                case WorkTask.Wood:
+                case WorkTask.Stone:
+                    // A tree felled, or the wood or stone stored, or set down on the heap.
+                    return target != null && (target.Destroyed || !target.Spawned || target.IsInAnyStorage() || cell.IsValid && target.Position == cell);
+                case WorkTask.Roof:
+                    return map != null && cell.IsValid && cell.InBounds(map) && cell.Roofed(map);
                 case WorkTask.Sow:
                     return map != null && cell.IsValid && cell.InBounds(map) && cell.GetPlant(map) != null;
                 case WorkTask.Snow:

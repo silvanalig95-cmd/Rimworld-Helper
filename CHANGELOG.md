@@ -5,6 +5,27 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Wedding plans
+
+*28 October 2026, version 0.21.0*
+
+- A couple engaged a couple of days or more plan the wedding with the council: a feast for the whole colony after the ceremony, a small wedding with a toast among their closest friends, or a wait of a fortnight or so for a calmer time.
+- The wedding is the game's own ceremony, started on the next fine evening when both are ready, and the feast or the toast follows once they're married.
+- A plan not kept within five days lapses with a note, and the game marries them in its own time as before.
+
+## What the words say, done
+
+*28 October 2026, version 0.20.2*
+
+- Work parties do what their words say: rebuilding the woodpile fells trees and carries the logs to a heap by the gate, hauling stone moves the chunks, patching the roofs marks every unroofed room for roofing, and the clean-up after the butcher's work is at the butcher's table.
+- The unflattering likeness is a sculpture its maker really made, and comes up only while one stands in the colony. Smashed, it goes to rubble when the visit to it is over, and the one it mocked sweeps up the pieces.
+- Old bones reburied get turned earth and a stone at the head, the evening of headstones has the stonecutter cut and set a stone at every grave one after another, and the buried journal lies under a flat stone where the walk ends.
+- Smudge fires burn along the field edges against the locusts, and against the marsh lights the watch on the move carries torches after dark and the lanterns hang at the doors.
+- The camp's lost child is really out there with one of the camp's beasts, and comes home as the answer says: found where the search ends, found by their own people, or walking in toward the bell before first light.
+- Soup rounds carry meals out from the stores and hand them over, the children run their race in laps round the fields, and the mushrooms for the mushroom supper are picked, cooked and eaten.
+- The story seeds are sown in a small patch of a crop the colony grows, with a fence marked out round it. The hill's pilgrims hand over their silver, eat and bed down by the wall, and the robbed merchant eats and sleeps by the gate.
+- Fixes: a friendly talk now and then runs to a fourth line, so its parting words can be said, and a confession or a secret to be confided that is waiting for the right moment is kept over a save and load.
+
 ## Ties weigh, they don't bar
 
 *28 October 2026, version 0.20.1*

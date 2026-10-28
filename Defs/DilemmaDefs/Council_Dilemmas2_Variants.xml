@@ -130,7 +130,7 @@
     <defName>Council_Var_Dlm_Sculpture</defName>
     <dilemma>Council_Dilemma_Sculpture</dilemma>
     <texts>
-      <li>[lowtech] {A_nameDef} has carved a new figure for the hall, and it's {B_nameDef}, unmistakably, mid-sneeze. Visitors stop to laugh at it.\n\n{B_nameDef} has asked the council to have it thrown on the woodpile.</li>
+      <li>[lowtech] {A_nameDef} has carved a new figure, and it's {B_nameDef}, unmistakably, mid-sneeze. Everyone who passes it stops to laugh.\n\n{B_nameDef} has asked the council to have it thrown on the woodpile.</li>
       <li>[trait:TooSmart] {A_nameDef} calls the new sculpture a study in proportion. It's {B_nameDef}, with a forehead twice the size of anyone's, and a little plaque that says "Thinking."\n\n{B_nameDef} wants it gone. {A_nameDef} says it's art.</li>
       <li>[b:trait:Ugly] {A_nameDef}'s latest sculpture is a very faithful likeness of {B_nameDef}, which is the problem. {B_nameDef} has asked the council to have it taken down before anyone else sees it.</li>
     </texts>

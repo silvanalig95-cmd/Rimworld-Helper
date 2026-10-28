@@ -657,6 +657,20 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Someone walking the bounds with a smoking torch: its light after dark and its smoke, while they carry it.</summary>
+        public static void Torch(Pawn pawn, int untilTick)
+        {
+            if (!On || pawn == null) return;
+            try
+            {
+                Instance?.glows.Torch(pawn, untilTick);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("torch touch", e);
+            }
+        }
+
         /// <summary>Someone remembering at a grave: after dark, a low warm glow there, like a candle, while they stay.</summary>
         public static void Candle(Map map, IntVec3 cell, int untilTick)
         {
