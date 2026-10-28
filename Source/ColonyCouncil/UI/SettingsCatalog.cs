@@ -319,6 +319,7 @@ namespace ColonyCouncil
             Toggle("nemeses", "CC_Settings_Nemeses", "CC_SetNote_Nemeses");
             Toggle("nemesisReturns", "CC_Settings_NemesisReturns", "CC_SetNote_NemesisReturns", "nemeses");
             Toggle("petMoments", "CC_Settings_PetMoments", "CC_SetNote_PetMoments");
+            Toggle("guestWill", "CC_Settings_GuestWill", "CC_SetNote_GuestWill", "deepHooks");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("worldEventBattles", "CC_Settings_WorldEventBattles", "CC_SetNote_WorldEventBattles", "worldEvents");
@@ -529,7 +530,7 @@ namespace ColonyCouncil
                 V("allDreamMessages", "false"), V("daysBetweenWishes", "4"), V("maxOpenWishes", "3"), V("daysBetweenDilemmas", "15"),
                 V("daysBetweenMeetings", "20"), V("arcFrequency", "Rare"), V("frictions", "false"), V("allowQuitting", "false"),
                 V("heartEpisodes", "false"), V("strainSpeed", "0.75"), V("seriousIllnesses", "false"), V("ailmentFrequency", "0.5"),
-                V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"), V("endOfLife", "false"), V("movingOn", "false"),
+                V("crowdedSickness", "false"), V("frailty", "false"), V("dirtyWounds", "false"), V("endOfLife", "false"), V("movingOn", "false"), V("guestWill", "false"),
                 V("worldEventBattles", "false"), V("storytellerEventWeight", "0.5"), V("daysBetweenWorldEvents", "8"),
                 V("daysBetweenWorldSituations", "75"), V("encounterFrequency", "0.5"), V("momentFrequency", "0.75"),
                 V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5")

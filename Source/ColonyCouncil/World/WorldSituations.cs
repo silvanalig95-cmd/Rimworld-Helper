@@ -74,6 +74,9 @@ namespace ColonyCouncil
         /// <summary>A people already at the heart of a running situation (one thing at a time for them).</summary>
         public bool Busy(Faction f) => f != null && active.Any(s => !s.ended && s.ctx.faction == f);
 
+        /// <summary>A people in hard times: bad news running for them now (a famine, a plague, a war).</summary>
+        public bool HardTimes(Faction f) => f != null && active.Any(s => !s.ended && s.def != null && s.def.bad && s.ctx.faction == f);
+
         /// <summary>Another running situation still needs this person.</summary>
         public bool HoldsElsewhere(WorldSituation except, Pawn p) => active.Any(s => s != except && !s.ended && (s.held.Contains(p) || s.ctx.stranger == p || s.ctx.other == p));
 

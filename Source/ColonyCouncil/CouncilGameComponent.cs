@@ -73,6 +73,8 @@ namespace ColonyCouncil
         public List<string> movingOnAsked = new List<string>();
         /// <summary>Those the council kept from moving on, and what it owes them (Social/MovingOnHeld.cs).</summary>
         public List<HeldBack> movingOnHeld = new List<HeldBack>();
+        /// <summary>Those who joined from a Hospitality visit, whose family may come to ask for them back (Integrations/GuestWill.cs).</summary>
+        public List<GuestKin> guestKin = new List<GuestKin>();
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
@@ -166,6 +168,7 @@ namespace ColonyCouncil
             LifeRisks.Reset();
             MarketGuests.Reset();
             GoalRewards.Reset();
+            GuestWill.Reset();
             PlayStrangers.Reset();
             Guests.ForgetLastGame();
             // Lean/: the map facts and every def kept by name are worked out again for this game.
@@ -216,6 +219,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref sharedNameAsked, "sharedNameAsked", LookMode.Value);
             Scribe_Collections.Look(ref movingOnAsked, "movingOnAsked", LookMode.Value);
             Scribe_Collections.Look(ref movingOnHeld, "movingOnHeld", LookMode.Deep);
+            Scribe_Collections.Look(ref guestKin, "guestKin", LookMode.Deep);
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
@@ -276,6 +280,8 @@ namespace ColonyCouncil
                 if (movingOnAsked == null) movingOnAsked = new List<string>();
                 movingOnHeld ??= new List<HeldBack>();
                 movingOnHeld.RemoveAll(h => h?.pawn == null || h.kind == null);
+                guestKin ??= new List<GuestKin>();
+                guestKin.RemoveAll(k => k?.pawn == null || k.faction == null);
                 chronicle.RemoveAll(e => e == null);
                 if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();

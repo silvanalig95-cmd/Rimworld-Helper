@@ -96,6 +96,21 @@
     <stages><li><label>brushed off</label><description>I told them what was wrong with my stay. All I got back was talk.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
   </ThoughtDef>
 
+  <!-- A guest taken in over an objection, or kept a guest after one (Council_DlmGuest_Invite, Integrations/GuestWill.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Guest_Overruled</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>overruled about the newcomer</label><description>I told the council what I thought of taking that guest in. They heard me out and did it anyway.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Guest_Heard</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the council listened</label><description>I spoke up about the guest they meant to take in, and the council listened. They'll stay a guest for now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
   <!-- ===================== The Empire and the Vanilla Expanded peoples ===================== -->
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 342; modelled: 342; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,687 KB** after a year, **2,051 KB** after two, **2,166 KB** after five.
+Saved collections found: 343; modelled: 343; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,689 KB** after a year, **2,052 KB** after two, **2,168 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -35,7 +35,7 @@ Rimfolk's part of the save, roughly: **1,687 KB** after a year, **2,051 KB** aft
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords | cap | 30 | 60 | 60 | 17.6 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 185 | 185 | 185 | 16.3 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 187 | 187 | 187 | 16.4 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -67,8 +67,8 @@ Rimfolk's part of the save, roughly: **1,687 KB** after a year, **2,051 KB** aft
 | `Epithets/Epithets.cs:holders` | one per title | defs | 63 | 63 | 63 | 5.5 |
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
-| `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 56 | 56 | 56 | 4.9 |
+| `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 53 | 53 | 53 | 4.7 |
@@ -125,7 +125,7 @@ Rimfolk's part of the save, roughly: **1,687 KB** after a year, **2,051 KB** aft
 | `Quirks/Quirks.cs:battleTick` | within the longest quirk window | colonists | 20 | 20 | 20 | 1.8 |
 | `Strangers/Nuisances.cs:last` | 10 days | window | 20 | 20 | 20 | 1.8 |
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 18 | 18 | 18 | 1.6 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 19 | 19 | 19 | 1.6 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
@@ -134,6 +134,7 @@ Rimfolk's part of the save, roughly: **1,687 KB** after a year, **2,051 KB** aft
 | `CouncilGameComponent.cs:movingOnAsked` | who the council was asked about moving on, and why, the newest 60 (Social/MovingOn.cs) | fixed | 60 | 60 | 60 | 1.5 |
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
+| `CouncilGameComponent.cs:guestKin` | those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs) | fixed | 6 | 6 | 6 | 1.3 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
 | `Happenings/Happenings.cs:grudges` | grudges 2 years | window | 3 | 6 | 6 | 1.2 |
 | `Social/Gossip/ReputationTracker.cs:told` | one packed number per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 1.2 |
@@ -170,7 +171,7 @@ Rimfolk's part of the save, roughly: **1,687 KB** after a year, **2,051 KB** aft
 | `UI/WeekMemory.cs:trustKeys` | a trail per colonist, forgotten after 10 days away | colonists | 20 | 20 | 20 | 0.8 |
 | `World/WorldSituation.cs:beats` | per situation | fixed | 4 | 4 | 4 | 0.8 |
 | `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
-| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 18 | 18 | 18 | 0.7 |
+| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 19 | 19 | 19 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |

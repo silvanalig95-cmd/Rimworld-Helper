@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests who would stay
+
+*28 October 2026, version 0.20.0*
+
+- With Hospitality, a guest joins of their own will only when they would. Otherwise the guest tab offers only to recruit them by force, and the Recruit button's tooltip says what's missing.
+- A partner or young children at home, their parents while they're young, their people's leader or a faith held fast hold a guest back. Love or family here, hard times at home or a very good stay give a reason to stay.
+- There has to be room for one more: a free bed, a room of their own for the greedy, jealous and titled, and four days of food.
+- What they want of a home goes by their passions and nature: a passionate cook wants a decent kitchen, a grower fields to work, a gourmand fine meals.
+- Taking someone costs their people by who they are: less with no family among them, more with family there, twice for their leader's family.
+- Before a guest is recruited from the guest tab, a colonist who objects has their say at the council: someone who can't stand them, the devout, or the cook when food is short.
+- Weeks after someone joins, their family may walk in to take them home. Let them go together, send silver, or keep them at a price in goodwill and longing.
+
 ## What a life goal leaves behind
 
 *28 October 2026, version 0.19.0*

@@ -270,8 +270,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A dilemma about a Hospitality guest (X; the def's stranger role should ask for guest). Only for a guest who isn't
-    /// a royal (Hospitality never lets those join) and whose visit is going at least this well (<see cref="minVisitScore"/>,
-    /// Hospitality's own score, 0..1; ignored when it can't be read).
+    /// a royal (Hospitality never lets those join), whose visit is going at least this well (<see cref="minVisitScore"/>,
+    /// Hospitality's own score, 0..1; ignored when it can't be read), and who would stay of their own will (GuestWill).
     /// </summary>
     public class DilemmaWorker_Guest : DilemmaWorker_Stranger
     {
@@ -284,6 +284,8 @@ namespace ColonyCouncil
             if (x.royalty != null && x.royalty.AllTitlesInEffectForReading.Count > 0) return false;
             float score = Guests.VisitScore(x);
             if (score >= 0f && score < MinVisitScore) return false;
+            // Only someone who'd stay of their own will asks to (Integrations/GuestWill.cs).
+            if (!GuestWill.WouldStay(x)) return false;
             return base.Extra(ctx);
         }
     }

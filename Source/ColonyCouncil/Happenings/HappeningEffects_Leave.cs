@@ -23,6 +23,15 @@ namespace ColonyCouncil
         /// <summary>Those leaving to a people of their own, by thing id, until they go (kept for the session).</summary>
         private static readonly Dictionary<int, Faction> joining = new Dictionary<int, Faction>();
 
+        /// <summary>Someone of that people who came for them and sets off with them (Integrations/GuestWill.cs), by thing id.</summary>
+        private static readonly Dictionary<int, Pawn> with = new Dictionary<int, Pawn>();
+
+        /// <summary>When <paramref name="p"/> goes, <paramref name="companion"/> (a visitor of the people they go to) walks off with them.</summary>
+        public static void GoesWith(Pawn p, Pawn companion)
+        {
+            if (p != null && companion != null) with[p.thingIDNumber] = companion;
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             foreach (var p in Targets(ctx).ToList())
@@ -63,6 +72,18 @@ namespace ColonyCouncil
                         if (p.Faction != to) p.SetFaction(to);
                         if (p.Spawned && p.GetLord() == null)
                             LordMaker.MakeNewLord(to, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), p.Map, new List<Pawn> { p });
+                    }
+                }
+                // Whoever came for them goes with them, in the same party off the map.
+                if (with.TryGetValue(p.thingIDNumber, out var c))
+                {
+                    with.Remove(p.thingIDNumber);
+                    var lord = p.GetLord();
+                    if (c != null && !c.Dead && c.Spawned && c.Map == map && !c.Downed && c.Faction != Faction.OfPlayer)
+                    {
+                        c.GetLord()?.RemovePawn(c);
+                        if (lord != null && lord.faction == c.Faction) lord.AddPawn(c);
+                        else Arrivals.SendAway(new[] { c });
                     }
                 }
             }

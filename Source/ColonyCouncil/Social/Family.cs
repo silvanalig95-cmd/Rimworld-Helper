@@ -193,6 +193,8 @@ namespace ColonyCouncil
             FamilyBonds.Hourly(comp);
             // A colonist's partner from outside is visiting: whether they go to them (Social/MovingOn.cs).
             MovingOn.Hourly(comp);
+            // Family of someone who joined from a visit comes to ask for them back (Integrations/GuestWill.cs).
+            GuestKin.Hourly(comp);
         }
 
         private static float DaysHere(Pawn p) => (p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 999999) / (float)GenDate.TicksPerDay;

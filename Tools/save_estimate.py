@@ -121,6 +121,7 @@ MODEL = {
     "CouncilGameComponent.cs:sharedNameAsked": ("fixed", 40, V, "couples the council was asked about, one name or two, the newest 40 (Social/FamilyNames.cs)"),
     "CouncilGameComponent.cs:movingOnAsked": ("fixed", 60, V, "who the council was asked about moving on, and why, the newest 60 (Social/MovingOn.cs)"),
     "CouncilGameComponent.cs:movingOnHeld": ("fixed", 8, 420, "those kept from moving on, one per person and reason, until it resolves or after a season (Social/MovingOnHeld.cs)"),
+    "CouncilGameComponent.cs:guestKin": ("fixed", 6, 220, "those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs)"),
     "CouncilGameComponent.cs:chronicle": ("cap", (C["Chronicle"], 8), 350, "Caps.Chronicle; the newest 200 always, milestones longest"),
     "CouncilGameComponent.cs:history": ("window", (120, 1), 120, "a sample a day, 120 days"),
     "CouncilGameComponent.cs:lastAtHome": ("colonists", 1, D, "colonists still ours"),

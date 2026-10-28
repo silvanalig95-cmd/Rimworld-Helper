@@ -1,6 +1,28 @@
 # Handoff: work in progress
 
-Last shipped: 0.19.0 "What a life goal leaves behind", the player's five approved ideas. `Aspirations/GoalRewards.cs`
+Last shipped: 0.20.0 "Guests who would stay", the player's five approved Hospitality ideas and their ask for wants by
+character (a passionate cook wants a good kitchen). `Integrations/GuestWill.cs` (pure numbers in `GuestWillMath.cs`,
+Tools/Tests/GuestWillTests.cs), setting `guestWill` (deep hooks, Hospitality). `GuestWill.Of(guest)` (cached 250
+ticks) reads ties (a love partner not here, juvenile children not here, parents while under 25 and not in love here,
+the faction's leader or their family, with Ideology certainty 0.85+ in another ideoligion), reasons (love or family
+here, `WorldSituations.HardTimes` (a running `bad` situation for their faction), visit score 0.75+, the colony's
+primary ideoligion), room (`FreeBed`: a colonist bed, not medical or a guest bed; alone in a room for Greedy, Jealous,
+titled; four days of `TotalHumanEdibleNutrition`) and up to two wants (`GuestWillMath.Wants`: Gourmand, then passions
+by `People.PassionLevel`; none for Ascetic or a child; only what `Avail.CanBuild` allows; checks in `Met`). By name:
+`Patch_GuestWillButton` (DialogUtility.DrawRecruitButton prefix: `hasEnoughFriends` false when unwilling, so only
+Force recruit; a TipRegion with `GuestWill.Tip`), `Patch_GuestWillHappy` (IncidentWorker_HappyGuestJoins.IsHappyGuest
+postfix), `Patch_GuestWillRecruit` (GuestUtility.Recruit prefix: `MayRecruit` fires Council_DlmGuest_Invite through
+`GuestWill.pending` when `Objector` finds one; blocked with a message while that or another dilemma letter waits;
+`RecruitNow` re-invokes with a bypass), `Patch_GuestWillAdopt` (GuestUtility.Adopt prefix/postfix: `GuestKin.Joined`).
+`StatPart_GuestCost` goes on RecruitRelationshipDamage and ForcedRecruitRelationshipDamage at startup
+(`GuestWillMath.CostFactor`). `GuestKin` (saved `CouncilGameComponent.guestKin`, `GuestKin.Hourly` from Social/Family.cs)
+rolls `AskChance` once when due (10 to 30 days), brings the closest `MovingOnHeld.CanCome` relative in by
+`Arrivals.Visit` to the gate and fires Council_DlmGuest_KinAsks (`KinAsksContext`, a MovingOnContext): go home
+together (`DilemmaEffect_GoHomeWith` registers `DilemmaEffect_LeaveForGood.GoesWith`, so the relative joins their exit
+lord), silver, or stay (`DilemmaEffect_HoldBack asAsked`: "love" for a partner). `DilemmaWorker_Guest` also needs
+`WouldStay`. Not tried in the game here.
+
+Before it, 0.19.0 "What a life goal leaves behind", the player's five approved ideas. `Aspirations/GoalRewards.cs`
 (pure names in `GoalRewardMath.cs`, Tools/Tests/GoalRewardTests.cs), called from `Aspirations.Fulfil` before the
 letter, whose lines it returns: `SkillOf` (the goal's skill, record, counter, office or worker; combat and craft-or-art
 pick the pawn's better), saved as `Aspiration.mark` (old saves fill it in `Build`); `Inspire` (by

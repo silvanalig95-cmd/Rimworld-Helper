@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Hospitality's guests who'd stay of their own will (Source/ColonyCouncil/Integrations/GuestWill.cs). -->
+  <CC_Settings_GuestWill>Guests join only when they would</CC_Settings_GuestWill>
+  <CC_Settings_GuestWill_Tip>With Hospitality: a guest joins the colony of their own will only when they would. Nothing may hold them at home (a partner or young children there, their parents while they're young and not in love here, their people's leader, a faith they hold fast that isn't the colony's). They need a reason to stay: love or family here, hard times among their people, a stay that's going very well, or the colony's faith. There has to be room for one more: a free bed, a room of their own for the greedy, the jealous and the titled, and four days of food in store. And what they'd want of a home by their passions and nature has to be there: a passionate cook wants a decent kitchen, a grower fields to work, a gourmand fine meals. Until then the guest tab offers only to recruit them by force, and the Recruit button's tooltip says what's missing; Hospitality's own "a happy guest asks to join" comes only for a guest who would. What taking them costs their people goes by who they are: less with no family among them, more with family there, twice for their leader's family. Before someone is recruited from the guest tab, anyone of the colony who objects has their say at the council, and their family may come weeks later to ask for them back. Off: Hospitality's own rules alone. Needs the deeper game hooks.</CC_Settings_GuestWill_Tip>
+  <CC_SetNote_GuestWill>With Hospitality: a guest joins of their own will only when they would, and the colony has a say.</CC_SetNote_GuestWill>
+
+  <!-- The Recruit button's tooltip. -->
+  <CC_GuestWill_Willing>Rimfolk: {PAWN_nameDef} would stay of {PAWN_possessive} own will.</CC_GuestWill_Willing>
+  <CC_GuestWill_NotWilling>Rimfolk: {PAWN_nameDef} won't stay of {PAWN_possessive} own will yet, so only recruiting by force is open.</CC_GuestWill_NotWilling>
+  <CC_GuestWill_Ties>Holding {PAWN_objective} at home:</CC_GuestWill_Ties>
+  <CC_GuestWill_Reasons>Reasons to stay:</CC_GuestWill_Reasons>
+  <CC_GuestWill_NoReason>No reason to stay yet. Love or family here, hard times among {PAWN_possessive} people, a stay that's going very well, or the colony's faith would be one.</CC_GuestWill_NoReason>
+  <CC_GuestWill_Room>Room for one more:</CC_GuestWill_Room>
+  <CC_GuestWill_Wants>What {PAWN_nameDef} would want of a home:</CC_GuestWill_Wants>
+
+  <CC_GuestWill_Among>among {FACTION}</CC_GuestWill_Among>
+  <CC_GuestWill_Away>out in the world</CC_GuestWill_Away>
+  <CC_GuestWill_Tie_Partner>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, {WHERE}</CC_GuestWill_Tie_Partner>
+  <CC_GuestWill_Tie_Child>{PAWN_possessive} young child {OTHER_nameDef}, {WHERE}</CC_GuestWill_Tie_Child>
+  <CC_GuestWill_Tie_Children>{PAWN_possessive} young children, {OTHER_nameDef} and the rest, {WHERE}</CC_GuestWill_Tie_Children>
+  <CC_GuestWill_Tie_Parent>{PAWN_possessive} {RELATION} {OTHER_nameDef}, {WHERE}, while {PAWN_pronoun} is young</CC_GuestWill_Tie_Parent>
+  <CC_GuestWill_Tie_Leader>{PAWN_pronoun} leads {FACTION}</CC_GuestWill_Tie_Leader>
+  <CC_GuestWill_Tie_LeaderKin>{PAWN_pronoun} is family to {OTHER_nameDef}, who leads {FACTION}</CC_GuestWill_Tie_LeaderKin>
+  <CC_GuestWill_Tie_Faith>{PAWN_possessive} faith, {IDEO}, which {PAWN_pronoun} holds fast and the colony doesn't share</CC_GuestWill_Tie_Faith>
+
+  <CC_GuestWill_Reason_Love>{PAWN_pronoun} has fallen for someone here</CC_GuestWill_Reason_Love>
+  <CC_GuestWill_Reason_Family>{PAWN_possessive} {RELATION} {OTHER_nameDef} lives here</CC_GuestWill_Reason_Family>
+  <CC_GuestWill_Reason_HardTimes>hard times among {FACTION}</CC_GuestWill_Reason_HardTimes>
+  <CC_GuestWill_Reason_Stay>the stay is going very well for {PAWN_objective}</CC_GuestWill_Reason_Stay>
+  <CC_GuestWill_Reason_Faith>the colony shares {PAWN_possessive} faith, {IDEO}</CC_GuestWill_Reason_Faith>
+
+  <CC_GuestWill_NoBed>no free bed for {PAWN_objective} (a guest bed or a bed for the sick doesn't count)</CC_GuestWill_NoBed>
+  <CC_GuestWill_NoOwnRoom>no room of {PAWN_possessive} own free, which someone like {PAWN_objective} would want</CC_GuestWill_NoOwnRoom>
+  <CC_GuestWill_NoFood>food in store for {DAYS} days for everyone, {NEED} wanted</CC_GuestWill_NoFood>
+
+  <CC_GuestWill_NoneYet>none yet</CC_GuestWill_NoneYet>
+  <CC_GuestWill_There>there</CC_GuestWill_There>
+  <CC_GuestWill_Want_kitchen>a kitchen that's at least {STAGE} (the best now: {NOW})</CC_GuestWill_Want_kitchen>
+  <CC_GuestWill_Want_fields>fields to work: {NEED} cells growing (now {NOW})</CC_GuestWill_Want_fields>
+  <CC_GuestWill_Want_hospital>a proper hospital: {NEED} beds for the sick in a hospital room (now {NOW})</CC_GuestWill_Want_hospital>
+  <CC_GuestWill_Want_art>art about the place: {NEED} pieces (now {NOW})</CC_GuestWill_Want_art>
+  <CC_GuestWill_Want_study>somewhere to study: a research bench ({NOW})</CC_GuestWill_Want_study>
+  <CC_GuestWill_Want_workshop>a workshop: a room for the workbenches ({NOW})</CC_GuestWill_Want_workshop>
+  <CC_GuestWill_Want_animals>animals to look after: {NEED} tame (now {NOW})</CC_GuestWill_Want_animals>
+  <CC_GuestWill_Want_rec>somewhere to relax together: a recreation room ({NOW})</CC_GuestWill_Want_rec>
+  <CC_GuestWill_Want_comrades>people who can fight beside them: {NEED} with shooting or melee at {SKILL} or more (now {NOW})</CC_GuestWill_Want_comrades>
+  <CC_GuestWill_Want_rooms>a place that's well built: {NEED} rooms at least {STAGE} (now {NOW})</CC_GuestWill_Want_rooms>
+  <CC_GuestWill_Want_food>good food: {NEED} fine meals or better in store (now {NOW})</CC_GuestWill_Want_food>
+
+  <!-- What taking them costs their people (the recruiting price's breakdown). -->
+  <CC_GuestWill_CostStat>Who {PAWN_nameDef} is to {PAWN_possessive} people (Rimfolk)</CC_GuestWill_CostStat>
+  <CC_GuestWill_Cost_Family>family among {FACTION}</CC_GuestWill_Cost_Family>
+  <CC_GuestWill_Cost_NoFamily>no family among {FACTION}</CC_GuestWill_Cost_NoFamily>
+  <CC_GuestWill_Cost_Leader>close to the leader of {FACTION}</CC_GuestWill_Cost_Leader>
+  <CC_GuestWill_Cost_Role>holds a role of their faith: {ROLE}</CC_GuestWill_Cost_Role>
+
+  <!-- The colony has its say. -->
+  <CC_GuestWill_StillAsking>The council is still deciding whether to take {PAWN_nameDef} in.</CC_GuestWill_StillAsking>
+  <CC_GuestWill_AnswerFirst>{OTHER_nameDef} objects to taking {PAWN_nameDef} in, and the council has another question waiting: answer it first, then ask again.</CC_GuestWill_AnswerFirst>
+
+  <!-- Family come to take someone home. -->
+  <CC_GuestWill_CantSpare>The colony can't spare {PAWN_nameDef}: never one of its last four grown-ups.</CC_GuestWill_CantSpare>
+
+</LanguageData>

@@ -243,6 +243,8 @@ namespace ColonyCouncil
         public bool marketStallShips = true;
         /// <summary>With RimMarket and Hospitality, guests may always reach the market's stalls to shop, whatever their guest area (Integrations/MarketGuests.cs).</summary>
         public bool marketGuestsShop = true;
+        /// <summary>With Hospitality: a guest joins of their own will only when they would, and the colony has its say (Integrations/GuestWill.cs).</summary>
+        public bool guestWill = true;
 
         // Room planner (the clearing options are remembered between games)
         public bool planCutPlants = true;
@@ -448,6 +450,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref marketStallWindow, "marketStallWindow", true);
             Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
+            Scribe_Values.Look(ref guestWill, "guestWill", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);
             Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);

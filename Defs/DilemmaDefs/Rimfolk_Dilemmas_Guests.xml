@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Hospitality's guests who join the colony (Source/ColonyCouncil/Integrations/GuestWill.cs; the numbers are
+    GuestWillMath.cs). Only with Hospitality, the deeper game hooks and the "guestWill" setting. Neither question comes
+    on its own schedule: each is asked at a moment the game brings about.
+  -->
+
+  <!--
+    Before Hospitality recruits a guest, someone of the colony who objects has their say (GuestWill.MayRecruit): X the
+    guest, A the one who objects, B the one X thinks best of. Tags, the objection: "dislike" (A can't stand X), "faith"
+    (A holds fast to the colony's faith, X doesn't share it), "unwilling" (X is to be taken by force, and A is kind),
+    "crowded" (no bed free), "food" (the stores won't last four days); and "forced".
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmGuest_Invite</defName>
+    <label>a guest to be taken in</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_GuestInvite</workerClass>
+    <cooldownDays>0</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>[dislike] {X_nameDef} of {FACTION} is about to join the colony, and {A_nameDef} has asked the council to think again. {A_nameDef} can't stand {X_objective}, and doesn't want to share a roof with {X_objective} for years to come.</li>
+      <li>[dislike] Before the colony takes {X_nameDef} in, {A_nameDef} wants a word. The two of them have been at each other since {X_nameDef} arrived, and {A_nameDef} says it will only get worse once {X_pronoun} lives here.</li>
+      <li>[faith] {A_nameDef} holds fast to the colony's faith, and {X_nameDef} of {FACTION} doesn't share it. Before {X_nameDef} is taken in, {A_nameDef} has asked the council to hear what that means to {A_objective}.</li>
+      <li>[unwilling] {X_nameDef} doesn't want to stay, and the colony means to keep {X_objective} all the same. {A_nameDef} has stood up in front of the council and said it would be wrong.</li>
+      <li>[crowded] There's no bed free as it is. {A_nameDef}, who has no room of {A_possessive} own, wants to know where {X_nameDef} would sleep before {X_pronoun} joins.</li>
+      <li>[food] The stores won't feed the colony four more days as it is. {A_nameDef}, who does the cooking, has asked the council whether another mouth is wise right now.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Take {X_nameDef} in all the same</label>
+        <outcome>The council heard {A_nameDef} out and took {X_nameDef} in all the same. {A_nameDef} said nothing more about it, and won't forget it.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GuestRecruit" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Guest_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{X_nameDef} stays a guest for now</label>
+        <outcome>{X_nameDef} stays a guest for now, and can be asked again another day. {A_nameDef} thanked the council for listening.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Guest_Heard</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!--
+    Someone who joined from a visit, whose family has walked in from {FACTION} to take them home (GuestKin.Hourly), and
+    waits at the gate: A the one who joined, X the one who came, {RELATION} what X is to A. Kept, A longs for them like
+    anyone kept from moving on (Social/MovingOnHeld.cs: "love" for a partner, "family" for the rest). Tags: what X is to
+    A ("partner", "parent", "child", "sibling"), and "forced" (A was recruited by force).
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmGuest_KinAsks</defName>
+    <label>family come to take them home</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_KinAsks</workerClass>
+    <cooldownDays>0</cooldownDays>
+    <answerDays>1</answerDays>
+    <thingCount>200</thingCount>
+    <texts>
+      <li>{X_nameDef} has walked in from {FACTION}: {A_nameDef}'s {RELATION}, come to take {A_objective} home. {X_nameDef} is making for the gate, to wait there for the council's answer.</li>
+      <li>[partner] {X_nameDef} has come all the way from {FACTION} for {A_nameDef}, and will wait at the gate for an answer. {A_nameDef} went very quiet when {X_pronoun} was seen on the road.</li>
+      <li>[parent] {A_nameDef}'s {RELATION} {X_nameDef} has walked in from {FACTION} to ask for {A_nameDef} to come home, and will wait at the gate for the council's answer.</li>
+      <li>[forced] The colony kept {A_nameDef} from {FACTION} against {A_possessive} will. Now {X_nameDef}, {A_possessive} {RELATION}, has walked in to ask for {A_objective} back, and will wait at the gate.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} go home with {X_nameDef}</label>
+        <outcome>The colony saw {A_nameDef} to the gate, where {X_nameDef} was waiting, and the two of them set off together for {FACTION}.</outcome>
+        <ways><mercy>1</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {A_nameDef} off</label><to>Gate</to><hours>7~17</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Leave_SawThemOff</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GoHomeWith" />
+          <li Class="ColonyCouncil.DilemmaEffect_LeaveForGood"><joinFaction>true</joinFaction></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} stays, and {X_nameDef} goes home with {COUNT} silver</label>
+        <outcome>{COUNT} silver went out to {X_nameDef} at the gate, with the colony's word that {A_nameDef} is well and staying. {X_nameDef} took it and went home without {A_objective}.</outcome>
+        <ways><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>{COUNT} silver for {X_nameDef}</label><what>silver</what></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><asAsked>true</asAsked><share>0.6</share><trust>3</trust></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} stays</label>
+        <outcome>The council told {X_nameDef} that {A_nameDef} stays. {X_nameDef} went home alone, and {FACTION} think less of the colony for it.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-15</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><asAsked>true</asAsked><trust>6</trust></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

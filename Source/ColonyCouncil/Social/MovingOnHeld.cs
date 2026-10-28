@@ -290,6 +290,8 @@ namespace ColonyCouncil
         public float share = 1f;
         public bool promised;
         public bool again;
+        /// <summary>The longing the question was about (MovingOnContext.kind) instead of <see cref="kind"/>: a partner's or a family's.</summary>
+        public bool asAsked;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -297,6 +299,7 @@ namespace ColonyCouncil
             var p = ctx?.a;
             var m = ctx as MovingOnContext;
             if (p == null || p.Dead) return;
+            string kind = asAsked && !(m?.kind).NullOrEmpty() ? m.kind : this.kind;
             float strength = (m?.strength ?? 0.5f) * share;
             HeldBack h = again ? MovingOnHeld.For(p, kind) : null;
             if (h == null)

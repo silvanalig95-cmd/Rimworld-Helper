@@ -38,12 +38,34 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
         <points>
           <li>Hospitality guests count as visitors, so your colonists chat, swap stories, flirt and trade insults with them in Rimfolk's encounters. A warm moment makes the guest like that colonist more, which helps toward the friends Hospitality wants before a guest can join.</li>
           <li>Guests have stories of their own: they praise a fine guest room or find fault with a poor one, get shown around, tell of home at supper, sit up at night with a colonist who can't sleep either, lend a hand, haggle at the stalls, and thank their host before they go. Most of these go in the colonist's journal.</li>
-          <li>A guest whose visit is going well and who has grown close to a colonist may ask the council to stay. Taking them in uses Hospitality's own way of adopting a guest, the same as its join request, and their people take it better with a parting gift. A guest whose visit is going badly may bring a complaint instead. The council never sends guests away: their visit ends when Hospitality says.</li>
+          <li>A guest whose visit is going well, who has grown close to a colonist and who would stay (below) may ask the council to stay. Taking them in uses Hospitality's own way of adopting a guest, the same as its join request, and their people take it better with a parting gift. A guest whose visit is going badly may bring a complaint instead. The council never sends guests away: their visit ends when Hospitality says.</li>
           <li>With no guest bed in the colony, a kind or sociable colonist may wish for one, most often while visitors are here. Switching any bed to a guest bed grants it.</li>
           <li>Once there is a guest bed, sociable and kind colonists, and the steward or speaker, may wish for a guest room worth the name: the best guest room should reach the next step of impressiveness. The guest room plan builds a small room for one visitor; switch its bed to a guest bed once it's built. A colonist with no bed never counts a guest bed as free.</li>
           <li>The guests' people remember each visit: one that goes home delighted leaves the colony a good name with them, one that ends in disappointment a poor one, and a run of either adds up. The World page lists it among what that people remembers, and a raid letter can name a poor welcome.</li>
           <li>Guests are part of the colony's everyday life without leaving Hospitality's hands: a lonely colonist may go and keep a guest company in their free time (the colonist goes to them; the guest is never moved), guests standing near one of the council's toasts raise their cups with everyone else, and now and then a guest on screen says a word about their stay, from how it's going, the bed they were given or the feast they've wandered into. This week, on the council window's first page, lists each party staying and how their visit is going; click to go to them.</li>
         </points>
+      </li>
+      <li>
+        <heading>Who would stay</heading>
+        <text>With Rimfolk, a guest joins of their own will only when they would, on top of the friends Hospitality asks for. The Recruit button's tooltip on the guest tab says where they stand. Until it's all there, the button offers only to recruit them by force, at Hospitality's higher price, and Hospitality's "a happy guest asks to join" doesn't come for them.
+
+Nothing may hold them at home: a partner or young children back with their people (a partner here as a guest too, until they've joined), their parents while they're under 25 and not in love here, their people's leader, or with Ideology a faith they hold fast that isn't the colony's. Once that person has died or joined the colony, it no longer holds them.
+
+They need at least one reason to stay: love here, family here, hard times among their people (a famine, a plague or a war on the World page), a stay going very well by Hospitality's own score, or the colony's own faith.
+
+There has to be room for one more: a free bed of the colony's (a guest bed or a bed for the sick doesn't count), a room of their own for the greedy, the jealous and the titled, and food in store for four days for everyone.
+
+And what someone of their passions and nature wants of a home has to be there, up to two things: a passionate cook wants a kitchen that's at least decent, a grower 150 cells of fields, a healer two beds for the sick in a hospital, an artist three pieces of art, a researcher a research bench, a crafter a workshop, a tamer three tame animals, a talker a recreation room, a fighter three colonists who can fight, a builder three rooms that are at least decent, and a gourmand ten fine meals in store. An ascetic asks for nothing, and nobody wants what the colony can't build yet.
+
+The setting "Guests join only when they would" (needs the deeper game hooks) turns all of this off.</text>
+      </li>
+      <li>
+        <heading>Their people, and the colony's say</heading>
+        <text>What taking someone costs their people (Hospitality's recruiting price) goes by who they are: about a third less for someone with no family among them, a third more with family there, twice for the leader's family, and more for one who holds a role of their faith. The price's breakdown on the guest tab shows why.
+
+Before a guest is recruited from the guest tab, someone of the colony who objects has their say at the council: someone who can't stand them, a colonist who holds fast to the colony's faith when the guest doesn't share it, a kind colonist when the guest is to be taken by force, someone with no room of their own when there's no bed free, or the cook when the food won't last. The council can take them in all the same, which the one who objected remembers, or keep them a guest for now. While another of the council's questions waits, answer it first.
+
+Weeks after someone joins from a visit, their family may walk in from their people to take them home: a partner most likely, then a parent, a grown child, a brother or sister, and likelier when they were taken by force. They wait at the gate for the council's answer. The colony can let them go home together, send the visitor home with silver, or keep them, at the cost of goodwill and a longing like that of anyone kept from moving on.</text>
       </li>
     </sections>
     <keywords>
