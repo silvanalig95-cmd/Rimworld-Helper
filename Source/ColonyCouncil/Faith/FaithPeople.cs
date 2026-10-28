@@ -39,8 +39,15 @@ namespace ColonyCouncil
         public List<FaithLeaning> leanings = new List<FaithLeaning>();
         /// <summary>When a leaning last took them over (-1: never, or settled since): they settle into it a while.</summary>
         public int lastSwitch = -1;
+        /// <summary>
+        /// 0 to 1: how hard they dig in against the ideoligion the council's decree pressed on them (<see cref="defied"/>),
+        /// and whether that has been told (LeaningMath.Defiance).
+        /// </summary>
+        public float defiance;
+        public Ideo defied;
+        public bool defianceTold;
 
-        public bool Empty => notes.Count == 0 && leanings.Count == 0 && burden == null && lastSwayed < 0 && lastSteadied < 0 && lastCrisis < 0 && lastSwitch < 0;
+        public bool Empty => notes.Count == 0 && leanings.Count == 0 && burden == null && lastSwayed < 0 && lastSteadied < 0 && lastCrisis < 0 && lastSwitch < 0 && defiance <= 0f;
 
         public void ExposeData()
         {
@@ -49,6 +56,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastSteadied, "lastSteadied", -1);
             Scribe_Values.Look(ref lastCrisis, "lastCrisis", -1);
             Scribe_Values.Look(ref lastSwitch, "lastSwitch", -1);
+            Scribe_Values.Look(ref defiance, "defiance");
+            Scribe_References.Look(ref defied, "defied");
+            Scribe_Values.Look(ref defianceTold, "defianceTold");
             Scribe_Values.Look(ref burden, "burden");
             Scribe_Values.Look(ref burdenDays, "burdenDays");
             Scribe_Collections.Look(ref notes, "notes", LookMode.Deep);

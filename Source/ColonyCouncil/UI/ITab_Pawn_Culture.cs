@@ -219,6 +219,11 @@ namespace ColonyCouncil
                 }
                 return my - y;
             };
+            // Dug in against the council's decree (Faith/FaithLeanings.cs).
+            var defy = FaithLeanings.Defiance(p);
+            if (defy.HasValue)
+                s.Add("CC_Leaning_DefiantLine".Translate(defy.Value.pressed.name.Named("DECREED"), defy.Value.defiance.ToStringPercent().Named("PCT")).Resolve(), UiKit.Warn,
+                    "CC_Leaning_DefiantTip".Translate(p.Named("PAWN"), ideo.name.Named("FAITH"), defy.Value.pressed.name.Named("DECREED")).Resolve());
             // Faiths they held before this one.
             try
             {

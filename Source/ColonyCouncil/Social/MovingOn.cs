@@ -56,7 +56,10 @@ namespace ColonyCouncil
         /// <summary>The council's hour: a colonist's partner from outside is here, not asked about before: the question now.</summary>
         public static void Hourly(CouncilGameComponent comp)
         {
-            if (!On || comp == null) return;
+            if (comp == null) return;
+            // Those kept from going (MovingOnHeld): a relative sent for arrives, a partner back for a second asking.
+            MovingOnHeld.Hourly(comp);
+            if (!On) return;
             foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
             {
                 if (!DilemmaWorker_LoveOutside.Pairs(map).Any()) continue;
@@ -82,6 +85,11 @@ namespace ColonyCouncil
     {
         public string relativeName;
         public string relation;
+        /// <summary>Why ("family", "love", "room"), how much they want to go (MovingOnMath), the relative who could be sent for, and a promised room never given.</summary>
+        public string kind;
+        public float strength = 0.5f;
+        public Pawn relative;
+        public bool broken;
 
         protected override void AddArgs(List<NamedArgument> args)
         {
@@ -94,6 +102,10 @@ namespace ColonyCouncil
             base.ExposeData();
             Scribe_Values.Look(ref relativeName, "relativeName");
             Scribe_Values.Look(ref relation, "relation");
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_Values.Look(ref strength, "strength", 0.5f);
+            Scribe_References.Look(ref relative, "relative");
+            Scribe_Values.Look(ref broken, "broken");
         }
     }
 
@@ -124,8 +136,12 @@ namespace ColonyCouncil
                 }
             }
             if (options.Count == 0) return false;
-            var (pa, px, _, _) = options.RandomElement();
-            ctx = new MovingOnContext { def = def, map = map, a = pa, faction = px.Faction, relativeName = px.LabelShort, relation = Family.Relation(pa, px), count = 150 };
+            var (pa, px, _, isChild) = options.RandomElement();
+            ctx = new MovingOnContext
+            {
+                def = def, map = map, a = pa, faction = px.Faction, relativeName = px.LabelShort, relation = Family.Relation(pa, px), count = 150,
+                kind = "family", relative = px, strength = MovingOnMath.Family(pa.relations.OpinionOf(px), isChild)
+            };
             MovingOn.MarkAsked(MovingOn.Key("family", pa, px));
             return true;
         }
@@ -165,7 +181,12 @@ namespace ColonyCouncil
             var pairs = Pairs(map).ToList();
             if (pairs.Count == 0) return false;
             var (a, x) = pairs.RandomElement();
-            ctx = new MovingOnContext { def = def, map = map, a = a, stranger = x, faction = x.Faction, relativeName = x.LabelShort, relation = Family.Relation(a, x) };
+            bool married = a.relations.DirectRelationExists(PawnRelationDefOf.Spouse, x), engaged = a.relations.DirectRelationExists(PawnRelationDefOf.Fiance, x);
+            ctx = new MovingOnContext
+            {
+                def = def, map = map, a = a, stranger = x, faction = x.Faction, relativeName = x.LabelShort, relation = Family.Relation(a, x),
+                kind = "love", strength = MovingOnMath.Love(married, engaged, a.relations.OpinionOf(x))
+            };
             MovingOn.MarkAsked(MovingOn.Key("love", a, x));
             return true;
         }
@@ -204,7 +225,7 @@ namespace ColonyCouncil
                             && !MovingOn.Asked(MovingOn.Key("room", p)))
                 .OrderBy(p => p.needs.mood.CurLevelPercentage).FirstOrDefault();
             if (a == null) return false;
-            ctx = new DilemmaContext { def = def, map = map, a = a };
+            ctx = new MovingOnContext { def = def, map = map, a = a, kind = "room", strength = MovingOnMath.Room(a.needs.mood.CurLevelPercentage) };
             MovingOn.MarkAsked(MovingOn.Key("room", a));
             return true;
         }

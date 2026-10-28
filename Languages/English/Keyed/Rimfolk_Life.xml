@@ -52,4 +52,20 @@
   <CC_Life_LastVisitLabel>a last talk with {B_nameDef}</CC_Life_LastVisitLabel>
   <CC_Life_LastVisitCause>{A_nameDef} came to sit with {B_nameDef} near the end.</CC_Life_LastVisitCause>
 
+  <!-- Kept from moving on (Social/MovingOnHeld.cs). -->
+  <CC_Log_Leave_PromiseBroken>a promised room that never came</CC_Log_Leave_PromiseBroken>
+  <CC_Log_Leave_PromiseKept>a promised room, given in time</CC_Log_Leave_PromiseKept>
+  <CC_Leave_PromiseBroken>The council promised {PAWN_nameDef} a room of {PAWN_possessive} own, and {PAWN_nameDef} is still sleeping among the others. {PAWN_nameDef} trusts the council less for it.</CC_Leave_PromiseBroken>
+  <CC_Leave_Peace_family>{PAWN_nameDef} has made {PAWN_possessive} peace with staying, though {PAWN_pronoun} still writes to {OTHER}.</CC_Leave_Peace_family>
+  <CC_Leave_Peace_love>{PAWN_nameDef} has made {PAWN_possessive} peace with living apart from {OTHER}, for now.</CC_Leave_Peace_love>
+  <CC_Leave_Peace_room>{PAWN_nameDef} has stopped asking for a room of {PAWN_possessive} own.</CC_Leave_Peace_room>
+  <CC_Leave_CouldntCome>{OTHER} couldn't come after all. {PAWN_nameDef} stays, and misses {OTHER} all the more.</CC_Leave_CouldntCome>
+  <CC_Leave_RelativeCame_Label>{OTHER_nameDef} has come to live here</CC_Leave_RelativeCame_Label>
+  <CC_Leave_RelativeCame>{OTHER_nameDef}, {PAWN_nameDef}'s {RELATION}, has come from {FACTION} to live here, and is one of the colony now.</CC_Leave_RelativeCame>
+  <CC_Leave_MeetLabel>meeting {OTHER_nameDef}</CC_Leave_MeetLabel>
+  <CC_Leave_RelativeCameCause>{OTHER_nameDef} came to live here</CC_Leave_RelativeCameCause>
+  <CC_Leave_CantCome>{OTHER} can't be sent for now.</CC_Leave_CantCome>
+  <CC_Leave_NoRoomToGive>Nobody here has a room of their own to give up.</CC_Leave_NoRoomToGive>
+  <CC_Leave_GaveRoom>{OTHER_nameDef} has given up {OTHER_possessive} room to {PAWN_nameDef}.</CC_Leave_GaveRoom>
+
 </LanguageData>

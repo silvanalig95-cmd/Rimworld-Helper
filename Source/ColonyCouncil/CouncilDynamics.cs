@@ -700,6 +700,8 @@ namespace ColonyCouncil
             Safe("family across the years", () => FamilyYears.Daily(this));
             // The end of a long life may begin for the old (Health/LastSeason.cs).
             Safe("the end of a long life", () => LastSeason.Daily(this));
+            // Those kept from moving on: what they wanted came, a promise fell due, a second asking (Social/MovingOnHeld.cs).
+            Safe("kept from moving on", () => MovingOnHeld.Daily(this));
             Safe("animal life", () => AnimalLife.Daily(this));
             Safe("history", RecordDay);
             if (Settings.offices && offices.Speaker != null)

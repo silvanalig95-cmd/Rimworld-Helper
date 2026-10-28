@@ -12,6 +12,9 @@
 
   <!-- Leanings: how strongly someone is drawn to another ideoligion (Faith/FaithLeanings.cs) -->
   <CC_Leaning_Drawn>{PAWN_nameDef} is drawn more and more to {FAITH}.</CC_Leaning_Drawn>
+  <CC_Leaning_Defiant>{PAWN_nameDef} digs in against the council's decree for {DECREED}: the more it presses, the firmer {PAWN_pronoun} holds to {FAITH}.</CC_Leaning_Defiant>
+  <CC_Leaning_DefiantLine>Digs in against the decree for {DECREED} ({PCT})</CC_Leaning_DefiantLine>
+  <CC_Leaning_DefiantTip>{PAWN_nameDef} won't be pressed. While the council's decree names {DECREED}, {PAWN_pronoun} digs in: anyone of {DECREED} draws {PAWN_objective} less, and {PAWN_pronoun} holds to {FAITH} the harder. It wears off slowly once the decree is lifted. Friends among {DECREED}'s believers still count, only for less.</CC_Leaning_DefiantTip>
   <CC_Leaning_Cause>It had been drawing {PAWN_objective} in for a while.</CC_Leaning_Cause>
   <CC_Leaning_Note>drawn over to {FAITH}</CC_Leaning_Note>
   <CC_Leaning_Label>Drawn to {0}</CC_Leaning_Label>

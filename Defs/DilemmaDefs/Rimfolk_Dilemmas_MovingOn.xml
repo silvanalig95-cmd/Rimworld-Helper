@@ -6,6 +6,10 @@
     that's really there, and if nobody answers they stay. Never one of the colony's last four grown-ups; each person or
     couple asked about once. Going to family or a partner, they join that people (DilemmaEffect_LeaveForGood joinFaction)
     and walk off the map after the colony sees them to the gate.
+
+    Keeping them always costs (Social/MovingOnHeld.cs, MovingOnMath.cs): trust, by how much they wanted to go, and a
+    longing that lasts until what they wanted comes to them or they make their peace with it after a season. Kept and
+    still unhappy, or wanting it badly, they ask a second time (Council_DlmMove_Again*), where keeping them costs more.
   -->
 
   <!-- A: the colonist. {RELATIVE}: a parent, brother or sister grown old ("old"), or a child of theirs ("child"), with {FACTION}; {RELATION}: what they are to A. -->
@@ -21,7 +25,7 @@
       <li>[child] {A_nameDef}'s child {RELATIVE} is growing up among {FACTION}, without {A_objective}. {A_nameDef} has asked the council whether to go and be a parent there while there's still time.</li>
       <li>[child] Every time traders come from {FACTION}, {A_nameDef} asks after {A_possessive} child {RELATIVE}. Now {A_nameDef} has asked the council to let {A_objective} go and live with {RELATIVE}.</li>
     </texts>
-    <defaultOption>2</defaultOption>
+    <defaultOption>3</defaultOption>
     <options>
       <li>
         <label>Let {A_nameDef} go to {RELATIVE}</label>
@@ -36,19 +40,30 @@
       </li>
       <li>
         <label>Send {COUNT} silver to {RELATIVE} instead</label>
-        <outcome>The colony set {COUNT} silver aside for {RELATIVE}, with a long letter from {A_nameDef}, for the next traders bound for {FACTION}. It won't be {A_nameDef}, but it will help.</outcome>
+        <outcome>The colony set {COUNT} silver aside for {RELATIVE}, with a long letter from {A_nameDef}, for the next traders bound for {FACTION}. It won't be {A_nameDef}, and {A_nameDef} still misses {RELATIVE}, but it will help.</outcome>
         <ways><generosity>2</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_SentHome</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>family</kind><share>0.5</share></li>
+        </effects>
+      </li>
+      <li>
+        <label>Send for {RELATIVE} to come here, with 300 silver for the road</label>
+        <outcome>The colony sent word to {FACTION}, and 300 silver for the road, asking {RELATIVE} to come and live here with {A_nameDef}. {FACTION} will miss one of theirs.</outcome>
+        <ways><generosity>1</generosity><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>300</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BringRelative" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-8</amount></li>
         </effects>
       </li>
       <li>
         <label>Ask {A_nameDef} to stay</label>
-        <outcome>The council asked {A_nameDef} to stay, and {A_nameDef} said yes. That night {A_nameDef} wrote a long letter to {RELATIVE}.</outcome>
+        <outcome>The council asked {A_nameDef} to stay, and {A_nameDef} said yes, trusting the council a little less for it. That night {A_nameDef} wrote a long letter to {RELATIVE}.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_Stayed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>family</kind><trust>8</trust></li>
         </effects>
       </li>
     </options>
@@ -83,18 +98,19 @@
       </li>
       <li>
         <label>Ask {X_nameDef} to join the colony</label>
-        <outcome>{X_nameDef} said yes before the question was finished, and is one of the colony now. {A_nameDef} hasn't stopped smiling.</outcome>
+        <outcome>{X_nameDef} said yes before the question was finished, and is one of the colony now. {A_nameDef} hasn't stopped smiling. {FACTION} have lost one of theirs, and think less of the colony for it.</outcome>
         <ways><openness>1</openness><generosity>1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_TogetherHere</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-10</amount></li>
         </effects>
       </li>
       <li>
         <label>Things stay as they are</label>
-        <outcome>Nothing changes: {X_nameDef} will go home when the visit ends, and come back when {X_pronoun} can.</outcome>
+        <outcome>Nothing changes: {X_nameDef} will go home when the visit ends, and come back when {X_pronoun} can. {A_nameDef} took it quietly, and trusts the council a little less.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_ApartAgain</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>love</kind><trust>6</trust></li>
         </effects>
       </li>
     </options>
@@ -116,11 +132,12 @@
     <options>
       <li>
         <label>Promise {A_nameDef} a room of {A_possessive} own</label>
-        <outcome>The council promised {A_nameDef} a room of {A_possessive} own. Now the colony has to build it.</outcome>
+        <outcome>The council promised {A_nameDef} a room of {A_possessive} own. Now the colony has to build it, and soon: a broken promise would cost more than the room.</outcome>
         <ways><generosity>1</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_PromiseRoom"><wish>Council_Wish_OwnRoom</wish></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_Promised</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>room</kind><promised>true</promised></li>
         </effects>
       </li>
       <li>
@@ -138,7 +155,156 @@
         <outcome>The council asked {A_nameDef} to make do a while longer. {A_nameDef} said yes, and didn't look at anyone.</outcome>
         <ways><tradition>1</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_MakeDo</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>room</kind><trust>6</trust></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!--
+    The second asking (DilemmaWorker_AskAgain*, Social/MovingOnHeld.cs): someone kept who is still unhappy, or wanted it
+    badly, comes back to the council after a few weeks (a partner's: at their next visit). If nobody answers they stay,
+    at the higher price.
+  -->
+
+  <!-- A: the colonist kept from family; {RELATIVE} of {FACTION}, {RELATION} to them; {COUNT}: silver for the road. Tags: "old", "child". -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmMove_AgainFamily</defName>
+    <label>still longing for family</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_AskAgain</workerClass>
+    <weight>0.1</weight>
+    <cooldownDays>5</cooldownDays>
+    <answerDays>2</answerDays>
+    <thingCount>300</thingCount>
+    <texts>
+      <li>{A_nameDef} kept {A_possessive} word and stayed, but hasn't stopped thinking about {RELATIVE}, {A_possessive} {RELATION} among {FACTION}. {A_nameDef} has come back to the council: let {A_objective} go, or bring {RELATIVE} here.</li>
+      <li>[old] {RELATIVE} isn't getting any younger, and {A_nameDef} knows it. {A_nameDef} has asked the council a second time to let {A_objective} go to {FACTION}, while there's time.</li>
+      <li>[child] Every day {A_nameDef} stays, {A_possessive} child {RELATIVE} grows up a little more among {FACTION} without {A_objective}. {A_nameDef} has asked the council again, and this time it isn't really a question.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} go to {RELATIVE}</label>
+        <outcome>The colony saw {A_nameDef} to the gate with a full pack, and {A_nameDef} set off for {FACTION}, to {RELATIVE}, one of their people now.</outcome>
+        <ways><mercy>1</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {A_nameDef} off</label><to>Gate</to><hours>7~17</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Leave_SawThemOff</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LeaveForGood"><joinFaction>true</joinFaction></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Send for {RELATIVE} to come here, with {COUNT} silver for the road</label>
+        <outcome>The colony sent word to {FACTION}, and {COUNT} silver for the road, asking {RELATIVE} to come and live here with {A_nameDef}. {FACTION} will miss one of theirs.</outcome>
+        <ways><generosity>1</generosity><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BringRelative" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-8</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Insist that {A_nameDef} stays</label>
+        <outcome>The council said no a second time. {A_nameDef} will stay, and won't forget that the council kept {A_objective} from {RELATIVE}.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>family</kind><trust>12</trust><again>true</again></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_Refused</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- A: the colonist kept apart from their partner X of {FACTION}, who is visiting again. Tags: "guest", "married". -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmMove_AgainLove</defName>
+    <label>apart too long</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_AskAgainLove</workerClass>
+    <weight>0.1</weight>
+    <cooldownDays>5</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} is back, and {A_nameDef} has had enough of goodbyes. {A_nameDef} has come to the council again: go with {X_nameDef}, or have {X_objective} stay for good.</li>
+      <li>[married] {A_nameDef} and {X_nameDef} are married, and see each other only when {X_nameDef} can get away from {FACTION}. With {X_nameDef} here again, {A_nameDef} has asked the council a second time where the two of them belong.</li>
+      <li>[guest] {X_nameDef} is a guest here again, and {A_nameDef} can't bear another parting. {A_nameDef} has asked the council once more to let {A_objective} go home with {X_nameDef}.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} goes to be with {X_nameDef}</label>
+        <outcome>{A_nameDef} packed that same day, and the colony saw {A_objective} to the gate. {A_nameDef} set off ahead for {FACTION}, one of their people now, to be there when {X_nameDef} comes home.</outcome>
+        <ways><mercy>1</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {A_nameDef} off</label><to>Gate</to><hours>7~20</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Leave_SawThemOff</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LeaveForGood"><joinFaction>true</joinFaction></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Ask {X_nameDef} to join the colony</label>
+        <outcome>{X_nameDef} said yes, and is one of the colony now. {A_nameDef} hasn't stopped smiling. {FACTION} have lost one of theirs, and think less of the colony for it.</outcome>
+        <ways><openness>1</openness><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_TogetherHere</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-10</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Insist that {A_nameDef} stays</label>
+        <outcome>The council said no a second time. {X_nameDef} will go home alone when the visit ends, and {A_nameDef} won't forget who kept them apart.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>love</kind><trust>12</trust><again>true</again></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_Refused</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- A: the colonist still without a room; B: the colonist with a room of their own who thinks best of A (none: "noroom"). Tags: "broken" (a promised room never came). -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmMove_AgainRoom</defName>
+    <label>still no room</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_AskAgainRoom</workerClass>
+    <weight>0.1</weight>
+    <cooldownDays>5</cooldownDays>
+    <answerDays>2</answerDays>
+    <texts>
+      <li>{A_nameDef} has made do, and made do, and is done with it. {A_nameDef} has asked the council again for a room of {A_possessive} own, or leave to go.</li>
+      <li>[broken] The council promised {A_nameDef} a room, and {A_nameDef} is still sleeping among the others. {A_nameDef} has come back to the council: a room now, or leave to go.</li>
+      <li>[noroom] {A_nameDef} is still sleeping crowded in, and nobody here has a room to spare. {A_nameDef} has asked the council a second time to let {A_objective} go.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} move on</label>
+        <outcome>The colony saw {A_nameDef} to the gate with food for the road, and {A_nameDef} went to find somewhere with room.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>seeing {A_nameDef} off</label><to>Gate</to><hours>7~17</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Leave_SawThemOff</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LeaveForGood" />
+        </effects>
+      </li>
+      <li>
+        <label>Give {A_nameDef} someone's room</label>
+        <outcome>{B_nameDef} gave up {B_possessive} room to {A_nameDef}, and sleeps where {A_nameDef} slept from tonight.</outcome>
+        <ways><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GiveRoom" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Leave_GaveRoom</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Insist that {A_nameDef} stays</label>
+        <outcome>The council said no a second time. {A_nameDef} will stay where {A_pronoun} sleeps now, and won't forget it.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HoldBack"><kind>room</kind><trust>12</trust><again>true</again></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Leave_Refused</thought></li>
         </effects>
       </li>
     </options>

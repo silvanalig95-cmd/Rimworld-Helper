@@ -88,9 +88,11 @@ namespace ColonyCouncil
             var r = FaithPeople.Tracker?.Of(p, true);
             if (own == null || r == null || look == null || p.DevelopmentalStage.Baby()) return;
             bool devout = Faiths.Devout(p);
-            float ready = LeaningMath.Readiness(Persona.Get(p, PersonaAxis.Openness));
+            float openness = Persona.Get(p, PersonaAxis.Openness);
+            float ready = LeaningMath.Readiness(openness);
             bool dislikes = Faiths.DislikesPreaching(p);
             r.leanings.RemoveAll(l => !Alive(l?.ideo));
+            Defy(p, r, own, look.decree, LeaningMath.Resists(openness, Persona.Get(p, PersonaAxis.Pride), dislikes), dislikes);
             var ideos = new HashSet<Ideo>(look.census.Select(f => f.ideo).Where(Alive));
             if (Alive(look.decree)) ideos.Add(look.decree);
             foreach (var l in r.leanings) ideos.Add(l.ideo);
@@ -102,8 +104,8 @@ namespace ColonyCouncil
                 if (faith != null)
                     foreach (var b in faith.believers)
                         if (b != p && !b.Dead) closeness += LeaningMath.Closeness(p.relations?.OpinionOf(b) ?? 0, Close(p, b));
-                float feed = LeaningMath.Feed(closeness, ideo == look.decree, ready, dislikes);
                 var l = r.leanings.FirstOrDefault(x => x.ideo == ideo);
+                float feed = LeaningMath.Feed(closeness, ideo == look.decree, ready, dislikes, l?.pull ?? 0f, ideo == r.defied ? r.defiance : 0f);
                 if (l == null)
                 {
                     if (feed <= 0f) continue;
@@ -120,12 +122,45 @@ namespace ColonyCouncil
             }
             r.leanings.RemoveAll(l => l?.ideo == null || l.ideo == own || l.pull < LeaningMath.Forget);
             Trim(r);
+            // Dug in against the decree: they hold to their own the harder.
+            if (r.defiance > 0f) Faiths.Steady(p, LeaningMath.Steady(r.defiance));
             var strongest = r.leanings.OrderByDescending(l => l.pull).FirstOrDefault();
             if (strongest == null) return;
             // Just taken up an ideoligion: they settle into it a year before anything wears on them again.
             if (!LeaningMath.Settled(r.lastSwitch, Find.TickManager.TicksGame, GenDate.TicksPerDay)) return;
             Faiths.Shake(p, LeaningMath.Erosion(strongest.pull, devout));
             if (LeaningMath.Overtakes(strongest.pull, p.ideo.Certainty, strongest.trend)) TakeUp(p, r, strongest);
+        }
+
+        /// <summary>
+        /// Their defiance of the decree for the day: it grows while the decree names an ideoligion not theirs and they're
+        /// one it can't sway (set in their ways, proud, or of an ideoligion that frowns on preaching), and fades slowly
+        /// otherwise. Passing <see cref="LeaningMath.DefianceTellAt"/> it is told once.
+        /// </summary>
+        private static void Defy(Pawn p, FaithPerson r, Ideo own, Ideo decree, bool resists, bool dislikes)
+        {
+            bool pressed = resists && Alive(decree) && decree != own;
+            if (pressed) r.defied = decree;
+            r.defiance = LeaningMath.Defiance(r.defiance, pressed, dislikes);
+            if (r.defiance <= 0f || !Alive(r.defied) || r.defied == own)
+            {
+                r.defiance = 0f;
+                r.defied = null;
+                r.defianceTold = false;
+                return;
+            }
+            if (r.defianceTold && r.defiance < LeaningMath.DefianceTellAt * 0.4f) r.defianceTold = false;
+            if (r.defianceTold || r.defiance < LeaningMath.DefianceTellAt) return;
+            r.defianceTold = true;
+            Notify.Message("CC_Leaning_Defiant".Translate(p.Named("PAWN"), own.name.Named("FAITH"), r.defied.name.Named("DECREED")).Resolve(), p, MessageTypeDefOf.NeutralEvent, Importance.Notable);
+        }
+
+        /// <summary>Their defiance of the decree, for the culture tab: the ideoligion pressed on them and how hard they dig in, or null.</summary>
+        public static (Ideo pressed, float defiance)? Defiance(Pawn p)
+        {
+            var r = FaithPeople.Tracker?.Of(p, false);
+            if (r == null || r.defiance < 0.05f || !Alive(r.defied)) return null;
+            return (r.defied, r.defiance);
         }
 
         /// <summary>A lover or family by blood: their faith pulls half again as hard.</summary>
@@ -156,8 +191,8 @@ namespace ColonyCouncil
             p.ideo.OffsetCertainty(firm - p.ideo.Certainty);
             r.leanings.Remove(l);
             r.lastSwitch = Find.TickManager.TicksGame;
-            // The one they left stays with them a little; it has to grow again to draw them back.
-            if (Alive(old)) r.leanings.Add(new FaithLeaning { ideo = old, pull = LeaningMath.ReturnPull(left), told = true });
+            // The one they left stays with them a little, more if the decree brought them over; it has to grow again to draw them back.
+            if (Alive(old)) r.leanings.Add(new FaithLeaning { ideo = old, pull = LeaningMath.ReturnPull(left, to == DecreeFaith.FaithOfColony), told = true });
             FaithPeople.Note(p, "CC_Leaning_Note".Translate(to.name.Named("FAITH")).Resolve(), 0f);
         }
     }

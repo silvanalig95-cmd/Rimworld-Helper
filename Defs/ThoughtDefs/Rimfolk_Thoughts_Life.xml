@@ -112,4 +112,152 @@
     </stages>
   </ThoughtDef>
 
+  <!--
+    Kept from moving on (Source/ColonyCouncil/Social/MovingOnHeld.cs): a longing that grows over the first weeks, by how
+    much they wanted to go, and lasts until what they wanted comes to them or they make their peace with it.
+  -->
+
+  <ThoughtDef>
+    <defName>Council_Leave_LongFamily</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_HeldBack</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Homesick</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>kept from my family</label>
+        <description>I asked to go to my family, and I stayed. I think about them more than I say.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <label>longing for my family</label>
+        <description>Every day I stay is a day I'm not with them. I don't know how many more there will be.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>aching to go to my family</label>
+        <description>I stay because the council asked. My family is out there without me, and it's eating at me.</description>
+        <baseMoodEffect>-10</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Leave_LongLove</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_HeldBackLove</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Loneliness</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>living apart from my love</label>
+        <description>We live apart, and that's how it stays. I count the days to the next visit.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+      <li>
+        <label>missing my love</label>
+        <description>Every goodbye is harder than the one before. This was never meant to be for good.</description>
+        <baseMoodEffect>-7</baseMoodEffect>
+      </li>
+      <li>
+        <label>heartsick for my love</label>
+        <description>The one I love is out there and I'm here, because the council said so. I can't go on like this much longer.</description>
+        <baseMoodEffect>-11</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Leave_LongRoom</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_HeldBackRoom</workerClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <modExtensions>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>waiting for a room of my own</label>
+        <description>I was told there would be a room for me. I'm still sleeping among everyone else.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>no room of my own</label>
+        <description>I asked for a corner to myself and got told to make do. I'm making do, and I'm sick of it.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+      <li>
+        <label>worn thin without a room</label>
+        <description>Never a door to close, never a night alone. I stayed because the council asked, and I regret it.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_Refused</defName>
+    <durationDays>20</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>asked twice, kept twice</label>
+        <description>I came to the council a second time, and a second time they said no. I'll stay. I won't forget it.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_FamilyCame</defName>
+    <durationDays>10</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>my family came to live here</label>
+        <description>I didn't have to choose after all. They came here, to me, and they're staying.</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_PromiseKept</defName>
+    <durationDays>8</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>the council kept its word</label>
+        <description>They promised me a room of my own, and here it is. A door that closes, and a bed nobody else sleeps in.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_RoomAtLast</defName>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a room of my own at last</label>
+        <description>After all that making do, a room of my own. It took long enough.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Leave_GaveRoom</defName>
+    <durationDays>12</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>gave up my room</label>
+        <description>The council asked me to give up my room so someone else wouldn't leave. I said yes. I miss my door.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
 </Defs>

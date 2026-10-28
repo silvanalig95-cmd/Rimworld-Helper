@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Kept at a price, and faith that holds
+
+*28 October 2026, version 0.18.4*
+
+- Keeping a colonist who asked to move on now always costs: trust, by how much they wanted to go, and a longing that grows over weeks until what they wanted comes to them.
+- A relative can be sent for to come and live here, for silver and a little goodwill. A partner asked to join costs goodwill too.
+- A promised room has to be theirs within a fortnight, or the broken promise costs trust again.
+- Someone kept and still unhappy asks once more, and keeping them then costs more: someone's room given up, or the council's word and a bitter memory.
+- The one-ideoligion decree alone carries anyone only part of the way. The rest takes friends, family or a partner among its believers.
+- The set in their ways, the proud and those whose ideoligion frowns on preaching dig in while the decree holds, and it wears off slowly.
+- Whoever comes over under the decree stays drawn back to the ideoligion they left.
+
 ## Camps dressed for the weather
 
 *28 October 2026, version 0.18.3*

@@ -12,7 +12,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_OneFaith</defName>
     <label>one ideoligion for the colony</label>
-    <description>The council names one ideoligion the colony's own, and you choose which as you declare it (the one with the most believers is first on the list). For fifteen days its believers may speak of it as often as they like, and they do: those of other ideoligions who are wavering are drawn a little toward it each day, more if they think well of its believers, and every council meeting opens with a word from it. Everyone of another ideoligion trusts the council a little less each day it holds: the open-minded least, the devout and those whose ideoligion frowns on being preached to most. The devout of other ideoligions hate it and will ask for it to be lifted. Lifting it ends all of it at once. Only with Ideology, and more than one ideoligion at home.</description>
+    <description>The council names one ideoligion the colony's own, and you choose which as you declare it (the one with the most believers is first on the list). For fifteen days its believers may speak of it as often as they like, and they do: those of other ideoligions are drawn a little toward it each day, and every council meeting opens with a word from it. The decree alone draws nobody far: the rest takes friends, family or a partner among its believers. Those it can't sway (the set in their ways, the proud, and those whose ideoligion frowns on being preached to) dig in instead, and stay dug in a while after it is lifted. Everyone of another ideoligion trusts the council a little less each day it holds: the open-minded least, the devout and those whose ideoligion frowns on being preached to most. The devout of other ideoligions hate it and will ask for it to be lifted. Lifting it ends all of it at once. Only with Ideology, and more than one ideoligion at home.</description>
     <oneFaith>true</oneFaith>
     <order>25</order>
     <durationDays>15</durationDays>
@@ -29,7 +29,9 @@
     </reactions>
     <effects>
       <li>You name the ideoligion as you declare it; the one with the most believers is first.</li>
-      <li>Each day, colonists of other ideoligions who are wavering (certainty under 60%) are drawn 1.2% to 2% toward it, more when they like its believers. At no certainty left, the game converts them.</li>
+      <li>Each day, colonists of other ideoligions are drawn toward it, by up to 4% a day, until they lean 30% toward it. Past that only its believers close to them draw them on.</li>
+      <li>The set in their ways, the proud and those whose ideoligion frowns on being preached to dig in instead: the longer it holds, the less its believers draw them and the surer they are of their own, and it wears off slowly after.</li>
+      <li>Whoever comes over while it holds stays drawn back to the ideoligion they left.</li>
       <li>Its believers speak of their ideoligion more often, and every council meeting opens with a word from it.</li>
       <li>Colonists of other ideoligions lose trust each day: a quarter point if open-minded, half a point most, three quarters if devout, a whole point if their ideoligion frowns on being preached to.</li>
       <li>Its believers like it and its devout love it; the devout of other ideoligions hate it, and the curious don't mind.</li>

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 341; modelled: 341; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,684 KB** after a year, **2,047 KB** after two, **2,163 KB** after five.
+Saved collections found: 342; modelled: 342; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,687 KB** after a year, **2,051 KB** after two, **2,166 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -35,7 +35,7 @@ Rimfolk's part of the save, roughly: **1,684 KB** after a year, **2,047 KB** aft
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
 | `UI/WeekMemory.cs:dilemmas` | DilemmaLog.MaxRecords | cap | 30 | 60 | 60 | 17.6 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 182 | 182 | 182 | 16.0 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 185 | 185 | 185 | 16.3 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -68,7 +68,7 @@ Rimfolk's part of the save, roughly: **1,684 KB** after a year, **2,047 KB** aft
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 55 | 55 | 55 | 4.8 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 56 | 56 | 56 | 4.9 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 53 | 53 | 53 | 4.7 |
@@ -81,6 +81,7 @@ Rimfolk's part of the save, roughly: **1,684 KB** after a year, **2,047 KB** aft
 | `Integrations/SocialInteractions.cs:bestFriends` | Caps.BestFriendPairs, known pawns | cap | 12 | 24 | 60 | 3.5 |
 | `PlayOut/OnMapTimed.cs:kept` | kept a night to a few days, at most OnMapTimed.MaxKept at once | cap | 12 | 12 | 12 | 3.5 |
 | `PlayOut/PlayOutTracker.cs:results` | how the last ones went: PlayOutTracker.MaxResults | cap | 30 | 30 | 30 | 3.5 |
+| `CouncilGameComponent.cs:movingOnHeld` | those kept from moving on, one per person and reason, until it resolves or after a season (Social/MovingOnHeld.cs) | fixed | 8 | 8 | 8 | 3.3 |
 | `Hud/HudComponent.cs:samples` | the mood trend: one packed number an hour, the last week (HudComponent.MaxSamples) | cap | 168 | 168 | 168 | 3.3 |
 | `Faith/FaithCouncilTracker.cs:heard` | who heard which faith spoken for lately: one per colonist, 30 days, FaithCouncilTracker.MaxHeard | cap | 36 | 40 | 40 | 3.1 |
 | `Faith/FaithPeople.cs:people` | one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving | colonists | 20 | 20 | 20 | 3.1 |

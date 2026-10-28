@@ -21,12 +21,14 @@ The council has four ways to work with the colony's ideoligions: an ideoligion e
         <table>
           <li>What | Each day</li>
           <li>Its believers in the colony | Up to 4%, more the more there are and the closer they are: a rival adds nothing, a stranger half, a friend a whole, the dearest one and a half, a lover or family half again</li>
-          <li>The decree naming it | 4% more (half for someone whose ideoligion frowns on being preached to)</li>
+          <li>The decree naming it | 4% more (half for someone whose ideoligion frowns on being preached to), only while the leaning is under 30%</li>
           <li>How open they are | The closed-minded take 40% of it, the open up to 160%</li>
           <li>Fading | 3% of the leaning, so a lone believer barely matters and a whole colony does</li>
           <li>Wear on certainty | 12% of the strongest leaning (70% of that while they're devout)</li>
         </table>
-        <after>A talk, an evening, a crisis or a council answer that sways someone toward an ideoligion feeds their leaning toward it by as much. For a content colonist of average openness: with the decree and friends among its believers, about 25 days; with the decree alone, about 35; four friends of another ideoligion and no decree, about 70; a lone believer of a minority never pulls the others over. The open come round sooner, the closed-minded later, the unhappy sooner.</after>
+        <after>A talk, an evening, a crisis or a council answer that sways someone toward an ideoligion feeds their leaning toward it by as much. For a content colonist of average openness: four friends of another ideoligion and no decree, about 70 days; with the decree too, about two months; with the decree and nobody of its believers close (or only one friend among them), never; a lone believer of a minority never pulls the others over. The open come round sooner, the closed-minded later, the unhappy sooner (about a month, even by the decree alone).
+
+The decree is no shortcut. It carries a leaning only to 30%: past that it takes believers close to them (friends, a partner, family) or the moments that sway them (a talk, an evening, a council answer). And it hardens those it can't sway: the set in their ways (openness under -20), the proud (40 or more) and those whose ideoligion frowns on being preached to dig in while it holds. Their defiance grows each day of it (half again for a faith that frowns on preaching), takes the pull of the decreed ideoligion down with it, even their friends' among its believers, and gives back a little of their certainty each day; once the decree is lifted it wears off slowly, about half in three weeks, so declaring it again soon finds them still dug in. Passing 50% it is told once, and it shows on the Culture tab. Whoever comes over while the decree holds stays drawn back to the ideoligion they left (up to 30%, against 10% otherwise), so a conversion made by pressure can come undone.</after>
       </li>
       <li>
         <heading>An ideoligion evening</heading>

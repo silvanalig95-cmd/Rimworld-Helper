@@ -537,8 +537,11 @@ or gives some back, and when someone has none left the game converts them, with 
   colony (friends, lovers and family most), by talks and evenings that sway them, and by the decree below; the
   strongest wears on their certainty against the game's own daily recovery. When a leaning passes their certainty they
   take that ideoligion up, through the game's own conversion, and the one they leave becomes a leaning, so they may
-  drift back. With the decree and friends among its believers, a content colonist comes round in about a month; a
-  colony drifts toward its majority over seasons; a lone believer of a minority never pulls the rest over.
+  drift back. With the decree and friends among its believers, a content colonist comes round in about two months; a
+  colony drifts toward its majority over seasons; a lone believer of a minority never pulls the rest over. The decree
+  alone carries a leaning only so far (30%): the rest takes believers close to them. The set in their ways, the proud
+  and those whose ideoligion frowns on preaching dig in while it holds, and whoever comes over under it stays drawn
+  back to the ideoligion they left.
 - **One ideoligion for the colony.** A decree for fifteen days, naming the ideoligion you choose. Each day everyone of
   another ideoligion leans a little more toward it, its believers speak of it more and open the council's
   meetings with a word from it, and those of other ideoligions trust the council a little less (the open-minded least,
@@ -654,7 +657,11 @@ take one (at once, or at the wedding). A family of three or more sometimes sits 
 brothers and sisters have their own word about the old days (or their own digs), and a parent of sixty or more is
 looked in on by a grown child, more often when ill. A colonist may ask to move on, never out of nowhere: always as a council
 question with staying as the answer if nobody gives one, to go to family grown old or a child elsewhere, to be with a
-visiting partner from another people, or to find room after sleeping crowded and unhappy.
+visiting partner from another people, or to find room after sleeping crowded and unhappy. Keeping them always costs, by
+how much they wanted to go: trust, and a longing that grows over weeks and lasts until their family is here, their
+partner joins or they have a room (or they make their peace after a season). The relative can be sent for (silver and a
+little goodwill), a promised room has to come within a fortnight, and someone still unhappy asks once more, where
+keeping them costs more again.
 
 #### Traits that change
 Rarely, a long stretch of the same kind of life reaches the game's own traits. 49 rules: nerves steady to steadfast

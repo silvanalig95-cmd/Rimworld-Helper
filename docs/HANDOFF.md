@@ -1,6 +1,21 @@
 # Handoff: work in progress
 
-Last shipped: 0.18.3 "Camps dressed for the weather", the player's ask that camps come in any weather but the
+Last shipped: 0.18.4 "Kept at a price, and faith that holds", two asks of the player's. Keeping someone who asked to
+move on always costs (`Social/MovingOnMath.cs`, Tools/Tests/MovingOnTests.cs; `Social/MovingOnHeld.cs`): the first
+asks' stay answers now carry `DilemmaEffect_HoldBack` (trust by `TrustLoss(base, strength)`; strength from the workers:
+`MovingOnMath.Family/Love/Room`, on `MovingOnContext.strength`), which makes a saved `HeldBack`
+(`CouncilGameComponent.movingOnHeld`) read by three situational thoughts (`ThoughtWorker_HeldBack*`,
+Council_Leave_Long*, stages by `MovingOnMath.Stage`). `MovingOnHeld.Daily` resolves records (own bedroom; partner a
+colonist; relative a colonist or dead), breaks a promised room at 15 days (-10 trust), ends at 60, and fires the second
+asking (`DilemmaWorker_AskAgain*`, Council_DlmMove_Again*: `DilemmaEffect_BringRelative`, recruit, `DilemmaEffect_GiveRoom`,
+or `HoldBack again` with Council_Leave_Refused); love's at the partner's next visit from `MovingOnHeld.Hourly`, which
+also brings a sent-for relative in by day (`Arrivals.Spawn`, `RecruitUtility.Recruit`, a meeting visit). Faith:
+`LeaningMath.DecreeCeiling` (0.3: the decree feeds no leaning past it), `Resists` (openness under -20, pride 40+,
+preaching frowned on), `Defiance` (saved on `FaithPerson.defiance/defied/defianceTold`; damps the decreed faith's
+whole feed, `Steady` gives certainty back; told once at 50%, shown on the Culture tab), and `ReturnPull(left,
+underDecree)` (up to 0.3). Not tried in the game here.
+
+Before it, 0.18.3 "Camps dressed for the weather", the player's ask that camps come in any weather but the
 really extreme. `Camps/CampWeatherMath.cs` (Tools/Tests/CampWeatherTests.cs): `TooExtremeToCome` (-30/45 °C),
 `TooExtremeToStay` (5 past), `StayLow`/`StayHigh`, `Lasting` (a running condition's offset kept on its side),
 `Shortfall`, `WouldStop` (the stay's low and high within the safe range), `PitchForCold` (low under 2 °C),
