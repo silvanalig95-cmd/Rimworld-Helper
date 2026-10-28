@@ -383,6 +383,7 @@ namespace ColonyCouncil
             Toggle("coverDrag", "CC_Settings_CoverDrag", "CC_SetNote_CoverDrag", "deepHooks");
             Toggle("marketStallWindow", "CC_Settings_MarketStallWindow", "CC_SetNote_MarketStallWindow", "deepHooks");
             Toggle("marketStallShips", "CC_Settings_MarketStallShips", "CC_SetNote_MarketStallShips", "deepHooks");
+            Toggle("marketGuestsShop", "CC_Settings_MarketGuestsShop", "CC_SetNote_MarketGuestsShop", "deepHooks");
             Toggle("slowButtons", "CC_Settings_SlowButtons", "CC_SetNote_SlowButtons");
             var reset = Action("slowButtonsReset", "CC_Settings_SlowButtonsReset", null, "CC_SetNote_SlowButtonsReset", "slowButtons");
             reset.covers = new[] { "slowButtonsX", "slowButtonsY" };

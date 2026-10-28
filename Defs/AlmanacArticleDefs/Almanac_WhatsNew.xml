@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.18.2</version>
+        <date>28 October 2026</date>
+        <title>Stall goods for ships, camps in warm weather</title>
+        <points>
+          <li>Fixed: trade ships now really see what lies on the colony's stall counters. The game's trade deal had been setting those goods aside again.</li>
+          <li>Fixed: camps come in warm and cool weather again. A camp used to be turned away when any one of them was a little past comfortable; now each may be up to 6 °C past it.</li>
+          <li>A camp packs up early only when the weather would start to hurt most of them, so one that comes on a warm morning stays through the afternoon.</li>
+          <li>With Hospitality and RimMarket, guests always may shop at the market's stalls, even outside their guest area (setting "Guests always shop at the market").</li>
+          <li>"Rimfolk: check myself" says whether a camp or a trade caravan could come now, and what stops it, such as a group of their enemies on the map.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.18.1</version>
         <date>27 October 2026</date>
         <title>Moving on, by the council's word</title>

@@ -8,6 +8,9 @@
   <CC_Settings_MarketStallShips>RimMarket's stall goods for trade ships</CC_Settings_MarketStallShips>
   <CC_Settings_MarketStallShips_Tip>With RimMarket and a powered orbital trade beacon on the map: what lies on the counters of the colony's own stalls is offered to trade ships as well, beside what lies in the beacon's range. A ship buys from the stockpile first, and what it buys from a stall comes off that stall's sale line as if sold there. A stall doesn't stand in for a beacon: with none powered, ships see only what they always did. Off: a stall's goods are for its shoppers only. Needs the deeper game hooks.</CC_Settings_MarketStallShips_Tip>
   <CC_SetNote_MarketStallShips>With RimMarket and a powered beacon: trade ships can buy what's on the colony's stalls.</CC_SetNote_MarketStallShips>
+  <CC_Settings_MarketGuestsShop>Guests always shop at the market</CC_Settings_MarketGuestsShop>
+  <CC_Settings_MarketGuestsShop_Tip>With RimMarket and Hospitality: guests may always walk to the market's stalls and buy what's on sale there, even where the stalls stand outside their guest area. Only the stalls and the cells in front of them are open to them; once they've shopped they go back into their area. What a stall sells is still its sale lines, and RimMarket's own setting for guests shopping still applies. Off: guests keep to their area for the market too. Needs the deeper game hooks.</CC_Settings_MarketGuestsShop_Tip>
+  <CC_SetNote_MarketGuestsShop>With RimMarket and Hospitality: guests may shop at the stalls whatever their guest area.</CC_SetNote_MarketGuestsShop>
 
   <CC_Stall_Title>{0}: sales table</CC_Stall_Title>
   <CC_Stall_Sub>Click goods on the left to put them on the counter, then set how many and the price on the right. Haulers bring them over, and a line ends when it's sold.</CC_Stall_Sub>

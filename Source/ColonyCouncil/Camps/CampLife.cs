@@ -811,16 +811,15 @@ namespace ColonyCouncil
         {
             float temp = map.mapTemperature.OutdoorTemp;
             if (temp < -14f || temp > 43f) return true;
-            // Well colder or hotter than most of them can sleep out in, dressed as they are (one of them dressed for
-            // another season doesn't send them all off).
+            // Weather that would start to hurt most of them, dressed as they are (CampWeatherMath).
             var here = Here;
             int exposed = 0;
             foreach (var p in here)
             {
                 var comfy = GenTemperature.ComfortableTemperatureRange(p);
-                if (temp < comfy.min - 6f || temp > comfy.max + 6f) exposed++;
+                if (CampWeatherMath.Exposed(temp, comfy.min, comfy.max)) exposed++;
             }
-            if (here.Count > 0 && exposed * 2 > here.Count) return true;
+            if (CampWeatherMath.PackUp(exposed, here.Count)) return true;
             foreach (var c in map.gameConditionManager.ActiveConditions)
             {
                 var d = c.def;

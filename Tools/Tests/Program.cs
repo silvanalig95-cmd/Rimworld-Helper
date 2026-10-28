@@ -440,6 +440,7 @@ Console.WriteLine($"Checked {CourierTests.Run(Check)} things about goods and peo
 Console.WriteLine($"Checked {OnMapTests.Run(Check)} things about what answers make real (felled wood, saplings, the era's things, a visitor's dog, an animal in decline).");
 Console.WriteLine($"Checked {VisitorTests.Run(Check)} things about people from outside who are really there (how many, when, a night's stay, the wait at the gate, the way on).");
 Console.WriteLine($"Checked {CampLookTests.Run(Check)} things about camps that look lived-in (a handful of animals, fed by the camp, porters, the last walk, the smith's mending, a ring of saplings).");
+Console.WriteLine($"Checked {CampWeatherTests.Run(Check)} things about the weather camps come in and stay through.");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");
 Console.WriteLine($"Checked {SeasonWishTests.Run(Check)} things about the wishes of the land's year (clothes for the season, a sauna, hot country, the fields opening).");
 Console.WriteLine($"Checked {HeartNeedTests.Run(Check)} things about the heart's needs (what follows from them, and a lack that lasts).");

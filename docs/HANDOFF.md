@@ -1,6 +1,24 @@
 # Handoff: work in progress
 
-Last shipped: 0.18.1 "Moving on, by the council's word", round B of the same request. `Social/MovingOn.cs`:
+Last shipped: 0.18.2 "Stall goods for ships, camps in warm weather", from the player's save with no camp and no
+merchant in 62 days, and stall goods missing from a trade ship's screen. Fixes first:
+`Patch_StallGoodsSellable` (Integrations/RimMarketStall.cs) postfixes the private `TradeDeal.InSellablePosition`,
+which drops any unspawned thing but genepacks, books and outfit-stand apparel, so `Patch_StallGoodsForShips` never
+reached the screen; for a `TradeShip` a colony stall's counter good (`RimMarketStall.CounterOf`) gets the stall's own
+answer. Camps: `Camps/CampWeatherMath.cs` (Tools/Tests/CampWeatherTests.cs). `CampTracker.Prepare` turned a camp away
+when any one of them was past their comfortable range at ten in the morning (a hot summer turned all away); now
+`WouldStop` allows 6 °C past it, and `CampLife.BadWeather` packs up when most are past the game's safe range (10 °C).
+`CampTracker.WhyNot` gives the start gate's reason and `Prepare(map, why)` the setup's. "Rimfolk: check myself" has a
+"Camps and trade caravans" part: the start gate, a trial `Prepare` (pawns discarded), the last caravan day, and per
+friendly trading faction `FactionCanBeGroupSource` with the reason (`CaravanStop`: a vanilla blocking lord, i.e. a
+group of their enemies on the map not hostile to the colony; temperature). In that save no caravan came after day 27:
+Rimfolk never touches the caravan path; a neutral faction at war with every other one (a Stoneborn rough outlander
+people) blocks all caravans while any of theirs is on the map, and RimMarket merchants come only with caravans. Also
+`Integrations/MarketGuests.cs`: with Hospitality, a `Reachability.CanReach` postfix (Priority.Last) asks again with
+`CompGuest.guestArea_int` set aside a moment when an arrived guest's target is within 4.5 cells of a colony stall
+(setting `marketGuestsShop`, deep hooks). None of it tried in the game here.
+
+Before it, 0.18.1 "Moving on, by the council's word", round B of the same request. `Social/MovingOn.cs`:
 `DilemmaWorker_FamilyElsewhere` (a blood parent or sibling 65+ or a juvenile child with a friendly faction, opinion
 20+; `MovingOnContext` {RELATIVE}/{RELATION}, tags old/child), `DilemmaWorker_LoveOutside` (the colonist's love
 partner of a friendly faction spawned here; fired from `MovingOn.Hourly` with `OnlyLove`; tags guest/married/engaged)

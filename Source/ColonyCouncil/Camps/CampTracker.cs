@@ -80,41 +80,78 @@ namespace ColonyCouncil
         // ---------------- A new camp ----------------
 
         /// <summary>A camp could come now: switched on, none here, none just gone, room on the map, the right weather and people.</summary>
-        public bool CanStartOn(Map map)
+        public bool CanStartOn(Map map) => WhyNot(map) == null;
+
+        /// <summary>What keeps a camp from coming now, in plain words (for "Rimfolk: check myself"), or null if one could.</summary>
+        public string WhyNot(Map map)
         {
-            if (!Enabled || camp != null || map == null || !map.IsPlayerHome) return false;
+            if (!Enabled) return "the camps setting or world events are off";
+            if (camp != null) return "a camp is here already";
+            if (map == null || !map.IsPlayerHome) return "there's no home map";
+            if (GenDate.DaysPassed < 20) return "never in the first twenty days";
             // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap).
             float gap = 15f * (CouncilGameComponent.Instance?.character?.traits?.CampGap ?? 1f);
-            if (Now - lastEndedTick < GenDate.TicksPerDay * gap || GenDate.DaysPassed < 20) return false;
-            if (MapFacts.ThreatOn(map)) return false;
+            if (Now - lastEndedTick < GenDate.TicksPerDay * gap) return "the last camp left on day " + lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + gap.ToString("0") + " days after";
+            if (MapFacts.ThreatOn(map)) return "there's danger on the map";
             float temp = map.mapTemperature.OutdoorTemp;
-            if (temp < -8f || temp > 38f) return false;
-            if (!DefDatabase<CampKindDef>.AllDefs.Any(k => k.FitsEra())) return false;
-            if (Arrivals.Friendly() == null) return false;
-            return CampSite.AnyRoom(map);
+            if (temp < -8f || temp > 38f) return "it's " + temp.ToString("0") + " °C outside, and camps come between -8 and 38 °C";
+            if (!DefDatabase<CampKindDef>.AllDefs.Any(k => k.FitsEra())) return "no kind of camp fits the colony's era";
+            if (Arrivals.Friendly() == null) return "no friendly people could send one";
+            if (!CampSite.AnyRoom(map)) return "there's no room for a camp on the map";
+            return null;
         }
 
-        /// <summary>Picks the kind of camp, its people and its spot; makes the people (not on the map yet). Null if none fits.</summary>
-        public CampSetup Prepare(Map map)
+        /// <summary>
+        /// Picks the kind of camp, its people and its spot; makes the people (not on the map yet). Null if none fits,
+        /// with what went wrong added to <paramref name="why"/> if given.
+        /// </summary>
+        public CampSetup Prepare(Map map, List<string> why = null)
         {
             var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible).ToList();
-            if (kinds.Count == 0 || !CampSite.TryFind(map, out var center)) return null;
+            if (kinds.Count == 0)
+            {
+                why?.Add("no kind of camp can come now");
+                return null;
+            }
+            if (!CampSite.TryFind(map, out var center))
+            {
+                why?.Add("no spot for a camp was found");
+                return null;
+            }
             var colony = CampSite.ColonyCenter(map);
             for (int tries = 0; tries < 6; tries++)
             {
                 var kind = kinds.RandomElementByWeight(k => k.WeightNow());
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/).
                 var f = Arrivals.Friendly(x => kind.FitsFaction(x), Interplay.CampWeight);
-                if (f == null) continue;
+                if (f == null)
+                {
+                    why?.Add(kind.label + ": no friendly people for it");
+                    continue;
+                }
                 int n = Mathf.Clamp(kind.people.RandomInRange, 1, 8);
                 var plans = CampSite.Layout(map, center, kind, n, colony, out var stash, out var share);
-                if (plans == null) return null;
-                var pawns = MakePeople(kind, f, n);
-                if (pawns.Count == 0) continue;
-                // Not dressed for this weather: they wouldn't stop here now.
-                float temp = map.mapTemperature.OutdoorTemp;
-                if (pawns.Any(p => temp < GenTemperature.ComfortableTemperatureRange(p).min || temp > GenTemperature.ComfortableTemperatureRange(p).max))
+                if (plans == null)
                 {
+                    why?.Add(kind.label + ": its camp doesn't fit at the spot");
+                    return null;
+                }
+                var pawns = MakePeople(kind, f, n);
+                if (pawns.Count == 0)
+                {
+                    why?.Add(kind.label + " of " + f.Name + ": its people couldn't be made");
+                    continue;
+                }
+                // Not dressed for this weather: they wouldn't stop here now (CampWeatherMath).
+                float temp = map.mapTemperature.OutdoorTemp;
+                int unfit = pawns.Count(p =>
+                {
+                    var comfy = GenTemperature.ComfortableTemperatureRange(p);
+                    return !CampWeatherMath.WouldStop(temp, comfy.min, comfy.max);
+                });
+                if (unfit > 0)
+                {
+                    why?.Add(kind.label + " of " + f.Name + ": " + unfit + " of " + pawns.Count + " not dressed for " + temp.ToString("0") + " °C");
                     foreach (var p in pawns) Arrivals.Discard(p);
                     continue;
                 }

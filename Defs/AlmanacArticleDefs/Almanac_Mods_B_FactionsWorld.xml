@@ -88,7 +88,11 @@ Guests also help with chores, but only where their skill is 7 or more (a setting
       </li>
       <li>
         <heading>Trade ships and the stalls</heading>
-        <text>With a powered orbital trade beacon on the map, what lies on the counters of the colony's own stalls is offered to trade ships as well, beside what lies in the beacon's range, so there's no need to carry it back to sell it. A ship buys from what's in range first, and from a stall only past that; what it buys from a stall comes off that stall's sale line, as a sale there does. A stall doesn't stand in for a beacon: without a powered one, ships see only what they always did. The setting "RimMarket's stall goods for trade ships" (Interface page) turns it off.</text>
+        <text>With a powered orbital trade beacon on the map, what lies on the counters of the colony's own stalls is offered to trade ships as well, beside what lies in the beacon's range, so there's no need to carry it back to sell it. It counts as lying where its stall stands, so fog or a building that forbids selling near it keeps it back as it would anything there. A ship buys from what's in range first, and from a stall only past that; what it buys from a stall comes off that stall's sale line, as a sale there does. A stall doesn't stand in for a beacon: without a powered one, ships see only what they always did. The setting "RimMarket's stall goods for trade ships" (Interface page) turns it off. A trade caravan at the colony sees only what lies on the map, as always: what is on a counter is for the market's shoppers.</text>
+      </li>
+      <li>
+        <heading>Guests at the market</heading>
+        <text>With Hospitality, guests always may walk to the market's stalls and buy what's on sale there, even where the stalls stand outside their guest area. Only the stalls and the cells in front of them are open to them; once they've shopped they go back into their area. RimMarket's own setting for guests shopping still applies, and the setting "Guests always shop at the market" (needs the deeper game hooks) turns it off.</text>
       </li>
     </sections>
     <keywords>

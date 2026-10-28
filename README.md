@@ -2513,7 +2513,9 @@ new setting needs a row there.
   RimMarket's own sale lines, by name, and RimMarket's window opens if they're not what Rimfolk expects. With a powered
   orbital trade beacon on the map, what lies on the colony's stalls is offered to trade ships too, after what lies in
   the beacon's range, and what a ship buys from a stall comes off its sale line; a stall alone is never a beacon
-  (setting "RimMarket's stall goods for trade ships").
+  (setting "RimMarket's stall goods for trade ships"). With Hospitality too, guests always may shop at the market's
+  stalls, even where they stand outside their guest area, and go back into it after (setting "Guests always shop at
+  the market").
 - **RimHUD** by Jaxe: can show trust, the open wish, office, life goal, strain, feelings and the heart's needs in
   its pawn panel, with bars for strain and the heart's needs (see above).
 
@@ -2544,8 +2546,9 @@ with `[Rimfolk]` are from this mod.
 Please share them so they can be fixed. Quicker still: with development mode on, open the debug actions and pick
 **Rimfolk: check myself** (under Rimfolk). One window shows the game, Rimfolk and Harmony versions, which game hooks
 applied and which didn't (and why), which parts are switched off or changed from their defaults, which of the mods
-Rimfolk works with it found, and its own errors and warnings this session; a screenshot of it (or the "Copy to
-clipboard" button) says most of what a bug report needs.
+Rimfolk works with it found, whether a camp or a trade caravan could come to the home map now and what stops it, and
+its own errors and warnings this session; a screenshot of it (or the "Copy to clipboard" button) says most of what a
+bug report needs.
 
 ## For modders
 

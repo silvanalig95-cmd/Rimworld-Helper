@@ -9,14 +9,15 @@ using LudeonTK;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
     /// <summary>
     /// Dev mode: "Rimfolk: check myself" (Debug actions, Rimfolk). One window for the player to screenshot when
     /// something looks wrong: the game, Rimfolk and Harmony versions, which game hooks took and which didn't (and why),
-    /// which of Rimfolk's parts are switched on, which of the mods it works with it found, and its own lines in the log
-    /// this session. Plain English, like the game's own debug tools. Built once when opened (and on "Check again"),
+    /// which of Rimfolk's parts are switched on, which of the mods it works with it found, whether a camp or a trade
+    /// caravan could come to the home map now (and what stops it), and its own lines in the log this session. Plain English, like the game's own debug tools. Built once when opened (and on "Check again"),
     /// never per frame.
     /// </summary>
     public static class SelfCheck
@@ -56,6 +57,7 @@ namespace ColonyCouncil
             Safe(parts, "Game hooks", Hooks);
             Safe(parts, "Rimfolk's parts", Parts);
             Safe(parts, "Mods Rimfolk works with", Mods);
+            Safe(parts, "Camps and trade caravans", Visits);
             Safe(parts, "Rimfolk in the log this session", LogLines);
             return parts;
         }
@@ -245,6 +247,95 @@ namespace ColonyCouncil
             part.Add(counts.Count == 0 ? "Content for your other mods: none of the mods Rimfolk writes for is active."
                 : "Content for your other mods (" + counts.Count + " mods): " + string.Join(", ", counts.OrderByDescending(kv => kv.Value).ThenBy(kv => kv.Key)
                     .Select(kv => kv.Key + " " + kv.Value)) + ".", UiKit.Faint);
+        }
+
+        /// <summary>
+        /// Whether a camp or a trade caravan could come to the home map right now, and if not, what stops it. A camp is
+        /// tried for real (its people made and let go again, nothing put on the map), so what this says is what the
+        /// morning's chance would meet in this weather. A caravan is asked the game's own question for each friendly
+        /// people that trades, and the reason is found for those it says no to.
+        /// </summary>
+        private static void Visits(Part part)
+        {
+            var map = HappeningTracker.HomeMap();
+            if (map == null)
+            {
+                part.Add("There's no home map to check.", UiKit.Faint);
+                return;
+            }
+            int now = Find.TickManager.TicksGame;
+            const int Day = GenDate.TicksPerDay;
+
+            var tracker = CampTracker.Instance;
+            string not = tracker == null ? "Rimfolk's camps aren't running in this game" : tracker.WhyNot(map);
+            if (not != null) part.Add("Camps: none can come now: " + not + ".", tracker?.camp != null ? UiKit.Good : Color.white);
+            else
+            {
+                var why = new List<string>();
+                var setup = tracker.Prepare(map, why);
+                if (setup != null)
+                {
+                    part.Add("Camps: one could come now (" + setup.kind.label + " of " + setup.faction.Name + "). Each morning at ten there's a "
+                             + (CampTimer.DailyChance * 100f).ToString("0") + "% chance one does.", UiKit.Good);
+                    CampTracker.Discard(setup);
+                }
+                else
+                {
+                    part.color = UiKit.Warn;
+                    part.Add("Camps: the way is open, but none could set up just now: " + string.Join("; ", why.Distinct()) + ".", UiKit.Warn);
+                }
+            }
+
+            var inc = IncidentDefOf.TraderCaravanArrival;
+            part.Add(map.storyState.lastFireTicks.TryGetValue(inc, out int last)
+                ? "Trade caravans: the last came on day " + last / Day + ", " + (now - last) / Day + " days ago."
+                : "Trade caravans: none has come to this map yet.");
+            if (ModsConfig.IsActive(RimMarketStall.PackageId))
+                part.Add("RimMarket's merchants take a stall only from a trade caravan that has come to trade.", UiKit.Faint);
+            var stop = map.gameConditionManager.ActiveConditions.FirstOrDefault(c => c.def.preventNeutralVisitors);
+            if (stop != null)
+            {
+                part.Add("No caravan comes while " + stop.LabelCap + " lasts.", UiKit.Warn);
+                return;
+            }
+            if (!(inc.Worker is IncidentWorker_TraderCaravanArrival worker)) return;
+            var parms = StorytellerUtility.DefaultParmsNow(inc.category, map);
+            var could = new List<string>();
+            var stopped = new List<string>();
+            foreach (var f in Find.FactionManager.AllFactionsListForReading)
+            {
+                if (f.IsPlayer || f.Hidden || f.defeated || f.temporary || f.HostileTo(Faction.OfPlayer) || f.def.caravanTraderKinds.NullOrEmpty()) continue;
+                if (worker.FactionCanBeGroupSource(f, parms)) could.Add(f.Name);
+                else stopped.Add(f.Name + " (" + CaravanStop(map, f) + ")");
+            }
+            if (could.Count > 0) part.Add("Could come now: " + string.Join(", ", could) + ".", UiKit.Good);
+            else
+            {
+                part.color = UiKit.Warn;
+                part.Add("No friendly people's caravan could come now, so the storyteller's caravans are lost while this lasts.", UiKit.Warn);
+            }
+            if (stopped.Count > 0) part.Add("Can't come now: " + string.Join("; ", stopped) + ".", could.Count > 0 ? UiKit.Faint : UiKit.Warn);
+        }
+
+        /// <summary>
+        /// Why the game won't send this people's caravan now: a group of their enemies on the map (one the colony isn't at
+        /// war with; the game's own rule), or weather they don't travel in.
+        /// </summary>
+        private static string CaravanStop(Map map, Faction f)
+        {
+            var home = map.ParentFaction ?? Faction.OfPlayer;
+            foreach (var lord in map.lordManager.lords)
+            {
+                var o = lord.faction;
+                if (o == null || o == f || o == home || !lord.AnyActivePawn) continue;
+                var job = lord.LordJob;
+                if ((job == null || job.CanBlockHostileVisitors) && !(job is LordJob_VoluntarilyJoinable) && o.HostileTo(f) && !o.HostileTo(home))
+                    return "people of " + o.Name + " are on the map, and the two are at war";
+            }
+            var range = f.def.allowedArrivalTemperatureRange;
+            if (!range.Includes(map.mapTemperature.OutdoorTemp) || !range.Includes(map.mapTemperature.SeasonalTemp))
+                return "they don't travel in this weather";
+            return "the game won't send them now";
         }
 
         private static void LogLines(Part part)

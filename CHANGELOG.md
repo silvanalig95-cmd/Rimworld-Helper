@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Stall goods for ships, camps in warm weather
+
+*28 October 2026, version 0.18.2*
+
+- Fixed: trade ships now really see what lies on the colony's stall counters. The game's trade deal had been setting those goods aside again.
+- Fixed: camps come in warm and cool weather again. A camp used to be turned away when any one of them was a little past comfortable; now each may be up to 6 °C past it.
+- A camp packs up early only when the weather would start to hurt most of them, so one that comes on a warm morning stays through the afternoon.
+- With Hospitality and RimMarket, guests always may shop at the market's stalls, even outside their guest area (setting "Guests always shop at the market").
+- "Rimfolk: check myself" says whether a camp or a trade caravan could come now, and what stops it, such as a group of their enemies on the map.
+
 ## Moving on, by the council's word
 
 *27 October 2026, version 0.18.1*

@@ -168,6 +168,10 @@ namespace ColonyCouncil
             return list;
         }
 
+        /// <summary>The colony stall on the map on whose counter this lies, or null.</summary>
+        public static Thing CounterOf(Thing t) =>
+            t?.ParentHolder is Thing stall && stallType != null && stallType.IsInstanceOfType(stall) && stall.Spawned && IsColonyStall(stall) ? stall : null;
+
         /// <summary>Something off a colony stall's counter was sold to a trade ship: it comes off the stall's line, as a sale at the stall does.</summary>
         public static void SoldToShip(Thing t, int count)
         {
@@ -247,6 +251,39 @@ namespace ColonyCouncil
             }
             if (stalls == null) yield break;
             foreach (var t in stalls) yield return t;
+        }
+    }
+
+    /// <summary>
+    /// The game's trade deal keeps only what lies on the map, and what lies on a few shelves it knows (a gene bank, a
+    /// bookcase, an outfit stand). A colony stall holds its counter goods itself, so the deal let them all go again after
+    /// <see cref="Patch_StallGoodsForShips"/> offered them. For a trade ship they now stand where their stall stands:
+    /// what keeps goods there from being sold (fog, a building that forbids selling near it) keeps them too.
+    /// </summary>
+    [HarmonyPatch(typeof(TradeDeal), "InSellablePosition")]
+    public static class Patch_StallGoodsSellable
+    {
+        private delegate bool SellableAt(TradeDeal deal, Thing t, out string reason);
+
+        private static SellableAt sellableAt;
+
+        public static bool Prepare() => ModsConfig.IsActive(RimMarketStall.PackageId);
+
+        public static void Postfix(TradeDeal __instance, Thing t, ref bool __result, ref string reason)
+        {
+            if (__result || t == null || t.Spawned || !(TradeSession.trader is TradeShip) || !RimMarketStall.ShipsOn) return;
+            try
+            {
+                var stall = RimMarketStall.CounterOf(t);
+                if (stall == null) return;
+                sellableAt ??= AccessTools.MethodDelegate<SellableAt>(AccessTools.Method(typeof(TradeDeal), "InSellablePosition"));
+                // The stall itself is on the map, so the game's own answer for its place is the one for its goods.
+                __result = sellableAt(__instance, stall, out reason);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("RimMarket stall goods in the trade deal", e);
+            }
         }
     }
 

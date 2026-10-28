@@ -241,6 +241,8 @@ namespace ColonyCouncil
         public bool marketStallWindow = true;
         /// <summary>With RimMarket and a powered orbital trade beacon: a colony stall's goods are offered to trade ships too.</summary>
         public bool marketStallShips = true;
+        /// <summary>With RimMarket and Hospitality, guests may always reach the market's stalls to shop, whatever their guest area (Integrations/MarketGuests.cs).</summary>
+        public bool marketGuestsShop = true;
 
         // Room planner (the clearing options are remembered between games)
         public bool planCutPlants = true;
@@ -445,6 +447,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref coverDrag, "coverDrag", true);
             Scribe_Values.Look(ref marketStallWindow, "marketStallWindow", true);
             Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
+            Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);
             Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);
