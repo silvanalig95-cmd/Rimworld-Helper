@@ -31,6 +31,8 @@
         <li>[aboutgroupmate] One of ours, {SUBJECT_nameDef}, {DEED}.</li>
         <li>[aboutoutsider] {SUBJECT_nameDef} keeps to {SUBJECT_objective}self, but {SUBJECT_pronoun} {DEED}.</li>
         <li>[persona:wary] If it's true, {SUBJECT_nameDef} {DEED}.</li>
+        <li>[deed:goal] {SUBJECT_nameDef} said {SUBJECT_pronoun} would, and {SUBJECT_pronoun} {DEED}.</li>
+        <li>[deed:goal] All that time, and {SUBJECT_nameDef} {DEED} in the end.</li>
         <li>[deed:rescue,hasvictim] {SUBJECT_nameDef} went back for {VICTIM} with the fight still going on.</li>
         <li>[deed:rescue] {SUBJECT_nameDef} dragged someone clear while I kept my head down.</li>
         <li>[deed:rescue,hasvictim] {VICTIM} would be dead if {SUBJECT_nameDef} hadn't gone back out.</li>
@@ -52,6 +54,7 @@
         <li>[deed:keptsecret,hasvictim] {SUBJECT_nameDef} knew {VICTIM}'s secret all along and never said a word.</li>
         <li>[deed:keptsecret] {SUBJECT_nameDef} sat on that secret for seasons and never let it slip.</li>
         <li>[deed:masterwork] {SUBJECT_nameDef} made {DETAIL}, have you seen it?</li>
+        <li>[deed:goal] {SUBJECT_nameDef} {DEED}, and nobody can take that away.</li>
         <li>[deed:masterwork] Go and look, {SUBJECT_nameDef} made {DETAIL} and it's beautiful.</li>
         <li>[deed:masterwork] {SUBJECT_nameDef} turned out {DETAIL}, the best thing in the place.</li>
         <li>[deed:greatwork] {SUBJECT_nameDef} pushed and pushed for {DETAIL}, and now look at it.</li>

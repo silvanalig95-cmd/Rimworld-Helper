@@ -268,8 +268,11 @@ namespace ColonyCouncil
                     string why = a.SparkText;
                     if (!why.NullOrEmpty()) o.goalTip += "\n\n" + "CC_Story_GoalWhy".Translate(why, "CC_DayN".Translate(a.startedTick / GenDate.TicksPerDay + 1)).Resolve();
                 }
+                // Each goal reached is a title that stays, and the skill it was about one they won't lose (Aspirations/GoalRewards.cs).
                 foreach (var done in comp.aspirations.Fulfilled(p))
-                    life.lines.Add(("CC_Story_GoalDone".Translate(done.Goal, "CC_DayN".Translate(done.doneTick / GenDate.TicksPerDay + 1)).Resolve(), UiKit.Good));
+                    life.lines.Add(("CC_Story_Remembered".Translate(done.Deed, "CC_DayN".Translate(done.doneTick / GenDate.TicksPerDay + 1)).Resolve(), UiKit.Good));
+                var marked = GoalRewards.MarksOf(p).Select(x => x.label).ToList();
+                if (marked.Count > 0) life.lines.Add(("CC_Story_Marked".Translate(TextUtil.JoinAnd(marked)).Resolve(), UiKit.Good));
             }
             // The story they're living (Arcs/), and the ones they've lived through.
             o.story = ArcView.Now(p, out o.storyTip, out o.stage, out o.stages);

@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.19.0</version>
+        <date>28 October 2026</date>
+        <title>What a life goal leaves behind</title>
+        <points>
+          <li>A life goal reached is toasted that evening: those close to them gather at the table, and a friend raises a glass.</li>
+          <li>It always brings an inspiration that fits the goal: surgery for a healer, taming for a tamer, a work frenzy otherwise.</li>
+          <li>The skill it was about never slips again and comes a little faster, for goals already reached too.</li>
+          <li>A younger colonist with a passion for that skill spends some hours learning at their side.</li>
+          <li>The Story tab remembers them as the one who did it, and the colony tells it round in gossip.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.18.4</version>
         <date>28 October 2026</date>
         <title>Kept at a price, and faith that holds</title>

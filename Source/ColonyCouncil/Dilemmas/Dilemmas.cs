@@ -450,7 +450,9 @@ namespace ColonyCouncil
         /// <summary>The stranger (visitor, prisoner, animal...).</summary>
         X,
         /// <summary>A and A's family at home: by blood or by marriage, and their partner.</summary>
-        FamilyOfA
+        FamilyOfA,
+        /// <summary>A and those close to them: family, their partner, and those who think well of them (opinion 20+).</summary>
+        CloseToA
     }
 
     public abstract class DilemmaEffect
@@ -487,6 +489,10 @@ namespace ColonyCouncil
                 case DilemmaTarget.X: list = ctx.stranger != null ? new[] { ctx.stranger } : new Pawn[0]; break;
                 case DilemmaTarget.FamilyOfA:
                     list = ctx.Colonists.Where(p => ctx.a != null && (p == ctx.a || Family.Of(p, ctx.a) || LovePartnerRelationUtility.LovePartnerRelationExists(p, ctx.a)));
+                    break;
+                case DilemmaTarget.CloseToA:
+                    list = ctx.Colonists.Where(p => ctx.a != null && (p == ctx.a || Family.Of(p, ctx.a) || LovePartnerRelationUtility.LovePartnerRelationExists(p, ctx.a)
+                                                                      || (p.relations != null && p.relations.OpinionOf(ctx.a) >= 20)));
                     break;
                 default: list = new Pawn[0]; break;
             }

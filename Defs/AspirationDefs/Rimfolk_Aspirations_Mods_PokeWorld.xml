@@ -13,6 +13,7 @@
     <amount>10</amount>
     <weight>1</weight>
     <goal>add ten species to the colony's Pokédex</goal>
+    <deed>added ten species to the Pokédex</deed>
     <forbiddenBy><li>NoPets</li></forbiddenBy>
     <chosen>
       <plain>
@@ -44,6 +45,7 @@
     <amount>50</amount>
     <weight>0.9</weight>
     <goal>raise a Pokémon to level {COUNT}</goal>
+    <deed>raised a Pokémon to level {COUNT}</deed>
     <forbiddenBy><li>NoPets</li></forbiddenBy>
     <sparks><li>battle</li></sparks>
     <chosen>

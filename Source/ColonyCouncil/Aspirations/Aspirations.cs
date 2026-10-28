@@ -38,6 +38,11 @@ namespace ColonyCouncil
         /// <summary>The goal as a verb phrase, used in sentences: "master {SKILL}", "find someone to marry".</summary>
         [MustTranslate] public string goal;
         /// <summary>
+        /// What they did, once done, short and in the past ("cooked five hundred meals"; {SKILL} and {COUNT} as in the
+        /// goal): their title on the Story tab and the deed told round the colony. None: "did what they set out to do".
+        /// </summary>
+        [MustTranslate] public string deed;
+        /// <summary>
         /// What can make someone set their heart on this, beyond who they are: battle, downed (a brush with death),
         /// loss (someone close died or was taken), birth (a child born in the colony), omen (their dream came true),
         /// fulfilled (someone they care about just achieved this same goal), or thought:ThoughtDefName (a recent
@@ -131,7 +136,14 @@ namespace ColonyCouncil
         /// <summary>Taken up from someone who died before reaching it.</summary>
         public bool inherited;
 
+        /// <summary>The skill the goal was about, marked once it's reached (GoalRewards): it never slips, and comes a little faster.</summary>
+        public SkillDef mark;
+
         public string Goal => def == null ? "" : def.goal.Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve();
+
+        /// <summary>What they did, once done ("cooked five hundred meals").</summary>
+        public string Deed => def == null ? "" : (def.deed.NullOrEmpty() ? "CC_Asp_DeedPlain".Translate().Resolve()
+            : def.deed.Formatted((skill?.label ?? "").Named("SKILL"), target.ToString("0").Named("COUNT")).Resolve());
 
         public float Progress => def == null ? 0f : Mathf.Clamp01(def.Worker.Progress(this));
 
@@ -149,6 +161,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref sparkName, "sparkName");
             Scribe_Values.Look(ref pawnRef, "pawnRef", -1);
             Scribe_Values.Look(ref inherited, "inherited");
+            Scribe_Defs.Look(ref mark, "mark");
         }
 
         /// <summary>"after a battle", "inspired by Ann", "for Bo": why they want it, or null.</summary>
@@ -721,18 +734,15 @@ namespace ColonyCouncil
             string quote = Line(a.def.achieved, p, a);
             string text = (a.inherited ? "CC_Asp_FulfilledFor" : "CC_Asp_FulfilledText").Translate(p.Named("PAWN"), a.Goal.Named("GOAL"), (a.sparkName ?? "").Named("NAME")).Resolve();
             if (!quote.NullOrEmpty()) text += "\n\n\"" + quote + "\"";
+            // What it leaves behind: a toast, an inspiration that fits, a mark on the skill, a lesson, a title (GoalRewards).
+            var rewards = GoalRewards.Reached(comp, a);
+            if (rewards.Count > 0) text += "\n\n" + string.Join(" ", rewards);
             Find.LetterStack.ReceiveLetter("CC_Asp_FulfilledLabel".Translate(p.LabelShort), text, LetterDefOf.PositiveEvent, p);
             if (!quote.NullOrEmpty()) comp.journals.WriteText(p, quote);
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Asp_FulfilledText".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve(), p));
             comp.annals.Notify_Aspiration(p, a.Goal);
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Asp_Fulfilled);
             comp.standings.Change(p, 10f, "CC_Log_Aspiration".Translate(a.Goal));
-            var inspiration = p.mindState?.inspirationHandler;
-            if (inspiration != null && !inspiration.Inspired && Rand.Chance(0.5f))
-            {
-                var idef = inspiration.GetRandomAvailableInspirationDef();
-                if (idef != null) inspiration.TryStartInspiration(idef, null, true);
-            }
             // The people who love them are glad (they hear the news, wherever they are).
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))
             {

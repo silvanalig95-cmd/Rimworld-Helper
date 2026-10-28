@@ -17,6 +17,7 @@
     <amount>10</amount>
     <weight>0.6</weight>
     <goal>bring down ten mechanoids</goal>
+    <deed>brought down ten mechanoids</deed>
     <sparks><li>battle</li></sparks>
     <who><canFight>true</canFight></who>
     <chosen>
@@ -47,6 +48,7 @@
     <amount>500</amount>
     <weight>0.8</weight>
     <goal>carve a home out of the mountain</goal>
+    <deed>carved a home out of the mountain</deed>
     <who><passion>Mining</passion></who>
     <chosen>
       <plain>
@@ -75,6 +77,7 @@
     <amount>20</amount>
     <weight>0.7</weight>
     <goal>perform twenty operations</goal>
+    <deed>performed twenty operations</deed>
     <sparks><li>downed</li><li>loss</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>
@@ -104,6 +107,7 @@
     <amount>15</amount>
     <weight>0.6</weight>
     <goal>give fifteen of the dead a proper burial</goal>
+    <deed>buried fifteen of the dead properly</deed>
     <sparks><li>thought:ObservedLayingCorpse</li><li>thought:ObservedLayingRottingCorpse</li><li>loss</li></sparks>
     <who><anyTrait><li>Kind</li></anyTrait></who>
     <chosen>
@@ -137,6 +141,7 @@
     <amount>400</amount>
     <weight>0.5</weight>
     <goal>keep the colony spotless</goal>
+    <deed>kept the colony spotless</deed>
     <chosen>
       <plain>
         <li>[inherited] {NAME} swept these floors every morning, and they've gone filthy since. I mean to {GOAL}.</li>
@@ -164,6 +169,7 @@
     <amount>8000</amount>
     <weight>0.8</weight>
     <goal>make a great discovery</goal>
+    <deed>made a great discovery</deed>
     <who><passion>Intellectual</passion></who>
     <chosen>
       <plain>
@@ -193,6 +199,7 @@
     <amount>40</amount>
     <weight>0.7</weight>
     <goal>bring home forty kills from the hunt</goal>
+    <deed>brought home forty kills</deed>
     <who><canFight>true</canFight><passion>Shooting</passion></who>
     <chosen>
       <plain>
@@ -221,6 +228,7 @@
     <amount>30</amount>
     <weight>0.5</weight>
     <goal>put out thirty fires</goal>
+    <deed>put out thirty fires</deed>
     <who><notTrait><li>Pyromaniac</li></notTrait></who>
     <chosen>
       <plain>
@@ -253,6 +261,7 @@
     <gain>4</gain>
     <weight>0.8</weight>
     <goal>become a crack shot</goal>
+    <deed>became a crack shot</deed>
     <sparks><li>battle</li></sparks>
     <who><canFight>true</canFight><anyTrait><li>Bloodlust</li><li>Tough</li></anyTrait></who>
     <chosen>
@@ -283,6 +292,7 @@
     <gain>4</gain>
     <weight>0.7</weight>
     <goal>become someone people listen to</goal>
+    <deed>became someone people listen to</deed>
     <sparks><li>thought:Council_LostElection</li></sparks>
     <who><passion>Social</passion></who>
     <chosen>
@@ -313,6 +323,7 @@
     <gain>4</gain>
     <weight>0.9</weight>
     <goal>become a true scholar</goal>
+    <deed>became a true scholar</deed>
     <who><anyTrait><li>TooSmart</li></anyTrait></who>
     <chosen>
       <plain>
@@ -342,6 +353,7 @@
     <gain>4</gain>
     <weight>0.8</weight>
     <goal>make art worth remembering</goal>
+    <deed>made art worth remembering</deed>
     <who><passion>Artistic</passion></who>
     <chosen>
       <plain>
@@ -371,6 +383,7 @@
     <office>Council_Office_Marshal</office>
     <weight>0.6</weight>
     <goal>serve as the colony's marshal</goal>
+    <deed>served as the colony's marshal</deed>
     <sparks><li>battle</li><li>thought:Council_LostElection</li></sparks>
     <who><canFight>true</canFight><notTrait><li>Wimp</li></notTrait></who>
     <chosen>
@@ -398,6 +411,7 @@
     <office>Council_Office_Physician</office>
     <weight>0.6</weight>
     <goal>become the colony's physician</goal>
+    <deed>became the colony's physician</deed>
     <sparks><li>downed</li><li>thought:Council_LostElection</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>
@@ -425,6 +439,7 @@
     <office>Council_Office_Steward</office>
     <weight>0.6</weight>
     <goal>serve as the colony's steward</goal>
+    <deed>served as the colony's steward</deed>
     <sparks><li>thought:Council_LostElection</li></sparks>
     <who><anyTrait><li>Kind</li><li>Ascetic</li></anyTrait></who>
     <chosen>
@@ -454,6 +469,7 @@
     <office>Council_Office_Quartermaster</office>
     <weight>0.5</weight>
     <goal>become the colony's quartermaster</goal>
+    <deed>became the colony's quartermaster</deed>
     <sparks><li>thought:Council_LostElection</li></sparks>
     <chosen>
       <plain>
@@ -482,6 +498,7 @@
     <amount>5</amount>
     <weight>0.6</weight>
     <goal>have five true friends</goal>
+    <deed>found five true friends</deed>
     <sparks><li>thought:Council_Soc_LeftOut</li><li>loss</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
@@ -510,6 +527,7 @@
     <amount>5</amount>
     <weight>0.4</weight>
     <goal>see five more years with the colony</goal>
+    <deed>saw five more years here</deed>
     <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
       <plain>
@@ -537,6 +555,7 @@
     <amount>20</amount>
     <weight>0.5</weight>
     <goal>see {COUNT} people call this place home</goal>
+    <deed>saw {COUNT} people call this home</deed>
     <sparks><li>birth</li></sparks>
     <chosen>
       <plain>

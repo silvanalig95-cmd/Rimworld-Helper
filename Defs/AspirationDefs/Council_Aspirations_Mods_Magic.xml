@@ -16,6 +16,7 @@
     <amount>6</amount>
     <who><tags>mage</tags></who>
     <goal>learn or deepen {COUNT} workings</goal>
+    <deed>learned {COUNT} workings</deed>
     <sparks><li>battle</li><li>fulfilled</li><li>thought:Council_Moment_ComparedWorkings</li></sparks>
     <chosen>
       <plain>
@@ -47,6 +48,7 @@
     <amount>6</amount>
     <who><tags>fighter</tags></who>
     <goal>learn or sharpen {COUNT} techniques</goal>
+    <deed>learned {COUNT} techniques</deed>
     <sparks><li>battle</li><li>downed</li><li>thought:Council_Moment_ComparedForms</li></sparks>
     <chosen>
       <plain>
@@ -77,6 +79,7 @@
     <gain>4</gain>
     <who><tags>mage</tags></who>
     <goal>understand the theory as well as the practice</goal>
+    <deed>mastered the theory of magic</deed>
     <sparks><li>fulfilled</li><li>thought:Council_Moment_TalkedMagic</li></sparks>
     <chosen>
       <plain>
@@ -106,6 +109,7 @@
     <amount>60</amount>
     <who><tags>healer</tags></who>
     <goal>tend sixty wounds and illnesses</goal>
+    <deed>tended sixty wounds and illnesses</deed>
     <sparks><li>downed</li><li>loss</li><li>battle</li></sparks>
     <chosen>
       <plain>

@@ -846,7 +846,10 @@ brush with death a healer, a wedding someone who wants to marry, a birth someone
 someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
 want the same. Something big can change their mind, and when someone dies before reaching theirs, the person who
 loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why. Achieving one is a big
-moment: a letter, a long good mood, trust, often an inspiration, friends who are glad for them. Dying before it is
+moment: a letter, a long good mood, trust, friends who are glad for them, and something that stays: a toast at the
+table that evening, an inspiration that fits the goal, a mark on the skill it was about (it never slips again and comes
+a little faster), a younger colonist with the same passion learning at their side, and a title on their Story tab that
+the colony tells round in gossip. Dying before it is
 remembered: the chronicle notes what they never got to do, and their friends write about it.
 
 ### Personal stories

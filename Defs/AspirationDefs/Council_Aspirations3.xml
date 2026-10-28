@@ -20,6 +20,7 @@
     <amount>400</amount>
     <weight>0.8</weight>
     <goal>bring in four hundred harvests</goal>
+    <deed>brought in four hundred harvests</deed>
     <sparks><li>thought:AteRawFood</li><li>fulfilled</li></sparks>
     <who><passion>Plants</passion></who>
     <chosen>
@@ -53,6 +54,7 @@
     <amount>120</amount>
     <weight>0.8</weight>
     <goal>make a hundred and twenty things by hand</goal>
+    <deed>made a hundred and twenty things by hand</deed>
     <sparks><li>thought:Council_Granted_ToolCabinet</li><li>fulfilled</li></sparks>
     <who><passion>Crafting</passion></who>
     <chosen>
@@ -87,6 +89,7 @@
     <gain>4</gain>
     <weight>0.7</weight>
     <goal>become someone nobody wants to face up close</goal>
+    <deed>became a terror up close</deed>
     <sparks><li>battle</li><li>downed</li></sparks>
     <who><passion>Melee</passion><canFight>true</canFight></who>
     <chosen>
@@ -117,6 +120,7 @@
     <amount>1</amount>
     <weight>1.2</weight>
     <goal>make a best friend</goal>
+    <deed>made a best friend</deed>
     <sparks><li>thought:Council_Soc_LeftOut</li><li>loss</li></sparks>
     <who><child>true</child></who>
     <chosen>
@@ -143,6 +147,7 @@
     <gain>3</gain>
     <weight>1.2</weight>
     <goal>get good at {SKILL}</goal>
+    <deed>got good at {SKILL}</deed>
     <sparks><li>thought:Council_Granted_ChildLessons</li><li>fulfilled</li></sparks>
     <who><child>true</child></who>
     <chosen>
@@ -169,6 +174,7 @@
     <amount>10</amount>
     <weight>0.8</weight>
     <goal>grow up and be one of the grown-ups</goal>
+    <deed>grew up into one of the grown-ups</deed>
     <sparks><li>birth</li></sparks>
     <who><child>true</child></who>
     <chosen>
@@ -196,6 +202,7 @@
     <minAge>50</minAge>
     <weight>1.2</weight>
     <goal>see a grandchild born</goal>
+    <deed>saw a grandchild born</deed>
     <sparks><li>birth</li><li>thought:AttendedWedding</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
@@ -224,6 +231,7 @@
     <minAge>65</minAge>
     <weight>1</weight>
     <goal>see one more year with the colony</goal>
+    <deed>saw one more year here</deed>
     <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
       <plain>
@@ -252,6 +260,7 @@
     <minAge>55</minAge>
     <weight>1</weight>
     <goal>teach two students to stand on their own</goal>
+    <deed>taught two students to stand alone</deed>
     <sparks><li>thought:Council_GratefulStudent</li><li>loss</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -277,6 +286,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_IdeoRole</workerClass>
     <weight>0.8</weight>
     <goal>take on a role in the ideoligion</goal>
+    <deed>took on a role in the faith</deed>
     <sparks><li>omen</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -302,6 +312,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_SharedFaith</workerClass>
     <weight>0.6</weight>
     <goal>see the whole colony share one ideoligion</goal>
+    <deed>saw the colony share one faith</deed>
     <sparks><li>loss</li><li>omen</li></sparks>
     <chosen>
       <plain>
@@ -332,6 +343,7 @@
     <amount>10</amount>
     <weight>1</weight>
     <goal>feel at home here</goal>
+    <deed>came to feel at home here</deed>
     <sparks><li>thought:Council_Soc_LeftOut</li><li>thought:Council_Granted_SeatsForAll</li><li>loss</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
@@ -361,6 +373,7 @@
     <amount>10</amount>
     <weight>0.9</weight>
     <goal>feel free again</goal>
+    <deed>came to feel free again</deed>
     <sparks><li>thought:Council_Granted_Travel</li><li>thought:Council_Granted_CampEvening</li></sparks>
     <chosen>
       <plain>
@@ -390,6 +403,7 @@
     <amount>1</amount>
     <weight>0.7</weight>
     <goal>have an idea chosen by the council</goal>
+    <deed>had an idea chosen by the council</deed>
     <sparks><li>thought:Council_DecidedWithoutMe</li><li>thought:Council_HeardAtMeeting</li></sparks>
     <chosen>
       <plain>

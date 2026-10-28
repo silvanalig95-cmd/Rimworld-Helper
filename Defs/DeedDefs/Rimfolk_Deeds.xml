@@ -344,6 +344,18 @@
     <notInFight>true</notInFight>
   </ColonyCouncil.DeedDef>
 
+  <!-- A life goal reached (Aspirations/GoalRewards.cs): {DETAIL} is what they did ("cooked five hundred meals"); those who think well of them know. -->
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_GoalReached</defName>
+    <label>reached a life goal</label>
+    <theme>goal</theme>
+    <facets><diligence>8</diligence><skill>4</skill></facets>
+    <fadeDays>300</fadeDays>
+    <interest>1.1</interest>
+    <text>{DETAIL}</text>
+    <logTopic>Rimfolk_GossipTopic_GoalReached</logTopic>
+  </ColonyCouncil.DeedDef>
+
   <ColonyCouncil.DeedDef>
     <defName>Rimfolk_Deed_Elected</defName>
     <label>won an election</label>

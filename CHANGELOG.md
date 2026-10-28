@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What a life goal leaves behind
+
+*28 October 2026, version 0.19.0*
+
+- A life goal reached is toasted that evening: those close to them gather at the table, and a friend raises a glass.
+- It always brings an inspiration that fits the goal: surgery for a healer, taming for a tamer, a work frenzy otherwise.
+- The skill it was about never slips again and comes a little faster, for goals already reached too.
+- A younger colonist with a passion for that skill spends some hours learning at their side.
+- The Story tab remembers them as the one who did it, and the colony tells it round in gossip.
+
 ## Kept at a price, and faith that holds
 
 *28 October 2026, version 0.18.4*

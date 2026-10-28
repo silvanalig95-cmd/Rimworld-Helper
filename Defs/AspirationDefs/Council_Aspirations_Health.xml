@@ -15,6 +15,7 @@
     <amount>10</amount>
     <weight>0.8</weight>
     <goal>pull ten patients through</goal>
+    <deed>pulled ten patients through</deed>
     <sparks><li>loss</li><li>downed</li><li>thought:Council_Health_LostPatient</li><li>thought:Council_Ail_PulledThrough</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>
@@ -50,6 +51,7 @@
     <amount>5</amount>
     <weight>0.7</weight>
     <goal>deliver five babies</goal>
+    <deed>delivered five babies</deed>
     <sparks><li>birth</li><li>thought:Council_Health_DeliveredBaby</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>

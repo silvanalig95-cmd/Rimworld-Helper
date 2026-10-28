@@ -1,6 +1,18 @@
 # Handoff: work in progress
 
-Last shipped: 0.18.4 "Kept at a price, and faith that holds", two asks of the player's. Keeping someone who asked to
+Last shipped: 0.19.0 "What a life goal leaves behind", the player's five approved ideas. `Aspirations/GoalRewards.cs`
+(pure names in `GoalRewardMath.cs`, Tools/Tests/GoalRewardTests.cs), called from `Aspirations.Fulfil` before the
+letter, whose lines it returns: `SkillOf` (the goal's skill, record, counter, office or worker; combat and craft-or-art
+pick the pawn's better), saved as `Aspiration.mark` (old saves fill it in `Build`); `Inspire` (by
+`InspirationFor`, else Frenzy_Work, else any; replaces the old 50% random one); `Toast` (a `DilemmaEffect_Toast` with the
+new `DilemmaTarget.CloseToA`, organized by the friend who thinks best of them, keyed lines CC_Asp_Toast_*, held moods
+Council_Asp_Toasted/RaisedGlass); `PassOn` (a `DilemmaEffect_Lesson` for a younger colonist with a passion and less of
+the skill, Council_Asp_LearnedFromThem/PassedItOn); a deed Rimfolk_Deed_GoalReached with `Aspiration.Deed` (the new
+`AspirationDef.deed`, past tense, on every goal) for gossip and the Story tab ("Remembered as the one who ...", and the
+marked skills). `Patch_GoalMarkDecay` (SkillRecord.Interval prefix) and `Patch_GoalMarkLearn` (LearnRateFactor
+postfix, x1.15) need the deeper game hooks. Not tried in the game here.
+
+Before it, 0.18.4 "Kept at a price, and faith that holds", two asks of the player's. Keeping someone who asked to
 move on always costs (`Social/MovingOnMath.cs`, Tools/Tests/MovingOnTests.cs; `Social/MovingOnHeld.cs`): the first
 asks' stay answers now carry `DilemmaEffect_HoldBack` (trust by `TrustLoss(base, strength)`; strength from the workers:
 `MovingOnMath.Family/Love/Room`, on `MovingOnContext.strength`), which makes a saved `HeldBack`

@@ -223,6 +223,68 @@
     </stages>
   </ThoughtDef>
 
+  <!-- A life goal reached (Aspirations/GoalRewards.cs): the toast that evening, and a lesson for someone who shares the passion. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Asp_Toasted</defName>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>toasted by my friends</label>
+        <description>They raised a glass to me, for what I did. I didn't know what to say.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Asp_RaisedGlass</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>raised a glass to a friend</label>
+        <description>We drank to them tonight, for what they did. It's good to see someone get where they meant to go.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+        <baseOpinionOffset>4</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Asp_LearnedFromThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>learned at their side</label>
+        <description>I spent the day working beside someone who's done what I want to do. I picked up more than I expected.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_Asp_PassedItOn</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>passed it on</label>
+        <description>I showed someone younger how it's done. Someone has to carry it on.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>5</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
   <ThoughtDef>
     <defName>Council_HappyForThem</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>

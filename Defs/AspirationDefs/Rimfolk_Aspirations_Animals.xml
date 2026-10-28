@@ -13,6 +13,7 @@
     <amount>3</amount>
     <weight>0.8</weight>
     <goal>go into three fights with a loyal animal alongside</goal>
+    <deed>fought three fights beside a loyal animal</deed>
     <forbiddenBy><li>NoPets</li><li>NoViolence</li></forbiddenBy>
     <sparks><li>battle</li></sparks>
     <chosen>
@@ -44,6 +45,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_GreatBeast</workerClass>
     <weight>0.6</weight>
     <goal>tame one of the great beasts of this land</goal>
+    <deed>tamed a great beast of this land</deed>
     <who><passion>Animals</passion></who>
     <forbiddenBy><li>NoPets</li></forbiddenBy>
     <chosen>
@@ -75,6 +77,7 @@
     <amount>8</amount>
     <weight>0.8</weight>
     <goal>see the colony's herd grow to {COUNT} head</goal>
+    <deed>saw the herd grow to {COUNT} head</deed>
     <forbiddenBy><li>NoRanching</li></forbiddenBy>
     <chosen>
       <plain>
@@ -104,6 +107,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_TrainFully</workerClass>
     <weight>0.8</weight>
     <goal>teach one animal everything it can learn</goal>
+    <deed>taught an animal all it could learn</deed>
     <forbiddenBy><li>NoPets</li></forbiddenBy>
     <chosen>
       <plain>

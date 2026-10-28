@@ -408,6 +408,17 @@
   </RulePackDef>
 
   <RulePackDef>
+    <defName>Rimfolk_GossipTopic_GoalReached</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a life's goal reached at last</li>
+        <li>gossip_topic->what someone set out to do, and did</li>
+        <li>gossip_topic->the toast the other night and what it was for</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
     <defName>Rimfolk_GossipTopic_Cruelty</defName>
     <rulePack>
       <rulesStrings>

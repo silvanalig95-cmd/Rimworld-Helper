@@ -11,6 +11,7 @@
     <amount>1</amount>
     <weight>3</weight>
     <goal>see an old enemy brought down</goal>
+    <deed>saw an old enemy brought down</deed>
     <sparks><li>nemesis</li></sparks>
     <sparkDays>6</sparkDays>
     <chosen>
@@ -47,6 +48,7 @@
     <amount>5</amount>
     <weight>0.8</weight>
     <goal>make friends among travelers and guests</goal>
+    <deed>made friends among travelers</deed>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>

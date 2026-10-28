@@ -19,6 +19,7 @@
     <level>15</level>
     <gain>4</gain>
     <goal>master {SKILL}</goal>
+    <deed>mastered {SKILL}</deed>
     <sparks><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -51,6 +52,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_Spouse</workerClass>
     <weight>1.2</weight>
     <goal>marry for love</goal>
+    <deed>married for love</deed>
     <sparks><li>thought:AttendedWedding</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -81,6 +83,7 @@
     <label>a child</label>
     <workerClass>ColonyCouncil.AspirationWorker_Child</workerClass>
     <goal>have a child</goal>
+    <deed>had a child</deed>
     <sparks><li>birth</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
@@ -113,6 +116,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_Friends</workerClass>
     <amount>3</amount>
     <goal>find three true friends</goal>
+    <deed>found three true friends</deed>
     <sparks><li>thought:Council_Soc_LeftOut</li><li>loss</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
@@ -144,6 +148,7 @@
     <counter>graduated</counter>
     <amount>1</amount>
     <goal>train a student until they can stand alone</goal>
+    <deed>trained a student to stand alone</deed>
     <sparks><li>thought:Council_GratefulStudent</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -174,6 +179,7 @@
     <amount>1</amount>
     <weight>0.8</weight>
     <goal>make peace with a rival</goal>
+    <deed>made peace with a rival</deed>
     <sparks><li>loss</li></sparks>
     <who><notTrait><li>Psychopath</li><li>Abrasive</li></notTrait></who>
     <chosen>
@@ -201,6 +207,7 @@
     <label>a seat on the council</label>
     <workerClass>ColonyCouncil.AspirationWorker_Office</workerClass>
     <goal>earn a seat on the council</goal>
+    <deed>earned a seat on the council</deed>
     <sparks><li>thought:Council_LostElection</li><li>thought:Council_LostOffice</li></sparks>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
@@ -231,6 +238,7 @@
     <amount>85</amount>
     <weight>0.8</weight>
     <goal>have a bedroom fit for a noble</goal>
+    <deed>made a bedroom fit for a noble</deed>
     <sparks><li>thought:SleptInBarracks</li><li>thought:SleptOutside</li></sparks>
     <who><notTrait><li>Ascetic</li></notTrait></who>
     <chosen>
@@ -258,6 +266,7 @@
     <label>a name to remember</label>
     <workerClass>ColonyCouncil.AspirationWorker_Epithet</workerClass>
     <goal>earn a name the colony remembers</goal>
+    <deed>earned a name the colony remembers</deed>
     <sparks><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -286,6 +295,7 @@
     <amount>3</amount>
     <weight>0.6</weight>
     <goal>live to see three more years here</goal>
+    <deed>saw three more years here</deed>
     <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
       <plain>
@@ -314,6 +324,7 @@
     <amount>12</amount>
     <weight>0.7</weight>
     <goal>see the colony grow to {COUNT} people</goal>
+    <deed>saw the colony grow to {COUNT} people</deed>
     <sparks><li>birth</li></sparks>
     <chosen>
       <plain>
@@ -342,6 +353,7 @@
     <record>KillsHumanlikes</record>
     <amount>25</amount>
     <goal>bring down twenty-five enemies</goal>
+    <deed>brought down twenty-five enemies</deed>
     <sparks><li>battle</li><li>loss</li></sparks>
     <who><canFight>true</canFight><anyTrait><li>Bloodlust</li><li>Tough</li><li>Brawler</li><li>Psychopath</li></anyTrait></who>
     <chosen>
@@ -371,6 +383,7 @@
     <record>ThingsConstructed</record>
     <amount>150</amount>
     <goal>raise a hundred and fifty structures</goal>
+    <deed>raised a hundred and fifty structures</deed>
     <who><passion>Construction</passion></who>
     <chosen>
       <plain>
@@ -397,6 +410,7 @@
     <record>TimesTendedOther</record>
     <amount>100</amount>
     <goal>tend a hundred wounds</goal>
+    <deed>tended a hundred wounds</deed>
     <sparks><li>downed</li><li>loss</li></sparks>
     <who><passion>Medicine</passion></who>
     <chosen>
@@ -425,6 +439,7 @@
     <record>MealsCooked</record>
     <amount>500</amount>
     <goal>cook five hundred meals</goal>
+    <deed>cooked five hundred meals</deed>
     <sparks><li>thought:AteLavishMeal</li><li>thought:AteFineMeal</li></sparks>
     <who><passion>Cooking</passion></who>
     <chosen>
@@ -453,6 +468,7 @@
     <record>AnimalsTamed</record>
     <amount>5</amount>
     <goal>tame five wild animals</goal>
+    <deed>tamed five wild animals</deed>
     <who><passion>Animals</passion></who>
     <chosen>
       <plain>
@@ -480,6 +496,7 @@
     <amount>3</amount>
     <weight>0.7</weight>
     <goal>win three prisoners over to the colony</goal>
+    <deed>won three prisoners over</deed>
     <who><passion>Social</passion></who>
     <chosen>
       <plain>
@@ -506,6 +523,7 @@
     <amount>1</amount>
     <weight>0.3</weight>
     <goal>dream something that comes true</goal>
+    <deed>dreamed something that came true</deed>
     <sparks><li>omen</li></sparks>
     <chosen>
       <plain>
@@ -534,6 +552,7 @@
     <amount>1</amount>
     <weight>3</weight>
     <goal>avenge the dead</goal>
+    <deed>avenged the dead</deed>
     <sparks><li>loss</li></sparks>
     <chosen>
       <plain>

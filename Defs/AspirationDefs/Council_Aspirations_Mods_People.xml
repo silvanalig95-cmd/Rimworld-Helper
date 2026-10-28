@@ -18,6 +18,7 @@
     <amount>10</amount>
     <who><tags>mage</tags></who>
     <goal>reach level {COUNT} as a mage</goal>
+    <deed>reached level {COUNT} as a mage</deed>
     <sparks><li>battle</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -49,6 +50,7 @@
     <amount>10</amount>
     <who><tags>fighter</tags></who>
     <goal>reach level {COUNT} as a fighter</goal>
+    <deed>reached level {COUNT} as a fighter</deed>
     <sparks><li>battle</li><li>downed</li><li>fulfilled</li></sparks>
     <chosen>
       <plain>
@@ -78,6 +80,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_Expertise</workerClass>
     <weight>1.2</weight>
     <goal>become a true expert in {SKILL}</goal>
+    <deed>became a true expert in {SKILL}</deed>
     <sparks><li>fulfilled</li></sparks>
     <chosen>
       <plain>

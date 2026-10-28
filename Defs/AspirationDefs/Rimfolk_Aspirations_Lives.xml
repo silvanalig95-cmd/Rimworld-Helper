@@ -24,6 +24,7 @@
     <gain>2</gain>
     <weight>0.9</weight>
     <goal>learn letters and numbers properly</goal>
+    <deed>learned letters and numbers</deed>
     <forbiddenBy><li>NoBooks</li></forbiddenBy>
     <who><child>true</child></who>
     <growsInto>Council_Asp2_Scholar</growsInto>
@@ -56,6 +57,7 @@
     <gain>2</gain>
     <weight>0.9</weight>
     <goal>grow something from seed, start to finish</goal>
+    <deed>grew something from seed</deed>
     <who><child>true</child></who>
     <growsInto>Council_Asp3_Grower</growsInto>
     <chosen>
@@ -87,6 +89,7 @@
     <gain>2</gain>
     <weight>0.8</weight>
     <goal>learn to build a proper den</goal>
+    <deed>built a proper den</deed>
     <who><child>true</child></who>
     <growsInto>Council_Asp_Builder</growsInto>
     <chosen>
@@ -114,6 +117,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_OwnAnimal</workerClass>
     <weight>1</weight>
     <goal>have a pet that comes when called</goal>
+    <deed>has a pet that comes when called</deed>
     <forbiddenBy><li>NoPets</li></forbiddenBy>
     <who><child>true</child></who>
     <growsInto>Council_Asp_Tamer</growsInto>
@@ -144,6 +148,7 @@
     <amount>30</amount>
     <weight>0.9</weight>
     <goal>make the grown-ups proud</goal>
+    <deed>made the grown-ups proud</deed>
     <who><child>true</child></who>
     <growsInto>Council_Asp_Name</growsInto>
     <chosen>
@@ -175,6 +180,7 @@
     <gain>3</gain>
     <weight>1.2</weight>
     <goal>be trusted with a grown-up's work in {SKILL}</goal>
+    <deed>was trusted with a grown-up's work</deed>
     <who><minAge>13</minAge><maxAge>19.9</maxAge></who>
     <growsInto>Council_Asp_Mastery</growsInto>
     <grownAge>20</grownAge>
@@ -207,6 +213,7 @@
     <amount>25</amount>
     <weight>1</weight>
     <goal>be taken seriously by the grown-ups</goal>
+    <deed>was taken seriously by the grown-ups</deed>
     <who><minAge>13</minAge><maxAge>19.9</maxAge></who>
     <growsInto>Council_Asp3_Heard</growsInto>
     <grownAge>20</grownAge>
@@ -239,6 +246,7 @@
     <amount>5</amount>
     <weight>0.8</weight>
     <goal>see what lies past the hills</goal>
+    <deed>saw what lies past the hills</deed>
     <forbiddenBy><li>NoTravel</li></forbiddenBy>
     <who><minAge>13</minAge><maxAge>19.9</maxAge></who>
     <growsInto>Council_Asp3_Freedom</growsInto>
@@ -269,6 +277,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_Lover</workerClass>
     <weight>0.8</weight>
     <goal>fall in love for the first time</goal>
+    <deed>fell in love for the first time</deed>
     <forbiddenBy><li>NoLovin</li></forbiddenBy>
     <who><minAge>16</minAge><maxAge>19.9</maxAge><notTrait><li>Psychopath</li></notTrait></who>
     <growsInto>Council_Asp_Marry</growsInto>
@@ -303,6 +312,7 @@
     <minAge>60</minAge>
     <lastWish>true</lastWish>
     <goal>see a child they love grown up</goal>
+    <deed>saw a child they love grown up</deed>
     <sparks><li>birth</li><li>downed</li></sparks>
     <chosen>
       <plain>
@@ -334,6 +344,7 @@
     <minAge>60</minAge>
     <lastWish>true</lastWish>
     <goal>make one last thing worth keeping</goal>
+    <deed>made one last thing worth keeping</deed>
     <who><tags>skill:Crafting|skill:Artistic|skill:Construction</tags></who>
     <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
@@ -367,6 +378,7 @@
     <minAge>60</minAge>
     <lastWish>true</lastWish>
     <goal>make peace with an old rival before the end</goal>
+    <deed>made peace with an old rival</deed>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <sparks><li>downed</li><li>loss</li></sparks>
     <chosen>
@@ -397,6 +409,7 @@
     <minAge>55</minAge>
     <lastWish>true</lastWish>
     <goal>set things right with family</goal>
+    <deed>set things right with family</deed>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <sparks><li>downed</li><li>loss</li><li>birth</li></sparks>
     <chosen>
@@ -429,6 +442,7 @@
     <amount>0.9</amount>
     <weight>1.2</weight>
     <goal>find faith again</goal>
+    <deed>found faith again</deed>
     <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <sparks><li>loss</li><li>omen</li></sparks>
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
@@ -458,6 +472,7 @@
     <workerClass>ColonyCouncil.AspirationWorker_FaithGrows</workerClass>
     <weight>1</weight>
     <goal>win someone else over to the ideoligion</goal>
+    <deed>won someone over to the faith</deed>
     <forbiddenBy><li>NoReligion</li></forbiddenBy>
     <sparks><li>omen</li><li>birth</li></sparks>
     <chosen>
@@ -488,6 +503,7 @@
     <weight>0.9</weight>
     <minAge>20</minAge>
     <goal>find someone to love</goal>
+    <deed>found someone to love</deed>
     <forbiddenBy><li>NoLovin</li></forbiddenBy>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <sparks><li>thought:AttendedWedding</li><li>loss</li></sparks>
@@ -522,6 +538,7 @@
     <amount>10</amount>
     <weight>1</weight>
     <goal>feel safe again</goal>
+    <deed>came to feel safe again</deed>
     <sparks><li>battle</li><li>downed</li><li>nemesis</li></sparks>
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
@@ -554,6 +571,7 @@
     <amount>10</amount>
     <weight>1</weight>
     <goal>find something worth doing</goal>
+    <deed>found something worth doing</deed>
     <sparks><li>thought:Council_LostOffice</li><li>thought:Council_LostElection</li><li>loss</li></sparks>
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
     <chosen>
@@ -584,6 +602,7 @@
     <amount>12</amount>
     <weight>1.3</weight>
     <goal>let the grief go, without forgetting</goal>
+    <deed>let the grief go</deed>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <sparks><li>loss</li></sparks>
     <chosen>
@@ -614,6 +633,7 @@
     <amount>10</amount>
     <weight>1.1</weight>
     <goal>let go of an old shame</goal>
+    <deed>let go of an old shame</deed>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <chosen>
       <plain>
@@ -643,6 +663,7 @@
     <amount>90</amount>
     <weight>1</weight>
     <goal>make a friend for life</goal>
+    <deed>made a friend for life</deed>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <sparks><li>loss</li><li>thought:Council_Soc_LeftOut</li><li>fulfilled</li></sparks>
     <lostThought>Council_Asp_GaveUpGoal</lostThought>
