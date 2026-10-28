@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The bottom bar's buttons put away under "more" (Source/ColonyCouncil/UI/BarMore.cs). -->
+  <CC_Bar_PutAway>Put {BUTTON} away under "more"</CC_Bar_PutAway>
+  <CC_Bar_Arrange>Arrange the bottom bar...</CC_Bar_Arrange>
+  <CC_Bar_NoneAway>Nothing put away yet. Right-click a button on the bar to put it here.</CC_Bar_NoneAway>
+  <CC_Bar_PinTip>Put it back on the bar</CC_Bar_PinTip>
+  <CC_Bar_ArrangeTitle>The bottom bar</CC_Bar_ArrangeTitle>
+  <CC_Bar_ArrangeSub>Ticked buttons stay on the bar. The rest are put away under "more", the three dots before the menu, and still open with their keys.</CC_Bar_ArrangeSub>
+  <CC_Bar_ArrangeStat>{0} put away</CC_Bar_ArrangeStat>
+  <CC_Bar_OnTheBar>On the bar</CC_Bar_OnTheBar>
+  <CC_Bar_PinAll>Put them all back on the bar</CC_Bar_PinAll>
+  <CC_Bar_Off>The "more" button is switched off on the Interface page of Rimfolk's settings, so every button is on the bar for now. What you pick here counts once it's on again.</CC_Bar_Off>
+  <CC_Bar_NeedsHooks>Putting buttons away needs Rimfolk's deeper game hooks (Interface page of its settings), so every button is on the bar for now. What you pick here counts once they're on again.</CC_Bar_NeedsHooks>
+</LanguageData>

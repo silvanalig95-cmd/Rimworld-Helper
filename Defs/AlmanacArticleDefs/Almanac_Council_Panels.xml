@@ -126,6 +126,17 @@ The panels always stay beneath windows and the game's own readouts: a tab, the i
         </points>
         <after>The panels gather what they show at most twice a second and only while the game runs, so they cost very little. They work beside RimHUD, which shows the selected colonist in the inspect pane, and Dubs Mint Minimap; drag them clear of anything else on your screen.</after>
       </li>
+      <li>
+        <heading>The bottom bar</heading>
+        <text>Many mods add a button to the bar along the bottom of the screen. The ones you don't use can be put away under "more", the three dots just before the menu button, so the bar keeps only what you use, with more room for each.</text>
+        <points>
+          <li>Right-click any button on the bar to put it away. The game's menu button and the dots themselves always stay.</li>
+          <li>Click the dots for the buttons put away: click one to open it as usual, or the pin beside it to put it back on the bar. One that can't open right now (on the world map, a button that needs a map) shows greyed out, and one its mod or the game is hiding for now isn't listed.</li>
+          <li>"Arrange the bottom bar", at the end of that list and in the settings (Interface), lists every button with a tick for those that stay on the bar.</li>
+          <li>A button put away still opens with its key (Options, Keyboard), and the dots can have a key of their own there.</li>
+        </points>
+        <after>What you put away is a setting, the same in every save; a button from a mod you remove is remembered for when it comes back. It goes by each button's own say on whether it shows, so a mod's own switch for its button (Dubs Mint Menus' bills and gear buttons, Rimfolk's defense and rooms buttons) still works. It needs the deeper game hooks; with "more" switched off, every button is back on the bar.</after>
+      </li>
     </sections>
     <keywords><li>panels</li><li>on screen</li><li>hud</li><li>overlay</li><li>mood board</li><li>hover</li><li>hover card</li><li>tooltip</li><li>vitals</li><li>raid frames</li><li>graph</li><li>trend</li><li>overview</li></keywords>
     <seeAlso><li>Council_Alm_C_Moods</li><li>Council_Alm_C_Wishes</li><li>Council_Alm_C_Heart</li><li>Council_Alm_2_15_MentalBreaks</li></seeAlso>

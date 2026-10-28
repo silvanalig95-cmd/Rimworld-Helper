@@ -124,6 +124,7 @@ namespace ColonyCouncil
         public static MainButtonDef Council_MainButton;
         public static MainButtonDef Council_RoomsButton;
         public static MainButtonDef Council_DefenseButton;
+        public static MainButtonDef Rimfolk_MoreButton;
 
         static CouncilDefOf()
         {

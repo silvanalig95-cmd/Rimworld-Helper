@@ -900,6 +900,10 @@
   <CC_Settings_DefenseButton_Tip>A button next to the council's that opens the Defenses page in a window of its own: the ways raiders walk in, the defense lines and the advice. Clicking a raid's warning on the panels and the key for the Defenses page open it too. The same page is always on the council window's Colony section.</CC_Settings_DefenseButton_Tip>
   <CC_Settings_RoomsButton>Show the "rooms" button in the bottom bar</CC_Settings_RoomsButton>
   <CC_Settings_RoomsButton_Tip>A shortcut to all room plans. The same plans are always on the council window's Room plans page.</CC_Settings_RoomsButton_Tip>
+  <CC_Settings_BarMore>A "more" button for the bottom bar's buttons you put away</CC_Settings_BarMore>
+  <CC_Settings_BarMore_Tip>Three dots just before the menu button. Right-click any button on the bottom bar to put it away under it; click the dots to open one of them, or the pin beside one to put it back on the bar. A button put away still opens with its key. Off puts every button back on the bar, and they're put away again when it's on.</CC_Settings_BarMore_Tip>
+  <CC_Settings_BarArrange>Arrange the bottom bar</CC_Settings_BarArrange>
+  <CC_Settings_BarArrange_Tip>Every button of the bottom bar, ticked to stay on the bar or not ticked to be put away under "more".</CC_Settings_BarArrange_Tip>
   <CC_Floor_Title>Floor for the {0}</CC_Floor_Title>
   <CC_Floor_Suggested>Suggested: {0}</CC_Floor_Suggested>
   <CC_Floor_OnlyAffordable>Only floors we have the materials for ({0} tiles)</CC_Floor_OnlyAffordable>

@@ -546,6 +546,9 @@ namespace ColonyCouncil
                     if (!moved && on) TooltipHandler.TipRegion(one, "CC_SetUI_SlowButtonsHome".Translate());
                     break;
                 }
+                case "barArrange":
+                    if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f), true, true, on) && on) Find.WindowStack.Add(new Dialog_ArrangeBar());
+                    break;
                 case "selfCheck":
                     if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f), true, true, on) && on) Find.WindowStack.Add(new Dialog_SelfCheck());
                     break;

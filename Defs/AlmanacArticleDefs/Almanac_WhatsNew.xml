@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.22.0</version>
+        <date>28 October 2026</date>
+        <title>A tidier bottom bar</title>
+        <points>
+          <li>A "more" button, three dots just before the menu, holds the bottom bar's buttons you don't use. Right-click any button on the bar to put it away under it.</li>
+          <li>Click the dots for the buttons put away: click one to open it, or the pin beside it to put it back on the bar. A button put away still opens with its key.</li>
+          <li>"Arrange the bottom bar", in that list and in the settings (Interface), ticks every button on or off the bar. What you put away is the same in every save.</li>
+          <li>Other mods' buttons can be put away too, and a mod's own switch for its button still works, as with Dubs Mint Menus. Switching "more" off puts every button back.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.21.0</version>
         <date>28 October 2026</date>
         <title>Wedding plans</title>

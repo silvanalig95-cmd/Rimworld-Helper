@@ -31,6 +31,19 @@
     <iconPath>ColonyCouncil/UI/RoomsButton</iconPath>
   </MainButtonDef>
 
+  <!-- More: the bottom bar's buttons the player put away (UI/BarMore.cs). Placed just before the game's menu at
+       startup; can be switched off in the settings, which puts every button back on the bar. -->
+  <MainButtonDef>
+    <defName>Rimfolk_MoreButton</defName>
+    <label>more</label>
+    <description>The bottom bar's buttons you put away. Right-click any button on the bar to put it here, and click the pin beside one to put it back. "Arrange the bottom bar" lists them all.</description>
+    <workerClass>ColonyCouncil.MainButtonWorker_More</workerClass>
+    <order>1000</order>
+    <minimized>true</minimized>
+    <iconPath>ColonyCouncil/Icons/More</iconPath>
+    <validWithoutMap>true</validWithoutMap>
+  </MainButtonDef>
+
   <!-- The gathering behind a council meeting. Never picked at random: only the council calls it. -->
   <GatheringDef>
     <defName>Council_MeetingGathering</defName>

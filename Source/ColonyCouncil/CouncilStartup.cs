@@ -89,7 +89,8 @@ namespace ColonyCouncil
         {
             var ours = CouncilDefOf.Council_MainButton;
             if (ours == null) return;
-            var others = DefDatabase<MainButtonDef>.AllDefsListForReading.Where(b => b != ours).OrderBy(b => b.order).ToList();
+            var more = CouncilDefOf.Rimfolk_MoreButton;
+            var others = DefDatabase<MainButtonDef>.AllDefsListForReading.Where(b => b != ours && b != more).OrderBy(b => b.order).ToList();
             if (others.Count == 0) return;
             MainButtonDef after = null;
             switch (ColonyCouncilMod.Settings.buttonPosition)
@@ -119,6 +120,8 @@ namespace ColonyCouncil
                 rooms.order = ours.order;
                 rooms.buttonVisible = ColonyCouncilMod.Settings.roomsButton;
             }
+            // More (the bottom bar's buttons put away) goes just before the game's menu, after the council's buttons.
+            BarMore.Place();
             if (rebuildBar && Current.ProgramState == ProgramState.Playing && Find.UIRoot is UIRoot_Play play)
             {
                 play.mainButtonsRoot = new MainButtonsRoot();

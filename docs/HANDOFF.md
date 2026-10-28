@@ -1,6 +1,21 @@
 # Handoff: work in progress
 
-Last shipped: 0.21.0 "Wedding plans" and 0.20.2 "What the words say, done", the player's "go ahead on all" on the
+Last shipped: 0.22.0 "A tidier bottom bar", the player's ask to put the bottom bar's unused mod buttons under one
+expandable button, picked in the game. `UI/BarMore.cs` (pure part `UI/BarMoreMath.cs`, Tools/Tests/BarMoreTests.cs):
+MainButtonDef `Rimfolk_MoreButton` (worker `MainButtonWorker_More`, minimized, icon Icons/More from make_icons.py,
+placed at Menu.order - 1 by `BarMore.Place` from `CouncilStartup.ApplyButtonPosition`, which leaves it out of the
+council button's reckoning). Settings `barMore` (needs deep hooks) and `barPutAway` (def names, `BarMoreMath.Clean` on
+load; covered by the "barArrange" action row). Hiding is a postfix on `MainButtonWorker.Visible`
+(`Patch_BarPutAway`) and on every worker class's own override (`Patch_BarPutAwayOwn`, `TargetMethods` over
+`GenTypes.AllSubclasses`; the mechs tab's ignores buttonVisible), never by writing `buttonVisible`: Dubs Mint Menus
+rewrites that every frame from its own settings. `BarMore.WouldShow` asks a worker with the postfix stood down
+(`asking`). `Patch_BarRightClick` (DoButton prefix, right mouse down) offers "Put it away"; a worker overriding DoButton
+without base gets no right-click but is in the arrange window. More's FloatMenu: the put-away buttons that would show
+(disabled ones greyed), a right-justified pin extra part that pins back and closes, then "Arrange the bottom bar"
+(`Dialog_ArrangeBar`, also from the settings). Hotkeys of hidden buttons still work (MainButtonsOnGUI checks every
+button's key). Not tried in the game here.
+
+Before it, 0.21.0 "Wedding plans" and 0.20.2 "What the words say, done", the player's "go ahead on all" on the
 leftovers (all but the family waiting by the bed during labour, which they turned down).
 
 0.21.0: `Social/WeddingPlans.cs`. `DilemmaWorker_WeddingPlans` (Council_DlmFam_WeddingPlans) takes a couple at home

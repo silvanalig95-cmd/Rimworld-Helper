@@ -163,6 +163,8 @@
   <CC_SetNote_ButtonPosition>Where the Council button sits in the bottom bar; it moves at once.</CC_SetNote_ButtonPosition>
   <CC_SetNote_DefenseButton>A Defense button in the bottom bar, next to the council's, with the Defenses page.</CC_SetNote_DefenseButton>
   <CC_SetNote_RoomsButton>A Rooms button in the bottom bar, a shortcut to all room plans.</CC_SetNote_RoomsButton>
+  <CC_SetNote_BarMore>Right-click a bottom bar button to put it away under three dots; the pin puts it back.</CC_SetNote_BarMore>
+  <CC_SetNote_BarArrange>Pick which buttons stay on the bottom bar and which are put away.</CC_SetNote_BarArrange>
   <CC_SetNote_DeepHooks>Rimfolk's lines in the game's own tabs, letters and menus. Off undoes them at once.</CC_SetNote_DeepHooks>
   <CC_SetNote_LetterNotes>Raid, mood break and death letters get a line of what Rimfolk knows.</CC_SetNote_LetterNotes>
 

@@ -264,6 +264,10 @@ namespace ColonyCouncil
         public bool roomsButton = true;
         /// <summary>A "defense" button in the bottom bar, next to the council's: the Defenses page in a window of its own.</summary>
         public bool defenseButton = true;
+        /// <summary>A More button on the bottom bar, for the buttons put away (UI/BarMore.cs; a deeper game hook).</summary>
+        public bool barMore = true;
+        /// <summary>The bottom bar's buttons put away under More, by def name (arranged in the game).</summary>
+        public System.Collections.Generic.List<string> barPutAway = new System.Collections.Generic.List<string>();
         /// <summary>The council window's page when it was last closed, and the Almanac page, to open there again next time.</summary>
         public string lastCouncilPage = "";
         public string lastAlmanacPage = "";
@@ -469,6 +473,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref buttonPosition, "buttonPosition", ButtonPosition.BeforeMenu);
             Scribe_Values.Look(ref roomsButton, "roomsButton", true);
             Scribe_Values.Look(ref defenseButton, "defenseButton", true);
+            Scribe_Values.Look(ref barMore, "barMore", true);
+            Scribe_Collections.Look(ref barPutAway, "barPutAway", LookMode.Value);
+            if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars) barPutAway = BarMoreMath.Clean(barPutAway);
             Scribe_Values.Look(ref lastCouncilPage, "lastCouncilPage", "");
             Scribe_Values.Look(ref lastAlmanacPage, "lastAlmanacPage", "");
             Scribe_Values.Look(ref almanacTextSize, "almanacTextSize", AlmanacTextSize.Normal);

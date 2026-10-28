@@ -133,6 +133,7 @@ MODEL = {
     "CouncilGameComponent.cs:everWished": ("defs", ("WishDef", 1), 35, "one per wish def"),
     "CouncilSettings.cs:savedRooms": ("settings", 10, 2000, "the mod's settings file, not the save: rooms the player saved"),
     "CouncilSettings.cs:planMaterials": ("settings", 30, 40, "the mod's settings file, not the save"),
+    "CouncilSettings.cs:barPutAway": ("settings", 40, 30, "the mod's settings file, not the save: the bottom bar's buttons put away, one name each"),
     "CouncilSettings.cs:councilPageState": ("settings", 30, 40, "the mod's settings file, not the save"),
     # The on-screen panels (Hud/): their layout in the settings file, the mood trend in the save
     "CouncilSettings.cs:hudPanels": ("settings", 8, 400, "the mod's settings file, not the save: one per panel"),

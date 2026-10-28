@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A tidier bottom bar
+
+*28 October 2026, version 0.22.0*
+
+- A "more" button, three dots just before the menu, holds the bottom bar's buttons you don't use. Right-click any button on the bar to put it away under it.
+- Click the dots for the buttons put away: click one to open it, or the pin beside it to put it back on the bar. A button put away still opens with its key.
+- "Arrange the bottom bar", in that list and in the settings (Interface), ticks every button on or off the bar. What you put away is the same in every save.
+- Other mods' buttons can be put away too, and a mod's own switch for its button still works, as with Dubs Mint Menus. Switching "more" off puts every button back.
+
 ## Wedding plans
 
 *28 October 2026, version 0.21.0*

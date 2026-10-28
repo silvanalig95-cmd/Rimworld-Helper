@@ -392,6 +392,9 @@ namespace ColonyCouncil
                 new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" });
             Toggle("defenseButton", "CC_Settings_DefenseButton", "CC_SetNote_DefenseButton");
             Toggle("roomsButton", "CC_Settings_RoomsButton", "CC_SetNote_RoomsButton");
+            Toggle("barMore", "CC_Settings_BarMore", "CC_SetNote_BarMore", "deepHooks");
+            var arrange = Action("barArrange", "CC_Settings_BarArrange", "CC_Settings_BarArrange_Tip", "CC_SetNote_BarArrange", "barMore,deepHooks");
+            arrange.covers = new[] { "barPutAway" };
             Choice("councilOpensOn", "CC_SetLabel_CouncilOpensOn", "CC_SetTip_CouncilOpensOn", "CC_CouncilOpens_", "CC_SetNote_CouncilOpens_",
                 new[] { "ThisWeek", "LastPage" });
             Choice("almanacTextSize", "CC_SetLabel_AlmanacTextSize", "CC_SetTip_AlmanacTextSize", "CC_TextSize_", "CC_SetNote_TextSize_",
