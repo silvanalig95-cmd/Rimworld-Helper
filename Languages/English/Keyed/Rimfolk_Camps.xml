@@ -22,6 +22,12 @@
 
   <!-- The first letter -->
   <CC_Camp_Facts>They mean to stay about {DAYS}.</CC_Camp_Facts>
+  <CC_Camp_Facts_DressedCold>They have come dressed for the cold, with {THING}.</CC_Camp_Facts_DressedCold>
+  <CC_Camp_Facts_DressedHeat>They have come dressed for the heat, with {THING}.</CC_Camp_Facts_DressedHeat>
+  <CC_Camp_Facts_PitchCold>For the cold nights they will sleep close round the fire.</CC_Camp_Facts_PitchCold>
+  <CC_Camp_Facts_PitchColdWind>For the cold nights they will sleep close round the fire, behind a windbreak.</CC_Camp_Facts_PitchColdWind>
+  <CC_Camp_Facts_PitchWind>For the cold nights they will put up a windbreak behind their beds.</CC_Camp_Facts_PitchWind>
+  <CC_Camp_Facts_PitchShade>They have picked a spot among the trees, for the shade.</CC_Camp_Facts_PitchShade>
   <CC_Camp_Facts_Both>They will hunt and cut wood around their camp.</CC_Camp_Facts_Both>
   <CC_Camp_Facts_Wood>They will cut wood around their camp.</CC_Camp_Facts_Wood>
   <CC_Camp_Facts_Game>They will hunt around their camp.</CC_Camp_Facts_Game>

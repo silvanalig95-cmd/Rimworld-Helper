@@ -21,6 +21,9 @@ namespace ColonyCouncil
         public List<Pawn> pawns;
         public string place;
         public int stayTicks;
+        /// <summary>The weather of their stay (CampWeather), and what they put on and how they pitch for it.</summary>
+        public float low, high;
+        public CampPitch pitch;
     }
 
     /// <summary>
@@ -94,7 +97,10 @@ namespace ColonyCouncil
             if (Now - lastEndedTick < GenDate.TicksPerDay * gap) return "the last camp left on day " + lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + gap.ToString("0") + " days after";
             if (MapFacts.ThreatOn(map)) return "there's danger on the map";
             float temp = map.mapTemperature.OutdoorTemp;
-            if (temp < -8f || temp > 38f) return "it's " + temp.ToString("0") + " °C outside, and camps come between -8 and 38 °C";
+            if (CampWeatherMath.TooExtremeToCome(temp))
+                return "it's " + temp.ToString("0") + " °C outside, and no camp comes below " + CampWeatherMath.ExtremeCold.ToString("0") + " or above " + CampWeatherMath.ExtremeHeat.ToString("0") + " °C";
+            var hazard = CampWeather.Hazard(map);
+            if (hazard != null) return "no camp comes while " + hazard.Label + " lasts";
             if (!DefDatabase<CampKindDef>.AllDefs.Any(k => k.FitsEra())) return "no kind of camp fits the colony's era";
             if (Arrivals.Friendly() == null) return "no friendly people could send one";
             if (!CampSite.AnyRoom(map)) return "there's no room for a camp on the map";
@@ -113,7 +119,10 @@ namespace ColonyCouncil
                 why?.Add("no kind of camp can come now");
                 return null;
             }
-            if (!CampSite.TryFind(map, out var center))
+            // Where to pitch: in hot weather, among trees for the shade where there are any.
+            var usual = CampWeather.StayRange(map, GenDate.TicksPerDay * 7);
+            bool hot = CampWeatherMath.PitchForHeat(usual.high);
+            if (!CampSite.TryFind(map, out var center, hot))
             {
                 why?.Add("no spot for a camp was found");
                 return null;
@@ -130,7 +139,10 @@ namespace ColonyCouncil
                     continue;
                 }
                 int n = Mathf.Clamp(kind.people.RandomInRange, 1, 8);
-                var plans = CampSite.Layout(map, center, kind, n, colony, out var stash, out var share);
+                int stay = Mathf.RoundToInt(kind.days.RandomInRange * GenDate.TicksPerDay);
+                var (low, high) = CampWeather.StayRange(map, stay);
+                bool cold = CampWeatherMath.PitchForCold(low);
+                var plans = CampSite.Layout(map, center, kind, n, colony, out var stash, out var share, cold);
                 if (plans == null)
                 {
                     why?.Add(kind.label + ": its camp doesn't fit at the spot");
@@ -142,23 +154,40 @@ namespace ColonyCouncil
                     why?.Add(kind.label + " of " + f.Name + ": its people couldn't be made");
                     continue;
                 }
-                // Not dressed for this weather: they wouldn't stop here now (CampWeatherMath).
-                float temp = map.mapTemperature.OutdoorTemp;
+                // Dressed for their stay; and none of them would be hurt by its weather, dressed as they are (CampWeatherMath).
+                var dressed = new List<Apparel>();
+                foreach (var p in pawns)
+                {
+                    try
+                    {
+                        dressed.AddRange(CampWeather.Dress(p, low, high, f));
+                    }
+                    catch (Exception e)
+                    {
+                        CouncilLog.ErrorOnce("camp people dressed for the weather", e);
+                    }
+                }
                 int unfit = pawns.Count(p =>
                 {
                     var comfy = GenTemperature.ComfortableTemperatureRange(p);
-                    return !CampWeatherMath.WouldStop(temp, comfy.min, comfy.max);
+                    return !CampWeatherMath.WouldStop(low, high, comfy.min, comfy.max);
                 });
                 if (unfit > 0)
                 {
-                    why?.Add(kind.label + " of " + f.Name + ": " + unfit + " of " + pawns.Count + " not dressed for " + temp.ToString("0") + " °C");
+                    why?.Add(kind.label + " of " + f.Name + ": " + unfit + " of " + pawns.Count + " couldn't dress for " + low.ToString("0") + " to " + high.ToString("0") + " °C");
                     foreach (var p in pawns) Arrivals.Discard(p);
                     continue;
                 }
                 return new CampSetup
                 {
                     kind = kind, faction = f, map = map, center = center, stash = stash, share = share, colony = colony, plans = plans, pawns = pawns,
-                    place = CampSite.Direction(center, colony), stayTicks = Mathf.RoundToInt(kind.days.RandomInRange * GenDate.TicksPerDay)
+                    place = CampSite.Direction(center, colony), stayTicks = stay, low = low, high = high,
+                    pitch = new CampPitch
+                    {
+                        clothes = CampWeather.Clothes(dressed),
+                        clothesForCold = dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Cold)) >= dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Heat)),
+                        cold = cold && CampSite.BedsClose(plans), windbreak = cold && plans.Any(x => x.role == "wall"), shade = hot && CampSite.Shaded(map, center)
+                    }
                 };
             }
             return null;
@@ -210,7 +239,7 @@ namespace ColonyCouncil
             {
                 id = nextId++, kind = s.kind, map = map, faction = s.faction, members = s.pawns.ToList(), leader = s.pawns[0],
                 center = s.center, stash = s.stash, share = s.share, colonyCenter = s.colony, place = s.place, plans = s.plans,
-                startTick = Now, stayTicks = s.stayTicks, phase = CampPhase.Coming
+                startTick = Now, stayTicks = s.stayTicks, phase = CampPhase.Coming, pitch = s.pitch
             };
             try
             {

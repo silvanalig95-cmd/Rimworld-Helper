@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Camps dressed for the weather
+
+*28 October 2026, version 0.18.3*
+
+- Camps come in any weather but the really extreme: not below -30 °C or above 45 °C, nor in toxic fallout, a volcanic winter, a flashstorm or noxious haze.
+- Travellers dress for the coldest night and hottest day of their stay, in warmer or cooler layers of their own people's kind, and the letter that brings them says what they wear.
+- For frosty nights they sleep close round the fire behind a windbreak; in hot weather they pick a spot among trees for the shade.
+- A camp packs up early only when the weather starts to hurt most of them. A cold snap or a heat wave alone no longer sends it away.
+
 ## Stall goods for ships, camps in warm weather
 
 *28 October 2026, version 0.18.2*

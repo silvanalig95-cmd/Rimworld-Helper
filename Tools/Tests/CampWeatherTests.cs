@@ -2,8 +2,8 @@ using System;
 using ColonyCouncil;
 
 /// <summary>
-/// The weather camps come in and stay through (Camps/CampWeatherMath): travellers stop on a warm or cool morning
-/// dressed as they are, stay through the afternoon's heat, and pack up only when the weather would hurt most of them.
+/// The weather camps come in and stay through (Camps/CampWeatherMath): any but the really extreme, dressed for the
+/// stay's coldest night and hottest day, pitched for it, and packing up only when the weather would hurt most of them.
 /// </summary>
 public static class CampWeatherTests
 {
@@ -19,33 +19,54 @@ public static class CampWeatherTests
         // Someone in ordinary clothes: comfortable from 16 to 28 °C.
         const float lo = 16f, hi = 28f;
 
-        // ---------------- Stopping to camp ----------------
+        // ---------------- Really extreme ----------------
 
-        C(CampWeatherMath.WouldStop(22f, lo, hi), "a mild morning suits them");
-        C(CampWeatherMath.WouldStop(30f, lo, hi), "a warm summer morning (30 °C) doesn't keep them away, a little past comfortable");
-        C(CampWeatherMath.WouldStop(hi + CampWeatherMath.ArriveMargin, lo, hi) && !CampWeatherMath.WouldStop(hi + CampWeatherMath.ArriveMargin + 0.5f, lo, hi),
-            "in heat they stop up to six degrees past comfortable, and no further");
-        C(CampWeatherMath.WouldStop(lo - CampWeatherMath.ArriveMargin, lo, hi) && !CampWeatherMath.WouldStop(lo - CampWeatherMath.ArriveMargin - 0.5f, lo, hi),
-            "in cold they stop down to six degrees past comfortable, and no further");
-        C(CampWeatherMath.WouldStop(0f, -20f, 24f) && !CampWeatherMath.WouldStop(0f, lo, hi), "a parka takes them through a cold morning that sends a shirt on its way");
+        C(!CampWeatherMath.TooExtremeToCome(35f) && !CampWeatherMath.TooExtremeToCome(-15f), "a hot summer's day or a hard frost is no reason to stay away");
+        C(CampWeatherMath.TooExtremeToCome(CampWeatherMath.ExtremeHeat + 1f) && CampWeatherMath.TooExtremeToCome(CampWeatherMath.ExtremeCold - 1f),
+            "past 45 °C or below -30 °C nobody makes camp");
+        C(!CampWeatherMath.TooExtremeToStay(CampWeatherMath.ExtremeHeat + 2f) && CampWeatherMath.TooExtremeToStay(CampWeatherMath.ExtremeHeat + CampWeatherMath.StayPast + 1f),
+            "a camp that stands waits out a little worse than that before the heat alone sends it off");
+        bool cameStays = true;
+        for (float t = -60f; t <= 70f; t += 0.5f)
+            if (!CampWeatherMath.TooExtremeToCome(t) && CampWeatherMath.TooExtremeToStay(t)) cameStays = false;
+        C(cameStays, "weather a camp comes in never sends it straight off again");
 
-        // ---------------- Staying ----------------
+        // ---------------- The stay's weather ----------------
 
-        C(!CampWeatherMath.Exposed(37f, lo, hi), "the afternoon's heat after a warm morning (37 °C) doesn't hurt them yet");
-        C(CampWeatherMath.Exposed(hi + CampWeatherMath.SafeMargin + 0.5f, lo, hi) && CampWeatherMath.Exposed(lo - CampWeatherMath.SafeMargin - 0.5f, lo, hi),
-            "past the game's own safe range, ten degrees either side of comfortable, the weather hurts");
-        C(!CampWeatherMath.Exposed(hi + CampWeatherMath.SafeMargin, lo, hi) && !CampWeatherMath.Exposed(lo - CampWeatherMath.SafeMargin, lo, hi), "at the edge of it, not yet");
-        bool stricter = true;
-        for (float t = -40f; t <= 60f; t += 0.5f)
-            if (CampWeatherMath.WouldStop(t, lo, hi) && CampWeatherMath.Exposed(t, lo, hi)) stricter = false;
-        C(stricter, "any weather they'd stop in, they can stay in: a camp never comes only to leave at once");
+        C(CampWeatherMath.StayLow(20f, 8f) == 8f - CampWeatherMath.Margin && CampWeatherMath.StayHigh(20f, 31f) == 31f + CampWeatherMath.Margin,
+            "they dress for the stay's coldest and hottest hours, and a little past them");
+        C(CampWeatherMath.StayLow(-5f, 3f) == -5f && CampWeatherMath.StayHigh(38f, 30f) == 38f, "and never for milder weather than they find now");
+        C(CampWeatherMath.Lasting(41f, 30f, false) == 11f && CampWeatherMath.Lasting(41f, 30f, true) == 0f,
+            "a heat wave running now is in the hot hours ahead, not the cold ones");
+        C(CampWeatherMath.Lasting(-20f, -2f, true) == -18f && CampWeatherMath.Lasting(-20f, -2f, false) == 0f, "a cold snap is in the cold hours ahead");
 
-        // ---------------- Packing up ----------------
+        // ---------------- Dressing for it ----------------
 
-        C(!CampWeatherMath.PackUp(0, 0), "an empty camp has nobody to send off");
-        C(!CampWeatherMath.PackUp(1, 3), "one of three dressed for another season doesn't send them all off");
-        C(!CampWeatherMath.PackUp(2, 4), "half of them is not most of them");
+        C(CampWeatherMath.Shortfall(lo, hi, 18f, 26f) == 0f, "comfortable through it: nothing to put on");
+        C(CampWeatherMath.Shortfall(lo, hi, 0f, 26f) == 16f && CampWeatherMath.Shortfall(lo, hi, 18f, 36f) == 8f, "how far short of comfortable the cold or the heat leaves them");
+        C(CampWeatherMath.Shortfall(lo - 20f, hi, 0f, 26f) < CampWeatherMath.Shortfall(lo, hi, 0f, 26f), "a warm layer brings them closer to comfortable on cold nights");
+        C(CampWeatherMath.Shortfall(lo, hi, -4f, 34f) == 20f + 6f, "a stay of frosty nights and hot days counts both");
+
+        // ---------------- Stopping, staying, packing up ----------------
+
+        C(CampWeatherMath.WouldStop(8f, 36f, lo, hi), "dressed for ordinary days, cool nights and a warm afternoon don't keep them away");
+        C(!CampWeatherMath.WouldStop(lo - CampWeatherMath.SafeMargin - 1f, 26f, lo, hi) && !CampWeatherMath.WouldStop(18f, hi + CampWeatherMath.SafeMargin + 1f, lo, hi),
+            "a night or a day that would hurt one of them, dressed as they are, keeps them away");
+        C(CampWeatherMath.WouldStop(-30f, 20f, -25f, 24f), "a parka takes them through nights that would turn a shirt away");
+        C(!CampWeatherMath.Exposed(37f, lo, hi) && CampWeatherMath.Exposed(hi + CampWeatherMath.SafeMargin + 0.5f, lo, hi) && CampWeatherMath.Exposed(lo - CampWeatherMath.SafeMargin - 0.5f, lo, hi),
+            "the weather hurts only past the game's own safe range, ten degrees either side of comfortable");
+        bool stays = true;
+        for (float a = -40f; a <= 50f; a += 1f)
+            for (float t = a; t <= a + 20f; t += 0.5f)
+                if (CampWeatherMath.WouldStop(a, a + 20f, lo, hi) && CampWeatherMath.Exposed(t, lo, hi)) stays = false;
+        C(stays, "any weather within the stay they came for, they can stay in");
+        C(!CampWeatherMath.PackUp(0, 0) && !CampWeatherMath.PackUp(1, 3) && !CampWeatherMath.PackUp(2, 4), "one or half of them hurting doesn't send them all off");
         C(CampWeatherMath.PackUp(2, 3) && CampWeatherMath.PackUp(3, 4) && CampWeatherMath.PackUp(1, 1), "most of them hurting, they go");
+
+        // ---------------- Pitching for it ----------------
+
+        C(CampWeatherMath.PitchForCold(-3f) && CampWeatherMath.PitchForCold(1f) && !CampWeatherMath.PitchForCold(8f), "frosty nights: beds drawn in round the fire");
+        C(CampWeatherMath.PitchForHeat(34f) && !CampWeatherMath.PitchForHeat(27f), "hot days: a spot in the shade");
 
         return n;
     }

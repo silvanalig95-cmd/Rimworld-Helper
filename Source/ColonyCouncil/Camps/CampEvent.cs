@@ -81,6 +81,15 @@ namespace ColonyCouncil
         private static string Facts(Camp c)
         {
             var parts = new List<string> { c.Text("CC_Camp_Facts", null, null, c.members.Count) };
+            // Dressed and pitched for the weather of their stay (CampWeather.cs): what they wear and build, as it is.
+            var w = c.pitch;
+            if (w != null)
+            {
+                if (!w.clothes.NullOrEmpty()) parts.Add(c.Text(w.clothesForCold ? "CC_Camp_Facts_DressedCold" : "CC_Camp_Facts_DressedHeat", null, null, 0, w.clothes));
+                if (w.cold) parts.Add(c.Text(w.windbreak ? "CC_Camp_Facts_PitchColdWind" : "CC_Camp_Facts_PitchCold"));
+                else if (w.windbreak) parts.Add(c.Text("CC_Camp_Facts_PitchWind"));
+                if (w.shade) parts.Add(c.Text("CC_Camp_Facts_PitchShade"));
+            }
             var k = c.kind;
             if (k.huntsPerDay > 0f && k.chopsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Both"));
             else if (k.chopsPerDay > 0f) parts.Add(c.Text("CC_Camp_Facts_Wood"));

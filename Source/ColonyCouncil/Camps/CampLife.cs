@@ -810,7 +810,7 @@ namespace ColonyCouncil
         private bool BadWeather()
         {
             float temp = map.mapTemperature.OutdoorTemp;
-            if (temp < -14f || temp > 43f) return true;
+            if (CampWeatherMath.TooExtremeToStay(temp) || CampWeather.Hazard(map) != null) return true;
             // Weather that would start to hurt most of them, dressed as they are (CampWeatherMath).
             var here = Here;
             int exposed = 0;
@@ -819,14 +819,7 @@ namespace ColonyCouncil
                 var comfy = GenTemperature.ComfortableTemperatureRange(p);
                 if (CampWeatherMath.Exposed(temp, comfy.min, comfy.max)) exposed++;
             }
-            if (CampWeatherMath.PackUp(exposed, here.Count)) return true;
-            foreach (var c in map.gameConditionManager.ActiveConditions)
-            {
-                var d = c.def;
-                if (d == GameConditionDefOf.ToxicFallout || d == GameConditionDefOf.VolcanicWinter || d == GameConditionDefOf.Flashstorm
-                    || d == GameConditionDefOf.NoxiousHaze || d == GameConditionDefOf.ColdSnap || d == GameConditionDefOf.HeatWave || WeatherMods.StormproofStorm(d)) return true;
-            }
-            return false;
+            return CampWeatherMath.PackUp(exposed, here.Count);
         }
 
         /// <summary>They go: packed up and walking out (or hurrying, with a raid about).</summary>

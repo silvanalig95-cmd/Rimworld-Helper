@@ -1,6 +1,20 @@
 # Handoff: work in progress
 
-Last shipped: 0.18.2 "Stall goods for ships, camps in warm weather", from the player's save with no camp and no
+Last shipped: 0.18.3 "Camps dressed for the weather", the player's ask that camps come in any weather but the
+really extreme. `Camps/CampWeatherMath.cs` (Tools/Tests/CampWeatherTests.cs): `TooExtremeToCome` (-30/45 °C),
+`TooExtremeToStay` (5 past), `StayLow`/`StayHigh`, `Lasting` (a running condition's offset kept on its side),
+`Shortfall`, `WouldStop` (the stay's low and high within the safe range), `PitchForCold` (low under 2 °C),
+`PitchForHeat` (high over 30 °C). `Camps/CampWeather.cs`: `Hazard` (fallout, volcanic winter, flashstorm, noxious haze,
+Stormproof storms), `StayRange` (hourly `TileTemperaturesComp.OutdoorTemperatureAt` over the stay, plus now), `Dress`
+(up to four layers from `ThingStuffPair.AllWith` apparel that `canBeGeneratedToSatisfyWarmth`, by shortfall, capped at
+1.5 cloth parkas, the faction's tech, the colony's era and the game's tribal rule; `PostProcessApparel`), `Clothes`
+(words), `CampPitch` (on `CampSetup` and, unsaved, `Camp.pitch` for the arrival letter's facts). `CampTracker.Prepare`
+rolls the stay first, lays out for the cold (`CampSite.Layout(cold)`: beds within 3.5 of the fire, a windbreak at 4,
+`ColdWindbreak` log walls for kinds with no wall or hut) and finds a shaded spot in heat (`TryFind(shade)`, trees
+weighted 0.9; `Shaded`: 6 trees within 8). `CampLife.BadWeather` no longer leaves for a cold snap or heat wave. Not tried
+in the game here.
+
+Before it, 0.18.2 "Stall goods for ships, camps in warm weather", from the player's save with no camp and no
 merchant in 62 days, and stall goods missing from a trade ship's screen. Fixes first:
 `Patch_StallGoodsSellable` (Integrations/RimMarketStall.cs) postfixes the private `TradeDeal.InSellablePosition`,
 which drops any unspawned thing but genepacks, books and outfit-stand apparel, so `Patch_StallGoodsForShips` never

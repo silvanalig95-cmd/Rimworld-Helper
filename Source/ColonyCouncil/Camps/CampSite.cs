@@ -108,7 +108,11 @@ namespace ColonyCouncil
         /// <summary>The colony has plans for this spot: a plan drawn on it, or work marked on the ground.</summary>
         public static bool Marked(IntVec3 c, Map map) => map.planManager?.PlanAt(c) != null || map.designationManager.HasMapDesignationAt(c);
 
-        public static bool TryFind(Map map, out IntVec3 center)
+        /// <summary>
+        /// The best spot for a camp. <paramref name="shade"/>: hot weather, when trees around count for more (they pitch
+        /// in their shade where they can).
+        /// </summary>
+        public static bool TryFind(Map map, out IntVec3 center, bool shade = false)
         {
             center = IntVec3.Invalid;
             if (map == null) return false;
@@ -143,7 +147,7 @@ namespace ColonyCouncil
                 int trees = 0;
                 foreach (var x in GenRadial.RadialCellsAround(c, 14f, false))
                     if (x.InBounds(map) && x.GetPlant(map) is Plant p && p.def.plant.IsTree) trees++;
-                float score = -Mathf.Abs(dist - 42f) * 0.6f + Mathf.Min(trees, 30) * 0.3f + Rand.Range(0f, 6f);
+                float score = -Mathf.Abs(dist - 42f) * 0.6f + Mathf.Min(trees, 30) * (shade ? 0.9f : 0.3f) + Rand.Range(0f, 6f);
                 if (score > bestScore)
                 {
                     bestScore = score;
@@ -152,6 +156,18 @@ namespace ColonyCouncil
             }
             return center.IsValid;
         }
+
+        /// <summary>Trees close round the spot, enough to sit and sleep in their shade (the camp never fells those, CampWork.Tree).</summary>
+        public static bool Shaded(Map map, IntVec3 center)
+        {
+            int trees = 0;
+            foreach (var x in GenRadial.RadialCellsAround(center, ShadeRadius, false))
+                if (x.InBounds(map) && x.GetPlant(map) is Plant p && p.def.plant.IsTree && ++trees >= ShadeTrees) return true;
+            return false;
+        }
+
+        private const float ShadeRadius = CoreRadius + 1;
+        private const int ShadeTrees = 6;
 
         private static readonly Dictionary<int, (int day, bool ok)> cache = new Dictionary<int, (int, bool)>();
         private static Game cacheGame;
@@ -220,11 +236,27 @@ namespace ColonyCouncil
         private static CampPlan Plan(CampStructure s, ThingDef def, IntVec3 cell, Rot4 rot) =>
             new CampPlan { role = s.role, def = def, stuff = s.StuffFor(def), cell = cell, rot = rot };
 
+        /// <summary>Beds this close to the fire are drawn in round it, for cold nights.</summary>
+        public const float CloseToFire = 3.5f;
+
+        /// <summary>Most of the camp's beds are drawn in close round its fire.</summary>
+        public static bool BedsClose(List<CampPlan> plans)
+        {
+            var fire = plans.FirstOrDefault(p => p.role == "fire");
+            var beds = plans.Where(p => p.role == "bed").ToList();
+            return fire != null && beds.Count > 0 && beds.Count(b => b.cell.InHorDistOf(fire.cell, CloseToFire + 0.1f)) * 2 >= beds.Count;
+        }
+
+        /// <summary>A windbreak for cold nights, for a camp whose kind builds none of its own: a few lengths of log wall.</summary>
+        private static readonly CampStructure ColdWindbreak = new CampStructure { role = "wall", defs = new List<string> { "Wall" }, stuff = new List<string> { "WoodLog" }, count = 4 };
+
         /// <summary>
         /// The camp around its fire: beds in a ring, a windbreak or a hut on the far side, a stall toward the colony,
-        /// the stash on the far side. Null when not even the fire fits.
+        /// the stash on the far side. <paramref name="cold"/>: cold nights ahead, when the beds are drawn in close round
+        /// the fire and a windbreak (their own, or one of log walls) stands just behind them. Null when not even the fire
+        /// fits.
         /// </summary>
-        public static List<CampPlan> Layout(Map map, IntVec3 center, CampKindDef kind, int people, IntVec3 colony, out IntVec3 stash, out IntVec3 share)
+        public static List<CampPlan> Layout(Map map, IntVec3 center, CampKindDef kind, int people, IntVec3 colony, out IntVec3 stash, out IntVec3 share, bool cold = false)
         {
             var away = Away(center, colony);
             var side = new IntVec3(away.z, 0, -away.x);
@@ -254,7 +286,9 @@ namespace ColonyCouncil
             foreach (var c in GenRadial.RadialCellsAround(fire.cell, 1.5f, false)) taken.Add(c);
             var fireCell = fire.cell;
 
-            foreach (var s in kind.structures)
+            var structures = kind.structures.ToList();
+            if (cold && !structures.Any(x => x.role == "wall" || x.role == "hut") && ColdWindbreak.Def != null) structures.Add(ColdWindbreak);
+            foreach (var s in structures)
             {
                 if (s == fireS) continue;
                 var def = s.Def;
@@ -266,10 +300,12 @@ namespace ColonyCouncil
                         case "bed":
                             // One each (a hut's bed counts).
                             int beds = (s.count > 0 ? Mathf.Min(s.count, people) : people) - plans.Count(p => p.role == "hutbed");
+                            // For cold nights as close round the fire as they fit, the rest a little further out.
+                            if (beds > 0 && cold) beds -= PlaceRing(plans, taken, s, def, map, fireCell, 2f, CloseToFire, beds, true);
                             if (beds > 0) PlaceRing(plans, taken, s, def, map, fireCell, 2.5f, 5.5f, beds, true);
                             break;
                         case "wall":
-                            PlaceWall(plans, taken, s, def, map, fireCell, away, side);
+                            PlaceWall(plans, taken, s, def, map, fireCell, away, side, cold ? 4 : 6);
                             break;
                         case "hut":
                             PlaceHut(plans, taken, s, def, map, fireCell, away, side, kind);
@@ -290,7 +326,8 @@ namespace ColonyCouncil
             return plans;
         }
 
-        private static void PlaceRing(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef def, Map map, IntVec3 around, float min, float max, int count, bool faceIn)
+        /// <summary>Up to <paramref name="count"/> of a building in a ring round a spot; how many fitted.</summary>
+        private static int PlaceRing(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef def, Map map, IntVec3 around, float min, float max, int count, bool faceIn)
         {
             int placed = 0;
             var cells = GenRadial.RadialCellsAround(around, max, true).Where(c => c.DistanceTo(around) >= min).InRandomOrder().ToList();
@@ -310,13 +347,14 @@ namespace ColonyCouncil
                     break;
                 }
             }
+            return placed;
         }
 
-        /// <summary>A short windbreak on the far side of the fire.</summary>
-        private static void PlaceWall(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef def, Map map, IntVec3 fire, IntVec3 away, IntVec3 side)
+        /// <summary>A short windbreak on the far side of the fire, <paramref name="dist"/> cells out.</summary>
+        private static void PlaceWall(List<CampPlan> plans, HashSet<IntVec3> taken, CampStructure s, ThingDef def, Map map, IntVec3 fire, IntVec3 away, IntVec3 side, int dist)
         {
             int n = Mathf.Clamp(s.count, 2, 7);
-            var root = fire + away * 6;
+            var root = fire + away * dist;
             var line = new List<IntVec3>();
             for (int i = 0; i < n; i++) line.Add(root + side * (i - n / 2));
             var stuff = s.StuffFor(def);

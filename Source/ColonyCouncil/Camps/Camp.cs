@@ -49,6 +49,8 @@ namespace ColonyCouncil
         public int startTick;
         public int arrivedTick = -1;
         public int stayTicks;
+        /// <summary>How they came dressed and pitched for the weather (CampTracker.Prepare), for the letter that brings them; not saved.</summary>
+        public CampPitch pitch;
         public int untilTick = int.MaxValue;
         public int buildDeadline = -1;
         public int builtTick = -1;

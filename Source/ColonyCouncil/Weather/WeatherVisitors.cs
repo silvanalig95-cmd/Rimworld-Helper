@@ -11,7 +11,8 @@ namespace ColonyCouncil
     /// The weather in the colony's dealings with others. A trade caravan whose stay is nearly over when a storm or a
     /// heavy snow sets in waits it out: half a day longer at its spot, once a visit (the game's own timer for their
     /// stay, set back). People coming to the colony for a mission (a dignitary, refugees, a guest) take half again as
-    /// long when the land is snowbound. A camp already packs up and goes in a cold snap (Camps/CampLife.cs).
+    /// long when the land is snowbound. A camp dresses and pitches for its weather, and packs up only when it turns
+    /// dangerous (Camps/CampWeather.cs).
     /// </summary>
     public static class WeatherVisitors
     {
