@@ -256,6 +256,10 @@ namespace ColonyCouncil
         public bool buildMenuCounts = true;
         /// <summary>A priority button on the colony's blueprints and frames (Building/BuildPriority.cs).</summary>
         public bool buildPriorities = true;
+        /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
+        public bool shelfReserves = true;
+        /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
+        public bool chewOutOfStores = true;
         /// <summary>Rooms the player saved from a map ("Your rooms"), usable in every save.</summary>
         public System.Collections.Generic.List<CustomRoomData> savedRooms = new System.Collections.Generic.List<CustomRoomData>();
         /// <summary>The materials last picked in the room planner, "room::group=>material", used again while there's enough.</summary>
@@ -462,6 +466,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref planFurniture, "planFurniture", true);
             Scribe_Values.Look(ref buildMenuCounts, "buildMenuCounts", true);
             Scribe_Values.Look(ref buildPriorities, "buildPriorities", true);
+            Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
+            Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);
             Scribe_Collections.Look(ref planMaterials, "planMaterials", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)

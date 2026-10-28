@@ -1,6 +1,23 @@
 # Handoff: work in progress
 
-Last shipped: 0.22.0 "A tidier bottom bar", the player's ask to put the bottom bar's unused mod buttons under one
+Last shipped: 0.23.0 "Reserved slots, and drinks out of the freezer", two asks of the player's. Pure rules in
+`Building/ShelfReserveMath.cs` (Tools/Tests/ShelfReserveTests.cs): `Missing`, `MayTakeSlot(capacity, stacks,
+fillsMissing, missingWaiting)`, `MoveOut` (the most-held def's smallest stack, never a reserved kind's last), and
+`ChewSpotMath.StoreRoom` (stores and below 0 °C, or stores and no seat). `Building/ShelfReserves.cs`: MapComponent
+`ShelfReserves` (saved `reserves`, `ShelfReserve {shelf, kinds}`, kinds "def:X" or "cat:Y"; static `Reserved` set so the
+hooks cost nothing without any), `StateOf(shelf)` cached 120 ticks or until the held count changes (capacity is the sum
+of `GetMaxItemsAllowedInCell`, which LWM's `Building.MaxItemsInCell` prefix feeds; a kind is waiting when the map has
+some not forbidden, in storage or the home area, allowed by the shelf). Hooks: `Patch_ShelfReserveCell` (postfix on the
+private `StoreUtility.NoStorageBlockersIn`, after LWM's prefix: a stack joining one in the cell always fits, a moving-out
+stack fits nowhere on its own shelf), `Patch_ShelfReserveAccepts` (`Building_Storage.Accepts` false for the moving-out
+stacks, so ListerHaulables hauls them on), `Patch_ShelfReserveGizmo` (`Command_ShelfReserve`, grouped; not on storage
+under two stacks) and `Dialog_ShelfReserve` (candidates: haulables on the map every selected shelf accepts, plus a
+category when two or more share `FirstThingCategory`). Copy/paste of storage settings doesn't carry reservations.
+`Building/ChewSpots.cs`: `Patch_ChewOutOfStores` postfixes `Toils_Ingest.TryFindChairOrSpot`; a standing spot in a
+store room becomes a seat at a table within 40 cells (validator like the game's), else the nearest spot within 18 cells
+outside it. Settings `shelfReserves`, `chewOutOfStores` (Building page, "Stores"; deep hooks). Not tried in the game here.
+
+Before it, 0.22.0 "A tidier bottom bar", the player's ask to put the bottom bar's unused mod buttons under one
 expandable button, picked in the game. `UI/BarMore.cs` (pure part `UI/BarMoreMath.cs`, Tools/Tests/BarMoreTests.cs):
 MainButtonDef `Rimfolk_MoreButton` (worker `MainButtonWorker_More`, minimized, icon Icons/More from make_icons.py,
 placed at Menu.order - 1 by `BarMore.Place` from `CouncilStartup.ApplyButtonPosition`, which leaves it out of the

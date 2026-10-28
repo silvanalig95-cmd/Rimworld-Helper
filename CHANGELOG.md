@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Reserved slots, and drinks out of the freezer
+
+*28 October 2026, version 0.23.0*
+
+- A "Reserved slots" button on the colony's shelves keeps one slot for each kind you pick, an item or any of a group like meals, so the hospital shelf always has herbal, medicine and glitterworld medicine.
+- Haulers fill the other slots with anything the shelf allows, and keep a slot free for each reserved kind the colony has on the map.
+- When a reserved kind turns up and the shelf is full, a stack of what it holds most of is carried elsewhere to make room. It works with LWM's Deep Storage.
+- Nobody stands in the freezer to drink a beer or have a smoke: with no seat close by, they take it to a table within 40 cells, or step out of the store room first.
+
 ## A tidier bottom bar
 
 *28 October 2026, version 0.22.0*

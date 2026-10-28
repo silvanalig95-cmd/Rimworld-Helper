@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.23.0</version>
+        <date>28 October 2026</date>
+        <title>Reserved slots, and drinks out of the freezer</title>
+        <points>
+          <li>A "Reserved slots" button on the colony's shelves keeps one slot for each kind you pick, an item or any of a group like meals, so the hospital shelf always has herbal, medicine and glitterworld medicine.</li>
+          <li>Haulers fill the other slots with anything the shelf allows, and keep a slot free for each reserved kind the colony has on the map.</li>
+          <li>When a reserved kind turns up and the shelf is full, a stack of what it holds most of is carried elsewhere to make room. It works with LWM's Deep Storage.</li>
+          <li>Nobody stands in the freezer to drink a beer or have a smoke: with no seat close by, they take it to a table within 40 cells, or step out of the store room first.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.22.0</version>
         <date>28 October 2026</date>
         <title>A tidier bottom bar</title>

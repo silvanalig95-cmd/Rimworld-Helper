@@ -361,6 +361,9 @@ namespace ColonyCouncil
             Section("CC_SetSec_BuildMenu");
             Toggle("buildMenuCounts", "CC_Settings_BuildMenuCounts", "CC_SetNote_BuildMenuCounts", "deepHooks");
             Toggle("buildPriorities", "CC_Settings_BuildPriorities", "CC_SetNote_BuildPriorities", "deepHooks");
+            Section("CC_SetSec_Stores");
+            Toggle("shelfReserves", "CC_Settings_ShelfReserves", "CC_SetNote_ShelfReserves", "deepHooks");
+            Toggle("chewOutOfStores", "CC_Settings_ChewOutOfStores", "CC_SetNote_ChewOutOfStores", "deepHooks");
 
             // Interface and integrations: messages, alerts, the council's own tabs and buttons, the deeper game hooks.
             Page(SettingsPage.Interface);

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Reserved slots on shelves (Source/ColonyCouncil/Building/ShelfReserves.cs). -->
+  <CC_Shelf_Button>Reserved slots</CC_Shelf_Button>
+  <CC_Shelf_ButtonCount>Reserved slots ({0})</CC_Shelf_ButtonCount>
+  <CC_Shelf_ButtonDesc>Keep a slot on this shelf for each kind you pick, so there's always one stack of each the colony has. The other slots take anything the shelf allows.</CC_Shelf_ButtonDesc>
+  <CC_Shelf_Title>Reserved slots</CC_Shelf_Title>
+  <CC_Shelf_SubMany>{0} shelves, set alike</CC_Shelf_SubMany>
+  <CC_Shelf_Explain>One slot is kept for each kind below while the colony has some on this map. Haulers fill the other slots with anything the shelf allows; when a reserved kind turns up and the shelf is full, a stack of what it holds most of is carried elsewhere to make room. The shelf's storage settings still decide what it may hold.</CC_Shelf_Explain>
+  <CC_Shelf_Off>Reserved slots are switched off in Rimfolk's settings (Building page), or the deeper game hooks are, so haulers don't keep to these for now.</CC_Shelf_Off>
+  <CC_Shelf_None>No slot reserved yet.</CC_Shelf_None>
+  <CC_Shelf_AnyOf>any {GROUP}</CC_Shelf_AnyOf>
+  <CC_Shelf_Here>on the shelf</CC_Shelf_Here>
+  <CC_Shelf_Coming>on the map, comes to the free slot</CC_Shelf_Coming>
+  <CC_Shelf_MakingRoom>on the map, a stack moves out to make room</CC_Shelf_MakingRoom>
+  <CC_Shelf_NoneOnMap>none on this map, its slot is used meanwhile</CC_Shelf_NoneOnMap>
+  <CC_Shelf_Unknown>looked at in a moment</CC_Shelf_Unknown>
+  <CC_Shelf_RemoveTip>No longer reserve a slot for this</CC_Shelf_RemoveTip>
+  <CC_Shelf_Add>Reserve a slot for...</CC_Shelf_Add>
+  <CC_Shelf_NothingToAdd>Nothing on this map that the shelf may hold and isn't reserved already</CC_Shelf_NothingToAdd>
+</LanguageData>

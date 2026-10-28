@@ -125,6 +125,10 @@ On the map, urgent ones are tinted red, high ones amber and low ones blue.
 Click to step through normal, high, urgent and low for everything selected; right-click to pick one.</CC_BuildPrio_ButtonDesc>
   <CC_BuildPrio_Inspect>Build priority: {0}</CC_BuildPrio_Inspect>
   <CC_Settings_BuildPriorities>Build priorities on blueprints</CC_Settings_BuildPriorities>
+  <CC_Settings_ShelfReserves>Reserved slots on shelves</CC_Settings_ShelfReserves>
+  <CC_Settings_ShelfReserves_Tip>A "Reserved slots" button on each of the colony's shelves and other storage buildings. Pick the kinds it should always hold one stack of (an item, or any of a group like meals): haulers keep a slot free for each one the colony has on the map, and fill the other slots with anything the shelf allows. If a reserved kind turns up while the shelf is full, a stack of what it holds most of is carried elsewhere to make room. Works with LWM's Deep Storage.</CC_Settings_ShelfReserves_Tip>
+  <CC_Settings_ChewOutOfStores>Drinks and smokes out of the freezer</CC_Settings_ChewOutOfStores>
+  <CC_Settings_ChewOutOfStores_Tip>When someone would drink, smoke or eat standing where they picked it up, in a freezer or a store room with nowhere to sit, they take it to a seat at a table within 40 cells, or else just outside that room. Anywhere else, and whenever they'd sit anyway, nothing changes.</CC_Settings_ChewOutOfStores_Tip>
   <CC_Settings_BuildPriorities_Tip>A button on each of the colony's blueprints and frames sets how soon it gets built: low, normal, high or urgent. Builders finish what can go ahead at the highest level first. A job you give by hand is always taken.</CC_Settings_BuildPriorities_Tip>
 
 </LanguageData>

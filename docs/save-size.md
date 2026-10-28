@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 346; modelled: 346; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,690 KB** after a year, **2,054 KB** after two, **2,169 KB** after five.
+Saved collections found: 348; modelled: 348; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,692 KB** after a year, **2,056 KB** after two, **2,171 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -114,6 +114,7 @@ Rimfolk's part of the save, roughly: **1,690 KB** after a year, **2,054 KB** aft
 | `Setbacks/SetbackTracker.cs:friends` | pairs of friends today | pairs | 38 | 38 | 38 | 1.9 |
 | `Ailments/AilmentTracker.cs:freshDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
 | `Ailments/AilmentTracker.cs:seenDay` | known pawns only | colonists | 20 | 20 | 20 | 1.8 |
+| `Building/ShelfReserves.cs:reserves` | shelves with reserved slots, per map, while the shelf stands | while | 30 | 30 | 30 | 1.8 |
 | `Calendar/CalendarTracker.cs:harvested` | the year's harvest, per colonist; cleared yearly | colonists | 20 | 20 | 20 | 1.8 |
 | `Calendar/CalendarWatch.cs:huntKills` | one per colonist, those no longer ours dropped daily | colonists | 20 | 20 | 20 | 1.8 |
 | `Camps/Camp.cs:felled` | trees felled during one stay | while | 60 | 60 | 60 | 1.8 |
@@ -239,6 +240,7 @@ Rimfolk's part of the save, roughly: **1,690 KB** after a year, **2,054 KB** aft
 | `Social/SocialWeb.cs:battleFallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
 | `Annals.cs:secretsOut` | the year in progress | yearly | 3 | 3 | 3 | 0.2 |
+| `Building/ShelfReserves.cs:kinds` | per shelf: the kinds it keeps a slot for, one name each | while | 6 | 6 | 6 | 0.2 |
 | `Character/ColonyTraits.cs:known` | traits the colony grew into | defs | 4 | 4 | 4 | 0.2 |
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:lastSetback` | 20 days | window | 2 | 2 | 2 | 0.2 |

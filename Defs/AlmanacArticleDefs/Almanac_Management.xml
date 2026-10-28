@@ -824,6 +824,20 @@ Give Warden work to your most social colonist and keep it at a high priority, an
           <li>After a raid, bring in the dropped weapons and clothing before they deteriorate.</li>
         </points>
       </li>
+      <li>
+        <heading>Reserved slots</heading>
+        <text>A shelf that may hold several things often ends up full of one of them: six stacks of herbal medicine and no room for the glitterworld kind. Rimfolk's "Reserved slots" button on a shelf keeps one slot for each kind you pick, so the hospital shelf always has herbal, medicine and glitterworld medicine, and the kitchen shelf a meal, tea, coffee, beer and a smoke.</text>
+        <points>
+          <li>Pick an item, or any of a group ("any meals"), from what the colony has on the map that the shelf's storage settings allow. With several shelves selected, the button sets them all alike.</li>
+          <li>Haulers fill the other slots with anything the shelf allows, but a new stack goes on only while a slot stays free for each reserved kind still missing.</li>
+          <li>A reserved kind the colony has none of on this map keeps no slot empty. When some turns up and the shelf is full, a stack of what the shelf holds most of is carried to the next place that will have it, never the last stack of a reserved kind.</li>
+          <li>The button lists each kind and where it stands: on the shelf, coming to the free slot, a stack moving out to make room, or none on the map. It works on LWM's Deep Storage units too.</li>
+        </points>
+      </li>
+      <li>
+        <heading>Not standing in the freezer</heading>
+        <text>Someone who picks up a beer, tea or a smoke with no seat near enough would have it standing where they are, often in the freezer. With Rimfolk they take it to a seat at a table within 40 cells, or else step out of the freezer or store room first. For a drink or a smoke it changes only where you see them have it; a meal taken to a table also spares them eating without one.</text>
+      </li>
     </sections>
     <keywords>
       <li>stockpile</li>

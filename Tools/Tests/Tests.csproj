@@ -26,6 +26,7 @@
     <Compile Include="../../Source/ColonyCouncil/Moods/MoodSortMath.cs" Link="MoodSortMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/TabFitMath.cs" Link="TabFitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/ShelfReserveMath.cs" Link="ShelfReserveMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />

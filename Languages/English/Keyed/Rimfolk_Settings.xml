@@ -27,6 +27,7 @@
   <CC_SetSec_Planner>Room planner</CC_SetSec_Planner>
   <CC_SetSec_Planner_Note>What the planner does when you place a room. The planner shows the same switches and remembers what you pick there.</CC_SetSec_Planner_Note>
   <CC_SetSec_BuildMenu>Build menu</CC_SetSec_BuildMenu>
+  <CC_SetSec_Stores>Stores</CC_SetSec_Stores>
   <CC_SetSec_Hooks>Deeper game hooks</CC_SetSec_Hooks>
   <CC_SetSec_Checks>Checks and resets</CC_SetSec_Checks>
 
@@ -145,6 +146,8 @@
   <CC_SetNote_PlanSmooth>Rock walls and rough stone floors are marked for smoothing.</CC_SetNote_PlanSmooth>
   <CC_SetNote_BuildMenuCounts>Each material in the build menu shows how much the colony has.</CC_SetNote_BuildMenuCounts>
   <CC_SetNote_BuildPriorities>Blueprints and frames can be set low, normal, high or urgent, and builders keep to it.</CC_SetNote_BuildPriorities>
+  <CC_SetNote_ShelfReserves>A shelf can keep a slot for each kind you pick, filling the rest with anything.</CC_SetNote_ShelfReserves>
+  <CC_SetNote_ChewOutOfStores>Nobody stands in the freezer or a store room to drink, smoke or eat.</CC_SetNote_ChewOutOfStores>
 
   <!-- Interface and integrations -->
   <CC_SetNote_MsgLevel_Everything>A message for every dream, small moment and quirk.</CC_SetNote_MsgLevel_Everything>
