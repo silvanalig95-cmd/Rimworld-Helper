@@ -111,6 +111,8 @@ namespace ColonyCouncil
         public const int RareVisitors = 131;
         /// <summary>Things an answer keeps on the map for a while (PlayOut/OnMapTimed.cs: lanterns, a fire, a bolted door), only while there are any.</summary>
         public const int RareTimed = 149;
+        /// <summary>A room's furniture moves still to be ordered (Building/RoomRearranger.cs), only while there are any.</summary>
+        public const int RareRearrange = 29;
 
         // ---------------- Other rhythms ----------------
 

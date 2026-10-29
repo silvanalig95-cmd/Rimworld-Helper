@@ -50,9 +50,12 @@ namespace ColonyCouncil
             float top = UiKit.PageHeader(rect, Icons.Rooms, "CC_Build_Header".Translate(), "CC_Build_Sub".Translate(),
                 "CC_UI_Stat_Plans".Translate(available).Resolve(), null, 270f);
             Widgets.CheckboxLabeled(new Rect(rect.xMax - 260f, rect.y + 6f, 260f, 24f), "CC_Build_OnlyAvailable".Translate(), ref buildOnlyAvailable);
-            var saveRect = new Rect(rect.xMax - 260f, rect.y + 28f, 260f, 22f);
-            if (Widgets.ButtonText(saveRect, "CC_Yours_SaveButton".Translate())) Designator_SaveRoom.Begin();
+            var saveRect = new Rect(rect.xMax - 260f, rect.y + 28f, 126f, 22f);
+            if (Widgets.ButtonText(saveRect, "CC_Yours_Save".Translate())) Designator_SaveRoom.Begin();
             TooltipHandler.TipRegion(saveRect, "CC_Yours_SaveDesc".Translate());
+            var tidyRect = new Rect(rect.xMax - 130f, rect.y + 28f, 130f, 22f);
+            if (Widgets.ButtonText(tidyRect, "CC_Rearr_Button".Translate())) Designator_RearrangeRoom.Begin();
+            TooltipHandler.TipRegion(tidyRect, "CC_Rearr_Desc".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);

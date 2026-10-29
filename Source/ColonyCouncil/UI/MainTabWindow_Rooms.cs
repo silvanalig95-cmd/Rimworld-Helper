@@ -61,11 +61,14 @@ namespace ColonyCouncil
             var map = Find.CurrentMap;
             if (map == null) return;
             UiKit.Icon(new Rect(inRect.x, inRect.y + 4f, 24f, 24f), Icons.Rooms, UiKit.Gold);
-            UiKit.LabelFit(new Rect(inRect.x + 32f, inRect.y, Mathf.Max(0f, inRect.width - 32f - 256f - 196f), 32f), "CC_Rooms_Title".Translate(), Color.white, GameFont.Medium);
+            UiKit.LabelFit(new Rect(inRect.x + 32f, inRect.y, Mathf.Max(0f, inRect.width - 32f - 256f - 266f), 32f), "CC_Rooms_Title".Translate(), Color.white, GameFont.Medium);
             Text.Font = GameFont.Small;
-            var saveRect = new Rect(inRect.xMax - 250f - 196f, inRect.y + 2f, 186f, 26f);
-            if (Widgets.ButtonText(saveRect, "CC_Yours_SaveButton".Translate())) Designator_SaveRoom.Begin();
+            var saveRect = new Rect(inRect.xMax - 250f - 266f, inRect.y + 2f, 124f, 26f);
+            if (Widgets.ButtonText(saveRect, "CC_Yours_Save".Translate())) Designator_SaveRoom.Begin();
             TooltipHandler.TipRegion(saveRect, "CC_Yours_SaveDesc".Translate());
+            var tidyRect = new Rect(inRect.xMax - 250f - 136f, inRect.y + 2f, 126f, 26f);
+            if (Widgets.ButtonText(tidyRect, "CC_Rearr_Button".Translate())) Designator_RearrangeRoom.Begin();
+            TooltipHandler.TipRegion(tidyRect, "CC_Rearr_Desc".Translate());
             bool before = onlyAvailable;
             Widgets.CheckboxLabeled(new Rect(inRect.xMax - 250f, inRect.y + 4f, 250f, 24f), "CC_Build_OnlyAvailable".Translate(), ref onlyAvailable);
             if (before != onlyAvailable) SetInitialSizeAndPosition();

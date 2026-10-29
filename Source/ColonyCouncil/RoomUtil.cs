@@ -28,6 +28,23 @@ namespace ColonyCouncil
         public static RoomRoleDef Laboratory => RoomRoleDefOf.Laboratory ?? RoleByWorker(typeof(RoomRoleWorker_Laboratory));
         public static RoomRoleDef Hospital => RoomRoleDefOf.Hospital ?? RoleByWorker(typeof(RoomRoleWorker_Hospital));
 
+        private static readonly Dictionary<string, RoomRoleDef> byName = new Dictionary<string, RoomRoleDef>();
+
+        /// <summary>A room role by the name the templates use ("Storeroom", "Kitchen"): the def of that name, else the one whose worker is named so.</summary>
+        public static RoomRoleDef RoleNamed(string name)
+        {
+            if (name.NullOrEmpty()) return null;
+            if (byName.TryGetValue(name, out var cached)) return cached;
+            var def = DefDatabase<RoomRoleDef>.GetNamedSilentFail(name);
+            if (def == null)
+            {
+                string worker = name == "Storeroom" ? "StoreRoom" : name;
+                def = DefDatabase<RoomRoleDef>.AllDefsListForReading.FirstOrDefault(r => r.workerClass != null && r.workerClass.Name == "RoomRoleWorker_" + worker);
+            }
+            byName[name] = def;
+            return def;
+        }
+
         public static IEnumerable<Room> ColonyRooms(Map map)
         {
             if (map?.regionGrid == null) yield break;

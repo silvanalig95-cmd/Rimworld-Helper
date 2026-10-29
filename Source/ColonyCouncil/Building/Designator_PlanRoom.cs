@@ -25,6 +25,9 @@ namespace ColonyCouncil
         private IntVec3 suggestedAnchor = IntVec3.Invalid;
         private int suggestedRot;
         private bool suggestedMirror;
+        /// <summary>The spots the council suggests, best first, and which one the outline shows (TemplatePlanner.FindSpots).</summary>
+        private readonly List<TemplatePlanner.SpotCandidate> suggestions = new List<TemplatePlanner.SpotCandidate>();
+        private int suggestionIndex = -1;
 
         private PlacementPlan cachedPlan;
         private IntVec3 cachedAnchor = IntVec3.Invalid;
@@ -119,6 +122,8 @@ namespace ColonyCouncil
             furniture = null;
             cachedPlan = null;
             suggestedAnchor = IntVec3.Invalid;
+            suggestions.Clear();
+            suggestionIndex = -1;
             Config.doorX = -1;
             Config.Changed();
             SoundDefOf.Click.PlayOneShotOnCamera();
@@ -129,6 +134,8 @@ namespace ColonyCouncil
             upgradeMode = !upgradeMode;
             cachedPlan = null;
             suggestedAnchor = IntVec3.Invalid;
+            suggestions.Clear();
+            suggestionIndex = -1;
             Config.Changed();
             if (upgradeMode) Messages.Message("CC_Upgrade_Pick".Translate(Template.label), MessageTypeDefOf.SilentInput, false);
         }
@@ -166,16 +173,12 @@ namespace ColonyCouncil
             var map = Find.CurrentMap;
             if (map == null || Template == null) return;
             upgradeMode = false;
-            if (TemplatePlanner.FindSpot(Template, map, Furniture, Config, out var anchor, out int rot))
+            suggestions.Clear();
+            suggestionIndex = -1;
+            suggestions.AddRange(TemplatePlanner.FindSpots(Template, map, Furniture, Config, 3));
+            if (suggestions.Count > 0)
             {
-                suggestedAnchor = anchor;
-                suggestedRot = rot;
-                suggestedMirror = Config.mirror;
-                // The panel, the preview and the blueprints all use this turn from now on.
-                Config.rotation = rot;
-                Config.Changed();
-                TemplateMath.RotatedSize(Template.FullWidth, Template.FullHeight, rot, out int rw, out int rh);
-                CameraJumper.TryJump(new IntVec3(anchor.x + rw / 2, 0, anchor.z + rh / 2), map);
+                UseSuggestion(0);
                 Messages.Message("CC_Plan_SpotFound".Translate(Template.label), MessageTypeDefOf.SilentInput, false);
             }
             else
@@ -183,6 +186,28 @@ namespace ColonyCouncil
                 suggestedAnchor = IntVec3.Invalid;
                 Messages.Message("CC_Plan_NoSpot".Translate(Template.label), MessageTypeDefOf.RejectInput, false);
             }
+        }
+
+        /// <summary>The spots the council suggests, best first (empty until "Find a good spot").</summary>
+        public IReadOnlyList<TemplatePlanner.SpotCandidate> Suggestions => suggestions;
+
+        public int SuggestionIndex => suggestionIndex;
+
+        /// <summary>The outline, the turn and the camera go to the <paramref name="i"/>th suggested spot.</summary>
+        public void UseSuggestion(int i)
+        {
+            var map = Find.CurrentMap;
+            if (map == null || i < 0 || i >= suggestions.Count) return;
+            var s = suggestions[i];
+            suggestionIndex = i;
+            suggestedAnchor = s.anchor;
+            suggestedRot = s.rot;
+            suggestedMirror = Config.mirror;
+            // The panel, the preview and the blueprints all use this turn from now on.
+            Config.rotation = s.rot;
+            Config.Changed();
+            TemplateMath.RotatedSize(Template.FullWidth, Template.FullHeight, s.rot, out int rw, out int rh);
+            CameraJumper.TryJump(new IntVec3(s.anchor.x + rw / 2, 0, s.anchor.z + rh / 2), map);
         }
 
         /// <summary>Places the room at the suggested spot (as found, whatever the mouse is doing).</summary>

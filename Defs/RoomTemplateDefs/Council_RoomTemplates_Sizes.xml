@@ -18,6 +18,7 @@
     <purpose>For colonists who have earned more than a bed and a lamp, and for anyone the colony wants to keep happy.</purpose>
     <order>10</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <size>(6,6)</size>
     <iconDefs><li>Bed</li></iconDefs>
     <floors><li>WoodPlankFloor</li></floors>
@@ -45,6 +46,7 @@
     <purpose>A room of one's own before the colony has much of anything.</purpose>
     <order>10</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <era>lowtech</era>
     <size>(4,4)</size>
     <iconDefs><li>Bedroll</li><li>Bed</li></iconDefs>
@@ -69,6 +71,7 @@
     <purpose>For a couple the colony wants to keep: spouses, or two colonists whose moods hold others up.</purpose>
     <order>11</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <size>(6,6)</size>
     <iconDefs><li>DoubleBed</li></iconDefs>
     <floors><li>WoodPlankFloor</li></floors>
@@ -95,6 +98,7 @@
     <purpose>A roof and a bed for the first few colonists, until there's time for bedrooms.</purpose>
     <order>8</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <size>(5,5)</size>
     <floors><li>WoodPlankFloor</li></floors>
     <near><li>DiningRoom</li></near>
@@ -339,6 +343,7 @@
     <purpose>A small, clean room for the sick and the wounded, so the wounded are never treated on the floor.</purpose>
     <order>40</order>
     <group>Care</group>
+    <nearGate>true</nearGate><quiet>true</quiet>
     <size>(4,4)</size>
     <iconDefs><li>HospitalBed</li><li>Bed</li></iconDefs>
     <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li></floors>
@@ -363,6 +368,7 @@
     <purpose>For a big colony, or one that fights often: a bed for every patient after a bad raid or an outbreak.</purpose>
     <order>41</order>
     <group>Care</group>
+    <nearGate>true</nearGate><quiet>true</quiet>
     <size>(9,6)</size>
     <iconDefs><li>HospitalBed</li><li>Bed</li></iconDefs>
     <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li></floors>

@@ -445,6 +445,7 @@
     <purpose>Shelter for a whole herd: the animals sleep warm and dry, and their feed is kept where they sleep.</purpose>
     <order>60</order>
     <group>Food</group>
+    <nearFields>true</nearFields>
     <size>(8,6)</size>
     <iconDefs><li>AnimalSleepingBox</li><li>AnimalBed</li></iconDefs>
     <avoid><li>Bedroom</li><li>Kitchen</li></avoid>
@@ -748,6 +749,7 @@
     <purpose>A room for operations alone: clean, bright, and never full of the wounded from the last raid.</purpose>
     <order>40</order>
     <group>Care</group>
+    <quiet>true</quiet>
     <size>(5,4)</size>
     <iconDefs><li>HospitalBed</li><li>VitalsMonitor</li></iconDefs>
     <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li></floors>
@@ -894,6 +896,7 @@
     <purpose>The colony's few good weapons under a roof and in one place, where everyone knows to find them.</purpose>
     <order>91</order>
     <group>Security</group>
+    <nearGate>true</nearGate>
     <size>(3,3)</size>
     <iconDefs><li>Shelf</li></iconDefs>
     <avoid><li>PrisonCell</li><li>PrisonBarracks</li></avoid>
@@ -915,6 +918,7 @@
     <purpose>Arms and armor for a whole militia, sorted so each fighter grabs the right kit on the way out.</purpose>
     <order>91</order>
     <group>Security</group>
+    <nearGate>true</nearGate>
     <size>(8,6)</size>
     <iconDefs><li>Shelf</li></iconDefs>
     <avoid><li>PrisonCell</li><li>PrisonBarracks</li></avoid>

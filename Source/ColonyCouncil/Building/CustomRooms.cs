@@ -303,7 +303,8 @@ namespace ColonyCouncil
             return data;
         }
 
-        private static string RoleOf(ThingDef def)
+        /// <summary>The first role (most specific first) a built piece answers to, or null.</summary>
+        public static string RoleOf(ThingDef def)
         {
             foreach (var role in RoomTemplateDef.InferableRoles)
             {

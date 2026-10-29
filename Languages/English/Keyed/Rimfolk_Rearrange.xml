@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Rearranging a built room (Source/ColonyCouncil/Building/RoomRearranger.cs, Designator_RearrangeRoom.cs). -->
+  <CC_Rearr_Button>Rearrange a room</CC_Rearr_Button>
+  <CC_Rearr_Desc>Click a built room to see where the council would put its furniture: beds with their heads to the wall, benches with their backs to it and their work spots free, the table in the middle with the chairs facing it, shelves along the walls, lamps in the corners. Say go and the room is tidied with the game's own reinstall orders, a few at a time as the cells free up. Walls, doors, pipes, conduits, plumbed fixtures, growing plants and filled graves stay where they are.</CC_Rearr_Desc>
+  <CC_Rearr_PickRoom>Click a built room to have the council tidy it. It has to be enclosed, with a door.</CC_Rearr_PickRoom>
+  <CC_Rearr_NotARoom>Pick an enclosed room with a door, not the outdoors or a doorway.</CC_Rearr_NotARoom>
+  <CC_Rearr_TooBig>Rooms up to {0} cells can be rearranged.</CC_Rearr_TooBig>
+  <CC_Rearr_NoDoor>The room needs a door.</CC_Rearr_NoDoor>
+
+  <CC_Rearr_Title>Rearranging the {0}</CC_Rearr_Title>
+  <CC_Rearr_Summary>{0} piece(s) to move, {1} already standing well, {2} staying put.</CC_Rearr_Summary>
+  <CC_Rearr_Nothing>Nothing in here to arrange.</CC_Rearr_Nothing>
+  <CC_Rearr_MoveStocked>Move shelves and stores with goods in them too</CC_Rearr_MoveStocked>
+  <CC_Rearr_MoveStockedTip>The goods are set down on the floor when a shelf is picked up and hauled back once it stands again. Off, a shelf with anything in it stays where it is and the rest is arranged around it.</CC_Rearr_MoveStockedTip>
+  <CC_Rearr_Mind>Mind</CC_Rearr_Mind>
+  <CC_Rearr_Unpowered>{0} piece(s) will have no conduit within reach at their new place: {1}. Run a conduit to them once they stand.</CC_Rearr_Unpowered>
+  <CC_Rearr_Moving>Moving ({0})</CC_Rearr_Moving>
+  <CC_Rearr_NoMoves>Everything that can move already stands as well as it could. Nothing to do.</CC_Rearr_NoMoves>
+  <CC_Rearr_Staying>Staying put ({0})</CC_Rearr_Staying>
+  <CC_Rearr_KeptNote>{0} piece(s) already stand well and are left where they are.</CC_Rearr_KeptNote>
+  <CC_Rearr_Go>Go ahead ({0})</CC_Rearr_Go>
+  <CC_Rearr_Cancel>Not now</CC_Rearr_Cancel>
+  <CC_Rearr_Stop>Stop the {0} under way</CC_Rearr_Stop>
+  <CC_Rearr_StopTip>Takes back the reinstall orders still open in this room. What has moved stays where it is now.</CC_Rearr_StopTip>
+  <CC_Rearr_Stopped>The open moves are called off.</CC_Rearr_Stopped>
+  <CC_Rearr_Started>Rearranging the {0}: {1} piece(s) to move. The orders go up as the cells free up.</CC_Rearr_Started>
+  <CC_Rearr_Finished>The {0} is rearranged.</CC_Rearr_Finished>
+  <CC_Rearr_GaveUp>Couldn't move the {0} to its new place: {1}</CC_Rearr_GaveUp>
+
+  <!-- Where a piece goes, and why. -->
+  <CC_Rearr_Why_bedwall>Head to the wall, room to get in.</CC_Rearr_Why_bedwall>
+  <CC_Rearr_Why_bedside>By the head of a bed.</CC_Rearr_Why_bedside>
+  <CC_Rearr_Why_table>At the table, facing it.</CC_Rearr_Why_table>
+  <CC_Rearr_Why_wall>Against the wall.</CC_Rearr_Why_wall>
+  <CC_Rearr_Why_corner>In a corner, out of the way.</CC_Rearr_Why_corner>
+  <CC_Rearr_Why_run>Along the wall, in a run with the others.</CC_Rearr_Why_run>
+  <CC_Rearr_Why_middle>In the middle, with room all round.</CC_Rearr_Why_middle>
+  <CC_Rearr_Why_fits>Where it fits and can be reached.</CC_Rearr_Why_fits>
+  <CC_Rearr_Why_kept>Already stands well.</CC_Rearr_Why_kept>
+
+  <!-- Why a piece stays where it is. -->
+  <CC_Rearr_Stay_NotOurs>Not the colony's to move.</CC_Rearr_Stay_NotOurs>
+  <CC_Rearr_Stay_Fixed>Can't be picked up and put down again.</CC_Rearr_Stay_Fixed>
+  <CC_Rearr_Stay_Plumbed>Plumbed in: it stays on its pipe.</CC_Rearr_Stay_Plumbed>
+  <CC_Rearr_Stay_Ritual>Placed for ceremony: left to you.</CC_Rearr_Stay_Ritual>
+  <CC_Rearr_Stay_Plants>Plants are growing in it.</CC_Rearr_Stay_Plants>
+  <CC_Rearr_Stay_Grave>Someone lies in it.</CC_Rearr_Stay_Grave>
+  <CC_Rearr_Stay_Stocked>Holds goods. Tick the box above to move it anyway.</CC_Rearr_Stay_Stocked>
+  <CC_Rearr_Stay_Orders>Already has orders of its own.</CC_Rearr_Stay_Orders>
+  <CC_Rearr_Stay_NoSpot>No place in the room takes it.</CC_Rearr_Stay_NoSpot>
+  <CC_Rearr_Stay_Stranded>No place where it could still be reached: the room is too full.</CC_Rearr_Stay_Stranded>
+  <CC_Rearr_Stay_Blueprint>Still to be built.</CC_Rearr_Stay_Blueprint>
+</LanguageData>

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning the base with the council
+
+*29 October 2026, version 0.24.0*
+
+- A Plan page under Colony: the colony's next steps in your order. Each hour the council proposes steps from what it watches (the priorities, the defense advice, an idle research bench); you take them into the plan, let them go, add your own, and order them. Each step opens what does it: the room planner, the defense plan, the research.
+- The first step shows on This week and the council panel. A step is done when you say so, or when the need behind it has passed for a few hours.
+- Where should this go: the room planner now suggests three spots for a room, each with its reasons. A hospital goes near the gate and away from the workshops, a barn by the fields, a kitchen beside the freezer and the dining room, a bedroom away from the noise. Click a spot to see it, or Here to place the plan there.
+- Rearrange a room: click a built room and the council shows where it would put the furniture. Beds get their head to a wall and room to get in, bedside tables go by the beds, benches stand with their back to a wall and their work spot free, the table in the middle with the chairs facing it, shelves along the walls in runs, lamps and plant pots in the corners. The new places show on the map before you say go.
+- The moves are carried out with the game's own reinstall orders, a few at a time as the cells free up, so nothing is set down in the way. Only what can be picked up moves; a mod that makes everything minifiable widens that. Walls, doors, pipes and conduits, plumbed fixtures, growing plants, filled graves and ritual pieces stay, and shelves with goods in them stay unless you tick the box.
+- The window says why each piece goes where it goes, why the rest stays, and which pieces will want a conduit at their new place.
+
 ## Recruiting, spelled out
 
 *29 October 2026, version 0.23.3*

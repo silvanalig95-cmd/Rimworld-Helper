@@ -28,6 +28,9 @@
     <Compile Include="../../Source/ColonyCouncil/UI/BarMoreMath.cs" Link="BarMoreMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/ShelfReserveMath.cs" Link="ShelfReserveMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestCheckMath.cs" Link="GuestCheckMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/NextStepsMath.cs" Link="NextStepsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/SpotMath.cs" Link="SpotMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/RoomArrangeMath.cs" Link="RoomArrangeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />

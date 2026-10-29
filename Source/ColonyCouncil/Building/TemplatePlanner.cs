@@ -1227,6 +1227,18 @@ namespace ColonyCouncil
             return map.Center;
         }
 
+        /// <summary>One spot the council suggests for a room: where, which way round, how good, and why (SpotMath).</summary>
+        public class SpotCandidate
+        {
+            public IntVec3 anchor, mid;
+            public int rot;
+            public float score;
+            public SpotMath.Features features;
+            public List<string> nearRoles, avoidRoles;
+            /// <summary>The reasons, best first: "beside the kitchen", "shares 6 cells of wall", "far from the gate" (SpotText).</summary>
+            public List<(string text, bool good)> reasons = new List<(string, bool)>();
+        }
+
         /// <summary>
         /// Searches around the colony for a good spot: buildable, close to home, sharing existing walls
         /// (cheaper and warmer), near the rooms it goes well with, avoiding zones and long mining jobs.
@@ -1234,15 +1246,41 @@ namespace ColonyCouncil
         /// </summary>
         public static bool FindSpot(RoomTemplateDef t, Map map, List<ResolvedThing> furniture, RoomPlanConfig cfg, out IntVec3 anchor, out int bestRot)
         {
-            anchor = IntVec3.Invalid;
-            bestRot = cfg.rotation;
+            var spots = FindSpots(t, map, furniture, cfg, 1);
+            if (spots.Count == 0)
+            {
+                anchor = IntVec3.Invalid;
+                bestRot = cfg.rotation;
+                return false;
+            }
+            anchor = spots[0].anchor;
+            bestRot = spots[0].rot;
+            return true;
+        }
+
+        /// <summary>
+        /// The best few spots, apart from one another, each with its reasons: the rooms it goes with and away from
+        /// (the template's near and avoid, and the usual for its kind of room), the walls it would share, the gate for
+        /// a hospital or an armory, the fields for a barn, quiet for a bedroom, the rock to mine and the walk to the
+        /// colony's middle. Only spots where all of it can be built.
+        /// </summary>
+        public static List<SpotCandidate> FindSpots(RoomTemplateDef t, Map map, List<ResolvedThing> furniture, RoomPlanConfig cfg, int want = 3)
+        {
+            var result = new List<SpotCandidate>();
+            if (t == null || map == null) return result;
             var center = ColonyCenter(map);
-            var nearCenters = RoleCenters(map, t.near);
-            var avoidCenters = RoleCenters(map, t.avoid);
-            float best = float.MinValue;
-            int checkedCount = 0;
+            var nearRoles = RoomNeighbours.Near(t);
+            var avoidRoles = RoomNeighbours.Avoid(t);
+            var near = nearRoles.Select(r => RoleCenters(map, r)).ToList();
+            var avoid = avoidRoles.Select(r => RoleCenters(map, r)).ToList();
+            var noisy = RoomNeighbours.Quiet(t) ? RoomNeighbours.NoisyRoles.Select(r => RoleCenters(map, r)).ToList() : null;
+            var gate = RoomNeighbours.NearGate(t) ? RoomNeighbours.GateCell(map) : IntVec3.Invalid;
+            var fields = RoomNeighbours.NearFields(t) ? RoomNeighbours.FieldCells(map) : null;
             var trial = new RoomPlanConfig();
             CopyInto(cfg, trial);
+            var candidates = new List<SpotCandidate>();
+            int checkedCount = 0;
+            float floor = float.MinValue;
             foreach (var c in GenRadial.RadialCellsAround(center, 40f, true))
             {
                 if (((c.x + c.z) & 1) != 0) continue;
@@ -1250,25 +1288,36 @@ namespace ColonyCouncil
                 for (int rot = 0; rot < 4; rot++)
                 {
                     var a = AnchorForCenter(t, c, rot);
-                    float score = QuickScore(t, map, a, rot, cfg.mirror, center, nearCenters, avoidCenters);
-                    if (score <= best) continue;
+                    if (!Features(t, map, a, rot, cfg.mirror, center, near, avoid, noisy, gate, fields, out var f)) continue;
+                    float score = SpotMath.Score(f);
+                    // The costly check only for spots that could beat what's found (a few more than wanted, so distinct ones are left).
+                    if (candidates.Count >= want * 4 && score <= floor) continue;
                     checkedCount++;
                     trial.rotation = rot;
                     var plan = Plan(t, map, a, trial, furniture, true);
                     // Only spots where all of it can be built: a room with gaps over water is for the player to place, never a suggestion.
                     if (!plan.Valid) continue;
-                    score += plan.furniture.Count(f => f.state != PieceState.Blocked) * 2f;
+                    score += plan.furniture.Count(x => x.state != PieceState.Blocked) * 2f;
                     score -= plan.mine.Count * 0.8f;
-                    if (score > best)
+                    f.rock = Mathf.Max(f.rock, plan.mine.Count);
+                    candidates.Add(new SpotCandidate
                     {
-                        best = score;
-                        anchor = a;
-                        bestRot = rot;
-                    }
+                        anchor = a, rot = rot, score = score, features = f, nearRoles = nearRoles, avoidRoles = avoidRoles,
+                        mid = ToWorld(a, t.FullWidth / 2, t.FullHeight / 2, t.FullWidth, t.FullHeight, cfg.mirror, rot)
+                    });
+                    if (candidates.Count >= want * 4) floor = candidates.OrderByDescending(x => x.score).Skip(want * 4 - 1).First().score;
                 }
                 if (checkedCount > 400) break;
             }
-            return anchor.IsValid;
+            if (candidates.Count == 0) return result;
+            float gap = Mathf.Max(t.FullWidth, t.FullHeight) * 0.9f;
+            foreach (int i in SpotMath.Distinct(candidates.Select(x => x.score).ToList(), candidates.Select(x => (x.mid.x, x.mid.z)).ToList(), gap, want))
+            {
+                var s = candidates[i];
+                s.reasons = SpotText.Reasons(s, map);
+                result.Add(s);
+            }
+            return result;
         }
 
         private static void CopyInto(RoomPlanConfig from, RoomPlanConfig to)
@@ -1285,73 +1334,175 @@ namespace ColonyCouncil
             to.floorStuff = from.floorStuff;
         }
 
-        private static List<IntVec3> RoleCenters(Map map, List<string> roles)
+        /// <summary>The middles of the colony's rooms with this role (by name, as the templates give it).</summary>
+        private static List<IntVec3> RoleCenters(Map map, string roleName)
         {
             var list = new List<IntVec3>();
-            if (roles == null || roles.Count == 0) return list;
-            foreach (var name in roles)
-            {
-                var role = DefDatabase<RoomRoleDef>.GetNamedSilentFail(name);
-                if (role == null) continue;
-                foreach (var room in RoomUtil.ColonyRooms(map))
-                {
-                    if (room.Role == role) list.Add(room.Cells.First());
-                }
-            }
+            var role = RoomUtil.RoleNamed(roleName);
+            if (role == null) return list;
+            foreach (var room in RoomUtil.ColonyRooms(map))
+                if (room.Role == role) list.Add(room.ExtentsClose.CenterCell);
             return list;
         }
 
-        /// <summary>Cheap pre-score without blueprint checks. float.MinValue = impossible.</summary>
-        private static float QuickScore(RoomTemplateDef t, Map map, IntVec3 anchor, int rot, bool mirror, IntVec3 center, List<IntVec3> near, List<IntVec3> avoid)
+        private static float Nearest(IntVec3 from, List<IntVec3> cells)
         {
+            if (cells == null || cells.Count == 0) return -1f;
+            float best = float.MaxValue;
+            foreach (var c in cells) best = Mathf.Min(best, from.DistanceTo(c));
+            return best;
+        }
+
+        /// <summary>The spot's features, cheaply, without blueprint checks. False when the room can't stand here at all.</summary>
+        private static bool Features(RoomTemplateDef t, Map map, IntVec3 anchor, int rot, bool mirror, IntVec3 center, List<List<IntVec3>> near,
+            List<List<IntVec3>> avoid, List<List<IntVec3>> noisy, IntVec3 gate, List<IntVec3> fields, out SpotMath.Features f)
+        {
+            f = default;
             int w = t.FullWidth, h = t.FullHeight;
-            float score = 0f;
             var home = map.areaManager.Home;
             for (int fx = 0; fx < w; fx++)
             {
                 for (int fz = 0; fz < h; fz++)
                 {
                     var cell = ToWorld(anchor, fx, fz, w, h, mirror, rot);
-                    if (!cell.InBounds(map) || cell.Fogged(map)) return float.MinValue;
+                    if (!cell.InBounds(map) || cell.Fogged(map)) return false;
                     bool isWall = fx == 0 || fz == 0 || fx == w - 1 || fz == h - 1;
                     var ed = cell.GetEdifice(map);
                     var terrain = cell.GetTerrain(map);
-                    if (terrain.passability == Traversability.Impassable && ed == null) return float.MinValue;
+                    if (terrain.passability == Traversability.Impassable && ed == null) return false;
                     if (isWall)
                     {
                         if (ed != null)
                         {
-                            if (IsWallLike(ed.def)) score += 3f;
-                            else if (!ed.def.IsDoor) return float.MinValue;
+                            if (IsWallLike(ed.def)) f.sharedWalls++;
+                            else if (!ed.def.IsDoor) return false;
                         }
                     }
                     else
                     {
+                        f.floorCells++;
                         if (ed != null)
                         {
-                            if (ed.def.mineable) score -= 1.5f;
-                            else return float.MinValue;
+                            if (ed.def.mineable) f.rock++;
+                            else return false;
                         }
-                        if (cell.GetZone(map) != null) score -= 1f;
-                        if (home[cell]) score += 0.3f;
+                        if (cell.GetZone(map) != null) f.zoneCells++;
+                        if (home[cell]) f.homeCells++;
                         var roof = cell.GetRoof(map);
-                        if (roof != null && roof.isThickRoof) score -= 0.5f;
+                        if (roof != null && roof.isThickRoof) f.thickRoof++;
                     }
                 }
             }
             var mid = ToWorld(anchor, w / 2, h / 2, w, h, mirror, rot);
-            score -= mid.DistanceTo(center) * 0.6f;
-            foreach (var n in near)
-            {
-                float d = mid.DistanceTo(n);
-                if (d < 14f) score += (14f - d) * 0.8f;
-            }
-            foreach (var n in avoid)
-            {
-                float d = mid.DistanceTo(n);
-                if (d < 12f) score -= (12f - d) * 0.8f;
-            }
-            return score;
+            f.distCenter = mid.DistanceTo(center);
+            f.near = near.Select(l => Nearest(mid, l)).ToArray();
+            f.avoid = avoid.Select(l => Nearest(mid, l)).ToArray();
+            f.wantsQuiet = noisy != null;
+            if (noisy != null) f.noisy = noisy.Select(l => Nearest(mid, l)).ToArray();
+            f.wantsGate = gate.IsValid;
+            f.distGate = gate.IsValid ? mid.DistanceTo(gate) : -1f;
+            f.wantsFields = fields != null;
+            f.distFields = fields != null ? Nearest(mid, fields) : -1f;
+            return true;
         }
+    }
+
+    /// <summary>
+    /// Which rooms a room plan goes with and away from: the template's own near and avoid, and the usual for its kind
+    /// of room where the template says nothing (bedrooms want quiet, a hospital and an armory the gate, a barn the
+    /// fields). The names are room roles; RoomUtil.RoleNamed finds them whatever the def is called.
+    /// </summary>
+    public static class RoomNeighbours
+    {
+        /// <summary>The rooms that are noisy to sleep beside.</summary>
+        public static readonly string[] NoisyRoles = { "Workshop", "Barn" };
+
+        public static List<string> Near(RoomTemplateDef t) => t?.near ?? new List<string>();
+
+        public static List<string> Avoid(RoomTemplateDef t) => t?.avoid ?? new List<string>();
+
+        public static bool Quiet(RoomTemplateDef t) => t != null && t.quiet;
+
+        public static bool NearGate(RoomTemplateDef t) => t != null && t.nearGate;
+
+        public static bool NearFields(RoomTemplateDef t) => t != null && t.nearFields;
+
+        /// <summary>The gate: the busiest way in from the defense survey, else the way out of the colony toward the map's edge.</summary>
+        public static IntVec3 GateCell(Map map)
+        {
+            try
+            {
+                var s = DefenseSurvey.Kept(map);
+                if (s != null)
+                {
+                    if (s.chokes.Count > 0 && s.chokes[0].cell.IsValid) return s.chokes[0].cell;
+                    if (s.approach.IsValid) return s.approach;
+                }
+            }
+            catch
+            {
+                // The survey isn't there yet: the plain way out serves.
+            }
+            return PlaySpots.GateCell(map, null);
+        }
+
+        /// <summary>The middles of the colony's fields (growing zones), or null when it has none.</summary>
+        public static List<IntVec3> FieldCells(Map map)
+        {
+            var list = new List<IntVec3>();
+            foreach (var z in map.zoneManager.AllZones)
+                if (z is Zone_Growing g && g.Cells.Count > 0)
+                    list.Add(new IntVec3((int)g.Cells.Average(c => c.x), 0, (int)g.Cells.Average(c => c.z)));
+            return list.Count > 0 ? list : null;
+        }
+    }
+
+    /// <summary>The reasons for a spot, in words.</summary>
+    public static class SpotText
+    {
+        private static string RoleLabel(string roleName)
+        {
+            var role = RoomUtil.RoleNamed(roleName);
+            return role != null ? role.label : roleName.ToLowerInvariant();
+        }
+
+        public static List<(string text, bool good)> Reasons(TemplatePlanner.SpotCandidate s, Map map)
+        {
+            var list = new List<(string, bool)>();
+            var f = s.features;
+            for (int i = 0; i < s.nearRoles.Count && i < f.near.Length; i++)
+            {
+                int c = SpotMath.Closeness(f.near[i]);
+                if (c == 2) list.Add(("CC_Spot_Beside".Translate(RoleLabel(s.nearRoles[i]).Named("ROOM")).Resolve(), true));
+                else if (c == 1) list.Add(("CC_Spot_Near".Translate(RoleLabel(s.nearRoles[i]).Named("ROOM")).Resolve(), true));
+                else if (c == 0) list.Add(("CC_Spot_FarFrom".Translate(RoleLabel(s.nearRoles[i]).Named("ROOM")).Resolve(), false));
+            }
+            for (int i = 0; i < s.avoidRoles.Count && i < f.avoid.Length; i++)
+            {
+                float d = f.avoid[i];
+                if (d >= 0f && d < SpotMath.AvoidReach) list.Add(("CC_Spot_CloseTo".Translate(RoleLabel(s.avoidRoles[i]).Named("ROOM")).Resolve(), false));
+                else if (d >= 0f) list.Add(("CC_Spot_AwayFrom".Translate(RoleLabel(s.avoidRoles[i]).Named("ROOM")).Resolve(), true));
+            }
+            if (f.wantsQuiet && f.noisy != null)
+            {
+                bool loud = f.noisy.Any(d => d >= 0f && d < SpotMath.QuietReach);
+                bool any = f.noisy.Any(d => d >= 0f);
+                if (loud) list.Add(("CC_Spot_Noisy".Translate().Resolve(), false));
+                else if (any) list.Add(("CC_Spot_Quiet".Translate().Resolve(), true));
+            }
+            if (f.wantsGate && f.distGate >= 0f)
+                list.Add((f.distGate < SpotMath.GateReach ? "CC_Spot_NearGate".Translate().Resolve() : "CC_Spot_FarGate".Translate().Resolve(), f.distGate < SpotMath.GateReach));
+            if (f.wantsFields && f.distFields >= 0f)
+                list.Add((f.distFields < SpotMath.FieldsReach ? "CC_Spot_ByFields".Translate().Resolve() : "CC_Spot_FarFields".Translate().Resolve(), f.distFields < SpotMath.FieldsReach));
+            if (f.sharedWalls >= 3) list.Add(("CC_Spot_SharesWalls".Translate(f.sharedWalls).Resolve(), true));
+            if (f.rock > 0) list.Add(("CC_Spot_Rock".Translate(f.rock).Resolve(), false));
+            if (f.zoneCells > 0) list.Add(("CC_Spot_OverZone".Translate(f.zoneCells).Resolve(), false));
+            list.Add(("CC_Spot_Steps".Translate(Mathf.RoundToInt(f.distCenter)).Resolve(), f.distCenter <= 20f));
+            return list;
+        }
+
+        /// <summary>One line: the reasons that count most, joined.</summary>
+        public static string Line(TemplatePlanner.SpotCandidate s, int most = 3) =>
+            string.Join(", ", s.reasons.Take(most).Select(r => r.text)).CapitalizeFirst();
     }
 }

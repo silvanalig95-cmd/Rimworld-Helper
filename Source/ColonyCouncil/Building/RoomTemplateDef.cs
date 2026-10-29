@@ -119,6 +119,8 @@ namespace ColonyCouncil
         /// <summary>Room roles (RoomRoleDef defNames) this room likes to be near / far from, used by "find a good spot".</summary>
         public List<string> near;
         public List<string> avoid;
+        /// <summary>"Find a good spot" also wants: the colony's gate near (a hospital, an armory), the fields near (a barn), quiet (no workshop or barn beside it).</summary>
+        public bool nearGate, nearFields, quiet;
         /// <summary>Show in the rooms menu (the "rooms" button in the bottom bar).</summary>
         public bool architect = true;
         /// <summary>"lowtech": only for tribal and medieval colonies; "industrial": only once the colony is past that.</summary>

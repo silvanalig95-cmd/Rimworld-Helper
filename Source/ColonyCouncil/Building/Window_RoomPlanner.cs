@@ -169,6 +169,37 @@ namespace ColonyCouncil
                 y += RowH + 3f;
                 if (Widgets.ButtonText(new Rect(0f, y, des.HasSuggestion ? half : w, RowH), "CC_Plan_FindSpot".Translate())) des.SuggestSpot();
                 if (des.HasSuggestion && Widgets.ButtonText(new Rect(half + 4f, y, half, RowH), "CC_Planner_PlaceThere".Translate())) des.PlaceAtSuggestion();
+                // Where should this go: the best few spots, each with its reasons; the chosen one is outlined on the map.
+                var spots = des.Suggestions;
+                if (spots.Count > 0)
+                {
+                    y += RowH + 4f;
+                    Text.Font = GameFont.Tiny;
+                    GUI.color = UiKit.Faint;
+                    Widgets.Label(new Rect(0f, y, w, 18f), "CC_Spot_Title".Translate());
+                    GUI.color = Color.white;
+                    y += 18f;
+                    for (int i = 0; i < spots.Count; i++)
+                    {
+                        var spot = spots[i];
+                        bool chosen = i == des.SuggestionIndex;
+                        var row = new Rect(0f, y, w, 22f);
+                        if (chosen) Widgets.DrawHighlightSelected(row);
+                        else if (Mouse.IsOver(row)) Widgets.DrawHighlight(row);
+                        string line = (i + 1) + ". " + SpotText.Line(spot);
+                        UiKit.LabelFit(new Rect(4f, y, w - 70f, 22f), line, chosen ? Color.white : UiKit.Faint, GameFont.Tiny);
+                        TooltipHandler.TipRegion(row, string.Join("\n", spot.reasons.Select(r => (r.good ? "+ " : "- ") + r.text.CapitalizeFirst())));
+                        if (Widgets.ButtonInvisible(new Rect(0f, y, w - 70f, 22f))) des.UseSuggestion(i);
+                        if (Widgets.ButtonText(new Rect(w - 66f, y + 1f, 64f, 20f), "CC_Spot_PlaceHere".Translate()))
+                        {
+                            des.UseSuggestion(i);
+                            des.PlaceAtSuggestion();
+                        }
+                        y += 23f;
+                    }
+                    Text.Font = GameFont.Small;
+                    y -= RowH + 4f;
+                }
             }
             y += RowH + 6f;
 

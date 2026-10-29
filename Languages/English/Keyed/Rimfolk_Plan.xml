@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The colony's next steps (Source/ColonyCouncil/Building/NextSteps.cs, UI/NextStepsPanel.cs). -->
+  <CC_Tab_Plan>Plan</CC_Tab_Plan>
+  <CC_Tab_PlanCount>Plan ({0})</CC_Tab_PlanCount>
+  <CC_Settings_NextSteps>The colony's next steps</CC_Settings_NextSteps>
+  <CC_Settings_NextSteps_Tip>A short, ordered plan the council keeps with you, on the Plan page: each hour it proposes steps from what it watches (the priorities, the defense advice, an idle research bench), you take them into the plan or let them go, add your own, and order them. A step is done when you say so, or when the need behind it has passed. The first step shows on This week and the council panel.</CC_Settings_NextSteps_Tip>
+  <CC_SetNote_NextSteps>A Plan page: the council proposes the next steps, you keep the order.</CC_SetNote_NextSteps>
+
+  <CC_Plan_Header>The colony's next steps</CC_Plan_Header>
+  <CC_Plan_Sub>What to do next, in your order. The council proposes; you decide.</CC_Plan_Sub>
+  <CC_Plan_HeaderTip>Each hour the council looks at the priorities, the defense advice and the research bench and proposes steps from them. Take a step into the plan, let it go, or add your own. A step is done when you say so, or when the need behind it has passed for a few hours.</CC_Plan_HeaderTip>
+  <CC_Plan_Stat>{0} to do</CC_Plan_Stat>
+  <CC_Plan_SortUrgency>Order by urgency</CC_Plan_SortUrgency>
+  <CC_Plan_ThePlan>The plan</CC_Plan_ThePlan>
+  <CC_Plan_Empty>Nothing planned yet. Take a step the council proposes, or add one of your own below.</CC_Plan_Empty>
+  <CC_Plan_Proposes>The council proposes</CC_Plan_Proposes>
+  <CC_Plan_NothingProposed>Nothing to propose right now. The council looks again every hour.</CC_Plan_NothingProposed>
+  <CC_Plan_TakeAll>Take them all</CC_Plan_TakeAll>
+  <CC_Plan_Take>Into the plan</CC_Plan_Take>
+  <CC_Plan_NotNow>Not now</CC_Plan_NotNow>
+  <CC_Plan_MarkDone>Done</CC_Plan_MarkDone>
+  <CC_Plan_DonePill>Done</CC_Plan_DonePill>
+  <CC_Plan_LetGo>Let it go</CC_Plan_LetGo>
+  <CC_Plan_LetGoTip>Out of the plan. The council won't propose it again for a fortnight.</CC_Plan_LetGoTip>
+  <CC_Plan_RemoveOwnTip>Takes your step off the plan.</CC_Plan_RemoveOwnTip>
+  <CC_Plan_TakeBack>Back in</CC_Plan_TakeBack>
+  <CC_Plan_Remove>Remove</CC_Plan_Remove>
+  <CC_Plan_PlaceIt>Place the plan</CC_Plan_PlaceIt>
+  <CC_Plan_StartResearch>Start it</CC_Plan_StartResearch>
+  <CC_Plan_OpenResearch>Open research</CC_Plan_OpenResearch>
+  <CC_Plan_ResearchStarted>Research started: {PROJECT}.</CC_Plan_ResearchStarted>
+  <CC_Plan_Research_Title>Pick the next research</CC_Plan_Research_Title>
+  <CC_Plan_Research_Detail>The bench stands idle. {PROJECT} ({COST}) is a sensible next project for this colony.</CC_Plan_Research_Detail>
+  <CC_Plan_StepDone>Done, by the look of it: {STEP}.</CC_Plan_StepDone>
+  <CC_Plan_OwnHint>A step of your own, in a few words...</CC_Plan_OwnHint>
+  <CC_Plan_OwnNoRoom>No room plan</CC_Plan_OwnNoRoom>
+  <CC_Plan_Add>Add</CC_Plan_Add>
+  <CC_Plan_OwnNote>yours</CC_Plan_OwnNote>
+  <CC_Plan_Since>In the plan since {0} ago.</CC_Plan_Since>
+  <CC_Plan_From_advisor>From the council's priorities.</CC_Plan_From_advisor>
+  <CC_Plan_From_defense>From the defense page's advice.</CC_Plan_From_defense>
+  <CC_Plan_From_research>From the research bench.</CC_Plan_From_research>
+  <CC_Plan_From_own>Your own step.</CC_Plan_From_own>
+  <CC_Plan_Off>The colony's next steps are switched off in Rimfolk's settings (Council page).</CC_Plan_Off>
+
+  <CC_Week_Plan>The plan</CC_Week_Plan>
+  <CC_Week_Empty_Plan>Nothing planned.</CC_Week_Empty_Plan>
+  <CC_Week_PlanProposed>The council proposes {0} more</CC_Week_PlanProposed>
+  <CC_Week_PlanProposedTip>Steps the council proposes, waiting for you on the Plan page.</CC_Week_PlanProposedTip>
+  <CC_Pnl_Next>Next: {STEP}</CC_Pnl_Next>
+  <CC_Pnl_NextMore>+{0}</CC_Pnl_NextMore>
+  <CC_Pnl_Part_next>The next step</CC_Pnl_Part_next>
+
+  <!-- Where should this go: the spots the planner suggests, with reasons (Building/TemplatePlanner.FindSpots, SpotText). -->
+  <CC_Spot_Title>Where should this go? Click a spot to see it.</CC_Spot_Title>
+  <CC_Spot_PlaceHere>Here</CC_Spot_PlaceHere>
+  <CC_Spot_Beside>beside the {ROOM}</CC_Spot_Beside>
+  <CC_Spot_Near>near the {ROOM}</CC_Spot_Near>
+  <CC_Spot_FarFrom>far from the {ROOM}</CC_Spot_FarFrom>
+  <CC_Spot_CloseTo>close to the {ROOM}</CC_Spot_CloseTo>
+  <CC_Spot_AwayFrom>away from the {ROOM}</CC_Spot_AwayFrom>
+  <CC_Spot_Noisy>next to a workshop or barn, noisy</CC_Spot_Noisy>
+  <CC_Spot_Quiet>quiet, no workshop beside it</CC_Spot_Quiet>
+  <CC_Spot_NearGate>near the gate</CC_Spot_NearGate>
+  <CC_Spot_FarGate>far from the gate</CC_Spot_FarGate>
+  <CC_Spot_ByFields>by the fields</CC_Spot_ByFields>
+  <CC_Spot_FarFields>far from the fields</CC_Spot_FarFields>
+  <CC_Spot_SharesWalls>shares {0} cells of standing wall</CC_Spot_SharesWalls>
+  <CC_Spot_Rock>{0} cells of rock to mine</CC_Spot_Rock>
+  <CC_Spot_OverZone>over {0} cells of a zone</CC_Spot_OverZone>
+  <CC_Spot_Steps>{0} steps from the colony's middle</CC_Spot_Steps>
+</LanguageData>

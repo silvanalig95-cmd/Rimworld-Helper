@@ -214,6 +214,7 @@ namespace ColonyCouncil
             Action("quickSetup", "CC_Settings_Presets", "CC_Settings_Presets_Tip", "CC_SetNote_QuickSetup");
             Section("CC_Settings_Layers");
             Toggle("enableAdvisor", "CC_Settings_EnableAdvisor", "CC_SetNote_EnableAdvisor");
+            Toggle("nextSteps", "CC_Settings_NextSteps", "CC_SetNote_NextSteps");
             Toggle("enableWishes", "CC_Settings_EnableWishes", "CC_SetNote_EnableWishes");
             Toggle("enableAmbitions", "CC_Settings_EnableAmbitions", "CC_SetNote_EnableAmbitions");
             Toggle("interplay", "CC_Settings_Interplay", "CC_SetNote_Interplay");

@@ -9,6 +9,7 @@
     <description>A snug bedroom for one: bed, bedside table, a light and a plant. Cheap enough to build several.</description>
     <order>9</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <size>(3,4)</size>
     <floors><li>WoodPlankFloor</li></floors>
     <tips>
@@ -29,6 +30,7 @@
     <description>Shared sleeping quarters for up to eight. Quick and cheap to build, and often the colony's first real shelter.</description>
     <order>8</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <size>(7,5)</size>
     <floors><li>WoodPlankFloor</li></floors>
     <near><li>DiningRoom</li></near>
@@ -235,6 +237,7 @@
     <description>Four beds with two vitals monitors, a medicine shelf, a light and clean floors.</description>
     <order>41</order>
     <group>Care</group>
+    <nearGate>true</nearGate><quiet>true</quiet>
     <size>(7,5)</size>
     <floors><li>SterileTile</li><li>TileSandstone</li><li>TileGranite</li><li>TileLimestone</li><li>TileSlate</li><li>TileMarble</li><li>WoodPlankFloor</li></floors>
     <tips>
@@ -297,6 +300,7 @@
     <description>Shelves for weapons and armor, close to where the fighting happens.</description>
     <order>91</order>
     <group>Security</group>
+    <nearGate>true</nearGate>
     <size>(5,4)</size>
     <avoid><li>PrisonCell</li><li>PrisonBarracks</li></avoid>
     <tips>
@@ -382,6 +386,7 @@
     <description>Cribs, a toy box, a light and a soft floor for the colony's youngest. Needs Biotech.</description>
     <order>43</order>
     <group>Care</group>
+    <quiet>true</quiet>
     <size>(5,4)</size>
     <floors><li>CarpetCream</li><li>WoodPlankFloor</li></floors>
     <near><li>Bedroom</li></near>

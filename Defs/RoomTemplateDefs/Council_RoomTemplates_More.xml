@@ -179,6 +179,7 @@
     <purpose>A warm place for whoever watches the gate, with weapons close at hand when the first shot is fired.</purpose>
     <order>92</order>
     <group>Security</group>
+    <nearGate>true</nearGate>
     <size>(4,3)</size>
     <iconDefs><li>Shelf</li></iconDefs>
     <avoid><li>Bedroom</li></avoid>
@@ -234,6 +235,7 @@
     <purpose>The whole tribe under one roof and around one fire, warm through the winter.</purpose>
     <order>8</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <era>lowtech</era>
     <size>(9,5)</size>
     <iconDefs><li>Bedroll</li><li>Campfire</li></iconDefs>

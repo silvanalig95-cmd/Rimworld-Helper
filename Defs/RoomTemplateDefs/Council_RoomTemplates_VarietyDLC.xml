@@ -139,6 +139,7 @@
     <purpose>A warm, quiet room for the colony's first baby, near the parents.</purpose>
     <order>43</order>
     <group>Care</group>
+    <quiet>true</quiet>
     <size>(4,3)</size>
     <iconDefs><li>Crib</li></iconDefs>
     <floors><li>CarpetCream</li><li>WoodPlankFloor</li></floors>
@@ -163,6 +164,7 @@
     <purpose>For a colony with several little ones at once: one room to feed, rock and watch over them all.</purpose>
     <order>43</order>
     <group>Care</group>
+    <quiet>true</quiet>
     <size>(6,5)</size>
     <iconDefs><li>Crib</li><li>ToyBox</li></iconDefs>
     <floors><li>CarpetCream</li><li>WoodPlankFloor</li></floors>

@@ -10,6 +10,7 @@
     <description>A small room for one visitor: a bed to switch to a guest bed, a bedside table, a dresser and a light.</description>
     <order>14</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <size>(4,4)</size>
     <iconDefs><li>Bed</li></iconDefs>
     <floors><li>WoodPlankFloor</li></floors>

@@ -418,6 +418,18 @@ def g_more():
     return m
 
 
+def g_plan():
+    """Next steps: three lines of a list, the first two ticked, the third still open."""
+    m = new()
+    for i, (y, done) in enumerate(((56, True), (128, True), (200, False))):
+        if done:
+            check(m, [(30, y + 4), (54, y + 28), (92, y - 24)], 18, ON)
+        else:
+            ring(m, 58, y, 22, 12)
+        rect(m, 118, y - 12, 232, y + 12, r=10)
+    return m
+
+
 def g_journals():
     m = new()
     rect(m, 52, 20, 214, 236, r=16)
@@ -881,7 +893,7 @@ GLYPHS = [
     ("Roster", g_roster), ("Bonds", g_bonds), ("Wishes", g_wishes), ("Decrees", g_decrees), ("Ambition", g_ambition),
     ("Ways", g_ways), ("Chronicle", g_chronicle), ("Calendar", g_calendar), ("Dreams", g_dreams), ("Journals", g_journals),
     ("Week", g_week), ("Table", g_table), ("Dilemmas", g_dilemmas), ("Pin", g_pin), ("Defenses", g_defenses),
-    ("More", g_more),
+    ("More", g_more), ("Plan", g_plan),
     # markers
     ("Trust", g_trust), ("Office", g_office), ("LifeGoal", g_lifegoal), ("Secret", g_secret), ("Vendetta", g_vendetta),
     ("Nemesis", g_nemesis), ("Dream", g_dream), ("Journal", g_journal), ("WorldEvent", g_worldevent), ("Raid", g_raid),

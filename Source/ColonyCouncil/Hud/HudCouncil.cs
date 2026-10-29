@@ -16,8 +16,8 @@ namespace ColonyCouncil
     public class HudCouncil : HudLinesPanel
     {
         public const string PartWishes = "wishes", PartPetitions = "petitions", PartPromises = "promises", PartQuestions = "questions",
-            PartDecrees = "decrees", PartCalendar = "calendar", PartTrust = "trust";
-        public static readonly string[] Parts = { PartWishes, PartPetitions, PartPromises, PartQuestions, PartDecrees, PartCalendar, PartTrust };
+            PartDecrees = "decrees", PartCalendar = "calendar", PartTrust = "trust", PartNext = "next";
+        public static readonly string[] Parts = { PartNext, PartWishes, PartPetitions, PartPromises, PartQuestions, PartDecrees, PartCalendar, PartTrust };
 
         public HudCouncil() : base(HudLayout.Council)
         {
@@ -38,6 +38,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             if (comp == null) return;
             int now = Find.TickManager.TicksGame;
+            Next(now);
             Wishes(comp, now);
             Petitions(comp);
             Promises(comp, now);
@@ -45,6 +46,21 @@ namespace ColonyCouncil
             Decrees(comp, now);
             Coming(comp, now);
             Trust(comp);
+        }
+
+        /// <summary>The first step of the colony's plan, and how many wait behind it (Building/NextSteps.cs).</summary>
+        private void Next(int now)
+        {
+            if (!NextSteps.On) return;
+            var map = Find.CurrentMap;
+            var first = NextSteps.First(map);
+            if (first == null) return;
+            int count = NextSteps.PlannedCount(map);
+            string value = count > 1 ? "CC_Pnl_NextMore".Translate(count - 1).Resolve() : "";
+            var level = NextSteps.LevelOf(first);
+            float score = level >= AdviceLevel.Critical ? HudRank.SoonFloor + 60f : level >= AdviceLevel.High ? HudRank.SoonFloor : 0f;
+            string tip = first.title + (first.detail.NullOrEmpty() ? "" : "\n" + first.detail);
+            Add(PartNext, Icons.Plan ?? Icons.Week, "CC_Pnl_Next".Translate(first.title.Named("STEP")).Resolve(), value, score, Tip(tip, ClickPage("Plan")), Page("Plan"));
         }
 
         private void Wishes(CouncilGameComponent comp, int now)

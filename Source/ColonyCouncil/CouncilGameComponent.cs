@@ -78,6 +78,8 @@ namespace ColonyCouncil
         /// <summary>Weddings the council planned with the couple, and which couples it asked (Social/WeddingPlans.cs).</summary>
         public List<WeddingPlan> weddingPlans = new List<WeddingPlan>();
         public List<string> weddingAsked = new List<string>();
+        /// <summary>The colony's next steps: the plan and what the council proposes (Building/NextSteps.cs).</summary>
+        public List<NextStep> nextSteps = new List<NextStep>();
         public AmbitionTracker ambitions = new AmbitionTracker();
         public PersonalTouchTracker touches = new PersonalTouchTracker();
         public StandingTracker standings = new StandingTracker();
@@ -226,6 +228,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref guestKin, "guestKin", LookMode.Deep);
             Scribe_Collections.Look(ref weddingPlans, "weddingPlans", LookMode.Deep);
             Scribe_Collections.Look(ref weddingAsked, "weddingAsked", LookMode.Value);
+            Scribe_Collections.Look(ref nextSteps, "nextSteps", LookMode.Deep);
             Scribe_Deep.Look(ref ambitions, "ambitions");
             Scribe_Deep.Look(ref touches, "touches");
             Scribe_Deep.Look(ref standings, "standings");
@@ -291,6 +294,8 @@ namespace ColonyCouncil
                 weddingPlans ??= new List<WeddingPlan>();
                 weddingPlans.RemoveAll(w => w?.a == null || w.b == null);
                 weddingAsked ??= new List<string>();
+                nextSteps ??= new List<NextStep>();
+                nextSteps.RemoveAll(s => s == null || s.key.NullOrEmpty());
                 chronicle.RemoveAll(e => e == null);
                 if (chronicle.Count > MaxChronicle) Caps.TrimKeeping(chronicle, MaxChronicle, e => e.Milestone, Caps.ChronicleNewest);
                 if (cooldowns == null) cooldowns = new Dictionary<string, int>();
@@ -453,6 +458,7 @@ namespace ColonyCouncil
                 Together.Hourly(this);
             });
             Safe("family", () => Family.Hourly(this));
+            Safe("next steps", () => NextSteps.Hourly(this));
         }
 
         private void HourlyEvents()

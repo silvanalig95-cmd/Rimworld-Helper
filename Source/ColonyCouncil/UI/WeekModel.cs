@@ -75,6 +75,7 @@ namespace ColonyCouncil
             m.Add(comp, "answers", Answers);
             m.Add(comp, "promises", () => Promises(comp));
             m.Add(comp, "strain", () => Strain(colonists, memory));
+            m.Add(comp, "plan", () => Plan(map), true);
             m.Add(comp, "planned", () => Planned(comp));
             m.Add(comp, "coming", () => Coming(comp));
             m.Add(comp, "health", () => Health(colonists, memory));
@@ -416,6 +417,38 @@ namespace ColonyCouncil
         }
 
         // ---------------- Gatherings and plans ----------------
+
+        /// <summary>The colony's next steps: the first few of the plan, each opening the Plan page (Building/NextSteps.cs).</summary>
+        private static WeekCard Plan(Map map)
+        {
+            if (!NextSteps.On) return null;
+            var c = Card("CC_Week_Plan", "CC_Week_Empty_Plan", Icons.Plan ?? Icons.Week, UiKit.Gold, "Plan");
+            int n = 0;
+            foreach (var s in NextSteps.PlanFor(map).Where(s => s.Planned))
+            {
+                n++;
+                var level = NextSteps.LevelOf(s);
+                c.rows.Add(new WeekRow
+                {
+                    icon = Icons.Plan ?? Icons.Week,
+                    text = n + ". " + s.title,
+                    note = s.HasSource ? ("CC_Level_" + level).Translate().ToString() : "CC_Plan_OwnNote".Translate().ToString(),
+                    noteColor = level >= AdviceLevel.High ? UiKit.Warn : UiKit.Faint,
+                    color = level >= AdviceLevel.Critical ? UiKit.Bad : Color.white,
+                    tip = Tip(s.detail, ClickPage("Plan")),
+                    click = Page("Plan"),
+                    order = n
+                });
+            }
+            int proposed = NextSteps.ProposedFor(map).Count;
+            if (proposed > 0)
+            {
+                c.actionLabel = "CC_Week_PlanProposed".Translate(proposed).Resolve();
+                c.actionTip = "CC_Week_PlanProposedTip".Translate();
+                c.action = Page("Plan");
+            }
+            return c;
+        }
 
         private static WeekCard Planned(CouncilGameComponent comp)
         {

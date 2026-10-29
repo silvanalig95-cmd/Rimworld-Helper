@@ -1,6 +1,48 @@
 # Handoff: work in progress
 
-Last shipped: 0.23.3 "Recruiting, spelled out", the player's ask that it be clear why a guest can't be recruited
+Last shipped: 0.24.0 "Planning the base with the council", the first round on the player's ask for help planning the
+base (which room near what, what's urgent, where to expand, and rooms that look messy). Agreed order of the whole:
+round 1 (shipped) = the next-steps plan, where a room should go, rearranging a room; round 2 (next) = a base ground
+plan, a base review, tidying the storage, production chains (mod-aware: VCE, Brewing, Gastronomy, VFE benches), an
+Almanac page "a base that grows well", and tidying the works (conduit loops and dead ends, shorter DBH pipe runs,
+purposeless walls, unused doors, double doors into freezers), which the player asked for explicitly. Keep in mind the
+player's mods (245: DBH, LWM Deep Storage, RimFridge, MinifyEverything, Dubs Mint Menus, VFE and VCE, Hospitality,
+RimMarket, Rimatomics, Pick Up And Haul, ...). Nothing of this round was tried in the game here.
+
+- Next steps: `Building/NextSteps.cs` (pure rules `NextStepsMath.cs`, Tools/Tests/NextStepsTests.cs; setting
+  `nextSteps`; saved `CouncilGameComponent.nextSteps`). `NextStep {key, kind advisor/defense/research/own, title,
+  detail, score, state, template, defense, choke, research, look, map}`. `NextSteps.Hourly` (from the game component)
+  gathers candidates per home map (advisor signals "adv:def[:key]", defense advice "def:key" from
+  `DefenseAdvice.For(DefenseSurvey.For(map))`, "research" when the bench is idle via `AdvisorWorker_Research.SuggestNext`),
+  marks a planned step done after 3 hourly looks without its source, and proposes the top 8 not in the plan, not done
+  lately (5 days) nor let go (15 days). `UI/NextStepsPanel.cs` is the Plan tab (`MainTabWindow_Council.Tab.Plan`,
+  icon Icons/Plan): the plan with arrows, each step's actions (`NextSteps.Actions`: plan the room, place the defense
+  plan, start or open research, the signal's own act, show me, go to page), done and let go, a row to add your own
+  (with a room plan), and the proposals. `HudCouncil` part "next" and `WeekModel` card "plan" show the first step.
+- Where should this go: `TemplatePlanner.FindSpots(t, map, furniture, cfg, want)` scores spots with `SpotMath`
+  (Tools/Tests/SpotTests.cs): walls shared, rock, zones, home ground, distance from the middle, rooms it goes with
+  (`near`) and away from (`avoid`), the gate (`nearGate`), the fields (`nearFields`) and quiet from workshops and barns
+  (`quiet`, new RoomTemplateDef flags set on 25 templates), keeping the best distinct ones; `SpotText` writes the
+  reasons. `Designator_PlanRoom.Suggestions` holds up to three; the planner window lists them with Here buttons.
+- Rearrange a room: pure arranger `Building/RoomArrangeMath.cs` (Tools/Tests/RoomArrangeTests.cs, which dumps the rooms
+  with RIMFOLK_ARRANGE_DEBUG set): a floor mask of any shape, the cells inside the doors kept free, items by kind (bed,
+  bedside, bench, table, chair, storage, wall hugger, decor, centre), placed biggest and most particular first by a score
+  per kind, a keep bonus so what already stands well stays, reach from the doors checked and the worst-placed piece
+  placed again (or left standing, and the room arranged around it), and `MoveOrder` (which move frees cells for the
+  next; a ring sets one aside). `Building/RoomRearranger.cs`: `Survey(room, moveStocked)` reads the room (terrain
+  mask, heavy floors, doors, every edifice on the floor; what stays and why: not ours, not minifiable at runtime, piped
+  (DBH `CompPipe`, VE `PipeSystem.CompResource`), ritual, plants growing (not plant pots), a filled grave, stocked
+  storage unless asked, existing orders, blueprints; a target the ground or a place worker refuses pins the piece and
+  arranges again), warns of pieces with no conduit in reach (`PowerConnectionMaker.BestTransmitterForConnector`), and
+  `Apply` hands the moves to `RearrangeQueue` (MapComponent, saved `orders`, `Sched.RareRearrange`): a reinstall
+  blueprint (`GenConstruct.PlaceBlueprintForReinstall`, or `PlaceBlueprintForInstall` from the minified box once picked
+  up) when `CanPlaceBlueprintAt` accepts, an uninstall designation for a piece set aside or a ring that has waited an
+  hour, giving up on a move blocked by something else after two days, dropping one the player redirected or cancelled.
+  `Designator_RearrangeRoom` (buttons beside "Save a room" on the Build page and the Rooms window) draws the room, the
+  ghosts of the moves and the stays while `Window_Rearrange` is open (counts, the stocked-shelves box, why each piece
+  goes or stays, the power warning, Go ahead, Stop the moves under way).
+
+Before it, 0.23.3 "Recruiting, spelled out", the player's ask that it be clear why a guest can't be recruited
 and what it takes. `Integrations/GuestCheck.cs` (verdict in `GuestCheckMath.cs`, Tools/Tests/GuestCheckTests.cs; setting
 `guestCheck`): `Patch_GuestCheckTab` postfixes Hospitality's private `ITab_Pawn_Guest.FillTabGuest` and draws into its
 static `listingStandard`; `Patch_GuestCheckTabSize` (FillTab prefix) grows the ITab's `size` to fit what was drawn last

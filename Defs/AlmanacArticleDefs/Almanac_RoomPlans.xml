@@ -78,12 +78,22 @@ It also notices rooms the colony could make better:</text>
 A material you pick yourself is remembered for that room and used again next time while there's enough of it. "Use what we have" forgets your picks and starts over. Green means enough with some to spare, amber only just enough, red not enough; the cost list at the bottom compares the whole room with your stock.</text>
       </li>
       <li>
+        <heading>Where should this go</heading>
+        <text>"Find a good spot" in the planner's panel lists three spots for the room, apart from one another, each with its reasons: the walls it would share, the rock to mine, the rooms it goes with and those it keeps away from, and for some rooms the gate, the fields or the quiet. A hospital goes near the gate and away from the workshops, an armory by the gate, a barn by the fields, a kitchen beside the freezer and the dining room, a bedroom or a nursery away from the workshops and the barn. Click a spot to see it on the map, or Here to put the plan there. Only spots where all of it can be built are suggested; a room with gaps over water is yours to place.</text>
+      </li>
+      <li>
         <heading>Your own rooms</heading>
         <text>"Save a built room as a plan" turns any enclosed, rectangular room with a door into a plan of your own, with its furniture, wall material and floor. It's kept with the mod's settings, so it's there in every game, under Your rooms. Delete it from the same list.</text>
       </li>
       <li>
         <heading>Upgrading a room you've built</heading>
         <text>"Upgrade a built room" furnishes a room you already have with a plan: hover the room and click. The plan turns to the wall with the room's door, counts what's already there, and plans only the furniture that's missing. A floor goes only on bare ground. The panel shows the room's impressiveness as it is now.</text>
+      </li>
+      <li>
+        <heading>Rearranging a room you've built</heading>
+        <text>"Rearrange a room" tidies a room that has grown messy: hover it and click, and the council shows where it would put each piece. Beds get their head to a wall and room to get in, with a bedside table by the head; benches stand with their back to a wall and their work spot free; the table goes in the middle with the chairs facing it; shelves line the walls in runs; heaters, batteries and the like stand flat against a wall; lamps, plant pots and sculptures go to the corners. The cell inside every door stays free, nothing is put down on anything else or on a work spot, and every piece can still be reached, or it is placed again until it can. A piece that already stands well is left where it is: moving furniture is work.
+
+The new places show on the map as green outlines, what stays in grey, and the window says why each piece goes where it goes. Say go and the moves are carried out with the game's own reinstall orders, a few at a time as the cells free up, so nothing is set down in the way; a piece standing on another's new place is picked up first. Only what can be picked up and put down again moves, so a mod that makes everything minifiable widens what the council can tidy. Walls, doors, pipes and conduits, plumbed fixtures (Dubs Bad Hygiene, Vanilla Expanded pipes), hydroponics with plants growing, filled graves and ritual pieces stay where they are, and so do shelves with goods in them unless you tick the box (then the goods are set down and hauled back). A piece that needs power and has no conduit within reach of its new place is named, so you can run one to it. The open moves in a room can be stopped from the same window; what has moved stays moved.</text>
       </li>
       <li>
         <heading>The game's own build menu</heading>

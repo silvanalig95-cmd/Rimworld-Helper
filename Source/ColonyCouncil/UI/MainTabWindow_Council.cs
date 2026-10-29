@@ -25,6 +25,7 @@ namespace ColonyCouncil
             Week,
             Overview,
             Priorities,
+            Plan,
             Moods,
             World,
             Build,
@@ -98,7 +99,7 @@ namespace ColonyCouncil
         }
 
         // Each section's pages, made once (asked every frame).
-        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Build, Tab.Defenses };
+        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Plan, Tab.Moods, Tab.World, Tab.Build, Tab.Defenses };
         private static readonly Tab[] PeopleTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Wishes };
         /// <summary>With "Faith in the colony" on (Ideology): the faiths page after the bonds (UI/FaithsPanel.cs).</summary>
         private static readonly Tab[] PeopleFaithTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Faiths, Tab.Wishes };
@@ -269,6 +270,7 @@ namespace ColonyCouncil
                 case Tab.Everyone: PeopleTable.Draw(content, comp); break;
                 case Tab.Dilemmas: DilemmasPanel.Draw(content, comp); break;
                 case Tab.Priorities: PrioritiesPanel.Draw(content, map); break;
+                case Tab.Plan: NextStepsPanel.Draw(content, comp, map); break;
                 case Tab.Build: BuildPanel.Draw(content, map); break;
                 case Tab.Defenses: DefensePanel.Draw(content, map); break;
                 case Tab.Roster: PeoplePanel.Draw(content, comp); break;
@@ -375,6 +377,7 @@ namespace ColonyCouncil
                 case Tab.Dilemmas: return Icons.Dilemmas ?? Icons.Decree;
                 case Tab.Overview: return Icons.Overview;
                 case Tab.Priorities: return Icons.Priorities;
+                case Tab.Plan: return Icons.Plan ?? Icons.Week;
                 case Tab.Moods: return Icons.Moods;
                 case Tab.World: return Icons.World;
                 case Tab.Build: return Icons.Rooms;
@@ -425,6 +428,9 @@ namespace ColonyCouncil
                     int needs = WeekModel.NeedsCount(comp);
                     return needs > 0 ? "CC_Tab_WeekCount".Translate(needs).ToString() : "CC_Tab_Week".Translate().ToString();
                 case Tab.Wishes: return "CC_Tab_Wishes".Translate(OpenWishCount());
+                case Tab.Plan:
+                    int steps = NextSteps.PlannedCount(Find.CurrentMap);
+                    return steps > 0 ? "CC_Tab_PlanCount".Translate(steps).ToString() : "CC_Tab_Plan".Translate().ToString();
                 case Tab.Decrees:
                     return comp.decrees.requests.Count > 0 ? "CC_Tab_DecreesAsked".Translate(comp.decrees.requests.Count).ToString() : "CC_Tab_Decrees".Translate().ToString();
                 case Tab.World:

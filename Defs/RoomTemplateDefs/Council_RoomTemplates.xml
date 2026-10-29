@@ -15,6 +15,7 @@
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Bedroom</defName>
     <group>Living</group>
+    <quiet>true</quiet>
     <tips>
       <li>A 5x5 bedroom feels spacious and is still small enough to make impressive cheaply.</li>
       <li>A bedroom's impressiveness gives a mood bonus every morning. A floor, a light and a piece of art go a long way.</li>
@@ -62,6 +63,7 @@
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_CoupleBedroom</defName>
     <group>Living</group>
+    <quiet>true</quiet>
     <tips>
       <li>Lovers who sleep apart get a mood penalty. A double bed in a shared room keeps couples happy.</li>
       <li>With an end table on each side, the room counts as properly furnished for both.</li>
@@ -273,6 +275,7 @@
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Hospital</defName>
     <group>Care</group>
+    <nearGate>true</nearGate><quiet>true</quiet>
     <avoid><li>Kitchen</li></avoid>
     <tips>
       <li>Hospital beds and sterile floors improve treatment and reduce infections.</li>
@@ -377,6 +380,7 @@
   <ColonyCouncil.RoomTemplateDef>
     <defName>Council_Barn</defName>
     <group>Food</group>
+    <nearFields>true</nearFields>
     <avoid><li>Bedroom</li></avoid>
     <tips>
       <li>Animals sleep better in a barn and are protected from the weather.</li>

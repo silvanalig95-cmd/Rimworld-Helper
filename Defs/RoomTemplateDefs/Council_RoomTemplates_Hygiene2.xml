@@ -15,6 +15,7 @@
     <purpose>The best room in the colony, for its leader or its finest couple. The bathroom is one door away at night.</purpose>
     <order>12</order>
     <group>Living</group>
+    <quiet>true</quiet>
     <size>(7,6)</size>
     <iconDefs><li>DoubleBed</li><li>BathtubStuff</li></iconDefs>
     <floors><li>WoodPlankFloor</li></floors>

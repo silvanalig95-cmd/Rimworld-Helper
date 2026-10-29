@@ -123,6 +123,8 @@ MODEL = {
     "CouncilGameComponent.cs:movingOnHeld": ("fixed", 8, 420, "those kept from moving on, one per person and reason, until it resolves or after a season (Social/MovingOnHeld.cs)"),
     "CouncilGameComponent.cs:weddingPlans": ("fixed", 3, 160, "weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs)"),
     "CouncilGameComponent.cs:weddingAsked": ("fixed", 40, V, "couples asked about their wedding, the newest 40 (Social/WeddingPlans.cs)"),
+    "CouncilGameComponent.cs:nextSteps": ("fixed", 40, 260, "the colony's next steps: the plan, at most 8 proposals, done ones for 5 days, let-go ones for 15 (Building/NextSteps.cs)"),
+    "Building/RoomRearranger.cs:orders": ("fixed", 30, 120, "per map: a room's furniture moves still to be carried out, gone once done, called off or after 15 days (Building/RoomRearranger.cs)"),
     "CouncilGameComponent.cs:guestKin": ("fixed", 6, 220, "those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs)"),
     "CouncilGameComponent.cs:chronicle": ("cap", (C["Chronicle"], 8), 350, "Caps.Chronicle; the newest 200 always, milestones longest"),
     "CouncilGameComponent.cs:history": ("window", (120, 1), 120, "a sample a day, 120 days"),
