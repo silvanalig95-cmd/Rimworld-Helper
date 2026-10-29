@@ -5,37 +5,82 @@ using HarmonyLib;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 using Verse.Sound;
 
 namespace ColonyCouncil
 {
     /// <summary>
-    /// One shelf's reserved kinds: "def:Name" for an item, "cat:Name" for any of a group (meals, drugs...), "best:Name"
-    /// for the best of a group the colony has at hand (a lavish meal before a fine one, glitterworld medicine first). Each
-    /// entry is one slot: a kind named twice keeps two.
+    /// One kind a shelf keeps slots for: <see cref="kind"/> is "def:Name" for an item, "cat:Name" for any of a group
+    /// (meals, drugs...), "best:Name" for the best of a group the colony has at hand (a lavish meal before a fine one,
+    /// glitterworld medicine first). <see cref="slots"/> slots are kept for it; with <see cref="only"/> it takes no more
+    /// than those; <see cref="perStack"/> (0: a full stack) is the most of it in one stack on this shelf; and while
+    /// <see cref="when"/> doesn't hold ("patient": someone lies ill or hurt in the shelf's room), it isn't kept there at all.
     /// </summary>
+    public class ShelfKind : IExposable
+    {
+        public const string WhenPatient = "patient";
+
+        public string kind;
+        public int slots = 1;
+        public bool only;
+        public int perStack;
+        public string when = "";
+
+        public ShelfKind Copy() => (ShelfKind)MemberwiseClone();
+
+        public void ExposeData()
+        {
+            Scribe_Values.Look(ref kind, "kind");
+            Scribe_Values.Look(ref slots, "slots", 1);
+            Scribe_Values.Look(ref only, "only");
+            Scribe_Values.Look(ref perStack, "perStack");
+            Scribe_Values.Look(ref when, "when", "");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                slots = Math.Max(1, slots);
+                perStack = Math.Max(0, perStack);
+                when ??= "";
+            }
+        }
+    }
+
+    /// <summary>One shelf's reserved kinds. Saves from 0.23.0 and 0.23.1 kept a name per slot ("kinds"); they load as entries.</summary>
     public class ShelfReserve : IExposable
     {
         public Building_Storage shelf;
-        public List<string> kinds = new List<string>();
+        public List<ShelfKind> entries = new List<ShelfKind>();
 
         public void ExposeData()
         {
             Scribe_References.Look(ref shelf, "shelf");
-            Scribe_Collections.Look(ref kinds, "kinds", LookMode.Value);
-            if (Scribe.mode == LoadSaveMode.PostLoadInit) kinds ??= new List<string>();
+            Scribe_Collections.Look(ref entries, "entries", LookMode.Deep);
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                List<string> kinds = null;
+                Scribe_Collections.Look(ref kinds, "kinds", LookMode.Value);
+                if (kinds != null && entries.NullOrEmpty())
+                    entries = kinds.Where(k => !k.NullOrEmpty()).GroupBy(k => k).Select(g => new ShelfKind { kind = g.Key, slots = g.Count() }).ToList();
+            }
+            if (Scribe.mode == LoadSaveMode.PostLoadInit)
+            {
+                entries ??= new List<ShelfKind>();
+                entries.RemoveAll(e => e == null || e.kind.NullOrEmpty());
+            }
         }
     }
 
     /// <summary>
-    /// Reserved slots on the colony's shelves (the setting "Reserved slots on shelves"): a shelf keeps one slot for each
-    /// kind picked with its "Reserved slots" button (an item, or any of a group like meals), as long as the colony has
-    /// some of it on the map; the other slots take whatever comes. Haulers put a new stack of anything else on it only
-    /// while a slot stays free for every reserved kind still missing (ShelfReserveMath.MayTakeSlot), and when one is
-    /// missing and the shelf is full, a stack of what it holds most of is moved out to make room (MoveOut): it counts as
-    /// not belonging there, so a hauler takes it to the next place that will have it. Looked at again at most every two
-    /// seconds, and at once when what the shelf holds changes. Works the same with LWM's Deep Storage, whose shelves
-    /// count their stacks through the game's own number per cell.
+    /// Reserved slots on the colony's shelves (the setting "Reserved slots on shelves"): a shelf keeps the slots set with
+    /// its "Reserved slots" button (ShelfKind: an item, any of a group, or the best of a group at hand), each for a stack
+    /// of its own, as long as the colony has some of that kind on the map; the other slots take whatever comes. Haulers
+    /// put a new stack of anything else on it only while a slot stays free for every reserved one still empty
+    /// (ShelfReserveMath.MayTakeSlot); a kind kept to its slots takes no more; a kind held to a number per stack is
+    /// topped up to that and no further (the hauler carries no more than the cell has room for); and a kind whose
+    /// condition doesn't hold is kept off the shelf. What must go (to make room, past a cap, or kept off for now) counts
+    /// as not belonging there, so a hauler takes it to the next place that will have it (MoveOut). Looked at again at
+    /// most every two seconds, and at once when what the shelf holds changes. Works the same with LWM's Deep Storage,
+    /// whose shelves count their stacks through the game's own number per cell.
     /// </summary>
     public class ShelfReserves : MapComponent
     {
@@ -54,25 +99,36 @@ namespace ColonyCouncil
 
         public static ShelfReserves Of(Map map) => map?.GetComponent<ShelfReserves>();
 
-        public List<string> KindsOf(Building_Storage shelf) => reserves.FirstOrDefault(r => r.shelf == shelf)?.kinds ?? new List<string>();
+        /// <summary>The shelf's entries (a copy to change and give back to <see cref="Set"/>).</summary>
+        public List<ShelfKind> EntriesOf(Building_Storage shelf) =>
+            reserves.FirstOrDefault(r => r.shelf == shelf)?.entries.Select(e => e.Copy()).ToList() ?? new List<ShelfKind>();
 
-        public void Set(Building_Storage shelf, List<string> kinds)
+        public void Set(Building_Storage shelf, List<ShelfKind> entries)
         {
             if (shelf == null) return;
             reserves.RemoveAll(r => r.shelf == shelf);
-            if (kinds != null && kinds.Count > 0) reserves.Add(new ShelfReserve { shelf = shelf, kinds = kinds.ToList() });
+            var list = entries?.Where(e => e != null && !e.kind.NullOrEmpty()).Select(e => e.Copy()).ToList();
+            if (list != null && list.Count > 0) reserves.Add(new ShelfReserve { shelf = shelf, entries = list });
             states.Remove(shelf);
             RebuildAll();
         }
 
+        /// <summary>Every shelf given gets the same entries.</summary>
+        public static void SetAll(List<Building_Storage> shelves, List<ShelfKind> entries)
+        {
+            foreach (var s in shelves)
+                if (s != null && !s.Destroyed) Of(s.Map)?.Set(s, entries);
+            SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+        }
+
         public override void ExposeData()
         {
-            if (Scribe.mode == LoadSaveMode.Saving) reserves.RemoveAll(r => r?.shelf == null || r.shelf.Destroyed || r.kinds.NullOrEmpty());
+            if (Scribe.mode == LoadSaveMode.Saving) reserves.RemoveAll(r => r?.shelf == null || r.shelf.Destroyed || r.entries.NullOrEmpty());
             Scribe_Collections.Look(ref reserves, "reserves", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 reserves ??= new List<ShelfReserve>();
-                reserves.RemoveAll(r => r?.shelf == null || r.kinds.NullOrEmpty());
+                reserves.RemoveAll(r => r?.shelf == null || r.entries.NullOrEmpty());
             }
         }
 
@@ -98,7 +154,7 @@ namespace ColonyCouncil
                 var c = Of(m);
                 if (c == null) continue;
                 foreach (var r in c.reserves)
-                    if (r?.shelf != null && !r.shelf.Destroyed && r.kinds.Count > 0) Reserved.Add(r.shelf);
+                    if (r?.shelf != null && !r.shelf.Destroyed && r.entries.Count > 0) Reserved.Add(r.shelf);
             }
         }
 
@@ -127,16 +183,20 @@ namespace ColonyCouncil
                 : cat == null ? raw
                 : (best ? "CC_Shelf_BestOf" : "CC_Shelf_AnyOf").Translate(cat.label.Named("GROUP")).Resolve().CapitalizeFirst();
 
+            public Texture2D Icon => def?.uiIcon ?? cat?.icon;
+
             public IEnumerable<ThingDef> Defs =>
                 def != null ? new[] { def } : best ? (IEnumerable<ThingDef>)targets ?? Enumerable.Empty<ThingDef>() : cat?.DescendantThingDefs ?? Enumerable.Empty<ThingDef>();
 
+            /// <summary>The kind, or null for a name that isn't one (or names a def or group no longer loaded).</summary>
             public static Kind Parse(string raw)
             {
                 if (raw.NullOrEmpty()) return null;
-                if (raw.StartsWith("def:")) return new Kind { raw = raw, def = DefDatabase<ThingDef>.GetNamedSilentFail(raw.Substring(4)) };
-                if (raw.StartsWith("cat:")) return new Kind { raw = raw, cat = DefDatabase<ThingCategoryDef>.GetNamedSilentFail(raw.Substring(4)) };
-                if (raw.StartsWith("best:")) return new Kind { raw = raw, best = true, cat = DefDatabase<ThingCategoryDef>.GetNamedSilentFail(raw.Substring(5)) };
-                return null;
+                Kind k = null;
+                if (raw.StartsWith("def:")) k = new Kind { raw = raw, def = DefDatabase<ThingDef>.GetNamedSilentFail(raw.Substring(4)) };
+                else if (raw.StartsWith("cat:")) k = new Kind { raw = raw, cat = DefDatabase<ThingCategoryDef>.GetNamedSilentFail(raw.Substring(4)) };
+                else if (raw.StartsWith("best:")) k = new Kind { raw = raw, best = true, cat = DefDatabase<ThingCategoryDef>.GetNamedSilentFail(raw.Substring(5)) };
+                return k != null && (k.def != null || k.cat != null) ? k : null;
             }
         }
 
@@ -169,20 +229,78 @@ namespace ColonyCouncil
             return new HashSet<ThingDef>(ShelfReserveMath.Best(ranks, present).Select(i => defs[i]));
         }
 
+        // ---------------- Conditions ----------------
+
+        /// <summary>Someone lies ill or hurt in a bed in this room: a patient being treated or recovering (animals in their beds too).</summary>
+        private bool PatientIn(Room room)
+        {
+            if (room == null || room.PsychologicallyOutdoors) return false;
+            foreach (var p in map.mapPawns.AllPawnsSpawned)
+            {
+                if (p == null || p.Dead || !p.InBed()) continue;
+                var bed = p.CurrentBed();
+                if (bed == null || bed.GetRoom() != room) continue;
+                if (p.Downed || HealthAIUtility.ShouldSeekMedicalRest(p) || p.health.HasHediffsNeedingTend()) return true;
+            }
+            return false;
+        }
+
         public class State
         {
             public int tick, held, capacity, waiting;
-            /// <summary>One per reserved slot (a kind named twice is in here twice).</summary>
+            public List<ShelfKind> entries = new List<ShelfKind>();
+            /// <summary>Per entry: its kind (null if it names nothing loaded), whether it counts now (its condition holds), and its stacks on the shelf.</summary>
+            public Kind[] kindOf;
+            public bool[] active;
+            public int[] stacksOf;
+            /// <summary>One per reserved slot of the entries that count now, and the entry each belongs to.</summary>
             public List<Kind> kinds = new List<Kind>();
+            public List<int> slotEntry = new List<int>();
             /// <summary>Per slot: filled by a stack on the shelf now; empty but some on the map (waiting for room).</summary>
             public bool[] here, onMap;
             public HashSet<Thing> moveOut = new HashSet<Thing>();
+            /// <summary>The shelf isn't in a room, so "while a patient lies in this room" never holds.</summary>
+            public bool noRoom;
 
             public bool FillsMissing(ThingDef d)
             {
                 for (int k = 0; k < kinds.Count; k++)
                     if (!here[k] && kinds[k].Matches(d)) return true;
                 return false;
+            }
+
+            /// <summary>Of a kind kept off the shelf for now (its condition doesn't hold) and of no kind that counts.</summary>
+            public bool Barred(ThingDef d)
+            {
+                bool off = false;
+                for (int e = 0; e < entries.Count; e++)
+                {
+                    if (kindOf[e] == null || !kindOf[e].Matches(d)) continue;
+                    if (active[e]) return false;
+                    off = true;
+                }
+                return off;
+            }
+
+            /// <summary>Of a kind kept to its slots that has as many stacks on the shelf as it has slots.</summary>
+            public bool CapReached(ThingDef d)
+            {
+                for (int e = 0; e < entries.Count; e++)
+                    if (active[e] && entries[e].only && kindOf[e] != null && kindOf[e].Matches(d) && stacksOf[e] >= Math.Max(1, entries[e].slots)) return true;
+                return false;
+            }
+
+            /// <summary>The most of it in one stack on this shelf (0: a full stack), the lowest of the kinds that count for it.</summary>
+            public int LimitFor(ThingDef d)
+            {
+                int limit = 0;
+                for (int e = 0; e < entries.Count; e++)
+                {
+                    int l = entries[e].perStack;
+                    if (l <= 0 || !active[e] || kindOf[e] == null || !kindOf[e].Matches(d)) continue;
+                    limit = limit == 0 ? l : Math.Min(limit, l);
+                }
+                return limit;
             }
         }
 
@@ -204,40 +322,66 @@ namespace ColonyCouncil
         private State Look(Building_Storage shelf, SlotGroup group, int now)
         {
             var st = new State { tick = now };
-            st.kinds = KindsOf(shelf).Select(Kind.Parse).Where(k => k != null && (k.def != null || k.cat != null)).ToList();
+            st.entries = reserves.FirstOrDefault(r => r.shelf == shelf)?.entries.ToList() ?? new List<ShelfKind>();
+            int n = st.entries.Count;
             var things = group.HeldThings.ToList();
             st.held = things.Count;
             var onShelf = new HashSet<ThingDef>(things.Select(t => t.def));
-            var bestOf = new Dictionary<string, HashSet<ThingDef>>();
-            foreach (var k in st.kinds)
-                if (k.best)
+            st.kindOf = new Kind[n];
+            st.active = new bool[n];
+            st.stacksOf = new int[n];
+            var room = shelf.GetRoom();
+            st.noRoom = room == null || room.PsychologicallyOutdoors;
+            bool patient = st.entries.Any(e => e.when == ShelfKind.WhenPatient) && PatientIn(room);
+            for (int e = 0; e < n; e++)
+            {
+                var kind = Kind.Parse(st.entries[e].kind);
+                if (kind != null && kind.best) kind.targets = BestAtHand(kind.cat, shelf, onShelf);
+                st.kindOf[e] = kind;
+                string when = st.entries[e].when ?? "";
+                st.active[e] = kind != null && (when.Length == 0 || when == ShelfKind.WhenPatient && patient);
+                if (!st.active[e] || kind == null) continue;
+                for (int j = 0; j < Math.Max(1, st.entries[e].slots); j++)
                 {
-                    if (!bestOf.TryGetValue(k.raw, out var targets)) bestOf[k.raw] = targets = BestAtHand(k.cat, shelf, onShelf);
-                    k.targets = targets;
+                    st.kinds.Add(kind);
+                    st.slotEntry.Add(e);
                 }
+            }
             foreach (var c in shelf.AllSlotCellsList()) st.capacity += c.GetMaxItemsAllowedInCell(map);
+            var caps = new int[n];
+            for (int e = 0; e < n; e++) caps[e] = st.active[e] && st.entries[e].only ? Math.Max(1, st.entries[e].slots) : -1;
             var stacks = new List<ShelfReserveMath.Stack>();
             foreach (var t in things)
             {
                 var covers = new List<int>();
                 for (int k = 0; k < st.kinds.Count; k++)
                     if (st.kinds[k].Matches(t.def)) covers.Add(k);
-                stacks.Add(new ShelfReserveMath.Stack { key = t.def.defName, count = t.stackCount, covers = covers.ToArray() });
+                var groups = new List<int>();
+                for (int e = 0; e < n; e++)
+                {
+                    if (!st.active[e] || st.kindOf[e] == null || !st.kindOf[e].Matches(t.def)) continue;
+                    st.stacksOf[e]++;
+                    if (caps[e] >= 0) groups.Add(e);
+                }
+                stacks.Add(new ShelfReserveMath.Stack
+                {
+                    key = t.def.defName, count = t.stackCount, covers = covers.ToArray(), barred = st.Barred(t.def), groups = groups.ToArray()
+                });
             }
             var missing = ShelfReserveMath.Missing(st.kinds.Count, stacks);
             st.here = new bool[st.kinds.Count];
             st.onMap = new bool[st.kinds.Count];
             for (int k = 0; k < st.kinds.Count; k++) st.here[k] = !missing.Contains(k);
-            var onMapOf = new Dictionary<string, bool>();
+            var onMapOf = new Dictionary<int, bool>();
             foreach (int k in missing)
             {
-                var kind = st.kinds[k];
-                if (!onMapOf.TryGetValue(kind.raw, out bool some)) onMapOf[kind.raw] = some = OnMap(kind, shelf);
+                int e = st.slotEntry[k];
+                if (!onMapOf.TryGetValue(e, out bool some)) onMapOf[e] = some = OnMap(st.kinds[k], shelf);
                 if (!some) continue;
                 st.onMap[k] = true;
                 st.waiting++;
             }
-            foreach (int i in ShelfReserveMath.MoveOut(st.capacity, stacks, st.kinds.Count, st.waiting)) st.moveOut.Add(things[i]);
+            foreach (int i in ShelfReserveMath.MoveOut(st.capacity, stacks, st.kinds.Count, st.waiting, caps)) st.moveOut.Add(things[i]);
             return st;
         }
 
@@ -264,29 +408,66 @@ namespace ColonyCouncil
 
         // ---------------- The game's hooks ----------------
 
-        /// <summary>A new stack of this thing may go into this cell of a shelf with reserved kinds (Patch_ShelfReserveCell).</summary>
+        private static State StateAt(IntVec3 c, Map map, out Building_Storage shelf)
+        {
+            shelf = map.haulDestinationManager.SlotGroupAt(c)?.parent as Building_Storage;
+            if (shelf == null || !Reserved.Contains(shelf) || !On) return null;
+            var st = Of(map)?.StateOf(shelf);
+            return st == null || st.entries.Count == 0 ? null : st;
+        }
+
+        /// <summary>This thing may go into this cell of a shelf with reserved kinds (Patch_ShelfReserveCell).</summary>
         internal static bool MayStore(IntVec3 c, Map map, Thing thing)
         {
-            var shelf = map.haulDestinationManager.SlotGroupAt(c)?.parent as Building_Storage;
-            if (shelf == null || !Reserved.Contains(shelf) || !On) return true;
-            // Already on the shelf: it stays, unless it's the stack moving out to make room (not to another cell of it).
+            var st = StateAt(c, map, out var shelf);
+            if (st == null) return true;
+            // Already on the shelf: it stays, unless it's a stack that must go (not to another cell of it), and two of its
+            // stacks are put together (the game's merging) only while the one made stays within its number per stack.
             if (thing.Spawned && thing.Map == map && shelf.OccupiedRect().Contains(thing.Position))
-                return !(Of(map)?.StateOf(shelf)?.moveOut.Contains(thing) ?? false);
-            // Added to a stack already in the cell, it takes no slot.
+            {
+                if (st.moveOut.Contains(thing)) return false;
+                int most = st.LimitFor(thing.def);
+                if (most <= 0) return true;
+                foreach (var t in map.thingGrid.ThingsListAt(c))
+                    if (t != thing && t.CanStackWith(thing) && t.stackCount + thing.stackCount > most) return false;
+                return true;
+            }
+            if (st.Barred(thing.def)) return false;
+            // Added to a stack already in the cell, it takes no slot: up to its number per stack, if it has one.
+            int limit = st.LimitFor(thing.def);
             var here = map.thingGrid.ThingsListAt(c);
             for (int i = 0; i < here.Count; i++)
             {
                 var t = here[i];
-                if (t != thing && t.def.EverStorable(false) && t.CanStackWith(thing) && t.stackCount < t.def.stackLimit) return true;
+                if (t == thing || !t.def.EverStorable(false) || !t.CanStackWith(thing)) continue;
+                if (limit > 0 && t.stackCount >= limit) return false;
+                if (t.stackCount < t.def.stackLimit) return true;
             }
-            var st = Of(map)?.StateOf(shelf);
-            if (st == null || st.kinds.Count == 0) return true;
+            bool fills = st.FillsMissing(thing.def);
+            if (!fills && st.CapReached(thing.def)) return false;
             // The game says this cell has room; if the count disagrees (another mod's rule), there's room for one.
             int capacity = Math.Max(st.capacity, st.held + 1);
-            return ShelfReserveMath.MayTakeSlot(capacity, st.held, st.FillsMissing(thing.def), st.waiting);
+            return ShelfReserveMath.MayTakeSlot(capacity, st.held, fills, st.waiting);
         }
 
-        /// <summary>A stack on the shelf that is to make room for a missing reserved kind no longer belongs there (Patch_ShelfReserveAccepts).</summary>
+        /// <summary>The most of this thing one haul brings to this cell (0: no limit), for a kind held to a number per stack (Patch_ShelfReserveHaulCount).</summary>
+        internal static int MostInto(IntVec3 c, Map map, Thing thing)
+        {
+            var st = StateAt(c, map, out _);
+            if (st == null) return 0;
+            int limit = st.LimitFor(thing.def);
+            if (limit <= 0) return 0;
+            int existing = -1;
+            foreach (var t in map.thingGrid.ThingsListAt(c))
+                if (t != thing && t.CanStackWith(thing))
+                {
+                    existing = t.stackCount;
+                    break;
+                }
+            return Math.Max(1, ShelfReserveMath.SpaceFor(limit, thing.def.stackLimit, existing));
+        }
+
+        /// <summary>A stack on the shelf that must go (to make room, past a cap, or kept off for now) no longer belongs there (Patch_ShelfReserveAccepts).</summary>
         internal static bool MovingOut(Building_Storage shelf, Thing t)
         {
             if (t == null || !Reserved.Contains(shelf) || !On) return false;
@@ -294,7 +475,7 @@ namespace ColonyCouncil
             return st != null && st.moveOut.Contains(t);
         }
 
-        // ---------------- The button and the window ----------------
+        // ---------------- Words ----------------
 
         public static Gizmo GizmoFor(Building_Storage shelf)
         {
@@ -303,30 +484,43 @@ namespace ColonyCouncil
             if (shelf.AllSlotCellsList().Count * shelf.MaxItemsInCell < 2) return null;
             var c = Of(shelf.Map);
             if (c == null) return null;
-            return new Command_ShelfReserve(shelf, c.KindsOf(shelf).Count);
+            return new Command_ShelfReserve(shelf, c.EntriesOf(shelf).Sum(e => Math.Max(1, e.slots)));
         }
 
-        /// <summary>Each reserved kind of the shelf, how many slots, and where it stands, one line each.</summary>
+        /// <summary>Each reserved kind of the shelf, how it's kept, and where it stands, one line each.</summary>
         public static string Summary(Building_Storage shelf)
         {
             var st = Of(shelf?.Map)?.StateOf(shelf);
-            if (st == null || st.kinds.Count == 0) return "CC_Shelf_None".Translate().Resolve();
+            if (st == null || st.entries.Count == 0) return "CC_Shelf_None".Translate().Resolve();
             var lines = new List<string>();
-            foreach (var raw in st.kinds.Select(k => k.raw).Distinct())
+            for (int e = 0; e < st.entries.Count; e++)
             {
-                var kind = st.kinds.First(k => k.raw == raw);
-                int n = st.kinds.Count(k => k.raw == raw);
-                lines.Add("- " + kind.Label + (n > 1 ? " x" + n : "") + ": " + StatusOf(st, raw));
+                string label = st.kindOf[e]?.Label ?? st.entries[e].kind;
+                string how = HowKept(st.entries[e]);
+                lines.Add("- " + label + (how.NullOrEmpty() ? "" : " (" + how + ")") + ": " + StatusOf(st, e));
             }
             return string.Join("\n", lines);
         }
 
-        /// <summary>Where a reserved kind stands: on the shelf, coming, a stack moving out for it, or none on the map; with several slots, how many are filled.</summary>
-        public static string StatusOf(State st, string raw)
+        /// <summary>"2 slots, no more, 4 each, while a patient lies here", leaving out what is as usual.</summary>
+        public static string HowKept(ShelfKind entry)
         {
+            var parts = new List<string>();
+            if (entry.slots > 1) parts.Add("CC_Shelf_HowSlots".Translate(entry.slots).Resolve());
+            if (entry.only) parts.Add("CC_Shelf_HowOnly".Translate().Resolve());
+            if (entry.perStack > 0) parts.Add("CC_Shelf_HowEach".Translate(entry.perStack).Resolve());
+            if (entry.when == ShelfKind.WhenPatient) parts.Add("CC_Shelf_HowPatient".Translate().Resolve());
+            return string.Join(", ", parts);
+        }
+
+        /// <summary>Where an entry stands: kept off for now, on the shelf, coming, a stack moving out for it, or none on the map; with several slots, how many are filled.</summary>
+        public static string StatusOf(State st, int e)
+        {
+            if (e < 0 || e >= st.entries.Count || st.kindOf[e] == null) return "CC_Shelf_Unknown".Translate().Resolve();
+            if (!st.active[e]) return (st.noRoom ? "CC_Shelf_WhenNoRoom" : "CC_Shelf_WhenOff").Translate().Resolve();
             var slots = new List<int>();
             for (int k = 0; k < st.kinds.Count; k++)
-                if (st.kinds[k].raw == raw) slots.Add(k);
+                if (st.slotEntry[k] == e) slots.Add(k);
             if (slots.Count == 0) return "CC_Shelf_Unknown".Translate().Resolve();
             int filled = slots.Count(k => st.here[k]);
             int open = slots.FirstOrDefault(k => !st.here[k]);
@@ -337,175 +531,22 @@ namespace ColonyCouncil
                 ? "CC_Shelf_SomeHere".Translate(filled, slots.Count, rest.Named("REST")).Resolve()
                 : rest;
             // The best at hand says which it is now.
-            var kind = st.kinds[slots[0]];
+            var kind = st.kindOf[e];
             if (kind.best && kind.targets != null && kind.targets.Count > 0)
                 status = "CC_Shelf_BestNow".Translate(string.Join(", ", kind.targets.Select(d => d.label)).Named("KIND"), status.Named("STATUS")).Resolve();
             return status;
         }
 
-        /// <summary>Every shelf given gets the same reserved kinds.</summary>
-        public static void SetAll(List<Building_Storage> shelves, List<string> kinds)
+        public static bool AllHere(State st, int e)
         {
-            foreach (var s in shelves)
-                if (s != null && !s.Destroyed) Of(s.Map)?.Set(s, kinds.ToList());
-            SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+            if (st == null || e < 0 || e >= st.entries.Count || !st.active[e]) return false;
+            for (int k = 0; k < st.kinds.Count; k++)
+                if (st.slotEntry[k] == e && !st.here[k]) return false;
+            return true;
         }
     }
 
-    /// <summary>The button on a selected shelf: its reserved slots, in a window for every shelf selected.</summary>
-    public class Command_ShelfReserve : Command_Action
-    {
-        private const int GroupKey = 0x5E1F_0A11;
-
-        private readonly Building_Storage shelf;
-
-        public Command_ShelfReserve(Building_Storage shelf, int count)
-        {
-            this.shelf = shelf;
-            groupKey = GroupKey;
-            icon = Icons.Pin;
-            defaultLabel = (count > 0 ? "CC_Shelf_ButtonCount" : "CC_Shelf_Button").Translate(count).Resolve();
-            defaultDesc = "CC_Shelf_ButtonDesc".Translate().Resolve() + "\n\n" + ShelfReserves.Summary(shelf);
-            action = () => Open(new List<Building_Storage> { shelf });
-        }
-
-        public override void ProcessGroupInput(Event ev, List<Gizmo> group)
-        {
-            var shelves = new List<Building_Storage> { shelf };
-            if (group != null)
-                foreach (var g in group)
-                    if (g is Command_ShelfReserve c && c.shelf != null && !shelves.Contains(c.shelf) && c.shelf.Map == shelf.Map)
-                        shelves.Add(c.shelf);
-            Open(shelves);
-        }
-
-        private static void Open(List<Building_Storage> shelves)
-        {
-            if (Find.WindowStack.IsOpen(typeof(Dialog_ShelfReserve))) return;
-            Find.WindowStack.Add(new Dialog_ShelfReserve(shelves));
-        }
-    }
-
-    /// <summary>
-    /// The reserved kinds of a shelf (or of every shelf selected, set alike): each with where it stands, a button to take
-    /// it off, and "Reserve a slot for..." (Dialog_ShelfReservePick).
-    /// </summary>
-    public class Dialog_ShelfReserve : Window
-    {
-        private readonly List<Building_Storage> shelves;
-        private Vector2 scroll;
-        private float height = 200f;
-
-        public Dialog_ShelfReserve(List<Building_Storage> shelves)
-        {
-            this.shelves = shelves;
-            doCloseX = true;
-            doCloseButton = true;
-            closeOnClickedOutside = true;
-            absorbInputAroundWindow = false;
-            forcePause = false;
-            preventCameraMotion = false;
-        }
-
-        public override Vector2 InitialSize => new Vector2(Mathf.Min(520f, UI.screenWidth - 40f), Mathf.Min(560f, UI.screenHeight - 40f));
-
-        private Building_Storage First => shelves.FirstOrDefault(s => s != null && !s.Destroyed && s.Map != null);
-
-        public override void DoWindowContents(Rect inRect)
-        {
-            var first = First;
-            var comp = ShelfReserves.Of(first?.Map);
-            if (first == null || comp == null)
-            {
-                Close();
-                return;
-            }
-            string sub = shelves.Count > 1 ? "CC_Shelf_SubMany".Translate(shelves.Count).Resolve() : first.LabelCap;
-            float top = UiKit.PageHeader(new Rect(inRect.x, inRect.y, inRect.width - 24f, UiKit.HeaderHeight), Icons.Pin, "CC_Shelf_Title".Translate(), sub);
-            float y = inRect.y + top;
-            y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_Shelf_Explain".Translate(), UiKit.Faint) + 8f;
-            if (!ShelfReserves.On)
-                y += UiKit.Paragraph(inRect.x, y, inRect.width, "CC_Shelf_Off".Translate(), UiKit.Warn) + 6f;
-
-            var kinds = comp.KindsOf(first).ToList();
-            var st = comp.StateOf(first);
-            int capacity = st?.capacity ?? 0;
-            var distinct = kinds.Distinct().ToList();
-            const float rowH = 30f, bottom = 44f;
-            if (capacity > 0)
-            {
-                UiKit.LabelFit(new Rect(inRect.x, y, inRect.width, 22f), "CC_Shelf_SlotsUsed".Translate(kinds.Count, capacity),
-                    kinds.Count > capacity ? UiKit.Warn : UiKit.Faint, GameFont.Tiny);
-                y += 24f;
-            }
-            var outRect = new Rect(inRect.x, y, inRect.width, inRect.yMax - y - bottom - 42f);
-            var view = new Rect(0f, 0f, outRect.width - 16f, height);
-            Widgets.BeginScrollView(outRect, ref scroll, view);
-            float ry = 0f;
-            List<string> next = null;
-            for (int i = 0; i < distinct.Count; i++)
-            {
-                string raw = distinct[i];
-                int n = kinds.Count(s => s == raw);
-                var kind = ShelfReserves.Kind.Parse(raw);
-                var row = new Rect(0f, ry, view.width, rowH);
-                UiKit.Zebra(row, i);
-                var icon = kind?.def?.uiIcon ?? kind?.cat?.icon;
-                if (icon != null) GUI.DrawTexture(new Rect(4f, ry + 3f, 24f, 24f), icon);
-                string label = kind?.Label ?? raw;
-                bool allHere = st != null && Enumerable.Range(0, st.kinds.Count).Where(k => st.kinds[k].raw == raw).All(k => st.here[k]);
-                string status = st != null ? ShelfReserves.StatusOf(st, raw) : "CC_Shelf_Unknown".Translate().Resolve();
-                UiKit.LabelFit(new Rect(34f, ry, view.width * 0.4f - 34f, rowH), label, Color.white);
-                UiKit.LabelFit(new Rect(view.width * 0.4f, ry, view.width * 0.6f - 118f, rowH), status, allHere ? UiKit.Good : UiKit.Faint, GameFont.Tiny);
-                // How many slots: fewer, the number, more.
-                var less = new Rect(view.width - 112f, ry + 4f, 22f, 22f);
-                var count = new Rect(view.width - 88f, ry, 30f, rowH);
-                var more = new Rect(view.width - 56f, ry + 4f, 22f, 22f);
-                if (Widgets.ButtonText(less, "-", true, false, n > 1) && n > 1)
-                {
-                    next = kinds.ToList();
-                    next.RemoveAt(next.LastIndexOf(raw));
-                }
-                UiKit.LabelFit(count, "x" + n, Color.white, GameFont.Small, TextAnchor.MiddleCenter);
-                bool room = capacity <= 0 || kinds.Count < capacity;
-                if (Widgets.ButtonText(more, "+", true, false, room) && room)
-                {
-                    next = kinds.ToList();
-                    next.Insert(next.LastIndexOf(raw) + 1, raw);
-                }
-                TooltipHandler.TipRegion(less, "CC_Shelf_LessTip".Translate());
-                TooltipHandler.TipRegion(more, room ? "CC_Shelf_MoreTip".Translate() : "CC_Shelf_FullTip".Translate());
-                var x = new Rect(view.width - 28f, ry + 4f, 22f, 22f);
-                TooltipHandler.TipRegion(x, "CC_Shelf_RemoveTip".Translate());
-                if (Widgets.ButtonImage(x, TexButton.Delete)) next = kinds.Where(s => s != raw).ToList();
-                ry += rowH;
-            }
-            if (distinct.Count == 0)
-            {
-                UiKit.LabelFit(new Rect(4f, ry, view.width - 8f, rowH), "CC_Shelf_None".Translate(), UiKit.Faint);
-                ry += rowH;
-            }
-            height = Mathf.Max(ry, 40f);
-            Widgets.EndScrollView();
-            if (next != null) SetAll(next);
-
-            var add = new Rect(inRect.x, inRect.yMax - bottom - 36f, 260f, 32f);
-            if (Widgets.ButtonText(add, UiKit.Fit("CC_Shelf_Add".Translate(), add.width - 12f)) && !Find.WindowStack.IsOpen(typeof(Dialog_ShelfReservePick)))
-                Find.WindowStack.Add(new Dialog_ShelfReservePick(shelves));
-            // One slot for each kind on the shelf now that has none yet.
-            var keep = new Rect(add.xMax + 8f, add.y, Mathf.Min(220f, inRect.xMax - add.xMax - 8f), 32f);
-            var onShelf = first.GetSlotGroup()?.HeldThings.Select(th => "def:" + th.def.defName).Distinct().Where(raw => !kinds.Contains(raw)).ToList() ?? new List<string>();
-            int roomLeft = capacity > 0 ? capacity - kinds.Count : onShelf.Count;
-            TooltipHandler.TipRegion(keep, "CC_Shelf_KeepTip".Translate());
-            if (keep.width > 60f && Widgets.ButtonText(keep, UiKit.Fit("CC_Shelf_Keep".Translate(), keep.width - 12f), true, true, onShelf.Count > 0 && roomLeft > 0)
-                && onShelf.Count > 0 && roomLeft > 0)
-                SetAll(kinds.Concat(onShelf.Take(roomLeft)).ToList());
-        }
-
-        private void SetAll(List<string> kinds) => ShelfReserves.SetAll(shelves, kinds);
-    }
-
-    /// <summary>A shelf with reserved kinds keeps a slot for each (ShelfReserves.MayStore): checked wherever the game asks if a cell can take a thing.</summary>
+    /// <summary>A shelf with reserved kinds keeps to them (ShelfReserves.MayStore): checked wherever the game asks if a cell can take a thing.</summary>
     [HarmonyPatch(typeof(StoreUtility), "NoStorageBlockersIn")]
     public static class Patch_ShelfReserveCell
     {
@@ -526,7 +567,29 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A stack moving out to make room for a reserved kind no longer belongs on the shelf, so a hauler takes it on.</summary>
+    /// <summary>A haul to a shelf brings no more of a kind held to a number per stack than the cell has room for (ShelfReserves.MostInto).</summary>
+    [HarmonyPatch(typeof(HaulAIUtility), nameof(HaulAIUtility.HaulToCellStorageJob))]
+    public static class Patch_ShelfReserveHaulCount
+    {
+        private static bool broken;
+
+        public static void Postfix(Pawn p, Thing t, IntVec3 storeCell, ref Job __result)
+        {
+            if (__result == null || broken || ShelfReserves.Reserved.Count == 0 || t == null || p?.Map == null) return;
+            try
+            {
+                int most = ShelfReserves.MostInto(storeCell, p.Map, t);
+                if (most > 0 && __result.count > most) __result.count = most;
+            }
+            catch (Exception e)
+            {
+                broken = true;
+                CouncilLog.ErrorOnce("reserved shelf slots: how many to bring", e);
+            }
+        }
+    }
+
+    /// <summary>A stack that must go (to make room, past a cap, or kept off for now) no longer belongs on the shelf, so a hauler takes it on.</summary>
     [HarmonyPatch(typeof(Building_Storage), nameof(Building_Storage.Accepts))]
     public static class Patch_ShelfReserveAccepts
     {

@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Slots kept just so
+
+*29 October 2026, version 0.23.2*
+
+- A reserved kind can be kept to its slots with "no more than that": one slot of meals, and never a second stack, however much room is left.
+- "Per stack" sets the most of a kind in one stack on the shelf, like four meals. Haulers top it up to that and bring no more.
+- "When" can keep a kind only while a patient lies in the shelf's room. With the beds empty it isn't kept there, and what's there is carried elsewhere.
+- Each reserved kind now shows its slots, its limits and when it's kept on a second line in the shelf's list.
+
 ## More to reserve slots for
 
 *29 October 2026, version 0.23.1*

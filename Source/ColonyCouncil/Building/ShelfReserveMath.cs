@@ -8,16 +8,23 @@ namespace ColonyCouncil
     /// the colony has some of that kind on the map. Each slot needs a stack of its own: the stacks are matched to the
     /// slots they can fill so as many are filled as can be (<see cref="Fill"/>). A stack of anything else takes a free
     /// slot only while a slot is left for every reserved one still empty; when one is empty and the shelf is too full
-    /// for it, a stack filling no slot is moved out, of what the shelf holds most of, the smallest first.
+    /// for it, a stack filling no slot is moved out, of what the shelf holds most of, the smallest first. A kind can
+    /// also be kept to its slots and no more (a cap), held to a number of items per stack, and kept only while its
+    /// condition holds: while it doesn't, the kind isn't kept on the shelf at all (barred).
     /// </summary>
     public static class ShelfReserveMath
     {
-        /// <summary>A stack on the shelf: what it is (its def), how many, and which reserved slots it could fill.</summary>
+        /// <summary>
+        /// A stack on the shelf: what it is (its def), how many, which reserved slots it could fill, whether it is of a
+        /// kind kept out for now (<see cref="barred"/>), and which capped kinds it counts against (<see cref="groups"/>).
+        /// </summary>
         public struct Stack
         {
             public string key;
             public int count;
             public int[] covers;
+            public bool barred;
+            public int[] groups;
         }
 
         /// <summary>
@@ -78,12 +85,17 @@ namespace ColonyCouncil
         /// The stacks to move out so each empty slot the colony has some for finds room: as many as are short, from the
         /// stacks filling no slot, of what the shelf holds most of, the smallest first.
         /// </summary>
-        public static List<int> MoveOut(int capacity, IList<Stack> stacks, int slots, int missingWaiting)
+        public static List<int> MoveOut(int capacity, IList<Stack> stacks, int slots, int missingWaiting) =>
+            MoveOut(capacity, stacks, slots, missingWaiting, null);
+
+        /// <summary>
+        /// The same, first moving out every stack of a kind kept out for now, and the stacks of a capped kind past its
+        /// cap (<paramref name="caps"/>, by group), of those filling no slot, the smallest first.
+        /// </summary>
+        public static List<int> MoveOut(int capacity, IList<Stack> stacks, int slots, int missingWaiting, IList<int> caps)
         {
             var result = new List<int>();
             if (stacks == null) return result;
-            int need = missingWaiting - (capacity - stacks.Count);
-            if (need <= 0) return result;
             var used = new bool[stacks.Count];
             foreach (int s in Fill(slots, stacks))
                 if (s >= 0) used[s] = true;
@@ -93,21 +105,62 @@ namespace ColonyCouncil
                 string key = s.key ?? "";
                 perKey[key] = perKey.TryGetValue(key, out int n) ? n + 1 : 1;
             }
-            while (need > 0)
+            void Out(int i)
+            {
+                used[i] = true;
+                result.Add(i);
+                perKey[stacks[i].key ?? ""]--;
+            }
+            int Pick(System.Func<int, bool> which)
             {
                 int best = -1;
                 for (int i = 0; i < stacks.Count; i++)
                 {
-                    if (used[i]) continue;
+                    if (used[i] || !which(i)) continue;
                     if (best < 0 || Better(stacks[i], stacks[best], perKey)) best = i;
                 }
-                if (best < 0) break;
-                used[best] = true;
-                result.Add(best);
+                return best;
+            }
+            // Kept out for now: every stack of it that fills no slot.
+            for (int i = 0; i < stacks.Count; i++)
+                if (!used[i] && stacks[i].barred) Out(i);
+            // Past a cap: down to it, from the stacks filling no slot.
+            if (caps != null)
+                for (int g = 0; g < caps.Count; g++)
+                {
+                    if (caps[g] < 0) continue;
+                    bool Member(int i) => stacks[i].groups != null && System.Array.IndexOf(stacks[i].groups, g) >= 0;
+                    int count = 0;
+                    for (int i = 0; i < stacks.Count; i++)
+                        if (Member(i) && !result.Contains(i)) count++;
+                    while (count > caps[g])
+                    {
+                        int pick = Pick(Member);
+                        if (pick < 0) break;
+                        Out(pick);
+                        count--;
+                    }
+                }
+            // Room for the slots waiting, counting what's already on its way out.
+            int need = missingWaiting - (capacity - (stacks.Count - result.Count));
+            while (need > 0)
+            {
+                int pick = Pick(_ => true);
+                if (pick < 0) break;
+                Out(pick);
                 need--;
-                perKey[stacks[best].key ?? ""]--;
             }
             return result;
+        }
+
+        /// <summary>
+        /// How many more of a kind held to <paramref name="limit"/> per stack (0: a full stack) a cell can take: the room
+        /// left in its stack there (<paramref name="existing"/>, -1 for none), or a new stack's worth.
+        /// </summary>
+        public static int SpaceFor(int limit, int stackLimit, int existing)
+        {
+            int most = limit > 0 ? System.Math.Min(limit, stackLimit) : stackLimit;
+            return existing < 0 ? most : System.Math.Max(0, most - existing);
         }
 
         /// <summary>

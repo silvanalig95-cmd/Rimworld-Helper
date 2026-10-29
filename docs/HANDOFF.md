@@ -1,6 +1,19 @@
 # Handoff: work in progress
 
-Last shipped: 0.23.1 "More to reserve slots for", the player's asks on 0.23.0. Kinds are one entry per slot (a kind
+Last shipped: 0.23.2 "Slots kept just so", the player's asks on 0.23.1. Entries are `ShelfKind {kind, slots, only,
+perStack, when}` (`ShelfReserve.entries`; the 0.23.0/0.23.1 "kinds" name-per-slot list loads into entries). `State`
+per entry: `kindOf`, `active` (its `when` holds: "" always, "patient" = someone in a bed in the shelf's room who is
+downed, should seek medical rest or needs tending), `stacksOf`; slots come only from active entries. `Barred` (matches
+an inactive entry and no active one) blocks a thing and moves its stacks out; `CapReached` (an `only` entry with as many
+stacks as slots) blocks a new stack; `LimitFor` (lowest `perStack`) blocks a cell whose stack is at the limit, keeps
+on-shelf merges (WorkGiver_Merge) within it, and caps the haul count (`Patch_ShelfReserveHaulCount`, a postfix on
+`HaulAIUtility.HaulToCellStorageJob`, via `ShelfReserveMath.SpaceFor`). `MoveOut` takes barred stacks, then stacks past
+a cap (filling no slot, smallest first), then room for the waiting slots. Over-limit stacks are left to be used up.
+Pick Up And Haul fills from inventory by its own count, so it can bring a little past a per-stack limit once. The window
+(Building/ShelfReserveWindow.cs) has two lines per kind: slots, "no more than that", per stack (steps below the kind's
+own stack size, then full), and "when". Not tried in the game here.
+
+Before it, 0.23.1 "More to reserve slots for", the player's asks on 0.23.0. Kinds are one entry per slot (a kind
 named twice keeps two; `Set` no longer dedupes). `ShelfReserveMath.Fill` matches stacks to slots (augmenting paths,
 bigger stacks first), so each slot needs its own stack; `Missing` is the unfilled slots and `MoveOut` takes only stacks
 filling no slot. "best:Cat" kinds (`Kind.best`, `targets` from `ShelfReserves.BestAtHand` per look: `Rankable` food

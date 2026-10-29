@@ -158,7 +158,7 @@ namespace ColonyCouncil
             query = Widgets.TextField(new Rect(searchRect.x + 74f, searchRect.y, searchRect.width - 74f, 28f), query ?? "");
             y += 36f;
 
-            var kinds = comp.KindsOf(first).ToList();
+            var kinds = comp.EntriesOf(first).Select(e => e.kind).ToList();
             var list = Shown();
             var outRect = new Rect(inRect.x, y, inRect.width, inRect.yMax - y - 48f);
             var view = new Rect(0f, 0f, outRect.width - 16f, Mathf.Max(list.Count * RowH, RowH));
@@ -215,12 +215,15 @@ namespace ColonyCouncil
             if (Widgets.ButtonInvisible(r)) click();
         }
 
-        /// <summary>Reserved with one slot, or taken off with all its slots (the shelf window sets how many).</summary>
+        /// <summary>Reserved with one slot, or taken off with all its slots (the shelf window sets how many, and how it's kept).</summary>
         private void Toggle(List<string> kinds, string raw)
         {
-            var next = kinds.ToList();
-            if (next.RemoveAll(s => s == raw) == 0) next.Add(raw);
-            ShelfReserves.SetAll(shelves, next);
+            var first = First;
+            var comp = ShelfReserves.Of(first?.Map);
+            if (comp == null) return;
+            var entries = comp.EntriesOf(first);
+            if (entries.RemoveAll(e => e.kind == raw) == 0) entries.Add(new ShelfKind { kind = raw });
+            ShelfReserves.SetAll(shelves, entries);
         }
     }
 }

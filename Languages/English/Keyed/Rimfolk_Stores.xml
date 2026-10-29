@@ -26,6 +26,21 @@
   <CC_Shelf_LessTip>One slot fewer for this</CC_Shelf_LessTip>
   <CC_Shelf_MoreTip>One slot more for this</CC_Shelf_MoreTip>
   <CC_Shelf_FullTip>Every slot of the shelf is reserved already</CC_Shelf_FullTip>
+  <CC_Shelf_Slots>slots</CC_Shelf_Slots>
+  <CC_Shelf_Only>no more than that</CC_Shelf_Only>
+  <CC_Shelf_OnlyTip>Ticked, the shelf holds no more stacks of this than its slots, even with room to spare. A stack added to one already there still goes in.</CC_Shelf_OnlyTip>
+  <CC_Shelf_PerStack>per stack</CC_Shelf_PerStack>
+  <CC_Shelf_PerStackTip>The most of this in one stack on the shelf. Haulers top a stack up to it and bring no more; a bigger stack already there is used up first, not carried off.</CC_Shelf_PerStackTip>
+  <CC_Shelf_FullStack>full</CC_Shelf_FullStack>
+  <CC_Shelf_WhenAlways>Always</CC_Shelf_WhenAlways>
+  <CC_Shelf_WhenPatient>While a patient lies in this room</CC_Shelf_WhenPatient>
+  <CC_Shelf_WhenTip>When this is kept on the shelf. "While a patient lies in this room": only while someone lies ill or hurt in a bed in the shelf's room. Otherwise it isn't kept here at all, and what is here is carried elsewhere.</CC_Shelf_WhenTip>
+  <CC_Shelf_WhenOff>not now: no patient in this room</CC_Shelf_WhenOff>
+  <CC_Shelf_WhenNoRoom>never: the shelf isn't in a room</CC_Shelf_WhenNoRoom>
+  <CC_Shelf_HowSlots>{0} slots</CC_Shelf_HowSlots>
+  <CC_Shelf_HowOnly>no more</CC_Shelf_HowOnly>
+  <CC_Shelf_HowEach>{0} per stack</CC_Shelf_HowEach>
+  <CC_Shelf_HowPatient>while a patient lies here</CC_Shelf_HowPatient>
 
   <!-- Reserve a slot for... (Source/ColonyCouncil/Building/ShelfReservePick.cs). -->
   <CC_ShelfPick_Title>Reserve a slot for...</CC_ShelfPick_Title>

@@ -383,7 +383,8 @@ MODEL = {
     "Building/CouncilPlanQueue.cs:queue": ("while", 30, 150, "blueprints waiting to be placed"),
     "Building/BuildPriority.cs:levels": ("while", 40, D, "blueprints and frames with a build priority set, per map, until built or cancelled"),
     "Building/ShelfReserves.cs:reserves": ("while", 30, 60, "shelves with reserved slots, per map, while the shelf stands"),
-    "Building/ShelfReserves.cs:kinds": ("while", 6, 30, "per shelf: the kinds it keeps a slot for, one name each"),
+    "Building/ShelfReserves.cs:kinds": ("while", 0, 30, "read from saves of 0.23.0 and 0.23.1 only, then kept as entries"),
+    "Building/ShelfReserves.cs:entries": ("while", 6, 90, "per shelf: the kinds it keeps slots for, with how they're kept"),
     "Building/CustomRooms.cs:pieces": ("settings", 30, 120, "per saved room, in the mod's settings file"),
     "Building/PersonalTouches.cs:pending": ("cap", (10, 0.2), 200, "until built or dropped"),
     # Dilemmas and decrees

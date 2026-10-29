@@ -78,6 +78,36 @@ public static class ShelfReserveTests
         var swap = ShelfReserveMath.Fill(2, new List<ShelfReserveMath.Stack> { S("MealFine", 20, 1, 0), S("MealSimple", 10, 1) });
         C(swap[0] == 0 && swap[1] == 1, "the stacks are matched so both slots are filled, the fine meal moving over for the simple one");
 
+        // Kept off for now (the hospital's meals with no patient in the room): every meal stack goes, the medicine stays.
+        var offMeals = new List<ShelfReserveMath.Stack>
+        {
+            new ShelfReserveMath.Stack { key = "MealSimple", count = 4, covers = new int[0], barred = true },
+            S("Herbal", 25, 0)
+        };
+        var offOut = ShelfReserveMath.MoveOut(6, offMeals, 1, 0, null);
+        C(offOut.Count == 1 && offOut[0] == 0, "a kind kept off for now moves out, even with room to spare");
+
+        // No more than one slot of meals (entry 0, capped at 1, its slot 0).
+        ShelfReserveMath.Stack M(string key, int count, int[] covers) => new ShelfReserveMath.Stack { key = key, count = count, covers = covers, groups = new[] { 0 } };
+        var capped = new List<ShelfReserveMath.Stack> { M("MealSimple", 10, new[] { 0 }), M("MealSimple", 4, new[] { 0 }), M("MealSimple", 2, new[] { 0 }) };
+        var capOut = ShelfReserveMath.MoveOut(6, capped, 1, 0, new[] { 1 });
+        C(capOut.Count == 2 && capOut.Contains(1) && capOut.Contains(2), "one slot of meals and no more: the two smaller meal stacks move out, the biggest stays");
+        C(ShelfReserveMath.MoveOut(6, capped, 1, 0, new[] { -1 }).Count == 0, "without the cap, the extra meal stacks may stay on a shelf with room");
+        // A fine meal slot (0, uncapped) beside one any-meal slot (1, entry 1 capped at 1): the fine meal counts against the cap too.
+        var fineAndAny = new List<ShelfReserveMath.Stack>
+        {
+            new ShelfReserveMath.Stack { key = "MealFine", count = 10, covers = new[] { 0, 1 }, groups = new[] { 1 } },
+            new ShelfReserveMath.Stack { key = "MealSimple", count = 10, covers = new[] { 1 }, groups = new[] { 1 } },
+            new ShelfReserveMath.Stack { key = "MealSimple", count = 3, covers = new[] { 1 }, groups = new[] { 1 } }
+        };
+        var faOut = ShelfReserveMath.MoveOut(6, fineAndAny, 2, 0, new[] { -1, 1 });
+        C(faOut.Count == 1 && faOut[0] == 2, "a fine meal slot and one any-meal slot keep two meal stacks; the third moves out");
+
+        // At most so many per stack.
+        C(ShelfReserveMath.SpaceFor(4, 10, -1) == 4, "four meals per stack: a new stack takes four");
+        C(ShelfReserveMath.SpaceFor(4, 10, 3) == 1 && ShelfReserveMath.SpaceFor(4, 10, 4) == 0, "a stack of three takes one more, a stack of four none");
+        C(ShelfReserveMath.SpaceFor(0, 10, 3) == 7 && ShelfReserveMath.SpaceFor(20, 10, -1) == 10, "no limit, or one past the stack size: a full stack");
+
         // The best at hand: simple, fine, lavish ranked 1, 2, 3.
         var bestOf = ShelfReserveMath.Best(new List<float> { 1f, 2f, 3f }, new List<bool> { true, true, false });
         C(bestOf.Count == 1 && bestOf[0] == 1, "no lavish meal at hand: the fine meal is the best there is");
