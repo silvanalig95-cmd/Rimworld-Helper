@@ -430,6 +430,19 @@ def g_plan():
     return m
 
 
+def g_base():
+    """The base looked over: a ground plan of three rooms, a magnifying glass over the corner."""
+    m = new()
+    ImageDraw.Draw(m).rectangle([22, 40, 200, 234], outline=ON, width=22)
+    rect(m, 100, 40, 122, 150)  # wall down the middle
+    rect(m, 22, 128, 200, 150)  # wall across
+    rect(m, 22, 72, 44, 108, fill=OFF)  # the door in
+    rect(m, 100, 92, 122, 118, fill=OFF)  # a door through
+    ring(m, 184, 70, 46, 18)
+    line(m, [(216, 102), (246, 132)], 22)
+    return m
+
+
 def g_journals():
     m = new()
     rect(m, 52, 20, 214, 236, r=16)
@@ -893,7 +906,7 @@ GLYPHS = [
     ("Roster", g_roster), ("Bonds", g_bonds), ("Wishes", g_wishes), ("Decrees", g_decrees), ("Ambition", g_ambition),
     ("Ways", g_ways), ("Chronicle", g_chronicle), ("Calendar", g_calendar), ("Dreams", g_dreams), ("Journals", g_journals),
     ("Week", g_week), ("Table", g_table), ("Dilemmas", g_dilemmas), ("Pin", g_pin), ("Defenses", g_defenses),
-    ("More", g_more), ("Plan", g_plan),
+    ("More", g_more), ("Plan", g_plan), ("Base", g_base),
     # markers
     ("Trust", g_trust), ("Office", g_office), ("LifeGoal", g_lifegoal), ("Secret", g_secret), ("Vendetta", g_vendetta),
     ("Nemesis", g_nemesis), ("Dream", g_dream), ("Journal", g_journal), ("WorldEvent", g_worldevent), ("Raid", g_raid),

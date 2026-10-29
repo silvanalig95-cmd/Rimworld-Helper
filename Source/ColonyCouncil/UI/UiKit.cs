@@ -45,6 +45,7 @@ namespace ColonyCouncil
         public static readonly Texture2D Pin = Load("Pin");
         public static readonly Texture2D More = Load("More");
         public static readonly Texture2D Plan = Load("Plan");
+        public static readonly Texture2D Base = Load("Base");
         public static readonly Texture2D Trust = Load("Trust");
         public static readonly Texture2D Office = Load("Office");
         public static readonly Texture2D LifeGoal = Load("LifeGoal");

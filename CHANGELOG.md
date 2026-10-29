@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The base, looked over
+
+*29 October 2026, version 0.25.0*
+
+- A Base page under Colony: once an hour, or when you ask, the council walks the base and lists what stands where it shouldn't, what leads nowhere, and what a click can put right, most pressing first.
+- Rooms: a kitchen far from the freezer or the dining room, a workshop far from its store, a hospital far from the gate, a barn far from the fields; bedrooms or the hospital right by a workshop or a barn, a prison cell by the bedrooms; and long walks from the bedrooms to meals.
+- Doors: one with the same room on both sides or no wall beside it, and a freezer door that opens into a warm room or the open air with no airlock between.
+- Walls: short stubs left over from rebuilding, never a pillar on its own or a wall holding up a roof.
+- Conduits and pipes: runs that lead nowhere, conduit joined to nothing at all, and the same for Dubs Bad Hygiene's and Vanilla Expanded's pipes. Something still being built beside them counts as their use.
+- Doors, stubs, conduits and pipes have a "Take them down" button that gives the deconstruct orders. Every finding has Show me, and the findings are proposed as steps on the Plan page.
+
 ## Shorter walks, fuller workshops
 
 *29 October 2026, version 0.24.1*

@@ -66,6 +66,9 @@ namespace ColonyCouncil
             return order;
         }
 
+        /// <summary>A score as a level: 0 idea, 1 low, 2 medium, 3 high, 4 critical (the order of AdviceLevel).</summary>
+        public static int LevelOf(float score) => score >= 0.7f ? 4 : score >= 0.45f ? 3 : score >= 0.22f ? 2 : score >= 0.08f ? 1 : 0;
+
         /// <summary>Moving a step up or down one place: the new index, or the same when it can't move.</summary>
         public static int Moved(int index, int count, int dir)
         {

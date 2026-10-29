@@ -1,6 +1,25 @@
 # Handoff: work in progress
 
-Last shipped: 0.24.1 "Shorter walks, fuller workshops", the player's two notes on the arranger: a bed near the door
+Last shipped: 0.25.0 "The base, looked over", round 2's first piece. `Building/BaseReview.cs` (pure rules
+`BaseReviewMath.cs`, Tools/Tests/BaseReviewTests.cs): `BaseReview.For(map, force)` cached an hour per map, a list of
+`BaseFinding {key, group rooms/walks/doors/walls/works, score, title, detail, look, things, fixLabel, fix}`. Rooms by a
+review role (`RoleName`: a room at 1 °C or colder with storage is "Freezer", barracks count as "Bedroom", prison
+barracks as "PrisonCell", else the vanilla role; "Gate" from `RoomNeighbours.GateCell`, "Fields" from the growing
+zones' middles); `NearRules` (kitchen-freezer 20, kitchen-dining 22, dining-rec 30, workshop-store 24, hospital-gate 40,
+barn-fields 30, each with a weight) and `ApartRules` (bedroom-workshop 9, bedroom-barn 9, hospital-workshop 9,
+prison-bedroom 8); `MealWalk` over 35. Doors: `DoorPointless` (same indoor room both sides, or 3+ open sides). Walls:
+`Stubs` (runs of at most 3 non-separating wall cells hanging off a separating wall), skipping walls with attachments
+or roof only they hold (`HoldsSomething`, RoofMaxSupportDistance). Conduits: per PowerNet, non-edifice transmitters as
+a cell graph, `DeadEnds` (leaves walked to a fork or a used cell, repeated until nothing more falls away; used = has
+connectChildren, or a powered thing, blueprint or frame on or beside it), and nets with transmitters only as orphans.
+Pipes: things with DBH `CompPipe` (key by its props' `mode`) or VE `PipeSystem.CompResource` (key by `pipeNet`),
+non-edifice 1x1 as pipes, the rest as fixtures (used = fixture on or beside, or planned work). Freezers:
+`AirlockWanted` for each door into a room at 10 °C or warmer or the open, unless a lobby of 6 cells or fewer with two
+doors. Fixes give deconstruct designations. `UI/BasePanel.cs` is the Base tab (Icons/Base); `NextSteps.Candidates`
+proposes findings as steps of kind "base" (key "base:<key>", page Base, the fix as an action through
+`BaseReview.Finding`). Not tried in the game here.
+
+Before it, 0.24.1 "Shorter walks, fuller workshops", the player's two notes on the arranger: a bed near the door
 (`RoomArrangeMath.DoorWalk`, straight-line cells from the nearest door to a bed's feet or a bench's spot: beds -0.2 a
 cell, benches and tables -0.1, shelves -0.05, decor +0.1), and big workshops (benches may lean back to back on solid
 furniture without a work spot behind, `SideLeaning`, "island"; +1.5 for a bench in a row with one facing the same way;

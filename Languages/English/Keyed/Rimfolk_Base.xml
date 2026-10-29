@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The base looked over (Source/ColonyCouncil/Building/BaseReview.cs, UI/BasePanel.cs). -->
+  <CC_Tab_Base>Base</CC_Tab_Base>
+  <CC_Plan_From_base>From the base review</CC_Plan_From_base>
+  <CC_Base_Header>The base, looked over</CC_Base_Header>
+  <CC_Base_Sub>What stands where it shouldn't, what leads nowhere, and what a click can put right.</CC_Base_Sub>
+  <CC_Base_HeaderTip>Once an hour the council walks the base: rooms that belong together far apart and rooms that belong apart close together, long walks to meals, doors that separate nothing, stubs of wall, conduits and pipes that lead nowhere, a freezer door that opens into the warm. What matters most comes first. The findings are also proposed on the Plan page.</CC_Base_HeaderTip>
+  <CC_Base_Stat>{0} found, {1} worth doing</CC_Base_Stat>
+  <CC_Base_LookAgain>Look again</CC_Base_LookAgain>
+  <CC_Base_AllGood>Nothing to put right. The base is in order, as far as the council can see.</CC_Base_AllGood>
+  <CC_Base_Group_rooms>Rooms</CC_Base_Group_rooms>
+  <CC_Base_Group_walks>Walks</CC_Base_Group_walks>
+  <CC_Base_Group_doors>Doors</CC_Base_Group_doors>
+  <CC_Base_Group_walls>Walls</CC_Base_Group_walls>
+  <CC_Base_Group_works>Conduits and pipes</CC_Base_Group_works>
+  <CC_Base_TakeDown>Take them down</CC_Base_TakeDown>
+  <CC_Base_FixTip>Gives deconstruct orders for {0} thing(s). Cancel them on the map like any other order.</CC_Base_FixTip>
+  <CC_Base_TakenDown>{0} thing(s) ordered taken down.</CC_Base_TakenDown>
+  <CC_Base_Freezer>freezer</CC_Base_Freezer>
+  <CC_Base_Gate>gate</CC_Base_Gate>
+  <CC_Base_Fields>fields</CC_Base_Fields>
+  <CC_Base_Outdoors>open air</CC_Base_Outdoors>
+
+  <!-- Rooms far apart that belong together. -->
+  <CC_Base_Far>The {A} is far from the {B}</CC_Base_Far>
+  <CC_Base_FarMore>The same goes for {0} more.</CC_Base_FarMore>
+  <CC_Base_Far_kitchenfreezer>{D} cells to the nearest {B}: the cook walks that way and back for the makings of every meal. A freezer with a door into the kitchen saves hours a season.</CC_Base_Far_kitchenfreezer>
+  <CC_Base_Far_kitchendining>{D} cells to the nearest {B}: every meal is carried that far, and the table is where people see the cook's work. Side by side, the kitchen hands straight through.</CC_Base_Far_kitchendining>
+  <CC_Base_Far_diningrec>{D} cells to the nearest {B}: people rest right after they eat, and walk that far to do it. Next door, they drift from the table to the games.</CC_Base_Far_diningrec>
+  <CC_Base_Far_workshopstore>{D} cells to the nearest {B}: every bill starts with a walk for materials and ends with one to put the work away. A store room beside the workshop, or shelves in it, keeps the hands at the bench.</CC_Base_Far_workshopstore>
+  <CC_Base_Far_hospitalgate>{D} cells from the {B}: the wounded are carried that far across the base after a fight. A hospital near the way in is reached first.</CC_Base_Far_hospitalgate>
+  <CC_Base_Far_barnfields>{D} cells from the nearest {B}: the hay and the animals cross the base each day. A barn by the fields keeps the mud outside.</CC_Base_Far_barnfields>
+
+  <!-- Rooms close together that belong apart. -->
+  <CC_Base_Close>{N} {A}(s) right by a {B}</CC_Base_Close>
+  <CC_Base_Close_bedroomworkshop>{N} bedroom(s) share a wall with the {B} or near enough: benches run early and late, and light sleepers wake. Bedrooms away from the noise sleep better.</CC_Base_Close_bedroomworkshop>
+  <CC_Base_Close_bedroombarn>{N} bedroom(s) right by the {B}: the animals are loud at night and the smell comes through the door. Bedrooms away from the barn sleep better.</CC_Base_Close_bedroombarn>
+  <CC_Base_Close_hospitalworkshop>The hospital lies right by the {B}: the sick rest badly beside the benches, and the dust comes in. Quiet heals.</CC_Base_Close_hospitalworkshop>
+  <CC_Base_Close_prisonbedroom>{N} cell(s) right by the colonists' bedrooms: a breakout starts beside sleeping people. Cells apart from the bedrooms, near the gate, are safer.</CC_Base_Close_prisonbedroom>
+
+  <!-- Walks. -->
+  <CC_Base_MealWalk>Long walks to meals</CC_Base_MealWalk>
+  <CC_Base_MealWalk_Detail>The {N} bedroom(s) lie {D} cells from the nearest dining room on average: three walks a day each, there and back. Bedrooms around the dining room, or a second dining room among the far ones, give the hours back.</CC_Base_MealWalk_Detail>
+
+  <!-- Doors, walls, conduits and pipes. -->
+  <CC_Base_Doors>{0} door(s) that separate nothing</CC_Base_Doors>
+  <CC_Base_Doors_Detail>Both sides of the door are the same room, or there is no wall beside it. Left from a wall that came down, it only slows people on their way. Take it down and the materials come back.</CC_Base_Doors_Detail>
+  <CC_Base_Stubs>{0} stub(s) of wall, {1} piece(s)</CC_Base_Stubs>
+  <CC_Base_Stubs_Detail>Short runs of wall that separate nothing, hanging off a proper wall: left from rebuilding. Walls with a lamp on them or holding up a roof on their own are not counted.</CC_Base_Stubs_Detail>
+  <CC_Base_Conduits>{0} conduit(s) lead nowhere, in {1} run(s)</CC_Base_Conduits>
+  <CC_Base_Conduits_Detail>Runs of conduit from a fork or a used piece out to an end with nothing on it. Every conduit can short out and start a fire; the ones that feed nothing only add to that. Take them down and the steel comes back.</CC_Base_Conduits_Detail>
+  <CC_Base_OrphanConduits>{0} conduit(s) joined to nothing</CC_Base_OrphanConduits>
+  <CC_Base_OrphanConduits_Detail>A stretch of conduit with no generator, battery or user on it at all: left from something moved. Take it down and the steel comes back.</CC_Base_OrphanConduits_Detail>
+  <CC_Base_Pipes>{N} {KIND} pipe(s) lead nowhere, in {RUNS} run(s)</CC_Base_Pipes>
+  <CC_Base_Pipes_Detail>Runs of pipe from a fork or a fixture out to an end with nothing on it. Take them down and the materials come back.</CC_Base_Pipes_Detail>
+  <CC_Base_FreezerDoor>The freezer's door opens into the {B}</CC_Base_FreezerDoor>
+  <CC_Base_FreezerDoor_Detail>{T} °C inside, {TB} °C beyond the door: warm air comes in with every opening and the coolers work to push it out. A second door with a cell between, an airlock, keeps the cold where it belongs.</CC_Base_FreezerDoor_Detail>
+</LanguageData>

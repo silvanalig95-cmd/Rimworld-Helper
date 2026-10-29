@@ -14,7 +14,7 @@ namespace ColonyCouncil
     /// </summary>
     public class NextStep : IExposable
     {
-        public const string KindAdvisor = "advisor", KindDefense = "defense", KindResearch = "research", KindOwn = "own";
+        public const string KindAdvisor = "advisor", KindDefense = "defense", KindResearch = "research", KindBase = "base", KindOwn = "own";
 
         public string key, kind, title, detail;
         public float score;
@@ -209,6 +209,19 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("next steps: defense advice", e);
             }
+            try
+            {
+                foreach (var f in BaseReview.For(map, true))
+                {
+                    string key = "base:" + f.key;
+                    if (!seen.Add(key) || !NextStepsMath.WorthProposing(f.score, true)) continue;
+                    found.Add(new NextStep { key = key, kind = NextStep.KindBase, title = f.title, detail = f.detail, score = f.score, map = map, look = f.look, page = "Base" });
+                }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("next steps: base review", e);
+            }
             if (map.listerBuildings.ColonistsHaveResearchBench() && Find.ResearchManager.GetProject() == null)
             {
                 var next = AdvisorWorker_Research.SuggestNext(true);
@@ -349,6 +362,22 @@ namespace ColonyCouncil
                     if (MainButtonDefOf.Research.TabWindow is MainTabWindow_Research w) w.Select(r);
                 }));
             }
+            if (s.kind == NextStep.KindBase && map != null && s.key != null && s.key.StartsWith("base:"))
+            {
+                var finding = BaseReview.Finding(map, s.key.Substring(5));
+                if (finding?.fix != null && !finding.fixLabel.NullOrEmpty())
+                    acts.Add((finding.fixLabel, () =>
+                    {
+                        try
+                        {
+                            finding.fix();
+                        }
+                        catch (Exception e)
+                        {
+                            CouncilLog.ErrorOnce("next step fix " + s.key, e);
+                        }
+                    }));
+            }
             var live = LiveSignal(s);
             if (live?.act != null && !live.actLabel.NullOrEmpty())
                 acts.Add((live.actLabel, () =>
@@ -373,8 +402,7 @@ namespace ColonyCouncil
         public static AdviceLevel LevelOf(NextStep s)
         {
             if (s == null || !s.HasSource) return AdviceLevel.Idea;
-            float v = s.score;
-            return v >= 0.7f ? AdviceLevel.Critical : v >= 0.45f ? AdviceLevel.High : v >= 0.22f ? AdviceLevel.Medium : v >= 0.08f ? AdviceLevel.Low : AdviceLevel.Idea;
+            return (AdviceLevel)NextStepsMath.LevelOf(s.score);
         }
     }
 }
