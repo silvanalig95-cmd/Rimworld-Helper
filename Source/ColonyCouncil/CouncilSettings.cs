@@ -245,6 +245,8 @@ namespace ColonyCouncil
         public bool marketGuestsShop = true;
         /// <summary>With Hospitality: a guest joins of their own will only when they would, and the colony has its say (Integrations/GuestWill.cs).</summary>
         public bool guestWill = true;
+        /// <summary>Hospitality's guest tab says whether a guest can be recruited, how, and what it takes (Integrations/GuestCheck.cs).</summary>
+        public bool guestCheck = true;
 
         // Room planner (the clearing options are remembered between games)
         public bool planCutPlants = true;
@@ -459,6 +461,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
             Scribe_Values.Look(ref guestWill, "guestWill", true);
+            Scribe_Values.Look(ref guestCheck, "guestCheck", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);
             Scribe_Values.Look(ref planMineRock, "planMineRock", true);
             Scribe_Values.Look(ref planReplaceOwn, "planReplaceOwn", false);

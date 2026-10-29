@@ -5,6 +5,37 @@
   <CC_Settings_GuestWill>Guests join only when they would</CC_Settings_GuestWill>
   <CC_Settings_GuestWill_Tip>With Hospitality: a guest joins the colony of their own will only when they would. They need a reason to stay: love or family here, hard times among their people, a stay that's going very well, or the colony's faith. There has to be room for one more: a free bed, a room of their own for the greedy, the jealous and the titled, and four days of food in store. And what they'd want of a home by their passions and nature has to be there: a passionate cook wants a decent kitchen, a grower fields to work, a gourmand fine meals. What ties them to home never bars them, but asks for more friends here than Hospitality does: two more for a partner or young children there, or for their people's leader, one for their parents while they're young and not in love here, for the leader's family, or for a faith they hold fast that isn't the colony's. Each reason to stay beyond the first makes up for one. Until then the guest tab offers only to recruit them by force, and the Recruit button's tooltip says what's missing; Hospitality's own "a happy guest asks to join" comes only for a guest who would. What taking them costs their people goes by who they are: less with no family among them, more with family there, twice for their leader's family. Before someone is recruited from the guest tab, anyone of the colony who objects has their say at the council, and their family may come weeks later to ask for them back. Off: Hospitality's own rules alone. Needs the deeper game hooks.</CC_Settings_GuestWill_Tip>
   <CC_SetNote_GuestWill>With Hospitality: a guest joins of their own will only when they would, and the colony has a say.</CC_SetNote_GuestWill>
+  <CC_Settings_GuestCheck>Recruiting, spelled out on the guest tab</CC_Settings_GuestCheck>
+  <CC_Settings_GuestCheck_Tip>With Hospitality: under the guest tab's own lines, whether this guest can be recruited and how, and a checklist of what it takes to have them join of their own will, each condition met or not. It covers a death acidifier and a royal title, friends here, and what Rimfolk's "Guests join only when they would" asks for.</CC_Settings_GuestCheck_Tip>
+  <CC_SetNote_GuestCheck>The guest tab says why someone can't be recruited and what it would take.</CC_SetNote_GuestCheck>
+
+  <!-- The checklist on the guest tab (Source/ColonyCouncil/Integrations/GuestCheck.cs). -->
+  <CC_GuestCheck_Title>Recruiting {PAWN_nameDef}</CC_GuestCheck_Title>
+  <CC_GuestCheck_Ready>{PAWN_nameDef} would join now: use Recruit.</CC_GuestCheck_Ready>
+  <CC_GuestCheck_ForceOnly>{PAWN_nameDef} won't join of {PAWN_possessive} own will yet, so only Recruit by force works for now. What's missing is below.</CC_GuestCheck_ForceOnly>
+  <CC_GuestCheck_ForceOnlyAcid>{PAWN_nameDef} carries a death acidifier and has no relative among your people, so {PAWN_pronoun} joins only by force.</CC_GuestCheck_ForceOnlyAcid>
+  <CC_GuestCheck_NotYet>{PAWN_nameDef} holds the title {TITLE}, and the titled can't be recruited by force. {PAWN_pronoun} joins of {PAWN_possessive} own will once everything below is met.</CC_GuestCheck_NotYet>
+  <CC_GuestCheck_NotNow>Not right now: try again once {PAWN_nameDef} has settled in and is calm.</CC_GuestCheck_NotNow>
+  <CC_GuestCheck_Never>{FACTION} keep no goodwill with anyone, so they never let one of their own join you. {PAWN_nameDef} can't be recruited.</CC_GuestCheck_Never>
+  <CC_GuestCheck_NeverRelated>{PAWN_nameDef} holds the title {TITLE} and carries a death acidifier. The titled can't be recruited by force, and the acidifier keeps {PAWN_objective} from joining of {PAWN_possessive} own will. Only a relative or partner among your people would change that.</CC_GuestCheck_NeverRelated>
+  <CC_GuestCheck_Takes>To have {PAWN_nameDef} join of {PAWN_possessive} own will:</CC_GuestCheck_Takes>
+  <CC_GuestCheck_Settling>Settled in: {PAWN_pronoun} has only just arrived</CC_GuestCheck_Settling>
+  <CC_GuestCheck_Calm>Calm: {PAWN_pronoun} is in a mental state now</CC_GuestCheck_Calm>
+  <CC_GuestCheck_Acid>Related to someone of the colony: {PAWN_pronoun} carries a death acidifier, which keeps {PAWN_objective} from joining of {PAWN_possessive} own will otherwise</CC_GuestCheck_Acid>
+  <CC_GuestCheck_AcidRelated>Related to someone of the colony, so the death acidifier {PAWN_pronoun} carries doesn't keep {PAWN_objective} away</CC_GuestCheck_AcidRelated>
+  <CC_GuestCheck_Friends>Friends here: {HAVE} of {NEED}</CC_GuestCheck_Friends>
+  <CC_GuestCheck_FriendsOpinion>(colonists {PAWN_pronoun} thinks well of, opinion above {OPINION})</CC_GuestCheck_FriendsOpinion>
+  <CC_GuestCheck_Royal>Royal friends here: {HAVE} of {NEED} ranks (titled colonists {PAWN_pronoun} thinks well of)</CC_GuestCheck_Royal>
+  <CC_GuestCheck_Tie>{COUNT} of them for this tie at home: {TIE}</CC_GuestCheck_Tie>
+  <CC_GuestCheck_TieOff>{OFF} fewer for more than one reason to stay</CC_GuestCheck_TieOff>
+  <CC_GuestCheck_Reason>A reason to stay: {REASONS}</CC_GuestCheck_Reason>
+  <CC_GuestCheck_NoReason>A reason to stay: love or family here, hard times at home, a very good stay, or the colony's faith</CC_GuestCheck_NoReason>
+  <CC_GuestCheck_Room>Room for one more: a bed and food for {DAYS} days</CC_GuestCheck_Room>
+  <CC_GuestCheck_NoRoom>Room for one more: {WHAT}</CC_GuestCheck_NoRoom>
+  <CC_GuestCheck_Want>What {PAWN_nameDef} wants of a home: {WANT}</CC_GuestCheck_Want>
+  <CC_GuestCheck_Force>By force: open at any time, at a cost in goodwill with {FACTION} (the Recruit button says how much).</CC_GuestCheck_Force>
+  <CC_GuestCheck_NoForce>By force: never, as {PAWN_pronoun} holds the title {TITLE}.</CC_GuestCheck_NoForce>
+  <CC_GuestCheck_AcidGoesOff>Recruiting {PAWN_objective}, by force or not, sets off the death acidifier: {PAWN_possessive} weapons and clothes dissolve and {PAWN_pronoun} is left with chemical burns.</CC_GuestCheck_AcidGoesOff>
 
   <!-- The Recruit button's tooltip. -->
   <CC_GuestWill_Willing>Rimfolk: {PAWN_nameDef} would stay of {PAWN_possessive} own will.</CC_GuestWill_Willing>

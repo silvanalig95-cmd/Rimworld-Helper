@@ -172,6 +172,7 @@ namespace ColonyCouncil
             MarketGuests.Reset();
             GoalRewards.Reset();
             GuestWill.Reset();
+            GuestCheck.Reset();
             PlayStrangers.Reset();
             Guests.ForgetLastGame();
             // Lean/: the map facts and every def kept by name are worked out again for this game.

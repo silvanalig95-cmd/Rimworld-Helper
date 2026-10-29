@@ -1,6 +1,17 @@
 # Handoff: work in progress
 
-Last shipped: 0.23.2 "Slots kept just so", the player's asks on 0.23.1. Entries are `ShelfKind {kind, slots, only,
+Last shipped: 0.23.3 "Recruiting, spelled out", the player's ask that it be clear why a guest can't be recruited
+and what it takes. `Integrations/GuestCheck.cs` (verdict in `GuestCheckMath.cs`, Tools/Tests/GuestCheckTests.cs; setting
+`guestCheck`): `Patch_GuestCheckTab` postfixes Hospitality's private `ITab_Pawn_Guest.FillTabGuest` and draws into its
+static `listingStandard`; `Patch_GuestCheckTabSize` (FillTab prefix) grows the ITab's `size` to fit what was drawn last
+frame for that guest. Facts: `Faction.HasGoodwill`; the DeathAcidifier hediff and any relation to a player pawn (as
+Hospitality's `RelationUtility` has it); `MostSeniorTitle`; CompGuest `arrived` and mental state; friends via
+`GuestWill.HospitalityFriends` plus `Will.Extra`, or royal seniority (`GetFriendsSeniorityInColony` against
+`RoyalFriendsSeniorityRequired` + `GetRoyalEnemiesSeniorityInColony`, shown /100); `GetMinRecruitOpinion`; with
+GuestWill on, its reasons, room and wants (`GuestWill.WantText` shared with the tooltip). Hospitality's `Recruit` sets off
+a death acidifier (gear destroyed, burns), which the checklist warns of. Not tried in the game here.
+
+Before it, 0.23.2 "Slots kept just so", the player's asks on 0.23.1. Entries are `ShelfKind {kind, slots, only,
 perStack, when}` (`ShelfReserve.entries`; the 0.23.0/0.23.1 "kinds" name-per-slot list loads into entries). `State`
 per entry: `kindOf`, `active` (its `when` holds: "" always, "patient" = someone in a bed in the shelf's room who is
 downed, should seek medical rest or needs tending), `stacksOf`; slots come only from active entries. `Barred` (matches

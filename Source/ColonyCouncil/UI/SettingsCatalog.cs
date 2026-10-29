@@ -320,6 +320,7 @@ namespace ColonyCouncil
             Toggle("nemesisReturns", "CC_Settings_NemesisReturns", "CC_SetNote_NemesisReturns", "nemeses");
             Toggle("petMoments", "CC_Settings_PetMoments", "CC_SetNote_PetMoments");
             Toggle("guestWill", "CC_Settings_GuestWill", "CC_SetNote_GuestWill", "deepHooks");
+            Toggle("guestCheck", "CC_Settings_GuestCheck", "CC_SetNote_GuestCheck", "deepHooks");
             Section("CC_Settings_WorldEventsHeader");
             Toggle("worldEvents", "CC_Settings_WorldEvents", "CC_SetNote_WorldEvents");
             Toggle("worldEventBattles", "CC_Settings_WorldEventBattles", "CC_SetNote_WorldEventBattles", "worldEvents");

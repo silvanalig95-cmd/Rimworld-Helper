@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Recruiting, spelled out
+
+*29 October 2026, version 0.23.3*
+
+- With Hospitality, the guest tab now says under its own lines whether a guest can be recruited and how: now, only by force, not yet, or never, and why.
+- A checklist shows what it takes to have them join of their own will, each condition met or not: friends here, what ties at home ask for more, a reason to stay, room, and what they want of a home.
+- It also explains Hospitality's own rules. A death acidifier keeps a guest from joining of their own will unless they're related to someone of the colony, and the titled can't be recruited by force, so a titled guest with an acidifier can't be recruited at all.
+- It warns that recruiting someone with a death acidifier sets it off: their weapons and clothes dissolve and they're left with chemical burns.
+
 ## Slots kept just so
 
 *29 October 2026, version 0.23.2*

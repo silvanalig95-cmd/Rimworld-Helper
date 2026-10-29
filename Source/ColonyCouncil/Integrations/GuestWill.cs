@@ -333,16 +333,21 @@ namespace ColonyCouncil
                 lines.Add(w.EnoughFriends ? f.Colorize(UiKit.Good) : f.Colorize(UiKit.Bad));
             }
             if (w.noRoom.Count > 0) lines.Add("CC_GuestWill_Room".Translate().Resolve() + "\n  " + string.Join("\n  ", w.noRoom.Select(r => r.CapitalizeFirst().Colorize(UiKit.Bad))));
-            string stage = RoomUtil.StageLabel(RoomStatDefOf.Impressiveness, GuestWillMath.DecentRoom);
             if (w.wants.Count > 0)
                 lines.Add("CC_GuestWill_Wants".Translate(g.Named("PAWN")).Resolve() + "\n  " + string.Join("\n  ", w.wants.Select(x =>
                 {
-                    string s = ("CC_GuestWill_Want_" + x.want).Translate(x.now.Named("NOW"), GuestWillMath.Need(x.want).Named("NEED"), stage.Named("STAGE"),
-                        GuestWillMath.ComradeSkill.Named("SKILL")).Resolve();
-                    s = s.CapitalizeFirst();
+                    string s = WantText(x.want, x.now);
                     return x.met ? s.Colorize(UiKit.Good) : s.Colorize(UiKit.Bad);
                 })));
             return string.Join("\n\n", lines);
+        }
+
+        /// <summary>What a guest wants of a home, in words, with what there is now.</summary>
+        public static string WantText(string want, string now)
+        {
+            string stage = RoomUtil.StageLabel(RoomStatDefOf.Impressiveness, GuestWillMath.DecentRoom);
+            return ("CC_GuestWill_Want_" + want).Translate(now.Named("NOW"), GuestWillMath.Need(want).Named("NEED"), stage.Named("STAGE"),
+                GuestWillMath.ComradeSkill.Named("SKILL")).Resolve().CapitalizeFirst();
         }
 
         // ---------------- What taking them costs ----------------
