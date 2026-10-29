@@ -5,6 +5,54 @@
        with it (MayRequire), like the room plans they point to. -->
 
   <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_9_00_BaseGrowth</defName>
+    <label>a base that grows well</label>
+    <category>RoomDesign</category>
+    <order>2</order>
+    <summary>Which rooms belong together, how a base grows in rings, doors and corridors, the works under the floor, and the council's tools for each</summary>
+    <tip>Build the kitchen, the freezer and the dining room as one block, and let the rest grow round it.</tip>
+    <description>A base that grows well is one where the daily walks are short, the noisy and the quiet are apart, and each new room has a place waiting for it. Nobody lays that out on the first day. It comes from a few habits: knowing which rooms belong together, growing outward from a core rather than wherever there happens to be space, keeping the doors and corridors few, and looking the base over now and then for what has drifted. The council's pages do the looking; this page says what to look for.</description>
+    <sections>
+      <li>
+        <heading>Rooms that belong together</heading>
+        <text>Meals are the most walked road in the colony: from the freezer to the stove to the table, three times a day for everyone. Build the kitchen, the freezer and the dining room as one block, with the freezer's door into the kitchen and the kitchen's into the dining room, and a rec room off the dining room where people drift after they eat. The workshop and its store belong together too: shelves of materials in the workshop itself, or a store room through one door. The hospital goes near the gate, so the wounded are carried the shortest way, and away from the benches. The barn goes by the fields and away from the bedrooms; so do the prison cells. Bedrooms gather in a quiet wing, around or behind the dining room. "Find a good spot" in the room planner weighs all of this for each room, and the Base page says when a built room has ended up far from what it belongs with.</text>
+      </li>
+      <li>
+        <heading>Growing in rings</heading>
+        <text>Start with the core, the kitchen block and a few bedrooms, and grow outward: a new wing of bedrooms, the workshop on the side toward the mine or the fields, the hospital on the side toward the gate. Leave a free row of cells round the core early on, so the dining room can grow by a wall later rather than move. The Plan page keeps the next steps in order, and its Ground plan draws them on the map together, each at the spot that fits with the ones before it kept clear: follow it in order and the rooms join up.</text>
+      </li>
+      <li>
+        <heading>Doors and corridors</heading>
+        <text>Every door slows everyone who passes it, and every corridor is floor nobody lives on. One door per room, into a corridor or a neighbouring room, is enough; a room with two doors is a thoroughfare. Corridors two cells wide let people pass one another; three is a hall. A freezer wants an airlock, a second door with a cell between, so the cold stays in. When a wall comes down, take its door down too: a door with the same room on both sides is a slow spot and nothing else. The Base page lists doors that separate nothing and freezer doors that open into the warm.</text>
+      </li>
+      <li>
+        <heading>The works under the floor</heading>
+        <text>Conduits run under walls where they can, which keeps them out of the way of furniture and lets a short circuit hit a wall rather than a bed. Every conduit can short out and start a fire, so the fewer the better: one trunk with branches to each room, no runs to nowhere. Pipes the same, shortest way from the fixture to the main. When a bench or a battery moves, take up the conduit that fed it. The Base page finds runs of conduit and pipe that lead nowhere, and conduit joined to nothing at all, with a button that takes them down.</text>
+      </li>
+      <li>
+        <heading>Stores</heading>
+        <text>Give each stockpile a job. One for stone and metal by the workshop, one for cloth and leather by the tailor, the freezer for food, shelves for the small and dear things, and one for the odds and ends that nothing else takes. Two stockpiles that take everything scatter the same kind of goods between them. Materials belong near the bench that uses them: a little store beside the bench, set to prefer its materials, saves the walk at the start of every bill. The Base page says when goods lie about that no store takes, when a bench is far from its materials, and when one kind of goods may land in several rooms, and lays out the stockpiles at a click.</text>
+      </li>
+      <li>
+        <heading>Keeping it tidy</heading>
+        <text>Rooms drift: a bed gets moved for a broken leg and never moved back, a shelf lands where the hauler was standing, a bench is squeezed in where it fit that day. "Rearrange a room" tidies one room at a time with the game's own reinstall orders, beds head to the wall and near the door, benches back to the wall in rows, shelves along the walls, lamps in the corners. Once a season, open the Base page and the Making page: the first says what stands where it shouldn't and what leads nowhere, the second what the stock could become at the benches you have and which harvests want a bench you don't.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>base</li>
+      <li>layout</li>
+      <li>expand</li>
+      <li>grow</li>
+      <li>corridor</li>
+      <li>adjacency</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_9_00_RoomPlanner</li>
+      <li>Council_Alm_C_Priorities</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+  <ColonyCouncil.AlmanacArticleDef>
     <defName>Council_Alm_9_00_RoomPlanner</defName>
     <label>planning a room</label>
     <category>RoomDesign</category>

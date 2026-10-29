@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What you could make
+
+*29 October 2026, version 0.26.1*
+
+- A Making page under Colony reads the recipes of every bench you have against the stock, so any mod's benches and recipes count by themselves. It lists what a batch could be made of right now with no bill for it, bench by bench: the staples first, and of clothes and weapons only the dearest. "Set a bill, until N" adds the bill to the bench.
+- It names the harvests and finds you have a fair amount of that nothing here puts to its own use, and the bench that would (hops for a brewery, psychoid leaves for a drug lab, chunks for a stonecutter), with the research it waits on and a button to open it or to build the bench.
+- Benches standing without bills are named at the bottom.
+- An Almanac page, "a base that grows well": which rooms belong together, growing in rings, doors and corridors, the works under the floor, stores, and keeping it tidy, with the council's tool for each.
+
 ## The stores, looked over
 
 *29 October 2026, version 0.26.0*

@@ -27,6 +27,7 @@ namespace ColonyCouncil
             Priorities,
             Plan,
             Base,
+            Making,
             Moods,
             World,
             Build,
@@ -100,7 +101,7 @@ namespace ColonyCouncil
         }
 
         // Each section's pages, made once (asked every frame).
-        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Plan, Tab.Base, Tab.Moods, Tab.World, Tab.Build, Tab.Defenses };
+        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Plan, Tab.Base, Tab.Making, Tab.Moods, Tab.World, Tab.Build, Tab.Defenses };
         private static readonly Tab[] PeopleTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Wishes };
         /// <summary>With "Faith in the colony" on (Ideology): the faiths page after the bonds (UI/FaithsPanel.cs).</summary>
         private static readonly Tab[] PeopleFaithTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Faiths, Tab.Wishes };
@@ -273,6 +274,7 @@ namespace ColonyCouncil
                 case Tab.Priorities: PrioritiesPanel.Draw(content, map); break;
                 case Tab.Plan: NextStepsPanel.Draw(content, comp, map); break;
                 case Tab.Base: BasePanel.Draw(content, map); break;
+                case Tab.Making: MakingPanel.Draw(content, map); break;
                 case Tab.Build: BuildPanel.Draw(content, map); break;
                 case Tab.Defenses: DefensePanel.Draw(content, map); break;
                 case Tab.Roster: PeoplePanel.Draw(content, comp); break;
@@ -381,6 +383,7 @@ namespace ColonyCouncil
                 case Tab.Priorities: return Icons.Priorities;
                 case Tab.Plan: return Icons.Plan ?? Icons.Week;
                 case Tab.Base: return Icons.Base ?? Icons.Rooms;
+                case Tab.Making: return Icons.Making ?? Icons.CatManagement;
                 case Tab.Moods: return Icons.Moods;
                 case Tab.World: return Icons.World;
                 case Tab.Build: return Icons.Rooms;

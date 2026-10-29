@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.26.1</version>
+        <date>29 October 2026</date>
+        <title>What you could make</title>
+        <points>
+          <li>A Making page under Colony reads the recipes of every bench you have against the stock, so any mod's benches and recipes count by themselves. It lists what a batch could be made of right now with no bill for it, bench by bench: the staples first, and of clothes and weapons only the dearest. "Set a bill, until N" adds the bill to the bench.</li>
+          <li>It names the harvests and finds you have a fair amount of that nothing here puts to its own use, and the bench that would (hops for a brewery, psychoid leaves for a drug lab, chunks for a stonecutter), with the research it waits on and a button to open it or to build the bench.</li>
+          <li>Benches standing without bills are named at the bottom.</li>
+          <li>An Almanac page, "a base that grows well": which rooms belong together, growing in rings, doors and corridors, the works under the floor, stores, and keeping it tidy, with the council's tool for each.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.26.0</version>
         <date>29 October 2026</date>
         <title>The stores, looked over</title>

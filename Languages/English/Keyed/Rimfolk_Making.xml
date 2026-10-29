@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- What the colony could make (Source/ColonyCouncil/Building/Making.cs, UI/MakingPanel.cs). -->
+  <CC_Tab_Making>Making</CC_Tab_Making>
+  <CC_Making_Header>What you could make</CC_Making_Header>
+  <CC_Making_Sub>From the benches you have and what's in stock, read from every bench's own recipes.</CC_Making_Sub>
+  <CC_Making_HeaderTip>Once an hour, or when you ask, the council reads the recipes of every bench the colony has and checks them against the stock: what a batch could be made of now with no bill set for it (the staples first, and of clothes and weapons only the dearest), the harvests and finds no bench here puts to its own use and which bench would, and the benches standing without bills. A product the colony already has sixty or more of isn't suggested. Any mod's benches and recipes count by themselves.</CC_Making_HeaderTip>
+  <CC_Making_Stat>{0} could be made now</CC_Making_Stat>
+  <CC_Making_Could>You could make now</CC_Making_Could>
+  <CC_Making_CouldNone>Nothing new: every batch the stock allows has a bill already, or the colony has plenty of it.</CC_Making_CouldNone>
+  <CC_Making_From>From {PARTS} (have/need for one batch).</CC_Making_From>
+  <CC_Making_Have>(have {0})</CC_Making_Have>
+  <CC_Making_SetBill>Set a bill, until {0}</CC_Making_SetBill>
+  <CC_Making_SetBillTip>Adds a bill to the {0}: make until the colony has that many, then rest. Change or remove it on the bench like any other.</CC_Making_SetBillTip>
+  <CC_Making_BillSet>Bill set on the {BENCH}: {PRODUCT}, until {N}.</CC_Making_BillSet>
+  <CC_Making_Unused>Harvests and finds nothing here uses</CC_Making_Unused>
+  <CC_Making_UnusedNone>Everything the colony has a fair amount of has a bench here that puts it to use.</CC_Making_UnusedNone>
+  <CC_Making_WouldUse>A {BENCH} would make {PRODUCT} from it.</CC_Making_WouldUse>
+  <CC_Making_WouldUse_Built>The {BENCH} you have would make {PRODUCT} from it, once it can.</CC_Making_WouldUse_Built>
+  <CC_Making_NeedsResearch>Needs research: {0}.</CC_Making_NeedsResearch>
+  <CC_Making_OpenBuild>Build one</CC_Making_OpenBuild>
+  <CC_Making_Idle>Benches without bills ({0})</CC_Making_Idle>
+  <CC_Making_IdleLine>{0}. A bench with no bills makes nothing; the lines above say what each could be set to.</CC_Making_IdleLine>
+</LanguageData>

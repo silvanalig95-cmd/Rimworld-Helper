@@ -443,6 +443,17 @@ def g_base():
     return m
 
 
+def g_making():
+    """What you could make: a chain of three links, raw to made, with an arrowhead at the end."""
+    m = new()
+    for cx in (52, 128, 204):
+        ring(m, cx, 128, 34, 16)
+    rect(m, 86, 118, 94, 138)
+    rect(m, 162, 118, 170, 138)
+    poly(m, [(196, 60), (248, 128), (196, 196), (196, 170), (222, 128), (196, 86)])
+    return m
+
+
 def g_journals():
     m = new()
     rect(m, 52, 20, 214, 236, r=16)
@@ -906,7 +917,7 @@ GLYPHS = [
     ("Roster", g_roster), ("Bonds", g_bonds), ("Wishes", g_wishes), ("Decrees", g_decrees), ("Ambition", g_ambition),
     ("Ways", g_ways), ("Chronicle", g_chronicle), ("Calendar", g_calendar), ("Dreams", g_dreams), ("Journals", g_journals),
     ("Week", g_week), ("Table", g_table), ("Dilemmas", g_dilemmas), ("Pin", g_pin), ("Defenses", g_defenses),
-    ("More", g_more), ("Plan", g_plan), ("Base", g_base),
+    ("More", g_more), ("Plan", g_plan), ("Base", g_base), ("Making", g_making),
     # markers
     ("Trust", g_trust), ("Office", g_office), ("LifeGoal", g_lifegoal), ("Secret", g_secret), ("Vendetta", g_vendetta),
     ("Nemesis", g_nemesis), ("Dream", g_dream), ("Journal", g_journal), ("WorldEvent", g_worldevent), ("Raid", g_raid),

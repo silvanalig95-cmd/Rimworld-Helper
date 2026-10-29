@@ -1,6 +1,23 @@
 # Handoff: work in progress
 
-Last shipped: 0.26.0 "The stores, looked over". `Building/StorageReview.cs` (pure `StorageReviewMath.cs`,
+Last shipped: 0.26.1 "What you could make", the last piece of round 2 (the base-planning ask). `Building/Making.cs`
+(pure `MakingMath.cs`, Tools/Tests/MakingTests.cs; `UI/MakingPanel.cs`, tab `Making`, Icons/Making): `Making.For(map)`
+cached an hour. Stock from `ThingsInGroup(HaulableEver)` items unforbidden. For each bench def the colony has, each
+recipe `AvailableNow` and `AvailableOnNow(bench)` with a storable product, no unsuspended bill for it on any bench,
+product stock under 60: per ingredient the best-stocked allowed def (`CountRequiredOfFor` units), a batch possible when
+all parts are there; ordered by `KindRank` (meals, medicine, components, blocks, textiles, fuel, feed, drugs, apparel,
+weapons), six per bench and two wearables. `SetUpBill` adds `BillUtility.MakeNewBill` with TargetCount `TargetFor(kind)`.
+Unused: rawish defs (raw plant food, plant matter, textiles, leathers, wools, chunks, meat) with 20+ in stock, not in
+a specific ingredient filter (10 kinds or fewer) of any recipe at a bench here, that some recipe anywhere asks for
+specifically at a buildable work table, with the research still open and whether the bench is built; wort skipped
+with a fermenter. Idle: benches with no unsuspended bill. Almanac: "a base that grows well" (Council_Alm_9_00_BaseGrowth,
+RoomDesign, order 2) and a Making section in the Priorities page. Not tried in the game here.
+
+Round 2 is complete (0.25.0 base review, 0.25.1 ground plan, 0.26.0 stores, 0.26.1 making). Ideas not done: conduits
+laid automatically to a rearranged piece that lost power; a map click on the ground plan's outlines; the base review
+proposing a room to move (a kitchen rebuilt by the freezer) as a plan step with a spot.
+
+Before it, 0.26.0 "The stores, looked over". `Building/StorageReview.cs` (pure `StorageReviewMath.cs`,
 Tools/Tests/StorageReviewTests.cs) adds group "stores" findings to `BaseReview.Compute`: "catchall" (two or more
 Zone_Stockpiles whose filter allows 80% of everything storable; shelves that do are fine), "unstored" (haulables not
 in valid storage that no slot group with a priority accepts, by def, with `MakeStockpile` by the store room's middle
