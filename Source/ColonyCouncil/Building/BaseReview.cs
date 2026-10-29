@@ -28,8 +28,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The base looked over (the Base page): rooms that belong together standing far apart and rooms that belong
     /// apart standing close, long walks to meals, doors that separate nothing, stubs of wall, conduits and pipes that
-    /// lead nowhere, a freezer door that opens into the warm. Rules in <see cref="BaseReviewMath"/>. Found once an hour
-    /// for the plan's proposals, and on the page when asked.
+    /// lead nowhere, a freezer door that opens into the warm, and the stores (<see cref="StorageReview"/>). Rules in
+    /// <see cref="BaseReviewMath"/>. Found once an hour for the plan's proposals, and on the page when asked.
     /// </summary>
     public static class BaseReview
     {
@@ -210,6 +210,14 @@ namespace ColonyCouncil
             Conduits(map, findings);
             Pipes(map, findings);
             Freezers(map, rooms, findings);
+            try
+            {
+                findings.AddRange(StorageReview.Findings(map));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("storage review", e);
+            }
             findings.Sort((x, y) => y.score.CompareTo(x.score));
             return findings;
         }

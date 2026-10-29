@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The stores, looked over
+
+*29 October 2026, version 0.26.0*
+
+- The Base page now looks over the stores too: stockpiles that take everything (goods land in whichever is nearer), goods lying about that no store accepts, a bench far from the nearest store of what its bills ask for, one kind of goods accepted by stores in three rooms or more, and stores whose filter allows nothing. Shelves of any mod count like stockpiles.
+- "Make a stockpile for them" lays out a stockpile by the store room (or the colony's middle) that takes exactly the goods nobody stores. "Make a store beside it" lays out a little stockpile by a bench, set to prefer its materials, so they're at hand. Both are ordinary zones afterwards.
+- A stove or a butcher table gets no store beside it: raw food and corpses belong in the cold, and the kitchen's distance from the freezer is a finding of its own.
+
 ## The ground plan
 
 *29 October 2026, version 0.25.1*

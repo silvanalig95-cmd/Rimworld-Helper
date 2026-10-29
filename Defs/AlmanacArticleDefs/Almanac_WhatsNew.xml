@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.26.0</version>
+        <date>29 October 2026</date>
+        <title>The stores, looked over</title>
+        <points>
+          <li>The Base page now looks over the stores too: stockpiles that take everything (goods land in whichever is nearer), goods lying about that no store accepts, a bench far from the nearest store of what its bills ask for, one kind of goods accepted by stores in three rooms or more, and stores whose filter allows nothing. Shelves of any mod count like stockpiles.</li>
+          <li>"Make a stockpile for them" lays out a stockpile by the store room (or the colony's middle) that takes exactly the goods nobody stores. "Make a store beside it" lays out a little stockpile by a bench, set to prefer its materials, so they're at hand. Both are ordinary zones afterwards.</li>
+          <li>A stove or a butcher table gets no store beside it: raw food and corpses belong in the cold, and the kitchen's distance from the freezer is a finding of its own.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.25.1</version>
         <date>29 October 2026</date>
         <title>The ground plan</title>

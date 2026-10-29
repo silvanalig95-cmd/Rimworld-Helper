@@ -18,7 +18,7 @@ namespace ColonyCouncil
         private static float height = 600f;
 
         private const float ButtonsW = 150f, LeftW = 110f;
-        private static readonly string[] Groups = { "rooms", "walks", "doors", "walls", "works" };
+        private static readonly string[] Groups = { "rooms", "walks", "stores", "doors", "walls", "works" };
 
         public static void Draw(Rect rect, Map map)
         {

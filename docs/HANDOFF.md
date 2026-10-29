@@ -1,6 +1,18 @@
 # Handoff: work in progress
 
-Last shipped: 0.25.1 "The ground plan". `Building/GroundPlan.cs` (pure `GroundPlanMath.cs`, Tools/Tests/GroundPlanTests.cs):
+Last shipped: 0.26.0 "The stores, looked over". `Building/StorageReview.cs` (pure `StorageReviewMath.cs`,
+Tools/Tests/StorageReviewTests.cs) adds group "stores" findings to `BaseReview.Compute`: "catchall" (two or more
+Zone_Stockpiles whose filter allows 80% of everything storable; shelves that do are fine), "unstored" (haulables not
+in valid storage that no slot group with a priority accepts, by def, with `MakeStockpile` by the store room's middle
+or the colony's, size up to 4, Normal, the defs allowed), "benchfar:<id>" (a work table with bills whose bills'
+ingredient defs in stock are all over 20 cells from the nearest accepting store; the worst five; `MakeStockpile`
+size 3 at Preferred beside the bench, the bench and its work spot kept clear; benches whose materials rot or are
+corpses are skipped), "spread:<kind>" (a kind's example defs accepted by non-catch-all groups at Normal or above in
+3+ rooms, outdoors as one), "emptyfilter". `StorageReviewMath.BestBlock` finds the square of free cells nearest a
+target (never covering it); zone cells follow Designator_ZoneAdd's rules (no zone, CanOverlapZones, not the no-zone
+edge, passable). Not tried in the game here.
+
+Before it, 0.25.1 "The ground plan". `Building/GroundPlan.cs` (pure `GroundPlanMath.cs`, Tools/Tests/GroundPlanTests.cs):
 `GroundPlan.Show(map)` takes the plan's and the proposals' steps with a room template (not upgrades, one per
 RoomTypeDef), orders them (`Order`: planned first, then by score, at most 6), and for each calls
 `TemplatePlanner.FindSpots(t, map, furniture, cfg, 1, taken)` (new `taken` set: a candidate touching it is skipped,

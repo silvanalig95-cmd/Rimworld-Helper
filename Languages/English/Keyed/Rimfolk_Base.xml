@@ -11,6 +11,7 @@
   <CC_Base_AllGood>Nothing to put right. The base is in order, as far as the council can see.</CC_Base_AllGood>
   <CC_Base_Group_rooms>Rooms</CC_Base_Group_rooms>
   <CC_Base_Group_walks>Walks</CC_Base_Group_walks>
+  <CC_Base_Group_stores>Stores</CC_Base_Group_stores>
   <CC_Base_Group_doors>Doors</CC_Base_Group_doors>
   <CC_Base_Group_walls>Walls</CC_Base_Group_walls>
   <CC_Base_Group_works>Conduits and pipes</CC_Base_Group_works>
@@ -56,4 +57,29 @@
   <CC_Base_Pipes_Detail>Runs of pipe from a fork or a fixture out to an end with nothing on it. Take them down and the materials come back.</CC_Base_Pipes_Detail>
   <CC_Base_FreezerDoor>The freezer's door opens into the {B}</CC_Base_FreezerDoor>
   <CC_Base_FreezerDoor_Detail>{T} °C inside, {TB} °C beyond the door: warm air comes in with every opening and the coolers work to push it out. A second door with a cell between, an airlock, keeps the cold where it belongs.</CC_Base_FreezerDoor_Detail>
+
+  <!-- The stores (Source/ColonyCouncil/Building/StorageReview.cs). -->
+  <CC_Store_CatchAll>{0} stockpiles take everything</CC_Store_CatchAll>
+  <CC_Store_CatchAll_Detail>{0}. With more than one stockpile that takes anything, goods go to whichever is nearer when they're hauled and the same kind ends up in both. Give each a job: one for stone and metal, one for cloth and leather, one for the odds and ends, and let the shelves hold the rest.</CC_Store_CatchAll_Detail>
+  <CC_Store_Unstored>{N} thing(s) of {KINDS} kind(s) lying about that no store takes</CC_Store_Unstored>
+  <CC_Store_Unstored_Detail>{LIST}. Nothing on the map accepts them, so the haulers leave them where they fell and they rot in the rain or trip people up. A stockpile that takes them puts them away.</CC_Store_Unstored_Detail>
+  <CC_Store_MakeStockpile>Make a stockpile for them</CC_Store_MakeStockpile>
+  <CC_Store_BenchFar>The {BENCH} is {D} cells from the nearest store of its materials</CC_Store_BenchFar>
+  <CC_Store_BenchFar_Detail>Its bills ask for {LIST}, and the nearest place that keeps any of it is that far: every bill starts with the walk there and back. A little store beside the bench, set to prefer its materials, keeps them at hand.</CC_Store_BenchFar_Detail>
+  <CC_Store_MakeByBench>Make a store beside it</CC_Store_MakeByBench>
+  <CC_Store_Spread>{KIND} may be stored in {N} different rooms</CC_Store_Spread>
+  <CC_Store_Spread_Detail>Stores in that many rooms accept it at the same priority, so it lands wherever the hauler happened to be. One place for each kind, and the rest set not to take it, keeps it together.</CC_Store_Spread_Detail>
+  <CC_Store_Empty>{0} store(s) that take nothing</CC_Store_Empty>
+  <CC_Store_Empty_Detail>{0}: the filter allows nothing, so the cells stand empty. Set what they're for, or remove them.</CC_Store_Empty_Detail>
+  <CC_Store_Kind_chunks>stone chunks</CC_Store_Kind_chunks>
+  <CC_Store_Kind_steel>steel</CC_Store_Kind_steel>
+  <CC_Store_Kind_cloth>cloth and leather</CC_Store_Kind_cloth>
+  <CC_Store_Kind_meals>meals</CC_Store_Kind_meals>
+  <CC_Store_Kind_medicine>medicine</CC_Store_Kind_medicine>
+  <CC_Store_Kind_weapons>weapons</CC_Store_Kind_weapons>
+  <CC_Store_Kind_apparel>clothes</CC_Store_Kind_apparel>
+  <CC_Store_ZoneName_Odds>Odds and ends</CC_Store_ZoneName_Odds>
+  <CC_Store_ZoneName_Bench>By the {0}</CC_Store_ZoneName_Bench>
+  <CC_Store_NoRoom>No free ground for a stockpile there.</CC_Store_NoRoom>
+  <CC_Store_Made>Stockpile "{0}" laid out, {1} cells. Change it like any other.</CC_Store_Made>
 </LanguageData>
