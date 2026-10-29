@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More to reserve slots for
+
+*29 October 2026, version 0.23.1*
+
+- "Reserve a slot for..." opens a list with a search box: what's on the shelf now, groups such as any meal, and everything the shelf's storage settings allow, also what the colony has none of yet.
+- Food and medicine groups also offer "best at hand": the slot goes to the best kind the colony has, a lavish meal before a fine one, and a better kind takes it over when it turns up.
+- A kind can keep several slots, set with the minus and plus beside it. Each slot needs a stack of its own, so a fine meal and any meal reserved together keep two meal stacks.
+- "Keep what's on it now" reserves a slot for each kind the shelf holds at the moment.
+
 ## Reserved slots, and drinks out of the freezer
 
 *28 October 2026, version 0.23.0*

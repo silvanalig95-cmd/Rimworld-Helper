@@ -1,6 +1,16 @@
 # Handoff: work in progress
 
-Last shipped: 0.23.0 "Reserved slots, and drinks out of the freezer", two asks of the player's. Pure rules in
+Last shipped: 0.23.1 "More to reserve slots for", the player's asks on 0.23.0. Kinds are one entry per slot (a kind
+named twice keeps two; `Set` no longer dedupes). `ShelfReserveMath.Fill` matches stacks to slots (augmenting paths,
+bigger stacks first), so each slot needs its own stack; `Missing` is the unfilled slots and `MoveOut` takes only stacks
+filling no slot. "best:Cat" kinds (`Kind.best`, `targets` from `ShelfReserves.BestAtHand` per look: `Rankable` food
+or medicine, `RankOf` preferability then worth, or medical potency; `ShelfReserveMath.Best`). `Dialog_ShelfReservePick`
+(Building/ShelfReservePick.cs) replaces the float menu: on the shelf now, the category tree of the allowed defs (any,
+and best at hand where `RankableGroup`), and every def the shelves accept, with a search box and only visible rows
+drawn. The shelf window groups slots per kind with minus and plus, shows slots reserved against capacity, and has
+"Keep what's on it now". Not tried in the game here.
+
+Before it, 0.23.0 "Reserved slots, and drinks out of the freezer", two asks of the player's. Pure rules in
 `Building/ShelfReserveMath.cs` (Tools/Tests/ShelfReserveTests.cs): `Missing`, `MayTakeSlot(capacity, stacks,
 fillsMissing, missingWaiting)`, `MoveOut` (the most-held def's smallest stack, never a reserved kind's last), and
 `ChewSpotMath.StoreRoom` (stores and below 0 °C, or stores and no seat). `Building/ShelfReserves.cs`: MapComponent

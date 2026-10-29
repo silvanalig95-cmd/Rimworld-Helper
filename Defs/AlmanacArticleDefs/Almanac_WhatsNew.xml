@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.23.1</version>
+        <date>29 October 2026</date>
+        <title>More to reserve slots for</title>
+        <points>
+          <li>"Reserve a slot for..." opens a list with a search box: what's on the shelf now, groups such as any meal, and everything the shelf's storage settings allow, also what the colony has none of yet.</li>
+          <li>Food and medicine groups also offer "best at hand": the slot goes to the best kind the colony has, a lavish meal before a fine one, and a better kind takes it over when it turns up.</li>
+          <li>A kind can keep several slots, set with the minus and plus beside it. Each slot needs a stack of its own, so a fine meal and any meal reserved together keep two meal stacks.</li>
+          <li>"Keep what's on it now" reserves a slot for each kind the shelf holds at the moment.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.23.0</version>
         <date>28 October 2026</date>
         <title>Reserved slots, and drinks out of the freezer</title>

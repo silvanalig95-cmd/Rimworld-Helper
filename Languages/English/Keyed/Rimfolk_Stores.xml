@@ -6,7 +6,7 @@
   <CC_Shelf_ButtonDesc>Keep a slot on this shelf for each kind you pick, so there's always one stack of each the colony has. The other slots take anything the shelf allows.</CC_Shelf_ButtonDesc>
   <CC_Shelf_Title>Reserved slots</CC_Shelf_Title>
   <CC_Shelf_SubMany>{0} shelves, set alike</CC_Shelf_SubMany>
-  <CC_Shelf_Explain>One slot is kept for each kind below while the colony has some on this map. Haulers fill the other slots with anything the shelf allows; when a reserved kind turns up and the shelf is full, a stack of what it holds most of is carried elsewhere to make room. The shelf's storage settings still decide what it may hold.</CC_Shelf_Explain>
+  <CC_Shelf_Explain>The slots below are kept for their kinds while the colony has some on this map, each filled by a stack of its own. Haulers fill the other slots with anything the shelf allows; when a reserved kind turns up and the shelf is full, a stack of what it holds most of is carried elsewhere to make room. The shelf's storage settings still decide what it may hold.</CC_Shelf_Explain>
   <CC_Shelf_Off>Reserved slots are switched off in Rimfolk's settings (Building page), or the deeper game hooks are, so haulers don't keep to these for now.</CC_Shelf_Off>
   <CC_Shelf_None>No slot reserved yet.</CC_Shelf_None>
   <CC_Shelf_AnyOf>any {GROUP}</CC_Shelf_AnyOf>
@@ -17,5 +17,27 @@
   <CC_Shelf_Unknown>looked at in a moment</CC_Shelf_Unknown>
   <CC_Shelf_RemoveTip>No longer reserve a slot for this</CC_Shelf_RemoveTip>
   <CC_Shelf_Add>Reserve a slot for...</CC_Shelf_Add>
-  <CC_Shelf_NothingToAdd>Nothing on this map that the shelf may hold and isn't reserved already</CC_Shelf_NothingToAdd>
+  <CC_Shelf_Keep>Keep what's on it now</CC_Shelf_Keep>
+  <CC_Shelf_KeepTip>Reserve a slot for each kind the shelf holds now that has none yet.</CC_Shelf_KeepTip>
+  <CC_Shelf_BestOf>the best {GROUP} at hand</CC_Shelf_BestOf>
+  <CC_Shelf_BestNow>{KIND}: {STATUS}</CC_Shelf_BestNow>
+  <CC_Shelf_SomeHere>{0} of {1} on the shelf, the rest {REST}</CC_Shelf_SomeHere>
+  <CC_Shelf_SlotsUsed>{0} of the shelf's {1} slots reserved</CC_Shelf_SlotsUsed>
+  <CC_Shelf_LessTip>One slot fewer for this</CC_Shelf_LessTip>
+  <CC_Shelf_MoreTip>One slot more for this</CC_Shelf_MoreTip>
+  <CC_Shelf_FullTip>Every slot of the shelf is reserved already</CC_Shelf_FullTip>
+
+  <!-- Reserve a slot for... (Source/ColonyCouncil/Building/ShelfReservePick.cs). -->
+  <CC_ShelfPick_Title>Reserve a slot for...</CC_ShelfPick_Title>
+  <CC_ShelfPick_Sub>Click to reserve a slot, click again to take it off. How many slots each keeps is set in the shelf's list.</CC_ShelfPick_Sub>
+  <CC_ShelfPick_Search>Search</CC_ShelfPick_Search>
+  <CC_ShelfPick_OnShelf>On the shelf now</CC_ShelfPick_OnShelf>
+  <CC_ShelfPick_Groups>Groups</CC_ShelfPick_Groups>
+  <CC_ShelfPick_All>Everything the shelf may hold</CC_ShelfPick_All>
+  <CC_ShelfPick_NotOnMap>none on this map</CC_ShelfPick_NotOnMap>
+  <CC_ShelfPick_Any>any</CC_ShelfPick_Any>
+  <CC_ShelfPick_AnyTip>A slot for any of the {GROUP}: whichever comes first fills it.</CC_ShelfPick_AnyTip>
+  <CC_ShelfPick_Best>best at hand</CC_ShelfPick_Best>
+  <CC_ShelfPick_BestTip>A slot for the best of the {GROUP} the colony has at hand: a lavish meal before a fine one, glitterworld medicine before industrial. When a better kind turns up, it takes the slot, and the lesser stack may move out to make room.</CC_ShelfPick_BestTip>
+  <CC_ShelfPick_NothingFound>Nothing matches.</CC_ShelfPick_NothingFound>
 </LanguageData>
