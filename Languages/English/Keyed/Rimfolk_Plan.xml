@@ -44,6 +44,18 @@
   <CC_Plan_From_own>Your own step.</CC_Plan_From_own>
   <CC_Plan_Off>The colony's next steps are switched off in Rimfolk's settings (Council page).</CC_Plan_Off>
 
+  <!-- The ground plan (Building/GroundPlan.cs). -->
+  <CC_Ground_Button>Ground plan</CC_Ground_Button>
+  <CC_Ground_ButtonTip>Draws the rooms in the plan and the proposals on the map together, each at the spot that fits best with the ones before it kept clear: how the base grows if the plan is followed in order.</CC_Ground_ButtonTip>
+  <CC_Ground_Title>The ground plan</CC_Ground_Title>
+  <CC_Ground_Sub>The next rooms, each where it fits best with the ones before it kept clear. Plan them in this order and they fit together; the reasons are under each.</CC_Ground_Sub>
+  <CC_Ground_Empty>Nothing to draw yet: take a room into the plan, or wait for the council to propose one.</CC_Ground_Empty>
+  <CC_Ground_NoSpot>No spot near the colony where all of it can be built.</CC_Ground_NoSpot>
+  <CC_Ground_PlanHere>Plan it here</CC_Ground_PlanHere>
+  <CC_Ground_Show>Show</CC_Ground_Show>
+  <CC_Ground_Again>Draw it again</CC_Ground_Again>
+  <CC_Ground_Close>Close</CC_Ground_Close>
+
   <CC_Week_Plan>The plan</CC_Week_Plan>
   <CC_Week_Empty_Plan>Nothing planned.</CC_Week_Empty_Plan>
   <CC_Week_PlanProposed>The council proposes {0} more</CC_Week_PlanProposed>

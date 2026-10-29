@@ -40,6 +40,13 @@ namespace ColonyCouncil
             string stat = open > 0 ? "CC_Plan_Stat".Translate(open).Resolve() : null;
             float top = UiKit.PageHeader(rect, Icons.Plan, "CC_Plan_Header".Translate(), "CC_Plan_Sub".Translate(), stat, UiKit.Gold, 170f, "CC_Plan_HeaderTip".Translate());
             if (open > 1 && Widgets.ButtonText(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, 30f), "CC_Plan_SortUrgency".Translate())) NextSteps.SortByUrgency(map);
+            var groundRect = new Rect(rect.xMax - 160f, rect.y + 40f, 160f, 26f);
+            if (Widgets.ButtonText(groundRect, "CC_Ground_Button".Translate()))
+            {
+                Find.MainTabsRoot.EscapeCurrentTab(false);
+                GroundPlan.Show(map);
+            }
+            TooltipHandler.TipRegion(groundRect, "CC_Ground_ButtonTip".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The ground plan
+
+*29 October 2026, version 0.25.1*
+
+- A Ground plan button on the Plan page draws the next rooms on the map together: the rooms in the plan in your order, then the proposals, each at the spot that fits best with the ones before it kept clear. How the base grows if the plan is followed.
+- Each room is outlined in its own colour with its name, and listed in the window with its reasons: the walls it shares, the rooms it goes with, the gate, the fields, the quiet. "Plan it here" opens the planner at that spot.
+- A room whose size can't be built yet is drawn at the size that can; one with no spot near the colony is listed as such.
+
 ## The base, looked over
 
 *29 October 2026, version 0.25.0*

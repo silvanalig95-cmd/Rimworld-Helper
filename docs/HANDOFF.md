@@ -1,6 +1,15 @@
 # Handoff: work in progress
 
-Last shipped: 0.25.0 "The base, looked over", round 2's first piece. `Building/BaseReview.cs` (pure rules
+Last shipped: 0.25.1 "The ground plan". `Building/GroundPlan.cs` (pure `GroundPlanMath.cs`, Tools/Tests/GroundPlanTests.cs):
+`GroundPlan.Show(map)` takes the plan's and the proposals' steps with a room template (not upgrades, one per
+RoomTypeDef), orders them (`Order`: planned first, then by score, at most 6), and for each calls
+`TemplatePlanner.FindSpots(t, map, furniture, cfg, 1, taken)` (new `taken` set: a candidate touching it is skipped,
+`Touches`), keeping each pick's footprint plus a one-cell margin (`Kept`); a size not yet buildable falls back to
+`RoomMenu.Representative`. `GroundPlanOverlay` (MapComponent) draws the outlines (`Edge`) and labels while
+`Window_GroundPlan` is open (closing it hides the plan); "Plan it here" is `Designator_PlanRoom.BeginAt(t, spot)`
+(`TakeSuggestion`). Button on the Plan page. Not tried in the game here.
+
+Before it, 0.25.0 "The base, looked over", round 2's first piece. `Building/BaseReview.cs` (pure rules
 `BaseReviewMath.cs`, Tools/Tests/BaseReviewTests.cs): `BaseReview.For(map, force)` cached an hour per map, a list of
 `BaseFinding {key, group rooms/walks/doors/walls/works, score, title, detail, look, things, fixLabel, fix}`. Rooms by a
 review role (`RoleName`: a room at 1 °C or colder with storage is "Freezer", barracks count as "Bedroom", prison

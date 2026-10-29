@@ -83,6 +83,23 @@ namespace ColonyCouncil
             if (upgrade) Messages.Message("CC_Upgrade_Pick".Translate(t.label), MessageTypeDefOf.SilentInput, false);
         }
 
+        /// <summary>Starts planning a room at a spot already found (the ground plan's).</summary>
+        public static void BeginAt(RoomTemplateDef t, TemplatePlanner.SpotCandidate spot)
+        {
+            Begin(t, false);
+            if (Find.DesignatorManager.SelectedDesignator is Designator_PlanRoom des && des.Template == t && spot != null) des.TakeSuggestion(spot);
+        }
+
+        /// <summary>The outline, the turn and the camera go to a spot found elsewhere; it becomes the only suggestion.</summary>
+        public void TakeSuggestion(TemplatePlanner.SpotCandidate spot)
+        {
+            if (spot == null) return;
+            upgradeMode = false;
+            suggestions.Clear();
+            suggestions.Add(spot);
+            UseSuggestion(0);
+        }
+
         public RoomPlanConfig Config => RoomPlanConfig.For(Template);
 
         public override string Label => Template != null ? Template.FullLabel : "?";

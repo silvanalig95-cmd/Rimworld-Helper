@@ -450,6 +450,7 @@ Console.WriteLine($"Checked {NextStepsTests.Run(Check)} things about the colony'
 Console.WriteLine($"Checked {SpotTests.Run(Check)} things about where a room plan should go.");
 Console.WriteLine($"Checked {RoomArrangeTests.Run(Check)} things about tidying a built room.");
 Console.WriteLine($"Checked {BaseReviewTests.Run(Check)} things about the base looked over.");
+Console.WriteLine($"Checked {GroundPlanTests.Run(Check)} things about the ground plan.");
 Console.WriteLine($"Checked {GuestWillTests.Run(Check)} things about guests who'd stay (ties at home, what they want, the cost, family asking them back).");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");
 Console.WriteLine($"Checked {SeasonWishTests.Run(Check)} things about the wishes of the land's year (clothes for the season, a sauna, hot country, the fields opening).");

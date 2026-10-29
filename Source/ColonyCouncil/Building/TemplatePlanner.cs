@@ -1264,7 +1264,7 @@ namespace ColonyCouncil
         /// a hospital or an armory, the fields for a barn, quiet for a bedroom, the rock to mine and the walk to the
         /// colony's middle. Only spots where all of it can be built.
         /// </summary>
-        public static List<SpotCandidate> FindSpots(RoomTemplateDef t, Map map, List<ResolvedThing> furniture, RoomPlanConfig cfg, int want = 3)
+        public static List<SpotCandidate> FindSpots(RoomTemplateDef t, Map map, List<ResolvedThing> furniture, RoomPlanConfig cfg, int want = 3, HashSet<IntVec3> taken = null)
         {
             var result = new List<SpotCandidate>();
             if (t == null || map == null) return result;
@@ -1288,6 +1288,8 @@ namespace ColonyCouncil
                 for (int rot = 0; rot < 4; rot++)
                 {
                     var a = AnchorForCenter(t, c, rot);
+                    // Ground kept for another room (the ground plan's earlier picks) is no spot.
+                    if (taken != null && taken.Count > 0 && Touches(t, a, rot, cfg.mirror, taken)) continue;
                     if (!Features(t, map, a, rot, cfg.mirror, center, near, avoid, noisy, gate, fields, out var f)) continue;
                     float score = SpotMath.Score(f);
                     // The costly check only for spots that could beat what's found (a few more than wanted, so distinct ones are left).
@@ -1318,6 +1320,15 @@ namespace ColonyCouncil
                 result.Add(s);
             }
             return result;
+        }
+
+        private static bool Touches(RoomTemplateDef t, IntVec3 anchor, int rot, bool mirror, HashSet<IntVec3> taken)
+        {
+            int w = t.FullWidth, h = t.FullHeight;
+            for (int fx = 0; fx < w; fx++)
+                for (int fz = 0; fz < h; fz++)
+                    if (taken.Contains(ToWorld(anchor, fx, fz, w, h, mirror, rot))) return true;
+            return false;
         }
 
         private static void CopyInto(RoomPlanConfig from, RoomPlanConfig to)
