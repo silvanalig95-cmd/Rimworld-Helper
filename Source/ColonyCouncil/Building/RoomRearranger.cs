@@ -146,6 +146,8 @@ namespace ColonyCouncil
                 plan.pieces.Add(piece);
             }
 
+            LinkFacilities(plan.pieces);
+
             // Arrange; a target the ground won't take, or a place worker refuses, pins that piece and the rest is placed again.
             var items = plan.pieces.Select(p => p.item).ToList();
             for (int round = 0; round < 4; round++)
@@ -170,6 +172,30 @@ namespace ColonyCouncil
                 p.losesPower = NeedsPower(p.thing) && PowerConnectionMaker.BestTransmitterForConnector(p.to, map) == null;
             }
             return plan;
+        }
+
+        /// <summary>
+        /// A facility (a tool cabinet, a dresser, a multi-analyzer) learns how far it reaches and which pieces here it
+        /// serves, so the rules put it within reach of as many as they can. Those that must stand by a bed's head are
+        /// bedside pieces already.
+        /// </summary>
+        private static void LinkFacilities(List<RearrangePiece> pieces)
+        {
+            foreach (var f in pieces)
+            {
+                var fac = f.thing?.def.GetCompProperties<CompProperties_Facility>();
+                if (fac == null || fac.mustBePlacedAdjacent || fac.mustBePlacedAdjacentCardinalToBedHead || fac.mustBePlacedAdjacentCardinalToAndFacingBedHead || fac.maxDistance <= 0f) continue;
+                var links = new HashSet<int>();
+                foreach (var t in pieces)
+                {
+                    if (t == f || t.thing == null) continue;
+                    var aff = t.thing.def.GetCompProperties<CompProperties_AffectedByFacilities>();
+                    if (aff?.linkableFacilities != null && aff.linkableFacilities.Contains(f.thing.def)) links.Add(t.item.id);
+                }
+                if (links.Count == 0) continue;
+                f.item.reach = fac.maxDistance;
+                f.item.links = links;
+            }
         }
 
         /// <summary>The ground takes the piece there and nothing about the spot itself forbids it (other furniture may still stand there for now).</summary>

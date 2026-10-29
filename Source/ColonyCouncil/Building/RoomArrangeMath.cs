@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ColonyCouncil
 {
@@ -12,7 +13,10 @@ namespace ColonyCouncil
     /// get in, bedside tables by a bed's head, benches with their back to a wall and their work spot free, tables in
     /// the middle with chairs facing them, shelves along the walls in runs, heaters and the like flat against a wall,
     /// plant pots and lamps in corners. The cell inside each door stays free, nothing covers anything else or a work
-    /// spot, and every piece can be reached from the doors, or it is placed again until it can. A piece already
+    /// spot, and every piece can be reached from the doors, or it is placed again until it can. What is used every
+    /// day (beds, benches, tables) leans toward the door so the walk is short, and lamps and pots keep out of the way.
+    /// In a big workshop benches stand in rows and, when the walls run out, back to back in islands; a tool cabinet
+    /// goes where it reaches the most benches, shelves near the benches, a stool on a bench's work spot. A piece already
     /// standing as well as it could stays where it is: moving furniture is work.
     /// </summary>
     public static class RoomArrangeMath
@@ -48,6 +52,10 @@ namespace ColonyCouncil
             public List<(int x, int z)> spots = new List<(int x, int z)>();
             /// <summary>Stays where it is, and blocks its cells.</summary>
             public bool fixedPlace;
+            /// <summary>A facility (a tool cabinet, a dresser): how far it reaches the pieces it serves; 0 for none.</summary>
+            public float reach;
+            /// <summary>The ids of the pieces this facility serves (benches for a cabinet, beds for a dresser).</summary>
+            public HashSet<int> links;
             /// <summary>Where it stands now: root cell and facing, in grid coordinates.</summary>
             public int curX, curZ, curRot;
 
@@ -329,6 +337,8 @@ namespace ColonyCouncil
             {
                 if (!g.Floor(sx, sz) || g.IsDoorInside(sx, sz) || it.Contains(sx, sz)) return false;
                 if (s.Solid(sx, sz)) return false;
+                // Two work spots on one cell: two people in each other's way.
+                if (s.spot[sx, sz] >= 0 && s.spot[sx, sz] != i) return false;
                 if (reach != null && !reach[sx, sz]) return false;
             }
             if (reach != null && spots.Count == 0 && !BesideReached(it, reach, g)) return false;
@@ -370,6 +380,7 @@ namespace ColonyCouncil
             var g = s.g;
             why = "fits";
             float score = 0f;
+            bool serves = false;
             // The doorway stays clear: nothing solid right beside the cell inside a door.
             if (!it.passable)
                 foreach (var (x, z) in Ring(it))
@@ -378,6 +389,20 @@ namespace ColonyCouncil
             foreach (var (x, z) in Ring(it)) if (s.Backing(x, z)) walls++;
             int north = SideBacking(s, it, 0), east = SideBacking(s, it, 1), south = SideBacking(s, it, 2), west = SideBacking(s, it, 3);
             sides = (north > 0 ? 1 : 0) + (east > 0 ? 1 : 0) + (south > 0 ? 1 : 0) + (west > 0 ? 1 : 0);
+            // A facility counts the pieces it serves within its reach: a cabinet among the benches, a dresser by the beds.
+            if (it.reach > 0f && it.links != null)
+            {
+                int served = 0;
+                for (int j = 0; j < s.items.Count; j++)
+                {
+                    var o = s.items[j];
+                    if (o == it || !it.links.Contains(o.id) || !InPlace(s, j, o)) continue;
+                    if (Distance(it, o) <= it.reach) served++;
+                }
+                score += Math.Min(served, 4) * 2f;
+                if (served > 0) serves = true;
+            }
+            int walk = DoorWalk(g, it);
             switch (it.kind)
             {
                 case Bed:
@@ -399,24 +424,46 @@ namespace ColonyCouncil
                         if (other != null && other != it && other.kind == Bed) score -= 4f;
                     }
                     score += Math.Min(2, sides - (headWall > 0 ? 1 : 0)) * 1.5f;
+                    // Near the door: the walk to bed is made every day.
+                    score -= Math.Min(walk, 12) * 0.2f;
                     break;
                 }
                 case Bench:
                 {
-                    // Back to the wall, the work spot in the open.
+                    // Back to the wall, or back to back with another bench when the walls run out; the work spot in the open.
                     int back = BackOf(it);
                     int backWall = SideBacking(s, it, back);
+                    int backFurniture = SideLeaning(s, it, back);
                     int backLen = back == 0 || back == 2 ? it.w : it.h;
                     if (backLen > 0 && backWall == backLen)
                     {
                         score += 8f;
                         why = "wall";
                     }
-                    else if (backWall > 0) score += 3f;
+                    else if (backLen > 0 && backWall + backFurniture == backLen)
+                    {
+                        score += 6f;
+                        why = "island";
+                    }
+                    else if (backLen > 0 && backWall + backFurniture >= (backLen + 1) / 2)
+                    {
+                        score += 4f;
+                        why = "island";
+                    }
+                    else if (backWall + backFurniture > 0) score += 3f;
+                    // Nothing to lean on yet: a place with open floor behind leaves room for the next bench to lean on this one.
+                    else if (backLen > 0 && BackFree(s, it, back) == backLen) score += 1f;
                     score += Math.Min(2, sides - (backWall > 0 ? 1 : 0)) * 1f;
+                    // In a row with the next bench, facing the same way.
+                    foreach (var (x, z) in SideCells(it, TemplateMath.Norm(back + 1)).Concat(SideCells(it, TemplateMath.Norm(back + 3))))
+                    {
+                        var o = s.At(x, z);
+                        if (o != null && o != it && o.kind == Bench && BackOf(o) == back) score += 1.5f;
+                    }
                     foreach (var (sx, sz) in it.SpotCells())
                         foreach (var (x, z) in Beside(sx, sz))
                             if (g.IsDoorInside(x, z)) score -= 2f;
+                    score -= Math.Min(walk, 12) * 0.1f;
                     break;
                 }
                 case Table:
@@ -432,16 +479,24 @@ namespace ColonyCouncil
                     score += free * 0.8f;
                     if (free == ring) why = "middle";
                     score -= walls * 0.6f;
+                    score -= Math.Min(walk, 12) * 0.1f;
                     break;
                 }
                 case Chair:
                 {
                     TemplateLayout.Step(it.rot, out int dx, out int dz);
                     var faced = s.At(it.x + dx, it.z + dz);
+                    int spotOf = g.In(it.x, it.z) ? s.spot[it.x, it.z] : -1;
                     if (faced != null && (faced.kind == Table || faced.kind == Centre))
                     {
                         score += 10f;
                         why = "table";
+                    }
+                    else if (spotOf >= 0 && spotOf != i && s.items[spotOf].kind == Bench && faced == s.items[spotOf])
+                    {
+                        // A stool on a bench's work spot, facing the bench: the worker sits.
+                        score += 9f;
+                        why = "bench";
                     }
                     else
                     {
@@ -512,6 +567,15 @@ namespace ColonyCouncil
                     }
                     foreach (var (x, z) in Ring(it))
                         if (g.In(x, z) && s.spot[x, z] >= 0 && s.spot[x, z] != i) score -= 2f;
+                    // Near the benches, so the materials are at hand.
+                    int benches = 0;
+                    for (int j = 0; j < s.items.Count; j++)
+                    {
+                        var o = s.items[j];
+                        if (o != it && o.kind == Bench && InPlace(s, j, o) && Distance(it, o) <= 5f) benches++;
+                    }
+                    score += Math.Min(benches, 3) * 1.5f;
+                    score -= Math.Min(walk, 12) * 0.05f;
                     break;
                 }
                 case WallHugger:
@@ -536,12 +600,13 @@ namespace ColonyCouncil
                         why = "wall";
                     }
                     else score -= 1f;
-                    // Spread the lamps and pots about rather than bunching them.
+                    // Spread the lamps and pots about rather than bunching them, and out of the way of the door.
                     foreach (var (x, z) in Ring(it))
                     {
                         var o = s.At(x, z);
                         if (o != null && o != it && o.kind == Decor) score -= 3f;
                     }
+                    score += Math.Min(walk, 12) * 0.1f;
                     break;
                 }
                 default:
@@ -549,7 +614,8 @@ namespace ColonyCouncil
                     if (walls > 0) why = "wall";
                     break;
             }
-            // Nothing solid in front of a work spot's open side is checked by reach; a little for staying near where it was.
+            if (serves) why = "serves";
+            // Reach from the doors is checked afterwards; a little for staying near where it was.
             score -= Dist(it.x, it.z, it) * 0.02f;
             return score;
         }
@@ -574,6 +640,94 @@ namespace ColonyCouncil
                     break;
             }
             return n;
+        }
+
+        /// <summary>How many cells of the footprint's <paramref name="side"/> lean on furniture nobody walks through and nobody works at from there (another bench's back, a shelf).</summary>
+        private static int SideLeaning(State s, Item it, int side)
+        {
+            int n = 0;
+            foreach (var (x, z) in SideCells(it, side))
+            {
+                var o = s.At(x, z);
+                if (o == null || o == it || o.passable || o.kind == Table || o.kind == Centre || o.kind == Bed || o.kind == Chair) continue;
+                if (s.spot[x, z] >= 0) continue;
+                n++;
+            }
+            return n;
+        }
+
+        /// <summary>How many cells of the footprint's <paramref name="side"/> have open floor beyond them: no wall, nothing standing, nobody's work spot, not a doorway.</summary>
+        private static int BackFree(State s, Item it, int side)
+        {
+            int n = 0;
+            foreach (var (x, z) in SideCells(it, side))
+                if (s.g.Floor(x, z) && !s.g.IsDoorInside(x, z) && s.At(x, z) == null && s.spot[x, z] < 0) n++;
+            return n;
+        }
+
+        /// <summary>The cells just beyond the footprint on one side (0 north, 1 east, 2 south, 3 west).</summary>
+        private static IEnumerable<(int x, int z)> SideCells(Item it, int side)
+        {
+            switch (side)
+            {
+                case 0:
+                    for (int x = it.minX; x < it.minX + it.w; x++) yield return (x, it.minZ + it.h);
+                    break;
+                case 2:
+                    for (int x = it.minX; x < it.minX + it.w; x++) yield return (x, it.minZ - 1);
+                    break;
+                case 1:
+                    for (int z = it.minZ; z < it.minZ + it.h; z++) yield return (it.minX + it.w, z);
+                    break;
+                default:
+                    for (int z = it.minZ; z < it.minZ + it.h; z++) yield return (it.minX - 1, z);
+                    break;
+            }
+        }
+
+        /// <summary>Whether item <paramref name="j"/> stands in the room now: fixed, left standing, or placed already.</summary>
+        private static bool InPlace(State s, int j, Item o)
+        {
+            if (o.fixedPlace || o.stranded) return true;
+            for (int x = o.minX; x < o.minX + o.w; x++)
+                for (int z = o.minZ; z < o.minZ + o.h; z++)
+                    if (s.g.In(x, z) && s.occ[x, z] == j) return true;
+            return false;
+        }
+
+        /// <summary>The distance between two footprints' middles.</summary>
+        public static float Distance(Item a, Item b)
+        {
+            float ax = a.minX + a.w / 2f, az = a.minZ + a.h / 2f, bx = b.minX + b.w / 2f, bz = b.minZ + b.h / 2f;
+            return (float)Math.Sqrt((ax - bx) * (ax - bx) + (az - bz) * (az - bz));
+        }
+
+        /// <summary>
+        /// The walk from the nearest door to where the piece is used: the cell beyond a bed's feet, a bench's work spot,
+        /// else the piece itself. Straight-line cells, not the path: enough to tell the near end of a room from the far.
+        /// </summary>
+        public static int DoorWalk(Grid g, Item it)
+        {
+            if (g.doorInside.Count == 0) return 0;
+            int ux = it.x, uz = it.z;
+            if (it.kind == Bed)
+            {
+                var feet = it.rot == 0 ? (it.x, it.minZ + it.h) : it.rot == 2 ? (it.x, it.minZ - 1) : it.rot == 1 ? (it.minX + it.w, it.z) : (it.minX - 1, it.z);
+                ux = feet.Item1;
+                uz = feet.Item2;
+            }
+            else
+            {
+                var spots = it.SpotCells();
+                if (spots.Count > 0)
+                {
+                    ux = spots[0].x;
+                    uz = spots[0].z;
+                }
+            }
+            int best = int.MaxValue;
+            foreach (var (dx, dz) in g.doorInside) best = Math.Min(best, Math.Abs(dx - ux) + Math.Abs(dz - uz));
+            return best;
         }
 
         /// <summary>The side of a bench away from its work spot (where the worker stands), or its facing when it has none.</summary>

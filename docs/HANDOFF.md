@@ -1,6 +1,14 @@
 # Handoff: work in progress
 
-Last shipped: 0.24.0 "Planning the base with the council", the first round on the player's ask for help planning the
+Last shipped: 0.24.1 "Shorter walks, fuller workshops", the player's two notes on the arranger: a bed near the door
+(`RoomArrangeMath.DoorWalk`, straight-line cells from the nearest door to a bed's feet or a bench's spot: beds -0.2 a
+cell, benches and tables -0.1, shelves -0.05, decor +0.1), and big workshops (benches may lean back to back on solid
+furniture without a work spot behind, `SideLeaning`, "island"; +1.5 for a bench in a row with one facing the same way;
+`Item.reach`/`links` for facilities from `CompProperties_Facility.maxDistance` and `linkableFacilities`, +2 per served
+piece within reach, "serves"; shelves +1.5 per bench within 5; a chair on a bench's work spot facing it, "bench"; -2 for
+a work spot on another's). Not tried in the game here.
+
+Before it, 0.24.0 "Planning the base with the council", the first round on the player's ask for help planning the
 base (which room near what, what's urgent, where to expand, and rooms that look messy). Agreed order of the whole:
 round 1 (shipped) = the next-steps plan, where a room should go, rearranging a room; round 2 (next) = a base ground
 plan, a base review, tidying the storage, production chains (mod-aware: VCE, Brewing, Gastronomy, VFE benches), an

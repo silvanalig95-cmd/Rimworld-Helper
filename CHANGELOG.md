@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Shorter walks, fuller workshops
+
+*29 October 2026, version 0.24.1*
+
+- Rearranging a room now minds the walk from the door: a bed goes to the near end of the room rather than the far, benches and tables lean toward the door too, and lamps and plant pots keep out of the way at the far end. The head still goes to a wall first.
+- In a big workshop benches stand in rows facing the same way and, when the walls run out, back to back in islands with the work spots outward. No two work spots share a cell.
+- A tool cabinet goes where it reaches the most benches, a dresser near the beds, a multi-analyzer by the research benches: anything that serves other pieces counts what it reaches. Shelves go near the benches, so the materials are at hand.
+- A stool at a bench sits on the bench's work spot, facing it.
+
 ## Planning the base with the council
 
 *29 October 2026, version 0.24.0*

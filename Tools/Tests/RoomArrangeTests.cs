@@ -129,6 +129,8 @@ public static class RoomArrangeTests
         return null;
     }
 
+    private static IEnumerable<RoomArrangeMath.Item> benches2(params RoomArrangeMath.Item[] items) => items;
+
     private static bool HeadToWall(RoomArrangeMath.Grid g, RoomArrangeMath.Item bed)
     {
         int back = (bed.rot + 2) % 4;
@@ -333,6 +335,83 @@ public static class RoomArrangeTests
                 for (int z = heavy.minZ; z < heavy.minZ + heavy.h; z++)
                     if (!g.Heavy(x, z)) onHeavy = false;
             C(onHeavy, $"the heavy bench stands on the heavy floor ({heavy.minX},{heavy.minZ} {heavy.w}x{heavy.h})");
+        }
+
+        // The walk from the door: a bed goes to the near end of a long room, head still to a wall.
+        {
+            var g = Room(
+                "#####",
+                "#...#",
+                "#...#",
+                "#...#",
+                "#...#",
+                "#...#",
+                "#...#",
+                "#...#",
+                "#D..#",
+                "#...#",
+                "#####");
+            var bed = Bed(2, 8, 0);
+            var items = new List<RoomArrangeMath.Item> { bed };
+            Dump("long bedroom", g, items, RoomArrangeMath.Arrange(g, items));
+            C(Sound(g, items) == null, "the long bedroom is sound: " + Sound(g, items));
+            C(HeadToWall(g, bed), "the bed's head goes to a wall");
+            C(bed.minZ <= 3, $"the bed goes to the end of the room by the door (minZ {bed.minZ})");
+            C(RoomArrangeMath.DoorWalk(g, bed) <= 3, $"the walk from the door to the bed is short ({RoomArrangeMath.DoorWalk(g, bed)})");
+        }
+
+        // A big workshop: more benches than the walls hold; the rest stand back to back in islands, none in the open.
+        {
+            var g = Room(
+                "###########",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "#....D....#",
+                "#####+#####");
+            var benches = new List<RoomArrangeMath.Item>();
+            for (int i = 0; i < 10; i++) benches.Add(Bench(2 + (i % 3) * 3, 2 + i / 3 * 2, 0));
+            var items = new List<RoomArrangeMath.Item>(benches);
+            Dump("big workshop", g, items, RoomArrangeMath.Arrange(g, items));
+            C(Sound(g, items) == null, "the big workshop is sound: " + Sound(g, items));
+            int backed = benches.Count(b => b.why == "wall" || b.why == "island");
+            C(backed >= 8, $"nearly every bench has its back to a wall or another bench ({backed} of 10)");
+            C(benches.Any(b => b.why == "island"), "some stand back to back in an island");
+            var spots = benches.SelectMany(b => b.SpotCells()).ToList();
+            C(spots.Distinct().Count() == spots.Count, "no two work spots share a cell");
+        }
+
+        // A tool cabinet goes where it reaches the benches it serves; a stool sits on a bench's work spot facing it; a shelf stands near the bench.
+        {
+            var g = Room(
+                "#################",
+                "#...............#",
+                "#...............#",
+                "#...............#",
+                "#...............#",
+                "#...D...........#",
+                "#####+###########");
+            var b1 = Bench(2, 5, 0);
+            var b2 = Bench(6, 5, 0);
+            var cab = Item(RoomArrangeMath.WallHugger, 15, 1);
+            cab.reach = 8f;
+            cab.links = new HashSet<int> { b1.id, b2.id };
+            var stool = Item(RoomArrangeMath.Chair, 15, 3, 0, 1, 1, true);
+            var shelf = Item(RoomArrangeMath.Storage, 14, 2, 0, 1, 2);
+            var items = new List<RoomArrangeMath.Item> { b1, b2, cab, stool, shelf };
+            Dump("workshop fittings", g, items, RoomArrangeMath.Arrange(g, items));
+            C(Sound(g, items) == null, "the fitted workshop is sound: " + Sound(g, items));
+            C(!b1.moved && !b2.moved, "the benches along the wall stay");
+            C(RoomArrangeMath.Distance(cab, b1) <= 8f && RoomArrangeMath.Distance(cab, b2) <= 8f, $"the cabinet reaches both benches ({cab.x},{cab.z})");
+            C(cab.why == "serves", "and says so: " + cab.why);
+            bool onSpot = benches2(b1, b2).Any(b => b.SpotCells().Contains((stool.x, stool.z)) && b.Contains(stool.x + 0, stool.z + 1) && stool.rot == 0);
+            C(onSpot, $"the stool sits on a bench's work spot facing it ({stool.x},{stool.z} r{stool.rot}, {stool.why})");
+            C(RoomArrangeMath.Distance(shelf, b1) <= 5f || RoomArrangeMath.Distance(shelf, b2) <= 5f, $"the shelf stands near a bench ({shelf.minX},{shelf.minZ})");
         }
 
         // The order the moves go in: a piece whose new cells are free goes first; two that swap places need one set aside.

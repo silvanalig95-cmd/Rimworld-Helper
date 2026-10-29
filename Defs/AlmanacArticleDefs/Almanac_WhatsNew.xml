@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.24.1</version>
+        <date>29 October 2026</date>
+        <title>Shorter walks, fuller workshops</title>
+        <points>
+          <li>Rearranging a room now minds the walk from the door: a bed goes to the near end of the room rather than the far, benches and tables lean toward the door too, and lamps and plant pots keep out of the way at the far end. The head still goes to a wall first.</li>
+          <li>In a big workshop benches stand in rows facing the same way and, when the walls run out, back to back in islands with the work spots outward. No two work spots share a cell.</li>
+          <li>A tool cabinet goes where it reaches the most benches, a dresser near the beds, a multi-analyzer by the research benches: anything that serves other pieces counts what it reaches. Shelves go near the benches, so the materials are at hand.</li>
+          <li>A stool at a bench sits on the bench's work spot, facing it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.24.0</version>
         <date>29 October 2026</date>
         <title>Planning the base with the council</title>
