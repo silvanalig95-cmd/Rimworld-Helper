@@ -364,6 +364,10 @@ MODEL = {
     "PlayOut/OnMapTimed.cs:things": ("fixed", 3, P, "per thing kept: its lanterns (OnMapMath.MaxLanterns at most), the fire, the door"),
     "PlayOut/OnMapTimed.cs:pawns": ("fixed", 1, P, "per thing kept: those felling the trees (three at most), fellings only"),
     "PlayOut/OnMapTimed.cs:cells": ("fixed", 2, 40, "per thing kept: where each planter sets their sapling (OnMapMath.MaxSaplings at most), plantings only"),
+    # What visitors do for an answer while they're here: a tinker's mending, a doctor's doses, a guest's night indoors
+    "Happenings/VisitorServices.cs:tasks": ("cap", (const("Happenings/VisitorServices.cs", "MaxTasks", 8), 0.2), 300, "a night to a day each, at most VisitorServices.MaxTasks at once"),
+    "Happenings/VisitorServices.cs:things": ("fixed", 10, P, "per task: what the tinker still has to mend (30 at most, fewer as the work goes on), mending only"),
+    "Happenings/VisitorServices.cs:pawns": ("fixed", 4, P, "per task: who is still to have a dose (one per colonist at most), doses only"),
     "PlayOut/PlayOuts.cs:named": ("fixed", 2, P, "per play-out: those the answer names (counted under plays)"),
     "PlayOut/PlayOuts.cs:hands": ("fixed", 6, 200, "per play-out: who went (counted under plays)"),
     "PlayOut/PlayOuts.cs:route": ("fixed", 6, 40, "per searcher: the places they look over (counted under plays)"),

@@ -196,15 +196,16 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            // Paid for: everyone at home gets it (a shot, or a bitter tonic, by era).
-            if (option == 0 && ctx.map != null)
-            {
-                var hediff = Avail.IsPreIndustrial ? CouncilDefOf.Council_HerbalTonic : CouncilDefOf.Council_Inoculated;
-                if (hediff != null)
-                    foreach (var p in ctx.map.mapPawns.FreeColonistsSpawned.ToList())
-                        if (p.health?.hediffSet?.HasHediff(hediff) == false) p.health.AddHediff(hediff);
-            }
-            return base.Resolved(ctx, option, risk, byDefault, outcome);
+            var hediff = Avail.IsPreIndustrial ? CouncilDefOf.Council_HerbalTonic : CouncilDefOf.Council_Inoculated;
+            if (option != 0 || ctx.map == null || hediff == null) return base.Resolved(ctx, option, risk, byDefault, outcome);
+            // Paid for: everyone at home gets it (a shot, or a bitter tonic, by era). The doctor goes round them on the map
+            // and gives each theirs, and the answer's words are told when the last has had it (VisitorServices); with the
+            // setting off, or the doctor gone, everyone has it at once.
+            var who = ctx.map.mapPawns.FreeColonistsSpawned.Where(p => p.health?.hediffSet?.HasHediff(hediff) == false).ToList();
+            outcome = base.Resolved(ctx, option, risk, byDefault, outcome);
+            if (VisitorServices.Dose(ctx.map, ctx.stranger, who, hediff, ctx.Format(outcome))) return "";
+            foreach (var p in who) p.health.AddHediff(hediff);
+            return outcome;
         }
     }
 

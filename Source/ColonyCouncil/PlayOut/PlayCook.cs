@@ -14,6 +14,8 @@ namespace ColonyCouncil
     /// cooks it into meals at one of the colony's stoves, with a bill of the game's own for the best meal they can make
     /// there and the game's own cooking job, and the feast waits while the pot is on. The meals are served with the rest
     /// of the stores'. Nobody to cook, nothing to cook at, or a feast that never comes about: the food stays in the stores.
+    /// A visiting cook who offered to cook the feast (<see cref="CookFromOutside"/>) does it in the colony's place, with
+    /// the same bill and job, and leaves the meals by the stove for the colony's haulers.
     /// </summary>
     public static class PlayCook
     {
@@ -61,8 +63,8 @@ namespace ColonyCouncil
                 Over(p);
                 return false;
             }
-            var cook = p.cook != null && CanCook(p.cook, p.map) ? p.cook : ChooseCook(p);
-            bool free = cook != null && PlayGroups.Free(t, p, cook);
+            var cook = p.cook != null && (CanCook(p.cook, p.map) || Outsider(p, p.cook)) ? p.cook : ChooseCook(p);
+            bool free = cook != null && (Outsider(p, cook) ? OutsiderFree(cook) : PlayGroups.Free(t, p, cook));
             if (free && p.map.dangerWatcher.DangerRating == StoryDanger.None && Start(p, cook, now))
             {
                 p.waitReason = "CC_Play_Why_Cooking".Translate(cook.Named("PAWN")).Resolve();
@@ -135,6 +137,30 @@ namespace ColonyCouncil
             && !x.WorkTypeIsDisabled(Cooking) && !x.DevelopmentalStage.Baby() && x.health?.capacities != null
             && x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation);
 
+        /// <summary>
+        /// The visitor the feast was set going with cooks it (a traveling cook given the kitchen): set before the pot goes
+        /// on, and kept as long as they can do it; if they can't, the colony's own cook takes over as for any feast.
+        /// </summary>
+        public static void CookFromOutside(PlayOut feast, Pawn x)
+        {
+            if (feast == null || feast.kind != PlayKind.Feast || feast.cookOver || x == null || feast.other != x || !Outsider(feast, x)) return;
+            feast.cook = x;
+        }
+
+        /// <summary>The feast's own visitor, able to cook: here and calm, of a people at peace with the colony, and not on their way out.</summary>
+        private static bool Outsider(PlayOut p, Pawn x)
+        {
+            if (x == null || x != p.other || x.Dead || !x.Spawned || x.Map != p.map || x.Downed || x.InMentalState || x.IsPrisoner) return false;
+            if (x.Faction == null || x.Faction.IsPlayer || x.HostileTo(Faction.OfPlayer) || Cooking == null || x.WorkTypeIsDisabled(Cooking)) return false;
+            if (x.DevelopmentalStage.Juvenile() || x.health?.capacities == null || !x.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation)) return false;
+            var duty = x.mindState?.duty?.def;
+            return duty == null || !duty.defName.StartsWith("ExitMap");
+        }
+
+        /// <summary>The visiting cook can go to the stove now: awake, not eating or resting, not hungry or worn out.</summary>
+        private static bool OutsiderFree(Pawn x) =>
+            x.Awake() && x.CurJobDef != JobDefOf.Ingest && x.CurJobDef != JobDefOf.LayDown && !PlayOuts.NeedsPress(x);
+
         /// <summary>The feast's organizer if they cook, else the best cook of those asked.</summary>
         private static Pawn ChooseCook(PlayOut p)
         {
@@ -163,6 +189,8 @@ namespace ColonyCouncil
                 b.repeatMode = BillRepeatModeDefOf.RepeatCount;
                 b.repeatCount = meals + 1;
                 b.SetPawnRestriction(cook);
+                // A visiting cook sets the meals down by the stove: the colony's haulers take them to the stores.
+                if (cook.Faction != Faction.OfPlayer) b.SetStoreMode(BillStoreModeDefOf.DropOnFloor);
                 giver.BillStack.AddBill(b);
                 // First on the stove, so the cook takes this one and not another of the colony's.
                 var bills = giver.BillStack.Bills;
@@ -226,7 +254,7 @@ namespace ColonyCouncil
             var list = new List<(Thing stove, RecipeDef recipe)>();
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.PotentialBillGiver))
             {
-                if (!(t is IBillGiver) || t.Faction != Faction.OfPlayer || t.IsForbidden(cook) || Giver(t.def) == null) continue;
+                if (!(t is IBillGiver) || t.Faction != Faction.OfPlayer || t.IsForbidden(cook) || t.IsForbidden(Faction.OfPlayer) || Giver(t.def) == null) continue;
                 if (!cook.CanReach(t, PathEndMode.InteractionCell, Danger.Some)) continue;
                 foreach (var r in t.def.AllRecipes)
                     if (Meal(r, cook))

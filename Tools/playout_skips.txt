@@ -253,7 +253,7 @@ Council_Evt_CampQuarrel [option 1] a ruling
 # Defs/IncidentDefs/Council_Events_Stories.xml
 Council_Story_DoorCasket [option 0] the story's own code brings the sleeper home
 Council_Story_DoorHoard [option 0] two days of carrying, by the story's own code
-Council_Story_Fugitive [option 2] a refusal; bread passed through the gate
+Council_Story_Fugitive [option 2] a refusal: the stranger is turned away at the gate, off the map
 Council_Story_Pursuers [option 0] nothing done; the riders' part
 Council_Story_DebtGift [option 0] a gift kept; nothing done
 Council_Story_Feud [option 4] a refusal
@@ -267,7 +267,6 @@ Council_Story_ProphetPilgrims [letter] guests who came and went, told
 Council_Evt_Cartographer [option 1] two days in the hills with the mapmaker, who leaves: off the map
 Council_Evt_SilentMonk [option 2] a refusal
 Council_Evt_WoundedStranger [option 0] the stranger is brought in by the event's own code
-Council_Evt_WoundedStranger [option 1] the stranger stays where they were found, off the map until taken in
 Council_Evt_WoundedStranger [option 2] a refusal
 Council_Evt_Envoy [option 2] a refusal
 
@@ -289,7 +288,6 @@ Council_Evt_OmenBeast [option 3] nothing done
 # Defs/IncidentDefs/Council_Events_Variety.xml
 Council_Evt_Stranded [option 0] the merchants are sent on at once (the event sends them away): nobody left to help on the map
 Council_Evt_Stranded [option 2] a refusal
-Council_Evt_Tinker [option 0] the tinker's part: the mending is the event's own code
 Council_Evt_GrowingSpell [letter] news of the season
 Council_Evt_OldGrave [option 1] already real: the grave goods are brought in
 Council_Evt_OldGrave [option 2] nothing done

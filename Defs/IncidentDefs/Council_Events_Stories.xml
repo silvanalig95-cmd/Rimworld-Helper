@@ -455,17 +455,17 @@
         <options>
           <li>
             <label>Hide {X_objective}, and ask nothing</label>
-            <outcome>{A_nameDef} brings {X_nameDef} in, finds {X_objective} a coat and a corner by the stove, and asks no questions. {X_nameDef} will be gone before it's light.</outcome>
+            <outcome>{A_nameDef} lets {X_nameDef} in, finds {X_objective} a warm corner indoors, and asks no questions. {X_nameDef} will be gone before it's light.</outcome>
             <ways><mercy>2</mercy></ways>
           </li>
           <li>
             <label>Take {X_objective} in, but ask who is following</label>
-            <outcome>{A_nameDef} brings {X_nameDef} in and asks who is following.</outcome>
+            <outcome>{A_nameDef} lets {X_nameDef} in and asks who is following.</outcome>
             <ways><mercy>1</mercy></ways>
           </li>
           <li>
             <label>Send {X_objective} on</label>
-            <outcome>{A_nameDef} passes a heel of bread through the gate and points the way to the road. {X_nameDef} goes without another word.</outcome>
+            <outcome>{A_nameDef} answers through the gate and points the way to the road. {X_nameDef} goes without another word.</outcome>
             <ways><mercy>-1</mercy></ways>
           </li>
         </options>
@@ -476,7 +476,7 @@
         <start>true</start>
         <!-- What the stranger says when asked. -->
         <outcomes>
-          <li>[asked,innocent,lowtech] "I was in service at {PLACE}," {X_nameDef} says over a bowl of stew, "and I saw the lord's son do something they'd hang anyone else for. The lord would rather I'd seen nothing." {A_nameDef} believes every word.</li>
+          <li>[asked,innocent,lowtech] "I was in service at {PLACE}," {X_nameDef} says, "and I saw the lord's son do something they'd hang anyone else for. The lord would rather I'd seen nothing." {A_nameDef} believes every word.</li>
           <li>[asked,innocent,!lowtech] {X_nameDef} kept house for the mayor of {PLACE}, and one night saw the mayor's son do something that would put anyone else in a cell. Now there are people on the road who'd like the only witness gone. {A_nameDef} watched {X_objective} tell it, and doesn't doubt a word.</li>
           <li>[asked,guilty,lowtech] {X_nameDef} doesn't bother lying. The pack holds a silver reliquary {X_nameDef} lifted from the chapel at {PLACE}, and the people following want it back. {X_nameDef} will be gone before light, either way.</li>
           <li>[asked,guilty,!lowtech] {X_nameDef} opens the pack without being asked twice: a case of medicine from the clinic at {PLACE}, worth more than a year's wages, and the people following want it back. "I'll be gone before light," {X_nameDef} says. "Whatever you decide."</li>
@@ -503,7 +503,7 @@
           <li>[paidoff] Settled</li>
         </endingTitles>
         <endings>
-          <li>[repaidjoined] {X_nameDef} has unpacked in the same corner by the stove where the colony hid {X_objective} the night before {FACTION}'s riders came looking. It's the only place {X_pronoun} has slept soundly in a year, {X_nameDef} says.\n\n{A_nameDef} has given up trying to talk {X_objective} into a proper bed.</li>
+          <li>[repaidjoined] {X_nameDef} has unpacked in the same warm corner where the colony hid {X_objective} the night before {FACTION}'s riders came looking. It's the only place {X_pronoun} has slept soundly in a year, {X_nameDef} says.\n\n{A_nameDef} has given up trying to talk {X_objective} into a proper bed.</li>
           <li>[repaid] {X_nameDef} will stay the night and go on in the morning, with a full pack and the colony's good wishes. What {X_pronoun} brought is the colony's to keep: {TALE}.</li>
           <li>[accepted] {X_nameDef}'s gift stays, and {X_nameDef} is well pleased. The fine things are the colony's now: {ITEM}.\n\n{FACTION} need never know where they ended up.</li>
           <li>[exposed] {X_nameDef} had barely unwrapped the gift when a trader from {PLACE}, at the gate on other business, saw it and knew it for what was taken. The story will be all along the road within a week, and {FACTION} already think less of the colony.\n\nThe gift stays all the same: {ITEM}.</li>
@@ -1418,7 +1418,14 @@
           </li>
           <li>
             <label>Give {X_objective} what can be spared</label>
-            <outcome>{A_nameDef} packs {X_nameDef} a bag of food and a blanket. {X_nameDef} thanks the colony, and means to go back to {PLACE} alone.</outcome>
+            <outcome>{X_nameDef} thanks the colony, and means to go back to {PLACE} alone.</outcome>
+            <outcomes>
+              <li>[food] {X_nameDef} is given a bag of food from the colony's stores, thanks the colony, and means to go back to {PLACE} alone.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for {X_nameDef}'s road</label><what>rawfood</what><count>10</count><steward>false</steward><to>Stranger</to><ifHave>true</ifHave></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
           </li>
         </options>
       </li>

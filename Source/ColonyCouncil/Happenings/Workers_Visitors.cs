@@ -236,6 +236,17 @@ namespace ColonyCouncil
 
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext) =>
             Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
+
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            // Hosted for the night: a warm corner indoors to sleep in, and they stay for the talk the answer set going.
+            if (option == 0 && ctx.map != null && ctx.stranger != null)
+            {
+                VisitorServices.Lodge(ctx.map, ctx.stranger, false);
+                VisitorServices.StayFor(ctx.stranger, ctx.plays);
+            }
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
     }
 
     // ===================== A lost child =====================
@@ -272,6 +283,14 @@ namespace ColonyCouncil
 
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext) =>
             Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.answerDays * 24f + 6f) != null;
+
+        /// <summary>Something to eat and a spare coat for the child to take home: [gift] when the stores hold both (the answer's errand carries them out).</summary>
+        public const string Gift = "meals+" + PlayCarry.Coat;
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            if (ctx.map != null && PlayCarry.Have(ctx.map, Gift, null) >= PlayCarry.Parts(Gift).Length) tags.Add("gift");
+        }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {

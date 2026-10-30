@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- What visitors do at the colony for an answer (Source/ColonyCouncil/Happenings/VisitorServices.cs): a tinker
+       mending one of the colony's things, a doctor giving a colonist a dose, and the one they work on standing still
+       for it. -->
+
+  <JobDef>
+    <defName>Council_VisitMend</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitMend</driverClass>
+    <reportString>mending.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_VisitDose</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitDose</driverClass>
+    <reportString>giving a dose.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_VisitHold</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitHold</driverClass>
+    <reportString>standing still.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

@@ -64,14 +64,14 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[lowtech] {X_nameDef} worked half the night by lamplight, singing under {X_possessive} breath, and in the morning there was a pile of mended things by the door, each one tied with a strip of cloth.</li>
-          <li>[!lowtech] The grinder ran until late and the sewing frame clacked until later. By morning every piece in the pile was sound, and {X_nameDef} was asleep on the cart.</li>
+          <li>[lowtech] {X_nameDef} went from one worn thing to the next, singing under {X_possessive} breath, and didn't stop until the last of them was mended.</li>
+          <li>[!lowtech] {X_nameDef} went through the colony's worn gear piece by piece, and didn't put the tools away until every piece was sound.</li>
         </lines>
       </li>
       <li>
         <option>1</option>
         <lines>
-          <li>{X_nameDef} shrugged, rang the cart's bell once, and went off down the road to the next gate.</li>
+          <li>{X_nameDef} shrugged, shouldered {X_possessive} pack, and went off down the road to the next gate.</li>
         </lines>
       </li>
       <li>
@@ -186,14 +186,14 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[winter] {X_nameDef} kept every pot going and the kitchen windows ran with steam all afternoon. The colony ate until it was warm through, and then some more.</li>
-          <li>[summer] {X_nameDef} served supper outside after dark: cold soup, flatbread off the hot stones, something sweet at the end. The colony ate under the stars until the bugs drove them in.</li>
+          <li>[winter] {X_nameDef} kept the colony's stove going all afternoon, and the colony ate until it was warm through, and then some more.</li>
+          <li>[summer] {X_nameDef} cooked through the heat of the afternoon and served it at the colony's own table, and nobody spoke of the heat once they'd eaten.</li>
         </lines>
       </li>
       <li>
         <option>1</option>
         <lines>
-          <li>{X_nameDef} and {B_nameDef} cooked side by side from noon until dark, and {X_nameDef} made {B_nameDef} taste everything twice. {B_nameDef} has a list of things to try that will last the winter.</li>
+          <li>{X_nameDef} kept {B_nameDef} at {X_possessive} side all afternoon and made {B_nameDef} taste everything twice. {B_nameDef} has a list of things to try that will last the winter.</li>
         </lines>
       </li>
       <li>
@@ -252,8 +252,8 @@
       <li>
         <option>0</option>
         <lines>
-          <li>[ail:Pinkeye] {X_nameDef} washed {A_nameDef}'s eye with something cold, left a pot of salve and very strict instructions about towels. It's already less red.</li>
-          <li>[ail:Migraine] {X_nameDef} sat with {A_nameDef} in the dark with the tea and a cool cloth, saying nothing, and by evening {A_nameDef} could stand the lamp again.</li>
+          <li>[ail:Pinkeye] {X_nameDef} washed {A_nameDef}'s eye with something cold and left very strict instructions about towels. It's already less red.</li>
+          <li>[ail:Migraine] {X_nameDef} sat with {A_nameDef} through the afternoon, saying nothing, and by evening {A_nameDef} could stand the lamp again.</li>
         </lines>
       </li>
       <li>
@@ -265,7 +265,7 @@
       <li>
         <option>2</option>
         <lines>
-          <li>{X_nameDef} left a packet of herbs on the table anyway, "for when you change your mind," and went on down the road.</li>
+          <li>{X_nameDef} left a word of advice anyway, "for when you change your mind," and went on down the road.</li>
         </lines>
       </li>
     </outcomes>

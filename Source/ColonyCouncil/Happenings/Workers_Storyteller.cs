@@ -839,6 +839,14 @@ namespace ColonyCouncil
         public override float RiskChance(HappeningContext ctx, int option, float chance) =>
             option == 0 && ctx.enemy == null ? 0f : base.RiskChance(ctx, option, chance);
 
+        /// <summary>Food and bandages left for the stranger: [supplies] when the stores hold both (the answer's errand carries them out past the gate).</summary>
+        public const string Supplies = "meals+medicine";
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            if (ctx.map != null && PlayCarry.Have(ctx.map, Supplies, null) >= PlayCarry.Parts(Supplies).Length) tags.Add("supplies");
+        }
+
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
             var x = ctx.stranger;
@@ -858,7 +866,13 @@ namespace ColonyCouncil
             }
             else if (option == 1 && x != null)
             {
-                StorytellerEvents.Schedule(StorytellerEvents.Mended, null, null, Rand.Chance(0.55f) ? "gift" : "none", x.LabelShort, ctx.a, Rand.Range(5f, 12f));
+                // The food and bandages go out past the gate to where they lie, off the map: the errand isn't theirs to
+                // wait for (they're let go to the world now), so nobody holds on to them for it.
+                var errand = ctx.plays?.FirstOrDefault(p => p.kind == PlayKind.Carry && p.other == x);
+                if (errand != null) errand.other = null;
+                // The bundle that may come back is tied with the colony's own bandage: only when food and bandages went out.
+                bool left = !PlayOuts.On || errand != null;
+                StorytellerEvents.Schedule(StorytellerEvents.Mended, null, null, left && Rand.Chance(0.55f) ? "gift" : "none", x.LabelShort, ctx.a, Rand.Range(5f, 12f));
             }
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }

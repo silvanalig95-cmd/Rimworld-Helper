@@ -378,8 +378,12 @@
         <options>
           <li>
             <label>Take {X_objective} home</label>
-            <outcome>{X_nameDef} is walked back toward {X_possessive} people, clutching a bit of bread and somebody's spare coat. {FACTION} will hear who brought their child home.</outcome>
+            <outcome>{X_nameDef} is walked back toward {X_possessive} people. {FACTION} will hear who brought their child home.</outcome>
+            <outcomes>
+              <li>[gift] {X_nameDef} is walked back toward {X_possessive} people, clutching something to eat from the colony's stores and somebody's spare coat. {FACTION} will hear who brought their child home.</li>
+            </outcomes>
             <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals+coat</what><count>2</count><steward>false</steward><to>Stranger</to><label>something to eat and a coat for {X_nameDef}</label><ifHave>true</ifHave></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway"><walked>true</walked></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_ReturnedChild</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>

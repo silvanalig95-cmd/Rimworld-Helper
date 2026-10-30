@@ -378,11 +378,11 @@
         <options>
           <li>
             <label>Give {X_objective} the kitchen (40 food)</label>
-            <outcome>{X_nameDef} took over the kitchen for the day with {B_nameDef} chopping and fetching, and the colony ate a supper it will still be talking about next season.</outcome>
+            <outcome>{X_nameDef} took over the colony's stove with {B_nameDef} at {X_possessive} elbow, and the colony ate a supper it will still be talking about next season.</outcome>
             <outcomes>
-              <li>[lowtech] {X_nameDef} dug a pit, lined it with hot stones and buried half the stores in it, and at sundown dug it all back up again, cooked. {B_nameDef} wrote nothing down and remembers all of it.</li>
-              <li>[!lowtech] {X_nameDef} used every pot in the kitchen and a few things that aren't pots. {B_nameDef} washed up for three hours afterwards and says it was worth it.</li>
-              <li>[fall] {X_nameDef} made a harvest supper of seven dishes, with {B_nameDef} running between the pots, and the colony ate until it couldn't move.</li>
+              <li>[lowtech] {X_nameDef} cooked the colony's own stores into a supper nobody here could have made, with {B_nameDef} watching every pinch of salt. {B_nameDef} wrote nothing down and remembers all of it.</li>
+              <li>[!lowtech] {X_nameDef} had the colony's stove going all afternoon, with {B_nameDef} at {X_possessive} elbow the whole time, and says it was the best kitchen on the road this year.</li>
+              <li>[fall] {X_nameDef} made a harvest supper from the full stores, with {B_nameDef} at {X_possessive} elbow, and the colony ate until it couldn't move.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Cooking</skill><minLevel>0</minLevel><asB>true</asB></li>
@@ -390,6 +390,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>600</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_StrangersFeast</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>at {X_nameDef}'s elbow in the kitchen</label><teacher>X</teacher><student>B</student><skill>Cooking</skill><xpPerHour>0</xpPerHour><hours>12~20</hours><duration>2~3</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>1</guestCount><label>{X_nameDef}'s cooking</label><hours>16~22</hours></li>
             </effects>
             <ways><generosity>1</generosity><openness>1</openness></ways>
@@ -421,6 +422,7 @@
         <people>own</people>
         <visitorSkill>Cooking</visitorSkill>
         <visitorLevel>12~17</visitorLevel>
+        <visitorCooks>true</visitorCooks>
       </li>
     </modExtensions>
   </IncidentDef>
@@ -462,14 +464,15 @@
         <options>
           <li>
             <label>Pay {X_objective} ({COUNT} silver)</label>
-            <outcome>A poultice, a strong-smelling tea and a great deal of advice: {X_nameDef} gave {A_nameDef} the whole afternoon. {A_nameDef} already feels better, and has the advice written down somewhere.</outcome>
+            <outcome>{X_nameDef} sat {A_nameDef} down at the table and gave {A_objective} the whole afternoon, with a great deal of advice besides. {A_nameDef} already feels better, and has the advice written down somewhere.</outcome>
             <outcomes>
-              <li>[ail:StrainedBack] {X_nameDef} laid {A_nameDef} face down on the table, found the knot with two thumbs and did something that made a noise like a branch snapping. {A_nameDef} stood up straight for the first time in days.</li>
+              <li>[ail:StrainedBack] {X_nameDef} sat {A_nameDef} down at the table, found the knot in {A_possessive} back with two thumbs and did something that made a noise like a branch snapping. {A_nameDef} stood up straight for the first time in days.</li>
               <li>[ail:Toothache] {X_nameDef} took the tooth out in one pull while {A_nameDef} was still deciding whether to be brave. The swelling's going down already.</li>
-              <li>[spacer] {X_nameDef} gave {A_nameDef} an injection and a strip of pills, and told {A_objective} to stop being so hard on {A_objective}self. The first part is working.</li>
+              <li>[spacer] {X_nameDef} gave {A_nameDef} an injection and told {A_objective} to stop being so hard on {A_objective}self. The first part is working.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an afternoon with {X_nameDef}</label><to>Stranger</to><hours>12~17</hours><duration>2.5~3.5</duration><sit>true</sit></li>
               <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HealerSawMe</thought></li>
             </effects>
@@ -487,6 +490,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>800</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_HealerSawMe</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s treatment</label><to>Stranger</to><duration>1.5~2</duration><sit>true</sit></li>
               <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>B</student><skill>Medicine</skill><duration>1.5~2</duration></li>
             </effects>
             <ways><openness>1</openness></ways>
@@ -495,8 +499,11 @@
             <label>{A_nameDef} will mend on {A_possessive} own</label>
             <outcome>{X_nameDef} leaves {A_nameDef} with some free advice and goes on down the road.</outcome>
             <outcomes>
-              <li>[trait:Tough] {A_nameDef} says it's nothing, and sees {X_nameDef} off at the gate. It isn't nothing, but it'll pass.</li>
+              <li>[trait:Tough] {A_nameDef} says it's nothing, and {X_nameDef} goes on down the road. It isn't nothing, but it'll pass.</li>
             </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
           </li>
         </options>
       </li>

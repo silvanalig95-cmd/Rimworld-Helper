@@ -1284,6 +1284,8 @@ namespace ColonyCouncil
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             tags.Add(ctx.thing != null ? "meal" : "nomeal");
+            // A cooked meal in the stores to carry out to the guest now (the answer's bowl of something hot).
+            if (ctx.map != null && PlayCarry.Have(ctx.map, "meals", null) > 0) tags.Add("hot");
             if (ctx.map != null && ctx.map.mapTemperature.OutdoorTemp < -15f) tags.Add("bitter");
             var supper = DefDatabase<DilemmaDef>.GetNamedSilentFail("Council_Dilemma_Midwinter");
             if (supper != null && (CouncilGameComponent.Instance?.dilemmas.IsTradition(supper) ?? false)) tags.Add("supper");
@@ -1295,6 +1297,8 @@ namespace ColonyCouncil
             if (option == 0 && x != null && x.Spawned && ctx.map != null)
             {
                 LivingEvents.Schedule(LivingEvents.Morning, x, ctx.faction, null, null, ctx.a, HoursToMorning(ctx.map) / 24f);
+                // The night in a warm corner indoors, until first light; they go on in the morning (Morning).
+                VisitorServices.Lodge(ctx.map, x, false);
                 // Two people with the same sort of past find each other by the fire.
                 var pasts = ctx.a != null ? Pasts.Of(ctx.a).Select(Pasts.Tag).ToList() : new List<string>();
                 if (pasts.Count > 0)

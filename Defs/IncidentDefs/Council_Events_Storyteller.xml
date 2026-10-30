@@ -511,7 +511,13 @@
           </li>
           <li>
             <label>Leave food and bandages (may be repaid)</label>
-            <outcome>{A_nameDef} sets bread and clean bandages within {X_nameDef}'s reach and comes home. What happens now is up to the stranger.</outcome>
+            <outcome>The colony leaves {X_nameDef} what it could spare. What happens now is up to the stranger.</outcome>
+            <outcomes>
+              <li>[supplies] Food and clean bandages from the stores go out past the gate to where {X_nameDef} lies, and are set within reach. What happens now is up to the stranger.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food and bandages for {X_nameDef}</label><what>meals+medicine</what><count>2</count><steward>false</steward><to>Stranger</to><ifHave>true</ifHave></li>
+            </effects>
             <ways><mercy>1</mercy></ways>
           </li>
           <li>

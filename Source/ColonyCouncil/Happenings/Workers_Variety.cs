@@ -399,11 +399,15 @@ namespace ColonyCouncil
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            // Paid: as many things as were paid for, worst first, as good as new.
-            if (option == 0 && !byDefault && ctx.map != null)
-                foreach (var t in Mendable(ctx.map).Take(Mathf.Max(1, ctx.variant)))
-                    t.HitPoints = t.MaxHitPoints;
-            return base.Resolved(ctx, option, risk, byDefault, outcome);
+            if (option != 0 || byDefault || ctx.map == null) return base.Resolved(ctx, option, risk, byDefault, outcome);
+            // Paid: as many things as were paid for, worst first. The tinker works through them one at a time on the map,
+            // where each lies or on whoever wears it, and the answer's words are told when the last is mended
+            // (VisitorServices); with the setting off, or the tinker gone, they're as good as new at once.
+            var pile = Mendable(ctx.map).Take(Mathf.Max(1, ctx.variant)).ToList();
+            outcome = base.Resolved(ctx, option, risk, byDefault, outcome);
+            if (VisitorServices.Mend(ctx.map, ctx.stranger, pile, ctx.Format(outcome))) return "";
+            foreach (var t in pile) t.HitPoints = t.MaxHitPoints;
+            return outcome;
         }
     }
 

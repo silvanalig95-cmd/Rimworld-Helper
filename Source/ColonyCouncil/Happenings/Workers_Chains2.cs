@@ -1187,11 +1187,14 @@ namespace ColonyCouncil
                     {
                         c.Set("hid");
                         if (option == 1) c.Set("asked");
-                        // In for the night; gone before dawn.
+                        // In for the night, in a warm corner indoors; gone before it's light.
                         var x = c.x;
                         if (StoryChains.Alive(x) && !x.Spawned && map != null && x.Faction != null && !x.Faction.HostileTo(Faction.OfPlayer)
                             && StoryChains.Visit(new[] { x }, map, x.Faction, GatheringSpot(map), Rand.Range(9f, 13f)))
+                        {
                             ctx.xWaiting = false;
+                            VisitorServices.Lodge(map, x, true);
+                        }
                         StoryChains.Next(c, "Council_Story_Pursuers", 1f, 1.6f);
                         return option == 1 ? Outcome(c, ctx, "asked", outcome) : outcome;
                     }
@@ -1822,6 +1825,15 @@ namespace ColonyCouncil
     public class HappeningWorker_StoryExpedition : HappeningWorker_Story
     {
         protected override bool CanBegin(Map map, HappeningExtension ext) => Arrivals.Friendly() != null;
+
+        /// <summary>The food packed for the explorer who goes back alone (the answer's errand carries it to them).</summary>
+        public const int FoodForTheRoad = 10;
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            if (Key == "expedition" && ctx.map != null && PlayCarry.Have(ctx.map, "rawfood", null) >= FoodForTheRoad) tags.Add("food");
+        }
 
         protected override bool Setup(StoryChain c, HappeningContext ctx, HappeningExtension ext)
         {
