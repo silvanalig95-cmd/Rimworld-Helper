@@ -88,6 +88,8 @@ namespace ColonyCouncil
         public AnnalsTracker annals = new AnnalsTracker();
         /// <summary>The council's automations, each its own switch (Building/Automations.cs).</summary>
         public AutomationTracker automations = new AutomationTracker();
+        /// <summary>Lines being laid again under the walls, their old ones to take up once the new stand (Building/LineRoutes.cs).</summary>
+        public LineRelayTracker relays = new LineRelayTracker();
         /// <summary>The last year since the landing a year's letter was written for (World/YearLetter.cs).</summary>
         public int yearLetterLast;
         public EpithetTracker epithets = new EpithetTracker();
@@ -243,6 +245,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref dilemmas, "dilemmas");
             Scribe_Deep.Look(ref annals, "annals");
             Scribe_Deep.Look(ref automations, "automations");
+            Scribe_Deep.Look(ref relays, "relays");
             Scribe_Values.Look(ref yearLetterLast, "yearLetterLast");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
@@ -323,6 +326,7 @@ namespace ColonyCouncil
                 if (dilemmas == null) dilemmas = new DilemmaTracker();
                 if (annals == null) annals = new AnnalsTracker();
                 if (automations == null) automations = new AutomationTracker();
+                if (relays == null) relays = new LineRelayTracker();
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
                 if (offices == null) offices = new OfficeTracker();
@@ -474,6 +478,7 @@ namespace ColonyCouncil
             Safe("family", () => Family.Hourly(this));
             Safe("next steps", () => NextSteps.Hourly(this));
             Safe("automations", () => automations.Hourly(this));
+            Safe("lines under the walls", () => relays.Hourly(this));
         }
 
         private void HourlyEvents()

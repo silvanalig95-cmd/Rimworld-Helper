@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 368; modelled: 368; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,724 KB** after a year, **2,088 KB** after two, **2,203 KB** after five.
+Saved collections found: 371; modelled: 371; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,725 KB** after a year, **2,088 KB** after two, **2,204 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -210,6 +210,7 @@ Rimfolk's part of the save, roughly: **1,724 KB** after a year, **2,088 KB** aft
 | `PlayOut/PlayOuts.cs:lines` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `PlayOut/PlayOuts.cs:moods` | per play-out | fixed | 4 | 4 | 4 | 0.5 |
 | `Ailments/AilmentTracker.cs:carrying` | illnesses had now that an ailment may follow; let go when over, known pawns only | known | 6 | 6 | 8 | 0.4 |
+| `Building/LineRoutes.cs:list` | lines being laid again under the walls, one per net, kept only until their new lines stand | fixed | 3 | 3 | 3 | 0.4 |
 | `Calendar/CalendarWatch.cs:pendingCrops` | new crops until their first harvest (crop defs) | fixed | 5 | 5 | 5 | 0.4 |
 | `Decrees/Decrees.cs:active` | decrees in force (3 at most) | fixed | 3 | 3 | 3 | 0.4 |
 | `Decrees/Decrees.cs:requests` | one per decree at most | fixed | 3 | 3 | 3 | 0.4 |
@@ -321,6 +322,8 @@ Rimfolk's part of the save, roughly: **1,724 KB** after a year, **2,088 KB** aft
 | `Arcs/Arc.cs:told` | per story (counted under active and past) | fixed | 6 | 6 | 6 | (in its record) |
 | `Building/Automations.cs:things` | per action (counted under actions): the bench, the things ordered down, the blueprints, the trees | fixed | 8 | 8 | 8 | (in its record) |
 | `Building/CustomRooms.cs:pieces` | per saved room, in the mod's settings file | settings | 30 | 30 | 30 | (settings file) |
+| `Building/LineRoutes.cs:lay` | per relay (counted under list): the new lines' cells, a net's worth at most | fixed | 120 | 120 | 120 | (in its record) |
+| `Building/LineRoutes.cs:takeUp` | per relay (counted under list): the old lines' cells to take up | fixed | 80 | 80 | 80 | (in its record) |
 | `Calendar/CalendarDay.cs:fallen` | per day on the calendar (counted under days) | fixed | 2 | 2 | 2 | (in its record) |
 | `CouncilSettings.cs:barPutAway` | the mod's settings file, not the save: the bottom bar's buttons put away, one name each | settings | 40 | 40 | 40 | (settings file) |
 | `CouncilSettings.cs:councilPageState` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |

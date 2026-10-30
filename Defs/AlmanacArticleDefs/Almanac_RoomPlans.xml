@@ -27,7 +27,7 @@
       </li>
       <li>
         <heading>The works under the floor</heading>
-        <text>Conduits run under walls where they can, which keeps them out of the way of furniture and lets a short circuit hit a wall rather than a bed. Every conduit can short out and start a fire, so the fewer the better: one trunk with branches to each room, no runs to nowhere. Pipes the same, shortest way from the fixture to the main. When a bench or a battery moves, take up the conduit that fed it. The Base page finds runs of conduit and pipe that lead nowhere, and conduit joined to nothing at all, with a button that takes them down.</text>
+        <text>Conduits run under walls where they can, which keeps them out of the way of furniture and lets a short circuit hit a wall rather than a bed. Every conduit can short out and start a fire, so the fewer the better: one trunk with branches to each room, no runs to nowhere. Pipes the same, shortest way from the fixture to the main. When a bench or a battery moves, take up the conduit that fed it. The Base page finds runs of conduit and pipe that lead nowhere, and conduit joined to nothing at all, with a button that takes them down. When three or more conduits or pipes of a net lie in sight over floors and open ground and could run under the walls instead, it says so and shows the new way on the map; "Lay them under the walls" plans the new ones, and the old ones get their deconstruct orders only once every new one stands, so nothing goes dark or dry on the way. Every piece of the net stays joined, and every powered building keeps a conduit of its own net within reach.</text>
       </li>
       <li>
         <heading>Stores</heading>

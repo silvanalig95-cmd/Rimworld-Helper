@@ -6,7 +6,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (30 October 2026, later)
 
-- Shipped and pushed: 0.41.4, on `claude/gifted-noether-32w12b` (this session's branch) and `claude/charming-pasteur-9qbjle`.
+- Shipped and pushed: 0.42.0, on `claude/gifted-noether-32w12b` (this session's branch) and `claude/charming-pasteur-9qbjle`.
   Tree clean. Every check green at that commit: build (only the CS0108 warning in Decrees.cs), DefValidator 0 errors,
   Tools/Tests "All tests passed", labelcheck, almanaccheck, save_estimate --strict, interaction_audit, playout_audit,
   ApiDiff "Nothing the DLL uses has changed".
@@ -27,10 +27,14 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   VisitEffect_Come has `work`; water spots go to water clear of the colony (`Visitors.WaterSide`); gatherings take
   `guests` "visitors" (the world event's visit people, late arrivals join). `Tools/Tests/VisitorWorkTests.cs` checks
   the defs (known work, roof words match `inside`).
-- In progress, not pushed: "lines under the walls" (the player's request to re-lay conduits and pipes under walls) is
-  in `git stash` on this session's container ("lines under the walls, in progress"): Building/LineRouteMath.cs (tested),
-  Building/LineRoutes.cs (reading nets, planning, staged relay tracker `relays` on the component), the Base page finding.
-  Still to do: keyed texts, a save_estimate model for `relays`, a round, checks. If the stash is gone, rebuild from this.
+- 0.42.0, the player's request: conduits and pipes laid again under the walls. `Building/LineRouteMath.cs` (pure,
+  `LineRouteTests`: Steiner growth by nearest-piece Dijkstra over cell costs wall 10 < furniture 30 < ground 50 < floor
+  80, a line in sight kept at 80%; then reverse-delete; reachers need an own line within 6 nearer than any other net;
+  `Removable` re-checks at take-up time), `Building/LineRoutes.cs` (reads power nets from the game's PowerNet, pipe
+  nets by adjacency of BaseReview.PipeKey things; shut cells beside other nets and within reach of their connectors;
+  the Base page finding "relay:KIND" and status "relaying:KIND"; `LineRelayTracker` as `relays` on the component,
+  hourly from HourlyPeople). Plans are kept six hours, nets with fewer than three lines in sight skipped. Not tried in
+  the game here: worth a look at the finding on the player's base, the yellow/white overlay, and one relay to the end.
 - Open with the player: they asked whether rain washes blood and dirt away. The game does it already outdoors (the
   filth def's `rainWashes`, thinned in `SteadyEnvironmentEffects`); nothing was built. Wait for their answer.
 - Rounds 0.30.0 to 0.41.0 came before: the player's event rounds (camps, neighbours, visitors, world, animals, Pokémon),

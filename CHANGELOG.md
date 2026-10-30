@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Conduits and pipes laid again under the walls
+
+*30 October 2026, version 0.42.0*
+
+- The Base page finds conduits and pipes lying in sight over floors and open ground that could run under the walls instead, a net at a time: power, Dubs Bad Hygiene's plumbing and Vanilla Expanded's resource pipes. "Show on the map" draws the new way in yellow and the old in white.
+- The new way keeps to walls and doors first, then under furniture, then open ground, a floor last, and keeps a line that's already in sight where nothing else will do. Every piece of the net stays joined, every powered building keeps a conduit of its own net within reach, and no new line goes beside another net or within reach of its buildings.
+- "Lay them under the walls" plans the new lines in the old ones' material. The old ones get their deconstruct orders only once every new one stands, and only those the net can still do without then, so nothing goes dark or dry on the way. Until then the Base page says how many stand, and "Call it off" cancels the new orders and leaves the old lines.
+
 ## Visitors do what their letters say
 
 *30 October 2026, version 0.41.4*

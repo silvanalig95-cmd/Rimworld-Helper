@@ -312,6 +312,14 @@ namespace ColonyCouncil
             Walls(map, findings);
             Conduits(map, findings);
             Pipes(map, findings);
+            try
+            {
+                LineRoutes.Findings(map, findings);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("lines under the walls on the Base page", e);
+            }
             Freezers(map, rooms, findings);
             try
             {
@@ -580,7 +588,7 @@ namespace ColonyCouncil
         // ---------------- Pipes (Dubs Bad Hygiene, Vanilla Expanded pipe nets) ----------------
 
         /// <summary>Which pipe network a thing is part of, as a key ("dbh:Sewage", "ve:Chemfuel"), or null.</summary>
-        private static string PipeKey(Thing t)
+        internal static string PipeKey(Thing t)
         {
             var comps = (t as ThingWithComps)?.AllComps;
             if (comps == null) return null;
@@ -609,7 +617,7 @@ namespace ColonyCouncil
             return null;
         }
 
-        private static string PipeLabel(string key)
+        internal static string PipeLabel(string key)
         {
             int i = key.IndexOf(':');
             string name = i >= 0 ? key.Substring(i + 1) : key;

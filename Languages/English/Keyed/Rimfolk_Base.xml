@@ -78,6 +78,22 @@
   <CC_Base_OrphanConduits_Detail>A stretch of conduit with no generator, battery or user on it at all: left from something moved. Take it down and the steel comes back.</CC_Base_OrphanConduits_Detail>
   <CC_Base_Pipes>{N} {KIND} pipe(s) lead nowhere, in {RUNS} run(s)</CC_Base_Pipes>
   <CC_Base_Pipes_Detail>Runs of pipe from a fork or a fixture out to an end with nothing on it. Take them down and the materials come back.</CC_Base_Pipes_Detail>
+  <!-- Lines under the walls (Building/LineRoutes.cs). -->
+  <CC_Relay_Conduits>conduits</CC_Relay_Conduits>
+  <CC_Relay_Pipes>{KIND} pipes</CC_Relay_Pipes>
+  <CC_Base_Relay>{N} {KIND} in sight could go under the walls</CC_Base_Relay>
+  <CC_Base_Relay_Detail>Laid again under walls, doors and furniture wherever they reach: {LAY} new, {UP} taken up, and {AFTER} of the {BEFORE} in sight now left where nothing else will do. Every piece of the net stays joined, and every powered building stays on its power. The new {KIND} are planned first, and the old ones get their deconstruct orders only once every new one stands, so nothing goes dark or dry on the way. Show it on the map to see both: the new in yellow, the old in white.</CC_Base_Relay_Detail>
+  <CC_Base_Relay_Fix>Lay them under the walls</CC_Base_Relay_Fix>
+  <CC_Base_Map_Relay>under the walls</CC_Base_Map_Relay>
+  <CC_Base_Relaying>Laying the {KIND} under the walls: {BUILT} of {ALL} new ones stand</CC_Base_Relaying>
+  <CC_Base_Relaying_Detail>Once every new one stands, the old ones the net can do without get their deconstruct orders. Call it off and the new ones' orders are cancelled, and the old lines stay as they are.</CC_Base_Relaying_Detail>
+  <CC_Base_Relay_Off>Call it off</CC_Base_Relay_Off>
+  <CC_Relay_Placed>{N} {KIND} are planned under the walls. Once they all stand, the {UP} in sight now come up.</CC_Relay_Placed>
+  <CC_Relay_Done>The new {KIND} under the walls stand: {N} old ones are marked to come up.</CC_Relay_Done>
+  <CC_Relay_UpNow>{N} {KIND} that nothing needs are marked to come up.</CC_Relay_UpNow>
+  <CC_Relay_Kept>{N} stay, still needed.</CC_Relay_Kept>
+  <CC_Relay_Dropped>Some of the new {KIND} under the walls were never built (their orders are gone), so the old ones stay as they are.</CC_Relay_Dropped>
+  <CC_Relay_CalledOff>Called off: the orders for the new {KIND} are cancelled, and the old ones stay.</CC_Relay_CalledOff>
   <CC_Base_FreezerDoor>The freezer's door opens into the {B}</CC_Base_FreezerDoor>
   <CC_Base_FreezerDoor_Detail>{T} °C inside, {TB} °C beyond the door: warm air comes in with every opening and the coolers work to push it out. A second door with a cell between, an airlock, keeps the cold where it belongs.</CC_Base_FreezerDoor_Detail>
 
