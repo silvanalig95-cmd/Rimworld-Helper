@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's doctor seeing to someone from outside where they are (Source/ColonyCouncil/Health/OutsiderTend.cs):
+    a medicine fetched from the stores, carried over and used in the tend.
+  -->
+  <JobDef>
+    <defName>Rimfolk_TendOutsider</defName>
+    <driverClass>ColonyCouncil.JobDriver_TendOutsider</driverClass>
+    <reportString>tending TargetA.</reportString>
+    <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+  </JobDef>
+
+</Defs>

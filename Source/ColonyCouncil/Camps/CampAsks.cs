@@ -136,8 +136,8 @@ namespace ColonyCouncil
         {
             if (AskBlocked(a) != null) return null;
             int cost = AskCost(a);
-            if (cost > 0 && !CampAnswers.Pay(map, cost)) return null;
             var ctx = AskContext(a);
+            if (cost > 0 && !CampAnswers.Pay(this, cost, ctx.a)) return null;
             asksMade.Add(a.once ? a.key : a.key + "@" + GenDate.DaysPassed);
             string line = null;
             try

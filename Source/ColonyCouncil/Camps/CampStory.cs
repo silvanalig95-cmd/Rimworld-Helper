@@ -195,24 +195,14 @@ namespace ColonyCouncil
             return n;
         }
 
-        /// <summary>Meals from the colony's stores into their packs. Returns how many went.</summary>
+        /// <summary>Meals from the colony's stores carried over to the camp and into their packs. Returns how many go.</summary>
         private int TakeMeals(int count)
         {
-            if (map == null) return 0;
-            var carriers = Here.Where(p => p.inventory != null).ToList();
-            if (carriers.Count == 0) return 0;
-            int left = count, who = 0;
-            foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree)
-                         .Where(t => t.Spawned && t.def.IsIngestible && t.def.ingestible.IsMeal && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage())
-                         .OrderBy(t => t.MarketValue).ToList())
-            {
-                if (left <= 0) break;
-                int n = Mathf.Min(left, t.stackCount);
-                var taken = t.SplitOff(n);
-                if (!carriers[who++ % carriers.Count].inventory.innerContainer.TryAdd(taken)) taken.Destroy();
-                left -= n;
-            }
-            return count - left;
+            if (map == null || Here.Count == 0) return 0;
+            int n = Mathf.Min(count, MealsInStore());
+            if (n <= 0) return 0;
+            CampAnswers.Carry(this, "meals", n, null, "CC_Camp_ProvisionsLabel".Translate(Label.Named("NAME")).Resolve());
+            return n;
         }
     }
 
@@ -260,7 +250,10 @@ namespace ColonyCouncil
         public static CampAsk ByKey(string key) => key == null ? null : Common.FirstOrDefault(a => a.key == key);
     }
 
-    /// <summary>The colony's doctor (A) sees to the one lying ill at the camp: tended, and well on the way to mending.</summary>
+    /// <summary>
+    /// The colony's doctor (A) sees to the one lying ill at the camp: walks over with a medicine from the stores and tends
+    /// them by the fire (OutsiderTend), and the fever's worst is over. Should the doctor be unable to go, the tend is had at once.
+    /// </summary>
     public class DilemmaEffect_CampTendSick : DilemmaEffect
     {
         public override string Unavailable(DilemmaContext ctx)
@@ -276,6 +269,12 @@ namespace ColonyCouncil
             var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             var sick = c?.sick;
             if (sick == null || sick.Dead || ctx.a == null) return;
+            if (OutsiderTend.Send(ctx.a, new[] { sick }))
+            {
+                CouncilRecords.Add(ctx.a, CouncilRecords.CampsGreeted);
+                c.sick = null;
+                return;
+            }
             try
             {
                 var medicine = DilemmaEffect_Consume.Medicine(c.map).FirstOrDefault();
@@ -296,7 +295,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The makings of a cart's mending from the colony's stores: wood for a wheel, or steel for an axle in a later age.</summary>
+    /// <summary>The makings of a cart's mending from the colony's stores, carried over to the camp: wood for a wheel, or steel for an axle in a later age.</summary>
     public class DilemmaEffect_CampCartParts : DilemmaEffect
     {
         public static ThingDef Part => Avail.IsPreIndustrial ? ThingDefOf.WoodLog : ThingDefOf.Steel;
@@ -312,16 +311,8 @@ namespace ColonyCouncil
         {
             var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             if (ctx.map == null || c == null) return;
-            int left = Count;
-            var carriers = c.Here.Where(p => p.inventory != null).ToList();
-            foreach (var t in ctx.map.listerThings.ThingsOfDef(Part).Where(t => t.Spawned && !t.IsForbidden(Faction.OfPlayer)).OrderByDescending(t => t.IsInAnyStorage()).ToList())
-            {
-                if (left <= 0) break;
-                int n = Mathf.Min(left, t.stackCount);
-                var taken = t.SplitOff(n);
-                if (carriers.Count == 0 || !carriers[0].inventory.innerContainer.TryAdd(taken)) taken.Destroy();
-                left -= n;
-            }
+            // A carries the makings over, as the words say; whoever is free if A can't.
+            CampAnswers.Carry(c, Part.defName, Count, ctx.a, "CC_Camp_CartLabel".Translate(c.Label.Named("NAME")).Resolve());
         }
     }
 }

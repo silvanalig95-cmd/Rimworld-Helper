@@ -228,7 +228,7 @@
     <ways><openness>2</openness></ways>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Silver</thing><count>12</count><by>Outsiders</by></li>
-      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>1</count></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>1</count><by>Outsiders</by></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_StrangersThanks</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
     </effects>
@@ -495,13 +495,12 @@
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncP_RefugeeThanks</defName>
     <label>a guest's thanks</label>
-    <weight>1.0</weight>
+    <weight>0.7</weight>
     <cooldownDays>10</cooldownDays>
     <stranger><kind>Lodger</kind><adult>true</adult></stranger>
     <texts>
       <li>{X_nameDef} hadn't said ten words since arriving. Today {A_nameDef} brought {X_objective} a second bowl of stew without asking, and {X_nameDef} cried into it and said thank you, over and over.</li>
       <li>It was the first night in a month {X_nameDef} hadn't slept with {X_possessive} shoes on, {X_pronoun} told {A_nameDef}. {A_nameDef} just nodded.</li>
-      <li>{X_nameDef} carved {A_nameDef} a small wooden bird with a borrowed knife, badly, and handed it over with both hands. "For the blanket," {X_nameDef} said.</li>
     </texts>
     <ways><generosity>2</generosity></ways>
     <effects>
@@ -511,6 +510,25 @@
     </effects>
     <journal>Council_Journal_EncP_Refugee</journal>
     <notable>true</notable>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncP_RefugeeCarving</defName>
+    <label>a guest's carving</label>
+    <weight>0.3</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Lodger</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} carved {A_nameDef} a small wooden bird with a borrowed knife, badly, and handed it over with both hands. "For the kindness," {X_nameDef} said.</li>
+    </texts>
+    <ways><generosity>2</generosity></ways>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Carving"><quality>Poor</quality></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_RefugeeThanks</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_KindToMe</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+    </effects>
+    <journal>Council_Journal_EncP_Refugee</journal>
   </ColonyCouncil.EncounterDef>
 
   <ColonyCouncil.EncounterDef>

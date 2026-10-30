@@ -425,7 +425,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>The colony's doctor (A) sees to the war party's wounded at their camp: up to three of them tended.</summary>
+    /// <summary>
+    /// The colony's doctor (A) sees to the war party's wounded at their camp: up to three of them, the worst first, each
+    /// with a medicine carried over from the stores (OutsiderTend); tended at once only if the doctor can't go.
+    /// </summary>
     public class DilemmaEffect_CampTendWounded : DilemmaEffect
     {
         public override string Unavailable(DilemmaContext ctx)
@@ -440,8 +443,10 @@ namespace ColonyCouncil
         {
             var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             if (c == null || ctx.a == null) return;
+            var wounded = c.Here.Where(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()).OrderByDescending(p => p.health.summaryHealth.SummaryHealthPercent < 0.6f).Take(3).ToList();
+            if (OutsiderTend.Send(ctx.a, wounded)) return;
             int n = 0;
-            foreach (var p in c.Here.Where(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()).OrderByDescending(p => p.health.summaryHealth.SummaryHealthPercent < 0.6f))
+            foreach (var p in wounded)
             {
                 if (n++ >= 3) break;
                 try

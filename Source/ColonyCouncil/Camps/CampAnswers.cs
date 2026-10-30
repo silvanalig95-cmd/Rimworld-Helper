@@ -44,20 +44,27 @@ namespace ColonyCouncil
         private static bool Usable(Thing t, Area home) =>
             t.Spawned && !t.IsForbidden(Faction.OfPlayer) && (StoreUtility.IsInAnyStorage(t) || (home != null && home[t.Position]));
 
-        public static bool Pay(Map map, int amount)
+        /// <summary>
+        /// Silver for the camp, carried over from the colony's stores by <paramref name="by"/> (or whoever is free) and
+        /// handed to one of them, into their purse (DilemmaEffect_CarryOut to the camp); should nobody carry it, it leaves
+        /// the stores as before. False when the colony hasn't that much.
+        /// </summary>
+        public static bool Pay(Camp c, int amount, Pawn by = null)
         {
             if (amount <= 0) return true;
-            if (Silver(map) < amount) return false;
-            var home = map.areaManager.Home;
-            int left = amount;
-            foreach (var t in map.listerThings.ThingsOfDef(ThingDefOf.Silver).Where(t => Usable(t, home)).ToList())
-            {
-                if (left <= 0) break;
-                int take = Mathf.Min(left, t.stackCount);
-                t.SplitOff(take).Destroy();
-                left -= take;
-            }
+            var map = c?.map;
+            if (map == null || Silver(map) < amount) return false;
+            Carry(c, "silver", amount, by, "CC_Camp_PayLabel".Translate(c.Label.Named("NAME")).Resolve());
             return true;
+        }
+
+        /// <summary>Things from the colony's stores carried over to the camp and handed to one of them.</summary>
+        public static void Carry(Camp c, string what, int count, Pawn by, string label)
+        {
+            if (c?.map == null || count <= 0) return;
+            var ctx = new DilemmaContext { map = c.map, faction = c.faction, stranger = c.trader != null && c.Here.Contains(c.trader) ? c.trader : c.Here.FirstOrDefault(), a = by };
+            // apart: a colonist carries it over to the camp, where one of them takes it.
+            new DilemmaEffect_CarryOut { what = what, count = count, to = PlaySpot.Camp, who = by != null ? PlayWho.A : PlayWho.None, steward = false, label = label }.Apply(ctx);
         }
 
         private static string NotEnough(Map map, int amount) =>
@@ -104,7 +111,7 @@ namespace ColonyCouncil
         /// <summary>Asked to move on with a gift: the silver is only paid when they're still here to take it.</summary>
         public static string AskToLeavePaid(Camp c, int gift)
         {
-            if (c == null || !c.CanTalk || !Pay(c.map, gift)) return null;
+            if (c == null || !c.CanTalk || !Pay(c, gift)) return null;
             return AskToLeave(c, gift);
         }
 
@@ -134,7 +141,7 @@ namespace ColonyCouncil
 
         public static string Gift(Camp c, int silver)
         {
-            if (c == null || !c.CanTalk || !Pay(c.map, silver)) return null;
+            if (c == null || !c.CanTalk || !Pay(c, silver)) return null;
             c.gifts++;
             c.AddTension(-Mathf.Min(25f, silver / 8f));
             c.faction?.TryAffectGoodwillWith(Faction.OfPlayer, 2, true, false, HistoryEventDefOf.GaveGift);
@@ -145,7 +152,7 @@ namespace ColonyCouncil
         public static string Hire(Camp c, Pawn p, int price)
         {
             if (c == null || p == null || p.Dead || !c.CanTalk || !c.Here.Contains(p)) return null;
-            if (price > 0 && !Pay(c.map, price)) return null;
+            if (price > 0 && !Pay(c, price)) return null;
             if (p == c.trader)
             {
                 p.mindState.wantsToTradeWithColony = false;

@@ -110,6 +110,9 @@
   <CC_Camp_Refused>{X_nameDef} heard the colony out, and said no. They came a long way, {X_pronoun} said. The land isn't the colony's to give, and they'll leave when they're ready.\n\nA gift of {COUNT} silver might change their minds. Insisting will cost goodwill with {FACTION}.</CC_Camp_Refused>
   <CC_Camp_LetStay>The camp stays, and the matter is dropped.</CC_Camp_LetStay>
   <CC_Camp_Force_War>The camp took it as an attack. They are arming themselves, and their people now count the colony as an enemy.</CC_Camp_Force_War>
+  <CC_Camp_PayLabel>the silver for the {NAME}</CC_Camp_PayLabel>
+  <CC_Camp_ProvisionsLabel>meals for the {NAME}'s road</CC_Camp_ProvisionsLabel>
+  <CC_Camp_CartLabel>the makings of the {NAME}'s cart</CC_Camp_CartLabel>
   <CC_Camp_Gifted>The camp accepted the gift of {COUNT} silver.</CC_Camp_Gifted>
 
   <!-- Answers -->

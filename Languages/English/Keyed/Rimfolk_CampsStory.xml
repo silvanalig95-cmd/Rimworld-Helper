@@ -14,7 +14,7 @@
   <CC_Camp_Meals>meals</CC_Camp_Meals>
   <CC_Camp_PartingInvited>{X_nameDef} nodded, and nodded again. The {NAME} will remember the colony as a place to come back to.</CC_Camp_PartingInvited>
   <CC_Camp_PartingInvited_Again>{X_nameDef} laughed. "Then you'll see us. Keep the fire going."</CC_Camp_PartingInvited_Again>
-  <CC_Camp_PartingProvisioned>{COUNT} meals went into the {NAME}'s packs. {X_nameDef} weighed them in {X_possessive} hands and said nothing for a while, which with {X_objective} is thanks.</CC_Camp_PartingProvisioned>
+  <CC_Camp_PartingProvisioned>{COUNT} meals are carried over to the {NAME} for their packs. {X_nameDef} weighed them in {X_possessive} hands and said nothing for a while, which with {X_objective} is thanks.</CC_Camp_PartingProvisioned>
   <CC_Camp_PartingNoMeals>There were no meals in the stores to spare. {X_nameDef} said it was the thought that counted, and seemed to mean it.</CC_Camp_PartingNoMeals>
 
   <!-- Trouble midway: one of theirs falls ill. -->

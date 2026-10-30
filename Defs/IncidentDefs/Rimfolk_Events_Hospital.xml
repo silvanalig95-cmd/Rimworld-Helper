@@ -43,16 +43,15 @@
             <outcome>{A_nameDef} sat {X_nameDef} down, looked at the {TALE} properly and treated it. {X_nameDef} went away with instructions to follow, and {FACTION} will hear where the help came from.</outcome>
             <outcomes>
               <li>[camp] {A_nameDef} went over to the camp with a bag and treated {X_nameDef}'s {TALE} by their fire, with most of the camp watching. They've been calling {A_objective} "the doctor" ever since, as if there were no other.</li>
-              <li>[lowtech] {A_nameDef} ground something bitter, wrapped something warm, and sent {X_nameDef} off with instructions for the {TALE} and a pouch of herbs for the road.</li>
+              <li>[lowtech] {A_nameDef} ground something bitter, wrapped something warm, and sent {X_nameDef} off with instructions for the {TALE}.</li>
               <li>[!lowtech] {A_nameDef} examined {X_nameDef}, treated the {TALE} and wrote out what to do for the next few days in a clear hand. {X_nameDef} folded the paper into {X_possessive} shirt pocket and patted it twice.</li>
             </outcomes>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_TendStranger" />
               <li Class="ColonyCouncil.DilemmaEffect_HospitalPatient" />
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Medicine</skill><xp>300</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tended</kind><about>x</about></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>7~20</hours><duration>1~1.5</duration></li>
             </effects>
             <ways><mercy>1</mercy><openness>1</openness></ways>
           </li>

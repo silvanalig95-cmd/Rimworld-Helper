@@ -2,7 +2,7 @@
 <LanguageData>
 
   <!-- The Pokémon that keeps coming and the shiny rumour (Source/ColonyCouncil/Animals/ResidentBeast.cs, Integrations/PokeWorldCamp.cs). -->
-  <CC_Beast_Stole>{PET_nameDef} got into the stores in the night and made off with {COUNT} {THING}.</CC_Beast_Stole>
+  <CC_Beast_Stole>{PET_nameDef} has got into the stores and is eating {COUNT} {THING}.</CC_Beast_Stole>
   <CC_Beast_End_caught>{PET_nameDef} is caught, and the colony's now. {PAWN_nameDef}, who named it, made the throw.</CC_Beast_End_caught>
   <CC_Beast_NoBelt>Nobody has a ball belt to throw with.</CC_Beast_NoBelt>
   <CC_PW_RumourHeld>The colony is keeping an eye out for a shiny {SPECIES}, for the next {DAYS}.</CC_PW_RumourHeld>

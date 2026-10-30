@@ -721,7 +721,16 @@ namespace ColonyCouncil
             string what = carried.LabelNoCount;
             var def = carried.def;
             bool given = false;
-            if (to != null && !to.Dead && to.Spawned && to.inventory != null && (to.Faction != Faction.OfPlayer || p.to == PlaySpot.Person))
+            // An animal is fed by setting the food down in front of it, and it eats (a wild beast at the edge of the trees).
+            if (to != null && !to.Dead && to.Spawned && to.RaceProps != null && !to.RaceProps.Humanlike)
+            {
+                if (carrier.carryTracker.TryDropCarriedThing(carrier.Position, ThingPlaceMode.Near, out var dropped) && dropped != null)
+                {
+                    given = true;
+                    Feed(to, dropped);
+                }
+            }
+            else if (to != null && !to.Dead && to.Spawned && to.inventory != null && (to.Faction != Faction.OfPlayer || p.to == PlaySpot.Person))
                 given = carrier.carryTracker.innerContainer.TryTransferToContainer(carried, to.inventory.innerContainer, n) > 0;
             // Strangers fed: they eat it there and then, and stay the night where the answer says so (PlayStrangers.cs).
             if (given && !p.strangersFed && (p.strangersEat || p.strangersNight))
@@ -752,6 +761,22 @@ namespace ColonyCouncil
             PlayWords.During(p, carrier);
             Finish(t, p, false, null, to != null && given ? to : null, what);
             return true;
+        }
+
+        /// <summary>The animal turns to the food set down for it and eats what it can of it; the rest stays where it lies.</summary>
+        private static void Feed(Pawn animal, Thing food)
+        {
+            try
+            {
+                if (food == null || !food.Spawned || animal.jobs == null || !food.def.IsNutritionGivingIngestible || !animal.RaceProps.CanEverEat(food)) return;
+                var eat = JobMaker.MakeJob(JobDefOf.Ingest, food);
+                eat.count = Math.Max(1, Math.Min(food.stackCount, FoodUtility.WillIngestStackCountOf(animal, food.def, food.GetStatValue(StatDefOf.Nutrition))));
+                animal.jobs.StartJob(eat, JobCondition.InterruptForced, null, false, true);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("animal fed by an errand", e);
+            }
         }
 
         // ---------------- Over ----------------

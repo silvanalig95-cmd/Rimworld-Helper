@@ -143,7 +143,10 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A Pokémon not fed nor caught gets into the stores now and then: a few of what it would eat, told in the morning.</summary>
+        /// <summary>
+        /// A Pokémon not fed nor caught gets into the stores now and then: it goes there itself and eats a few of what it
+        /// would eat, if it can get at them (a door it can't open keeps it out, and then nothing is taken).
+        /// </summary>
         private void Steal(CouncilGameComponent comp, Map map)
         {
             lastStealTick = Now;
@@ -152,9 +155,14 @@ namespace ColonyCouncil
             if (def == null)
                 def = map.listerThings.AllThings.Where(t => t.Spawned && t.def.IsNutritionGivingIngestible && t.def.ingestible.HumanEdible && !t.def.IsMeat && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage())
                     .GroupBy(t => t.def).OrderByDescending(g => g.Sum(t => t.stackCount)).FirstOrDefault()?.Key;
-            if (def == null) return;
-            int n = Rand.RangeInclusive(5, 8);
-            if (!Couriers.TakeFromStores(map, def, n, null)) return;
+            if (def == null || animal.jobs == null || !animal.RaceProps.CanEverEat(def)) return;
+            var stack = map.listerThings.ThingsOfDef(def).Where(t => t.Spawned && !t.IsForbidden(Faction.OfPlayer) && t.IsInAnyStorage() && animal.CanReach(t, PathEndMode.ClosestTouch, Danger.Some))
+                .OrderBy(t => t.Position.DistanceToSquared(animal.Position)).FirstOrDefault();
+            if (stack == null) return;
+            int n = Mathf.Min(stack.stackCount, Mathf.Max(1, Mathf.Min(Rand.RangeInclusive(5, 8), FoodUtility.WillIngestStackCountOf(animal, def, stack.GetStatValue(StatDefOf.Nutrition)))));
+            var eat = JobMaker.MakeJob(JobDefOf.Ingest, stack);
+            eat.count = n;
+            animal.jobs.StartJob(eat, JobCondition.InterruptForced, null, false, true);
             stolen++;
             string text = "CC_Beast_Stole".Translate(animal.Named("PET"), n.Named("COUNT"), def.label.Named("THING")).Resolve();
             News.Post(text, new LookTargets(animal), NewsKind.Land, MessageTypeDefOf.NegativeEvent, Importance.Notable);
