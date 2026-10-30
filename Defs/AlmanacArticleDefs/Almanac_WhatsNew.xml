@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.27.0</version>
+        <date>30 October 2026</date>
+        <title>Conduits to moved pieces, rooms rebuilt beside what they belong with</title>
+        <points>
+          <li>Rearranging a room: a piece that would be off the power at its new place gets a run of plain conduit planned from the nearest net to within its reach, the shortest the ground allows, drawn in yellow with the ghosts and placed as blueprints when you say go. Untick "Plan conduits to them" to run your own.</li>
+          <li>The base review's far-apart findings (a kitchen far from the freezer, a workshop far from its store, a hospital far from the gate) now carry a room plan for the cheaper of the pair to build anew beside the other: "Plan the room" on the Base page, and on the step in the plan, opens the planner at a spot found for it.</li>
+          <li>On the ground plan, a click on a drawn room's outline opens the planner there.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.26.4</version>
         <date>30 October 2026</date>
         <title>A clean sweep keeps to the cleaning area</title>

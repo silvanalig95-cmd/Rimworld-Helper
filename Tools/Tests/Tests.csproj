@@ -35,6 +35,7 @@
     <Compile Include="../../Source/ColonyCouncil/Building/GroundPlanMath.cs" Link="GroundPlanMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/StorageReviewMath.cs" Link="StorageReviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/MakingMath.cs" Link="MakingMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/ConduitMath.cs" Link="ConduitMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />

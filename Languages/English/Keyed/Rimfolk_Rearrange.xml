@@ -15,6 +15,10 @@
   <CC_Rearr_MoveStockedTip>The goods are set down on the floor when a shelf is picked up and hauled back once it stands again. Off, a shelf with anything in it stays where it is and the rest is arranged around it.</CC_Rearr_MoveStockedTip>
   <CC_Rearr_Mind>Mind</CC_Rearr_Mind>
   <CC_Rearr_Unpowered>{0} piece(s) will have no conduit within reach at their new place: {1}. Run a conduit to them once they stand.</CC_Rearr_Unpowered>
+  <CC_Rearr_LayConduits>Plan conduits to them ({0} conduit(s), drawn in yellow)</CC_Rearr_LayConduits>
+  <CC_Rearr_LayConduitsTip>The shortest run of plain conduit from the nearest net to within reach of each piece's new place, as ordinary blueprints for your builders, placed when you say go.</CC_Rearr_LayConduitsTip>
+  <CC_Rearr_NoConduitRun>No run of conduit reaches them from the nearest net within forty cells; run one yourself.</CC_Rearr_NoConduitRun>
+  <CC_Rearr_ConduitsLaid>{0} conduit(s) planned to the pieces that would be off the power.</CC_Rearr_ConduitsLaid>
   <CC_Rearr_Moving>Moving ({0})</CC_Rearr_Moving>
   <CC_Rearr_NoMoves>Everything that can move already stands as well as it could. Nothing to do.</CC_Rearr_NoMoves>
   <CC_Rearr_Staying>Staying put ({0})</CC_Rearr_Staying>

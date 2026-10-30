@@ -26,6 +26,7 @@
   <!-- Rooms far apart that belong together. -->
   <CC_Base_Far>The {A} is far from the {B}</CC_Base_Far>
   <CC_Base_FarMore>The same goes for {0} more.</CC_Base_FarMore>
+  <CC_Base_FarPlan>A new {ROOM} beside it is a few walls' work: Plan the room finds the spot.</CC_Base_FarPlan>
   <CC_Base_Far_kitchenfreezer>{D} cells to the nearest {B}: the cook walks that way and back for the makings of every meal. A freezer with a door into the kitchen saves hours a season.</CC_Base_Far_kitchenfreezer>
   <CC_Base_Far_kitchendining>{D} cells to the nearest {B}: every meal is carried that far, and the table is where people see the cook's work. Side by side, the kitchen hands straight through.</CC_Base_Far_kitchendining>
   <CC_Base_Far_diningrec>{D} cells to the nearest {B}: people rest right after they eat, and walk that far to do it. Next door, they drift from the table to the games.</CC_Base_Far_diningrec>

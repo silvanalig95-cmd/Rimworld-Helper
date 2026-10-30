@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public List<Thing> things;
         public string fixLabel;
         public Action fix;
+        /// <summary>A room the planner can put beside what this one is far from (the Plan the room button).</summary>
+        public RoomTemplateDef template;
 
         public AdviceLevel Level => (AdviceLevel)NextStepsMath.LevelOf(score);
     }
@@ -160,11 +162,14 @@ namespace ColonyCouncil
                 string other = RoleLabel(rule.b);
                 string detail = ("CC_Base_Far_" + rule.key).Translate(roomA.label.Named("A"), other.Named("B"), ((int)worst.distance).Named("D")).Resolve();
                 if (far.Count > 1) detail += " " + "CC_Base_FarMore".Translate(far.Count - 1).Resolve();
+                // The cheaper of the two to build anew beside the other: the planner's spot finder weighs the same rule.
+                var template = Rebuild(rule.key, map);
+                if (template != null) detail += " " + "CC_Base_FarPlan".Translate(template.label.Named("ROOM")).Resolve();
                 findings.Add(new BaseFinding
                 {
                     key = "far:" + rule.key, group = "rooms", score = BaseReviewMath.FarScore(rule, worst.distance),
                     title = "CC_Base_Far".Translate(roomA.label.Named("A"), other.Named("B")).Resolve().CapitalizeFirst(), detail = detail,
-                    look = roomA.room.ExtentsClose.CenterCell
+                    look = roomA.room.ExtentsClose.CenterCell, template = template
                 });
             }
 
@@ -220,6 +225,24 @@ namespace ColonyCouncil
             }
             findings.Sort((x, y) => y.score.CompareTo(x.score));
             return findings;
+        }
+
+        /// <summary>The room plan to put beside the other for a near rule: the smaller or cheaper of the pair, when the colony can build it.</summary>
+        private static RoomTemplateDef Rebuild(string ruleKey, Map map)
+        {
+            string name;
+            switch (ruleKey)
+            {
+                case "kitchenfreezer": name = "Council_Freezer"; break;
+                case "kitchendining": name = "Council_DiningRoom"; break;
+                case "diningrec": name = "Council_RecRoom"; break;
+                case "workshopstore": name = "Council_Storeroom"; break;
+                case "hospitalgate": name = "Council_Hospital"; break;
+                case "barnfields": name = "Council_Barn"; break;
+                default: return null;
+            }
+            var t = DefDatabase<RoomTemplateDef>.GetNamedSilentFail(name);
+            return t != null && t.UnavailableReason(map) == null ? t : null;
         }
 
         // ---------------- Doors ----------------

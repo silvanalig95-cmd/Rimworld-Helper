@@ -18,6 +18,7 @@ namespace ColonyCouncil
         private static readonly Color MoveColor = new Color(0.45f, 0.9f, 0.5f, 0.6f);
         private static readonly Color FromColor = new Color(0.9f, 0.6f, 0.3f, 0.5f);
         private static readonly Color StayColor = new Color(0.6f, 0.6f, 0.6f, 0.5f);
+        private static readonly Color ConduitColor = new Color(1f, 0.85f, 0.3f, 0.7f);
 
         /// <summary>The room looked over, while its window is open.</summary>
         public RearrangePlan plan;
@@ -124,6 +125,9 @@ namespace ColonyCouncil
                 }
                 else if (p.Stays) GenDraw.DrawFieldEdges(p.thing.OccupiedRect().Cells.ToList(), StayColor);
             }
+            if (plan.layConduits)
+                foreach (var p in plan.pieces)
+                    if (p.Moves && p.losesPower && p.conduits.Count > 0) GenDraw.DrawFieldEdges(p.conduits, ConduitColor);
         }
 
         private static void DrawGhost(ThingDef def, ThingDef stuff, IntVec3 cell, Rot4 rot, Color col)
@@ -236,7 +240,16 @@ namespace ColonyCouncil
             if (unpowered.Count > 0)
             {
                 vy += UiKit.SectionTitle(0f, vy, view.width, "CC_Rearr_Mind".Translate(), Icons.Warning, UiKit.Warn) + 2f;
-                vy += UiKit.Paragraph(6f, vy, view.width - 12f, "CC_Rearr_Unpowered".Translate(unpowered.Count, string.Join(", ", unpowered.Select(p => p.thing.LabelCap.ToString()))), UiKit.Warn) + 8f;
+                vy += UiKit.Paragraph(6f, vy, view.width - 12f, "CC_Rearr_Unpowered".Translate(unpowered.Count, string.Join(", ", unpowered.Select(p => p.thing.LabelCap.ToString()))), UiKit.Warn) + 4f;
+                int conduits = plan.ConduitCount;
+                var lay = new Rect(6f, vy, view.width - 12f, 24f);
+                if (conduits > 0)
+                {
+                    Widgets.CheckboxLabeled(lay, "CC_Rearr_LayConduits".Translate(conduits), ref plan.layConduits);
+                    TooltipHandler.TipRegion(lay, "CC_Rearr_LayConduitsTip".Translate());
+                }
+                else UiKit.Paragraph(6f, vy, view.width - 12f, "CC_Rearr_NoConduitRun".Translate(), UiKit.Faint);
+                vy += 30f;
             }
             vy += UiKit.SectionTitle(0f, vy, view.width, "CC_Rearr_Moving".Translate(moves), null, UiKit.HeaderColor) + 2f;
             if (moves == 0) vy += UiKit.Paragraph(6f, vy, view.width - 12f, "CC_Rearr_NoMoves".Translate(), UiKit.Dim) + 6f;

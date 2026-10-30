@@ -215,7 +215,7 @@ namespace ColonyCouncil
                 {
                     string key = "base:" + f.key;
                     if (!seen.Add(key) || !NextStepsMath.WorthProposing(f.score, true)) continue;
-                    found.Add(new NextStep { key = key, kind = NextStep.KindBase, title = f.title, detail = f.detail, score = f.score, map = map, look = f.look, page = "Base" });
+                    found.Add(new NextStep { key = key, kind = NextStep.KindBase, title = f.title, detail = f.detail, score = f.score, map = map, look = f.look, page = "Base", template = f.template });
                 }
             }
             catch (Exception e)

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Conduits to moved pieces, rooms rebuilt beside what they belong with
+
+*30 October 2026, version 0.27.0*
+
+- Rearranging a room: a piece that would be off the power at its new place gets a run of plain conduit planned from the nearest net to within its reach, the shortest the ground allows, drawn in yellow with the ghosts and placed as blueprints when you say go. Untick "Plan conduits to them" to run your own.
+- The base review's far-apart findings (a kitchen far from the freezer, a workshop far from its store, a hospital far from the gate) now carry a room plan for the cheaper of the pair to build anew beside the other: "Plan the room" on the Base page, and on the step in the plan, opens the planner at a spot found for it.
+- On the ground plan, a click on a drawn room's outline opens the planner there.
+
 ## A clean sweep keeps to the cleaning area
 
 *30 October 2026, version 0.26.4*

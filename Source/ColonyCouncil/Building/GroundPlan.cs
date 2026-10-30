@@ -14,6 +14,7 @@ namespace ColonyCouncil
         public NextStep step;
         public TemplatePlanner.SpotCandidate spot;
         public List<IntVec3> edge = new List<IntVec3>();
+        public CellRect rect;
         public IntVec3 mid;
         public Color color;
         public string label;
@@ -108,6 +109,7 @@ namespace ColonyCouncil
                     var c = new IntVec3(x, 0, z);
                     if (c.InBounds(map)) room.edge.Add(c);
                 }
+                room.rect = new CellRect(room.spot.anchor.x, room.spot.anchor.z, rw, rh);
                 room.mid = new IntVec3(room.spot.anchor.x + rw / 2, 0, room.spot.anchor.z + rh / 2);
                 foreach (var (x, z) in GroundPlanMath.Kept(room.spot.anchor.x, room.spot.anchor.z, rw, rh)) taken.Add(new IntVec3(x, 0, z));
                 result.Add(room);
@@ -138,6 +140,20 @@ namespace ColonyCouncil
         public override void MapComponentOnGUI()
         {
             if (!GroundPlan.Shown || map != Find.CurrentMap) return;
+            // A click on a drawn room (not on a window, and with no tool in hand) opens the planner there.
+            var e = Event.current;
+            if (e.type == EventType.MouseDown && e.button == 0 && Find.DesignatorManager.SelectedDesignator == null
+                && Find.WindowStack.GetWindowAt(UI.MousePositionOnUIInverted) == null)
+            {
+                var cell = UI.MouseCell();
+                foreach (var r in GroundPlan.Rooms)
+                {
+                    if (r.nowhere || !r.rect.Contains(cell)) continue;
+                    e.Use();
+                    GroundPlan.PlanHere(r);
+                    return;
+                }
+            }
             if (Find.CameraDriver.CurrentZoom > CameraZoomRange.Far) return;
             foreach (var r in GroundPlan.Rooms)
                 if (!r.nowhere && r.mid.InBounds(map)) GenMapUI.DrawThingLabel(r.mid.ToVector3Shifted().MapToUIPosition(), r.label, r.color);

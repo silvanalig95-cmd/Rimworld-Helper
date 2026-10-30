@@ -17,6 +17,8 @@ namespace ColonyCouncil
         public Rot4 toRot;
         /// <summary>Needs power and has no conduit within reach of its new place.</summary>
         public bool losesPower;
+        /// <summary>The conduit run that would join its new place to the net, beside the net first (empty when none within reach).</summary>
+        public List<IntVec3> conduits = new List<IntVec3>();
 
         public bool Moves => stay == null && item != null && !item.stranded && item.moved;
         public bool Kept => stay == null && item != null && !item.stranded && !item.moved;
@@ -41,6 +43,8 @@ namespace ColonyCouncil
         public List<string> notes = new List<string>();
         /// <summary>Shelves and stores with goods in them are moved too (the goods are set down and hauled back).</summary>
         public bool moveStocked;
+        /// <summary>Conduits are planned to the pieces that would be off the power at their new place.</summary>
+        public bool layConduits = true;
         public string roomLabel;
 
         public int Moves => pieces.Count(p => p.Moves);
@@ -50,6 +54,8 @@ namespace ColonyCouncil
         public IEnumerable<RearrangePiece> Moving => pieces.Where(p => p.Moves);
         public IEnumerable<RearrangePiece> Staying => pieces.Where(p => p.Stays && p.stay != "Blueprint");
         public IEnumerable<RearrangePiece> Unpowered => pieces.Where(p => p.Moves && p.losesPower);
+        /// <summary>The conduits that would be planned for the pieces off the power, all together.</summary>
+        public int ConduitCount => pieces.Where(p => p.Moves && p.losesPower).Sum(p => p.conduits.Count);
     }
 
     /// <summary>
@@ -166,10 +172,12 @@ namespace ColonyCouncil
                 }
                 if (!again) break;
             }
+            var placeable = new Dictionary<IntVec3, bool>();
             foreach (var p in plan.pieces)
             {
                 if (!p.Moves) continue;
                 p.losesPower = NeedsPower(p.thing) && PowerConnectionMaker.BestTransmitterForConnector(p.to, map) == null;
+                if (p.losesPower) p.conduits = ConduitRun(map, p.to, placeable);
             }
             return plan;
         }
@@ -217,6 +225,52 @@ namespace ColonyCouncil
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// The shortest run of conduit from beside the nearest net to within a connector's reach of <paramref name="to"/>
+        /// (ConduitMath), over cells a conduit can be planned on. Empty when none within reach, or without the research.
+        /// </summary>
+        private static List<IntVec3> ConduitRun(Map map, IntVec3 to, Dictionary<IntVec3, bool> placeable)
+        {
+            var result = new List<IntVec3>();
+            var conduit = ThingDefOf.PowerConduit;
+            if (conduit == null || !conduit.IsResearchFinished || map.powerNetGrid == null) return result;
+            bool HasNet(IntVec3 c) => c.InBounds(map) && map.powerNetGrid.TransmittedPowerNetAt(c) != null;
+            bool Passable((int x, int z) p)
+            {
+                var c = new IntVec3(p.x, 0, p.z);
+                if (!c.InBounds(map) || c.Fogged(map) || c.DistanceTo(to) > ConduitMath.MaxRun) return false;
+                if (placeable.TryGetValue(c, out bool ok)) return ok;
+                try
+                {
+                    ok = HasNet(c) || GenConstruct.CanPlaceBlueprintAt(conduit, c, Rot4.North, map).Accepted;
+                }
+                catch
+                {
+                    ok = false;
+                }
+                placeable[c] = ok;
+                return ok;
+            }
+            // Beside the net: the cells next to a transmitter within reach of the search.
+            var sources = new List<(int x, int z)>();
+            foreach (var c in GenRadial.RadialCellsAround(to, ConduitMath.MaxRun, true))
+            {
+                if (!HasNet(c)) continue;
+                for (int i = 0; i < 4; i++)
+                {
+                    var n = c + GenAdj.CardinalDirections[i];
+                    if (n.InBounds(map) && !HasNet(n)) sources.Add((n.x, n.z));
+                }
+            }
+            if (sources.Count == 0) return result;
+            foreach (var (x, z) in ConduitMath.Path(sources, Passable, (to.x, to.z)))
+            {
+                var c = new IntVec3(x, 0, z);
+                if (!HasNet(c)) result.Add(c);
+            }
+            return result;
         }
 
         private static bool NeedsPower(Thing t)
@@ -389,6 +443,26 @@ namespace ColonyCouncil
             if (n == 0) return;
             queue.Work();
             Messages.Message("CC_Rearr_Started".Translate(plan.roomLabel, n), new LookTargets(plan.rect.CenterCell, plan.map), MessageTypeDefOf.TaskCompletion, false);
+            if (plan.layConduits) LayConduits(plan);
+        }
+
+        /// <summary>Plans the conduit runs to the pieces that would be off the power, as ordinary blueprints.</summary>
+        private static void LayConduits(RearrangePlan plan)
+        {
+            var conduit = ThingDefOf.PowerConduit;
+            if (conduit == null) return;
+            int laid = 0;
+            var done = new HashSet<IntVec3>();
+            foreach (var p in plan.pieces)
+            {
+                if (!p.Moves || !p.losesPower) continue;
+                foreach (var c in p.conduits)
+                {
+                    if (!done.Add(c)) continue;
+                    if (TemplatePlanner.TryPlace(conduit, c, Rot4.North, null, plan.map)) laid++;
+                }
+            }
+            if (laid > 0) Messages.Message("CC_Rearr_ConduitsLaid".Translate(laid), MessageTypeDefOf.SilentInput, false);
         }
     }
 

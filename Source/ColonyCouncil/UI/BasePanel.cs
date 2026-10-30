@@ -62,7 +62,7 @@ namespace ColonyCouncil
             float textW = Mathf.Max(80f, width - LeftW - ButtonsW - 12f);
             float titleH = Text.CalcHeight(f.title ?? "", textW);
             float detailH = f.detail.NullOrEmpty() ? 0f : Text.CalcHeight(f.detail, textW);
-            int buttons = (f.look.IsValid ? 1 : 0) + (f.fix != null ? 1 : 0);
+            int buttons = (f.look.IsValid ? 1 : 0) + (f.fix != null ? 1 : 0) + (f.template != null ? 1 : 0);
             float h = Mathf.Max(48f, titleH + detailH + 18f, buttons * 30f + 10f);
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, color);
@@ -85,6 +85,11 @@ namespace ColonyCouncil
                 if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(new LookTargets(f.look, map));
                 by += 30f;
             }
+            if (f.template != null && Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_PlanIt".Translate()))
+            {
+                MainTabWindow_Council.StartPlanning(f.template, true);
+            }
+            if (f.template != null) by += 30f;
             if (f.fix != null)
             {
                 var fixRect = new Rect(bx, by, bw, 26f);
