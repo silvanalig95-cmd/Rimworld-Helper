@@ -283,7 +283,32 @@ namespace ColonyCouncil
                 return null;
             }
             var setup = Make(map, center, CampSite.ColonyCenter(map), kind, f, hot, why, null);
-            return setup == null ? null : Start(setup);
+            var c = setup == null ? null : Start(setup);
+            if (c != null) Announce(c);
+            return c;
+        }
+
+        /// <summary>
+        /// The letter a camp's coming gets when no event sends one (a camp a world event called for): its kind's title
+        /// and text, with the colonist their people remember by name (or anyone grown) as the one they spoke to.
+        /// </summary>
+        private static void Announce(Camp c)
+        {
+            if (c?.kind == null || c.map == null) return;
+            try
+            {
+                var tags = new HashSet<string>();
+                Flavor.AddEraTags(tags);
+                CampWords.AddTags(tags, c.kind, c.faction, c.map);
+                var a = KinMemory.Greeter(c.faction, c.map) ?? IncidentWorker_Happening.Colonists(c.map).Where(p => !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
+                string title = c.Format(Flavor.Pick(c.kind.titles, tags) ?? Flavor.PickText(c.kind.titles), c.leader, a);
+                string text = c.Format(Flavor.Pick(c.kind.texts, tags) ?? Flavor.PickText(c.kind.texts), c.leader, a);
+                c.Tell(title, text, LetterDefOf.NeutralEvent, true, c.leader);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp announced", e);
+            }
         }
 
         /// <summary>

@@ -185,9 +185,11 @@
           </li>
           <li>
             <label>Sell it to them at a fair price</label>
-            <outcome>The settlers pay for the food in silver and tools, and carry it home. Fair is fair, {X_nameDef} says when the word comes back, and asks nothing more.</outcome>
+            <outcome>The food goes out to the settlers at the gate, who pay the usual price in silver and carry it home. Fair is fair, {X_nameDef} says when the word comes back, and asks nothing more.</outcome>
             <effects>
-              <li Class="ColonyCouncil.WorldEffect_Sell"><price>1</price><toVisitor>true</toVisitor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Stranger</to></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
             <flags><li>sold</li></flags>
             <help>1</help>

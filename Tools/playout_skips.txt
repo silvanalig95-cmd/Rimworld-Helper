@@ -446,7 +446,6 @@ Council_Evt_RegularBack [option 2] the colonist really goes: they leave with the
 Council_WS_Plague [orphans/2] a refusal: the old woman and the children at the gate go on when the answer comes (Visitors/)
 Council_WS_RivalColony [hunters/0] the hunters are on the far ground already (VisitEffect_Come) and go on when their stop is over
 Council_WS_RivalColony [hunters/2] a warning off: the hunters on the far ground go on when their stop is over
-Council_WS_RivalColony [begging/1] the food is carried out to the settlers at the gate and paid for there (WorldEffect_Sell toVisitor)
 Council_WS_RivalColony [poaching/1] the talk is at their steading, off the map, told
 Council_WS_RivalColony [poaching/2] their traps are off the map, told
 Council_WS_RivalColony [grown] far away, told

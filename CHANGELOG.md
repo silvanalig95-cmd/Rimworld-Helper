@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Two fixes from a read-through of the new rounds
+
+*30 October 2026, version 0.35.1*
+
+- The other settlers' "sell it to them at a fair price" could never be chosen: the sale had no one kind of thing to sell. It now goes as the famine's does: the food is carried out to the settlers at the gate, and they pay the usual price in silver.
+- A camp a world event calls for (the road wardens come to build their post) arrived with no letter. It now gets its kind's own letter, as a camp the storyteller sends does, naming the colonist their people remember.
+
 ## A Pokémon that keeps coming, a shiny rumour, and traveling trainers
 
 *30 October 2026, version 0.35.0*

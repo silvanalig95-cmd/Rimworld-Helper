@@ -1,6 +1,9 @@
 # Handoff: work in progress
 
-Last shipped: 0.35.0, the Pokémon round (a Pokémon that keeps coming, a shiny rumour, traveling trainers), the last
+Last shipped: 0.35.1, two fixes from a read-through of the rounds (the settlers' food sale used `WorldEffect_Sell`
+without a thing and was always unavailable: now `DilemmaEffect_CarryOut` rawfood plus `WorldEffect_Silver`, as the
+famine's; `CampTracker.StartKind` now calls `Announce`, the kind's own letter, so a camp a world event calls for is
+told). Before it, 0.35.0, the Pokémon round (a Pokémon that keeps coming, a shiny rumour, traveling trainers), the last
 of the event rounds the player approved. `Animals/ResidentBeast.cs` with PokéWorld: `Fits` takes a wild Pokémon
 (`PokeWorldLink.IsPokemon`, not `PokeWorldLife.IsRareOne`, `HerdStoryMath.PokemonFits` body 0.3+), `Candidate` prefers
 the rumour's species, then Pokémon; `pokemon`/`shiny`/`rumoured`/`stolen`, `Steal` (`StealDue`/`StealChance`,
