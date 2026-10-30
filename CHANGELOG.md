@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Visitors ply their trades on the map
+
+*30 October 2026, version 0.43.4*
+
+- The tinker works through the pile piece by piece, nearest first: stored things mended where they lie, worn things on the one wearing them, about five hours in all; the letter comes with the last piece done.
+- The travelling doctor goes round the colony and doses each colonist in turn, and the bonesetter spends the afternoon with the one they treat, the ailment easing when it's done.
+- A travelling cook given the kitchen cooks the feast at the colony's stove with the game's own bill, a colonist at their elbow learning, and leaves the meals by the stove.
+- A face that comes back and is welcomed in gets an evening at the colony's fire; the midwinter guest gets a meal carried out and a warm corner indoors; the lost child goes home with a meal and a coat from the stores. Errands can carry a coat now: the plainest outer wear in storage.
+- Stories that promised food or shelter (the scholar, the fugitive, the expedition, the wounded stranger) carry them out to the one they're for, or say what happens instead.
+
 ## Guests the colony hosts eat at its table and sleep in its beds
 
 *30 October 2026, version 0.43.3*

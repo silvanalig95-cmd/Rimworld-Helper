@@ -115,7 +115,7 @@
     <defName>Council_Journal_Evt_Bonesetter</defName>
     <lines>
       <plain>
-        <li>[opt0] A traveling healer saw to my {TALE} today. Whatever was in that tea, it's working.</li>
+        <li>[opt0] A traveling healer spent the afternoon on my {TALE} today. Whatever they did, it's working.</li>
         <li>[opt1] {X_nameDef} fixed my {TALE} with our doctor watching every move. I felt like a lesson.</li>
         <li>[opt2] A healer offered to see to my {TALE} and I said I'd manage. I'm managing. Mostly.</li>
         <li>[opt0] Stranger's hands, stranger's medicine, and the {TALE} is better already. I won't ask what was in it.</li>
