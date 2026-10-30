@@ -230,6 +230,10 @@ namespace ColonyCouncil
             if (c.verdictText.NullOrEmpty()) return;
             var font = Text.Font;
             var anchor = Text.Anchor;
+            // One column: past the bottom the listing would start a second one out of sight, and its height would read
+            // as that column's, so the tab would never grow to show the rest.
+            bool oneColumn = listing.maxOneColumn;
+            listing.maxOneColumn = true;
             listing.GapLine(8f);
             Text.Font = GameFont.Small;
             var head = listing.GetRect(Text.LineHeight);
@@ -269,6 +273,7 @@ namespace ColonyCouncil
             // The tab is as tall as this needs: its listing starts 30 in and ends 10 short of the bottom.
             sizedFor = g;
             wanted = listing.CurHeight + 44f;
+            listing.maxOneColumn = oneColumn;
         }
 
         /// <summary>Before the tab draws: tall enough for the checklist drawn last time for this guest.</summary>

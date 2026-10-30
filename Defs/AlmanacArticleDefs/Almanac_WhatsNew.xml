@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.41.3</version>
+        <date>30 October 2026</date>
+        <title>A guest's recruiting checklist shows in full</title>
+        <points>
+          <li>The checklist under "Recruiting" on Hospitality's Guest tab was cut off after its heading once it ran past the bottom of the tab: the rest went to a second column out of sight, and the tab never grew. It now stays in one column, and the tab grows to show all of it.</li>
+          <li>Every guest has one: whether they would join of their own will now, and each condition met or not, from friends here and a reason to stay to room for one more and what they want of a home. The recruit button's tooltip says much the same.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.41.2</version>
         <date>30 October 2026</date>
         <title>An animal's help in a fight is a short glow</title>

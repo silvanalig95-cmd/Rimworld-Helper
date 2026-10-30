@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A guest's recruiting checklist shows in full
+
+*30 October 2026, version 0.41.3*
+
+- The checklist under "Recruiting" on Hospitality's Guest tab was cut off after its heading once it ran past the bottom of the tab: the rest went to a second column out of sight, and the tab never grew. It now stays in one column, and the tab grows to show all of it.
+- Every guest has one: whether they would join of their own will now, and each condition met or not, from friends here and a reason to stay to room for one more and what they want of a home. The recruit button's tooltip says much the same.
+
 ## An animal's help in a fight is a short glow
 
 *30 October 2026, version 0.41.2*
