@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Neighbours for good
+
+*30 October 2026, version 0.31.0*
+
+- A refugee family or a hermit whose stay went well asks, at their parting, to stay on the colony's land for good. Let settle, their camp becomes their home at the edge of the colony's land: they live off the land around it, trade (their stock is new every so often), come over to the gate every few days, ask and are asked (the same questions the council gets about any camp), and the council can still ask them to move on. Or take them all into the colony, camp and goods and children. One such neighbour at a time; camps still come and go beside them.
+- Neighbours have their troubles: one of them falls ill now and then and asks for the colony's doctor; raiders on the land may kill one of them, and the rest may bury their dead and move on. Their unease eases with time rather than growing. The World page has their card under "Our neighbours".
+
 ## Camps that come back, a stay with a shape, and help in a fight
 
 *30 October 2026, version 0.30.0*

@@ -573,8 +573,10 @@ namespace ColonyCouncil
         /// <summary>A camp settled in and at peace with the colony (not packing up, not at war), on this colonist's map.</summary>
         private static Camp Open(Pawn pawn)
         {
-            var c = CampTracker.Instance?.camp;
-            return c != null && c.phase == CampPhase.Living && !c.Hostile && pawn?.Map != null && c.map == pawn.Map ? c : null;
+            if (pawn?.Map == null || CampTracker.Instance == null) return null;
+            // The visitors or the neighbours settled for good, whichever is nearer.
+            return CampTracker.Instance.All.Where(c => c.phase == CampPhase.Living && !c.Hostile && c.map == pawn.Map)
+                .OrderBy(c => c.center.DistanceToSquared(pawn.Position)).FirstOrDefault();
         }
 
         public override float GetChance(Pawn pawn)
@@ -608,10 +610,10 @@ namespace ColonyCouncil
         protected override IEnumerable<Toil> MakeNewToils()
         {
             // Over the moment they pack up or their people turn on the colony: nobody sits on at a fire that's now an enemy's.
-            this.FailOn(() => CampTracker.Instance?.camp is Camp c ? c.phase != CampPhase.Living || c.Hostile || c.map != pawn.Map : true);
+            this.FailOn(() => CampTracker.Instance?.CampAt(job.targetB.Cell) is Camp c ? c.phase != CampPhase.Living || c.Hostile || c.map != pawn.Map : true);
             yield return Toils_Goto.GotoCell(TargetIndex.A, PathEndMode.OnCell);
             var visit = ToilMaker.MakeToil("VisitCamp");
-            visit.initAction = () => CampTracker.Instance?.camp?.Visited(pawn);
+            visit.initAction = () => CampTracker.Instance?.CampAt(job.targetB.Cell)?.Visited(pawn);
             visit.defaultCompleteMode = ToilCompleteMode.Delay;
             visit.defaultDuration = Mathf.Max(600, job.def.joyDuration);
             visit.socialMode = RandomSocialMode.SuperActive;

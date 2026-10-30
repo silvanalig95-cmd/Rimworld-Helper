@@ -986,8 +986,8 @@ namespace ColonyCouncil
         /// </summary>
         public static void LeadOff(Lord lord)
         {
-            var camp = CampTracker.Instance?.camp;
-            if (lord?.ownedPawns == null || camp == null || camp.lord != lord) return;
+            var camp = CampTracker.Instance?.All.FirstOrDefault(c => c.lord == lord);
+            if (lord?.ownedPawns == null || camp == null) return;
             var beasts = lord.ownedPawns.Where(p => p?.RaceProps != null && !p.RaceProps.Humanlike).ToList();
             try
             {

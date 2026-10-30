@@ -14,9 +14,14 @@ namespace ColonyCouncil
         public static Camp CampOn(Map map)
         {
             if (map == null || !CampTracker.Enabled) return null;
-            var c = CampTracker.Instance?.camp;
-            return c != null && c.map == map && c.Settled && c.CanTalk && c.faction != null ? c : null;
+            var t = CampTracker.Instance;
+            if (t == null) return null;
+            // The visitors first; else the neighbours settled for good (Holding.cs), whom the same questions can be about.
+            var c = Fits(t.camp, map) ? t.camp : Fits(t.holding, map) ? t.holding : null;
+            return c;
         }
+
+        private static bool Fits(Camp c, Map map) => c != null && c.map == map && c.Settled && c.CanTalk && c.faction != null;
 
         public override bool CanHappenNow(Map map) => CampOn(map) != null && base.CanHappenNow(map);
 
@@ -43,7 +48,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = DilemmaWorker_Camp.CampOn(ctx.map);
+            var c = CampOnMap.For(ctx);
             if (c == null) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
             if (amount != 0f) c.AddTension(amount);

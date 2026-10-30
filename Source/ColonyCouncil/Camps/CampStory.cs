@@ -72,11 +72,17 @@ namespace ColonyCouncil
         /// <summary>Every hour: the parting word within the last day, when the colony has no other question of theirs open.</summary>
         private void StoryParting()
         {
-            if (beats.Contains("parting") || phase != CampPhase.Living || !CampStoryMath.PartingDue(DaysHere, StayDays) || Hostile) return;
+            if (holding || beats.Contains("parting") || phase != CampPhase.Living || !CampStoryMath.PartingDue(DaysHere, StayDays) || Hostile) return;
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Camp c && c.campId == id && !c.resolved)) return;
             beats.Add("parting");
             var speaker = Speaker;
             if (speaker == null) return;
+            // A family or a hermit who could settle asks to stay for good instead (Holding.cs).
+            if (SettleOffered)
+            {
+                Ask("settle", Text("CC_Holding_AskTitle"), Text(kind.family ? "CC_Holding_Ask_Family" : "CC_Holding_Ask", speaker), speaker, 0.8f);
+                return;
+            }
             string key = helps + gifts + tradeDays > 0 ? "CC_Camp_Parting_Warm" : tension >= 40f ? "CC_Camp_Parting_Cool" : "CC_Camp_Parting";
             if (Familiar) key = "CC_Camp_Parting_Again";
             Ask("parting", Text("CC_Camp_PartingTitle"), Text(key, speaker, null, CampStoryMath.Provisions(Here.Count)), speaker, 0.6f);
@@ -195,7 +201,7 @@ namespace ColonyCouncil
     /// <summary>The troubles every camp can have, as requests of theirs (CampRequests.cs), with the effects that answer them.</summary>
     public static class CampStory
     {
-        public const string SickKey = "sick", CartKey = "cart";
+        public const string SickKey = "trouble_sick", CartKey = "trouble_cart";
 
         private static List<CampAsk> common;
 
@@ -241,7 +247,7 @@ namespace ColonyCouncil
     {
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             if (c?.sick == null || c.sick.Dead || !c.sick.Spawned) return "CC_CampTrouble_NobodySick".Translate();
             if (ctx.a == null || ctx.a.WorkTagIsDisabled(WorkTags.Caring)) return "CC_CampTrouble_NoDoctor".Translate();
             return null;
@@ -249,7 +255,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             var sick = c?.sick;
             if (sick == null || sick.Dead || ctx.a == null) return;
             try
@@ -286,7 +292,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             if (ctx.map == null || c == null) return;
             int left = Count;
             var carriers = c.Here.Where(p => p.inventory != null).ToList();

@@ -238,7 +238,8 @@ namespace ColonyCouncil
                 chopsToday = Mathf.Min(chopsToday, 2);
             }
             eventHour = Rand.RangeInclusive(9, 18);
-            if (arrivedTick >= 0 && Now - arrivedTick > GenDate.TicksPerDay / 2)
+            if (holding) HoldingDay();
+            else if (arrivedTick >= 0 && Now - arrivedTick > GenDate.TicksPerDay / 2)
             {
                 // People who have camped here before settle in quicker.
                 float t = kind.tensionPerDay * (Familiar ? CampStoryMath.FamiliarTension : 1f);
@@ -340,6 +341,7 @@ namespace ColonyCouncil
             willing.RemoveAll(p => p == null || p.Dead || !Here.Contains(p));
             if (trader != null && (trader.Dead || !Here.Contains(trader))) trader = null;
             if (sick != null && (sick.Dead || !Here.Contains(sick))) sick = null;
+            if (holding && Settled) HoldingLosses();
         }
 
         /// <summary>Silver changing hands at their trader: the colony traded with them.</summary>
@@ -760,6 +762,8 @@ namespace ColonyCouncil
         {
             if (MapFacts.ThreatOn(map))
             {
+                // Neighbours settled for good keep to their huts and hope; what they lose is counted after (Holding.cs).
+                if (holding) return false;
                 // A war party takes up arms again; anyone else wants no part in the colony's fight.
                 if (kind.fights)
                 {
@@ -775,8 +779,9 @@ namespace ColonyCouncil
                 return true;
             }
             if (fighting && kind.fights && !MapFacts.ThreatOn(map)) fighting = false;
-            if (BadWeather())
+            if (BadWeather() && (!holding || CampWeather.Hazard(map) != null))
             {
+                // Settled neighbours have shelter against the weather; only poisoned air or a sky on fire drives them off.
                 Leave("weather");
                 return true;
             }

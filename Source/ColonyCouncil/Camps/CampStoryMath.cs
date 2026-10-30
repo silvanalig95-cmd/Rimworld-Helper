@@ -100,6 +100,26 @@ namespace ColonyCouncil
         /// <summary>Meals for the road: two a head.</summary>
         public static int Provisions(int people) => Math.Max(2, people * 2);
 
+        // ---------------- Neighbours for good ----------------
+
+        /// <summary>
+        /// Whether a camp of a kind that can settle asks to stay for good at its parting: a stay of three days or more
+        /// that went well enough, and no neighbours settled on the land already.
+        /// </summary>
+        public static bool SettleOffered(bool canSettle, float tension, float daysHere, bool holdingFree) => canSettle && holdingFree && tension < 40f && daysHere >= 3f;
+
+        /// <summary>Settled neighbours' unease eases a little each day instead of growing.</summary>
+        public const float HoldingTensionADay = -1.5f;
+        /// <summary>Their trader's stock is new every so often; one of them falls ill now and then; one of them comes over to the colony's gate every few days.</summary>
+        public const int HoldingStockDays = 15;
+        public const int HoldingSickDays = 25;
+        public const float HoldingSickChance = 0.3f;
+        public const int HoldingVisitDays = 3;
+        /// <summary>Food they find for themselves each day: enough for everyone, so they never go hungry on the colony's land.</summary>
+        public static int HoldingProvisions(int people) => Math.Max(2, people * 3);
+        /// <summary>After raiders killed one of them, the chance they bury their dead and move on.</summary>
+        public const float GriefLeaveChance = 0.5f;
+
         // ---------------- A war party ----------------
 
         /// <summary>A threat must have lasted this long before anyone comes to it (word has to reach them).</summary>

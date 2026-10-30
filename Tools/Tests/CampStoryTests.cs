@@ -49,6 +49,15 @@ public static class CampStoryTests
         C(!CampStoryMath.PartingDue(1f, 1.5f), "a camp of a night and a day says no parting word");
         C(CampStoryMath.Provisions(4) == 8 && CampStoryMath.Provisions(1) == 2, "provisions are two meals a head");
 
+        // ---------------- Neighbours for good ----------------
+        C(CampStoryMath.SettleOffered(true, 10f, 4f, true), "a family that could settle, after a good long stay, asks to");
+        C(!CampStoryMath.SettleOffered(false, 10f, 4f, true), "a kind that doesn't settle never asks");
+        C(!CampStoryMath.SettleOffered(true, 50f, 4f, true), "nor one whose stay went badly");
+        C(!CampStoryMath.SettleOffered(true, 10f, 2f, true), "nor after a short stay");
+        C(!CampStoryMath.SettleOffered(true, 10f, 4f, false), "nor with neighbours settled on the land already");
+        C(CampStoryMath.HoldingProvisions(1) == 3 && CampStoryMath.HoldingProvisions(5) == 15, "settled neighbours find three meals a head a day");
+        C(CampStoryMath.HoldingTensionADay < 0f, "their unease eases with time");
+
         // ---------------- A war party ----------------
         C(CampStoryMath.Fighters(100f) == 3 && CampStoryMath.Fighters(600f) == 5 && CampStoryMath.Fighters(5000f) == 7, "three to seven fighters, by the threat");
         C(CampStoryMath.WarPoints(100f) == 150f && CampStoryMath.WarPoints(1000f) == 550f && CampStoryMath.WarPoints(9000f) == 1400f, "they come about half as strong as the threat, within bounds");

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Neighbours for good (Source/ColonyCouncil/Camps/Holding.cs): a refugee family or a hermit who asks to stay on the colony's land. -->
+  <CC_Holding_AskTitle>The {NAME} ask to stay</CC_Holding_AskTitle>
+  <CC_Holding_Ask>{X_nameDef} came to the gate at dusk and did not sit down. The {NAME} are meant to go on in the morning, {X_pronoun} said, and have nowhere in particular to go on to. Would the colony let them stay {PLACE}, for good: their own fire, their own roof, on the colony's land but not in the colony? They'd keep to their side, trade, and come when called.</CC_Holding_Ask>
+  <CC_Holding_Ask_Family>{X_nameDef} came to the gate with the children hanging back a few paces. The family is meant to move on in the morning, {X_pronoun} said, and the children have moved on enough. Would the colony let them settle {PLACE}, for good: their own fire and roof at the edge of the colony's land, keeping to their side, trading, and coming when called? They ask for nothing else.</CC_Holding_Ask_Family>
+  <CC_Holding_Opt_Settle>Let them settle here</CC_Holding_Opt_Settle>
+  <CC_Holding_Opt_Settle_Tip>They stay for good as the colony's neighbours: their camp becomes their home, they live off the land around it, trade, visit and ask now and then, and the council can still ask them to move on. One such neighbour at a time; camps still come and go beside them.</CC_Holding_Opt_Settle_Tip>
+  <CC_Holding_Opt_TakeIn>Take them into the colony</CC_Holding_Opt_TakeIn>
+  <CC_Holding_Opt_TakeIn_Tip>All of them join the colony, children and all, with their camp and its goods.</CC_Holding_Opt_TakeIn_Tip>
+  <CC_Holding_Opt_NotHere>Not here. Safe roads.</CC_Holding_Opt_NotHere>
+  <CC_Holding_NotHere>{X_nameDef} nodded as if {X_pronoun} had expected it, and went back to tell the others. The {NAME} go on in the morning.</CC_Holding_NotHere>
+  <CC_Holding_SettledTitle>Neighbours</CC_Holding_SettledTitle>
+  <CC_Holding_Settled>The {NAME} of {FACTION} are staying. Their camp {PLACE} is their home now: the colony's neighbours, on its land but not in it. {X_nameDef} shook every hand at the gate twice.</CC_Holding_Settled>
+  <CC_Holding_SettledReply>They're staying. {X_nameDef} went back to the camp at a run to tell the others.</CC_Holding_SettledReply>
+  <CC_Holding_Facts>They live off the land around their camp and keep to their side of it. Their page on the World page has trade, terms, gifts, hiring, what they can be asked, and a way to ask them to move on. One of them comes over to the gate every few days; one may fall ill now and then and ask for the colony's doctor; raiders on the land may hurt them.</CC_Holding_Facts>
+  <CC_Holding_TakenIn>{COUNT} of the {NAME} joined the colony today, and their camp with them.</CC_Holding_TakenIn>
+  <CC_Holding_Section>Our neighbours</CC_Holding_Section>
+  <CC_Holding_FamilyName>the {0} family</CC_Holding_FamilyName>
+  <CC_Holding_Line>The {NAME} of {FACTION}, settled {PLACE} for {DAYS}: {COUNT} of them.</CC_Holding_Line>
+  <CC_Holding_LossTitle>Grief among the neighbours</CC_Holding_LossTitle>
+  <CC_Holding_Loss>Enemies on the land cost the {NAME} {COUNT} of their own. {X_nameDef} is buried {PLACE}; the rest sit by the fire and say little. They're staying, for now.</CC_Holding_Loss>
+  <CC_Holding_LossLeaving>Enemies on the land cost the {NAME} {COUNT} of their own. They buried {X_nameDef} {PLACE} and are packing up: they came here for safety, and found none.</CC_Holding_LossLeaving>
+  <CC_Camp_End_grief>The {NAME} from {FACTION} left their camp {PLACE} with a fresh grave beside it. They could not stay where it happened.</CC_Camp_End_grief>
+</LanguageData>

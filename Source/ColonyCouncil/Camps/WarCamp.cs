@@ -424,7 +424,7 @@ namespace ColonyCouncil
     {
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             if (c == null || !c.Here.Any(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff())) return "CC_CampAsk_NobodyHurt".Translate();
             if (ctx.a == null || ctx.a.WorkTagIsDisabled(WorkTags.Caring)) return "CC_CampTrouble_NoDoctor".Translate();
             return null;
@@ -432,7 +432,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             if (c == null || ctx.a == null) return;
             int n = 0;
             foreach (var p in c.Here.Where(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff()).OrderByDescending(p => p.health.summaryHealth.SummaryHealthPercent < 0.6f))

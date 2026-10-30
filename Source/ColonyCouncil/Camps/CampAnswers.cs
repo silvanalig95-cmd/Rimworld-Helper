@@ -302,6 +302,18 @@ namespace ColonyCouncil
                         }
                     });
                     break;
+                case "settle":
+                    list.Add(new CampOption { label = c.Text("CC_Holding_Opt_Settle"), tip = c.Text("CC_Holding_Opt_Settle_Tip"), act = () => c.Settle() });
+                    list.Add(new CampOption { label = c.Text("CC_Holding_Opt_TakeIn"), tip = c.Text("CC_Holding_Opt_TakeIn_Tip"), act = () => c.TakeIn() });
+                    list.Add(new CampOption
+                    {
+                        label = c.Text("CC_Holding_Opt_NotHere"), act = () =>
+                        {
+                            c.AddTension(5f);
+                            return c.Text("CC_Holding_NotHere");
+                        }
+                    });
+                    break;
                 case "parting":
                 {
                     int meals = CampStoryMath.Provisions(c.Here.Count);
@@ -340,7 +352,8 @@ namespace ColonyCouncil
                 case "overstay":
                 case "request": return 1;
                 case "broken":
-                case "parting": return 2;
+                case "parting":
+                case "settle": return 2;
                 case "tension":
                 case "refused": return 3;
                 default: return 0;
@@ -376,7 +389,7 @@ namespace ColonyCouncil
         public override bool CanDismissWithRightClick => false;
 
         // Once they're leaving or at war, the question is moot: the letter only closes, and running out of time does nothing.
-        private Camp Camp => CampTracker.Instance?.camp is Camp c && c.id == campId && c.CanTalk ? c : null;
+        private Camp Camp => CampTracker.Instance?.ById(campId) is Camp c && c.CanTalk ? c : null;
 
         public override IEnumerable<DiaOption> Choices
         {
@@ -413,7 +426,8 @@ namespace ColonyCouncil
         {
             try
             {
-                string told = o.act?.Invoke();
+                string told;
+                using (CampTracker.Talking(camp)) told = o.act?.Invoke();
                 if (!told.NullOrEmpty()) Messages.Message(told, camp.Look, MessageTypeDefOf.NeutralEvent, false);
             }
             catch (Exception e)

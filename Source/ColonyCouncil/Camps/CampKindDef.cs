@@ -23,6 +23,8 @@ namespace ColonyCouncil
         /// rather than away, and they don't fall ill or come back of their own accord.
         /// </summary>
         public bool fights;
+        /// <summary>At the parting of a good stay they may ask to stay on the colony's land for good, as its neighbours (Holding.cs).</summary>
+        public bool canSettle;
         /// <summary>The people they come from must be at least / at most this advanced.</summary>
         public TechLevel minTech = TechLevel.Undefined;
         public TechLevel maxTech = TechLevel.Archotech;

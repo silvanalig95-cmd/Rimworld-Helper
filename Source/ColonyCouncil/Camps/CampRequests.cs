@@ -446,6 +446,7 @@ namespace ColonyCouncil
         public bool Welcome(Pawn p)
         {
             if (p == null || p.Dead || !CanTalk || !Here.Contains(p)) return false;
+            Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
             if (p == trader)
             {
                 p.mindState.wantsToTradeWithColony = false;
@@ -543,9 +544,19 @@ namespace ColonyCouncil
         public static Camp Of(Map map)
         {
             if (map == null || !CampTracker.Enabled) return null;
-            var c = CampTracker.Instance?.camp;
-            return c != null && c.map == map && c.Settled && c.CanTalk ? c : null;
+            var t = CampTracker.Instance;
+            if (t == null) return null;
+            // The camp being dealt with first (an answer to its letter, a button on its page), else the visitors, else the neighbours.
+            var asked = CampTracker.Asked;
+            if (asked != null && Fits(asked, map)) return asked;
+            if (Fits(t.camp, map)) return t.camp;
+            return Fits(t.holding, map) ? t.holding : null;
         }
+
+        /// <summary>The camp a question is about: the one its stranger belongs to, else the camp on the map.</summary>
+        public static Camp For(DilemmaContext ctx) => (ctx?.stranger != null ? CampTracker.CampOf(ctx.stranger) : null) ?? Of(ctx?.map);
+
+        private static bool Fits(Camp c, Map map) => c != null && c.map == map && c.Settled && c.CanTalk;
     }
 
     /// <summary>
@@ -574,7 +585,7 @@ namespace ColonyCouncil
 
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null) return "CC_CampAsk_NotNow".Translate().ToString();
             if (herd && c.herd.Count == 0) return "CC_CampErrand_NoHerd".Translate().ToString();
             if (c.Strayed) return "CC_CampErrand_Busy".Translate().ToString();
@@ -592,7 +603,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null || (chance < 1f && !Rand.Chance(chance))) return;
             // apart: an answer to the camp; their people walk over themselves, and what's done at someone's side waits for them to be there.
             c.StartErrand(this, ctx.a);
@@ -612,7 +623,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null || (chance < 1f && !Rand.Chance(chance))) return;
             try
             {
@@ -632,7 +643,7 @@ namespace ColonyCouncil
 
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null) return "CC_CampAsk_NotNow".Translate().ToString();
             if (c.CanHelpNow(help)) return null;
             string key = "CC_CampHelp_No_" + help;
@@ -641,7 +652,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null || help.NullOrEmpty() || (chance < 1f && !Rand.Chance(chance))) return;
             c.HelpNow(help);
         }
@@ -652,14 +663,14 @@ namespace ColonyCouncil
     {
         public override string Unavailable(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             var x = ctx?.stranger;
             return c == null || x == null || x.Dead || !c.Here.Contains(x) ? "CC_Stranger_Gone".Translate(x?.LabelShort ?? "?").ToString() : null;
         }
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null || ctx.stranger == null || (chance < 1f && !Rand.Chance(chance))) return;
             if (c.Welcome(ctx.stranger)) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.World,
                 "CC_CampDlm_Joined".Translate(ctx.stranger.Named("X"), c.Label.Named("NAME"), (c.faction?.Name ?? "").Named("FACTION")).Resolve(), ctx.stranger));
@@ -677,7 +688,7 @@ namespace ColonyCouncil
 
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null || !c.Strayed || (chance < 1f && !Rand.Chance(chance))) return;
             int n = c.EatCrops(eaten);
             if (n > 0) Messages.Message("CC_CampDlm_CropsEaten".Translate(n, c.Label).Resolve(), new LookTargets(new TargetInfo(c.errandCell, c.map)), MessageTypeDefOf.NegativeEvent, false);
@@ -691,7 +702,7 @@ namespace ColonyCouncil
     {
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null || (chance < 1f && !Rand.Chance(chance))) return;
             c.Leave("moved");
         }
@@ -702,7 +713,7 @@ namespace ColonyCouncil
     {
         public override void Apply(DilemmaContext ctx)
         {
-            var c = CampOnMap.Of(ctx?.map);
+            var c = CampOnMap.For(ctx);
             if (c == null || !c.termFee) return;
             c.feeLate = false;
             c.nextFeeTick = Find.TickManager.TicksGame + GenDate.TicksPerDay * 5;

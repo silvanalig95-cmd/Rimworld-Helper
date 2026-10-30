@@ -17,7 +17,7 @@ namespace ColonyCouncil
         protected override bool Extra(DilemmaContext ctx)
         {
             if (!base.Extra(ctx)) return false;
-            var c = CampOnMap.Of(ctx.map);
+            var c = CampOnMap.For(ctx);
             var x = c?.Here.Where(p => p != c.leader && p != c.trader && !p.Downed && !p.DevelopmentalStage.Juvenile()).RandomElementWithFallback();
             if (x == null) return false;
             ctx.stranger = x;
@@ -34,7 +34,7 @@ namespace ColonyCouncil
         protected override bool Extra(DilemmaContext ctx)
         {
             if (!base.Extra(ctx) || ctx.a?.relations == null) return false;
-            var c = CampOnMap.Of(ctx.map);
+            var c = CampOnMap.For(ctx);
             if (c == null) return false;
             var x = c.Here.Where(p => p != c.leader && p != c.trader && !p.Downed && !p.DevelopmentalStage.Juvenile())
                 .OrderByDescending(p => ctx.a.relations.OpinionOf(p)).FirstOrDefault();
@@ -54,7 +54,7 @@ namespace ColonyCouncil
         protected override bool Extra(DilemmaContext ctx)
         {
             if (!base.Extra(ctx)) return false;
-            var c = CampOnMap.Of(ctx.map);
+            var c = CampOnMap.For(ctx);
             var x = c?.Here.Where(p => p.DevelopmentalStage.Child() && !p.Downed).RandomElementWithFallback();
             if (x == null) return false;
             ctx.stranger = x;
@@ -78,7 +78,7 @@ namespace ColonyCouncil
         protected override bool Extra(DilemmaContext ctx)
         {
             if (!base.Extra(ctx)) return false;
-            var c = CampOnMap.Of(ctx.map);
+            var c = CampOnMap.For(ctx);
             var beast = c?.herd.Where(a => a != null && a.Spawned && !a.Dead && !a.Downed).RandomElementWithFallback();
             if (beast == null) return false;
             var field = PlaySpots.FieldCell(ctx.map, null);
@@ -113,7 +113,7 @@ namespace ColonyCouncil
         protected override bool Extra(DilemmaContext ctx)
         {
             if (!base.Extra(ctx)) return false;
-            ctx.count = CampOnMap.Of(ctx.map)?.fee ?? 0;
+            ctx.count = CampOnMap.For(ctx)?.fee ?? 0;
             return ctx.count > 0;
         }
     }

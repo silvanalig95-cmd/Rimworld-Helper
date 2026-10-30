@@ -164,6 +164,7 @@
 
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Refugees</defName>
+    <canSettle>true</canSettle>
     <label>refugee family</label>
     <weight>1</weight>
     <drawnBy><li>Hospitable</li></drawnBy>
@@ -892,6 +893,7 @@
 
   <ColonyCouncil.CampKindDef>
     <defName>Council_Camp_Hermit</defName>
+    <canSettle>true</canSettle>
     <label>hermit</label>
     <weight>0.6</weight>
     <people>1~1</people>

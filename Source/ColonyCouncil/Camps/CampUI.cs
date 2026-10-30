@@ -47,10 +47,19 @@ namespace ColonyCouncil
     {
         public static float Section(float y, float w)
         {
-            var c = CampTracker.Instance?.camp;
+            var tracker = CampTracker.Instance;
+            var h = tracker?.holding;
+            if (h != null && h.Active && h.map != null && Find.Maps.Contains(h.map)) y = Card(h, y, w, true);
+            var c = tracker?.camp;
             if (c == null || !c.Active || c.map == null || !Find.Maps.Contains(c.map)) return NoCamp(y, w);
-            y += UiKit.SectionTitle(0f, y, w, "CC_Camp_Section".Translate(), Icons.Visitor, UiKit.StrangerColor);
-            var lines = new List<string> { c.StatusLine(), c.TermsLine() };
+            return Card(c, y, w, false);
+        }
+
+        /// <summary>One camp's card: the visitors, or the neighbours settled for good.</summary>
+        private static float Card(Camp c, float y, float w, bool neighbours)
+        {
+            y += UiKit.SectionTitle(0f, y, w, (neighbours ? "CC_Holding_Section" : "CC_Camp_Section").Translate(), Icons.Visitor, UiKit.StrangerColor);
+            var lines = new List<string> { neighbours ? c.HoldingLine() : c.StatusLine(), c.TermsLine() };
             if (c.Settled && c.treesFelled + c.animalsHunted > 0) lines.Add(c.TakenLine());
             if (c.trader != null) lines.Add("CC_Camp_TraderLine".Translate(c.trader.Named("X")).Resolve());
             string animals = c.Settled ? c.AnimalsText() : null;
@@ -70,7 +79,7 @@ namespace ColonyCouncil
                 chipW = UiKit.FactionChipWidth(c.faction, 22f, maxChip);
                 UiKit.FactionChip(r.xMax - 10f - chipW, cy, c.faction, 22f, maxChip);
             }
-            UiKit.LabelFit(new Rect(r.x + 10f, cy, w - chipW - 30f, 24f), c.kind.LabelCap, UiKit.StrangerColor);
+            UiKit.LabelFit(new Rect(r.x + 10f, cy, w - chipW - 30f, 24f), neighbours ? c.HoldingName.CapitalizeFirst() : c.kind.LabelCap.ToString(), UiKit.StrangerColor);
             cy += 26f;
             Widgets.Label(new Rect(r.x + 10f, cy, textW, textH), text);
             cy += textH + 6f;
@@ -144,7 +153,7 @@ namespace ColonyCouncil
                 Close();
                 return;
             }
-            float top = UiKit.PageHeader(inRect, Icons.Visitor, camp.kind.LabelCap, camp.faction?.Name ?? "", null, null, 0f, null);
+            float top = UiKit.PageHeader(inRect, Icons.Visitor, camp.holding ? camp.HoldingName.CapitalizeFirst() : camp.kind.LabelCap.ToString(), camp.faction?.Name ?? "", null, null, 0f, null);
             var outRect = new Rect(inRect.x, inRect.y + top, inRect.width, inRect.height - top - 50f);
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
@@ -178,7 +187,7 @@ namespace ColonyCouncil
                 Check(ref y, w, "CC_Camp_Term_Fee".Translate().CapitalizeFirst(), ref fee, "CC_Camp_Term_Fee_Tip".Translate(), camp.kind.canPay);
                 Check(ref y, w, "CC_Camp_Term_Share".Translate().CapitalizeFirst(), ref share, "CC_Camp_Term_Share_Tip".Translate(), camp.kind.huntsPerDay > 0f);
                 Check(ref y, w, "CC_Camp_Term_Boundary".Translate().CapitalizeFirst(), ref boundary, "CC_Camp_Term_Boundary_Tip".Translate(), true);
-                Check(ref y, w, "CC_Camp_Term_Limit".Translate().CapitalizeFirst(), ref limit, "CC_Camp_Term_Limit_Tip".Translate(), true);
+                Check(ref y, w, "CC_Camp_Term_Limit".Translate().CapitalizeFirst(), ref limit, "CC_Camp_Term_Limit_Tip".Translate(), !camp.holding);
                 bool changed = fee != camp.termFee || share != camp.termShare || boundary != camp.termBoundary || limit != camp.termLimit;
                 if (Button(ref y, "CC_Camp_Dlg_PutTerms".Translate(), changed && here, here ? null : "CC_Camp_Dlg_NotYet".Translate().ToString()))
                 {

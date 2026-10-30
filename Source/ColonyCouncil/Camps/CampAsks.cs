@@ -123,6 +123,11 @@ namespace ColonyCouncil
         /// <summary>Makes the ask: pays, applies its effects (those that play out first), tells what happened. Returns the line told.</summary>
         public string DoAsk(CampAsk a)
         {
+            using (CampTracker.Talking(this)) return DoAskNow(a);
+        }
+
+        private string DoAskNow(CampAsk a)
+        {
             if (AskBlocked(a) != null) return null;
             int cost = AskCost(a);
             if (cost > 0 && !CampAnswers.Pay(map, cost)) return null;
@@ -172,7 +177,7 @@ namespace ColonyCouncil
 
         private static Camp CampOn(Map map)
         {
-            var c = CampTracker.Instance?.camp;
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
             return c != null && map != null && c.map == map && c.Settled && c.herd.Count > 0 ? c : null;
         }
 

@@ -37,6 +37,8 @@ namespace ColonyCouncil
     public class CampTracker : GameComponent
     {
         public Camp camp;
+        /// <summary>Neighbours settled on the land for good (Holding.cs): a camp kept in a slot of its own, so camps still come and go beside it.</summary>
+        public Camp holding;
         public int nextId = 1;
         public int lastEndedTick = -9999999;
         /// <summary>Mornings since the last camp on which one could have come (the way was open and the dice were rolled), for the World page.</summary>
@@ -58,35 +60,92 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager.TicksGame;
 
+        /// <summary>The camps on the land: the one visiting, and the neighbours settled for good.</summary>
+        public IEnumerable<Camp> All
+        {
+            get
+            {
+                if (camp != null) yield return camp;
+                if (holding != null) yield return holding;
+            }
+        }
+
+        public Camp ById(int id) => camp != null && camp.id == id ? camp : holding != null && holding.id == id ? holding : null;
+
+        /// <summary>The camp whose fire this is.</summary>
+        public Camp CampAt(IntVec3 fire) => All.FirstOrDefault(c => c.FireCell == fire);
+
         /// <summary>The camp this pawn belongs to (living with the group on the map), or null.</summary>
         public static Camp CampOf(Pawn p)
         {
-            var c = Instance?.camp;
-            if (c == null || p == null || c.lord == null) return null;
-            return p.GetLord() == c.lord ? c : null;
+            var t = Instance;
+            if (t == null || p == null) return null;
+            var lord = p.GetLord();
+            if (lord == null) return null;
+            foreach (var c in t.All)
+                if (c.lord == lord) return c;
+            return null;
+        }
+
+        /// <summary>The camp an answer or an ask is about while it's being dealt with (a letter's answer, a button on its page), for the effects that need to know.</summary>
+        public static Camp Asked { get; private set; }
+
+        /// <summary>Marks <paramref name="c"/> as the camp dealt with until disposed.</summary>
+        public static IDisposable Talking(Camp c) => new TalkingScope(c);
+
+        private sealed class TalkingScope : IDisposable
+        {
+            private readonly Camp before;
+
+            public TalkingScope(Camp c)
+            {
+                before = Asked;
+                Asked = c;
+            }
+
+            public void Dispose() => Asked = before;
+        }
+
+        /// <summary>The camp becomes the colony's neighbours for good: out of the visiting slot (a new camp may come) and into its own.</summary>
+        public void MakeHolding(Camp c)
+        {
+            if (c == null) return;
+            if (camp == c)
+            {
+                camp = null;
+                lastEndedTick = Now;
+            }
+            holding = c;
         }
 
         public static bool Enabled => S != null && S.worldEvents && S.camps;
 
         public override void GameComponentTick()
         {
-            var c = camp;
-            if (c == null) return;
+            if (camp == null && holding == null) return;
             int now = Now;
             if (!Sched.Every(now, Sched.RareTicks, Sched.RareCamp)) return;
-            try
+            foreach (var c in All.ToList())
             {
-                c.Tick250();
-                if (Sched.Hourly(now, Sched.Camp) && camp == c) c.Hourly();
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("camp", e);
+                try
+                {
+                    c.Tick250();
+                    if (Sched.Hourly(now, Sched.Camp) && (camp == c || holding == c)) c.Hourly();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp", e);
+                }
             }
         }
 
         public void Ended(Camp c)
         {
+            if (holding == c)
+            {
+                holding = null;
+                return;
+            }
             if (camp != c) return;
             camp = null;
             lastEndedTick = Now;
@@ -465,6 +524,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>One of them trades from the camp, with the game's own trading: a small stock of their people's goods.</summary>
+        /// <summary>Settled neighbours' trader takes on a new stock now and then (Holding.cs).</summary>
+        public static void RefreshTrader(Camp c)
+        {
+            if (c?.trader == null || c.trader.Dead || c.trader.inventory == null) return;
+            // What's left of the old stock stays theirs; the new is added to it.
+            MakeTrader(c, c.trader);
+        }
+
         private static bool MakeTrader(Camp c, Pawn p)
         {
             var tk = TraderKind(c.faction, c.kind.traderKind);
@@ -524,6 +591,7 @@ namespace ColonyCouncil
         {
             base.ExposeData();
             Scribe_Deep.Look(ref camp, "camp");
+            Scribe_Deep.Look(ref holding, "holding");
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
             Scribe_Values.Look(ref openMornings, "openMornings", 0);
@@ -535,6 +603,7 @@ namespace ColonyCouncil
             {
                 // A camp whose kind was removed with its mod, or whose map is gone: nothing left to keep.
                 if (camp != null && (camp.kind == null || camp.map == null)) camp = null;
+                if (holding != null && (holding.kind == null || holding.map == null)) holding = null;
                 past ??= new List<PastCamp>();
                 past.RemoveAll(p => p == null || p.kind == null || p.faction == null);
                 if (warBand != null && (warBand.map == null || warBand.faction == null)) warBand = null;

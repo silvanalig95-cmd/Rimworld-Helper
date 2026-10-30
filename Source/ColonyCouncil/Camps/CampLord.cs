@@ -1,3 +1,4 @@
+using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -156,7 +157,7 @@ namespace ColonyCouncil
                     if (p.CurJobDef == JobDefOf.Hunt && (p.CurJob.targetA.Thing is Corpse || (p.CurJob.targetA.Thing is Pawn v && v.Dead)))
                         p.jobs.EndCurrentJob(JobCondition.Succeeded);
             // Rimfolk's record of this camp is gone (the mod's part was removed, or something broke): they just go.
-            if (lord.ticksInToil % 2500 == 1250 && CampTracker.Instance?.camp?.lord != lord) lord.ReceiveMemo(LordJob_Camp.MemoLeave);
+            if (lord.ticksInToil % 2500 == 1250 && (CampTracker.Instance == null || !CampTracker.Instance.All.Any(c => c.lord == lord))) lord.ReceiveMemo(LordJob_Camp.MemoLeave);
         }
     }
 }
