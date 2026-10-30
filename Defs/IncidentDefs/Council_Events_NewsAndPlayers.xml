@@ -129,6 +129,11 @@
       <li Class="ColonyCouncil.HappeningExtension">
         <letter>PositiveEvent</letter>
         <group>Visitors</group>
+        <drawnBy>
+          <li>FamedHall</li>
+          <li>LongMemoried</li>
+        </drawnBy>
+        <regular>teller</regular>
         <ages>20~55</ages>
         <stayHours>20~30</stayHours>
         <thought>Council_Evt_SawPlayers</thought>

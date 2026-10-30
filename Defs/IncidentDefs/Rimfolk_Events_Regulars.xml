@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- A visitor the colony keeps up with comes back (Source/ColonyCouncil/Happenings/Regulars.cs): the same face at
+       the gate, asking after the colonist they know ({A}), a lesson in their trade for a welcome ({TALE}: their trade).
+       Tags: their trade (tinker, scholar, doctor, healer, teacher, cook, scribe, teller, kindred), visit2 or visit3plus,
+       friend (the one they ask after is here), cool (the bond has frayed), turning (the thread turns: they ask to stay,
+       or ask their friend along), skill (they have a trade to teach). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_RegularBack</defName>
+    <label>a familiar face at the gate</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Regular</workerClass>
+    <baseChance>1.2</baseChance>
+    <minRefireDays>10</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <regular>back</regular>
+        <answerDays>0.5</answerDays>
+        <stayHours>10~20</stayHours>
+        <titles>
+          <li>{X_nameDef} is back</li>
+          <li>A familiar face at the gate</li>
+          <li>[turning] {X_nameDef} has something to say</li>
+        </titles>
+        <texts>
+          <li>[visit2,friend] {X_nameDef}, the {TALE} who came through last season, is at the gate again, and asked after {A_nameDef} before anything else. The road has been long, {X_pronoun} says, and this was the one door {X_pronoun} wanted to knock on.</li>
+          <li>[visit2] {X_nameDef}, the {TALE} who came through last season, is back at the gate with the same pack and a new story or two. {X_pronoun} remembered the colony, {X_pronoun} says, better than most places.</li>
+          <li>[visit3plus,friend] {X_nameDef} is back, as regular as the seasons now. {A_nameDef} saw {X_objective} coming from the far field and had the kettle on before {X_pronoun} reached the gate.</li>
+          <li>[visit3plus] {X_nameDef} the {TALE} is back again. The children know {X_possessive} name; the dogs don't bark.</li>
+          <li>[tinker,visit2] {X_nameDef} the tinker is back at the gate, pack clanking, and asks after {A_nameDef} before anything else. {X_pronoun} has a trick or two to show for a warm welcome.</li>
+          <li>[scholar,visit2] {X_nameDef}, the scholar who stayed a night last season, is back with a bag of notes and a question for {A_nameDef} that has been bothering {X_objective} for weeks.</li>
+          <li>[doctor,visit2] {X_nameDef}, the doctor who came through last season, is at the gate again with a fresh case of remedies, asking how {A_nameDef} and the others have kept.</li>
+          <li>[healer,visit2] {X_nameDef}, the healer who came through last season, is back, smelling of herbs, and asks after {A_nameDef}'s health before {X_possessive} own.</li>
+          <li>[teacher,visit2] {X_nameDef}, the teacher who came through last season, is at the gate with a satchel of books and a lesson {X_pronoun} has been saving for {A_nameDef}.</li>
+          <li>[cook,visit2] {X_nameDef} the cook is back, and the smell of {X_possessive} pack reached the gate before {X_pronoun} did. {X_pronoun} asked where {A_nameDef} was and whether the stove still smoked.</li>
+          <li>[scribe,visit2] {X_nameDef} the scribe is back with ink on {X_possessive} fingers and news of three towns, and asks after {A_nameDef}.</li>
+          <li>[teller,visit2] {X_nameDef}, who told tales at the colony's fire last season, is back with new ones and asks whether {A_nameDef} still sits in the same place.</li>
+          <li>[kindred,visit2] {X_nameDef}, who talked half a night with {A_nameDef} last season about what they both wanted from life, is back at the gate, and asks straight off how far {A_nameDef} has got.</li>
+          <li>[cool] {X_nameDef} the {TALE} is at the gate again, though {X_pronoun} wasn't made very welcome last time. {X_pronoun} asks after {A_nameDef} anyway.</li>
+          <li>[turning,friend] {X_nameDef} is back, and this time {X_pronoun} didn't go to the fire first. {X_pronoun} found {A_nameDef} and said, plainly, that the road is getting long and this is the place {X_pronoun} thinks of when it does. {X_pronoun} would stay, if there were a place; or {A_nameDef} might come along and see the road for a season or two.</li>
+          <li>[turning] {X_nameDef} is back, and asked to speak to the council. The road is getting long, {X_pronoun} said, and this colony is the place {X_pronoun} thinks of when it does. Would there be a place here for a {TALE}? Or would {A_nameDef} come along and see the road?</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Welcome them in</label>
+            <outcome>{X_nameDef} is given a seat by the fire and the evening. {A_nameDef} comes away with something learned.</outcome>
+            <outcomes>
+              <li>[kindred] {X_nameDef} and {A_nameDef} talked until the fire was embers, as before.</li>
+              <li>[tinker] {X_nameDef} spent the evening at the bench with {A_nameDef}, showing a trick with the awl that {A_nameDef} will use for years.</li>
+              <li>[teller] {X_nameDef} told the new tales at the fire, and the old favourite once more for the children.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>500</xp></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Ask them to stay for good</label>
+            <outcome>{X_nameDef} said yes before the question was finished. The {TALE} is one of the colony's now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RegularStays" />
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} go with them</label>
+            <outcome>{A_nameDef} packed that evening. In the morning the two of them set off together down the road, and the colony watched from the gate until they were out of sight.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GoHomeWith" />
+              <li Class="ColonyCouncil.DilemmaEffect_LeaveForGood" />
+            </effects>
+            <ways><openness>2</openness><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Not this time</label>
+            <outcome>{X_nameDef} nodded, shouldered the pack, and went on down the road.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+</Defs>

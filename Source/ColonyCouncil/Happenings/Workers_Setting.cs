@@ -279,9 +279,10 @@ namespace ColonyCouncil
             {
                 ctx.faction = People(s);
                 if (ctx.faction == null) return false;
-                MakeGroup(ctx, ext, Mathf.Max(1, ext.count.RandomInRange), ext.ages);
+                // A visitor who waits at the edge for the answer is never a guest who's here already.
+                MakeGroup(ctx, ext, Mathf.Max(1, ext.count.RandomInRange), ext.ages, null, !s.waits);
                 if (ctx.stranger == null) return false;
-                if (s.visitorSkill != null) StorytellerEvents.Skilled(ctx.stranger, s.visitorSkill, s.visitorLevel);
+                if (s.visitorSkill != null && !Strangers.IsHospitalityGuest(ctx.stranger)) StorytellerEvents.Skilled(ctx.stranger, s.visitorSkill, s.visitorLevel);
             }
             else if (s.neighbor)
             {

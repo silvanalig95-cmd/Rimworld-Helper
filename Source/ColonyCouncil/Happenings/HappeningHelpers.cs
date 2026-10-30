@@ -30,6 +30,10 @@ namespace ColonyCouncil
                 .RandomElementByWeightWithFallback(f => TechWeight(f, tech) * (factor == null ? 1f : Mathf.Max(0.01f, factor(f))));
         }
 
+        /// <summary>A people that could still send someone: not gone, not hidden, not at war with the colony.</summary>
+        public static bool Usable(Faction f) =>
+            f != null && !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && !f.HostileTo(Faction.OfPlayer);
+
         /// <summary>
         /// The kind of person a faction sends to talk, trade or visit: its ordinary member, or, when that isn't a person
         /// (some modded factions are mostly machines or beasts), the most ordinary person it has. Null if it has none.
@@ -120,7 +124,10 @@ namespace ColonyCouncil
         /// <summary>Visitors walk in from the edge and spend some hours at a spot (outside the colony, or at a grave).</summary>
         public static Lord Visit(List<Pawn> pawns, Map map, Faction f, IntVec3? chill, float hours)
         {
-            if (pawns.NullOrEmpty() || f == null || !TryEntryCell(map, out var entry)) return null;
+            if (pawns.NullOrEmpty() || f == null) return null;
+            // Here already (a Hospitality guest the story is about): their own stay goes on as it was.
+            if (pawns.All(p => p != null && p.Spawned && p.Map == map)) return pawns[0].GetLord() ?? map.lordManager.lords.FirstOrDefault();
+            if (!TryEntryCell(map, out var entry)) return null;
             foreach (var p in pawns)
                 if (!Spawn(p, map, entry)) return null;
             IntVec3 spot = chill ?? IntVec3.Invalid;
@@ -131,7 +138,9 @@ namespace ColonyCouncil
         /// <summary>Visitors (or a waiting stranger) leave now, on foot.</summary>
         public static void SendAway(IEnumerable<Pawn> pawns)
         {
-            var list = pawns.Where(p => p != null && p.Spawned && !p.Dead && !p.Downed && p.Faction != Faction.OfPlayer && !p.IsPrisoner && p.RaceProps.Humanlike).Distinct().ToList();
+            // Hospitality's guests stay in Hospitality's hands: a story that sends its stranger away leaves a guest to their stay.
+            var list = pawns.Where(p => p != null && p.Spawned && !p.Dead && !p.Downed && p.Faction != Faction.OfPlayer && !p.IsPrisoner && p.RaceProps.Humanlike
+                                        && !Strangers.IsHospitalityGuest(p)).Distinct().ToList();
             foreach (var p in list) p.GetLord()?.RemovePawn(p);
             foreach (var g in list.GroupBy(p => new { p.Map, p.Faction }))
                 LordMaker.MakeNewLord(g.Key.Faction, new LordJob_ExitMapBest(LocomotionUrgency.Walk, false, true), g.Key.Map, g.ToList());
@@ -143,6 +152,12 @@ namespace ColonyCouncil
         {
             if (x == null || x.Dead || x.Discarded || map == null) return false;
             if (x.Spawned && x.Map != map) return false;
+            // A Hospitality guest joins the way Hospitality itself takes a guest in.
+            if (x.Spawned && Strangers.IsHospitalityGuest(x) && Guests.Adopt(x))
+            {
+                Find.WorldPawns.ForcefullyKeptPawns.Remove(x);
+                return true;
+            }
             if (!x.Spawned && !Spawn(x, map, near)) return false;
             Find.WorldPawns.ForcefullyKeptPawns.Remove(x);
             x.GetLord()?.RemovePawn(x);

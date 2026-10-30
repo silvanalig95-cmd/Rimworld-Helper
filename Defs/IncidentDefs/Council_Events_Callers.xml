@@ -20,6 +20,11 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <drawnBy>
+          <li>Artful</li>
+          <li>LongMemoried</li>
+        </drawnBy>
+        <regular>scribe</regular>
         <ages>28~70</ages>
         <stayHours>18~26</stayHours>
         <amount>30~60</amount>
@@ -186,6 +191,11 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <drawnBy>
+          <li>FamedHall</li>
+          <li>Artful</li>
+          <li>Walled</li>
+        </drawnBy>
         <ages>22~60</ages>
         <stayHours>40~52</stayHours>
         <amount>150~300</amount>
@@ -348,6 +358,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <regular>cook</regular>
         <ages>25~65</ages>
         <stayHours>16~24</stayHours>
         <amount>60~120</amount>
@@ -427,6 +438,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <regular>healer</regular>
         <ages>35~70</ages>
         <stayHours>10~16</stayHours>
         <amount>40~90</amount>

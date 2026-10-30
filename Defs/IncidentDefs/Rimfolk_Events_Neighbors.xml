@@ -592,6 +592,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <regular>teacher</regular>
         <ages>25~65</ages>
         <stayHours>16~24</stayHours>
         <amount>40~90</amount>

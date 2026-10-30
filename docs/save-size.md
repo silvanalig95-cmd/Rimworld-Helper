@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 355; modelled: 355; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,709 KB** after a year, **2,073 KB** after two, **2,188 KB** after five.
+Saved collections found: 356; modelled: 356; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,712 KB** after a year, **2,075 KB** after two, **2,191 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -136,6 +136,7 @@ Rimfolk's part of the save, roughly: **1,709 KB** after a year, **2,073 KB** aft
 | `Camps/Camp.cs:felledTicks` | with the above | while | 60 | 60 | 60 | 1.5 |
 | `CouncilGameComponent.cs:expectingTold` | pregnancies told to the family, the newest 60 (Social/FamilyLife.cs) | fixed | 60 | 60 | 60 | 1.5 |
 | `CouncilGameComponent.cs:movingOnAsked` | who the council was asked about moving on, and why, the newest 60 (Social/MovingOn.cs) | fixed | 60 | 60 | 60 | 1.5 |
+| `Happenings/Happenings.cs:regulars` | visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away | fixed | 5 | 5 | 5 | 1.5 |
 | `Happenings/Happenings.cs:seenQuests` | quests the game still keeps | fixed | 60 | 60 | 60 | 1.5 |
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
 | `CouncilGameComponent.cs:guestKin` | those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs) | fixed | 6 | 6 | 6 | 1.3 |
@@ -143,6 +144,8 @@ Rimfolk's part of the save, roughly: **1,709 KB** after a year, **2,073 KB** aft
 | `Happenings/Happenings.cs:grudges` | grudges 2 years | window | 3 | 6 | 6 | 1.2 |
 | `Social/Gossip/ReputationTracker.cs:told` | one packed number per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 1.2 |
 | `Strangers/Pets.cs:known` | animals known: the dead get their farewell, the discarded are dropped | fixed | 30 | 30 | 30 | 1.2 |
+| `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
+| `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 13 | 13 | 13 | 1.1 |
 | `Offices/Offices.cs:holders` | one per office | defs | 12 | 12 | 12 | 1.1 |
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
@@ -161,8 +164,6 @@ Rimfolk's part of the save, roughly: **1,709 KB** after a year, **2,073 KB** aft
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
 | `Pressures/Pressures.cs:apartSince` | pairs apart now | pairs | 10 | 10 | 10 | 0.8 |
-| `Character/ColonyTraits.cs:last` | one per colony trait def | defs | 9 | 9 | 9 | 0.8 |
-| `Character/ColonyTraits.cs:rates` | one per colony trait def | defs | 9 | 9 | 9 | 0.8 |
 | `Ambitions/Ambitions.cs:voterPawns` | while the letter waits | while | 20 | 20 | 20 | 0.8 |
 | `Ambitions/CouncilMeeting.cs:attendees` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
 | `Ambitions/CouncilMeeting.cs:voters` | while a meeting is called | while | 20 | 20 | 20 | 0.8 |
@@ -226,6 +227,7 @@ Rimfolk's part of the save, roughly: **1,709 KB** after a year, **2,073 KB** aft
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
 | `Camps/WarCamp.cs:pawns` | a war party's fighters, while it's on the map | while | 7 | 7 | 7 | 0.3 |
 | `Character/ColonyTraits.cs:today` | today's tallies, emptied each day | fixed | 3 | 3 | 3 | 0.3 |
+| `Character/ColonyTraits.cs:known` | traits the colony grew into | defs | 6 | 6 | 6 | 0.3 |
 | `Health/HealthTracker.cs:partsSeen` | missing parts colonists still have | colonists | 10 | 10 | 10 | 0.2 |
 | `Setbacks/SetbackTracker.cs:grantTicks` | 20 days | window | 10 | 10 | 10 | 0.2 |
 | `Setbacks/SetbackTracker.cs:grantVoiced` | 20 days | window | 10 | 10 | 10 | 0.2 |
@@ -246,7 +248,6 @@ Rimfolk's part of the save, roughly: **1,709 KB** after a year, **2,073 KB** aft
 | `Social/SocialWeb.cs:battleFallen` | while a fight lasts | while | 5 | 5 | 5 | 0.2 |
 | `Strangers/Pets.cs:fought` | animals in the last fight | fixed | 5 | 5 | 5 | 0.2 |
 | `Annals.cs:secretsOut` | the year in progress | yearly | 3 | 3 | 3 | 0.2 |
-| `Character/ColonyTraits.cs:known` | traits the colony grew into | defs | 4 | 4 | 4 | 0.2 |
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:lastSetback` | 20 days | window | 2 | 2 | 2 | 0.2 |
 | `Health/HealthTracker.cs:setbacks` | convalescences colonists still have | colonists | 2 | 2 | 2 | 0.2 |

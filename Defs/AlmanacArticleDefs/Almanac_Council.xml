@@ -852,12 +852,16 @@ Some encounters and dilemmas only come up for a colony with a certain name: refu
       </li>
       <li>
         <heading>What the colony grows into beyond its work</heading>
-        <text>Three more names come from how the colony lives with others, with its ideoligion and with its own years. They are counted for the colony as a whole from Rimfolk's own records, give nobody a mood, and change what comes to the colony instead.</text>
+        <text>More names come from how the colony lives with others, with its ideoligion and with its own years, and from what visitors see of it. They are counted for the colony as a whole from Rimfolk's own records, give nobody a mood, and change what comes to the colony instead.</text>
         <table>
           <li>Known as | Earned by | What changes</li>
           <li>Good hosts | camps that stayed their time and left on good terms; visitors, refugees, feasts, guests of note and peace talks the region remembers; with Hospitality, guests staying the night | camps come a third sooner after the last; refugee families and exiles seek the colony out</li>
           <li>Devout (Ideology) | the ideoligion's rituals held to their end, a chaplain in the seat, a moral guide in the ideoligion | pilgrims, processions and penitents come twice as often, and pilgrimages and holy years find the colony</li>
           <li>Long-memoried | calendar days kept two years running or more, and traditions (three between them) | players, minstrels and mourners come twice as often, and a great death in the region is told to the colony first</li>
+          <li>Famed hall | visitors who remarked on a great hall, often enough over the months | tourists, the celebrity, the players and guests of note come more often</li>
+          <li>Artful | visitors who remarked on the art | tourists, the celebrity, scholars and scribes come more often</li>
+          <li>Hallowed | visitors who remarked on the graves | pilgrims come more often</li>
+          <li>Walled | visitors who remarked on the walls and the guns | tourists come more often</li>
         </table>
         <after>Each has its own visitors on the road (a word about the colony's warm fire, a pilgrim's prayer that steadies someone in their ideoligion, a stranger asking about the old days who teaches the teller to tell it well), and lines in letters that know the colony's name. And each leans the colony's old hands, those here a year or more: in a colony of good hosts they mind an answer that turns people away, in a devout or long-memoried one an answer that sets the old ways aside. Like the work names, these fade if the colony stops living up to them.</after>
       </li>

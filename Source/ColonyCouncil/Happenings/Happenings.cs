@@ -32,6 +32,10 @@ namespace ColonyCouncil
     public class HappeningExtension : DefModExtension
     {
         public HappeningGroup group = HappeningGroup.Visitors;
+        /// <summary>The visitor it brings is one the colony keeps up with afterwards (Happenings/Regulars.cs): their trade (tinker, scholar, doctor, healer, teacher, cook, scribe, teller, kindred); "back" for the return itself.</summary>
+        public string regular;
+        /// <summary>Colony trait tags (FamedHall, Artful, Hallowed, Walled, Hospitable, Learned...): the event comes two and a half times as often while the colony is known for one of them.</summary>
+        public List<string> drawnBy;
         /// <summary>Brings a fight: only with battles switched on, threats allowed, and no fight going on or just past.</summary>
         public bool battle;
         /// <summary>Someone may join: rarer while the storyteller thinks the colony is big enough.</summary>
@@ -435,6 +439,9 @@ namespace ColonyCouncil
         public List<Grudge> grudges = new List<Grudge>();
         public List<Visit> visits = new List<Visit>();
         public List<Memo> memos = new List<Memo>();
+        /// <summary>Visitors the colony keeps up with, who come back (Happenings/Regulars.cs).</summary>
+        public List<Regular> regulars = new List<Regular>();
+        public int nextRegularId = 1;
         /// <summary>Quests already noticed (finished ones get a line in the chronicle once).</summary>
         private HashSet<int> seenQuests = new HashSet<int>();
         private bool questsInitialized;
@@ -488,6 +495,8 @@ namespace ColonyCouncil
             f *= WorldSituations.EventFactor(def, ext);
             // A quarantine decree shuts the gates to visitors (DecreeWork.VisitorFactor).
             if (ext != null && ext.group == HappeningGroup.Visitors) f *= DecreeWork.VisitorFactor;
+            // What the colony is known for draws those who come for it (Immersion/VisitorNotices.cs).
+            f *= DrawnFactor(ext);
             return f;
         }
 
@@ -534,6 +543,8 @@ namespace ColonyCouncil
             int now = Now;
             Safe("event raids", () => RaidsDue(now));
             Safe("event visits", () => VisitsHour(comp, now));
+            // Visitors the colony keeps up with: the long unseen and the fallen-out are forgotten once a day (Happenings/Regulars.cs).
+            if (GenLocalDate.HourOfDay(HomeMap() ?? Find.AnyPlayerHomeMap ?? Find.CurrentMap) == 5) Safe("regulars", Regulars.Daily);
             Safe("great beast", () => HappeningWorker_GreatBeast.Hourly(this, comp));
             // A neighbor's order the colony took on: a reminder, then the collection (even with world events off since).
             Safe("orders", () => HappeningWorker_Order.Hourly(this, comp, now));
@@ -609,7 +620,19 @@ namespace ColonyCouncil
             w *= WorldSituations.EventFactor(d, ext);
             // A quarantine or open gates decree, as in the storyteller's own pools (StorytellerFactor).
             if (ext.group == HappeningGroup.Visitors) w *= DecreeWork.VisitorFactor;
+            w *= DrawnFactor(ext);
             return Mathf.Max(0.001f, w);
+        }
+
+        /// <summary>Two and a half times as likely while the colony is known for something the event comes for (HappeningExtension.drawnBy).</summary>
+        public static float DrawnFactor(HappeningExtension ext)
+        {
+            if (ext?.drawnBy == null || ext.drawnBy.Count == 0) return 1f;
+            var ch = CouncilGameComponent.Instance?.character;
+            if (ch == null) return 1f;
+            foreach (var tag in ext.drawnBy)
+                if (ch.Is(tag)) return 2.5f;
+            return 1f;
         }
 
         public void Notify_Fired(IncidentDef def, HappeningExtension ext)
@@ -655,6 +678,8 @@ namespace ColonyCouncil
                 string outcome = DilemmaChoices.Outcome(option, risk, worker.TextTags(ctx));
                 ctx.plays = plays;
                 outcome = worker.Resolved(ctx, i, risk, byDefault, outcome);
+                // A cold answer to a visitor the colony keeps up with loosens the thread (Happenings/Regulars.cs).
+                if (!byDefault) Regulars.Answered(ctx, option);
                 ctx.plays = null;
                 comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Event".Translate(ctx.incident.label, ctx.Format(option.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.incident.label, ctx.Format(option.label));
@@ -946,6 +971,8 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref grudges, "grudges", LookMode.Deep);
             Scribe_Collections.Look(ref visits, "visits", LookMode.Deep);
             Scribe_Collections.Look(ref memos, "memos", LookMode.Deep);
+            Scribe_Collections.Look(ref regulars, "regulars", LookMode.Deep);
+            Scribe_Values.Look(ref nextRegularId, "nextRegularId", 1);
             // Quests already told of, by id: only those the game still keeps can come up again (Quests walks the same list).
             if (Scribe.mode == LoadSaveMode.Saving && seenQuests != null && seenQuests.Count > 0)
             {
@@ -969,6 +996,8 @@ namespace ColonyCouncil
                 if (grudges == null) grudges = new List<Grudge>();
                 if (visits == null) visits = new List<Visit>();
                 if (memos == null) memos = new List<Memo>();
+                if (regulars == null) regulars = new List<Regular>();
+                regulars.RemoveAll(r => r == null || r.pawn == null);
                 if (seenQuests == null) seenQuests = new HashSet<int>();
                 memos.RemoveAll(m => m == null || m.kind == null);
                 raids.RemoveAll(r => r == null || r.map == null || r.faction == null);

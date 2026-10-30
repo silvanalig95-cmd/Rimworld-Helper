@@ -10,7 +10,12 @@ using ColonyCouncil;
 public static class ColonyTraitTests
 {
     /// <summary>The tallies Rimfolk keeps (ColonyTraits.Tally and its daily tallies).</summary>
-    private static readonly HashSet<string> Tallies = new HashSet<string> { "campHosted", "welcomed", "guestNight", "ritual", "chaplainDay", "guideDay" };
+    private static readonly HashSet<string> Tallies = new HashSet<string>
+    {
+        "campHosted", "welcomed", "guestNight", "ritual", "chaplainDay", "guideDay",
+        // What visitors notice about the colony (Immersion/VisitorNotices.cs).
+        "seen:hall", "seen:art", "seen:graves", "seen:shrine", "seen:walls", "seen:beasts", "seen:fields"
+    };
 
     private static readonly HashSet<string> Conditions = new HashSet<string> { "founder", "lastFounder", "firstborn" };
 

@@ -161,6 +161,10 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <drawnBy>
+          <li>FamedHall</li>
+          <li>Hospitable</li>
+        </drawnBy>
         <mods>
           <li>orion.hospitality</li>
         </mods>

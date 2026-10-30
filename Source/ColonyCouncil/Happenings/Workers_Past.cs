@@ -25,7 +25,10 @@ namespace ColonyCouncil
         {
             ctx.a = Colonists(ctx.map).Where(p => FitsA(p, ext)).RandomElementByWeightWithFallback(p => WeightA(p, ext));
             if (ctx.a == null) return false;
-            var x = MakeX(ctx, ext);
+            // A Hospitality guest who fits the part is the one (Strangers/GuestStories.cs); else someone is made.
+            var x = GuestStories.On && GuestStories.TryCast(ctx, ext, g => FitsGuest(g, ctx, ext)) ? ctx.stranger : null;
+            if (x != null) GuestCast(x, ctx, ext);
+            x ??= MakeX(ctx, ext);
             if (x == null) return false;
             ctx.stranger = x;
             if (!x.Spawned)
@@ -39,6 +42,13 @@ namespace ColonyCouncil
         }
 
         protected virtual Pawn MakeX(HappeningContext ctx, HappeningExtension ext) => Arrivals.Make(Arrivals.JoinerKind(), null, ext.ages);
+
+        /// <summary>Whether a guest staying with the colony could be the story's stranger (none by default), and what the story makes of them when so.</summary>
+        protected virtual bool FitsGuest(Pawn g, HappeningContext ctx, HappeningExtension ext) => false;
+
+        protected virtual void GuestCast(Pawn g, HappeningContext ctx, HappeningExtension ext)
+        {
+        }
 
         protected static bool Sane(FloatRange r) => r.min >= 0f && r.max >= r.min;
 
@@ -129,6 +139,21 @@ namespace ColonyCouncil
             return !(a.story?.traits?.HasTrait(TraitDefOf.Asexual) ?? false);
         }
 
+        /// <summary>A guest of the right gender and near enough in age, not family, was the old flame.</summary>
+        protected override bool FitsGuest(Pawn g, HappeningContext ctx, HappeningExtension ext)
+        {
+            var a = ctx.a;
+            if (a == null || g == null || g.def != a.def || a.relations == null || a.relations.DirectRelationExists(PawnRelationDefOf.ExLover, g) || a.relations.FamilyByBlood.Contains(g)) return false;
+            if (LovePartnerRelationUtility.LovePartnerRelationExists(a, g)) return false;
+            var traits = a.story?.traits;
+            bool fits = traits != null && traits.HasTrait(TraitDefOf.Gay) ? g.gender == a.gender
+                : traits != null && traits.HasTrait(TraitDefOf.Bisexual) || g.gender != a.gender;
+            float age = a.ageTracker.AgeBiologicalYearsFloat, theirs = g.ageTracker.AgeBiologicalYearsFloat;
+            return fits && theirs >= 18f && Mathf.Abs(age - theirs) <= 10f;
+        }
+
+        protected override void GuestCast(Pawn g, HappeningContext ctx, HappeningExtension ext) => ctx.a.relations.AddDirectRelation(PawnRelationDefOf.ExLover, g);
+
         protected override Pawn MakeX(HappeningContext ctx, HappeningExtension ext)
         {
             var a = ctx.a;
@@ -187,6 +212,22 @@ namespace ColonyCouncil
         protected override bool FitsA(Pawn a, HappeningExtension ext) => base.FitsA(a, ext) && Mastery(a) != null;
 
         protected override float WeightA(Pawn a, HappeningExtension ext) => Mastery(a)?.Level ?? 1f;
+
+        /// <summary>A young guest with a little of the master's skill and room to grow was the would-be apprentice.</summary>
+        protected override bool FitsGuest(Pawn g, HappeningContext ctx, HappeningExtension ext)
+        {
+            var sk = Mastery(ctx.a)?.def;
+            if (sk == null || g?.skills == null) return false;
+            var r = g.skills.GetSkill(sk);
+            return r != null && !r.TotallyDisabled && r.Level <= 7 && Flavor.HumanAge(g) <= 30f;
+        }
+
+        protected override void GuestCast(Pawn g, HappeningContext ctx, HappeningExtension ext)
+        {
+            ctx.skill = Mastery(ctx.a)?.def;
+            var r = ctx.skill != null ? g.skills?.GetSkill(ctx.skill) : null;
+            if (r != null && r.passion == Passion.None) r.passion = Passion.Minor;
+        }
 
         protected override Pawn MakeX(HappeningContext ctx, HappeningExtension ext)
         {

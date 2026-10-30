@@ -158,6 +158,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <regular>tinker</regular>
         <ages>25~65</ages>
         <stayHours>16~24</stayHours>
         <answerDays>0.5</answerDays>

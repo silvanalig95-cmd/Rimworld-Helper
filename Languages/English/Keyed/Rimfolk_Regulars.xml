@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Visitors the colony keeps up with (Source/ColonyCouncil/Happenings/Regulars.cs). -->
+  <CC_Regular_Line>Faces that come back: {0}.</CC_Regular_Line>
+  <CC_Regular_One>{X_nameDef} the {KIND}, {COUNT} visits</CC_Regular_One>
+  <CC_Regular_One_Once>{X_nameDef} the {KIND}, one visit</CC_Regular_One_Once>
+  <CC_Regular_Kind_tinker>tinker</CC_Regular_Kind_tinker>
+  <CC_Regular_Kind_scholar>scholar</CC_Regular_Kind_scholar>
+  <CC_Regular_Kind_doctor>doctor</CC_Regular_Kind_doctor>
+  <CC_Regular_Kind_healer>healer</CC_Regular_Kind_healer>
+  <CC_Regular_Kind_teacher>teacher</CC_Regular_Kind_teacher>
+  <CC_Regular_Kind_cook>cook</CC_Regular_Kind_cook>
+  <CC_Regular_Kind_scribe>scribe</CC_Regular_Kind_scribe>
+  <CC_Regular_Kind_teller>storyteller</CC_Regular_Kind_teller>
+  <CC_Regular_Kind_kindred>kindred spirit</CC_Regular_Kind_kindred>
+  <CC_Regular_Gone>They have already gone on down the road.</CC_Regular_Gone>
+  <CC_Regular_NotReady>{X_nameDef} isn't ready for that yet: a few more visits, made welcome, and the question may come from them.</CC_Regular_NotReady>
+  <CC_Regular_NoFriend>The friend they asked after isn't here to go with them.</CC_Regular_NoFriend>
+  <CC_Regular_Stayed>{X_nameDef}, who used to come through on the road, stayed for good.</CC_Regular_Stayed>
+
+  <!-- What travellers notice about the colony, and what it comes to be known for (Source/ColonyCouncil/Immersion/VisitorNotices.cs). -->
+  <CC_Notice_Known>Travellers speak of {0}.</CC_Notice_Known>
+  <CC_Notice_Known_FamedHall>the great hall</CC_Notice_Known_FamedHall>
+  <CC_Notice_Known_Artful>the art on the walls</CC_Notice_Known_Artful>
+  <CC_Notice_Known_Hallowed>the colony's shrine and its graves</CC_Notice_Known_Hallowed>
+  <CC_Notice_Known_Walled>the walls and the guns</CC_Notice_Known_Walled>
+
+</LanguageData>

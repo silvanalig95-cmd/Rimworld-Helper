@@ -8,6 +8,9 @@
   <CC_Settings_GuestCheck>Recruiting, spelled out on the guest tab</CC_Settings_GuestCheck>
   <CC_Settings_GuestCheck_Tip>With Hospitality: under the guest tab's own lines, whether this guest can be recruited and how, and a checklist of what it takes to have them join of their own will, each condition met or not. It covers a death acidifier and a royal title, friends here, and what Rimfolk's "Guests join only when they would" asks for.</CC_Settings_GuestCheck_Tip>
   <CC_SetNote_GuestCheck>The guest tab says why someone can't be recruited and what it would take.</CC_SetNote_GuestCheck>
+  <CC_Settings_GuestStories>Guests in the colony's stories</CC_Settings_GuestStories>
+  <CC_Settings_GuestStories_Tip>With Hospitality: a guest already staying can be the stranger of a story. The one who turns out to be an old flame, the one asking to learn a trade, the tinker or the teller who becomes a regular, can be someone sleeping in the guest beds rather than a new face at the edge of the map, about half the time, when one of the guests fits. Answers that would have them join hand them over through Hospitality, so their people are told the same way. Off: stories always bring their own strangers.</CC_Settings_GuestStories_Tip>
+  <CC_SetNote_GuestStories>With Hospitality: a guest already here can be the stranger a story is about.</CC_SetNote_GuestStories>
 
   <!-- The checklist on the guest tab (Source/ColonyCouncil/Integrations/GuestCheck.cs). -->
   <CC_GuestCheck_Title>Recruiting {PAWN_nameDef}</CC_GuestCheck_Title>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- What visitors say about what they see (Source/ColonyCouncil/Immersion/VisitorNotices.cs): one short sentence over
+       a head, tagged with the theme: hall (an impressive room they stand in), art (a fine sculpture near), graves
+       (three or more filled graves near), shrine (an altar), walls (turrets or a long run of wall), beasts (six or more
+       of the colony's animals near), fields (a big growing zone). Said once per visitor per theme; each counts toward
+       the colony being known for the thing (the traits famed for its hall, artful, keepers of the dead, walled). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_VisitorNotices</defName>
+    <lines>
+      <plain>
+        <li>[hall] I've seen lords' halls smaller than this room.</li>
+        <li>[hall] Who built this hall, and would they build one for us?</li>
+        <li>[hall] You could hold a wedding in here and nobody would feel the walls.</li>
+        <li>[hall] Carpets, lamps and room to breathe: this place has done well.</li>
+        <li>[art] That carving stops you in your tracks.</li>
+        <li>[art] Whoever made that piece has hands I'd pay for.</li>
+        <li>[art] I'll be telling people about that statue for a season.</li>
+        <li>[graves] You keep your dead well here.</li>
+        <li>[graves] So many stones, and every one tended.</li>
+        <li>[graves] A place that marks its dead this way remembers its living too.</li>
+        <li>[shrine] I didn't expect a shrine out here.</li>
+        <li>[shrine] Your holy place is quieter than ours at home.</li>
+        <li>[walls] Nobody is walking in here uninvited.</li>
+        <li>[walls] Walls like these mean trouble has come before.</li>
+        <li>[walls] I'd sleep soundly behind those.</li>
+        <li>[beasts] More animals than people, and all of them fat.</li>
+        <li>[beasts] That's a herd worth stealing, if I were the type.</li>
+        <li>[fields] Fields to the horizon, and not a weed in them.</li>
+        <li>[fields] Whoever farms this land knows what they're doing.</li>
+      </plain>
+      <cheerful>
+        <li>[hall] This is the finest room I've stood in all year!</li>
+        <li>[art] Now that is a piece of work.</li>
+        <li>[beasts] Look at all these beasts, you'll never go hungry.</li>
+      </cheerful>
+      <blunt>
+        <li>[hall] Big room. Who's it meant to impress?</li>
+        <li>[walls] That's a lot of wall for a village.</li>
+        <li>[graves] That's a lot of graves for a village.</li>
+      </blunt>
+      <gloomy>
+        <li>[graves] So many dead, and the colony still standing.</li>
+        <li>[walls] Walls keep things out and people in.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+</Defs>

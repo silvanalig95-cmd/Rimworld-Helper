@@ -188,6 +188,18 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("event letter " + def.defName, e);
             }
             CouncilGameComponent.Instance?.happenings.Notify_Fired(def, ext);
+            // A visitor of a trade the colony will see again (Happenings/Regulars.cs).
+            if (!ext.regular.NullOrEmpty())
+            {
+                try
+                {
+                    Regulars.Note(ext.regular, ctx);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("regular " + def.defName, e);
+                }
+            }
             // What it does to the weather after (the long rains bring more rain).
             try
             {

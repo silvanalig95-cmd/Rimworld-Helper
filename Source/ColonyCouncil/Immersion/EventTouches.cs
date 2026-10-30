@@ -199,7 +199,8 @@ namespace ColonyCouncil
         /// </summary>
         public bool Hourly(Map map, CellRect view, int now)
         {
-            if (!Speaks || !People.ModActive(Guests.Mod) || !Rand.Chance(0.35f)) return false;
+            if (!Speaks || !Rand.Chance(0.35f)) return false;
+            bool hospitality = People.ModActive(Guests.Mod);
             if (guestUntil.Count > 0)
             {
                 List<int> gone = null;
@@ -209,8 +210,18 @@ namespace ColonyCouncil
             }
             foreach (var g in Strangers.On(map, StrangerKind.Visitor).InRandomOrder())
             {
-                if (!Strangers.IsHospitalityGuest(g) || !VisualTouches.CanSpeak(g, map, view) || g.Drafted) continue;
+                if (!VisualTouches.CanSpeak(g, map, view) || g.Drafted) continue;
                 if (guestUntil.TryGetValue(g.thingIDNumber, out int until) && until > now) continue;
+                // What they notice around them first (Immersion/VisitorNotices.cs): the hall, the art, the graves, the walls.
+                string noticed = VisitorNotices.Line(g, map);
+                if (!noticed.NullOrEmpty())
+                {
+                    // apart: a visitor's own remark on what they see, said to nobody in particular.
+                    if (!Speech.Say(g, noticed, null, GuestColor)) continue;
+                    guestUntil[g.thingIDNumber] = now + GenDate.TicksPerDay / 2;
+                    return true;
+                }
+                if (!hospitality || !Strangers.IsHospitalityGuest(g)) continue;
                 var tags = new List<string>();
                 float score = Guests.VisitScore(g);
                 if (score >= 0.65f) tags.Add("happy");

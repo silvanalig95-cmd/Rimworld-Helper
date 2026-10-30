@@ -565,6 +565,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <regular>kindred</regular>
         <letter>PositiveEvent</letter>
         <ages>35~75</ages>
         <stayHours>14~20</stayHours>

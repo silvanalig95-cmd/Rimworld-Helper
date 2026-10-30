@@ -13,9 +13,15 @@ namespace ColonyCouncil
     {
         protected override bool CanHappen(Map map, HappeningExtension ext) => Arrivals.Friendly() != null && Colonists(map).Count > 0;
 
-        protected List<Pawn> MakeGroup(HappeningContext ctx, HappeningExtension ext, int n, FloatRange ages, string lastName = null)
+        protected List<Pawn> MakeGroup(HappeningContext ctx, HappeningExtension ext, int n, FloatRange ages, string lastName = null, bool guestsFit = true)
         {
             var list = new List<Pawn>();
+            // A single visitor's story may be a Hospitality guest's who is here already (Strangers/GuestStories.cs).
+            if (n == 1 && guestsFit && lastName == null && GuestStories.TryCast(ctx, ext))
+            {
+                list.Add(ctx.stranger);
+                return list;
+            }
             for (int i = 0; i < n; i++) list.Add(Arrivals.Make(Arrivals.PersonKind(ctx.faction), ctx.faction, ages, null, lastName));
             ctx.stranger = list.FirstOrDefault();
             ctx.group = list.Skip(1).ToList();

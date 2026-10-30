@@ -222,6 +222,7 @@ MODEL = {
     "Camps/CampTracker.cs:past": ("fixed", 6, R, "camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons"),
     "Camps/CampMemory.cs:people": ("fixed", 24, P, "the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp"),
     "Camps/WarCamp.cs:pawns": ("while", 7, P, "a war party's fighters, while it's on the map"),
+    "Happenings/Happenings.cs:regulars": ("fixed", 5, R, "visitors the colony keeps up with, five at most (RegularMath.KeepMax), forgotten after half a year away"),
     "Camps/Camp.cs:felled": ("while", 60, 30, "trees felled during one stay"),
     "Camps/Camp.cs:felledTicks": ("while", 60, V, "with the above"),
     "Camps/Camp.cs:owned": ("while", 40, V, "the camp's goods, pruned of the gone at saving"),

@@ -65,4 +65,71 @@
     <lost>Too many of the colony's days have been let pass, and people no longer say it remembers.</lost>
   </ColonyCouncil.ColonyTraitDef>
 
+
+  <!-- What travellers notice and talk about (Source/ColonyCouncil/Immersion/VisitorNotices.cs): tallied from their
+       remarks, so a colony is known for its hall, its art, its graves or its walls only while visitors see them. -->
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_FamedHall</defName>
+    <label>famed for its hall</label>
+    <description>Travellers who stood in the colony's great room went away talking about it: the size of it, the lamps, the carpets, the room to breathe. People now come to see it.</description>
+    <order>10</order>
+    <perColony>true</perColony>
+    <tallies>
+      <li><key>seen:hall</key><weight>1</weight></li>
+    </tallies>
+    <knownAt>0.12</knownAt>
+    <tag>FamedHall</tag>
+    <lean><openness>0.15</openness></lean>
+    <earned>Visitor after visitor has stood in the colony's great room and said so to the next town. The colony is known for its hall now, and tourists, players and guests of note will come its way more often to see it.</earned>
+    <lost>Nobody has remarked on the colony's hall in a long while, and the road has stopped talking about it.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Artful</defName>
+    <label>artful</label>
+    <description>Travellers stop in front of the colony's carvings and statues and talk about them for a season after. The colony is known for its art.</description>
+    <order>11</order>
+    <perColony>true</perColony>
+    <tallies>
+      <li><key>seen:art</key><weight>1</weight></li>
+    </tallies>
+    <knownAt>0.12</knownAt>
+    <tag>Artful</tag>
+    <lean><openness>0.1</openness></lean>
+    <earned>The colony's statues and carvings have been talked about in enough towns that people now come to look at them. The colony is known as artful: tourists, famous visitors and scholars will come its way more often.</earned>
+    <lost>The colony's art has gone unremarked for a long while, and the road no longer speaks of it.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Hallowed</defName>
+    <label>keepers of the dead</label>
+    <description>Travellers who pass the colony's graves see them tended and marked, and say so. The colony is known as a place that keeps its dead well.</description>
+    <order>12</order>
+    <perColony>true</perColony>
+    <tallies>
+      <li><key>seen:graves</key><weight>1</weight></li>
+    </tallies>
+    <knownAt>0.1</knownAt>
+    <tag>Hallowed</tag>
+    <lean><tradition>0.2</tradition></lean>
+    <earned>Travellers have carried word of the colony's graves, tended and marked, to their own towns. The colony is known as keepers of the dead: pilgrims and mourners will come its way more often, and those who have lived here a while will mind the dead being slighted.</earned>
+    <lost>Nobody has spoken of the colony's graves for a long while.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
+  <ColonyCouncil.ColonyTraitDef>
+    <defName>Council_Trait_Walled</defName>
+    <label>walled</label>
+    <description>Travellers who come through the colony's gate remark on its walls and turrets, and tell others. The colony is known as a hard place to walk into.</description>
+    <order>13</order>
+    <perColony>true</perColony>
+    <tallies>
+      <li><key>seen:walls</key><weight>1</weight></li>
+    </tallies>
+    <knownAt>0.1</knownAt>
+    <tag>Walled</tag>
+    <lean><openness>-0.1</openness></lean>
+    <earned>Word of the colony's walls and turrets has gone round the region. The colony is known as walled: travellers who want a safe night will come its way more often, and some who meant to rob it will think twice.</earned>
+    <lost>The road has stopped talking about the colony's walls.</lost>
+  </ColonyCouncil.ColonyTraitDef>
+
 </Defs>

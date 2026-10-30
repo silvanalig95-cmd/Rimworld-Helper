@@ -81,6 +81,8 @@ namespace ColonyCouncil
                 y += UiKit.SectionTitle(0f, y, w, "CC_World_OutThere".Translate(), Icons.Visitor, Calm);
                 if (m.outThere.Count == 0) y += UiKit.EmptyState(0f, y, w, Icons.Visitor, "CC_World_NobodyOut".Translate(), 70f);
                 else y = Grid(y + 2f, w, m.outThere);
+                // Faces that come back, and what travellers have come to know the colony for.
+                y = Known(y, w, comp);
                 y += 14f;
                 // What the world's peoples remember of the colony (World/FactionMemoryPanel.cs).
                 y = FactionMemoryPanel.Draw(y, w);
@@ -96,6 +98,24 @@ namespace ColonyCouncil
                 Text.Anchor = TextAnchor.UpperLeft;
                 GUI.color = Color.white;
             }
+        }
+
+        /// <summary>
+        /// Under "Out there": the regulars the colony keeps up with (Happenings/Regulars.cs) and what visitors have
+        /// come to notice about the place (Immersion/VisitorNotices.cs), as one faint line each.
+        /// </summary>
+        private static float Known(float y, float w, CouncilGameComponent comp)
+        {
+            string regulars = UiCache.Get(comp, 75, () => Regulars.Line());
+            string known = UiCache.Get(comp, 76, () => VisitorNotices.KnownLine());
+            foreach (var text in new[] { regulars, known })
+            {
+                if (text.NullOrEmpty()) continue;
+                y += 4f;
+                UiKit.Icon(new Rect(2f, y + 2f, 16f, 16f), Icons.Visitor, UiKit.Dim);
+                y += UiKit.Paragraph(24f, y, w - 24f, text, UiKit.Faint, GameFont.Tiny);
+            }
+            return y;
         }
 
         private static Model Build(CouncilGameComponent comp)

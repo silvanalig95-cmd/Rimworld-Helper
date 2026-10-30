@@ -18,7 +18,7 @@ public static class ImmersionTests
         "Council_Pool_SayHeatWave", "Council_Pool_SayColdSnap", "Council_Pool_SayStorm", "Council_Pool_HabitGrave", "Council_Pool_HabitLookOut",
         "Council_Pool_HabitFire", "Council_Pool_HabitRemember", "Council_Pool_HabitStars", "Council_Pool_HabitPlants", "Council_Pool_HabitAnimals",
         "Council_Pool_HabitStores", "Council_Pool_HabitCompany", "Council_Pool_HabitStories", "Council_Pool_SayDream", "Council_Pool_TouchCampComing",
-        "Council_Pool_TouchCouncilWedding", "Council_Pool_GuestSays", "Council_Pool_SayFamilyYears", "Council_Pool_SayReunion", "Council_Pool_SayKinRaider",
+        "Council_Pool_TouchCouncilWedding", "Council_Pool_GuestSays", "Council_Pool_VisitorNotices", "Council_Pool_SayFamilyYears", "Council_Pool_SayReunion", "Council_Pool_SayKinRaider",
         // The family's life together (Social/FamilyLife.cs).
         "Council_Pool_SayNewCouple", "Council_Pool_SayMatchDoubt", "Council_Pool_SayParentNewPartner", "Council_Pool_SayEngaged", "Council_Pool_SayProposalComfort", "Council_Pool_SayExpecting",
         "Council_Pool_SayGrandchild", "Council_Pool_PlayGrowth",

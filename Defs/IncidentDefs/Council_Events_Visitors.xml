@@ -103,6 +103,10 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <drawnBy>
+          <li>Hallowed</li>
+          <li>Devout</li>
+        </drawnBy>
         <ages>18~70</ages>
         <count>2~4</count>
         <stayHours>12~18</stayHours>
@@ -172,6 +176,11 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <drawnBy>
+          <li>Learned</li>
+          <li>Artful</li>
+        </drawnBy>
+        <regular>scholar</regular>
         <ages>25~70</ages>
         <stayHours>20~28</stayHours>
         <answerDays>0.6</answerDays>

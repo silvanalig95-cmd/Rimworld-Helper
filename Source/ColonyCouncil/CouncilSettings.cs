@@ -245,6 +245,8 @@ namespace ColonyCouncil
         public bool marketGuestsShop = true;
         /// <summary>With Hospitality: a guest joins of their own will only when they would, and the colony has its say (Integrations/GuestWill.cs).</summary>
         public bool guestWill = true;
+        /// <summary>Hospitality's guests may be the strangers of Rimfolk's visitor stories (Strangers/GuestStories.cs).</summary>
+        public bool guestStories = true;
         /// <summary>Hospitality's guest tab says whether a guest can be recruited, how, and what it takes (Integrations/GuestCheck.cs).</summary>
         public bool guestCheck = true;
         /// <summary>The colony's next steps: a plan the council proposes to and keeps with the player (Building/NextSteps.cs).</summary>
@@ -465,6 +467,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
             Scribe_Values.Look(ref guestWill, "guestWill", true);
+            Scribe_Values.Look(ref guestStories, "guestStories", true);
             Scribe_Values.Look(ref guestCheck, "guestCheck", true);
             Scribe_Values.Look(ref nextSteps, "nextSteps", true);
             Scribe_Values.Look(ref planCutPlants, "planCutPlants", true);

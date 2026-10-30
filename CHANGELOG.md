@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Faces that come back, visitors who notice, guests in the colony's stories
+
+*30 October 2026, version 0.32.0*
+
+- The tinker, the scholar, the doctor, the schoolteacher, the bonesetter, the wandering cook, the scribe, the players' storyteller and the kindred spirit are remembered when they go (up to five of them). From twenty days on, one of them comes back as "a familiar face at the gate", asks after the colonist they dealt with, and teaches a lesson in their trade for a welcome. Each warm answer deepens the thread, a cold one frays it, and someone not seen for half a year is forgotten. On their third visit or later, if the thread holds, it turns: they ask to stay for good, or ask their friend to come along on the road. The World page lists them under "Out there".
+- Visitors notice the colony. A guest or a visitor at the gate says a line about a great hall, the art on the walls, the graves, a shrine, the walls and the guns, the many animals or the wide fields, once per thing seen. Word spreads: a colony whose halls, art, graves or walls travellers keep remarking on becomes famed for them (four new colony traits), and the tourists, the celebrity, the players, the notable guest, pilgrims, scholars and scribes come to it more often. "Travellers speak of..." on the World page says what the colony is known for.
+- With Hospitality: a guest already staying can be the stranger of a story, about half the time when one of the guests fits. The old flame, the one asking to learn a trade, and the tinker or the teller who becomes a regular can be someone sleeping in the guest beds rather than a new face at the edge of the map; an answer that has them join hands them over through Hospitality, so their people are told the same way. The setting "Guests in the colony's stories" (Guests page) turns it off.
+
 ## Neighbours for good
 
 *30 October 2026, version 0.31.0*

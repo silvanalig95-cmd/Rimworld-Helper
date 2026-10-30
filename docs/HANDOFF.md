@@ -1,6 +1,42 @@
 # Handoff: work in progress
 
-Last shipped: 0.30.0, the first of the event rounds the player approved (camps that return, a stay as a story, the
+Last shipped: 0.32.0, the visitors round (repeat visitors with a thread, visitors who notice, Hospitality guests in
+Rimfolk's stories). `Happenings/RegularMath.cs` (Tools/Tests/RegularTests.cs): `KeepMax` 5, `Due` 20..160 days,
+`Turning` (bond 4+, visits 3+), `BondChange` by the answer's openness, `Compare`/`Weakest`. `Happenings/Regulars.cs`:
+`Regular` (pawn kept in `WorldPawns.ForcefullyKeptPawns`, kind, faction, friendOf, visits, bond) on
+`HappeningTracker.regulars`; `Regulars.Note(kind, ctx)` from `IncidentWorker_Happening` for every event with an XML
+`<regular>` (nine visitor events; "back" only updates), `Answered` from `HappeningTracker.Resolve` (not by default),
+`Daily` at 5 am from `Hourly`, `Pick`, `Line` for the World page; `HappeningWorker_Regular` casts the picked regular as
+the stranger of `Council_Evt_RegularBack` (tags kind, visit2/visit3plus, friend, cool, turning, skill; options 1 and 2
+need `Turning`), `DilemmaEffect_RegularStays` joins via `Arrivals.Join`. `Immersion/VisitorNotices.cs`: `Themes(g,
+map)` (hall, art, graves, shrine, walls, beasts, fields), `Line` from the pool `Council_Pool_VisitorNotices` said
+once per visitor and theme, `ColonyTraits.Tally("seen:<theme>")` feeding the four traits in
+Rimfolk_ColonyTraits_Grown.xml (FamedHall, Artful, Hallowed, Walled), `KnownLine`; `HappeningExtension.drawnBy` and
+`HappeningTracker.DrawnFactor` (2.5 on `StorytellerFactor`/`Weight` when the colony has a tag); `EventTouches.Hourly`
+tries a notice first for every visitor on the map (`Strangers.On(map, Visitor)`), then the Hospitality guest lines.
+`Strangers/GuestStories.cs`: `On` (setting `guestStories`, Hospitality active), `Fits`, `TryCast` (50%) used by
+`Workers_Visitors.MakeGroup` for single strangers who don't wait, and by `HappeningWorker_Joiner.Cast` via
+`FitsGuest`/`GuestCast` (OldFlame: gender rule and ExLover; Apprentice: skill 7 or under, under 30);
+`Arrivals.Visit` is a no-op for pawns already on the map, `Join` goes through `Guests.Adopt`, `SendAway` skips guests.
+`WorldPanel.Known` draws the regulars line and the known-for line under "Out there". Not tried in the game: the first
+look should check a regular really comes back as the same pawn (kept in the world between visits), that a
+Hospitality guest cast as an old flame keeps their guest state through the story, that `t.def.isAltar` finds the
+modded shrines in play, and that the notice lines are not said too often (one per visitor per theme, at most one
+line an hour per map).
+
+Before it, 0.31.0, a camp that stays for good. `Camps/Holding.cs` (partial Camp) and `CampTracker.holding`: a
+refugee family or a hermit whose stay went well is offered to settle at its parting (`CampStoryMath.SettleOffered`,
+letter what "settle": Settle / TakeIn / NotHere); settled, the camp lives off the land (`HoldingDay`: tension eases
+`HoldingTensionADay`, the trader restocks every `HoldingStockDays`, one falls ill every `HoldingSickDays` or so, a
+gate visit every `HoldingVisitDays`), may lose people to raiders and grieve (`HoldingLosses`, `GriefLeaveChance`), and
+can be asked to move on or taken in whole. Two camps at once: `CampTracker.All`, `ById`, `CampAt`, `CampOf` over both,
+`Asked`/`Talking(c)` scopes so ask effects find their camp, `CampOnMap.For(ctx)` by the stranger's camp; the ~50
+other `Instance.camp` readers still mean the visiting camp. `CampPanel.Section` draws the holding's card first.
+
+Next rounds, in order (tasks): 0.33.0 world (a rival colony, the road, situations that leave people behind);
+0.34.0 animals (the herd's year, a resident wild animal); 0.35.0 Pokémon (one that keeps coming, a trainers' camp).
+
+Before it, 0.30.0, the first of the event rounds the player approved (camps that return, a stay as a story, the
 war camp they proposed). `Camps/CampStoryMath.cs` (Tools/Tests/CampStoryTests.cs) holds the numbers: endings
 remembered, `ReturnChance`, `Kept`, the beat days (`AskDue` 1.5, `TroubleDue` midway for stays of 3+, `PartingDue`
 in the last day), war party size and chance. `Camps/CampMemory.cs`: `PastCamp` (kind, faction, up to 4 people held
@@ -22,10 +58,6 @@ count, `Helper` weighted by goodwill and hostility to the attacker, fires `Counc
 letter's news line, the parting letter's timing against the leave hour, a war party actually engaging (HuntEnemies
 duty) and then walking to its camp site, and that `Trigger_TickCondition` brings them back to the fire.
 
-Next rounds, in order (tasks): 0.31.0 a camp that stays for good (a tiny neighbour at the map's edge); 0.32.0
-visitors (repeat visitors with a thread, visitors who notice and spread word, Hospitality guests in Rimfolk's visitor
-stories); 0.33.0 world (a rival colony, the road, situations that leave people behind); 0.34.0 animals (the herd's
-year, a resident wild animal); 0.35.0 Pokémon (one that keeps coming, a trainers' camp).
 
 Before it, 0.29.0, the player's ask for the Decrees page (thirty-one decrees were one long list) and the camps
 that never came. `UI/DecreePanel.cs`: `DecreeDef.kind` (XML `<kind>` on every decree: work, stores, order, spirit,

@@ -208,6 +208,7 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <regular>doctor</regular>
         <ages>25~65</ages>
         <stayHours>14~22</stayHours>
         <answerDays>0.5</answerDays>
@@ -294,6 +295,10 @@
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
         <group>Visitors</group>
+        <drawnBy>
+          <li>Artful</li>
+          <li>FamedHall</li>
+        </drawnBy>
         <letter>PositiveEvent</letter>
         <ages>22~55</ages>
         <stayHours>20~30</stayHours>
