@@ -16,21 +16,37 @@ namespace ColonyCouncil
     /// spot, and every piece can be reached from the doors, or it is placed again until it can. What is used every
     /// day (beds, benches, tables) leans toward the door so the walk is short, and lamps and pots keep out of the way.
     /// In a big workshop benches stand in rows and, when the walls run out, back to back in islands; a tool cabinet
-    /// goes where it reaches the most benches, shelves near the benches, a stool on a bench's work spot. A piece already
-    /// standing as well as it could stays where it is: moving furniture is work.
+    /// goes where it reaches the most benches, shelves near the benches, a stool on a bench's work spot. Lamps go where
+    /// they light the work (the benches' spots, a sickbed) that no other lamp lights yet; a screen keeps its watch area
+    /// open, with the chairs on it facing it. A piece already standing as well as it could stays where it is: moving
+    /// furniture is work, and the heavier the piece (its build work, the goods in it) the better a new place has to be.
+    /// Then the room is walked (<see cref="RoomWalkMath"/>): from the doors to everything people use, by the game's own
+    /// costs, and each piece is tried at its few best places to find the arrangement that walks best as a whole, with
+    /// no work spot on someone else's way, no chair in the aisle, the main ways two wide where the room is busy, no floor
+    /// cut off or left in dead-end slivers, and the biggest open stretch kept for gatherings and for what comes next.
     /// </summary>
     public static class RoomArrangeMath
     {
         // ---------------- Kinds ----------------
 
         /// <summary>What a piece is for, as far as its place in the room goes.</summary>
-        public const int Bed = 0, BedSide = 1, Bench = 2, Table = 3, Chair = 4, Storage = 5, WallHugger = 6, Decor = 7, Centre = 8, Other = 9;
+        public const int Bed = 0, BedSide = 1, Bench = 2, Table = 3, Chair = 4, Storage = 5, WallHugger = 6, Decor = 7, Centre = 8, Other = 9, Lamp = 10;
 
-        /// <summary>The order the kinds are placed in: the big and particular first, what fits around them after.</summary>
-        private static readonly int[] PlaceOrder = { Bed, Bench, Table, Centre, Storage, WallHugger, BedSide, Chair, Decor, Other };
+        /// <summary>The order the kinds are placed in: the big and particular first, what fits around them after; lamps once the work they light stands.</summary>
+        private static readonly int[] PlaceOrder = { Bed, Bench, Table, Centre, Storage, WallHugger, BedSide, Chair, Lamp, Decor, Other };
 
-        /// <summary>How much better a new place has to be before a piece is moved.</summary>
+        /// <summary>How much better a new place has to be before a piece is moved, before its own weight (<see cref="Keep"/>).</summary>
         public const float KeepBonus = 2.5f;
+
+        /// <summary>How much better a new place has to be before this piece is moved: the plain bonus, and up to five more for the work of moving it.</summary>
+        public static float Keep(Item it) => KeepBonus + Math.Min(Math.Max(0f, it.moveCost), 5f);
+
+        /// <summary>A light lights what is used within this share of its glow radius well enough to work by.</summary>
+        public const float LitShare = 0.7f;
+
+        /// <summary>Each piece is tried at this many of its best places when the room is walked as a whole.</summary>
+        public const int RefineTries = 8;
+        public const int RefineSweeps = 3;
 
         /// <summary>Tries at placing again what ended up out of reach.</summary>
         private const int ReachRounds = 6;
@@ -56,6 +72,18 @@ namespace ColonyCouncil
             public float reach;
             /// <summary>The ids of the pieces this facility serves (benches for a cabinet, beds for a dresser).</summary>
             public HashSet<int> links;
+            /// <summary>The game's path cost of a passable piece (a chair's 30): people cross it, slowed.</summary>
+            public int pathCost;
+            /// <summary>A light's glow radius (0: not a light). It lights what is used within <see cref="LitShare"/> of it.</summary>
+            public float glow;
+            /// <summary>Its use goes better in light: a work bench, a research bench, a sickbed.</summary>
+            public bool wantsLight;
+            /// <summary>Cells that must stay open for it to be used, for a north facing, relative to the root: a screen's watch row, the ring round a billiards table.</summary>
+            public List<(int x, int z)> useCells = new List<(int x, int z)>();
+            /// <summary>The work of moving it (picking it up, setting it down, hauling its goods out and back), as more a new place has to offer (<see cref="Keep"/>).</summary>
+            public float moveCost;
+            /// <summary>How many times a day people walk to it; 0 takes the kind's usual (<see cref="Everyday"/>).</summary>
+            public float everyday;
             /// <summary>Where it stands now: root cell and facing, in grid coordinates.</summary>
             public int curX, curZ, curRot;
 
@@ -84,6 +112,23 @@ namespace ColonyCouncil
                 }
                 return result;
             }
+
+            /// <summary>The cells that must stay open for the result's footprint and facing.</summary>
+            public List<(int x, int z)> UseCells()
+            {
+                var result = new List<(int, int)>();
+                if (useCells == null) return result;
+                foreach (var (ox, oz) in useCells)
+                {
+                    TemplateLayout.RotateOffset(ox, oz, rot, out int sx, out int sz);
+                    result.Add((x + sx, z + sz));
+                }
+                return result;
+            }
+
+            /// <summary>The cell beyond the feet, where a sleeper gets in.</summary>
+            public (int x, int z) FootCell() =>
+                rot == 0 ? (x, minZ + h) : rot == 2 ? (x, minZ - 1) : rot == 1 ? (minX + w, z) : (minX - 1, z);
 
             /// <summary>The cells a sleeper's head lies on: the row of the footprint at the back, away from the facing (BedUtility).</summary>
             public List<(int x, int z)> HeadCells()
@@ -138,6 +183,8 @@ namespace ColonyCouncil
             public int[,] occ;
             /// <summary>The item whose work spot is on each cell (-1 none).</summary>
             public int[,] spot;
+            /// <summary>The item that needs each cell kept open (a screen's watch row; -1 none).</summary>
+            public int[,] use;
             public List<Item> items;
 
             public State(Grid g, List<Item> items)
@@ -146,9 +193,10 @@ namespace ColonyCouncil
                 this.items = items;
                 occ = new int[g.w, g.h];
                 spot = new int[g.w, g.h];
+                use = new int[g.w, g.h];
                 for (int x = 0; x < g.w; x++)
                     for (int z = 0; z < g.h; z++)
-                        occ[x, z] = spot[x, z] = -1;
+                        occ[x, z] = spot[x, z] = use[x, z] = -1;
             }
 
             public Item At(int x, int z) => g.In(x, z) && occ[x, z] >= 0 ? items[occ[x, z]] : null;
@@ -169,6 +217,8 @@ namespace ColonyCouncil
                         if (g.In(x, z)) occ[x, z] = i;
                 foreach (var (sx, sz) in it.SpotCells())
                     if (g.In(sx, sz)) spot[sx, sz] = i;
+                foreach (var (ux, uz) in it.UseCells())
+                    if (g.In(ux, uz) && use[ux, uz] < 0) use[ux, uz] = i;
             }
 
             public void Lift(int i, Item it)
@@ -178,6 +228,7 @@ namespace ColonyCouncil
                     {
                         if (occ[x, z] == i) occ[x, z] = -1;
                         if (spot[x, z] == i) spot[x, z] = -1;
+                        if (use[x, z] == i) use[x, z] = -1;
                     }
             }
         }
@@ -251,7 +302,13 @@ namespace ColonyCouncil
                     }
                     notes.Add($"item {it.id}: {problem}, placed again");
                 }
-                if (ok) break;
+                if (ok)
+                {
+                    // Everything stands and can be reached: now the room is walked as a whole, and each piece tried at its
+                    // few best places for the arrangement that walks best (RoomWalkMath).
+                    Refine(state, notes);
+                    break;
+                }
                 if (!stranded && last >= 0)
                 {
                     notes.Add($"item {items[last].id}: keeps getting in the way, stays");
@@ -294,8 +351,8 @@ namespace ColonyCouncil
                         SetResult(it, x, z, f);
                         if (!Valid(s, i, it, reach)) continue;
                         float score = Score(s, i, it, out string why);
-                        bool same = x == it.curX && z == it.curZ && it.rot == TemplateMath.Norm(it.rotatable ? it.curRot : 0);
-                        if (same) score += KeepBonus;
+                        bool same = AtCurrent(it);
+                        if (same) score += Keep(it);
                         // Ties: closest to where it stands, then the lowest, leftmost.
                         if (found && score <= best + 0.0001f)
                         {
@@ -318,6 +375,9 @@ namespace ColonyCouncil
 
         private static int Dist(int x, int z, Item it) => Math.Abs(x - it.curX) + Math.Abs(z - it.curZ);
 
+        /// <summary>The result is where the piece stands now.</summary>
+        private static bool AtCurrent(Item it) => it.x == it.curX && it.z == it.curZ && it.rot == TemplateMath.Norm(it.rotatable ? it.curRot : 0);
+
         private static bool Valid(State s, int i, Item it, bool[,] reach)
         {
             var g = s.g;
@@ -328,9 +388,11 @@ namespace ColonyCouncil
                     if (it.heavy && !g.Heavy(x, z)) return false;
                     int o = s.occ[x, z];
                     if (o >= 0 && o != i) return false;
-                    // Standing on someone's work spot is fine only for what people walk over.
+                    // Standing on someone's work spot, or on floor another piece needs open, is fine only for what people walk over.
                     int sp = s.spot[x, z];
                     if (sp >= 0 && sp != i && !it.passable) return false;
+                    int us = s.use[x, z];
+                    if (us >= 0 && us != i && !it.passable) return false;
                 }
             var spots = it.SpotCells();
             foreach (var (sx, sz) in spots)
@@ -341,7 +403,15 @@ namespace ColonyCouncil
                 if (s.spot[sx, sz] >= 0 && s.spot[sx, sz] != i) return false;
                 if (reach != null && !reach[sx, sz]) return false;
             }
-            if (reach != null && spots.Count == 0 && !BesideReached(it, reach, g)) return false;
+            // What must stay open for it (a screen's watch row): floor, nothing solid on it, reachable.
+            var uses = it.UseCells();
+            foreach (var (ux, uz) in uses)
+            {
+                if (!g.Floor(ux, uz) || g.IsDoorInside(ux, uz) || it.Contains(ux, uz)) return false;
+                if (s.Solid(ux, uz)) return false;
+                if (reach != null && !reach[ux, uz]) return false;
+            }
+            if (reach != null && spots.Count == 0 && uses.Count == 0 && !BesideReached(it, reach, g)) return false;
             return true;
         }
 
@@ -469,6 +539,30 @@ namespace ColonyCouncil
                 case Table:
                 case Centre:
                 {
+                    if (it.kind == Centre && it.useCells != null && it.useCells.Count > 0 && it.spots.Count == 0)
+                    {
+                        // A screen (its watch area is kept open by Valid): its back to a wall, the watchers in front; not far in.
+                        int back = TemplateMath.Norm(it.rot + 2);
+                        int backWall = SideBacking(s, it, back);
+                        int backLen = back == 0 || back == 2 ? it.w : it.h;
+                        if (backLen > 0 && backWall == backLen)
+                        {
+                            score += 5f;
+                            why = "wall";
+                        }
+                        else if (backWall > 0) score += 2f;
+                        else
+                        {
+                            // Nothing to lean on (a billiards table wants room all round): the open ring counts instead.
+                            int open = 0;
+                            foreach (var (x, z) in Ring(it))
+                                if (g.Floor(x, z) && !s.Solid(x, z)) open++;
+                            score += open * 0.5f;
+                            why = "middle";
+                        }
+                        score -= Math.Min(walk, 12) * 0.1f;
+                        break;
+                    }
                     // In the middle, with room all round for chairs and people.
                     int free = 0, ring = 0;
                     foreach (var (x, z) in Ring(it))
@@ -487,7 +581,7 @@ namespace ColonyCouncil
                     TemplateLayout.Step(it.rot, out int dx, out int dz);
                     var faced = s.At(it.x + dx, it.z + dz);
                     int spotOf = g.In(it.x, it.z) ? s.spot[it.x, it.z] : -1;
-                    if (faced != null && (faced.kind == Table || faced.kind == Centre))
+                    if (faced != null && (faced.kind == Table || faced.kind == Centre) && (faced.useCells == null || faced.useCells.Count == 0))
                     {
                         score += 10f;
                         why = "table";
@@ -497,6 +591,12 @@ namespace ColonyCouncil
                         // A stool on a bench's work spot, facing the bench: the worker sits.
                         score += 9f;
                         why = "bench";
+                    }
+                    else if (Watching(s, i, it, out _))
+                    {
+                        // On a screen's watch area, facing the screen.
+                        score += 10f;
+                        why = "watch";
                     }
                     else
                     {
@@ -585,6 +685,39 @@ namespace ColonyCouncil
                         score += 3f + Math.Min(walls, 4) * 1f;
                         why = sides >= 2 ? "corner" : "wall";
                     }
+                    break;
+                }
+                case Lamp:
+                {
+                    // Where it lights the work (the benches' spots, a sickbed) that no other lamp lights yet; else out of the way like any lamp.
+                    float lit = LightsHere(s, i, it);
+                    if (lit > 0f)
+                    {
+                        // Each spot it alone lights outweighs leaving it where it is: a lamp is no work to move.
+                        score += Math.Min(lit, 4f) * 3.5f;
+                        why = "lamp";
+                    }
+                    else if (sides >= 2)
+                    {
+                        score += 4f;
+                        why = "corner";
+                    }
+                    else if (walls > 0)
+                    {
+                        score += 2f;
+                        why = "wall";
+                    }
+                    else score -= 1f;
+                    // Not two lamps over the same floor.
+                    float r = LitRadius(it.glow);
+                    for (int j = 0; j < s.items.Count; j++)
+                    {
+                        var o = s.items[j];
+                        if (o == it || o.glow <= 0f || !InPlace(s, j, o)) continue;
+                        if (Distance(it, o) <= (r + LitRadius(o.glow)) * 0.5f) score -= 3f;
+                    }
+                    // Beside a wall rather than in the open: nobody walks round it there.
+                    score += Math.Min(walls, 2) * 0.5f;
                     break;
                 }
                 case Decor:
@@ -819,11 +952,14 @@ namespace ColonyCouncil
                 var it = s.items[i];
                 if (it.fixedPlace || it.stranded) continue;
                 var spots = it.SpotCells();
+                var uses = it.UseCells();
                 bool fine = true;
-                if (spots.Count > 0)
+                if (spots.Count > 0 || uses.Count > 0)
                 {
                     foreach (var (sx, sz) in spots)
                         if (!g.In(sx, sz) || !reach[sx, sz]) fine = false;
+                    foreach (var (ux, uz) in uses)
+                        if (!g.In(ux, uz) || !reach[ux, uz]) fine = false;
                 }
                 else fine = BesideReached(it, reach, g);
                 if (!fine)
@@ -868,6 +1004,316 @@ namespace ColonyCouncil
             int n = 0;
             foreach (bool b in a) if (b) n++;
             return n;
+        }
+
+        // ---------------- Light ----------------
+
+        /// <summary>How far a light lights well enough to work by (a small lamp when its radius isn't known).</summary>
+        public static float LitRadius(float glow) => (glow > 0f ? glow : 4f) * LitShare;
+
+        /// <summary>The cells whose use wants light, of the pieces in place but <paramref name="skip"/>: work spots, and a sickbed's own cells.</summary>
+        private static List<(int x, int z)> LightWants(State s, int skip)
+        {
+            var cells = new List<(int, int)>();
+            for (int j = 0; j < s.items.Count; j++)
+            {
+                var o = s.items[j];
+                if (j == skip || !o.wantsLight || !InPlace(s, j, o)) continue;
+                var spots = o.SpotCells();
+                if (spots.Count > 0) cells.AddRange(spots);
+                else cells.Add((o.minX + o.w / 2, o.minZ + o.h / 2));
+            }
+            return cells;
+        }
+
+        private static bool Lights(Item lamp, int x, int z)
+        {
+            float r = LitRadius(lamp.glow);
+            float lx = lamp.minX + lamp.w / 2f - 0.5f, lz = lamp.minZ + lamp.h / 2f - 0.5f;
+            return (lx - x) * (lx - x) + (lz - z) * (lz - z) <= r * r;
+        }
+
+        /// <summary>How many cells wanting light this lamp, where it is, lights that no other light in place lights.</summary>
+        private static float LightsHere(State s, int i, Item it)
+        {
+            float lit = 0f;
+            foreach (var (x, z) in LightWants(s, i))
+            {
+                if (!Lights(it, x, z)) continue;
+                bool other = false;
+                for (int j = 0; j < s.items.Count && !other; j++)
+                {
+                    var o = s.items[j];
+                    if (j == i || o.glow <= 0f || !InPlace(s, j, o)) continue;
+                    if (Lights(o, x, z)) other = true;
+                }
+                if (!other) lit += 1f;
+            }
+            return lit;
+        }
+
+        /// <summary>
+        /// The cells wanting light that no light in the room reaches, with every piece where the arrangement puts it or,
+        /// with <paramref name="now"/>, where it stands today; and whether the room has any light to speak of.
+        /// </summary>
+        public static int Unlit(Grid g, List<Item> items, bool now, out bool anyLight)
+        {
+            var shown = Shown(items, now);
+            var s = new State(g, shown);
+            for (int i = 0; i < shown.Count; i++) s.Put(i, shown[i]);
+            anyLight = shown.Any(o => o.glow > 0f);
+            if (!anyLight) return 0;
+            int unlit = 0;
+            foreach (var (x, z) in LightWants(s, -1))
+                if (!shown.Any(o => o.glow > 0f && Lights(o, x, z))) unlit++;
+            return unlit;
+        }
+
+        /// <summary>The chair stands on a screen's watch area and faces the screen (within three cells ahead).</summary>
+        private static bool Watching(State s, int i, Item it, out Item screen)
+        {
+            screen = null;
+            if (!s.g.In(it.x, it.z)) return false;
+            int u = s.use[it.x, it.z];
+            if (u < 0 || u == i) return false;
+            var o = s.items[u];
+            if (o.kind != Centre && o.kind != Table) return false;
+            TemplateLayout.Step(it.rot, out int dx, out int dz);
+            for (int k = 1; k <= 3; k++)
+                if (o.Contains(it.x + dx * k, it.z + dz * k))
+                {
+                    screen = o;
+                    return true;
+                }
+            return false;
+        }
+
+        // ---------------- Walking the room as a whole ----------------
+
+        /// <summary>How many times a day people walk to a piece of this kind.</summary>
+        public static float Everyday(Item it)
+        {
+            if (it.everyday > 0f) return it.everyday;
+            switch (it.kind)
+            {
+                case Bed: return 1f;
+                case Bench: return 4f;
+                case Table: return 3f;
+                case Storage: return 3f;
+                case Centre: return 1f;
+                case WallHugger:
+                case Other: return 0.5f;
+                default: return 0f;
+            }
+        }
+
+        private static RoomWalkMath.Cell CellOf(State s, int x, int z)
+        {
+            if (!s.g.Floor(x, z)) return RoomWalkMath.Cell.Wall;
+            var it = s.At(x, z);
+            if (it != null && !it.passable) return RoomWalkMath.Cell.Wall;
+            var c = new RoomWalkMath.Cell { cost = 1, door = s.g.IsDoorInside(x, z) };
+            if (it != null)
+            {
+                c.piece = true;
+                c.cost = RoomWalkMath.StepCost(it.pathCost);
+            }
+            if (s.spot[x, z] >= 0)
+            {
+                c.spot = true;
+                c.cost = Math.Max(c.cost, RoomWalkMath.SpotCost);
+            }
+            return c;
+        }
+
+        /// <summary>Where people go, for every piece in place: work spots (standing there), the foot of a bed, the sides of a table or a shelf, a screen's watch row.</summary>
+        private static List<RoomWalkMath.Use> Uses(State s)
+        {
+            var uses = new List<RoomWalkMath.Use>();
+            var g = s.g;
+            for (int i = 0; i < s.items.Count; i++)
+            {
+                var it = s.items[i];
+                if (!InPlace(s, i, it)) continue;
+                float every = Everyday(it);
+                var spots = it.SpotCells();
+                if (spots.Count > 0)
+                {
+                    foreach (var (x, z) in spots) uses.Add(new RoomWalkMath.Use { x = x, z = z, weight = every / spots.Count, standing = true, owner = i });
+                    continue;
+                }
+                var cells = it.UseCells();
+                if (it.kind == Bed)
+                {
+                    var (fx, fz) = it.FootCell();
+                    if (!g.Floor(fx, fz)) (fx, fz) = (it.x, it.z);
+                    cells.Add((fx, fz));
+                }
+                else if (cells.Count == 0 && (it.kind == Table || it.kind == Centre || it.kind == Storage || it.kind == WallHugger || it.kind == Other))
+                    foreach (var (x, z) in Ring(it))
+                        if (g.Floor(x, z) && !s.Solid(x, z)) cells.Add((x, z));
+                if (cells.Count == 0) continue;
+                foreach (var (x, z) in cells) uses.Add(new RoomWalkMath.Use { x = x, z = z, weight = every / cells.Count, owner = i });
+            }
+            return uses;
+        }
+
+        /// <summary>A busy room: many movable pieces or more than one door, where the main ways should be two wide.</summary>
+        private static bool Wide(State s) => s.g.doorInside.Count > 1 || s.items.Count(o => !o.fixedPlace) >= 6;
+
+        private static RoomWalkMath.Review Measure(State s) =>
+            RoomWalkMath.Measure(s.g.w, s.g.h, (x, z) => CellOf(s, x, z), s.g.doorInside, Uses(s), Wide(s));
+
+        /// <summary>
+        /// How good the arrangement is as a whole: every piece's own score where it stands (with its keep bonus when it
+        /// hasn't moved), less the walking: everyday steps, work spots on others' ways, slow pieces in the aisles, squeezes
+        /// on the main ways, floor cut off or left in dead ends; and a little for the open stretch kept.
+        /// </summary>
+        private static float Quality(State s, out RoomWalkMath.Review review)
+        {
+            float q = 0f;
+            for (int i = 0; i < s.items.Count; i++)
+            {
+                var it = s.items[i];
+                if (it.fixedPlace || it.stranded) continue;
+                q += Score(s, i, it, out _);
+                if (AtCurrent(it)) q += Keep(it);
+            }
+            review = Measure(s);
+            bool wide = Wide(s);
+            q -= review.walk * 0.02f;
+            q -= review.inWay * 2f;
+            q -= review.slowed * 0.8f;
+            q -= review.squeezes * (wide ? 0.6f : 0.2f);
+            q -= review.deadEnds * 0.3f;
+            q -= review.lostFloor * 1f;
+            q -= review.unreached * 3f;
+            q += Math.Min(review.open, 60) * 0.03f;
+            return q;
+        }
+
+        private struct Candidate
+        {
+            public int x, z, rot;
+            public float score;
+            public string why;
+        }
+
+        /// <summary>The piece's best valid, reachable places by its own score (its own place among them), best first.</summary>
+        private static List<Candidate> Candidates(State s, int i, bool[,] reach, int max)
+        {
+            var it = s.items[i];
+            var all = new List<Candidate>();
+            int facings = it.rotatable ? 4 : 1;
+            for (int z = 0; z < s.g.h; z++)
+                for (int x = 0; x < s.g.w; x++)
+                    for (int f = 0; f < facings; f++)
+                    {
+                        SetResult(it, x, z, f);
+                        if (!Valid(s, i, it, reach)) continue;
+                        float score = Score(s, i, it, out string why);
+                        if (AtCurrent(it)) score += Keep(it);
+                        all.Add(new Candidate { x = x, z = z, rot = f, score = score, why = why });
+                    }
+            all.Sort((a, b) =>
+            {
+                int c = b.score.CompareTo(a.score);
+                if (c != 0) return c;
+                c = Dist(a.x, a.z, it).CompareTo(Dist(b.x, b.z, it));
+                if (c != 0) return c;
+                c = a.z.CompareTo(b.z);
+                return c != 0 ? c : a.x.CompareTo(b.x);
+            });
+            return all.Count > max ? all.GetRange(0, max) : all;
+        }
+
+        /// <summary>
+        /// Walks the room as a whole: each movable piece in turn is tried at its few best places (the one it has among
+        /// them), and goes to the one that leaves the whole room best (<see cref="Quality"/>), only ever to a place from
+        /// which everything is still reached. A few sweeps, until nothing moves.
+        /// </summary>
+        private static void Refine(State s, List<string> notes)
+        {
+            var movable = new List<int>();
+            foreach (int kind in PlaceOrder)
+                for (int i = 0; i < s.items.Count; i++)
+                    if (!s.items[i].fixedPlace && !s.items[i].stranded && s.items[i].kind == kind) movable.Add(i);
+            if (movable.Count == 0) return;
+            float best = Quality(s, out _);
+            int changed = 0;
+            for (int sweep = 0; sweep < RefineSweeps; sweep++)
+            {
+                bool improved = false;
+                foreach (int i in movable)
+                {
+                    var it = s.items[i];
+                    var had = new Candidate { x = it.x, z = it.z, rot = it.rot, why = it.why };
+                    s.Lift(i, it);
+                    var reach = Reach(s, -1);
+                    var tries = Candidates(s, i, reach, RefineTries);
+                    if (!tries.Any(c => c.x == had.x && c.z == had.z && c.rot == had.rot)) tries.Add(had);
+                    var pick = had;
+                    float pickQ = float.MinValue;
+                    foreach (var c in tries)
+                    {
+                        SetResult(it, c.x, c.z, c.rot);
+                        s.Put(i, it);
+                        bool sound = WorstPlaced(s, out _) < 0;
+                        float q = sound ? Quality(s, out _) : float.MinValue;
+                        s.Lift(i, it);
+                        bool same = c.x == had.x && c.z == had.z && c.rot == had.rot;
+                        // Only a clear gain moves it from the place it had.
+                        if (q > pickQ + 0.0001f && (same || q > best + 0.0001f || pickQ == float.MinValue))
+                        {
+                            pickQ = q;
+                            pick = c;
+                        }
+                    }
+                    SetResult(it, pick.x, pick.z, pick.rot);
+                    it.why = pick.why ?? it.why;
+                    s.Put(i, it);
+                    if (pick.x != had.x || pick.z != had.z || pick.rot != had.rot)
+                    {
+                        improved = true;
+                        changed++;
+                        best = pickQ;
+                    }
+                    else if (pickQ > best) best = pickQ;
+                }
+                if (!improved) break;
+            }
+            if (changed > 0) notes.Add($"walked the room: {changed} piece(s) placed better for the whole");
+        }
+
+        /// <summary>
+        /// How the room walks and how its floor is used, with every piece where the arrangement puts it, or, with
+        /// <paramref name="now"/>, where each stands today (for the player to see what the arranging changes).
+        /// </summary>
+        public static RoomWalkMath.Review Review(Grid g, List<Item> items, bool now)
+        {
+            var shown = Shown(items, now);
+            var s = new State(g, shown);
+            for (int i = 0; i < shown.Count; i++) s.Put(i, shown[i]);
+            return Measure(s);
+        }
+
+        /// <summary>Copies of the items standing where the arrangement puts them, or, with <paramref name="now"/>, where each stands today.</summary>
+        private static List<Item> Shown(List<Item> items, bool now)
+        {
+            var shown = new List<Item>();
+            foreach (var it in items)
+            {
+                var c = new Item
+                {
+                    id = it.id, kind = it.kind, sizeX = it.sizeX, sizeZ = it.sizeZ, rotatable = it.rotatable, passable = it.passable, heavy = it.heavy,
+                    spots = it.spots, useCells = it.useCells, fixedPlace = it.fixedPlace, pathCost = it.pathCost, glow = it.glow, wantsLight = it.wantsLight,
+                    everyday = it.everyday, curX = it.curX, curZ = it.curZ, curRot = it.curRot
+                };
+                if (now || it.fixedPlace || it.stranded) SetResult(c, it.curX, it.curZ, it.curRot);
+                else SetResult(c, it.x, it.z, it.rot);
+                shown.Add(c);
+            }
+            return shown;
         }
 
         // ---------------- Checks the tests and the game share ----------------

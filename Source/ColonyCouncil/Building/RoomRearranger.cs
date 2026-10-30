@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace ColonyCouncil
@@ -46,6 +47,10 @@ namespace ColonyCouncil
         /// <summary>Conduits are planned to the pieces that would be off the power at their new place.</summary>
         public bool layConduits = true;
         public string roomLabel;
+        /// <summary>How the room walks and uses its floor, as it stands and as arranged (RoomWalkMath), and the work out of the lamps' light.</summary>
+        public RoomWalkMath.Review before, after;
+        public int unlitBefore, unlitAfter;
+        public bool anyLight;
 
         public int Moves => pieces.Count(p => p.Moves);
         public int KeptCount => pieces.Count(p => p.Kept);
@@ -178,6 +183,17 @@ namespace ColonyCouncil
                 if (!p.Moves) continue;
                 p.losesPower = NeedsPower(p.thing) && PowerConnectionMaker.BestTransmitterForConnector(p.to, map) == null;
                 if (p.losesPower) p.conduits = ConduitRun(map, p.to, placeable);
+            }
+            try
+            {
+                plan.before = RoomArrangeMath.Review(g, items, true);
+                plan.after = RoomArrangeMath.Review(g, items, false);
+                plan.unlitBefore = RoomArrangeMath.Unlit(g, items, true, out plan.anyLight);
+                plan.unlitAfter = RoomArrangeMath.Unlit(g, items, false, out _);
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("walking a room", e);
             }
             return plan;
         }
@@ -350,7 +366,77 @@ namespace ColonyCouncil
             var need = def.GetTerrainAffordanceNeed(b.Stuff);
             it.heavy = need != null && need != TerrainAffordanceDefOf.Light;
             it.kind = KindOf(def);
+            // What the walkers meet, what the piece lights or wants lit, what must stay open for it, and what moving it costs.
+            it.pathCost = def.passability == Traversability.Impassable ? 0 : def.pathCost;
+            it.glow = WallLights.GlowRadius(def);
+            string role = CustomRooms.RoleOf(def);
+            it.wantsLight = def.IsWorkTable || Avail.IsResearchBench(def) || role == "medical";
+            it.useCells = UseCellsFor(def);
+            it.moveCost = MoveCost(b);
             return it;
+        }
+
+        /// <summary>
+        /// The work of moving a piece, as the layout rules weigh it: its build work (a bench is a day's work to set up
+        /// again, a stool a moment) and the goods to carry out of it and back, up to five.
+        /// </summary>
+        public static float MoveCost(Building b)
+        {
+            float work = 0f;
+            try
+            {
+                work = b.def.GetStatValueAbstract(StatDefOf.WorkToBuild, b.Stuff) / 1500f;
+            }
+            catch
+            {
+                // A def whose work can't be read: a plain piece.
+            }
+            float goods = b is Building_Storage st && st.slotGroup != null ? st.slotGroup.HeldThings.Count() * 0.4f : 0f;
+            return Mathf.Min(work, 4f) + Mathf.Min(goods, 3f);
+        }
+
+        /// <summary>
+        /// The cells that must stay open for a piece to be used, for a north facing, relative to its root: the first rows
+        /// of a screen's watch area (where the game has people stand or sit to watch), the ring round a billiards table.
+        /// </summary>
+        public static List<(int x, int z)> UseCellsFor(ThingDef def)
+        {
+            var cells = new List<(int x, int z)>();
+            if (def?.building == null) return cells;
+            JoyGiverDef giver = null;
+            foreach (var j in DefDatabase<JoyGiverDef>.AllDefsListForReading)
+                if (j.thingDefs != null && j.thingDefs.Contains(def))
+                {
+                    giver = j;
+                    break;
+                }
+            if (giver?.giverClass == null) return cells;
+            TemplateLayout.OccupiedRect(0, 0, 0, def.size.x, def.size.z, out int minX, out int minZ, out int w, out int h);
+            if (typeof(JoyGiver_WatchBuilding).IsAssignableFrom(giver.giverClass))
+            {
+                var range = def.building.watchBuildingStandDistanceRange;
+                int width = Mathf.Max(1, def.building.watchBuildingStandRectWidth);
+                int rows = Mathf.Clamp(range.max - range.min + 1, 1, 2);
+                for (int r = 0; r < rows; r++)
+                {
+                    int z = minZ + h - 1 + Mathf.Max(1, range.min) + r;
+                    for (int k = 0; k < width; k++) cells.Add((k - (width - 1) / 2, z));
+                }
+            }
+            else if (typeof(JoyGiver_PlayBilliards).IsAssignableFrom(giver.giverClass))
+            {
+                for (int x = minX; x < minX + w; x++)
+                {
+                    cells.Add((x, minZ - 1));
+                    cells.Add((x, minZ + h));
+                }
+                for (int z = minZ; z < minZ + h; z++)
+                {
+                    cells.Add((minX - 1, z));
+                    cells.Add((minX + w, z));
+                }
+            }
+            return cells;
         }
 
         /// <summary>A blueprint or frame: a fixed block over the cells it will take.</summary>
@@ -373,8 +459,8 @@ namespace ColonyCouncil
         public static int KindOf(ThingDef def)
         {
             if (def.thingClass != null && typeof(Building_Art).IsAssignableFrom(def.thingClass)) return RoomArrangeMath.Decor;
-            // A sun lamp lights the whole room from its middle; a plain lamp stands in a corner.
-            if (Avail.IsLight(def) && WallLights.GlowRadius(def) >= 10f) return RoomArrangeMath.Centre;
+            // A sun lamp lights the whole room from its middle; a plain lamp goes where it lights the work, else out of the way.
+            if (Avail.IsLight(def)) return WallLights.GlowRadius(def) >= 10f ? RoomArrangeMath.Centre : RoomArrangeMath.Lamp;
             string role = CustomRooms.RoleOf(def);
             switch (role)
             {

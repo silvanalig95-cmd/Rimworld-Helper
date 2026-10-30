@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.38.0</version>
+        <date>30 October 2026</date>
+        <title>Rearrange a room, thought through</title>
+        <points>
+          <li>"Rearrange a room" now walks the room before it decides. Once every piece has a place, the council traces the ways people take from the doors to everything they use, by the game's own costs (a chair or a bedroll is crossed slowly, a work spot is someone's standing place half the time), and tries each piece at its few best places for the arrangement that walks best as a whole: no work spot on someone else's way, no chair in the aisle, the main ways two cells wide where the room is busy (many pieces, or more than one door), no floor cut off and no dead-end slivers that serve nothing, and the biggest open stretch kept for gatherings and for what comes next.</li>
+          <li>What each piece is for counts in full. A lamp goes where it lights the work (the benches' spots, a sickbed) that no other lamp lights yet, instead of a corner by the door; a sun lamp still goes to the middle. A screen keeps its watch area open and gets its back to a wall, and the chairs on the watch area face it; a billiards table keeps the ring round it free. Chairs and other pieces people cross are known by their path cost.</li>
+          <li>Whether a piece already stands well is weighed against the work of moving it: a stool moves for a small gain, a bench or a stocked shelf only for a clear one (its build work and the goods to carry out and back count against the move, up to a point).</li>
+          <li>The window says how the room walks, now and after: the main ways' width at the narrowest and the squeeze points, work spots standing in someone else's way and chairs slowing the ways, dead-end cells and floor nobody can reach, the biggest open stretch, the everyday walking in steps a day, and the work spots out of the lamps' light.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.37.0</version>
         <date>30 October 2026</date>
         <title>The post as a trading stop, and allies who answer</title>

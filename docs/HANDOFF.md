@@ -1,19 +1,30 @@
 # Handoff: work in progress
 
-Last shipped: 0.37.0, the second of the player's five new ideas: the wardens' post as a trading stop and the settlers'
-alliance paying off. `Camps/RoadPost.cs` (with `RoadPostMath.cs`, tested): `CampAsk.settledOnly` asks on
-Council_Camp_Wardens (`sellfood` 30 raw food, `sellhides` 20 of the hide or wool there is most of, `message` a visit to
-their fire plus goodwill); `DilemmaEffect_RoadCarry` (a `CarryOut` to the camp) books the carters' price
-(`RoadPostMath.Price`, eight tenths, due 3 to 5 days) on `Camp.owed*` (saved in `ExposeRoadPost`); `HoldingDay` sends a
-warden to the gate (`DilemmaEffect_CampComes` doing "pay") and `ErrandWorked` hands the silver over on arrival
-(`PayRoad`, a courier bearer trip; `TakeLoad` empties their packs of the load); `CampKindDef.roadWord` names the pool
-(Council_Pool_RoadWord, tagged `ws:<kind>` or `quiet`) that gives the holding's gate visits (doing "roadword") their
-lines, with `{SITUATION}` the event's name. `World/Allies.cs`: `Allies.Of()` is the faction of the newest
-Council_WS_RivalColony record with the "alliance" ending; `HappeningWorker_AllyFood` (Council_Evt_AllyFood) fires under
-six days of food; `WarCamps.Helper` prefers the ally and `WarChance` counts it as an old foe (`[ally]` text). A fix on
-the way: `CampTracker.PlayCamp(map, other)` makes every PlaySpot.Camp use (PlaySpots.CampCell/CampHand, OnMapThings,
-PlayOutTracker, PlayOutJobs) find the holding as well as the visiting camp. Next (task): 0.38.0 a year's letter at each
-anniversary of the landing, gathering the year's chronicle (herd, beasts, neighbours). Before it, 0.36.0:
+Last shipped: 0.38.0, the player's request for real thought in "Rearrange a room". `Building/RoomWalkMath.cs` (pure,
+tested in RoomArrangeTests): Dijkstra from the doors with the game's costs (`StepCost(pathCost)`, `SpotCost` 2 on a
+work spot), ways traced per use and door to door, `Review` with inWay (a standing spot on another's way), slowed, squeezes
+and narrowest (main ways, `wide` rooms count every way), deadEnds, lostFloor, open (largest rectangle), walk and
+longestWalk. `RoomArrangeMath`: Item gained pathCost, glow, wantsLight, useCells (a screen's watch rows, a billiards
+ring: kept open and reached, in `State.use`), moveCost (`Keep(it)` = 2.5 + min(moveCost, 5)), everyday; kind `Lamp`
+(placed after chairs: `LightsHere` counts the spots and sickbeds it alone lights, 3.5 each; `LitRadius` = 0.7 glow);
+chairs on a watch area facing the screen say "watch"; a screen leans on a wall. After the greedy pass and the reach
+repair, `Refine` tries each movable piece at its `RefineTries` best places (its own among them) for the best `Quality`
+(own scores plus keep, less walk 0.02, inWay 2, slowed 0.8, squeezes, deadEnds 0.3, lostFloor 1, plus open) over
+`RefineSweeps`. `Review(g, items, now)` and `Unlit(g, items, now, out anyLight)` feed the window's "How the room walks"
+lines (`Designator_RearrangeRoom.WalkLines`, before and after). Game side (`RoomRearranger.ItemFor`): pathCost from the
+def, glow via WallLights, wantsLight for work tables, research benches and medical beds, `UseCellsFor` from the
+JoyGiverDef (JoyGiver_WatchBuilding rows by watchBuildingStandDistanceRange and RectWidth; JoyGiver_PlayBilliards ring),
+`MoveCost` = WorkToBuild/1500 (cap 4) + 0.4 per stored stack (cap 3); plain lights are `Lamp`, sun lamps `Centre`. Next
+(tasks): the player's second request of the day, production chains, the other suggestions and opt-in automations so
+fewer things need keeping track of (Making/MakingMath, NextSteps, BaseReview/StorageReview, the advisor's acts; one
+"Automations" settings section, everything off by default); then 0.3x.0 a year's letter at each anniversary of the
+landing (the annals write the calendar year and the founding event marks the day already: the letter should cover the
+land and the neighbours since the last landing day, the herd, the beasts, the holding, the regulars, the world events,
+the road, and nothing the annals say). Before it, 0.37.0: the wardens' post as a trading stop (`Camps/RoadPost.cs`:
+`CampAsk.settledOnly` asks, `DilemmaEffect_RoadCarry`, `Camp.owed*`, `PayRoad` on the "pay" errand, `CampKindDef.roadWord`
+pool Council_Pool_RoadWord) and the settlers' alliance paying off (`World/Allies.cs`, Council_Evt_AllyFood, the war
+camp's helper); `CampTracker.PlayCamp` makes PlaySpot.Camp play-outs find the holding too.
+Before it, 0.36.0:
 `SelfCheck.Stories` (a "check myself" part for the regulars, the herd's leader, the beast that stays, the shiny rumour and
 the trainers' camp; now also the allies and the post) and `OverviewPanel.Land` (the card "The herd and the land").
 Before it, 0.35.1, two fixes from a read-through of the rounds (the settlers' food sale used `WorldEffect_Sell`

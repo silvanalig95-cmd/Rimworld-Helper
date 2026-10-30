@@ -428,6 +428,159 @@ public static class RoomArrangeTests
             C(aside.Count == 1 && order.Count == 2, $"two pieces swapping places need one set aside ({aside.Count})");
         }
 
+        // Walking a room (RoomWalkMath): steps by the game's costs, a squeeze between two solid things, a dead-end cell, the open stretch.
+        {
+            var chair = (2, 1);
+            RoomWalkMath.Cell Cell(int x, int z) => x < 0 || z < 0 || x >= 5 || z >= 3 ? RoomWalkMath.Cell.Wall
+                : (x, z) == chair ? new RoomWalkMath.Cell { cost = RoomWalkMath.StepCost(30), piece = true } : RoomWalkMath.Cell.Floor;
+            var dist = RoomWalkMath.Distances(5, 3, new[] { (0, 1) }, Cell, out _);
+            C(RoomWalkMath.StepCost(30) == 2 && RoomWalkMath.StepCost(0) == 1, "a chair costs a step more to cross, bare floor one");
+            C(dist[2, 1] == 3 && dist[4, 1] == 5, $"steps count the chair's cost ({dist[2, 1]}, {dist[4, 1]})");
+            var solid = new HashSet<(int, int)> { (3, 0), (3, 2) };
+            RoomWalkMath.Cell Hall(int x, int z) => x < 0 || z < 0 || x >= 7 || z >= 3 || solid.Contains((x, z)) ? RoomWalkMath.Cell.Wall : RoomWalkMath.Cell.Floor;
+            var rv = RoomWalkMath.Measure(7, 3, Hall, new List<(int, int)> { (0, 1), (6, 1) }, new List<RoomWalkMath.Use>(), false);
+            C(rv.doorsJoined, "the two doors join through the gap");
+            C(rv.squeezes >= 1 && rv.narrowest == 1, $"the one-cell gap between two solid things is a squeeze on the way through ({rv.squeezes}, narrowest {rv.narrowest})");
+            var pocket = new HashSet<(int, int)> { (3, 0), (3, 1) };
+            RoomWalkMath.Cell Nook(int x, int z) => x < 0 || z < 0 || x >= 5 || z >= 3 || pocket.Contains((x, z)) ? RoomWalkMath.Cell.Wall : RoomWalkMath.Cell.Floor;
+            rv = RoomWalkMath.Measure(5, 3, Nook, new List<(int, int)> { (0, 1) }, new List<RoomWalkMath.Use>(), false);
+            C(rv.deadEnds == 1 && rv.lostFloor == 0, $"the cell behind the two solid things is a dead end ({rv.deadEnds} dead ends, {rv.lostFloor} lost)");
+            var a = new bool[3, 2];
+            for (int x = 0; x < 3; x++) for (int z = 0; z < 2; z++) a[x, z] = !(x == 0 && z == 0);
+            C(RoomWalkMath.LargestRectangle(a, 3, 2) == 4, "the biggest open rectangle is found");
+            var spotUse = new List<RoomWalkMath.Use> { new RoomWalkMath.Use { x = 3, z = 1, weight = 4f, standing = true, owner = 1 }, new RoomWalkMath.Use { x = 6, z = 1, weight = 4f, owner = 2 } };
+            RoomWalkMath.Cell Row(int x, int z) => x < 0 || z < 0 || x >= 8 || z >= 1 ? RoomWalkMath.Cell.Wall : (x, z) == (3, 1 - 1) ? new RoomWalkMath.Cell { cost = RoomWalkMath.SpotCost, spot = true } : RoomWalkMath.Cell.Floor;
+            rv = RoomWalkMath.Measure(8, 1, (x, z) => x < 0 || z != 0 || x >= 8 ? RoomWalkMath.Cell.Wall : x == 3 ? new RoomWalkMath.Cell { cost = RoomWalkMath.SpotCost, spot = true } : RoomWalkMath.Cell.Floor,
+                new List<(int, int)> { (0, 0) }, new List<RoomWalkMath.Use> { new RoomWalkMath.Use { x = 3, z = 0, weight = 4f, standing = true, owner = 1 }, new RoomWalkMath.Use { x = 6, z = 0, weight = 4f, owner = 2 } }, false);
+            C(rv.inWay == 1, $"a work spot in a one-wide passage is in the way of what lies beyond it ({rv.inWay})");
+        }
+
+        // A lamp goes where it lights the benches, not to the corner by the door.
+        {
+            var g = Room(
+                "###############",
+                "#.............#",
+                "#.............#",
+                "#.............#",
+                "#.............#",
+                "#.............#",
+                "#D............#",
+                "#+#############");
+            var b1 = Bench(11, 6, 0);
+            var b2 = Bench(7, 6, 0);
+            b1.wantsLight = b2.wantsLight = true;
+            // Real benches: a day's work to set up again, so a nicer row nearer the door doesn't move them.
+            b1.moveCost = b2.moveCost = 2f;
+            var lamp = Item(RoomArrangeMath.Lamp, 1, 2, 0, 1, 1, true);
+            lamp.glow = 10f;
+            lamp.pathCost = 14;
+            var items = new List<RoomArrangeMath.Item> { b1, b2, lamp };
+            Dump("lit workshop", g, items, RoomArrangeMath.Arrange(g, items));
+            C(Sound(g, items) == null, "the lit workshop is sound: " + Sound(g, items));
+            C(!b1.moved && !b2.moved, "the benches along the far wall stay");
+            float r = RoomArrangeMath.LitRadius(lamp.glow);
+            bool lights(RoomArrangeMath.Item b) => b.SpotCells().All(sp => (sp.x - lamp.x) * (sp.x - lamp.x) + (sp.z - lamp.z) * (sp.z - lamp.z) <= r * r);
+            C(lamp.moved && lights(b1) && lights(b2), $"the lamp moves to light both benches' work spots ({lamp.x},{lamp.z}, lit within {r:0.0})");
+            C(lamp.why == "lamp", "and says so: " + lamp.why);
+            C(RoomArrangeMath.Unlit(g, items, false, out bool any) == 0 && any, "no work spot is left out of the light");
+            C(RoomArrangeMath.Unlit(g, items, true, out _) >= 1, "where the lamp stood, a bench was in the dark");
+        }
+
+        // A screen keeps its watch area open and gets its back to a wall; the chairs sit on the watch area facing it.
+        {
+            var g = Room(
+                "#########",
+                "#.......#",
+                "#.......#",
+                "#.......#",
+                "#.......#",
+                "#...D...#",
+                "####+####");
+            var screen = Item(RoomArrangeMath.Centre, 4, 3, 0, 1, 1);
+            screen.useCells.AddRange(new[] { (-1, 1), (0, 1), (1, 1), (-1, 2), (0, 2), (1, 2) });
+            var chairs = new List<RoomArrangeMath.Item>();
+            for (int i = 0; i < 3; i++) chairs.Add(Item(RoomArrangeMath.Chair, 1 + i * 3, 1, 0, 1, 1, true));
+            foreach (var ch in chairs) ch.pathCost = 30;
+            var items = new List<RoomArrangeMath.Item> { screen };
+            items.AddRange(chairs);
+            Dump("screen room", g, items, RoomArrangeMath.Arrange(g, items));
+            C(Sound(g, items) == null, "the screen room is sound: " + Sound(g, items));
+            var watch = screen.UseCells();
+            C(watch.All(c => g.Floor(c.x, c.z) && !items.Any(o => o != screen && !o.passable && o.Contains(c.x, c.z))), "the watch area is floor with nothing solid on it");
+            TemplateLayout.Step((screen.rot + 2) % 4, out int bx, out int bz);
+            C(g.Wall(screen.x + bx, screen.z + bz), $"the screen has its back to a wall ({screen.x},{screen.z} facing {screen.rot})");
+            int watching = chairs.Count(ch => ch.why == "watch" && watch.Contains((ch.x, ch.z)));
+            C(watching >= 2, $"the chairs sit on the watch area facing the screen ({watching} of 3: {string.Join(" ", chairs.Select(c => c.why))})");
+        }
+
+        // A passage with a door at each end: benches stand clear of the way through, so no worker stands in the walkers' path.
+        {
+            var g = Room(
+                "###########",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "D.........D",
+                "#.........#",
+                "#.........#",
+                "#.........#",
+                "###########");
+            var benches = new List<RoomArrangeMath.Item>();
+            for (int i = 0; i < 4; i++) benches.Add(Bench(2 + (i % 2) * 5, 4 - (i / 2) * 2, i % 2 == 0 ? 0 : 2));
+            var items = new List<RoomArrangeMath.Item>(benches);
+            Dump("through workshop", g, items, RoomArrangeMath.Arrange(g, items));
+            C(Sound(g, items) == null, "the through workshop is sound: " + Sound(g, items));
+            var after = RoomArrangeMath.Review(g, items, false);
+            C(after.doorsJoined, "the doors still join");
+            C(after.inWay == 0, $"no work spot stands on the way between the doors or to another bench ({after.inWay} do)");
+            C(after.lostFloor == 0, $"no floor is cut off ({after.lostFloor})");
+            var before = RoomArrangeMath.Review(g, items, true);
+            C(before.inWay > 0, $"as they stood, a worker was in the walkers' way ({before.inWay})");
+        }
+
+        // What moving costs: a plant pot on a wall moves to a corner when it is light work, and stays when it is a heavy piece's work.
+        {
+            RoomArrangeMath.Grid Pot() => Room(
+                "#######",
+                "#.....#",
+                "#.....#",
+                "#.....#",
+                "#.....#",
+                "#..D..#",
+                "###+###");
+            var light = Item(RoomArrangeMath.Decor, 1, 3);
+            var g1 = Pot();
+            RoomArrangeMath.Arrange(g1, new List<RoomArrangeMath.Item> { light });
+            C(light.moved && light.why == "corner", $"a pot that is no work to move goes to the corner ({light.x},{light.z} {light.why})");
+            var heavy = Item(RoomArrangeMath.Decor, 1, 3);
+            heavy.moveCost = 2.5f;
+            var g2 = Pot();
+            RoomArrangeMath.Arrange(g2, new List<RoomArrangeMath.Item> { heavy });
+            C(!heavy.moved && heavy.why == "kept", $"the same piece, heavy to move, stays on its wall ({heavy.x},{heavy.z} {heavy.why})");
+            C(RoomArrangeMath.Keep(heavy) > RoomArrangeMath.Keep(light) && RoomArrangeMath.Keep(new RoomArrangeMath.Item { moveCost = 99f }) == RoomArrangeMath.KeepBonus + 5f, "the keep bonus grows with the work of moving, up to a point");
+        }
+
+        // The store room, walked: arranging it leaves no more dead-end slivers than before, and no floor cut off.
+        {
+            var g = Room(
+                "#########",
+                "#.......#",
+                "#.......#",
+                "#.......#",
+                "#.......#",
+                "#...D...#",
+                "####+####");
+            var items = new List<RoomArrangeMath.Item>();
+            for (int i = 0; i < 5; i++) items.Add(Item(RoomArrangeMath.Storage, 1 + i, 2 + (i % 2), 0, 1, 2));
+            Dump("walked store room", g, items, RoomArrangeMath.Arrange(g, items));
+            C(Sound(g, items) == null, "the walked store room is sound: " + Sound(g, items));
+            var before = RoomArrangeMath.Review(g, items, true);
+            var after = RoomArrangeMath.Review(g, items, false);
+            C(after.deadEnds <= before.deadEnds, $"no more dead-end cells than before ({before.deadEnds} before, {after.deadEnds} after)");
+            C(after.lostFloor == 0, $"no floor is cut off ({after.lostFloor})");
+            C(after.open >= before.open, $"the open stretch is no smaller ({before.open} before, {after.open} after)");
+        }
+
         // The same room gives the same answer twice.
         {
             var g = Room(

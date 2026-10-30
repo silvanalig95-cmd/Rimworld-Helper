@@ -264,6 +264,14 @@ namespace ColonyCouncil
             var view = new Rect(0f, 0f, outRect.width - 16f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float vy = 0f;
+            // How the room walks and sits, as it stands and as arranged (RoomWalkMath).
+            var walk = WalkLines(plan);
+            if (walk.Count > 0)
+            {
+                vy += UiKit.SectionTitle(0f, vy, view.width, "CC_Rearr_Walk_Title".Translate(), Icons.Rooms, UiKit.HeaderColor) + 2f;
+                foreach (var line in walk) vy += UiKit.Paragraph(6f, vy, view.width - 12f, line, UiKit.Faint) + 2f;
+                vy += 6f;
+            }
             var unpowered = plan.Unpowered.ToList();
             if (unpowered.Count > 0)
             {
@@ -318,6 +326,27 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(stopRect, "CC_Rearr_StopTip".Translate());
             }
             if (Widgets.ButtonText(new Rect(inRect.xMax - 110f, by, 110f, 30f), "CC_Rearr_Cancel".Translate())) Close(false);
+        }
+
+        /// <summary>What the arranging does for the walking and the floor, in a few lines of now and after (nothing when nothing changes).</summary>
+        private static List<string> WalkLines(RearrangePlan plan)
+        {
+            var lines = new List<string>();
+            var a = plan.before;
+            var b = plan.after;
+            if (a == null || b == null) return lines;
+            string Pair(int now, int after) => now == after ? now.ToString() : "CC_Rearr_Walk_Change".Translate(now, after).Resolve();
+            if (a.narrowest > 0 || b.narrowest > 0)
+                lines.Add("CC_Rearr_Walk_Ways".Translate(Pair(a.narrowest, b.narrowest), Pair(a.squeezes, b.squeezes)).Resolve());
+            if (a.inWay + b.inWay + a.slowed + b.slowed > 0)
+                lines.Add("CC_Rearr_Walk_InWay".Translate(Pair(a.inWay, b.inWay), Pair(a.slowed, b.slowed)).Resolve());
+            lines.Add("CC_Rearr_Walk_Floor".Translate(Pair(a.deadEnds, b.deadEnds), Pair(a.lostFloor, b.lostFloor), Pair(a.open, b.open)).Resolve());
+            if (a.walk > 0f || b.walk > 0f)
+                lines.Add("CC_Rearr_Walk_Steps".Translate(Pair(Mathf.RoundToInt(a.walk), Mathf.RoundToInt(b.walk))).Resolve());
+            if (plan.anyLight && plan.unlitBefore + plan.unlitAfter > 0)
+                lines.Add("CC_Rearr_Walk_Light".Translate(Pair(plan.unlitBefore, plan.unlitAfter)).Resolve());
+            if (!b.doorsJoined) lines.Add("CC_Rearr_Walk_Cut".Translate().Resolve());
+            return lines;
         }
 
         /// <summary>One piece: its icon and name, where it goes or why it stays; click to look at it.</summary>
