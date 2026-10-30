@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What's handed over is carried
+
+*30 October 2026, version 0.43.1*
+
+- Food carried out to the beast at the edge of the trees went into the animal's pack and was never eaten. It's now set down in front of it, and it eats.
+- Silver the colony pays a camp (a gift, someone hired, an ask, a gift to move on), its parting meals and its cart's makings are carried over from the stores and handed to one of them; they no longer vanish from the stockpile.
+- The camp's sick, a war party's wounded and a patient come to the gate are tended where they are: the colony's doctor fetches a medicine from the stores, carries it over and tends them with it. A doctor who can't go tends as before.
+- A stranger's gift of healroot is handed over by them, and the guest who carves a bird hands over a real one, badly carved and signed. The Pokémon that raids the stores walks there and eats, and a door it can't open keeps it out.
+
 ## Visitors' fires, finds and sacks
 
 *30 October 2026, version 0.43.0*
