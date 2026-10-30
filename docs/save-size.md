@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 371; modelled: 371; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,725 KB** after a year, **2,088 KB** after two, **2,204 KB** after five.
+Saved collections found: 373; modelled: 373; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,726 KB** after a year, **2,089 KB** after two, **2,205 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -167,6 +167,7 @@ Rimfolk's part of the save, roughly: **1,725 KB** after a year, **2,088 KB** aft
 | `Ailments/AilmentTracker.cs:doctors` | only hediffs colonists still have | colonists | 10 | 10 | 10 | 0.9 |
 | `Ailments/AilmentTracker.cs:sweets` | faded below 0.05 dropped | colonists | 10 | 10 | 10 | 0.9 |
 | `Calendar/CalendarWatch.cs:awaySince` | the colony's people away now; the dead and those no longer ours dropped | colonists | 10 | 10 | 10 | 0.9 |
+| `Camps/CampCarry.cs:carries` | what they are bringing over by hand (herbs, milk, a gift, goods bought), one per bearer, gone once set down | while | 3 | 3 | 3 | 0.9 |
 | `Persona/Marks.cs:once` | skills mastered; known pawns only, 800 at most | known | 16 | 18 | 22 | 0.9 |
 | `Quirks/Quirks.cs:downedTick` | within the longest quirk window | colonists | 10 | 10 | 10 | 0.9 |
 | `Pressures/Pressures.cs:apartSince` | pairs apart now | pairs | 10 | 10 | 10 | 0.8 |
@@ -285,6 +286,7 @@ Rimfolk's part of the save, roughly: **1,725 KB** after a year, **2,088 KB** aft
 | `Annals.cs:traditionsBroken` | the year in progress | yearly | 3 | 3 | 3 | 0.1 |
 | `Calendar/CalendarDay.cs:things` | a camp gift's things, per day on the calendar (CalendarMath.MaxDayThings, at most 2 such days) | fixed | 3 | 3 | 3 | 0.1 |
 | `Camps/Camp.cs:joined` | while the camp stays | while | 3 | 3 | 3 | 0.1 |
+| `Camps/CampRequests.cs:stallWares` | a few stacks their trader set out by the gate for a day's stall, while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Couriers/CourierTrip.cs:people` | a trip's people, while it lasts | while | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:things` | per departed record | fixed | 3 | 3 | 3 | 0.1 |
 | `Happenings/Happenings.cs:touched` | per visit | fixed | 3 | 3 | 3 | 0.1 |

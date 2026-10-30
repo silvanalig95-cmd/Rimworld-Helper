@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A camp's good turns come from somewhere real
+
+*30 October 2026, version 0.43.2*
+
+- A camp's healer goes out at dawn and gathers the herbs they bring: wild healroot near the camp harvested for real, else a walk with stops among the grass. Drovers milk or shear a beast of their own herd for the milk or wool they give, and goods come out of their trader's own stock.
+- Whatever a camp brings is carried to the colony's edge by one of them and set down there, and the letter comes when it's there. A caravan's stores are carried to the gate by one of its drivers.
+- The blessing is walked to the colony's fields at dusk, with prayers said there; a mender comes over to the colonist's side to mend their gear; a test hole is dug by the gate with the find left beside it; a stall's wares are really set out by the gate and packed up again after.
+- Silver from a trader is only what their purse held. Mourners carry their dead's ashes and keep their vigil at the lamp, and a camp leaving in peace carries its dead home.
+
 ## What's handed over is carried
 
 *30 October 2026, version 0.43.1*

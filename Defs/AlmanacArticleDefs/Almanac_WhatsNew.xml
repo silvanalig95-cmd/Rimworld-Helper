@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.43.2</version>
+        <date>30 October 2026</date>
+        <title>A camp's good turns come from somewhere real</title>
+        <points>
+          <li>A camp's healer goes out at dawn and gathers the herbs they bring: wild healroot near the camp harvested for real, else a walk with stops among the grass. Drovers milk or shear a beast of their own herd for the milk or wool they give, and goods come out of their trader's own stock.</li>
+          <li>Whatever a camp brings is carried to the colony's edge by one of them and set down there, and the letter comes when it's there. A caravan's stores are carried to the gate by one of its drivers.</li>
+          <li>The blessing is walked to the colony's fields at dusk, with prayers said there; a mender comes over to the colonist's side to mend their gear; a test hole is dug by the gate with the find left beside it; a stall's wares are really set out by the gate and packed up again after.</li>
+          <li>Silver from a trader is only what their purse held. Mourners carry their dead's ashes and keep their vigil at the lamp, and a camp leaving in peace carries its dead home.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.43.1</version>
         <date>30 October 2026</date>
         <title>What's handed over is carried</title>
