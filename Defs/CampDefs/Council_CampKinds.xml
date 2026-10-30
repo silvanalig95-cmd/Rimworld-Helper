@@ -444,7 +444,7 @@
           <li>{X_nameDef} came to the gate with a rolled-up map and a dirty finger on the colony's side of the ridge. They'd like to sink one test hole there, {X_nameDef} says, and share whatever turns up.</li>
           <li>There's a seam running toward the colony, {X_nameDef} insists, or under it. The prospectors ask leave to dig one hole on the colony's side, and promise a share.</li>
         </askTexts>
-        <tip>Two of them dig at the edge of the colony for an afternoon and fill the hole in after. They share whatever they find, most likely silver, now and then jade or gold.</tip>
+        <tip>Two of them dig at the edge of the colony for an afternoon and fill the hole in after. They leave a share of whatever they find beside it, most likely silver, now and then jade or gold.</tip>
         <outcomes>
           <li>{X_nameDef} and another of the prospectors are coming over with picks this afternoon. {X_nameDef} has promised the colony a fair share of whatever's down there.</li>
           <li>The prospectors will dig at the colony's edge this afternoon, and {X_nameDef} shook {A_nameDef}'s hand on the share.</li>
@@ -457,7 +457,7 @@
         <refuseGoodwill>1</refuseGoodwill>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampComes">
-            <to>colony</to>
+            <to>gate</to>
             <count>2</count>
             <doing>dig</doing>
             <hours>3~4</hours>

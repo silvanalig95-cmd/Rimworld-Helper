@@ -135,14 +135,16 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A help line of the camp's own kind (its helpTexts tagged with the help: [heal], [show]...), or the general
-        /// one from the translations. {X} is whoever helped, {A} the colonist it was for, {COUNT} and {THING} what.
+        /// one from the translations. {X} is whoever helped, {A} the colonist it was for, {COUNT} and {THING} what;
+        /// <paramref name="where"/> is a tag for where it was done (a blessing at the colony's "fields" or its "gate").
         /// </summary>
-        private string HelpText(string help, Pawn x = null, Pawn a = null, int count = 0, string thing = null)
+        private string HelpText(string help, Pawn x = null, Pawn a = null, int count = 0, string thing = null, string where = null)
         {
             var lines = kind?.helpTexts?.Where(l => HasTag(l, help)).ToList();
             if (!lines.NullOrEmpty())
             {
                 var tags = new HashSet<string> { help };
+                if (!where.NullOrEmpty()) tags.Add(where);
                 Flavor.AddEraTags(tags);
                 CampWords.AddTags(tags, kind, faction, map);
                 string line = Flavor.Pick(lines, tags) ?? Flavor.PickText(lines);
@@ -157,6 +159,22 @@ namespace ColonyCouncil
             return t != null && t.Any(x => x.Split('|').Any(a => a.Trim() == tag));
         }
 
+        /// <summary>
+        /// Their blessing given at the colony at dusk (the errand that took them there is over): the colony's people feel
+        /// it, and the colony hears how it went, at its fields or its gate.
+        /// </summary>
+        private void Blessed()
+        {
+            // apart: a blessing said over the colony itself, at its fields or its gate, not to anyone face to face.
+            var colonists = IncidentWorker_Happening.Colonists(map);
+            if (colonists.Count == 0) return;
+            var elder = errandPeople.FirstOrDefault(p => p != null && !p.Dead) ?? Speaker;
+            var blessed = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_Blessing");
+            foreach (var c in colonists.Where(c => !(c.story?.traits?.HasTrait(TraitDefOf.Psychopath) ?? false)))
+                CouncilGameComponent.GiveThought(c, blessed);
+            Tell(Text("CC_Camp_HelpTitle"), HelpText("blessing", elder, colonists.RandomElement(), 0, null, errandTo), LetterDefOf.PositiveEvent, false);
+        }
+
         /// <summary>The good turns of the newer kinds of camp. False if none came about today.</summary>
         private bool MoreHelp(string h)
         {
@@ -168,25 +186,18 @@ namespace ColonyCouncil
                 case "heal":
                 {
                     // A colonist with an everyday ailment who has come by the camp is seen to, by the best healer of
-                    // those beside them (Together); failing that, herbs left for the colony's stores.
+                    // those beside them (Together); failing that, herbs gathered at dawn and carried over for the
+                    // colony's stores (CampCarry.cs).
                     int Medicine(Pawn p) => p.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0;
                     var patient = colonists.Where(p => HappeningWorker_Setting.Ailment(p) != null && here.Any(h => Together.Can(h, p))).RandomElementWithFallback();
-                    var healer = patient != null ? here.Where(h => Together.Can(h, patient)).OrderByDescending(Medicine).First() : here.OrderByDescending(Medicine).First();
-                    if (patient != null)
-                    {
-                        var ail = HappeningWorker_Setting.Ailment(patient);
-                        string what = ail.LabelBase;
-                        ail.Severity = Mathf.Max(0.01f, ail.Severity * 0.4f);
-                        Warm(patient, 2);
-                        CouncilGameComponent.GiveThought(patient, DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_Healed"), healer);
-                        Tell(Text("CC_Camp_HelpTitle"), HelpText("heal", healer, patient, 0, what), LetterDefOf.PositiveEvent, false);
-                        return true;
-                    }
-                    int n = Rand.RangeInclusive(2, 4);
-                    var med = ThingMaker.MakeThing(ThingDefOf.MedicineHerbal);
-                    med.stackCount = n;
-                    if (!GenPlace.TryPlaceThing(med, share, map, ThingPlaceMode.Near)) return false;
-                    Tell(Text("CC_Camp_HelpTitle"), HelpText("herbs", healer, null, n), LetterDefOf.PositiveEvent, false);
+                    if (patient == null) return StartHerbs("herbs");
+                    var healer = here.Where(h => Together.Can(h, patient)).OrderByDescending(Medicine).First();
+                    var ail = HappeningWorker_Setting.Ailment(patient);
+                    string what = ail.LabelBase;
+                    ail.Severity = Mathf.Max(0.01f, ail.Severity * 0.4f);
+                    Warm(patient, 2);
+                    CouncilGameComponent.GiveThought(patient, DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_Healed"), healer);
+                    Tell(Text("CC_Camp_HelpTitle"), HelpText("heal", healer, patient, 0, what), LetterDefOf.PositiveEvent, false);
                     return true;
                 }
                 case "show":
@@ -227,12 +238,18 @@ namespace ColonyCouncil
                 }
                 case "blessing":
                 {
-                    var elder = here.OrderByDescending(p => p.ageTracker?.AgeBiologicalYears ?? 0).First();
-                    var blessed = DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_Blessing");
-                    foreach (var c in colonists.Where(c => !(c.story?.traits?.HasTrait(TraitDefOf.Psychopath) ?? false)))
-                        CouncilGameComponent.GiveThought(c, blessed);
-                    Tell(Text("CC_Camp_HelpTitle"), HelpText("blessing", elder, colonists.RandomElement()), LetterDefOf.PositiveEvent, false);
-                    return true;
+                    // Their eldest and a few more walk to the colony at dusk (to its fields, else its gate) and bless it
+                    // there, an errand (CampRequests.cs); it is felt and told when they're done (Blessed).
+                    if (ErrandSet) return false;
+                    var elder = ErrandPeople("elder", 1).FirstOrDefault();
+                    if (elder == null) return false;
+                    var words = kind?.momentLines?.Where(l => HasTag(l, "blessing")).Select(l => Flavor.Strip(l)).Where(l => !l.NullOrEmpty()).ToList();
+                    var errand = new DilemmaEffect_CampComes
+                    {
+                        to = ErrandCell("fields", null, elder).IsValid ? "fields" : "gate", who = "elder", count = 4, doing = "blessing",
+                        hours = new FloatRange(1f, 1.5f), when = new IntRange(17, 20), lines = words
+                    };
+                    return StartErrand(errand, null);
                 }
                 case "song":
                 {
@@ -266,28 +283,13 @@ namespace ColonyCouncil
                     return true;
                 }
                 case "milk":
-                {
-                    // Drovers: milk, wool or a hide from the herd beyond the ridge, left where the colony can fetch it.
-                    var def = new[] { "Milk", "WoolSheep", "WoolAlpaca", "Leather_Plain" }.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n))
-                        .Where(d => d != null).RandomElementWithFallback();
-                    if (def == null) return false;
-                    int n = Rand.RangeInclusive(12, 28);
-                    var t = ThingMaker.MakeThing(def);
-                    t.stackCount = Mathf.Min(n, def.stackLimit);
-                    if (!GenPlace.TryPlaceThing(t, share, map, ThingPlaceMode.Near)) return false;
-                    Tell(Text("CC_Camp_HelpTitle"), HelpText("milk", here.RandomElement(), colonists.RandomElement(), t.stackCount, def.label), LetterDefOf.PositiveEvent, false);
-                    return true;
-                }
+                    // Drovers: a beast of their herd that's ready for it milked or shorn, and what it gives carried over
+                    // to the camp's edge for the colony (CampCarry.cs).
+                    return StartMilk();
                 case "goods":
-                {
-                    // Caravaners: something from their packs for the colony's hospitality.
-                    var things = Loot.Make(Rand.Range(60f, 140f) * LivingEvents.WealthFactor(map));
-                    if (things.NullOrEmpty()) return false;
-                    Loot.Deliver(things, map, share, false);
-                    Tell(Text("CC_Camp_HelpTitle"), HelpText("goods", leader != null && here.Contains(leader) ? leader : here.RandomElement(), colonists.RandomElement(), 0, Loot.Describe(things)),
-                        LetterDefOf.PositiveEvent, false);
-                    return true;
-                }
+                    // Caravaners: something from their trader's stock, carried over to the camp's edge for the colony's
+                    // hospitality (CampCarry.cs).
+                    return StartGoods();
                 case "tales":
                 {
                     // News from the road: a colonist sitting with one of them right now hears it (Together), the one who

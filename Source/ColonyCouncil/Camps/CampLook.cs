@@ -164,8 +164,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Their farewell at the end of their stay, told as it went: a line about what they left ([left:key]), the healer's
-        /// round ([round]) or the smith's mending ([repaired]) when that happened, any other line otherwise. {X} is whoever
-        /// took the last walk, {THING} what the smith mended.
+        /// round ([round]), the smith's mending ([repaired]) or their dead carried home ([carried]) when that happened, any
+        /// other line otherwise. {X} is whoever took the last walk, {THING} what the smith mended.
         /// </summary>
         private string FarewellText()
         {
@@ -175,6 +175,7 @@ namespace ColonyCouncil
             if (!leftKey.NullOrEmpty()) marks.Add("left:" + leftKey);
             if (walkVisits > 0) marks.Add("round");
             if (repairs > 0) marks.Add("repaired");
+            if (deadCarried > 0) marks.Add("carried");
             var tags = new HashSet<string>();
             Flavor.AddEraTags(tags);
             CampWords.AddTags(tags, kind, faction, map);
@@ -220,6 +221,7 @@ namespace ColonyCouncil
                         if (a == null) continue;
                         a.inventory?.DestroyAll();
                         if (g.named && (a.Name == null || a.Name.Numerical)) a.Name = PawnBioAndNameGenerator.GeneratePawnName(a, NameStyle.Full);
+                        GrownOnTheRoad(a);
                         list.Add(a);
                     }
                 }
@@ -229,6 +231,26 @@ namespace ColonyCouncil
                 }
             }
             return list;
+        }
+
+        private static readonly System.Reflection.FieldInfo FullnessField = HarmonyLib.AccessTools.Field(typeof(CompHasGatherableBodyResource), "fullness");
+
+        /// <summary>
+        /// A beast that has been on the road a while: its milk or wool part grown since it was last taken (the game starts
+        /// a new animal at none), so a drover may milk or shear it during the stay.
+        /// </summary>
+        private static void GrownOnTheRoad(Pawn a)
+        {
+            if (FullnessField == null || a?.AllComps == null) return;
+            try
+            {
+                foreach (var comp in a.AllComps.OfType<CompHasGatherableBodyResource>())
+                    if (comp is CompMilkable || comp is CompShearable) FullnessField.SetValue(comp, Rand.Range(0.2f, 1f));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp beast's wool", e);
+            }
         }
 
         /// <summary>

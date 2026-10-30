@@ -49,9 +49,9 @@
   <CC_Camp_Help_meat>The {NAME} had a good day's hunting, more than they can eat or carry, and left {COUNT} meat at the edge of their camp for the colony.</CC_Camp_Help_meat>
   <CC_Camp_Help_wood>The {NAME} cut more wood than they could burn, and stacked {COUNT} logs on the colony's side of their camp.</CC_Camp_Help_wood>
   <CC_Camp_Help_medicine>The {NAME} went out gathering healing herbs at dawn, and came back with enough to leave {COUNT} bundles of herbal medicine by their camp for the colony.</CC_Camp_Help_medicine>
-  <CC_Camp_Help_mend>{X_nameDef} from the camp took one look at the state of {A_nameDef}'s {THING} and mended it on the spot, and wouldn't take anything for the work.</CC_Camp_Help_mend>
+  <CC_Camp_Help_mend>{X_nameDef} from the camp came over, took one look at the state of {A_nameDef}'s {THING} and mended it on the spot, and wouldn't take anything for the work.</CC_Camp_Help_mend>
   <CC_Camp_Help_heal>{X_nameDef} from the camp saw to {A_nameDef}'s {THING}, and asked nothing for it. {A_nameDef} is already feeling better.</CC_Camp_Help_heal>
-  <CC_Camp_Help_herbs>The {NAME} had herbs to spare. {COUNT} bundles of herbal medicine are waiting on the colony's side of their camp.</CC_Camp_Help_herbs>
+  <CC_Camp_Help_herbs>{X_nameDef} of the {NAME} gathered more herbs at dawn than they need. {COUNT} bundles of herbal medicine are waiting on the colony's side of their camp.</CC_Camp_Help_herbs>
   <CC_Camp_Help_show>The {NAME} put on a show at their fire this evening, and the colony was invited. {X_nameDef} was the star of it.</CC_Camp_Help_show>
   <CC_Camp_Help_blessing>{X_nameDef} from the camp came to the colony at dusk and blessed it, its people and its fields, in the old words.</CC_Camp_Help_blessing>
   <CC_Camp_Help_survey>{X_nameDef} from the camp has been taking sightings in the hills, and has shown {A_nameDef} a seam of {THING} in the colony's own rock.</CC_Camp_Help_survey>

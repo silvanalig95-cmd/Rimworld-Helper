@@ -125,7 +125,7 @@
       <li>[carry] Watch the knot on that.</li>
     </momentLines>
     <helpTexts>
-      <li>[goods] {X_nameDef}, the caravan master, set a few things aside from the packs for the colony, by way of thanks for the water and the quiet: {THING}.</li>
+      <li>[goods] {X_nameDef}, the caravan's trader, took a few things out of the packs for the colony and carried them to the edge of the camp, by way of thanks for the water and the quiet: {THING}.</li>
       <li>[goods] The caravan {PLACE} had more than it could carry over the hills, and {X_nameDef} left the colony some of it rather than throw it away: {THING}.</li>
       <li>[tales] {A_nameDef} sat up half the night at the caravan's fire while {X_nameDef} told the news of every town between here and the sea. {A_nameDef} came back with a head full of names and roads.</li>
       <li>[tales] The caravan's drivers had stories from the far roads, and {A_nameDef} heard most of them twice, told different ways by different drivers.</li>
@@ -150,15 +150,15 @@
       <li>
         <key>stores</key>
         <label>Buy preserved fare for the stores ({COUNT} silver)</label>
-        <tip>A share of the caravan's dried and salted fare, at the caravan's price: good for a long winter or a long trip.</tip>
+        <tip>A share of the caravan's dried and salted fare, at the caravan's price: good for a long winter or a long trip. One of the drivers carries it over to the colony's gate.</tip>
         <silver>90</silver>
         <outcomes>
           <li>{X_nameDef} counts out sacks of preserved fare for the colony's stores and the silver into the caravan's chest, and both sides seem pleased with the bargain.</li>
-          <li>{X_nameDef} counts the silver twice, cheerfully, and sends the drivers over with the sacks.</li>
-          <li>{X_nameDef} sells the colony enough salted meat and dried fruit for a hard month, and throws in a sack of salt for luck.</li>
+          <li>{X_nameDef} counts the silver twice, cheerfully, and sends one of the drivers over with the sacks.</li>
+          <li>{X_nameDef} sells the colony enough salted meat and dried fruit for a hard month, and has a driver carry it up to the gate.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Pemmican</thing><count>50</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>Pemmican</thing><count>50</count></li>
         </effects>
       </li>
       <li>
@@ -275,7 +275,7 @@
     <helpTexts>
       <li>[tales] {A_nameDef} spent an evening with {X_nameDef} and came back talking about cities that float, rivers of salt and a king who keeps bees. {A_nameDef} believes about half of it.</li>
       <li>[tales] The merchants {PLACE} told the colony stories of the far south over a pot of something very spicy, and {A_nameDef} hasn't stopped talking about it since.</li>
-      <li>[goods] {X_nameDef} sent a small gift from the merchants' packs to the colony, wrapped in colored cloth, as is their custom with hosts: {THING}.</li>
+      <li>[goods] {X_nameDef} brought a small gift from the merchants' packs to the edge of their camp for the colony, as is their custom with hosts: {THING}.</li>
     </helpTexts>
     <asks>
       <li>
@@ -389,8 +389,8 @@
       <li>[herd] Good grass. Eat up.</li>
     </momentLines>
     <helpTexts>
-      <li>[milk] The drovers {PLACE} had more than they could carry, and {X_nameDef} set the rest out at the edge of their camp for the colony: {COUNT} {THING}.</li>
-      <li>[milk] {X_nameDef} from the drovers' camp left {COUNT} {THING} from the herd on the colony's side of the camp, and nodded toward it when a colonist passed.</li>
+      <li>[milk] {X_nameDef} saw to one of the drovers' beasts {PLACE} and carried what it gave over to the edge of their camp for the colony: {COUNT} {THING}.</li>
+      <li>[milk] {X_nameDef} from the drovers' camp left {COUNT} {THING} from one of the herd on the colony's side of the camp, and nodded toward it when a colonist passed.</li>
       <li>[tales] {A_nameDef} sat with the drovers at their dung-smoke fire and heard about every road, river and bad-tempered bull between here and the market. {A_nameDef} came back smelling of cows and full of stories.</li>
     </helpTexts>
     <asks>
@@ -435,7 +435,7 @@
           <li>The stream past the ridge has gone to mud, and the herd is thirsty. {X_nameDef} asked {A_nameDef} whether the drovers might bring the beasts down to the colony's water this afternoon, and promised to keep them off the fields.</li>
           <li>[summer] It's hot, and the herd hasn't drunk well since yesterday. {X_nameDef} came to ask for the colony's water, for an hour, for the beasts.</li>
         </askTexts>
-        <tip>Two drovers walk the herd down to the colony's water for an afternoon. Afterwards they leave some milk, wool or a hide for the colony.</tip>
+        <tip>Two drovers walk the herd down to the colony's water for an afternoon. Afterwards, if one of the beasts is ready for it, a drover milks or shears it and leaves the colony what it gives.</tip>
         <outcomes>
           <li>The drovers will bring the herd down to the colony's water this afternoon. {X_nameDef} has sworn on the dog that not a hoof touches the fields.</li>
           <li>{X_nameDef} thanked {A_nameDef} and went to round up the beasts. They'll be at the water within a few hours, lowing.</li>
@@ -534,10 +534,17 @@
       <li>[ideology] {IDEO} keep us.</li>
       <li>[meme:Proselytizer] Have you heard the word?</li>
     </lines>
+    <!-- Said at the colony while they pray for it at dusk (the errand for the help "blessing"). -->
+    <momentLines>
+      <li>[blessing] Forgive us, and keep them.</li>
+      <li>[blessing] Peace on this place.</li>
+      <li>[blessing] Let it go well with them.</li>
+    </momentLines>
+    <!-- Where they prayed for the colony is a tag: [fields] (its fields), [gate] (no fields: its gate). -->
     <helpTexts>
-      <li>[blessing] {X_nameDef} and the penitents walked once round the colony at dusk, barefoot, praying for it in voices too low to make out. They didn't ask anyone's leave for it.</li>
-      <li>[blessing,otherFaith] The penitents prayed for the colony in the way of {IDEO}, at its gate, at dusk. It isn't the colony's ideoligion and the words were strange, but the colonists who heard stood still until they were done.</li>
-      <li>[blessing,sameFaith] The penitents prayed with the colony this evening, as people of one ideoligion, and {X_nameDef} asked forgiveness for the world in words the colony knows by heart.</li>
+      <li>[blessing] {X_nameDef} and the penitents came to the colony at dusk, barefoot, and prayed for it in voices too low to make out. They didn't ask anyone's leave for it.</li>
+      <li>[blessing,otherFaith,gate] The penitents prayed for the colony in the way of {IDEO}, at its gate, at dusk. It isn't the colony's ideoligion and the words were strange, but they were kindly meant.</li>
+      <li>[blessing,sameFaith] The penitents came to the colony this evening to pray for it, as people of one ideoligion, and {X_nameDef} asked forgiveness for the world in words the colony knows by heart.</li>
       <li>[tales] {A_nameDef} sat with {X_nameDef} at the penitents' fire and asked what they had done to walk so far. {X_nameDef} told {A_objective}. {A_nameDef} has been quiet since.</li>
     </helpTexts>
     <asks>
@@ -653,12 +660,17 @@
       <li>[gift] Grow slow. Grow tall.</li>
       <li>[gift] Something to come back to.</li>
       <li>[gift] There. The rain will do the rest.</li>
+      <li>[blessing] Grow, and feed them.</li>
+      <li>[blessing] Root deep, reach high.</li>
+      <li>[blessing] Sing up for the green.</li>
     </momentLines>
+    <!-- Where they blessed the colony is a tag: [fields] (its fields), [gate] (no fields: its gate). -->
     <helpTexts>
-      <li>[blessing] The tree-singers went through the colony's fields at dusk, singing to the crops one row at a time. {X_nameDef} says they will grow better for it. The colony's farmers are prepared to believe it.</li>
-      <li>[blessing,sameFaith] The tree-singers sang with the colony at the old tree this evening, and {A_nameDef} sang the loudest.</li>
+      <li>[blessing,fields] The tree-singers came to the colony's fields at dusk and sang to the crops. {X_nameDef} says they will grow better for it. The colony's farmers are prepared to believe it.</li>
+      <li>[blessing,gate] The tree-singers came to the colony's gate at dusk and sang over it, for the colony and everything it grows.</li>
+      <li>[blessing,sameFaith] The tree-singers came to the colony this evening and sang the old songs over it, the ones its own people sing, and {X_nameDef} led them.</li>
       <li>[heal] {X_nameDef}, the eldest of the tree-singers, looked at {A_nameDef}'s {THING}, went into the woods, and came back with a leaf to chew and a moss to bind it with. It worked better than anyone expected.</li>
-      <li>[herbs] The tree-singers {PLACE} gathered more herbs than they need, and left {COUNT} bundles of medicine at the edge of their camp for the colony, each one tied with grass.</li>
+      <li>[herbs] {X_nameDef} gathered more herbs at dawn than the tree-singers need, and left {COUNT} bundles of medicine at the edge of their camp for the colony, each one tied with grass.</li>
     </helpTexts>
     <asks>
       <li>
@@ -774,7 +786,7 @@
     <helpTexts>
       <li>[heal] {X_nameDef}, the traveling healer, sat {A_nameDef} down on the bench and dealt with {A_possessive} {THING} in a quarter of an hour, with a lot of tutting. {A_nameDef} is already feeling better.</li>
       <li>[heal,lowtech] {X_nameDef} saw {A_nameDef}'s {THING} from across the yard, came straight over and dealt with it on the spot with a poultice and a bitter tea.</li>
-      <li>[herbs] {X_nameDef} had more remedies than {X_pronoun} could carry, and left {COUNT} of them for the colony's stores, with instructions written on each one.</li>
+      <li>[herbs] {X_nameDef} came back from gathering at dawn with more herbs than {X_pronoun} could use, and left {COUNT} bundles at the edge of the camp for the colony's stores, with instructions written on each one.</li>
     </helpTexts>
     <asks>
       <li>
@@ -948,6 +960,7 @@
     <ages>16~75</ages>
     <chopsPerDay>0.3</chopsPerDay>
     <task>Council_CampVigil</task>
+    <taskAt>light</taskAt>
     <hireChance>0.02</hireChance>
     <joinChance>0.02</joinChance>
     <helpChance>0.1</helpChance>
@@ -974,23 +987,23 @@
       <li>Carrying their dead home</li>
     </titles>
     <texts>
-      <li>A slow party of {FACTION} has come up the road behind a covered cart. They are mourners, carrying one of their own home to be buried with their people. {X_nameDef}, who leads them, asked {A_nameDef} whether they might stop {PLACE} for a night or two. They will keep to themselves.</li>
+      <li>A slow party of {FACTION} has come up the road. They are mourners, carrying the ashes of one of their own home to be buried with their people. {X_nameDef}, who leads them, asked {A_nameDef} whether they might stop {PLACE} for a night or two. They will keep to themselves.</li>
       <li>[ws:mourning] There are mourners on every road after {SITUATION}, and a party of them has stopped near the colony. {X_nameDef} asked {A_nameDef}, in a voice worn thin, for a night or two's camp {PLACE}.</li>
-      <li>[ws:sickness] The one in the mourners' cart died of {SITUATION}, and the living of {FACTION} walk well apart from it. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of them is sick.</li>
+      <li>[ws:sickness] The one whose ashes the mourners of {FACTION} carry died of {SITUATION}. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of the living is sick.</li>
       <li>[their:friend] Mourners of {FACTION} have stopped by the colony with their dead. {X_nameDef} asked for {A_nameDef} by name, and said the one they carry spoke of {A_objective} often. They would like to rest {PLACE} a night or two.</li>
-      <li>[winter] A covered sledge came through the snow this morning, drawn by mourners of {FACTION}. They'd like a sheltered place {PLACE} to stop a night or two, {X_nameDef} told {A_nameDef}, before the last of the road.</li>
+      <li>[winter] Mourners of {FACTION} came through the snow this morning, carrying the ashes of one of their own home. They'd like a sheltered place {PLACE} to stop a night or two, {X_nameDef} told {A_nameDef}, before the last of the road.</li>
       <li>[colony:LongMemoried] Mourners of {FACTION} have stopped by the colony with their dead because, {X_nameDef} said, it is a place that remembers. They asked {A_nameDef} whether they might stop {PLACE} a night or two, and say their words where the colony says its own.</li>
     </texts>
     <settled>
-      <li>The mourners from {FACTION} have made a small camp {PLACE}, with the cart drawn up beside the fire and a lamp beside the cart that is never let go out.</li>
-      <li>The mourners' camp is up {PLACE}. Someone sits by the covered cart at every hour, day and night.</li>
+      <li>The mourners from {FACTION} have made a small camp {PLACE}, with a lamp a little way from the fire that is never let go out.</li>
+      <li>The mourners' camp is up {PLACE}. Through the day one of them sits by the lamp, keeping vigil.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the mourners {PLACE}, says there's nothing left at home now but the grave they're carrying their dead to, and the others can see it filled without {X_objective}. {X_nameDef} asks whether there might be a place here.</li>
-      <li>{X_nameDef}, who sits up by the cart every night, says the one they carry always meant to settle somewhere like this. {X_nameDef} would like to do it for them, if the colony will allow it.</li>
+      <li>{X_nameDef}, who keeps the vigil by the lamp longer than any of them, says the one whose ashes they carry always meant to settle somewhere like this. {X_nameDef} would like to do it for them, if the colony will allow it.</li>
     </joinTexts>
     <farewell>
-      <li>The mourners from {FACTION} went on at first light with their cart, walking slowly, the lamp still lit beside it.</li>
+      <li>The mourners from {FACTION} went on, walking slowly, with the lamp packed and the ashes carried between them in turn.</li>
       <li>[left:sprig] The mourners' camp {PLACE} is empty. On the way out, {X_nameDef} planted a sprig of green by the colony's gate, as {FACTION} do for those who let the dead rest a while.</li>
     </farewell>
     <lines>
@@ -1016,7 +1029,7 @@
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat a while at the mourners' fire, and {X_nameDef} told {A_objective} about the one they're carrying home: who they were, what they loved, what they used to say. {A_nameDef} came back very quiet.</li>
-      <li>[tales] The mourners told {A_nameDef} the story of the one in the cart, start to finish, over a long evening. By the end {A_nameDef} felt {A_pronoun} had known them.</li>
+      <li>[tales] The mourners told {A_nameDef} the story of the one they carry home, start to finish, over a long evening. By the end {A_nameDef} felt {A_pronoun} had known them.</li>
     </helpTexts>
     <asks>
       <li>
@@ -1050,7 +1063,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>standing by the road for the mourners</label><spots><li>Outdoors</li></spots><target>Colony</target></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_StoodWithMourners</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Camp_StoodWithMourners</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
@@ -1061,8 +1074,8 @@
         <tension>-6</tension>
         <deed>sheltered</deed>
         <outcomes>
-          <li>{A_nameDef} takes food to the mourners' camp. {X_nameDef} takes it with a nod and says the one in the cart would have thanked the colony with a song.</li>
-          <li>{A_nameDef} brings the mourners food for the road, and {X_nameDef} gives thanks for the living and for the one in the cart.</li>
+          <li>{A_nameDef} takes food to the mourners' camp. {X_nameDef} takes it with a nod and says the one they carry home would have thanked the colony with a song.</li>
+          <li>{A_nameDef} brings the mourners food for the road, and {X_nameDef} gives thanks for the living and for the one they carry home.</li>
           <li>{A_nameDef} carries food to the mourners' camp. {X_nameDef} says it will last them to the next town, and further.</li>
         </outcomes>
         <effects>
