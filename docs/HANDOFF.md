@@ -4,18 +4,24 @@ Read this first; it is the whole state. CLAUDE.md has the binding rules and the 
 from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the player's words. The sections under
 "Older history" at the bottom are kept for reference only.
 
-## State (30 October 2026)
+## State (30 October 2026, later)
 
-- Shipped and pushed: 0.41.0, on both `claude/charming-pasteur-9qbjle` and `claude/great-fermat-2by8p6`. Tree clean.
-  Every check green at that commit: build (only the CS0108 warning in Decrees.cs), DefValidator 0 errors, Tools/Tests
-  "All tests passed", labelcheck, almanaccheck, save_estimate --strict, interaction_audit, playout_audit, ApiDiff
-  "Nothing the DLL uses has changed".
-- Nothing is pending from the player. Rounds 0.30.0 to 0.41.0 were this session's work: the player's event rounds
-  (camps, neighbours, visitors, world, animals, Pokémon), the five follow-up ideas, then two explicit requests (rearranging
-  rooms thought through; production chains and opt-in automations, in two passes) and the year's letter.
+- Shipped and pushed: 0.41.1, on `claude/gifted-noether-32w12b` (this session's branch) and `claude/charming-pasteur-9qbjle`.
+  Tree clean. Every check green at that commit: build (only the CS0108 warning in Decrees.cs), DefValidator 0 errors,
+  Tools/Tests "All tests passed", labelcheck, almanaccheck, save_estimate --strict, interaction_audit, playout_audit,
+  ApiDiff "Nothing the DLL uses has changed".
+- 0.41.1 was the player's request: a finished step of a defense line keeps "Plan it again" (the same plan, or another
+  of the step's; `DefenseStepWorker.Choices` and `DistanceFor`, `DefenseLineReview.PlanAgain`, `DefenseLinesPanel.AgainMenu`).
+  The outgrown killbox's own button folded into it.
+- Open with the player: they asked whether rain washes blood and dirt away. The game does it already outdoors (the
+  filth def's `rainWashes`, thinned in `SteadyEnvironmentEffects`); nothing was built. Wait for their answer.
+- Rounds 0.30.0 to 0.41.0 came before: the player's event rounds (camps, neighbours, visitors, world, animals, Pokémon),
+  the five follow-up ideas, two explicit requests (rearranging rooms; production chains and opt-in automations) and
+  the year's letter.
 - Candidates if the player wants more (propose as a list first): chain rates per bench rather than per recipe, and
   consumption measured from the last days' real use; the automations' preview on the settings page itself; per-room
-  "rearrange" tuning knobs (aisle width, keep weight); a quiet-season digest that folds the evening news for a day.
+  "rearrange" tuning knobs (aisle width, keep weight); a quiet-season digest that folds the evening news for a day;
+  the template choice on a step that isn't done yet (today "Plan this step" places the step's own pick).
 
 ## Where this session's systems live
 
@@ -46,8 +52,12 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## How to work here (learned the hard way)
 
-- Every shell command needs `export PATH=$HOME/.dotnet:$PATH DOTNET_ROOT=$HOME/.dotnet`; the working directory resets
-  between commands, so use absolute paths or `cd /home/user/Rimworld-Helper && ...` in each command.
+- A fresh container has no .NET. Ubuntu's packages work (the dotnet-install script was refused):
+  `apt-get update && apt-get install -y dotnet-sdk-8.0 dotnet-targeting-pack-10.0` (the second is for ApiDiff). The 1.7
+  references come from restoring any throwaway net8.0 project with `<PackageReference Include="Krafs.Rimworld.Ref"
+  Version="1.7.4977-alpha.2" ExcludeAssets="all" />`. With an SDK in `$HOME/.dotnet` instead, every command needs
+  `export PATH=$HOME/.dotnet:$PATH DOTNET_ROOT=$HOME/.dotnet`. The working directory resets between commands, so use
+  absolute paths or `cd /home/user/Rimworld-Helper && ...` in each command.
 - The test suite takes about four minutes: run it in the background writing to a log, append `echo "exit $?"`, and
   poll the log. Read failures before starting another run (a new run overwrites the log).
 - Test rules that bite: settings fields one per line (`public bool x = false;`); a thought with `RewardInstead` has

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A finished step of a defense line can be planned again
+
+*30 October 2026, version 0.41.1*
+
+- A step of a defense line that is done keeps a "Plan it again" button on its card. It opens the planner with the step's plan placed and turned for the line once more, or with another plan for the same step: the tunnel killbox or the full one in place of the small one you built, say. The plan that stands there is marked "built here", and one the colony can't build yet says why.
+- The gate step now offers the baffled gate, the palisade with a gatehouse and the castle gate as well as the gate and the wall, and the cover step the wall and sandbag firing line. An outgrown killbox's own "Plan it again" is now this same button.
+
 ## A year's letter at each anniversary of the landing
 
 *30 October 2026, version 0.41.0*

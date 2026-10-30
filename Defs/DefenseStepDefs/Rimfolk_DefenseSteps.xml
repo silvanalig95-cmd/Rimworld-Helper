@@ -5,7 +5,7 @@
     The ladder a defense line climbs (Colony → Defenses, "Defense lines"). Each step says why it comes now, how it works
     and the common mistakes; its worker (Source/ColonyCouncil/Defense/DefenseStepWorkers.cs) reads from the map whether it's
     done, so steps built by hand count too. templates: the plans it places, best first, looked up by name (one that's
-    missing is passed over). placeAt: where, relative to the line: "line" (its wall row on the gate, distance cells back),
+    missing is passed over); a worker may pick another of them for the line, and a finished step offers them all again. placeAt: where, relative to the line: "line" (its wall row on the gate, distance cells back),
     "behind", "front", "between" (between the line and the beds). aims: the line's aims it belongs to (empty: all);
     orderFor moves it up for some aims; minRaidPoints makes it an idea for later below that, unless the aim is in nowFor.
     articles: Almanac pages, the first that exists is linked.
@@ -19,6 +19,9 @@
     <templates>
       <li>Rimfolk_Defense_Gate</li>
       <li>Rimfolk_Defense_Wall</li>
+      <li>Rimfolk_Defense_BaffledGate</li>
+      <li>Rimfolk_Defense_PalisadeGatehouse</li>
+      <li>Rimfolk_Defense_CastleGate</li>
     </templates>
     <placeAt>line</placeAt>
     <whyNow>Everything else on this line works only once raiders have one way through it. Until the gap is closed, they walk in wherever it's widest.</whyNow>
@@ -61,6 +64,7 @@
     <templates>
       <li>Rimfolk_Defense_CoverLine</li>
       <li>Rimfolk_Defense_Post</li>
+      <li>Rimfolk_Defense_FiringLine</li>
     </templates>
     <placeAt>behind</placeAt>
     <whyNow>With the gap closed, raiders come through one gate. People behind cover a few cells back hit them while they stand in the open.</whyNow>

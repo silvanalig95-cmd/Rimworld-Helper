@@ -304,6 +304,13 @@ namespace ColonyCouncil
             PlanAt(map, line, t, line.gate, line.facing, step.placeAt, step.distance, step.closeGap);
         }
 
+        /// <summary>Opens the planner with one of a finished step's plans placed for the line again: the one it has, drawn for the colony as it is now, or another of the step's.</summary>
+        public static void PlanAgain(DefenseLineFacts f, StepResult step, DefenseTemplateDef t)
+        {
+            if (f == null || step?.def == null || t == null) return;
+            PlanAt(f.map, f.line, t, f.line.gate, f.line.facing, step.placeAt, step.def.Worker.DistanceFor(f, step, t), step.closeGap);
+        }
+
         /// <summary>
         /// Opens the planner with a plan placed for the line. A plan in front of the line follows the way raiders walk
         /// up to the gate (<see cref="DefenseApproachPlanner"/>), and says why it stands where it does or why nothing fits.

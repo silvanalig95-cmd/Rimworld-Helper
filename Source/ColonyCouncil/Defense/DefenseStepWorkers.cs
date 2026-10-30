@@ -129,6 +129,8 @@ namespace ColonyCouncil
             else if (!Blocked(r, f)) r.left = "CC_DefLine_Cover_None".Translate(need, depth).Resolve();
             return r;
         }
+
+        public override int DistanceFor(DefenseLineFacts f, StepResult r, DefenseTemplateDef t) => Behind(f, t, f.coverDist);
     }
 
     /// <summary>"Traps on the way in": a few traps in front of the gate, where raiders walk and the colony's people don't.</summary>
@@ -189,7 +191,7 @@ namespace ColonyCouncil
             if (!posts)
             {
                 r.template = T("Rimfolk_Defense_TurretNest") ?? r.template;
-                r.distance = r.template != null ? Behind(f, r.template, r.template.behind + DefensePlanner.CoverRow(r.template.LayoutGrid)) : 6;
+                r.distance = r.template != null ? DistanceFor(f, r, r.template) : 6;
                 if (f.turretsWorking >= 2)
                 {
                     r.state = StepState.Done;
@@ -205,7 +207,7 @@ namespace ColonyCouncil
             }
             r.template = T("Rimfolk_Defense_Post") ?? r.template;
             if (!f.pre) r.label = "CC_DefLine_Guns_PostLabel".Translate();
-            r.distance = Behind(f, r.template, Mathf.Clamp(f.coverDist + 3, 8, 13));
+            r.distance = DistanceFor(f, r, r.template);
             if (!f.pre && off != null) r.notes.Add("CC_DefLine_Guns_TurretsOff".Translate(off).Resolve());
             else if (!f.pre && turret == null && f.line.aim != "archers") r.notes.Add("CC_DefLine_Guns_TurretResearch".Translate(DefenseLineReview.ResearchFor("Turret_MiniTurret")).Resolve());
             int far = f.firing.Count(p => p.sees && Mathf.Abs(f.line.Ahead(p.cell)) >= f.coverDist + 2);
@@ -219,6 +221,13 @@ namespace ColonyCouncil
             else if (far > 0) Band(r, far / 3f, "CC_DefLine_Guns_Posts".Translate(far).Resolve());
             if (r.state == StepState.Open) Blocked(r, f);
             return r;
+        }
+
+        /// <summary>A turret nest where its own layout puts its cover row; a post further back, out of the gate's reach.</summary>
+        public override int DistanceFor(DefenseLineFacts f, StepResult r, DefenseTemplateDef t)
+        {
+            if (t != null && t.kind == "nest") return Behind(f, t, t.behind + DefensePlanner.CoverRow(t.LayoutGrid));
+            return Behind(f, t, Mathf.Clamp(f.coverDist + 3, 8, 13));
         }
     }
 
@@ -312,7 +321,7 @@ namespace ColonyCouncil
         /// <summary>
         /// A killbox the line built from a plan that no longer suits the colony: laid out before plans were drawn for the
         /// colony (its last corner sees the shooters), or drawn for raiders without grenades, fewer shooters or smaller
-        /// raids than now. Says so, and offers to plan it again on the same gap; what stands where the new one wants it counts.
+        /// raids than now. Says so, and makes it the first plan "Plan it again" offers, drawn for the colony as it is now.
         /// </summary>
         private static void Outgrown(StepResult r, DefenseLineFacts f)
         {
@@ -334,12 +343,6 @@ namespace ColonyCouncil
             if (why == null) return;
             r.template = t;
             r.notes.Add(why);
-            var map = f.map;
-            var line = f.line;
-            var step = r;
-            r.fix = () => DefenseLineReview.PlanStep(map, line, step);
-            r.fixLabel = "CC_DefLine_Killbox_Again".Translate();
-            r.fixTip = "CC_DefLine_Killbox_Again_Tip".Translate();
         }
 
         /// <summary>Built by plan, or by hand: plenty of cover that sees the gate, and turrets or plenty of shooters.</summary>

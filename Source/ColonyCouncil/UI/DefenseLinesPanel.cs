@@ -459,6 +459,12 @@ namespace ColonyCouncil
                 buttons.Add(("CC_DefLine_PlanStep".Translate(), reason ?? "CC_DefLine_PlanStep_Tip".Translate(s.template.LabelNow).Resolve(),
                     () => DefenseLineReview.PlanStep(map, line, step), reason == null));
             }
+            if (s.state == StepState.Done)
+            {
+                s.choices ??= s.def.Worker.Choices(r.f, s);
+                if (s.choices.Count > 0)
+                    buttons.Add(((s.choices.Count > 1 ? "CC_DefLine_AgainMenu" : "CC_DefLine_Again").Translate(), "CC_DefLine_Again_Tip".Translate(), () => AgainMenu(r, s), true));
+            }
             if (s.fix != null && s.state != StepState.Skipped) buttons.Add((s.fixLabel, s.fixTip, s.fix, true));
             var look = s.look.IsValid ? s.look : line.gate;
             buttons.Add(("CC_Show".Translate(), "CC_DefLine_Show_Tip".Translate(), () => DefenseLineReview.Show(map, line, look), true));
@@ -479,6 +485,29 @@ namespace ColonyCouncil
             if (page != null) buttons.Add(("CC_ReadMore".Translate(), page.label.CapitalizeFirst(), () => MainTabWindow_Council.OpenAlmanac(page), true));
             y = ButtonRow(buttons, x, y, w, draw);
             return y + 4f;
+        }
+
+        /// <summary>A finished step's plans to place again: the one it has (drawn anew) or another; one the colony can't build yet says why.</summary>
+        private static void AgainMenu(DefenseLineReview r, StepResult s)
+        {
+            if (s.choices.Count == 1)
+            {
+                DefenseLineReview.PlanAgain(r.f, s, s.choices[0]);
+                return;
+            }
+            var opts = new List<FloatMenuOption>();
+            foreach (var t in s.choices)
+            {
+                string label = t.LabelCapNow;
+                var p = r.f.BestPlan(t);
+                if (p != null && p.Progress >= 0.85f) label = "CC_DefLine_Again_Built".Translate(label).Resolve();
+                string reason = t.UnavailableReason(r.f.map);
+                var pick = t;
+                opts.Add(reason != null
+                    ? new FloatMenuOption(label + " (" + reason + ")", null)
+                    : new FloatMenuOption(label, () => DefenseLineReview.PlanAgain(r.f, s, pick)));
+            }
+            Find.WindowStack.Add(new FloatMenu(opts));
         }
 
         private static float ButtonRow(List<(string label, string tip, System.Action act, bool enabled)> buttons, float x, float y, float w, bool draw, float height = ButtonH, GameFont font = GameFont.Small)

@@ -131,6 +131,8 @@ namespace ColonyCouncil
         public IntVec3 look = IntVec3.Invalid;
         /// <summary>Its disc's tooltip, made once per review.</summary>
         public string tip;
+        /// <summary>The plans a finished step offers to build again, made once per review (<see cref="DefenseStepWorker.Choices"/>).</summary>
+        public List<DefenseTemplateDef> choices;
 
         public bool Counts => state != StepState.Skipped && state != StepState.NotApplicable;
 
@@ -161,6 +163,26 @@ namespace ColonyCouncil
             r.template = Pick(f, def.templates);
             return r;
         }
+
+        /// <summary>
+        /// The plans a finished step can build again: the one it picked for the line first, then the rest of its own
+        /// that fit the colony's era. A step that picked no plan (the field of fire, a wall behind embrasures) has none.
+        /// </summary>
+        public virtual List<DefenseTemplateDef> Choices(DefenseLineFacts f, StepResult r)
+        {
+            var list = new List<DefenseTemplateDef>();
+            if (r.template == null) return list;
+            list.Add(r.template);
+            foreach (var n in def.templates ?? new List<string>())
+            {
+                var t = T(n);
+                if (t != null && t.EraFits && !list.Contains(t)) list.Add(t);
+            }
+            return list;
+        }
+
+        /// <summary>How far from the line one of the step's plans goes: the step's own distance, unless its worker places that plan elsewhere.</summary>
+        public virtual int DistanceFor(DefenseLineFacts f, StepResult r, DefenseTemplateDef t) => r.distance;
 
         /// <summary>
         /// How far behind the gate a plan goes: a drawn one where its own layout puts it (its lines are placed for that

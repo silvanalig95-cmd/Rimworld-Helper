@@ -77,6 +77,10 @@
   <CC_DefLine_AllDone>Every step of this line is done or set aside. The notes below are what's left to watch.</CC_DefLine_AllDone>
   <CC_DefLine_PlanStep>Plan this step</CC_DefLine_PlanStep>
   <CC_DefLine_PlanStep_Tip>Opens the planner with the {0} placed and turned for this line. Nothing is built until you click to place it.</CC_DefLine_PlanStep_Tip>
+  <CC_DefLine_Again>Plan it again</CC_DefLine_Again>
+  <CC_DefLine_AgainMenu>Plan it again...</CC_DefLine_AgainMenu>
+  <CC_DefLine_Again_Tip>Opens the planner with this step's plan placed and turned for the line once more, or with another plan for the same step. What already stands where it goes counts as built, and nothing is built until you click to place it.</CC_DefLine_Again_Tip>
+  <CC_DefLine_Again_Built>{0} (built here)</CC_DefLine_Again_Built>
   <CC_DefLine_Show_Tip>Takes the camera there and draws the line on the map: its span and gate, the kill zone, who sees the gate, the way round and what raiders would shelter behind.</CC_DefLine_Show_Tip>
   <CC_DefLine_Skip>Not for this line</CC_DefLine_Skip>
   <CC_DefLine_Skip_Tip>Set this step aside for this line. It stays on the ladder, crossed out, and you can bring it back.</CC_DefLine_Skip_Tip>
@@ -148,8 +152,6 @@
   <CC_DefLine_Killbox_Grenades>Raiders who throw grenades come now, and this {0} was drawn for raiders without them: its shooters stand within a throw of the doorway. Planned again, it's deeper.</CC_DefLine_Killbox_Grenades>
   <CC_DefLine_Killbox_Shooters>This {0} was drawn for {1} shooters, and its line can take {2} now. Planned again, the line is wider and the box deeper.</CC_DefLine_Killbox_Shooters>
   <CC_DefLine_Killbox_BigRaids>Raids are big now, and this {0} was drawn for smaller ones. Planned again, it gets a wider gap in the line and a longer way in, slowed every other cell.</CC_DefLine_Killbox_BigRaids>
-  <CC_DefLine_Killbox_Again>Plan it again</CC_DefLine_Killbox_Again>
-  <CC_DefLine_Killbox_Again_Tip>Opens the planner with the killbox drawn for the colony as it is now, on the same gap. What already stands where the new one wants it counts as built.</CC_DefLine_Killbox_Again_Tip>
   <CC_DefLine_Killbox_FitsIf>The {0} fits behind this gate if {1}.</CC_DefLine_Killbox_FitsIf>
   <CC_DefLine_Killbox_Mine>{0} cells are mined out</CC_DefLine_Killbox_Mine>
   <CC_DefLine_Killbox_Remove>{0} of your buildings are taken down</CC_DefLine_Killbox_Remove>
