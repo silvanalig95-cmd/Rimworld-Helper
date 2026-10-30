@@ -5,14 +5,16 @@
        the likelier the more it remembers in the colony's favor (World/FactionMemory.cs), and they add to what it
        remembers. An invitation to their feast or a wedding (a caravan to their town), an apprentice sent to learn from
        one of their masters (a caravan there, and time at the master's side), a dignitary to host (a fit bedroom, kept
-       for the stay), and refugees to see through (fed and sheltered for some days).
+       for the stay), and refugees to see through (fed and sheltered for some days). The guests of the last two eat at
+       the colony's table and sleep in its beds (Missions/Hosting.cs).
        Texts may use {A} (who dealt with the neighbor; the apprentice), {FACTION}, {PLACE} (their town) and {DEAD}
        (the bride or the host, the master, the dignitary, the refugees' spokesperson). {TALE} is the caravan's travel
        time to the town (invitation), the craft taught (apprentice), the room's impressiveness (dignitary), or how many
        come (refugees). {COUNT} is the gift. In terms, reminders and accepted lines, {ITEM} is the goods (the refugees'
        meals) and {DAYS} the time; in endings, {ITEM} is what was given. Lines are tagged with the mission
        (invitation, apprentice, dignitary, refugees), its variant (wedding, feast, midwinter; the craft: Crafting,
-       Cooking...; elder, official; fire, plague, famine, flood, winter, abandoned, war) and, for endings, how it ended. -->
+       Cooking...; elder, official; fire, plague, famine, flood, winter, abandoned, war), for endings how it ended, and
+       "ate" once the guests have eaten a meal of the colony's. -->
 
   <!-- ===================== An invitation ===================== -->
 
@@ -210,7 +212,7 @@
         <options>
           <li>
             <label>Accept the visit</label>
-            <outcome>The colony will host {DEAD}, and someone has already started sweeping.</outcome>
+            <outcome>The colony will host {DEAD}, who will expect the room to be ready on arrival.</outcome>
           </li>
           <li>
             <label>Decline</label>
@@ -220,13 +222,13 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>A bedroom with one bed nobody else sleeps in (no colonist's, no prisoner's, no sickbed), at least {TALE}, ready when {DEAD} arrives a couple of days after the colony agrees, and kept for {DEAD} until the stay ends, {DAYS} after the colony agrees. The room is looked at every hour of the stay.\n\nKept well, {DEAD} will leave a gift of about {COUNT} silver, and {FACTION} will hear good things. If there's no fit room when {DEAD} comes, {DEAD} leaves the next morning, slighted.</li>
+          <li>A bedroom with one bed nobody else sleeps in (no colonist's, no prisoner's, no sickbed), at least {TALE}, ready when {DEAD} arrives a couple of days after the colony agrees, and kept for {DEAD} until the stay ends, {DAYS} after the colony agrees. The bed is in {DEAD}'s name while {DEAD} stays, {DEAD} sleeps in it at night and eats the colony's best meals at its table (the food {DEAD} brought, when the stores have none), and the room is looked at every hour of the stay.\n\nKept well, {DEAD} will leave a gift of about {COUNT} silver, and {FACTION} will hear good things. If there's no fit room when {DEAD} comes, {DEAD} waits outside the colony until morning and leaves, slighted.</li>
         </terms>
         <accepted>
           <li>The colony will host {DEAD} of {FACTION}. Have a bedroom ready: at least {TALE}, with one bed nobody else uses.</li>
         </accepted>
         <ready>
-          <li>{DEAD} has arrived, and been shown to the room the colony set aside for {FACTION}'s guest. The stay ends in {DAYS}.</li>
+          <li>{DEAD} is here, and on the way to the room the colony set aside for {FACTION}'s guest. The stay ends in {DAYS}.</li>
         </ready>
         <reminder>
           <li>{DEAD} of {FACTION} arrives in {DAYS}. The room needs to be at least {TALE}, with one bed nobody else uses.</li>
@@ -236,9 +238,9 @@
           <li>[fair] {DEAD}'s visit</li>
         </doneTitles>
         <done>
-          <li>[honored] {DEAD} has gone home after a comfortable stay, leaving {ITEM} silver behind as thanks. {FACTION} will hear that the colony knows how to treat a guest.</li>
-          <li>[honored,elder] {DEAD} slept well, ate well, and spent the afternoons on a bench in the sun telling anyone who'd listen about the old days. {DEAD} left {ITEM} silver as thanks, and {FACTION} will hear that the colony honors its elders.</li>
-          <li>[fair] {DEAD} has gone home to {FACTION}. The room wasn't always ready during the stay, and {DEAD} noticed, but the visit went well enough.</li>
+          <li>[honored] {DEAD} is going home after a comfortable stay, and has left {ITEM} silver behind as thanks. {FACTION} will hear that the colony knows how to treat a guest.</li>
+          <li>[honored,elder,ate] {DEAD} slept in the room the colony kept and ate at its table, and is going home pleased. {DEAD} has left {ITEM} silver as thanks, and {FACTION} will hear that the colony honors its elders.</li>
+          <li>[fair] {DEAD} is going home to {FACTION}. The room wasn't always ready during the stay, and {DEAD} noticed, but the visit went well enough.</li>
         </done>
         <failTitles>
           <li>[noroom] No room for {DEAD}</li>
@@ -247,8 +249,8 @@
           <li>[cancelled] The visit</li>
         </failTitles>
         <fail>
-          <li>[noroom] {DEAD} of {FACTION} arrived to find no room fit for a guest, spent the night sitting up in a chair, and will leave in the morning.</li>
-          <li>[slighted] {DEAD} of {FACTION} has gone home early. The room kept for {DEAD} was hardly ever ready, and {DEAD} said so, at length, to anyone in earshot on the way out.</li>
+          <li>[noroom] {DEAD} of {FACTION} has come and found no room fit for a guest. {DEAD} will wait outside the colony until morning, and leave then.</li>
+          <li>[slighted] {DEAD} of {FACTION} is going home. The room kept for {DEAD} was hardly ever ready, and {FACTION} will hear about it.</li>
           <li>[harmed] {DEAD} of {FACTION} came as the colony's guest and was harmed here. {FACTION} will not forget it.</li>
         </fail>
         <cancelled>
@@ -301,7 +303,7 @@
       </li>
       <li Class="ColonyCouncil.MissionText">
         <terms>
-          <li>{TALE} people fed and sheltered at the colony for a few days. They arrive about a day after the colony agrees, and leave {DAYS} after it. Each day they need two meals each from the colony's stores (simple meals or better; raw food will do, ten for a meal), {ITEM} in all, and a roof: free beds or sleeping spots under a roof that nobody else uses, enough for all of them.\n\nThey have nothing to pay with. {FACTION} will remember who took them in.</li>
+          <li>{TALE} people fed and sheltered at the colony for a few days. They arrive about a day after the colony agrees, and leave {DAYS} after it. They eat at the colony's table from its stores whenever they're hungry, two or three meals each a day (simple meals or better; raw food will do when there are none), about {ITEM} in all. At night each sleeps in a free bed or sleeping spot under a roof that nobody else uses: enough for all of them. A day one of them is hungry and the stores have nothing, they eat the food they brought, and the day counts as short.\n\nThey have nothing to pay with. {FACTION} will remember who took them in.</li>
         </terms>
         <accepted>
           <li>The colony will take in {TALE} people from {PLACE}. Have meals in the stores, and free beds or sleeping spots under a roof for all of them: they arrive in about a day.</li>
@@ -310,17 +312,17 @@
           <li>The refugees from {PLACE} have come in, {DEAD} at their head, carrying what they could. They stay for {DAYS}.</li>
         </ready>
         <reminder>
-          <li>The refugees from {PLACE} arrive in {DAYS}. They'll need two meals each a day, and free beds or sleeping spots under a roof.</li>
+          <li>The refugees from {PLACE} arrive in {DAYS}. They'll need two or three meals each a day, and free beds or sleeping spots under a roof.</li>
         </reminder>
         <doneTitles>
           <li>[seen] The refugees go home</li>
           <li>[partly] The refugees go home</li>
         </doneTitles>
         <done>
-          <li>[seen] The refugees from {PLACE} have gone home, fed every day and dry every night of their stay. {DEAD} shook every hand in the colony before leaving, and {FACTION} will hear all of it.</li>
-          <li>[seen,fire] The burned-out families are on their way home to {PLACE}, where {FACTION} have the new roofs going up. {DEAD} walked at the back of the line, and stopped at the gate to look round once more.</li>
-          <li>[seen,winter] The refugees from {PLACE} are going home through the snow, fed and rested, warmer than they've been in weeks. {DEAD} thanked the colony on behalf of every one of them.</li>
-          <li>[partly] The refugees from {PLACE} have gone home. Some days were leaner than others and some nights colder, but they got through, and they're grateful for that.</li>
+          <li>[seen] The refugees from {PLACE} are going home, fed every day of their stay and in a bed under the colony's roofs every night. {FACTION} will hear all of it.</li>
+          <li>[seen,fire] The people the fire burned out are on their way home to {PLACE}, where {FACTION} have the new roofs going up.</li>
+          <li>[seen,winter] The refugees from {PLACE} are going home fed and rested, warmer than they've been in weeks. {FACTION} will hear who took them in.</li>
+          <li>[partly] The refugees from {PLACE} are going home. Some days the colony had too little for them, to eat or to sleep in, but they got through.</li>
         </done>
         <failTitles>
           <li>[hungry] The refugees leave</li>
@@ -328,7 +330,7 @@
           <li>[cancelled] The refugees</li>
         </failTitles>
         <fail>
-          <li>[hungry] The refugees from {PLACE} have gone, hungrier than they came and tired of sleeping rough. {DEAD} thanked the colony stiffly on behalf of {FACTION}, and didn't look back.</li>
+          <li>[hungry] The refugees from {PLACE} are leaving. Most days of their stay the colony had too little for them, to eat or to sleep in, and {FACTION} will remember it.</li>
           <li>[harmed] The refugees from {PLACE} came to the colony for shelter, and were hurt here instead. {FACTION} will remember where it happened.</li>
         </fail>
         <cancelled>

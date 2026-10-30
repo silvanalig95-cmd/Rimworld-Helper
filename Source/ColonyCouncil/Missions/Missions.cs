@@ -15,7 +15,7 @@ namespace ColonyCouncil
     // StoriesComponent): it checks the goals, ends the quest with success or failure, and shows the mission and its
     // progress on the World page. The first missions are in Workers_Missions.cs, the delivery missions told from data in
     // Workers_MissionDelivery.cs, and those that follow from what a people remembers (an invitation, an apprentice, a
-    // dignitary, refugees) in Workers_MissionRemembered.cs.
+    // dignitary, refugees) in Workers_MissionRemembered.cs; how the guests of the last two eat and sleep is in Hosting.cs.
 
     public enum MissionState
     {
@@ -93,6 +93,10 @@ namespace ColonyCouncil
         public float wait;
         /// <summary>The home it was taken on at (its uniqueID; -1 before that, or in an older save).</summary>
         public int mapId = -1;
+        /// <summary>Meals of the colony's that its guests have eaten (a dignitary, refugees: Hosting.cs).</summary>
+        public int meals;
+        /// <summary>What the guests went without since the day began (<see cref="Hosting.Lack"/>: food, a bed).</summary>
+        public int lacks;
 
         /// <summary>The home it's done at: the one it was taken on at while that's still there, else the busiest home.</summary>
         public Map Map
@@ -143,6 +147,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastLook, "lastLook", -1);
             Scribe_Values.Look(ref wait, "wait");
             Scribe_Values.Look(ref mapId, "mapId", -1);
+            Scribe_Values.Look(ref meals, "meals");
+            Scribe_Values.Look(ref lacks, "lacks");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (goals == null) goals = new List<MissionGoal>();
@@ -449,6 +455,8 @@ namespace ColonyCouncil
             var tags = new List<string>();
             if (!m.kind.NullOrEmpty()) tags.Add(m.kind);
             if (!m.variant.NullOrEmpty()) tags.Add(m.variant);
+            // Guests who ate at the colony's table (Hosting.cs): their letters may say so.
+            if (m.meals > 0) tags.Add("ate");
             return tags;
         }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A hosting mission's guest asleep (Source/ColonyCouncil/Missions/Hosting.cs): a dignitary in the bed kept for them,
+    a refugee in a free bed or on the floor without one. The game's own lying down, without looking for anything else
+    to do meanwhile; the mission's look gets them up once they've slept.
+  -->
+  <JobDef>
+    <defName>Council_GuestSleep</defName>
+    <driverClass>ColonyCouncil.JobDriver_GuestSleep</driverClass>
+    <reportString>sleeping.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

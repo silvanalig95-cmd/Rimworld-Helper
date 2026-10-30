@@ -1816,8 +1816,9 @@ medicine, cloth, firewood). The peoples that think best of the colony offer more
 wedding or midwinter (send at least two of your people there by caravan, and come home with gifts), an
 **apprenticeship** with one of their masters (a colonist stays at their town for a day and a half and comes back about
 two levels better at the craft), a **dignitary** to host for a few days (a bedroom of a set impressiveness with one
-bed nobody else uses, checked every hour of the stay), and **refugees** to see through (two meals each a day and a
-roof for a few days; they come from a fire, or from whatever runs in the region). Friendly peoples also ask the
+bed nobody else uses, checked every hour of the stay; they eat your stored meals at your table and sleep in that
+bed), and **refugees** to see through (two or three meals a day each and a bed for a few days, which they walk to and
+eat or sleep in themselves; they come from a fire, or from whatever runs in the region). Friendly peoples also ask the
 colony to **walk an old pilgrim home** by caravan, to **carry word** to a far town of another people, to **find a lost
 child** of theirs somewhere on the colony's land, or to send **hands for their harvest**; each remembers the colonist
 who did it, by name. Each shows up in the game's

@@ -386,7 +386,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A mission where the people's own come to the colony for some days (they're made when it's offered and kept in
-    /// the world until they arrive, <see cref="Mission.wait"/> days after the colony agrees).
+    /// the world until they arrive, <see cref="Mission.wait"/> days after the colony agrees). While they stay they eat
+    /// at the colony's table and sleep in the beds it keeps for them (<see cref="Hosting"/>).
     /// </summary>
     public abstract class HappeningWorker_MissionHost : HappeningWorker_Mission
     {
@@ -395,6 +396,9 @@ namespace ColonyCouncil
         protected IEnumerable<Pawn> Guests(Mission m) => m.group.Prepend(m.x).Where(p => p != null).Distinct();
 
         protected IEnumerable<Pawn> Here(Mission m, Map map) => Guests(m).Where(p => !p.Dead && p.Spawned && p.Map == map && p.Faction == m.faction);
+
+        /// <summary>One of this mission's guests.</summary>
+        protected static bool Ours(Mission m, Pawn p) => p != null && (p == m.x || m.group.Contains(p));
 
         public override bool Start(Mission m, Map map)
         {
@@ -412,12 +416,15 @@ namespace ColonyCouncil
             if (!line.NullOrEmpty()) Messages.Message(line, LookTargets.Invalid, MessageTypeDefOf.NeutralEvent, false);
         }
 
-        /// <summary>They walk in, and stay until the mission's end. False: they couldn't come.</summary>
+        /// <summary>They walk in with food enough for their stay, and stay until the mission's end. False: they couldn't come.</summary>
         protected bool Arrive(Mission m, Map map, IntVec3? spot, float hours)
         {
             var people = Guests(m).Where(p => !p.Dead && !p.Discarded && !p.Spawned).ToList();
             if (people.Count == 0) return false;
-            return Arrivals.Visit(people, map, m.faction, spot, Mathf.Max(4f, hours)) != null;
+            hours = Mathf.Max(4f, hours);
+            if (Arrivals.Visit(people, map, m.faction, spot, hours) == null) return false;
+            foreach (var p in people) Hosting.Provision(p, hours / 24f);
+            return true;
         }
 
         /// <summary>The mission's guests were harmed: most of them dead, or one of them taken prisoner.</summary>
@@ -429,20 +436,84 @@ namespace ColonyCouncil
             return dead * 2 > all.Count || all.Any(p => !p.Dead && p.IsPrisonerOfColony);
         }
 
-        /// <summary>The colony's guests eat at its table: nobody of theirs goes hungry for staying days instead of hours.</summary>
-        protected void Fed(Mission m, Map map, float below = 0.25f, float to = 0.5f)
+        /// <summary>Something of the colony's for this guest to eat now, or null.</summary>
+        protected abstract Thing FoodFor(Mission m, Map map, Pawn p);
+
+        /// <summary>The bed this guest sleeps in tonight, or null.</summary>
+        protected abstract Building_Bed BedFor(Mission m, Map map, Pawn p);
+
+        /// <summary>
+        /// Every look while they stay: the hungry go and eat the colony's food at its table (with none for them, what they
+        /// brought), anyone off to bed hungry has supper first, at night each lies down in the bed kept for them (or on
+        /// the floor with none), and once they've slept they get up, to breakfast if they're hungry. A guest no longer
+        /// here gives their bed back. Returns what someone went without.
+        /// </summary>
+        protected Hosting.Lack Tend(Mission m, Map map)
         {
-            foreach (var p in Here(m, map))
+            var lack = Hosting.Lack.None;
+            foreach (var p in Guests(m).ToList())
             {
-                var food = p.needs?.food;
-                if (food != null && food.CurLevelPercentage < below) food.CurLevelPercentage = to;
+                if (p.Dead || !p.Spawned || p.Map != map || p.Faction != m.faction)
+                {
+                    // On the road again, or dead: the bed they had goes back to the colony.
+                    Hosting.GiveBack(p);
+                    continue;
+                }
+                float food = p.needs?.food?.CurLevelPercentage ?? 1f;
+                Thing ours = null;
+                bool looked = false;
+                // Hungry with nothing of the colony's to eat: they eat what they brought, and the day goes short.
+                if (food < Hosting.PackBelow && p.Awake() && !Hosting.EatingOurs(p))
+                {
+                    ours = FoodFor(m, map, p);
+                    looked = true;
+                    if (ours == null) lack |= Hosting.Lack.Food;
+                }
+                bool sleepy = Hosting.WantsSleep(p);
+                if (Hosting.LyingAwake(p) && !sleepy)
+                {
+                    // Slept: up, and to breakfast if they're hungry.
+                    if (food < Hosting.EatBelow)
+                    {
+                        if (!looked) ours = FoodFor(m, map, p);
+                        if (ours != null && Hosting.Eat(p, ours, m)) continue;
+                    }
+                    Hosting.GetUp(p);
+                    continue;
+                }
+                if (!Hosting.Free(p)) continue;
+                if (food < Hosting.EatBelow || sleepy && food < Hosting.SupperBelow)
+                {
+                    if (!looked) ours = FoodFor(m, map, p);
+                    if (ours != null && Hosting.Eat(p, ours, m)) continue;
+                    // Nothing of the colony's: what they brought, once they're hungry, or before they sleep hungry.
+                    if (food < Hosting.PackBelow || sleepy)
+                    {
+                        if (ours == null) lack |= Hosting.Lack.Food;
+                        var pack = Hosting.Pack(p);
+                        if (pack != null && Hosting.Eat(p, pack, null)) continue;
+                    }
+                }
+                if (!sleepy) continue;
+                var bed = BedFor(m, map, p);
+                if (bed != null && Hosting.Sleep(p, bed)) continue;
+                lack |= Hosting.Lack.Bed;
+                Hosting.SleepRough(p);
             }
+            return lack;
         }
+
+        /// <summary>The stay is over: those still here set off home now (the mission's end gives their beds back).</summary>
+        protected void SeeOff(Mission m, Map map) => Arrivals.SendAway(Here(m, map).ToList());
 
         public override void Release(Mission m)
         {
+            var map = m.Map;
             foreach (var p in Guests(m).ToList())
             {
+                // Up from where they lay, and the bed they had goes back to the colony.
+                Hosting.GetUp(p);
+                Hosting.GiveBack(p, map);
                 if (p.Dead) continue;
                 // Never came (the offer was turned down, or ran out): they were only ever names.
                 if (!p.Spawned && m.started < 0 && p.GetCaravan() == null) Arrivals.Discard(p);
@@ -456,6 +527,9 @@ namespace ColonyCouncil
             return here.Count > 0 ? new LookTargets(here) : LookTargets.Invalid;
         }
 
+        /// <summary>"Meals they have eaten from the colony's stores: 5." once they're here.</summary>
+        protected static string MealsText(Mission m) => "CC_Mission_Host_Meals".Translate(m.meals).Resolve();
+
         protected static Pawn Make(Faction f, FloatRange ages)
         {
             var kind = Arrivals.PersonKind(f);
@@ -468,8 +542,9 @@ namespace ColonyCouncil
     /// <summary>
     /// A dignitary of the people (an elder, an envoy of rank, a lord's kin) comes to stay a few days, and asks for a
     /// bedroom fit for them: a room with one bed nobody else sleeps in, at least so impressive, ready when they come and
-    /// kept for them while they stay (checked every hour). Kept well, they leave a gift and speak well of the colony;
-    /// not there at all, they leave the next morning, slighted.
+    /// kept for them while they stay (checked every hour). The bed is in their name for the stay, they sleep in it at
+    /// night and eat the colony's finest meals at its table. Kept well, they leave a gift and speak well of the colony;
+    /// not there at all, they wait outside until morning and leave, slighted.
     /// </summary>
     public class HappeningWorker_MissionDignitary : HappeningWorker_MissionHost
     {
@@ -479,25 +554,47 @@ namespace ColonyCouncil
 
         protected override bool Possible(Map map) => MissionPeoples.Grateful() != null;
 
-        /// <summary>The best room fit for the guest: a bedroom with one bed, unowned and for guests' use, at least <paramref name="target"/> impressive.</summary>
-        public static Room GuestRoom(Map map, int target)
+        /// <summary>
+        /// The best room fit for the guest: a bedroom with one bed, nobody's or already <paramref name="guest"/>'s, at least
+        /// <paramref name="target"/> impressive.
+        /// </summary>
+        public static Room GuestRoom(Map map, int target, Pawn guest = null)
         {
             Room best = null;
             float bestImp = -1f;
             foreach (var room in RoomUtil.ColonyRooms(map))
             {
-                if (room.Role != RoomRoleDefOf.Bedroom || room.IsPrisonCell) continue;
-                var beds = room.ContainedBeds.ToList();
-                if (beds.Count != 1) continue;
-                var bed = beds[0];
-                if (bed.Medical || bed.ForPrisoners || bed.ForSlaves || bed.Faction != Faction.OfPlayer || bed.OwnersForReading.Count > 0) continue;
-                if (bed.def.building?.bed_humanlike != true) continue;
-                float imp = RoomUtil.Impressiveness(room);
-                if (imp < target || imp <= bestImp) continue;
+                if (!Fits(room, target, guest, out float imp) || imp <= bestImp) continue;
                 best = room;
                 bestImp = imp;
             }
             return best;
+        }
+
+        /// <summary>
+        /// A bedroom with one bed for the guest's use alone: the colony's, not a prisoner's, slave's or sickbed, not one of
+        /// Hospitality's guest beds (those are for its own guests), owned by nobody or by <paramref name="guest"/>.
+        /// </summary>
+        private static bool Fits(Room room, int target, Pawn guest, out float imp)
+        {
+            imp = 0f;
+            if (room == null || room.Dereferenced || room.PsychologicallyOutdoors || room.Role != RoomRoleDefOf.Bedroom || room.IsPrisonCell) return false;
+            var beds = room.ContainedBeds.ToList();
+            if (beds.Count != 1) return false;
+            var bed = beds[0];
+            if (bed.Medical || bed.ForPrisoners || bed.ForSlaves || bed.Faction != Faction.OfPlayer || GuestBeds.IsGuestBed(bed)) return false;
+            if (bed.def.building?.bed_humanlike != true || bed.OwnersForReading.Any(o => o != guest)) return false;
+            imp = RoomUtil.Impressiveness(room);
+            return imp >= target;
+        }
+
+        /// <summary>The room the guest sleeps in: the one whose bed is theirs while it stays fit, else the best other.</summary>
+        private static Room RoomFor(Map map, Mission m)
+        {
+            var own = m.x?.ownership?.OwnedBed;
+            var room = own != null && own.Spawned && own.Map == map ? own.GetRoom() : null;
+            if (room != null && Fits(room, m.target, m.x, out _)) return room;
+            return GuestRoom(map, m.target, m.x);
         }
 
         private static string StageOf(int target) => RoomUtil.StageLabel(RoomStatDefOf.Impressiveness, target);
@@ -545,8 +642,9 @@ namespace ColonyCouncil
             {
                 Remind(m, map, now);
                 if (now < m.due) return;
-                var room = GuestRoom(map, m.target);
-                float hours = room != null ? (m.deadline - now) / (float)GenDate.TicksPerHour : 12f;
+                var room = GuestRoom(map, m.target, x);
+                // Nowhere fit for them: they wait outside the colony until morning, and leave then.
+                float hours = room != null ? (m.deadline - now) / (float)GenDate.TicksPerHour : Hosting.HoursToMorning(map);
                 IntVec3? spot = null;
                 if (room != null)
                 {
@@ -560,13 +658,15 @@ namespace ColonyCouncil
                 }
                 if (room == null)
                 {
-                    // Nowhere fit for them: they stay the night, and leave in the morning.
                     m.stage = 2;
                     Missions.Goodwill(m, -m.penalty);
                     FactionMemory.Note(m.faction, "slighted", m.name);
                     Missions.Finish(m, MissionState.Failed, "noroom", null, new LookTargets(x));
                     return;
                 }
+                // The room is theirs for the stay: its bed in their name, so nobody else takes it.
+                var bed = room.ContainedBeds.FirstOrDefault();
+                if (bed != null && !bed.OwnersForReading.Contains(x)) x.ownership?.ClaimBedIfNonMedical(bed);
                 m.stage = 1;
                 m.lastLook = now;
                 string line = Line(More?.ready, m, map, null, TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
@@ -574,13 +674,14 @@ namespace ColonyCouncil
                 if (!line.NullOrEmpty()) Messages.Message(line, new LookTargets(x), MessageTypeDefOf.PositiveEvent, false);
                 return;
             }
-            // Every hour of the stay, the room is looked at, and the guest eats at the colony's table.
+            // Every look of the stay: the guest eats at the colony's table, and sleeps in the room kept for them.
+            Tend(m, map);
+            // Every hour, the room is looked at.
             if (now - m.lastLook >= GenDate.TicksPerHour)
             {
                 m.lastLook = now;
                 m.tally++;
-                if (GuestRoom(map, m.target) == null) m.misses++;
-                Fed(m, map, 0.4f, 0.9f);
+                if (GuestRoom(map, m.target, x) == null) m.misses++;
             }
             // Gone before the end (a fight drove them off): the stay is judged on the hours there were.
             bool gone = !x.Spawned || x.Map != map;
@@ -600,48 +701,60 @@ namespace ColonyCouncil
                 if (thought != null)
                     foreach (var p in StorytellerEvents.Adults(map).ToList())
                         CouncilGameComponent.GiveThought(p, thought);
+                SeeOff(m, map);
                 Missions.Finish(m, MissionState.Done, "honored", m.reward.ToString(), look);
             }
             else if (m.misses * 4 <= Mathf.Max(1, m.tally))
             {
                 Missions.Goodwill(m, m.goodwill / 2);
                 FactionMemory.Note(m.faction, "dignitary", m.name, 6);
+                SeeOff(m, map);
                 Missions.Finish(m, MissionState.Done, "fair", null, look, LetterDefOf.NeutralEvent);
             }
             else
             {
                 Missions.Goodwill(m, -m.penalty);
                 FactionMemory.Note(m.faction, "slighted", m.name);
+                SeeOff(m, map);
                 Missions.Finish(m, MissionState.Failed, "slighted", null, look);
             }
+        }
+
+        /// <summary>The colony's finest meal for them.</summary>
+        protected override Thing FoodFor(Mission m, Map map, Pawn p) => Hosting.Meal(p, true);
+
+        protected override Building_Bed BedFor(Mission m, Map map, Pawn p)
+        {
+            var bed = RoomFor(map, m)?.ContainedBeds.FirstOrDefault();
+            if (bed != null) return bed;
+            // No room fit for them tonight: a bed nobody uses, if there's one.
+            return Hosting.Beds(map, o => o == p, p).OrderBy(b => b.Position.DistanceToSquared(p.Position)).FirstOrDefault();
         }
 
         public override string Status(Mission m)
         {
             var map = m.Map;
-            bool ready = map != null && GuestRoom(map, m.target) != null;
+            bool ready = map != null && GuestRoom(map, m.target, m.x) != null;
             string room = (ready ? "CC_Mission_Dignitary_RoomReady" : "CC_Mission_Dignitary_RoomNot").Translate(m.tale ?? "?").Resolve();
             if (m.stage == 0)
                 return "CC_Mission_Dignitary_Coming".Translate(m.name ?? "?", TextUtil.DaysString(Mathf.Max(0, m.due - Find.TickManager.TicksGame))).Resolve() + " " + room;
-            return "CC_Mission_Dignitary_Staying".Translate(m.name ?? "?", m.misses).Resolve() + " " + room;
+            return "CC_Mission_Dignitary_Staying".Translate(m.name ?? "?", m.misses).Resolve() + " " + room + " " + MealsText(m);
         }
     }
 
     /// <summary>
     /// People of a friendly town who lost their homes (to fire, or to whatever runs in the region: a plague, a famine, a
-    /// flood, a hard winter, a war) ask the colony to see them through a few days: two meals a day each from the colony's
-    /// stores (raw food will do, ten for a meal), and a roof: beds or sleeping spots nobody else uses, enough for all of
-    /// them. Each day is counted fed and sheltered, or not. Nobody starves for it: a day without food from the colony,
-    /// they eat what little they carried.
+    /// flood, a hard winter, a war) ask the colony to see them through a few days: fed from its stores (they eat at its
+    /// table when hungry, simple meals or better, raw food when there are none) and sheltered (a bed or sleeping spot
+    /// under a roof nobody else uses for each, slept in at night). Each day is counted fed and sheltered, or not: short
+    /// when one of them was hungry with nothing of the colony's to eat, or had no bed for the night. Nobody starves for
+    /// it: they came with food enough for the stay, and eat it when the colony has none for them.
     /// </summary>
     public class HappeningWorker_MissionRefugees : HappeningWorker_MissionHost
     {
         protected override string Kind => "refugees";
 
         protected override float RestDays => 60f;
-
-        /// <summary>Raw food for one meal.</summary>
-        private const int RawPerMeal = 10;
 
         /// <summary>The trouble in the region the refugees fled, as a tag, and its people (null: a fire at home).</summary>
         private static string Fled(out Faction f)
@@ -687,31 +800,8 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>Sleeping places nobody else uses (beds, bedrolls, sleeping spots), under a roof, for the colony's guests.</summary>
-        public static int FreeBeds(Map map, out IntVec3 spot)
-        {
-            int n = 0;
-            spot = IntVec3.Invalid;
-            int best = 0;
-            foreach (var room in RoomUtil.ColonyRooms(map))
-            {
-                if (room.IsPrisonCell || room.OpenRoofCount > 0) continue;
-                int here = 0;
-                foreach (var bed in room.ContainedBeds)
-                {
-                    if (bed.Medical || bed.ForPrisoners || bed.ForSlaves || bed.Faction != Faction.OfPlayer || bed.def.building?.bed_humanlike != true) continue;
-                    if (bed.OwnersForReading.Count >= bed.SleepingSlotsCount) continue;
-                    here += Mathf.Max(0, bed.SleepingSlotsCount - bed.OwnersForReading.Count);
-                }
-                n += here;
-                if (here > best)
-                {
-                    best = here;
-                    spot = room.Cells.RandomElementWithFallback(IntVec3.Invalid);
-                }
-            }
-            return n;
-        }
+        /// <summary>The beds and sleeping spots the refugees may sleep in (<see cref="Hosting.Beds"/>): free, or already one of theirs.</summary>
+        private static List<Building_Bed> Beds(Mission m, Map map) => Hosting.Beds(map, o => Ours(m, o), m.x);
 
         protected override bool Possible(Map map)
         {
@@ -745,7 +835,8 @@ namespace ColonyCouncil
             m.wait = Rand.Range(0.6f, 1.2f);
             float stay = Rand.Range(3f, 4f);
             m.days = m.wait + stay;
-            m.goals.Add(new MissionGoal { what = "meals", count = 2 * n * Mathf.CeilToInt(stay) });
+            // Eating whenever they're hungry (and before bed when they would sleep hungry), each eats two or three meals a day.
+            m.goals.Add(new MissionGoal { what = "meals", count = Mathf.CeilToInt(2.5f * n * stay) });
             m.goodwill = 15;
             m.penalty = 5;
             Fill(m, ctx);
@@ -772,7 +863,7 @@ namespace ColonyCouncil
             {
                 Remind(m, map, now);
                 if (now < m.due) return;
-                FreeBeds(map, out var spot);
+                var spot = Hosting.Spot(Beds(m, map), map);
                 if (!Arrive(m, map, spot.IsValid ? spot : GatheringSpot(map), (m.deadline - now) / (float)GenDate.TicksPerHour))
                 {
                     Missions.Finish(m, MissionState.Failed, "ended", null);
@@ -780,14 +871,15 @@ namespace ColonyCouncil
                 }
                 m.stage = 1;
                 m.lastLook = now;
+                m.lacks = 0;
                 string line = Line(More?.ready, m, map, null, TextUtil.DaysString(Mathf.Max(0, m.deadline - now)));
-                // At once, not in the evening's news: their meals are counted from now on.
+                // At once, not in the evening's news: their days are counted from now on.
                 if (!line.NullOrEmpty()) Messages.Message(line, Targets(m), MessageTypeDefOf.NeutralEvent, false);
                 return;
             }
             var here = Here(m, map).ToList();
-            // Nobody starves for it: a day without the colony's food, they get by on what they carried.
-            Fed(m, map, 0.25f, 0.4f);
+            // They eat at the colony's table and sleep in its beds; what they went without is kept for the day.
+            m.lacks |= (int)Tend(m, map);
             if (now - m.lastLook >= GenDate.TicksPerDay)
             {
                 m.lastLook += GenDate.TicksPerDay;
@@ -795,6 +887,8 @@ namespace ColonyCouncil
             }
             // All of them gone before the end (a fight drove them off): judged on the days there were.
             if (now < m.deadline && here.Count > 0) return;
+            // The last part of a day counts too: half a day or more of it, or any part of it they went without in.
+            if (m.lacks != 0 || now - m.lastLook >= GenDate.TicksPerDay / 2) Day(m, map, here);
             if (m.tally == 0 && m.misses == 0)
             {
                 Missions.Finish(m, MissionState.Failed, "ended", null);
@@ -809,34 +903,36 @@ namespace ColonyCouncil
                 if (thought != null)
                     foreach (var p in StorytellerEvents.Adults(map).ToList())
                         CouncilGameComponent.GiveThought(p, thought);
+                SeeOff(m, map);
                 Missions.Finish(m, MissionState.Done, "seen", null, look);
             }
             else if (m.tally >= m.misses && m.tally > 0)
             {
                 Missions.Goodwill(m, m.goodwill / 3);
                 FactionMemory.Note(m.faction, "refugees", m.place, 8);
+                SeeOff(m, map);
                 Missions.Finish(m, MissionState.Done, "partly", null, look, LetterDefOf.NeutralEvent);
             }
             else
             {
                 Missions.Goodwill(m, -m.penalty);
                 FactionMemory.Note(m.faction, "unfed", m.place);
+                SeeOff(m, map);
                 Missions.Finish(m, MissionState.Failed, "hungry", null, look);
             }
         }
 
-        /// <summary>A day of their stay: two meals each from the stores, and a roof for everyone. Told when either falls short.</summary>
+        /// <summary>
+        /// A day of their stay: fed (nobody was hungry with nothing of the colony's to eat) and sheltered (everyone had a
+        /// bed when they lay down, and there are still enough). Told when either falls short.
+        /// </summary>
         private void Day(Mission m, Map map, List<Pawn> here)
         {
+            var lack = (Hosting.Lack)m.lacks;
+            m.lacks = 0;
             if (here.Count == 0) return;
-            int need = here.Count * 2;
-            int got = Missions.Take(map, "meals", need);
-            if (got < need) got += Missions.Take(map, "rawfood", (need - got) * RawPerMeal) / RawPerMeal;
-            bool fed = got >= need;
-            bool roofed = FreeBeds(map, out _) >= here.Count;
-            if (fed)
-                foreach (var p in here)
-                    if (p.needs?.food != null) p.needs.food.CurLevelPercentage = 1f;
+            bool fed = (lack & Hosting.Lack.Food) == 0;
+            bool roofed = (lack & Hosting.Lack.Bed) == 0 && Hosting.Slots(Beds(m, map)) >= here.Count;
             if (fed && roofed)
             {
                 m.tally++;
@@ -845,6 +941,19 @@ namespace ColonyCouncil
             m.misses++;
             string key = !fed && !roofed ? "CC_Mission_Refugees_Neither" : !fed ? "CC_Mission_Refugees_Hungry" : "CC_Mission_Refugees_NoRoof";
             Messages.Message(key.Translate(m.place ?? m.faction?.Name ?? "?").Resolve(), new LookTargets(here), MessageTypeDefOf.NegativeEvent, false);
+        }
+
+        /// <summary>The plainest meal first (they ask to be fed, not feasted), else raw food from the stores.</summary>
+        protected override Thing FoodFor(Mission m, Map map, Pawn p) => Hosting.Meal(p, false) ?? Hosting.Raw(p);
+
+        /// <summary>The bed they had last night; else a bed to themselves (single ones first, then the nearest); else a free side of another refugee's.</summary>
+        protected override Building_Bed BedFor(Mission m, Map map, Pawn p)
+        {
+            var beds = Beds(m, map);
+            var own = p.ownership?.OwnedBed;
+            if (own != null && beds.Contains(own)) return own;
+            return beds.Where(b => b.OwnersForReading.Count == 0).OrderBy(b => b.SleepingSlotsCount).ThenBy(b => b.Position.DistanceToSquared(p.Position)).FirstOrDefault()
+                   ?? beds.Where(b => b.OwnersForReading.Count < b.SleepingSlotsCount && Hosting.CanShare(b, p)).OrderBy(b => b.Position.DistanceToSquared(p.Position)).FirstOrDefault();
         }
 
         private static IntVec3? GatheringSpot(Map map)
@@ -857,10 +966,10 @@ namespace ColonyCouncil
         {
             int now = Find.TickManager.TicksGame;
             var map = m.Map;
-            int beds = map == null ? 0 : FreeBeds(map, out _);
+            int beds = map == null ? 0 : Hosting.Slots(Beds(m, map));
             string roof = "CC_Mission_Refugees_Beds".Translate(beds, m.target).Resolve();
             if (m.stage == 0) return "CC_Mission_Refugees_Coming".Translate(m.target, TextUtil.DaysString(Mathf.Max(0, m.due - now))).Resolve() + " " + roof;
-            return "CC_Mission_Refugees_Staying".Translate(m.tally, m.misses).Resolve() + " " + roof;
+            return "CC_Mission_Refugees_Staying".Translate(m.tally, m.misses).Resolve() + " " + roof + " " + MealsText(m);
         }
     }
 }
