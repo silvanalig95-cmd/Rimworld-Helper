@@ -751,10 +751,14 @@
         <options>
           <li>
             <label>Bring {X_objective} in</label>
-            <outcome>{X_nameDef} got a seat near the fire, a bowl of whatever was hot and a blanket for the night, and {A_nameDef} sat up talking with {X_objective} until late.</outcome>
+            <outcome>{X_nameDef} got a seat near the fire and a warm corner indoors for the night, and {A_nameDef} sat up talking with {X_objective} until late.</outcome>
+            <outcomes>
+              <li>[hot] {X_nameDef} got a seat near the fire, a bowl of whatever was hot and a warm corner indoors for the night, and {A_nameDef} sat up talking with {X_objective} until late.</li>
+            </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_MidwinterGuest</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><steward>false</steward><to>Stranger</to><label>a bowl of something hot for {X_nameDef}</label><hours>0~23</hours><eat>true</eat><ifHave>true</ifHave></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><sit>true</sit><sitBy>Fire</sitBy></li>
             </effects>
             <ways><openness>2</openness><mercy>1</mercy></ways>
@@ -785,8 +789,8 @@
         <outcomes>
           <li>[soldier] {A_nameDef} sat up late with the guest, trading soldiering stories, and told {X_nameDef} a few the colony had never heard.</li>
           <li>[outlaw] Late in the night, with only the guest to hear it, {A_nameDef} talked about {A_possessive} outlaw years and told {X_nameDef} things {A_pronoun} had never told anyone here.</li>
-          <li>[noble] Wrapped in a blanket, {X_nameDef} listened until late while {A_nameDef} talked about the great house {A_pronoun} grew up in, and the winters there, with servants to keep every fire going.</li>
-          <li>[healer] {A_nameDef} warmed {X_nameDef}'s hands with a hot stone wrapped in cloth, an old healer's trick, and the two of them talked until late.</li>
+          <li>[noble] {X_nameDef} listened until late while {A_nameDef} talked about the great house {A_pronoun} grew up in, and the winters there, with servants to keep every fire going.</li>
+          <li>[healer] {A_nameDef} rubbed the feeling back into {X_nameDef}'s hands, an old healer's trick, and the two of them talked until late.</li>
           <li>[scholar] {A_nameDef} and {X_nameDef} argued happily about the winter stars until the fire was down to embers.</li>
           <li>[farmer] {A_nameDef} and {X_nameDef} talked seed and soil until late, the way farmers do in winter when there's nothing in the ground to tend.</li>
           <li>[trader] By the end of the evening, {A_nameDef} had got every scrap of news about prices on the roads out of {X_nameDef}, and given away none of the colony's.</li>

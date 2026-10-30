@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What visitors do at the colony for an answer (Source/ColonyCouncil/Happenings/VisitorServices.cs). -->
+
+  <!-- What they're doing, on the pawn's card -->
+  <CC_Service_Report_Mend>mending {THING}.</CC_Service_Report_Mend>
+  <CC_Service_Report_Dose>giving {OTHER_nameDef} a dose.</CC_Service_Report_Dose>
+  <CC_Service_Report_Hold>standing still for {OTHER_nameDef}.</CC_Service_Report_Hold>
+
+  <!-- A tinker paid to mend: {1} the things mended or to mend, {2} of how many -->
+  <CC_Service_Mend_Begin>{PAWN_nameDef} sets to work on the colony's worn things, {1} of them.</CC_Service_Mend_Begin>
+  <CC_Service_Mend_Part>{PAWN_nameDef} mended {1} of the colony's {2} worn things before {PAWN_pronoun} had to stop.</CC_Service_Mend_Part>
+  <CC_Service_Mend_None>{PAWN_nameDef} went on without mending any of the colony's worn things.</CC_Service_Mend_None>
+
+  <!-- A doctor paid for doses: {1} the doses given or to give, {2} of how many -->
+  <CC_Service_Dose_Begin>{PAWN_nameDef} goes round the colony with {PAWN_possessive} doses, {1} to give.</CC_Service_Dose_Begin>
+  <CC_Service_Dose_Part>{PAWN_nameDef} gave {1} of the colony's {2} people their dose; the rest weren't to be found in time.</CC_Service_Dose_Part>
+  <CC_Service_Dose_None>{PAWN_nameDef} went on without giving anyone a dose.</CC_Service_Dose_None>
+
+  <!-- A guest taken in for the night: {1} the room -->
+  <CC_Service_Lodge>{PAWN_nameDef} beds down in a warm corner of the {1}.</CC_Service_Lodge>
+  <CC_Service_Lodge_Room>room</CC_Service_Lodge_Room>
+  <CC_Service_Lodge_Gone>{PAWN_nameDef} set off before it was light.</CC_Service_Lodge_Gone>
+
+</LanguageData>

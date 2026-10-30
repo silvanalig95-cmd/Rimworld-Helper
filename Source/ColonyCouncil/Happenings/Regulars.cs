@@ -222,6 +222,8 @@ namespace ColonyCouncil
             {
                 case 0:
                     if (!byDefault) Regulars.Warm(ctx.stranger);
+                    // Their evening at the colony's fire: they stay for it.
+                    VisitorServices.StayFor(ctx.stranger, ctx.plays);
                     break;
                 case 1:
                 case 2:

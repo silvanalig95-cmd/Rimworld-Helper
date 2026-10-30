@@ -48,11 +48,12 @@
             <outcome>{X_nameDef} is given a seat by the fire and the evening. {A_nameDef} comes away with something learned.</outcome>
             <outcomes>
               <li>[kindred] {X_nameDef} and {A_nameDef} talked until the fire was embers, as before.</li>
-              <li>[tinker] {X_nameDef} spent the evening at the bench with {A_nameDef}, showing a trick with the awl that {A_nameDef} will use for years.</li>
-              <li>[teller] {X_nameDef} told the new tales at the fire, and the old favourite once more for the children.</li>
+              <li>[tinker] {X_nameDef} spent the evening by the fire with {A_nameDef}, showing a trick of the trade that {A_nameDef} will use for years.</li>
+              <li>[teller] {X_nameDef} told the new tales at the fire, and the old favourite once more.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an evening by the fire with {X_nameDef}</label><guests>stranger</guests><guestCount>1</guestCount><organizer>A</organizer></li>
             </effects>
             <ways><openness>1</openness></ways>
           </li>
@@ -76,6 +77,9 @@
           <li>
             <label>Not this time</label>
             <outcome>{X_nameDef} nodded, shouldered the pack, and went on down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
             <ways><openness>-1</openness></ways>
           </li>
         </options>

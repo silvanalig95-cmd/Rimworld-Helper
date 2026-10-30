@@ -10,13 +10,21 @@ namespace ColonyCouncil
     /// <summary>
     /// What an errand takes from the stores (DilemmaEffect_CarryOut): the same things an answer's own taking would take
     /// (DilemmaEffect_Consume and the world events' medicine and silver), in the same order: the plainest medicine first,
-    /// raw food in storage, silver and other things wherever they lie in the colony, never anything forbidden.
+    /// raw food in storage, silver and other things wherever they lie in the colony, never anything forbidden. A coat is
+    /// the plainest outer wear in storage. Several kinds joined by '+' ("meals+coat") are one of each, carried in turn by
+    /// the same carrier, so one errand hands them all over: its count is how many kinds there are.
     /// </summary>
     public static class PlayCarry
     {
-        /// <summary>The thing an errand's word names: silver, wood, a defName; the event's own thing when empty; none for a kind (raw food, medicine, meals).</summary>
+        public const string Coat = "coat";
+
+        /// <summary>The kinds of an errand that carries one of each ("meals+coat"), in the order they go; null for one kind.</summary>
+        public static string[] Parts(string what) => what != null && what.IndexOf('+') >= 0 ? what.Split('+') : null;
+
+        /// <summary>The thing an errand's word names: silver, wood, a defName; the event's own thing when empty; none for a kind (raw food, medicine, meals, a coat).</summary>
         public static ThingDef DefOf(string what, ThingDef fallback)
         {
+            if (Parts(what) != null) return null;
             switch (what)
             {
                 case "silver": return ThingDefOf.Silver;
@@ -24,9 +32,23 @@ namespace ColonyCouncil
                 case "rawfood":
                 case "medicine":
                 case "meals":
+                case Coat:
                     return null;
             }
             return what.NullOrEmpty() ? fallback : DefDatabase<ThingDef>.GetNamedSilentFail(what);
+        }
+
+        /// <summary>
+        /// A coat that can be given away: outer wear for the body (a parka, a duster, a cloak) in storage, not forbidden,
+        /// not biocoded to someone.
+        /// </summary>
+        public static bool IsCoat(Thing t)
+        {
+            var ap = t?.def?.apparel;
+            if (ap?.layers == null || ap.bodyPartGroups == null || !ap.layers.Contains(ApparelLayerDefOf.Shell) || !ap.bodyPartGroups.Contains(BodyPartGroupDefOf.Torso)) return false;
+            if (!t.Spawned || t.IsForbidden(Faction.OfPlayer) || !t.IsInAnyStorage()) return false;
+            var code = t.TryGetComp<CompBiocodable>();
+            return code == null || !code.Biocoded;
         }
 
         /// <summary>Raw food people can eat, sitting in storage: meat, vegetables, berries.</summary>
@@ -57,6 +79,8 @@ namespace ColonyCouncil
         public static IEnumerable<Thing> Stock(Map map, string what, ThingDef def)
         {
             if (map == null) return Enumerable.Empty<Thing>();
+            var parts = Parts(what);
+            if (parts != null) return parts.SelectMany(part => Stock(map, part, null));
             switch (what)
             {
                 // Food carried out to someone else: what nobody would mind being given first, human and insect meat last.
@@ -64,13 +88,23 @@ namespace ColonyCouncil
                     return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(IsRawFood).OrderBy(Unwelcome);
                 case "medicine": return DilemmaEffect_Consume.Medicine(map);
                 case "meals": return PlaySpots.Meals(map).OrderBy(Unwelcome);
+                // The plainest first: one nobody died in before one somebody did, then the cheapest.
+                case Coat:
+                    return map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel).Where(IsCoat)
+                        .OrderBy(t => t is Apparel a && a.WornByCorpse ? 1 : 0).ThenBy(t => t.MarketValue);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
             return map.listerThings.ThingsOfDef(def).Where(t => t.Spawned && !t.IsForbidden(Faction.OfPlayer));
         }
 
-        public static int Have(Map map, string what, ThingDef def) => Stock(map, what, def).Sum(t => t.stackCount);
+        /// <summary>How many there are to take; for several kinds, how many of the kinds the stores hold any of.</summary>
+        public static int Have(Map map, string what, ThingDef def)
+        {
+            var parts = Parts(what);
+            if (parts != null) return parts.Count(part => Stock(map, part, null).Any());
+            return Stock(map, what, def).Sum(t => t.stackCount);
+        }
 
         /// <summary>
         /// Takes so many from the stores (as many as there are, if fewer). How many were taken. Never what someone else is
@@ -80,6 +114,9 @@ namespace ColonyCouncil
         public static int Take(Map map, string what, ThingDef def, int n, Pawn carrier = null)
         {
             if (map == null || n <= 0) return 0;
+            // Several kinds: one of each still to go, the last ones (they go in order).
+            var parts = Parts(what);
+            if (parts != null) return parts.Skip(Mathf.Max(0, parts.Length - n)).Sum(part => Take(map, part, null, 1, carrier));
             int left = n;
             foreach (var t in Stock(map, what, def).ToList())
             {
@@ -115,7 +152,10 @@ namespace ColonyCouncil
         public static Thing StackFor(PlayOut p, Pawn carrier)
         {
             if (p?.map == null || carrier == null) return null;
-            foreach (var t in Stock(p.map, p.what, p.thing))
+            // Several kinds: the next one still to go (one of each, so the tally says how far along it is).
+            var parts = Parts(p.what);
+            var stock = parts != null ? Stock(p.map, parts[Mathf.Clamp(p.tally, 0, parts.Length - 1)], null) : Stock(p.map, p.what, p.thing);
+            foreach (var t in stock)
             {
                 if (t == null || !t.Spawned || t.IsForbidden(carrier)) continue;
                 if (!carrier.CanReserve(t) || !carrier.CanReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
@@ -126,11 +166,14 @@ namespace ColonyCouncil
 
         public static string Label(string what, ThingDef def)
         {
+            var parts = Parts(what);
+            if (parts != null) return TextUtil.JoinAnd(parts.Select(part => Label(part, null)).ToList());
             switch (what)
             {
                 case "rawfood": return "CC_Dilemma_RawFood".Translate();
                 case "medicine": return "CC_Dilemma_Medicine".Translate();
                 case "meals": return "CC_Play_Meals".Translate();
+                case Coat: return "CC_Play_Coat".Translate();
             }
             return (def ?? DefOf(what, null))?.label ?? what ?? "";
         }

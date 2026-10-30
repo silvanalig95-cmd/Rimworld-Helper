@@ -55,6 +55,8 @@ namespace ColonyCouncil
         public string visitAt = "outside";
         public SkillDef visitorSkill;
         public IntRange visitorLevel = new IntRange(8, 14);
+        /// <summary>The visitor cooks the feast an answer sets going, at the colony's own stove (PlayOut/PlayCook.cs).</summary>
+        public bool visitorCooks;
         /// <summary>The visitor's people: lowtech (tribal or medieval), hightech (industrial or later), own (within one era of the colony), or any.</summary>
         public string people;
 
@@ -394,6 +396,22 @@ namespace ColonyCouncil
             if (ctx.pet != null) tags.Add("pet:" + ctx.pet.def.defName);
         }
 
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            var x = ctx.stranger;
+            if (Setting.visitor && x != null && x.Spawned && ctx.plays != null)
+            {
+                // A visitor who offered to cook does it at the colony's stove, for the feast the answer set going.
+                if (Setting.visitorCooks)
+                    foreach (var p in ctx.plays)
+                        if (p != null && p.kind == PlayKind.Feast)
+                            PlayCook.CookFromOutside(p, x);
+                // They stay until what the answer set going with them has had its time.
+                VisitorServices.StayFor(x, ctx.plays);
+            }
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
         /// <summary>The land's tags, read from the colony's tile (works for modded biomes too).</summary>
         public static void AddLandTags(Map map, HashSet<string> tags)
         {
@@ -427,7 +445,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Eases the targets' everyday Rimfolk ailments (never a serious illness): each one's severity is cut to
-    /// <see cref="factor"/> of what it was, or with <see cref="cure"/> it goes altogether.
+    /// <see cref="factor"/> of what it was, or with <see cref="cure"/> it goes altogether. When the same answer sets a
+    /// visit going for them (an afternoon with the healer), it eases once that is over (VisitorServices).
     /// </summary>
     public class DilemmaEffect_EaseAilment : DilemmaEffect
     {
@@ -439,18 +458,27 @@ namespace ColonyCouncil
         public override void Apply(DilemmaContext ctx)
         {
             if (!AilmentTracker.On) return;
+            var plays = PlayOuts.Collected();
             foreach (var p in Targets(ctx).ToList())
             {
-                var hediffs = p.health?.hediffSet?.hediffs;
-                if (hediffs == null) continue;
-                foreach (var h in hediffs.ToList())
-                {
-                    var info = AilmentTracker.InfoOf(h?.def);
-                    if (info == null || info.serious || info.lingering) continue;
-                    if (cure) p.health.RemoveHediff(h);
-                    else h.Severity = Mathf.Max(0.01f, h.Severity * Mathf.Clamp01(factor));
-                    if (one) break;
-                }
+                var visit = plays.FirstOrDefault(v => v.state != PlayState.Done && (v.kind == PlayKind.Visit || v.kind == PlayKind.Lesson) && v.visitor == p);
+                if (visit != null && VisitorServices.EaseAfter(visit, p, factor, cure, one)) continue;
+                Ease(p, factor, cure, one);
+            }
+        }
+
+        public static void Ease(Pawn p, float factor, bool cure, bool one)
+        {
+            if (!AilmentTracker.On) return;
+            var hediffs = p?.health?.hediffSet?.hediffs;
+            if (hediffs == null) return;
+            foreach (var h in hediffs.ToList())
+            {
+                var info = AilmentTracker.InfoOf(h?.def);
+                if (info == null || info.serious || info.lingering) continue;
+                if (cure) p.health.RemoveHediff(h);
+                else h.Severity = Mathf.Max(0.01f, h.Severity * Mathf.Clamp01(factor));
+                if (one) break;
             }
         }
     }

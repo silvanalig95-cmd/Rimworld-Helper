@@ -224,7 +224,7 @@
         <options>
           <li>
             <label>Pay {COUNT} silver</label>
-            <outcome>Each colonist gets a dose, and most of them complain about it.</outcome>
+            <outcome>{X_nameDef} went round the colony, and each colonist got a dose. Most of them complained about it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
             </effects>

@@ -125,6 +125,7 @@
   <CC_Play_Label_Hunt>the hunt</CC_Play_Label_Hunt>
   <CC_Play_NamesAndMore>{0} and {1} others</CC_Play_NamesAndMore>
   <CC_Play_Meals>cooked meals</CC_Play_Meals>
+  <CC_Play_Coat>spare coat</CC_Play_Coat>
 
   <!-- A work party's work, in words -->
   <CC_Play_Task_Clean>cleaning</CC_Play_Task_Clean>
