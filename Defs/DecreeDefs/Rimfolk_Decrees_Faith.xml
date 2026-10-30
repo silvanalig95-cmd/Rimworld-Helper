@@ -11,6 +11,7 @@
 
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_OneFaith</defName>
+    <kind>faith</kind>
     <label>one ideoligion for the colony</label>
     <description>The council names one ideoligion the colony's own, and you choose which as you declare it (the one with the most believers is first on the list). For fifteen days its believers may speak of it as often as they like, and they do: those of other ideoligions are drawn a little toward it each day, and every council meeting opens with a word from it. The decree alone draws nobody far: the rest takes friends, family or a partner among its believers. Those it can't sway (the set in their ways, the proud, and those whose ideoligion frowns on being preached to) dig in instead, and stay dug in a while after it is lifted. Everyone of another ideoligion trusts the council a little less each day it holds: the open-minded least, the devout and those whose ideoligion frowns on being preached to most. The devout of other ideoligions hate it and will ask for it to be lifted. Lifting it ends all of it at once. Only with Ideology, and more than one ideoligion at home.</description>
     <oneFaith>true</oneFaith>

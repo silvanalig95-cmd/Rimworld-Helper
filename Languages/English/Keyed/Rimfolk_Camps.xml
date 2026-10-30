@@ -184,4 +184,19 @@
   <CC_Camp_Dlg_Leave>Asking them to go</CC_Camp_Dlg_Leave>
   <CC_Camp_Dlg_Arrest>To arrest one of them, select a colonist and right-click them, as with any visitor. Their people will take it badly, and the rest of the camp will flee.</CC_Camp_Dlg_Arrest>
 
+  <!-- No camp on the land: why (World page, Camps/CampTracker.cs Blocker). -->
+  <CC_Camp_NoneLine>Nobody is camped on our land.</CC_Camp_NoneLine>
+  <CC_Camp_NoneTip>Camps come on their own time: each morning at ten that one could come (no camp here, a fortnight or so since the last left, no danger on the map, no extreme weather, a friendly people, room on the map, and no question of Rimfolk's waiting for an answer) there is about one chance in twenty that one does. "Rimfolk: check myself" in the mod settings tells the same in more detail.</CC_Camp_NoneTip>
+  <CC_Camp_Why_Open>The way is open: one could come any morning (about one morning in {1}). {0} such morning(s) have passed since the last camp.</CC_Camp_Why_Open>
+  <CC_Camp_Why_off>Camps are switched off in the settings.</CC_Camp_Why_off>
+  <CC_Camp_Why_here>One is here.</CC_Camp_Why_here>
+  <CC_Camp_Why_nohome>There is no home to camp by.</CC_Camp_Why_nohome>
+  <CC_Camp_Why_early>None comes in the first twenty days; {0} to go.</CC_Camp_Why_early>
+  <CC_Camp_Why_gap>The last left not long ago; the next comes {0} days after at the soonest, in {1}.</CC_Camp_Why_gap>
+  <CC_Camp_Why_threat>None comes while there is danger on the map.</CC_Camp_Why_threat>
+  <CC_Camp_Why_weather>None comes in this weather ({0} °C outside).</CC_Camp_Why_weather>
+  <CC_Camp_Why_hazard>None comes while {0} lasts.</CC_Camp_Why_hazard>
+  <CC_Camp_Why_era>No kind of camp fits the colony's era.</CC_Camp_Why_era>
+  <CC_Camp_Why_nofriends>No friendly people could send one: make peace with a neighbour first.</CC_Camp_Why_nofriends>
+  <CC_Camp_Why_noroom>There is no room for a camp on the map: open ground some forty cells from the colony, outside the home area and any zone.</CC_Camp_Why_noroom>
 </LanguageData>

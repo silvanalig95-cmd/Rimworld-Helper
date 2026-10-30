@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The Decrees page organized (Source/ColonyCouncil/UI/DecreePanel.cs): filters, order, the glance, the kinds. -->
+  <CC_Decrees_Listed>{0} decrees, {1} ready now, {2} in force</CC_Decrees_Listed>
+  <CC_Decrees_Show>Show</CC_Decrees_Show>
+  <CC_Decrees_Order>Order</CC_Decrees_Order>
+  <CC_Decrees_Filter_All>All</CC_Decrees_Filter_All>
+  <CC_Decrees_Filter_All_Tip>Every decree the colony could have in this game.</CC_Decrees_Filter_All_Tip>
+  <CC_Decrees_Filter_Ready>Ready now</CC_Decrees_Filter_Ready>
+  <CC_Decrees_Filter_Ready_Tip>The decrees that can be enacted this moment: not in force, not on cooldown, and nothing else in the way.</CC_Decrees_Filter_Ready_Tip>
+  <CC_Decrees_Filter_InForce>In force</CC_Decrees_Filter_InForce>
+  <CC_Decrees_Filter_InForce_Tip>The decrees that hold right now.</CC_Decrees_Filter_InForce_Tip>
+  <CC_Decrees_Filter_Asked>Asked for</CC_Decrees_Filter_Asked>
+  <CC_Decrees_Filter_Asked_Tip>The decrees someone has asked the council for, or asked it to repeal.</CC_Decrees_Filter_Asked_Tip>
+  <CC_Decrees_Filter_Needed>Needed now</CC_Decrees_Filter_Needed>
+  <CC_Decrees_Filter_Needed_Tip>The decrees the colony's state calls for right now: the home filthy for a clean sweep, many hurt for rest when ill, food low for rationing. These can come again sooner, and a repeat is minded less.</CC_Decrees_Filter_Needed_Tip>
+  <CC_Decrees_Filter_Cooldown>Waiting</CC_Decrees_Filter_Cooldown>
+  <CC_Decrees_Filter_Cooldown_Tip>The decrees that can't be enacted yet: on cooldown, or something else stands in the way.</CC_Decrees_Filter_Cooldown_Tip>
+  <CC_Decrees_Sort_Kind>By kind</CC_Decrees_Sort_Kind>
+  <CC_Decrees_Sort_Kind_Tip>In their kinds: work, stores, order, spirit, faith, the wider world. Each kind folds away with the arrow by its name.</CC_Decrees_Sort_Kind_Tip>
+  <CC_Decrees_Sort_Wanted>Most wanted</CC_Decrees_Sort_Wanted>
+  <CC_Decrees_Sort_Wanted_Tip>One list, the decrees the colony would like best first: those in force, then by how many love or like them against how many dislike or hate them.</CC_Decrees_Sort_Wanted_Tip>
+  <CC_Decrees_Sort_Soon>Soonest</CC_Decrees_Sort_Soon>
+  <CC_Decrees_Sort_Soon_Tip>One list: those in force, then the ones ready now, then the rest by how soon they can be enacted.</CC_Decrees_Sort_Soon_Tip>
+  <CC_Decrees_Glance>At a glance</CC_Decrees_Glance>
+  <CC_Decrees_GlanceTip>Every decree as a small chip: its name, and a bar of how the colony stands on it (green for those who love or like it, grey for those who don't mind, orange and red for those who dislike or hate it). The stripe at the left is green in force, gold when asked for, white when ready, grey when waiting. Click a chip to go to its card.</CC_Decrees_GlanceTip>
+  <CC_Decrees_ChipTip>Click to go to its card.</CC_Decrees_ChipTip>
+  <CC_Decrees_Support>{0} for, {1} against, {2} don't mind</CC_Decrees_Support>
+  <CC_Decrees_NoneFit>No decree fits this filter right now.</CC_Decrees_NoneFit>
+  <CC_Decrees_KindInForce>{0} in force</CC_Decrees_KindInForce>
+  <CC_Decrees_KindReady>{0} ready now</CC_Decrees_KindReady>
+  <CC_Decrees_KindAsked>{0} asked for</CC_Decrees_KindAsked>
+  <CC_Decrees_KindNone>none ready</CC_Decrees_KindNone>
+  <CC_Decrees_Kind_work>Work</CC_Decrees_Kind_work>
+  <CC_Decrees_Kind_work_Tip>How the colony works: longer days, a harvest or a building push, apprentices, lessons, a song at the bench.</CC_Decrees_Kind_work_Tip>
+  <CC_Decrees_Kind_stores>Food and stores</CC_Decrees_Kind_stores>
+  <CC_Decrees_Kind_stores_Tip>What the colony eats and burns: rationing, austerity, banked fires, bread in a famine.</CC_Decrees_Kind_stores_Tip>
+  <CC_Decrees_Kind_order>Order and health</CC_Decrees_Kind_order>
+  <CC_Decrees_Kind_order_Tip>Safety, discipline and health: drills, guards, a curfew, a militia, quarantine, rest for the ill, a clean sweep, best behavior.</CC_Decrees_Kind_order_Tip>
+  <CC_Decrees_Kind_spirit>Rest and spirit</CC_Decrees_Kind_spirit>
+  <CC_Decrees_Kind_spirit_Tip>What lifts people: festivals, a feast, days of rest or mourning, quiet hours, meals together.</CC_Decrees_Kind_spirit_Tip>
+  <CC_Decrees_Kind_faith>Faith</CC_Decrees_Kind_faith>
+  <CC_Decrees_Kind_faith_Tip>The colony's faith: holy days, a fast, tithes, one faith for all.</CC_Decrees_Kind_faith_Tip>
+  <CC_Decrees_Kind_world>The wider world</CC_Decrees_Kind_world>
+  <CC_Decrees_Kind_world_Tip>The colony and its neighbours: a market day, open gates, alms for the poor.</CC_Decrees_Kind_world_Tip>
+</LanguageData>

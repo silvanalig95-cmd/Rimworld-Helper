@@ -33,6 +33,7 @@ namespace ColonyCouncil
                 var tracker = CampTracker.Instance;
                 if (map == null || tracker == null || GenLocalDate.HourOfDay(map) != Hour) return;
                 if (HappeningTracker.Waiting || !LetterGap.Open || !tracker.CanStartOn(map)) return;
+                tracker.openMornings++;
                 if (!Rand.Chance(DailyChance)) return;
                 var def = DefDatabase<IncidentDef>.GetNamedSilentFail("Council_Evt_Camp");
                 if (def?.Worker == null) return;

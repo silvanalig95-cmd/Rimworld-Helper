@@ -174,6 +174,8 @@ namespace ColonyCouncil
         /// </summary>
         public List<DecreeMoment> neededWhen;
         public int order;
+        /// <summary>Which part of the Decrees page it's listed under: work, stores, order, spirit, faith, world (UI/DecreePanel.cs).</summary>
+        public string kind = "work";
         /// <summary>
         /// Feelings and strain (Heart/): strain a day for those who dislike it (half again for those who hate it), the
         /// factor on how fast strain drains while it holds, and a work speed factor carried by the heart's stat part
@@ -469,6 +471,9 @@ namespace ColonyCouncil
         }
 
         public bool OnCooldown(DecreeDef def) => ReadyAt(def) > Find.TickManager.TicksGame;
+
+        /// <summary>Ticks until its cooldown is over; 0 when it isn't on one (the page sorts by it).</summary>
+        public int TicksUntilReady(DecreeDef def) => Mathf.Max(0, ReadyAt(def) - Find.TickManager.TicksGame);
 
         /// <summary>When each decree was enacted (parallel lists), for decree fatigue.</summary>
         private List<string> useDefs = new List<string>();

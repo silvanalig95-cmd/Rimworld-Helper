@@ -18,6 +18,7 @@
   <!-- ============ Tithes ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Tithes</defName>
+    <kind>faith</kind>
     <label>tithes</label>
     <description>A tenth of the silver in the stores is set aside each morning and given away: to the shrine of a people who share the colony's ideoligion if there is one near, otherwise to the nearest friendly village. Goodwill grows with every day's tithe, and with Ideology the faithful grow more certain of their ideoligion. The greedy hate it; the devout and ascetics approve. A village's custom: not for a tribe.</description>
     <eras><li>medieval</li><li>industrial</li><li>spacer</li></eras>
@@ -67,6 +68,7 @@
   <!-- ============ Curfew ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Curfew</defName>
+    <kind>order</kind>
     <label>a curfew</label>
     <description>Everyone indoors and abed by ten, the gate barred until dawn, and only the watch about. The night hours of everyone's schedule are turned to sleep (put back as they were when the curfew ends), so nothing gets done after dark and there are no brawls by the fire at midnight. Night owls keep the watch instead and are left to their hours. The nervous feel safer; the industrious resent the lost hours, and most people mind being sent to bed.</description>
     <requestWhen><li>RecentThreat</li><li>Prisoners</li></requestWhen>
@@ -113,6 +115,7 @@
   <!-- ============ Militia drills ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Militia</defName>
+    <kind>order</kind>
     <label>militia drills</label>
     <description>Not the all-day drilling of a colony expecting war, but the muster of a village: an hour with spear and bow most evenings, for everyone who can fight, for twelve days. Slow, steady practice at shooting and melee, and only a little lost from other work. Gentler than the drills decree, and less resented: only the kind and wimps mind it much.</description>
     <eras><li>tribal</li><li>medieval</li><li>industrial</li></eras>
@@ -172,6 +175,7 @@
   <!-- ============ Alms for the poor ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Alms</defName>
+    <kind>world</kind>
     <label>alms for the poor</label>
     <description>Bread for the poor: each morning a share of the raw food in store goes out to the poor of the nearest friendly village, and their people remember the colony for it. The kind love it and ascetics approve; the greedy hate seeing food leave the stores.</description>
     <requestWhen><li>Plenty</li><li>Winter</li></requestWhen>
@@ -214,6 +218,7 @@
   <!-- ============ Holy days (Ideology) ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_HolyDays</defName>
+    <kind>faith</kind>
     <label>holy days</label>
     <description>Three days kept for the colony's ideoligion: prayers at dawn and dusk, work set down at the hours of the ideoligion, a gathering on the first evening. The faithful grow more certain of their ideoligion each day (half again as much with a chaplain), and work slows. The devout love it; those of another ideoligion mind it, and the industrious think it time wasted. Only with Ideology, for a colony with an ideoligion of its own.</description>
     <needsIdeology>true</needsIdeology>
@@ -261,6 +266,7 @@
   <!-- ============ Market day ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_MarketDay</defName>
+    <kind>world</kind>
     <label>a market day</label>
     <description>Word goes out to the friendly peoples nearby: the colony holds a market. A trade caravan comes that day, and for two days everyone haggles a little harder and works a little less. Only when a friendly people who send caravans is near enough to come. The sociable and the greedy love it; the abrasive and the nervous would rather the strangers stayed away.</description>
     <callsTraders>true</callsTraders>
@@ -303,6 +309,7 @@
   <!-- ============ A fast ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Fast</defName>
+    <kind>faith</kind>
     <label>a fast</label>
     <description>Two days of fasting: water, a little bread at sundown, and nothing else. Everyone gets hungry half as fast, the stores last, and heads feel strangely clear; the work goes slowly on an empty stomach. Ascetics love it and the devout welcome it; gourmands hate it and most people mind it.</description>
     <requestWhen><li>FoodLow</li><li>Spoiled</li></requestWhen>
@@ -347,6 +354,7 @@
   <!-- ============ A work song ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_WorkSong</defName>
+    <kind>work</kind>
     <label>a work song</label>
     <description>The fields, the quarry and the workshop sing: the old songs with a beat to work to, the new verses somebody makes up about the cook. Hands keep time and the hours go faster, so work picks up and the singers get some recreation at it; but nobody can think over the noise, and research and study suffer. The sociable love it; the nervous and the abrasive can't stand it.</description>
     <requestWhen><li>ColonyHappy</li><li>Autumn</li></requestWhen>
@@ -391,6 +399,7 @@
   <!-- ============ Quarantine (a sickness in the region, or someone ill at home) ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Quarantine</defName>
+    <kind>order</kind>
     <label>quarantine</label>
     <description>The sick sleep apart, the gate is closed to strangers, and everyone keeps their distance. Illnesses hardly pass between people sharing a bedroom, visitors and travelers are turned away (Rimfolk's visitor events come far less often), bodies fight off illness a little better, and everyone is a little lonelier for it. Only while a sickness goes round the region, or someone at home is ill. The sickly and doctors approve; the sociable hate keeping their distance.</description>
     <situationKinds><li>sickness</li></situationKinds>
@@ -437,6 +446,7 @@
   <!-- ============ Famine bread (a famine or drought in the region) ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_FamineBread</defName>
+    <kind>stores</kind>
     <label>famine bread</label>
     <description>The region is hungry, and the colony tightens its belt to share: smaller portions at home, and each morning a share of the raw food in store goes to the people the famine hits hardest. They will remember it (2 goodwill a day). Only while a famine, a drought or a plague of locusts lies over the region. The kind love it; the greedy and gourmands hate it, and most people mind going a little hungry for strangers.</description>
     <situationKinds><li>hunger</li><li>drought</li></situationKinds>
@@ -483,6 +493,7 @@
   <!-- ============ Open gates ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_OpenGates</defName>
+    <kind>world</kind>
     <label>open gates</label>
     <description>The gate stands open and the road is welcome in: travelers, traders and anyone passing are invited to stop. Rimfolk's visitor events come about half again as often, and everyone talks to strangers a little more easily. The opposite of a quarantine. The sociable and the kind love it; the nervous hate it.</description>
     <requestWhen><li>ColonyHappy</li><li>Newcomer</li></requestWhen>

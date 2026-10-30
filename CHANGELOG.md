@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Decrees page organized, and why no camp has come
+
+*30 October 2026, version 0.29.0*
+
+- The Decrees page is organized rather than one long list. The decrees stand in their kinds (work, food and stores, order and health, rest and spirit, faith, the wider world), each kind with how many are in force or ready now and an arrow that folds it away. A row of filters shows only what you're after: ready now, in force, asked for, needed now, waiting. The order can be by kind, most wanted first, or soonest ready. The page remembers all of it.
+- "At a glance" above the cards shows every decree as a small chip with a bar of how the colony stands on it (green for those who love or like it, grey for those who don't mind, orange and red for those who dislike or hate it) and a stripe for its state; a click goes to its card.
+- Each card keeps all it showed, what the decree does, who loves, likes, dislikes and hates it, how long it has left, who asked and why it's needed, with the same support bar under the name and the portraits beside the effects rather than under them, so a card is shorter.
+- When no camp is on the colony's land, the World page says why none has come (danger on the map, the weather, no friendly people, no room, the days since the last) or that the way is open and how many such mornings have passed, so a quiet stretch isn't a mystery.
+
 ## The planning pages drawn on the map
 
 *30 October 2026, version 0.28.0*

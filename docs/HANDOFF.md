@@ -1,6 +1,18 @@
 # Handoff: work in progress
 
-Last shipped: 0.28.0, the player's ask for the planning pages' visuals in the depth of the defense pages.
+Last shipped: 0.29.0, the player's ask for the Decrees page (thirty-one decrees were one long list) and the camps
+that never came. `UI/DecreePanel.cs`: `DecreeDef.kind` (XML `<kind>` on every decree: work, stores, order, spirit,
+faith, world; `DecreePanel.Kinds` is the page order), filters (`Filter` enum, PageMemory "decrees.filter"), orders
+(`Sort`: Kind with foldable `KindTitle`s, Wanted by `Layout.net` = 2 love + like - dislike - 2 hate, Soon by
+`DecreeTracker.TicksUntilReady`), the "At a glance" chip grid (`Glance`/`Chip`, fold in "decrees.glance", a click sets
+`scrollTo`/`marked`, unfolds the kind and clears a hiding filter), `SupportBar` by head, and the card with the faces in
+a 250px column beside the effects (`LeftWidth`). Camps: `CampTracker.Blocker(map)` gives the first blocker as a code
+with details, `WhyNot` (check myself) and `WhyNotForPlayer` (keyed `CC_Camp_Why_*`) read it; `openMornings` (saved)
+counts the mornings the timer rolled since the last camp; `CampPanel.NoCamp` draws one faint line on the World page
+when no camp is here. Not tried in the game: the first look should check the toolbar fits at the window's narrowest
+(the filter pills and the three order pills share one row) and that `TexButton.Collapse`/`Reveal` draw as expected.
+
+Before it, 0.28.0, the player's ask for the planning pages' visuals in the depth of the defense pages.
 `UI/MapHighlights.cs`: `MapHighlight` (cells, a second set, a line, a label, bright or faint) added by any page in
 its draw and drawn by `MapHighlightOverlay` (a MapComponent: edges and `GenDraw.DrawLineBetween` in Update, labels
 in OnGUI) for two frames after. `BaseFinding` carries `cells`, `other`, `from`, `to`, `mapLabel`

@@ -168,7 +168,7 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
     <order>4</order>
     <summary>Policies that trade mood for output: long hours, rationing, drills and more.</summary>
     <tip>Call long hours while the colony is happy, not once it's already miserable.</tip>
-    <description>The Decrees page puts policies in force for a few days: up to two at once, each with a cooldown afterward. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way around. The tab shows who will love or hate each one before you decide.</description>
+    <description>The Decrees page puts policies in force for a few days: up to two at once, each with a cooldown afterward. Each trades mood (and sometimes trust) for something the colony needs, or, like festival days and days of mourning, the other way around. The page shows who will love or hate each one before you decide, with a bar of how the colony stands on it. The decrees stand in their kinds (work, food and stores, order and health, rest and spirit, faith, the wider world), each kind foldable; filters show only those ready now, in force, asked for, needed now or waiting; the order can be by kind, most wanted first or soonest ready; and "At a glance" above the cards shows every decree as a chip with its support bar, a click going to its card.</description>
     <sections>
       <li>
         <heading>The decrees</heading>

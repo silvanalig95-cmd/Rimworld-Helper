@@ -35,6 +35,8 @@ namespace ColonyCouncil
         public Camp camp;
         public int nextId = 1;
         public int lastEndedTick = -9999999;
+        /// <summary>Mornings since the last camp on which one could have come (the way was open and the dice were rolled), for the World page.</summary>
+        public int openMornings;
 
         public CampTracker(Game game)
         {
@@ -88,23 +90,56 @@ namespace ColonyCouncil
         /// <summary>What keeps a camp from coming now, in plain words (for "Rimfolk: check myself"), or null if one could.</summary>
         public string WhyNot(Map map)
         {
-            if (!Enabled) return "the camps setting or world events are off";
-            if (camp != null) return "a camp is here already";
-            if (map == null || !map.IsPlayerHome) return "there's no home map";
-            if (GenDate.DaysPassed < 20) return "never in the first twenty days";
+            var (code, a, b) = Blocker(map);
+            switch (code)
+            {
+                case null: return null;
+                case "off": return "the camps setting or world events are off";
+                case "here": return "a camp is here already";
+                case "nohome": return "there's no home map";
+                case "early": return "never in the first twenty days";
+                case "gap": return "the last camp left on day " + lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + a + " days after";
+                case "threat": return "there's danger on the map";
+                case "weather": return "it's " + a + " °C outside, and no camp comes below " + CampWeatherMath.ExtremeCold.ToString("0") + " or above " + CampWeatherMath.ExtremeHeat.ToString("0") + " °C";
+                case "hazard": return "no camp comes while " + a + " lasts";
+                case "era": return "no kind of camp fits the colony's era";
+                case "nofriends": return "no friendly people could send one";
+                default: return "there's no room for a camp on the map";
+            }
+        }
+
+        /// <summary>The same, for the World page: in the player's words, with how many open mornings have passed.</summary>
+        public string WhyNotForPlayer(Map map)
+        {
+            var (code, a, b) = Blocker(map);
+            if (code == null) return "CC_Camp_Why_Open".Translate(openMornings, Mathf.RoundToInt(1f / CampTimer.DailyChance)).Resolve();
+            return ("CC_Camp_Why_" + code).Translate(a ?? "", b ?? "").Resolve();
+        }
+
+        /// <summary>
+        /// The first thing that keeps a camp from coming, as a short code with up to two details (null when nothing
+        /// does): off, here, nohome, early, gap (days between), threat, weather (the temperature), hazard (its name),
+        /// era, nofriends, noroom.
+        /// </summary>
+        public (string code, string a, string b) Blocker(Map map)
+        {
+            if (!Enabled) return ("off", null, null);
+            if (camp != null) return ("here", null, null);
+            if (map == null || !map.IsPlayerHome) return ("nohome", null, null);
+            if (GenDate.DaysPassed < 20) return ("early", (20 - GenDate.DaysPassed).ToString(), null);
             // A colony known for its hospitality hears from the road sooner (ColonyTraitDef.campGap).
             float gap = 15f * (CouncilGameComponent.Instance?.character?.traits?.CampGap ?? 1f);
-            if (Now - lastEndedTick < GenDate.TicksPerDay * gap) return "the last camp left on day " + lastEndedTick / GenDate.TicksPerDay + ", and the next comes " + gap.ToString("0") + " days after";
-            if (MapFacts.ThreatOn(map)) return "there's danger on the map";
+            if (Now - lastEndedTick < GenDate.TicksPerDay * gap)
+                return ("gap", gap.ToString("0"), TextUtil.DaysString(Mathf.RoundToInt(GenDate.TicksPerDay * gap) - (Now - lastEndedTick)));
+            if (MapFacts.ThreatOn(map)) return ("threat", null, null);
             float temp = map.mapTemperature.OutdoorTemp;
-            if (CampWeatherMath.TooExtremeToCome(temp))
-                return "it's " + temp.ToString("0") + " °C outside, and no camp comes below " + CampWeatherMath.ExtremeCold.ToString("0") + " or above " + CampWeatherMath.ExtremeHeat.ToString("0") + " °C";
+            if (CampWeatherMath.TooExtremeToCome(temp)) return ("weather", temp.ToString("0"), null);
             var hazard = CampWeather.Hazard(map);
-            if (hazard != null) return "no camp comes while " + hazard.Label + " lasts";
-            if (!DefDatabase<CampKindDef>.AllDefs.Any(k => k.FitsEra())) return "no kind of camp fits the colony's era";
-            if (Arrivals.Friendly() == null) return "no friendly people could send one";
-            if (!CampSite.AnyRoom(map)) return "there's no room for a camp on the map";
-            return null;
+            if (hazard != null) return ("hazard", hazard.Label, null);
+            if (!DefDatabase<CampKindDef>.AllDefs.Any(k => k.FitsEra())) return ("era", null, null);
+            if (Arrivals.Friendly() == null) return ("nofriends", null, null);
+            if (!CampSite.AnyRoom(map)) return ("noroom", null, null);
+            return (null, null, null);
         }
 
         /// <summary>
@@ -227,6 +262,7 @@ namespace ColonyCouncil
         /// <summary>They walk in from the edge nearest their spot, carrying what they need.</summary>
         public Camp Start(CampSetup s)
         {
+            openMornings = 0;
             if (s == null || camp != null) return null;
             var map = s.map;
             if (!EntryNear(map, s.center, out var entry)) return null;
@@ -441,6 +477,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref camp, "camp");
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
+            Scribe_Values.Look(ref openMornings, "openMornings", 0);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 // A camp whose kind was removed with its mod, or whose map is gone: nothing left to keep.

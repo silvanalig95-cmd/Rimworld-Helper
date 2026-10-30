@@ -4,6 +4,7 @@
   <!-- ============ Long hours: work faster, everyone (almost) hates it ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_LongHours</defName>
+    <kind>work</kind>
     <label>long hours</label>
     <description>Everyone works longer, harder days until the decree ends. Building, harvesting and crafting go faster, at a cost in mood. The industrious like it and hard workers don't mind; the lazy and slothful hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
@@ -45,6 +46,7 @@
   <!-- ============ Rationing: eat less ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Rationing</defName>
+    <kind>stores</kind>
     <label>rationing</label>
     <description>Smaller portions for everyone. The food stores last a good deal longer, but most colonists resent going hungry. Ascetics approve; gourmands and the greedy hate it.</description>
     <requestWhen><li>FoodLow</li></requestWhen>
@@ -84,6 +86,7 @@
   <!-- ============ Drills: combat training ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Drills</defName>
+    <kind>order</kind>
     <label>drills</label>
     <description>Daily weapons drills for everyone who can fight. Shooting and melee improve steadily while other work slows. Most colonists find it exhausting, but the bloodthirsty love it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
@@ -127,6 +130,7 @@
   <!-- ============ Study hours: learning and research ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Study</defName>
+    <kind>work</kind>
     <label>study hours</label>
     <description>Evenings of lessons and reading for everyone. Skills improve faster and research picks up, but other work slows. Most colonists find it tedious; thinkers love it and brawlers hate it.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
@@ -163,6 +167,7 @@
   <!-- ============ Austerity: no wishes, standards come down ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Austerity</defName>
+    <kind>stores</kind>
     <label>austerity</label>
     <description>The council takes no new wishes while it lasts, and everyone makes do with what they have. Standards fall quickly, so colonists are easier to please afterward. Ascetics love it; the greedy and jealous hate it.</description>
     <requestWhen><li>Spoiled</li></requestWhen>
@@ -199,6 +204,7 @@
   <!-- ============ Festival days: the other way round ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Festival</defName>
+    <kind>spirit</kind>
     <label>festival days</label>
     <description>A few days of rest, music and late nights. Moods lift and all work slows down. Useful when the colony is close to breaking, but standards rise while it lasts, so don't make it a habit.</description>
     <requestWhen><li>ColonyMiserable</li></requestWhen>

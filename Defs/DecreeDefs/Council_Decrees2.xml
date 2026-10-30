@@ -4,6 +4,7 @@
   <!-- ============ Harvest push ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Harvest</defName>
+    <kind>work</kind>
     <label>harvest push</label>
     <description>Everyone to the fields to sow, tend and harvest from first light to last. Crops come in faster and fuller, and backs ache. Growers enjoy it; the lazy and undergrounders hate it.</description>
     <requestWhen><li>Autumn</li><li>FoodLow</li></requestWhen>
@@ -40,6 +41,7 @@
   <!-- ============ Building season ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Building</defName>
+    <kind>work</kind>
     <label>building season</label>
     <description>Every spare hand goes to walls, floors and tunnels. Construction and mining go much faster, and most colonists go to bed sore and covered in dust.</description>
     <requestWhen><li>ColonyHappy</li></requestWhen>
@@ -77,6 +79,7 @@
   <!-- ============ Best behavior ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Manners</defName>
+    <kind>order</kind>
     <label>best behavior</label>
     <description>Everyone is on their best behavior: polite to traders, patient with prisoners, friendly to visitors. Trading, recruiting and talking people around all go better. The abrasive find it exhausting.</description>
     <requestWhen><li>Prisoners</li></requestWhen>
@@ -113,6 +116,7 @@
   <!-- ============ Day of mourning ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Mourning</defName>
+    <kind>spirit</kind>
     <label>days of mourning</label>
     <description>All work slows by 30% so the colony can grieve together. Grief fades faster for those who lost someone, and they are less likely to break. Only possible while someone is grieving.</description>
     <requestWhen><li>Grief</li></requestWhen>
@@ -149,6 +153,7 @@
   <!-- ============ On guard ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_OnGuard</defName>
+    <kind>order</kind>
     <label>on guard</label>
     <description>Weapons within reach, eyes on the horizon, sleep in shifts. Everyone fights a little better and tires faster. The bloodthirsty like it; the nervous, the volatile and wimps hate it.</description>
     <requestWhen><li>RecentThreat</li></requestWhen>
@@ -188,6 +193,7 @@
   <!-- ============ Clean sweep ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_CleanSweep</defName>
+    <kind>order</kind>
     <label>clean sweep</label>
     <description>Scrub everything: floors, tables, bedding, the hospital twice. Everyone who can clean puts it before their other work, even those not set to clean; fires, the sick and wounded, children, prisoners and meals still come first, and so do sleep, food and washing. With a cleaning area mod, the sweep keeps to its area. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors and anyone still healing from a wound or an illness like it, and ask for it when many are hurt.</description>
     <requestWhen><li>Dirty</li><li>Wounded</li></requestWhen>
@@ -230,6 +236,7 @@
   <!-- ============ Days of rest (feelings and strain) ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Rest</defName>
+    <kind>spirit</kind>
     <label>days of rest</label>
     <description>Shorter days, longer evenings, and no early mornings. Everyone works 10% slower, and strain drains about twice as fast. The worn out and the lazy are glad of it; the industrious would rather work. Only with feelings and strain switched on.</description>
     <requestWhen><li>Strained</li></requestWhen>

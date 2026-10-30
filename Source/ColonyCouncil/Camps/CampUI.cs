@@ -48,7 +48,7 @@ namespace ColonyCouncil
         public static float Section(float y, float w)
         {
             var c = CampTracker.Instance?.camp;
-            if (c == null || !c.Active || c.map == null || !Find.Maps.Contains(c.map)) return y;
+            if (c == null || !c.Active || c.map == null || !Find.Maps.Contains(c.map)) return NoCamp(y, w);
             y += UiKit.SectionTitle(0f, y, w, "CC_Camp_Section".Translate(), Icons.Visitor, UiKit.StrangerColor);
             var lines = new List<string> { c.StatusLine(), c.TermsLine() };
             if (c.Settled && c.treesFelled + c.animalsHunted > 0) lines.Add(c.TakenLine());
@@ -85,6 +85,22 @@ namespace ColonyCouncil
             }
             if (Widgets.ButtonText(new Rect(bx, cy, 160f, 28f), "CC_Camp_Show".Translate())) CameraJumper.TryJumpAndSelect(new GlobalTargetInfo(c.center, c.map));
             return y + h + 14f;
+        }
+
+        /// <summary>No camp on the land: one faint line on why none has come, or that one could any morning.</summary>
+        private static float NoCamp(float y, float w)
+        {
+            var tracker = CampTracker.Instance;
+            if (tracker == null || !CampTracker.Enabled) return y;
+            var map = HappeningTracker.HomeMap();
+            if (map == null) return y;
+            string why = UiCache.Get(tracker, 73, () => tracker.WhyNotForPlayer(map));
+            if (why.NullOrEmpty()) return y;
+            string text = "CC_Camp_NoneLine".Translate() + " " + why;
+            UiKit.Icon(new Rect(2f, y + 2f, 16f, 16f), Icons.Visitor, UiKit.Dim);
+            float h = UiKit.Paragraph(24f, y, w - 24f, text, UiKit.Faint, GameFont.Tiny);
+            TooltipHandler.TipRegion(new Rect(0f, y, w, h), "CC_Camp_NoneTip".Translate());
+            return y + h + 10f;
         }
 
         public static Color TensionColor(float t) => t >= 70f ? UiKit.Bad : t >= 40f ? UiKit.Warn : t >= 15f ? UiKit.Gold : UiKit.Good;

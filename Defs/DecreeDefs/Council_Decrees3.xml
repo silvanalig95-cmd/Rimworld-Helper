@@ -12,6 +12,7 @@
   <!-- ============ Quiet hours ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_QuietHours</defName>
+    <kind>spirit</kind>
     <label>quiet hours</label>
     <description>Lamps out and voices down after dark: no hammering, no music, no late talk at the table. Everyone sleeps deeper and quarrels less, and the evening's work and company are lost. The nervous and ascetics welcome it; night owls hate it, and the sociable mind it.</description>
     <requestWhen><li>Strained</li><li>ColonyMiserable</li></requestWhen>
@@ -51,6 +52,7 @@
   <!-- ============ Shared meals ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_SharedMeals</defName>
+    <kind>spirit</kind>
     <label>shared meals</label>
     <description>Everyone eats together, at set times, at the same table. Talk comes easier, newcomers get to know everyone and quarrels cool, but work stops for meals whether it's at a good point or not. The kind and the sociable like it; the abrasive hate it.</description>
     <requestWhen><li>Newcomer</li><li>ColonyMiserable</li></requestWhen>
@@ -91,6 +93,7 @@
   <!-- ============ The sick-bay rule ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_SickBay</defName>
+    <kind>order</kind>
     <label>rest when ill</label>
     <description>Anyone ill or hurt goes to bed and stays there, and the rest cover for them. Wounds heal and illnesses pass faster, and the colony works short-handed while it lasts. Doctors, the sickly and anyone still healing approve, and they ask for it when someone is ill or many are hurt; the industrious and the tough hate being told to lie down.</description>
     <requestWhen><li>Illness</li><li>Wounded</li></requestWhen>
@@ -135,6 +138,7 @@
   <!-- ============ Banked fires ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_BankedFires</defName>
+    <kind>stores</kind>
     <label>banked fires</label>
     <description>Fires banked low, torches and lamps out early, every heater turned down: fires, torches and fueled heaters burn a quarter less fuel while it lasts. Rooms are chillier and evenings darker, and almost nobody likes it. Ascetics and the greedy approve; wimps hate it.</description>
     <requestWhen><li>Winter</li></requestWhen>
@@ -173,6 +177,7 @@
   <!-- ============ Apprenticeships ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_Apprentices</defName>
+    <kind>work</kind>
     <label>apprenticeships</label>
     <description>The best at each trade take on the rest as apprentices. Everyone practices building, crafting, cooking and growing every hour, and the masters' own work slows while they teach. Good for a young or a new colony. The kind and the sociable like teaching; the abrasive hate it, and the lazy mind the extra lessons.</description>
     <requestWhen><li>Newcomer</li><li>ColonyHappy</li></requestWhen>
@@ -213,6 +218,7 @@
   <!-- ============ Feast day ============ -->
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_FeastDay</defName>
+    <kind>spirit</kind>
     <label>a feast day</label>
     <description>One day of feasting: the best of the stores on the table, work stops at noon, and everyone eats more than they should. A day of good cheer, bought with food and half a day's work, and expectations rise afterward. Gourmands and the greedy love it; ascetics think it a waste.</description>
     <requestWhen><li>Autumn</li><li>ColonyMiserable</li></requestWhen>
