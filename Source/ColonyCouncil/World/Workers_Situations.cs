@@ -181,7 +181,7 @@ namespace ColonyCouncil
     /// </summary>
     public class SituationWorker_NewTown : WorldSituationWorker
     {
-        private static bool TryTile(Map map, out PlanetTile tile)
+        protected static bool TryTile(Map map, out PlanetTile tile)
         {
             tile = PlanetTile.Invalid;
             if (map == null || !map.Tile.Valid) return false;

@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The world round (Source/ColonyCouncil/World/Workers_World.cs): other settlers a few days off, whose year beside
+       the colony ends in friendship, in their joining, in a feud or in their giving up; and the road the colony let past
+       its gate (Council_WS_NewRoad, the "gate" flag), over a year: the road in use, the wardens' post by the colony
+       (a camp that settles as the colony's neighbour), and a crossroads town. Each follows the one before
+       (WorldSituationDef.after, afterFlags), so the road's story takes a year or two of its own. -->
+
+  <!-- ===================== Other settlers ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_RivalColony</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>other settlers</label>
+    <workerClass>ColonyCouncil.SituationWorker_RivalColony</workerClass>
+    <weight>0.8</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>50~58</durationDays>
+    <kind>town</kind>
+    <faction>
+      <friendly>true</friendly>
+      <minGoodwill>-15</minGoodwill>
+    </faction>
+    <names>
+      <li>the new steading</li>
+      <li>the settlers' holding</li>
+      <li>[lowtech] the clearing</li>
+      <li>[!lowtech] the landing</li>
+    </names>
+    <titles>
+      <li>Other settlers: {PLACE}</li>
+      <li>Settlers a few days off</li>
+    </titles>
+    <texts>
+      <li>A party of settlers of {FACTION}, {COUNT} households of them, has put down roots {TALE} and called the place {PLACE}. They mean to farm, hunt and trade, the same as the colony, on the same land.\n\n{X_nameDef} leads them, and has already sent word that {X_pronoun} will come up to the colony's gate to say hello. A year will tell whether the two colonies are friends, rivals or something in between.</li>
+      <li>[theirLowtech] Smoke has been rising {TALE} for a week, and now a hunter has brought back the news: settlers of {FACTION} are building a steading there, {COUNT} families with their beasts and their seed grain. They call it {PLACE}.\n\n{X_nameDef} speaks for them. The colony's hunters and theirs will be walking the same woods by autumn.</li>
+      <li>[theirHightech] A landing {TALE}: a settler party of {FACTION}, {COUNT} households, has set up at a place they're calling {PLACE}. Their first message to the colony came the same evening, from {X_nameDef}, who signs as their leader: greetings, and a visit to follow.\n\nTwo colonies on one stretch of land. The year will decide what that means.</li>
+      <li>[spring] With the snow gone, settlers of {FACTION} have walked out to found a steading {TALE}: {PLACE}, {COUNT} households, led by {X_nameDef}. They are young, hopeful and short of everything.\n\n{X_nameDef} means to come up to the colony's gate before the week is out.</li>
+    </texts>
+    <summaries>
+      <li>{PLACE} has {COUNT} households and is growing. Their hunters and traders will cross paths with the colony's, and what the colony answers them this year decides whether it ends with friends, new colonists, or neighbours it could do without.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.2</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>landing</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>settlers</what><withStranger>true</withStranger><count>1</count><stranger>false</stranger></li>
+        </effects>
+        <day>1~3</day>
+        <titles>
+          <li>{X_nameDef} comes to the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, who leads the settlers at {PLACE}, has walked up to the colony's gate with one companion and no weapon showing. "Neighbours," {X_pronoun} says, "should know each other's faces." They are short of timber and nearly everything else, and would pay for some; but mostly {X_pronoun} came to look the colony over, and to be looked over.</li>
+          <li>[theirLowtech] {X_nameDef} of {PLACE} stood at the gate a long moment before calling out, the way people do when they don't know the custom. {X_pronoun} has brought a jar of something as a gift, and a question: can the two settlements be neighbours, in the old sense, where one helps the other through a bad year and is helped in turn? They could use timber, {X_pronoun} adds, and would pay.</li>
+          <li>[theirHightech] {X_nameDef}, the settler leader from {PLACE}, came up to the gate in person rather than send another message. {X_pronoun} is frank: {PLACE} needs timber and goodwill, and the colony has both. {X_pronoun} would like to agree a price for one and a custom for the other.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send them off with a gift (60 wood)</label>
+            <outcome>{X_nameDef} shoulders the colony's timber with {X_possessive} companion and goes back down the road to {PLACE} with the colony's good wishes. "This is remembered," {X_pronoun} says at the gate, and means it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>WoodLog</what><count>60</count><to>Stranger</to></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>gift</kind><about>place</about></li>
+            </effects>
+            <flags><li>gift</li></flags>
+            <help>2</help>
+            <deed>sent a gift of timber to the settlers of {PLACE}</deed>
+            <ways><generosity>2</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Sell them timber (80 wood)</label>
+            <outcome>A price is agreed at the gate, a fair one. {X_nameDef}'s carters come for the logs the next morning and pay in silver counted out twice.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>WoodLog</thing><count>80</count><price>1.2</price></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>trade</li></flags>
+            <help>1</help>
+            <deed>sold timber to the settlers of {PLACE}</deed>
+          </li>
+          <li>
+            <label>Hear them out, and promise nothing</label>
+            <outcome>{X_nameDef} is given water and a civil hearing, and goes home with nothing else. "Well," {X_pronoun} says at the gate, "now we know each other's faces."</outcome>
+          </li>
+          <li>
+            <label>Tell them they picked poor ground</label>
+            <outcome>{X_nameDef} listens to the colony's opinion of {PLACE} without a word, nods once, and goes back down the road. The companion looks back twice.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-4</amount></li>
+            </effects>
+            <flags><li>cold</li></flags>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>hunters</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>hunters</what><count>2~3</count><armed>true</armed><spot>Far</spot><stopHours>3</stopHours><hourFrom>6</hourFrom><hourTo>15</hourTo></li>
+        </effects>
+        <day>8~13</day>
+        <titles>
+          <li>Hunters from {PLACE}</li>
+        </titles>
+        <texts>
+          <li>Hunters from {PLACE} are working the far side of the colony's land, where the colony's own hunters go. They have taken two beasts this week that the colony would have taken, and left the offal for the colony's dogs to find.\n\nThey aren't hiding. They don't think they're doing anything wrong, and by their lights they aren't: the land was nobody's a season ago.</li>
+          <li>[winter] Hunters from {PLACE} are out on the colony's side of the hill in the snow, after the same thin game the colony's hunters are after. Winter leaves little enough for one settlement.\n\nThey'd stop if they were asked, probably. They'd remember being asked, too.</li>
+          <li>[sour] Hunters from {PLACE} are on the colony's land again, and this time they're making a point of it: a kill dressed within sight of the fields, and no word sent. After what the colony said to {X_nameDef}, they don't feel they owe it any.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them hunt; the land is wide</label>
+            <outcome>The colony's hunters are told to leave the newcomers be. The hunters from {PLACE} notice they haven't been warned off, and say so at home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>shared</li></flags>
+            <help>1</help>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send {A_nameDef} out to divide the hunting grounds with them</label>
+            <outcome>{A_nameDef} walks out to the hunters from {PLACE} and spends the morning with them agreeing which woods are whose, drawing lines in the dirt with a stick. They part with the lines agreed and the beginning of a liking.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the hunting grounds divided</label><to>Stranger</to><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
+            </effects>
+            <flags><li>shared</li><li>divided</li></flags>
+            <help>2</help>
+            <deed>divided the hunting grounds with {PLACE}</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Warn them off the colony's land</label>
+            <outcome>The hunters from {PLACE} are told, politely, where the colony's land begins. They go, politely, and their faces say what their mouths don't.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount></li>
+            </effects>
+            <flags><li>warned</li></flags>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>begging</key>
+        <forbids><li>sour</li></forbids>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>settlers</what><count>2</count><stranger>false</stranger></li>
+        </effects>
+        <day>17~24</day>
+        <count>40~70</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{PLACE} asks for food</li>
+        </titles>
+        <texts>
+          <li>Two of the settlers from {PLACE} are at the gate with an empty sack each and a message from {X_nameDef}. Their first planting failed, the game has moved off, and they are a month from a harvest with two weeks of food in hand. {X_nameDef} asks, as one neighbour to another, for {COUNT} of the colony's food, to be paid back after the harvest, or not, as the colony likes.</li>
+          <li>[theirLowtech] A boy and a woman from {PLACE} are at the gate, thin, with a message from {X_nameDef} learned by heart: the seed went in too late, the hunting is poor, and the settlers have two weeks of food left. {X_nameDef} asks for {COUNT} food, and says the debt will be remembered either way.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Give them {COUNT} food</label>
+            <outcome>The food goes out to the settlers at the gate, who carry it off in relays. {PLACE} will eat this month, and {X_nameDef} will know whose food it was.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what><to>Stranger</to></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>relief</kind><about>place</about></li>
+            </effects>
+            <flags><li>fed</li></flags>
+            <help>2</help>
+            <deed>fed the settlers of {PLACE} through their first hungry month</deed>
+            <ways><generosity>3</generosity><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Sell it to them at a fair price</label>
+            <outcome>The settlers pay for the food in silver and tools, and carry it home. Fair is fair, {X_nameDef} says when the word comes back, and asks nothing more.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><price>1</price><toVisitor>true</toVisitor></li>
+            </effects>
+            <flags><li>sold</li></flags>
+            <help>1</help>
+            <deed>sold food to the settlers of {PLACE} in their first hungry month</deed>
+          </li>
+          <li>
+            <label>The colony has none to spare</label>
+            <outcome>The settlers go home with their sacks as empty as they came. {PLACE} will get through the month somehow, on roots and thin soup, and will remember.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
+            </effects>
+            <flags><li>refused</li></flags>
+            <ways><generosity>-2</generosity></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>poaching</key>
+        <requires><li>sour</li></requires>
+        <day>17~24</day>
+        <titles>
+          <li>Trouble with {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The settlers of {PLACE} have stopped pretending the colony's land isn't theirs to use. Their traps are on the colony's side of the stream, and a muffalo the colony's hunter had marked went home over their shoulders. Nobody has been hurt. Nobody has been asked, either.\n\n{X_nameDef} sent no word about it. After the colony's answers so far, {X_pronoun} doesn't see why {X_pronoun} should.</li>
+          <li>[theirLowtech] Snares of {PLACE}'s making are turning up on the colony's land, and a beast the colony's hunters had marked was found dressed and gone. The settlers don't deny it. The land was nobody's a season ago, they say, and the colony has not been a neighbour to them.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let it go; the land is wide</label>
+            <outcome>The colony says nothing about the traps or the muffalo. {PLACE} notices the silence, and the next week the traps are gone from the colony's side of the stream.</outcome>
+            <flags><li>peace</li></flags>
+            <help>1</help>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send {A_nameDef} to {X_nameDef} to settle it</label>
+            <outcome>{A_nameDef} walks to {PLACE} and sits down with {X_nameDef}. It takes the morning and most of {A_possessive} patience, but they agree where the line runs and that the colony's dogs may have what they find in the traps on its side.</outcome>
+            <riskChance>0.4</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskOutcome>{A_nameDef} walks to {PLACE} and sits down with {X_nameDef}, and the two of them part angrier than they met. The traps stay where they are.</riskOutcome>
+            <riskFlags><li>keepOff</li></riskFlags>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
+            </effects>
+            <flags><li>peace</li></flags>
+            <help>2</help>
+            <deed>settled the quarrel over the hunting with {PLACE}</deed>
+          </li>
+          <li>
+            <label>Pull up their traps and send them back</label>
+            <outcome>The traps go back to {PLACE} in a heap, carried by the colony's hunter and dropped at their edge without a word. The settlers get the message. They don't like it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
+            </effects>
+            <flags><li>keepOff</li></flags>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>grown</key>
+        <day>28~34</day>
+        <message>true</message>
+        <texts>
+          <li>Word from {PLACE}: the settlers have {COUNT} households now, a wall of sorts, and a first harvest in. {X_nameDef} still leads them.</li>
+          <li>[sour] Word from {PLACE}: {COUNT} households now, and a wall going up with its blind side to the colony. {X_nameDef} still leads them, and still hasn't been back to the gate.</li>
+          <li>[fed] Word from {PLACE}: {COUNT} households now, and a harvest in at last. The settlers say, to anyone who will listen, that the colony's food got them to it.</li>
+        </texts>
+      </li>
+      <li>
+        <key>turning</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>settlers</what><withStranger>true</withStranger><count>1</count><stranger>false</stranger></li>
+        </effects>
+        <day>38~45</day>
+        <titles>
+          <li>{X_nameDef} comes to the gate again</li>
+          <li>[sour] {X_nameDef} comes to have it out</li>
+        </titles>
+        <texts>
+          <li>[!sour] {X_nameDef} is at the gate again, a year older and a good deal thinner, with a proposal. {PLACE} has {COUNT} households and will stand or fall by its neighbours. {X_pronoun} offers the colony a bond: their hunters and the colony's share the land by agreement, their traders come here first, and either settlement answers the other's call in a bad year.\n\nOr, {X_pronoun} says more quietly, if the colony would rather, {PLACE} could stop being a separate place at all. Some of them have been saying so. One settlement, not two.</li>
+          <li>[sour] {X_nameDef} is at the gate, alone this time, and not smiling. {PLACE} has {COUNT} households now and means to keep them. {X_pronoun} has come to say plainly that the two settlements can go on as they have, each keeping to its own side of a line nobody agreed; or they can sit down, now, and agree one.\n\n{X_pronoun} doesn't say what happens if they don't. {X_pronoun} doesn't have to.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Bind the two settlements as allies</label>
+            <hideIf><li>sour</li></hideIf>
+            <outcome>{X_nameDef} and the council agree it at the gate and shake on it. {PLACE} and the colony share the land by agreement from today; their traders come here first, and each will answer the other's call.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
+            </effects>
+            <flags><li>alliance</li></flags>
+            <help>3</help>
+            <deed>bound {PLACE} to the colony as an ally</deed>
+            <end>alliance</end>
+            <endDays>2~4</endDays>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Invite the settlers to join the colony</label>
+            <hideIf><li>sour</li></hideIf>
+            <outcome>{X_nameDef} is quiet a long moment, then says {X_pronoun} hoped the colony would say that. The settlers will pack up {PLACE} and come over the next few days, with what they can carry.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>joined</li></flags>
+            <help>3</help>
+            <deed>took the settlers of {PLACE} into the colony</deed>
+            <end>absorbed</end>
+            <endDays>2~4</endDays>
+            <ways><openness>3</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Sit down with {X_nameDef} and agree a line</label>
+            <showIf><li>sour</li></showIf>
+            <outcome>{A_nameDef} and {X_nameDef} sit at the gate until the light goes, and come away with a line agreed and the beginnings of something that isn't dislike. It will do.</outcome>
+            <riskChance>0.35</riskChance>
+            <riskSkill>Social</riskSkill>
+            <riskOutcome>{A_nameDef} and {X_nameDef} sit at the gate until the light goes, and get up without agreeing anything. {X_nameDef} walks home in the dark.</riskOutcome>
+            <riskFlags><li>keepOff</li></riskFlags>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the line agreed with {X_nameDef}</label><to>Stranger</to><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>madePeace</kind><about>place</about></li>
+            </effects>
+            <flags><li>peace</li></flags>
+            <help>2</help>
+            <deed>agreed a boundary with {PLACE}</deed>
+          </li>
+          <li>
+            <label>Let things stay as they are</label>
+            <outcome>{X_nameDef} is told the colony is content to go on as neighbours, no more and no less. {X_pronoun} takes it well enough, and goes home.</outcome>
+          </li>
+          <li>
+            <label>Tell them to keep to their side</label>
+            <showIf><li>sour</li></showIf>
+            <outcome>{X_nameDef} is told where the colony's land ends and that {PLACE}'s people are to stay off it. {X_pronoun} says nothing, and leaves nothing behind but the look on {X_possessive} face.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-8</amount></li>
+            </effects>
+            <flags><li>keepOff</li></flags>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>feud</key>
+        <requires><li>sour</li></requires>
+        <forbids><li>peace</li><li>alliance</li><li>joined</li></forbids>
+        <day>47~52</day>
+        <chance>0.75</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Flag"><flag>feud</flag></li>
+        </effects>
+        <titles>
+          <li>Blows with {PLACE}</li>
+        </titles>
+        <texts>
+          <li>It has come to blows, as it was always going to: the colony's hunters and {PLACE}'s met over a kill at the stream, and there was shoving and a thrown stone before both sides thought better of it. Nobody is badly hurt. Nobody is speaking, either.\n\nThere are two settlements on this land now that do not wish each other well.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>alliance</key>
+        <requires><li>alliance</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{PLACE} and the colony, allies</li>
+        </titles>
+        <texts>
+          <li>A year on, {PLACE} has {COUNT} households and the colony has an ally a few days off. Their traders come here first, their hunters keep to the agreed woods, and {X_nameDef} sends word at the turn of every season, as a neighbour does.</li>
+        </texts>
+        <chronicle>The settlers of {PLACE} became the colony's allies.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+        </effects>
+      </li>
+      <li>
+        <key>absorbed</key>
+        <timeout>false</timeout>
+        <requires><li>joined</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The settlers of {PLACE} come over</li>
+        </titles>
+        <texts>
+          <li>The settlers of {PLACE} have packed what they could carry and walked over to the colony, {X_nameDef} at their head. {PLACE} stands empty behind them. From today there is one settlement on this land, and it has a few more hands.</li>
+        </texts>
+        <chronicle>The settlers of {PLACE} joined the colony, and {PLACE} was left empty.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Join"><count>3~5</count></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>feud</key>
+        <requires><li>feud</li></requires>
+        <titles>
+          <li>Bad blood with {PLACE}</li>
+        </titles>
+        <texts>
+          <li>A year on, {PLACE} has {COUNT} households and the colony has a neighbour it could do without. The two settlements keep to their own sides of a line nobody agreed, and {X_nameDef}'s people do not come to the gate. {FACTION} have heard their side of it.</li>
+        </texts>
+        <chronicle>The year with the settlers of {PLACE} ended in bad blood.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-10</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>failed</key>
+        <chance>0.3</chance>
+        <forbids><li>alliance</li><li>joined</li><li>peace</li><li>fed</li></forbids>
+        <titles>
+          <li>{PLACE} is given up</li>
+        </titles>
+        <texts>
+          <li>The settlers of {PLACE} have given up. A thin harvest, a hard season and no neighbour to lean on were more than {COUNT} households could carry, and {X_nameDef} has led them back to {FACTION}'s country. The steading stands empty, its wall half built.</li>
+        </texts>
+        <chronicle>The settlers of {PLACE} gave up and went home.</chronicle>
+      </li>
+      <li>
+        <key>neighbours</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>A year with {PLACE}</li>
+        </titles>
+        <texts>
+          <li>A year on, {PLACE} has {COUNT} households and is here to stay. The two settlements are neighbours in the plain sense: they trade when it suits, help when asked, and {X_nameDef} nods to the colony's hunters in the woods.</li>
+        </texts>
+        <chronicle>The settlers of {PLACE} found their feet beside the colony.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>strangers</key>
+        <titles>
+          <li>A year with {PLACE}</li>
+        </titles>
+        <texts>
+          <li>A year on, {PLACE} has {COUNT} households and is here to stay. The two settlements have little to do with each other, which suits them both well enough.</li>
+        </texts>
+        <chronicle>The settlers of {PLACE} found their feet, a few days off.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The road in use ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_RoadTraffic</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the road in use</label>
+    <weight>3</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>120</cooldownDays>
+    <durationDays>20~28</durationDays>
+    <kind>road</kind>
+    <after>
+      <li>Council_WS_NewRoad</li>
+    </after>
+    <afterEndings>
+      <li>gate</li>
+    </afterEndings>
+    <afterFlags>
+      <li>gate</li>
+    </afterFlags>
+    <afterDays>5~40</afterDays>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Carts on {TALE}</li>
+      <li>The road past the gate is busy</li>
+    </titles>
+    <texts>
+      <li>{TALE} has found its traffic. Carts of {FACTION} go past the colony's gate most days now, and traders, pilgrims and people with no good reason to be anywhere go with them. Some of them turn in at the gate. Some of them will be trouble.\n\nA road brings the world to the door. The colony asked for this one.</li>
+      <li>[theirLowtech] The dust never quite settles on {TALE} now. Ox carts of {FACTION}, a tinker's wagon, a string of pack beasts, people walking: the colony's gate sees more faces in a week than it used to in a season.\n\n{FACTION}'s wardens ride the road once in a while, and the colony will see them too.</li>
+    </texts>
+    <summaries>
+      <li>Traders and travelers come by more often while the road is busy, and so does what preys on them. {FACTION}'s road wardens will stop at the gate; make them welcome and they may think of putting a post here.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.6</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.4</factor></li>
+      <li><incident>TravelerGroup</incident><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Stranded</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.4</factor></li>
+      <li><rimfolk>Council_Evt_Tinker</rimfolk><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>merchants</key>
+        <day>3~7</day>
+        <message>true</message>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+        </effects>
+        <texts>
+          <li>Merchants off {TALE} have turned in at the colony's gate to trade.</li>
+        </texts>
+      </li>
+      <li>
+        <key>travelers</key>
+        <day>6~11</day>
+        <message>true</message>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>travelers</what><count>3~5</count><onward>true</onward><spot>Road</spot><stopHours>2</stopHours></li>
+        </effects>
+        <texts>
+          <li>Travelers of {FACTION} are resting by the road outside the colony before they go on.</li>
+        </texts>
+      </li>
+      <li>
+        <key>robbed</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>carter</what><robbed>true</robbed><gender>Male</gender></li>
+        </effects>
+        <day>10~15</day>
+        <count>30~60</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Robbed on {TALE}</li>
+        </titles>
+        <texts>
+          <li>A carter of {FACTION} is at the gate with no cart. Men came out of the trees a mile down {TALE}, he says, took the ox, the load and his boots, and left him his life. He has walked here in his stockings.\n\nHe asks for a meal and a night, or a little silver for the road to {PLACE}, or just for someone to tell.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A meal and a bed for the night</label>
+            <outcome>The carter eats at the colony's table and sleeps under its roof, and in the morning walks on to {PLACE} in a pair of the colony's old boots.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot meal for the carter</label><what>meals</what><count>1</count><to>Stranger</to><eat>true</eat><ifHave>true</ifHave></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>kind</li></flags>
+            <help>1</help>
+            <deed>took in a carter robbed on {TALE}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Give him {COUNT} silver for the road</label>
+            <outcome>The carter takes the colony's silver with both hands and goes on toward {PLACE} the same hour, looking over his shoulder at every bend.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>kind</li></flags>
+            <help>1</help>
+            <deed>gave a robbed carter silver for the road</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Send him on</label>
+            <outcome>The carter is pointed down the road toward {PLACE} and goes, slowly, in his stockings.</outcome>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>wardens</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>wardens</what><count>3</count><armed>true</armed></li>
+        </effects>
+        <day>14~19</day>
+        <titles>
+          <li>{FACTION}'s wardens at the gate</li>
+        </titles>
+        <texts>
+          <li>Three road wardens of {FACTION} have ridden up to the gate, dusty and civil. They keep {TALE} as far as the passes, they say, which is to say they ride it when they can and bury what they find when they can't. They ask leave to water their horses and rest an hour.\n\nThe one who does the talking looks the colony's walls over with a professional eye.</li>
+          <li>[kind] Three road wardens of {FACTION} are at the gate. They heard about the carter, they say, and how the colony dealt with him; they've been looking for the men who robbed him for a week. They ask for water for their horses and an hour's rest.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Make them welcome: water, a meal, a place by the gate</label>
+            <outcome>The wardens eat at the colony's gate and water their horses at its trough, and ride on in better humour than they came. "A good stopping place," the talker says. "We'll remember it."</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the wardens</label><what>meals</what><count>3</count><to>Stranger</to><eat>true</eat><ifHave>true</ifHave></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <flags><li>wardens</li></flags>
+            <help>2</help>
+            <deed>made {FACTION}'s road wardens welcome</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let them water their horses and go</label>
+            <outcome>The wardens water their horses, rest their hour, and ride on with a nod.</outcome>
+            <flags><li>passed</li></flags>
+          </li>
+          <li>
+            <label>Tell them the colony keeps its own stretch of road</label>
+            <outcome>The wardens are told the colony needs no keeping. They ride on without watering the horses, and without the nod.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <flags><li>keepOff</li></flags>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>busy</key>
+        <requires><li>wardens</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{TALE} is the colony's road now</li>
+        </titles>
+        <texts>
+          <li>{TALE} has settled into its traffic, and the colony's gate is one of its stopping places. {FACTION}'s wardens have taken to resting there when they ride through, and the talker among them has said more than once that a post by the colony would make sense.</li>
+        </texts>
+        <chronicle>{TALE} came into use, and the colony's gate became a stopping place on it.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>used</key>
+        <titles>
+          <li>{TALE} is in use</li>
+        </titles>
+        <texts>
+          <li>{TALE} has settled into its traffic: carts most days, trouble some days, and the colony's gate a place the travelers know.</li>
+        </texts>
+        <chronicle>{TALE} came into use past the colony's gate.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A wardens' post by the colony ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Waystation</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a wardens' post</label>
+    <workerClass>ColonyCouncil.SituationWorker_Waystation</workerClass>
+    <weight>3</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>18~26</durationDays>
+    <kind>road</kind>
+    <after>
+      <li>Council_WS_RoadTraffic</li>
+    </after>
+    <afterFlags>
+      <li>wardens</li>
+    </afterFlags>
+    <afterDays>5~45</afterDays>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>A post on the road</li>
+      <li>{FACTION}'s wardens ask for ground</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s road wardens have come back to the colony's gate with a proposal. The road past it is theirs to keep and too long to keep from {PLACE}; they would like to put a post by the colony, a fire and a few beds and a stack of spears, and keep it in turns. They would want nothing of the colony but the ground, and would ride out against anything that came up the road.\n\nThe talker among them waits at the gate for an answer.</li>
+      <li>[theirLowtech] The wardens of {FACTION} who rest at the colony's gate have asked, through the one who does their talking, for a piece of ground at the edge of the colony's land. They would put up a palisade and a hut and keep a watch on the road from it, three or four of them at a time, changing with the season.\n\nThe colony's gate would never again be the first thing a bandit saw.</li>
+    </texts>
+    <summaries>
+      <li>Let the wardens build on the colony's land and their camp comes to put the post up; finished, it stays as the colony's neighbour, and they fight what comes up the road. Or the post goes up a day down the road, or not at all.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>ask</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>wardens</what><count>2</count><armed>true</armed></li>
+        </effects>
+        <day>1~3</day>
+        <titles>
+          <li>Ground for the wardens' post</li>
+        </titles>
+        <texts>
+          <li>Two of {FACTION}'s wardens are at the gate for the colony's answer. A post at the edge of its land, kept in turns by three or four of them, with the road watched and ridden from it; or the same post a day down the road, out of the colony's way; or no post at all. They'd prefer the first, they say, and they'd understand the others.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them build it on the colony's land</label>
+            <outcome>The wardens shake on it and ride for {PLACE} to fetch the rest. Their camp will come to put the post up, and when it stands they'll keep it in turns.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Camp"><kind>Council_Camp_Wardens</kind><flag>here</flag></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>asked</li></flags>
+            <help>2</help>
+            <deed>gave {FACTION}'s wardens ground for a post</deed>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>A day down the road, not on our land</label>
+            <outcome>The wardens take it well. The post will go up a day down the road, where the colony can reach it at need and not hear it otherwise.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>near</li></flags>
+            <help>1</help>
+          </li>
+          <li>
+            <label>No post here</label>
+            <outcome>The wardens are told the colony keeps its own ground. They nod, and ride on, and will keep the road from {PLACE} as before.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <flags><li>refused</li></flags>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>building</key>
+        <requires><li>here</li></requires>
+        <day>4~6</day>
+        <message>true</message>
+        <texts>
+          <li>The wardens' post is taking shape at the edge of the colony's land: a palisade, a fire, a stack of spears.</li>
+        </texts>
+      </li>
+      <li>
+        <key>settle</key>
+        <requires><li>here</li></requires>
+        <day>8~11</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_CampSettle"><kind>Council_Camp_Wardens</kind><flag>built</flag></li>
+        </effects>
+        <titles>
+          <li>The wardens' post stands</li>
+        </titles>
+        <texts>
+          <li>The wardens' post at the edge of the colony's land is finished, and {FACTION}'s wardens will keep it from now on, three or four at a time, changing with the season. The road past the colony's gate is watched from it, and whatever comes up the road meets them first.\n\nThey are the colony's neighbours now, and can be dealt with as neighbours are.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>kept</key>
+        <requires><li>built</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>The road is kept</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s wardens keep their post by the colony, and the road with it. Carters on it say the stretch past the colony is the safest for a week's travel, and {FACTION} say the colony made it so.</li>
+        </texts>
+        <chronicle>{FACTION}'s wardens made a post by the colony and kept the road from it.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>none</about></li>
+        </effects>
+      </li>
+      <li>
+        <key>gone</key>
+        <requires><li>here</li></requires>
+        <forbids><li>built</li></forbids>
+        <titles>
+          <li>The post that wasn't</li>
+        </titles>
+        <texts>
+          <li>[left] The wardens' camp broke up before the post was done, and {FACTION}'s wardens have gone back to keeping the road from {PLACE}. The half-built palisade at the edge of the colony's land will be firewood by spring.</li>
+          <li>[noRoom] With neighbours settled on the colony's land already, there was no ground left for the wardens' post, and {FACTION}'s wardens have gone back to keeping the road from {PLACE}.</li>
+          <li>The wardens' post was never finished, and {FACTION}'s wardens have gone back to keeping the road from {PLACE}.</li>
+        </texts>
+        <chronicle>{FACTION}'s wardens began a post by the colony and never finished it.</chronicle>
+      </li>
+      <li>
+        <key>nearby</key>
+        <requires><li>near</li></requires>
+        <titles>
+          <li>The post down the road</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s wardens have their post a day down the road, as the colony asked. Carters say the road is safer for it. The colony hears their horn on still mornings, and nothing else.</li>
+        </texts>
+        <chronicle>{FACTION}'s wardens put a post on the road a day from the colony.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>refused</key>
+        <requires><li>refused</li></requires>
+        <titles>
+          <li>No post</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s wardens keep the road from {PLACE}, as before, and ride past the colony's gate without stopping.</li>
+        </texts>
+        <chronicle>The colony refused {FACTION}'s wardens ground for a post.</chronicle>
+      </li>
+      <li>
+        <key>quiet</key>
+        <titles>
+          <li>The post down the road</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s wardens put their post up a day down the road after all; the colony's land wasn't to be had when they came for it. The road is safer for it.</li>
+        </texts>
+        <chronicle>{FACTION}'s wardens put a post on the road near the colony.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A crossroads town ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Crossroads</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a crossroads town</label>
+    <workerClass>ColonyCouncil.SituationWorker_Crossroads</workerClass>
+    <weight>3</weight>
+    <earliestDay>60</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>24~34</durationDays>
+    <kind>town</kind>
+    <after>
+      <li>Council_WS_Waystation</li>
+    </after>
+    <afterEndings>
+      <li>kept</li>
+    </afterEndings>
+    <afterDays>20~80</afterDays>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>A town at the crossroads</li>
+      <li>{PLACE} grows at the wardens' post</li>
+    </titles>
+    <texts>
+      <li>It started with a tinker who stopped at the wardens' post and didn't leave, and a woman who sold soup to the carters. Now there are a dozen houses on the road near the colony, a smithy, two inns and a market on the first day of the week, and {FACTION} have put it on their maps as {PLACE}, {TALE}.\n\nThe colony is no longer the only settlement on this stretch of road. It is, for now, the older one.</li>
+      <li>[theirLowtech] Where the road meets the wardens' post near the colony, a town has grown the way towns do: a cookshop, a smith, a man who mends harness, a woman who sells beer, and the carters who stop for all four. {FACTION} call it {PLACE}, {TALE}, and have sent a reeve.\n\nThe colony has a town for a neighbour.</li>
+    </texts>
+    <summaries>
+      <li>Traders come by more often with a market town on the road, and its people will come to look at the colony. The town is on the map to stay; the colony can give it a name.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>1.6</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_BulkOrder</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_RegularBuyer</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_FarMarket</rimfolk><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>market</key>
+        <day>2~5</day>
+        <message>true</message>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+        </effects>
+        <texts>
+          <li>Traders from the market at {PLACE} have come up the road to the colony's gate.</li>
+        </texts>
+      </li>
+      <li>
+        <key>name</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>reeve</what></li>
+        </effects>
+        <day>8~13</day>
+        <titles>
+          <li>A name for the town</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s reeve at the new town has walked up to the colony's gate with a question nobody expected: the town has a name on {FACTION}'s maps, {PLACE}, but its people have taken to calling it after the colony, since the colony was here first and the road past its gate is why they are. Would the colony mind if the town took its name for good?</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Name it after the colony</label>
+            <outcome>The reeve goes back down the road to tell them. The town will carry the colony's name on {FACTION}'s maps from now on, and the colony's name will be heard wherever its carters go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <flags><li>named</li></flags>
+            <help>1</help>
+            <deed>gave the crossroads town the colony's name</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let it keep its own name</label>
+            <outcome>The reeve is told the town should have a name of its own, and seems relieved; so does the colony. {PLACE} it stays.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>fair</key>
+        <day>18~24</day>
+        <chance>0.6</chance>
+        <message>true</message>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>VisitorGroup</incident><withFaction>true</withFaction><anyFaction>true</anyFaction></li>
+        </effects>
+        <texts>
+          <li>{PLACE} held its first market day, and some of the crowd has walked up the road to see the colony.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>town</key>
+        <helped>true</helped>
+        <titles>
+          <li>{PLACE} is on the map</li>
+        </titles>
+        <texts>
+          <li>[named] The crossroads town is on {FACTION}'s maps for good, under the colony's name, with a market every week and the wardens' post at its edge. Carters a month's travel away know the colony's name now, and most of them think it's the town.</li>
+          <li>[!named] {PLACE} is on {FACTION}'s maps for good, with a market every week and the wardens' post at its edge. The colony has a town for a neighbour, and the road it asked for has brought it one.</li>
+        </texts>
+        <chronicle>A crossroads town, {PLACE}, grew up on the road near the colony.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Follow"><situation>Council_WS_TradeBoom</situation><chance>0.3</chance></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

@@ -192,6 +192,56 @@
         </options>
       </li>
       <li>
+        <key>orphans</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>orphans</what><count>3</count><children>2</children><ages>55~72</ages><gender>Female</gender></li>
+        </effects>
+        <day>9~14</day>
+        <chance>0.7</chance>
+        <titles>
+          <li>Children left by {NAME}</li>
+        </titles>
+        <texts>
+          <li>An old woman of {FACTION} is at the gate with two children who aren't hers. Their parents died of {NAME} at {PLACE} within a week of each other, she says; she buried them herself, and she is too old to raise two children and too stubborn to leave them to the road. She asks whether the colony will take them. She will go home alone either way.</li>
+          <li>[their:friend] An old woman of {FACTION} has walked from {PLACE} with two children, and asked at the gate for {FRIEND_nameDef} by name. The children's parents are dead of {NAME}. There is nobody left at {PLACE} who can feed them, she says, and the colony is the place everyone says would.</li>
+          <li>[theirLowtech] Two children and a grandmother who isn't theirs have come up the road from {PLACE}, where {NAME} has taken the children's mother and father both. The old woman asks the colony to take the children in. "I've got a winter left in me," she says. "They need more than that."</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take the children in</label>
+            <outcome>The children are given beds and the old woman a meal, and in the morning she walks home to {PLACE} alone, as she said she would. The children stand at the gate and watch her go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><onlyChildren>true</onlyChildren></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the old woman</label><what>meals</what><count>1</count><to>Stranger</to><eat>true</eat><ifHave>true</ifHave></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>place</about></li>
+            </effects>
+            <flags><li>orphans</li></flags>
+            <help>2</help>
+            <deed>took in two children orphaned by {NAME}</deed>
+            <ways><mercy>3</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send them on to {FACTION}'s elders, with food</label>
+            <outcome>The old woman and the children eat at the gate and sleep one night in the lee of the wall, and go on in the morning with a sack of the colony's food, toward whoever of {FACTION} will have them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the children and the old woman</label><what>rawfood</what><count>25</count><to>Stranger</to><eat>true</eat><night>true</night></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The colony can't take them</label>
+            <outcome>The old woman nods as if she expected it, takes the children by the hand, and walks on down the road.</outcome>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
         <key>doctor</key>
         <effects>
           <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>

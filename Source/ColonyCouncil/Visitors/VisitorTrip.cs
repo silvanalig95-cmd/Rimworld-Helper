@@ -39,6 +39,10 @@ namespace ColonyCouncil
         public bool family;
         public bool armed;
         public bool young;
+        /// <summary>This many of them (the last ones) are children.</summary>
+        public int children;
+        /// <summary>Someone who walks in at their head: a world event's own person, kept in the world between visits.</summary>
+        public Pawn with;
         public Gender gender = Gender.None;
         public FloatRange ages = new FloatRange(18f, 50f);
         /// <summary>Came with next to nothing (robbed on the road): no weapon, few clothes.</summary>
@@ -131,6 +135,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref family, "family");
             Scribe_Values.Look(ref armed, "armed");
             Scribe_Values.Look(ref young, "young");
+            Scribe_Values.Look(ref children, "children");
+            Scribe_References.Look(ref with, "with");
             Scribe_Values.Look(ref gender, "gender", Gender.None);
             Scribe_Values.Look(ref ages, "ages", new FloatRange(18f, 50f));
             Scribe_Values.Look(ref robbed, "robbed");

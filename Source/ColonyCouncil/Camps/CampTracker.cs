@@ -257,6 +257,36 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// A camp of one kind, now, for a world event that calls for it (a wardens' post by the new road): from these
+        /// people when the kind fits them, else from any friendly people. Null when none can come (another camp is here,
+        /// no spot, no people), with why if asked.
+        /// </summary>
+        public Camp StartKind(Map map, CampKindDef kind, Faction f, List<string> why = null)
+        {
+            if (map == null || kind == null || camp != null || !Enabled) return null;
+            if (!kind.FitsEra() || !kind.Possible)
+            {
+                why?.Add(kind.label + ": not in this era");
+                return null;
+            }
+            var usual = CampWeather.StayRange(map, GenDate.TicksPerDay * 7);
+            bool hot = CampWeatherMath.PitchForHeat(usual.high);
+            if (!CampSite.TryFind(map, out var center, hot))
+            {
+                why?.Add("no spot for a camp was found");
+                return null;
+            }
+            if (f == null || !kind.FitsFaction(f) || !Arrivals.Usable(f) || Arrivals.PersonKind(f) == null) f = Arrivals.Friendly(x => kind.FitsFaction(x), Interplay.CampWeight);
+            if (f == null)
+            {
+                why?.Add(kind.label + ": no friendly people for it");
+                return null;
+            }
+            var setup = Make(map, center, CampSite.ColonyCenter(map), kind, f, hot, why, null);
+            return setup == null ? null : Start(setup);
+        }
+
+        /// <summary>
         /// A camp of this kind and people at the spot: its stay, its layout for the weather, its people (those
         /// <paramref name="given"/>, else the remembered ones coming back, filled up with new ones), dressed for the
         /// stay. Null if it can't be, with why.

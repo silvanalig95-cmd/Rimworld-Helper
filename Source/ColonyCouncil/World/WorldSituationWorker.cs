@@ -58,6 +58,7 @@ namespace ColonyCouncil
                 if (r == null || r.defName == null || !def.after.Contains(r.defName) || r.Followed(def.defName)) continue;
                 if (r.ending == null || r.ending == WorldSituations.Quietly) continue;
                 if (!def.afterEndings.NullOrEmpty() && !def.afterEndings.Contains(r.ending)) continue;
+                if (!def.afterFlags.NullOrEmpty() && !def.afterFlags.Any(r.Has)) continue;
                 float days = (now - r.endTick) / (float)GenDate.TicksPerDay;
                 if (days < def.afterDays.min || days > def.afterDays.max) continue;
                 if (def.faction != null && !def.faction.optional && (r.faction == null || !Candidates(def.faction, null, map).Contains(r.faction))) continue;

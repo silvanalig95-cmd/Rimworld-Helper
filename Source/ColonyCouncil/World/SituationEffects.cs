@@ -175,6 +175,8 @@ namespace ColonyCouncil
         public bool family;
         /// <summary>An animal that comes with them: "dog", "goat", or a PawnKindDef's defName.</summary>
         public string animal;
+        /// <summary>Only the children waiting at the gate join (the orphans); whoever brought them goes home, and nobody new is made.</summary>
+        public bool onlyChildren;
 
         private static readonly string[] Dogs = { "LabradorRetriever", "Husky", "YorkshireTerrier" };
 
@@ -183,7 +185,7 @@ namespace ColonyCouncil
             var map = SituationEffectUtil.MapOf(ctx);
             if (map == null || !Gate(ctx)) return;
             // The family waiting at the gate with the letter (Visitors/) are the ones taken in, with their animal.
-            var waiting = Visitors.TakeIn(ctx, !animal.NullOrEmpty());
+            var waiting = Visitors.TakeIn(ctx, !animal.NullOrEmpty(), onlyChildren);
             var met = waiting.FirstOrDefault(p => p.RaceProps.Humanlike);
             if (met != null)
             {
@@ -191,6 +193,7 @@ namespace ColonyCouncil
                 if (!animal.NullOrEmpty() && !waiting.Any(p => p.RaceProps.Animal)) Bring(met, map);
                 return;
             }
+            if (onlyChildren) return;
             var f = ctx.faction != null && !ctx.faction.defeated ? ctx.faction : null;
             var kind = f != null ? Arrivals.PersonKind(f) : null;
             if (kind == null || Avail.IsPreIndustrial && f.def.techLevel > TechLevel.Medieval) kind = Arrivals.JoinerKind();

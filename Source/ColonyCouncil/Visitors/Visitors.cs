@@ -82,7 +82,7 @@ namespace ColonyCouncil
             Pawn first = null, second = null;
             for (int i = 0; i < n; i++)
             {
-                bool child = t.family && i >= 2;
+                bool child = t.family && i >= 2 || t.children > 0 && i >= n - t.children;
                 Pawn p;
                 try
                 {
@@ -492,7 +492,7 @@ namespace ColonyCouncil
         /// The people at the gate for this question, if the colony takes them in (WorldEffect_Join): they become the
         /// colony's, with their animal, right where they stand, and the visit is over. Empty when nobody is waiting.
         /// </summary>
-        public static List<Pawn> TakeIn(DilemmaContext ctx, bool withAnimals)
+        public static List<Pawn> TakeIn(DilemmaContext ctx, bool withAnimals, bool onlyChildren = false)
         {
             var result = new List<Pawn>();
             var tracker = VisitorTracker.Instance;
@@ -502,6 +502,8 @@ namespace ColonyCouncil
             foreach (var p in t.people.ToList())
             {
                 if (p == null || p.Dead || !p.Spawned || p.Map != map || p.Downed || p.IsPrisoner || p.Faction == Faction.OfPlayer) continue;
+                // The children alone (the orphans brought to the gate): whoever brought them goes home.
+                if (onlyChildren && p.ageTracker.AgeBiologicalYears >= 18) continue;
                 if (p.Faction != null && p.Faction.HostileTo(Faction.OfPlayer)) continue;
                 if (Arrivals.Join(p, map)) result.Add(p);
             }

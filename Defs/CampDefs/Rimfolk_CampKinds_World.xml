@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Camps of the world round (Source/ColonyCouncil/World/Workers_World.cs). Road wardens never come on their own
+       (weight 0): a world event brings them to build their post (Council_WS_Waystation, WorldEffect_Camp), and when it
+       stands they settle as the colony's neighbours (WorldEffect_CampSettle, Camps/Holding.cs); they fight whatever
+       comes up the road (fights). Deserters come rarely on their own and three times as often while a war, a holy war,
+       a levy or a mercenary company is in the news; asked, they stand guard (DilemmaEffect_CampGuards). -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Wardens</defName>
+    <label>road wardens</label>
+    <fights>true</fights>
+    <canSettle>true</canSettle>
+    <weight>0</weight>
+    <people>3~4</people>
+    <days>14~18</days>
+    <ages>22~48</ages>
+    <armedHunters>true</armedHunters>
+    <huntsPerDay>0.3</huntsPerDay>
+    <chopsPerDay>0.6</chopsPerDay>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <pride>0.3</pride>
+    <breakTerms>0.03</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0.5</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>6</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <asks>
+      <li>
+        <key>watch</key>
+        <label>Ask them to walk the colony's bounds tonight</label>
+        <tip>Two of the wardens walk up to the colony's gate at dusk and keep an eye on the road from there for a few hours. They like being asked.</tip>
+        <needs>evening</needs>
+        <once>false</once>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>Two of the wardens came up to the gate at dusk with their spears and a lantern, and stood the colony's watch with it until the small hours.</li>
+          <li>{X_nameDef} sent two of the wardens up to the gate for the night watch. "Our road, your gate," {X_pronoun} said. "Same thing."</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes"><to>gate</to><count>2</count><hours>3~4</hours><when>17~21</when><doing>watch</doing>
+            <lines><li>Quiet night.</li><li>Nothing on the road.</li><li>Who goes there? Oh, the cat.</li></lines></li>
+        </effects>
+      </li>
+      <li>
+        <key>pay</key>
+        <label>Pay them for keeping the road ({COUNT} silver)</label>
+        <tip>Wardens are paid, where their people come from. Silver for the road they keep puts the colony in good standing with them, and with their people.</tip>
+        <silver>100</silver>
+        <tension>-6</tension>
+        <warm>1</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>{A_nameDef} carried {COUNT} silver down to the wardens' post. {X_nameDef} counted it, split it, and said {FACTION} would hear how the colony dealt with those who kept its road.</li>
+          <li>{X_nameDef} took the colony's silver with a nod. "We'd keep it anyway. This makes it a pleasure."</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+        </effects>
+      </li>
+    </asks>
+    <titles>
+      <li>The wardens' camp</li>
+      <li>{FACTION}'s road wardens make camp</li>
+    </titles>
+    <texts>
+      <li>{FACTION}'s road wardens have made camp {PLACE} to put up their post: {X_nameDef} and the others, with their spears stacked and a palisade already marked out with stakes.</li>
+      <li>The road wardens of {FACTION} have pitched camp {PLACE}, where the post is to go. {X_nameDef} walked the ground twice before letting anyone unpack.</li>
+    </texts>
+    <settled>
+      <li>The wardens' camp {PLACE} has its fire going and its first palisade posts in. Someone is always at the road end of it, watching.</li>
+      <li>Smoke rises from the wardens' camp {PLACE}, and the sound of an axe. The post is going up.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the wardens camped {PLACE}, came to the gate at the end of {X_possessive} watch. "I've kept other people's roads long enough," {X_pronoun} said. "I'd keep this one as one of yours, if there's a place."</li>
+    </joinTexts>
+    <farewell>
+      <li>The wardens of {FACTION} have struck their camp {PLACE} and ridden back to their people. The half-built post stands empty.</li>
+      <li>{FACTION}'s wardens are gone from {PLACE}, called back down the road. {X_nameDef} said, at the gate: "Keep the road for us a while."</li>
+    </farewell>
+    <lines>
+      <li>Nothing on the road.</li>
+      <li>Your turn on watch.</li>
+      <li>Another post in before dark.</li>
+      <li>Carts coming, two of them.</li>
+      <li>Sharpen that.</li>
+      <li>Good ground for a post.</li>
+    </lines>
+    <momentLines>
+      <li>[kill] Supper.</li>
+      <li>[repair] That'll hold.</li>
+    </momentLines>
+  </ColonyCouncil.CampKindDef>
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Deserters</defName>
+    <label>deserters</label>
+    <weight>0.25</weight>
+    <people>2~4</people>
+    <days>4~9</days>
+    <ages>18~40</ages>
+    <armedHunters>true</armedHunters>
+    <huntsPerDay>0.6</huntsPerDay>
+    <chopsPerDay>0.3</chopsPerDay>
+    <hireChance>0.7</hireChance>
+    <joinChance>0.15</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <pride>0.3</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>1.2</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>war</li>
+      <li>creed</li>
+      <li>sellswords</li>
+      <li>levy</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>3</count></li>
+    </structures>
+    <asks>
+      <li>
+        <key>guard</key>
+        <label>Ask them to stand guard while they're here</label>
+        <tip>They have fought before and would rather fight for a roof than run from one. From now on they take up arms against whatever threatens the colony while their camp stands, as a war party does.</tip>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>aid</deed>
+        <outcomes>
+          <li>{X_nameDef} looked at the others, and the others looked at their boots, and then {X_pronoun} said yes. "We left a fight that wasn't ours. This one would be."</li>
+          <li>{A_nameDef} asked the deserters camped {PLACE} to stand guard, and {X_nameDef} laughed, not unkindly. "Soldiers again. All right. For you, and for the fire."</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGuards" />
+        </effects>
+      </li>
+      <li>
+        <key>pay</key>
+        <label>Give them silver for the road ({COUNT} silver)</label>
+        <tip>They came away with their weapons and little else. Silver to go on with eases their stay and sends them off better than they came.</tip>
+        <silver>60</silver>
+        <tension>-8</tension>
+        <warm>1</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>{A_nameDef} carried {COUNT} silver over to the deserters' fire. {X_nameDef} turned it over in {X_possessive} hands a while before pocketing it. "Nobody's paid us in a season."</li>
+          <li>{X_nameDef} took the colony's silver and divided it four ways, exactly, as if on a parade ground.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>gear</key>
+        <theyAsk>true</theyAsk>
+        <label>Give them steel for their gear</label>
+        <refuseLabel>The colony's steel is its own</refuseLabel>
+        <minDays>1</minDays>
+        <tension>-6</tension>
+        <warm>1</warm>
+        <deed>aid</deed>
+        <askTexts>
+          <li>{X_nameDef} came up from the deserters' camp {PLACE} with a cracked blade and a question. Their gear is a season past mending, and a little of the colony's steel would see it right. They'd work for it, {X_pronoun} says, if the colony likes.</li>
+          <li>[ws:war|ws:creed|ws:sellswords|ws:levy] The deserters camped {PLACE} came out of {SITUATION} with their weapons and nothing to keep them with. {X_nameDef} asked {A_nameDef} for a few bars of steel to mend what they carry.</li>
+        </askTexts>
+        <tip>Fifteen steel is carried out to their camp. They mend their gear by the fire, and remember whose steel it was.</tip>
+        <outcomes>
+          <li>{A_nameDef} carried the steel down to the deserters' camp, and the sound of filing came up from it until dark. {X_nameDef} said, when {A_pronoun} left, that nobody had given them anything in a long while.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded, as if {X_pronoun} had expected it, and went back to the camp to bind the blade with wire.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>steel for the deserters' gear</label><what>Steel</what><count>15</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+    <titles>
+      <li>Deserters at the edge of the land</li>
+      <li>[ws:war|ws:creed|ws:sellswords|ws:levy] Men out of {SITUATION}</li>
+    </titles>
+    <texts>
+      <li>A handful of fighters of {FACTION} have made camp {PLACE}, well out of sight of the road. {X_nameDef} says, without being asked, that they are done with soldiering. They ask only to rest a few days, and that nobody who comes asking after them is told.</li>
+      <li>[ws:war|ws:creed|ws:sellswords|ws:levy] {FACTION} sent them to fight in {SITUATION}, and they have come away from it: {X_nameDef} and a few others, armed still, hungry, and done. They have camped {PLACE} and asked {A_nameDef} for leave to stay a while, out of sight.</li>
+      <li>[lowtech] Spears and a dented shield lean against a tree {PLACE}, and the people who carried them have lit a small fire and sat down as if they didn't mean to get up again. {X_nameDef} of {FACTION} asked {A_nameDef} for a few days' rest on the colony's land, and no questions.</li>
+    </texts>
+    <settled>
+      <li>The deserters' camp {PLACE} is small and hard to see from the road, which is how they want it. Someone is always awake.</li>
+      <li>The fighters camped {PLACE} have their weapons stacked within reach and their backs to a bank. They sleep in turns.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, from the deserters' camp {PLACE}, came to the gate without {X_possessive} weapon and asked whether the colony could use someone who knows how to hold a line and would rather never have to again.</li>
+      <li>{X_nameDef} has been splitting the colony's wood in the mornings without being asked. Tonight {X_pronoun} asked whether there might be a place here for good, for someone done with soldiering.</li>
+    </joinTexts>
+    <farewell>
+      <li>The deserters' camp {PLACE} is empty this morning, the fire cold. They went in the night, as people do who don't want to be followed.</li>
+      <li>{X_nameDef} and the others have gone on from {PLACE}, looking for somewhere nobody knows their faces. {X_nameDef} left a word of thanks at the gate.</li>
+      <li>[ws:war|ws:creed|ws:sellswords|ws:levy] The deserters have gone from {PLACE}, away from {SITUATION} and from everyone who was in it.</li>
+    </farewell>
+    <lines>
+      <li>Keep the fire low.</li>
+      <li>Nobody's coming.</li>
+      <li>Don't say that name here.</li>
+      <li>I'll take the watch.</li>
+      <li>We did the right thing.</li>
+      <li>[ws:war] It wasn't our war.</li>
+      <li>Sleep. I've got it.</li>
+    </lines>
+    <momentLines>
+      <li>[kill] Clean shot.</li>
+      <li>[butcher] Field rations.</li>
+    </momentLines>
+  </ColonyCouncil.CampKindDef>
+</Defs>

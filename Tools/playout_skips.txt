@@ -442,3 +442,20 @@ Council_DlmMove_Love [option 2] nothing done: the partner's own visit goes on as
 Council_DlmMove_AgainLove [option 2] nothing done: the partner's own visit goes on as it was, and they go home alone when it ends
 Council_Evt_WarCamp [option 0] the fighters really fight: the war band hunts the enemy on the map (Camps/WarCamp.cs, LordToil_HuntEnemies), the camp after it is the war party camp
 Council_Evt_RegularBack [option 2] the colonist really goes: they leave with the regular when the visit ends, seen off at the gate (Happenings/HappeningEffects_Leave.cs GoesWith, PlayOut/PlayDepart.cs)
+# Defs/WorldSituationDefs/Rimfolk_WS_World.xml and the plague's orphans (Council_WS_Hardship.xml)
+Council_WS_Plague [orphans/2] a refusal: the old woman and the children at the gate go on when the answer comes (Visitors/)
+Council_WS_RivalColony [hunters/0] the hunters are on the far ground already (VisitEffect_Come) and go on when their stop is over
+Council_WS_RivalColony [hunters/2] a warning off: the hunters on the far ground go on when their stop is over
+Council_WS_RivalColony [begging/1] the food is carried out to the settlers at the gate and paid for there (WorldEffect_Sell toVisitor)
+Council_WS_RivalColony [poaching/1] the talk is at their steading, off the map, told
+Council_WS_RivalColony [poaching/2] their traps are off the map, told
+Council_WS_RivalColony [grown] far away, told
+Council_WS_RivalColony [turning/1] the settlers walk in from the edge when the ending comes (WorldEffect_Join in the absorbed ending)
+Council_WS_RivalColony [feud] at the stream off the map, told; nobody is hurt
+Council_WS_RivalColony [end:alliance] far away, told
+Council_WS_RivalColony [end:absorbed] the settlers walk in from the edge (WorldEffect_Join)
+Council_WS_RivalColony [end:feud] far away, told
+Council_WS_RivalColony [end:failed] far away, told
+Council_WS_RivalColony [end:neighbours] far away, told
+Council_WS_Crossroads [name/0] the name is carried on the world map, told
+Council_WS_Crossroads [fair] the crowd comes as the game's own visitor group (WorldEffect_Incident)

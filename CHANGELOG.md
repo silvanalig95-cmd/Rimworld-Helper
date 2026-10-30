@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Other settlers, the road over a year, and people left behind
+
+*30 October 2026, version 0.33.0*
+
+- Other settlers: a party of a friendly people founds a steading a few days from the colony, a new town on the world map, and their leader comes to the gate. Over nearly a year (the longest world event yet) the steading grows household by household, their hunters work the colony's woods, they ask for food in a hungry month or, slighted, set their traps on the colony's side of the stream. At the turning of the year the leader comes back in person: bind the two settlements as allies, invite the settlers to join the colony (they walk over and the steading is left empty), agree a boundary, or tell them to keep to their side. Warm answers and slights are weighed against each other all year, and the year ends in an alliance, in new colonists, in bad blood, in the settlers giving up, or in plain neighbours.
+- The road, over a year: when "a new road" was brought past the colony's gate, it is used (merchants, travelers, a carter robbed on it, the people's road wardens at the gate); the wardens made welcome come back to ask for ground for a post, and their camp arrives to build it and then settles as the colony's neighbour, fighting whatever comes up the road; and at the post a crossroads town grows, which the colony may name after itself. Each follows the one before, so the road's story takes a year or two.
+- People a world event leaves behind: in a plague, an old woman brings two children orphaned by it to the gate (take the children in, send them on with food, or not); deserters of a war, a holy war, a levy or a mercenary company camp out of sight at the edge of the colony's land, ask for steel to mend their gear, and can be asked to stand guard, taking up arms against whatever threatens the colony while their camp stands. Any camp asked to stand guard fights as a war party does.
+- Under the hood: a world event can follow an earlier one by a flag it ended with, a beat can bring a camp of one kind or settle the camp that is here as the colony's neighbour, a letter's visitors can include children and bring the event's own person back to the gate, and taking in the children alone leaves whoever brought them free to go home.
+
 ## Faces that come back, visitors who notice, guests in the colony's stories
 
 *30 October 2026, version 0.32.0*

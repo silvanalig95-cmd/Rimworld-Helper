@@ -1,6 +1,36 @@
 # Handoff: work in progress
 
-Last shipped: 0.32.0, the visitors round (repeat visitors with a thread, visitors who notice, Hospitality guests in
+Last shipped: 0.33.0, the world round (other settlers, the road over a year, people a world event leaves behind).
+`World/Workers_World.cs`: `SituationWorker_RivalColony` (Council_WS_RivalColony, 50 to 58 days; a NewTown worker that
+also makes the leader {X} with `MakePerson` and keeps "start" households in `numbers`; `RivalMath` in
+World/RivalMath.cs, Tools/Tests/RivalTests.cs: `Households(start, daysIn, warm)`, `Warmth`/`Slights`/`Sour`/`Warm` over
+the flags, `CanAbsorb` 5; the worker keeps the flag "sour" in step from `BeatCanHappen`, `Chosen` and `TimeoutEnding`,
+puts the households in {COUNT} (`PrepareBeat` when the beat has no count of its own, `Summary`), refuses the join answer
+over five households (`Unavailable`, CC_WS_Rival_TooMany), and on the endings absorbed/failed destroys the town (failed
+leaves an AbandonedSettlement) when `SituationWorker_Abandoned.Safe`); `SituationWorker_Waystation` (Council_WS_Waystation:
+`CanHappen` needs camps on, no holding, the wardens kind in era; `BeatCanHappen` for "settle" sets left/noRoom or
+retries until the wardens' camp is settled); `SituationWorker_Crossroads` (Council_WS_Crossroads: a NewTown that renames
+the town to CC_WS_CrossingName on the first answer of "name"); `WorldEffect_Camp` (kind, flag: `CampTracker.StartKind`)
+and `WorldEffect_CampSettle` (kind, flag: `Camp.Settle`). `WorldSituationDef.afterFlags` (any of the record's flags;
+`AfterRecord`). Visitors: `VisitEffect.children` (the last n of the group are children; `VisitorTrip.children`,
+`Visitors.MakePeople`), `VisitEffect.withStranger` (the situation's {X} walks in at the head of the visit when
+`FreeInWorld`; `VisitorTrip.with`, taken out of the world in `VisitorTracker.SetOut`; the situation's hourly `Keep`
+holds them between visits), `WorldEffect_Join.onlyChildren` (`Visitors.TakeIn(ctx, animals, onlyChildren)` by age under
+18, and nobody new is made). Camps: `CampTracker.StartKind(map, kind, faction)` (a camp of one kind now, mirroring
+`Prepare`), `Camp.guards` (saved; `Ends` and the fighting reset read `kind.fights || guards`), `LordJob_Camp` always
+builds the hunt toil (the fight memo only comes to fighters or guards), `DilemmaEffect_CampGuards` (an ask effect, in
+WarCamp.cs). Defs: Rimfolk_WS_World.xml (the four situations), Rimfolk_CampKinds_World.xml (Council_Camp_Wardens:
+weight 0, fights, canSettle; Council_Camp_Deserters: situationKinds war/creed/sellswords/levy, asks guard/pay/gear), the
+"orphans" beat in Council_WS_Plague (VisitEffect_AtGate children 2, WorldEffect_Join onlyChildren). Not tried in the
+game: the first look should check that the settlers' leader really walks in with the first and the turning visit (the
+same pawn, named in both letters), that the wardens' camp comes when the answer is given and settles at the "settle"
+beat (the holding card on the World page), that a crossroads town renamed shows its new name on the world map, and that
+a deserters' camp asked to stand guard goes after a raid and comes back to its fire.
+
+Next rounds, in order (tasks): 0.34.0 animals (the herd's year, a resident wild animal); 0.35.0 Pokémon (one that
+keeps coming, a trainers' camp).
+
+Before it, 0.32.0, the visitors round (repeat visitors with a thread, visitors who notice, Hospitality guests in
 Rimfolk's stories). `Happenings/RegularMath.cs` (Tools/Tests/RegularTests.cs): `KeepMax` 5, `Due` 20..160 days,
 `Turning` (bond 4+, visits 3+), `BondChange` by the answer's openness, `Compare`/`Weakest`. `Happenings/Regulars.cs`:
 `Regular` (pawn kept in `WorldPawns.ForcefullyKeptPawns`, kind, faction, friendOf, visits, bond) on
@@ -33,8 +63,6 @@ can be asked to move on or taken in whole. Two camps at once: `CampTracker.All`,
 `Asked`/`Talking(c)` scopes so ask effects find their camp, `CampOnMap.For(ctx)` by the stranger's camp; the ~50
 other `Instance.camp` readers still mean the visiting camp. `CampPanel.Section` draws the holding's card first.
 
-Next rounds, in order (tasks): 0.33.0 world (a rival colony, the road, situations that leave people behind);
-0.34.0 animals (the herd's year, a resident wild animal); 0.35.0 Pokémon (one that keeps coming, a trainers' camp).
 
 Before it, 0.30.0, the first of the event rounds the player approved (camps that return, a stay as a story, the
 war camp they proposed). `Camps/CampStoryMath.cs` (Tools/Tests/CampStoryTests.cs) holds the numbers: endings

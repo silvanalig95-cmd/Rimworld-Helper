@@ -453,4 +453,30 @@ namespace ColonyCouncil
             }
         }
     }
+    /// <summary>
+    /// The camp stands guard (an ask of deserters, or any camp of fighters): from now on its people take up arms against
+    /// whatever threatens the colony while they're here, as a war party does (CampLife.Ends sends the fight memo).
+    /// </summary>
+    public class DilemmaEffect_CampGuards : DilemmaEffect
+    {
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null) return "CC_CampAsk_NotNow".Translate().ToString();
+            return c.guards || c.kind.fights ? "CC_CampGuards_Already".Translate().ToString() : null;
+        }
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null) return;
+            c.guards = true;
+            // apart: a word with their leader at the camp; it shows when the next raid comes and they take up arms with the colony.
+            if (c.map != null && MapFacts.ThreatOn(c.map) && c.LordAlive && !c.fighting)
+            {
+                c.fighting = true;
+                c.lord.ReceiveMemo(LordJob_Camp.MemoFight);
+            }
+        }
+    }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The world round (Source/ColonyCouncil/World/Workers_World.cs): other settlers, the road over a year, camps a world event calls for. -->
+  <CC_WS_Rival_TooMany>{0} has {1} households now: too many to take into the colony.</CC_WS_Rival_TooMany>
+  <CC_WS_CrossingName>{0} Crossing</CC_WS_CrossingName>
+  <CC_CampGuards_Already>They stand guard already.</CC_CampGuards_Already>
+  <CC_CampErrand_Arrived_watch>{X_nameDef} and another of the {NAME} have come up to the gate to stand the watch.</CC_CampErrand_Arrived_watch>
+
+</LanguageData>

@@ -26,6 +26,8 @@ namespace ColonyCouncil
         public Gender gender = Gender.None;
         /// <summary>A child where the game has children, else a young teenager.</summary>
         public bool young;
+        /// <summary>This many of them (the last ones) are children: orphans brought to the gate by a grown-up.</summary>
+        public int children;
         /// <summary>A beast of their caravans walks with them (a cart's ox, a sledge's beast): peoples of the old ways only.</summary>
         public bool pack;
         /// <summary>Their own animal: "dog", "goat", or a kind's defName (it joins with them if they're taken in).</summary>
@@ -40,6 +42,8 @@ namespace ColonyCouncil
         public string forbids;
         /// <summary>Only in a colony of the old ways (where the letter's own [lowtech] lines bring a rider, the others the comms).</summary>
         public bool onlyLowtech;
+        /// <summary>The world event's own person ({X}) walks in at their head, kept in the world between visits: a settlers' leader who comes back.</summary>
+        public bool withStranger;
 
         protected bool Gate(DilemmaContext ctx)
         {
@@ -59,7 +63,8 @@ namespace ColonyCouncil
             return new VisitorTrip
             {
                 kind = kind, map = map, faction = f, what = what, count = count.RandomInRange, family = family, armed = armed, ages = ages,
-                gender = gender, young = young, pack = pack, pet = pet, livestock = livestock.RandomInRange, beast = beast, onward = onward,
+                gender = gender, young = young, children = children, with = withStranger ? (ctx as SituationContext)?.stranger : null,
+                pack = pack, pet = pet, livestock = livestock.RandomInRange, beast = beast, onward = onward,
                 created = now, due = now, giveUp = now + VisitorMath.GiveUpTicks, situationId = (ctx as SituationContext)?.situationId ?? -1
             };
         }

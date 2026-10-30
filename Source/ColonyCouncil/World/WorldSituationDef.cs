@@ -78,6 +78,8 @@ namespace ColonyCouncil
         public FloatRange afterDays = new FloatRange(1f, 60f);
         /// <summary>Only after it ended one of these ways (ending keys); empty: any way but quietly.</summary>
         public List<string> afterEndings;
+        /// <summary>Only after it ended with one of these flags set (the road brought past the gate); empty: any.</summary>
+        public List<string> afterFlags;
 
         // ---------------- Who it's about ----------------
 

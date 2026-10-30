@@ -407,6 +407,12 @@ namespace ColonyCouncil
             if (!spot.IsValid || !map.reachability.CanReach(entry, spot, PathEndMode.OnCell, tp)) return false;
             var people = Visitors.MakePeople(t, f, map);
             if (people.Count == 0) return false;
+            // A world event's own person comes at their head (kept in the world between visits), when free to.
+            if (t.with != null && WorldSituationWorker.FreeInWorld(t.with) && t.with.Faction == f && !t.with.Downed)
+            {
+                Find.WorldPawns.RemovePawn(t.with);
+                people.Insert(0, t.with);
+            }
             var animals = Visitors.MakeAnimals(t, f, map);
             var party = new List<Pawn>(people);
             party.AddRange(animals);

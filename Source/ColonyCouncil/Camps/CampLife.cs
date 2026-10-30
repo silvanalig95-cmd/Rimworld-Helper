@@ -764,8 +764,8 @@ namespace ColonyCouncil
             {
                 // Neighbours settled for good keep to their huts and hope; what they lose is counted after (Holding.cs).
                 if (holding) return false;
-                // A war party takes up arms again; anyone else wants no part in the colony's fight.
-                if (kind.fights)
+                // A war party takes up arms again, as does a camp asked to stand guard; anyone else wants no part in the colony's fight.
+                if (kind.fights || guards)
                 {
                     if (!fighting && LordAlive)
                     {
@@ -778,7 +778,7 @@ namespace ColonyCouncil
                 Leave("raid", true);
                 return true;
             }
-            if (fighting && kind.fights && !MapFacts.ThreatOn(map)) fighting = false;
+            if (fighting && (kind.fights || guards) && !MapFacts.ThreatOn(map)) fighting = false;
             if (BadWeather() && (!holding || CampWeather.Hazard(map) != null))
             {
                 // Settled neighbours have shelter against the weather; only poisoned air or a sky on fire drives them off.

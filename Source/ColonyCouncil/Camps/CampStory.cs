@@ -27,6 +27,8 @@ namespace ColonyCouncil
         public Pawn sick;
         /// <summary>A war party, fighting again: a new threat came while they rested.</summary>
         public bool fighting;
+        /// <summary>Asked to stand guard: they fight whatever threatens the colony while they're here, as a war party does.</summary>
+        public bool guards;
 
         /// <summary>A war party's enemy: whom they came to fight.</summary>
         public Faction enemy;
@@ -44,6 +46,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref invited, "invited");
             Scribe_Values.Look(ref provisioned, "provisioned");
             Scribe_Values.Look(ref fighting, "fighting");
+            Scribe_Values.Look(ref guards, "guards");
             Scribe_References.Look(ref sick, "sick");
             Scribe_References.Look(ref enemy, "enemy");
             if (Scribe.mode == LoadSaveMode.PostLoadInit) beats ??= new List<string>();
