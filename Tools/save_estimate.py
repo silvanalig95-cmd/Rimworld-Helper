@@ -244,6 +244,8 @@ MODEL = {
     "Camps/Camp.cs:asksMade": ("while", 15, 40, "asks made of the camp (once each, or once a day), while it stays"),
     "Camps/CampRequests.cs:errandPeople": ("while", 8, P, "those of the camp on an errand into the colony, while it lasts"),
     "Camps/CampRequests.cs:errandLines": ("while", 4, 120, "what they say on the errand, while it lasts"),
+    "Camps/CampRequests.cs:stallWares": ("while", 3, P, "a few stacks their trader set out by the gate for a day's stall, while it lasts"),
+    "Camps/CampCarry.cs:carries": ("while", 3, R, "what they are bringing over by hand (herbs, milk, a gift, goods bought), one per bearer, gone once set down"),
     "Camps/CampLook.cs:herd": ("while", 5, P, "the camp's animals (CampLookMath.MaxAnimals), while it stays"),
     "Camps/CampLook.cs:props": ("while", 6, P, "goods the camp put out (a few stacks), pruned of the gone, while it stays"),
     "Camps/CampLook.cs:walkSeen": ("while", 4, P, "colonists the farewell round looked in on (the walk's count), while the camp stays"),

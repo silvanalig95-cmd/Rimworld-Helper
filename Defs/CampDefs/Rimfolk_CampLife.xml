@@ -39,6 +39,49 @@
     </modExtensions>
   </JobDef>
 
+  <!-- Something brought over for the colony by hand (Source/ColonyCouncil/Camps/CampCarry.cs): their healer out
+       gathering at dawn (wild healroot harvested where it grows, else herbs picked among the grass on a walk beyond the
+       camp), a drover milking or shearing a beast of their herd (it stands for it), and the walk over with what they
+       have, set down at the camp's edge nearest the colony, or the colony's gate for goods it bought. -->
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampGather</defName>
+    <reportString>gathering herbs.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>500</ticks><effecter>Harvest_Plant</effecter></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampMilk</defName>
+    <reportString>milking TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>400</ticks><holdTarget>true</holdTarget></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampShear</defName>
+    <reportString>shearing TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>500</ticks><holdTarget>true</holdTarget></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Council_CampBring</defName>
+    <driverClass>ColonyCouncil.JobDriver_CampBring</driverClass>
+    <reportString>bringing something over for the colony.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <!-- Their own dead taken up and carried off the map when they go in peace (a war party's fallen): the game's own
+       taking and leaving with something. -->
+  <JobDef>
+    <defName>Council_CampCarryHome</defName>
+    <driverClass>JobDriver_TakeAndExitMap</driverClass>
+    <reportString>carrying TargetA home.</reportString>
+  </JobDef>
+
   <!-- A smith mending one of the colony's damaged buildings, as a gift. -->
   <JobDef ParentName="Council_CampJobBase">
     <defName>Council_CampRepair</defName>

@@ -17,15 +17,20 @@ namespace ColonyCouncil
         public bool repairEffect;
         /// <summary>With someone as the target: the work ends if they walk off farther than this (0: never).</summary>
         public float stayNear;
+        /// <summary>The game's effect while the work is done (chaff for gathering, dirt for digging), at the errand's place if it has one, else at the target.</summary>
+        public EffecterDef effecter;
+        /// <summary>An animal as the target stands still for the work (milking, shearing), as the game's own gathering has it.</summary>
+        public bool holdTarget;
     }
 
     /// <summary>
     /// The camp duty's job giver: what one of them does next. In order: eat, the last walk before they go (a healer's
-    /// round, a gift for the colony's gate), sleep, tend a colonist lying hurt outdoors nearby, build the camp, fetch
-    /// their kills (to the butchering spot) and wood (to the stash), then by the time of day: butchering, cooking and
-    /// sitting by the fire in the evening; mending one of the colony's buildings as a gift, dressing kills, hunting,
-    /// felling trees, porters' loads and their own work by day. Only their own goods are ever used, and nothing is taken
-    /// from inside or near the colony's home area.
+    /// round, a gift for the colony's gate), sleep, an errand into the colony, something to bring over for the colony
+    /// (herbs gathered at dawn, a beast's milk, a gift, goods it bought), tend a colonist lying hurt outdoors nearby,
+    /// build the camp, fetch their kills (to the butchering spot) and wood (to the stash), then by the time of day:
+    /// butchering, cooking and sitting by the fire in the evening; mending one of the colony's buildings as a gift,
+    /// dressing kills, hunting, felling trees, porters' loads and their own work by day. Only their own goods are ever
+    /// used, and nothing is taken from inside or near the colony's home area.
     /// </summary>
     public class JobGiver_CampLife : ThinkNode_JobGiver
     {
@@ -105,6 +110,9 @@ namespace ColonyCouncil
             // An errand into the colony an ask or a request sent them on (CampRequests.cs).
             var errand = camp.ErrandJob(pawn);
             if (errand != null) return errand;
+            // Something to bring over for the colony: gathered, milked, from the stock or bought (CampCarry.cs).
+            var carry = camp.CarryJob(pawn);
+            if (carry != null) return carry;
             var job = Tend(camp, pawn);
             if (job != null) return job;
             if (camp.phase == CampPhase.Building || camp.Unfinished().Count > 0)
@@ -282,7 +290,7 @@ namespace ColonyCouncil
             // off: bodies by the butchering spot, the rest at the stash. What they put out has its own place (porters move it).
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver))
             {
-                if (!camp.Owns(t) || !t.Spawned || camp.IsProp(t) || InColony(t, home) || !t.Position.InHorDistOf(camp.center, CampSite.WorkRadius)) continue;
+                if (!camp.Owns(t) || !t.Spawned || camp.IsProp(t) || camp.IsWare(t) || InColony(t, home) || !t.Position.InHorDistOf(camp.center, CampSite.WorkRadius)) continue;
                 var to = t is Corpse ? killSpot : camp.stash;
                 if (t.Position.InHorDistOf(to, 3.5f)) continue;
                 if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
@@ -533,7 +541,9 @@ namespace ColonyCouncil
                 else if (def == CampDefOf.Council_CampFarewell) camp.LookedIn(pawn, job.targetA.Thing as Pawn);
                 else if (def == CampDefOf.Council_CampLayGift) camp.LaidGift(pawn, job.targetA.Cell);
                 else if (def == CampDefOf.Council_CampRepair) camp.Repaired(pawn, job.targetA.Thing);
-                else if (def == CampDefOf.Council_CampErrand || def == CampDefOf.Council_CampErrandTo) camp.ErrandWorked(pawn, job);
+                else if (def == CampDefOf.Council_CampErrand || def == CampDefOf.Council_CampErrandTo || def == CampDefOf.Council_CampErrandDig) camp.ErrandWorked(pawn, job);
+                else if (def == CampDefOf.Council_CampGather) camp.Gathered(pawn, job.targetA.Thing);
+                else if (def == CampDefOf.Council_CampMilk || def == CampDefOf.Council_CampShear) camp.Milked(pawn, job.targetA.Thing as Pawn);
             }
             catch (Exception e)
             {
@@ -629,14 +639,17 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A camp job: go to a spot (or to someone), spend a while there facing the fire or the work, then the job's
-    /// effect (a meal eaten, supper cooked, a body butchered, a colonist tended, a find at the diggings).
+    /// effect (a meal eaten, supper cooked, a body butchered, a colonist tended, a find at the diggings, herbs gathered,
+    /// a beast milked).
     /// </summary>
     public class JobDriver_CampTask : JobDriver
     {
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
-            // A body to butcher is theirs alone while they work on it.
-            if (job.def == CampDefOf.Council_CampButcher && job.targetA.HasThing) return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
+            // A body to butcher, a plant to gather from, a beast to milk: theirs alone while they work on it.
+            var def = job.def;
+            if ((def == CampDefOf.Council_CampButcher || def == CampDefOf.Council_CampGather || def == CampDefOf.Council_CampMilk || def == CampDefOf.Council_CampShear) && job.targetA.HasThing)
+                return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
             return true;
         }
 
@@ -655,6 +668,12 @@ namespace ColonyCouncil
             work.defaultDuration = Mathf.Max(60, ext?.ticks ?? 1000);
             work.handlingFacing = true;
             work.socialMode = ext != null && ext.social ? RandomSocialMode.SuperActive : RandomSocialMode.Normal;
+            if (ext != null && ext.holdTarget)
+                work.initAction = () =>
+                {
+                    // The beast stands for it, as for the colony's own milking.
+                    if (job.targetA.Thing is Pawn beast && beast.Spawned && !beast.Downed && !beast.Dead) PawnUtility.ForceWait(beast, work.defaultDuration + 30, pawn);
+                };
             work.tickAction = () =>
             {
                 var face = job.targetB.IsValid ? job.targetB : job.targetA;
@@ -664,6 +683,7 @@ namespace ColonyCouncil
                     EndJobWith(JobCondition.Incompletable);
             };
             if (ext != null && ext.repairEffect) work.WithEffect(() => job.targetA.Thing?.def?.repairEffect ?? EffecterDefOf.ConstructMetal, TargetIndex.A);
+            if (ext?.effecter != null) work.WithEffect(ext.effecter, job.targetB.IsValid ? TargetIndex.B : TargetIndex.A);
             yield return work;
             yield return Toils_General.Do(() => CampWork.Done(pawn, job));
         }

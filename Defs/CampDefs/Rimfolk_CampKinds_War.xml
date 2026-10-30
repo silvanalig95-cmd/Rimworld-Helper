@@ -80,8 +80,9 @@
       <li>{X_nameDef}, one of the fighters camped {PLACE}, came to the gate with {X_possessive} pack already on. "I've fought for other people long enough. I'd rather fight for mine. Is there a place here?"</li>
       <li>{X_nameDef} from the war camp has been eating at the colony's fire more than at {X_possessive} own. Tonight {X_nameDef} asked, plainly, whether the colony could use one more who knows how to hold a line.</li>
     </joinTexts>
+    <!-- [carried]: they took up their dead lying on the land and carried them off with them (Camp.CarryDeadHome). -->
     <farewell>
-      <li>The war party of {FACTION} struck their camp {PLACE} at first light and went home, their dead carried between them. {FACTION} will remember who stood with them.</li>
+      <li>[carried] The war party of {FACTION} struck their camp {PLACE} and went home, carrying their dead with them. {FACTION} will remember who stood with them.</li>
       <li>The fighters of {FACTION} are gone from {PLACE}, leaving a ring of trampled grass and a cold fire. {X_nameDef} said, at the gate: "Next time, you come to us."</li>
       <li>The war camp {PLACE} is empty. {FACTION}'s people marched off singing the same bad song.</li>
     </farewell>

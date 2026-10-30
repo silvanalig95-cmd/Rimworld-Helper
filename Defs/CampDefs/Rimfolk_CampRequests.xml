@@ -16,6 +16,15 @@
     </modExtensions>
   </JobDef>
 
+  <!-- The prospectors' test hole: the same errand, with the dirt flying where they dig. -->
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Council_CampErrandDig</defName>
+    <reportString>digging a test hole.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>750</ticks><social>true</social><effecter>ConstructDirt</effecter></li>
+    </modExtensions>
+  </JobDef>
+
   <JobDef ParentName="Council_CampJobBase">
     <defName>Council_CampErrandTo</defName>
     <reportString>seeing TargetA.</reportString>

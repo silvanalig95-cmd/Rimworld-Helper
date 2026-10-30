@@ -99,8 +99,8 @@
       <li>[heal] {X_nameDef} from the healers' camp caught {A_nameDef} on the path and saw to {A_possessive} {THING} there and then, with a poultice and a cup of something bitter. {A_nameDef} is already feeling better.</li>
       <li>[heal,lowtech] {X_nameDef}, the eldest of the healers, sat {A_nameDef} down by the camp's fire and saw to the {THING} with herbs and a lot of muttering. {A_nameDef} came back to the colony looking much brighter.</li>
       <li>[heal,!lowtech] {X_nameDef} from the clinic {PLACE} took one look at {A_nameDef}'s {THING}, sat {A_objective} down at the folding table, and dealt with it in twenty minutes. No charge.</li>
-      <li>[herbs] The healers {PLACE} had herbs to spare, and left {COUNT} bundles of herbal medicine on the colony's side of their camp.</li>
-      <li>[herbs] {X_nameDef} set out {COUNT} bundles of dried healroot at the edge of the healers' camp for the colony's stores, and has a lecture ready on keeping them dry for whoever comes to fetch them.</li>
+      <li>[herbs] The healers {PLACE} gathered more herbs at dawn than they need, and {X_nameDef} left {COUNT} bundles of herbal medicine on the colony's side of their camp.</li>
+      <li>[herbs] {X_nameDef} came back from gathering at dawn and set out {COUNT} bundles of healroot at the edge of the healers' camp for the colony's stores, with a lecture ready on keeping them dry for whoever comes to fetch them.</li>
     </helpTexts>
     <!-- What they ask of the colony, and what the colony can ask of them (CampAsks.cs, CampRequests.cs): practice for their
          apprentice on someone who needs it, remedies, and a lesson at their table. -->
@@ -235,11 +235,19 @@
       <li>Ring the bell, it's time.</li>
       <li>Rest now, walk tomorrow.</li>
     </lines>
+    <!-- Said at the colony while they bless it at dusk (the errand for the help "blessing"). -->
+    <momentLines>
+      <li>[blessing] Bless this ground.</li>
+      <li>[blessing] Bless the hands that work it.</li>
+      <li>[blessing] Peace on this house.</li>
+    </momentLines>
+    <!-- Where they blessed the colony is a tag: [fields] (its fields), [gate] (no fields: its gate). -->
     <helpTexts>
-      <li>[blessing] {X_nameDef}, the eldest of the faithful, came to the colony at dusk and walked its paths with a bell, blessing the houses, the fields and the people one by one.</li>
-      <li>[blessing,ideology] The followers of {IDEO} came to the colony's gate at sunset and sang a blessing over it, the whole procession together, before going back to their fire.</li>
-      <li>[blessing,sameFaith] The procession came to the colony this evening to pray with it, as people of one ideoligion. {X_nameDef} led the prayers, and {A_nameDef} stood at the front.</li>
-      <li>[blessing,lowtech] The faithful carried their shrine around the colony's fields at dusk, ringing bells, so the land would be kind to the people working it.</li>
+      <li>[blessing,fields] {X_nameDef}, the eldest of the faithful, came to the colony's fields at dusk with a bell and blessed them, and the houses and the people with them.</li>
+      <li>[blessing,gate] {X_nameDef}, the eldest of the faithful, came to the colony's gate at dusk with a bell and blessed the colony from there: its houses, its fields and its people.</li>
+      <li>[blessing,ideology] The followers of {IDEO} came to the colony at sunset and sang a blessing over it before going back to their fire.</li>
+      <li>[blessing,sameFaith] The procession came to the colony this evening to pray for it, as people of one ideoligion. {X_nameDef} led the prayers.</li>
+      <li>[blessing,lowtech,fields] The faithful went out into the colony's fields at dusk, ringing bells, so the land would be kind to the people working it.</li>
     </helpTexts>
     <!-- What they ask of the colony, and what the colony can share with them (CampAsks.cs, CampRequests.cs): their icon
          carried round the colony's fields, and their evening hymn. -->

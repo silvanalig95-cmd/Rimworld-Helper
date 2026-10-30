@@ -265,6 +265,19 @@ namespace ColonyCouncil
         private static void GoHome(WarBand b, CampTracker tracker, string key)
         {
             if (b.LordAlive) b.lord.ReceiveMemo(LordJob_WarBand.MemoLeave);
+            // The fight over, they gather their own: their dead lying on the land are carried off with them (never while
+            // enemies are still about).
+            if (b.map != null && !MapFacts.ThreatOn(b.map))
+            {
+                try
+                {
+                    Camp.CarryDead(b.map, b.faction, b.Here, IntVec3.Invalid);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("war party dead carried home", e);
+                }
+            }
             string text = key.Translate((b.faction?.Name ?? "").Named("FACTION"), (b.enemy?.Name ?? "").Named("ENEMY"), b.came.Named("COUNT"), b.Fell.Named("FELL")).Resolve();
             Find.LetterStack.ReceiveLetter("CC_WarCamp_GoneTitle".Translate((b.faction?.Name ?? "").Named("FACTION")).Resolve(), text, LetterDefOf.NeutralEvent,
                 new LookTargets(b.Here.Cast<Thing>()), b.faction);

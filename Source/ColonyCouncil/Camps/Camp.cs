@@ -430,6 +430,8 @@ namespace ColonyCouncil
             ExposeLook();
             // Their requests and errands into the colony (CampRequests.cs).
             ExposeRequests();
+            // What they're bringing over for the colony by hand (CampCarry.cs).
+            ExposeCarries();
             // A child of theirs lost out on the land (CampLost.cs).
             ExposeLost();
             // The stay's beats, a camp come back, a war party's enemy (CampStory.cs).

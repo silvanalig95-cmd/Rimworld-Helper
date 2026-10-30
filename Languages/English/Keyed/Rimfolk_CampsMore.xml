@@ -22,10 +22,12 @@
   <CC_CampErrand_Arrived_mend>{X_nameDef} of the {NAME} has come to the gate with a hammer and a sack of nails.</CC_CampErrand_Arrived_mend>
 
   <CC_CampErrand_Arrived_prayover>{X_nameDef} of the {NAME} has come to sit with {A_nameDef} and pray.</CC_CampErrand_Arrived_prayover>
+  <CC_CampErrand_Arrived_mendgear>{X_nameDef} of the {NAME} has come over to see to {A_nameDef}'s worn things.</CC_CampErrand_Arrived_mendgear>
+  <CC_CampErrand_Arrived_blessing>{X_nameDef} of the {NAME} has come to the colony at dusk to bless it.</CC_CampErrand_Arrived_blessing>
 
   <!-- Errands done: what they leave the colony. -->
   <CC_CampErrand_Gave_visit>The {NAME} set out a share for the colony at the edge of their camp before they went back.</CC_CampErrand_Gave_visit>
-  <CC_CampErrand_Gave_dig>The {NAME} filled in their test hole and set the colony's share of what it gave out at the edge of their camp, as promised.</CC_CampErrand_Gave_dig>
+  <CC_CampErrand_Gave_dig>The {NAME} filled in their test hole and left the colony's share of what it gave beside it, as promised.</CC_CampErrand_Gave_dig>
 
   <!-- Errands on the week's page, while they're coming or under way. -->
   <CC_CampErrand_Week_visit>{X_nameDef} of the {NAME} comes over to the colony</CC_CampErrand_Week_visit>
@@ -38,6 +40,8 @@
   <CC_CampErrand_Week_bless>{X_nameDef} leads the {NAME} round the colony's fields</CC_CampErrand_Week_bless>
   <CC_CampErrand_Week_mend>{X_nameDef} of the {NAME} comes to mend at the gate</CC_CampErrand_Week_mend>
   <CC_CampErrand_Week_prayover>{X_nameDef} of the {NAME} comes to pray at {A_nameDef}'s side</CC_CampErrand_Week_prayover>
+  <CC_CampErrand_Week_mendgear>{X_nameDef} of the {NAME} comes to mend {A_nameDef}'s worn things</CC_CampErrand_Week_mendgear>
+  <CC_CampErrand_Week_blessing>{X_nameDef} of the {NAME} comes to bless the colony at dusk</CC_CampErrand_Week_blessing>
   <CC_CampErrand_Week_stray>Beasts from the {NAME} camp are in the colony's fields</CC_CampErrand_Week_stray>
 
   <!-- Why an errand can't go. -->
@@ -53,6 +57,10 @@
   <CC_CampHelp_No>They can't do that now.</CC_CampHelp_No>
   <CC_CampHelp_No_repair>Nothing of the colony's needs mending.</CC_CampHelp_No_repair>
   <CC_CampHelp_No_survey>They've surveyed the colony's ground already.</CC_CampHelp_No_survey>
+  <CC_CampHelp_No_milk>None of their beasts gives milk or wool.</CC_CampHelp_No_milk>
+
+  <!-- Goods the colony bought, carried over by one of them (Camps/CampCarry.cs). -->
+  <CC_CampBring_Done>{X_nameDef} of the {NAME} has set down {COUNT} {THING} by the colony's gate.</CC_CampBring_Done>
 
   <!-- The camp dilemmas. -->
   <CC_CampDlm_Joined>{X_nameDef} left the {NAME} of {FACTION} to stay with the colony.</CC_CampDlm_Joined>

@@ -158,6 +158,7 @@ namespace ColonyCouncil
             Upkeep();
             WatchRepair();
             WatchErrand();
+            WatchCarries();
             if (phase == CampPhase.Building) CheckBuilt();
             WatchTrade();
             if (Ends()) return;
@@ -543,31 +544,24 @@ namespace ColonyCouncil
                     return true;
                 }
                 case "medicine":
-                {
-                    int n = Rand.RangeInclusive(2, 4);
-                    var med = ThingMaker.MakeThing(ThingDefOf.MedicineHerbal);
-                    med.stackCount = n;
-                    if (!GenPlace.TryPlaceThing(med, share, map, ThingPlaceMode.Near)) return false;
-                    Tell(Text("CC_Camp_HelpTitle"), Text("CC_Camp_Help_medicine", null, null, n), LetterDefOf.PositiveEvent, false);
-                    foreach (var c in colonists) CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_Helped);
-                    return true;
-                }
+                    // Their healer goes out gathering herbs at dawn and carries them over to the camp's edge (CampCarry.cs);
+                    // the colony hears of it when they're set down.
+                    return StartHerbs("medicine");
                 case "mend":
                 {
-                    var mender = Here.Where(p => !p.Downed && !p.DevelopmentalStage.Juvenile()).OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Crafting)?.Level ?? 0).FirstOrDefault();
+                    // Their best hand walks over to a colonist whose clothes or gear are worn and mends them at their side
+                    // (an errand, CampRequests.cs); the colony hears of it once it's done.
+                    if (ErrandSet) return false;
+                    var mender = ErrandPeople("crafter", 1).FirstOrDefault();
                     if (mender == null) return false;
                     foreach (var c in colonists.InRandomOrder())
                     {
-                        var gear = new List<Thing>();
-                        if (c.apparel != null) gear.AddRange(c.apparel.WornApparel.Cast<Thing>());
-                        if (c.equipment?.Primary != null) gear.Add(c.equipment.Primary);
-                        var worn = gear.Where(t => t.def.useHitPoints && t.HitPoints < t.MaxHitPoints * 0.7f).OrderBy(t => t.HitPoints / (float)t.MaxHitPoints).FirstOrDefault();
-                        if (worn == null) continue;
-                        worn.HitPoints = worn.MaxHitPoints;
-                        Warm(c, 2);
-                        Tell(Text("CC_Camp_HelpTitle"), Text("CC_Camp_Help_mend", mender, c, 0, worn.LabelNoCount), LetterDefOf.PositiveEvent, false);
-                        CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_Helped);
-                        return true;
+                        if (WornGear(c) == null || !c.Spawned || c.Downed || !c.Awake() || c.InBed() || !mender.CanReach(c, PathEndMode.Touch, Danger.Some)) continue;
+                        var errand = new DilemmaEffect_CampComes
+                        {
+                            to = "A", who = "crafter", count = 1, doing = "mendgear", hours = new FloatRange(1f, 1.5f), when = new IntRange(8, 19)
+                        };
+                        return StartErrand(errand, c);
                     }
                     return false;
                 }
@@ -575,6 +569,16 @@ namespace ColonyCouncil
                     // The newer kinds' good turns: healing, a show, a blessing, a survey (CampKinds.cs).
                     return MoreHelp(h);
             }
+        }
+
+        /// <summary>The most worn of a colonist's clothes and gear (below 70%), or null.</summary>
+        public static Thing WornGear(Pawn c)
+        {
+            if (c == null) return null;
+            var gear = new List<Thing>();
+            if (c.apparel != null) gear.AddRange(c.apparel.WornApparel.Cast<Thing>());
+            if (c.equipment?.Primary != null) gear.Add(c.equipment.Primary);
+            return gear.Where(t => t.def.useHitPoints && t.HitPoints < t.MaxHitPoints * 0.7f).OrderBy(t => t.HitPoints / (float)t.MaxHitPoints).FirstOrDefault();
         }
 
         /// <summary>Leaves some of their goods at the spot nearest the colony, for the colony to take. Returns how many.</summary>
@@ -851,6 +855,9 @@ namespace ColonyCouncil
             phase = CampPhase.Leaving;
             ending = reason;
             leftTick = Now;
+            carries.Clear();
+            // A day's stall at the gate is packed up first.
+            PackWares();
             if (LordAlive) lord.ReceiveMemo(fast ? LordJob_Camp.MemoFlee : LordJob_Camp.MemoLeave);
             // People who might come back are held in the world from here (CampMemory.cs).
             try
@@ -869,7 +876,58 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("camp packing", e);
             }
+            // Going in their own time, they take their dead with them (a war party's fallen).
+            if (!fast)
+            {
+                try
+                {
+                    CarryDeadHome();
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp dead carried home", e);
+                }
+            }
             TellEnding();
+        }
+
+        /// <summary>How many of their dead they took up to carry home when they went.</summary>
+        [Unsaved] private int deadCarried;
+
+        /// <summary>Their own people lying dead on the map (a war party's fallen), carried off by those leaving.</summary>
+        private void CarryDeadHome()
+        {
+            if (map != null && faction != null && !faction.IsPlayer) deadCarried += CarryDead(map, faction, Here, center);
+        }
+
+        /// <summary>
+        /// The dead of a people lying on the map are taken up by those of them leaving now, one by each who can carry
+        /// (the nearest first to <paramref name="near"/>), and carried off the map with them. The colony's graves keep the
+        /// ones it buried already. Returns how many were taken up.
+        /// </summary>
+        public static int CarryDead(Map map, Faction f, IEnumerable<Pawn> people, IntVec3 near)
+        {
+            if (map == null || f == null || f.IsPlayer || people == null) return 0;
+            var bearers = people.Where(p => p != null && p.Spawned && p.Map == map && !p.Dead && !p.Downed && !p.DevelopmentalStage.Juvenile() && !p.InMentalState
+                                            && p.carryTracker?.CarriedThing == null && !p.WorkTagIsDisabled(WorkTags.Hauling)).ToList();
+            if (bearers.Count == 0) return 0;
+            var dead = map.listerThings.ThingsInGroup(ThingRequestGroup.Corpse).OfType<Corpse>()
+                .Where(c => c.Spawned && c.InnerPawn != null && c.InnerPawn.Faction == f && c.InnerPawn.RaceProps.Humanlike)
+                .OrderBy(c => near.IsValid ? c.Position.DistanceToSquared(near) : 0).ToList();
+            int taken = 0;
+            foreach (var corpse in dead)
+            {
+                var bearer = bearers.Where(p => p.CanReserveAndReach(corpse, PathEndMode.ClosestTouch, Danger.Some)).OrderBy(p => p.Position.DistanceToSquared(corpse.Position)).FirstOrDefault();
+                if (bearer == null) continue;
+                if (!RCellFinder.TryFindBestExitSpot(bearer, out var exit)) continue;
+                var job = JobMaker.MakeJob(CampDefOf.Council_CampCarryHome, corpse, exit);
+                job.count = 1;
+                bearer.jobs.StartJob(job, JobCondition.InterruptForced);
+                bearers.Remove(bearer);
+                if (bearer.CurJob == job) taken++;
+                if (bearers.Count == 0) break;
+            }
+            return taken;
         }
 
         /// <summary>

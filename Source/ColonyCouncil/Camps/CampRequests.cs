@@ -37,6 +37,10 @@ namespace ColonyCouncil
         /// <summary>Done when the errand is over, if they got there: one of the kind's good turns ("milk", "survey"), goods set out ("found").</summary>
         public string errandHelp, errandGive;
         public int errandGiveCount;
+        /// <summary>The wares their trader set out by the colony's gate for a day's stall (theirs: packed up again when it's over).</summary>
+        public List<Thing> stallWares = new List<Thing>();
+
+        public bool IsWare(Thing t) => t != null && stallWares.Contains(t);
 
         public IEnumerable<CampAsk> Requests => kind?.asks?.Where(a => a != null && a.theyAsk) ?? Enumerable.Empty<CampAsk>();
 
@@ -109,7 +113,7 @@ namespace ColonyCouncil
         /// <summary>Under way now (or about to be): its hours have come and it isn't over.</summary>
         public bool ErrandLive => ErrandSet && Now >= errandFrom && Now <= errandUntil;
 
-        /// <summary>Who goes: the one who speaks for them, their healer, their trader, their best hand, or all the grown-ups.</summary>
+        /// <summary>Who goes: the one who speaks for them, their healer, their trader, their best hand, their eldest, or all the grown-ups.</summary>
         public List<Pawn> ErrandPeople(string who, int count)
         {
             var here = Here.Where(p => !p.Downed && !p.DevelopmentalStage.Juvenile() && !p.InMentalState).ToList();
@@ -125,6 +129,9 @@ namespace ColonyCouncil
                     break;
                 case "crafter":
                     order = here.OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Crafting)?.Level ?? 0);
+                    break;
+                case "elder":
+                    order = here.OrderByDescending(p => p.ageTracker?.AgeBiologicalYears ?? 0);
                     break;
                 case "all":
                     return here;
@@ -205,6 +212,7 @@ namespace ColonyCouncil
 
         public void EndErrand()
         {
+            PackWares();
             errandPeople.Clear();
             errandCell = IntVec3.Invalid;
             errandFor = null;
@@ -232,14 +240,16 @@ namespace ColonyCouncil
             EndErrand();
         }
 
-        /// <summary>Their errand done: what it promised (a share of what they dug, the herd's milk, a seam marked in the rock).</summary>
+        /// <summary>Their errand done: what it promised (a share of what they dug, the herd's milk, a seam marked in the rock, a blessing).</summary>
         private void ErrandOver()
         {
             try
             {
+                if (errandDoing == "blessing") Blessed();
                 if (!errandGive.NullOrEmpty() && errandGiveCount > 0)
                 {
-                    int n = GiveGoods(errandGive, errandGiveCount, null);
+                    // What a test hole gave is left beside it, where they dug; anything else at the camp's edge.
+                    int n = GiveGoods(errandGive, errandGiveCount, null, errandDoing == "dig" ? errandCell : (IntVec3?)null);
                     if (n > 0)
                     {
                         string key = "CC_CampErrand_Gave_" + (errandDoing ?? "visit");
@@ -268,7 +278,7 @@ namespace ColonyCouncil
             if (errandTo == "A")
             {
                 var c = errandFor;
-                if (c == null || c.Dead || !c.Spawned || c.Map != map || (errandDone && (errandDoing == "tend" || errandDoing == "prayover")))
+                if (c == null || c.Dead || !c.Spawned || c.Map != map || (errandDone && (errandDoing == "tend" || errandDoing == "prayover" || errandDoing == "mendgear")))
                 {
                     EndErrand();
                     return null;
@@ -285,21 +295,25 @@ namespace ColonyCouncil
                 EndErrand();
                 return null;
             }
-            return JobMaker.MakeJob(CampDefOf.Council_CampErrand, spot, errandCell);
+            return JobMaker.MakeJob(errandDoing == "dig" ? CampDefOf.Council_CampErrandDig : CampDefOf.Council_CampErrand, spot, errandCell);
         }
 
         /// <summary>A spell of the errand done: the first arrival is told, a line now and then, a healer's look at the sick.</summary>
         public void ErrandWorked(Pawn p, Job job)
         {
             if (!OnErrand(p)) return;
-            if (!errandArrived)
+            // A day's stall at the gate starts when their trader gets there with the stock (a porter first waits for them).
+            bool waitTrader = errandDoing == "stall" && p != trader && trader != null && errandPeople.Contains(trader);
+            if (!errandArrived && !waitTrader)
             {
                 errandArrived = true;
                 // Up with the carters' silver (RoadPost.cs): handed over at the gate, and that is the arrival's news.
                 if (errandDoing == "pay") PayRoad(p);
                 else
                 {
-                    string key = "CC_CampErrand_Arrived_" + (errandDoing ?? "visit");
+                    // A day's stall at the gate: their trader sets some of the stock out there first.
+                    bool wares = errandDoing != "stall" || SetOutWares(p) > 0;
+                    string key = "CC_CampErrand_Arrived_" + (wares ? errandDoing ?? "visit" : "visit");
                     if (!key.CanTranslate()) key = "CC_CampErrand_Arrived_visit";
                     // {THING}: the first of what they have to say (word from the road).
                     Note(Format(key.Translate().RawText, p, errandFor, 0, errandLines.FirstOrDefault()), MessageTypeDefOf.NeutralEvent, Importance.Notable, p);
@@ -316,6 +330,11 @@ namespace ColonyCouncil
                 var eased = HappeningWorker_Setting.Ailment(c);
                 if (eased != null) eased.Severity = Mathf.Max(0.01f, eased.Severity * 0.8f);
                 CouncilGameComponent.GiveThought(c, DefDatabase<ThoughtDef>.GetNamedSilentFail("Council_Camp_PilgrimBlessing"), p);
+                return;
+            }
+            if (errandDoing == "mendgear")
+            {
+                MendGear(p, c);
                 return;
             }
             if (errandDoing != "tend") return;
@@ -337,6 +356,60 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Their best hand at a colonist's side: the most worn of their clothes or gear mended there and then, for nothing.</summary>
+        private void MendGear(Pawn smith, Pawn c)
+        {
+            // together: the errand's job walked the smith to the colonist's side and worked a while there; it ends if the colonist walks off.
+            var worn = WornGear(c);
+            if (worn == null) return;
+            worn.HitPoints = worn.MaxHitPoints;
+            SayMoment(smith, "repair", 0.6f);
+            CouncilGameComponent.GiveThought(c, CampDefOf.Council_Camp_Helped);
+            Tell(Text("CC_Camp_HelpTitle"), Text("CC_Camp_Help_mend", smith, c, 0, worn.LabelNoCount), LetterDefOf.PositiveEvent, false);
+        }
+
+        /// <summary>
+        /// Their trader sets out some of the stock by the colony's gate for a day's stall: a part of a few stacks, on open
+        /// ground clear of the colony's stockpiles, still theirs (the rest stays in the pack, to trade). Returns how many.
+        /// </summary>
+        private int SetOutWares(Pawn p)
+        {
+            var t = trader;
+            if (t == null || t != p || t.inventory == null || !errandCell.IsValid || stallWares.Count > 0) return 0;
+            var inv = t.inventory;
+            var stock = inv.innerContainer.Where(x => x.def.category == ThingCategory.Item && !(x is Pawn) && x.def != ThingDefOf.Silver && !inv.NotForSale(x))
+                .InRandomOrder().Take(3).ToList();
+            foreach (var x in stock)
+            {
+                var part = x.SplitOff(Mathf.Max(1, Mathf.Min(x.stackCount / 3, 20)));
+                if (GenPlace.TryPlaceThing(part, errandCell, map, ThingPlaceMode.Near, out var put, null,
+                        c => c.InHorDistOf(errandCell, 4f) && c.Standable(map) && c.GetEdifice(map) == null && c.GetFirstItem(map) == null && c.GetZone(map) == null)
+                    && put != null)
+                {
+                    Own(put);
+                    stallWares.Add(put);
+                }
+                else if (!part.Destroyed && !part.Spawned) inv.innerContainer.TryAdd(part);
+            }
+            return stallWares.Count;
+        }
+
+        /// <summary>The stall's day over: what still lies by the gate goes back into the trader's pack, to trade on. Left lying if the trader is gone.</summary>
+        private void PackWares()
+        {
+            if (stallWares.Count == 0) return;
+            var t = trader;
+            bool there = t != null && !t.Dead && t.Spawned && t.Map == map && t.inventory != null;
+            foreach (var x in stallWares.ToList())
+            {
+                if (x == null || x.Destroyed || !x.Spawned || !Owns(x) || !there) continue;
+                x.DeSpawn();
+                Disown(x);
+                if (!t.inventory.innerContainer.TryAdd(x) && !x.Destroyed) x.Destroy();
+            }
+            stallWares.Clear();
+        }
+
         /// <summary>For the week's page: what their errand is, while it's still to come or under way.</summary>
         public string ErrandText()
         {
@@ -349,11 +422,12 @@ namespace ColonyCouncil
         // ---------------- Goods, good turns, joining, moving on ----------------
 
         /// <summary>
-        /// Some of the camp's own goods set out for the colony at the spot nearest it: meat, wood, leather, food, whatever
-        /// they found digging (silver, jade, gold), silver from their purse, or a thing by name. What they're short of comes
-        /// as <paramref name="fallback"/> when given. Returns how many.
+        /// Some of the camp's own goods set out for the colony at the spot nearest it (or <paramref name="at"/>): meat,
+        /// wood, leather, food, whatever they found digging (silver, jade, gold), silver from their trader's purse (no more
+        /// than it holds), or a thing by name. What they're short of comes as <paramref name="fallback"/> when given.
+        /// Returns how many.
         /// </summary>
-        public int GiveGoods(string what, int count, string fallback)
+        public int GiveGoods(string what, int count, string fallback, IntVec3? at = null)
         {
             if (map == null || count <= 0) return 0;
             int given = 0;
@@ -364,17 +438,17 @@ namespace ColonyCouncil
                 float roll = Rand.Value;
                 var def = roll < 0.2f && gold != null ? gold : roll < 0.45f && jade != null ? jade : ThingDefOf.Silver;
                 int n = def == ThingDefOf.Silver ? count : Mathf.Max(2, count / 6);
-                return Place(def, n);
+                return Place(def, n, at);
             }
             if (what == "silver")
             {
+                // From their trader's purse, and only what's in it.
                 int have = trader?.inventory?.innerContainer?.TotalStackCountOfDef(ThingDefOf.Silver) ?? 0;
-                if (have > 0)
-                {
-                    trader.inventory.RemoveCount(ThingDefOf.Silver, Mathf.Min(have, count));
-                    traderSilver = -1;
-                }
-                return Place(ThingDefOf.Silver, count);
+                int take = Mathf.Min(have, count);
+                if (take <= 0) return 0;
+                trader.inventory.RemoveCount(ThingDefOf.Silver, take);
+                traderSilver = -1;
+                return Place(ThingDefOf.Silver, take, at);
             }
             Func<Thing, bool> match;
             switch (what)
@@ -400,10 +474,10 @@ namespace ColonyCouncil
             return given;
         }
 
-        private int Place(ThingDef def, int n)
+        private int Place(ThingDef def, int n, IntVec3? at = null)
         {
             int placed = 0;
-            var spot = share.IsValid ? share : FireCell;
+            var spot = at.HasValue && at.Value.IsValid && at.Value.InBounds(map) ? at.Value : share.IsValid ? share : FireCell;
             while (n > 0)
             {
                 var t = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
@@ -427,6 +501,9 @@ namespace ColonyCouncil
                         .Any(t => t is Building b && !(b is Frame) && b.def.useHitPoints && b.HitPoints < b.MaxHitPoints * CampLookMath.RepairBelow);
                 case "survey":
                     return surveys == 0;
+                case "milk":
+                    // A beast of theirs that gives milk or wool (ready now or by then); with none ready then, nothing comes of it.
+                    return HerdGives;
                 default:
                     return true;
             }
@@ -535,11 +612,15 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref errandHelp, "errandHelp");
             Scribe_Values.Look(ref errandGive, "errandGive");
             Scribe_Values.Look(ref errandGiveCount, "errandGiveCount");
+            if (Scribe.mode == LoadSaveMode.Saving) stallWares.RemoveAll(t => t == null || t.Destroyed || t.Discarded);
+            Scribe_Collections.Look(ref stallWares, "stallWares", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 errandPeople ??= new List<Pawn>();
                 errandLines ??= new List<string>();
+                stallWares ??= new List<Thing>();
                 errandPeople.RemoveAll(p => p == null);
+                stallWares.RemoveAll(t => t == null);
             }
         }
     }
@@ -638,6 +719,39 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("camp gives " + what, e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Goods the colony bought from the camp, carried over by hand: one of their people (not their trader, who keeps the
+    /// stall) takes <see cref="count"/> of <see cref="thing"/> from their stores for the road and sets them down by the
+    /// colony's gate (see <see cref="Camp.StartBring"/>). With nobody to send, they're set out at the camp's edge.
+    /// </summary>
+    public class DilemmaEffect_CampBrings : DilemmaEffect
+    {
+        public ThingDef thing;
+        public int count;
+
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null) return "CC_CampAsk_NotNow".Translate().ToString();
+            return c.CanBring ? null : "CC_CampErrand_No_gate".Translate().ToString();
+        }
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null || thing == null || count <= 0 || (chance < 1f && !Rand.Chance(chance))) return;
+            try
+            {
+                // apart: an answer to the camp; one of their people carries the goods over themselves.
+                if (!c.StartBring(thing, count)) c.GiveGoods(thing.defName, count, thing.defName);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp brings " + thing.defName, e);
             }
         }
     }
