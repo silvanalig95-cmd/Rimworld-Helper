@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.26.3</version>
+        <date>30 October 2026</date>
+        <title>A Planning section</title>
+        <points>
+          <li>The council window has a Planning section of its own, between Colony and People: the Plan (with the ground plan), the Base looked over, what you could Make, and the Room plans. The Colony section is back to its six pages.</li>
+          <li>One small planning button in the bottom bar after the rooms button opens that section on its last page, and closes the window when clicked again; the three other buttons of 0.26.2 are gone. The setting "A planning button in the bottom bar" hides it.</li>
+          <li>Rearrange a room has its own icon.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.26.2</version>
         <date>30 October 2026</date>
         <title>The Colony tab back, and buttons for the new pages</title>

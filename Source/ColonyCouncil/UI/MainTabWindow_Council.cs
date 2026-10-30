@@ -14,6 +14,7 @@ namespace ColonyCouncil
         private enum Section
         {
             Colony,
+            Planning,
             People,
             Council,
             History,
@@ -69,8 +70,11 @@ namespace ColonyCouncil
                 case Tab.Priorities:
                 case Tab.Moods:
                 case Tab.World:
-                case Tab.Build:
                 case Tab.Defenses: return Section.Colony;
+                case Tab.Plan:
+                case Tab.Base:
+                case Tab.Making:
+                case Tab.Build: return Section.Planning;
                 case Tab.Roster:
                 case Tab.Everyone:
                 case Tab.Bonds:
@@ -93,6 +97,7 @@ namespace ColonyCouncil
             switch (s)
             {
                 case Section.Colony: return ColonyTabs;
+                case Section.Planning: return PlanningTabs;
                 case Section.People: return Faiths.On ? PeopleFaithTabs : PeopleTabs;
                 case Section.Council: return CouncilTabs;
                 case Section.History: return HistoryTabs;
@@ -101,7 +106,9 @@ namespace ColonyCouncil
         }
 
         // Each section's pages, made once (asked every frame).
-        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Plan, Tab.Base, Tab.Making, Tab.Moods, Tab.World, Tab.Build, Tab.Defenses };
+        private static readonly Tab[] ColonyTabs = { Tab.Week, Tab.Overview, Tab.Priorities, Tab.Moods, Tab.World, Tab.Defenses };
+        /// <summary>Planning and improving the base: the next steps, the base looked over, what could be made, the room plans.</summary>
+        private static readonly Tab[] PlanningTabs = { Tab.Plan, Tab.Base, Tab.Making, Tab.Build };
         private static readonly Tab[] PeopleTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Wishes };
         /// <summary>With "Faith in the colony" on (Ideology): the faiths page after the bonds (UI/FaithsPanel.cs).</summary>
         private static readonly Tab[] PeopleFaithTabs = { Tab.Roster, Tab.Everyone, Tab.Bonds, Tab.Faiths, Tab.Wishes };
@@ -366,6 +373,7 @@ namespace ColonyCouncil
             switch (s)
             {
                 case Section.Colony: return Icons.Colony;
+                case Section.Planning: return Icons.Plan ?? Icons.Rooms;
                 case Section.People: return Icons.People;
                 case Section.Council: return Icons.Council;
                 case Section.History: return Icons.History;
@@ -416,6 +424,9 @@ namespace ColonyCouncil
                     n = map != null && Settings.enableAdvisor ? CouncilMapComponent.For(map)?.Signals?.Count(x => x.Level >= AdviceLevel.High) ?? 0 : 0;
                     // Fights the colony knows are coming.
                     n += comp.happenings.raids.Count;
+                    break;
+                case Section.Planning:
+                    n = map != null ? NextSteps.PlannedCount(map) : 0;
                     break;
                 case Section.People:
                     n = OpenWishCount();
@@ -493,6 +504,21 @@ namespace ColonyCouncil
                 return;
             }
             OpenTab(name);
+        }
+
+        /// <summary>A section's bottom bar button: opens the window on the section's last page, or closes it when that section is showing.</summary>
+        public static void OpenOrCloseSection(string name)
+        {
+            if (!System.Enum.TryParse(name, true, out Section s)) return;
+            var button = CouncilDefOf.Council_MainButton;
+            if (button == null) return;
+            if (Find.MainTabsRoot.OpenTab == button && SectionOf(tab) == s)
+            {
+                Find.MainTabsRoot.EscapeCurrentTab();
+                return;
+            }
+            var t = lastInSection.TryGetValue(s, out var last) ? last : TabsOf(s)[0];
+            OpenTab(t.ToString());
         }
 
         /// <summary>The council window has a page by this name (for the mood hints' "Go to" buttons).</summary>

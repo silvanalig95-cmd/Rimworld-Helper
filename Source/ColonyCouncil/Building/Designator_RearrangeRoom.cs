@@ -25,7 +25,7 @@ namespace ColonyCouncil
         public Designator_RearrangeRoom()
         {
             useMouseIcon = true;
-            icon = Icons.Rooms;
+            icon = Icons.Rearrange ?? Icons.Rooms;
             soundSucceeded = SoundDefOf.Designate_PlanAdd;
         }
 

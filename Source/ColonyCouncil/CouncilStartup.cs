@@ -90,8 +90,7 @@ namespace ColonyCouncil
             var ours = CouncilDefOf.Council_MainButton;
             if (ours == null) return;
             var more = CouncilDefOf.Rimfolk_MoreButton;
-            var pages = new[] { CouncilDefOf.Rimfolk_PlanButton, CouncilDefOf.Rimfolk_BaseButton, CouncilDefOf.Rimfolk_MakingButton, CouncilDefOf.Rimfolk_RearrangeButton };
-            var others = DefDatabase<MainButtonDef>.AllDefsListForReading.Where(b => b != ours && b != more && !pages.Contains(b)).OrderBy(b => b.order).ToList();
+            var others = DefDatabase<MainButtonDef>.AllDefsListForReading.Where(b => b != ours && b != more && b != CouncilDefOf.Rimfolk_PlanButton).OrderBy(b => b.order).ToList();
             if (others.Count == 0) return;
             MainButtonDef after = null;
             switch (ColonyCouncilMod.Settings.buttonPosition)
@@ -121,12 +120,12 @@ namespace ColonyCouncil
                 rooms.order = ours.order;
                 rooms.buttonVisible = ColonyCouncilMod.Settings.roomsButton;
             }
-            // The plan, base and making pages and rearranging a room, after the rooms button, shown or hidden together.
-            foreach (var page in new[] { CouncilDefOf.Rimfolk_PlanButton, CouncilDefOf.Rimfolk_BaseButton, CouncilDefOf.Rimfolk_MakingButton, CouncilDefOf.Rimfolk_RearrangeButton })
+            // The planning section's button, after the rooms button.
+            var planning = CouncilDefOf.Rimfolk_PlanButton;
+            if (planning != null)
             {
-                if (page == null) continue;
-                page.order = ours.order;
-                page.buttonVisible = ColonyCouncilMod.Settings.planButtons;
+                planning.order = ours.order;
+                planning.buttonVisible = ColonyCouncilMod.Settings.planButton;
             }
             // More (the bottom bar's buttons put away) goes just before the game's menu, after the council's buttons.
             BarMore.Place();

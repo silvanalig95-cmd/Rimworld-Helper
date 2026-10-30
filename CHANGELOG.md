@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A Planning section
+
+*30 October 2026, version 0.26.3*
+
+- The council window has a Planning section of its own, between Colony and People: the Plan (with the ground plan), the Base looked over, what you could Make, and the Room plans. The Colony section is back to its six pages.
+- One small planning button in the bottom bar after the rooms button opens that section on its last page, and closes the window when clicked again; the three other buttons of 0.26.2 are gone. The setting "A planning button in the bottom bar" hides it.
+- Rearrange a room has its own icon.
+
 ## The Colony tab back, and buttons for the new pages
 
 *30 October 2026, version 0.26.2*

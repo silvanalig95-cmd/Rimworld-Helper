@@ -1,6 +1,13 @@
 # Handoff: work in progress
 
-Last shipped: 0.26.2, a fix and the player's ask for buttons. The Colony tab was blank from 0.26.1 on: the council
+Last shipped: 0.26.3, the player's ask: the new pages in a section of their own and one bottom bar button. The
+council window's `Section.Planning` (between Colony and People) holds `PlanningTabs` = Plan, Base, Making, Build (Room
+plans moved out of Colony, which is back to six pages); its label counts the planned steps; `OpenOrCloseSection`
+opens it on its last page or closes the window. One MainButtonDef `Rimfolk_PlanButton` (`MainButtonWorker_Page`,
+`PageButtonExtension.section`), setting `planButton`; the Base, Making and Rearrange buttons of 0.26.2 are gone.
+Icons/Rearrange is the rearrange designator's icon.
+
+Before it, 0.26.2, a fix and the player's ask for buttons. The Colony tab was blank from 0.26.1 on: the council
 window's `subTabWidths` array was sized 8 and the Colony section has 10 pages now (IndexOutOfRange in
 `DoWindowContents`); it's sized by the Tab enum. `UI/PageButtons.cs`: `MainButtonWorker_Page` with
 `PageButtonExtension {page, tool}`; defs Rimfolk_PlanButton, Rimfolk_BaseButton, Rimfolk_MakingButton (pages, via

@@ -1492,6 +1492,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
 
   <!-- Council window layout -->
   <CC_Section_Colony>Colony</CC_Section_Colony>
+  <CC_Section_Planning>Planning</CC_Section_Planning>
   <CC_Section_People>People</CC_Section_People>
   <CC_Section_Council>Council</CC_Section_Council>
   <CC_Section_History>History</CC_Section_History>
