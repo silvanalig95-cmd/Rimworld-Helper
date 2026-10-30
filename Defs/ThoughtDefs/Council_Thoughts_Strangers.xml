@@ -91,7 +91,7 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Pet_Defended</defName>
-    <durationDays>12</durationDays>
+    <durationDays>0.17</durationDays>
     <stages>
       <li>
         <label>my animal fought for me</label>

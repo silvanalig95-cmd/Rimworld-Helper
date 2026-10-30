@@ -123,6 +123,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref cause, "cause");
             // Memories from before this was saved were all given through the council.
             Scribe_Values.Look(ref scaled, "scaled", true);
+            // Rimfolk only ever shortens a memory's time: one saved before its kind was made shorter keeps no more than the new time.
+            if (Scribe.mode == LoadSaveMode.PostLoadInit && def != null && durationTicksOverride > def.DurationTicks) durationTicksOverride = def.DurationTicks;
         }
     }
 

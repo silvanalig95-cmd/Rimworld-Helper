@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## An animal's help in a fight is a short glow
+
+*30 October 2026, version 0.41.2*
+
+- "My animal fought for me" lasts about four hours now, the glow after the fight, where it lasted twelve days.
+- One a colonist already has goes once it is that old. No memory of Rimfolk's in a save keeps a longer time than its kind has now.
+
 ## A finished step of a defense line can be planned again
 
 *30 October 2026, version 0.41.1*

@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.41.2</version>
+        <date>30 October 2026</date>
+        <title>An animal's help in a fight is a short glow</title>
+        <points>
+          <li>"My animal fought for me" lasts about four hours now, the glow after the fight, where it lasted twelve days.</li>
+          <li>One a colonist already has goes once it is that old. No memory of Rimfolk's in a save keeps a longer time than its kind has now.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.41.1</version>
         <date>30 October 2026</date>
         <title>A finished step of a defense line can be planned again</title>
