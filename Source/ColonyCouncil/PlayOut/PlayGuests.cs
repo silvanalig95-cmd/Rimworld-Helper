@@ -10,13 +10,14 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Guests at one of the colony's gatherings (<see cref="DilemmaEffect_Gathering.guests"/>): the event's visitor and
-    /// those with them, the camp's people, or the visitor and their family. They aren't of the gathering (they keep their
+    /// those with them, the camp's people, the visitor and their family, or the people of the world event's visits (the
+    /// drovers come up from the meadow, late ones as they arrive). They aren't of the gathering (they keep their
     /// own people's plans), so while it lasts each is walked to a place round it and kept there, and at a feast served a
     /// meal from the colony's stores like everyone else. Never a prisoner, anyone leaving, hostile or not up to it.
     /// </summary>
     public static class PlayGuests
     {
-        public const string Stranger = "stranger", Camp = "camp", Kin = "kin";
+        public const string Stranger = "stranger", Camp = "camp", Kin = "kin", Visits = "visitors";
 
         /// <summary>Who comes, now the gathering is starting.</summary>
         public static List<Pawn> Resolve(PlayOut p, Map map)
@@ -39,6 +40,16 @@ namespace ColonyCouncil
                 {
                     var camp = CampOnMap.Of(map);
                     if (camp != null) list.AddRange(camp.Here.Where(o => Able(o, map)).OrderByDescending(o => o == x).Take(cap));
+                    break;
+                }
+                case Visits:
+                {
+                    var tracker = VisitorTracker.Instance;
+                    if (tracker == null || p.situationId < 0) break;
+                    foreach (var t in tracker.trips)
+                        if (t.situationId == p.situationId && t.map == map && t.state == VisitState.Here)
+                            list.AddRange(t.Standing.Where(o => Able(o, map)));
+                    list = list.Take(cap).ToList();
                     break;
                 }
                 case Kin:

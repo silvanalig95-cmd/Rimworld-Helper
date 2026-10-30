@@ -86,6 +86,11 @@ namespace ColonyCouncil
         /// <summary>Nights they stay once the answer says so (0: none), and where (their own spot, or another).</summary>
         public int stayNights;
         public VisitSpot staySpot = VisitSpot.Gate;
+        /// <summary>Shown a corner inside for their nights, whatever the weather (the letter gave them a bed or a roof), in a room of this role first ("Barn").</summary>
+        public bool stayInside;
+        public string stayRoom;
+        /// <summary>What they do at their spot (VisitorWork: "prospect", "glean", "sing", "hunt"), or null: they wait.</summary>
+        public string work;
         public bool saidWait;
         /// <summary>A world event's beat that tells of this visit afterward ("the retinue stayed the night"): held until they've gone.</summary>
         public string holdBeat;
@@ -163,6 +168,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref leaveAt, "leaveAt", -1);
             Scribe_Values.Look(ref stayNights, "stayNights");
             Scribe_Values.Look(ref staySpot, "staySpot", VisitSpot.Gate);
+            Scribe_Values.Look(ref stayInside, "stayInside");
+            Scribe_Values.Look(ref stayRoom, "stayRoom");
+            Scribe_Values.Look(ref work, "work");
             Scribe_Values.Look(ref saidWait, "saidWait");
             Scribe_Values.Look(ref holdBeat, "holdBeat");
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);
@@ -176,6 +184,8 @@ namespace ColonyCouncil
                 people.RemoveAll(p => p == null);
                 if (animals == null) animals = new List<Pawn>();
                 animals.RemoveAll(p => p == null);
+                // Prospectors let onto the creek before visits had their work: they pan it now.
+                if (work == null && what == "prospectors" && staySpot == VisitSpot.Water && stayNights > 0) work = VisitorWork.Prospect;
             }
         }
     }

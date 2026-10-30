@@ -327,7 +327,7 @@
             <label>Hide him</label>
             <outcome>The boy is given a blanket and somewhere to sleep for a few nights, and told to keep his head down. By evening both families know where he is.</outcome>
             <effects>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights><inside>true</inside></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>sheltered</kind><about>none</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tookSides</kind><enemy>true</enemy><about>other</about></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -633,12 +633,13 @@
         <options>
           <li>
             <label>Welcome her, and sit up with her</label>
-            <outcome>{A_nameDef} sits up with the stargazer every night she's here, and comes away with names for things {A_pronoun} had never noticed were there.</outcome>
+            <outcome>{A_nameDef} sits up with the stargazer on the hill her first night here, and comes away with names for things {A_pronoun} had never noticed were there.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>900</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.15</share><max>800</max><onlyIfChosen>true</onlyIfChosen></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
               <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Far</spot></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} up with the stargazer</label><whom>X</whom><hours>21~23</hours><duration>3~4</duration><waitHours>30</waitHours></li>
             </effects>
             <flags><li>studied</li></flags>
             <ways><openness>1</openness></ways>
@@ -838,7 +839,7 @@
             <label>Let them glean</label>
             <outcome>The gleaners go out over the stubble with their sacks, bent double, and sleep on the far ground with their night's gleanings beside them.</outcome>
             <effects>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><spot>Far</spot></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><spot>Far</spot><work>glean</work></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <flags><li>gleaned</li></flags>
@@ -971,7 +972,17 @@
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>none</about></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the drovers' evening</label><target>Colony</target><chance>0.7</chance></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire">
+                <label>the drovers' evening</label>
+                <target>Colony</target>
+                <guests>visitors</guests>
+                <lines>
+                  <li>Three weeks to the sea, he says, and every one of them dusty.</li>
+                  <li>I didn't know a cow could swim a river that wide.</li>
+                  <li>They sleep in the saddle, he says, and wake up sore.</li>
+                  <li>The market past the hills is bigger than our whole valley, apparently.</li>
+                </lines>
+              </li>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>drovers</what><count>2</count><armed>true</armed><livestock>5~8</livestock><spot>Far</spot><nights>1</nights><hourFrom>0</hourFrom><hourTo>0</hourTo><delay>0.5~1.5</delay><onward>true</onward></li>
             </effects>
             <help>1</help>

@@ -3,9 +3,12 @@
 
   <!--
     People from outside who are really there (Source/ColonyCouncil/Visitors): a rider waiting at the gate for the
-    colony's answer, guests given a night, mourners and herds passing on the road. At their spot they keep close to it
-    and sleep on the ground when tired, and their animals rest nearby. They eat what they brought (the visit feeds
-    them from their own packs, never from the colony's stores or fields). Nothing else: no work, no wandering in.
+    colony's answer, guests given a night, mourners and herds passing on the road, prospectors on the creek. At their
+    spot they keep close to it, and sleep when they're tired or night has come, on open ground near it; their animals
+    rest nearby. They eat what they brought (the visit feeds them from their own packs, never from the colony's stores
+    or fields). Out of doors they never go into the colony's rooms or onto its fields. Those who came to do something
+    do it (Rimfolk_VisitWork, VisitorWork.cs): panning the creek, gleaning the stubble, singing at their camp after
+    dark, watching for game on the far side.
   -->
   <DutyDef>
     <defName>Rimfolk_VisitWait</defName>
@@ -14,10 +17,28 @@
         <li Class="ThinkNode_ForbidOutsideFlagRadius">
           <maxDistToSquadFlag>12</maxDistToSquadFlag>
           <subNodes>
-            <li Class="JobGiver_GetRest" />
+            <li Class="ColonyCouncil.JobGiver_VisitRest" />
           </subNodes>
         </li>
-        <li Class="JobGiver_WanderNearDutyLocation">
+        <li Class="ColonyCouncil.JobGiver_VisitWander">
+          <wanderRadius>4</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+  <DutyDef>
+    <defName>Rimfolk_VisitWork</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>12</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="ColonyCouncil.JobGiver_VisitRest" />
+          </subNodes>
+        </li>
+        <li Class="ColonyCouncil.JobGiver_VisitWork" />
+        <li Class="ColonyCouncil.JobGiver_VisitWander">
           <wanderRadius>4</wanderRadius>
         </li>
       </subNodes>
@@ -32,7 +53,9 @@
         <li Class="ThinkNode_ForbidOutsideFlagRadius">
           <maxDistToSquadFlag>4</maxDistToSquadFlag>
           <subNodes>
-            <li Class="JobGiver_GetRest" />
+            <li Class="ColonyCouncil.JobGiver_VisitRest">
+              <indoors>true</indoors>
+            </li>
           </subNodes>
         </li>
         <li Class="JobGiver_WanderNearDutyLocation">
@@ -49,14 +72,70 @@
         <li Class="ThinkNode_ForbidOutsideFlagRadius">
           <maxDistToSquadFlag>16</maxDistToSquadFlag>
           <subNodes>
-            <li Class="JobGiver_GetRest" />
+            <li Class="ColonyCouncil.JobGiver_VisitRest" />
           </subNodes>
         </li>
-        <li Class="JobGiver_WanderNearDutyLocation">
+        <li Class="ColonyCouncil.JobGiver_VisitWander">
           <wanderRadius>7</wanderRadius>
         </li>
       </subNodes>
     </thinkNode>
   </DutyDef>
+
+  <!-- What visitors came to do, at their spot (VisitorWork.cs): one stint at a time, in the work's hours. -->
+  <JobDef>
+    <defName>Rimfolk_VisitProspect</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>panning the creek for silver.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>prospect</work>
+        <effecter>ConstructDirt</effecter>
+        <ticks>1500~3000</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitGlean</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>gleaning the stubble.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>glean</work>
+        <effecter>Harvest_Plant</effecter>
+        <ticks>500~900</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitSing</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>singing with the others.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>sing</work>
+        <music>true</music>
+        <ticks>2000~3000</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitHunt</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>watching for game.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>hunt</work>
+        <ticks>900~1800</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
 
 </Defs>

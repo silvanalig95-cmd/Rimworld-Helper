@@ -788,11 +788,11 @@
         <options>
           <li>
             <label>A meal and a bed</label>
-            <outcome>The merchant eats every crumb, sleeps by the gate, and leaves in the morning promising to pay the colony back.</outcome>
+            <outcome>The merchant eats every crumb, sleeps in the corner he's shown inside, and leaves in the morning promising to pay the colony back.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the merchant</label><what>meals</what><count>1</count><eat>true</eat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
             </effects>
             <help>1</help>
             <deed>looked after a robbed merchant</deed>

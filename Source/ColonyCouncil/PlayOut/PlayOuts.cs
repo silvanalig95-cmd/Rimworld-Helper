@@ -370,6 +370,8 @@ namespace ColonyCouncil
         /// <summary>A gathering's guests from outside the colony: where from, and how many at most (PlayGuests.cs).</summary>
         public string guestsFrom;
         public int guestCount;
+        /// <summary>The world event it's part of (its visits' people are "visitors" guests), or -1.</summary>
+        public int situationId = -1;
         /// <summary>Turns a search's fan of places (so two searches don't go the same way).</summary>
         public int seed;
         /// <summary>A gift's or a haul's particular things: the thing handed over, the dead still to carry (OnMapPlays.cs).</summary>
@@ -513,6 +515,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref strangersFed, "strangersFed");
             Scribe_Values.Look(ref guestsFrom, "guestsFrom");
             Scribe_Values.Look(ref guestCount, "guestCount");
+            Scribe_Values.Look(ref situationId, "situationId", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (things == null) things = new List<Thing>();

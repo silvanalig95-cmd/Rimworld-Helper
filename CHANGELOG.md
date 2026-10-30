@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Visitors do what their letters say
+
+*30 October 2026, version 0.41.4*
+
+- Visitors lay down at their spot whenever they weren't fully rested, so a party waiting at the gate or staying a few nights mostly lay about, and when their spot was close to the walls they walked in and slept on the colony's floors. They now sleep when they're tired or night has come, on open ground near their spot, and never go into the colony's rooms or onto its fields.
+- Prospectors let onto the creek pan it, from the bank or in the shallows, from morning into the evening; those who come back with a nugget work it by lamplight. Their camp, like the pilgrims' and the herders', is now by water out on the colony's land, clear of its walls. Prospectors already on the map start panning where they are.
+- Pilgrims camping by the water sing at their camp after dark, gleaners go over the colony's stubble by day, and the other settlers' hunters walk the far side watching for game.
+- Guests whose answer gives them a bed or a roof sleep in a corner inside whatever the weather: the snowbound travelers, the robbed carter and merchant, the boy in hiding, the prophet given a bed and the driver off the ice. The caravan off the ice beds down in the barn with its beasts.
+- Drovers welcomed as friends come up from the meadow to the colony's fire for the evening, which is always lit for them now, and the singer asked in comes to the fire. Whoever sits up with the stargazer goes out to her hill her first night.
+- Two letters no longer say what doesn't happen: the carter walks on without a pair of the colony's boots, and the stargazer's company is for her first night, not every night.
+
 ## A guest's recruiting checklist shows in full
 
 *30 October 2026, version 0.41.3*

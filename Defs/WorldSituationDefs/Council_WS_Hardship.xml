@@ -717,7 +717,7 @@
             <outcome>The travelers get a dry corner and a place near the fire, and promise to make it good when the roads open.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>25</count></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights><inside>true</inside></li>
             </effects>
             <flags><li>sheltered</li></flags>
             <help>1</help>

@@ -11,6 +11,11 @@ namespace ColonyCouncil
         public static DutyDef Rimfolk_VisitWait;
         public static DutyDef Rimfolk_VisitIndoors;
         public static DutyDef Rimfolk_VisitBeasts;
+        public static DutyDef Rimfolk_VisitWork;
+        public static JobDef Rimfolk_VisitProspect;
+        public static JobDef Rimfolk_VisitGlean;
+        public static JobDef Rimfolk_VisitSing;
+        public static JobDef Rimfolk_VisitHunt;
 
         static VisitorDefOf()
         {
@@ -148,8 +153,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// At their spot: the people keep close to it, eating what they brought and sleeping on the ground when they're
-    /// tired; the animals graze and rest around it.
+    /// At their spot: the people keep close to it, eating what they brought, doing the work they came for (the visit's
+    /// work, VisitorWork) and sleeping on the ground when they're tired or night comes; the animals graze and rest
+    /// around it.
     /// </summary>
     public class LordToil_VisitHere : LordToil
     {
@@ -174,9 +180,10 @@ namespace ColonyCouncil
 
         public override void UpdateAllDuties()
         {
+            bool works = !indoors && !(VisitorTracker.Instance?.Get(tripId)?.work).NullOrEmpty();
             foreach (var p in lord.ownedPawns)
                 p.mindState.duty = p.RaceProps.Humanlike
-                    ? new PawnDuty(indoors ? VisitorDefOf.Rimfolk_VisitIndoors : VisitorDefOf.Rimfolk_VisitWait, spot, radius)
+                    ? new PawnDuty(indoors ? VisitorDefOf.Rimfolk_VisitIndoors : works ? VisitorDefOf.Rimfolk_VisitWork : VisitorDefOf.Rimfolk_VisitWait, spot, radius)
                     : new PawnDuty(VisitorDefOf.Rimfolk_VisitBeasts, spot, radius + 4f);
         }
 

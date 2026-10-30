@@ -140,7 +140,7 @@
             <label>Give her a bed for the night, no more</label>
             <outcome>{NAME} sleeps in the guest corner and leaves at first light. Before she goes she thanks {A_nameDef} for the blanket.</outcome>
             <effects>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
             </effects>
             <flags><li>sheltered</li></flags>
           </li>

@@ -107,7 +107,7 @@
             <label>Warm him up, then pull his load out</label>
             <outcome>{A_nameDef} goes down to the shore with rope and a long pole while the driver thaws by the stove. Most of the load comes out of the shallows wet but whole, and the driver insists on paying for the work.</outcome>
             <effects>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>pulling the load out at the shore</label><to>Walk</to><duration>2~3</duration></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>60</count></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
@@ -160,10 +160,10 @@
           </li>
           <li>
             <label>Give them the meals, and the barn for the night</label>
-            <outcome>The meals go out to the gate, and the caravan's people bed down in the barn that night with their beasts in the lee of the wall.</outcome>
+            <outcome>The meals go out to the gate, and the caravan's people bed down in the barn that night with their beasts.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>hot meals for the caravan off the ice</label><what>meals</what></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside><room>Barn</room></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>none</about></li>
             </effects>

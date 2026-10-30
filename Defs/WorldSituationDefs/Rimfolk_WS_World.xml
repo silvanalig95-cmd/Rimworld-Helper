@@ -105,7 +105,7 @@
       <li>
         <key>hunters</key>
         <effects>
-          <li Class="ColonyCouncil.VisitEffect_Come"><what>hunters</what><count>2~3</count><armed>true</armed><spot>Far</spot><stopHours>3</stopHours><hourFrom>6</hourFrom><hourTo>15</hourTo></li>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>hunters</what><count>2~3</count><armed>true</armed><spot>Far</spot><stopHours>3</stopHours><hourFrom>6</hourFrom><hourTo>15</hourTo><work>hunt</work></li>
         </effects>
         <day>8~13</day>
         <titles>
@@ -529,10 +529,10 @@
         <options>
           <li>
             <label>A meal and a bed for the night</label>
-            <outcome>The carter eats at the colony's table and sleeps under its roof, and in the morning walks on to {PLACE} in a pair of the colony's old boots.</outcome>
+            <outcome>The carter eats at the colony's table and sleeps under its roof, and in the morning walks on to {PLACE}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot meal for the carter</label><what>meals</what><count>1</count><to>Stranger</to><eat>true</eat><ifHave>true</ifHave></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
             </effects>
             <flags><li>kind</li></flags>

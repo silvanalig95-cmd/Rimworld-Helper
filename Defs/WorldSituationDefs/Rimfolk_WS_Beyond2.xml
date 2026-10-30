@@ -265,10 +265,10 @@
             <outcome>{NAME} is asked in for the night. There will be music around the fire this evening.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>12</count></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{NAME}'s evening</label><music>true</music><target>Colony</target></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{NAME}'s evening</label><music>true</music><target>Colony</target><guests>stranger</guests></li>
               <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
             </effects>
             <flags><li>sang</li></flags>
             <help>1</help>

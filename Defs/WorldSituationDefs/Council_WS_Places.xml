@@ -551,7 +551,7 @@
             <outcome>The pilgrims camp by the water for three nights. The singing carries all the way to the colony after dark.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for the pilgrims</label><what>rawfood</what></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot><work>sing</work></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>10</amount></li>
               <li Class="ColonyCouncil.WorldEffect_Thought"><thought>Council_WS_PilgrimSongs</thought></li>
             </effects>
@@ -565,7 +565,7 @@
             <outcome>The pilgrims pass a bowl among themselves until the fee is in it, and camp by the water. They sing less than they might have.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>60</count></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot><work>sing</work></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
             </effects>
             <flags><li>fee</li></flags>
@@ -677,7 +677,7 @@
             <outcome>The prospectors stake out the creek beds and camp by the water for a few nights. The colony's share will come when they're done, if there's anything to share.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Owe"><amount>150~700</amount></li>
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot><work>prospect</work></li>
             </effects>
             <flags><li>share</li></flags>
             <deed>let prospectors work its land for a share</deed>
@@ -688,7 +688,7 @@
             <outcome>The prospectors pay up front, stake out the creek beds and camp by the water for a few nights. Whatever they find is theirs.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver" />
-              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot></li>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>3</nights><spot>Water</spot><work>prospect</work></li>
             </effects>
             <flags><li>fee</li></flags>
             <deed>sold prospectors the right to dig</deed>
@@ -707,7 +707,7 @@
         <message>true</message>
         <requires><li>share</li></requires>
         <effects>
-          <li Class="ColonyCouncil.VisitEffect_Come"><what>prospectors</what><count>2~3</count><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><delay>1~3</delay></li>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>prospectors</what><count>2~3</count><spot>Water</spot><nights>1</nights><hourFrom>16</hourFrom><hourTo>21</hourTo><delay>1~3</delay><work>prospect</work></li>
         </effects>
         <texts>
           <li>One of the prospectors found a nugget the size of a thumb in the colony's creek, and they mean to come back and work it by lamplight.</li>

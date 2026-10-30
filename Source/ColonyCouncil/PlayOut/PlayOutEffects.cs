@@ -107,7 +107,8 @@ namespace ColonyCouncil
         public bool third;
         /// <summary>
         /// Guests from outside the colony at it (PlayGuests.cs): "stranger" (the event's visitor and those with them),
-        /// "camp" (the camp's people), "kin" (the visitor and their family); at most <see cref="guestCount"/>.
+        /// "camp" (the camp's people), "kin" (the visitor and their family), "visitors" (the people of the world event's
+        /// visits on the map, those who come while it lasts too); at most <see cref="guestCount"/>.
         /// </summary>
         public string guests;
         public int guestCount = 6;
@@ -139,6 +140,7 @@ namespace ColonyCouncil
             p.place = (ctx as HappeningContext)?.place;
             p.guestsFrom = guests;
             p.guestCount = guestCount;
+            p.situationId = (ctx as SituationContext)?.situationId ?? -1;
             return true;
         }
     }

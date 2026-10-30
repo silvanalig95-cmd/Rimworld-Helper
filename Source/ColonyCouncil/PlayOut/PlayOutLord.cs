@@ -189,6 +189,11 @@ namespace ColonyCouncil
                 // A drink from the stores to raise (Integrations/ToastDrinks.cs: beer, Vanilla Brewing Expanded's wines and teas).
                 if (kind == PlayKind.Toast) ToastDrinks.Pour(lord, Map, spot, words);
                 if (words) KeepStrangerAtHead();
+                // The event's visitors who reach their spot while it lasts come up too.
+                var play = Play;
+                if (play != null && play.guestsFrom == PlayGuests.Visits && guests.Count < Math.Max(1, play.guestCount))
+                    foreach (var g in PlayGuests.Resolve(play, Map))
+                        if (!guests.Contains(g) && guests.Count < Math.Max(1, play.guestCount)) guests.Add(g);
                 if (guests.Count > 0) PlayGuests.Keep(guests, Map, spot, serve && kind == PlayKind.Feast, served, fed, label);
                 Touches();
             }

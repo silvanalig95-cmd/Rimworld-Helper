@@ -396,7 +396,6 @@ Council_WS_Feud [mediate/0] talks with two families who aren't on the map, told
 Council_WS_Feud [end:handed] far away, told
 Council_WS_Feud [end:burnedOut] far away, told
 Council_WS_Comet [watch/1] a refusal
-Council_WS_Comet [scholar/0] the stargazer is not on the map; sitting up every night is a habit
 Council_WS_Comet [scholar/1] a refusal
 Council_WS_Comet [end:gone] a memory of the night already played out, told
 Council_WS_Bumper [hands/0] off the map: four days in another people's fields

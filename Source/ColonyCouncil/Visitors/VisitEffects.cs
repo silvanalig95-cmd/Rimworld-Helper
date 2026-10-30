@@ -115,13 +115,18 @@ namespace ColonyCouncil
     /// <summary>
     /// The answer gives those waiting at the gate a bed (or a corner, or the lee of the wall): they stay
     /// <see cref="nights"/> nights and go on at first light, if a night out there won't hurt them. With
-    /// <see cref="spot"/>, they move to the far ground (a stargazer's hill) or just outside the colony to stay.
+    /// <see cref="spot"/>, they move to the far ground (a stargazer's hill), the water or just outside the colony to
+    /// stay; with <see cref="inside"/>, to a corner indoors (a room of <see cref="room"/>'s role first, the barn) however
+    /// mild the night; with <see cref="work"/>, they do what they came for there (VisitorWork).
     /// </summary>
     public class VisitEffect_Stay : DilemmaEffect
     {
         public int nights = 1;
         /// <summary>Where they stay: where they are (the gate), or they move on to the far ground or just outside the colony.</summary>
         public VisitSpot spot = VisitSpot.Gate;
+        public bool inside;
+        public string room;
+        public string work;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -129,7 +134,7 @@ namespace ColonyCouncil
             try
             {
                 var tracker = VisitorTracker.Instance;
-                tracker?.Stay(tracker.WaitingFor(ctx), nights, spot);
+                tracker?.Stay(tracker.WaitingFor(ctx), nights, spot, work, inside, room);
             }
             catch (Exception e)
             {
@@ -157,6 +162,8 @@ namespace ColonyCouncil
         public int nights;
         /// <summary>A beat of the world event that tells of this visit afterward: it waits until they've gone.</summary>
         public string holdBeat;
+        /// <summary>What they do at their spot (VisitorWork), or nothing.</summary>
+        public string work;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -176,6 +183,7 @@ namespace ColonyCouncil
                 t.hours = stopHours.RandomInRange;
                 t.stayNights = Mathf.Clamp(nights, 0, VisitorMath.MaxNights);
                 t.holdBeat = holdBeat;
+                t.work = work;
                 tracker.Add(t);
             }
             catch (Exception e)

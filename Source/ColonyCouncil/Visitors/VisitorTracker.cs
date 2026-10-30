@@ -328,19 +328,23 @@ namespace ColonyCouncil
 
         // ---------------- Staying ----------------
 
-        /// <summary>The answer gives those waiting a bed for <paramref name="nights"/> nights (VisitEffect_Stay).</summary>
-        public void Stay(VisitorTrip t, int nights, VisitSpot spot)
+        /// <summary>The answer gives those waiting a bed for <paramref name="nights"/> nights (VisitEffect_Stay), inside if it says so, with work to do if they came for it.</summary>
+        public void Stay(VisitorTrip t, int nights, VisitSpot spot, string work = null, bool inside = false, string room = null)
         {
             if (t == null) return;
             t.stayNights = Mathf.Clamp(nights, 1, VisitorMath.MaxNights);
             t.staySpot = spot;
+            t.stayInside = inside;
+            t.stayRoom = room;
+            if (!work.NullOrEmpty()) t.work = work;
             // This is the answer (it comes while the letter is being closed): they stay from their next turn.
             if (t.answeredAt < 0 && !(t.letterId >= 0 && Visitors.LetterOpen(t.letterId))) t.answeredAt = Now;
         }
 
         /// <summary>
-        /// They stay until first light after their nights, where they are (by the gate), if a night out there won't hurt
-        /// them; else they go on now, as people do when there's no room.
+        /// They stay until first light after their nights, where they are (by the gate) or at their spot, if a night out
+        /// there won't hurt them, else in a corner inside; inside whatever the night when the answer gave them a roof. No
+        /// corner to be had where one is needed: they go on now, as people do when there's no room.
         /// </summary>
         private bool BeginStay(VisitorTrip t, int now)
         {
@@ -351,7 +355,17 @@ namespace ColonyCouncil
                 if (c.IsValid && c.InBounds(t.map) && t.Standing.All(p => p.CanReach(c, PathEndMode.OnCell, Danger.Some))) at = c;
             }
             bool indoors = false;
-            if (!Visitors.SafeOvernight(t.Here, at, t.map))
+            if (t.stayInside)
+            {
+                // Given a bed or a roof: a corner inside (the barn first, if the answer said so), else by the wall as before.
+                var inside = Visitors.IndoorsCell(t.map, t.Here, t.stayRoom);
+                if (inside.IsValid)
+                {
+                    at = inside;
+                    indoors = true;
+                }
+            }
+            if (!indoors && !Visitors.SafeOvernight(t.Here, at, t.map))
             {
                 // Too cold (or hot) to sleep out by the wall: a corner inside, if the colony has one that's warm.
                 at = Visitors.IndoorsCell(t.map, t.Here);

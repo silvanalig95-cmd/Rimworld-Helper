@@ -283,14 +283,55 @@ namespace ColonyCouncil
             return IntVec3.Invalid;
         }
 
-        /// <summary>Dry ground beside the water nearest the colony.</summary>
+        /// <summary>
+        /// Dry ground beside water out on the colony's land: a river first, else any water, the nearest to the colony
+        /// that's clear of it (nothing of the colony's built and no home area within <see cref="WaterClear"/> cells), so
+        /// that those who camp or work by the water do it out there, not under the colony's walls. Else, as before, dry
+        /// ground beside the water nearest the colony.
+        /// </summary>
         private static IntVec3 WaterSide(Map map)
         {
+            try
+            {
+                var center = TemplatePlanner.ColonyCenter(map);
+                var cells = GenRadial.RadialCellsAround(center, 75f, true).Where(c => c.InBounds(map) && (c.GetTerrain(map)?.IsWater ?? false) && !c.Fogged(map)).ToList();
+                foreach (bool river in new[] { true, false })
+                    foreach (var w in cells)
+                    {
+                        if (river && !(w.GetTerrain(map)?.IsRiver ?? false)) continue;
+                        if (!ClearOfColony(w, map)) continue;
+                        foreach (var d in GenAdj.CardinalDirections)
+                        {
+                            var c = w + d;
+                            if (Open(c, map) && !(c.GetTerrain(map)?.IsWater ?? false) && ClearOfColony(c, map)) return c;
+                        }
+                    }
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("visitor water out on the land", e);
+            }
             var water = PlaySpots.WaterCell(map, null);
             if (!water.IsValid) return IntVec3.Invalid;
             foreach (var c in GenRadial.RadialCellsAround(water, 6f, false))
                 if (c.InBounds(map) && Open(c, map) && !(c.GetTerrain(map)?.IsWater ?? false)) return c;
             return water;
+        }
+
+        /// <summary>How far water for a camp or a day's work stays from anything of the colony's.</summary>
+        private const float WaterClear = 8f;
+
+        private static bool ClearOfColony(IntVec3 at, Map map)
+        {
+            var home = map.areaManager?.Home;
+            foreach (var c in GenRadial.RadialCellsAround(at, WaterClear, true))
+            {
+                if (!c.InBounds(map)) continue;
+                if (home != null && home[c]) return false;
+                var e = c.GetEdifice(map);
+                if (e != null && e.Faction == Faction.OfPlayer) return false;
+            }
+            return true;
         }
 
         private static bool Open(IntVec3 c, Map map) =>
@@ -331,13 +372,17 @@ namespace ColonyCouncil
         /// A corner inside for guests when a night out would hurt them: an open spot in the colony's dining room or rec
         /// room (never a cell, a bedroom or a hospital), warm enough for every one of them, that they can all reach.
         /// </summary>
-        public static IntVec3 IndoorsCell(Map map, List<Pawn> party)
+        public static IntVec3 IndoorsCell(Map map, List<Pawn> party, string role = null)
         {
             if (map == null || party.NullOrEmpty()) return IntVec3.Invalid;
             try
             {
-                var rooms = RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).Concat(RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom))
-                    .Where(r => r != null && !r.IsPrisonCell && !r.PsychologicallyOutdoors && r.CellCount >= 12).OrderByDescending(r => r.CellCount);
+                // A room of the role the words name first (the barn), then the dining room and the rec room, biggest first.
+                var first = role.NullOrEmpty() ? null : RoomUtil.RoleNamed(role);
+                var named = first != null ? RoomUtil.RoomsWithRole(map, first).Where(r => r != null && !r.IsPrisonCell && !r.PsychologicallyOutdoors && r.CellCount >= 6)
+                    .OrderByDescending(r => r.CellCount).ToList() : new List<Room>();
+                var rooms = named.Concat(RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).Concat(RoomUtil.RoomsWithRole(map, RoomUtil.RecRoom))
+                    .Where(r => r != null && !r.IsPrisonCell && !r.PsychologicallyOutdoors && r.CellCount >= 12).OrderByDescending(r => r.CellCount));
                 foreach (var room in rooms)
                 {
                     var middle = room.ExtentsClose.CenterCell;
