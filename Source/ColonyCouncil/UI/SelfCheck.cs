@@ -59,6 +59,7 @@ namespace ColonyCouncil
             Safe(parts, "Mods Rimfolk works with", Mods);
             Safe(parts, "Camps and trade caravans", Visits);
             Safe(parts, "Faces that come back, the herd and the beasts", Stories);
+            Safe(parts, "Automations", Automations);
             Safe(parts, "Rimfolk in the log this session", LogLines);
             return parts;
         }
@@ -417,6 +418,24 @@ namespace ColonyCouncil
             if (post != null && !post.kind.roadWord.NullOrEmpty())
                 part.Add("The " + post.Label + " settled " + post.place + " are a trading stop: " + (post.LoadOnRoad ? post.LoadLine() : "no load on the road; food, hides or wool can be sent down with the carters from their page")
                          + ". Word from the road comes up with their visits.", UiKit.Good);
+        }
+
+        /// <summary>The council's automations (Building/Automations.cs): which are on, and what the council last did.</summary>
+        private static void Automations(Part part)
+        {
+            var switches = AutomationTracker.Switches().ToList();
+            if (!switches.Any(s => s.on))
+            {
+                part.Add("CC_Check_Auto_None".Translate(), UiKit.Faint);
+                return;
+            }
+            foreach (var (key, on) in switches)
+                part.Add(("CC_Settings_" + char.ToUpperInvariant(key[0]) + key.Substring(1)).Translate() + ": " + (on ? "CC_Check_Auto_On" : "CC_Check_Auto_Off").Translate(), on ? UiKit.Good : UiKit.Faint);
+            var log = CouncilGameComponent.Instance?.automations?.log;
+            if (log == null || log.Count == 0) part.Add("CC_Check_Auto_Nothing".Translate(), UiKit.Faint);
+            else
+                foreach (var line in log.Skip(Math.Max(0, log.Count - 8)))
+                    part.Add(line, UiKit.Faint);
         }
 
         /// <summary>

@@ -209,6 +209,12 @@ MODEL = {
     "Heart/HeartData.cs:needLack": ("fixed", 4, V, "per heart: the four needs"),
     "Heart/HeartTracker.cs:hearts": ("colonists", 1, 1400, "one per colonist, the gone dropped hourly"),
     # Camps (one camp while it stays)
+    "Building/Automations.cs:billKeys": ("fixed", 40, 40, "bills the council set (bench id and recipe), while they stand on the bench"),
+    "Building/Automations.cs:droppedKeys": ("fixed", 40, 40, "bills the player removed, forgotten after a fortnight (AutomationMath.DroppedDays)"),
+    "Building/Automations.cs:droppedTicks": ("fixed", 40, 12, "with the above"),
+    "Building/Automations.cs:doneKeys": ("fixed", 20, 30, "one per kind of automated action (a dozen kinds)"),
+    "Building/Automations.cs:doneTicks": ("fixed", 20, 12, "with the above"),
+    "Building/Automations.cs:log": ("fixed", 20, 120, "the automations' log, AutomationMath.LogLines lines"),
     "Camps/Camp.cs:members": ("while", 8, P, "the camp's people, while it stays"),
     "Camps/Camp.cs:plans": ("while", 4, 200, "while the camp stays"),
     "Camps/Camp.cs:warmth": ("while", 8, D, "while the camp stays"),

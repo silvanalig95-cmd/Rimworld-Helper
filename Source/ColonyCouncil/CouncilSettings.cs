@@ -262,6 +262,14 @@ namespace ColonyCouncil
         public bool buildMenuCounts = true;
         /// <summary>A priority button on the colony's blueprints and frames (Building/BuildPriority.cs).</summary>
         public bool buildPriorities = true;
+        // The council's automations (Building/Automations.cs): each off unless the player switches it on.
+        public bool autoBills = false;
+        public bool autoPlan = false;
+        public bool autoResearch = false;
+        public bool autoStockpile = false;
+        public bool autoTakeDown = false;
+        public bool autoLamps = false;
+        public bool autoFirewood = false;
         /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
@@ -477,6 +485,13 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref planFurniture, "planFurniture", true);
             Scribe_Values.Look(ref buildMenuCounts, "buildMenuCounts", true);
             Scribe_Values.Look(ref buildPriorities, "buildPriorities", true);
+            Scribe_Values.Look(ref autoBills, "autoBills");
+            Scribe_Values.Look(ref autoPlan, "autoPlan");
+            Scribe_Values.Look(ref autoResearch, "autoResearch");
+            Scribe_Values.Look(ref autoStockpile, "autoStockpile");
+            Scribe_Values.Look(ref autoTakeDown, "autoTakeDown");
+            Scribe_Values.Look(ref autoLamps, "autoLamps");
+            Scribe_Values.Look(ref autoFirewood, "autoFirewood");
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);

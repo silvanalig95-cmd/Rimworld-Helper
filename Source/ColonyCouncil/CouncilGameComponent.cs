@@ -86,6 +86,8 @@ namespace ColonyCouncil
         public DecreeTracker decrees = new DecreeTracker();
         public DilemmaTracker dilemmas = new DilemmaTracker();
         public AnnalsTracker annals = new AnnalsTracker();
+        /// <summary>The council's automations, each its own switch (Building/Automations.cs).</summary>
+        public AutomationTracker automations = new AutomationTracker();
         public EpithetTracker epithets = new EpithetTracker();
         public JournalTracker journals = new JournalTracker();
         public OfficeTracker offices = new OfficeTracker();
@@ -238,6 +240,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref decrees, "decrees");
             Scribe_Deep.Look(ref dilemmas, "dilemmas");
             Scribe_Deep.Look(ref annals, "annals");
+            Scribe_Deep.Look(ref automations, "automations");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
             Scribe_Deep.Look(ref offices, "offices");
@@ -316,6 +319,7 @@ namespace ColonyCouncil
                 if (decrees == null) decrees = new DecreeTracker();
                 if (dilemmas == null) dilemmas = new DilemmaTracker();
                 if (annals == null) annals = new AnnalsTracker();
+                if (automations == null) automations = new AutomationTracker();
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
                 if (offices == null) offices = new OfficeTracker();
@@ -466,6 +470,7 @@ namespace ColonyCouncil
             });
             Safe("family", () => Family.Hourly(this));
             Safe("next steps", () => NextSteps.Hourly(this));
+            Safe("automations", () => automations.Hourly(this));
         }
 
         private void HourlyEvents()

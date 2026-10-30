@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 359; modelled: 359; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,716 KB** after a year, **2,079 KB** after two, **2,195 KB** after five.
+Saved collections found: 365; modelled: 365; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,722 KB** after a year, **2,086 KB** after two, **2,201 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -103,6 +103,7 @@ Rimfolk's part of the save, roughly: **1,716 KB** after a year, **2,079 KB** aft
 | `Pressures/Pressures.cs:lastProgress` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Pressures/Pressures.cs:lastWork` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Secrets/Secrets.cs:rolled` | known pawns only | known | 55 | 60 | 75 | 2.6 |
+| `Building/Automations.cs:log` | the automations' log, AutomationMath.LogLines lines | fixed | 20 | 20 | 20 | 2.3 |
 | `Calendar/CalendarTracker.cs:restHours` | days taken off by hand: only the player's clicks | colonists | 20 | 20 | 20 | 2.3 |
 | `Defense/DefenseLinesWatch.cs:running` | one per line while a raid lasts | while | 4 | 4 | 4 | 2.3 |
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
@@ -131,6 +132,8 @@ Rimfolk's part of the save, roughly: **1,716 KB** after a year, **2,079 KB** aft
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 19 | 19 | 19 | 1.7 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
+| `Building/Automations.cs:billKeys` | bills the council set (bench id and recipe), while they stand on the bench | fixed | 40 | 40 | 40 | 1.6 |
+| `Building/Automations.cs:droppedKeys` | bills the player removed, forgotten after a fortnight (AutomationMath.DroppedDays) | fixed | 40 | 40 | 40 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
 | `Animals/HerdStory.cs:lineGens` | their generations, beside the ids | fixed | 60 | 60 | 60 | 1.5 |
@@ -186,6 +189,7 @@ Rimfolk's part of the save, roughly: **1,716 KB** after a year, **2,079 KB** aft
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
 | `Health/HealthTracker.cs:worst` | hard times not over yet (hunger, cold, untended illness); known pawns only | known | 6 | 6 | 8 | 0.7 |
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
+| `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
@@ -197,6 +201,7 @@ Rimfolk's part of the save, roughly: **1,716 KB** after a year, **2,079 KB** aft
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
+| `Building/Automations.cs:droppedTicks` | with the above | fixed | 40 | 40 | 40 | 0.5 |
 | `Calendar/CalendarLived.cs:captives` | the colony's people carried off, until home or lost to us | colonists | 4 | 4 | 4 | 0.5 |
 | `Camps/CampRequests.cs:errandLines` | what they say on the errand, while it lasts | while | 4 | 4 | 4 | 0.5 |
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
@@ -236,6 +241,7 @@ Rimfolk's part of the save, roughly: **1,716 KB** after a year, **2,079 KB** aft
 | `Setbacks/SetbackTracker.cs:grantVoiced` | 20 days | window | 10 | 10 | 10 | 0.2 |
 | `Annals.cs:joined` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
 | `Annals.cs:traditionsKept` | the year in progress | yearly | 6 | 6 | 6 | 0.2 |
+| `Building/Automations.cs:doneTicks` | with the above | fixed | 20 | 20 | 20 | 0.2 |
 | `Camps/Camp.cs:prey` | while the camp stays | while | 6 | 6 | 6 | 0.2 |
 | `Camps/CampLook.cs:props` | goods the camp put out (a few stacks), pruned of the gone, while it stays | while | 6 | 6 | 6 | 0.2 |
 | `Epithets/Epithets.cs:founders` | those here in the colony's first two days (by ThingID) | fixed | 6 | 6 | 6 | 0.2 |

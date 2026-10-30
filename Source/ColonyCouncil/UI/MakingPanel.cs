@@ -57,6 +57,15 @@ namespace ColonyCouncil
             }
             y += 10f;
 
+            // The chains: what the building and the bills wait on, and the bills that can't go on.
+            if (r.needs.Count > 0 || r.starved.Count > 0)
+            {
+                y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Chains".Translate(), null, UiKit.HeaderColor) + 4f;
+                foreach (var c in r.needs) y += DrawNeed(c, 0f, y, view.width) + 4f;
+                foreach (var sb in r.starved) y += DrawStarved(sb, 0f, y, view.width) + 4f;
+                y += 10f;
+            }
+
             y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Unused".Translate(), null, UiKit.HeaderColor) + 4f;
             if (r.unused.Count == 0) y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Making_UnusedNone".Translate(), UiKit.Faint) + 8f;
             foreach (var u in r.unused) y += DrawUnused(u, 0f, y, view.width, map) + 4f;
@@ -88,7 +97,8 @@ namespace ColonyCouncil
                 MapHighlights.Cells("making:" + o.recipe.defName, o.bench.Map, o.bench.OccupiedRect().Cells, UiKit.Good, o.product.LabelCap, o.bench.Position);
             Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), o.product);
             string title = o.product.LabelCap + (o.productStock > 0 ? " " + "CC_Making_Have".Translate(o.productStock).Resolve() : "");
-            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, Color.white);
+            if (o.wantedBy != null) title += " " + o.wantedBy;
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, o.wantedBy != null ? UiKit.Gold : Color.white);
             Text.Font = GameFont.Tiny;
             GUI.color = UiKit.Faint;
             Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
@@ -102,6 +112,80 @@ namespace ColonyCouncil
                 Making.SetUpBill(o);
             }
             TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(o.bench.LabelCap.ToString()));
+            return h;
+        }
+
+        /// <summary>A link in a chain: the material wanted, the bench here that makes it, and its bill sized to the want.</summary>
+        private static float DrawNeed(ChainNeed c, float x, float y, float width)
+        {
+            Text.Font = GameFont.Small;
+            float textW = width - ButtonsW - 60f;
+            string line = c.why + " " + (c.canMake ? "CC_Making_From".Translate(c.PartsLine.Named("PARTS")).Resolve() : "CC_Making_CantMake".Translate(c.PartsLine.Named("PARTS")).Resolve());
+            Text.Font = GameFont.Tiny;
+            float lineH = Text.CalcHeight(line, textW);
+            Text.Font = GameFont.Small;
+            float h = Mathf.Max(44f, 24f + lineH + 8f);
+            var row = new Rect(x, y, width, h);
+            UiKit.Card(row, c.canMake ? UiKit.Gold : UiKit.Warn);
+            if (Mouse.IsOver(row) && c.bench != null && c.bench.Spawned && c.bench.Map == Find.CurrentMap)
+                MapHighlights.Cells("chain:" + c.recipe.defName, c.bench.Map, c.bench.OccupiedRect().Cells, UiKit.Gold, c.product.LabelCap, c.bench.Position);
+            Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), c.product);
+            string title = c.product.LabelCap + " " + "CC_Making_Have".Translate(c.stock).Resolve() + (c.shortBy > 0 ? " " + "CC_Making_ShortLine".Translate(c.shortBy).Resolve() : "");
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, Color.white);
+            Text.Font = GameFont.Tiny;
+            GUI.color = UiKit.Faint;
+            Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+            TooltipHandler.TipRegion(new Rect(x, y, width - ButtonsW, h), c.recipe.LabelCap + " (" + c.benchDef.label + ")\n" + (c.recipe.description ?? ""));
+            var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
+            if (c.billed) UiKit.Paragraph(br.x, br.y + 4f, br.width, "CC_Making_BillOn".Translate(), UiKit.Faint);
+            else if (c.canMake)
+            {
+                if (Widgets.ButtonText(br, "CC_Making_SetBill".Translate(c.target)))
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                    Making.SetUpChain(c);
+                }
+                TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(c.bench.LabelCap.ToString()));
+            }
+            else UiKit.Paragraph(br.x, br.y + 4f, br.width, "CC_Making_PartsShort".Translate(), UiKit.Warn);
+            return h;
+        }
+
+        /// <summary>A bill that can't go on, what it waits on, and the bill that would feed it when a bench here can.</summary>
+        private static float DrawStarved(StarvedBill sb, float x, float y, float width)
+        {
+            Text.Font = GameFont.Small;
+            float textW = width - ButtonsW - 60f;
+            string line = "CC_Making_Starved".Translate(sb.missing).Resolve();
+            if (sb.fix == null) line += " " + "CC_Making_StarvedNoFix".Translate().Resolve();
+            Text.Font = GameFont.Tiny;
+            float lineH = Text.CalcHeight(line, textW);
+            Text.Font = GameFont.Small;
+            float h = Mathf.Max(44f, 24f + lineH + 8f);
+            var row = new Rect(x, y, width, h);
+            UiKit.Card(row, UiKit.Warn);
+            if (Mouse.IsOver(row) && sb.bench != null && sb.bench.Spawned && sb.bench.Map == Find.CurrentMap)
+                MapHighlights.Cells("starved:" + sb.bench.thingIDNumber, sb.bench.Map, sb.bench.OccupiedRect().Cells, UiKit.Warn, sb.bench.LabelCap, sb.bench.Position);
+            if (sb.bench != null) Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), sb.bench);
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), sb.bench.LabelCap + ": " + sb.bill.LabelCap, Color.white);
+            Text.Font = GameFont.Tiny;
+            GUI.color = UiKit.Faint;
+            Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+            var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
+            if (sb.fix != null && sb.fix.canMake && !sb.fix.billed)
+            {
+                if (Widgets.ButtonText(br, "CC_Making_SetBillFor".Translate(sb.fix.product.label)))
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                    Making.SetUpChain(sb.fix);
+                }
+                TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(sb.fix.bench.LabelCap.ToString()));
+            }
+            else if (sb.fix != null && sb.fix.billed) UiKit.Paragraph(br.x, br.y + 4f, br.width, "CC_Making_BillOn".Translate(), UiKit.Faint);
             return h;
         }
 

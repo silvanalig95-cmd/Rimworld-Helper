@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The council's automations (Source/ColonyCouncil/Building/Automations.cs): each its own switch, off unless switched on. -->
+  <CC_SetSec_Automations>Automations: the council does it for you</CC_SetSec_Automations>
+  <CC_SetSec_Automations_Note>Everything here is off unless you switch it on. Switched on, the council does each hour what it would otherwise only suggest, tells you in a quiet message, and keeps a log on the check-myself page. Your own orders are never touched: a bill you remove isn't set again for a fortnight, and whatever the council does is undone the ordinary way, on the bench, in the plan, or on the map. Nothing happens while there is fighting on the map.</CC_SetSec_Automations_Note>
+  <CC_Settings_AutoBills>Bills for what the colony lacks</CC_Settings_AutoBills>
+  <CC_Settings_AutoBills_Tip>From the Making page's findings: a "make until" bill for a staple the colony lacks and can make (meals, medicine, components), and for whatever the blueprints and the other bills are waiting on (blocks for a wall, cloth for a tailor's bill), two an hour at most. A bill you remove isn't set again for a fortnight.</CC_Settings_AutoBills_Tip>
+  <CC_SetNote_AutoBills>Benches get their bills for the staples and for what the building needs.</CC_SetNote_AutoBills>
+  <CC_Settings_AutoPlan>Urgent steps go straight into the plan</CC_Settings_AutoPlan>
+  <CC_Settings_AutoPlan_Tip>A step the council proposes at a high level or above is taken into the plan at once, in its place by urgency, instead of waiting for you on the Plan page. Let it go there like any other if you disagree.</CC_Settings_AutoPlan_Tip>
+  <CC_SetNote_AutoPlan>The plan fills itself with what presses.</CC_SetNote_AutoPlan>
+  <CC_Settings_AutoResearch>An idle research bench takes up the next project</CC_Settings_AutoResearch>
+  <CC_Settings_AutoResearch_Tip>With a research bench and no project chosen, the cheapest project of the colony's own era is started (never one that pushes the colony into the next era). Pick another in the research tab whenever you like; the council waits a day before choosing again.</CC_Settings_AutoResearch_Tip>
+  <CC_SetNote_AutoResearch>Research never stands idle.</CC_SetNote_AutoResearch>
+  <CC_Settings_AutoStockpile>Goods nobody stores get a stockpile</CC_Settings_AutoStockpile>
+  <CC_Settings_AutoStockpile_Tip>When the stores review finds a fair amount of goods lying about that no store accepts, the stockpile it would lay out by the store room is made, set to take exactly those goods, every five days at most. An ordinary zone afterwards.</CC_Settings_AutoStockpile_Tip>
+  <CC_SetNote_AutoStockpile>Odds and ends find a home.</CC_SetNote_AutoStockpile>
+  <CC_Settings_AutoTakeDown>What serves nothing is taken down</CC_Settings_AutoTakeDown>
+  <CC_Settings_AutoTakeDown_Tip>The base review's take-down findings get their deconstruct orders: wall stubs that separate nothing, dead conduit and pipe ends, doors with the same room on both sides. Cancel an order on the map like any other; a finding is acted on every two days at most.</CC_Settings_AutoTakeDown_Tip>
+  <CC_SetNote_AutoTakeDown>Stubs, dead ends and pointless doors go.</CC_SetNote_AutoTakeDown>
+  <CC_Settings_AutoLamps>Dark bedrooms and benches get lamps and chairs planned</CC_Settings_AutoLamps>
+  <CC_Settings_AutoLamps_Tip>What the advisor's "plan the lamps" and "plan chairs and lamps" buttons do, done once a day when the advice stands: blueprints for a lamp in a bedroom too dark to see by, a chair at a bench with none. Cancel a blueprint like any other.</CC_Settings_AutoLamps_Tip>
+  <CC_SetNote_AutoLamps>Lamps and chairs are planned where they are missing.</CC_SetNote_AutoLamps>
+  <CC_Settings_AutoFirewood>Trees are marked for chopping when firewood runs short</CC_Settings_AutoFirewood>
+  <CC_Settings_AutoFirewood_Tip>When the advisor says the woodpile won't see the cold through, the nearest mature trees outside your growing zones are marked for chopping, five to twelve by how short the wood is, once a day at most. Unmark any on the map.</CC_Settings_AutoFirewood_Tip>
+  <CC_SetNote_AutoFirewood>The woodpile is seen to before the cold.</CC_SetNote_AutoFirewood>
+
+  <CC_Auto_BillSet>The council set a bill on the {BENCH}: {PRODUCT}, until {N} ({WHY}).</CC_Auto_BillSet>
+  <CC_Auto_Why_Staple>a staple the colony lacks</CC_Auto_Why_Staple>
+  <CC_Auto_Planned>The council put a step into the plan: {STEP}.</CC_Auto_Planned>
+  <CC_Auto_Research>The research bench stood idle: the council started {PROJECT}.</CC_Auto_Research>
+  <CC_Auto_Stockpile>The council made a stockpile for the goods nobody stored ({WHAT}).</CC_Auto_Stockpile>
+  <CC_Auto_TakeDown>The council gave take-down orders: {WHAT} ({N}).</CC_Auto_TakeDown>
+  <CC_Auto_Acted>The council planned what the advisor asked for: {WHAT}.</CC_Auto_Acted>
+  <CC_Auto_Firewood>Firewood is short before the cold: the council marked {N} tree(s) near the base for chopping.</CC_Auto_Firewood>
+
+  <CC_Check_Auto_On>on</CC_Check_Auto_On>
+  <CC_Check_Auto_Off>off</CC_Check_Auto_Off>
+  <CC_Check_Auto_None>Every automation is off: the council only suggests. Switch them on under Building in the settings.</CC_Check_Auto_None>
+  <CC_Check_Auto_Nothing>Nothing done yet.</CC_Check_Auto_Nothing>
+
+</LanguageData>

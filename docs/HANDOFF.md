@@ -1,26 +1,30 @@
 # Handoff: work in progress
 
-Last shipped: 0.38.0, the player's request for real thought in "Rearrange a room". `Building/RoomWalkMath.cs` (pure,
-tested in RoomArrangeTests): Dijkstra from the doors with the game's costs (`StepCost(pathCost)`, `SpotCost` 2 on a
-work spot), ways traced per use and door to door, `Review` with inWay (a standing spot on another's way), slowed, squeezes
-and narrowest (main ways, `wide` rooms count every way), deadEnds, lostFloor, open (largest rectangle), walk and
-longestWalk. `RoomArrangeMath`: Item gained pathCost, glow, wantsLight, useCells (a screen's watch rows, a billiards
-ring: kept open and reached, in `State.use`), moveCost (`Keep(it)` = 2.5 + min(moveCost, 5)), everyday; kind `Lamp`
-(placed after chairs: `LightsHere` counts the spots and sickbeds it alone lights, 3.5 each; `LitRadius` = 0.7 glow);
-chairs on a watch area facing the screen say "watch"; a screen leans on a wall. After the greedy pass and the reach
-repair, `Refine` tries each movable piece at its `RefineTries` best places (its own among them) for the best `Quality`
-(own scores plus keep, less walk 0.02, inWay 2, slowed 0.8, squeezes, deadEnds 0.3, lostFloor 1, plus open) over
-`RefineSweeps`. `Review(g, items, now)` and `Unlit(g, items, now, out anyLight)` feed the window's "How the room walks"
-lines (`Designator_RearrangeRoom.WalkLines`, before and after). Game side (`RoomRearranger.ItemFor`): pathCost from the
-def, glow via WallLights, wantsLight for work tables, research benches and medical beds, `UseCellsFor` from the
-JoyGiverDef (JoyGiver_WatchBuilding rows by watchBuildingStandDistanceRange and RectWidth; JoyGiver_PlayBilliards ring),
-`MoveCost` = WorkToBuild/1500 (cap 4) + 0.4 per stored stack (cap 3); plain lights are `Lamp`, sun lamps `Centre`. Next
-(tasks): the player's second request of the day, production chains, the other suggestions and opt-in automations so
-fewer things need keeping track of (Making/MakingMath, NextSteps, BaseReview/StorageReview, the advisor's acts; one
-"Automations" settings section, everything off by default); then 0.3x.0 a year's letter at each anniversary of the
-landing (the annals write the calendar year and the founding event marks the day already: the letter should cover the
-land and the neighbours since the last landing day, the herd, the beasts, the holding, the regulars, the world events,
-the road, and nothing the annals say). Before it, 0.37.0: the wardens' post as a trading stop (`Camps/RoadPost.cs`:
+Last shipped: 0.39.0, the player's second request of the day: production chains and opt-in automations. `Building/Making.cs`:
+`Compute` now reads the building's needs (`BuildingNeeds`: blueprints' and frames' `TotalMaterialCost` beyond the stock,
+`Frame.ThingCountNeeded`) and the starved bills (`Starved`: an active `Bill_Production` with an ingredient none of whose
+allowed kinds is in stock, `Active` by repeat mode), builds `Result.needs` (`ChainNeed`: the material, the recipe and bench
+here that make it, `canMake` from the shared `Parts` helper, `billed`, a `DemandTarget`) and `Result.starved` (`StarvedBill`
+with its `fix` link), marks `MakingOption.wantedBy` and orders by `MakingMath.WantedRank`; `TargetFor(kind, colonists)`
+scales meals and medicine. `SetUpBill(o, quiet)` and `SetUpChain(c, quiet)` share `SetBill`. The page (`MakingPanel`) has
+the "Wanted for the building and the bills" section. `Building/Automations.cs` (`AutomationTracker`, saved on the game
+component as `automations`, run from `HourlyPeople` after next steps; rules in `AutomationMath`, tested): seven switches
+in `CouncilSettings` (`autoBills`, `autoPlan`, `autoResearch`, `autoStockpile`, `autoTakeDown`, `autoLamps`,
+`autoFirewood`, all false; the "Automations" section of the settings catalog on the Building page), each acting on an
+existing system (Making's needs and could, `NextSteps.Take` at level 3+, `AdvisorWorker_Research.SuggestNext` in-era,
+`BaseReview.Finding("unstored").fix`, the base review's take-down fixes, the advisor's BedsDark and NoSeat `act`s, the
+Firewood signal with `HarvestPlant` designations near `TemplatePlanner.ColonyCenter`), each with a cooldown in `doneKeys`,
+the council's bills remembered in `billKeys` so a bill the player removes goes to `droppedKeys` for a fortnight, every
+action a quiet message and a line in `log` (the check-myself "Automations" part). Nothing runs while `MapFacts.ThreatOn`.
+Next (task): 0.40.0 a year's letter at each anniversary of the landing (the annals write the calendar year and the
+founding event marks the day already: the letter should cover the land and the neighbours since the last landing day,
+the herd, the beasts, the holding, the regulars, the world events, the road, and nothing the annals say). Before it,
+0.38.0, "Rearrange a room, thought through": `Building/RoomWalkMath.cs` (pure: Dijkstra from the doors with the game's
+costs, ways per use and door to door, `Review` with inWay, slowed, squeezes, narrowest, deadEnds, lostFloor, open, walk),
+`RoomArrangeMath` with pathCost, glow, wantsLight, useCells, moveCost (`Keep`), everyday, the `Lamp` kind, `Refine` (each
+piece at its `RefineTries` best places for the best `Quality`), `Review`/`Unlit` for the window's "How the room walks";
+`RoomRearranger.ItemFor` fills the new facts (`UseCellsFor` from the JoyGiverDef, `MoveCost`).
+Before it, 0.37.0: the wardens' post as a trading stop (`Camps/RoadPost.cs`:
 `CampAsk.settledOnly` asks, `DilemmaEffect_RoadCarry`, `Camp.owed*`, `PayRoad` on the "pay" errand, `CampKindDef.roadWord`
 pool Council_Pool_RoadWord) and the settlers' alliance paying off (`World/Allies.cs`, Council_Evt_AllyFood, the war
 camp's helper); `CampTracker.PlayCamp` makes PlaySpot.Camp play-outs find the holding too.

@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Production chains, and the council's automations
+
+*30 October 2026, version 0.39.0*
+
+- The Making page follows the chains. "Wanted for the building and the bills" names each material the blueprints and frames are short of beyond the stock, or that a bill on some bench waits on with none in stock, and the bench here that makes it, with a bill sized to the want (the stock, the want and a fifth more, never under the usual count). Bills waiting on an ingredient the colony has none of are listed with the bill that would feed them, or told what to grow, mine or trade for. A batch something waits on comes first and is marked in gold, whatever the colony's stock of it. Bill counts for meals and medicine grow with the colony: three days of two meals a head, two medicine a head, within bounds.
+- Automations, each its own switch under Building in the settings, all off unless you turn them on. Switched on, the council does each hour what it would otherwise only suggest, tells you in a quiet message, and keeps a log on the check-myself page; it never acts while there is fighting on the map, and never over your own orders.
+- The seven: bills for what the colony lacks (the staples it can make, and whatever the blueprints and the other bills wait on, two an hour at most; a bill you remove isn't set again for a fortnight); urgent steps go straight into the plan; an idle research bench takes up the cheapest project of the colony's own era; goods nobody stores get their stockpile; wall stubs, dead conduit and pipe ends and pointless doors get their take-down orders; dark bedrooms and benches get their lamps and chairs planned; trees near the base are marked for chopping when the woodpile won't see the cold through.
+- Everything the council does is undone the ordinary way: on the bench, in the plan, in the research tab, or on the map.
+
 ## Rearrange a room, thought through
 
 *30 October 2026, version 0.38.0*

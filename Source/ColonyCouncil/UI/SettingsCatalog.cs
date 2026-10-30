@@ -367,6 +367,16 @@ namespace ColonyCouncil
             Section("CC_SetSec_Stores");
             Toggle("shelfReserves", "CC_Settings_ShelfReserves", "CC_SetNote_ShelfReserves", "deepHooks");
             Toggle("chewOutOfStores", "CC_Settings_ChewOutOfStores", "CC_SetNote_ChewOutOfStores", "deepHooks");
+            // The council's automations (Building/Automations.cs): what it would only suggest, done for the player, each its own switch, all off to begin with.
+            Section("CC_SetSec_Automations");
+            NoteUnder("CC_SetSec_Automations_Note");
+            Toggle("autoBills", "CC_Settings_AutoBills", "CC_SetNote_AutoBills");
+            Toggle("autoPlan", "CC_Settings_AutoPlan", "CC_SetNote_AutoPlan", "nextSteps");
+            Toggle("autoResearch", "CC_Settings_AutoResearch", "CC_SetNote_AutoResearch");
+            Toggle("autoStockpile", "CC_Settings_AutoStockpile", "CC_SetNote_AutoStockpile");
+            Toggle("autoTakeDown", "CC_Settings_AutoTakeDown", "CC_SetNote_AutoTakeDown");
+            Toggle("autoLamps", "CC_Settings_AutoLamps", "CC_SetNote_AutoLamps", "enableAdvisor");
+            Toggle("autoFirewood", "CC_Settings_AutoFirewood", "CC_SetNote_AutoFirewood", "enableAdvisor");
 
             // Interface and integrations: messages, alerts, the council's own tabs and buttons, the deeper game hooks.
             Page(SettingsPage.Interface);
