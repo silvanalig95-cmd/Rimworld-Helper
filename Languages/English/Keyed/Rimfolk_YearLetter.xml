@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A year's letter at each anniversary of the landing (Source/ColonyCouncil/World/YearLetter.cs). -->
+  <CC_Year_Title>The {ORD} year on this land</CC_Year_Title>
+  <CC_Year_Opening>On the {ORD} anniversary of the landing, {PAWN_nameDef} writes down what the year brought on the land and from beyond it.</CC_Year_Opening>
+  <CC_Year_OpeningNobody>On the {ORD} anniversary of the landing, the council writes down what the year brought on the land and from beyond it.</CC_Year_OpeningNobody>
+  <CC_Year_Herd>The herd numbers {COUNT}, {BORN} of them born this year. {LEAD}</CC_Year_Herd>
+  <CC_Year_HerdLeader>{PET_nameDef} leads it.</CC_Year_HerdLeader>
+  <CC_Year_HerdLeaderLine>{PET_nameDef} leads it, the {ORD} generation of {LINE}'s line.</CC_Year_HerdLeaderLine>
+  <CC_Year_HerdNoLeader>No one beast leads it yet.</CC_Year_HerdNoLeader>
+  <CC_Year_HerdNewLeader>{PET_nameDef} took the lead this year.</CC_Year_HerdNewLeader>
+  <CC_Year_HerdOld>{PET_nameDef} is in {PET_possessive} last season.</CC_Year_HerdOld>
+  <CC_Year_BeastNew>This year the colony gave a wild {KIND} a name, {PET_nameDef}: {STANCE}.</CC_Year_BeastNew>
+  <CC_Year_BeastStill>{PET_nameDef}, the {KIND}, is still about: {STANCE}.</CC_Year_BeastStill>
+  <CC_Year_BeastStole>{PET_nameDef} has been at the stores {N} time(s).</CC_Year_BeastStole>
+  <CC_Year_HoldingNew>{NAME} of {FACTION} settled on the colony's land this year, {COUNT} of them, {DAYS} ago.</CC_Year_HoldingNew>
+  <CC_Year_Holding>{NAME} of {FACTION} are still the colony's neighbours, {COUNT} of them, settled {DAYS} ago.</CC_Year_Holding>
+  <CC_Year_Road>{N} load(s) went down the road with the carters from their post.</CC_Year_Road>
+  <CC_Year_Times>{0} ({1} times)</CC_Year_Times>
+  <CC_Year_Camps>Camps on the land this year, among those remembered: {LIST}.</CC_Year_Camps>
+  <CC_Year_Regulars>Faces that came back: {LIST}.</CC_Year_Regulars>
+  <CC_Year_WorldOne>{EVENT} ended in {ENDING}</CC_Year_WorldOne>
+  <CC_Year_World>Out in the world: {LIST}.</CC_Year_World>
+  <CC_Year_EndingUnknown>its own way</CC_Year_EndingUnknown>
+  <CC_Year_Allies>The colony has allies: {FACTION}.</CC_Year_Allies>
+  <CC_Year_Chronicle>Of the year's {N} chronicle line(s) about strangers and the world:</CC_Year_Chronicle>
+  <CC_Year_Close>So much for the land and the neighbours; the annals have the rest.</CC_Year_Close>
+  <CC_Chronicle_YearLetter>The {ORD} year's letter was written.</CC_Chronicle_YearLetter>
+
+</LanguageData>

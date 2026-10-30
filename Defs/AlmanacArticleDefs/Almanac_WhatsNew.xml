@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.41.0</version>
+        <date>30 October 2026</date>
+        <title>A year's letter at each anniversary of the landing</title>
+        <points>
+          <li>At each anniversary of the landing a letter comes, with the annals' setting, about the year on the land and from beyond it, which the annals leave out: the herd (its head, who leads it and of which line, the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads that went down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. The annalist writes it.</li>
+          <li>The founding day's own event still marks the day; the annals still write the calendar year. The letter adds the land and the neighbours, and nothing the other two say.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.40.0</version>
         <date>30 October 2026</date>
         <title>Chains followed to the end, and automations you can see and undo</title>

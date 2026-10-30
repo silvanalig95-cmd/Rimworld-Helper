@@ -1,24 +1,18 @@
 # Handoff: work in progress
 
-Last shipped: 0.40.0, the second pass on chains and automations the player asked for. `Building/ChainMath.cs` (pure,
-tested in ChainTests): batches a day, hours a batch, days left at net use, what a want asks of a part, a node's target
-(DemandTarget plus three days of use), meals a day, efficiency, bench score, depth cap, lead days, a plant's yield a day,
-cells to sow. `Building/Chains.cs`: `ChainNode` (stock, want, use/make a day, recipe and bench, parts, plant/cells/zone,
-LeafFirst, LeadDays), `Chains.Prepare` (rates: meals eaten, medicine spent, the active bills' take and give at the best able
-hand's speed, the growing zones' yield) and `Chains.Build` (recursive, cycle and depth guarded; `BestMaker` by
-ChainMath.BenchScore and Efficiency; `Pick` for an ingredient's kind), `Sowing` (PlantFor, ZoneFor, Fill, Sow with `Blob`
-over fertile open reachable ground near the fields). `Making.Compute` builds `Result.chains` (one tree per want) and
-flattens them leaf first into `Result.needs` (ChainNeed.node/root). `MakingPanel.DrawLink` draws the trees with "Set the
-chain's bills" and "Sow it". `Building/Automations.cs` rewritten around `AutoPending` (text + act): `Candidates(map, onlyOn)`
-feeds both `Hourly` and `Preview`; per-kind switches (`autoBillMeals/Medicine/Components/Chains` under `autoBills`),
-`autoGrow`, `autoBudget` (Worth of the blueprints placed by the lamps' acts), `autoTakeDownsADay`, `autoChopsADay`
-(AutomationMath.Allowed, BudgetLeft); every action is an `AutoAction` (kind, things, recipe, stepKey, prev, zoneId, cells)
-kept in `actions` (ActionsKept 12) and undone by `Undo` (bill deleted and dropped, step back to proposed, research
-restored, zone deleted or cells removed, designations removed, blueprints cancelled); the Making page's bottom section
-shows the preview per switch and the last actions with Undo; `BaseReview.Deconstruct` is public for the capped take-downs.
-Next (task): 0.41.0 a year's letter at each anniversary of the landing (the annals write the calendar year and the
-founding event marks the day already: the letter should cover the land and the neighbours since the last landing day,
-the herd, the beasts, the holding, the regulars, the world events, the road, and nothing the annals say). Before it,
+Last shipped: 0.41.0, the last of the player's five ideas: a year's letter at each anniversary of the landing.
+`World/YearLetter.cs`: `Daily` (from `DailyFirst`, with the annals' setting) writes once per landing year, in the first
+three days of it, when `GenDate.DaysPassed / DaysPerYear` passes `comp.yearLetterLast`; `Write` gathers, since the last
+landing day, the herd (AnimalFacts.Herd, comp.herd's leader, line, leaderSince, lastSeasonTick), the beast (comp.beast),
+the holding (HoldingName, settledTick, the new `Camp.roadLoads` counter from RoadPost), the past camps (`CampTracker.past`
+by leftTick), the regulars (`Regulars.All` by lastTick), the world events ended (`WorldSituations.history` by endTick;
+the ending's key as a word, or a `CC_WS_Ending_<key>` text if one is ever added), the allies, and five chronicle lines
+of kinds Stranger and World spread over the year; the annalist (Council_Epithet_Annalist) or the best reader and
+talker is the author. Keyed in `Rimfolk_YearLetter.xml`. Nothing is pending from the player's list; the next round is
+the player's call (candidates: the deeper chain rates per bench rather than per recipe, consumption from the last days'
+actual use, the automations' preview on the settings page itself). Before it, 0.40.0, the second pass on chains and
+automations (ChainMath/Chains.cs with rates, bench choice and sowing; the automations rewritten around AutoPending with
+per-kind switches, budget and caps, growing, preview and undo). Before it,
 0.39.0: the first pass (building needs, starved bills, DemandTarget, the seven automations). Before it,
 0.38.0, "Rearrange a room, thought through": `Building/RoomWalkMath.cs` (pure: Dijkstra from the doors with the game's
 costs, ways per use and door to door, `Review` with inWay, slowed, squeezes, narrowest, deadEnds, lostFloor, open, walk),

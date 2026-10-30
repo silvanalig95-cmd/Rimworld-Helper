@@ -88,6 +88,8 @@ namespace ColonyCouncil
         public AnnalsTracker annals = new AnnalsTracker();
         /// <summary>The council's automations, each its own switch (Building/Automations.cs).</summary>
         public AutomationTracker automations = new AutomationTracker();
+        /// <summary>The last year since the landing a year's letter was written for (World/YearLetter.cs).</summary>
+        public int yearLetterLast;
         public EpithetTracker epithets = new EpithetTracker();
         public JournalTracker journals = new JournalTracker();
         public OfficeTracker offices = new OfficeTracker();
@@ -241,6 +243,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref dilemmas, "dilemmas");
             Scribe_Deep.Look(ref annals, "annals");
             Scribe_Deep.Look(ref automations, "automations");
+            Scribe_Values.Look(ref yearLetterLast, "yearLetterLast");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
             Scribe_Deep.Look(ref offices, "offices");

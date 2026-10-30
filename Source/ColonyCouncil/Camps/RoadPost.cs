@@ -19,6 +19,8 @@ namespace ColonyCouncil
     {
         /// <summary>The load on the road and the silver owed for it, due when the carters come back (RoadPostMath.DueDays).</summary>
         public int owedSilver, owedCount, owedTick = -1;
+        /// <summary>How many loads have gone down the road with the carters, for the year's letter.</summary>
+        public int roadLoads;
         public string owedWhat;
         public ThingDef owedDef;
 
@@ -35,6 +37,7 @@ namespace ColonyCouncil
             owedCount = count;
             owedSilver = price;
             owedTick = Now + Rand.RangeInclusive(RoadPostMath.DueDaysMin, RoadPostMath.DueDaysMax) * GenDate.TicksPerDay;
+            roadLoads++;
         }
 
         /// <summary>
@@ -123,6 +126,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref owedTick, "owedTick", -1);
             Scribe_Values.Look(ref owedWhat, "owedWhat");
             Scribe_Defs.Look(ref owedDef, "owedDef");
+            Scribe_Values.Look(ref roadLoads, "roadLoads");
         }
     }
 

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A year's letter at each anniversary of the landing
+
+*30 October 2026, version 0.41.0*
+
+- At each anniversary of the landing a letter comes, with the annals' setting, about the year on the land and from beyond it, which the annals leave out: the herd (its head, who leads it and of which line, the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good and the loads that went down the road from their post, the camps that came, the faces that came back, the world events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. The annalist writes it.
+- The founding day's own event still marks the day; the annals still write the calendar year. The letter adds the land and the neighbours, and nothing the other two say.
+
 ## Chains followed to the end, and automations you can see and undo
 
 *30 October 2026, version 0.40.0*

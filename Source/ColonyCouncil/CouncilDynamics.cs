@@ -679,6 +679,8 @@ namespace ColonyCouncil
             Safe("epithets", () => epithets.Daily(this));
             Safe("journals", journals.Daily);
             Safe("offices", () => offices.Daily(this));
+            // A year's letter at each anniversary of the landing (World/YearLetter.cs), with the annals' setting.
+            if (s.annals) Safe("year's letter", () => YearLetter.Daily(this));
         }
 
         /// <summary>The day's second half (Sched.CouncilDaySecond), a few minutes of game time later: the social web and the rest.</summary>
