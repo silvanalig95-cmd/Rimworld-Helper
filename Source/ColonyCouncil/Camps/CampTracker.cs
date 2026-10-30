@@ -87,6 +87,20 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>
+        /// The camp a play-out "down to the camp" means (PlaySpot.Camp): the one <paramref name="other"/> (the question's
+        /// stranger) belongs to, else the visitors, else the neighbours settled for good (Holding.cs); living on this map, at peace.
+        /// </summary>
+        public static Camp PlayCamp(Map map, Pawn other = null)
+        {
+            var t = Instance;
+            if (t == null || map == null) return null;
+            bool Fits(Camp c) => c != null && c.map == map && c.phase == CampPhase.Living && !c.Hostile;
+            var own = CampOf(other);
+            if (Fits(own)) return own;
+            return Fits(t.camp) ? t.camp : Fits(t.holding) ? t.holding : null;
+        }
+
         /// <summary>The camp an answer or an ask is about while it's being dealt with (a letter's answer, a button on its page), for the effects that need to know.</summary>
         public static Camp Asked { get; private set; }
 

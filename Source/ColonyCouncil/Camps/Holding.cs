@@ -72,7 +72,7 @@ namespace ColonyCouncil
             return n > 0 ? Text("CC_Holding_TakenIn", null, null, n) : null;
         }
 
-        /// <summary>Each new day of the neighbours' life: unease eases, the land feeds them, their trader restocks, one falls ill now and then, one comes to visit.</summary>
+        /// <summary>Each new day of the neighbours' life: unease eases, the land feeds them, their trader restocks, one falls ill now and then, one comes to visit (or up with the carters' silver).</summary>
         private void HoldingDay()
         {
             AddTension(CampStoryMath.HoldingTensionADay);
@@ -99,10 +99,21 @@ namespace ColonyCouncil
                 asksMade.Remove(CampStory.SickKey);
                 if (ask != null && Here.Count(p => !p.DevelopmentalStage.Juvenile()) >= 2 && FallIll()) Request(ask);
             }
+            else if (LoadOnRoad && Now >= owedTick && !ErrandSet)
+            {
+                // The carters came back through: a warden brings the colony's silver up to the gate (RoadPost.cs), with word of the road.
+                var pay = new DilemmaEffect_CampComes { to = "gate", count = 1, hours = new FloatRange(1f, 1.5f), when = new IntRange(8, 18), doing = "pay" };
+                pay.lines = RoadWord(ErrandPeople(null, 1).FirstOrDefault());
+                if (!StartErrand(pay, null)) PayRoad(null);
+            }
             else if (day - lastVisitDay >= CampStoryMath.HoldingVisitDays && !ErrandSet && tension < 50f && Rand.Chance(0.5f))
             {
                 lastVisitDay = day;
-                StartErrand(new DilemmaEffect_CampComes { to = "gate", count = 1, hours = new FloatRange(1.5f, 2.5f), when = new IntRange(9, 17), doing = "visit" }, null);
+                var visit = new DilemmaEffect_CampComes { to = "gate", count = 1, hours = new FloatRange(1.5f, 2.5f), when = new IntRange(9, 17), doing = "visit" };
+                // Road wardens come up with what the carters told them (RoadPost.cs).
+                visit.lines = RoadWord(ErrandPeople(null, 1).FirstOrDefault());
+                if (visit.lines != null) visit.doing = "roadword";
+                StartErrand(visit, null);
             }
         }
 

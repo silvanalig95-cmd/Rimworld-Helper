@@ -296,6 +296,9 @@ Council_Evt_OldGrave [option 2] nothing done
 Council_Evt_Elopers [option 2] a refusal
 Council_Evt_FamilyVisit [option 0] already real: the visitor joins
 
+# Defs/IncidentDefs/Rimfolk_Events_Allies.xml
+Council_Evt_AllyFood [option 0] the sacks are the goods effect (handed over by the carriers); the two walk home when their visit ends (Arrivals.Visit)
+
 # Defs/IncidentDefs/Rimfolk_Events_Aftermath.xml
 Council_Evt_After_PlagueThanks [option 0] a stranger's part: the visitors set down the gift
 Council_Evt_After_PlagueThanks [option 2] a refusal

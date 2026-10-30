@@ -89,7 +89,8 @@ namespace ColonyCouncil
             if (tracker.threatRolled || Now - tracker.threatSince < GenDate.TicksPerHour * CampStoryMath.WarAfterHours) return;
             tracker.threatRolled = true;
             if (!CampTracker.Enabled || !CanCome(map, out var enemy, out var helper)) return;
-            if (!Rand.Chance(CampStoryMath.WarChance(helper.PlayerGoodwill, enemy.def.humanlikeFaction && helper.HostileTo(enemy)))) return;
+            // An ally answers the call as an old foe of the attacker would: surely enough to be counted on.
+            if (!Rand.Chance(CampStoryMath.WarChance(helper.PlayerGoodwill, Allies.IsAlly(helper) || (enemy.def.humanlikeFaction && helper.HostileTo(enemy))))) return;
             var def = DefDatabase<IncidentDef>.GetNamedSilentFail("Council_Evt_WarCamp");
             if (def?.Worker == null) return;
             var parms = StorytellerUtility.DefaultParmsNow(def.category ?? IncidentCategoryDefOf.Misc, map);
@@ -121,15 +122,19 @@ namespace ColonyCouncil
             return counts.Count == 0 ? null : counts.OrderByDescending(kv => kv.Value).First().Key;
         }
 
-        /// <summary>A people at peace with the colony that can send fighters, those at odds with the attacker first.</summary>
+        /// <summary>A people at peace with the colony that can send fighters: the colony's allies first (World/Allies.cs), then those at odds with the attacker.</summary>
         public static Faction Helper(Faction enemy)
         {
             var tech = Avail.EffectiveTech;
+            var ally = Allies.Of();
+            if (ally != null && ally != enemy && CanSendFighters(ally)) return ally;
             return Find.FactionManager.AllFactionsListForReading
                 .Where(f => f != enemy && !f.IsPlayer && !f.Hidden && !f.defeated && !f.temporary && f.def.humanlikeFaction && !f.HostileTo(Faction.OfPlayer)
-                            && f.PlayerGoodwill >= 0 && f.def.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat))
+                            && f.PlayerGoodwill >= 0 && CanSendFighters(f))
                 .RandomElementByWeightWithFallback(f => CampStoryMath.HelperWeight(f.PlayerGoodwill, f.HostileTo(enemy)) * Arrivals.TechWeight(f, tech));
         }
+
+        private static bool CanSendFighters(Faction f) => f?.def?.pawnGroupMakers != null && f.def.pawnGroupMakers.Any(m => m.kindDef == PawnGroupKindDefOf.Combat);
 
         /// <summary>Fighters of theirs, as their people fight (the game's own war bands), about half as strong as the threat.</summary>
         public static List<Pawn> MakeFighters(Faction f, Map map)
@@ -391,6 +396,7 @@ namespace ColonyCouncil
             base.AddTags(ctx, tags);
             if (ctx.enemy == Faction.OfMechanoids) tags.Add("mechs");
             if (ctx.enemy != null && ctx.faction != null && ctx.enemy.def.humanlikeFaction && ctx.faction.HostileTo(ctx.enemy)) tags.Add("oldfoe");
+            if (Allies.IsAlly(ctx.faction)) tags.Add("ally");
         }
 
         protected override LookTargets Look(HappeningContext ctx) => ctx.stranger != null && ctx.stranger.Spawned ? new LookTargets(ctx.stranger) : base.Look(ctx);

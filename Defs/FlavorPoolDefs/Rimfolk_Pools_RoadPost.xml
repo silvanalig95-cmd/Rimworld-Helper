@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Word from the road (Source/ColonyCouncil/Camps/RoadPost.cs): what the carters told the road wardens, said by the
+       warden who comes up to the gate (CampKindDef.roadWord). Tags: [quiet] (no world event running), [ws:<kind>] (a world
+       event of that kind is running; {SITUATION} is its name). Spoken lines are one sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_RoadWord</defName>
+    <lines>
+      <plain>
+        <li>Two carts through yesterday, salt and cloth, heading north.</li>
+        <li>The carters say the ford downriver is running high.</li>
+        <li>A pedlar came through with news three weeks old and sold it as new.</li>
+        <li>[quiet] Nothing on the road but weather, the carters say.</li>
+        <li>[quiet] A quiet road this week, which suits us.</li>
+        <li>[quiet] The carters had no news, and were glad of it.</li>
+        <li>[ws:war] The carters give the war camps a wide berth, and say {SITUATION} is not over.</li>
+        <li>[ws:war] Every cart through has a story of {SITUATION}, and none of them good.</li>
+        <li>[ws:sickness] The carters won't stop in the towns with {SITUATION} in them.</li>
+        <li>[ws:sickness] Word on the road is that {SITUATION} has reached the coast towns.</li>
+        <li>[ws:hunger] Grain is dear down the road, the carters say, with {SITUATION} on.</li>
+        <li>[ws:hunger] The carters came through half empty, which {SITUATION} explains.</li>
+        <li>[ws:trade] The carters say {SITUATION} has every trader on the road at once.</li>
+        <li>[ws:faith] The carters say the road is full of pilgrims because of {SITUATION}.</li>
+        <li>[ws:levy] Men marched past the post two days ago, raised for {SITUATION}.</li>
+        <li>[ws:road] The carters say {SITUATION} has made the road busier than any of us remember.</li>
+        <li>[ws:town] The carters say the new steading is the talk of the road, with {SITUATION}.</li>
+        <li>[ws:court] Every cart has an opinion on {SITUATION}, and none of them agree.</li>
+        <li>[ws:rush] Half the carts are heading for the diggings, the carters say, with {SITUATION} on.</li>
+        <li>[ws:herds] The carters saw the herds moving two days south, with {SITUATION}.</li>
+        <li>[ws:fair] The carters are all bound for {SITUATION}, and say the colony should send someone.</li>
+        <li>[ws:drought] The carters say the wells are low all down the road, with {SITUATION}.</li>
+        <li>[ws:weather] The carters say {SITUATION} has closed the high road for now.</li>
+        <li>[ws:fire] The carters came through smelling of smoke, and talking of {SITUATION}.</li>
+        <li>[ws:beast] The carters travel in pairs now, because of {SITUATION}.</li>
+        <li>[ws:sellswords] The carters say the sellswords of {SITUATION} are camped a day down the road.</li>
+        <li>[ws:peace] The carters say the road is safer since {SITUATION}.</li>
+      </plain>
+      <warm>
+        <li>The carters asked after the colony, and I told them you were well.</li>
+        <li>[quiet] A quiet road, and the carters in good spirits, which is the best news there is.</li>
+      </warm>
+      <cheerful>
+        <li>Three carts through and every one of them had a joke for us.</li>
+        <li>[ws:fair] The carters say {SITUATION} is worth the walk, and I believe them.</li>
+      </cheerful>
+      <blunt>
+        <li>Carts came, carts went, nothing to tell.</li>
+        <li>[ws:war] Soldiers on the road, so keep your gate shut at night.</li>
+      </blunt>
+      <cold>
+        <li>The carters talk too much, but they said the road was clear.</li>
+        <li>[ws:sickness] The carters say {SITUATION} is spreading, so I'd keep strangers at the gate.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+</Defs>

@@ -369,10 +369,10 @@ namespace ColonyCouncil
                 }
                 case PlaySpot.Camp:
                 {
-                    var c = PlaySpots.CampCell(map, v);
+                    var c = PlaySpots.CampCell(map, v, p.other);
                     if (!c.IsValid)
                     {
-                        if (CampTracker.Instance?.camp == null) Fallback(p, "CC_Play_Why_NoCamp".Translate(), false);
+                        if (CampTracker.PlayCamp(map, p.other) == null) Fallback(p, "CC_Play_Why_NoCamp".Translate(), false);
                         else p.waitReason = "CC_Play_Why_Place".Translate();
                         return;
                     }

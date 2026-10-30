@@ -370,7 +370,7 @@ namespace ColonyCouncil
                 p.waitReason = "CC_Courier_Why_NotYet".Translate();
                 return false;
             }
-            else if (p.to == PlaySpot.Camp && PlaySpots.CampHand(p.map, carrier) is Pawn hand)
+            else if (p.to == PlaySpot.Camp && PlaySpots.CampHand(p.map, carrier, p.other) is Pawn hand)
             {
                 // Down to the camp: into the hands of someone of the camp.
                 to = hand;
@@ -379,7 +379,7 @@ namespace ColonyCouncil
             else
             {
                 // The camp is there but nobody of it is about to take it: the errand waits for them.
-                if (p.to == PlaySpot.Camp && PlaySpots.CampCell(p.map, carrier).IsValid)
+                if (p.to == PlaySpot.Camp && PlaySpots.CampCell(p.map, carrier, p.other).IsValid)
                 {
                     p.waitReason = "CC_Play_Why_NobodyAtCamp".Translate();
                     return false;

@@ -406,6 +406,17 @@ namespace ColonyCouncil
             if (trainers != null)
                 part.Add(trainers.Possible ? "Traveling trainers can camp here (PokéWorld's Pokémon are in play)."
                     : PokeWorldLink.Active ? "Traveling trainers can't come: PokéWorld's spawn slider is at no Pokémon." : "Traveling trainers come only with PokéWorld.", UiKit.Faint);
+
+            // The allies (World/Allies.cs), and the wardens' post as a trading stop (Camps/RoadPost.cs).
+            var ally = Allies.Of();
+            if (ally != null)
+                part.Add("Allies: " + ally.Name + ". They send food when the stores fall under " + Allies.HungryDays.ToString("0") + " days (" + AdvisorWorker_Food.DaysOfFood(map).ToString("0.0")
+                         + " days now, event Council_Evt_AllyFood), and their fighters come first when the colony is attacked.", UiKit.Good);
+            else part.Add("No allies: the other settlers' year (Council_WS_RivalColony) ends in an alliance when the colony has been warm to them.", UiKit.Faint);
+            var post = CampTracker.Instance?.holding;
+            if (post != null && !post.kind.roadWord.NullOrEmpty())
+                part.Add("The " + post.Label + " settled " + post.place + " are a trading stop: " + (post.LoadOnRoad ? post.LoadLine() : "no load on the road; food, hides or wool can be sent down with the carters from their page")
+                         + ". Word from the road comes up with their visits.", UiKit.Good);
         }
 
         /// <summary>

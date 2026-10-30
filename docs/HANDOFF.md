@@ -1,10 +1,22 @@
 # Handoff: work in progress
 
-Last shipped: 0.36.0, the first of the player's five new ideas: `SelfCheck.Stories` (a "check myself" part for the
-regulars, the herd's leader, the beast that stays, the shiny rumour and the trainers' camp) and `OverviewPanel.Land`
-(the card "The herd and the land": leader and line, last season, the beast and its stance, the rumour, the holding's
-line). The other four, in order (tasks): 0.37.0 the wardens' post as a trading stop and the settlers' alliance paying
-off; 0.38.0 a year's letter at each anniversary of the landing. Before it, 0.35.1, two fixes from a read-through of the rounds (the settlers' food sale used `WorldEffect_Sell`
+Last shipped: 0.37.0, the second of the player's five new ideas: the wardens' post as a trading stop and the settlers'
+alliance paying off. `Camps/RoadPost.cs` (with `RoadPostMath.cs`, tested): `CampAsk.settledOnly` asks on
+Council_Camp_Wardens (`sellfood` 30 raw food, `sellhides` 20 of the hide or wool there is most of, `message` a visit to
+their fire plus goodwill); `DilemmaEffect_RoadCarry` (a `CarryOut` to the camp) books the carters' price
+(`RoadPostMath.Price`, eight tenths, due 3 to 5 days) on `Camp.owed*` (saved in `ExposeRoadPost`); `HoldingDay` sends a
+warden to the gate (`DilemmaEffect_CampComes` doing "pay") and `ErrandWorked` hands the silver over on arrival
+(`PayRoad`, a courier bearer trip; `TakeLoad` empties their packs of the load); `CampKindDef.roadWord` names the pool
+(Council_Pool_RoadWord, tagged `ws:<kind>` or `quiet`) that gives the holding's gate visits (doing "roadword") their
+lines, with `{SITUATION}` the event's name. `World/Allies.cs`: `Allies.Of()` is the faction of the newest
+Council_WS_RivalColony record with the "alliance" ending; `HappeningWorker_AllyFood` (Council_Evt_AllyFood) fires under
+six days of food; `WarCamps.Helper` prefers the ally and `WarChance` counts it as an old foe (`[ally]` text). A fix on
+the way: `CampTracker.PlayCamp(map, other)` makes every PlaySpot.Camp use (PlaySpots.CampCell/CampHand, OnMapThings,
+PlayOutTracker, PlayOutJobs) find the holding as well as the visiting camp. Next (task): 0.38.0 a year's letter at each
+anniversary of the landing, gathering the year's chronicle (herd, beasts, neighbours). Before it, 0.36.0:
+`SelfCheck.Stories` (a "check myself" part for the regulars, the herd's leader, the beast that stays, the shiny rumour and
+the trainers' camp; now also the allies and the post) and `OverviewPanel.Land` (the card "The herd and the land").
+Before it, 0.35.1, two fixes from a read-through of the rounds (the settlers' food sale used `WorldEffect_Sell`
 without a thing and was always unavailable: now `DilemmaEffect_CarryOut` rawfood plus `WorldEffect_Silver`, as the
 famine's; `CampTracker.StartKind` now calls `Announce`, the kind's own letter, so a camp a world event calls for is
 told). Before it, 0.35.0, the Pokémon round (a Pokémon that keeps coming, a shiny rumour, traveling trainers), the last

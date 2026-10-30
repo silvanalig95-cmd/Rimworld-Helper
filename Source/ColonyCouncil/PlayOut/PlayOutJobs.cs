@@ -87,7 +87,7 @@ namespace ColonyCouncil
             try
             {
                 var play = Play;
-                if (play?.to == PlaySpot.Camp) CampTracker.Instance?.camp?.Visited(pawn);
+                if (play?.to == PlaySpot.Camp) CampTracker.PlayCamp(pawn.Map, play.other)?.Visited(pawn);
                 Talk(play);
             }
             catch (System.Exception e)

@@ -295,9 +295,15 @@ namespace ColonyCouncil
             if (!errandArrived)
             {
                 errandArrived = true;
-                string key = "CC_CampErrand_Arrived_" + (errandDoing ?? "visit");
-                if (!key.CanTranslate()) key = "CC_CampErrand_Arrived_visit";
-                Note(Format(key.Translate().RawText, p, errandFor), MessageTypeDefOf.NeutralEvent, Importance.Notable, p);
+                // Up with the carters' silver (RoadPost.cs): handed over at the gate, and that is the arrival's news.
+                if (errandDoing == "pay") PayRoad(p);
+                else
+                {
+                    string key = "CC_CampErrand_Arrived_" + (errandDoing ?? "visit");
+                    if (!key.CanTranslate()) key = "CC_CampErrand_Arrived_visit";
+                    // {THING}: the first of what they have to say (word from the road).
+                    Note(Format(key.Translate().RawText, p, errandFor, 0, errandLines.FirstOrDefault()), MessageTypeDefOf.NeutralEvent, Importance.Notable, p);
+                }
             }
             if (errandLines.Count > 0 && Rand.Chance(0.35f)) Speech.Say(p, errandLines.RandomElement());
             if (errandTo != "A" || errandDone || !(job?.targetA.Thing is Pawn c) || c.Dead || !p.Position.InHorDistOf(c.Position, 3f)) return;

@@ -27,6 +27,8 @@ namespace ColonyCouncil
         public bool canSettle;
         /// <summary>A camp about Pokémon (traveling trainers): only with PokéWorld's Pokémon in play (Integrations/PokeWorld.cs).</summary>
         public bool pokemon;
+        /// <summary>Settled as neighbours, they bring word of the road when one comes up to the gate: a FlavorPoolDef of lines (Camps/RoadPost.cs).</summary>
+        public string roadWord;
         /// <summary>The people they come from must be at least / at most this advanced.</summary>
         public TechLevel minTech = TechLevel.Undefined;
         public TechLevel maxTech = TechLevel.Archotech;

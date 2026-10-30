@@ -3,7 +3,8 @@
   <!-- Camps of the world round (Source/ColonyCouncil/World/Workers_World.cs). Road wardens never come on their own
        (weight 0): a world event brings them to build their post (Council_WS_Waystation, WorldEffect_Camp), and when it
        stands they settle as the colony's neighbours (WorldEffect_CampSettle, Camps/Holding.cs); they fight whatever
-       comes up the road (fights). Deserters come rarely on their own and three times as often while a war, a holy war,
+       comes up the road (fights). Settled, their post is a trading stop (Camps/RoadPost.cs: the settledOnly asks) and
+       they bring word of what the carters saw (roadWord). Deserters come rarely on their own and three times as often while a war, a holy war,
        a levy or a mercenary company is in the news; asked, they stand guard (DilemmaEffect_CampGuards). -->
 
   <ColonyCouncil.CampKindDef>
@@ -28,6 +29,7 @@
     <breakTerms>0.03</breakTerms>
     <tensionPerDay>0.4</tensionPerDay>
     <extendChance>0.5</extendChance>
+    <roadWord>Council_Pool_RoadWord</roadWord>
     <structures>
       <li><role>fire</role><defs><li>Campfire</li></defs></li>
       <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Leather_Plain</li><li>Cloth</li></stuff></li>
@@ -66,6 +68,56 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+        </effects>
+      </li>
+      <!-- The post as a trading stop, once they have settled (Camps/RoadPost.cs): small loads go down the road with the
+           carters for a road price, paid when the carters come back through; a letter goes to their people. -->
+      <li>
+        <key>sellfood</key>
+        <settledOnly>true</settledOnly>
+        <label>Send food down the road with the carters (30 raw food)</label>
+        <tip>The carts that stop at the wardens' post take small loads on for a fair road price, eight tenths of what the food is worth. Thirty raw food is carried down to the post and handed to the wardens; when the carters come back through, in three to five days, a warden brings the silver up to the gate. One load on the road at a time.</tip>
+        <once>false</once>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} carried the sacks down to the wardens' post. {X_nameDef} weighed one in a hand and said the next cart through would take them, and the silver would come up when it came back.</li>
+          <li>The wardens took the colony's food in at the post for the carters. "Road price," {X_nameDef} said. "The road pays slow, but it pays."</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RoadCarry"><label>food for the carters</label><what>rawfood</what><count>30</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>sellhides</key>
+        <settledOnly>true</settledOnly>
+        <label>Send hides or wool down the road with the carters (20)</label>
+        <tip>Twenty of whichever hide or wool the stores hold most of go down to the post for the next cart through, at a road price of eight tenths of their worth. A warden brings the silver up to the gate when the carters come back, in three to five days. One load on the road at a time.</tip>
+        <once>false</once>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} carried the bundle down to the wardens' post, and {X_nameDef} stacked it under the lean-to where the carters would see it. "They'll take it," {X_pronoun} said. "They take anything that doesn't eat."</li>
+          <li>The wardens took the colony's hides in at the post. {X_nameDef} said the carters paid fairly or didn't come back through, and they always came back through.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_RoadCarry"><label>hides for the carters</label><count>20</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>message</key>
+        <settledOnly>true</settledOnly>
+        <label>Send word to {FACTION} with the next carters</label>
+        <tip>One of the colony walks down to the post and writes a letter to the wardens' people at their fire: greetings, news of the colony, a word about the road. It goes down the road with the next cart through, and their people think the better of a colony that writes. Once every twenty days or so.</tip>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} sat at the wardens' fire and wrote the colony's letter to {FACTION}, and {X_nameDef} sealed it with the post's mark for the next cart through.</li>
+          <li>{A_nameDef} went down to the post with paper and came back without it. {X_nameDef} said the carters would have the colony's word to {FACTION} on the road by morning.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
     </asks>

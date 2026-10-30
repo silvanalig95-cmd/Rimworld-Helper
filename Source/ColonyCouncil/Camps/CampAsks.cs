@@ -28,6 +28,8 @@ namespace ColonyCouncil
         public bool once = true;
         /// <summary>Only after they've been settled this many days.</summary>
         public float minDays;
+        /// <summary>Only once they have settled on the colony's land for good (Holding.cs).</summary>
+        public bool settledOnly;
         /// <summary>Who goes: the colonist best at this.</summary>
         public SkillDef skill;
         /// <summary>Only when this kind of thing is true: "sick" (a colonist is ill or ailing), "evening" (15h to 22h), "theirMeat" (they have meat of their own to trade).</summary>
@@ -70,6 +72,7 @@ namespace ColonyCouncil
             string mark = a.once ? a.key : a.key + "@" + GenDate.DaysPassed;
             if (asksMade.Contains(mark)) return a.once ? "CC_CampAsk_Done".Translate() : "CC_CampAsk_Today".Translate();
             if (a.minDays > 0f && DaysHere < a.minDays) return "CC_CampAsk_TooSoon".Translate();
+            if (a.settledOnly && !holding) return "CC_CampAsk_NotSettledYet".Translate();
             if (AskColonist(a) == null) return "CC_CampAsk_Nobody".Translate();
             switch (a.needs)
             {

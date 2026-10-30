@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- The allies answer a call in a bad year (Source/ColonyCouncil/World/Allies.cs): the other settlers whose year ended
+       in an alliance (the "alliance" ending of Council_WS_RivalColony) send food when the colony's stores run thin (under
+       six days of food), two of theirs at the gate with sacks of what they grow. Tags: [starving] (under two days). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_AllyFood</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>food from the allies</label>
+    <workerClass>ColonyCouncil.HappeningWorker_AllyFood</workerClass>
+    <baseChance>3</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>40</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>20~55</ages>
+        <count>60~120</count>
+        <stayHours>10~16</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Food from {PLACE}</li>
+          <li>The allies send food</li>
+        </titles>
+        <texts>
+          <li>Word reached {PLACE} that the colony's stores were running thin, and the settlers did what allies do. {X_nameDef} and another of them are at the gate with sacks over their shoulders: {COUNT} {THING}, from their own harvest, and a message from their leader that the colony fed them once in a hungry month and this is how it's answered.</li>
+          <li>[starving] The colony has two days of food left, and the settlers of {PLACE} knew it before the council did; their hunters saw the empty fields. {X_nameDef} and another are at the gate with {COUNT} {THING} between them, walked here in a day, and {X_pronoun} says there's more where it came from if the colony needs it.</li>
+          <li>[their:friend] {X_nameDef} of {PLACE} asked for {FRIEND_nameDef} at the gate before setting down the sacks: {COUNT} {THING}, the settlers' share of their harvest, sent the moment they heard the colony's stores were thin. "Allies," {X_pronoun} said, "or what's the word for."</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Accept the food, with thanks</label>
+            <outcome>The sacks go into the stores, and {X_nameDef} and the other walk home lighter. {PLACE} will hear that the colony took the help as it was meant.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>aid</kind><about>place</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_After_Thanked</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Accept, and sit them down to eat first</label>
+            <outcome>The sacks go into the stores and the two from {PLACE} go to the table. It's a thin meal in a thin time, and nobody minds.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Goods" />
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><guests>stranger</guests><guestCount>2</guestCount><label>a meal for the allies' carriers</label><hours>11~20</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>welcomed</kind><about>x</about></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Send it back: the colony will manage</label>
+            <outcome>{A_nameDef} tells {X_nameDef} that {PLACE} should keep its harvest, and that the colony will get through. {X_nameDef} shoulders the sacks again, and says the offer stands.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>forgave</kind><about>none</about></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+</Defs>

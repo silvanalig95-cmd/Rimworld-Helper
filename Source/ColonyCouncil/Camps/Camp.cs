@@ -434,8 +434,9 @@ namespace ColonyCouncil
             ExposeLost();
             // The stay's beats, a camp come back, a war party's enemy (CampStory.cs).
             ExposeStory();
-            // Neighbours settled for good (Holding.cs).
+            // Neighbours settled for good (Holding.cs), and the load they sent down the road for the colony (RoadPost.cs).
             ExposeHolding();
+            ExposeRoadPost();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

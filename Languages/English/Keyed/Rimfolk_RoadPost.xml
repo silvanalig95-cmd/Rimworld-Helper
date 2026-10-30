@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The wardens' post as a trading stop (Source/ColonyCouncil/Camps/RoadPost.cs). -->
+  <CC_CampAsk_NotSettledYet>Only once they have settled here for good.</CC_CampAsk_NotSettledYet>
+  <CC_RoadPost_NotSettled>The post is not standing yet.</CC_RoadPost_NotSettled>
+  <CC_RoadPost_Busy>The last load is still on the road; the carters have not come back through.</CC_RoadPost_Busy>
+  <CC_RoadPost_NoHides>The stores hold no {0} hides or wool of one kind.</CC_RoadPost_NoHides>
+  <CC_RoadPost_Paid>{X_nameDef} came up from the post with {COUNT} silver: the carters' price for the colony's {THING}.</CC_RoadPost_Paid>
+  <CC_RoadPost_PaidSent>The carters' price for the colony's {THING}, {COUNT} silver, is on its way up the road from the post.</CC_RoadPost_PaidSent>
+  <CC_RoadPost_LoadLine>A load of {0} is on the road with the carters: {1} silver due in {2}.</CC_RoadPost_LoadLine>
+  <CC_CampErrand_Arrived_roadword>{X_nameDef} of the {NAME} has come up to the gate with word from the road: "{THING}"</CC_CampErrand_Arrived_roadword>
+
+</LanguageData>

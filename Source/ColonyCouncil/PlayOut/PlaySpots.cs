@@ -118,7 +118,7 @@ namespace ColonyCouncil
                     }
                     case PlaySpot.Camp:
                     {
-                        var c = CampCell(map, organizer);
+                        var c = CampCell(map, organizer, p.other);
                         if (!c.IsValid) break;
                         spot = c;
                         where = "CC_Play_Where_Camp".Translate();
@@ -482,11 +482,11 @@ namespace ColonyCouncil
             return dead != null ? "CC_Play_Where_GraveOf".Translate(dead.Named("DEAD")).Resolve() : "CC_Play_Where_Graves".Translate().Resolve();
         }
 
-        /// <summary>A free cell by the camp's fire, while the camp is settled and at peace.</summary>
-        public static IntVec3 CampCell(Map map, Pawn pawn)
+        /// <summary>A free cell by the camp's fire (the camp <paramref name="other"/> belongs to, else the visitors', else the neighbours'), while it is settled and at peace.</summary>
+        public static IntVec3 CampCell(Map map, Pawn pawn, Pawn other = null)
         {
-            var c = CampTracker.Instance?.camp;
-            if (c == null || c.map != map || c.phase != CampPhase.Living || c.Hostile) return IntVec3.Invalid;
+            var c = CampTracker.PlayCamp(map, other);
+            if (c == null) return IntVec3.Invalid;
             var fire = c.FireCell;
             if (!fire.IsValid) return IntVec3.Invalid;
             if (CellFinder.TryFindRandomCellNear(fire, map, 3, x => x != fire && Ok(x, map, pawn) && x.GetEdifice(map) == null && x.GetFirstPawn(map) == null, out var cell))
@@ -494,11 +494,11 @@ namespace ColonyCouncil
             return IntVec3.Invalid;
         }
 
-        /// <summary>Someone of the camp to take what's carried down to it, the leader first, while it's settled and at peace.</summary>
-        public static Pawn CampHand(Map map, Pawn pawn)
+        /// <summary>Someone of the camp (as <see cref="CampCell"/> finds it) to take what's carried down to it, the leader first, while it's settled and at peace.</summary>
+        public static Pawn CampHand(Map map, Pawn pawn, Pawn other = null)
         {
-            var c = CampTracker.Instance?.camp;
-            if (c == null || c.map != map || c.phase != CampPhase.Living || c.Hostile || pawn == null) return null;
+            var c = CampTracker.PlayCamp(map, other);
+            if (c == null || pawn == null) return null;
             return c.Here.Where(x => !x.Downed && !x.InMentalState && x.inventory != null && pawn.CanReach(x, PathEndMode.Touch, Danger.Some))
                 .OrderByDescending(x => x == c.leader).ThenBy(x => x.Position.DistanceToSquared(pawn.Position)).FirstOrDefault();
         }

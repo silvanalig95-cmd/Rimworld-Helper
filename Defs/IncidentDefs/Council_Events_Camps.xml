@@ -107,6 +107,7 @@
           <li>[oldfoe] Word of {ENEMY} on the colony's land reached {FACTION}, who have an old score with them. {COUNT} of their fighters have arrived, {X_nameDef} leading, and mean to settle it here and now, beside the colony's own.</li>
           <li>[mechs] {COUNT} fighters of {FACTION} came in on the colony's side of the fight: nobody loves the machines, {X_nameDef} told {A_nameDef}, and a chance to break some where someone else holds the walls is a chance worth a day's march.</li>
           <li>[their:friend] {FACTION} remember a friend among the colony's people. When word came that the colony was under attack by {ENEMY}, {COUNT} of their fighters set out at once; {X_nameDef} says they'll hold the colony's flank for as long as it takes.</li>
+          <li>[ally] The allies have kept their word. {COUNT} fighters of {FACTION} came over the hill from their steading the moment the smoke was seen, {X_nameDef} at their head, and {X_pronoun} told {A_nameDef} plainly: the colony stood by {FACTION} in their first year, and {FACTION} stand by the colony now, against {ENEMY} or anyone.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>

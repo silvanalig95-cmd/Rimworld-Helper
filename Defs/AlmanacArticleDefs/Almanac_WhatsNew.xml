@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.37.0</version>
+        <date>30 October 2026</date>
+        <title>The post as a trading stop, and allies who answer</title>
+        <points>
+          <li>Once the road wardens have settled as the colony's neighbours, their post is a trading stop. From their page, send thirty raw food, or twenty of the hide or wool the stores hold most of, down the road with the carters: one of the colony carries the load to the post, the wardens hand it on, and when the carters come back through, three to five days later, a warden brings the silver up to the gate, eight tenths of what the load was worth. One load on the road at a time. A letter to their people can go down with the next cart too, written at the wardens' fire.</li>
+          <li>Word from the road: when one of the settled wardens comes up to the gate, they bring what the carters told them, about the world events running (a war on the road, a sickness in the towns, a fair everyone is bound for) or of a quiet road, said at the gate and told in the evening's news.</li>
+          <li>The settlers' alliance pays off. The other settlers whose year ended in an alliance send two of theirs with sacks of their harvest when the colony's stores fall under six days of food (accept it, sit them down to eat first, or send it back), and when the colony is attacked their fighters come first, as surely as an old foe of the attacker would.</li>
+          <li>A fix: what goes "down to the camp" (goods carried to a camp, a visit at its fire) now finds the neighbours settled for good as well as a visiting camp. With only the neighbours on the land, it went to the gate instead.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.36.0</version>
         <date>30 October 2026</date>
         <title>The new stories, seen at a glance</title>

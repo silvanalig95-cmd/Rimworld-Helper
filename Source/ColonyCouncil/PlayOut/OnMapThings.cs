@@ -373,8 +373,8 @@ namespace ColonyCouncil
                     }
                     break;
                 case PlaySpot.Camp:
-                    var camp = CampTracker.Instance?.camp;
-                    if (camp != null && camp.map == map) axes.AddRange(camp.Here.Where(o => o != camp.trader && Can(o)).Take(3));
+                    var camp = CampTracker.PlayCamp(map, ctx.stranger);
+                    if (camp != null) axes.AddRange(camp.Here.Where(o => o != camp.trader && Can(o)).Take(3));
                     break;
                 case PlaySpot.Gate:
                     break;
@@ -394,8 +394,8 @@ namespace ColonyCouncil
                     if (ctx.stranger != null && ctx.stranger.Spawned && ctx.stranger.Map == map) return ctx.stranger.Position;
                     break;
                 case PlaySpot.Camp:
-                    var camp = CampTracker.Instance?.camp;
-                    if (camp != null && camp.map == map) return camp.FireCell;
+                    var camp = CampTracker.PlayCamp(map, ctx.stranger);
+                    if (camp != null) return camp.FireCell;
                     break;
                 case PlaySpot.Gate:
                     if (who != null)
