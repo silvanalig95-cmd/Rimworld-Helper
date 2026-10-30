@@ -184,7 +184,8 @@ namespace ColonyCouncil
         private static readonly Section[] Sections = (Section[])System.Enum.GetValues(typeof(Section));
         private const float TabIconSize = 18f;
         private static readonly bool[] sectionHasIcon = new bool[Sections.Length];
-        private static readonly float[] subTabWidths = new float[8];
+        /// <summary>One width per page of the widest section (the Colony section has the most).</summary>
+        private static readonly float[] subTabWidths = new float[System.Enum.GetValues(typeof(Tab)).Length];
         // Tab labels carry counts that take a little work to find; they're refreshed twice a second.
         private static readonly Dictionary<int, string> labels = new Dictionary<int, string>();
         private static float labelsAt = -1f;

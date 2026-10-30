@@ -454,6 +454,18 @@ def g_making():
     return m
 
 
+def g_rearrange():
+    """Rearrange a room: a room's outline with two pieces inside, and an arrow moving one across."""
+    m = new()
+    ImageDraw.Draw(m).rectangle([22, 40, 234, 234], outline=ON, width=22)
+    rect(m, 54, 150, 110, 206, r=6)
+    rect(m, 146, 68, 202, 124, r=6, fill=OFF)
+    ImageDraw.Draw(m).rectangle([146, 68, 202, 124], outline=ON, width=12)
+    line(m, [(82, 128), (82, 96), (130, 96)], 14)
+    poly(m, [(124, 76), (150, 96), (124, 116)])
+    return m
+
+
 def g_journals():
     m = new()
     rect(m, 52, 20, 214, 236, r=16)
@@ -917,7 +929,7 @@ GLYPHS = [
     ("Roster", g_roster), ("Bonds", g_bonds), ("Wishes", g_wishes), ("Decrees", g_decrees), ("Ambition", g_ambition),
     ("Ways", g_ways), ("Chronicle", g_chronicle), ("Calendar", g_calendar), ("Dreams", g_dreams), ("Journals", g_journals),
     ("Week", g_week), ("Table", g_table), ("Dilemmas", g_dilemmas), ("Pin", g_pin), ("Defenses", g_defenses),
-    ("More", g_more), ("Plan", g_plan), ("Base", g_base), ("Making", g_making),
+    ("More", g_more), ("Plan", g_plan), ("Base", g_base), ("Making", g_making), ("Rearrange", g_rearrange),
     # markers
     ("Trust", g_trust), ("Office", g_office), ("LifeGoal", g_lifegoal), ("Secret", g_secret), ("Vendetta", g_vendetta),
     ("Nemesis", g_nemesis), ("Dream", g_dream), ("Journal", g_journal), ("WorldEvent", g_worldevent), ("Raid", g_raid),

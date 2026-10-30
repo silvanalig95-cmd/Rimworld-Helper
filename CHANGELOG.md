@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The Colony tab back, and buttons for the new pages
+
+*30 October 2026, version 0.26.2*
+
+- Fixed: the Colony tab of the council window came up blank since 0.26.1 (its row of pages had grown past what the window had room for in its sums). The other tabs were fine.
+- Four small buttons in the bottom bar, after the rooms button: the Plan, Base and Making pages, and Rearrange a room. The setting "Bottom bar buttons for Plan, Base, Making and Rearrange a room" hides them together; a right-click puts one away under More on its own.
+
 ## What you could make
 
 *29 October 2026, version 0.26.1*

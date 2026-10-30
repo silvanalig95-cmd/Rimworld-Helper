@@ -31,6 +31,60 @@
     <iconPath>ColonyCouncil/UI/RoomsButton</iconPath>
   </MainButtonDef>
 
+  <!-- The council's pages for planning the base, and rearranging a room, one click away (UI/PageButtons.cs). Placed
+       right after the rooms button at startup; hidden together by the setting "planButtons". -->
+  <MainButtonDef>
+    <defName>Rimfolk_PlanButton</defName>
+    <label>plan</label>
+    <description>The colony's next steps: what the council proposes, in your order, each step opening what does it, and the ground plan that draws the next rooms on the map together.</description>
+    <workerClass>ColonyCouncil.MainButtonWorker_Page</workerClass>
+    <order>1000</order>
+    <minimized>true</minimized>
+    <iconPath>ColonyCouncil/Icons/Plan</iconPath>
+    <modExtensions>
+      <li Class="ColonyCouncil.PageButtonExtension"><page>Plan</page></li>
+    </modExtensions>
+  </MainButtonDef>
+
+  <MainButtonDef>
+    <defName>Rimfolk_BaseButton</defName>
+    <label>base</label>
+    <description>The base looked over: rooms far from what they belong with, long walks, doors that separate nothing, stubs of wall, conduits and pipes that lead nowhere, the stores, each with what a click can put right.</description>
+    <workerClass>ColonyCouncil.MainButtonWorker_Page</workerClass>
+    <order>1000</order>
+    <minimized>true</minimized>
+    <iconPath>ColonyCouncil/Icons/Base</iconPath>
+    <modExtensions>
+      <li Class="ColonyCouncil.PageButtonExtension"><page>Base</page></li>
+    </modExtensions>
+  </MainButtonDef>
+
+  <MainButtonDef>
+    <defName>Rimfolk_MakingButton</defName>
+    <label>making</label>
+    <description>What you could make: batches the stock allows at the benches you have with no bill for them, harvests nothing here uses and the bench that would, and benches standing without bills.</description>
+    <workerClass>ColonyCouncil.MainButtonWorker_Page</workerClass>
+    <order>1000</order>
+    <minimized>true</minimized>
+    <iconPath>ColonyCouncil/Icons/Making</iconPath>
+    <modExtensions>
+      <li Class="ColonyCouncil.PageButtonExtension"><page>Making</page></li>
+    </modExtensions>
+  </MainButtonDef>
+
+  <MainButtonDef>
+    <defName>Rimfolk_RearrangeButton</defName>
+    <label>rearrange</label>
+    <description>Rearrange a room: click a built room to see where the council would put its furniture, then say go. The moves are carried out with the game's own reinstall orders.</description>
+    <workerClass>ColonyCouncil.MainButtonWorker_Page</workerClass>
+    <order>1000</order>
+    <minimized>true</minimized>
+    <iconPath>ColonyCouncil/Icons/Rearrange</iconPath>
+    <modExtensions>
+      <li Class="ColonyCouncil.PageButtonExtension"><tool>rearrange</tool></li>
+    </modExtensions>
+  </MainButtonDef>
+
   <!-- More: the bottom bar's buttons the player put away (UI/BarMore.cs). Placed just before the game's menu at
        startup; can be switched off in the settings, which puts every button back on the bar. -->
   <MainButtonDef>

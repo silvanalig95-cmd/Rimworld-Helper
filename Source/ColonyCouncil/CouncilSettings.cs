@@ -270,6 +270,8 @@ namespace ColonyCouncil
         public System.Collections.Generic.List<string> planMaterials = new System.Collections.Generic.List<string>();
         public ButtonPosition buttonPosition = ButtonPosition.BeforeMenu;
         public bool roomsButton = true;
+        /// <summary>Bottom bar buttons for the Plan, Base and Making pages and Rearrange a room (UI/PageButtons.cs).</summary>
+        public bool planButtons = true;
         /// <summary>A "defense" button in the bottom bar, next to the council's: the Defenses page in a window of its own.</summary>
         public bool defenseButton = true;
         /// <summary>A More button on the bottom bar, for the buttons put away (UI/BarMore.cs; a deeper game hook).</summary>
@@ -484,6 +486,7 @@ namespace ColonyCouncil
             }
             Scribe_Values.Look(ref buttonPosition, "buttonPosition", ButtonPosition.BeforeMenu);
             Scribe_Values.Look(ref roomsButton, "roomsButton", true);
+            Scribe_Values.Look(ref planButtons, "planButtons", true);
             Scribe_Values.Look(ref defenseButton, "defenseButton", true);
             Scribe_Values.Look(ref barMore, "barMore", true);
             Scribe_Collections.Look(ref barPutAway, "barPutAway", LookMode.Value);

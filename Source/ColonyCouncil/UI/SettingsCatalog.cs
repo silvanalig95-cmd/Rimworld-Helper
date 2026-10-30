@@ -397,6 +397,7 @@ namespace ColonyCouncil
                 new[] { "BeforeMenu", "AfterResearch", "AfterHistory", "AfterWork" });
             Toggle("defenseButton", "CC_Settings_DefenseButton", "CC_SetNote_DefenseButton");
             Toggle("roomsButton", "CC_Settings_RoomsButton", "CC_SetNote_RoomsButton");
+            Toggle("planButtons", "CC_Settings_PlanButtons", "CC_SetNote_PlanButtons");
             Toggle("barMore", "CC_Settings_BarMore", "CC_SetNote_BarMore", "deepHooks");
             var arrange = Action("barArrange", "CC_Settings_BarArrange", "CC_Settings_BarArrange_Tip", "CC_SetNote_BarArrange", "barMore,deepHooks");
             arrange.covers = new[] { "barPutAway" };

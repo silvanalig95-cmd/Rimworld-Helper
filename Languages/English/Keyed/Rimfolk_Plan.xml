@@ -6,6 +6,9 @@
   <CC_Settings_NextSteps>The colony's next steps</CC_Settings_NextSteps>
   <CC_Settings_NextSteps_Tip>A short, ordered plan the council keeps with you, on the Plan page: each hour it proposes steps from what it watches (the priorities, the defense advice, an idle research bench), you take them into the plan or let them go, add your own, and order them. A step is done when you say so, or when the need behind it has passed. The first step shows on This week and the council panel.</CC_Settings_NextSteps_Tip>
   <CC_SetNote_NextSteps>A Plan page: the council proposes the next steps, you keep the order.</CC_SetNote_NextSteps>
+  <CC_Settings_PlanButtons>Bottom bar buttons for Plan, Base, Making and Rearrange a room</CC_Settings_PlanButtons>
+  <CC_Settings_PlanButtons_Tip>Four small buttons after the rooms button: the Plan, Base and Making pages, and the Rearrange a room tool. The pages are always on the council window too. Right-click a button to put it away under More on its own.</CC_Settings_PlanButtons_Tip>
+  <CC_SetNote_PlanButtons>Small buttons in the bottom bar for the Plan, Base and Making pages and for rearranging a room.</CC_SetNote_PlanButtons>
 
   <CC_Plan_Header>The colony's next steps</CC_Plan_Header>
   <CC_Plan_Sub>What to do next, in your order. The council proposes; you decide.</CC_Plan_Sub>

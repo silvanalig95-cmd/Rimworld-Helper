@@ -111,7 +111,7 @@ namespace ColonyCouncil
             try
             {
                 if (ids.Contains("eventsFromStoryteller")) HappeningTracker.ApplyEventMode();
-                if (ids.Contains("buttonPosition") || ids.Contains("roomsButton") || ids.Contains("defenseButton")) CouncilStartup.ApplyButtonPosition(true);
+                if (ids.Contains("buttonPosition") || ids.Contains("roomsButton") || ids.Contains("defenseButton") || ids.Contains("planButtons")) CouncilStartup.ApplyButtonPosition(true);
             }
             catch (Exception e)
             {

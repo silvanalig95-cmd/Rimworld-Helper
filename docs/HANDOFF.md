@@ -1,6 +1,15 @@
 # Handoff: work in progress
 
-Last shipped: 0.26.1 "What you could make", the last piece of round 2 (the base-planning ask). `Building/Making.cs`
+Last shipped: 0.26.2, a fix and the player's ask for buttons. The Colony tab was blank from 0.26.1 on: the council
+window's `subTabWidths` array was sized 8 and the Colony section has 10 pages now (IndexOutOfRange in
+`DoWindowContents`); it's sized by the Tab enum. `UI/PageButtons.cs`: `MainButtonWorker_Page` with
+`PageButtonExtension {page, tool}`; defs Rimfolk_PlanButton, Rimfolk_BaseButton, Rimfolk_MakingButton (pages, via
+`MainTabWindow_Council.OpenOrClose`) and Rimfolk_RearrangeButton (`Designator_RearrangeRoom.Begin`), minimized,
+placed after the rooms button in `CouncilStartup.ApplyButtonPosition`, shown by the setting `planButtons`
+(SettingsPresets rebuilds the bar on change). Icons/Rearrange added. The player's log also shows other mods' errors
+(RimWorld of Magic's weather patch, a duplicate RG_Dodo key) that aren't ours.
+
+Before it, 0.26.1 "What you could make", the last piece of round 2 (the base-planning ask). `Building/Making.cs`
 (pure `MakingMath.cs`, Tools/Tests/MakingTests.cs; `UI/MakingPanel.cs`, tab `Making`, Icons/Making): `Making.For(map)`
 cached an hour. Stock from `ThingsInGroup(HaulableEver)` items unforbidden. For each bench def the colony has, each
 recipe `AvailableNow` and `AvailableOnNow(bench)` with a storable product, no unsuspended bill for it on any bench,
