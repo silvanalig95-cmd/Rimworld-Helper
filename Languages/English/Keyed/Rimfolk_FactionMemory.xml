@@ -155,8 +155,9 @@
   <CC_Mission_Dignitary_RoomNot>No bedroom is ready: it must be {0} or better, with one bed nobody else uses.</CC_Mission_Dignitary_RoomNot>
   <CC_Mission_Refugees_Coming>{0} refugees arrive in {1}.</CC_Mission_Refugees_Coming>
   <CC_Mission_Refugees_Staying>Days fed and sheltered: {0}. Days short: {1}.</CC_Mission_Refugees_Staying>
-  <CC_Mission_Refugees_Beds>Free beds or sleeping spots under a roof: {0} (they need {1}).</CC_Mission_Refugees_Beds>
-  <CC_Mission_Refugees_Hungry>The refugees from {0} went short today. The stores didn't hold two meals each for them, so they ate what they had carried.</CC_Mission_Refugees_Hungry>
-  <CC_Mission_Refugees_NoRoof>The refugees from {0} had no roof over them today. There aren't enough free beds or sleeping spots for all of them.</CC_Mission_Refugees_NoRoof>
-  <CC_Mission_Refugees_Neither>The refugees from {0} went hungry today and had no roof to sleep under, and are making do with what they carried.</CC_Mission_Refugees_Neither>
+  <CC_Mission_Refugees_Beds>Beds or sleeping spots under a roof for them: {0} (they need {1}).</CC_Mission_Refugees_Beds>
+  <CC_Mission_Refugees_Hungry>The refugees from {0} went short today: when they were hungry the stores had nothing for them, so they ate the food they brought.</CC_Mission_Refugees_Hungry>
+  <CC_Mission_Refugees_NoRoof>Not every one of the refugees from {0} had a bed today: each of them needs a free bed or sleeping spot under a roof.</CC_Mission_Refugees_NoRoof>
+  <CC_Mission_Refugees_Neither>The refugees from {0} went short today: when they were hungry the stores had nothing for them, so they ate the food they brought, and not every one of them had a bed or sleeping spot under a roof.</CC_Mission_Refugees_Neither>
+  <CC_Mission_Host_Meals>Meals they have eaten from the colony's stores: {0}.</CC_Mission_Host_Meals>
 </LanguageData>
