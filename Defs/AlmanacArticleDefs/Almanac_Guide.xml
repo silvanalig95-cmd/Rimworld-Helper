@@ -98,7 +98,7 @@ If the text is too small or too cramped, the Aa buttons at the top of the almana
       </li>
       <li>
         <heading>When something doesn't show</heading>
-        <text>Check its setting first. Then turn on development mode (Options), open the debug actions and pick "Rimfolk: check myself" under Rimfolk. It lists which game hooks took, which parts are switched on and which of your mods Rimfolk found, and says whether a camp or a trade caravan could come now and what stops it. A screenshot of it says a lot in a bug report.
+        <text>Check its setting first. Then turn on development mode (Options), open the debug actions and pick "Rimfolk: check myself" under Rimfolk. It lists which game hooks took, which parts are switched on and which of your mods Rimfolk found, and says whether a camp or a trade caravan could come now and what stops it. For the slower stories it says which regulars the colony keeps up with and whether one could come back, who leads the herd, what the beast that stays is up to or what stands between a wild animal and a name, and whether a shiny rumour holds. A screenshot of it says a lot in a bug report.
 
 Development mode also has shortcuts for testing: "Heart: add 20 strain" moves a colonist's strain bar, the comet and firefly nights can be started from the incident list, and "Calendar: a day comes round now" brings any day on the calendar round at once.</text>
       </li>

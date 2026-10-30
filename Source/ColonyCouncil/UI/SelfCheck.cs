@@ -58,6 +58,7 @@ namespace ColonyCouncil
             Safe(parts, "Rimfolk's parts", Parts);
             Safe(parts, "Mods Rimfolk works with", Mods);
             Safe(parts, "Camps and trade caravans", Visits);
+            Safe(parts, "Faces that come back, the herd and the beasts", Stories);
             Safe(parts, "Rimfolk in the log this session", LogLines);
             return parts;
         }
@@ -315,6 +316,96 @@ namespace ColonyCouncil
                 part.Add("No friendly people's caravan could come now, so the storyteller's caravans are lost while this lasts.", UiKit.Warn);
             }
             if (stopped.Count > 0) part.Add("Can't come now: " + string.Join("; ", stopped) + ".", could.Count > 0 ? UiKit.Faint : UiKit.Warn);
+        }
+
+        /// <summary>
+        /// The slow stories of the newer rounds, and what stops each right now: the regulars the colony keeps up with and
+        /// whether one could come back (Happenings/Regulars.cs), the herd's leader and its line (Animals/HerdStory.cs),
+        /// the beast that stays, its candidate or the rest before the next, the shiny rumour (Animals/ResidentBeast.cs),
+        /// and whether traveling trainers can come at all.
+        /// </summary>
+        private static void Stories(Part part)
+        {
+            var comp = CouncilGameComponent.Instance;
+            var map = HappeningTracker.HomeMap();
+            if (comp == null || map == null)
+            {
+                part.Add("There's no home map to check.", UiKit.Faint);
+                return;
+            }
+            int now = Find.TickManager.TicksGame;
+            const int Day = GenDate.TicksPerDay;
+
+            // Regulars.
+            var regulars = Regulars.All.Where(r => r.Alive).ToList();
+            if (regulars.Count == 0)
+                part.Add("Regulars: none remembered yet. A visit by the tinker, scholar, traveling doctor, schoolteacher, bonesetter, wandering cook, scribe, players or kindred spirit adds one (five at most).", UiKit.Faint);
+            else
+            {
+                var bits = regulars.Select(r =>
+                {
+                    string when = r.DaysSince < RegularMath.ReturnAfterDays ? "due back in " + (RegularMath.ReturnAfterDays - r.DaysSince).ToString("0") + " days"
+                        : r.DaysSince <= RegularMath.FadeDays ? "could come back now, forgotten in " + (RegularMath.FadeDays - r.DaysSince).ToString("0") + " days"
+                        : "fading";
+                    return r.pawn.LabelShort + " the " + r.kind + " (" + r.visits + (r.visits == 1 ? " visit" : " visits") + ", bond " + r.bond + ", " + when + ")";
+                });
+                part.Add("Regulars: " + regulars.Count + " remembered: " + string.Join("; ", bits) + ".");
+                var pick = Regulars.Pick(map);
+                part.Add(pick != null
+                    ? "One could come back now (" + pick.pawn.LabelShort + "): the storyteller draws \"a familiar face at the gate\" from day 25, ten days apart at most."
+                    : "None is due back just now.", pick != null ? UiKit.Good : UiKit.Faint);
+            }
+            if (!AnimalLife.On)
+            {
+                part.Add("The herd's leader and the beast that stays need Rimfolk's animal moments (the setting is off).", UiKit.Warn);
+                return;
+            }
+
+            // The herd.
+            var herd = comp.herd;
+            var head = AnimalFacts.Herd(map);
+            if (herd?.leader != null && !herd.leader.Dead)
+            {
+                string line = herd.generation > 1 ? ", the " + HerdStory.Ordinal(herd.generation) + " generation of " + herd.lineName + "'s line" : herd.lineName != null ? ", the first of " + herd.lineName + "'s line" : "";
+                part.Add("Herd leader: " + herd.leader.LabelShort + line + ", since day " + (herd.leaderSince / Day + 1) + " (" + head.Count + " head). "
+                         + (herd.lastSeasonTick >= 0 ? "Its last season has been told." : AnimalFacts.Old(herd.leader) ? "It is old: its last season is told at the day's check." : "Not old yet."), UiKit.Good);
+            }
+            else part.Add(head.Count >= HerdStoryMath.MinHerd
+                ? "Herd leader: none yet; one is chosen at the day's check from the " + head.Count + " head."
+                : "Herd leader: none; the herd has " + head.Count + " head on this map and needs " + HerdStoryMath.MinHerd + " for a leader.", UiKit.Faint);
+
+            // The beast that stays.
+            var rb = comp.beast;
+            if (rb == null) return;
+            if (!ResidentBeast.On) part.Add("The beast that stays needs the strangers setting on.", UiKit.Warn);
+            else if (rb.Here)
+            {
+                float left = HerdStoryMath.FateAfterDays - rb.DaysNamed;
+                part.Add("Beast that stays: " + rb.animal.LabelShort + " the " + AnimalFacts.KindLabel(rb.animal) + (rb.pokemon ? " (a Pokémon" + (rb.shiny ? ", shiny" : "") + ")" : "")
+                         + ", named " + rb.DaysNamed.ToString("0") + " days ago" + (rb.namer != null ? " by " + rb.namer.LabelShort : "") + "; " + rb.StanceNow
+                         + (rb.stolen > 0 ? ", at the stores " + rb.stolen + (rb.stolen == 1 ? " time" : " times") : "") + "; asked " + rb.asks + " of " + HerdStoryMath.MaxAsks
+                         + " times; part of the land in " + Mathf.Max(0f, left).ToString("0") + " days.", UiKit.Good);
+            }
+            else
+            {
+                int fitting = map.mapPawns.AllPawnsSpawned.Count(a => ResidentBeast.Fits(a, map) && !rb.knownIds.Contains(a.thingIDNumber));
+                float rest = rb.fateTick >= 0 ? HerdStoryMath.RestDays - (now - rb.fateTick) / (float)Day : 0f;
+                if (rest > 0f) part.Add("Beast that stays: none; the last one's story closed, and another can be the one watched in " + rest.ToString("0") + " days.", UiKit.Faint);
+                else if (rb.candidateId != 0 && rb.candidateDays > 0)
+                    part.Add("Beast that stays: a wild animal has been seen " + rb.candidateDays + (rb.candidateDays == 1 ? " day" : " days") + " running; named at " + HerdStoryMath.ResidentAfterDays + ". "
+                             + fitting + " of size on the land now.", UiKit.Good);
+                else part.Add(fitting > 0
+                    ? "Beast that stays: none yet; " + fitting + " wild " + (fitting == 1 ? "animal" : "animals") + " of size on the land now (a predator, or a grazer of a stag's size); one seen " + HerdStoryMath.ResidentAfterDays + " days running is named."
+                    : "Beast that stays: none; no wild animal of size is on the land now.", UiKit.Faint);
+            }
+            if (rb.rumourKind != null && rb.rumourUntil > now)
+                part.Add("Shiny rumour: a " + (DefDatabase<ThingDef>.GetNamedSilentFail(rb.rumourKind)?.label ?? rb.rumourKind) + ", " + ((rb.rumourUntil - now) / Day) + " days left; one chance in eight a day it shows itself.", UiKit.Good);
+
+            // Traveling trainers.
+            var trainers = DefDatabase<CampKindDef>.GetNamedSilentFail("Council_Camp_Trainers");
+            if (trainers != null)
+                part.Add(trainers.Possible ? "Traveling trainers can camp here (PokéWorld's Pokémon are in play)."
+                    : PokeWorldLink.Active ? "Traveling trainers can't come: PokéWorld's spawn slider is at no Pokémon." : "Traveling trainers come only with PokéWorld.", UiKit.Faint);
         }
 
         /// <summary>

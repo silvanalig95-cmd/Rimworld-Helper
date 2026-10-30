@@ -37,7 +37,7 @@ namespace ColonyCouncil
             public List<Tile> tiles;
             public List<DaySample> days;
             public float maxWealth, maxPeople;
-            public List<string> needs, coming, character, lately, weather;
+            public List<string> needs, coming, character, lately, weather, land;
         }
 
         private static Model model;
@@ -76,6 +76,8 @@ namespace ColonyCouncil
                 float left = Column(0f, colY, gw, m.needs, "CC_Overview_Needs".Translate(), "Priorities", Icons.Priorities, UiKit.Faint);
                 left = Column(0f, left + 8f, gw, m.coming, "CC_Overview_Coming".Translate(), "World", Icons.World, m.coming.Count > 0 ? Threat : UiKit.Faint);
                 if (m.weather.Count > 0) left = Column(0f, left + 8f, gw, m.weather, "CC_Overview_Weather".Translate(), "Chronicle", Icons.World, UiKit.Faint);
+                // The herd's leader, the beast the colony watches, the neighbours settled for good (Animals/HerdStory.cs, ResidentBeast.cs, Camps/Holding.cs).
+                if (m.land.Count > 0) left = Column(0f, left + 8f, gw, m.land, "CC_Overview_Land".Translate(), "World", Icons.Visitor, UiKit.Faint);
                 float right = Column(gw + 12f, colY, gw, m.character, "CC_Overview_KnownAs".Translate(), "Ways", Icons.Ways, UiKit.Faint);
                 right = Column(gw + 12f, right + 8f, gw, m.lately, "CC_Overview_Lately".Translate(), "Chronicle", Icons.Chronicle, UiKit.Faint);
                 y = Mathf.Max(left, right) + 10f;
@@ -107,6 +109,7 @@ namespace ColonyCouncil
             m.character = Character(comp);
             m.lately = Lately(comp);
             m.weather = WeatherBook.Of(map)?.OverviewLines() ?? new List<string>();
+            m.land = Land(comp, map);
             return m;
         }
 
@@ -259,7 +262,7 @@ namespace ColonyCouncil
                     list.Add("CC_Overview_Fight".Translate(r.faction.Name, TextUtil.DaysString(Mathf.Max(0, r.tick - now))).ToString());
             int letters = Find.LetterStack.LettersListForReading.Count(l => l is ChoiceLetter_Happening h && !h.resolved);
             if (letters > 0) list.Add("CC_Overview_Letters".Translate(letters).ToString());
-            if (comp.happenings.beast != null && comp.happenings.beast.Spawned) list.Add("CC_Overview_Beast".Translate(comp.happenings.beastName ?? comp.happenings.beast.LabelShort).ToString());
+            if (comp.happenings.beast != null && comp.happenings.beast.Spawned) list.Add("CC_Overview_BeastWatched".Translate(comp.happenings.beastName ?? comp.happenings.beast.LabelShort).ToString());
             return list;
         }
 
@@ -268,6 +271,46 @@ namespace ColonyCouncil
             if (!ColonyCouncilMod.Settings.colonyCharacter) return new List<string>();
             string known = comp.character.Describe();
             return new List<string> { known != null ? "CC_Ways_KnownAs".Translate(known).Resolve() : "CC_Ways_NoName".Translate().ToString() };
+        }
+
+        /// <summary>The herd's leader and its line, the beast the colony watches, a shiny rumour, the neighbours settled for good.</summary>
+        private static List<string> Land(CouncilGameComponent comp, Map map)
+        {
+            var list = new List<string>();
+            int now = Find.TickManager.TicksGame;
+            try
+            {
+                var herd = comp.herd;
+                var leader = herd?.leader;
+                if (leader != null && !leader.Dead && AnimalFacts.Ours(leader))
+                {
+                    int head = AnimalFacts.HerdCount(map);
+                    list.Add(herd.generation > 1 && herd.lineName != null
+                        ? "CC_Overview_HerdLeaderLine".Translate(leader.Named("PET"), HerdStory.Ordinal(herd.generation).Named("ORD"), herd.lineName.Named("LINE"), head.Named("COUNT")).Resolve()
+                        : "CC_Overview_HerdLeader".Translate(leader.Named("PET"), head.Named("COUNT")).Resolve());
+                    if (herd.lastSeasonTick >= 0) list.Add("CC_Overview_HerdOld".Translate(leader.Named("PET")).Resolve());
+                }
+                var rb = comp.beast;
+                if (rb != null && rb.Here)
+                {
+                    string stanceKey = "CC_Beast_Stance_" + rb.stance;
+                    string stance = (stanceKey.CanTranslate() ? stanceKey : "CC_Beast_Stance_watched").Translate();
+                    list.Add("CC_Overview_BeastWatched".Translate(rb.animal.Named("PET"), AnimalFacts.KindLabel(rb.animal).Named("KIND"), stance.Named("STANCE"),
+                        TextUtil.DaysString(Mathf.Max(0, now - rb.namedTick)).Named("DAYS")).Resolve());
+                }
+                if (rb != null && rb.rumourKind != null && rb.rumourUntil > now)
+                {
+                    var species = DefDatabase<ThingDef>.GetNamedSilentFail(rb.rumourKind);
+                    if (species != null) list.Add("CC_Overview_Rumour".Translate(species.label.Named("SPECIES"), TextUtil.DaysString(rb.rumourUntil - now).Named("DAYS")).Resolve());
+                }
+                var holding = CampTracker.Instance?.holding;
+                if (holding != null && holding.Here.Count > 0) list.Add(holding.HoldingLine());
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("overview: the land", e);
+            }
+            return list;
         }
 
         private static List<string> Lately(CouncilGameComponent comp) =>

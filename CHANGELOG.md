@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The new stories, seen at a glance
+
+*30 October 2026, version 0.36.0*
+
+- "Rimfolk: check myself" (development mode) has a new part for the slower stories: the regulars the colony keeps up with, each with their visits, the bond and when they are due back, and whether one could come back now; the herd's leader, its line and whether its last season has been told, or what the herd still needs for a leader; the beast that stays, or the animal being watched toward a name, or the rest before the next one, and how many wild animals of size are on the land; the shiny rumour and its days left; and whether traveling trainers can come at all.
+- The Overview page has a card, "The herd and the land": who leads the herd and of which line and generation, whether it is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the wind, and the neighbours settled for good.
+
 ## Two fixes from a read-through of the new rounds
 
 *30 October 2026, version 0.35.1*

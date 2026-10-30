@@ -39,4 +39,19 @@
   <CC_Beast_End_tamed>{PET_nameDef} answers to the colony now. The handlers' patience, and {PAWN_nameDef}'s, won out.</CC_Beast_End_tamed>
   <CC_Beast_End_driven>{PET_nameDef} was driven off the colony's land with torches and noise, and has not come back.</CC_Beast_End_driven>
 
+  <!-- The Overview page's card "The herd and the land" (UI/OverviewPanel.cs). -->
+  <CC_Overview_Land>The herd and the land</CC_Overview_Land>
+  <CC_Overview_HerdLeader>{PET_nameDef} leads the herd ({COUNT} head).</CC_Overview_HerdLeader>
+  <CC_Overview_HerdLeaderLine>{PET_nameDef} leads the herd, the {ORD} generation of {LINE}'s line ({COUNT} head).</CC_Overview_HerdLeaderLine>
+  <CC_Overview_HerdOld>{PET_nameDef} is in {PET_possessive} last season.</CC_Overview_HerdOld>
+  <CC_Overview_BeastWatched>{PET_nameDef}, the {KIND} the colony watches: {STANCE}, named {DAYS} ago.</CC_Overview_BeastWatched>
+  <CC_Overview_Rumour>A shiny {SPECIES} is rumoured about, for {DAYS} more.</CC_Overview_Rumour>
+  <CC_Beast_Stance_watched>watched from the wall</CC_Beast_Stance_watched>
+  <CC_Beast_Stance_fed>fed at the edge of the trees</CC_Beast_Stance_fed>
+  <CC_Beast_Stance_feared>feared, the children kept in</CC_Beast_Stance_feared>
+  <CC_Beast_Stance_hunted>hunted</CC_Beast_Stance_hunted>
+  <CC_Beast_Stance_tame>being tamed</CC_Beast_Stance_tame>
+  <CC_Beast_Stance_catch>a ball waiting for it</CC_Beast_Stance_catch>
+  <CC_Beast_Stance_driven>driven off</CC_Beast_Stance_driven>
+
 </LanguageData>

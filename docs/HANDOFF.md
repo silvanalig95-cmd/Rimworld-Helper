@@ -1,6 +1,10 @@
 # Handoff: work in progress
 
-Last shipped: 0.35.1, two fixes from a read-through of the rounds (the settlers' food sale used `WorldEffect_Sell`
+Last shipped: 0.36.0, the first of the player's five new ideas: `SelfCheck.Stories` (a "check myself" part for the
+regulars, the herd's leader, the beast that stays, the shiny rumour and the trainers' camp) and `OverviewPanel.Land`
+(the card "The herd and the land": leader and line, last season, the beast and its stance, the rumour, the holding's
+line). The other four, in order (tasks): 0.37.0 the wardens' post as a trading stop and the settlers' alliance paying
+off; 0.38.0 a year's letter at each anniversary of the landing. Before it, 0.35.1, two fixes from a read-through of the rounds (the settlers' food sale used `WorldEffect_Sell`
 without a thing and was always unavailable: now `DilemmaEffect_CarryOut` rawfood plus `WorldEffect_Silver`, as the
 famine's; `CampTracker.StartKind` now calls `Announce`, the kind's own letter, so a camp a world event calls for is
 told). Before it, 0.35.0, the Pokémon round (a Pokémon that keeps coming, a shiny rumour, traveling trainers), the last
