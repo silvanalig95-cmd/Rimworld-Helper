@@ -203,13 +203,15 @@ namespace ColonyCouncil
                     }
                     foreach (var o in n.pawns)
                     {
-                        if (!Able(o, n.map) || !o.Awake() || o.CurJobDef == JobDefOf.LayDown || o.CurJobDef == JobDefOf.Ingest) continue;
+                        if (!Able(o, n.map) || !o.Awake() || o.CurJobDef == JobDefOf.LayDown || o.CurJobDef == HostingDefOf.Council_GuestSleep || o.CurJobDef == JobDefOf.Ingest) continue;
                         // On their way out after all (hurt by the colony, their people turned hostile): let them go.
                         var duty = o.mindState?.duty?.def;
                         if (duty != null && duty.defName.StartsWith("ExitMap")) continue;
                         var cell = Bed(n.map, n.near, o);
                         if (!cell.IsValid) continue;
-                        var job = JobMaker.MakeJob(JobDefOf.LayDown, cell);
+                        // A visitor's own routine would have them up again at once to wander: the guests' sleep, which doesn't, until dawn.
+                        var job = JobMaker.MakeJob(HostingDefOf.Council_GuestSleep, cell);
+                        job.expiryInterval = Math.Max(GenDate.TicksPerHour, n.until - now);
                         // together: they bed down in the lee of the colony's wall, where the watch can see them.
                         o.jobs.StartJob(job, JobCondition.InterruptForced, null, false, true);
                     }

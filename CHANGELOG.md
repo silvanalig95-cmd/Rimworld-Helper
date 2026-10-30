@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Guests the colony hosts eat at its table and sleep in its beds
+
+*30 October 2026, version 0.43.3*
+
+- A dignitary or refugees the colony hosts walk to its stored meals and eat them at the table, the dignitary the finest first and the refugees the plainest; only what they eat leaves the stores. They fall back on provisions of their own only when the stores are bare.
+- At night each sleeps in a bed the mission counted, lent in their name for the stay and given back when they go; Hospitality's guest beds stay with its own guests. Without a bed they sleep on the dining or rec room floor, and for refugees that day counts short.
+- The missions' words follow what happens: two or three meals a day each, what is happening said as it happens, and scenes nobody would see left out. A dignitary with no room waits outside the colony until morning.
+- Strangers given a night by the gate stay lying down until dawn; their own routine had them up again at once to wander.
+
 ## A camp's good turns come from somewhere real
 
 *30 October 2026, version 0.43.2*
