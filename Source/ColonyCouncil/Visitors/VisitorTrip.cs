@@ -91,6 +91,9 @@ namespace ColonyCouncil
         public string stayRoom;
         /// <summary>What they do at their spot (VisitorWork: "prospect", "glean", "sing", "hunt"), or null: they wait.</summary>
         public string work;
+        /// <summary>Their camp's fire out on the land (VisitorCamp), laid once.</summary>
+        public Thing fire;
+        public bool fireLaid;
         public bool saidWait;
         /// <summary>A world event's beat that tells of this visit afterward ("the retinue stayed the night"): held until they've gone.</summary>
         public string holdBeat;
@@ -171,6 +174,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref stayInside, "stayInside");
             Scribe_Values.Look(ref stayRoom, "stayRoom");
             Scribe_Values.Look(ref work, "work");
+            Scribe_References.Look(ref fire, "fire");
+            Scribe_Values.Look(ref fireLaid, "fireLaid");
             Scribe_Values.Look(ref saidWait, "saidWait");
             Scribe_Values.Look(ref holdBeat, "holdBeat");
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);

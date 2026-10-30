@@ -18,6 +18,8 @@ namespace ColonyCouncil
     public static class VisitorWork
     {
         public const string Prospect = "prospect", Glean = "glean", Sing = "sing", Hunt = "hunt";
+        /// <summary>What any visitor does: an evening by their camp's fire, a seat by the gate while they wait.</summary>
+        public const string Fire = "fire", Sit = "sit";
 
         public static readonly string[] Kinds = { Prospect, Glean, Sing, Hunt };
 
@@ -30,6 +32,8 @@ namespace ColonyCouncil
                 case Glean: return hour >= 6 && hour < 18;
                 case Sing: return hour >= 19 && hour < 23;
                 case Hunt: return hour >= 5 && hour < 19;
+                case Fire: return hour >= 17 && hour < 23;
+                case Sit: return true;
                 default: return false;
             }
         }
@@ -111,11 +115,11 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>A place in the ring round their camp, facing its middle.</summary>
+        /// <summary>A place in the ring round their camp (round its fire, if it has one), facing its middle.</summary>
         private static bool Ring(Pawn p, out IntVec3 at, out IntVec3 face)
         {
             var map = p.Map;
-            face = Focus(p);
+            face = VisitorCamp.FireOf(p)?.Position ?? Focus(p);
             at = IntVec3.Invalid;
             foreach (var c in GenRadial.RadialCellsAround(face, 3f, false).InRandomOrder())
             {
@@ -140,6 +144,50 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>
+        /// A stint done: what it turned up goes into their packs, theirs to take home. A prospector's pan now and then
+        /// shows silver (a few pieces), rarely a flake of gold; a gleaner's sack takes a few of the field's own crop.
+        /// </summary>
+        public static void Done(Pawn p, string work, IntVec3 at)
+        {
+            if (p?.Map == null || p.inventory?.innerContainer == null) return;
+            ThingDef what = null;
+            int count = 0;
+            string moment = null;
+            if (work == Prospect)
+            {
+                if (Rand.Chance(0.04f))
+                {
+                    what = ThingDefOf.Gold;
+                    count = 1;
+                }
+                else if (Rand.Chance(0.35f))
+                {
+                    what = ThingDefOf.Silver;
+                    count = Rand.RangeInclusive(2, 8);
+                }
+                moment = "find";
+            }
+            else if (work == Glean)
+            {
+                what = (p.Map.zoneManager.ZoneAt(at) as Zone_Growing)?.GetPlantDefToGrow()?.plant?.harvestedThingDef;
+                count = Rand.RangeInclusive(2, 5);
+                moment = "glean";
+            }
+            if (what == null || count <= 0) return;
+            var thing = ThingMaker.MakeThing(what);
+            thing.stackCount = count;
+            if (!p.inventory.innerContainer.TryAdd(thing)) return;
+            if (Rand.Chance(work == Prospect ? 0.6f : 0.25f)) Say(p, moment);
+        }
+
+        /// <summary>A line from one of them at a moment of their work ("find", "glean", "fire").</summary>
+        public static void Say(Pawn p, string moment)
+        {
+            var trip = p?.GetLord()?.LordJob is LordJob_RimfolkVisit j ? VisitorTracker.Instance?.Get(j.tripId) : null;
+            if (trip != null) VisitorWords.Say(p, trip, moment);
+        }
+
         /// <summary>The next piece of work for one of them, or null when there's none to do now.</summary>
         public static Job JobFor(Pawn p, string work)
         {
@@ -155,6 +203,37 @@ namespace ColonyCouncil
                     return Ring(p, out at, out face) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitSing, at, face) : null;
                 case Hunt:
                     return Lookout(p, out at, out face) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitHunt, at, face) : null;
+            }
+            return null;
+        }
+    }
+
+    /// <summary>An evening by their own camp's fire, in the ring round it, talking.</summary>
+    public class JobGiver_VisitFire : ThinkNode_JobGiver
+    {
+        protected override Job TryGiveJob(Pawn pawn)
+        {
+            var fire = VisitorCamp.FireOf(pawn);
+            if (fire == null || !VisitorWork.InHours(VisitorWork.Fire, GenLocalDate.HourOfDay(pawn.Map)) || VisitorWork.WantsSleep(pawn)) return null;
+            return VisitorCamp.RingCell(pawn, fire.Position, out var cell) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitFire, cell, fire) : null;
+        }
+    }
+
+    /// <summary>Waiting at the gate, now and then they sit down on a seat out there (a bench, a chair), if there's one free near.</summary>
+    public class JobGiver_VisitSit : ThinkNode_JobGiver
+    {
+        protected override Job TryGiveJob(Pawn pawn)
+        {
+            var map = pawn?.Map;
+            if (map == null || !pawn.RaceProps.Humanlike || VisitorWork.WantsSleep(pawn) || !Rand.Chance(0.4f)) return null;
+            var focus = pawn.mindState?.duty != null && pawn.mindState.duty.focus.IsValid ? pawn.mindState.duty.focus.Cell : pawn.Position;
+            foreach (var c in GenRadial.RadialCellsAround(focus, 7f, true))
+            {
+                if (!c.InBounds(map) || !c.UsesOutdoorTemperature(map)) continue;
+                var seat = c.GetEdifice(map);
+                if (seat?.def?.building == null || !seat.def.building.isSittable || c.GetFirstPawn(map) != null) continue;
+                if (!pawn.CanReserveAndReach(c, PathEndMode.OnCell, Danger.Some)) continue;
+                return JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitSit, c, c + seat.Rotation.FacingCell);
             }
             return null;
         }
@@ -206,6 +285,8 @@ namespace ColonyCouncil
         public EffecterDef effecter;
         public bool music;
         public IntRange ticks = new IntRange(1200, 2400);
+        /// <summary>How readily they talk with whoever is near meanwhile.</summary>
+        public RandomSocialMode social = RandomSocialMode.Normal;
     }
 
     /// <summary>A stint of a visitor's work: walk to the place, then work there facing the water, the field or the camp's middle, until the stint or its hours are over.</summary>
@@ -225,6 +306,11 @@ namespace ColonyCouncil
             work.defaultCompleteMode = ToilCompleteMode.Delay;
             work.defaultDuration = Mathf.Max(60, ext.ticks.RandomInRange);
             work.handlingFacing = true;
+            work.socialMode = ext.social;
+            if (ext.work == VisitorWork.Fire) work.initAction = () =>
+            {
+                if (Rand.Chance(0.2f)) VisitorWork.Say(pawn, VisitorWork.Fire);
+            };
             work.tickIntervalAction = delta =>
             {
                 if (job.targetB.IsValid && job.targetB.Cell != pawn.Position) pawn.rotationTracker.FaceCell(job.targetB.Cell);
@@ -240,6 +326,7 @@ namespace ColonyCouncil
             };
             if (ext.effecter != null) work.WithEffect(ext.effecter, TargetIndex.B);
             yield return work;
+            yield return Toils_General.Do(() => VisitorWork.Done(pawn, ext.work, job.targetA.Cell));
         }
     }
 }

@@ -4,7 +4,8 @@
   <!--
     What visitors say (Source/ColonyCouncil/Visitors/VisitorWords.cs), over their heads through Speech. Every line has
     its moment: arrive (at the gate or their spot), wait (a while into waiting for the colony's answer), stay (given the
-    night), pass (going by on the road), leave. What they are: rider, runner, envoy, herald, driver, foreman, clerk,
+    night), pass (going by on the road), leave, find (a prospector's pan shows something), glean (a sack fills), fire
+    (an evening by their camp's fire). What they are: rider, runner, envoy, herald, driver, foreman, clerk,
     family, families, travelers, merchant, exiles, captive, survivor, pilgrims, mourners, drovers, herders, hunters,
     band, retinue, patrol, stargazer, singer, canvassers, surveyors, salvagers, fugitive, elder, tollman, smith, agent,
     deserter, prospectors, prospector, preacher, digger, smuggler, bailiff, housemaster, roadkeeper, delegates,
@@ -17,6 +18,18 @@
     <lines>
       <plain>
         <li>[arrive] I'll wait here for your answer.</li>
+        <li>[find,prospectors] Color in the pan, look at that.</li>
+        <li>[find,prospectors] Small, but it's silver all the same.</li>
+        <li>[find,prospectors] There's more where that came from, I can feel it.</li>
+        <li>[find,prospectors,theirHightech] The detector's singing, dig here.</li>
+        <li>[glean,gleaners] Good grain, and nobody's but ours now.</li>
+        <li>[glean,gleaners] They harvest clean here, there's little left.</li>
+        <li>[fire] Sit, there's room by the fire.</li>
+        <li>[fire] Warm hands and a full belly, what more is there?</li>
+        <li>[fire,pilgrims] Sing with us, if you know the words.</li>
+        <li>[fire,prospectors] Tomorrow's the day, we say that every night.</li>
+        <li>[fire,drovers] The cattle are quiet, so we can be.</li>
+        <li>[fire,gleaners] Our backs ache, but the sacks are fuller.</li>
         <li>[arrive,rider] I'm to ride back with your answer.</li>
         <li>[arrive,rider,theirLowtech] The elders sent me for your word.</li>
         <li>[arrive,runner] Ran the whole way, can I sit?</li>

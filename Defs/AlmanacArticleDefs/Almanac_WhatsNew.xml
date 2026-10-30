@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.43.0</version>
+        <date>30 October 2026</date>
+        <title>Visitors' fires, finds and sacks</title>
+        <points>
+          <li>Visitors camping out on the colony's land (pilgrims and prospectors by the water, gleaners and drovers on the far ground) lay a campfire of their own wood at their camp, keep it fed, sit round it of an evening and put it out when they go, leaving its ash.</li>
+          <li>What a prospector's pan shows is real: now and then a few pieces of silver, rarely a flake of gold, into their packs, and they take it with them. Gleaners fill their sacks with a few of the field's own crop at a time and carry it home.</li>
+          <li>Colonists at leisure may walk out to sit with visitors by their fire, a few at a time, and visitors talk with whoever is near while they work, wait or sit. Waiting at the gate, they take a seat out there if there's one.</li>
+          <li>They say a line now and then: a find in the pan, a sack filling, an evening by the fire.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.42.0</version>
         <date>30 October 2026</date>
         <title>Conduits and pipes laid again under the walls</title>

@@ -157,6 +157,9 @@ namespace ColonyCouncil
                     }
                 }
             }
+            // A camp's fire burns only while its people are there.
+            foreach (var t in trips)
+                if (t.fire != null && t.state != VisitState.Here) VisitorCamp.PutOut(t);
             trips.RemoveAll(t => t.state == VisitState.Done && (t.endTick < 0 || now - t.endTick > VisitorMath.MaxKeepTicks || AllGone(t)));
         }
 
@@ -241,6 +244,7 @@ namespace ColonyCouncil
                 return;
             }
             Visitors.Feed(t);
+            VisitorCamp.Tend(t);
             if (t.state == VisitState.Coming)
             {
                 if (t.lord.CurLordToil is LordToil_VisitHere)

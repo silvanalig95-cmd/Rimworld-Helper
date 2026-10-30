@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Visitors' fires, finds and sacks
+
+*30 October 2026, version 0.43.0*
+
+- Visitors camping out on the colony's land (pilgrims and prospectors by the water, gleaners and drovers on the far ground) lay a campfire of their own wood at their camp, keep it fed, sit round it of an evening and put it out when they go, leaving its ash.
+- What a prospector's pan shows is real: now and then a few pieces of silver, rarely a flake of gold, into their packs, and they take it with them. Gleaners fill their sacks with a few of the field's own crop at a time and carry it home.
+- Colonists at leisure may walk out to sit with visitors by their fire, a few at a time, and visitors talk with whoever is near while they work, wait or sit. Waiting at the gate, they take a seat out there if there's one.
+- They say a line now and then: a find in the pan, a sack filling, an evening by the fire.
+
 ## Conduits and pipes laid again under the walls
 
 *30 October 2026, version 0.42.0*

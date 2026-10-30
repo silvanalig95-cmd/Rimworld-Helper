@@ -7,8 +7,10 @@
     spot they keep close to it, and sleep when they're tired or night has come, on open ground near it; their animals
     rest nearby. They eat what they brought (the visit feeds them from their own packs, never from the colony's stores
     or fields). Out of doors they never go into the colony's rooms or onto its fields. Those who came to do something
-    do it (Rimfolk_VisitWork, VisitorWork.cs): panning the creek, gleaning the stubble, singing at their camp after
-    dark, watching for game on the far side.
+    do it (Rimfolk_VisitWork, VisitorWork.cs): panning the creek (and pocketing what it shows), gleaning the stubble
+    into their sacks, singing at their camp after dark, watching for game on the far side. A camp out on the land has
+    its own fire to sit round of an evening (VisitorCamp.cs); colonists may walk out to sit with them. Waiting at the
+    gate, they take a seat out there if there's one.
   -->
   <DutyDef>
     <defName>Rimfolk_VisitWait</defName>
@@ -20,6 +22,8 @@
             <li Class="ColonyCouncil.JobGiver_VisitRest" />
           </subNodes>
         </li>
+        <li Class="ColonyCouncil.JobGiver_VisitFire" />
+        <li Class="ColonyCouncil.JobGiver_VisitSit" />
         <li Class="ColonyCouncil.JobGiver_VisitWander">
           <wanderRadius>4</wanderRadius>
         </li>
@@ -38,6 +42,7 @@
           </subNodes>
         </li>
         <li Class="ColonyCouncil.JobGiver_VisitWork" />
+        <li Class="ColonyCouncil.JobGiver_VisitFire" />
         <li Class="ColonyCouncil.JobGiver_VisitWander">
           <wanderRadius>4</wanderRadius>
         </li>
@@ -137,5 +142,54 @@
       </li>
     </modExtensions>
   </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitFire</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>sitting by the fire.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>fire</work>
+        <social>SuperActive</social>
+        <ticks>1500~2500</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitSit</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>sitting while waiting.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>sit</work>
+        <ticks>1200~2400</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- Colonists at leisure walk out to sit with visitors by their camp's fire (VisitorCamp.cs). -->
+  <JobDef>
+    <defName>Rimfolk_SitWithVisitors</defName>
+    <driverClass>ColonyCouncil.JobDriver_SitWithVisitors</driverClass>
+    <reportString>sitting with the visitors by their fire.</reportString>
+    <joyDuration>2500</joyDuration>
+    <joyKind>Social</joyKind>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>Rimfolk_SitWithVisitors</defName>
+    <giverClass>ColonyCouncil.JoyGiver_SitWithVisitors</giverClass>
+    <baseChance>0.5</baseChance>
+    <jobDef>Rimfolk_SitWithVisitors</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
 
 </Defs>

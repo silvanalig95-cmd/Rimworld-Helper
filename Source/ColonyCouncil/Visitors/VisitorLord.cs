@@ -16,6 +16,8 @@ namespace ColonyCouncil
         public static JobDef Rimfolk_VisitGlean;
         public static JobDef Rimfolk_VisitSing;
         public static JobDef Rimfolk_VisitHunt;
+        public static JobDef Rimfolk_VisitFire;
+        public static JobDef Rimfolk_VisitSit;
 
         static VisitorDefOf()
         {

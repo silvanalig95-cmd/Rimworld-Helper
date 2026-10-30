@@ -6,7 +6,7 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (30 October 2026, later)
 
-- Shipped and pushed: 0.42.0, on `claude/gifted-noether-32w12b` (this session's branch) and `claude/charming-pasteur-9qbjle`.
+- Shipped and pushed: 0.43.0, on `claude/gifted-noether-32w12b` (this session's branch) and `claude/charming-pasteur-9qbjle`.
   Tree clean. Every check green at that commit: build (only the CS0108 warning in Decrees.cs), DefValidator 0 errors,
   Tools/Tests "All tests passed", labelcheck, almanaccheck, save_estimate --strict, interaction_audit, playout_audit,
   ApiDiff "Nothing the DLL uses has changed".
@@ -35,6 +35,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   the Base page finding "relay:KIND" and status "relaying:KIND"; `LineRelayTracker` as `relays` on the component,
   hourly from HourlyPeople). Plans are kept six hours, nets with fewer than three lines in sight skipped. Not tried in
   the game here: worth a look at the finding on the player's base, the yellow/white overlay, and one relay to the end.
+- 0.43.0, the player's ask that visitors use, make and take items and touch the colony more: `Visitors/VisitorCamp.cs`
+  (a camp out on the land lays a vanilla Campfire of the visitors' faction, fed while they stay, put out to ash when
+  the trip leaves Here; `JoyGiver_SitWithVisitors` + `JobDriver_SitWithVisitors` for colonists), `VisitorWork.Done`
+  (prospectors' finds: silver 35%, gold 4%, into inventory; gleaners: the zone's crop), JobGiver_VisitFire (17-23h),
+  JobGiver_VisitSit (a seat near the gate), social modes on the work toils, pool moments find/glean/fire. Ideas not
+  built (propose first): mourners carrying their dead, hunters taking real game (a hunted beast can turn on them),
+  the singer playing the colony's instrument, guests in Hospitality's guest beds, drovers milking, campers trading.
 - Open with the player: they asked whether rain washes blood and dirt away. The game does it already outdoors (the
   filth def's `rainWashes`, thinned in `SteadyEnvironmentEffects`); nothing was built. Wait for their answer.
 - Rounds 0.30.0 to 0.41.0 came before: the player's event rounds (camps, neighbours, visitors, world, animals, Pokémon),

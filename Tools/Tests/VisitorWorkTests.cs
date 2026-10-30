@@ -35,6 +35,15 @@ public static class VisitorWorkTests
         foreach (var k in kinds) C(jobWork.Contains(k), $"{k} has a job that does it");
         C(misc.Root.Elements("DutyDef").Any(d => d.Element("defName")?.Value == "Rimfolk_VisitWork"), "the work has its duty");
         C(!misc.ToString().Contains("\"JobGiver_GetRest\""), "no visitor's duty lies down whenever it isn't fully rested");
+        // Every visitor's evening by the fire and seat at the gate, and colonists who come to sit with them.
+        foreach (var k in new[] { "fire", "sit" }) C(jobWork.Contains(k), $"{k} has a job that does it");
+        C(misc.Root.Elements("JoyGiverDef").Any(j => j.Element("jobDef")?.Value == "Rimfolk_SitWithVisitors"), "colonists can go and sit with visitors by their fire");
+        var waitDuty = misc.Root.Elements("DutyDef").FirstOrDefault(d => d.Element("defName")?.Value == "Rimfolk_VisitWait")?.ToString() ?? "";
+        C(waitDuty.Contains("JobGiver_VisitFire") && waitDuty.Contains("JobGiver_VisitSit"), "those waiting or staying sit by their fire or on a seat");
+        // What they say at their work: a find, a sack filling, the fire.
+        var lines = XDocument.Load(Path.Combine(root, "Defs/FlavorPoolDefs/Rimfolk_VisitorLines.xml")).Descendants("li").Select(l => l.Value).ToList();
+        foreach (var moment in new[] { "find", "glean", "fire" })
+            C(lines.Any(l => Regex.IsMatch(l, @"^\[([a-zA-Z]+,)*" + moment + @"(,[a-zA-Z]+)*\]")), $"visitors have lines for {moment}");
 
         // Every visit's work is known; every roof the words give is given, and none they don't.
         int works = 0, roofs = 0;
