@@ -23,8 +23,89 @@ namespace ColonyCouncil
         public Action fix;
         /// <summary>A room the planner can put beside what this one is far from (the Plan the room button).</summary>
         public RoomTemplateDef template;
+        /// <summary>What it draws on the map: the cells it's about, a second set (the other room, the nearest store), a line between two points, a short label.</summary>
+        public List<IntVec3> cells = new List<IntVec3>();
+        public List<IntVec3> other = new List<IntVec3>();
+        public IntVec3 from = IntVec3.Invalid, to = IntVec3.Invalid;
+        public string mapLabel;
 
         public AdviceLevel Level => (AdviceLevel)NextStepsMath.LevelOf(score);
+    }
+
+    /// <summary>
+    /// What the base review draws on the map: every finding's cells faintly while the Base page is open or "Show on
+    /// the map" is on, the hovered finding in full with its label and line (UI/MapHighlights.cs).
+    /// </summary>
+    public static class BaseOverlay
+    {
+        private static int pageFrame = -10;
+        private static string hoveredKey;
+        private static int hoveredFrame = -10;
+        private static bool? show;
+
+        public static bool Show
+        {
+            get => show ??= PageMemory.GetBool("base.overlay", false);
+            set
+            {
+                show = value;
+                PageMemory.SetBool("base.overlay", value);
+            }
+        }
+
+        public static void PageDrawn() => pageFrame = Time.frameCount;
+
+        public static void Hover(string key)
+        {
+            hoveredKey = key;
+            hoveredFrame = Time.frameCount;
+        }
+
+        public static bool Showing => Show || Time.frameCount - pageFrame < 3;
+
+        /// <summary>The finding a row or the little map is hovering over right now, if any.</summary>
+        public static string HoveredKey => Time.frameCount - hoveredFrame < 3 ? hoveredKey : null;
+
+        private static readonly Color RoomsColor = new Color(0.95f, 0.6f, 0.2f);
+        private static readonly Color OtherColor = new Color(1f, 1f, 1f);
+        private static readonly Color WorksColor = new Color(1f, 0.85f, 0.3f);
+        private static readonly Color DoorsColor = new Color(0.95f, 0.35f, 0.3f);
+        private static readonly Color StoresColor = new Color(0.45f, 0.75f, 1f);
+
+        public static Color ColorOf(BaseFinding f)
+        {
+            switch (f.group)
+            {
+                case "rooms":
+                case "walks": return RoomsColor;
+                case "doors": return DoorsColor;
+                case "stores": return StoresColor;
+                default: return WorksColor;
+            }
+        }
+
+        /// <summary>Adds the findings' highlights for this frame (called from the map's update while showing).</summary>
+        public static void Draw(Map map)
+        {
+            if (map == null || !Showing) return;
+            string hov = HoveredKey;
+            foreach (var f in BaseReview.For(map)) Highlight(map, f, hov != null && f.key == hov);
+        }
+
+        /// <summary>One finding on the map: its cells in its part's colour, the other room or store in white, the line between them, its short label.</summary>
+        public static void Highlight(Map map, BaseFinding f, bool bright)
+        {
+            if (map == null || f == null || f.cells.Count == 0 && !f.look.IsValid) return;
+            var h = new MapHighlight
+            {
+                key = "base:" + f.key, map = map, color = ColorOf(f), otherColor = OtherColor, bright = bright, labelAlways = true,
+                label = f.mapLabel ?? f.title, labelAt = f.look.IsValid ? f.look : f.cells[0], from = f.from, to = f.to,
+                lineColor = f.group == "stores" ? SimpleColor.Cyan : SimpleColor.Orange
+            };
+            h.cells.AddRange(f.cells.Count > 0 ? f.cells : new List<IntVec3> { f.look });
+            h.other.AddRange(f.other);
+            MapHighlights.Add(h);
+        }
     }
 
     /// <summary>
@@ -74,6 +155,14 @@ namespace ColonyCouncil
             public string role;
             public (float x, float z) mid;
             public string label;
+        }
+
+        /// <summary>The colony's rooms with the review's roles, for the little map.</summary>
+        public static List<(Room room, string role)> RoomsByRole(Map map)
+        {
+            var list = new List<(Room, string)>();
+            foreach (var r in Rooms(map)) list.Add((r.room, r.role));
+            return list;
         }
 
         /// <summary>The role the review reckons by: a cold room with storage is a freezer, barracks sleep like bedrooms, prison barracks like a cell.</summary>
@@ -169,7 +258,10 @@ namespace ColonyCouncil
                 {
                     key = "far:" + rule.key, group = "rooms", score = BaseReviewMath.FarScore(rule, worst.distance),
                     title = "CC_Base_Far".Translate(roomA.label.Named("A"), other.Named("B")).Resolve().CapitalizeFirst(), detail = detail,
-                    look = roomA.room.ExtentsClose.CenterCell, template = template
+                    look = roomA.room.ExtentsClose.CenterCell, template = template,
+                    cells = roomA.room.Cells.ToList(), other = OtherCells(rule.b, byRole, worst.b, map),
+                    from = roomA.room.ExtentsClose.CenterCell, to = OtherMid(rule.b, byRole, worst.b, map),
+                    mapLabel = "CC_Base_Map_Far".Translate(((int)worst.distance).Named("D"), other.Named("B")).Resolve()
                 });
             }
 
@@ -189,7 +281,10 @@ namespace ColonyCouncil
                     key = "close:" + rule.key, group = "rooms", score = BaseReviewMath.CloseScore(rule, roomsA),
                     title = "CC_Base_Close".Translate(roomsA.Named("N"), roomA.label.Named("A"), roomB.label.Named("B")).Resolve().CapitalizeFirst(),
                     detail = ("CC_Base_Close_" + rule.key).Translate(roomsA.Named("N"), roomB.label.Named("B")).Resolve(),
-                    look = roomA.room.ExtentsClose.CenterCell
+                    look = roomA.room.ExtentsClose.CenterCell,
+                    cells = roomA.room.Cells.ToList(), other = roomB.room.Cells.ToList(),
+                    from = roomA.room.ExtentsClose.CenterCell, to = roomB.room.ExtentsClose.CenterCell,
+                    mapLabel = "CC_Base_Map_Close".Translate(roomB.label.Named("B")).Resolve()
                 });
             }
 
@@ -206,7 +301,10 @@ namespace ColonyCouncil
                 {
                     key = "mealwalk", group = "walks", score = Mathf.Min(0.4f, 0.15f + (walk - BaseReviewMath.LongMealWalk) / 100f),
                     title = "CC_Base_MealWalk".Translate().Resolve(), detail = "CC_Base_MealWalk_Detail".Translate(((int)walk).Named("D"), byRole["Bedroom"].Count.Named("N")).Resolve(),
-                    look = farthest.room.ExtentsClose.CenterCell
+                    look = farthest.room.ExtentsClose.CenterCell,
+                    cells = farthest.room.Cells.ToList(), other = NearestRoom(farthest, byRole["DiningRoom"])?.room.Cells.ToList() ?? new List<IntVec3>(),
+                    from = farthest.room.ExtentsClose.CenterCell, to = NearestRoom(farthest, byRole["DiningRoom"])?.room.ExtentsClose.CenterCell ?? IntVec3.Invalid,
+                    mapLabel = "CC_Base_Map_MealWalk".Translate(((int)walk).Named("D")).Resolve()
                 });
             }
 
@@ -245,6 +343,42 @@ namespace ColonyCouncil
             return t != null && t.UnavailableReason(map) == null ? t : null;
         }
 
+        /// <summary>The cells of the other side of a near rule: a room of that role, or the gate cell, or the nearest field.</summary>
+        private static List<IntVec3> OtherCells(string role, Dictionary<string, List<RoomInfo>> byRole, int index, Map map)
+        {
+            if (byRole.TryGetValue(role, out var rooms) && index >= 0 && index < rooms.Count) return rooms[index].room.Cells.ToList();
+            var mid = OtherMid(role, byRole, index, map);
+            return mid.IsValid ? GenRadial.RadialCellsAround(mid, 1.5f, true).Where(c => c.InBounds(map)).ToList() : new List<IntVec3>();
+        }
+
+        private static IntVec3 OtherMid(string role, Dictionary<string, List<RoomInfo>> byRole, int index, Map map)
+        {
+            if (byRole.TryGetValue(role, out var rooms) && index >= 0 && index < rooms.Count) return rooms[index].room.ExtentsClose.CenterCell;
+            if (role == "Gate") return RoomNeighbours.GateCell(map);
+            if (role == "Fields")
+            {
+                var fields = RoomNeighbours.FieldCells(map);
+                return fields != null && index >= 0 && index < fields.Count ? fields[index] : IntVec3.Invalid;
+            }
+            return IntVec3.Invalid;
+        }
+
+        private static RoomInfo NearestRoom(RoomInfo from, List<RoomInfo> among)
+        {
+            RoomInfo best = null;
+            float d = float.MaxValue;
+            foreach (var r in among)
+            {
+                float dd = (r.mid.x - from.mid.x) * (r.mid.x - from.mid.x) + (r.mid.z - from.mid.z) * (r.mid.z - from.mid.z);
+                if (dd < d)
+                {
+                    d = dd;
+                    best = r;
+                }
+            }
+            return best;
+        }
+
         // ---------------- Doors ----------------
 
         private static void Doors(Map map, List<BaseFinding> findings)
@@ -278,6 +412,7 @@ namespace ColonyCouncil
                 key = "doors", group = "doors", score = BaseReviewMath.TidyScore(pointless.Count, 0.06f),
                 title = "CC_Base_Doors".Translate(pointless.Count).Resolve(), detail = "CC_Base_Doors_Detail".Translate().Resolve(),
                 look = pointless[0].Position, things = pointless.Cast<Thing>().ToList(),
+                cells = pointless.Select(d => d.Position).ToList(), mapLabel = "CC_Base_Map_Doors".Translate().Resolve(),
                 fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, pointless.Cast<Thing>().ToList())
             });
         }
@@ -333,6 +468,7 @@ namespace ColonyCouncil
                 key = "stubs", group = "walls", score = BaseReviewMath.TidyScore(runs, 0.04f, 0.2f),
                 title = "CC_Base_Stubs".Translate(runs, things.Count).Resolve(), detail = "CC_Base_Stubs_Detail".Translate().Resolve(),
                 look = things[0].Position, things = things,
+                cells = things.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Stubs".Translate().Resolve(),
                 fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, things)
             });
         }
@@ -428,14 +564,16 @@ namespace ColonyCouncil
                 {
                     key = "conduits", group = "works", score = BaseReviewMath.TidyScore(runs, 0.03f, 0.2f),
                     title = "CC_Base_Conduits".Translate(dead.Count, runs).Resolve(), detail = "CC_Base_Conduits_Detail".Translate().Resolve(),
-                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, dead)
+                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, dead),
+                    cells = dead.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Conduits".Translate().Resolve()
                 });
             if (orphan.Count > 0)
                 findings.Add(new BaseFinding
                 {
                     key = "orphanconduits", group = "works", score = BaseReviewMath.TidyScore(orphan.Count, 0.02f, 0.15f),
                     title = "CC_Base_OrphanConduits".Translate(orphan.Count).Resolve(), detail = "CC_Base_OrphanConduits_Detail".Translate().Resolve(),
-                    look = orphan[0].Position, things = orphan, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, orphan)
+                    look = orphan[0].Position, things = orphan, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, orphan),
+                    cells = orphan.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Orphan".Translate().Resolve()
                 });
         }
 
@@ -543,7 +681,8 @@ namespace ColonyCouncil
                 {
                     key = "pipes:" + key, group = "works", score = BaseReviewMath.TidyScore(runs, 0.03f, 0.2f),
                     title = "CC_Base_Pipes".Translate(dead.Count.Named("N"), label.Named("KIND"), runs.Named("RUNS")).Resolve(), detail = "CC_Base_Pipes_Detail".Translate().Resolve(),
-                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, dead)
+                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, dead),
+                    cells = dead.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Conduits".Translate().Resolve()
                 });
             }
         }
@@ -577,7 +716,9 @@ namespace ColonyCouncil
                             key = "freezer:" + door.thingIDNumber, group = "doors", score = outdoors ? 0.3f : 0.22f,
                             title = "CC_Base_FreezerDoor".Translate(beyondLabel.Named("B")).Resolve().CapitalizeFirst(),
                             detail = "CC_Base_FreezerDoor_Detail".Translate(((int)r.room.Temperature).Named("T"), ((int)beyond.Temperature).Named("TB")).Resolve(),
-                            look = door.Position
+                            look = door.Position,
+                            cells = new List<IntVec3> { door.Position }, other = cells.ToList(),
+                            mapLabel = "CC_Base_Map_Freezer".Translate(((int)beyond.Temperature).Named("TB")).Resolve()
                         });
                         break;
                     }

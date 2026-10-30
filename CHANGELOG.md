@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The planning pages drawn on the map
+
+*30 October 2026, version 0.28.0*
+
+- The Base page has a little map of the base on the left, like the defense page's: the rooms coloured by their use, the walls and doors, the rock, and every finding marked in its part's colour (orange for rooms and walks, red for doors, blue for stores, yellow for conduits and pipes), with a legend. Hover a finding on it to pick it out in the list, and a finding in the list to frame it on the little map; click to go there.
+- While the Base page is open, its findings are drawn on the real map too: the rooms a finding is about outlined, the room or store they're far from in white with a line between and the distance at it, the doors, stubs and dead runs marked, each with a short word. The finding under the mouse is drawn in full. "Show on the map" keeps them drawn with the window closed.
+- Hovering a step on the Plan page shows on the map what it points at; a step from the base review shows the review's own drawing of it. Hovering a batch on the Making page outlines the bench that would make it, and a harvest nothing uses outlines where it lies.
+- Rearranging a room, each piece that moves has a line from where it stands to where it goes; the piece under the mouse in the window is drawn in full with its name at its new place.
+- In the room planner, after "Find a good spot", the two other spots are outlined faintly and all three carry their number from the panel, so they can be compared on the map.
+- On the ground plan, the room whose row the mouse is over is drawn in full while the others fade a little.
+
 ## Conduits to moved pieces, rooms rebuilt beside what they belong with
 
 *30 October 2026, version 0.27.0*

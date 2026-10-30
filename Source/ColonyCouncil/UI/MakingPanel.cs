@@ -84,6 +84,8 @@ namespace ColonyCouncil
             float h = Mathf.Max(44f, 24f + lineH + 8f);
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, UiKit.Good);
+            if (Mouse.IsOver(row) && o.bench != null && o.bench.Spawned && o.bench.Map == Find.CurrentMap)
+                MapHighlights.Cells("making:" + o.recipe.defName, o.bench.Map, o.bench.OccupiedRect().Cells, UiKit.Good, o.product.LabelCap, o.bench.Position);
             Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), o.product);
             string title = o.product.LabelCap + (o.productStock > 0 ? " " + "CC_Making_Have".Translate(o.productStock).Resolve() : "");
             UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, Color.white);
@@ -116,6 +118,8 @@ namespace ColonyCouncil
             float h = Mathf.Max(44f, 24f + lineH + 8f);
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, UiKit.Info);
+            if (Mouse.IsOver(row) && map == Find.CurrentMap)
+                MapHighlights.Cells("unused:" + u.def.defName, map, map.listerThings.ThingsOfDef(u.def).Where(t => t.Spawned).Take(12).Select(t => t.Position), UiKit.Info, u.def.LabelCap);
             Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), u.def);
             UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), u.def.LabelCap + " " + "CC_Making_Have".Translate(u.stock).Resolve(), Color.white);
             Text.Font = GameFont.Tiny;

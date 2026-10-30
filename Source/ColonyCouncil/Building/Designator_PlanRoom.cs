@@ -47,6 +47,7 @@ namespace ColonyCouncil
         private static readonly Color WaitingColor = new Color(0.75f, 0.75f, 0.75f, 0.5f);
         private static readonly Color PresentColor = new Color(0.55f, 0.75f, 1f, 0.35f);
         private static readonly Color SuggestColor = new Color(1f, 0.9f, 0.4f, 0.8f);
+        private static readonly Color OtherSpotColor = new Color(1f, 0.9f, 0.4f, 0.35f);
         private static readonly Color RoomColor = new Color(0.55f, 0.85f, 1f);
         /// <summary>Left out because the ground can't hold it (water, marsh, mud): amber, a warning rather than a block.</summary>
         private static readonly Color SkipColor = new Color(1f, 0.6f, 0.2f);
@@ -353,6 +354,19 @@ namespace ColonyCouncil
                         cells.Add(new IntVec3(suggestedAnchor.x + x, 0, suggestedAnchor.z + z));
                 GenDraw.DrawFieldEdges(cells, SuggestColor);
             }
+            // The other suggested spots, fainter, so they can be compared on the map.
+            if (!upgradeMode)
+                for (int i = 0; i < suggestions.Count; i++)
+                {
+                    if (i == suggestionIndex) continue;
+                    var sp = suggestions[i];
+                    TemplateMath.RotatedSize(Template.FullWidth, Template.FullHeight, sp.rot, out int w, out int h);
+                    var ring = new List<IntVec3>();
+                    for (int x = 0; x < w; x++)
+                        for (int z = 0; z < h; z++)
+                            if (x == 0 || z == 0 || x == w - 1 || z == h - 1) ring.Add(new IntVec3(sp.anchor.x + x, 0, sp.anchor.z + z));
+                    GenDraw.DrawFieldEdges(ring, OtherSpotColor);
+                }
 
             var queue = map.GetComponent<CouncilPlanQueue>();
             if (queue != null)
@@ -441,6 +455,15 @@ namespace ColonyCouncil
         {
             var map = Find.CurrentMap;
             if (map == null || Template == null) return;
+            // The suggested spots' numbers, as the panel lists them.
+            if (!upgradeMode && suggestions.Count > 1 && Find.CameraDriver.CurrentZoom <= CameraZoomRange.Far)
+                for (int i = 0; i < suggestions.Count; i++)
+                {
+                    var sp = suggestions[i];
+                    TemplateMath.RotatedSize(Template.FullWidth, Template.FullHeight, sp.rot, out int w, out int h);
+                    var mid = new IntVec3(sp.anchor.x + w / 2, 0, sp.anchor.z + h / 2);
+                    if (mid.InBounds(map)) GenMapUI.DrawThingLabel(mid.ToVector3Shifted().MapToUIPosition(), (i + 1).ToString(), i == suggestionIndex ? Color.white : SuggestColor);
+                }
             var plan = PlanAt(UI.MouseCell());
             string text = Template.FullLabel.CapitalizeFirst() + " (" + Template.size.x + "x" + Template.size.z + ")";
             if (plan.upgrade)

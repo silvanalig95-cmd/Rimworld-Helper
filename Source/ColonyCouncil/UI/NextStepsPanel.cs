@@ -93,6 +93,13 @@ namespace ColonyCouncil
             float h = Mathf.Max(52f, titleH + detailH + 18f, Mathf.CeilToInt(buttons / 2f) * 28f + 10f);
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, color);
+            if (Mouse.IsOver(row) && s.map != null && s.map == Find.CurrentMap && s.look.IsValid && s.look.InBounds(s.map))
+            {
+                // A step from the base review shows what the review drew for it; any other, where it points.
+                var finding = s.kind == NextStep.KindBase && s.key.StartsWith("base:") ? BaseReview.Finding(s.map, s.key.Substring(5)) : null;
+                if (finding != null) BaseOverlay.Highlight(s.map, finding, true);
+                else MapHighlights.Cells("plan:" + s.key, s.map, GenRadial.RadialCellsAround(s.look, 1.5f, true), color, s.title, s.look);
+            }
 
             // The number in the plan (or the level, for a proposal), and the arrows.
             if (inPlan)

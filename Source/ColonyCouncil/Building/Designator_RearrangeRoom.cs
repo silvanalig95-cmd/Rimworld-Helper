@@ -22,6 +22,17 @@ namespace ColonyCouncil
 
         /// <summary>The room looked over, while its window is open.</summary>
         public RearrangePlan plan;
+        /// <summary>The piece under the mouse in the window, drawn in full on the map with its name.</summary>
+        public RearrangePiece hovered;
+        private int hoveredFrame = -10;
+
+        public void Hover(RearrangePiece p)
+        {
+            hovered = p;
+            hoveredFrame = Time.frameCount;
+        }
+
+        private RearrangePiece Hovered => Time.frameCount - hoveredFrame < 3 ? hovered : null;
 
         public Designator_RearrangeRoom()
         {
@@ -115,19 +126,36 @@ namespace ColonyCouncil
                 return;
             }
             GenDraw.DrawFieldEdges(plan.cells, Outline);
+            var hov = Hovered;
             foreach (var p in plan.pieces)
             {
                 if (p.thing == null) continue;
+                bool bright = p == hov;
                 if (p.Moves)
                 {
-                    GenDraw.DrawFieldEdges(p.thing.OccupiedRect().Cells.ToList(), FromColor);
-                    DrawGhost(p.thing.def, p.thing.Stuff, p.to, p.toRot, MoveColor);
+                    var from = p.thing.OccupiedRect();
+                    GenDraw.DrawFieldEdges(from.Cells.ToList(), bright ? Color.white : FromColor);
+                    DrawGhost(p.thing.def, p.thing.Stuff, p.to, p.toRot, bright ? new Color(0.6f, 1f, 0.65f, 0.95f) : MoveColor);
+                    // The way it goes: a line from where it stands to where it will.
+                    var toRect = GenAdj.OccupiedRect(p.to, p.toRot, p.thing.def.size);
+                    GenDraw.DrawLineBetween(from.CenterVector3, toRect.CenterVector3, bright ? SimpleColor.White : SimpleColor.Green, bright ? 0.3f : 0.12f);
                 }
-                else if (p.Stays) GenDraw.DrawFieldEdges(p.thing.OccupiedRect().Cells.ToList(), StayColor);
+                else if (p.Stays) GenDraw.DrawFieldEdges(p.thing.OccupiedRect().Cells.ToList(), bright ? Color.white : StayColor);
             }
             if (plan.layConduits)
                 foreach (var p in plan.pieces)
                     if (p.Moves && p.losesPower && p.conduits.Count > 0) GenDraw.DrawFieldEdges(p.conduits, ConduitColor);
+        }
+
+        /// <summary>The hovered piece's name over its new place (or where it stays), and the tool's own label at the mouse.</summary>
+        public override void DrawMouseAttachments()
+        {
+            base.DrawMouseAttachments();
+            var p = Hovered;
+            if (p?.thing == null || plan?.map == null || Find.CameraDriver.CurrentZoom > CameraZoomRange.Far) return;
+            var at = p.Moves ? p.to : p.thing.Position;
+            if (!at.InBounds(plan.map)) return;
+            GenMapUI.DrawThingLabel(at.ToVector3Shifted().MapToUIPosition(), p.thing.LabelCap, Color.white);
         }
 
         private static void DrawGhost(ThingDef def, ThingDef stuff, IntVec3 cell, Rot4 rot, Color col)
@@ -293,7 +321,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>One piece: its icon and name, where it goes or why it stays; click to look at it.</summary>
-        private static float Row(float y, float width, RearrangePiece p, Color color, Map map)
+        private float Row(float y, float width, RearrangePiece p, Color color, Map map)
         {
             Text.Font = GameFont.Small;
             string name = p.thing?.LabelCap ?? "?";
@@ -304,6 +332,7 @@ namespace ColonyCouncil
             float h = Mathf.Max(30f, 22f + reasonH + 4f);
             var r = new Rect(0f, y, width, h);
             UiKit.Card(r, color);
+            if (Mouse.IsOver(r)) des.Hover(p);
             if (p.thing != null) Widgets.ThingIcon(new Rect(8f, y + 3f, 24f, 24f), p.thing);
             UiKit.LabelFit(new Rect(40f, y + 2f, width - 48f, 22f), name, Color.white);
             Text.Font = GameFont.Tiny;

@@ -64,7 +64,7 @@ namespace ColonyCouncil
                 key = "catchall", group = "stores", score = StorageReviewMath.CatchAllScore(zones.Count),
                 title = "CC_Store_CatchAll".Translate(zones.Count).Resolve(),
                 detail = "CC_Store_CatchAll_Detail".Translate(string.Join(", ", zones.Take(4).Select(NameOf))).Resolve(),
-                look = Where(zones[0])
+                look = Where(zones[0]), cells = zones.Take(3).SelectMany(z => z.CellsList).ToList(), mapLabel = "CC_Store_Map_CatchAll".Translate().Resolve()
             });
         }
 
@@ -100,12 +100,18 @@ namespace ColonyCouncil
             if (total == 0 || byDef.Count == 0) return;
             var top = byDef.OrderByDescending(kv => kv.Value).Take(4).Select(kv => kv.Value + " " + kv.Key.label).ToList();
             var defs = byDef.Keys.ToList();
+            var spots = new List<IntVec3>();
+            foreach (var t in haulables)
+            {
+                if (spots.Count >= 40) break;
+                if (t != null && t.Spawned && byDef.ContainsKey(t.def) && !t.IsInValidStorage()) spots.Add(t.Position);
+            }
             findings.Add(new BaseFinding
             {
                 key = "unstored", group = "stores", score = StorageReviewMath.UnstoredScore(total),
                 title = "CC_Store_Unstored".Translate(total.Named("N"), byDef.Count.Named("KINDS")).Resolve(),
                 detail = "CC_Store_Unstored_Detail".Translate(string.Join(", ", top).Named("LIST")).Resolve(),
-                look = first.Position,
+                look = first.Position, cells = spots, mapLabel = "CC_Store_Map_Unstored".Translate().Resolve(),
                 fixLabel = "CC_Store_MakeStockpile".Translate().Resolve(),
                 fix = () => MakeStockpile(map, defs, StoreCenter(map), 4, StoragePriority.Normal, "CC_Store_ZoneName_Odds".Translate().Resolve())
             });
@@ -123,7 +129,7 @@ namespace ColonyCouncil
 
         private static void Benches(Map map, List<SlotGroup> groups, List<BaseFinding> findings)
         {
-            var far = new List<(Building_WorkTable bench, float distance, List<ThingDef> defs)>();
+            var far = new List<(Building_WorkTable bench, float distance, List<ThingDef> defs, SlotGroup store)>();
             foreach (var b in map.listerBuildings.allBuildingsColonist)
             {
                 if (!(b is Building_WorkTable bench) || bench.BillStack == null || bench.BillStack.Count == 0) continue;
@@ -131,6 +137,7 @@ namespace ColonyCouncil
                 if (defs.Count == 0) continue;
                 var at = bench.InteractionCell;
                 float best = float.MaxValue;
+                SlotGroup nearest = null;
                 foreach (var g in groups)
                 {
                     if (g.Settings == null || g.Settings.Priority == StoragePriority.Unstored || g.CellsList.Count == 0) continue;
@@ -142,12 +149,20 @@ namespace ColonyCouncil
                             break;
                         }
                     if (!takes) continue;
-                    foreach (var c in g.CellsList) best = Mathf.Min(best, at.DistanceTo(c));
+                    foreach (var c in g.CellsList)
+                    {
+                        float dist = at.DistanceTo(c);
+                        if (dist < best)
+                        {
+                            best = dist;
+                            nearest = g;
+                        }
+                    }
                 }
                 if (best == float.MaxValue || best <= StorageReviewMath.FarBench) continue;
-                far.Add((bench, best, defs));
+                far.Add((bench, best, defs, nearest));
             }
-            foreach (var (bench, distance, defs) in far.OrderByDescending(f => f.distance).Take(5))
+            foreach (var (bench, distance, defs, store) in far.OrderByDescending(f => f.distance).Take(5))
             {
                 var b = bench;
                 var mats = defs;
@@ -156,7 +171,9 @@ namespace ColonyCouncil
                     key = "benchfar:" + b.thingIDNumber, group = "stores", score = StorageReviewMath.BenchFarScore(distance),
                     title = "CC_Store_BenchFar".Translate(b.LabelCap.ToString().Named("BENCH"), ((int)distance).Named("D")).Resolve(),
                     detail = "CC_Store_BenchFar_Detail".Translate(string.Join(", ", mats.Take(4).Select(d => d.label)).Named("LIST")).Resolve(),
-                    look = b.Position,
+                    look = b.Position, cells = b.OccupiedRect().Cells.ToList(), other = store?.CellsList.ToList() ?? new List<IntVec3>(),
+                    from = b.Position, to = store != null && store.CellsList.Count > 0 ? store.CellsList.OrderBy(c => c.DistanceTo(b.Position)).First() : IntVec3.Invalid,
+                    mapLabel = "CC_Store_Map_BenchFar".Translate(((int)distance).Named("D")).Resolve(),
                     fixLabel = "CC_Store_MakeByBench".Translate().Resolve(),
                     fix = () => MakeStockpile(map, mats, b.InteractionCell, 3, StoragePriority.Preferred, "CC_Store_ZoneName_Bench".Translate(b.LabelCap.ToString()).Resolve(), b)
                 });
@@ -211,13 +228,18 @@ namespace ColonyCouncil
                 if (!defs.Any(d => map.listerThings.ThingsOfDef(d).Count > 0)) continue;
                 var rooms = new HashSet<int>();
                 SlotGroup example = null;
+                var marks = new List<IntVec3>();
                 foreach (var g in groups)
                 {
                     if (catchAll.Contains(g) || g.Settings == null || g.Settings.Priority < StoragePriority.Normal || g.CellsList.Count == 0) continue;
                     if (!defs.Any(d => g.Settings.AllowedToAccept(d))) continue;
                     var room = g.CellsList[0].GetRoom(map);
                     int id = room == null || room.PsychologicallyOutdoors ? -1 : room.ID;
-                    if (rooms.Add(id) && rooms.Count == 2) example = g;
+                    if (rooms.Add(id))
+                    {
+                        if (rooms.Count == 2) example = g;
+                        marks.AddRange(g.CellsList.Take(12));
+                    }
                 }
                 if (rooms.Count < StorageReviewMath.SpreadRooms) continue;
                 findings.Add(new BaseFinding
@@ -225,7 +247,8 @@ namespace ColonyCouncil
                     key = "spread:" + key, group = "stores", score = StorageReviewMath.SpreadScore(rooms.Count),
                     title = "CC_Store_Spread".Translate(("CC_Store_Kind_" + key).Translate().Named("KIND"), rooms.Count.Named("N")).Resolve().CapitalizeFirst(),
                     detail = "CC_Store_Spread_Detail".Translate().Resolve(),
-                    look = example != null ? Where(example) : IntVec3.Invalid
+                    look = example != null ? Where(example) : IntVec3.Invalid, cells = marks,
+                    mapLabel = "CC_Store_Map_Spread".Translate(("CC_Store_Kind_" + key).Translate().Named("KIND")).Resolve()
                 });
             }
         }
@@ -241,7 +264,7 @@ namespace ColonyCouncil
                 key = "emptyfilter", group = "stores", score = StorageReviewMath.EmptyScore(empty.Count),
                 title = "CC_Store_Empty".Translate(empty.Count).Resolve(),
                 detail = "CC_Store_Empty_Detail".Translate(string.Join(", ", empty.Take(4).Select(NameOf))).Resolve(),
-                look = Where(empty[0])
+                look = Where(empty[0]), cells = empty.Take(4).SelectMany(g => g.CellsList).ToList(), mapLabel = "CC_Store_Map_Empty".Translate().Resolve()
             });
         }
 

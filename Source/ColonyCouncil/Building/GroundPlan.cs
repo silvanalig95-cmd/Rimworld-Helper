@@ -32,9 +32,20 @@ namespace ColonyCouncil
     {
         private static Map shownMap;
         private static List<GroundPlanRoom> rooms;
+        private static GroundPlanRoom hovered;
+        private static int hoveredFrame = -10;
 
         public static bool Shown => rooms != null && shownMap != null && Find.CurrentMap == shownMap;
         public static List<GroundPlanRoom> Rooms => rooms ?? new List<GroundPlanRoom>();
+
+        /// <summary>The room whose row the mouse is over, drawn in full on the map while the rest fade a little.</summary>
+        public static GroundPlanRoom Hovered => Time.frameCount - hoveredFrame < 3 ? hovered : null;
+
+        public static void Hover(GroundPlanRoom r)
+        {
+            hovered = r;
+            hoveredFrame = Time.frameCount;
+        }
 
         /// <summary>Works the plan out for the map and opens its window.</summary>
         public static void Show(Map map)
@@ -133,8 +144,14 @@ namespace ColonyCouncil
         public override void MapComponentUpdate()
         {
             if (!GroundPlan.Shown || map != Find.CurrentMap) return;
+            var hov = GroundPlan.Hovered;
             foreach (var r in GroundPlan.Rooms)
-                if (r.edge.Count > 0) GenDraw.DrawFieldEdges(r.edge, r.color);
+            {
+                if (r.edge.Count == 0) continue;
+                var c = hov == null || hov == r ? r.color : new Color(r.color.r, r.color.g, r.color.b, 0.4f);
+                GenDraw.DrawFieldEdges(r.edge, c);
+                if (hov == r) GenDraw.DrawFieldEdges(r.rect.Cells.ToList(), new Color(r.color.r, r.color.g, r.color.b, 0.35f));
+            }
         }
 
         public override void MapComponentOnGUI()
@@ -155,8 +172,9 @@ namespace ColonyCouncil
                 }
             }
             if (Find.CameraDriver.CurrentZoom > CameraZoomRange.Far) return;
+            var hov = GroundPlan.Hovered;
             foreach (var r in GroundPlan.Rooms)
-                if (!r.nowhere && r.mid.InBounds(map)) GenMapUI.DrawThingLabel(r.mid.ToVector3Shifted().MapToUIPosition(), r.label, r.color);
+                if (!r.nowhere && r.mid.InBounds(map)) GenMapUI.DrawThingLabel(r.mid.ToVector3Shifted().MapToUIPosition(), r.label, hov == r ? Color.white : r.color);
         }
     }
 
@@ -249,6 +267,7 @@ namespace ColonyCouncil
             float h = Mathf.Max(56f, 24f + whyH + 10f);
             var row = new Rect(0f, y, width, h);
             UiKit.Card(row, r.color);
+            if (Mouse.IsOver(row) && !r.nowhere) GroundPlan.Hover(r);
             Widgets.DrawBoxSolid(new Rect(10f, y + 10f, 14f, 14f), r.color);
             UiKit.LabelFit(new Rect(30f, y + 4f, width - 200f - 30f, 24f), n + ". " + r.label, Color.white);
             if (r.template?.Icon != null) GUI.DrawTexture(new Rect(width - 190f, y + 6f, 20f, 20f), r.template.Icon);

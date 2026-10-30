@@ -1,6 +1,21 @@
 # Handoff: work in progress
 
-Last shipped: 0.27.0, the three leftovers of round 2. Conduits: `RoomRearranger.ConduitRun` (pure `ConduitMath.Path`,
+Last shipped: 0.28.0, the player's ask for the planning pages' visuals in the depth of the defense pages.
+`UI/MapHighlights.cs`: `MapHighlight` (cells, a second set, a line, a label, bright or faint) added by any page in
+its draw and drawn by `MapHighlightOverlay` (a MapComponent: edges and `GenDraw.DrawLineBetween` in Update, labels
+in OnGUI) for two frames after. `BaseFinding` carries `cells`, `other`, `from`, `to`, `mapLabel`
+(`CC_Base_Map_*`, `CC_Store_Map_*`); `BaseOverlay` (in BaseReview.cs, modelled on DefenseOverlay: `Show` in
+PageMemory "base.overlay", `PageDrawn`, `Hover(key)`, `HoveredKey`, `Highlight(map, f, bright)`) adds them each
+frame while showing. `UI/BaseMiniMap.cs`: a texture per review (rooms by `BaseReview.RoomsByRole` in `RoomColors`,
+walls, doors, rock, water, home, findings outlined when over 12 cells else filled), hover both ways with the list,
+click jumps; `BasePanel` is two columns like DefensePanel (map, legend, facts left; findings right). Plan steps
+highlight on hover (`BaseOverlay.Highlight` for base steps), Making rows outline the bench or the stock,
+`Designator_RearrangeRoom` draws move lines and the hovered piece (`Hover`, `DrawMouseAttachments`),
+`Designator_PlanRoom` draws the other suggested spots and numbers, `GroundPlan.Hover` fades the rest. Nothing of
+this was tried in the game here: the first in-game look should check the mini map's orientation (texture row 0 is
+the south edge), the label density with many findings, and that highlights stop when a page closes.
+
+Before it, 0.27.0, the three leftovers of round 2. Conduits: `RoomRearranger.ConduitRun` (pure `ConduitMath.Path`,
 Tools/Tests/ConduitTests.cs) breadth-first from every placeable cell beside a transmitter (`powerNetGrid
 .TransmittedPowerNetAt`) within 40 cells, over cells `CanPlaceBlueprintAt(PowerConduit)` accepts, to the first cell
 within 6 (Euclidean, the game's ConnectMaxDist) of the piece's new place; `RearrangePiece.conduits`,
@@ -8,14 +23,7 @@ within 6 (Euclidean, the game's ConnectMaxDist) of the piece's new place; `Rearr
 `TemplatePlanner.TryPlace`. The base review's near-rule findings carry `BaseFinding.template` (`Rebuild`: freezer,
 dining room, rec room, store room, hospital, barn by rule key, when buildable) → Plan the room on the Base page and
 the Plan step's template. `GroundPlanOverlay.MapComponentOnGUI` takes a left click on a room's `rect` (no window under
-the mouse, no designator) → `PlanHere`. Not tried in the game here.
-
-Next, the player's ask: a review of the new planning features' UI and map visuals, in the depth and direction of
-the defense pages (DefenseOverlay/DefensePanel): findings drawn on the map while their page is open or a finding is
-hovered (rooms outlined with a line and a distance between them, doors and stubs and dead runs marked and labelled,
-a bench and its nearest store), the plan's steps highlighted on hover, the Making page's benches, arrows from old to
-new place in a rearrangement, all three suggested spots drawn with numbers in the planner; and the player's mods
-(245: DBH, LWM, RimFridge, MinifyEverything, VFE, VCE, Hospitality, RimMarket, Rimatomics...) kept in mind.
+the mouse, no designator) → `PlanHere`.
 
 Before it, 0.26.4, the player's report that a colonist "bugged out" under a clean sweep with the Cleaning Area
 mod (packageId s1.cleaningareatemp; also CleaningArea by Hatti and Cleaning Area Relaunched by Cerule, sources in

@@ -23,6 +23,28 @@
   <CC_Base_Fields>fields</CC_Base_Fields>
   <CC_Base_Outdoors>open air</CC_Base_Outdoors>
 
+  <!-- The little map and the findings on the real one (UI/BaseMiniMap.cs, UI/MapHighlights.cs). -->
+  <CC_Base_ShowOnMap>Show on the map</CC_Base_ShowOnMap>
+  <CC_Base_ShowOnMap_Tip>Draw what the review found on the map also with this window closed: the rooms a finding is about outlined (orange for rooms and walks, red for doors, blue for stores, yellow for conduits and pipes), a line to what they're far from, and a short word at each. They're always drawn while this page is open; the finding under the mouse is drawn in full.</CC_Base_ShowOnMap_Tip>
+  <CC_Base_MapTip>The base as the council reads it: the rooms coloured by their use, the walls white, the doors blue, the rock grey, and what the review found marked in its part's colour. Hover a finding to pick it out in the list; click to go there.</CC_Base_MapTip>
+  <CC_Base_MapNone>No rooms to draw yet. Once there are walls and a roof, the base shows here.</CC_Base_MapNone>
+  <CC_Base_Legend_Walls>walls</CC_Base_Legend_Walls>
+  <CC_Base_Legend_Doors>doors</CC_Base_Legend_Doors>
+  <CC_Base_Facts>{0} room(s) the council knows the use of. {1} finding(s), {2} of them put right at a click, {3} with a room the planner can place.</CC_Base_Facts>
+  <CC_Base_Map_Far>{D} cells to the {B}</CC_Base_Map_Far>
+  <CC_Base_Map_Close>right by the {B}</CC_Base_Map_Close>
+  <CC_Base_Map_MealWalk>{D} cells to meals</CC_Base_Map_MealWalk>
+  <CC_Base_Map_Doors>separates nothing</CC_Base_Map_Doors>
+  <CC_Base_Map_Stubs>stub of wall</CC_Base_Map_Stubs>
+  <CC_Base_Map_Conduits>leads nowhere</CC_Base_Map_Conduits>
+  <CC_Base_Map_Orphan>joined to nothing</CC_Base_Map_Orphan>
+  <CC_Base_Map_Freezer>{TB} °C beyond the door</CC_Base_Map_Freezer>
+  <CC_Store_Map_CatchAll>takes everything</CC_Store_Map_CatchAll>
+  <CC_Store_Map_Unstored>no store takes this</CC_Store_Map_Unstored>
+  <CC_Store_Map_BenchFar>{D} cells to its materials</CC_Store_Map_BenchFar>
+  <CC_Store_Map_Spread>{KIND} also kept here</CC_Store_Map_Spread>
+  <CC_Store_Map_Empty>takes nothing</CC_Store_Map_Empty>
+
   <!-- Rooms far apart that belong together. -->
   <CC_Base_Far>The {A} is far from the {B}</CC_Base_Far>
   <CC_Base_FarMore>The same goes for {0} more.</CC_Base_FarMore>
