@@ -189,7 +189,7 @@
   <ColonyCouncil.DecreeDef>
     <defName>Council_Decree_CleanSweep</defName>
     <label>clean sweep</label>
-    <description>Scrub everything: floors, tables, bedding, the hospital twice. Everyone who can clean puts it before their other work, even those not set to clean; fires, the sick and wounded, children, prisoners and meals still come first, and so do sleep, food and washing. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors and anyone still healing from a wound or an illness like it, and ask for it when many are hurt.</description>
+    <description>Scrub everything: floors, tables, bedding, the hospital twice. Everyone who can clean puts it before their other work, even those not set to clean; fires, the sick and wounded, children, prisoners and meals still come first, and so do sleep, food and washing. With a cleaning area mod, the sweep keeps to its area. Cleaning goes much faster, wounds are tended more carefully, and bodies fight off illness better. Most colonists dislike it, but doctors and anyone still healing from a wound or an illness like it, and ask for it when many are hurt.</description>
     <requestWhen><li>Dirty</li><li>Wounded</li></requestWhen>
     <neededWhen><li>RecentThreat</li></neededWhen>
     <order>12</order>

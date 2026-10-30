@@ -85,7 +85,8 @@ namespace ColonyCouncil
                 FilthMaker.TryMakeFilth(c, map, ThingDefOf.Filth_RubbleBuilding, 1);
             if (by == null || by.Dead || !by.Spawned || by.Map != map || by.Downed || by.Drafted) return;
             // Swept up by the one who broke it: the game's own cleaning, of this rubble.
-            var rubble = cells.SelectMany(c => c.GetThingList(map).OfType<Filth>()).Where(f => f.def == ThingDefOf.Filth_RubbleBuilding && by.CanReserve(f)).Distinct().ToList();
+            var rubble = cells.SelectMany(c => c.GetThingList(map).OfType<Filth>())
+                .Where(f => f.def == ThingDefOf.Filth_RubbleBuilding && by.CanReserve(f) && CleaningAreas.Allows(map, f.Position)).Distinct().ToList();
             if (rubble.Count == 0) return;
             var job = JobMaker.MakeJob(JobDefOf.Clean);
             foreach (var f in rubble) job.AddQueuedTarget(TargetIndex.A, f);

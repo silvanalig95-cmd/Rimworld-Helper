@@ -128,7 +128,10 @@ namespace ColonyCouncil
             if (done == null && room != null && !child)
             {
                 bool roomBothers = Has(d => Named(d, "SleptInBedroom") || Worker(d, "ThoughtWorker_NeedBeauty"));
-                var filth = roomBothers && free && Idle(p) ? room.ContainedAndAdjacentThings.OfType<Filth>().Where(f => f.Spawned && room.ContainsCell(f.Position)).Take(15).ToList() : null;
+                // Only filth the colony cleans: inside a cleaning area mod's area, where there is one.
+                var filth = roomBothers && free && Idle(p)
+                    ? room.ContainedAndAdjacentThings.OfType<Filth>().Where(f => f.Spawned && room.ContainsCell(f.Position) && CleaningAreas.Allows(p.Map, f.Position)).Take(15).ToList()
+                    : null;
                 if (!filth.NullOrEmpty() && p.workSettings != null && !p.WorkTypeIsDisabled(CleaningWork.Def ?? WorkTypeDefOf.Hauling))
                 {
                     var job = JobMaker.MakeJob(JobDefOf.Clean);

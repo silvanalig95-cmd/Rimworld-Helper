@@ -1,6 +1,17 @@
 # Handoff: work in progress
 
-Last shipped: 0.26.3, the player's ask: the new pages in a section of their own and one bottom bar button. The
+Last shipped: 0.26.4, the player's report that a colonist "bugged out" under a clean sweep with the Cleaning Area
+mod (packageId s1.cleaningareatemp; also CleaningArea by Hatti and Cleaning Area Relaunched by Cerule, sources in
+the session's scratchpad). Those mods swap the CleanFilth WorkGiverDef's giverClass and the Clean JobDef's driver
+for their own, keep the area in a map component (`getCleaningArea()` / `GetCleanArea()`, the home area when unset),
+and patch ListerFilthInHomeArea to hold only the area's filth; the driver's JumpIfOutsideCleaningArea ends a job for
+filth outside it at once. `CleanSweepWork.Swept` lifted every Cleaning-type giver (Dubs Bad Hygiene's internal
+WorkGiver_CleanFilth among them, which reads filth its own way), so such a job was handed out and ended forever.
+`Integrations/CleaningAreas.cs` reads the area by type name (`Of`, `Allows`, `Present`, `KeepsToArea`: the CleanFilth
+def and the base game's own givers); the sweep lifts only those, and Autonomy's room tidying and PlaySmash's rubble
+keep to the area. Not tried in the game here.
+
+Before it, 0.26.3, the player's ask: the new pages in a section of their own and one bottom bar button. The
 council window's `Section.Planning` (between Colony and People) holds `PlanningTabs` = Plan, Base, Making, Build (Room
 plans moved out of Colony, which is back to six pages); its label counts the planned steps; `OpenOrCloseSection`
 opens it on its last page or closes the window. One MainButtonDef `Rimfolk_PlanButton` (`MainButtonWorker_Page`,

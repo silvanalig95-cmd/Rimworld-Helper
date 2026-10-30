@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.26.4</version>
+        <date>30 October 2026</date>
+        <title>A clean sweep keeps to the cleaning area</title>
+        <points>
+          <li>Fixed: with a cleaning area mod (Cleaning Area, its temp replacement, Cleaning Area Relaunched), a clean sweep lifted every cleaning work giver to the top, another mod's own included; one that doesn't know the area handed a colonist filth outside it, the mod's own job driver ended that job at once, and the colonist stood taking the same job again for the rest of the sweep. The sweep now lifts only the givers that keep to the area.</li>
+          <li>A colonist tidying their own room on their own, and someone sweeping up a sculpture they smashed, keep to the cleaning area too.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.26.3</version>
         <date>30 October 2026</date>
         <title>A Planning section</title>

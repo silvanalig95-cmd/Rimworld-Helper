@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// A clean sweep put to work: while it's in force, every colonist who can clean puts cleaning before all other work
     /// except what keeps people alive (<see cref="Essential"/>), which still comes first, as do sleep, meals and washing,
     /// which aren't work. Those not set to clean clean too. Read each time a colonist looks for work
-    /// (Patch_CleanSweepWork); with the deeper game hooks off, the work order is the player's own.
+    /// (Patch_CleanSweepWork); with the deeper game hooks off, the work order is the player's own. With a cleaning area
+    /// mod, the sweep keeps to its area (Integrations/CleaningAreas.cs).
     /// </summary>
     public static class CleanSweepWork
     {
@@ -68,8 +69,10 @@ namespace ColonyCouncil
         {
             if (!lists.TryGetValue(pawn, out var list)) lists[pawn] = list = new List<WorkGiver>(source.Count + 4);
             cleaners.Clear();
+            // With a cleaning area mod, only the givers that keep to its area: another mod's own cleaning giver would hand
+            // out filth outside it, whose job the mod's driver ends at once, again and again (Integrations/CleaningAreas.cs).
             foreach (var gd in cleaning.workGiversByPriority)
-                if (gd?.Worker != null && !pawn.WorkTagIsDisabled(gd.workTags)) cleaners.Add(gd.Worker);
+                if (gd?.Worker != null && !pawn.WorkTagIsDisabled(gd.workTags) && CleaningAreas.KeepsToArea(gd)) cleaners.Add(gd.Worker);
             DecreeMath.SweepOrder(source, cleaners, IsEssential, IsCleaning, list);
             return list;
         }

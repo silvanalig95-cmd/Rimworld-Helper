@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A clean sweep keeps to the cleaning area
+
+*30 October 2026, version 0.26.4*
+
+- Fixed: with a cleaning area mod (Cleaning Area, its temp replacement, Cleaning Area Relaunched), a clean sweep lifted every cleaning work giver to the top, another mod's own included; one that doesn't know the area handed a colonist filth outside it, the mod's own job driver ended that job at once, and the colonist stood taking the same job again for the rest of the sweep. The sweep now lifts only the givers that keep to the area.
+- A colonist tidying their own room on their own, and someone sweeping up a sculpture they smashed, keep to the cleaning area too.
+
 ## A Planning section
 
 *30 October 2026, version 0.26.3*
