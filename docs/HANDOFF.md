@@ -1,6 +1,29 @@
 # Handoff: work in progress
 
-Last shipped: 0.33.0, the world round (other settlers, the road over a year, people a world event leaves behind).
+Last shipped: 0.34.0, the animals round (the herd's year, a beast that stays). `Animals/HerdStoryMath.cs`
+(Tools/Tests/HerdStoryTests.cs): `MinHerd` 4, `LeaderScore` (years, the kind's share, the old line first), `Generation`,
+`GenerationNews`, `SpringCalf`, `BeastFits` (predators from body size 0.6, grazers from 1.4, no insects or great
+beasts), `ResidentAfterDays` 3, `AskDue` (4 days, then every 8, three times), `FateAfterDays` 15, `RestDays` 20,
+`Stance`. `Animals/HerdStory.cs` on `CouncilGameComponent.herd` (`Daily` from AnimalLife.Daily, `Notify_Newborn` from
+AnimalLife.Born): `leader`, `lineName`, `generation`, `lineIds`/`lineGens` (60 at most), `Choose` (letters
+CC_Herd_Leader/NewLeader_Line/NewLeader_New, journal Council_Journal_Herd_Leader, the keeper's line
+Council_Pool_Herd_SayLeader via `Together.When`), `LastSeason` (`AnimalFacts.Old`, a `DilemmaEffect_Visit` to the pet),
+`Lost` (thought Council_Herd_LeaderGone), `SpringCalf` (thought Council_Herd_FirstSpringCalf for the map, a visit),
+`Keeper` (the pet's person, the herdmaster, the best with animals), `Name`, `Ordinal`. `Animals/ResidentBeast.cs` on
+`CouncilGameComponent.beast` (`Daily`, `Hourly` from AnimalLife): `Fits`, a candidate seen three days running
+`Become`s the beast (named by `Namer`: a child 60%, else a lover of animals; letter CC_Beast_Named), `Check` ends it
+(hunted/died/tamed/gone/driven/stays, CC_Beast_End_*) or fires `Council_DlmA_ResidentBeast` through
+`dilemmas.TryFire(true, only)`; `Hourly` has a colonist in sight say a Council_Pool_BeastSighting line;
+`DilemmaWorker_ResidentBeast` (X the beast, A the namer when grown else the best with animals, B the best shot; tags
+predator/grazer, stance, asked2/asked3), `DilemmaEffect_BeastStance`, `DilemmaEffect_FeedBeast` (a CarryOut to the
+stranger: the meat there is most of, hay, or raw food), `DilemmaEffect_DriveOff` (a null-faction lord with
+LordJob_ExitMapNear). Not tried in the game: the first look should check that a wild animal given a name shows it on
+the map, that the carried food is left where the beast is and eaten, that `LordJob_ExitMapNear` really walks a wild
+animal off (it is what herd migrations use), and that the leader's line survives a save and load (ids, not references).
+
+Next round (task): 0.35.0 Pokémon (one that keeps coming, a trainers' camp).
+
+Before it, 0.33.0, the world round (other settlers, the road over a year, people a world event leaves behind).
 `World/Workers_World.cs`: `SituationWorker_RivalColony` (Council_WS_RivalColony, 50 to 58 days; a NewTown worker that
 also makes the leader {X} with `MakePerson` and keeps "start" households in `numbers`; `RivalMath` in
 World/RivalMath.cs, Tools/Tests/RivalTests.cs: `Households(start, daysIn, warm)`, `Warmth`/`Slights`/`Sour`/`Warm` over
@@ -27,8 +50,6 @@ same pawn, named in both letters), that the wardens' camp comes when the answer 
 beat (the holding card on the World page), that a crossroads town renamed shows its new name on the world map, and that
 a deserters' camp asked to stand guard goes after a raid and comes back to its fire.
 
-Next rounds, in order (tasks): 0.34.0 animals (the herd's year, a resident wild animal); 0.35.0 Pokémon (one that
-keeps coming, a trainers' camp).
 
 Before it, 0.32.0, the visitors round (repeat visitors with a thread, visitors who notice, Hospitality guests in
 Rimfolk's stories). `Happenings/RegularMath.cs` (Tools/Tests/RegularTests.cs): `KeepMax` 5, `Due` 20..160 days,

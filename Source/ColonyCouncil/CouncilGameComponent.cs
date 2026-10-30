@@ -99,6 +99,9 @@ namespace ColonyCouncil
         public EncounterTracker encounters = new EncounterTracker();
         public NemesisTracker nemeses = new NemesisTracker();
         public PetTracker pets = new PetTracker();
+        /// <summary>The herd's year and the wild beast that stays (Animals/HerdStory.cs, Animals/ResidentBeast.cs).</summary>
+        public HerdStory herd = new HerdStory();
+        public ResidentBeast beast = new ResidentBeast();
         public AutonomyTracker autonomy = new AutonomyTracker();
         public HappeningTracker happenings = new HappeningTracker();
         /// <summary>Everyday pressures: the same meal, the same work, someone away, crowded rooms, half-built work.</summary>
@@ -248,6 +251,8 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref encounters, "encounters");
             Scribe_Deep.Look(ref nemeses, "nemeses");
             Scribe_Deep.Look(ref pets, "pets");
+            Scribe_Deep.Look(ref herd, "herd");
+            Scribe_Deep.Look(ref beast, "beast");
             Scribe_Deep.Look(ref autonomy, "autonomy");
             Scribe_Deep.Look(ref happenings, "happenings");
             Scribe_Deep.Look(ref pressures, "pressures");
@@ -324,6 +329,8 @@ namespace ColonyCouncil
                 if (encounters == null) encounters = new EncounterTracker();
                 if (nemeses == null) nemeses = new NemesisTracker();
                 if (pets == null) pets = new PetTracker();
+                if (herd == null) herd = new HerdStory();
+                if (beast == null) beast = new ResidentBeast();
                 if (autonomy == null) autonomy = new AutonomyTracker();
                 if (happenings == null) happenings = new HappeningTracker();
                 if (pressures == null) pressures = new PressureTracker();

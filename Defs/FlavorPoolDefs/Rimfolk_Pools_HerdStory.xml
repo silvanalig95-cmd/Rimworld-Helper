@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- The herd's year and the beast that stays (Source/ColonyCouncil/Animals/HerdStory.cs, ResidentBeast.cs): what is
+       said at the pens and on the wall, and what goes into the journals. {PET} is the animal, {PAWN} the speaker or
+       writer, {KIND} the animal's kind, {COUNT} a generation. Spoken lines are one sentence. -->
+
+  <!-- The keeper or the herdmaster, at the new leader's side. Tags: [first] (the herd's first leader), [line] (the old
+       leader's own blood), [new] (a new line). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_Herd_SayLeader</defName>
+    <lines>
+      <plain>
+        <li>[first] You're the herd now, {PET_nameDef}, so keep them together.</li>
+        <li>[first] They follow you already, {PET_nameDef}, I've seen it.</li>
+        <li>[line] Your mother led them, {PET_nameDef}, and now it's you.</li>
+        <li>[line] Same look as the old one, {PET_nameDef}.</li>
+        <li>[new] Well, {PET_nameDef}, it seems it's you they follow now.</li>
+        <li>Lead them well, {PET_nameDef}.</li>
+      </plain>
+      <warm><li>You've a herd to look after now, {PET_nameDef}, and so have I.</li></warm>
+      <cheerful><li>Hail {PET_nameDef}, head of the herd!</li></cheerful>
+      <blunt><li>You lead, {PET_nameDef}, the rest follow, simple.</li></blunt>
+      <cold><li>The herd will follow you, {PET_nameDef}, as long as you don't lead them anywhere foolish.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A colonist in sight of the wild beast the colony has named. Tags: [predator] or [grazer], [fed], [feared],
+       [watched], [child] (the speaker is a child). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Pool_BeastSighting</defName>
+    <lines>
+      <plain>
+        <li>There's {PET_nameDef} again, down by the trees.</li>
+        <li>[predator] {PET_nameDef}'s watching us from the trees again.</li>
+        <li>[predator,feared] Everyone in, {PET_nameDef}'s about.</li>
+        <li>[grazer] {PET_nameDef} is on the far meadow again, bold as you like.</li>
+        <li>[fed] {PET_nameDef}'s come for its supper, by the look of it.</li>
+        <li>[fed] It knows the time of day better than I do, that {PET_nameDef}.</li>
+        <li>[watched] Still here, {PET_nameDef}, same as every day.</li>
+        <li>[child] Look, look, it's {PET_nameDef}!</li>
+        <li>[child,feared] {PET_nameDef} won't come near the wall, will it?</li>
+      </plain>
+      <warm><li>Morning, {PET_nameDef}.</li></warm>
+      <cheerful><li>{PET_nameDef}'s out, everyone come and see!</li></cheerful>
+      <blunt><li>{PET_nameDef}, trees, same as yesterday.</li></blunt>
+      <gloomy><li>[predator] One day {PET_nameDef} won't stop at the trees.</li></gloomy>
+      <cold><li>[predator] That animal is too used to us.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Journals (Journals/, WriteTagged): the keeper or herdmaster on the herd's leader, its last season, its loss and the
+       first calf of spring; the one who named the beast. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Herd_Leader</defName>
+    <lines>
+      <plain>
+        <li>[first] The herd has a leader: {PET_nameDef}, the old {KIND}. The others go where {PET_nameDef} goes, and have for a while; today we gave it the name.</li>
+        <li>[line] {PET_nameDef} leads the herd now, of the old leader's own blood. I'd have picked the same.</li>
+        <li>[new] The herd follows {PET_nameDef} now. A new line, and we'll see what it makes of the herd.</li>
+      </plain>
+      <warm><li>{PET_nameDef} leads them now. I stood at the pens a long while this evening, just watching them settle around it.</li></warm>
+      <blunt><li>New leader. {PET_nameDef}. The herd knows it, so we might as well.</li></blunt>
+      <cheerful><li>{PET_nameDef}, head of the herd! Named and crowned at the pens with a bucket of feed.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Herd_LastSeason</defName>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} is slowing. The herd still follows, but at {PET_nameDef}'s pace now, and I think this is the old leader's last season.</li>
+        <li>I sat with {PET_nameDef} at the pens tonight. Gray at the muzzle, slow to rise. A good leader, and not much longer, I think.</li>
+      </plain>
+      <warm><li>{PET_nameDef}'s last season, I'm nearly sure. I'll make it a good one.</li></warm>
+      <blunt><li>{PET_nameDef} is old. Won't see another spring. The herd will need a new one.</li></blunt>
+      <gloomy><li>Everything I love in that herd is getting old, {PET_nameDef} first.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Herd_Gone</defName>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} is gone, and the herd stood about the pens all morning not knowing where to go. Nor did I.</li>
+        <li>We lost {PET_nameDef} today, the one the herd followed. The others will sort out who leads them. I'm not ready to.</li>
+      </plain>
+      <warm><li>Goodbye, {PET_nameDef}. The herd was yours, and you kept it well.</li></warm>
+      <blunt><li>{PET_nameDef} dead. Old age. The herd needs a new leader by the week's end.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Herd_SpringCalf</defName>
+    <lines>
+      <plain>
+        <li>The first calf of spring, {PET_nameDef}, born this morning to {OTHER_nameDef}. I went down to the pens to look and got no work done before noon.</li>
+        <li>Spring's first: {PET_nameDef}, a young {KIND}, on its legs within the hour. I stood by it like it was the first ever born.</li>
+      </plain>
+      <warm><li>{PET_nameDef}, the first of spring. I held my breath until it stood, and then I laughed out loud.</li></warm>
+      <cheerful><li>First calf of the year and it's a beauty, {PET_nameDef}! I stood at the pens grinning like a fool.</li></cheerful>
+      <blunt><li>First young of the spring. {PET_nameDef}. Healthy. Went to look, as if I'd never seen one.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_Beast_Named</defName>
+    <lines>
+      <plain>
+        <li>[predator] The {KIND} that has been hanging about the trees for days needed a name, so I gave it one: {PET_nameDef}. The others laughed, and then used it.</li>
+        <li>[grazer] There's a {KIND} on the far meadow every morning that hasn't moved on with the rest. I've called it {PET_nameDef}. It suits.</li>
+        <li>I named the wild one {PET_nameDef} today. Once a thing has a name you look for it.</li>
+      </plain>
+      <warm><li>{PET_nameDef}. That's what I've called the wild {KIND} that watches us. It seemed unkind to go on calling it "it".</li></warm>
+      <cheerful><li>Everyone's calling the wild {KIND} {PET_nameDef} now, and it was my idea!</li></cheerful>
+      <blunt><li>Named the {KIND}. {PET_nameDef}. Easier than "that animal".</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+</Defs>

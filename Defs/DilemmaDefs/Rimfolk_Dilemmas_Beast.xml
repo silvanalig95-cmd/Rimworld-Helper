@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- The wild animal that stays on the colony's land (Source/ColonyCouncil/Animals/ResidentBeast.cs): once the colony
+       has given it a name, this question comes a few days later, and again every so often while it stays (three times at
+       most). X is the beast, A the one who named it (or whoever is best with animals), B the best shot. Tags: predator or
+       grazer, fed, feared, watched (what the colony has made of it so far), asked2 and asked3 (not the first time). -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmA_ResidentBeast</defName>
+    <label>the beast that stays</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ResidentBeast</workerClass>
+    <weight>0</weight>
+    <cooldownDays>5</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1.5</answerDays>
+    <defaultOption>4</defaultOption>
+    <texts>
+      <li>[predator,watched] {X_nameDef} is still here. The {X_kind} the colony has been watching for days keeps to the trees by day and comes down toward the pens at dusk, and {A_nameDef}, who gave it its name, has started leaving the lamp burning. It has taken nothing of the colony's yet.\n\nThe council could leave it something to eat and see what comes of it, keep everyone close until it moves on, send the hunters, let {A_nameDef} try to win it over, or drive it off and have done.</li>
+      <li>[grazer,watched] {X_nameDef}, the {X_kind} that grazes the colony's far meadow every morning, has not moved on with the season as its kind do. {A_nameDef} named it and the name has stuck; the children point it out from the wall.\n\nThe council could leave it fodder and make a friend of it, send the hunters while it's fat, let {A_nameDef} try to tame it, or drive it off before it takes to the fields.</li>
+      <li>[fed,asked2|asked3] {X_nameDef} comes for what the colony leaves out now, and waits at the edge of the trees for it. {A_nameDef} swears it knows {A_objective} by sight. A wild thing fed is half a tame one, and half a danger.\n\nThe council can go on feeding it, stop, send the hunters, let {A_nameDef} try to tame it in earnest, or drive it off.</li>
+      <li>[feared,asked2|asked3] {X_nameDef} is still out there, and the colony has been keeping close because of it. Nobody has been hurt. Nobody has been easy, either.\n\nThe council can keep the watch up, send the hunters and end it, let {A_nameDef} try to win it over, or drive it off.</li>
+      <li>[asked2|asked3] {X_nameDef} is still on the colony's land. By now everyone has a story about it, and {A_nameDef} has a name for the place it sleeps.\n\nWhat the colony does about it is the council's to say.</li>
+    </texts>
+    <options>
+      <li>
+        <label>Leave food out for it</label>
+        <outcome>{A_nameDef} carried food out to the edge of the trees for {X_nameDef} and left it there, and went back the long way round. By morning it was gone.</outcome>
+        <ways><mercy>2</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FeedBeast" />
+          <li Class="ColonyCouncil.DilemmaEffect_BeastStance"><stance>fed</stance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Beast_Fed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep everyone close until it moves on</label>
+        <outcome>The word went round: children inside by dusk, nobody alone past the fields, and {B_nameDef} at the gate tonight with a lamp and a gun. {X_nameDef} is out there, and the colony knows it.</outcome>
+        <ways><mercy>0</mercy><openness>-1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the watch for {X_nameDef}</label><target>B</target><to>Gate</to><hours>20~2</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BeastStance"><stance>feared</stance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Beast_Uneasy</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Send the hunters after {X_nameDef}</label>
+        <outcome>The hunters went out after {X_nameDef}. {A_nameDef} said nothing, and watched them go from the wall.</outcome>
+        <ways><mercy>-3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty" />
+          <li Class="ColonyCouncil.DilemmaEffect_BeastStance"><stance>hunted</stance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Beast_Hunted</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} try to tame it</label>
+        <outcome>{X_nameDef} is on the handlers' list, and {A_nameDef} has gone out to the edge of the trees with a bucket and a great deal of patience.</outcome>
+        <ways><mercy>3</mercy><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Tame</designation></li>
+          <li Class="ColonyCouncil.DilemmaEffect_BeastStance"><stance>tame</stance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_WorthTaming</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it be</label>
+        <outcome>The council let {X_nameDef} be. It is part of the land, for now, and the colony will go on pointing it out from the wall.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_BeastStance"><stance>watched</stance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Drive it off</label>
+        <outcome>{A_nameDef} and another went out at dusk with torches and a great deal of noise, and {X_nameDef} went before them into the trees and over the edge of the land.</outcome>
+        <ways><mercy>-1</mercy><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>driving {X_nameDef} off</label><target>A</target><count>2</count><to>Stranger</to><hours>16~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_DriveOff" />
+          <li Class="ColonyCouncil.DilemmaEffect_BeastStance"><stance>driven</stance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+</Defs>

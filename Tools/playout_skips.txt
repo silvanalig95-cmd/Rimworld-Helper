@@ -459,3 +459,6 @@ Council_WS_RivalColony [end:failed] far away, told
 Council_WS_RivalColony [end:neighbours] far away, told
 Council_WS_Crossroads [name/0] the name is carried on the world map, told
 Council_WS_Crossroads [fair] the crowd comes as the game's own visitor group (WorldEffect_Incident)
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Beast.xml
+Council_DlmA_ResidentBeast [option 0] the food is carried out to the beast and left (DilemmaEffect_FeedBeast, a CarryOut to the stranger)
+Council_DlmA_ResidentBeast [option 3] the taming is the game's own: the beast is marked and the handlers go out to it

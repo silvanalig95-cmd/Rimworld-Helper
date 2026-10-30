@@ -47,12 +47,15 @@ namespace ColonyCouncil
             if (!On || comp == null) return;
             Safe("animals: births", () => Births(comp));
             Safe("animals: on screen", OnScreen);
+            Safe("animals: the beast seen", () => comp.beast?.Hourly(comp));
         }
 
         public static void Daily(CouncilGameComponent comp)
         {
             if (!On || comp == null) return;
             if (Interplay.On) Safe("animals: herdmaster", () => Interplay.HerdmasterDay2(comp));
+            Safe("animals: the herd's year", () => comp.herd?.Daily(comp));
+            Safe("animals: the beast that stays", () => comp.beast?.Daily(comp));
         }
 
         // ---------------- Births ----------------
@@ -108,6 +111,7 @@ namespace ColonyCouncil
                 CalendarTracker.Notify_FirstFoal(baby, mother, keeper);
             }
             if (Interplay.On) Interplay.Notify_Newborn(comp, baby, mother);
+            comp.herd?.Notify_Newborn(comp, baby, mother);
         }
 
         // ---------------- What the pets' watch tells it ----------------

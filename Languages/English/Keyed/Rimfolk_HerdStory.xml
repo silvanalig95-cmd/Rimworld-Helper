@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The herd's year (Source/ColonyCouncil/Animals/HerdStory.cs): a named leader, its line, the first calf of spring, the old leader's last season. -->
+  <CC_Herd_LeaderTitle>The herd has a leader</CC_Herd_LeaderTitle>
+  <CC_Herd_Leader>The colony's herd goes where {PET_nameDef} goes. The old {KIND} has led them to water and back for a while without anyone saying so; today {PAWN_nameDef} said so, and gave {PET_objective} the name.\n\nThe herd will follow {PET_nameDef} until {PET_pronoun} is too old to lead it, and then one of {PET_possessive} own, if there is one.</CC_Herd_Leader>
+  <CC_Herd_NewLeaderTitle>{PET_nameDef} leads the herd</CC_Herd_NewLeaderTitle>
+  <CC_Herd_NewLeader_Line>The herd follows {PET_nameDef} now, of {LINE}'s own blood: the {COUNT} generation to lead it. {PAWN_nameDef} says the herd settled on it before anyone did.</CC_Herd_NewLeader_Line>
+  <CC_Herd_NewLeader_New>The herd follows {PET_nameDef} now, a {KIND} of no line the colony knows. A new line begins with {PET_objective}.</CC_Herd_NewLeader_New>
+  <CC_Herd_Generation>{PET_nameDef}, born today to {OTHER_nameDef}, is the {COUNT} generation of {LINE}'s line in the colony's herd.</CC_Herd_Generation>
+  <CC_Herd_GenerationChronicle>The {COUNT} generation of {LINE}'s line was born to the herd: {PET_nameDef}.</CC_Herd_GenerationChronicle>
+  <CC_Herd_SpringCalfTitle>The first calf of spring</CC_Herd_SpringCalfTitle>
+  <CC_Herd_SpringCalf>{PET_nameDef}, born this morning to {OTHER_nameDef}, is the first of the year born to the colony's herd. {PAWN_nameDef} is going down to the pens to look, and will stay until it stands.</CC_Herd_SpringCalf>
+  <CC_Herd_SpringCalfChronicle>The first calf of spring, {PET_nameDef}, was born to the herd.</CC_Herd_SpringCalfChronicle>
+  <CC_Herd_SpringVisit>the first calf of spring</CC_Herd_SpringVisit>
+  <CC_Herd_SitWith>sitting with {PET_nameDef}</CC_Herd_SitWith>
+  <CC_Herd_LastSeasonTitle>{PET_nameDef}'s last season</CC_Herd_LastSeasonTitle>
+  <CC_Herd_LastSeason>{PET_nameDef}, who leads the colony's herd, is old now: gray at the muzzle, slow to rise, the herd walking at {PET_possessive} pace. {PAWN_nameDef} thinks this is the old leader's last season, and means to make it a good one.\n\nWhen {PET_nameDef} goes, the herd will follow one of {PET_possessive} own, if there is one.</CC_Herd_LastSeason>
+  <CC_Herd_LastSeasonChronicle>{PET_nameDef}, the herd's leader, began {PET_possessive} last season.</CC_Herd_LastSeasonChronicle>
+  <CC_Herd_GoneTitle>The herd has lost {PET_nameDef}</CC_Herd_GoneTitle>
+  <CC_Herd_Gone>{PET_nameDef}, who led the colony's herd, is dead. The herd stood about the pens this morning not knowing where to go. In a day or two one of them will take the lead, one of {PET_possessive} own blood if there is one, and {PAWN_nameDef} will give it the name.</CC_Herd_Gone>
+  <CC_Herd_GoneChronicle>The herd lost its leader, {PET_nameDef}.</CC_Herd_GoneChronicle>
+  <CC_Herd_LeaderChronicle>{PET_nameDef} became the leader of the colony's herd.</CC_Herd_LeaderChronicle>
+  <CC_Herd_Ordinal_2>second</CC_Herd_Ordinal_2>
+  <CC_Herd_Ordinal_3>third</CC_Herd_Ordinal_3>
+  <CC_Herd_Ordinal_4>fourth</CC_Herd_Ordinal_4>
+  <CC_Herd_Ordinal_5>fifth</CC_Herd_Ordinal_5>
+  <CC_Herd_Ordinal_More>{0}th</CC_Herd_Ordinal_More>
+
+  <!-- A wild beast that stays (Source/ColonyCouncil/Animals/ResidentBeast.cs). -->
+  <CC_Beast_NamedTitle>A name for the {KIND}</CC_Beast_NamedTitle>
+  <CC_Beast_Named>A wild {KIND} has been on the colony's land for days now, keeping its distance and keeping to its ways, and {PAWN_nameDef} has started calling it {PET_nameDef}. The name has stuck.\n\nIt has taken nothing of the colony's yet. In a few days the council will be asked what to make of it; until then the colony watches it from the wall.</CC_Beast_Named>
+  <CC_Beast_NamedChronicle>{PAWN_nameDef} named the wild {KIND} on the colony's land {PET_nameDef}.</CC_Beast_NamedChronicle>
+  <CC_Beast_FeedLabel>food for {PET_nameDef}</CC_Beast_FeedLabel>
+  <CC_Beast_End_stays>{PET_nameDef} has been on the colony's land a whole season, and nobody speaks of hunting it any more. It is part of the land now.</CC_Beast_End_stays>
+  <CC_Beast_End_gone>{PET_nameDef} has moved on. The far meadow is empty in the mornings, and the colony finds it misses the sight.</CC_Beast_End_gone>
+  <CC_Beast_End_hunted>The hunters brought {PET_nameDef} down. {PAWN_nameDef}, who named it, was not among them.</CC_Beast_End_hunted>
+  <CC_Beast_End_died>{PET_nameDef} is dead, out on the land where it lived. The colony found it in the morning.</CC_Beast_End_died>
+  <CC_Beast_End_tamed>{PET_nameDef} answers to the colony now. The handlers' patience, and {PAWN_nameDef}'s, won out.</CC_Beast_End_tamed>
+  <CC_Beast_End_driven>{PET_nameDef} was driven off the colony's land with torches and noise, and has not come back.</CC_Beast_End_driven>
+
+</LanguageData>

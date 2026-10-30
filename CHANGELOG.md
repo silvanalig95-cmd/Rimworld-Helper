@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The herd's year, and a beast that stays
+
+*30 October 2026, version 0.34.0*
+
+- The herd has a leader. With four head or more, the eldest of the many (and later the old leader's own blood) leads the colony's herd and is named by its keeper or the herdmaster, who speaks to it at the pens; a letter and the chronicle tell it. Its line is counted from then on: a calf born of the leader's blood is the second generation, the third, and so on, each new generation told the first time it is reached. When the leader grows old its last season is told and the keeper sits with it at the pens of an evening; when it dies the herd has lost its leader, and in a day or two follows one of its own line if there is one, else a new line begins.
+- The first calf of each spring is a moment: a letter, a glad thought for the colony, and the keeper goes down to the pens to see it stand. The first foal ever is still kept on the calendar as before.
+- A beast that stays: a wild wolf, bear, stag or the like seen on the colony's land three days running is given a name by a colonist (a child first, else someone with a love of animals), and from then on whoever sees it says so. A few days later the council is asked what to make of it, and again every so often while it stays: leave food out for it (carried out and left where it is, meat or fodder by its diet), keep everyone close with a watch at the gate, send the hunters, let the namer try to tame it, let it be, or drive it off with torches. After a season it is part of the land, and the story closes; hunted, tamed, driven off or moved on, it closes sooner, and the chronicle keeps how.
+
 ## Other settlers, the road over a year, and people left behind
 
 *30 October 2026, version 0.33.0*

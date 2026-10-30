@@ -242,4 +242,45 @@
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skill>Animals</skill><xp>250</xp></li></modExtensions>
   </ThoughtDef>
 
+  <!-- ===================== The herd's year and the beast that stays (Animals/HerdStory.cs, Animals/ResidentBeast.cs) ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Herd_FirstSpringCalf</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the first calf of spring</label><description>The first of the year born to the herd, all legs and surprise. I'll go down and look when the work allows.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.HeartTags"><feelings><li>Contentment</li></feelings><weight>0.3</weight></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Herd_LeaderGone</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the herd's old leader is gone</label><description>The herd stands about the pens as if waiting for someone to tell them where to go. So do I.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Beast_Fed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>fed the beast</label><description>I left food out at the edge of the trees for a wild thing with a name, and in the morning it was gone. It knows me by now, I think.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Tenderness</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Beast_Uneasy</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the beast out there</label><description>There's a wild thing with a name on our land, and we're keeping the children in because of it. I look at the trees more than I used to.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Beast_Hunted</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>they hunted the one I named</label><description>I gave it a name, and the council sent the hunters after it. I know why. I still gave it a name.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Beast_PartOfTheLand</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>part of the land</label><description>The wild thing I named has stayed a whole season, and nobody talks of hunting it any more. It belongs here as much as we do.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Contentment</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
 </Defs>
