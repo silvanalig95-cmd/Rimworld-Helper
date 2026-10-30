@@ -431,11 +431,18 @@ namespace ColonyCouncil
             }
             foreach (var (key, on) in switches)
                 part.Add(("CC_Settings_" + char.ToUpperInvariant(key[0]) + key.Substring(1)).Translate() + ": " + (on ? "CC_Check_Auto_On" : "CC_Check_Auto_Off").Translate(), on ? UiKit.Good : UiKit.Faint);
-            var log = CouncilGameComponent.Instance?.automations?.log;
+            var auto = CouncilGameComponent.Instance?.automations;
+            var log = auto?.log;
             if (log == null || log.Count == 0) part.Add("CC_Check_Auto_Nothing".Translate(), UiKit.Faint);
             else
                 foreach (var line in log.Skip(Math.Max(0, log.Count - 8)))
                     part.Add(line, UiKit.Faint);
+            if (auto != null)
+            {
+                part.Add("Today: " + auto.spentToday.ToString("0") + " of " + ColonyCouncilMod.Settings.autoBudget.ToString("0") + " silver's worth planned, " + auto.takenDownToday + " of "
+                         + ColonyCouncilMod.Settings.autoTakeDownsADay + " take-downs, " + auto.choppedToday + " of " + ColonyCouncilMod.Settings.autoChopsADay + " trees marked; "
+                         + auto.actions.Count(a => a.CanUndo) + " action(s) still undoable on the Making page.", UiKit.Faint);
+            }
         }
 
         /// <summary>

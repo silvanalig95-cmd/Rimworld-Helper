@@ -45,6 +45,8 @@ namespace ColonyCouncil
         public int target;
         public string why;
         public List<(ThingDef def, float have, float need)> parts = new List<(ThingDef, float, float)>();
+        /// <summary>The link of the chain it is (Chains.cs), and the chain's root.</summary>
+        public ChainNode node, root;
 
         public string PartsLine => string.Join(", ", parts.Select(p => p.def.label + " " + ((int)p.have) + "/" + ((int)p.need)));
     }
@@ -94,7 +96,9 @@ namespace ColonyCouncil
             public List<MakingOption> could = new List<MakingOption>();
             public List<UnusedStock> unused = new List<UnusedStock>();
             public List<IdleBench> idle = new List<IdleBench>();
-            /// <summary>The chains: what the building and the bills wait on that a bench here makes.</summary>
+            /// <summary>The chains followed to the end, one tree per thing wanted (Chains.cs).</summary>
+            public List<ChainNode> chains = new List<ChainNode>();
+            /// <summary>The chains' links that a bench here makes, leaf first (the order their bills go up in), for the page and the automation.</summary>
             public List<ChainNeed> needs = new List<ChainNeed>();
             /// <summary>Bills waiting on an ingredient the colony has none of.</summary>
             public List<StarvedBill> starved = new List<StarvedBill>();
@@ -172,6 +176,7 @@ namespace ColonyCouncil
             r.idle.Clear();
             r.needs.Clear();
             r.starved.Clear();
+            r.chains.Clear();
             var stock = Stock(map);
             int Have(ThingDef d) => d != null && stock.TryGetValue(d, out int n) ? n : 0;
             int colonists = map.mapPawns.FreeColonistsSpawnedCount;
@@ -194,10 +199,11 @@ namespace ColonyCouncil
             // The chains' far end: what the blueprints and frames still need beyond the stock, and what the bills wait on.
             var shortWants = BuildingNeeds(map, Have);
             var wantedByBill = new Dictionary<ThingDef, string>();
-            Starved(benches, Have, r, wantedByBill);
+            var billWants = new Dictionary<ThingDef, int>();
+            Starved(benches, Have, r, wantedByBill, billWants);
 
             // Every recipe here by its product, for the chains' near end.
-            var makers = new Dictionary<ThingDef, (RecipeDef recipe, Building_WorkTable bench)>();
+            var makers = new Dictionary<ThingDef, List<(RecipeDef recipe, ThingDef benchDef)>>();
 
             // What could be made now.
             var specificHere = new HashSet<ThingDef>();
@@ -225,7 +231,8 @@ namespace ColonyCouncil
                                     specificHere.Add(d);
                     var product = recipe.ProducedThingDef ?? recipe.products[0].thingDef;
                     if (product == null || !product.EverStorable(false)) continue;
-                    if (!makers.ContainsKey(product)) makers[product] = (recipe, first);
+                    if (!makers.TryGetValue(product, out var ml)) makers[product] = ml = new List<(RecipeDef, ThingDef)>();
+                    ml.Add((recipe, def));
                     if (billed.Contains(recipe)) continue;
                     int productStock = Have(product);
                     bool wantedNow = shortWants.ContainsKey(product) || wantedByBill.ContainsKey(product);
@@ -262,26 +269,39 @@ namespace ColonyCouncil
             }
             r.could = r.could.OrderBy(o => MakingMath.WantedRank(o.kind, o.wantedBy != null)).ThenBy(o => o.benchDef.label).ToList();
 
-            // The chains: each material wanted that a bench here makes, as a link with a bill of its own.
-            var wants = new List<(ThingDef def, int shortBy)>();
-            foreach (var kv in shortWants) wants.Add((kv.Key, kv.Value));
-            foreach (var d in wantedByBill.Keys)
-                if (!shortWants.ContainsKey(d)) wants.Add((d, 0));
-            foreach (var (d, shortBy) in wants)
+            // The chains: each thing wanted followed to the end (Chains.cs), its links that a bench here makes listed leaf first.
+            var wants = new List<(ThingDef def, int shortBy, string why)>();
+            foreach (var kv in shortWants) wants.Add((kv.Key, kv.Value, "CC_Making_WantedBuild".Translate(kv.Value).Resolve()));
+            foreach (var kv in billWants)
+                if (!shortWants.ContainsKey(kv.Key)) wants.Add((kv.Key, kv.Value, "CC_Making_WantedBill".Translate(wantedByBill[kv.Key]).Resolve()));
+            var ctx = Chains.Prepare(map, Have, benches, billed, makers);
+            foreach (var (d, shortBy, why) in wants.OrderByDescending(w => w.shortBy).ThenBy(w => w.def.label))
             {
-                if (!makers.TryGetValue(d, out var maker)) continue;
-                var link = new ChainNeed
+                ChainNode root;
+                try
                 {
-                    product = d, shortBy = shortBy, stock = Have(d), recipe = maker.recipe, bench = maker.bench, benchDef = maker.bench.def, billed = billed.Contains(maker.recipe),
-                    why = shortBy > 0 ? "CC_Making_WantedBuild".Translate(shortBy).Resolve() : "CC_Making_WantedBill".Translate(wantedByBill[d]).Resolve()
-                };
-                link.canMake = Parts(maker.recipe, Have, link.parts);
-                int batch = Mathf.Max(1, maker.recipe.products.Count > 0 ? maker.recipe.products[0].count : 1);
-                link.target = MakingMath.DemandTarget(link.stock, Mathf.Max(shortBy, batch), MakingMath.TargetFor(KindOf(d), colonists));
-                r.needs.Add(link);
+                    root = Chains.Build(ctx, d, Mathf.Max(1, shortBy), why);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("chains: " + d.defName, e);
+                    continue;
+                }
+                if (root.recipe == null && root.plant == null) continue;
+                r.chains.Add(root);
+                foreach (var node in root.LeafFirst())
+                {
+                    if (node.recipe == null || node.bench == null) continue;
+                    var link = new ChainNeed
+                    {
+                        product = node.thing, shortBy = node.want, stock = node.stock, recipe = node.recipe, bench = node.bench, benchDef = node.bench.def,
+                        billed = node.billed, canMake = node.canMake, target = node.target, node = node, root = root,
+                        why = node == root ? why : "CC_Making_Chain_ForParent".Translate(root.thing.label).Resolve(), parts = node.partsLine
+                    };
+                    r.needs.Add(link);
+                }
             }
-            r.needs = r.needs.OrderByDescending(c => c.shortBy).ThenBy(c => c.product.label).ToList();
-            foreach (var sb in r.starved) sb.fix = r.needs.FirstOrDefault(c => sb.wants.Contains(c.product));
+            foreach (var sb in r.starved) sb.fix = r.needs.FirstOrDefault(c => c.node == c.root && sb.wants.Contains(c.product));
 
             // Harvests and finds with a specific use somewhere that no bench here offers.
             var hasFermenter = Avail.ColonyHas(map, Avail.IsFermenter);
@@ -432,7 +452,7 @@ namespace ColonyCouncil
         /// The bills that can't go on: one whose work is still wanted (forever, so many left, or short of its count) with
         /// an ingredient none of whose allowed kinds is in stock. Each wants the kinds it would take, for the chains.
         /// </summary>
-        private static void Starved(Dictionary<ThingDef, List<Building_WorkTable>> benches, Func<ThingDef, int> have, Result r, Dictionary<ThingDef, string> wantedByBill)
+        private static void Starved(Dictionary<ThingDef, List<Building_WorkTable>> benches, Func<ThingDef, int> have, Result r, Dictionary<ThingDef, string> wantedByBill, Dictionary<ThingDef, int> billWants)
         {
             foreach (var kv in benches)
                 foreach (var wt in kv.Value)
@@ -440,7 +460,7 @@ namespace ColonyCouncil
                     if (wt.BillStack == null) continue;
                     foreach (var bill in wt.BillStack)
                     {
-                        if (!(bill is Bill_Production bp) || bp.suspended || bp.recipe?.ingredients == null || !Active(bp, have)) continue;
+                        if (!(bill is Bill_Production bp) || bp.suspended || bp.recipe?.ingredients == null || !StillWanted(bp, have)) continue;
                         var missing = new List<string>();
                         var wants = new List<ThingDef>();
                         foreach (var ing in bp.recipe.ingredients)
@@ -460,10 +480,13 @@ namespace ColonyCouncil
                             }
                             if (any || allowed.Count == 0) continue;
                             missing.Add(ing.filter.Summary);
+                            int batchNeed = Mathf.Max(1, Mathf.CeilToInt(ing.CountRequiredOfFor(allowed[0], bp.recipe)));
                             foreach (var d in allowed.Take(6))
                             {
                                 wants.Add(d);
                                 if (!wantedByBill.ContainsKey(d)) wantedByBill[d] = wt.LabelCap.ToString();
+                                billWants.TryGetValue(d, out int had);
+                                billWants[d] = Mathf.Max(had, batchNeed);
                             }
                         }
                         if (missing.Count == 0 || r.starved.Count >= 10) continue;
@@ -473,7 +496,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A bill whose work is still wanted: forever, so many still to make, or short of its count.</summary>
-        private static bool Active(Bill_Production bp, Func<ThingDef, int> have)
+        public static bool StillWanted(Bill_Production bp, Func<ThingDef, int> have)
         {
             if (bp.repeatMode == BillRepeatModeDefOf.Forever) return true;
             if (bp.repeatMode == BillRepeatModeDefOf.RepeatCount) return bp.repeatCount > 0;

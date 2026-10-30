@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
@@ -15,6 +16,9 @@ namespace ColonyCouncil
     {
         private static Vector2 scroll;
         private static float height = 600f;
+        private static List<(string key, bool on, List<string> texts)> preview = new List<(string, bool, List<string>)>();
+        private static int previewFrame = -999;
+        private static Map previewMap;
 
         private const float ButtonsW = 160f;
 
@@ -57,11 +61,15 @@ namespace ColonyCouncil
             }
             y += 10f;
 
-            // The chains: what the building and the bills wait on, and the bills that can't go on.
-            if (r.needs.Count > 0 || r.starved.Count > 0)
+            // The chains followed to the end: what the building and the bills wait on, link by link, and the bills that can't go on.
+            if (r.chains.Count > 0 || r.starved.Count > 0)
             {
                 y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Chains".Translate(), null, UiKit.HeaderColor) + 4f;
-                foreach (var c in r.needs) y += DrawNeed(c, 0f, y, view.width) + 4f;
+                foreach (var root in r.chains)
+                {
+                    foreach (var node in root.All()) y += DrawLink(node, root, r, 0f, y, view.width, map) + 3f;
+                    y += 6f;
+                }
                 foreach (var sb in r.starved) y += DrawStarved(sb, 0f, y, view.width) + 4f;
                 y += 10f;
             }
@@ -77,6 +85,60 @@ namespace ColonyCouncil
                 string names = string.Join(", ", r.idle.Take(8).Select(i => i.bench.LabelCap.ToString()));
                 if (r.idle.Count > 8) names += " ...";
                 y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Making_IdleLine".Translate(names), UiKit.Faint) + 8f;
+            }
+
+            // The automations: what each would do now, and the last things done, undone at a click (Building/Automations.cs).
+            var auto = CouncilGameComponent.Instance?.automations;
+            if (auto != null)
+            {
+                y += UiKit.SectionTitle(0f, y, view.width, "CC_Auto_Section".Translate(), null, UiKit.HeaderColor) + 4f;
+                TooltipHandler.TipRegion(new Rect(0f, y - 28f, view.width, 24f), "CC_Auto_SectionTip".Translate());
+                if (Time.frameCount - previewFrame > 120 || previewMap != map)
+                {
+                    preview = auto.Preview(map);
+                    previewFrame = Time.frameCount;
+                    previewMap = map;
+                }
+                foreach (var (key, on, texts) in preview)
+                {
+                    string label = ("CC_Settings_" + char.ToUpperInvariant(key[0]) + key.Substring(1)).Translate();
+                    string state = (on ? "CC_Check_Auto_On" : "CC_Check_Auto_Off").Translate();
+                    string body = texts.Count == 0 ? "CC_Auto_WouldNothing".Translate().Resolve() : string.Join(" ", texts.Take(3));
+                    y += UiKit.Paragraph(8f, y, view.width - 16f, label + " (" + state + "): " + body, on ? UiKit.Good : UiKit.Faint) + 4f;
+                }
+                var last = auto.actions.AsEnumerable().Reverse().Take(6).ToList();
+                if (last.Count > 0)
+                {
+                    y += 4f;
+                    Text.Font = GameFont.Small;
+                    GUI.color = UiKit.Faint;
+                    Widgets.Label(new Rect(8f, y, view.width - 16f, 22f), "CC_Auto_Last".Translate());
+                    GUI.color = Color.white;
+                    y += 24f;
+                    foreach (var a in last)
+                    {
+                        Text.Font = GameFont.Tiny;
+                        string text = "CC_DayN".Translate(a.tick / GenDate.TicksPerDay + 1).ToString() + ": " + a.text + (a.undone ? " " + "CC_Auto_UndoneMark".Translate() : "");
+                        float th = Text.CalcHeight(text, view.width - 16f - 90f);
+                        GUI.color = a.undone ? UiKit.Dim : UiKit.Faint;
+                        Widgets.Label(new Rect(8f, y, view.width - 16f - 90f, th), text);
+                        GUI.color = Color.white;
+                        Text.Font = GameFont.Small;
+                        if (a.CanUndo)
+                        {
+                            var ur = new Rect(view.width - 84f, y, 76f, 24f);
+                            if (Widgets.ButtonText(ur, "CC_Auto_Undo".Translate()))
+                            {
+                                SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+                                auto.Undo(a);
+                                previewFrame = -999;
+                            }
+                            TooltipHandler.TipRegion(ur, "CC_Auto_UndoTip".Translate());
+                        }
+                        y += Mathf.Max(th, 24f) + 4f;
+                    }
+                }
+                y += 8f;
             }
             height = Mathf.Max(y + 10f, 100f);
             Widgets.EndScrollView();
@@ -112,6 +174,104 @@ namespace ColonyCouncil
                 Making.SetUpBill(o);
             }
             TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(o.bench.LabelCap.ToString()));
+            return h;
+        }
+
+        /// <summary>
+        /// One link of a chain, indented by its depth: the thing, what there is and what is wanted, its use and make in a
+        /// day and how long it lasts, the bench and batch that make it (or the plant that yields it, or why the chain
+        /// stops here), and the bill, the whole chain's bills, or the sowing, at a click.
+        /// </summary>
+        private static float DrawLink(ChainNode n, ChainNode root, Making.Result r, float x, float y, float width, Map map)
+        {
+            float indent = n.depth * 18f;
+            x += indent;
+            width -= indent;
+            Text.Font = GameFont.Small;
+            float textW = width - ButtonsW - 60f;
+            var lines = new List<string>();
+            if (n == root && !n.why.NullOrEmpty()) lines.Add(n.why);
+            else if (n != root) lines.Add("CC_Making_Chain_ForParent".Translate(root.thing.label).Resolve());
+            if (n.useADay > 0f || n.makeADay > 0f)
+            {
+                float days = n.DaysLeft;
+                lines.Add("CC_Making_Chain_Rates".Translate(n.useADay.ToString("0.#").Named("USE"), n.makeADay.ToString("0.#").Named("MAKE"),
+                    (days >= ChainMath.Far ? "CC_Making_Chain_Never".Translate().Resolve() : "CC_Making_Chain_Days".Translate(days.ToString("0.#")).Resolve()).Named("DAYS")).Resolve());
+            }
+            if (n.cycle) lines.Add("CC_Making_Chain_Cycle".Translate());
+            else if (n.tooDeep) lines.Add("CC_Making_Chain_Deep".Translate());
+            else if (n.recipe != null)
+            {
+                lines.Add("CC_Making_Chain_Batch".Translate(((int)n.perBatch).Named("N"), (n.hoursABatch >= ChainMath.Far ? "?" : n.hoursABatch.ToString("0.#")).Named("H"),
+                    n.bench.LabelCap.ToString().Named("BENCH"), n.PartsLine.Named("PARTS")).Resolve());
+                if (n == root && n.parts.Count > 0) lines.Add("CC_Making_Chain_Lead".Translate(n.LeadDays.ToString("0.#")).Resolve());
+            }
+            else lines.Add("CC_Making_Chain_NoMaker".Translate());
+            if (n.plant != null)
+                lines.Add(n.zone != null ? "CC_Making_ZoneGrows".Translate(n.plant.label.Named("PLANT"), n.zone.Cells.Count.Named("N")).Resolve()
+                    : "CC_Making_Chain_Plant".Translate(n.plant.label.Named("PLANT"), n.cells.Named("N")).Resolve());
+            string line = string.Join(" ", lines);
+            Text.Font = GameFont.Tiny;
+            float lineH = Text.CalcHeight(line, textW);
+            Text.Font = GameFont.Small;
+            float h = Mathf.Max(44f, 24f + lineH + 8f);
+            var row = new Rect(x, y, width, h);
+            UiKit.Card(row, n.cycle || n.tooDeep ? UiKit.Dim : n.recipe == null && n.plant == null ? UiKit.Warn : n.canMake || n.plant != null ? UiKit.Gold : UiKit.Info);
+            if (Mouse.IsOver(row) && n.bench != null && n.bench.Spawned && n.bench.Map == Find.CurrentMap)
+                MapHighlights.Cells("chain:" + n.thing.defName + n.depth, n.bench.Map, n.bench.OccupiedRect().Cells, UiKit.Gold, n.thing.LabelCap, n.bench.Position);
+            Widgets.ThingIcon(new Rect(x + 10f, y + 6f, 28f, 28f), n.thing);
+            string title = n.thing.LabelCap + " " + "CC_Making_Have".Translate(n.stock).Resolve() + " " + "CC_Making_ShortLine".Translate(n.want).Resolve();
+            UiKit.LabelFit(new Rect(x + 46f, y + 4f, textW, 22f), title, n == root ? UiKit.Gold : Color.white);
+            Text.Font = GameFont.Tiny;
+            GUI.color = UiKit.Faint;
+            Widgets.Label(new Rect(x + 46f, y + 24f, textW, lineH), line);
+            GUI.color = Color.white;
+            Text.Font = GameFont.Small;
+            if (n.recipe != null) TooltipHandler.TipRegion(new Rect(x, y, width - ButtonsW, h), n.recipe.LabelCap + " (" + n.bench.def.label + ")\n" + (n.recipe.description ?? ""));
+            var br = new Rect(x + width - ButtonsW + 4f, y + 8f, ButtonsW - 12f, 26f);
+            // The whole chain's bills at the root, when more than one link is still to set.
+            int unset = root.All().Count(o => o.recipe != null && !o.billed);
+            if (n == root && unset >= 2)
+            {
+                if (Widgets.ButtonText(br, "CC_Making_Chain_SetAll".Translate(unset)))
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                    foreach (var link in r.needs.Where(c => c.root == root && !c.billed).ToList()) Making.SetUpChain(link, true);
+                    Messages.Message("CC_Making_ChainSet".Translate(root.thing.label.Named("PRODUCT"), unset.Named("N")).Resolve(), new LookTargets(root.bench), MessageTypeDefOf.TaskCompletion, false);
+                }
+                TooltipHandler.TipRegion(br, "CC_Making_Chain_SetAllTip".Translate());
+                br.y += 28f;
+                h = Mathf.Max(h, 64f);
+            }
+            if (n.recipe != null)
+            {
+                if (n.billed) UiKit.Paragraph(br.x, br.y + 4f, br.width, "CC_Making_BillOn".Translate(), UiKit.Faint);
+                else
+                {
+                    var link = r.needs.FirstOrDefault(c => c.node == n);
+                    if (link != null && Widgets.ButtonText(br, "CC_Making_SetBill".Translate(n.target)))
+                    {
+                        SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                        Making.SetUpChain(link);
+                    }
+                    TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(n.bench.LabelCap.ToString()));
+                }
+            }
+            else if (n.plant != null && n.cells > 0)
+            {
+                if (Widgets.ButtonText(br, "CC_Making_Sow".Translate(n.cells)))
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                    var zone = Sowing.Sow(map, n.plant, n.cells);
+                    if (zone != null)
+                    {
+                        Messages.Message("CC_Making_Sown".Translate(n.cells.Named("N"), n.plant.label.Named("PLANT"), n.thing.label.Named("PRODUCT")).Resolve(), new LookTargets(zone.Cells[0], map), MessageTypeDefOf.TaskCompletion, false);
+                        Making.For(map, true);
+                    }
+                    else Messages.Message("CC_Making_NoGround".Translate(n.plant.label).Resolve(), MessageTypeDefOf.RejectInput, false);
+                }
+                TooltipHandler.TipRegion(br, "CC_Making_SowTip".Translate());
+            }
             return h;
         }
 

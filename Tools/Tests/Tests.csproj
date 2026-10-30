@@ -33,6 +33,7 @@
     <Compile Include="../../Source/ColonyCouncil/Building/RoomArrangeMath.cs" Link="RoomArrangeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/RoomWalkMath.cs" Link="RoomWalkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/AutomationMath.cs" Link="AutomationMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/ChainMath.cs" Link="ChainMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/BaseReviewMath.cs" Link="BaseReviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/GroundPlanMath.cs" Link="GroundPlanMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/StorageReviewMath.cs" Link="StorageReviewMath.cs" />

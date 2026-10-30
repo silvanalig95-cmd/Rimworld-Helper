@@ -459,6 +459,7 @@ Console.WriteLine($"Checked {GroundPlanTests.Run(Check)} things about the ground
 Console.WriteLine($"Checked {StorageReviewTests.Run(Check)} things about the stores looked over.");
 Console.WriteLine($"Checked {MakingTests.Run(Check)} things about what the colony could make.");
 Console.WriteLine($"Checked {AutomationTests.Run(Check)} things about the council's automations.");
+Console.WriteLine($"Checked {ChainTests.Run(Check)} things about production chains followed to the end.");
 Console.WriteLine($"Checked {ConduitTests.Run(Check)} things about laying a conduit to a piece off the power.");
 Console.WriteLine($"Checked {GuestWillTests.Run(Check)} things about guests who'd stay (ties at home, what they want, the cost, family asking them back).");
 Console.WriteLine($"Checked {KeptTests.Run(Check)} things about granted wishes taken back (grace, timing, making it right).");

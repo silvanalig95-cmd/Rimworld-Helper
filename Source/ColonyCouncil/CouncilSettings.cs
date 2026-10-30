@@ -270,6 +270,16 @@ namespace ColonyCouncil
         public bool autoTakeDown = false;
         public bool autoLamps = false;
         public bool autoFirewood = false;
+        public bool autoGrow = false;
+        /// <summary>Under the bills automation: which staples it sets bills for, and whether it follows the chains.</summary>
+        public bool autoBillMeals = true;
+        public bool autoBillMedicine = true;
+        public bool autoBillComponents = true;
+        public bool autoBillChains = true;
+        /// <summary>The day's budget of materials (market worth) for the blueprints the automations place, and the daily caps on take-down orders and chopping marks.</summary>
+        public float autoBudget = 200f;
+        public int autoTakeDownsADay = 8;
+        public int autoChopsADay = 10;
         /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
@@ -492,6 +502,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref autoTakeDown, "autoTakeDown");
             Scribe_Values.Look(ref autoLamps, "autoLamps");
             Scribe_Values.Look(ref autoFirewood, "autoFirewood");
+            Scribe_Values.Look(ref autoGrow, "autoGrow");
+            Scribe_Values.Look(ref autoBillMeals, "autoBillMeals", true);
+            Scribe_Values.Look(ref autoBillMedicine, "autoBillMedicine", true);
+            Scribe_Values.Look(ref autoBillComponents, "autoBillComponents", true);
+            Scribe_Values.Look(ref autoBillChains, "autoBillChains", true);
+            Scribe_Values.Look(ref autoBudget, "autoBudget", 200f);
+            Scribe_Values.Look(ref autoTakeDownsADay, "autoTakeDownsADay", 8);
+            Scribe_Values.Look(ref autoChopsADay, "autoChopsADay", 10);
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);

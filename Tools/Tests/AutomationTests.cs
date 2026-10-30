@@ -20,6 +20,9 @@ public static class AutomationTests
         C(AutomationMath.AutoKind("meals", false) && AutomationMath.AutoKind("medicine", false) && AutomationMath.AutoKind("components", false), "meals, medicine and components are set on their own");
         C(!AutomationMath.AutoKind("weapons", false) && !AutomationMath.AutoKind("blocks", false) && AutomationMath.AutoKind("blocks", true), "anything else only when the building or a bill wants it");
         C(AutomationMath.BillsAnHour == 2 && AutomationMath.PlanLevel == 3, "two bills an hour; high steps go into the plan");
+        C(AutomationMath.Allowed(0, 8, 20) == 8 && AutomationMath.Allowed(6, 8, 20) == 2 && AutomationMath.Allowed(8, 8, 20) == 0 && AutomationMath.Allowed(3, 8, 2) == 2, "a day's cap bounds what is wanted");
+        C(AutomationMath.BudgetLeft(0f, 200f) && AutomationMath.BudgetLeft(199f, 200f) && !AutomationMath.BudgetLeft(200f, 200f), "the budget lasts until it is spent");
+        C(AutomationMath.ActionsKept >= 6 && AutomationMath.GrowDays >= 5, "a handful of actions kept to undo; sowing waits days between times");
         return n;
     }
 }

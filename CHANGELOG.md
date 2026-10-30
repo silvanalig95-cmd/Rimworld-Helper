@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Chains followed to the end, and automations you can see and undo
+
+*30 October 2026, version 0.40.0*
+
+- The Making page follows each chain to the end: from a thing the blueprints are short of or a bill waits on, down through the recipes of the benches you have, each part a link of its own, four links at most and never round in a circle. Each link says what there is and what is wanted, how much is used and made in a day (meals eaten, medicine spent, what the active bills take and give, what the growing zones yield) and how long the stock lasts, which bench and recipe would make it best (the best able hand's skill, the distance from the materials' store, the product an hour of work gives), how long a batch takes, and the whole chain's lead time. "Set the chain's bills" sets them all, the parts' first.
+- A link no bench makes but a plant yields (cotton for cloth, healroot for herbal medicine) says how many cells to sow, and "Sow it" adds them beside the zone that grows it or lays out a new zone near the fields on fertile, open ground.
+- The bills automation has its own switches for meals, medicine, components and the chains. A materials budget a day bounds the blueprints the automations place, and daily caps bound the take-down orders and the chopping marks; a new switch sows for what a chain wants.
+- The Making page shows, for every automation, on or off, what the council would do now, and the last things it did, each undone at a click: the bill off the bench (and not set again for a fortnight), the step back to proposed, the research pick, the zone, the orders, the blueprints, the marks.
+
 ## Production chains, and the council's automations
 
 *30 October 2026, version 0.39.0*

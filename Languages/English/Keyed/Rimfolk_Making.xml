@@ -23,6 +23,24 @@
   <CC_Making_Starved>Waiting on {0}, and the colony has none.</CC_Making_Starved>
   <CC_Making_StarvedNoFix>No bench here makes it: grow it, mine it, trade for it, or change the bill's ingredients.</CC_Making_StarvedNoFix>
   <CC_Making_SetBillFor>Set a bill for {0}</CC_Making_SetBillFor>
+  <CC_Making_Chain_ForParent>Wanted for {0}, up the chain.</CC_Making_Chain_ForParent>
+  <CC_Making_Chain_Rates>Uses {USE} a day, makes {MAKE} a day: {DAYS}.</CC_Making_Chain_Rates>
+  <CC_Making_Chain_Days>lasts {0} days</CC_Making_Chain_Days>
+  <CC_Making_Chain_Never>never runs out</CC_Making_Chain_Never>
+  <CC_Making_Chain_Batch>A batch of {N} takes {H} hours at the {BENCH}, from {PARTS} (have/need).</CC_Making_Chain_Batch>
+  <CC_Making_Chain_Lead>The whole chain, batch by batch: about {0} days.</CC_Making_Chain_Lead>
+  <CC_Making_Chain_NoMaker>No bench here makes it.</CC_Making_Chain_NoMaker>
+  <CC_Making_Chain_Cycle>It takes itself to make: the chain stops here.</CC_Making_Chain_Cycle>
+  <CC_Making_Chain_Deep>Four links down: the chain stops here.</CC_Making_Chain_Deep>
+  <CC_Making_Chain_Plant>{PLANT} yields it: sow {N} cell(s).</CC_Making_Chain_Plant>
+  <CC_Making_ZoneGrows>A zone of {N} cell(s) grows {PLANT} already.</CC_Making_ZoneGrows>
+  <CC_Making_Chain_SetAll>Set the chain's bills ({0})</CC_Making_Chain_SetAll>
+  <CC_Making_Chain_SetAllTip>A bill on each bench down the chain, the parts' first, each to make until the colony has what the next link takes and three days of its use.</CC_Making_Chain_SetAllTip>
+  <CC_Making_ChainSet>The chain's bills are set for {PRODUCT}: {N} bill(s).</CC_Making_ChainSet>
+  <CC_Making_Sow>Sow it ({0} cells)</CC_Making_Sow>
+  <CC_Making_SowTip>Adds that many cells beside the zone that grows it, or lays out a new growing zone near the fields, on fertile, open ground it can grow on. An ordinary zone afterwards.</CC_Making_SowTip>
+  <CC_Making_Sown>A growing zone of {N} cell(s) of {PLANT} is laid out, for {PRODUCT}.</CC_Making_Sown>
+  <CC_Making_NoGround>No open, fertile ground near the fields for {0}.</CC_Making_NoGround>
   <CC_Making_Unused>Harvests and finds nothing here uses</CC_Making_Unused>
   <CC_Making_UnusedNone>Everything the colony has a fair amount of has a bench here that puts it to use.</CC_Making_UnusedNone>
   <CC_Making_WouldUse>A {BENCH} would make {PRODUCT} from it.</CC_Making_WouldUse>

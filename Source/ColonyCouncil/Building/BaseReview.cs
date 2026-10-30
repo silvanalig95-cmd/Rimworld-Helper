@@ -745,7 +745,7 @@ namespace ColonyCouncil
         // ---------------- Fixes ----------------
 
         /// <summary>Orders what the finding named taken down, as the player's own deconstruct orders (cancel them like any other).</summary>
-        private static void Deconstruct(Map map, List<Thing> things)
+        public static void Deconstruct(Map map, List<Thing> things)
         {
             int n = 0;
             var dm = map.designationManager;

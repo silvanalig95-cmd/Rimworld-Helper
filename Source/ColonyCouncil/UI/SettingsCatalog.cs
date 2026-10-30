@@ -371,12 +371,20 @@ namespace ColonyCouncil
             Section("CC_SetSec_Automations");
             NoteUnder("CC_SetSec_Automations_Note");
             Toggle("autoBills", "CC_Settings_AutoBills", "CC_SetNote_AutoBills");
+            Toggle("autoBillMeals", "CC_Settings_AutoBillMeals", "CC_SetNote_AutoBillMeals", "autoBills");
+            Toggle("autoBillMedicine", "CC_Settings_AutoBillMedicine", "CC_SetNote_AutoBillMedicine", "autoBills");
+            Toggle("autoBillComponents", "CC_Settings_AutoBillComponents", "CC_SetNote_AutoBillComponents", "autoBills");
+            Toggle("autoBillChains", "CC_Settings_AutoBillChains", "CC_SetNote_AutoBillChains", "autoBills");
             Toggle("autoPlan", "CC_Settings_AutoPlan", "CC_SetNote_AutoPlan", "nextSteps");
             Toggle("autoResearch", "CC_Settings_AutoResearch", "CC_SetNote_AutoResearch");
             Toggle("autoStockpile", "CC_Settings_AutoStockpile", "CC_SetNote_AutoStockpile");
             Toggle("autoTakeDown", "CC_Settings_AutoTakeDown", "CC_SetNote_AutoTakeDown");
             Toggle("autoLamps", "CC_Settings_AutoLamps", "CC_SetNote_AutoLamps", "enableAdvisor");
             Toggle("autoFirewood", "CC_Settings_AutoFirewood", "CC_SetNote_AutoFirewood", "enableAdvisor");
+            Toggle("autoGrow", "CC_Settings_AutoGrow", "CC_SetNote_AutoGrow");
+            Slider("autoBudget", "CC_Settings_AutoBudget", "CC_SetNote_AutoBudget", 50f, 1000f, 50f, "0");
+            Slider("autoTakeDownsADay", "CC_Settings_AutoTakeDownsADay", "CC_SetNote_AutoTakeDownsADay", 1f, 30f, 1f, "0");
+            Slider("autoChopsADay", "CC_Settings_AutoChopsADay", "CC_SetNote_AutoChopsADay", 1f, 30f, 1f, "0");
 
             // Interface and integrations: messages, alerts, the council's own tabs and buttons, the deeper game hooks.
             Page(SettingsPage.Interface);

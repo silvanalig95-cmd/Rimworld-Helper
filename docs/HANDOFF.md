@@ -1,24 +1,25 @@
 # Handoff: work in progress
 
-Last shipped: 0.39.0, the player's second request of the day: production chains and opt-in automations. `Building/Making.cs`:
-`Compute` now reads the building's needs (`BuildingNeeds`: blueprints' and frames' `TotalMaterialCost` beyond the stock,
-`Frame.ThingCountNeeded`) and the starved bills (`Starved`: an active `Bill_Production` with an ingredient none of whose
-allowed kinds is in stock, `Active` by repeat mode), builds `Result.needs` (`ChainNeed`: the material, the recipe and bench
-here that make it, `canMake` from the shared `Parts` helper, `billed`, a `DemandTarget`) and `Result.starved` (`StarvedBill`
-with its `fix` link), marks `MakingOption.wantedBy` and orders by `MakingMath.WantedRank`; `TargetFor(kind, colonists)`
-scales meals and medicine. `SetUpBill(o, quiet)` and `SetUpChain(c, quiet)` share `SetBill`. The page (`MakingPanel`) has
-the "Wanted for the building and the bills" section. `Building/Automations.cs` (`AutomationTracker`, saved on the game
-component as `automations`, run from `HourlyPeople` after next steps; rules in `AutomationMath`, tested): seven switches
-in `CouncilSettings` (`autoBills`, `autoPlan`, `autoResearch`, `autoStockpile`, `autoTakeDown`, `autoLamps`,
-`autoFirewood`, all false; the "Automations" section of the settings catalog on the Building page), each acting on an
-existing system (Making's needs and could, `NextSteps.Take` at level 3+, `AdvisorWorker_Research.SuggestNext` in-era,
-`BaseReview.Finding("unstored").fix`, the base review's take-down fixes, the advisor's BedsDark and NoSeat `act`s, the
-Firewood signal with `HarvestPlant` designations near `TemplatePlanner.ColonyCenter`), each with a cooldown in `doneKeys`,
-the council's bills remembered in `billKeys` so a bill the player removes goes to `droppedKeys` for a fortnight, every
-action a quiet message and a line in `log` (the check-myself "Automations" part). Nothing runs while `MapFacts.ThreatOn`.
-Next (task): 0.40.0 a year's letter at each anniversary of the landing (the annals write the calendar year and the
+Last shipped: 0.40.0, the second pass on chains and automations the player asked for. `Building/ChainMath.cs` (pure,
+tested in ChainTests): batches a day, hours a batch, days left at net use, what a want asks of a part, a node's target
+(DemandTarget plus three days of use), meals a day, efficiency, bench score, depth cap, lead days, a plant's yield a day,
+cells to sow. `Building/Chains.cs`: `ChainNode` (stock, want, use/make a day, recipe and bench, parts, plant/cells/zone,
+LeafFirst, LeadDays), `Chains.Prepare` (rates: meals eaten, medicine spent, the active bills' take and give at the best able
+hand's speed, the growing zones' yield) and `Chains.Build` (recursive, cycle and depth guarded; `BestMaker` by
+ChainMath.BenchScore and Efficiency; `Pick` for an ingredient's kind), `Sowing` (PlantFor, ZoneFor, Fill, Sow with `Blob`
+over fertile open reachable ground near the fields). `Making.Compute` builds `Result.chains` (one tree per want) and
+flattens them leaf first into `Result.needs` (ChainNeed.node/root). `MakingPanel.DrawLink` draws the trees with "Set the
+chain's bills" and "Sow it". `Building/Automations.cs` rewritten around `AutoPending` (text + act): `Candidates(map, onlyOn)`
+feeds both `Hourly` and `Preview`; per-kind switches (`autoBillMeals/Medicine/Components/Chains` under `autoBills`),
+`autoGrow`, `autoBudget` (Worth of the blueprints placed by the lamps' acts), `autoTakeDownsADay`, `autoChopsADay`
+(AutomationMath.Allowed, BudgetLeft); every action is an `AutoAction` (kind, things, recipe, stepKey, prev, zoneId, cells)
+kept in `actions` (ActionsKept 12) and undone by `Undo` (bill deleted and dropped, step back to proposed, research
+restored, zone deleted or cells removed, designations removed, blueprints cancelled); the Making page's bottom section
+shows the preview per switch and the last actions with Undo; `BaseReview.Deconstruct` is public for the capped take-downs.
+Next (task): 0.41.0 a year's letter at each anniversary of the landing (the annals write the calendar year and the
 founding event marks the day already: the letter should cover the land and the neighbours since the last landing day,
 the herd, the beasts, the holding, the regulars, the world events, the road, and nothing the annals say). Before it,
+0.39.0: the first pass (building needs, starved bills, DemandTarget, the seven automations). Before it,
 0.38.0, "Rearrange a room, thought through": `Building/RoomWalkMath.cs` (pure: Dijkstra from the doors with the game's
 costs, ways per use and door to door, `Review` with inWay, slowed, squeezes, narrowest, deadEnds, lostFloor, open, walk),
 `RoomArrangeMath` with pathCost, glow, wantsLight, useCells, moveCost (`Keep`), everyday, the `Lamp` kind, `Refine` (each
