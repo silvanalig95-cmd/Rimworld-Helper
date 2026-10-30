@@ -66,4 +66,69 @@
     </modExtensions>
   </IncidentDef>
 
+  <!--
+    A shiny rumour (ColonyCouncil.HappeningWorker_ShinyRumour, Source/ColonyCouncil/Integrations/PokeWorldCamp.cs): a
+    trainer at the gate has heard of a shiny Pokémon ({TALE}: its species) seen in the region. Keep an eye out and the
+    rumour holds for twenty days; while it does, the shiny may show itself on the colony's land (one chance in eight a
+    day), where it is named like any beast that stays (Animals/ResidentBeast.cs), with [rumoured] and [shiny] in its
+    lines. Tags: [known] (a species the colony has), [new], [trainer] (A trains a Pokémon).
+  -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_PW_ShinyRumour</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a shiny rumour</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ShinyRumour</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>18~40</ages>
+        <stayHours>3~6</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A shiny rumour</li>
+          <li>Word of a shiny {TALE}</li>
+        </titles>
+        <texts>
+          <li>[new] A trainer of {FACTION}, {X_nameDef}, has stopped at the gate with a story: a {TALE} in the wrong colors, shining like a coin, seen twice this season a few days from here and never caught. Every trainer on the road is looking for it. The colony has never caught a {TALE} of any color.
+
+{X_nameDef} will be moving on in a few hours, after the rumour and in front of it.</li>
+          <li>[known] {X_nameDef}, a trainer of {FACTION}, has stopped at the gate with a story the colony has half heard already: a shiny {TALE}, seen in the region twice this season and caught by nobody. The colony has a {TALE} of its own, of the ordinary color.
+
+{X_nameDef} is moving on in a few hours, to look.</li>
+          <li>[trainer] {X_nameDef} of {FACTION} spotted {A_nameDef}'s Pokémon from the road and came up to the gate to talk shop, and to pass on a rumour: a shiny {TALE} in the region, seen twice and caught by nobody. {A_nameDef} has heard of shinies and never seen one.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Keep an eye out for it</label>
+            <outcome>The word goes round: a shiny {TALE}, somewhere about. For the next twenty days the colony looks twice at every {TALE} it sees.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ShinyRumour" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send {A_nameDef} out to look along the way</label>
+            <outcome>{A_nameDef} went out to the far edge of the land with {X_nameDef} and looked, and came back with nothing but a better idea of where a shiny might hide. The colony will keep an eye out.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a look for the shiny</label><to>Stranger</to><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>250</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_ShinyRumour" />
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Just a story</label>
+            <outcome>{X_nameDef} shrugs and goes on down the road after the rumour. The colony has work to do.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
 </Defs>

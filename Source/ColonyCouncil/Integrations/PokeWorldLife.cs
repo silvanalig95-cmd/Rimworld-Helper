@@ -87,6 +87,34 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Sets a value on one of the comp's trackers (shinyTracker.isShiny); false when it can't be.</summary>
+        private static bool Write(Pawn p, string trackerName, string valueName, object value)
+        {
+            if (Read(p, trackerName, valueName) == null) return false;
+            var comp = CompOf(p);
+            if (comp == null) return false;
+            try
+            {
+                var key = (comp.GetType(), trackerName + "." + valueName);
+                if (!readers.TryGetValue(key, out var r) || r == null) return false;
+                var t = r.tracker.GetValue(comp);
+                if (t == null) return false;
+                r.value.SetValue(t, value);
+                return true;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("PokéWorld: writing " + trackerName + "." + valueName, e);
+                return false;
+            }
+        }
+
+        /// <summary>Makes a wild Pokémon shiny (the rumour come true); false when PokéWorld's shiny flag can't be reached.</summary>
+        public static bool SetShiny(Pawn p) => p != null && Write(p, "shinyTracker", "isShiny", true);
+
+        /// <summary>The rare one a sighting brought (its own story, Council_Evt_PW_RareSighting): not the beast that stays.</summary>
+        public static bool IsRareOne(Pawn p) => p != null && rareOne == p;
+
         /// <summary>Its level (1 to 100), or 0 when it can't be read.</summary>
         public static int Level(Pawn p) => Read(p, "levelTracker", "level") is int n ? n : 0;
 

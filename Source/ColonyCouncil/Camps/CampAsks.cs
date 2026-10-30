@@ -90,6 +90,9 @@ namespace ColonyCouncil
                 case "theirWounded":
                     if (!Here.Any(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff())) return "CC_CampAsk_NobodyHurt".Translate();
                     break;
+                case "ourPokemon":
+                    if (PokeWorldCamp.OurBest(map) == null || PokeWorldCamp.TheirBest(this) == null) return "CC_CampAsk_NoPokemon".Translate();
+                    break;
             }
             int cost = AskCost(a);
             if (cost > 0 && CampAnswers.Silver(map) < cost) return "CC_Dilemma_NotEnough".Translate(cost, ThingDefOf.Silver.label);
@@ -140,6 +143,7 @@ namespace ColonyCouncil
                 Flavor.AddEraTags(tags);
                 CampWords.AddTags(tags, kind, faction, map);
                 LetterTags.Add(tags, ctx.a, null, ctx.stranger, faction, false);
+                AddStoryTags(tags);
                 string raw = a.outcomes.NullOrEmpty() ? null : Flavor.Pick(a.outcomes, tags) ?? Flavor.PickText(a.outcomes);
                 // The one lying ill, by name (CampStory.cs).
                 if (raw != null && sick != null) raw = raw.Replace("{SICK}", sick.LabelShort);

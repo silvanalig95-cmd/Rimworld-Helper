@@ -29,6 +29,13 @@ public static class HerdStoryTests
         Check(!HerdStoryMath.AskDue(10f, 1, 5f) && HerdStoryMath.AskDue(10f, 1, 8f), "and again after a gap");
         Check(!HerdStoryMath.AskDue(40f, HerdStoryMath.MaxAsks, 40f), "three questions at most");
         Check(HerdStoryMath.Stance(1, true) == "fed" && HerdStoryMath.Stance(0, true) == "feared" && HerdStoryMath.Stance(0, false) == "watched", "fed outweighs feared, else watched");
+
+        Check(HerdStoryMath.PokemonFits(0.3f) && !HerdStoryMath.PokemonFits(0.2f), "a small Pokémon still counts, the tiniest don't");
+        Check(HerdStoryMath.StealDue("watched", 1f, 1f) && HerdStoryMath.StealDue("feared", 3f, 2f), "a watched or feared Pokémon raids the stores from its second day, a day apart");
+        Check(!HerdStoryMath.StealDue("fed", 3f, 3f) && !HerdStoryMath.StealDue("watched", 0.5f, 3f) && !HerdStoryMath.StealDue("watched", 3f, 0.5f), "not when fed, not on the first day, not twice a day");
+        Check(Math.Abs(HerdStoryMath.ShowWinChance(20, 20) - 0.5f) < 0.001f, "even levels, even odds");
+        Check(HerdStoryMath.ShowWinChance(50, 20) == 0.85f && HerdStoryMath.ShowWinChance(10, 60) == 0.15f, "a big gap is never a sure thing either way");
+        Check(HerdStoryMath.ShowWinChance(32, 20) > 0.5f && HerdStoryMath.ShowWinChance(32, 20) < 0.85f, "a dozen levels tilt it");
         return n;
     }
 }

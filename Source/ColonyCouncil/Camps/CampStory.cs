@@ -29,11 +29,24 @@ namespace ColonyCouncil
         public bool fighting;
         /// <summary>Asked to stand guard: they fight whatever threatens the colony while they're here, as a war party does.</summary>
         public bool guards;
+        /// <summary>Shows held with the colony's Pokémon (traveling trainers), and how many the colony won; kept when they come back.</summary>
+        public int contests, contestsWon;
 
         /// <summary>A war party's enemy: whom they came to fight.</summary>
         public Faction enemy;
 
         public bool Familiar => returns > 0;
+
+        /// <summary>The stay's own tags for the camp's lines: back (people the colony knows), and the score of shows with the trainers (rematch, beatUs, beatThem).</summary>
+        public void AddStoryTags(HashSet<string> tags)
+        {
+            if (tags == null) return;
+            if (Familiar) tags.Add("back");
+            if (contests <= 0) return;
+            tags.Add("rematch");
+            if (contestsWon * 2 < contests) tags.Add("beatUs");
+            else if (contestsWon * 2 > contests) tags.Add("beatThem");
+        }
 
         /// <summary>The fever one of them takes: the game's flu.</summary>
         public static HediffDef Fever => DefDatabase<HediffDef>.GetNamedSilentFail("Flu");
@@ -47,6 +60,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref provisioned, "provisioned");
             Scribe_Values.Look(ref fighting, "fighting");
             Scribe_Values.Look(ref guards, "guards");
+            Scribe_Values.Look(ref contests, "contests");
+            Scribe_Values.Look(ref contestsWon, "contestsWon");
             Scribe_References.Look(ref sick, "sick");
             Scribe_References.Look(ref enemy, "enemy");
             if (Scribe.mode == LoadSaveMode.PostLoadInit) beats ??= new List<string>();

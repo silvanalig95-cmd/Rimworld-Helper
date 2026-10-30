@@ -1,6 +1,30 @@
 # Handoff: work in progress
 
-Last shipped: 0.34.0, the animals round (the herd's year, a beast that stays). `Animals/HerdStoryMath.cs`
+Last shipped: 0.35.0, the Pokémon round (a Pokémon that keeps coming, a shiny rumour, traveling trainers), the last
+of the event rounds the player approved. `Animals/ResidentBeast.cs` with PokéWorld: `Fits` takes a wild Pokémon
+(`PokeWorldLink.IsPokemon`, not `PokeWorldLife.IsRareOne`, `HerdStoryMath.PokemonFits` body 0.3+), `Candidate` prefers
+the rumour's species, then Pokémon; `pokemon`/`shiny`/`rumoured`/`stolen`, `Steal` (`StealDue`/`StealChance`,
+`Couriers.TakeFromStores` of what it would eat, CC_Beast_Stole), the question is `Council_DlmA_ResidentPokemon`
+(Rimfolk_Dilemmas_Pokemon.xml; `DilemmaEffect_CatchPokemon` is a visit to it, `CanCatch` for a belt), `Tags()` feeds
+the lines and the dilemma worker, the end reads "caught"; the rumour: `Rumour(species)` (rumourKind/rumourUntil, 20
+days), `RumourDay` spawns the species at the edge with `PokeWorldLife.SetShiny` (a reflective write of
+shinyTracker.isShiny beside `Read`) and makes it tomorrow's candidate, or lets the rumour fade.
+`Integrations/PokeWorldCamp.cs`: `TrainerKind` (a roaming kind for `CampAnimals.pokemon`, CampLook.AnimalKindFor),
+`OurBest`/`TheirBest`, `DilemmaEffect_PokemonShow` (a gathering at the camp with the camp's people as guests, the
+winner by `HerdStoryMath.ShowWinChance`, thoughts Council_PW_ShowWon/ShowLost/WatchedTheShow, journal
+Council_Journal_PW_Show, `Camp.contests`/`contestsWon` kept on `PastCamp` across returns), `HappeningWorker_ShinyRumour`
+(Council_Evt_PW_ShinyRumour, {TALE} the species, needs no rumour running), `DilemmaEffect_ShinyRumour`. Camps:
+`CampKindDef.pokemon` (Possible needs PokéWorld's Pokémon in play), `CampAnimals.pokemon`, `CampAsks` need
+"ourPokemon", `Camp.AddStoryTags` (back, rematch, beatUs, beatThem) for ask outcomes, `CampReturns.News` reads
+CC_Camp_News_1..20 and tags trainers. Not tried in the game (no PokéWorld here): the first look should check a trainers'
+camp's Pokémon walk in at their trainers' heels and sleep by the fire (CampAnimals.follow), that the show's gathering
+forms at the camp's fire, that a wild Pokémon takes the food carried out and that `TakeFromStores` really removes what
+the stores lose, and that `SetShiny` lands on PokéWorld's shiny flag (a WarnOnce says when it doesn't).
+
+All five approved rounds (0.30.0 to 0.35.0) are shipped. Next: whatever the player asks; else a bug pass over the
+rounds once they have been seen in the game (the "not tried" notes above and below are the places to look first).
+
+Before it, 0.34.0, the animals round (the herd's year, a beast that stays). `Animals/HerdStoryMath.cs`
 (Tools/Tests/HerdStoryTests.cs): `MinHerd` 4, `LeaderScore` (years, the kind's share, the old line first), `Generation`,
 `GenerationNews`, `SpringCalf`, `BeastFits` (predators from body size 0.6, grazers from 1.4, no insects or great
 beasts), `ResidentAfterDays` 3, `AskDue` (4 days, then every 8, three times), `FateAfterDays` 15, `RestDays` 20,
@@ -21,7 +45,6 @@ LordJob_ExitMapNear). Not tried in the game: the first look should check that a 
 the map, that the carried food is left where the beast is and eaten, that `LordJob_ExitMapNear` really walks a wild
 animal off (it is what herd migrations use), and that the leader's line survives a save and load (ids, not references).
 
-Next round (task): 0.35.0 Pokémon (one that keeps coming, a trainers' camp).
 
 Before it, 0.33.0, the world round (other settlers, the road over a year, people a world event leaves behind).
 `World/Workers_World.cs`: `SituationWorker_RivalColony` (Council_WS_RivalColony, 50 to 58 days; a NewTown worker that

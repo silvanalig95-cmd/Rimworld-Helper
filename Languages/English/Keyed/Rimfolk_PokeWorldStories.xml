@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The Pokémon that keeps coming and the shiny rumour (Source/ColonyCouncil/Animals/ResidentBeast.cs, Integrations/PokeWorldCamp.cs). -->
+  <CC_Beast_Stole>{PET_nameDef} got into the stores in the night and made off with {COUNT} {THING}.</CC_Beast_Stole>
+  <CC_Beast_End_caught>{PET_nameDef} is caught, and the colony's now. {PAWN_nameDef}, who named it, made the throw.</CC_Beast_End_caught>
+  <CC_Beast_NoBelt>Nobody has a ball belt to throw with.</CC_Beast_NoBelt>
+  <CC_PW_RumourHeld>The colony is keeping an eye out for a shiny {SPECIES}, for the next {DAYS}.</CC_PW_RumourHeld>
+  <CC_PW_RumourFaded>Nobody saw the shiny {SPECIES} the rumour spoke of. It was a story after all, or someone else's catch.</CC_PW_RumourFaded>
+  <CC_PW_RumourShows>A {SPECIES} shining in the wrong colors has come onto the colony's land, as the rumour said.</CC_PW_RumourShows>
+
+  <!-- Traveling trainers and their show (Integrations/PokeWorldCamp.cs). -->
+  <CC_PW_ShowLabel>a friendly contest at the trainers' fire</CC_PW_ShowLabel>
+  <CC_PW_ShowWon>At the trainers' fire, {PET_nameDef} ({PAWN_nameDef}'s) came out on top against {OTHER_nameDef}'s {KIND}. Nobody is hurt, and {X_nameDef} wants a rematch.</CC_PW_ShowWon>
+  <CC_PW_ShowLost>At the trainers' fire, {OTHER_nameDef}'s {KIND} came out on top against {PET_nameDef} ({PAWN_nameDef}'s). Nobody is hurt, and {PAWN_nameDef} wants a rematch.</CC_PW_ShowLost>
+  <CC_PW_ShowChronicle_Won>The colony's {PET_nameDef} beat the traveling trainers' {KIND} in a show at their fire.</CC_PW_ShowChronicle_Won>
+  <CC_PW_ShowChronicle_Lost>The traveling trainers' {KIND} beat the colony's {PET_nameDef} in a show at their fire.</CC_PW_ShowChronicle_Lost>
+  <CC_PW_CatchLabel>a try for {PET_nameDef}</CC_PW_CatchLabel>
+  <CC_CampAsk_NoPokemon>The colony has no Pokémon with a trainer to put against theirs, or they have none to show.</CC_CampAsk_NoPokemon>
+  <CC_Camp_News_17>[trainers] Their Pokémon have grown a level or two since, {X_nameDef} says, and they'd like another show.</CC_Camp_News_17>
+  <CC_Camp_News_18>[trainers,again] {X_nameDef} says the colony's fire is the one they tell the other trainers about.</CC_Camp_News_18>
+
+</LanguageData>

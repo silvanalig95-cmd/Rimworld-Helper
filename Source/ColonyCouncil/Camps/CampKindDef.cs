@@ -25,6 +25,8 @@ namespace ColonyCouncil
         public bool fights;
         /// <summary>At the parting of a good stay they may ask to stay on the colony's land for good, as its neighbours (Holding.cs).</summary>
         public bool canSettle;
+        /// <summary>A camp about Pokémon (traveling trainers): only with PokéWorld's Pokémon in play (Integrations/PokeWorld.cs).</summary>
+        public bool pokemon;
         /// <summary>The people they come from must be at least / at most this advanced.</summary>
         public TechLevel minTech = TechLevel.Undefined;
         public TechLevel maxTech = TechLevel.Archotech;
@@ -139,7 +141,7 @@ namespace ColonyCouncil
             f != null && f.def.techLevel >= minTech && f.def.techLevel <= maxTech && (memes.NullOrEmpty() || CampWords.HasMeme(f, memes));
 
         /// <summary>Only when it could come at all: a kind for one kind of faith needs Ideology.</summary>
-        public bool Possible => memes.NullOrEmpty() || ModsConfig.IdeologyActive;
+        public bool Possible => (memes.NullOrEmpty() || ModsConfig.IdeologyActive) && (!pokemon || (PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f));
 
         public override IEnumerable<string> ConfigErrors()
         {

@@ -26,6 +26,8 @@ namespace ColonyCouncil
         public string ending;
         public int helps, gifts, tradeDays, returns;
         public bool invited, provisioned;
+        /// <summary>Shows held with the colony's Pokémon, and how many the colony won (traveling trainers).</summary>
+        public int contests, contestsWon;
 
         private static int Now => Find.TickManager.TicksGame;
 
@@ -58,6 +60,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tradeDays, "tradeDays");
             Scribe_Values.Look(ref returns, "returns");
             Scribe_Values.Look(ref invited, "invited");
+            Scribe_Values.Look(ref contests, "contests");
+            Scribe_Values.Look(ref contestsWon, "contestsWon");
             Scribe_Values.Look(ref provisioned, "provisioned");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -131,6 +135,8 @@ namespace ColonyCouncil
             past.returns = c.returns;
             past.invited = c.invited;
             past.provisioned = c.provisioned;
+            past.contests = c.contests;
+            past.contestsWon = c.contestsWon;
             past.friendOf = c.warmth.Where(kv => kv.Key != null && !kv.Key.Dead && kv.Key.IsColonist).OrderByDescending(kv => kv.Value).Select(kv => kv.Key).FirstOrDefault();
             // Six at most: the oldest makes way.
             while (tracker.past.Count > CampStoryMath.RememberMax) Forget(tracker.past.OrderBy(p => p.leftTick).First());
@@ -185,6 +191,8 @@ namespace ColonyCouncil
             c.returnOf = past.id;
             c.returns = past.returns + 1;
             past.returns = c.returns;
+            c.contests = past.contests;
+            c.contestsWon = past.contestsWon;
             c.tension = 0f;
             var friend = past.friendOf;
             if (friend != null && !friend.Dead && friend.Spawned && friend.Map == c.map && friend.IsColonist)
@@ -214,11 +222,12 @@ namespace ColonyCouncil
             if (!k.memes.NullOrEmpty() || (k.task != null && k.task.defName.IndexOf("Pray", StringComparison.OrdinalIgnoreCase) >= 0)) tags.Add("faithful");
             if (k.defName.IndexOf("Players", StringComparison.OrdinalIgnoreCase) >= 0 || k.defName.IndexOf("Minstrels", StringComparison.OrdinalIgnoreCase) >= 0) tags.Add("players");
             if (k.fights) tags.Add("fighters");
+            if (k.pokemon) tags.Add("trainers");
             if (past != null && past.provisioned) tags.Add("provisioned");
             if (past != null && past.invited) tags.Add("invited");
             if (past != null && past.returns >= 2) tags.Add("again");
             var lines = new List<string>();
-            for (int i = 1; i <= 16; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 string key = "CC_Camp_News_" + i;
                 if (key.CanTranslate()) lines.Add(key.Translate().RawText);

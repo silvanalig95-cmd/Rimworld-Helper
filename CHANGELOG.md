@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A Pokémon that keeps coming, a shiny rumour, and traveling trainers
+
+*30 October 2026, version 0.35.0*
+
+- With PokéWorld, the beast that stays can be a wild Pokémon: one seen on the land three days running is named by a colonist, whoever sees it says so, and until it is fed or caught it gets into the stores now and then and makes off with a few of what it would eat. The council's question about it has its own answers: leave food out (carried out and left), keep the stores shut with a watch at the gate, let the namer try to catch it (a walk out to it with a ball at the belt; the throw is the player's, with PokéWorld's own balls, and the catch is told), let it be, or drive it off.
+- A shiny rumour: a trainer at the gate has heard of a shiny Pokémon of some species seen in the region. Keep an eye out and the rumour holds for twenty days; while it does, the shiny may show itself on the colony's land, where it is named like any beast that stays, and the one who named it knows the rumour was true. Or it was a story after all.
+- Traveling trainers, a new kind of camp (only with PokéWorld's Pokémon in play): two or three trainers of a friendly people with their Pokémon at their heels, who trade, teach training to whoever asks, and put on a friendly contest with the colony's best Pokémon as a show at their fire (a gathering there; the higher level is likelier to win, never surely; nobody is hurt). They come back like any remembered camp, and the score comes back with them: a rematch, with words for who won last time.
+- Under the hood: a camp kind can be about Pokémon (possible only with PokéWorld's Pokémon in play), a camp's animals can be Pokémon of the roaming kinds, and a camp's lines know whether its people are back and how the shows have gone.
+
 ## The herd's year, and a beast that stays
 
 *30 October 2026, version 0.34.0*

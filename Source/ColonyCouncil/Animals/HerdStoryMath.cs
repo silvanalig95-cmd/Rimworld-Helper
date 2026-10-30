@@ -59,5 +59,24 @@ namespace ColonyCouncil
 
         /// <summary>What the colony has made of it, for its lines: fed, feared, or only watched.</summary>
         public static string Stance(int fed, bool feared) => fed > 0 ? "fed" : feared ? "feared" : "watched";
+
+        // ---------------- Pokémon (with PokéWorld) ----------------
+
+        /// <summary>A wild Pokémon big enough to be the one the colony watches: most are small, so the bar is low.</summary>
+        public static bool PokemonFits(float bodySize) => bodySize >= 0.3f;
+
+        /// <summary>A Pokémon not yet fed nor caught gets into the stores now and then, from its second day: this chance a day.</summary>
+        public const float StealChance = 0.3f;
+        public static bool StealDue(string stance, float daysNamed, float daysSinceSteal) =>
+            (stance == "watched" || stance == "feared") && daysNamed >= 1f && daysSinceSteal >= 1f;
+
+        /// <summary>A rumour of a shiny one holds this many days, and the shiny shows itself with this chance a day while it does.</summary>
+        public const float RumourDays = 20f, RumourChance = 0.12f;
+
+        /// <summary>
+        /// A friendly contest between two trainers' Pokémon, as a show: the colony's chance to win by the two levels
+        /// (even at the same level, never a sure thing either way).
+        /// </summary>
+        public static float ShowWinChance(int ourLevel, int theirLevel) => Math.Max(0.15f, Math.Min(0.85f, 0.5f + (ourLevel - theirLevel) / 60f));
     }
 }

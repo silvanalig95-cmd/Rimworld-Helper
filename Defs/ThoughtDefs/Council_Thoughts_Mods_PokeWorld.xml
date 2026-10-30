@@ -124,4 +124,33 @@
     <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.08</joy><feelings><li>Joy</li></feelings></li></modExtensions>
   </ThoughtDef>
 
+  <!-- A shiny rumour come true, and a show with a trainers' camp (Integrations/PokeWorldCamp.cs, Animals/ResidentBeast.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_PW_RumourTrue</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the rumour was true</label><description>A trainer at the gate said there was a shiny one about, and I thought it a story. It's on our land, and I named it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><joy>0.08</joy><feelings><li>Awe</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_PW_ShowWon</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>won the show</label><description>Mine against the trainers' best at their fire, the colony shouting, and mine came out on top. Nobody hurt, and I'll dine on it for a season.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><joy>0.08</joy><skill>Animals</skill><xp>150</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_PW_ShowLost</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>lost the show</label><description>Mine lost to the trainers' best at their fire, fair and square. I saw where it went wrong, and the trainers said as much over the fire afterward.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><skill>Animals</skill><xp>220</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_PW_WatchedTheShow</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>watched the show</label><description>Two Pokémon at the trainers' fire, going at it like a dance, and nobody hurt. I shouted myself hoarse.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>1</felt><joy>0.1</joy></li></modExtensions>
+  </ThoughtDef>
+
 </Defs>

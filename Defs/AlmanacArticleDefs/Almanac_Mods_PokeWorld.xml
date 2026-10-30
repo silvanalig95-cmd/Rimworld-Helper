@@ -313,6 +313,18 @@ A rare Pokémon sighted is a Rimfolk event: one of PokéWorld's rare species (ra
         <heading>The version you run</heading>
         <text>Rimfolk reads the level, the friendship, whether it's shiny and the Pokédex by their names in the mod's code. The original mod, eth0net's update for 1.5 and the 1.6 port share those names; if a version doesn't, that part is skipped and one line goes into the log.</text>
       </li>
+      <li>
+        <heading>A Pokémon that keeps coming</heading>
+        <text>The beast that stays (see "animals") can be a wild Pokémon when PokéWorld's Pokémon are in play: one seen on the colony's land three days running is given a name by a colonist (a child first, else someone with a love of animals), and from then on whoever sees it says so. Until it is fed or caught it gets into the stores now and then, from its second day, and makes off with a few of what it would eat (meat for a meat-eater, else fodder or raw food), told in the morning. Four days after the naming the council is asked what to make of it, and again every eight days while it stays, three times at most: leave food out (the namer carries it out and leaves it), keep the stores shut with the best shot at the gate that night, let the namer try to catch it (a walk out to it with a ball at the belt; the throw is yours, with PokéWorld's own balls, and the catch is told), let it be, or drive it off with torches. After fifteen days it is part of the land and the story closes. The rare one a sighting brings is its own story and is never the beast that stays.</text>
+      </li>
+      <li>
+        <heading>A shiny rumour</heading>
+        <text>A trainer of a friendly people stops at the gate with a story: a shiny Pokémon of some species, seen twice in the region and caught by nobody. Keep an eye out (or send someone to look along the way, a walk and a little learned) and the rumour holds for twenty days; while it does, one chance in eight a day, the shiny shows itself at the edge of the colony's land and is named the next day like any beast that stays, with the rumour in its lines, and the one who named it is glad the rumour was true. If the twenty days pass without it, it was a story after all. One rumour at a time.</text>
+      </li>
+      <li>
+        <heading>Traveling trainers</heading>
+        <text>A camp of traveling trainers comes only with PokéWorld's Pokémon in play: two or three trainers of a friendly people, each with a Pokémon of the roaming kinds at their heels (the ones the colony hasn't caught likelier), who trade like any camp with a trader. The colony can ask them about training (a while at their fire, practice with animals) or for a friendly contest: the colony's highest-level Pokémon with a trainer against their best, as a show at their fire in the afternoon or evening, the camp's people as guests and whoever wants to watch. The higher level is likelier to win and never surely, nobody is hurt, the trainer whose Pokémon took part remembers it and so does the colony. The trainers come back like any remembered camp, and the score of the shows comes back with them: the next contest is a rematch, and their words know who won last time.</text>
+      </li>
     </sections>
     <keywords>
       <li>pokemon</li>

@@ -26,11 +26,14 @@ namespace ColonyCouncil
         public bool follow;
         /// <summary>Named, as a dog is.</summary>
         public bool named;
+        /// <summary>Pokémon (with PokéWorld): one of the roaming kinds, the ones the colony hasn't caught likelier (Integrations/PokeWorld.cs).</summary>
+        public bool pokemon;
 
         public bool Matches(Pawn a)
         {
             if (a?.kindDef == null) return false;
             if (kinds != null && kinds.Contains(a.kindDef.defName)) return true;
+            if (pokemon && PokeWorldLink.IsPokemon(a)) return true;
             return pack && a.RaceProps.packAnimal;
         }
     }

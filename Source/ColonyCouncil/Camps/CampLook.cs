@@ -243,6 +243,7 @@ namespace ColonyCouncil
                 var own = Couriers.AnimalKind(f, map);
                 if (own != null) return own;
             }
+            if (g.pokemon) return PokeWorldCamp.TrainerKind(map);
             var biome = map.Biome;
             var opts = (g.kinds ?? new List<string>()).Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n))
                 .Where(k => k?.race?.race != null && k.RaceProps.Animal && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)

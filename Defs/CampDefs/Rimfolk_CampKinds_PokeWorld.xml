@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Traveling trainers (Source/ColonyCouncil/Integrations/PokeWorldCamp.cs): only with PokéWorld's Pokémon in play
+       (pokemon: the kind is possible only then). Two or three trainers of a friendly people with their Pokémon at their
+       heels, who trade, teach, and put on a friendly contest with the colony's Pokémon as a show at their fire. They
+       come back like any remembered camp, and the contest's score comes back with them: a rematch. Tags of their
+       lines: [rematch] (they have met the colony's Pokémon before), [beatUs] (they won last time), [beatThem]. -->
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_Trainers</defName>
+    <label>traveling trainers</label>
+    <pokemon>true</pokemon>
+    <weight>1</weight>
+    <people>2~3</people>
+    <days>3~6</days>
+    <ages>16~36</ages>
+    <trader>true</trader>
+    <huntsPerDay>0.2</huntsPerDay>
+    <chopsPerDay>0.3</chopsPerDay>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.08</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li></stuff></li>
+      <li><role>wall</role><defs><li>DankPyon_TentWall</li><li>Wall</li></defs><stuff><li>Cloth</li><li>WoodLog</li></stuff><count>3</count></li>
+    </structures>
+    <animals>
+      <li><pokemon>true</pokemon><count>2~3</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <asks>
+      <li>
+        <key>show</key>
+        <label>A friendly contest: their Pokémon against ours, as a show</label>
+        <tip>{A_nameDef}'s Pokémon against the trainers' best, at their fire this afternoon or evening, with whoever wants to watch. Nobody is hurt; the higher level is likelier to win, never surely. They remember it, and so does the colony, if they come back.</tip>
+        <needs>ourPokemon</needs>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>feast</deed>
+        <outcomes>
+          <li>{X_nameDef} grinned and whistled {X_possessive} Pokémon over. The show is set for their fire, and half the colony means to watch.</li>
+          <li>[rematch] {X_nameDef} said {X_pronoun} had been waiting a season for this. The rematch is set for their fire.</li>
+          <li>[rematch,beatUs] "Same as last time," {X_nameDef} said, "I win." The rematch is set for their fire, and {A_nameDef} has something to prove.</li>
+          <li>[rematch,beatThem] {X_nameDef} has not forgotten losing last time, and says so. The rematch is set for their fire.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PokemonShow" />
+        </effects>
+      </li>
+      <li>
+        <key>tips</key>
+        <label>Ask them about training</label>
+        <tip>{A_nameDef} spends a while at the trainers' fire talking Pokémon: moves, levels, what to feed them. Practice with animals.</tip>
+        <skill>Animals</skill>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} sat at the trainers' fire until dark, asking questions. {X_nameDef} answered every one, and asked a few back.</li>
+          <li>{X_nameDef} showed {A_nameDef} how {X_pronoun} works with {X_possessive} Pokémon, and {A_nameDef} came back with a head full of it.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>talking training at the trainers' fire</label><to>Camp</to><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>400</xp></li>
+        </effects>
+      </li>
+    </asks>
+    <titles>
+      <li>Trainers on the road</li>
+      <li>Trainers of {FACTION} make camp</li>
+    </titles>
+    <texts>
+      <li>Two or three trainers of {FACTION} have made camp {PLACE}, their Pokémon at their heels and a ball or two at every belt. {X_nameDef} asked {A_nameDef} for leave to stay a few days, and whether the colony had any Pokémon of its own to show.</li>
+      <li>{X_nameDef} and the other trainers of {FACTION} have pitched camp {PLACE}, and their Pokémon are already chasing each other round the fire. They trade, {X_nameDef} says, and they'd welcome a friendly contest.</li>
+    </texts>
+    <settled>
+      <li>The trainers' camp {PLACE} has its fire going and the Pokémon curled up around it in a ring, each by its own trainer.</li>
+      <li>Smoke rises from the trainers' camp {PLACE}, and now and then a Pokémon's cry. They're practising.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the trainers camped {PLACE}, came to the gate with {X_possessive} Pokémon and a question: would the colony have a trainer and a partner, for good?</li>
+    </joinTexts>
+    <farewell>
+      <li>The trainers of {FACTION} have struck their camp {PLACE} and gone on down the road, their Pokémon trotting behind. {X_nameDef} said they'd be back for a rematch.</li>
+      <li>The trainers' camp {PLACE} is empty this morning. They left early, {X_nameDef} said, to be at the next town by market day.</li>
+    </farewell>
+    <lines>
+      <li>Good, again.</li>
+      <li>Who's hungry?</li>
+      <li>Not so rough.</li>
+      <li>That's a new move.</li>
+      <li>Any wild ones about here?</li>
+      <li>Come here, you.</li>
+    </lines>
+    <momentLines>
+      <li>[kill] Supper, and a lesson.</li>
+    </momentLines>
+  </ColonyCouncil.CampKindDef>
+</Defs>

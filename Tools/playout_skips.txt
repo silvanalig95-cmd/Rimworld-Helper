@@ -462,3 +462,6 @@ Council_WS_Crossroads [fair] the crowd comes as the game's own visitor group (Wo
 # Defs/DilemmaDefs/Rimfolk_Dilemmas_Beast.xml
 Council_DlmA_ResidentBeast [option 0] the food is carried out to the beast and left (DilemmaEffect_FeedBeast, a CarryOut to the stranger)
 Council_DlmA_ResidentBeast [option 3] the taming is the game's own: the beast is marked and the handlers go out to it
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Pokemon.xml
+Council_DlmA_ResidentPokemon [option 0] the food is carried out to the Pokémon and left (DilemmaEffect_FeedBeast, a CarryOut to the stranger)
+Council_DlmA_ResidentPokemon [option 2] the colonist walks out to the Pokémon and stays a while (DilemmaEffect_CatchPokemon, a visit); the throw is the player's

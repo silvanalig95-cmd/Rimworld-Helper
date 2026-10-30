@@ -39,6 +39,12 @@
         <li>[watched] Still here, {PET_nameDef}, same as every day.</li>
         <li>[child] Look, look, it's {PET_nameDef}!</li>
         <li>[child,feared] {PET_nameDef} won't come near the wall, will it?</li>
+        <li>[pokemon] {PET_nameDef}'s back at the edge of the fields.</li>
+        <li>[pokemon,thief] Count the sacks, {PET_nameDef}'s about.</li>
+        <li>[pokemon,fed] {PET_nameDef} knows when supper is better than we do.</li>
+        <li>[pokemon,shiny] Look at the color on {PET_nameDef} in this light.</li>
+        <li>[pokemon,child] {PET_nameDef}, come here, I've got a berry!</li>
+        <li>[pokemon,catch] One good throw and {PET_nameDef} is ours.</li>
       </plain>
       <warm><li>Morning, {PET_nameDef}.</li></warm>
       <cheerful><li>{PET_nameDef}'s out, everyone come and see!</li></cheerful>
@@ -102,6 +108,22 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
+  <!-- A friendly contest with a trainers' camp, as a show (Integrations/PokeWorldCamp.cs): the colonist whose Pokémon took part. [won] or [lost], [rematch]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Council_Journal_PW_Show</defName>
+    <lines>
+      <plain>
+        <li>[won] {PET_nameDef} against {OTHER_nameDef}'s Pokémon at the trainers' fire, half the colony watching, and mine came out on top. Nobody hurt, everybody shouting.</li>
+        <li>[lost] {PET_nameDef} lost the show at the trainers' fire to {OTHER_nameDef}'s Pokémon, fair and square. I saw where it went wrong. We'll practise.</li>
+        <li>[won,rematch] The rematch, and this time {PET_nameDef} took it. {OTHER_nameDef} shook my hand and said next season.</li>
+        <li>[lost,rematch] The rematch went to {OTHER_nameDef} again. {PET_nameDef} fought well. I'm starting to think it's me.</li>
+      </plain>
+      <warm><li>[won] {PET_nameDef} won the show, and ran straight back to me afterward as if I'd done something.</li></warm>
+      <cheerful><li>[won] We won the show at the trainers' fire! {PET_nameDef} is getting an extra supper and I'm getting no sleep.</li></cheerful>
+      <blunt><li>[lost] Lost the show. {OTHER_nameDef}'s is higher level. Next time.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_Beast_Named</defName>
     <lines>
@@ -109,6 +131,8 @@
         <li>[predator] The {KIND} that has been hanging about the trees for days needed a name, so I gave it one: {PET_nameDef}. The others laughed, and then used it.</li>
         <li>[grazer] There's a {KIND} on the far meadow every morning that hasn't moved on with the rest. I've called it {PET_nameDef}. It suits.</li>
         <li>I named the wild one {PET_nameDef} today. Once a thing has a name you look for it.</li>
+        <li>[pokemon] The wild {KIND} that comes down to the fields at dusk is {PET_nameDef} now. I said it once and everyone took it up.</li>
+        <li>[pokemon,shiny] I named the shiny {PET_nameDef}. I can't stop looking at it.</li>
       </plain>
       <warm><li>{PET_nameDef}. That's what I've called the wild {KIND} that watches us. It seemed unkind to go on calling it "it".</li></warm>
       <cheerful><li>Everyone's calling the wild {KIND} {PET_nameDef} now, and it was my idea!</li></cheerful>
