@@ -441,6 +441,7 @@ Console.WriteLine($"Checked {OnMapTests.Run(Check)} things about what answers ma
 Console.WriteLine($"Checked {VisitorTests.Run(Check)} things about people from outside who are really there (how many, when, a night's stay, the wait at the gate, the way on).");
 Console.WriteLine($"Checked {CampLookTests.Run(Check)} things about camps that look lived-in (a handful of animals, fed by the camp, porters, the last walk, the smith's mending, a ring of saplings).");
 Console.WriteLine($"Checked {CampWeatherTests.Run(Check)} things about the weather camps come in and stay through.");
+Console.WriteLine($"Checked {CampStoryTests.Run(Check)} things about camps that come back, the shape of a stay and war parties.");
 Console.WriteLine($"Checked {MovingOnTests.Run(Check)} things about the price of keeping someone who asked to move on.");
 Console.WriteLine($"Checked {GoalRewardTests.Run(Check)} things about what a reached life goal leaves behind.");
 Console.WriteLine($"Checked {BarMoreTests.Run(Check)} things about the bottom bar's buttons put away under More.");

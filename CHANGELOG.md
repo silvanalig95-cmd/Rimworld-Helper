@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Camps that come back, a stay with a shape, and help in a fight
+
+*30 October 2026, version 0.30.0*
+
+- A camp that stayed and left in peace is remembered, with up to four of its people. A month or more later, when a camp could come again, it may be the same faces coming back (likelier after a warm stay or when the colony asked them back, less each time), with news of what became of them since. They settle in quicker, and the colonist who made a friend of them is glad to see them. The World page lists the camps the colony knows that may pass this way again.
+- Every stay has a shape. A day and a half in, they ask something of the colony or do it a good turn. Midway through a longer stay trouble comes: one of the council's questions about them, or one of theirs falls ill and they ask for the colony's doctor, or their cart breaks and they ask for the makings. In the last day whoever speaks for them comes to say goodbye, and the colony can ask them back or send them off with meals for the road.
+- Help in a fight. When enemies have been on the colony's land for an hour, a people at peace with the colony and at war with the attacker may send a war party to fight them: a letter asks whether to welcome them, hold them at the edge or send them away. They hunt the enemy alongside the colony's own; when the fight is over they make camp to rest a day or two, have their wounded seen to and sell what the fight left them, and their people remember that the colony owes them. A new threat while they rest sends them after it.
+
 ## The Decrees page organized, and why no camp has come
 
 *30 October 2026, version 0.29.0*

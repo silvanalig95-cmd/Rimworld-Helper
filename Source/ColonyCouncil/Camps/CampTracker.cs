@@ -21,6 +21,10 @@ namespace ColonyCouncil
         public List<Pawn> pawns;
         public string place;
         public int stayTicks;
+        /// <summary>Its people are on the map already (a war party making camp after the fight): not spawned again.</summary>
+        public bool onMap;
+        /// <summary>The remembered camp this is the return of (CampMemory.cs).</summary>
+        public PastCamp past;
         /// <summary>The weather of their stay (CampWeather), and what they put on and how they pitch for it.</summary>
         public float low, high;
         public CampPitch pitch;
@@ -37,6 +41,12 @@ namespace ColonyCouncil
         public int lastEndedTick = -9999999;
         /// <summary>Mornings since the last camp on which one could have come (the way was open and the dice were rolled), for the World page.</summary>
         public int openMornings;
+        /// <summary>Camps the colony remembers, which may come back (CampMemory.cs).</summary>
+        public List<PastCamp> past = new List<PastCamp>();
+        /// <summary>A war party on the map, come to fight the colony's attacker (WarCamp.cs), and the threat it was rolled for.</summary>
+        public WarBand warBand;
+        public int threatSince = -1;
+        public bool threatRolled;
 
         public CampTracker(Game game)
         {
@@ -148,7 +158,7 @@ namespace ColonyCouncil
         /// </summary>
         public CampSetup Prepare(Map map, List<string> why = null)
         {
-            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible).ToList();
+            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights).ToList();
             if (kinds.Count == 0)
             {
                 why?.Add("no kind of camp can come now");
@@ -163,6 +173,13 @@ namespace ColonyCouncil
                 return null;
             }
             var colony = CampSite.ColonyCenter(map);
+            // People the colony knows, coming back (CampMemory.cs); else a new party.
+            var past = CampReturns.Pick(map);
+            if (past != null)
+            {
+                var back = Make(map, center, colony, past.kind, past.faction, hot, why, past);
+                if (back != null) return back;
+            }
             for (int tries = 0; tries < 6; tries++)
             {
                 var kind = kinds.RandomElementByWeight(k => k.WeightNow());
@@ -173,68 +190,90 @@ namespace ColonyCouncil
                     why?.Add(kind.label + ": no friendly people for it");
                     continue;
                 }
-                int n = Mathf.Clamp(kind.people.RandomInRange, 1, 8);
-                int stay = Mathf.RoundToInt(kind.days.RandomInRange * GenDate.TicksPerDay);
-                var (low, high) = CampWeather.StayRange(map, stay);
-                bool cold = CampWeatherMath.PitchForCold(low);
-                var plans = CampSite.Layout(map, center, kind, n, colony, out var stash, out var share, cold);
-                if (plans == null)
-                {
-                    why?.Add(kind.label + ": its camp doesn't fit at the spot");
-                    return null;
-                }
-                var pawns = MakePeople(kind, f, n);
-                if (pawns.Count == 0)
-                {
-                    why?.Add(kind.label + " of " + f.Name + ": its people couldn't be made");
-                    continue;
-                }
-                // Dressed for their stay; and none of them would be hurt by its weather, dressed as they are (CampWeatherMath).
-                var dressed = new List<Apparel>();
-                foreach (var p in pawns)
-                {
-                    try
-                    {
-                        dressed.AddRange(CampWeather.Dress(p, low, high, f));
-                    }
-                    catch (Exception e)
-                    {
-                        CouncilLog.ErrorOnce("camp people dressed for the weather", e);
-                    }
-                }
-                int unfit = pawns.Count(p =>
-                {
-                    var comfy = GenTemperature.ComfortableTemperatureRange(p);
-                    return !CampWeatherMath.WouldStop(low, high, comfy.min, comfy.max);
-                });
-                if (unfit > 0)
-                {
-                    why?.Add(kind.label + " of " + f.Name + ": " + unfit + " of " + pawns.Count + " couldn't dress for " + low.ToString("0") + " to " + high.ToString("0") + " °C");
-                    foreach (var p in pawns) Arrivals.Discard(p);
-                    continue;
-                }
-                return new CampSetup
-                {
-                    kind = kind, faction = f, map = map, center = center, stash = stash, share = share, colony = colony, plans = plans, pawns = pawns,
-                    place = CampSite.Direction(center, colony), stayTicks = stay, low = low, high = high,
-                    pitch = new CampPitch
-                    {
-                        clothes = CampWeather.Clothes(dressed),
-                        clothesForCold = dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Cold)) >= dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Heat)),
-                        cold = cold && CampSite.BedsClose(plans), windbreak = cold && plans.Any(x => x.role == "wall"), shade = hot && CampSite.Shaded(map, center)
-                    }
-                };
+                var setup = Make(map, center, colony, kind, f, hot, why, null);
+                if (setup != null) return setup;
+                if (why != null && why.Count > 0 && why[why.Count - 1].EndsWith("doesn't fit at the spot")) return null;
             }
             return null;
         }
 
-        private static List<Pawn> MakePeople(CampKindDef kind, Faction f, int n)
+        /// <summary>
+        /// A camp of this kind and people at the spot: its stay, its layout for the weather, its people (those
+        /// <paramref name="given"/>, else the remembered ones coming back, filled up with new ones), dressed for the
+        /// stay. Null if it can't be, with why.
+        /// </summary>
+        public CampSetup Make(Map map, IntVec3 center, IntVec3 colony, CampKindDef kind, Faction f, bool hot, List<string> why, PastCamp past, List<Pawn> given = null)
+        {
+            var kept = given ?? past?.Living ?? new List<Pawn>();
+            int n = given != null ? given.Count : Mathf.Clamp(Mathf.Max(kind.people.RandomInRange, kept.Count), 1, 8);
+            int stay = Mathf.RoundToInt(kind.days.RandomInRange * GenDate.TicksPerDay);
+            var (low, high) = CampWeather.StayRange(map, stay);
+            bool cold = CampWeatherMath.PitchForCold(low);
+            var plans = CampSite.Layout(map, center, kind, n, colony, out var stash, out var share, cold);
+            if (plans == null)
+            {
+                why?.Add(kind.label + ": its camp doesn't fit at the spot");
+                return null;
+            }
+            var pawns = given != null ? given.ToList() : MakePeople(kind, f, n, kept);
+            if (pawns.Count == 0)
+            {
+                why?.Add(kind.label + " of " + f.Name + ": its people couldn't be made");
+                return null;
+            }
+            // Dressed for their stay; and none of them would be hurt by its weather, dressed as they are (CampWeatherMath).
+            var dressed = new List<Apparel>();
+            foreach (var p in pawns)
+            {
+                try
+                {
+                    dressed.AddRange(CampWeather.Dress(p, low, high, f));
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp people dressed for the weather", e);
+                }
+            }
+            int unfit = pawns.Count(p =>
+            {
+                var comfy = GenTemperature.ComfortableTemperatureRange(p);
+                return !CampWeatherMath.WouldStop(low, high, comfy.min, comfy.max);
+            });
+            if (unfit > 0 && given == null)
+            {
+                why?.Add(kind.label + " of " + f.Name + ": " + unfit + " of " + pawns.Count + " couldn't dress for " + low.ToString("0") + " to " + high.ToString("0") + " °C");
+                // The remembered stay in the world as they were; the new are let go.
+                foreach (var p in pawns.Where(p => !kept.Contains(p))) Arrivals.Discard(p);
+                return null;
+            }
+            return new CampSetup
+            {
+                kind = kind, faction = f, map = map, center = center, stash = stash, share = share, colony = colony, plans = plans, pawns = pawns,
+                place = CampSite.Direction(center, colony), stayTicks = stay, low = low, high = high, past = past,
+                pitch = new CampPitch
+                {
+                    clothes = CampWeather.Clothes(dressed),
+                    clothesForCold = dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Cold)) >= dressed.Sum(a => a.GetStatValue(StatDefOf.Insulation_Heat)),
+                    cold = cold && CampSite.BedsClose(plans), windbreak = cold && plans.Any(x => x.role == "wall"), shade = hot && CampSite.Shaded(map, center)
+                }
+            };
+        }
+
+        private static List<Pawn> MakePeople(CampKindDef kind, Faction f, int n, List<Pawn> kept = null)
         {
             var list = new List<Pawn>();
             var personKind = Arrivals.PersonKind(f);
             if (personKind == null) return list;
             string last = null;
-            for (int i = 0; i < n; i++)
+            // The same faces first (a camp coming back), then new ones to make up the number.
+            if (kept != null)
+                foreach (var p in kept.Where(p => p != null && !p.Dead && !p.Discarded && !p.Spawned))
+                {
+                    if (list.Count >= n) break;
+                    list.Add(p);
+                    if (kind.family && last == null) last = (p.Name as NameTriple)?.Last;
+                }
+            for (int i = list.Count; i < n; i++)
             {
                 bool child = kind.family && i >= 2 && ModsConfig.BiotechActive && Rand.Chance(0.5f);
                 try
@@ -268,6 +307,15 @@ namespace ColonyCouncil
             if (!EntryNear(map, s.center, out var entry)) return null;
             foreach (var p in s.pawns)
             {
+                if (p.Spawned)
+                {
+                    // On the map already (a war party after its fight): out of its old group, into the camp's.
+                    p.GetLord()?.RemovePawn(p);
+                    continue;
+                }
+                // Someone kept in the world to come back (CampMemory.cs) is taken out of it first.
+                Find.WorldPawns.ForcefullyKeptPawns.Remove(p);
+                if (Find.WorldPawns.Contains(p)) Find.WorldPawns.RemovePawn(p);
                 var cell = CellFinder.RandomClosewalkCellNear(entry, map, 4);
                 GenSpawn.Spawn(p, cell, map);
             }
@@ -277,6 +325,7 @@ namespace ColonyCouncil
                 center = s.center, stash = s.stash, share = s.share, colonyCenter = s.colony, place = s.place, plans = s.plans,
                 startTick = Now, stayTicks = s.stayTicks, phase = CampPhase.Coming, pitch = s.pitch
             };
+            if (s.past != null) CampReturns.Started(c, s.past);
             try
             {
                 Equip(c);
@@ -300,7 +349,7 @@ namespace ColonyCouncil
             }
             try
             {
-                c.lord = LordMaker.MakeNewLord(s.faction, new LordJob_Camp(s.center), map, c.members.Concat(c.herd));
+                c.lord = LordMaker.MakeNewLord(s.faction, new LordJob_Camp(s.center, s.kind.fights), map, c.members.Concat(c.herd));
             }
             catch (Exception e)
             {
@@ -478,10 +527,17 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref nextId, "nextId", 1);
             Scribe_Values.Look(ref lastEndedTick, "lastEndedTick", -9999999);
             Scribe_Values.Look(ref openMornings, "openMornings", 0);
+            Scribe_Collections.Look(ref past, "past", LookMode.Deep);
+            Scribe_Deep.Look(ref warBand, "warBand");
+            Scribe_Values.Look(ref threatSince, "threatSince", -1);
+            Scribe_Values.Look(ref threatRolled, "threatRolled");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 // A camp whose kind was removed with its mod, or whose map is gone: nothing left to keep.
                 if (camp != null && (camp.kind == null || camp.map == null)) camp = null;
+                past ??= new List<PastCamp>();
+                past.RemoveAll(p => p == null || p.kind == null || p.faction == null);
+                if (warBand != null && (warBand.map == null || warBand.faction == null)) warBand = null;
             }
         }
     }

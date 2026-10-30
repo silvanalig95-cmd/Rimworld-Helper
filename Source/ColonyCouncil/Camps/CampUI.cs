@@ -97,6 +97,8 @@ namespace ColonyCouncil
             string why = UiCache.Get(tracker, 73, () => tracker.WhyNotForPlayer(map));
             if (why.NullOrEmpty()) return y;
             string text = "CC_Camp_NoneLine".Translate() + " " + why;
+            string known = UiCache.Get(tracker, 74, () => CampReturns.KnownLine());
+            if (!known.NullOrEmpty()) text += " " + known;
             UiKit.Icon(new Rect(2f, y + 2f, 16f, 16f), Icons.Visitor, UiKit.Dim);
             float h = UiKit.Paragraph(24f, y, w - 24f, text, UiKit.Faint, GameFont.Tiny);
             TooltipHandler.TipRegion(new Rect(0f, y, w, h), "CC_Camp_NoneTip".Translate());

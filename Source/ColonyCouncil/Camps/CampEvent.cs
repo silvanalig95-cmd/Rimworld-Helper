@@ -62,6 +62,13 @@ namespace ColonyCouncil
             }
             string label = ctx.Format(CampWords.Fill(Pick(kind.titles, ctx), kind, camp.faction) ?? def.label).CapitalizeFirst();
             ctx.text = ctx.Format(CampWords.Fill(Pick(kind.texts, ctx), kind, camp.faction));
+            // The same people back again (CampMemory.cs): told so, with news of what became of them.
+            if (camp.Familiar)
+            {
+                var past = CampTracker.Instance?.past.FirstOrDefault(x => x.id == camp.returnOf);
+                label = camp.Text(camp.returns >= 2 ? "CC_Camp_ReturnTitle_Again" : "CC_Camp_ReturnTitle");
+                ctx.text = camp.Text(past != null && past.invited ? "CC_Camp_Return_Invited" : "CC_Camp_Return") + " " + CampReturns.News(camp, past);
+            }
             // The colonist who met them first.
             camp.Warm(ctx.a, 1);
             CouncilRecords.Add(ctx.a, CouncilRecords.CampsGreeted);

@@ -14,17 +14,21 @@ namespace ColonyCouncil
     public class LordJob_Camp : LordJob
     {
         public IntVec3 center;
+        /// <summary>A war party: a threat on the map sends them to hunt it down rather than to flight (WarCamp.cs).</summary>
+        public bool fights;
 
         public const string MemoLeave = "CampLeave";
         public const string MemoFlee = "CampFlee";
+        public const string MemoFight = "CampFight";
 
         public LordJob_Camp()
         {
         }
 
-        public LordJob_Camp(IntVec3 center)
+        public LordJob_Camp(IntVec3 center, bool fights = false)
         {
             this.center = center;
+            this.fights = fights;
         }
 
         public override bool AddFleeToil => false;
@@ -49,6 +53,21 @@ namespace ColonyCouncil
             graph.AddToil(defend);
             var breakOut = new LordToil_ExitMapAndDefendSelf();
             graph.AddToil(breakOut);
+            // A war party's fight: out after the enemy, and back to the fire when none is left.
+            LordToil_HuntEnemies hunt = null;
+            if (fights)
+            {
+                hunt = new LordToil_HuntEnemies(center);
+                graph.AddToil(hunt);
+                var toFight = new Transition(camp, hunt);
+                toFight.AddTrigger(new Trigger_Memo(MemoFight));
+                toFight.AddPostAction(new TransitionAction_EndAllJobs());
+                graph.AddTransition(toFight);
+                var back = new Transition(hunt, camp);
+                back.AddTrigger(new Trigger_TickCondition(() => lord?.Map != null && !MapFacts.ThreatOn(lord.Map)));
+                back.AddTrigger(new Trigger_TicksPassed(GenDate.TicksPerHour * 12));
+                graph.AddTransition(back);
+            }
 
             // At the spot (or near enough, after a long walk).
             var arrived = new Transition(travel, camp);
@@ -65,6 +84,7 @@ namespace ColonyCouncil
             // A raid, or the colony hurt one of them while still at peace: they leave at once, defending themselves.
             var scatter = new Transition(travel, flee);
             scatter.AddSources(camp, leave);
+            if (hunt != null) scatter.AddSource(hunt);
             scatter.AddTrigger(new Trigger_Memo(MemoFlee));
             scatter.AddTrigger(new Trigger_PawnHarmed(1f, true, Faction.OfPlayer, null, null));
             scatter.AddTrigger(new Trigger_ChanceOnPlayerHarmNPCBuilding(1f));
@@ -77,6 +97,7 @@ namespace ColonyCouncil
             // defends itself if the colony comes after it, as above).
             var war = new Transition(travel, defend);
             war.AddSources(camp);
+            if (hunt != null) war.AddSource(hunt);
             war.AddTrigger(new Trigger_BecamePlayerEnemy());
             war.AddPreAction(new TransitionAction_Custom(() => CampBeasts.LeadOff(lord)));
             war.AddPostAction(new TransitionAction_WakeAll());
@@ -95,6 +116,7 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             Scribe_Values.Look(ref center, "center");
+            Scribe_Values.Look(ref fights, "fights");
         }
     }
 

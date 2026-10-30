@@ -44,6 +44,7 @@
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorMath.cs" Link="VisitorMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampLookMath.cs" Link="CampLookMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampWeatherMath.cs" Link="CampWeatherMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampStoryMath.cs" Link="CampStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/MovingOnMath.cs" Link="MovingOnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalRewardMath.cs" Link="GoalRewardMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestWillMath.cs" Link="GuestWillMath.cs" />

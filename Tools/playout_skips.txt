@@ -440,3 +440,4 @@ Council_WS_OldBeast [end:protected] far away, told
 # Defs/DilemmaDefs/Rimfolk_Dilemmas_MovingOn.xml
 Council_DlmMove_Love [option 2] nothing done: the partner's own visit goes on as it was
 Council_DlmMove_AgainLove [option 2] nothing done: the partner's own visit goes on as it was, and they go home alone when it ends
+Council_Evt_WarCamp [option 0] the fighters really fight: the war band hunts the enemy on the map (Camps/WarCamp.cs, LordToil_HuntEnemies), the camp after it is the war party camp

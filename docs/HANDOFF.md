@@ -1,6 +1,33 @@
 # Handoff: work in progress
 
-Last shipped: 0.29.0, the player's ask for the Decrees page (thirty-one decrees were one long list) and the camps
+Last shipped: 0.30.0, the first of the event rounds the player approved (camps that return, a stay as a story, the
+war camp they proposed). `Camps/CampStoryMath.cs` (Tools/Tests/CampStoryTests.cs) holds the numbers: endings
+remembered, `ReturnChance`, `Kept`, the beat days (`AskDue` 1.5, `TroubleDue` midway for stays of 3+, `PartingDue`
+in the last day), war party size and chance. `Camps/CampMemory.cs`: `PastCamp` (kind, faction, up to 4 people held
+in `WorldPawns.ForcefullyKeptPawns`, friendOf, invited/provisioned) on `CampTracker.past` (6 at most), `CampReturns`
+(`Remember` from `Finish`, `Pick` in `Prepare`, `Started`, `News` from `CC_Camp_News_1..16` by kind tags,
+`KnownLine` on the World page, `Daily` forgetting at 3 am from CampTimer). `CampTracker.Prepare` was split: `Make`
+builds a setup for a kind, people and spot (kept pawns first, `given` pawns for a war party, `onMap` so `Start`
+doesn't spawn them); `Start` takes world pawns out of the world. `Camps/CampStory.cs` (partial Camp): `beats`,
+`StoryBeat` at the event hour (replaces the day's chance event), `StoryParting` hourly, `Trouble` (a camp dilemma
+via `DilemmaTracker.TryFire(false, only camp workers)` else `CampStory.Common`: sick (`FallIll` gives Flu to a
+member, `{SICK}` in the lines, `DilemmaEffect_CampTendSick`) or cart (`DilemmaEffect_CampCartParts`, a refusal adds a
+day)), `Parting(answer)` (letter what "parting" in CampAnswers, default "let them go"). `Camps/WarCamp.cs`:
+`WarBand` on `CampTracker.warBand`, `WarCamps.Hourly` (threatSince/threatRolled per threat, `Attacker` by hostile
+count, `Helper` weighted by goodwill and hostility to the attacker, fires `Council_Evt_WarCamp` →
+`HappeningWorker_WarCamp` → `Start` with `LordJob_WarBand`: `LordToil_HuntEnemies`, hold/leave/flee memos; `Watch`
+→ `Settle` makes the `Council_Camp_WarParty` camp (CampKindDef.fights: `LordJob_Camp` gets a hunt toil and
+`MemoFight`; `Ends` sends a fighting kind after a new threat instead of away) or `GoHome`; `Thank` notes the
+`aid` deed and the `Council_Camp_StoodWithUs` thought). Not tried in the game: the first look should check a return
+letter's news line, the parting letter's timing against the leave hour, a war party actually engaging (HuntEnemies
+duty) and then walking to its camp site, and that `Trigger_TickCondition` brings them back to the fire.
+
+Next rounds, in order (tasks): 0.31.0 a camp that stays for good (a tiny neighbour at the map's edge); 0.32.0
+visitors (repeat visitors with a thread, visitors who notice and spread word, Hospitality guests in Rimfolk's visitor
+stories); 0.33.0 world (a rival colony, the road, situations that leave people behind); 0.34.0 animals (the herd's
+year, a resident wild animal); 0.35.0 Pokémon (one that keeps coming, a trainers' camp).
+
+Before it, 0.29.0, the player's ask for the Decrees page (thirty-one decrees were one long list) and the camps
 that never came. `UI/DecreePanel.cs`: `DecreeDef.kind` (XML `<kind>` on every decree: work, stores, order, spirit,
 faith, world; `DecreePanel.Kinds` is the page order), filters (`Filter` enum, PageMemory "decrees.filter"), orders
 (`Sort`: Kind with foldable `KindTitle`s, Wanted by `Layout.net` = 2 love + like - dislike - 2 hate, Soon by

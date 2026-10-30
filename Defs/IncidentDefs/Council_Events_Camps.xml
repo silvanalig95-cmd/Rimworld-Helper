@@ -83,4 +83,53 @@
     </modExtensions>
   </IncidentDef>
 
+  <!-- Help in a fight (Source/ColonyCouncil/Camps/WarCamp.cs): fighters of a people at war with whoever is attacking
+       the colony come to fight them. Fired by the camp timer while a threat has lasted an hour (once per threat, by the
+       helper's goodwill), hardly ever by the storyteller's own lottery. After the fight they make camp (Council_Camp_WarParty). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_WarCamp</defName>
+    <label>help in a fight</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WarCamp</workerClass>
+    <baseChance>0.05</baseChance>
+    <minRefireDays>8</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>Help from {FACTION}</li>
+          <li>Fighters of {FACTION} join the fight</li>
+          <li>[oldfoe] {FACTION} come for their old enemy</li>
+        </titles>
+        <texts>
+          <li>{COUNT} fighters of {FACTION} have come over the hill at a run, weapons out. {X_nameDef}, at their head, shouted to {A_nameDef} that they have no quarrel with the colony: it's {ENEMY} they've come for, and they'll fight them wherever they find them. They ask only that the colony's people don't shoot at theirs.</li>
+          <li>[oldfoe] Word of {ENEMY} on the colony's land reached {FACTION}, who have an old score with them. {COUNT} of their fighters have arrived, {X_nameDef} leading, and mean to settle it here and now, beside the colony's own.</li>
+          <li>[mechs] {COUNT} fighters of {FACTION} came in on the colony's side of the fight: nobody loves the machines, {X_nameDef} told {A_nameDef}, and a chance to break some where someone else holds the walls is a chance worth a day's march.</li>
+          <li>[their:friend] {FACTION} remember a friend among the colony's people. When word came that the colony was under attack by {ENEMY}, {COUNT} of their fighters set out at once; {X_nameDef} says they'll hold the colony's flank for as long as it takes.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Welcome them: fight together</label>
+            <outcome>{A_nameDef} waved them in. The fighters of {FACTION} are going after {ENEMY} alongside the colony's own.</outcome>
+            <outcomes>
+              <li>[trait:Brave] {A_nameDef} ran out to meet them and pointed the way to the fight. The fighters of {FACTION} are at it beside the colony's own.</li>
+            </outcomes>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Ask them to hold at the edge</label>
+            <outcome>{X_nameDef} shrugged and drew {X_possessive} people up at the edge of the map. They'll defend themselves if it comes to them, and no more.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Send them away</label>
+            <outcome>{X_nameDef} stared at {A_nameDef} a long moment, then turned {X_possessive} people round. {FACTION} will remember the welcome.</outcome>
+            <ways><openness>-2</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
 </Defs>

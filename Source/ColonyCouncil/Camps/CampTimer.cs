@@ -26,12 +26,16 @@ namespace ColonyCouncil
         public override void GameComponentTick()
         {
             int now = Find.TickManager.TicksGame;
-            if (!Sched.Hourly(now, Sched.Camp) || !CampTracker.Enabled) return;
+            if (!Sched.Hourly(now, Sched.Camp)) return;
             try
             {
                 var map = HappeningTracker.HomeMap();
                 var tracker = CampTracker.Instance;
-                if (map == null || tracker == null || GenLocalDate.HourOfDay(map) != Hour) return;
+                if (map == null || tracker == null) return;
+                // Help in a fight from the colony's friends (WarCamp.cs), and the remembered camps' fading (CampMemory.cs).
+                WarCamps.Hourly(map, tracker);
+                if (GenLocalDate.HourOfDay(map) == 3) CampReturns.Daily();
+                if (GenLocalDate.HourOfDay(map) != Hour) return;
                 if (HappeningTracker.Waiting || !LetterGap.Open || !tracker.CanStartOn(map)) return;
                 tracker.openMornings++;
                 if (!Rand.Chance(DailyChance)) return;

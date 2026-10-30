@@ -166,8 +166,10 @@ namespace ColonyCouncil
             if (phase == CampPhase.Living && lastEventDay != day && GenLocalDate.HourOfDay(map) >= eventHour)
             {
                 lastEventDay = day;
-                DailyEvent();
+                // The stay's own shape first (CampStory.cs): the ask, the trouble; else the day's chance event.
+                if (!StoryBeat()) DailyEvent();
             }
+            StoryParting();
             Visitors();
             if (Rand.Chance(0.12f) && !kind.lines.NullOrEmpty())
             {
@@ -238,7 +240,8 @@ namespace ColonyCouncil
             eventHour = Rand.RangeInclusive(9, 18);
             if (arrivedTick >= 0 && Now - arrivedTick > GenDate.TicksPerDay / 2)
             {
-                float t = kind.tensionPerDay;
+                // People who have camped here before settle in quicker.
+                float t = kind.tensionPerDay * (Familiar ? CampStoryMath.FamiliarTension : 1f);
                 if (Now > untilTick) t += 5f;
                 // Colonists who like them ease things a little.
                 int friends = 0;
@@ -336,6 +339,7 @@ namespace ColonyCouncil
             }
             willing.RemoveAll(p => p == null || p.Dead || !Here.Contains(p));
             if (trader != null && (trader.Dead || !Here.Contains(trader))) trader = null;
+            if (sick != null && (sick.Dead || !Here.Contains(sick))) sick = null;
         }
 
         /// <summary>Silver changing hands at their trader: the colony traded with them.</summary>
@@ -756,9 +760,21 @@ namespace ColonyCouncil
         {
             if (MapFacts.ThreatOn(map))
             {
+                // A war party takes up arms again; anyone else wants no part in the colony's fight.
+                if (kind.fights)
+                {
+                    if (!fighting && LordAlive)
+                    {
+                        fighting = true;
+                        lord.ReceiveMemo(LordJob_Camp.MemoFight);
+                        Note(Text("CC_WarCamp_Again"), MessageTypeDefOf.NeutralEvent, Importance.Notable, now: true);
+                    }
+                    return false;
+                }
                 Leave("raid", true);
                 return true;
             }
+            if (fighting && kind.fights && !MapFacts.ThreatOn(map)) fighting = false;
             if (BadWeather())
             {
                 Leave("weather");
@@ -831,6 +847,15 @@ namespace ColonyCouncil
             ending = reason;
             leftTick = Now;
             if (LordAlive) lord.ReceiveMemo(fast ? LordJob_Camp.MemoFlee : LordJob_Camp.MemoLeave);
+            // People who might come back are held in the world from here (CampMemory.cs).
+            try
+            {
+                CampReturns.Keep(this);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp kept", e);
+            }
             try
             {
                 if (wasSettled) PackUp(true);
@@ -1024,6 +1049,15 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("camp memory", e);
+            }
+            // A camp that went well enough is remembered, and may come back (CampMemory.cs).
+            try
+            {
+                CampReturns.Remember(this);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp remembered", e);
             }
             // What the colony's people lived through with them: memories, deeds, setbacks (Social/Talk/SharedTimes.cs).
             SharedTimes.CampEnded(this);

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- A war party (Source/ColonyCouncil/Camps/WarCamp.cs): fighters of a people at war with whoever is attacking the
+       colony, come to fight them. They never come on their own (fights: the camp timer leaves them out); once the fight
+       is over they make this camp to rest a day or two, sell what they took, and have their wounded seen to. A new
+       threat while they rest sends them after it. -->
+  <ColonyCouncil.CampKindDef>
+    <defName>Council_Camp_WarParty</defName>
+    <label>war party</label>
+    <fights>true</fights>
+    <weight>0</weight>
+    <people>3~7</people>
+    <days>1~2</days>
+    <ages>20~50</ages>
+    <trader>true</trader>
+    <traderKind>Combat</traderKind>
+    <huntsPerDay>0.3</huntsPerDay>
+    <chopsPerDay>0.3</chopsPerDay>
+    <armedHunters>false</armedHunters>
+    <hireChance>0.35</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0</helpChance>
+    <pride>0.4</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <asks>
+      <li>
+        <key>tendwounded</key>
+        <label>Send {A_nameDef} to see to their wounded</label>
+        <tip>The colony's doctor goes over to their fire and tends whoever of them is hurt, with the colony's medicine where there is any. They remember it.</tip>
+        <needs>theirWounded</needs>
+        <skill>Medicine</skill>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>campHealed</deed>
+        <outcomes>
+          <li>{A_nameDef} went over to the war party's fire with a bag of bandages and saw to their hurt one by one. {X_nameDef} watched without a word, then gripped {A_nameDef}'s arm hard.</li>
+          <li>{A_nameDef} spent an hour at the war camp {PLACE}, cleaning and binding what the fight left. "Our own healers are three days behind us," {X_nameDef} said. "This won't be forgotten."</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendWounded" />
+        </effects>
+      </li>
+      <li>
+        <key>pay</key>
+        <label>Pay them for their help ({COUNT} silver)</label>
+        <tip>Fighters are paid, where their people come from. Silver for the fight they fought puts the colony in good standing with them, and with their people.</tip>
+        <silver>150</silver>
+        <tension>-8</tension>
+        <warm>1</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>{A_nameDef} carried {COUNT} silver over to the war camp. {X_nameDef} counted it, split it among the others, and said their people would hear how the colony dealt with friends.</li>
+          <li>{X_nameDef} took the silver from {A_nameDef} with a grin. "Now we fought for pay, and we'd have done it for nothing."</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
+        </effects>
+      </li>
+    </asks>
+    <titles>
+      <li>A war camp</li>
+      <li>Fighters of {FACTION} make camp</li>
+    </titles>
+    <texts>
+      <li>The fighters of {FACTION} have made camp {PLACE} to rest after the fight.</li>
+    </texts>
+    <settled>
+      <li>The war party of {FACTION} has its fire going {PLACE}, weapons stacked within reach and the wounded laid out beside it.</li>
+      <li>The fighters {PLACE} have their camp up: a fire, bedrolls in a ring, and a sentry who never quite sits down.</li>
+      <li>Smoke rises from the war camp {PLACE}. Someone is singing, badly, and nobody minds.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the fighters camped {PLACE}, came to the gate with {X_possessive} pack already on. "I've fought for other people long enough. I'd rather fight for mine. Is there a place here?"</li>
+      <li>{X_nameDef} from the war camp has been eating at the colony's fire more than at {X_possessive} own. Tonight {X_nameDef} asked, plainly, whether the colony could use one more who knows how to hold a line.</li>
+    </joinTexts>
+    <farewell>
+      <li>The war party of {FACTION} struck their camp {PLACE} at first light and went home, their dead carried between them. {FACTION} will remember who stood with them.</li>
+      <li>The fighters of {FACTION} are gone from {PLACE}, leaving a ring of trampled grass and a cold fire. {X_nameDef} said, at the gate: "Next time, you come to us."</li>
+      <li>The war camp {PLACE} is empty. {FACTION}'s people marched off singing the same bad song.</li>
+    </farewell>
+    <lines>
+      <li>Good fight.</li>
+      <li>Hold still, it's only a scratch.</li>
+      <li>Their archers were a joke.</li>
+      <li>Pass the flask.</li>
+      <li>Who's on watch?</li>
+      <li>[oldfoe] That's for my brother.</li>
+      <li>We'll sleep tonight.</li>
+    </lines>
+    <momentLines>
+      <li>[kill] One less.</li>
+      <li>[butcher] Meat's meat.</li>
+    </momentLines>
+  </ColonyCouncil.CampKindDef>
+</Defs>

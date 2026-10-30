@@ -302,6 +302,19 @@ namespace ColonyCouncil
                         }
                     });
                     break;
+                case "parting":
+                {
+                    int meals = CampStoryMath.Provisions(c.Here.Count);
+                    list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Invite"), act = () => c.Parting("invite") });
+                    list.Add(new CampOption
+                    {
+                        label = c.Text("CC_Camp_Opt_Provisions", null, null, meals),
+                        disabled = c.MealsInStore() < meals ? "CC_Dilemma_NotEnough".Translate(meals, "CC_Camp_Meals".Translate()).ToString() : null,
+                        act = () => c.Parting("provisions")
+                    });
+                    list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Farewell"), act = () => null });
+                    break;
+                }
                 case "refused":
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_AskGift", null, null, gift), disabled = NotEnough(c.map, gift), act = () => AskToLeavePaid(c, gift) });
                     list.Add(new CampOption { label = c.Text("CC_Camp_Opt_Insist"), act = () => Insist(c) });
@@ -326,7 +339,8 @@ namespace ColonyCouncil
                 case "join":
                 case "overstay":
                 case "request": return 1;
-                case "broken": return 2;
+                case "broken":
+                case "parting": return 2;
                 case "tension":
                 case "refused": return 3;
                 default: return 0;

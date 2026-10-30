@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 351; modelled: 351; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,706 KB** after a year, **2,070 KB** after two, **2,185 KB** after five.
+Saved collections found: 355; modelled: 355; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,709 KB** after a year, **2,073 KB** after two, **2,188 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -120,6 +120,7 @@ Rimfolk's part of the save, roughly: **1,706 KB** after a year, **2,070 KB** aft
 | `Calendar/CalendarTracker.cs:harvested` | the year's harvest, per colonist; cleared yearly | colonists | 20 | 20 | 20 | 1.8 |
 | `Calendar/CalendarWatch.cs:huntKills` | one per colonist, those no longer ours dropped daily | colonists | 20 | 20 | 20 | 1.8 |
 | `Camps/Camp.cs:felled` | trees felled during one stay | while | 60 | 60 | 60 | 1.8 |
+| `Camps/CampTracker.cs:past` | camps the colony remembers, six at most (CampStoryMath.RememberMax), faded after some seasons | fixed | 6 | 6 | 6 | 1.8 |
 | `CouncilGameComponent.cs:lastAtHome` | colonists still ours | colonists | 20 | 20 | 20 | 1.8 |
 | `Happenings/Happenings.cs:visits` | visits a month | window | 6 | 6 | 6 | 1.8 |
 | `Integrations/ModLinks.cs:lastMend` | today and yesterday only | colonists | 20 | 20 | 20 | 1.8 |
@@ -153,6 +154,7 @@ Rimfolk's part of the save, roughly: **1,706 KB** after a year, **2,070 KB** aft
 | `CouncilGameComponent.cs:sharedNameAsked` | couples the council was asked about, one name or two, the newest 40 (Social/FamilyNames.cs) | fixed | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:weddingAsked` | couples asked about their wedding, the newest 40 (Social/WeddingPlans.cs) | fixed | 40 | 40 | 40 | 1.0 |
 | `Secrets/Vendettas.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
+| `Camps/CampMemory.cs:people` | the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp | fixed | 24 | 24 | 24 | 0.9 |
 | `Ailments/AilmentTracker.cs:doctors` | only hediffs colonists still have | colonists | 10 | 10 | 10 | 0.9 |
 | `Ailments/AilmentTracker.cs:sweets` | faded below 0.05 dropped | colonists | 10 | 10 | 10 | 0.9 |
 | `Calendar/CalendarWatch.cs:awaySince` | the colony's people away now; the dead and those no longer ours dropped | colonists | 10 | 10 | 10 | 0.9 |
@@ -222,6 +224,7 @@ Rimfolk's part of the save, roughly: **1,706 KB** after a year, **2,070 KB** aft
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
 | `Lives/Legacy.cs:children` | known pawns only | known | 6 | 6 | 8 | 0.3 |
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
+| `Camps/WarCamp.cs:pawns` | a war party's fighters, while it's on the map | while | 7 | 7 | 7 | 0.3 |
 | `Character/ColonyTraits.cs:today` | today's tallies, emptied each day | fixed | 3 | 3 | 3 | 0.3 |
 | `Health/HealthTracker.cs:partsSeen` | missing parts colonists still have | colonists | 10 | 10 | 10 | 0.2 |
 | `Setbacks/SetbackTracker.cs:grantTicks` | 20 days | window | 10 | 10 | 10 | 0.2 |
@@ -293,6 +296,7 @@ Rimfolk's part of the save, roughly: **1,706 KB** after a year, **2,070 KB** aft
 | `PlayOut/PlayOuts.cs:plots` | per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:round` | per play-out: those a round goes to (OnMapMath.MaxRounds at most), rounds only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:things` | per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most) | fixed | 2 | 2 | 2 | 0.1 |
+| `Camps/CampStory.cs:beats` | the beats of the stay played (ask, trouble, parting), while the camp stays | while | 3 | 3 | 3 | 0.1 |
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |
 | `UI/DilemmaLog.cs:started` | per dilemma record | fixed | 2 | 2 | 2 | 0.0 |

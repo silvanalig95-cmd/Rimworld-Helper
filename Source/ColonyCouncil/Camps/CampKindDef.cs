@@ -18,6 +18,11 @@ namespace ColonyCouncil
     {
         /// <summary>The colony's era must be one of these (tribal, medieval, industrial, spacer); empty = any.</summary>
         public List<string> eras = new List<string>();
+        /// <summary>
+        /// A war party (WarCamp.cs): never comes on its own, only to a fight; a threat on the map sends them after it
+        /// rather than away, and they don't fall ill or come back of their own accord.
+        /// </summary>
+        public bool fights;
         /// <summary>The people they come from must be at least / at most this advanced.</summary>
         public TechLevel minTech = TechLevel.Undefined;
         public TechLevel maxTech = TechLevel.Archotech;
@@ -205,6 +210,8 @@ namespace ColonyCouncil
         public static ThoughtDef Council_Camp_DroveThemOff;
         public static ThoughtDef Council_Camp_Helped;
         public static ThoughtDef Council_Camp_FriendLeft;
+        public static ThoughtDef Council_Camp_FriendBack;
+        public static ThoughtDef Council_Camp_StoodWithUs;
 
         static CampDefOf()
         {

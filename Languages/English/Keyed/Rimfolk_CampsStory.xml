@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- A camp's stay as a story, camps that come back, and war parties (Source/ColonyCouncil/Camps/CampStory.cs, CampMemory.cs, WarCamp.cs). -->
+
+  <!-- The parting word, in the last day of a stay. -->
+  <CC_Camp_PartingTitle>The {NAME} say goodbye</CC_Camp_PartingTitle>
+  <CC_Camp_Parting>{X_nameDef} came to the colony's gate at dusk: the {NAME} go on in the morning. {X_pronoun} thanked the colony for the land and the quiet, and asked, not quite looking at anyone, whether they'd be welcome this way again.</CC_Camp_Parting>
+  <CC_Camp_Parting_Warm>{X_nameDef} came up to the gate as the light went: the {NAME} leave in the morning. {X_pronoun} said the colony had been better to them than most, and that they'd carry its name down the road. The colony could send them off with {COUNT} meals for the way, or just a word.</CC_Camp_Parting_Warm>
+  <CC_Camp_Parting_Cool>{X_nameDef} sent word that the {NAME} leave in the morning. It was short, and nobody came to the gate to say it. Still, a road goes two ways, and a word now might count later.</CC_Camp_Parting_Cool>
+  <CC_Camp_Parting_Again>{X_nameDef} came to the gate at dusk, as {X_pronoun} did last time: the {NAME} go on in the morning. "Same as before," {X_pronoun} said. "We'll pass this way again, if we're wanted."</CC_Camp_Parting_Again>
+  <CC_Camp_Opt_Invite>Safe roads. Come again.</CC_Camp_Opt_Invite>
+  <CC_Camp_Opt_Provisions>Provisions for the road ({COUNT} meals)</CC_Camp_Opt_Provisions>
+  <CC_Camp_Opt_Farewell>Let them go.</CC_Camp_Opt_Farewell>
+  <CC_Camp_Meals>meals</CC_Camp_Meals>
+  <CC_Camp_PartingInvited>{X_nameDef} nodded, and nodded again. The {NAME} will remember the colony as a place to come back to.</CC_Camp_PartingInvited>
+  <CC_Camp_PartingInvited_Again>{X_nameDef} laughed. "Then you'll see us. Keep the fire going."</CC_Camp_PartingInvited_Again>
+  <CC_Camp_PartingProvisioned>{COUNT} meals went into the {NAME}'s packs. {X_nameDef} weighed them in {X_possessive} hands and said nothing for a while, which with {X_objective} is thanks.</CC_Camp_PartingProvisioned>
+  <CC_Camp_PartingNoMeals>There were no meals in the stores to spare. {X_nameDef} said it was the thought that counted, and seemed to mean it.</CC_Camp_PartingNoMeals>
+
+  <!-- Trouble midway: one of theirs falls ill. -->
+  <CC_CampTrouble_Sick_Grant>Send {A_nameDef} to see to the sick one</CC_CampTrouble_Sick_Grant>
+  <CC_CampTrouble_Sick_Ask>{X_nameDef} came to the colony's gate before dawn: {SICK}, one of the {NAME} camped {PLACE}, is burning with fever and nothing of theirs is bringing it down. Would the colony's doctor come?</CC_CampTrouble_Sick_Ask>
+  <CC_CampTrouble_Sick_Ask_2>One of the camp {PLACE} is ill. {X_nameDef} said it plainly to {A_nameDef}: {SICK} took a fever in the night and is worse by the hour. They have herbs, not a healer. Would the colony send its own?</CC_CampTrouble_Sick_Ask_2>
+  <CC_CampTrouble_Sick_Ask_3>[winter] {SICK}, of the {NAME} {PLACE}, went down with a fever in the cold. {X_nameDef} asked {A_nameDef}, with a look that had already been refused in other places, whether the colony's doctor might come and look.</CC_CampTrouble_Sick_Ask_3>
+  <CC_CampTrouble_Sick_Done>{A_nameDef} went over to the camp {PLACE} with the colony's medicine and sat with {SICK} until the fever broke. {X_nameDef} walked {A_objective} back to the gate and said the {NAME} would not forget it.</CC_CampTrouble_Sick_Done>
+  <CC_CampTrouble_Sick_Done_2>{A_nameDef} spent the morning at the camp {PLACE}. {SICK} is through the worst of it, sleeping by the fire; the rest of the {NAME} kept bringing {A_nameDef} tea {A_pronoun} didn't want.</CC_CampTrouble_Sick_Done_2>
+  <CC_CampTrouble_Sick_Refuse>Not this time.</CC_CampTrouble_Sick_Refuse>
+  <CC_CampTrouble_Sick_Refused>The {NAME} nursed {SICK} themselves by the fire. {X_nameDef} said nothing to anyone from the colony, which said enough.</CC_CampTrouble_Sick_Refused>
+  <CC_CampTrouble_Sick_Refused_2>Word came back to the camp that the colony's doctor was busy. {SICK} is being looked after with herbs and hope, and the {NAME} keep their distance now.</CC_CampTrouble_Sick_Refused_2>
+  <CC_CampTrouble_NobodySick>Nobody of theirs is ill.</CC_CampTrouble_NobodySick>
+  <CC_CampTrouble_NoDoctor>Nobody here can tend them.</CC_CampTrouble_NoDoctor>
+
+  <!-- Trouble midway: their cart broke. -->
+  <CC_CampTrouble_Cart_Grant>Give them the makings</CC_CampTrouble_Cart_Grant>
+  <CC_CampTrouble_Cart_Ask>[lowtech] The {NAME}'s cart broke a wheel on the way in, {X_nameDef} told {A_nameDef}, and the spare went the same way a week ago. They ask for wood enough to make a new one, and promise to leave the land as they found it.</CC_CampTrouble_Cart_Ask>
+  <CC_CampTrouble_Cart_Ask_2>[!lowtech] The {NAME} came in with their cart's axle cracked through. {X_nameDef} asks for a little steel to mend it; they can do the work themselves at their fire, and they'd be gone the sooner for it.</CC_CampTrouble_Cart_Ask_2>
+  <CC_CampTrouble_Cart_Ask_3>{X_nameDef} came to the gate turning a broken wheel-pin over in {X_possessive} hands. The {NAME}'s cart won't roll without a new one. Could the colony spare the makings? They'd owe it one.</CC_CampTrouble_Cart_Ask_3>
+  <CC_CampTrouble_Cart_Done>{A_nameDef} carried the makings over to the camp {PLACE}, and by evening the {NAME} had their cart on four wheels again. {X_nameDef} tried the handle, grunted, and clapped {A_nameDef} on the shoulder.</CC_CampTrouble_Cart_Done>
+  <CC_CampTrouble_Cart_Done_2>The {NAME}'s cart stands mended {PLACE}, with the colony's wood in it. {X_nameDef} said they'd think of the colony every mile it rolled.</CC_CampTrouble_Cart_Done_2>
+  <CC_CampTrouble_Cart_Refuse>They'll have to manage.</CC_CampTrouble_Cart_Refuse>
+  <CC_CampTrouble_Cart_Refused>The {NAME} are mending their cart with green wood cut from the land, slowly. It will keep them here a day longer than they meant, and {X_nameDef} knows whose land the wood is.</CC_CampTrouble_Cart_Refused>
+  <CC_CampTrouble_Cart_Refused_2>Word went back to the camp that the colony had nothing to spare. The {NAME} are making do, and staying a day longer for it.</CC_CampTrouble_Cart_Refused_2>
+  <CC_CampAsk_NoCart>They have no cart.</CC_CampAsk_NoCart>
+  <CC_CampAsk_NobodyHurt>Nobody of theirs is hurt.</CC_CampAsk_NobodyHurt>
+
+  <!-- The same people, back again. -->
+  <CC_Camp_ReturnTitle>The {NAME} are back</CC_Camp_ReturnTitle>
+  <CC_Camp_ReturnTitle_Again>The {NAME} again</CC_Camp_ReturnTitle_Again>
+  <CC_Camp_Return>The {NAME} of {FACTION} who camped {PLACE} before are back on the colony's land: {X_nameDef} at their head, and the same faces around {X_objective}. They walked in like people who know the way.</CC_Camp_Return>
+  <CC_Camp_Return_Invited>The {NAME} of {FACTION} have come back, as the colony asked them to. {X_nameDef} raised a hand at the gate as if {X_pronoun} had only been gone an hour; the same faces are with {X_objective}, and a few new ones.</CC_Camp_Return_Invited>
+  <CC_Camp_News_1>Since they left, {X_nameDef} says, they've been as far as the coast and back, and found nowhere they liked better.</CC_Camp_News_1>
+  <CC_Camp_News_2>[healers] The sick they carried off with them last time recovered, {X_nameDef} says, all but one old man who had no business being on the road.</CC_Camp_News_2>
+  <CC_Camp_News_3>[trader] What they bought here they sold two valleys over at twice the price, {X_nameDef} admits, and they've come back for more.</CC_Camp_News_3>
+  <CC_Camp_News_4>[family] The children have grown a hand's breadth; the youngest doesn't remember the colony at all, and is told about it.</CC_Camp_News_4>
+  <CC_Camp_News_5>[hunters] The hunting was poor where they went next, {X_nameDef} says. They remembered the game here.</CC_Camp_News_5>
+  <CC_Camp_News_6>[faithful] They reached the holy place they were bound for, {X_nameDef} says, and found it smaller than the stories; the road back led here.</CC_Camp_News_6>
+  <CC_Camp_News_7>[players] They played the colony's story in three towns since, {X_nameDef} says, and it went down well; the colony is a little famous, as far as that goes.</CC_Camp_News_7>
+  <CC_Camp_News_8>[provisioned] The meals the colony gave them lasted to the next town, {X_nameDef} says, and were remembered at every one of them.</CC_Camp_News_8>
+  <CC_Camp_News_9>[invited] "You said to come again," {X_nameDef} said. "So."</CC_Camp_News_9>
+  <CC_Camp_News_10>[again] They know the colony's roads better than some colonists by now, {X_nameDef} says, and the colony's dogs know them.</CC_Camp_News_10>
+  <CC_Camp_News_11>[winter] They wintered badly, {X_nameDef} says, and came as soon as the roads opened.</CC_Camp_News_11>
+  <CC_Camp_News_12>[their:friend] {X_nameDef} asked after {FRIEND} before anything else.</CC_Camp_News_12>
+  <CC_Camp_News_13>There was trouble on the road since, {X_nameDef} says, and a river that nearly took the cart. They don't say much more.</CC_Camp_News_13>
+  <CC_Camp_News_14>One of them married since they were last here, {X_nameDef} says; the wedding was small and the road long.</CC_Camp_News_14>
+  <CC_Camp_News_15>[fighters] They've fought twice since, {X_nameDef} says, and won once.</CC_Camp_News_15>
+  <CC_Camp_News_16>They talked about the colony on the road, {X_nameDef} says, more than they expected to.</CC_Camp_News_16>
+  <CC_Camp_Known>Camps the colony knows that may pass this way again: {0}.</CC_Camp_Known>
+  <CC_Camp_KnownOne>the {NAME} of {FACTION} ({AGO} ago)</CC_Camp_KnownOne>
+
+  <!-- A war party. -->
+  <CC_WarCamp_RestTitle>The fighters make camp</CC_WarCamp_RestTitle>
+  <CC_WarCamp_Rest>The fight is over. The fighters of {FACTION} are making camp {PLACE} to rest a day or two, see to their wounded and sell what the fight left them.</CC_WarCamp_Rest>
+  <CC_WarCamp_Facts>{0} of them came to the fight against {ENEMY}; {1} fell.</CC_WarCamp_Facts>
+  <CC_WarCamp_GoneTitle>The fighters of {FACTION} go home</CC_WarCamp_GoneTitle>
+  <CC_WarCamp_Gone>With the fight against {ENEMY} over, the fighters of {FACTION} gathered their own and set off for home. {COUNT} came; {FELL} fell. Their people will remember who they fought beside.</CC_WarCamp_Gone>
+  <CC_WarCamp_GaveUp>The fighters of {FACTION} have given up on the fight against {ENEMY}: it has dragged on past what they came for, and they have their own homes to think of. {COUNT} came; {FELL} fell. They go with no hard feelings.</CC_WarCamp_GaveUp>
+  <CC_WarCamp_Again>Enemies on the land again: the fighters of {FACTION} camped {PLACE} take up their weapons.</CC_WarCamp_Again>
+  <CC_WarCamp_NotHere>They're gone already.</CC_WarCamp_NotHere>
+  <CC_WarCamp_Chronicle>fighters of {0} stood with the colony</CC_WarCamp_Chronicle>
+</LanguageData>

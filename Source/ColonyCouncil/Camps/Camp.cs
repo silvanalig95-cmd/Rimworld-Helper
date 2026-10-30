@@ -432,6 +432,8 @@ namespace ColonyCouncil
             ExposeRequests();
             // A child of theirs lost out on the land (CampLost.cs).
             ExposeLost();
+            // The stay's beats, a camp come back, a war party's enemy (CampStory.cs).
+            ExposeStory();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

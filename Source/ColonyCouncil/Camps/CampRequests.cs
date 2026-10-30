@@ -40,7 +40,7 @@ namespace ColonyCouncil
 
         public IEnumerable<CampAsk> Requests => kind?.asks?.Where(a => a != null && a.theyAsk) ?? Enumerable.Empty<CampAsk>();
 
-        public CampAsk AskByKey(string key) => key == null ? null : kind?.asks?.FirstOrDefault(a => a?.key == key);
+        public CampAsk AskByKey(string key) => key == null ? null : kind?.asks?.FirstOrDefault(a => a?.key == key) ?? CampStory.ByKey(key);
 
         /// <summary>A line of an ask's (a request, its refusal), tagged like the camp's other lines, with {X}, {A} and {COUNT}.</summary>
         public string PickAsk(List<string> lines, Pawn a, int count)
@@ -65,11 +65,19 @@ namespace ColonyCouncil
             if (Find.LetterStack.LettersListForReading.Any(l => l is ChoiceLetter_Camp c && c.campId == id && !c.resolved)) return false;
             var open = Requests.Where(a => !a.askTexts.NullOrEmpty() && AskBlocked(a) == null).ToList();
             if (open.Count == 0) return false;
-            var ask = open.RandomElement();
+            return Request(open.RandomElement());
+        }
+
+        /// <summary>One request of theirs, asked of the colony by letter.</summary>
+        public bool Request(CampAsk ask)
+        {
+            if (ask == null) return false;
             lastRequestDay = GenDate.DaysPassed;
             var who = AskColonist(ask);
             int cost = AskCost(ask);
-            string text = PickAsk(ask.askTexts, who, cost);
+            // The one lying ill, by name, in the lines that speak of them.
+            var lines = sick != null ? ask.askTexts.Select(l => l.Replace("{SICK}", sick.LabelShort)).ToList() : ask.askTexts;
+            string text = PickAsk(lines, who, cost);
             if (text.NullOrEmpty()) return false;
             if (!ask.tip.NullOrEmpty()) text += "\n\n" + Format(ask.tip, Speaker, who, cost);
             Ask("request", Text("CC_CampAsk_RequestTitle"), text, who, 1f, ask.key);
@@ -86,7 +94,10 @@ namespace ColonyCouncil
             if (t != 0f) AddTension(t);
             if (a.refuseGoodwill > 0 && !byDefault) LoseGoodwill(a.refuseGoodwill);
             var who = AskColonist(a);
-            return PickAsk(a.refused, who, AskCost(a)) ?? Text("CC_CampAsk_Refused");
+            var lines = sick != null ? a.refused?.Select(l => l.Replace("{SICK}", sick.LabelShort)).ToList() : a.refused;
+            // A cart left unmended keeps them a day longer.
+            if (a.key == CampStory.CartKey && untilTick != int.MaxValue) untilTick += GenDate.TicksPerDay;
+            return PickAsk(lines, who, AskCost(a)) ?? Text("CC_CampAsk_Refused");
         }
 
         // ---------------- Errands into the colony ----------------

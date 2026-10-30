@@ -84,6 +84,12 @@ namespace ColonyCouncil
                     // Meat of their own to trade: a hunting party's kills, dressed and in their stash.
                     if (Goods().Where(t => t.def.IsMeat).Sum(t => t.stackCount) < 20) return "CC_CampAsk_NoMeat".Translate();
                     break;
+                case "cart":
+                    if (!HasCart) return "CC_CampAsk_NoCart".Translate();
+                    break;
+                case "theirWounded":
+                    if (!Here.Any(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff())) return "CC_CampAsk_NobodyHurt".Translate();
+                    break;
             }
             int cost = AskCost(a);
             if (cost > 0 && CampAnswers.Silver(map) < cost) return "CC_Dilemma_NotEnough".Translate(cost, ThingDefOf.Silver.label);
@@ -130,6 +136,8 @@ namespace ColonyCouncil
                 CampWords.AddTags(tags, kind, faction, map);
                 LetterTags.Add(tags, ctx.a, null, ctx.stranger, faction, false);
                 string raw = a.outcomes.NullOrEmpty() ? null : Flavor.Pick(a.outcomes, tags) ?? Flavor.PickText(a.outcomes);
+                // The one lying ill, by name (CampStory.cs).
+                if (raw != null && sick != null) raw = raw.Replace("{SICK}", sick.LabelShort);
                 line = Format(raw, ctx.stranger, ctx.a, cost);
                 ctx.why = a.label;
                 ctx.cause = line;
