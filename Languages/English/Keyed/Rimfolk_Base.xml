@@ -16,6 +16,7 @@
   <CC_Base_Group_walls>Walls</CC_Base_Group_walls>
   <CC_Base_Group_works>Conduits and pipes</CC_Base_Group_works>
   <CC_Base_TakeDown>Take them down</CC_Base_TakeDown>
+  <CC_Base_TakeDownTip>Orders these taken down (the game's deconstruct orders). Your builders do it and the materials come back; you can cancel the orders like any others.</CC_Base_TakeDownTip>
   <CC_Base_FixTip>Gives deconstruct orders for {0} thing(s). Cancel them on the map like any other order.</CC_Base_FixTip>
   <CC_Base_TakenDown>{0} thing(s) ordered taken down.</CC_Base_TakenDown>
   <CC_Base_Freezer>freezer</CC_Base_Freezer>
@@ -84,10 +85,12 @@
   <CC_Base_Relay>{N} {KIND} in sight could go under the walls</CC_Base_Relay>
   <CC_Base_Relay_Detail>Laid again under walls, doors and furniture wherever they reach: {LAY} new, {UP} taken up, and {AFTER} of the {BEFORE} in sight now left where nothing else will do. Every piece of the net stays joined, and every powered building stays on its power. The new {KIND} are planned first, and the old ones get their deconstruct orders only once every new one stands, so nothing goes dark or dry on the way. Show it on the map to see both: the new in yellow, the old in white.</CC_Base_Relay_Detail>
   <CC_Base_Relay_Fix>Lay them under the walls</CC_Base_Relay_Fix>
+  <CC_Base_Relay_FixTip>Places blueprints for the new lines under the walls. Once a new piece stands, the old line it replaces is ordered taken up, a few at a time, so the power or water never breaks.</CC_Base_Relay_FixTip>
   <CC_Base_Map_Relay>under the walls</CC_Base_Map_Relay>
   <CC_Base_Relaying>Laying the {KIND} under the walls: {BUILT} of {ALL} new ones stand</CC_Base_Relaying>
   <CC_Base_Relaying_Detail>Once every new one stands, the old ones the net can do without get their deconstruct orders. Call it off and the new ones' orders are cancelled, and the old lines stay as they are.</CC_Base_Relaying_Detail>
   <CC_Base_Relay_Off>Call it off</CC_Base_Relay_Off>
+  <CC_Base_Relay_OffTip>Stops re-laying these lines: the blueprints and frames not yet built are removed, and whatever already stands stays.</CC_Base_Relay_OffTip>
   <CC_Relay_Placed>{N} {KIND} are planned under the walls. Once they all stand, the {UP} in sight now come up.</CC_Relay_Placed>
   <CC_Relay_Done>The new {KIND} under the walls stand: {N} old ones are marked to come up.</CC_Relay_Done>
   <CC_Relay_UpNow>{N} {KIND} that nothing needs are marked to come up.</CC_Relay_UpNow>
@@ -103,9 +106,11 @@
   <CC_Store_Unstored>{N} thing(s) of {KINDS} kind(s) lying about that no store takes</CC_Store_Unstored>
   <CC_Store_Unstored_Detail>{LIST}. Nothing on the map accepts them, so the haulers leave them where they fell and they rot in the rain or trip people up. A stockpile that takes them puts them away.</CC_Store_Unstored_Detail>
   <CC_Store_MakeStockpile>Make a stockpile for them</CC_Store_MakeStockpile>
+  <CC_Store_MakeStockpileTip>Makes a 4 by 4 stockpile zone for these things by the store room (or the colony's middle). Your haulers bring them in; you can change or delete the zone like any other.</CC_Store_MakeStockpileTip>
   <CC_Store_BenchFar>The {BENCH} is {D} cells from the nearest store of its materials</CC_Store_BenchFar>
   <CC_Store_BenchFar_Detail>Its bills ask for {LIST}, and the nearest place that keeps any of it is that far: every bill starts with the walk there and back. A little store beside the bench, set to prefer its materials, keeps them at hand.</CC_Store_BenchFar_Detail>
   <CC_Store_MakeByBench>Make a store beside it</CC_Store_MakeByBench>
+  <CC_Store_MakeByBenchTip>Makes a small preferred stockpile beside the bench for its materials, so they're at hand. You can change or delete the zone like any other.</CC_Store_MakeByBenchTip>
   <CC_Store_Spread>{KIND} may be stored in {N} different rooms</CC_Store_Spread>
   <CC_Store_Spread_Detail>Stores in that many rooms accept it at the same priority, so it lands wherever the hauler happened to be. One place for each kind, and the rest set not to take it, keeps it together.</CC_Store_Spread_Detail>
   <CC_Store_Empty>{0} store(s) that take nothing</CC_Store_Empty>

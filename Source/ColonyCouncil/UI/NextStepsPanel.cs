@@ -20,7 +20,7 @@ namespace ColonyCouncil
         private static string newStep = "";
         private static RoomTemplateDef newTemplate;
 
-        private const float ButtonsW = 150f, LeftW = 44f;
+        private const float ButtonsW = 290f, LeftW = 44f;
 
         public static void Draw(Rect rect, CouncilGameComponent comp, Map map)
         {
@@ -75,22 +75,67 @@ namespace ColonyCouncil
             Widgets.EndScrollView();
         }
 
+        /// <summary>
+        /// Where each button goes in the button column: two to a row, a label too long for half the column on a row of its
+        /// own (x, y and width within the column).
+        /// </summary>
+        private static List<Rect> ButtonSpots(List<string> labels, out int rows)
+        {
+            var spots = new List<Rect>();
+            float half = (ButtonsW - 16f) / 2f, full = ButtonsW - 12f;
+            int row = 0, col = 0;
+            Text.Font = GameFont.Small;
+            foreach (var label in labels)
+            {
+                bool wide = Text.CalcSize(label ?? "").x + 12f > half;
+                if (wide && col == 1)
+                {
+                    row++;
+                    col = 0;
+                }
+                spots.Add(new Rect(col * (half + 4f), row * 28f, wide ? full : half, 24f));
+                if (wide || col == 1)
+                {
+                    row++;
+                    col = 0;
+                }
+                else col = 1;
+            }
+            rows = row + (col == 1 ? 1 : 0);
+            return spots;
+        }
+
         private static float TextWidth(float width) => Mathf.Max(80f, width - LeftW - ButtonsW - 12f);
 
         private static float DrawStep(NextStep s, int number, float x, float y, float width, bool inPlan, bool first, bool last)
         {
             var level = NextSteps.LevelOf(s);
             var color = s.Done ? UiKit.Dim : s.HasSource ? LevelColor(level) : UiKit.Info;
-            var acts = s.Done ? new List<(string, System.Action)>() : NextSteps.Actions(s);
+            var acts = s.Done ? new List<(string label, string tip, System.Action act)>() : NextSteps.Actions(s);
+            if (s.Done)
+            {
+                acts.Add(("CC_Plan_TakeBack".Translate(), "CC_Plan_TakeBackTip".Translate(), () => NextSteps.TakeBack(s)));
+                acts.Add(("CC_Plan_Remove".Translate(), "CC_Plan_RemoveTip".Translate(), () => NextSteps.Drop(s)));
+            }
+            else if (inPlan)
+            {
+                acts.Add(("CC_Plan_MarkDone".Translate(), "CC_Plan_MarkDoneTip".Translate(), () => NextSteps.MarkDone(s)));
+                acts.Add(("CC_Plan_LetGo".Translate(), (s.HasSource ? "CC_Plan_LetGoTip" : "CC_Plan_RemoveOwnTip").Translate(), () => NextSteps.Drop(s)));
+            }
+            else
+            {
+                acts.Add(("CC_Plan_Take".Translate(), "CC_Plan_TakeTip".Translate(), () => NextSteps.Take(s)));
+                acts.Add(("CC_Plan_NotNow".Translate(), "CC_Plan_NotNowTip".Translate(), () => NextSteps.Drop(s)));
+            }
+            var spots = ButtonSpots(acts.Select(a => a.label).ToList(), out int buttonRows);
             Text.Font = GameFont.Small;
             float textW = TextWidth(width);
             float titleH = Text.CalcHeight(s.title ?? "", textW);
             Text.Font = GameFont.Tiny;
             float detailH = s.detail.NullOrEmpty() ? 0f : Text.CalcHeight(s.detail, textW);
             Text.Font = GameFont.Small;
-            // Buttons: what it opens, then done / take, let go; two to a row when there are many.
-            int buttons = acts.Count + (s.Done ? 2 : inPlan ? 2 : 2);
-            float h = Mathf.Max(52f, titleH + detailH + 18f, Mathf.CeilToInt(buttons / 2f) * 28f + 10f);
+            // Buttons: what it opens, then done / take, let go; two to a row, a long label on a row of its own.
+            float h = Mathf.Max(52f, titleH + detailH + 18f, buttonRows * 28f + 10f);
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, color);
             if (Mouse.IsOver(row) && s.map != null && s.map == Find.CurrentMap && s.look.IsValid && s.look.InBounds(s.map))
@@ -141,39 +186,20 @@ namespace ColonyCouncil
             }
             TooltipHandler.TipRegion(new Rect(textX, y, tw, h), KindTip(s));
 
-            // The buttons.
-            float bx = x + width - ButtonsW + 4f, bw = (ButtonsW - 16f) / 2f;
-            int slot = 0;
-            Rect Next()
+            // The buttons. Each says on hover what it does; a label still too long for its button is shortened, the tip has it whole.
+            float bx = x + width - ButtonsW + 4f;
+            for (int i = 0; i < acts.Count; i++)
             {
-                var r = new Rect(bx + (slot % 2) * (bw + 4f), y + 6f + (slot / 2) * 28f, bw, 24f);
-                slot++;
-                return r;
-            }
-            foreach (var (label, act) in acts)
-                if (Widgets.ButtonText(Next(), UiKit.Fit(label, bw - 8f)))
+                var (label, tip, act) = acts[i];
+                var spot = spots[i];
+                var r = new Rect(bx + spot.x, y + 6f + spot.y, spot.width, 24f);
+                string fit = UiKit.Fit(label, r.width - 8f);
+                TooltipHandler.TipRegion(r, fit == label ? tip : label + "\n\n" + tip);
+                if (Widgets.ButtonText(r, fit))
                 {
                     SoundDefOf.Click.PlayOneShotOnCamera();
                     act();
                 }
-            if (s.Done)
-            {
-                if (Widgets.ButtonText(Next(), UiKit.Fit("CC_Plan_TakeBack".Translate(), bw - 8f))) NextSteps.TakeBack(s);
-                if (Widgets.ButtonText(Next(), UiKit.Fit("CC_Plan_Remove".Translate(), bw - 8f))) NextSteps.Drop(s);
-            }
-            else if (inPlan)
-            {
-                if (Widgets.ButtonText(Next(), UiKit.Fit("CC_Plan_MarkDone".Translate(), bw - 8f))) NextSteps.MarkDone(s);
-                var drop = Next();
-                TooltipHandler.TipRegion(drop, s.HasSource ? "CC_Plan_LetGoTip".Translate() : "CC_Plan_RemoveOwnTip".Translate());
-                if (Widgets.ButtonText(drop, UiKit.Fit("CC_Plan_LetGo".Translate(), bw - 8f))) NextSteps.Drop(s);
-            }
-            else
-            {
-                if (Widgets.ButtonText(Next(), UiKit.Fit("CC_Plan_Take".Translate(), bw - 8f))) NextSteps.Take(s);
-                var drop = Next();
-                TooltipHandler.TipRegion(drop, "CC_Plan_LetGoTip".Translate());
-                if (Widgets.ButtonText(drop, UiKit.Fit("CC_Plan_NotNow".Translate(), bw - 8f))) NextSteps.Drop(s);
             }
             return h;
         }

@@ -10,6 +10,11 @@
   <CC_Adv_Act_WorkTab>Open Work tab</CC_Adv_Act_WorkTab>
   <CC_Adv_Act_PlanLamps>Plan the lamps</CC_Adv_Act_PlanLamps>
   <CC_Adv_Act_PlanChairsLamps>Plan chairs, lamps</CC_Adv_Act_PlanChairsLamps>
+  <CC_Adv_Act_PlanChairsLampsTip>Places blueprints for the missing chairs and lamps at these workshops' benches. Your builders build them; you can cancel the blueprints like any others.</CC_Adv_Act_PlanChairsLampsTip>
+  <CC_Adv_Act_PlanLampsTip>Places lamp blueprints in the dark bedrooms, where the light will reach the beds. Your builders build them; you can cancel the blueprints like any others.</CC_Adv_Act_PlanLampsTip>
+  <CC_Adv_Act_WorkTabTip>Opens the Work tab, where you can give someone the work this is about.</CC_Adv_Act_WorkTabTip>
+  <CC_Adv_Act_ShowQuestTip>Opens the quest this is about.</CC_Adv_Act_ShowQuestTip>
+  <CC_Adv_Act_OpenLetterTip>Opens the letter this is about.</CC_Adv_Act_OpenLetterTip>
   <CC_Adv_PlannedLamps>Planned {0} lamp(s) where the rooms were dark.</CC_Adv_PlannedLamps>
   <CC_Adv_PlannedLamps_None>No lamp was needed, or there was no free spot on the walls for one.</CC_Adv_PlannedLamps_None>
   <CC_Adv_PlannedChairs>Planned {0} chair(s) at the benches.</CC_Adv_PlannedChairs>

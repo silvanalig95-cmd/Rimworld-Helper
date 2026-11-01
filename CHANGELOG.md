@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The planning buttons say what they do
+
+*1 November 2026, version 0.44.3*
+
+- The buttons beside each step on the Plan page are wider and no longer cut off; a long label gets a row of its own.
+- Every button on the Plan, Priorities and Base pages says on hover what it does: what it opens, what it places or orders on the map, and that you can cancel it like any other order. The defense step's button now reads "Plan the defense".
+
 ## Visitors at the market, the hunt and the guest beds
 
 *1 November 2026, version 0.44.2*

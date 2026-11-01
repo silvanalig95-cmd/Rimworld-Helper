@@ -112,7 +112,7 @@ namespace ColonyCouncil
                 title = "CC_Store_Unstored".Translate(total.Named("N"), byDef.Count.Named("KINDS")).Resolve(),
                 detail = "CC_Store_Unstored_Detail".Translate(string.Join(", ", top).Named("LIST")).Resolve(),
                 look = first.Position, cells = spots, mapLabel = "CC_Store_Map_Unstored".Translate().Resolve(),
-                fixLabel = "CC_Store_MakeStockpile".Translate().Resolve(),
+                fixLabel = "CC_Store_MakeStockpile".Translate().Resolve(), fixTip = "CC_Store_MakeStockpileTip".Translate().Resolve(),
                 fix = () => MakeStockpile(map, defs, StoreCenter(map), 4, StoragePriority.Normal, "CC_Store_ZoneName_Odds".Translate().Resolve())
             });
         }
@@ -174,7 +174,7 @@ namespace ColonyCouncil
                     look = b.Position, cells = b.OccupiedRect().Cells.ToList(), other = store?.CellsList.ToList() ?? new List<IntVec3>(),
                     from = b.Position, to = store != null && store.CellsList.Count > 0 ? store.CellsList.OrderBy(c => c.DistanceTo(b.Position)).First() : IntVec3.Invalid,
                     mapLabel = "CC_Store_Map_BenchFar".Translate(((int)distance).Named("D")).Resolve(),
-                    fixLabel = "CC_Store_MakeByBench".Translate().Resolve(),
+                    fixLabel = "CC_Store_MakeByBench".Translate().Resolve(), fixTip = "CC_Store_MakeByBenchTip".Translate().Resolve(),
                     fix = () => MakeStockpile(map, mats, b.InteractionCell, 3, StoragePriority.Preferred, "CC_Store_ZoneName_Bench".Translate(b.LabelCap.ToString()).Resolve(), b)
                 });
             }

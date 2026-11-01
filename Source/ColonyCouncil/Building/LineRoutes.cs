@@ -420,7 +420,7 @@ namespace ColonyCouncil
                         key = "relaying:" + kind, group = "works", score = 0.05f,
                         title = "CC_Base_Relaying".Translate(kindLabel.Named("KIND"), built.Named("BUILT"), total.Named("ALL")).Resolve(),
                         detail = "CC_Base_Relaying_Detail".Translate().Resolve(),
-                        look = all.SelectMany(x => x.lay).FirstOrDefault(), fixLabel = "CC_Base_Relay_Off".Translate().Resolve(),
+                        look = all.SelectMany(x => x.lay).FirstOrDefault(), fixLabel = "CC_Base_Relay_Off".Translate().Resolve(), fixTip = "CC_Base_Relay_OffTip".Translate().Resolve(),
                         fix = () => comp.relays.CallOff(map, kind),
                         cells = all.SelectMany(x => x.lay).ToList(), other = all.SelectMany(x => x.takeUp).ToList(),
                         mapLabel = "CC_Base_Map_Relay".Translate().Resolve()
@@ -441,7 +441,7 @@ namespace ColonyCouncil
                     key = "relay:" + kind, group = "works", score = BaseReviewMath.TidyScore(before - after, 0.01f, 0.25f),
                     title = "CC_Base_Relay".Translate((before - after).Named("N"), kindLabel.Named("KIND")).Resolve(),
                     detail = "CC_Base_Relay_Detail".Translate(lay.Count.Named("LAY"), up.Count.Named("UP"), before.Named("BEFORE"), after.Named("AFTER"), kindLabel.Named("KIND")).Resolve(),
-                    look = lay.Count > 0 ? lay[0] : up.FirstOrDefault(), fixLabel = "CC_Base_Relay_Fix".Translate().Resolve(), fix = () => Lay(map, kind),
+                    look = lay.Count > 0 ? lay[0] : up.FirstOrDefault(), fixLabel = "CC_Base_Relay_Fix".Translate().Resolve(), fixTip = "CC_Base_Relay_FixTip".Translate().Resolve(), fix = () => Lay(map, kind),
                     cells = lay, other = up, mapLabel = "CC_Base_Map_Relay".Translate().Resolve()
                 });
             }

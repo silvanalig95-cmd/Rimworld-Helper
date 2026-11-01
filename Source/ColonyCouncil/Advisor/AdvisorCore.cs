@@ -101,6 +101,8 @@ namespace ColonyCouncil
         /// <summary>Something the advice can do straight away (plan the lamps, open the letter), with its button's label.</summary>
         public Action act;
         public string actLabel;
+        /// <summary>What the button does on the map, for its tooltip (else the label alone).</summary>
+        public string actTip;
         public string key = "";
 
         public float Score => severity * (0.5f + 0.5f * urgency) * (0.6f + 0.4f * confidence) * (def?.importance ?? 1f);

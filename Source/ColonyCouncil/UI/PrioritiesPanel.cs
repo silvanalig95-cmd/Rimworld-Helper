@@ -144,11 +144,13 @@ namespace ColonyCouncil
             float by = y + 6f;
             if (s.look != null && s.look.IsValid)
             {
+                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_ShowTip".Translate());
                 if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(s.look);
                 by += 30f;
             }
             if (s.template != null && map != null && s.template.UnavailableReason(map) == null)
             {
+                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), (s.upgrade ? "CC_Plan_UpgradeItTip" : "CC_Plan_PlanItTip").Translate(s.template.label));
                 if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), (s.upgrade ? "CC_UpgradeIt" : "CC_PlanIt").Translate()))
                 {
                     if (s.upgrade) Designator_PlanRoom.Begin(s.template, false, true);
@@ -159,7 +161,9 @@ namespace ColonyCouncil
             // Something the advice can do now (plan the lamps, open the letter), and the council page that deals with it.
             if (s.act != null && !s.actLabel.NullOrEmpty())
             {
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), s.actLabel))
+                var actRect = new Rect(bx, by, bw, 26f);
+                if (!s.actTip.NullOrEmpty()) TooltipHandler.TipRegion(actRect, s.actTip);
+                if (Widgets.ButtonText(actRect, UiKit.Fit(s.actLabel, bw - 8f)))
                 {
                     try
                     {
@@ -174,7 +178,8 @@ namespace ColonyCouncil
             }
             if (MainTabWindow_Council.IsPage(s.page))
             {
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(s.page)).Resolve())) MainTabWindow_Council.OpenTab(s.page);
+                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_GoToTip".Translate(MainTabWindow_Council.TabName(s.page)));
+                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), UiKit.Fit("CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(s.page)).Resolve(), bw - 8f))) MainTabWindow_Council.OpenTab(s.page);
                 by += 30f;
             }
             var article = s.article ?? s.def.article;

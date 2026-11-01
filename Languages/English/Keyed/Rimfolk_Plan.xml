@@ -30,6 +30,20 @@
   <CC_Plan_TakeBack>Back in</CC_Plan_TakeBack>
   <CC_Plan_Remove>Remove</CC_Plan_Remove>
   <CC_Plan_PlaceIt>Place the plan</CC_Plan_PlaceIt>
+  <CC_Plan_PlaceDefense>Plan the defense</CC_Plan_PlaceDefense>
+  <CC_Plan_PlaceDefenseTip>Opens the defense planner with {0} at this spot: you turn it and place it on the map. Nothing is built until you place it.</CC_Plan_PlaceDefenseTip>
+  <CC_Plan_PlanItTip>Opens the room planner with {0} ready: you choose the spot and place it. Nothing is built until you place it.</CC_Plan_PlanItTip>
+  <CC_Plan_UpgradeItTip>Opens the room planner on this room to add what {0} is missing: you confirm where each piece goes.</CC_Plan_UpgradeItTip>
+  <CC_Plan_StartResearchTip>Sets {0} as what your researchers work on now.</CC_Plan_StartResearchTip>
+  <CC_Plan_OpenResearchTip>Opens the research tab at {0}.</CC_Plan_OpenResearchTip>
+  <CC_Plan_ShowTip>Moves the view to it on the map.</CC_Plan_ShowTip>
+  <CC_Plan_GoToTip>Opens the {0} page, where this comes from and is explained in full.</CC_Plan_GoToTip>
+  <CC_Plan_TakeTip>Puts this into your plan above as a numbered step, to be done in your order. Nothing happens on the map yet.</CC_Plan_TakeTip>
+  <CC_Plan_NotNowTip>Hides this proposal. The council won't propose it again for a fortnight.</CC_Plan_NotNowTip>
+  <CC_Plan_MarkDoneTip>Marks the step done. It stays in the plan as done until you remove it.</CC_Plan_MarkDoneTip>
+  <CC_Plan_TakeBackTip>Puts the step back into the plan as not done.</CC_Plan_TakeBackTip>
+  <CC_Plan_RemoveTip>Takes the step off the plan.</CC_Plan_RemoveTip>
+  <CC_Plan_FixTip>Does this on the map now.</CC_Plan_FixTip>
   <CC_Plan_StartResearch>Start it</CC_Plan_StartResearch>
   <CC_Plan_OpenResearch>Open research</CC_Plan_OpenResearch>
   <CC_Plan_ResearchStarted>Research started: {PROJECT}.</CC_Plan_ResearchStarted>

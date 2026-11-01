@@ -157,9 +157,11 @@ namespace ColonyCouncil
             float bx = x + width - ButtonsW + 4f, bw = ButtonsW - 12f, by = y + 6f;
             if (f.look.IsValid)
             {
+                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_ShowTip".Translate());
                 if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(new LookTargets(f.look, map));
                 by += 30f;
             }
+            if (f.template != null) TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_PlanItTip".Translate(f.template.label));
             if (f.template != null && Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_PlanIt".Translate()))
             {
                 MainTabWindow_Council.StartPlanning(f.template, true);
@@ -168,6 +170,7 @@ namespace ColonyCouncil
             if (f.fix != null)
             {
                 var fixRect = new Rect(bx, by, bw, 26f);
+                if (!f.fixTip.NullOrEmpty()) TooltipHandler.TipRegion(fixRect, f.fixTip);
                 if (Widgets.ButtonText(fixRect, UiKit.Fit(f.fixLabel, bw - 8f)))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();

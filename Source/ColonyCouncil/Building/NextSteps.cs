@@ -334,29 +334,35 @@ namespace ColonyCouncil
         }
 
         /// <summary>The buttons a step offers: each a label and what it does, the main one first.</summary>
-        public static List<(string label, Action act)> Actions(NextStep s)
+        /// <summary>What can be done about a step, each with its button's label and a tooltip saying what it does on the map.</summary>
+        public static List<(string label, string tip, Action act)> Actions(NextStep s)
         {
-            var acts = new List<(string, Action)>();
+            var acts = new List<(string, string, Action)>();
             if (s == null) return acts;
             var map = s.map ?? Find.CurrentMap;
             if (s.template != null && map != null && s.template.UnavailableReason(map) == null)
-                acts.Add(((s.upgrade ? "CC_UpgradeIt" : "CC_PlanIt").Translate().Resolve(), () =>
+            {
+                string room = s.template.label;
+                acts.Add(((s.upgrade ? "CC_UpgradeIt" : "CC_PlanIt").Translate().Resolve(),
+                    (s.upgrade ? "CC_Plan_UpgradeItTip" : "CC_Plan_PlanItTip").Translate(room).Resolve(), () =>
                 {
                     if (s.upgrade) Designator_PlanRoom.Begin(s.template, false, true);
                     else MainTabWindow_Council.StartPlanning(s.template, true);
                 }));
+            }
             if (s.defense != null && map != null)
-                acts.Add(("CC_Plan_PlaceIt".Translate().Resolve(), () => Designator_PlanDefense.Begin(s.defense, true, s.choke)));
+                acts.Add(("CC_Plan_PlaceDefense".Translate().Resolve(), "CC_Plan_PlaceDefenseTip".Translate(s.defense.label).Resolve(),
+                    () => Designator_PlanDefense.Begin(s.defense, true, s.choke)));
             if (s.research != null && !s.research.IsFinished)
             {
                 var r = s.research;
                 if (r.CanStartNow && Find.ResearchManager.GetProject() == null)
-                    acts.Add(("CC_Plan_StartResearch".Translate().Resolve(), () =>
+                    acts.Add(("CC_Plan_StartResearch".Translate().Resolve(), "CC_Plan_StartResearchTip".Translate(r.LabelCap).Resolve(), () =>
                     {
                         Find.ResearchManager.SetCurrentProject(r);
                         Messages.Message("CC_Plan_ResearchStarted".Translate(r.LabelCap.ToString().Named("PROJECT")).Resolve(), MessageTypeDefOf.SilentInput, false);
                     }));
-                acts.Add(("CC_Plan_OpenResearch".Translate().Resolve(), () =>
+                acts.Add(("CC_Plan_OpenResearch".Translate().Resolve(), "CC_Plan_OpenResearchTip".Translate(r.LabelCap).Resolve(), () =>
                 {
                     Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Research);
                     if (MainButtonDefOf.Research.TabWindow is MainTabWindow_Research w) w.Select(r);
@@ -366,7 +372,7 @@ namespace ColonyCouncil
             {
                 var finding = BaseReview.Finding(map, s.key.Substring(5));
                 if (finding?.fix != null && !finding.fixLabel.NullOrEmpty())
-                    acts.Add((finding.fixLabel, () =>
+                    acts.Add((finding.fixLabel, finding.fixTip.NullOrEmpty() ? "CC_Plan_FixTip".Translate().Resolve() : finding.fixTip, () =>
                     {
                         try
                         {
@@ -380,7 +386,7 @@ namespace ColonyCouncil
             }
             var live = LiveSignal(s);
             if (live?.act != null && !live.actLabel.NullOrEmpty())
-                acts.Add((live.actLabel, () =>
+                acts.Add((live.actLabel, live.actTip.NullOrEmpty() ? "CC_Plan_FixTip".Translate().Resolve() : live.actTip, () =>
                 {
                     try
                     {
@@ -391,10 +397,14 @@ namespace ColonyCouncil
                         CouncilLog.ErrorOnce("next step action " + s.key, e);
                     }
                 }));
-            if (live?.look != null && live.look.IsValid) acts.Add(("CC_Show".Translate().Resolve(), () => MainTabWindow_Council.Jump(live.look)));
-            else if (s.look.IsValid && map != null) acts.Add(("CC_Show".Translate().Resolve(), () => MainTabWindow_Council.Jump(new LookTargets(s.look, map))));
+            string showTip = "CC_Plan_ShowTip".Translate().Resolve();
+            if (live?.look != null && live.look.IsValid) acts.Add(("CC_Show".Translate().Resolve(), showTip, () => MainTabWindow_Council.Jump(live.look)));
+            else if (s.look.IsValid && map != null) acts.Add(("CC_Show".Translate().Resolve(), showTip, () => MainTabWindow_Council.Jump(new LookTargets(s.look, map))));
             if (MainTabWindow_Council.IsPage(s.page) && s.page != "Plan")
-                acts.Add(("CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(s.page)).Resolve(), () => MainTabWindow_Council.OpenTab(s.page)));
+            {
+                string page = MainTabWindow_Council.TabName(s.page);
+                acts.Add(("CC_Mood_GoTo".Translate(page).Resolve(), "CC_Plan_GoToTip".Translate(page).Resolve(), () => MainTabWindow_Council.OpenTab(s.page)));
+            }
             return acts;
         }
 

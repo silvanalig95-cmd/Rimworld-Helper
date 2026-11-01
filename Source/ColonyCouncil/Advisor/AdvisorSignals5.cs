@@ -60,6 +60,7 @@ namespace ColonyCouncil
                 {
                     s.act = () => Missions.ShowQuest(mission);
                     s.actLabel = "CC_Adv_Act_ShowQuest".Translate();
+                    s.actTip = "CC_Adv_Act_ShowQuestTip".Translate();
                 }
                 s.key = "mission:" + m.id;
                 yield return s;
@@ -151,6 +152,7 @@ namespace ColonyCouncil
                 var letter = l;
                 s.act = () => letter.OpenLetter();
                 s.actLabel = "CC_Adv_Act_OpenLetter".Translate();
+                s.actTip = "CC_Adv_Act_OpenLetterTip".Translate();
                 var here = camp.members.Where(p => p != null && p.Spawned && !p.Dead).Take(3).ToList();
                 if (here.Count > 0) s.look = new LookTargets(here);
                 s.key = "camp-letter:" + l.ID;
@@ -515,6 +517,7 @@ namespace ColonyCouncil
             {
                 s.act = () => Find.MainTabsRoot.SetCurrentTab(work);
                 s.actLabel = "CC_Adv_Act_WorkTab".Translate();
+                s.actTip = "CC_Adv_Act_WorkTabTip".Translate();
             }
             s.key = "doctor-backup";
             yield return s;
@@ -572,6 +575,7 @@ namespace ColonyCouncil
             // plans nothing more where the first one's lights already reach the beds.
             s.act = () => RoomLights.Plan(list.Where(r => r != null && !r.Dereferenced && HasDarkBed(r)).ToList(), map);
             s.actLabel = "CC_Adv_Act_PlanLamps".Translate();
+            s.actTip = "CC_Adv_Act_PlanLampsTip".Translate();
             s.key = "beds-dark";
             yield return s;
         }

@@ -140,6 +140,7 @@ namespace ColonyCouncil
                 Messages.Message("CC_Adv_Firebreak_Marked".Translate(n), MessageTypeDefOf.TaskCompletion, false);
             };
             s.actLabel = "CC_Adv_Firebreak_Act".Translate();
+            s.actTip = "CC_Adv_Firebreak_ActTip".Translate();
             yield return s;
         }
     }

@@ -262,6 +262,7 @@ namespace ColonyCouncil
             var list = rooms.Take(6).ToList();
             s.act = () => PlanChairsAndLamps(list, map);
             s.actLabel = "CC_Adv_Act_PlanChairsLamps".Translate();
+            s.actTip = "CC_Adv_Act_PlanChairsLampsTip".Translate();
             s.key = "workshop-upgrade";
             yield return s;
         }

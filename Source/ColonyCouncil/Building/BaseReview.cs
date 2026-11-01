@@ -20,6 +20,8 @@ namespace ColonyCouncil
         /// <summary>What a fix takes down, if there is one.</summary>
         public List<Thing> things;
         public string fixLabel;
+        /// <summary>What the fix does on the map, for its button's tooltip.</summary>
+        public string fixTip;
         public Action fix;
         /// <summary>A room the planner can put beside what this one is far from (the Plan the room button).</summary>
         public RoomTemplateDef template;
@@ -421,7 +423,7 @@ namespace ColonyCouncil
                 title = "CC_Base_Doors".Translate(pointless.Count).Resolve(), detail = "CC_Base_Doors_Detail".Translate().Resolve(),
                 look = pointless[0].Position, things = pointless.Cast<Thing>().ToList(),
                 cells = pointless.Select(d => d.Position).ToList(), mapLabel = "CC_Base_Map_Doors".Translate().Resolve(),
-                fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, pointless.Cast<Thing>().ToList())
+                fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fixTip = "CC_Base_TakeDownTip".Translate().Resolve(), fix = () => Deconstruct(map, pointless.Cast<Thing>().ToList())
             });
         }
 
@@ -477,7 +479,7 @@ namespace ColonyCouncil
                 title = "CC_Base_Stubs".Translate(runs, things.Count).Resolve(), detail = "CC_Base_Stubs_Detail".Translate().Resolve(),
                 look = things[0].Position, things = things,
                 cells = things.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Stubs".Translate().Resolve(),
-                fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, things)
+                fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fixTip = "CC_Base_TakeDownTip".Translate().Resolve(), fix = () => Deconstruct(map, things)
             });
         }
 
@@ -572,7 +574,7 @@ namespace ColonyCouncil
                 {
                     key = "conduits", group = "works", score = BaseReviewMath.TidyScore(runs, 0.03f, 0.2f),
                     title = "CC_Base_Conduits".Translate(dead.Count, runs).Resolve(), detail = "CC_Base_Conduits_Detail".Translate().Resolve(),
-                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, dead),
+                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fixTip = "CC_Base_TakeDownTip".Translate().Resolve(), fix = () => Deconstruct(map, dead),
                     cells = dead.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Conduits".Translate().Resolve()
                 });
             if (orphan.Count > 0)
@@ -580,7 +582,7 @@ namespace ColonyCouncil
                 {
                     key = "orphanconduits", group = "works", score = BaseReviewMath.TidyScore(orphan.Count, 0.02f, 0.15f),
                     title = "CC_Base_OrphanConduits".Translate(orphan.Count).Resolve(), detail = "CC_Base_OrphanConduits_Detail".Translate().Resolve(),
-                    look = orphan[0].Position, things = orphan, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, orphan),
+                    look = orphan[0].Position, things = orphan, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fixTip = "CC_Base_TakeDownTip".Translate().Resolve(), fix = () => Deconstruct(map, orphan),
                     cells = orphan.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Orphan".Translate().Resolve()
                 });
         }
@@ -689,7 +691,7 @@ namespace ColonyCouncil
                 {
                     key = "pipes:" + key, group = "works", score = BaseReviewMath.TidyScore(runs, 0.03f, 0.2f),
                     title = "CC_Base_Pipes".Translate(dead.Count.Named("N"), label.Named("KIND"), runs.Named("RUNS")).Resolve(), detail = "CC_Base_Pipes_Detail".Translate().Resolve(),
-                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fix = () => Deconstruct(map, dead),
+                    look = dead[0].Position, things = dead, fixLabel = "CC_Base_TakeDown".Translate().Resolve(), fixTip = "CC_Base_TakeDownTip".Translate().Resolve(), fix = () => Deconstruct(map, dead),
                     cells = dead.Select(t => t.Position).ToList(), mapLabel = "CC_Base_Map_Conduits".Translate().Resolve()
                 });
             }

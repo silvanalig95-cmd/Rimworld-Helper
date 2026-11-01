@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.44.3</version>
+        <date>1 November 2026</date>
+        <title>The planning buttons say what they do</title>
+        <points>
+          <li>The buttons beside each step on the Plan page are wider and no longer cut off; a long label gets a row of its own.</li>
+          <li>Every button on the Plan, Priorities and Base pages says on hover what it does: what it opens, what it places or orders on the map, and that you can cancel it like any other order. The defense step's button now reads "Plan the defense".</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.44.2</version>
         <date>1 November 2026</date>
         <title>Visitors at the market, the hunt and the guest beds</title>

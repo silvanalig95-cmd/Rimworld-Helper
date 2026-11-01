@@ -36,6 +36,7 @@
   <CC_Adv_Firebreak_Title>Dry and windy: cut a firebreak</CC_Adv_Firebreak_Title>
   <CC_Adv_Firebreak_Detail>Nothing has fallen for {0} days and the wind is strong: a wildfire in this weather runs fast. There is grass and brush in {1} places within {2} cells of the home area. Cutting that strip back keeps a fire from reaching the buildings, and colonists on firefighting put out what reaches the home area.</CC_Adv_Firebreak_Detail>
   <CC_Adv_Firebreak_Act>Mark the firebreak</CC_Adv_Firebreak_Act>
+  <CC_Adv_Firebreak_ActTip>Marks the brush in the firebreak for cutting. Your growers cut it; you can cancel the marks like any others.</CC_Adv_Firebreak_ActTip>
   <CC_Adv_Firebreak_Marked>Marked {0} plants for cutting round the home area.</CC_Adv_Firebreak_Marked>
   <CC_Weather_TornadoChronicle>A tornado crossed the land.</CC_Weather_TornadoChronicle>
   <!-- Stormproof's storms, in the advisor's "what's happening now" (Advisor/AdvisorSignals2.cs); {0} is the time left. -->
