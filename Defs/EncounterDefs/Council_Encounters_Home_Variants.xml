@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More texts for the small nuisances a colony sees most (Council_Encounters_Home.xml, _Home2.xml, _Home3.xml), merged
+    in at startup (LetterVariantsDef, target nuisance). Same placeholders as each nuisance's own texts: {A_...} the
+    colonist, {THING} what it is about: the badly made piece of clothing, the bed, the junk in the bedroom, the thing
+    lying nearest them while things lie everywhere ("wood", "steel"), and the filthy room by what it is ("dining room",
+    "barracks", or just "room"). Third person, one or two sentences. A tagged line only shows when it fits.
+  -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Nuisance_ShoddyClothes</defName>
+    <nuisance>Council_Nuisance_ShoddyClothes</nuisance>
+    <texts>
+      <li>{A_nameDef} spent the morning tugging at {A_possessive} badly made {THING}, which never sat right.</li>
+      <li>The stitching on {A_nameDef}'s {THING} gave way again, in a new place this time.</li>
+      <li>{A_nameDef} held {A_possessive} {THING} up to the light and counted the thin patches.</li>
+      <li>By midday {A_nameDef}'s badly made {THING} had rubbed a sore spot raw.</li>
+      <li>{A_nameDef} sat up after supper patching {A_possessive} {THING} again.</li>
+      <li>[winter|cold] The wind found every gap in {A_nameDef}'s badly sewn {THING}.</li>
+      <li>[rain] The rain came through {A_nameDef}'s {THING} at every seam.</li>
+      <li>[working] {A_nameDef} had to stop work twice to fix {A_possessive} {THING}.</li>
+      <li>[child] {A_nameDef} tore {A_possessive} badly made {THING} again and came to ask for a needle.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Nuisance_Clutter</defName>
+    <nuisance>Council_Nuisance_Clutter</nuisance>
+    <texts>
+      <li>{A_nameDef} stepped over the {THING} lying in the way for the fourth time today.</li>
+      <li>{A_nameDef} tripped over the {THING} that should have been put away by now.</li>
+      <li>{A_nameDef} nearly went down on {A_possessive} face over the {THING} left lying about.</li>
+      <li>{A_nameDef} has started taking the long way round the {THING} still lying in the same spot.</li>
+      <li>{A_nameDef} asked whose job it was to haul the {THING}, and didn't get an answer.</li>
+      <li>{A_nameDef} lost part of the morning working around the {THING} and everything else left lying about.</li>
+      <li>{A_nameDef} wanted to know who had left the {THING} lying about, and said so loudly.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Nuisance_FilthyRoom</defName>
+    <nuisance>Council_Nuisance_FilthyRoom</nuisance>
+    <texts>
+      <li>Grime in every corner of the {THING}, and {A_nameDef} had to be in there anyway.</li>
+      <li>{A_nameDef} tried not to touch anything in the {THING}.</li>
+      <li>"Who let the {THING} get like this?" {A_nameDef} asked.</li>
+      <li>{A_nameDef}'s boots came out of the {THING} dirtier than they went in.</li>
+      <li>The dirt in the {THING} had come in on every pair of boots in the colony, and {A_nameDef} said so.</li>
+      <li>[summer|hot] The {THING} smelled of old dirt in the heat, and {A_nameDef} breathed through {A_possessive} mouth.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Nuisance_HardBed</defName>
+    <nuisance>Council_Nuisance_HardBed</nuisance>
+    <texts>
+      <li>{A_nameDef} woke on the {THING} with one arm numb to the elbow.</li>
+      <li>{A_nameDef} turned over on the {THING} all night and got up more tired than {A_pronoun} went down.</li>
+      <li>[winter|cold] The cold came straight up through the {THING}, and {A_nameDef} was up before dawn to get warm.</li>
+      <li>[old] {A_nameDef}'s back made itself heard all morning after another night on the {THING}.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Nuisance_LongWalk</defName>
+    <nuisance>Council_Nuisance_LongWalk</nuisance>
+    <texts>
+      <li>[rain] {A_nameDef} got to the table soaked through from the long walk over.</li>
+      <li>{A_nameDef} set off for supper early, to get there before it went cold.</li>
+      <li>[morning] Half awake, {A_nameDef} made the long walk to breakfast and nearly fell asleep at the table.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Nuisance_UglyBedroom</defName>
+    <nuisance>Council_Nuisance_UglyBedroom</nuisance>
+    <texts>
+      <li>{A_nameDef} has been sharing {A_possessive} room with the {THING} for days now.</li>
+      <li>[night] {A_nameDef} walked into the {THING} in the dark on the way to bed.</li>
+      <li>{A_nameDef} has asked twice for the {THING} to be taken out of {A_possessive} room.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Nuisance_NoCoat</defName>
+    <nuisance>Council_Nuisance_NoCoat</nuisance>
+    <texts>
+      <li>{A_nameDef} came in from the rain with {A_possessive} teeth chattering and nothing dry to change into.</li>
+      <li>{A_nameDef} worked bent over against the rain, water running off the end of {A_possessive} nose.</li>
+      <li>By the end of the job {A_nameDef}'s clothes were soaked through and twice as heavy.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

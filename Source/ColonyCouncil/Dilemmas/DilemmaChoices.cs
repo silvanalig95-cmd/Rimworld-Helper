@@ -7,16 +7,18 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// More ways for a Rimfolk event, a dilemma or a stranger encounter to read, kept in a file of their own and merged
-    /// in at startup (as <see cref="FlavorExtensionDef"/> does for wishes): more letter texts and titles, and more ways to
-    /// tell how an answer turned out. Lines use the placeholders and tags of the def they join, plus those of
-    /// <see cref="LetterTags"/>.
+    /// More ways for a Rimfolk event, a dilemma, a stranger encounter or a small nuisance to read, kept in a file of their
+    /// own and merged in at startup (as <see cref="FlavorExtensionDef"/> does for wishes): more letter texts and titles,
+    /// and more ways to tell how an answer turned out. Lines use the placeholders and tags of the def they join, plus those
+    /// of <see cref="LetterTags"/> (a nuisance's: only its own and the moment's, see <see cref="NuisanceDef"/>).
     /// </summary>
     public class LetterVariantsDef : Def
     {
         public IncidentDef incident;
         public DilemmaDef dilemma;
         public EncounterDef encounter;
+        /// <summary>A small nuisance from the colony itself (Strangers/Nuisances.cs): texts only.</summary>
+        public NuisanceDef nuisance;
         [MustTranslate] public List<string> titles;
         [MustTranslate] public List<string> texts;
         /// <summary>More ways to tell an answer's outcome, by the answer's place in the list (0 = the first).</summary>
@@ -25,9 +27,9 @@ namespace ColonyCouncil
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
-            int targets = (incident == null ? 0 : 1) + (dilemma == null ? 0 : 1) + (encounter == null ? 0 : 1);
-            if (targets != 1) yield return "letter variants need exactly one target: incident, dilemma or encounter";
-            if (encounter != null && !outcomes.NullOrEmpty()) yield return "an encounter has no answers to add outcomes to";
+            int targets = (incident == null ? 0 : 1) + (dilemma == null ? 0 : 1) + (encounter == null ? 0 : 1) + (nuisance == null ? 0 : 1);
+            if (targets != 1) yield return "letter variants need exactly one target: incident, dilemma, encounter or nuisance";
+            if ((encounter != null || nuisance != null) && !outcomes.NullOrEmpty()) yield return "an encounter or a nuisance has no answers to add outcomes to";
         }
     }
 
@@ -66,6 +68,7 @@ namespace ColonyCouncil
                         options = v.dilemma.options;
                     }
                     else if (v.encounter != null) Add(ref v.encounter.texts, v.texts);
+                    else if (v.nuisance != null) Add(ref v.nuisance.texts, v.texts);
                     if (!v.outcomes.NullOrEmpty())
                     {
                         foreach (var o in v.outcomes)

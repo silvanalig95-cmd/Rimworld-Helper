@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More social log lines for what a colony sees most often (Social/LogLines.cs): how the friendly contests start and
+    end, and the talk that goes with the most frequent wishes (armor and weapons, a latrine and a wash, an infirmary).
+    Joined at startup to the interaction or rule pack each def names, next to the lines in Rimfolk_LogLines_Talk.xml.
+    Era-neutral and nobody hurt, like the moments themselves.
+  -->
+
+  <!-- ===================== How a friendly contest starts ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_ArmWrestle</defName>
+    <interaction>Council_Moment_ArmWrestle</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] set [INITIATOR_possessive] elbow on the table and waited for [RECIPIENT_nameDef] to take the hint.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] arm-wrestled to decide who would [wrestlechore].</li>
+        <li>r_logentry->[RECIPIENT_nameDef] said [INITIATOR_nameDef] couldn't win an arm-wrestle with both hands, and [INITIATOR_nameDef] set out to prove otherwise.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] for one arm-wrestling match, just one, to settle which of them was stronger.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] cleared a space on the table and locked hands, each sure of winning.</li>
+        <li>wrestlechore->wash the pots after supper</li>
+        <li>wrestlechore->take the first night watch</li>
+        <li>wrestlechore->sweep up</li>
+        <li>wrestlechore->carry the other's load tomorrow</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_PebbleToss</defName>
+    <interaction>Council_Moment_PebbleToss</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] set up [pebbletarget] and dared [RECIPIENT_nameDef] to hit it first.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] took a break to throw pebbles at [pebbletarget], and before long they were keeping score.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] [INITIATOR_possessive] way of throwing, then challenged [RECIPIENT_objective] to beat it at [pebbletarget].</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_CraftContest</defName>
+    <interaction>Council_Moment_CraftContest</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] each tried to carve [whittlesubject] from the same stick, and argued over who got the better end.</li>
+        <li>r_logentry->[INITIATOR_nameDef] challenged [RECIPIENT_nameDef] to tie the neatest knot, with [craftjudge] to decide.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] raced to weave a small basket from scraps, and both ended up with what looked more like a hat.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- ===================== How a friendly contest ends ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_InitiatorWon</defName>
+    <pack>Council_Sent_InitiatorWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] won, and spent the next hour flexing at [RECIPIENT_nameDef].</li>
+        <li>sent->On the third try [INITIATOR_nameDef] won, after two that [RECIPIENT_nameDef] said didn't count.</li>
+        <li>sent->[INITIATOR_nameDef] brought [RECIPIENT_nameDef]'s hand down hard enough to rattle the table.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_RecipientWon</defName>
+    <pack>Council_Sent_RecipientWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef] held on until [INITIATOR_nameDef]'s arm gave out.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] demanded to switch arms.</li>
+        <li>sent->[RECIPIENT_nameDef] won without breaking a sweat, or claimed so.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Riddles_InitiatorWon</defName>
+    <pack>Council_Sent_Riddles_InitiatorWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] went off still muttering answers.</li>
+        <li>sent->[INITIATOR_nameDef] took the last point with a riddle [INITIATOR_pronoun] admitted making up on the spot.</li>
+        <li>sent->Once [INITIATOR_nameDef] had won, [RECIPIENT_nameDef] asked to hear every answer again, slowly.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Riddles_RecipientWon</defName>
+    <pack>Council_Sent_Riddles_RecipientWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] went away to think up harder ones.</li>
+        <li>sent->[RECIPIENT_nameDef] answered the last one before [INITIATOR_nameDef] had finished asking it.</li>
+        <li>sent->[RECIPIENT_nameDef] won by a single riddle, after a long argument about the one before.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Pebbles_InitiatorWon</defName>
+    <pack>Council_Sent_Pebbles_InitiatorWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] went looking for better pebbles.</li>
+        <li>sent->[INITIATOR_nameDef] won by two throws and kept the lucky pebble.</li>
+        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef] said the throwing line had moved.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Pebbles_RecipientWon</defName>
+    <pack>Council_Sent_Pebbles_RecipientWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] blamed the light.</li>
+        <li>sent->[RECIPIENT_nameDef] won without missing once.</li>
+        <li>sent->When [RECIPIENT_nameDef] won, [INITIATOR_nameDef] wanted to go best of five.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Story_InitiatorWon</defName>
+    <pack>Council_Sent_Story_InitiatorWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] asked where [INITIATOR_pronoun] had heard that one.</li>
+        <li>sent->[INITIATOR_nameDef] won when [RECIPIENT_nameDef] laughed in the wrong place and lost the thread.</li>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] would be stealing the story.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Story_RecipientWon</defName>
+    <pack>Council_Sent_Story_RecipientWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] admitted [INITIATOR_pronoun] had wanted to know how it ended.</li>
+        <li>sent->[RECIPIENT_nameDef] won with a story that was mostly true.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] made [RECIPIENT_objective] promise to tell it again at supper.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Craft_InitiatorWon</defName>
+    <pack>Council_Sent_Craft_InitiatorWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] turned the winning piece over and over, looking for the trick.</li>
+        <li>sent->[INITIATOR_nameDef] won, though [RECIPIENT_nameDef] said [RECIPIENT_possessive] was the more useful of the two.</li>
+        <li>sent->[INITIATOR_nameDef]'s was neater by a long way, and [RECIPIENT_nameDef] didn't argue.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Craft_RecipientWon</defName>
+    <pack>Council_Sent_Craft_RecipientWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] said [INITIATOR_pronoun] had been going for a different look.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and gave [INITIATOR_nameDef] a tip for next time.</li>
+        <li>sent->[RECIPIENT_nameDef]'s was the clear winner, and [INITIATOR_nameDef] took it well.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Vegetable_InitiatorWon</defName>
+    <pack>Council_Sent_Vegetable_InitiatorWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[INITIATOR_nameDef]'s was the heavier, and [INITIATOR_pronoun] said so more than once.</li>
+        <li>sent->[INITIATOR_nameDef] won, and [RECIPIENT_nameDef] said [RECIPIENT_possessive] would taste better.</li>
+        <li>sent->[INITIATOR_nameDef] won, and promised [RECIPIENT_nameDef] some of the seed.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Sent_Vegetable_RecipientWon</defName>
+    <pack>Council_Sent_Vegetable_RecipientWon</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>sent->[RECIPIENT_nameDef]'s was bigger, and [INITIATOR_nameDef] asked to see where it had grown.</li>
+        <li>sent->[RECIPIENT_nameDef] won by a clear margin and hardly gloated at all.</li>
+        <li>sent->[RECIPIENT_nameDef] won, and [INITIATOR_nameDef] started planning next season's crop on the spot.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- ===================== Talking about a wish ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Talk_Safety</defName>
+    <interaction>Council_Talk_Safety</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] which way [INITIATOR_pronoun] thought the next raid would come from, and why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] felt ready for the next raid, and didn't like the answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went over the last raid with [RECIPIENT_nameDef], step by step, looking for what went wrong.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that the ones who do the fighting have the least to fight with.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] hadn't slept through a night since the last raid.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the colony's fighters on their fingers, and then counted again.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] where [INITIATOR_pronoun] would stand if raiders came tonight.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] to watch [INITIATOR_possessive] back in the next fight.</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Talk_Body</defName>
+    <interaction>Council_Talk_Body</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] knew anything about tending wounds, just in case.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about an old injury that still ached when the weather turned.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared scars, and [INITIATOR_nameDef] had a story for each of [INITIATOR_possessive] own.</li>
+        <li>r_logentry->[INITIATOR_nameDef] admitted to [RECIPIENT_nameDef] that [INITIATOR_pronoun] feared the next sickness more than the next raid.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] what [INITIATOR_pronoun] would keep on the shelf for the sick, if it were up to [INITIATOR_objective].</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesOften_Talk_Hygiene</defName>
+    <interaction>Council_Talk_Hygiene</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [gripe] was the worst part of [INITIATOR_possessive] day.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether people back home had put up with [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] made [RECIPIENT_nameDef] laugh with a long story about [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] that a colony this far along shouldn't still have [gripe].</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] worked out between them how much of the day went on [gripe].</li>
+        <li>gripe->the cold walk out to the trees in the dark</li>
+        <li>gripe->coming in from work with nowhere to wash</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+</Defs>

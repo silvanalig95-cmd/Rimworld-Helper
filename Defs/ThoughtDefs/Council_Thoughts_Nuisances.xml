@@ -64,7 +64,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Nuisance_Clutter</defName>
     <durationDays>0.5</durationDays>
-    <stages><li><label>things lying everywhere</label><description>Nothing's been put away in days. I tripped over a coil of rope looking for a saw.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <stages><li><label>things lying everywhere</label><description>Nothing's been put away in days. I can't cross the place without stepping over other people's mess.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

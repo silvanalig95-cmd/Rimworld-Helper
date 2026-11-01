@@ -6,7 +6,7 @@
     (checkClass, Source/ColonyCouncil/Setbacks/SetbackNuisances.cs): food gone rotten in the stores, noticed by someone
     who cooks; work out in the rain with no coat when the colony knows how to make one; junk left lying in someone's
     bedroom. A freezer, a duster or parka, and a tidy room are the cures. Texts: {A_...} the colonist, {THING} the
-    rotten food or the junk.
+    rotten food or the junk. More texts in Council_Encounters_Home_Variants.xml.
   -->
 
   <ColonyCouncil.NuisanceDef>

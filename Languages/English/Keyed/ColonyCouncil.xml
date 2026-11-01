@@ -1833,6 +1833,8 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Pressure_RoomFallback>room</CC_Pressure_RoomFallback>
   <CC_Pressure_ThingFallback>building</CC_Pressure_ThingFallback>
   <CC_Pressure_WorkFallback>the same work</CC_Pressure_WorkFallback>
+  <!-- A filthy room that is nothing in particular, as a nuisance names it (Strangers/Nuisances.cs) -->
+  <CC_Nuisance_Room>room</CC_Nuisance_Room>
   <!-- Colonists helping themselves -->
   <CC_Settings_Autonomy>Colonists fix what bothers them</CC_Settings_Autonomy>
   <CC_Settings_Autonomy_Tip>Now and then, a colonist fixes a small thing that hurts their mood, in their own time: cleans their room, visits a grave, takes a short break when they're starved of recreation. Never in danger, never anything that harms anyone. You get a message each time.</CC_Settings_Autonomy_Tip>

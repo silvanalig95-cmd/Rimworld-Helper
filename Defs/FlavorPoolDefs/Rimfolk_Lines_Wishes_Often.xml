@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the wishes a colony hears most (armor, a place to pray, a latrine, a seat at the table, a bath, the
+    temperature at night, a clean colony, somewhere to wash) and for the voices that had only one line each, so the same
+    colonist doesn't say the same thing every time the wish comes round. Wishes that already had plenty of requests get reminders, thanks and lapses
+    where a voice was thin. Same placeholders as each wish's other lines; tags as in Flavor.cs, with [trigger:X] for
+    the wish's own triggers.
+  -->
+
+  <!-- ===================== Proper armor (a fighter) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Armor</defName>
+    <wish>Council_Wish_Armor</wish>
+    <request>
+      <plain>
+        <li>[skill:Melee] I'm the one who runs at them. Give me plates or thick leather and I'll keep doing it.</li>
+        <li>[!lowtech] A vest, a helmet, anything that has stopped a bullet before. My shirt never has.</li>
+        <li>[hurt] I'm still healing from the last fight. I'd rather the next one hit armor first.</li>
+        <li>[old] I've fought for this colony longer than most. These old bones would like some armor over them.</li>
+      </plain>
+      <warm>
+        <li>I'll keep going out first when they come. I'd just like to be harder to hurt when I do.</li>
+        <li>[trait:Kind] If I'm wearing armor, the others won't have to carry me back inside. That's half of why I'm asking.</li>
+        <li>[afterraid] I watched the others patching each other up after that raid. Armor would mean less of that next time.</li>
+      </warm>
+      <blunt>
+        <li>Armor. Before they come back.</li>
+        <li>[trigger:raid] They nearly had me today. Make me armor that stops a blade.</li>
+        <li>I'm not facing the next raid in a shirt.</li>
+        <li>[trait:Bloodlust] I like being in the thick of it, and I'd like to stay there longer.</li>
+      </blunt>
+      <cheerful>
+        <li>Armor with straps that actually fit! I'd polish it every evening.</li>
+        <li>[skill:Melee] Put me in armor and I'll be first through the gap every time.</li>
+        <li>[trigger:raid] Still in one piece after that one! Some armor would help me stay that way.</li>
+      </cheerful>
+      <gloomy>
+        <li>I keep thinking about where the last one would have hit me. Armor would let me stop.</li>
+        <li>[night] Every night I count my bruises from the last fight. With armor there'd be fewer to count.</li>
+        <li>[trigger:raid] They came close today. Next time it won't be close.</li>
+        <li>Somebody has to stand at the front. It's usually me, and I usually have nothing on but a shirt.</li>
+      </gloomy>
+      <cold>
+        <li>Armor costs less than a funeral, and far less than finding another fighter.</li>
+        <li>[trigger:raid] I counted the hits I took today. Every one of them would have stopped at a plate.</li>
+        <li>[skill:Shooting] I aim better when I'm not worried about being hit. Armor takes care of the worry.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>[trigger:raid] When they come back, I'll be wearing this. Thank you.</li>
+        <li>Took me a while to get the straps right. It fits now.</li>
+      </plain>
+      <warm>
+        <li>I'll look after it, and it'll look after me. Thank you.</li>
+      </warm>
+      <blunt>
+        <li>Good. Let them try now.</li>
+      </blunt>
+      <cheerful>
+        <li>I've worn it all day, even to supper!</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll be as scared as ever next time, only better covered.</li>
+      </gloomy>
+      <cold>
+        <li>Noted. I'll fight further forward now.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>[afterraid] Still in the shirt I wore for the last raid, holes and all.</li>
+      </plain>
+      <warm>
+        <li>I'll stand in front anyway. Someone has to.</li>
+        <li>[trait:Kind] I'll go out as I am. Just have someone ready with bandages.</li>
+      </warm>
+      <cheerful>
+        <li>No armor? Then I'll just have to be very quick on my feet!</li>
+      </cheerful>
+    </expired>
+    <reminder>
+      <plain>
+        <li>Still going into every fight in a shirt. About that armor.</li>
+        <li>[trigger:raid] They'll be back, and I'm still in the same shirt.</li>
+      </plain>
+      <warm>
+        <li>Whenever there's a free day at the bench, I'd still be glad of that armor.</li>
+      </warm>
+      <blunt>
+        <li>Armor. Still waiting.</li>
+      </blunt>
+      <cheerful>
+        <li>My shirt has lived through two fights now! I wouldn't ask it to live through a third.</li>
+      </cheerful>
+      <gloomy>
+        <li>Another day closer to the next raid, and nothing between me and it.</li>
+      </gloomy>
+      <cold>
+        <li>I'm still unarmored. The raiders won't wait for the council.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A place to pray ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Shrine</defName>
+    <wish>Council_Wish_Shrine</wish>
+    <request>
+      <warm>
+        <li>[grieving] Some of us need somewhere to set our grief down for a while. A shrine would be that place.</li>
+        <li>I'd sweep it every morning and leave it open for whoever needs it.</li>
+        <li>[petition] It isn't only me. A few of us have been praying in corners for a while now.</li>
+        <li>[old] I've knelt on a lot of cold floors in my life. I'd like one place that was made for it.</li>
+      </warm>
+      <blunt>
+        <li>Build {THING}. I'll pray for whoever does the work.</li>
+        <li>[afterraid] We were lucky in that raid. I'm not pushing that luck without giving thanks somewhere.</li>
+        <li>I've been praying next to the woodpile. It isn't fit, and you know it.</li>
+      </blunt>
+      <cheerful>
+        <li>I've already picked out the stones for {THING}! They look very holy, for stones.</li>
+        <li>[spring] Everything's coming up green! Let's give thanks somewhere nice.</li>
+        <li>A shrine with candles all around it, and fresh flowers when there are any!</li>
+      </cheerful>
+      <gloomy>
+        <li>I pray every night and nothing answers. Maybe a proper altar would get their attention.</li>
+        <li>[night] The nights are long out here. I'd like somewhere to spend some of them besides my bed.</li>
+        <li>[grieving] I talk to the dead now. I'd like a better place for it than the back of the storeroom.</li>
+      </gloomy>
+      <cold>
+        <li>People who pray hold up better under pressure. Build {THING} and watch.</li>
+        <li>[afterraid] Several of us prayed through that raid, behind crates and under tables. Give it a proper place.</li>
+        <li>I keep my faith to myself. I'd like somewhere to keep it, too.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>[grieving] I went and said their name there this morning, as loud as I liked.</li>
+      </plain>
+      <warm>
+        <li>I've set a candle there for anyone who wants one lit.</li>
+      </warm>
+      <blunt>
+        <li>Good. Now leave me be while I use it.</li>
+        <li>It'll do. It'll more than do.</li>
+      </blunt>
+      <cheerful>
+        <li>It's even nicer than the one I drew in the dirt!</li>
+      </cheerful>
+      <gloomy>
+        <li>Still no answer. But it's quieter there than anywhere else here.</li>
+      </gloomy>
+      <cold>
+        <li>It will do. Don't follow me there.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>[night] I'll pray in bed, then, with the blanket over my head.</li>
+      </plain>
+      <gloomy>
+        <li>[grieving] I'll keep talking to them from behind the storeroom, then.</li>
+      </gloomy>
+      <cold>
+        <li>Then I'll keep my faith where none of you can see it.</li>
+      </cold>
+    </expired>
+    <reminder>
+      <plain>
+        <li>[night] Prayed behind the storeroom again last night, by moonlight.</li>
+      </plain>
+      <cold>
+        <li>My prayers are still said behind the storeroom. I haven't stopped noticing.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A latrine ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Toilet</defName>
+    <wish>Council_Wish_Toilet</wish>
+    <request>
+      <warm>
+        <li>[winter] It's a long, cold walk at night for the older ones. {THING} closer in would be a kindness.</li>
+        <li>I'd help dig it and I'd help keep it clean. We only need {THING}.</li>
+        <li>[large] With this many of us, a proper latrine would spare a lot of awkward mornings.</li>
+      </warm>
+      <blunt>
+        <li>[trigger:outside] I'm not squatting behind the woodpile again. Build {THING}.</li>
+        <li>Everything else here has four walls. Give this four walls.</li>
+        <li>[rain] Wet feet, wet knees, wet everything. Build {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>A seat and a door that shuts! I'd never be late for breakfast again.</li>
+        <li>[spring] The bushes are full of nettles again! I'd love {THING} before I find any more of them.</li>
+        <li>I'll make a sign for the door myself, if we ever get {THING}.</li>
+      </cheerful>
+      <gloomy>
+        <li>[night] I lie awake putting off the walk out to the trees. Then I have to go anyway.</li>
+        <li>Every morning starts with the same walk through the wet grass to the bushes.</li>
+        <li>[winter] Out in the snow again this morning, with the wind getting in where it shouldn't.</li>
+      </gloomy>
+      <cold>
+        <li>A good part of our sickness starts where we relieve ourselves. Build {THING}, well away from the water.</li>
+        <li>[large] Too many of us using the same patch of ground. You'll smell the result before you see it.</li>
+        <li>Privacy costs the colony little and me a great deal. Build {THING}.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>No more walking out to the trees in the dark.</li>
+      </plain>
+      <warm>
+        <li>[old] Thank you. My knees will be grateful every morning.</li>
+      </warm>
+      <blunt>
+        <li>Good. Stay out of the woodpile, all of you.</li>
+      </blunt>
+      <cheerful>
+        <li>I've been three times today just to use the door!</li>
+      </cheerful>
+      <gloomy>
+        <li>[winter] At least the snow can't get at me in there.</li>
+      </gloomy>
+      <cold>
+        <li>Good. The water stays clean now.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>[winter] Out to the trees again, in the snow.</li>
+      </plain>
+      <cold>
+        <li>Then the next sickness goes on the council's account.</li>
+      </cold>
+    </expired>
+    <reminder>
+      <cold>
+        <li>Still no {THINGBARE}. The flies have noticed, even if the council hasn't.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A table where everyone fits ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_SeatsForAll</defName>
+    <wish>Council_Wish_SeatsForAll</wish>
+    <request>
+      <warm>
+        <li>[evening] I'd like us all at one table for supper, even if it's a squeeze.</li>
+        <li>[newcomer] The new ones eat off their knees in the corner. Let's give them a chair at the table.</li>
+        <li>[old] My knees don't like eating standing up. A few more chairs and I could sit with the rest of you.</li>
+      </warm>
+      <blunt>
+        <li>[eating] I'm eating this standing up. Again.</li>
+        <li>Count the people. Count the chairs. Then build the difference.</li>
+        <li>[trait:Abrasive] I don't even like most of you, and I still want a seat at the table.</li>
+      </blunt>
+      <cheerful>
+        <li>More chairs! Then we can all fight over the salt like a proper family.</li>
+        <li>[evening] Supper would be twice as loud with all of us at one table, and I'd love it.</li>
+        <li>[child] Can we have enough chairs so I can sit with everybody?</li>
+      </cheerful>
+      <gloomy>
+        <li>[eating] I'm eating on the floor by the wall again. The food's no better down here.</li>
+        <li>[evening] By the time I get to supper, every seat is taken.</li>
+        <li>[winter] There's never a seat left, so I eat by the door, where the draft comes in.</li>
+      </gloomy>
+      <cold>
+        <li>We lose part of every day to people waiting for a seat. More chairs fix that.</li>
+        <li>People who eat together argue less. Seat us all and I'll have less to listen to.</li>
+        <li>[large] There are more of us than chairs. That is an easy problem to solve.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>[evening] Supper tonight, and every one of us had a seat.</li>
+      </plain>
+      <warm>
+        <li>[newcomer] I sat at the table tonight with everyone else. Thank you.</li>
+      </warm>
+      <blunt>
+        <li>Good. Now pass the salt.</li>
+      </blunt>
+      <cheerful>
+        <li>I counted the chairs twice, and there's one for everybody!</li>
+      </cheerful>
+      <gloomy>
+        <li>A chair of my own at supper. I'd forgotten what that was like.</li>
+      </gloomy>
+      <cold>
+        <li>All of us fed at one sitting. That saves an hour a day.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>[evening] Supper standing up again, then.</li>
+      </plain>
+      <cold>
+        <li>Then we keep eating in shifts and grumbling in shifts.</li>
+      </cold>
+    </expired>
+    <reminder>
+      <plain>
+        <li>[evening] Somebody ate supper on the doorstep again last night.</li>
+      </plain>
+      <cold>
+        <li>There are still fewer chairs than mouths.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== A bath ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Bath</defName>
+    <wish>Council_Wish_Bath</wish>
+    <request>
+      <warm>
+        <li>I'd keep the water hot for whoever's next. We'd all be in better tempers for it.</li>
+        <li>[old] At my age a warm soak does more for me than any medicine.</li>
+        <li>[afterraid] After a day like that one, a hot bath would help more of us than you'd think.</li>
+      </warm>
+      <blunt>
+        <li>[hot] My shirt is stuck to me. Build {THING}.</li>
+        <li>A bucket isn't a bath. Build a bath.</li>
+        <li>[skill:Mining] I come in from digging gray from head to foot, and a bucket doesn't touch it.</li>
+      </blunt>
+      <cheerful>
+        <li>Hot water up to my chin! I've been thinking about it all week.</li>
+        <li>[winter] A hot bath on a snowy evening! I can't think of anything better.</li>
+        <li>I'd sing in the bath, and you'd all be glad of the noise, I promise.</li>
+      </cheerful>
+      <gloomy>
+        <li>[winter] My hands haven't been properly warm since autumn. A hot bath might change that.</li>
+        <li>I scrub and scrub out of that bucket, and I'm never clean.</li>
+        <li>[lowmood] Some days a long, hot bath is the only thing I can think of that might help.</li>
+      </gloomy>
+      <cold>
+        <li>Clean people get sick less. A bath costs less than the medicine.</li>
+        <li>I don't enjoy smelling the rest of you. I assume you don't enjoy smelling me.</li>
+        <li>[hot] In this heat the smell at supper has become a health problem. Build {THING}.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>[winter] Hot water in the middle of winter. I stayed in until my fingers wrinkled.</li>
+      </plain>
+      <warm>
+        <li>[old] My back hasn't felt this good in years. Thank you.</li>
+      </warm>
+      <blunt>
+        <li>Took long enough. Don't use all the hot water.</li>
+      </blunt>
+      <cheerful>
+        <li>Two baths today, and I'm going back for a third!</li>
+      </cheerful>
+      <gloomy>
+        <li>I'd forgotten what color my skin was under the dirt.</li>
+      </gloomy>
+      <cold>
+        <li>Clean. I'll be using it every evening.</li>
+      </cold>
+    </thanks>
+    <expired>
+      <cheerful>
+        <li>No bath? I'll stand out in the next rainstorm with the soap!</li>
+      </cheerful>
+      <cold>
+        <li>Then don't complain about the smell at supper.</li>
+      </cold>
+    </expired>
+    <reminder>
+      <cold>
+        <li>Still washing out of a bucket. The smell hasn't improved.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Warmth or cool air at night ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_ComfortTemperature</defName>
+    <wish>Council_Wish_ComfortTemperature</wish>
+    <request>
+      <blunt>
+        <li>[trigger:cold] I'm sleeping in my coat. Put {THING} in my room.</li>
+        <li>[repeat] I've asked about my room before. It's still no good at night.</li>
+      </blunt>
+      <gloomy>
+        <li>[trigger:heat] I lie on top of the blanket and wait for the room to cool off. It never does.</li>
+        <li>[trigger:cold] The cold gets into my room after dark and stays there until morning.</li>
+      </gloomy>
+      <cold>
+        <li>[trigger:cold] Someone who sleeps cold works slowly. Fix my room and you fix the work.</li>
+        <li>[old,trigger:cold] At my age, a cold room is how people catch their death. I'd prefer not to.</li>
+      </cold>
+    </request>
+    <thanks>
+      <warm>
+        <li>I slept the whole night through and woke up rested. Thank you.</li>
+      </warm>
+      <gloomy>
+        <li>[trigger:heat] I slept. Not well, but I slept.</li>
+      </gloomy>
+    </thanks>
+    <expired>
+      <blunt>
+        <li>[trigger:heat] Fine. I'll sleep outside with the bugs.</li>
+      </blunt>
+      <cheerful>
+        <li>[trigger:cold] More blankets, then! I'll be the warmest heap in the colony.</li>
+      </cheerful>
+      <cold>
+        <li>[trigger:heat] Then expect me slow and short-tempered until the weather turns.</li>
+      </cold>
+    </expired>
+    <reminder>
+      <warm>
+        <li>Whenever there's a free afternoon, my room still needs {THING}.</li>
+      </warm>
+      <cold>
+        <li>My room is still wrong at night, and my work still shows it.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The rest: the voices that were thinnest ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_OwnRoom</defName>
+    <wish>Council_Wish_OwnRoom</wish>
+    <request>
+      <cold>
+        <li>[trigger:barracks] In the barracks, the others know when I sleep and when I wake. I'd rather they didn't.</li>
+      </cold>
+    </request>
+    <reminder>
+      <cheerful>
+        <li>I've already picked a corner for my own room! It only needs walls around it.</li>
+      </cheerful>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_NicerBedroom</defName>
+    <wish>Council_Wish_NicerBedroom</wish>
+    <request>
+      <cold>
+        <li>[rich] The colony can afford it now. My room should show that it can.</li>
+      </cold>
+    </request>
+    <reminder>
+      <cold>
+        <li>My room is still bare. People notice, and so do I.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Memorial</defName>
+    <wish>Council_Wish_Memorial</wish>
+    <thanks>
+      <cheerful>
+        <li>I'll go and tell {OTHER_nameDef} whenever there's good news. There's a proper place for it now.</li>
+      </cheerful>
+    </thanks>
+    <expired>
+      <warm>
+        <li>[grieving] I'll keep {OTHER_nameDef}'s name, at least, and say it at supper.</li>
+      </warm>
+      <cold>
+        <li>Then I'll stop counting on this place to look after its dead.</li>
+      </cold>
+    </expired>
+    <reminder>
+      <plain>
+        <li>[rain] {OTHER_nameDef} lay out in the rain again last night, so I'm asking again.</li>
+      </plain>
+      <cheerful>
+        <li>{OTHER_nameDef} deserves a sunny spot, and there are still plenty to choose from.</li>
+      </cheerful>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Infirmary</defName>
+    <wish>Council_Wish_Infirmary</wish>
+    <thanks>
+      <blunt>
+        <li>That'll do for a while. Don't waste it.</li>
+      </blunt>
+      <cheerful>
+        <li>Look at all of it! I could patch up a whole caravan.</li>
+      </cheerful>
+      <gloomy>
+        <li>[trigger:raid] Enough for the next raid. Maybe not the one after.</li>
+      </gloomy>
+    </thanks>
+    <expired>
+      <plain>
+        <li>[lowtech] I'll go out and look for healroot myself, then.</li>
+      </plain>
+      <cheerful>
+        <li>Then I'll just have to be very careful with what's left!</li>
+      </cheerful>
+    </expired>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_BetterFood</defName>
+    <wish>Council_Wish_BetterFood</wish>
+    <thanks>
+      <warm>
+        <li>[evening] We all stayed at the table long after the food was gone. Thank the cook for me.</li>
+      </warm>
+      <cold>
+        <li>A proper meal. I can already think more clearly.</li>
+      </cold>
+    </thanks>
+    <reminder>
+      <cold>
+        <li>The meals are still poor. I'm still keeping track.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Party</defName>
+    <wish>Council_Wish_Party</wish>
+    <thanks>
+      <warm>
+        <li>I saw people laughing together tonight who don't usually say a word to each other. Thank you for that.</li>
+      </warm>
+      <blunt>
+        <li>Good night. Same again next season.</li>
+      </blunt>
+    </thanks>
+    <expired>
+      <gloomy>
+        <li>No party. Just another evening that ends early.</li>
+      </gloomy>
+      <cold>
+        <li>No party. Then tempers keep building, and I'll keep my distance while they do.</li>
+      </cold>
+    </expired>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_BetterWeapon</defName>
+    <wish>Council_Wish_BetterWeapon</wish>
+    <thanks>
+      <warm>
+        <li>Thank you. I'll make sure it's never pointed anywhere but outward.</li>
+      </warm>
+      <gloomy>
+        <li>A better {SUBJECT}. One less way to die out there.</li>
+      </gloomy>
+    </thanks>
+    <reminder>
+      <warm>
+        <li>When someone has a free hour at the bench, I'd still be glad of a better {SUBJECT}.</li>
+      </warm>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_LetMeWork</defName>
+    <wish>Council_Wish_LetMeWork</wish>
+    <thanks>
+      <warm>
+        <li>Thank you for trusting me with {SUBJECT}. I'll make it worth it.</li>
+      </warm>
+      <gloomy>
+        <li>Work I'm good at, for once. It helps more than I'd say.</li>
+      </gloomy>
+      <cold>
+        <li>On {SUBJECT} at last. The work will improve, and quickly.</li>
+      </cold>
+    </thanks>
+    <reminder>
+      <cold>
+        <li>I'm still not on {SUBJECT}, and it's still being done worse than I'd do it.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Birthday</defName>
+    <wish>Council_Wish_Birthday</wish>
+    <thanks>
+      <warm>
+        <li>Everyone I care about, at one table, on my birthday. I couldn't ask for more.</li>
+      </warm>
+      <blunt>
+        <li>Good food. Good birthday. Thanks.</li>
+      </blunt>
+      <gloomy>
+        <li>One more year, marked properly. That's more than I expected.</li>
+      </gloomy>
+    </thanks>
+    <reminder>
+      <cold>
+        <li>My birthday is close. I've told the cook, in case the council forgets.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_RecreationVariety</defName>
+    <wish>Council_Wish_RecreationVariety</wish>
+    <thanks>
+      <warm>
+        <li>The evenings are going to be so much better now. Come and play, all of you.</li>
+      </warm>
+      <gloomy>
+        <li>A new way to pass the evenings. It'll keep my mind off things for a while.</li>
+      </gloomy>
+      <cold>
+        <li>Good. Bored people make trouble, and now they have less reason to.</li>
+      </cold>
+    </thanks>
+    <reminder>
+      <cold>
+        <li>Still nothing new to do in the evenings. Tempers are getting shorter, and I'm counting.</li>
+      </cold>
+    </reminder>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Close to the most frequent: a clean colony, somewhere to wash ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_Tidy</defName>
+    <wish>Council_Wish_Tidy</wish>
+    <request>
+      <warm>
+        <li>If we each take a corner after supper, the place would be clean in no time. I'll start with the worst one.</li>
+        <li>[trait:Kind] The sick and the little ones shouldn't be breathing in this dirt. Could we have a cleaning day?</li>
+      </warm>
+      <blunt>
+        <li>Somebody pick up a broom. Anybody.</li>
+        <li>[rain] The mud's halfway up the walls now. Clean it.</li>
+      </blunt>
+      <cheerful>
+        <li>I've got a broom and a song for sweeping to! I only need a few more pairs of hands.</li>
+        <li>[spring] Spring cleaning! Let's throw the doors open and get into every corner.</li>
+      </cheerful>
+      <gloomy>
+        <li>I sweep my bit, and the next day it's dirty again. I'd like the whole place clean, just once.</li>
+        <li>[afterraid] The floors still show where people were hurt in that raid. I'd rather not keep walking over it.</li>
+      </gloomy>
+      <cold>
+        <li>Dirty floors slow the work and spoil the food. Clean them.</li>
+        <li>[large] The more of us there are, the faster this place gets filthy. It needs cleaners, not hope.</li>
+      </cold>
+    </request>
+    <thanks>
+      <warm>
+        <li>It looks like a home again. Thank you, all of you.</li>
+      </warm>
+      <blunt>
+        <li>Better. Now wipe your boots.</li>
+      </blunt>
+      <cheerful>
+        <li>You can see the floor! I'd forgotten what color it was.</li>
+      </cheerful>
+      <gloomy>
+        <li>Clean, for now. I'll enjoy it while it lasts.</li>
+      </gloomy>
+    </thanks>
+    <expired>
+      <warm>
+        <li>I'll keep my own corner clean, at least.</li>
+      </warm>
+      <blunt>
+        <li>Fine. Live in it.</li>
+      </blunt>
+      <gloomy>
+        <li>The dirt wins again.</li>
+      </gloomy>
+    </expired>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_WishOften_WashPlace</defName>
+    <wish>Council_Wish_WashPlace</wish>
+    <request>
+      <warm>
+        <li>[trait:Kind] We'd all feel more like people with somewhere to wash. Even {THING} would do.</li>
+        <li>I'd keep it filled for everyone, if we had {THING}.</li>
+      </warm>
+      <blunt>
+        <li>[hot] Three days in this heat and nowhere to wash. Build {THING}.</li>
+        <li>I'm not sleeping next to people who smell like this. Build {THING}.</li>
+      </blunt>
+      <cheerful>
+        <li>Clean hands at supper, imagine it! All we need is {THING}.</li>
+        <li>[spring] Everything else gets washed in the spring rain. I'd like a turn too!</li>
+      </cheerful>
+      <gloomy>
+        <li>I've stopped trying to get clean. There's nothing to get clean with.</li>
+        <li>[winter] I'd wash, if there were anywhere to, but there isn't.</li>
+      </gloomy>
+      <cold>
+        <li>[afterraid] Blood under the fingernails turns into a fever. Build {THING}.</li>
+        <li>Dirty hands carry sickness to the food. I'd like that stopped.</li>
+      </cold>
+    </request>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

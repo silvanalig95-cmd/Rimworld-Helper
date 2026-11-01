@@ -28,13 +28,13 @@ namespace ColonyCouncil
         Insects,
         /// <summary>Animal filth right where they're standing.</summary>
         AnimalFilth,
-        /// <summary>Things lying around all over the map, waiting to be hauled.</summary>
+        /// <summary>Things lying around all over the map, waiting to be hauled ({THING} is the one lying nearest them: "wood", "steel").</summary>
         Clutter,
         /// <summary>They're wearing something of awful or poor quality.</summary>
         ShoddyClothes,
         /// <summary>They sleep on a bedroll, a sleeping spot or a bed with little comfort.</summary>
         HardBed,
-        /// <summary>The closed room they're in is filthy.</summary>
+        /// <summary>The closed room they're in is filthy ({THING} is what the room is: "dining room", "barracks", or "room").</summary>
         DirtyRoom,
         /// <summary>The closed room they're in is below 12 °C (not a freezer) while it's cold outside.</summary>
         ChillyRoom,
@@ -55,7 +55,8 @@ namespace ColonyCouncil
     /// leaking roof, smoke in a small room, a generator droning by a bed. The encounter system's solo category (one
     /// colonist, no stranger). Each check reads the real map, so a well-kept, roomy colony rarely has them and a messy
     /// or cramped one has them often. Texts: {A_...} the colonist, {THING} the thing in question (a door, a shirt, a
-    /// generator); a line may carry flavor tags ([winter], [night]) and is preferred when they fit.
+    /// generator, the room); a line may carry flavor tags ([winter], [night]) and is preferred when they fit. More texts
+    /// can join from a file of their own (<see cref="LetterVariantsDef.nuisance"/>).
     /// </summary>
     public class NuisanceDef : Def
     {
@@ -180,7 +181,7 @@ namespace ColonyCouncil
                 case NuisanceCheck.LongWalk: return LongWalk(p, map);
                 case NuisanceCheck.Insects: return Insects(p, map);
                 case NuisanceCheck.AnimalFilth: return AnimalFilth(p, map);
-                case NuisanceCheck.Clutter: return Clutter(map);
+                case NuisanceCheck.Clutter: return Clutter(p, map);
                 case NuisanceCheck.ShoddyClothes: return ShoddyClothes(p);
                 case NuisanceCheck.HardBed: return HardBed(p);
                 case NuisanceCheck.DirtyRoom: return DirtyRoom(p);
@@ -315,7 +316,29 @@ namespace ColonyCouncil
             return null;
         }
 
-        private static string Clutter(Map map) => (map.listerHaulables?.ThingsPotentiallyNeedingHauling()?.Count ?? 0) >= 50 ? "" : null;
+        /// <summary>
+        /// Fifty things or more waiting to be hauled: the label of the one lying nearest them outside any stockpile (never a
+        /// body), so the text names something the player can find there. Null when all of them are in stockpiles already.
+        /// </summary>
+        private static string Clutter(Pawn p, Map map)
+        {
+            var haulables = map.listerHaulables?.ThingsPotentiallyNeedingHauling();
+            if (haulables == null || haulables.Count < 50) return null;
+            Thing nearest = null;
+            int best = int.MaxValue;
+            foreach (var t in haulables)
+            {
+                if (t == null || !t.Spawned || t.def.category != ThingCategory.Item || t is Corpse || t is MinifiedThing || StoreUtility.IsInAnyStorage(t)) continue;
+                int d = (t.Position - p.Position).LengthHorizontalSquared;
+                if (d < best)
+                {
+                    best = d;
+                    nearest = t;
+                }
+            }
+            string label = nearest?.def.label;
+            return label.NullOrEmpty() ? null : label;
+        }
 
         private static string ShoddyClothes(Pawn p)
         {
@@ -336,10 +359,13 @@ namespace ColonyCouncil
             return hard ? bed.def.label : null;
         }
 
+        /// <summary>The filthy room they're in, by what it is ("dining room", "barracks"), or just "room" when it is nothing in particular.</summary>
         private static string DirtyRoom(Pawn p)
         {
             var room = IndoorRoom(p);
-            return room != null && room.GetStat(RoomStatDefOf.Cleanliness) < -1f ? "" : null;
+            if (room == null || room.GetStat(RoomStatDefOf.Cleanliness) >= -1f) return null;
+            var role = room.Role;
+            return role != null && role != RoomRoleDefOf.None && !role.label.NullOrEmpty() ? role.label : "CC_Nuisance_Room".Translate().ToString();
         }
 
         private static string ChillyRoom(Pawn p, Map map)

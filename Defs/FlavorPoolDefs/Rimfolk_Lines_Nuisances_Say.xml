@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a colonist says over their head after the small nuisances seen most often (Council_Encounters_Home.xml,
+    _Home2.xml): badly made clothes, things lying everywhere, a filthy room, a hard bed. Joins Council_Pool_SaySetback,
+    where [setback:Name] is the thought's defName without its Council_Nuisance_ prefix; a nuisance with lines here is
+    said like any other setback (Immersion/StateSpeech.cs). One sentence, 90 characters at most. These lines can't name
+    the thing itself, so they stay general.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_SaySetback_Nuisances</defName>
+    <pool>Council_Pool_SaySetback</pool>
+    <lines>
+      <plain>
+        <li>[setback:ShoddyClothes] Whoever made these clothes was in a hurry.</li>
+        <li>[setback:ShoddyClothes] My clothes are coming apart at the seams again.</li>
+        <li>[setback:Clutter] Would it hurt anyone to put things back where they belong?</li>
+        <li>[setback:Clutter] I can't take three steps here without tripping over somebody's things.</li>
+        <li>[setback:FilthyRoom] When did anyone last sweep in there?</li>
+        <li>[setback:FilthyRoom] I'm not touching anything in that room again.</li>
+        <li>[setback:HardBed] My back is still arguing with last night's bed.</li>
+        <li>[setback:HardBed] Another night on that hard bed, and I felt every lump.</li>
+      </plain>
+      <warm>
+        <li>[setback:ShoddyClothes] I'll sew these up again, it's no trouble.</li>
+        <li>[setback:Clutter] If a few of us put things away, the place would look like home again.</li>
+      </warm>
+      <blunt>
+        <li>[setback:Clutter] Who left all this lying around?</li>
+        <li>[setback:FilthyRoom] That room is filthy.</li>
+        <li>[setback:ShoddyClothes] These clothes are rubbish.</li>
+      </blunt>
+      <cheerful>
+        <li>[setback:ShoddyClothes] My clothes have more patches than cloth now!</li>
+        <li>[setback:HardBed] I slept like a rock, on a rock!</li>
+      </cheerful>
+      <gloomy>
+        <li>[setback:Clutter] Things just pile up here until somebody falls over them.</li>
+        <li>[setback:FilthyRoom] The dirt in there keeps coming back, whatever anyone does.</li>
+      </gloomy>
+      <cold>
+        <li>[setback:Clutter] I lost an hour today looking for things that should have been put away.</li>
+        <li>[setback:ShoddyClothes] Badly made clothes, and I know who made them.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

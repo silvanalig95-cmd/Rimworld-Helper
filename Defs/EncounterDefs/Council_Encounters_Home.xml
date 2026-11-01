@@ -6,8 +6,9 @@
     Nuisances.cs). Each check reads the real map for one colonist (see NuisanceCheck), so a well-kept, roomy colony
     rarely has these and a messy or cramped one has them often: fixing the door, the roof or the bed is the cure.
     who: flavor tags for the colonist and the moment ("morning", "!trait:Ascetic"). children: kids can have it too.
-    Texts: {A_...} the colonist, {THING} the thing in question (door, shirt, generator, campfire). Third person, one or
-    two sentences, shown as a message and as a thought bubble. Never start a sentence with {A_pronoun}.
+    Texts: {A_...} the colonist, {THING} the thing in question (door, shirt, generator, campfire, or for things lying
+    everywhere the one lying nearest them). Third person, one or two sentences, shown as a message and as a thought
+    bubble. Never start a sentence with {A_pronoun}. More texts in Council_Encounters_Home_Variants.xml.
   -->
 
   <ColonyCouncil.NuisanceDef>
