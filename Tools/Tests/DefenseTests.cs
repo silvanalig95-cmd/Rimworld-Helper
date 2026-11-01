@@ -7,8 +7,8 @@ using ColonyCouncil;
 /// threat, or in a pocket it can lean out of, and the cover open to the front, traps on the raiders' way and never
 /// beside each other or a gate, turrets three cells apart, a closing line wall all the way across); every drawn one
 /// (DefenseShapes) does so for a range of colonies, and holds up the way raids play out (DefenseSight: nobody can shoot
-/// at a firing position from good cover, out of a grenade's throw against grenades, turrets out of each other's blast);
-/// bad layouts are caught, the old killbox's blind spot among them; the map reading finds the ways in, the narrow
+/// at a firing position or a turret from good cover, out of a grenade's throw against grenades, turrets out of each other's
+/// blast); bad layouts are caught, the old killbox's blind spot and decoys the way in can see among them; the map reading finds the ways in, the narrow
 /// places on them with their widths and facings, what closes them (rock, water, walls, a bridge), and whether a colony
 /// is walled in, on small maps made of characters.
 /// </summary>
@@ -150,6 +150,32 @@ public static class DefenseTests
             Check(reading.worstCover >= 0.7f && reading.worstZ >= old.H - 5, $"the old killbox's corner sees its shooters from cover ({reading.worstCover:0.00} at {reading.worstX},{reading.worstZ})");
             Check(DefenseSight.Problems(old, true).Count > 0, "the sight checker catches it");
         }
+        // Turrets count in the sight check as the firing positions do. The corner before the last turn looks straight down
+        // the axis, so decoys on it are shot at from behind the wall; two cells to either side the corner can't see them.
+        {
+            string Decoy(int x)
+            {
+                var row = "W...............W".ToCharArray();
+                row[x] = 'U';
+                return new string(row);
+            }
+            string[] K1(int first, int second) => new[]
+            {
+                "WWWW.WWWWWWWWWWWW", "W__W.WWWWW______W", "W__W.....W______W", "W__WWWWW.W______W", "W______W.W______W", "W______W.W______W",
+                "W______W.W______W", "WWWWWWWW.WWWWWWWW", "W...............W", "W...............W", "W...............W", "W...............W",
+                Decoy(first), "W...............W", "W...............W", "W...............W", Decoy(second), "W...............W",
+                "W...............W", "W...............W", "W...............W", "W.SWSWS...SWSWS.W", "W.SfSfS...SfSfS.W", "W...............W"
+            };
+            var axis = DefenseLayout.Parse(K1(8, 8), 0);
+            var reading = DefenseSight.Read(axis);
+            Check(reading.turretCover >= 0.7f && reading.turretZ >= axis.H - 5, $"the corner sees decoys on the axis from cover ({reading.turretCover:0.00} at {reading.turretX},{reading.turretZ})");
+            Check(DefenseSight.Problems(axis, false).Any(p => p.Contains("turret")), "the sight checker catches a decoy the way in can see");
+            var beside = DefenseLayout.Parse(K1(6, 10), 0);
+            Check(DefenseSight.Problems(beside, false).Count == 0, "decoys two cells to either side of the axis pass: " + string.Join("; ", DefenseSight.Problems(beside, false)));
+            // Ground nobody shoots from but a turret is covered by the turret.
+            var watched = DefenseSight.Read(DefenseLayout.Parse(new[] { ".......", ".......", ".......", ".......", "...U...", "......." }));
+            Check(watched.crossed > 0 && watched.seenByOne == watched.crossed, $"ground a turret watches counts as covered ({watched.seenByOne} of {watched.crossed})");
+        }
 
         // A good one passes.
         {
@@ -202,9 +228,9 @@ public static class DefenseTests
     /// <summary>
     /// Every drawn plan for a range of colonies (bows and rifles, with and against grenades, short and long reach,
     /// small and big raids, no turret, a mini-turret, an autocannon, the planner's depth taken away or added): the
-    /// layout rules, what raiders can see and hit (nobody shoots at a firing position from better than 45% cover; against
-    /// grenades, nobody within a throw of the doorway unless the colony's reach or the player's depth leaves no room;
-    /// turrets out of each other's and the shooters' blast), a placed plan's numbers read back from the save, and the
+    /// layout rules, what raiders can see and hit (nobody shoots at a firing position or a turret from better than 45%
+    /// cover; against grenades, nobody within a throw of the doorway unless the colony's reach or the player's depth leaves
+    /// no room; turrets out of each other's and the shooters' blast, and a box keeps its turrets), a placed plan's numbers read back from the save, and the
     /// world checks in every turn for the colony in the middle of the range.
     /// </summary>
     private static void DrawnChecks(List<Template> templates, Action<bool, string> check)
@@ -241,6 +267,8 @@ public static class DefenseTests
                 bool roomForGrenades = spec.depth >= 0 && spec.range >= 30f;
                 foreach (var p in DefenseSight.Problems(g, spec.grenades && roomForGrenades)) failures.Add($"{where}: {p}");
                 if (t.shape.family != DefenseShapes.Box && t.shape.family != DefenseShapes.SideLines) return;
+                // A box keeps its turrets: moved out of the way in's sight, never left out for it.
+                if (t.shape.family == DefenseShapes.Box && spec.turretSize > 0 && spec.turrets > 0 && g.Count("turret") == 0) failures.Add($"{where}: its turrets were left out");
                 int firing = DefenseSight.Firing(g).Count;
                 if (firing < 4) failures.Add($"{where}: only {firing} firing positions");
                 if (t.placeAt == "choke" && g.line < 0) failures.Add($"{where}: no wall line");
@@ -257,9 +285,16 @@ public static class DefenseTests
             var rifles = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 6, grenades = true, range = 30.9f, turretSize = 1, turrets = 2 });
             check(rifles.straight >= 5 && rifles.nearest >= DefenseSight.GrenadeReach, $"a rifle killbox against grenades: a straight of five or more ({rifles.straight}), shooters out of a throw ({rifles.nearest:0.0})");
             check(rifles.grid.Count("turret") == 2, "two decoy mini-turrets in it");
+            int axis = rifles.grid.W / 2;
+            var decoys = DefenseSight.Turrets(rifles.grid);
+            check(decoys.All(p => p.x != axis) && decoys.Any(p => p.x < axis) && decoys.Any(p => p.x > axis), "the decoys stand to either side of the axis, not on it");
+            var rifleReading = DefenseSight.Read(rifles.grid);
+            check(rifleReading.turretCover <= DefenseSight.MaxRaiderCover && rifleReading.seenByOne * 10 >= rifleReading.crossed * 9,
+                $"nobody shoots at the decoys from cover ({rifleReading.turretCover:0.00}), and the box is watched ({rifleReading.seenByOne} of {rifleReading.crossed})");
             var big = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 8, grenades = true, range = 30.9f, raidPoints = 4000f, turretSize = 2, turrets = 1 });
             var bigTurret = big.grid.pieces.FirstOrDefault(p => p.role == "turret");
             check(bigTurret != null && bigTurret.w == 2 && bigTurret.z < DefenseSight.Firing(big.grid).Min(f => f.z), "an autocannon stands behind the line, not in the box");
+            check(DefenseSight.Read(big.grid).turretCover <= DefenseSight.MaxRaiderCover, "the way in can't see the autocannon behind the line");
             check(big.grid.Count("slow") >= 2, $"a big raid's way in is slowed ({big.grid.Count("slow")})");
             var bows = DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 4, lowTech = true, range = 22.9f });
             check(bows.depth < rifles.depth && bows.grid.Count("cover") > 0 && bows.grid.Count("turret") == 0, "a tribal killbox is shallower, behind barricades, without turrets");
@@ -277,6 +312,16 @@ public static class DefenseTests
             var grenade = DefenseShapes.Build(gate.shape, new DefenseShapeSpec { shooters = 6, range = 30.9f, grenades = true });
             check(grenade.nearest >= DefenseSight.GrenadeReach && plain.nearest < grenade.nearest, $"side lines stand further off against grenades ({plain.nearest:0.0} to {grenade.nearest:0.0})");
             check(DefenseSight.Read(plain.grid).worstCover <= 0.3f, "nobody outside the gate sees the side lines, and the gate gives little cover");
+            // The gate as laid out before plans were drawn (its fixed layout): its lines stand within a grenade's throw, the
+            // shape a line's review reads from what stands; drawn against grenades they don't.
+            var old = DefenseLayout.Parse(gate.rows, gate.line);
+            int gx = Enumerable.Range(0, old.W).FirstOrDefault(x => old.At(x, old.line) == DefenseLayout.Gate);
+            List<(int, int)> FromGate(DefenseLayout.Grid g, int x0, int z0) => DefenseSight.Firing(g).Select(f => (f.x - x0, f.z - z0)).ToList();
+            check(DefenseLineMath.OldGateLines(FromGate(old, gx, old.line)), "the gate's lines laid out before plans were drawn read as the old shape, within a grenade's throw");
+            var drawnGate = grenade.grid;
+            int dgx = Enumerable.Range(0, drawnGate.W).FirstOrDefault(x => drawnGate.At(x, drawnGate.line) == DefenseLayout.Gate);
+            check(!DefenseLineMath.OldGateLines(FromGate(drawnGate, dgx, drawnGate.line)), "the gate drawn against grenades doesn't");
+            check(!DefenseLineMath.OldGateLines(new List<(int, int)> { (-4, -6), (-3, -6) }), "lines on one side only aren't the gate's old shape");
         }
         var traps = drawn.FirstOrDefault(t => t.shape.family == DefenseShapes.Traps);
         if (traps != null)

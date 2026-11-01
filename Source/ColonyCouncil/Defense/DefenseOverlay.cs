@@ -12,8 +12,8 @@ namespace ColonyCouncil
     /// a defense line holds one already), the side each open one faces (an orange arrow), and where the gate line would
     /// go (gold). Drawn only while the Defenses page is open, while a defense is being planned, or
     /// while the player has the overlay switched on; it draws the survey already made and never works one out itself.
-    /// The defense line last shown from the page is drawn too: its span and gate, the kill zone, the firing positions
-    /// (green where they see the gate, red where they don't, each with its line of sight), the way round with the gate
+    /// The defense line last shown from the page is drawn too: its span and gate, the kill zone, the firing positions and
+    /// turrets (green where they see the gate, red where they don't, each with its line of sight), the way round with the gate
     /// shut (red, where it crosses the line marked), and what raiders would shelter behind in the field (orange).
     /// </summary>
     public class DefenseOverlay : MapComponent
@@ -129,10 +129,12 @@ namespace ColonyCouncil
             if (f.gate.InBounds(map)) lineGate.Add(f.gate);
             lineZone.AddRange(f.zone.Concat(f.front));
             var target = f.inner.InBounds(map) ? f.inner : f.gate;
-            foreach (var p in f.firing.Take(16))
+            foreach (var p in f.firing.Take(16).Concat(f.turretSight.Take(8)))
             {
                 (p.sees ? lineSees : lineBlind).Add(p.cell);
-                sights.Add((p.cell.ToVector3Shifted(), target.ToVector3Shifted(), p.sees));
+                // A turret in front of the wall is read against the cell in front of the gate.
+                var to = p.turret != null && r.line.Ahead(p.cell) > 0 && (f.gate + f.outward).InBounds(map) ? f.gate + f.outward : target;
+                sights.Add((p.cell.ToVector3Shifted(), to.ToVector3Shifted(), p.sees));
             }
             lineShelter.AddRange(f.shelter.Where(t => t.Spawned).Select(t => t.Position).Distinct());
             if (f.Leaks && f.leak.path.Count > 0)
