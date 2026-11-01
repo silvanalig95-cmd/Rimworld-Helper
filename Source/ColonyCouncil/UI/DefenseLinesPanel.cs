@@ -456,14 +456,23 @@ namespace ColonyCouncil
             {
                 string reason = s.template.UnavailableReason(map);
                 var step = s;
-                buttons.Add(("CC_DefLine_PlanStep".Translate(), reason ?? "CC_DefLine_PlanStep_Tip".Translate(s.template.LabelNow).Resolve(),
-                    () => DefenseLineReview.PlanStep(map, line, step), reason == null));
+                s.choices ??= s.def.Worker.Choices(r.f, s);
+                if (s.choices.Count > 1)
+                {
+                    // The step's own pick first, then the step's other plans; open while any of them can be built.
+                    bool any = s.choices.Any(t => t.UnavailableReason(map) == null);
+                    buttons.Add(("CC_DefPlan_StepMenu".Translate(), any ? "CC_DefPlan_StepMenu_Tip".Translate(s.template.LabelNow).Resolve() : reason,
+                        () => PlanMenu(r, step), any));
+                }
+                else
+                    buttons.Add(("CC_DefLine_PlanStep".Translate(), reason ?? "CC_DefLine_PlanStep_Tip".Translate(s.template.LabelNow).Resolve(),
+                        () => DefenseLineReview.PlanStep(map, line, step), reason == null));
             }
             if (s.state == StepState.Done)
             {
                 s.choices ??= s.def.Worker.Choices(r.f, s);
                 if (s.choices.Count > 0)
-                    buttons.Add(((s.choices.Count > 1 ? "CC_DefLine_AgainMenu" : "CC_DefLine_Again").Translate(), "CC_DefLine_Again_Tip".Translate(), () => AgainMenu(r, s), true));
+                    buttons.Add(((s.choices.Count > 1 ? "CC_DefLine_AgainMenu" : "CC_DefLine_Again").Translate(), "CC_DefLine_Again_Tip".Translate(), () => PlanMenu(r, s), true));
             }
             if (s.fix != null && s.state != StepState.Skipped) buttons.Add((s.fixLabel, s.fixTip, s.fix, true));
             var look = s.look.IsValid ? s.look : line.gate;
@@ -487,27 +496,41 @@ namespace ColonyCouncil
             return y + 4f;
         }
 
-        /// <summary>A finished step's plans to place again: the one it has (drawn anew) or another; one the colony can't build yet says why.</summary>
-        private static void AgainMenu(DefenseLineReview r, StepResult s)
+        /// <summary>
+        /// A step's plans to place: the one it picked for the line first (for a finished step, the one it has, drawn anew),
+        /// then the step's others. One that stands is marked built here, one begun says how far, and one the colony can't
+        /// build yet says why.
+        /// </summary>
+        private static void PlanMenu(DefenseLineReview r, StepResult s)
         {
             if (s.choices.Count == 1)
             {
-                DefenseLineReview.PlanAgain(r.f, s, s.choices[0]);
+                Plan(r, s, s.choices[0]);
                 return;
             }
+            bool done = s.state == StepState.Done;
             var opts = new List<FloatMenuOption>();
             foreach (var t in s.choices)
             {
                 string label = t.LabelCapNow;
                 var p = r.f.BestPlan(t);
                 if (p != null && p.Progress >= 0.85f) label = "CC_DefLine_Again_Built".Translate(label).Resolve();
+                else if (!done && p != null && p.built > 0) label = "CC_DefPlan_Begun".Translate(label, p.built, p.total).Resolve();
+                else if (!done && t == s.template) label = "CC_DefPlan_Picked".Translate(label).Resolve();
                 string reason = t.UnavailableReason(r.f.map);
                 var pick = t;
                 opts.Add(reason != null
                     ? new FloatMenuOption(label + " (" + reason + ")", null)
-                    : new FloatMenuOption(label, () => DefenseLineReview.PlanAgain(r.f, s, pick)));
+                    : new FloatMenuOption(label, () => Plan(r, s, pick)));
             }
             Find.WindowStack.Add(new FloatMenu(opts));
+        }
+
+        /// <summary>A step that isn't done places its own pick as "Plan this step" does; any other plan, or a finished step's, goes where its worker puts that plan.</summary>
+        private static void Plan(DefenseLineReview r, StepResult s, DefenseTemplateDef t)
+        {
+            if (s.state != StepState.Done && t == s.template) DefenseLineReview.PlanStep(r.f.map, r.line, s);
+            else DefenseLineReview.PlanAgain(r.f, s, t);
         }
 
         private static float ButtonRow(List<(string label, string tip, System.Action act, bool enabled)> buttons, float x, float y, float w, bool draw, float height = ButtonH, GameFont font = GameFont.Small)

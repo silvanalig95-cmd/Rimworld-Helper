@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Planning a line's steps, and what the line review reads (Source/ColonyCouncil/Defense/DefenseLineReview.cs, DefenseLineFacts.cs, UI/DefenseLinesPanel.cs) ===================== -->
+
+  <!-- A step that isn't done yet: its own plan first, then the step's others -->
+  <CC_DefPlan_StepMenu>Plan this step...</CC_DefPlan_StepMenu>
+  <CC_DefPlan_StepMenu_Tip>Choose the plan for this step: the {0} picked for this line first, then the step's other plans. The planner opens with it placed and turned for this line, and nothing is built until you click to place it.</CC_DefPlan_StepMenu_Tip>
+  <CC_DefPlan_Picked>{0} (picked for this line)</CC_DefPlan_Picked>
+  <CC_DefPlan_Begun>{0} ({1} of {2} pieces stand)</CC_DefPlan_Begun>
+
+  <!-- Turrets read like the firing positions: do they see the gate -->
+  <CC_DefPlan_TurretsBlind>{0} of the {1} turrets by the line can't see the gate: something solid stands between.</CC_DefPlan_TurretsBlind>
+  <CC_DefPlan_TurretsBlindPlanned>{0} of the {1} turrets by the line are planned where they won't see the gate: something solid stands between.</CC_DefPlan_TurretsBlindPlanned>
+  <CC_DefPlan_How_TurretSight>A turret shoots from the cells it stands on and never leans out round a corner the way people do. It counts when one of those cells sees the cell just inside the gate, or in a killbox the box itself. Walls, rock and doors block the view; sandbags and barricades don't. Each working turret that sees the gate counts like a firing position toward the gate being covered.</CC_DefPlan_How_TurretSight>
+  <CC_DefPlan_SightGood_Turrets>{0} working turret(s) see the gate.</CC_DefPlan_SightGood_Turrets>
+  <CC_DefPlan_SightGood_Both>{0} firing positions see the gate from about {2} cells, inside your best weapon's reach of {3}, and {1} working turret(s) cover it too.</CC_DefPlan_SightGood_Both>
+
+  <!-- Lines of cover laid out before plans were drawn for the colony, within a grenade's throw of the gate -->
+  <CC_DefPlan_OldLines>This {0} was laid out before plans were drawn for the colony: its nearest firing position stands {1} cells from the gate, within a grenade's throw, and the raiders you meet throw them. Planned again, its lines stand out of a throw.</CC_DefPlan_OldLines>
+  <CC_DefPlan_OldShape>The lines of cover behind the gate stand {0} cells from it at the nearest, as the gate's were laid out before plans were drawn for the colony: within a grenade's throw, and the raiders you meet throw them. The {1} drawn for the colony now stands its shooters out of a throw.</CC_DefPlan_OldShape>
+  <CC_DefPlan_How_OldLines>Grenades and molotovs reach about 13 cells, and a raider throws them at anyone he can see within that reach. Lines of cover closer to the gate than that are within a throw of the first raider through it. Drawn for the colony, against raiders who throw grenades, the lines stand further back and wider, still within your weapons' reach.</CC_DefPlan_How_OldLines>
+  <CC_DefPlan_OldLines_Tip>Opens the planner with the {0} placed and turned for this line, drawn for the colony as it is now. What already stands where it goes counts as built, the old cover stays where it is until you take it down, and nothing is built until you click to place it.</CC_DefPlan_OldLines_Tip>
+
+</LanguageData>

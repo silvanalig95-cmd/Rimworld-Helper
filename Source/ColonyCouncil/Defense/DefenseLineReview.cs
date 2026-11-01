@@ -30,7 +30,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The helper's reading of one defense line: where each step of its ladder stands (a step built by hand counts),
     /// the step to do next, the checks a seasoned player would make (the busiest way in moving, a way round, who sees
-    /// the gate and from how far, what raiders would shelter behind, turrets that would blow each other up or have no
+    /// the gate and from how far, people and turrets alike, lines of cover laid out before plans were drawn that stand
+    /// within a grenade's throw, what raiders would shelter behind, turrets that would blow each other up or have no
     /// power, wood in the wall, a gate left shut and more than one door in the wall, darkness, upkeep), each with what
     /// to do about it, and a rough strength to set against the raids. Planning a step for the line goes through
     /// <see cref="PlanAt"/>: plans in front follow the way in, and walls that would turn raiders away are caught first.
@@ -304,7 +305,10 @@ namespace ColonyCouncil
             PlanAt(map, line, t, line.gate, line.facing, step.placeAt, step.distance, step.closeGap);
         }
 
-        /// <summary>Opens the planner with one of a finished step's plans placed for the line again: the one it has, drawn for the colony as it is now, or another of the step's.</summary>
+        /// <summary>
+        /// Opens the planner with one of a step's plans placed for the line, where the step's worker puts that plan: a
+        /// finished step's own again, drawn for the colony as it is now, or another of the step's (done or not yet).
+        /// </summary>
         public static void PlanAgain(DefenseLineFacts f, StepResult step, DefenseTemplateDef t)
         {
             if (f == null || step?.def == null || t == null) return;
@@ -515,6 +519,7 @@ namespace ColonyCouncil
             Sight(r, f);
             Field(r, f);
             Distance(r, f);
+            OldLines(r, f);
             Turrets(r, f);
             Walls(r, f);
             Gate(r, f);
@@ -589,9 +594,14 @@ namespace ColonyCouncil
             else if (leak.noWayOn) Note(r, "leak", "CC_DefLine_Leak_NoWayOn".Translate(), "CC_DefLine_How_NoWayOn".Translate(), 3f, A("Rimfolk_AlmDef_KillboxWhere", "Rimfolk_AlmDef_ChokePoints"));
         }
 
+        /// <summary>
+        /// Who sees the gate: the firing positions behind the line's cover, and its turrets, built or planned, read the same
+        /// way (a turret from the cells it stands on, without leaning). Each working turret that sees it counts like a
+        /// firing position toward the gate being covered.
+        /// </summary>
         private static void Sight(DefenseLineReview r, DefenseLineFacts f)
         {
-            if (f.firing.Count == 0) return;
+            if (f.firing.Count == 0 && f.turretSight.Count == 0) return;
             var page = A("Rimfolk_AlmDef_FieldOfFire", "Rimfolk_AlmDef_Cover");
             var blind = f.firing.Where(p => !p.sees).ToList();
             if (blind.Count > 0)
@@ -600,12 +610,25 @@ namespace ColonyCouncil
                 n.cells.AddRange(blind.Select(p => p.cell));
                 n.actions.Add(ShowAction(r, blind[0].cell));
             }
+            var blindTurrets = f.turretSight.Where(p => !p.sees).ToList();
+            if (blindTurrets.Count > 0)
+            {
+                int planned = blindTurrets.Count(p => p.planned);
+                string text = (planned == blindTurrets.Count ? "CC_DefPlan_TurretsBlindPlanned" : "CC_DefPlan_TurretsBlind").Translate(blindTurrets.Count, f.turretSight.Count).Resolve();
+                var n = Note(r, "turretSight", text, "CC_DefPlan_How_TurretSight".Translate(), 4f + blindTurrets.Count, A("Rimfolk_AlmDef_Turrets", "Rimfolk_AlmDef_FieldOfFire"));
+                n.cells.AddRange(blindTurrets.Select(p => p.cell));
+                n.actions.Add(ShowAction(r, blindTurrets[0].cell));
+            }
             float reach = f.bestRange;
             int outOfReach = reach > 0f ? f.firing.Count(p => p.sees && p.dist > reach) : 0;
             if (outOfReach > 0)
                 Note(r, "range", "CC_DefLine_Sight_Range".Translate(outOfReach, reach.ToString("0")).Resolve(), "CC_DefLine_How_Range".Translate(), 4f, page);
-            if (f.seeing >= StepWorker_Cover.Need(f) && blind.Count == 0)
-                Note(r, "sight", "CC_DefLine_Sight_Good".Translate(f.seeing, f.coverAt, reach > 0f ? reach.ToString("0") : "?").Resolve(), "CC_DefLine_How_Sight".Translate(), 1f, page, true);
+            if (f.seeing + f.turretsSeeing < StepWorker_Cover.Need(f) || blind.Count > 0 || blindTurrets.Count > 0) return;
+            string range = reach > 0f ? reach.ToString("0") : "?";
+            string good = f.turretsSeeing == 0 ? "CC_DefLine_Sight_Good".Translate(f.seeing, f.coverAt, range).Resolve()
+                : f.seeing == 0 ? "CC_DefPlan_SightGood_Turrets".Translate(f.turretsSeeing).Resolve()
+                : "CC_DefPlan_SightGood_Both".Translate(f.seeing, f.turretsSeeing, f.coverAt, range).Resolve();
+            Note(r, "sight", good, "CC_DefLine_How_Sight".Translate(), 1f, page, true);
         }
 
         private static void Field(DefenseLineReview r, DefenseLineFacts f)
@@ -648,6 +671,44 @@ namespace ColonyCouncil
                     tip = "CC_DefLine_PlanCover_Tip".Translate(),
                     act = () => PlanStep(f.map, r.line, cover)
                 });
+        }
+
+        /// <summary>
+        /// Lines of cover behind the gate laid out the way the gate's were before plans were drawn for the colony
+        /// (<see cref="DefenseLineFacts.oldLinesAt"/>), standing within a grenade's throw of it while the raiders the colony
+        /// meets throw them: says so, makes that plan (or, read from what stands, the line's gate) the first its step
+        /// offers, and plans it again for the line, drawn for the colony as it is now, where that stands out of a throw.
+        /// </summary>
+        private static void OldLines(DefenseLineReview r, DefenseLineFacts f)
+        {
+            float near = f.OldLinesNearest;
+            if (f.oldLinesAt.Count == 0 || near >= DefenseSight.GrenadeReach) return;
+            var t = f.oldLines?.Def;
+            var step = t != null
+                ? r.steps.FirstOrDefault(s => s.def.templates != null && s.def.templates.Contains(t.defName))
+                : r.steps.FirstOrDefault(s => s.def.Worker is StepWorker_CloseGap);
+            if (step == null || step.state == StepState.Skipped || step.state == StepState.NotApplicable) return;
+            t ??= step.template;
+            if (t == null || !t.Drawn || t.UnavailableReason(f.map) != null) return;
+            var spec = t.SpecFor(f.map, DefensePlanConfig.For(t));
+            var fresh = spec != null && spec.grenades ? t.ShapeFor(spec) : null;
+            if (fresh == null || fresh.nearest < DefenseSight.GrenadeReach) return;
+            string text = f.oldLines != null
+                ? "CC_DefPlan_OldLines".Translate(t.LabelNow, near.ToString("0")).Resolve()
+                : "CC_DefPlan_OldShape".Translate(near.ToString("0"), t.LabelNow).Resolve();
+            step.distance = step.def.Worker.DistanceFor(f, step, t);
+            step.template = t;
+            step.choices = null;
+            step.notes.Add(text);
+            var n = Note(r, "oldLines", text, "CC_DefPlan_How_OldLines".Translate(), 6f, A("Rimfolk_AlmDef_Lines", "Rimfolk_AlmDef_Cover"));
+            n.cells.AddRange(f.oldLinesAt.Select(p => p.cell));
+            n.actions.Add(new LineAction
+            {
+                label = "CC_DefLine_Again".Translate(),
+                tip = "CC_DefPlan_OldLines_Tip".Translate(t.LabelNow).Resolve(),
+                act = () => PlanAgain(f, step, t)
+            });
+            n.actions.Add(ShowAction(r, f.oldLinesAt.OrderBy(p => p.dist).First().cell));
         }
 
         private static void Turrets(DefenseLineReview r, DefenseLineFacts f)
