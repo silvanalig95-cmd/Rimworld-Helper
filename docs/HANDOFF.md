@@ -6,6 +6,18 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- Content rounds 0.45.0 to 0.45.4 (five parallel agents, text variety: wishes and nuisances, customs with
+  `Dilemmas/CustomYearsMath.cs` tags [again]/[years]/[tradition]/[missed] and `Flavor.PickFresh` for openings and
+  outcomes, ailments with `AilmentTexts.Pick` and two new ailments (sore elbow, chapped hands), visitors and camps,
+  world situations and storyteller events). Known mismatches left for the next batch (words vs map):
+  `Council_Evt_StrayBeast` says the branded beast is in the barn, but no animal exists unless "keep it" spawns one
+  (needs the beast spawned with the letter and a drover leading it home for the give-back answers);
+  `SituationOption` has a single outcome text (no `outcomes` list yet). The player then clarified that variety means
+  NEW events, illnesses, dilemmas, visitors, camps and customs, not only text: proposals are being gathered in
+  `docs/content-proposals-A.md` and `-B.md`, to be shown to the player as a list before building.
+- Other spoken pools may be said over heads without being in `ImmersionTests.SpokenPools` (Rimfolk_VisitorLines was;
+  21 two-sentence lines were rewritten and the pool added). Worth an audit of every pool passed to Speech.Say.
+
 - The player approved all eighteen items of the to-do list ("like all your suggestions"), then asked for (a) deep
   automation so a complex late game can be "outsourced" (rooms, production chains, base layout, expansion), and (b) a
   content variety, immersion and flavour update (more content, deeper existing mechanics, not new ones), in that order.

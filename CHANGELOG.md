@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Events and world situations that read differently
+
+*1 November 2026, version 0.45.4*
+
+- Storyteller and land events open in more ways, depending on the season, the land, what the colony is known for and who answers the gate.
+- Most event answers that always ended with the same words now have several endings that fit the moment.
+- World situations have more ways to begin, more letters along the way and more ways to end, so one that comes back reads differently.
+- The neighbors' dispute no longer says their speakers sit at the colony's table when nobody comes; they send their case in writing.
+
 ## Visitors and camps with more to say
 
 *1 November 2026, version 0.45.3*

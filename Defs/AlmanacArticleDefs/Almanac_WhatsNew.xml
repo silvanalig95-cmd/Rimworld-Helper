@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.45.4</version>
+        <date>1 November 2026</date>
+        <title>Events and world situations that read differently</title>
+        <points>
+          <li>Storyteller and land events open in more ways, depending on the season, the land, what the colony is known for and who answers the gate.</li>
+          <li>Most event answers that always ended with the same words now have several endings that fit the moment.</li>
+          <li>World situations have more ways to begin, more letters along the way and more ways to end, so one that comes back reads differently.</li>
+          <li>The neighbors' dispute no longer says their speakers sit at the colony's table when nobody comes; they send their case in writing.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.45.3</version>
         <date>1 November 2026</date>
         <title>Visitors and camps with more to say</title>
