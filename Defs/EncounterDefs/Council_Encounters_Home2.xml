@@ -5,7 +5,8 @@
     More small irritations from the colony itself (see Council_Encounters_Home.xml and Source/ColonyCouncil/Strangers/
     Nuisances.cs): a filthy room, a cold one, a stifling one, an animal in the bed, building work by the bed, vermin
     and a bare earth floor. Each reads the real map, so cleaning, heating, cooling, finishing the building and laying a
-    floor are the cures. Texts: {A_...} the colonist, {THING} the animal, the thing being built or the kind of vermin.
+    floor are the cures. Texts: {A_...} the colonist, {THING} the animal, the thing being built, the kind of vermin or
+    the filthy room ("dining room", or just "room"). More texts in Council_Encounters_Home_Variants.xml.
   -->
 
   <ColonyCouncil.NuisanceDef>

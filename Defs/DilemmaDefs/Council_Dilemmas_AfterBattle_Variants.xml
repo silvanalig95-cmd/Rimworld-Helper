@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More openings and outcomes for the three dilemmas that follow a fight most often: the enemy dead and the victory
+    feast (Council_Dilemmas_Seasons.xml) and who saved us (Council_Dilemmas3.xml). They join the variants those files
+    already have (Council_Dilemmas_Seasons_Variants.xml, Council_Dilemmas3_Variants.xml), merged in at startup
+    (LetterVariantsDef). Tags: the era and season, the moment as A lives it, A's traits, passions, past and office, B's
+    with b: in front, and the colony's name. Outcomes are listed by the answer's place in the def (0 = the first) and
+    say only what the answer does on the map.
+  -->
+
+  <!-- ===================== The enemy dead ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_EnemyDead_More</defName>
+    <dilemma>Council_Dilemma_EnemyDead</dilemma>
+    <texts>
+      <li>Somebody has to decide about the raiders' bodies, and {A_nameDef} thinks it should be the council. They're still lying where they fell.</li>
+      <li>[night] {A_nameDef} couldn't sleep for thinking about the dead raiders outside. {A_nameDef} wants the council to say what's done with them before another night goes by.</li>
+      <li>[past:soldier] {A_nameDef} has buried enemies before, and left them before, and says neither sits easy. The raiders' bodies are still out there, and {A_nameDef} wants the council's word on them.</li>
+      <li>[colony:Merciful] The colony has a name for mercy, and {A_nameDef} says it shouldn't stop at the living. The raiders still lie where they fell.</li>
+      <li>[snow] Snow is settling on the raiders where they fell. {A_nameDef} wants the council to decide what's done with them before they're buried in it.</li>
+      <li>[grieving] {A_nameDef} lost someone in the fight, and still went out to look at the raiders' bodies. {A_nameDef} wants them dealt with, one way or another, and soon.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The raiders went into graves outside the wall before dark. {A_nameDef} said a few words over them, and not everyone stayed to listen.</li>
+          <li>[rain] They dug the graves in the mud, and the raiders went into them wet.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[winter] The pyre burned hot against the cold, and people stood closer to it than they meant to.</li>
+          <li>[night] The pyre lit the wall all night, and the ones on watch kept their backs to it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[trait:Kind] The bodies went to the treeline. {A_nameDef} wasn't happy about it, and said so at supper.</li>
+          <li>[summer|hot] The bodies went out to the treeline in the heat, and the wind brought the smell back for days.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[rain] One trench for all of them, dug in the rain and filled in before dark.</li>
+        </lines>
+      </li>
+      <li>
+        <option>4</option>
+        <lines>
+          <li>The raiders went into the crematorium one by one. It took until dark.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Victory feast ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_VictoryFeast_More</defName>
+    <dilemma>Council_Dilemma_VictoryFeast</dilemma>
+    <texts>
+      <li>{A_nameDef} has gone from one person to the next since the fighting stopped, checking on each of them. Now {A_nameDef} wants a feast tonight, about {COUNT} raw food, and the repairs left until morning.</li>
+      <li>[skill:Cooking] {A_nameDef} already has the big pot out and is eyeing the stores. A victory feast would take about {COUNT} raw food, and {A_nameDef} wants the council's word before lighting the fire.</li>
+      <li>[past:soldier] {A_nameDef} has seen fighters go straight from a battle back to work, and says they break a week later. {A_nameDef} wants a feast tonight, about {COUNT} raw food, and the walls left until morning.</li>
+      <li>[hurt] {A_nameDef} is still patched up from the fight, and still wants the colony to eat well tonight: about {COUNT} raw food, with the damage seen to tomorrow.</li>
+      <li>[colony:Generous] The colony shares what it has, and {A_nameDef} says tonight is the night for it: a victory feast of about {COUNT} raw food, with the repairs left until morning.</li>
+      <li>[rain] The raiders are gone and the rain hasn't stopped. {A_nameDef} wants everyone inside, dry and fed, with a feast of about {COUNT} raw food tonight.</li>
+      <li>[colony:Thrifty] {A_nameDef} knows how carefully the colony counts its stores, and asks anyway: a victory feast tonight, about {COUNT} raw food, while people are still glad to be alive.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>They ate together until late, and the talk kept going back to the fight.</li>
+          <li>[rain] They ate indoors with the rain on the roof, and the noise of it was lost under the talking.</li>
+          <li>[colony:Generous] The stores were opened wide, and they ate until well after dark.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>Repairs first. The colony went straight back out to the walls, and the feast wasn't mentioned again.</li>
+          <li>[winter] Repairs first, in the cold, with numb fingers. The celebration never happened.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[rain] A hot meal went round under the eaves, eaten standing, and then it was back out to the walls.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{B_nameDef} thinned the stew and cut the portions small, and it still went round twice. They ate until late.</li>
+        </lines>
+        <riskLines>
+          <li>{B_nameDef}'s pots ran dry before the last of them had eaten. The ones who missed out got the scrapings and a promise.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Who saved us ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Credit_More</defName>
+    <dilemma>Council_Dilemma_Credit</dilemma>
+    <texts>
+      <li>{A_nameDef} has told the story of the last fight at every meal since, and in every version {A_nameDef} is the one who turned it. {B_nameDef} was there too and remembers it differently.\n\nThey want the council to settle it.</li>
+      <li>[skill:Shooting] {A_nameDef} says the fight turned on one good shot, and it was {A_possessive}. {B_nameDef} says it was {B_possessive}, and that {A_nameDef} missed.\n\nNeither will let it go until the council decides.</li>
+      <li>[skill:Melee] {A_nameDef} was in the thick of the last fight and says so. {B_nameDef} was too, and says {A_nameDef} spent most of it behind {B_objective}.\n\nThe council is asked to say who saved the colony.</li>
+      <li>[trait:Greedy] {A_nameDef} has worked out that whoever saved the colony ought to be thanked properly, and that it was {A_nameDef}. {B_nameDef} has come to the same view about {B_objective}self.\n\nBoth want the council to decide.</li>
+      <li>[evening] Supper has turned into an argument again. {A_nameDef} and {B_nameDef} each say they're the one who held the raiders off, and the rest of the table has picked sides.\n\nThey want the council to settle it.</li>
+      <li>[colony:Harsh] In this colony the fighters are what keep it standing, and the credit for a fight matters. {A_nameDef} and {B_nameDef} both claim the last one and want the council to say whose it was.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The council named {A_nameDef}. {A_nameDef} has told the story twice since, and {B_nameDef} has left the room both times.</li>
+        </lines>
+        <riskLines>
+          <li>{B_nameDef} wouldn't accept it. Words turned to shoving, and the shoving turned into a fight.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The council named {B_nameDef}. {A_nameDef} said nothing at all, which worried people more than shouting would have.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} took the council's answer badly and went looking for {B_nameDef} to say so with {A_possessive} fists.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The witnesses talked it over and decided it had been a near thing for all of them. {A_nameDef} and {B_nameDef} have let the matter drop, not happily.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>The credit went to everyone who fought. {A_nameDef} and {B_nameDef} both said that was fair, and neither of them meant it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>
