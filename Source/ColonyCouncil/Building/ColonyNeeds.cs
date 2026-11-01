@@ -230,7 +230,7 @@ namespace ColonyCouncil
                     if (t == null || !t.Spawned || player != null && t.IsForbidden(player)) continue;
                     cells.Add(t.Position);
                     all += t.stackCount;
-                    if (g.rotDays < AheadMath.Far && t.AmbientTemperature <= 0f) frozen += t.stackCount;
+                    if (g.rotDays < AheadMath.Far && (t.AmbientTemperature <= 0f || InFridge(t.Position))) frozen += t.stackCount;
                 }
                 g.cells = cells.Count;
                 g.frozenShare = all > 0f ? frozen / all : 0f;
@@ -297,7 +297,7 @@ namespace ColonyCouncil
                 if (!cold && mealRotDays < AheadMath.Far)
                 {
                     var r = cells[0].GetRoom(map);
-                    if (r != null && !r.UsesOutdoorTemperature && r.Temperature <= 0f) cold = true;
+                    if (r != null && !r.UsesOutdoorTemperature && r.Temperature <= 0f || group.parent is Building_Storage store && Fridge(store)) cold = true;
                 }
                 foreach (var c in cells)
                 {
@@ -332,6 +332,27 @@ namespace ColonyCouncil
             plant.plant.harvestYieldAffectedByDifficulty ? Find.Storyteller?.difficulty?.cropYieldFactor ?? 1f : 1f;
 
         /// <summary>A plant the colony can sow in a field whose harvest people eat: unlocked, not a tree, not a drug.</summary>
+        /// <summary>
+        /// A storage building that keeps its contents cold by itself, powered: a fridge of RimFridge or a mod like it (a
+        /// comp whose type is named a refrigerator), so food in it keeps however warm the room is. Found by name, so
+        /// without such a mod nothing counts.
+        /// </summary>
+        private static bool Fridge(Building_Storage b)
+        {
+            if (b?.AllComps == null) return false;
+            bool fridge = false;
+            foreach (var c in b.AllComps)
+                if (c != null && c.GetType().Name.IndexOf("Refrigerator", StringComparison.OrdinalIgnoreCase) >= 0)
+                {
+                    fridge = true;
+                    break;
+                }
+            return fridge && (b.GetComp<CompPowerTrader>()?.PowerOn ?? true);
+        }
+
+        /// <summary>The cell holds such a fridge (what lies in it keeps).</summary>
+        private bool InFridge(IntVec3 c) => c.GetEdifice(map) is Building_Storage b && Fridge(b);
+
         private static bool FoodCrop(ThingDef d)
         {
             var pp = d?.plant;

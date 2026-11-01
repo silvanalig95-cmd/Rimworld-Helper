@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning ahead: stocks, bills and fields
+
+*1 November 2026, version 0.46.0*
+
+- The Making page opens with a new Ahead section: each stock the colony relies on, with what there is, what goes a day, how long it lasts and what to keep.
+- Food is weighed by its nutrition and storage by its cells, so a big pile of a crop with little in each piece no longer looks like a big stock. Guests who eat the colony's meals count too, and food in a fridge from RimFridge counts as kept cold.
+- Suggestions come from the live colony, the soonest short first, each with its numbers: raise or lower a meal bill, add a missing bill with what feeds it, copy a bill to a second bench, grow a field, switch a crop the colony has far too much of, or lay out a new field.
+- Nothing changes until you click Do it. Show outlines the cells on the map, Not this sets a suggestion aside until you bring it back, and every step can be undone.
+- A day or two after a step, the council checks whether it worked and, if not, says what is in the way: a suspended bill, a bench without power or fuel, or nobody with the work switched on.
+- Bills set by Everybody Gets One are left alone, and bills linked by Better Workbench Management change together.
+- Two settings under "Planning ahead" on the Building page: how many days of meals and how many days of food reserve to keep.
+
 ## Events and world situations that read differently
 
 *1 November 2026, version 0.45.4*
