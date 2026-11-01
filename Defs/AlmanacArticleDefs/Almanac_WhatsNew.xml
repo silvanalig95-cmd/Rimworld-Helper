@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.43.5</version>
+        <date>1 November 2026</date>
+        <title>Rimfolk's sales table works with the new RimMarket</title>
+        <points>
+          <li>RimMarket's last update changed how a stall's lines are set, so Rimfolk's sales table stopped opening and the stall showed RimMarket's own window. It opens again, with the old RimMarket and the new.</li>
+          <li>With the new RimMarket each line on the counter has Refill and Keep home: Refill keeps that many on the counter for good, and Keep home stops the haulers once the colony is down to that many.</li>
+          <li>Changing a line's count, quality or price in Rimfolk's table keeps its Refill and Keep home as they were.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.43.4</version>
         <date>30 October 2026</date>
         <title>Visitors ply their trades on the map</title>

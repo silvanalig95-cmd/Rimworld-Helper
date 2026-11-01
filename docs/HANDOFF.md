@@ -4,9 +4,16 @@ Read this first; it is the whole state. CLAUDE.md has the binding rules and the 
 from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the player's words. The sections under
 "Older history" at the bottom are kept for reference only.
 
-## State (30 October 2026, later)
+## State (1 November 2026)
 
-- Shipped and pushed: 0.43.4, on `claude/gifted-noether-32w12b` (this session's branch) and `claude/charming-pasteur-9qbjle`.
+- 0.43.5, a break the player saw: RimMarket 1.0.13 (BenFD) gave `Building_MarketStall.SetOrder` two more parameters
+  (`bool refill, int reserve`) and `StallOrder` the fields `refill` and `reserve`, so Rimfolk's reflection lookup for the
+  4-parameter SetOrder failed and its sales table fell back to RimMarket's window. `Integrations/RimMarketStall.cs` now
+  takes either form (the 6-parameter one first), reads both fields into `Line`, and `SetLine` keeps a line's refill and
+  reserve when only its count or quality changes. `RimMarketStall.Keeps` is true with the new form; then
+  `UI/Window_StallCounter.cs` draws a taller card with Refill and Keep home. Every other type and member Rimfolk uses
+  in RimMarket is unchanged in 1.0.13 (checked in both its 1.6 and 1.7 builds).
+- Shipped and pushed: 0.43.5 (0.43.4 before it), on `claude/gifted-noether-32w12b` (this session's branch) and `claude/charming-pasteur-9qbjle`.
   Tree clean. Every check green at that commit: build (only the CS0108 warning in Decrees.cs), DefValidator 0 errors,
   Tools/Tests "All tests passed", labelcheck, almanaccheck, save_estimate --strict, interaction_audit, playout_audit,
   ApiDiff "Nothing the DLL uses has changed".

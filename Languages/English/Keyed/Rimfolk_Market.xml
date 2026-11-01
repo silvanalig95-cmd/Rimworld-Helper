@@ -14,6 +14,7 @@
 
   <CC_Stall_Title>{0}: sales table</CC_Stall_Title>
   <CC_Stall_Sub>Click goods on the left to put them on the counter, then set how many and the price on the right. Haulers bring them over, and a line ends when it's sold.</CC_Stall_Sub>
+  <CC_Stall_SubRefill>Click goods on the left to put them on the counter, then set how many and the price on the right. Haulers bring them over, and a line ends when it's sold unless you tick Refill.</CC_Stall_SubRefill>
   <CC_Stall_Stat>{0} articles on {1} lines</CC_Stall_Stat>
   <CC_Stall_Goods>The colony's goods</CC_Stall_Goods>
   <CC_Stall_GoodsCount>{0} kinds</CC_Stall_GoodsCount>
@@ -41,6 +42,11 @@
   <CC_Stall_InColony>{0} more in the colony</CC_Stall_InColony>
   <CC_Stall_ForAll>about {0} silver for all</CC_Stall_ForAll>
   <CC_Stall_CountTip>How many to sell. Hold Shift for 10 at a time, Ctrl for 100, or type a number in the box.</CC_Stall_CountTip>
+  <CC_Stall_CountTipRefill>How many to keep on the counter: haulers bring more after every sale. Hold Shift for 10 at a time, Ctrl for 100, or type a number in the box.</CC_Stall_CountTipRefill>
+  <CC_Stall_Refill>Refill</CC_Stall_Refill>
+  <CC_Stall_RefillTip>Ticked: the stall keeps this many on the counter, and haulers bring more after every sale, so the line never runs out.\nUnticked: it sells this many, then the line is done.</CC_Stall_RefillTip>
+  <CC_Stall_KeepHome>Keep home</CC_Stall_KeepHome>
+  <CC_Stall_KeepHomeTip>Haulers stop bringing this to the stall once the colony is down to this many, so the last of it stays at home. What already lies on the counter stays for sale.\n\nHold Shift for 10 at a time, Ctrl for 100.</CC_Stall_KeepHomeTip>
   <CC_Stall_Of>of {0}</CC_Stall_Of>
   <CC_Stall_All>All</CC_Stall_All>
   <CC_Stall_AllTip>Sell all {0}.</CC_Stall_AllTip>

@@ -12,8 +12,8 @@ namespace ColonyCouncil
     /// RimMarket (forti.rimmarket), met softly: a colony stall's sales table opens as Rimfolk's own window
     /// (UI/Window_StallCounter.cs) instead of RimMarket's, with the setting "RimMarket's sales table, Rimfolk's way" on.
     /// Everything is RimMarket's: its stall keeps its sale lines (article, how many to sell, the price as a share of the
-    /// sell value, the quality range, how many sold), and the window reads and sets them through the stall's own
-    /// SetOrder, its prices and the shoppers' pull through RimMarket's ColonyStalls. All of it is found by name; when
+    /// sell value, the quality range, how many sold, and from RimMarket 1.0.13 whether the line refills and how many to
+    /// keep at home), and the window reads and sets them through the stall's own SetOrder (either form), its prices and the shoppers' pull through RimMarket's ColonyStalls. All of it is found by name; when
     /// anything isn't there (another RimMarket version), RimMarket's own window opens as before. And with a powered
     /// orbital trade beacon on the map, what lies on a colony stall's counter is offered to trade ships too
     /// (<see cref="Patch_StallGoodsForShips"/>), the setting "RimMarket's stall goods for trade ships".
@@ -24,9 +24,9 @@ namespace ColonyCouncil
 
         private static bool looked, ready, shipsReady;
         private static Type dialogType, stallType;
-        private static FieldInfo dialogStall, orderDef, orderToSell, orderPrice, orderSold, orderQuality, shoppersVisit;
+        private static FieldInfo dialogStall, orderDef, orderToSell, orderPrice, orderSold, orderQuality, orderRefill, orderReserve, shoppersVisit;
         private static PropertyInfo colonyStall, orders, stock, settings;
-        private static MethodInfo setOrder, stockDef, canSell, baseValueThing, baseValueDef, pull, interval, chanceFor, tradeable, notifySold;
+        private static MethodInfo setOrder, setOrderKept, stockDef, canSell, baseValueThing, baseValueDef, pull, interval, chanceFor, tradeable, notifySold;
 
         /// <summary>One sale line of a stall, as read from RimMarket.</summary>
         public struct Line
@@ -36,6 +36,19 @@ namespace ColonyCouncil
             public int toSell, sold;
             public float price;
             public QualityRange quality;
+            /// <summary>The stall keeps this many on the counter for good (RimMarket's refill), and stops at the colony's last so many (its reserve).</summary>
+            public bool refill;
+            public int reserve;
+        }
+
+        /// <summary>RimMarket's lines can refill and keep some at home (RimMarket 1.0.13 and later).</summary>
+        public static bool Keeps
+        {
+            get
+            {
+                Look();
+                return setOrderKept != null && orderRefill != null && orderReserve != null;
+            }
         }
 
         /// <summary>RimMarket is loaded and everything the window needs from it was found.</summary>
@@ -82,10 +95,16 @@ namespace ColonyCouncil
                 orderPrice = AccessTools.Field(orderType, "priceFactor");
                 orderSold = AccessTools.Field(orderType, "sold");
                 orderQuality = AccessTools.Field(orderType, "quality");
+                orderRefill = AccessTools.Field(orderType, "refill");
+                orderReserve = AccessTools.Field(orderType, "reserve");
+                if (orderRefill?.FieldType != typeof(bool)) orderRefill = null;
+                if (orderReserve?.FieldType != typeof(int)) orderReserve = null;
                 colonyStall = AccessTools.Property(stallType, "ColonyStall");
                 orders = AccessTools.Property(stallType, "Orders");
                 stock = AccessTools.Property(stallType, "Stock");
-                setOrder = AccessTools.Method(stallType, "SetOrder", new[] { typeof(ThingDef), typeof(int), typeof(float), typeof(QualityRange) });
+                // RimMarket 1.0.13 added a line's refill and reserve to SetOrder; the older form is taken when that one isn't there.
+                setOrderKept = AccessTools.Method(stallType, "SetOrder", new[] { typeof(ThingDef), typeof(int), typeof(float), typeof(QualityRange), typeof(bool), typeof(int) });
+                setOrder = setOrderKept == null ? AccessTools.Method(stallType, "SetOrder", new[] { typeof(ThingDef), typeof(int), typeof(float), typeof(QualityRange) }) : null;
                 stockDef = AccessTools.Method(stalls, "StockDef", new[] { typeof(Thing) });
                 canSell = AccessTools.Method(stalls, "CanSell", new[] { typeof(ThingDef) });
                 baseValueThing = AccessTools.Method(stalls, "BaseValue", new[] { typeof(Thing) });
@@ -98,7 +117,7 @@ namespace ColonyCouncil
                 settings = AccessTools.Property(mod, "Settings");
                 shoppersVisit = settings != null ? AccessTools.Field(settings.PropertyType, "shoppersVisit") : null;
                 ready = dialogStall != null && orderDef != null && orderToSell != null && orderPrice != null && orderSold != null && orderQuality != null
-                        && orderQuality.FieldType == typeof(QualityRange) && colonyStall != null && orders != null && stock != null && setOrder != null
+                        && orderQuality.FieldType == typeof(QualityRange) && colonyStall != null && orders != null && stock != null && (setOrder != null || setOrderKept != null)
                         && stockDef != null && canSell != null && baseValueThing != null && baseValueDef != null && pull != null && interval != null
                         && chanceFor != null && tradeable != null;
                 // Trade ships only need the stall, its counter and which article a thing is (its sale line, to count one sold).
@@ -135,7 +154,9 @@ namespace ColonyCouncil
                     toSell = (int)orderToSell.GetValue(o),
                     sold = (int)orderSold.GetValue(o),
                     price = (float)orderPrice.GetValue(o),
-                    quality = (QualityRange)orderQuality.GetValue(o)
+                    quality = (QualityRange)orderQuality.GetValue(o),
+                    refill = orderRefill != null && (bool)orderRefill.GetValue(o),
+                    reserve = orderReserve != null ? (int)orderReserve.GetValue(o) : 0
                 });
             }
         }
@@ -143,9 +164,15 @@ namespace ColonyCouncil
         /// <summary>What lies on the stall's counter now.</summary>
         public static IReadOnlyList<Thing> Stock(Thing stall) => stock.GetValue(stall) as IReadOnlyList<Thing> ?? new List<Thing>();
 
-        /// <summary>Sets a line (RimMarket's SetOrder): none or fewer than one to sell takes it off the table.</summary>
-        public static void SetLine(Thing stall, ThingDef def, int toSell, float price, QualityRange quality) =>
-            setOrder.Invoke(stall, new object[] { def, toSell, price, quality });
+        /// <summary>Sets a line (RimMarket's SetOrder): none or fewer than one to sell takes it off the table. Refill and reserve go where RimMarket has them.</summary>
+        public static void SetLine(Thing stall, ThingDef def, int toSell, float price, QualityRange quality, bool refill = false, int reserve = 0)
+        {
+            if (setOrderKept != null) setOrderKept.Invoke(stall, new object[] { def, toSell, price, quality, refill, reserve });
+            else setOrder.Invoke(stall, new object[] { def, toSell, price, quality });
+        }
+
+        /// <summary>A line set again as it is but for what's given: its refill and reserve kept.</summary>
+        public static void SetLine(Thing stall, Line l, int toSell, QualityRange quality) => SetLine(stall, l.def, toSell, l.price, quality, l.refill, l.reserve);
 
         /// <summary>A new price on a line, as RimMarket's own window sets it (straight onto the line, nothing else moves).</summary>
         public static void SetPrice(object order, float price) => orderPrice.SetValue(order, price);

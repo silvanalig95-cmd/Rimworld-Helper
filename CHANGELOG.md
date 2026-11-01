@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Rimfolk's sales table works with the new RimMarket
+
+*1 November 2026, version 0.43.5*
+
+- RimMarket's last update changed how a stall's lines are set, so Rimfolk's sales table stopped opening and the stall showed RimMarket's own window. It opens again, with the old RimMarket and the new.
+- With the new RimMarket each line on the counter has Refill and Keep home: Refill keeps that many on the counter for good, and Keep home stops the haulers once the colony is down to that many.
+- Changing a line's count, quality or price in Rimfolk's table keeps its Refill and Keep home as they were.
+
 ## Visitors ply their trades on the map
 
 *30 October 2026, version 0.43.4*
