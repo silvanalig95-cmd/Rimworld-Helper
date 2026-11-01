@@ -386,6 +386,11 @@ namespace ColonyCouncil
             Slider("autoBudget", "CC_Settings_AutoBudget", "CC_SetNote_AutoBudget", 50f, 1000f, 50f, "0");
             Slider("autoTakeDownsADay", "CC_Settings_AutoTakeDownsADay", "CC_SetNote_AutoTakeDownsADay", 1f, 30f, 1f, "0");
             Slider("autoChopsADay", "CC_Settings_AutoChopsADay", "CC_SetNote_AutoChopsADay", 1f, 30f, 1f, "0");
+            // Planning ahead (Building/Ahead.cs): what the stock targets on the Making page are worked out from.
+            Section("CC_SetSec_Ahead");
+            NoteUnder("CC_SetSec_Ahead_Note");
+            Slider("aheadMealDays", "CC_Settings_AheadMealDays", "CC_SetNote_AheadMealDays", 0.5f, 6f, 0.5f, "0.#");
+            Slider("aheadReserveDays", "CC_Settings_AheadReserveDays", "CC_SetNote_AheadReserveDays", 1f, 30f, 1f, "0");
 
             // Interface and integrations: messages, alerts, the council's own tabs and buttons, the deeper game hooks.
             Page(SettingsPage.Interface);

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Almanac: the Making page's Ahead section, planning ahead for production (Source/ColonyCouncil/Building/Ahead.cs, ColonyNeeds.cs, AheadMath.cs). -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Ahead</defName>
+    <label>planning ahead</label>
+    <category>Council</category>
+    <order>23</order>
+    <summary>What the colony will run short of, worked out from the live game, and the one-click steps that would prevent it</summary>
+    <tip>Start with the first suggestion: they are ordered by how soon something runs short. "Not this" sets one aside for good, until you bring it back.</tip>
+    <description>The top of the Making page (Planning, then Making) is the Ahead section: what the colony keeps a stock of and how long each lasts, the fields against the year, and suggestions for what to do about them, the soonest short first. Each suggestion shows its reason in numbers, and nothing happens until you click: Do it, Show (the view moves there and the cells are outlined), or Not this. Everything is worked out again each hour from what is on the map now and what the colony used over the last days, so a suggestion goes by itself once its reason is gone. The automations in the settings stay as they are, off unless you switch them on.</description>
+    <sections>
+      <li>
+        <heading>What it reads</heading>
+        <text>Who eats here: colonists and slaves, prisoners, Hospitality's guests (they eat the colony's meals), and the colony's animals fed from the stores (those that can't graze, and all of them while nothing grows). Each one's need comes from their own hunger, so genes, pregnancy and age count; a grown colonist needs 1.6 nutrition a day. What there is: everything stored or lying about and not forbidden, as the Making page reads it, with the storage cells each kind takes and the share kept frozen. What is used: the colony's record of the last 3 days (meals and food eaten, what the bills took, medicine, clothes worn through), kept through the deeper game hooks; until it covers a day, the use is estimated. What the land gives: each growing zone's crop at its own soil, and the year's warmth from the land's temperatures by twelfth.</text>
+      </li>
+      <li>
+        <heading>How the targets are worked out</heading>
+        <text>Food is weighed by its nutrition and storage by its cells, never by the number of pieces: a big pile of a crop with little nutrition in each piece is a small stock. A target is a day's use times the days set in the settings (Building, Planning ahead), cut to what keeps before it rots and to the room in the stores.</text>
+        <table>
+          <li>Stock | A day | To keep</li>
+          <li>Meals | The hunger of everyone who eats here (or what the record shows, if more) | 2 days by default; without a freezer no more than half the days a meal keeps (2 for a simple meal)</li>
+          <li>Raw food | The cooks' need: a simple or fine meal takes 0.5 nutrition of ingredients for 0.9 | 5 days by default, plus the days nothing grows in the next 60</li>
+          <li>Animal feed | The hunger of the animals fed from the stores | As raw food</li>
+          <li>Medicine | The record, or one a day for each who needs tending and a tenth a head | 5 days by default</li>
+          <li>Spare clothes | Clothes worn through, by the record | 5 days by default</li>
+          <li>Materials | What the blueprints and frames still need | All of it</li>
+        </table>
+        <after>Short means under a day left, or under a quarter of the target; low, under three quarters; more than needed, over twice the target, with the storage cells it takes.</after>
+      </li>
+      <li>
+        <heading>The suggestions</heading>
+        <table>
+          <li>Suggestion | When | What it does</li>
+          <li>Raise a bill | Meals, medicine or feed are short or low and the bills ask for less than the target | Sets the biggest "do until" bill's count so the bills together cover the target, rounded up to fives</li>
+          <li>Add a bill | No bill makes them at all | Adds a "do until" bill at a bench here, and a bill for each of its parts that is short and that a bench here makes, as the chains below do</li>
+          <li>Copy to a second bench | The benches with the bill can't make a day's use with the hands there are | Copies the bill, with its count and ingredients, to another bench of that kind</li>
+          <li>Lower a bill | The meal bills ask for more than half again what keeps without a freezer, and the store is full | Lowers the biggest bill toward what keeps</li>
+          <li>Grow a field | The fields fall short of the year's need | Adds free fertile cells next to a food field, the best yield first, at most 80 a step</li>
+          <li>Switch a crop | The fields fall short and a crop's stock covers a year of its use | Sows a band at one end of that field with the best food crop instead</li>
+          <li>A new field | The fields still fall short | Lays out a field of the best food crop on free fertile ground near the fields</li>
+        </table>
+      </li>
+      <li>
+        <heading>Why it's stuck</heading>
+        <text>A meal, medicine or feed bill behind a short or low stock that isn't moving gets a suggestion of its own saying why, in this order: it is suspended; its bench is forbidden, broken down, without power or out of fuel; the one it is kept for can't do it; nobody here can (the work, the skill it needs, the bill's skill range); nobody who can has the work switched on; none of its ingredients is in stock; they are, but outside the bill's radius; no store that takes the product has room. Where a fix exists it is one click: resume, allow the bench, let anyone do it, let the best colonist do the work (priority 3), the bill for a missing ingredient a bench here makes, or the whole map as the radius. A food field mostly unsown in the growing season gets the same: its sowing switched off, or nobody able to sow.</text>
+      </li>
+      <li>
+        <heading>The fields</heading>
+        <text>The crop food the colony needs a day is the cooks' need for meals and the feed animals' need, less the share of raw food that came from meat by the record. A field gives its harvest's nutrition over the days it takes to grow at its soil (resting at night, from about 7 in the evening to 6 in the morning), on each day's warmth: a crop grows fully between its optimal temperatures (6 to 42 for most) and not at all below its least (0 for most). Over the next 60 days the fields must give what the colony eats in all of them, the days without growing included; the shortfall is covered in steps, and each step says how much food a day it adds. The line under the stocks gives the need, what the fields give, the growing days left this year and the days ahead with nothing growing.</text>
+      </li>
+      <li>
+        <heading>Only suggestions</heading>
+        <text>A step is done only when you click it, and it is told in a message. "Done lately" lists the last steps: each can be undone (a bill goes back to its old count or off its bench, a zone gives its new cells back, a priority goes back to what it was), and a while after it was done the council checks whether it worked: a bill step a day later (the stock rose a quarter of the way to its target, or the bench made half a day's use), a field step two days later (half its cells sown). If not, it is looked at once more, then it says what is in the way. A step waiting for its check isn't suggested again. "Not this" sets a suggestion aside until you bring it back from "Set aside"; its share goes to the next way, another field or another bill.</text>
+      </li>
+      <li>
+        <heading>Your other mods</heading>
+        <text>Bills set by Everybody Gets One ("one per person", "X per person", "with surplus"), and any bill whose repeat mode another mod added, are read but never changed. A bill Better Workbench Management links with others is changed together with every bill of its set, so the links stay as you made them. Better Pawn Control may set a work priority again when its presets switch. Anything another mod changes the ordinary way shows in the next hour's numbers.</text>
+      </li>
+    </sections>
+    <keywords>
+      <li>ahead</li>
+      <li>planning</li>
+      <li>stock</li>
+      <li>target</li>
+      <li>meals</li>
+      <li>nutrition</li>
+      <li>fields</li>
+      <li>crops</li>
+      <li>bills</li>
+      <li>stuck</li>
+    </keywords>
+    <seeAlso>
+      <li>Council_Alm_C_Priorities</li>
+      <li>Council_Alm_1_01_DailyNutrition</li>
+      <li>Council_Alm_1_06_FarmlandPerColonist</li>
+      <li>Council_Alm_1_05_GrowingSeason</li>
+    </seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

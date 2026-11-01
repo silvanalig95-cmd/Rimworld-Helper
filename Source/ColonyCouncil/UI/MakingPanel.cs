@@ -8,7 +8,8 @@ using Verse.Sound;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Colony, then Making: what the colony could make (Building/Making.cs). What could be made now from what's in
+    /// Colony, then Making: planning ahead at the top (UI/AheadPanel.cs), then what the colony could make
+    /// (Building/Making.cs). What could be made now from what's in
     /// stock with no bill for it, bench by bench, each with a bill ready to set up; harvests and finds no bench here
     /// puts to its own use, and what would; benches standing without bills.
     /// </summary>
@@ -35,6 +36,7 @@ namespace ColonyCouncil
             if (Widgets.ButtonText(new Rect(rect.xMax - 160f, rect.y + 6f, 160f, 30f), "CC_Base_LookAgain".Translate()))
             {
                 Making.For(map, true);
+                Ahead.For(map, true);
                 SoundDefOf.Click.PlayOneShotOnCamera();
             }
 
@@ -42,6 +44,9 @@ namespace ColonyCouncil
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
+
+            // Planning ahead: the stocks, the fields and what to do about them, at the top (UI/AheadPanel.cs).
+            y += AheadPanel.Draw(0f, y, view.width, map) + 6f;
 
             y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Could".Translate(), null, UiKit.HeaderColor) + 4f;
             if (r.could.Count == 0) y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Making_CouldNone".Translate(), UiKit.Faint) + 8f;

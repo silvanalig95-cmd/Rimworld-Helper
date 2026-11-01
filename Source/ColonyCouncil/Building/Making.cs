@@ -131,8 +131,8 @@ namespace ColonyCouncil
 
         // ---------------- Stock ----------------
 
-        /// <summary>Everything lying about or stored, unforbidden, by kind.</summary>
-        private static Dictionary<ThingDef, int> Stock(Map map)
+        /// <summary>Everything lying about or stored, unforbidden, by kind (the planning helper reads the same, ColonyNeeds).</summary>
+        internal static Dictionary<ThingDef, int> Stock(Map map)
         {
             var stock = new Dictionary<ThingDef, int>();
             var player = Faction.OfPlayerSilentFail;
@@ -409,7 +409,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>What the colony's blueprints and frames still need beyond the stock, by material (the short amount).</summary>
-        private static Dictionary<ThingDef, int> BuildingNeeds(Map map, Func<ThingDef, int> have)
+        internal static Dictionary<ThingDef, int> BuildingNeeds(Map map, Func<ThingDef, int> have)
         {
             var need = new Dictionary<ThingDef, int>();
             var player = Faction.OfPlayerSilentFail;
@@ -538,9 +538,12 @@ namespace ColonyCouncil
             SetBill(c.bench, c.recipe, c.product, c.target, quiet);
         }
 
-        private static void SetBill(Building_WorkTable bench, RecipeDef recipe, ThingDef product, int target, bool quiet)
+        private static void SetBill(Building_WorkTable bench, RecipeDef recipe, ThingDef product, int target, bool quiet) => AddBill(bench, recipe, product, target, quiet);
+
+        /// <summary>Adds a "make until" bill to the bench and returns it (null when the bench can't take one).</summary>
+        public static Bill_Production AddBill(Building_WorkTable bench, RecipeDef recipe, ThingDef product, int target, bool quiet)
         {
-            if (bench.Destroyed || bench.BillStack == null) return;
+            if (bench == null || recipe == null || bench.Destroyed || bench.BillStack == null) return null;
             var bill = BillUtility.MakeNewBill(recipe);
             if (bill is Bill_Production prod)
             {
@@ -552,6 +555,73 @@ namespace ColonyCouncil
                 Messages.Message("CC_Making_BillSet".Translate((product?.label ?? recipe.label).Named("PRODUCT"), target.Named("N"), bench.LabelCap.ToString().Named("BENCH")).Resolve(),
                     new LookTargets(bench), MessageTypeDefOf.TaskCompletion, false);
             if (bench.Map != null) For(bench.Map, true);
+            return bill as Bill_Production;
+        }
+
+        /// <summary>
+        /// The chain for one product followed to the end, as the page follows the building's and the bills' wants: its
+        /// root, and the links a bench here makes, leaf first (the order their bills go up in). The planning helper's
+        /// "add a bill" sets these, so a bill goes up with what feeds it. A null root when the product can't be traced.
+        /// </summary>
+        public static (ChainNode root, List<ChainNeed> links) ChainFor(Map map, ThingDef product, int want, string why)
+        {
+            var links = new List<ChainNeed>();
+            if (map == null || product == null) return (null, links);
+            var stock = Stock(map);
+            int Have(ThingDef d) => d != null && stock.TryGetValue(d, out int n) ? n : 0;
+            var benches = new Dictionary<ThingDef, List<Building_WorkTable>>();
+            foreach (var b in map.listerBuildings.allBuildingsColonist)
+            {
+                if (!(b is Building_WorkTable wt) || wt.def.AllRecipes == null) continue;
+                if (!benches.TryGetValue(wt.def, out var list)) benches[wt.def] = list = new List<Building_WorkTable>();
+                list.Add(wt);
+            }
+            var billed = new HashSet<RecipeDef>();
+            var makers = new Dictionary<ThingDef, List<(RecipeDef recipe, ThingDef benchDef)>>();
+            foreach (var kv in benches)
+            {
+                foreach (var wt in kv.Value)
+                    if (wt.BillStack != null)
+                        foreach (var bill in wt.BillStack)
+                            if (bill?.recipe != null && !bill.suspended) billed.Add(bill.recipe);
+                foreach (var recipe in kv.Key.AllRecipes)
+                {
+                    if (recipe == null || !recipe.AvailableNow || recipe.products == null || recipe.products.Count == 0) continue;
+                    try
+                    {
+                        if (!recipe.AvailableOnNow(kv.Value[0])) continue;
+                    }
+                    catch
+                    {
+                        // A modded recipe that can't say: count it as available.
+                    }
+                    var made = recipe.ProducedThingDef ?? recipe.products[0].thingDef;
+                    if (made == null || !made.EverStorable(false)) continue;
+                    if (!makers.TryGetValue(made, out var ml)) makers[made] = ml = new List<(RecipeDef, ThingDef)>();
+                    ml.Add((recipe, kv.Key));
+                }
+            }
+            var ctx = Chains.Prepare(map, Have, benches, billed, makers);
+            ChainNode root;
+            try
+            {
+                root = Chains.Build(ctx, product, Mathf.Max(1, want), why);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("chain for " + product.defName, e);
+                return (null, links);
+            }
+            foreach (var node in root.LeafFirst())
+            {
+                if (node.recipe == null || node.bench == null) continue;
+                links.Add(new ChainNeed
+                {
+                    product = node.thing, shortBy = node.want, stock = node.stock, recipe = node.recipe, bench = node.bench, benchDef = node.bench.def,
+                    billed = node.billed, canMake = node.canMake, target = node.target, node = node, root = root, why = why, parts = node.partsLine
+                });
+            }
+            return (root, links);
         }
     }
 }

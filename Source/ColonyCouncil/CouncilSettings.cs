@@ -286,6 +286,9 @@ namespace ColonyCouncil
         public float autoBudget = 200f;
         public int autoTakeDownsADay = 8;
         public int autoChopsADay = 10;
+        /// <summary>Planning ahead (the Making page's Ahead section): days of meals to keep cooked, and days of food to keep in store beyond the days nothing grows.</summary>
+        public float aheadMealDays = 2f;
+        public float aheadReserveDays = 5f;
         /// <summary>A "Reserved slots" button on the colony's shelves: a slot kept for each kind picked (Building/ShelfReserves.cs).</summary>
         public bool shelfReserves = true;
         /// <summary>A drink, smoke or snack had at a table or outside, not standing in a freezer or store room (Building/ChewSpots.cs).</summary>
@@ -519,6 +522,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref autoBudget, "autoBudget", 200f);
             Scribe_Values.Look(ref autoTakeDownsADay, "autoTakeDownsADay", 8);
             Scribe_Values.Look(ref autoChopsADay, "autoChopsADay", 10);
+            Scribe_Values.Look(ref aheadMealDays, "aheadMealDays", 2f);
+            Scribe_Values.Look(ref aheadReserveDays, "aheadReserveDays", 5f);
             Scribe_Values.Look(ref shelfReserves, "shelfReserves", true);
             Scribe_Values.Look(ref chewOutOfStores, "chewOutOfStores", true);
             Scribe_Collections.Look(ref savedRooms, "savedRooms", LookMode.Deep);
