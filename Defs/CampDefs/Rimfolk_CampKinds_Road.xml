@@ -101,15 +101,18 @@
     <settled>
       <li>The caravan from {FACTION} has made camp {PLACE}, with the bales stacked into a wall against the wind and a kettle on the fire that never seems to come off.</li>
       <li>The caravan's camp is up {PLACE}, with its goods laid out on a table for anyone who wants to look, and a guard on the bales who doesn't seem to sleep.</li>
+      <li>The caravan from {FACTION} has camped {PLACE}, the beasts unloaded and tethered by the stash, and the cloth already going over to the trading table one bolt at a time.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the caravan's drivers, has walked the long road for eleven years and would like, for once, to stop somewhere. The colony would do, {X_pronoun} says, if the colony will have {X_objective}.</li>
       <li>{X_nameDef} from the caravan {PLACE} has been looking at the colony's fields with an expression the others recognize. Tonight {X_pronoun} asked whether there was a place for {X_objective} here.</li>
+      <li>{X_nameDef}, who keeps the caravan's accounts, says {X_pronoun} has added up the road and it comes to very little. {X_nameDef} would rather stay at the colony, and asks whether {X_pronoun} may.</li>
     </joinTexts>
     <farewell>
       <li>The caravan from {FACTION} loaded up before dawn and went on toward the hills, bells ringing on the lead animal. {X_nameDef} promised to stop again next year.</li>
       <li>The salt caravan's camp {PLACE} is empty. A few grains of salt still glitter in the dirt where the bales stood.</li>
       <li>[!lowtech] The convoy from {FACTION} got its part and its engines running, and was gone by mid-morning in a cloud of exhaust and goodwill.</li>
+      <li>{X_nameDef} counted the bales one last time, the beasts were loaded, and the caravan from {FACTION} went on its way. The colony could see its dust on the road for a long while.</li>
     </farewell>
     <lines>
       <li>Water the beasts first.</li>
@@ -120,6 +123,9 @@
       <li>Count the bales again.</li>
       <li>[!lowtech] Has anyone seen the wrench?</li>
       <li>Best price this side of the coast.</li>
+      <li>Mind the beasts' feet.</li>
+      <li>Cloth's dear in the hills this year.</li>
+      <li>Keep the fire small, we leave early.</li>
     </lines>
     <momentLines>
       <li>[carry] Mind the bales.</li>
@@ -191,11 +197,13 @@
         <askTexts>
           <li>{X_nameDef} is sick of salt fish, and so is every driver in the caravan. They'd trade a good weight of salted fare for anything fresh the colony can spare.</li>
           <li>"Salt, salt and more salt," {X_nameDef} said to {A_nameDef}, patting the sacks. The caravan would give half again as much of its preserved fare for some of the colony's fresh food.</li>
+          <li>The caravan's drivers have eaten nothing but salted fare since the coast. {X_nameDef} would give half again as much of it for some of the colony's fresh food.</li>
         </askTexts>
         <tip>Twenty-five of the colony's raw food goes out to the caravan; they set out half again as much salted fare for the colony.</tip>
         <outcomes>
           <li>{A_nameDef} carried the fresh food over to the caravan, and the drivers set out sacks of salted fare at the edge of the camp in return.</li>
           <li>The caravan's drivers are eating fresh greens tonight, and the colony has a store of salted fare it didn't have this morning.</li>
+          <li>The fresh food went over to the caravan's camp, and the drivers set out their salted fare at the edge of it, more than the colony gave.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} said salt never killed anyone, and went back to the fire.</li>
@@ -264,14 +272,17 @@
     <settled>
       <li>The merchants from {FACTION} have laid their wares out on a cloth {PLACE}: little jars, bright cloth, things that tick and things that shine. They've hung a lamp so customers can come after dark.</li>
       <li>The merchants' camp {PLACE} has a striped awning over the stall and a smell of strange spices over everything.</li>
+      <li>The merchants from {FACTION} have set out their stall {PLACE} and are calling their wares to anyone who comes near, in three languages and a fourth that may be made up.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who has walked with the merchants all the way from the far south, says {X_pronoun} is tired of roads that go nowhere {X_pronoun} wants to be, and asks whether {X_pronoun} might stay with the colony.</li>
       <li>{X_nameDef}, who translates for the merchants {PLACE}, has run out of new words to learn on the road and would like to learn the colony's. {X_nameDef} asks to stay.</li>
+      <li>{X_nameDef}, who keeps the merchants' stall {PLACE}, says the far markets will do without {X_objective}, and asks plainly whether the colony would have {X_objective} instead.</li>
     </joinTexts>
     <farewell>
       <li>The merchants from {FACTION} packed their strange goods and went on toward the far markets, leaving a smell of spice behind for days.</li>
       <li>The merchants' camp {PLACE} is gone. {X_nameDef} bowed to the colony's gate before leaving, in some custom of their own.</li>
+      <li>The merchants from {FACTION} packed up their stall and went on toward the far markets. {X_nameDef} called something from the road in their own tongue, and it sounded like a blessing.</li>
     </farewell>
     <lines>
       <li>Very rare. Very old.</li>
@@ -280,6 +291,9 @@
       <li>Careful, it bites.</li>
       <li>We have a saying about that.</li>
       <li>Only three of these left in the world.</li>
+      <li>Look, but gently.</li>
+      <li>A good price, because I like your face.</li>
+      <li>We carried this over the mountains.</li>
     </lines>
     <helpTexts>
       <li>[tales] {A_nameDef} spent an evening with {X_nameDef} and came back talking about cities that float, rivers of salt and a king who keeps bees. {A_nameDef} believes about half of it.</li>
@@ -378,14 +392,17 @@
     <settled>
       <li>The drovers from {FACTION} have made camp {PLACE}, with a rough fence for the dogs and a fire that smells of dung smoke. The herd can be heard beyond the ridge, lowing.</li>
       <li>The drovers' camp is up {PLACE}: a fire, a fence, a dog and not much else. Drovers travel light.</li>
+      <li>The drovers have made camp {PLACE}, behind a windbreak of logs, and the herd is out grazing beyond it with one of them never far behind.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the youngest of the drovers {PLACE}, says {X_pronoun} has had enough of walking behind cows, and asks whether the colony could use someone who knows animals.</li>
       <li>{X_nameDef} from the drovers' camp has been helping in the colony's barn every evening, unasked. Tonight {X_pronoun} asked whether {X_pronoun} might stay and do it for good.</li>
+      <li>{X_nameDef} from the drovers' camp says the herd will get to market without {X_objective}, and that {X_pronoun} has walked behind one long enough. {X_nameDef} asks whether the colony has room for one more pair of hands.</li>
     </joinTexts>
     <farewell>
       <li>The drovers from {FACTION} moved the herd on at first light. The colony could hear the bells and the dogs long after they'd gone over the ridge.</li>
       <li>The drovers' camp {PLACE} is empty, and the grass beyond the ridge is cropped short.</li>
+      <li>The drovers from {FACTION} whistled the herd together before sunrise and drove it on down the road at an easy pace, the dog working the stragglers.</li>
     </farewell>
     <lines>
       <li>Easy, easy.</li>
@@ -395,12 +412,17 @@
       <li>Four days to market.</li>
       <li>That one's trouble.</li>
       <li>Mind the bull.</li>
+      <li>Keep them off the crops.</li>
+      <li>That one's limping, have a look.</li>
+      <li>Bring the stragglers up.</li>
     </lines>
     <momentLines>
       <li>[herd] All here. Good.</li>
       <li>[herd] That one's favoring a leg.</li>
       <li>[herd] Walk on, walk on.</li>
       <li>[herd] Good grass. Eat up.</li>
+      <li>[herd] Steady, I'm only looking.</li>
+      <li>[herd] Fat as butter, this one.</li>
     </momentLines>
     <helpTexts>
       <li>[milk] {X_nameDef} saw to one of the drovers' beasts {PLACE} and carried what it gave over to the edge of their camp for the colony: {COUNT} {THING}.</li>
@@ -469,11 +491,13 @@
         <askTexts>
           <li>The stream past the ridge has gone to mud, and the herd is thirsty. {X_nameDef} asked {A_nameDef} whether the drovers might bring the beasts down to the colony's water this afternoon, and promised to keep them off the fields.</li>
           <li>[summer] It's hot, and the herd hasn't drunk well since yesterday. {X_nameDef} came to ask for the colony's water, for an hour, for the beasts.</li>
+          <li>The herd can smell the colony's water from the camp, {X_nameDef} says, and keeps pulling that way. The drovers would bring the beasts down to drink this afternoon, and keep them off everything else.</li>
         </askTexts>
         <tip>Two drovers walk the herd down to the colony's water for an afternoon. Afterwards, if one of the beasts is ready for it, a drover milks or shears it and leaves the colony what it gives.</tip>
         <outcomes>
           <li>The drovers will bring the herd down to the colony's water this afternoon. {X_nameDef} has sworn on the dog that not a hoof touches the fields.</li>
           <li>{X_nameDef} thanked {A_nameDef} and went to round up the beasts. They'll be at the water within a few hours, lowing.</li>
+          <li>The drovers will water the herd at the colony's water this afternoon. If one of the beasts is ready for it, {X_nameDef} says, the colony can have what it gives.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} walked the herd the long way round to the river. The beasts complained about it all afternoon.</li>
@@ -555,6 +579,7 @@
     <settled>
       <li>The penitents from {FACTION} have made camp {PLACE}, the barest camp the colony has ever seen. There is a fire and a cleared place for prayer, and they sleep on the ground.</li>
       <li>[ideology] The penitents of {IDEO} have set out their few holy things on a cloth {PLACE}, and sit before them morning and evening in silence.</li>
+      <li>The penitents have made camp {PLACE}: a fire, a bare patch of ground for each of them, and a place to kneel at before they eat.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the penitents {PLACE}, says {X_possessive} vow ends wherever {X_pronoun} finds a place to make amends with work, and asks whether that might be the colony.</li>
@@ -563,6 +588,7 @@
     <farewell>
       <li>The penitents from {FACTION} went on at dawn, barefoot, without a word. Their camp {PLACE} is swept so clean it's hard to tell anyone was there.</li>
       <li>The penitents left before sunrise. {X_nameDef} stopped at the gate to bow, and then they were gone up the road.</li>
+      <li>The penitents from {FACTION} took up the road again in single file, as they came. The last of them looked back once at the colony before the bend.</li>
     </farewell>
     <lines>
       <li>Forgive me.</li>
@@ -572,6 +598,9 @@
       <li>Silence, now.</li>
       <li>[ideology] {IDEO} keep us.</li>
       <li>[meme:Proselytizer] Have you heard the word?</li>
+      <li>Walk, and don't complain.</li>
+      <li>Not for us, give it to the next one.</li>
+      <li>Bow your head as you pass.</li>
     </lines>
     <!-- Said at the colony while they pray for it at dusk (the errand for the help "blessing"). -->
     <momentLines>
@@ -678,6 +707,7 @@
     <settled>
       <li>The tree-singers from {FACTION} have made camp {PLACE} without cutting so much as a twig. They sleep on moss and keep their fire in a ring of old stones, and they pray under the biggest tree.</li>
       <li>The tree-singers of {FACTION} have their camp {PLACE}, and have already been round every old tree within sight of it to say good morning.</li>
+      <li>The tree-singers have made a camp {PLACE} so light it might blow away, and spend the daylight at the foot of the oldest tree in sight.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the tree-singers {PLACE}, says the land here has asked {X_objective} to stay, and {X_pronoun} would like the colony to ask too.</li>
@@ -686,6 +716,7 @@
     <farewell>
       <li>[left:seeds] The tree-singers left at dawn, singing, and stopped at the edge of the woods to bow to the trees. They left a ring of planted seeds where their fire had been.</li>
       <li>The tree-singers from {FACTION} have gone on to the next grove. {X_nameDef} told the colony its trees are content, which is apparently a compliment.</li>
+      <li>The tree-singers from {FACTION} went on to the next grove, touching each tree they passed on the way out.</li>
     </farewell>
     <lines>
       <li>Listen. It's answering.</li>
@@ -694,6 +725,9 @@
       <li>Walk softly here.</li>
       <li>[ideology] {IDEO} is in the roots.</li>
       <li>Sing it slower.</li>
+      <li>Hear the leaves?</li>
+      <li>Mind the roots.</li>
+      <li>This one's older than the colony.</li>
     </lines>
     <!-- At the end of their stay, saplings of this land's own trees in a ring round where their fire was. -->
     <leaveBehind>
@@ -800,6 +834,7 @@
     <settled>
       <li>The healer from {FACTION} has set up {PLACE}, with jars and bundles in rows on a folding table and a bench beside it for anyone who needs looking at.</li>
       <li>The healer from {FACTION} has had a kettle on the fire {PLACE} since first light, and a row of jars on the table that gets shorter every day.</li>
+      <li>The healer from {FACTION} has camped {PLACE}, with a bedroll by the fire and a table of remedies where anyone feeling poorly can come and sit.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, the healer's apprentice, has learned all the road can teach, {X_pronoun} says, and the colony needs a healer more than the road does. {X_nameDef} asks to stay.</li>
@@ -808,6 +843,7 @@
     <farewell>
       <li>The healer from {FACTION} went on to the next village, leaving written instructions behind for nearly every colonist who had sat on the bench.</li>
       <li>[round] {X_nameDef}, the traveling healer, has gone. Before leaving, {X_pronoun} looked in on everyone {X_pronoun} had treated, one by one.</li>
+      <li>The healer from {FACTION} packed the jars back into the bag one by one, and went on to the next village.</li>
     </farewell>
     <lines>
       <li>Open wide.</li>
@@ -817,6 +853,10 @@
       <li>Who's next?</li>
       <li>[lowtech] Feverfew for that.</li>
       <li>[!lowtech] Keep it clean and dry.</li>
+      <li>Sit down, let's have a look.</li>
+      <li>Sleep is the best medicine I have.</li>
+      <li>[lowtech] Honey on it, then a clean cloth.</li>
+      <li>[!lowtech] Two of these, with food.</li>
     </lines>
     <farewellWalk>
       <to>sick</to>
@@ -924,6 +964,7 @@
     <settled>
       <li>The minstrels from {FACTION} have their camp up {PLACE}, with a cleared space before the fire for dancing and their instruments hung from the branches to keep them dry.</li>
       <li>The minstrels' camp {PLACE} is never quiet. Someone is always tuning, practicing or arguing about a chord.</li>
+      <li>The minstrels have made camp {PLACE}. The fire is lit, the instruments are out, and the argument over what to play first has already started.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, who sings for the minstrels, has sung in every town on the road and wants, just once, to sing in the same place two nights running. {X_nameDef} asks to stay.</li>
@@ -932,6 +973,7 @@
     <farewell>
       <li>The minstrels from {FACTION} went on toward the next town at noon, still playing, with the drum keeping time for the walkers.</li>
       <li>The minstrels' camp {PLACE} is empty. Someone at the colony is still humming the last song they played.</li>
+      <li>The minstrels from {FACTION} left the way they came, singing. The colony heard the last verse from the road.</li>
     </farewell>
     <lines>
       <li>From the top, again.</li>
@@ -941,6 +983,9 @@
       <li>Who wrote this one?</li>
       <li>[lowtech] Mind the drum.</li>
       <li>[!lowtech] Plug it in somewhere.</li>
+      <li>Again, and slower.</li>
+      <li>That's the one they liked at the last town.</li>
+      <li>Who's got the spare strings?</li>
     </lines>
     <helpTexts>
       <li>[song] The minstrels {PLACE} played until late tonight, and the music carried all over the colony. {X_nameDef}'s fiddle could be heard from every bed.</li>
@@ -1054,6 +1099,7 @@
     <settled>
       <li>The mourners from {FACTION} have made a small camp {PLACE}, and laid their dead by a lamp a little way from the fire, a lamp that is never let go out.</li>
       <li>The mourners' camp is up {PLACE}. Through the day one of them sits by the lamp, keeping vigil.</li>
+      <li>The mourners from {FACTION} have made a quiet camp {PLACE}, and the one they carry lies by the lamp, where one of them always sits.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the mourners {PLACE}, says there's nothing left at home now but the grave they're carrying their dead to, and the others can see it filled without {X_objective}. {X_nameDef} asks whether there might be a place here.</li>
@@ -1062,6 +1108,7 @@
     <farewell>
       <li>The mourners from {FACTION} went on, walking slowly, with the lamp packed and their dead carried in their arms.</li>
       <li>[left:sprig] The mourners' camp {PLACE} is empty. On the way out, {X_nameDef} planted a sprig of green by the colony's gate, as {FACTION} do for those who let the dead rest a while.</li>
+      <li>The mourners from {FACTION} went on at first light, one of them carrying their dead and the others walking close around.</li>
     </farewell>
     <lines>
       <li>Rest a while.</li>
@@ -1070,6 +1117,9 @@
       <li>She'd have liked this place.</li>
       <li>He always took the long way.</li>
       <li>We'll sing for him at home.</li>
+      <li>Sit with them a while, I'll see to the fire.</li>
+      <li>Someone should always be by the lamp.</li>
+      <li>They'd want us to eat something.</li>
     </lines>
     <!-- On the way out, one of them walks to the colony's gate and plants a sprig of green there (in its season). -->
     <farewellWalk>

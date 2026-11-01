@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the stranger encounters that had the fewest (Council_Encounters_People.xml, _Reputation.xml,
+    _Lands.xml, _Creatures.xml, Rimfolk_Encounters_Skies.xml, _Kin.xml), merged in at startup (LetterVariantsDef).
+    Picked by the moment as A lives it (the weather, the hour, the season, what A is doing), who A is, the stranger
+    ([x:old]) and their people ([theirLowtech]). A and the stranger are together when it happens: within talking range
+    for people, in sight for animals.
+  -->
+
+  <!-- ===================== Visitors and traders ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncR_HopesForMeal</defName>
+    <encounter>Council_EncR_HopesForMeal</encounter>
+    <texts>
+      <li>[eating] {X_nameDef} sat down across from {A_nameDef} with an empty bowl and a hopeful face. {A_nameDef} filled it, and then found something more for the road.</li>
+      <li>[winter] {X_nameDef} had heard on the road that nobody leaves this colony hungry, and it was too cold a day to try anywhere else. {A_nameDef} made sure {X_pronoun} didn't.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncS_WinterGuest</defName>
+    <encounter>Council_EncS_WinterGuest</encounter>
+    <texts>
+      <li>{X_nameDef} of {FACTION} could hardly get the words out for the cold. {A_nameDef} did the talking for both of them until {X_possessive} teeth stopped chattering.</li>
+      <li>[night] {X_nameDef} had come in out of the winter night with frost in {X_possessive} eyebrows, and {A_nameDef} sat up with {X_objective}, trading stories until the shivering stopped.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncN_StarNames</defName>
+    <encounter>Council_EncN_StarNames</encounter>
+    <texts>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef} how {FACTION} read the year in the stars: when the plow rises, sow, and when it sets, bring the herds down.</li>
+      <li>[winter] On a cold, clear night {X_nameDef} showed {A_nameDef} the star {FACTION} call the Hearth, because it shines brightest when the nights are longest.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncR_SongsAndNews</defName>
+    <encounter>Council_EncR_SongsAndNews</encounter>
+    <texts>
+      <li>[theirLowtech] {X_nameDef} knew a song for every valley on the road, and taught {A_nameDef} one about these very hills that {A_nameDef} had never heard.</li>
+      <li>[winter] With the cold outside and the evening long, {X_nameDef} and {A_nameDef} traded news and old songs until the others drifted over to listen.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncP_VisitorDog</defName>
+    <encounter>Council_EncP_VisitorDog</encounter>
+    <texts>
+      <li>[rain] {X_nameDef}'s dog came in out of the rain, shook itself all over {A_nameDef}, and then sat down on {A_possessive} feet as if that settled it.</li>
+      <li>[child] {A_nameDef} taught {X_nameDef}'s dog to sit, or the dog taught {A_nameDef} to hand over scraps. {X_nameDef} said it was hard to tell which.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncR_WhatForFun</defName>
+    <encounter>Council_EncR_WhatForFun</encounter>
+    <texts>
+      <li>[working] {X_nameDef} watched {A_nameDef} at work and asked whether anyone here ever stops. {A_nameDef} laughed, and stopped long enough to talk.</li>
+      <li>[evening] {X_nameDef} taught {A_nameDef} a counting game from {FACTION} country, played with pebbles and a lot of shouting, and {A_nameDef} lost every round.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncK_HelpedGreeted</defName>
+    <encounter>Council_EncK_HelpedGreeted</encounter>
+    <texts>
+      <li>[theirLowtech] {X_nameDef} took {A_nameDef}'s hand in both of {X_possessive} own and said that {FACTION} still tell the story of what {A_nameDef} did for them.</li>
+      <li>{X_nameDef} had been told to find {A_nameDef} and say thank you from {FACTION}, and did, twice, in case the first one hadn't been enough.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncR_HaggleHarder</defName>
+    <encounter>Council_EncR_HaggleHarder</encounter>
+    <texts>
+      <li>[theirLowtech] {X_nameDef} weighed every coin {A_nameDef} handed over on a small brass balance, because word on the road is that the colony's coins run light. They didn't, and {X_nameDef} looked almost disappointed.</li>
+      <li>[skill:Social] {A_nameDef} and {X_nameDef} haggled like two people who had each been warned about the other. Neither of them won, and both of them enjoyed it.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncN_TraderLamp</defName>
+    <encounter>Council_EncN_TraderLamp</encounter>
+    <texts>
+      <li>[winter] {A_nameDef} and {X_nameDef} sat up late by the caravan's lamp with their hands round their cups, comparing winters, each one colder than the last.</li>
+      <li>[x:old] {X_nameDef} has kept a caravan on the road for forty years, and sat up late telling {A_nameDef} which of the roads are new.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The weather and the sky ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_Blizzard</defName>
+    <encounter>Council_EncW_Blizzard</encounter>
+    <texts>
+      <li>[outside] Bent double against the blizzard, {A_nameDef} nearly walked into {X_indefinite} sheltering by the wall. Neither of them had the strength left to be startled.</li>
+      <li>[indoors] From the window {A_nameDef} watched {X_indefinite} turn its back to the blizzard and stand there, white all down one side, waiting it out.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_FogShape</defName>
+    <encounter>Council_EncW_FogShape</encounter>
+    <texts>
+      <li>[morning] The fog hadn't lifted by breakfast. {A_nameDef} heard something moving out in it and stood still until {X_indefinite} drifted past, gray on gray.</li>
+      <li>[outside] {A_nameDef} called out into the fog, thinking it was one of the colony's own, and out of the gray {X_indefinite} lifted its head, looked at {A_objective}, and walked on.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_FogNight</defName>
+    <encounter>Council_EncW_FogNight</encounter>
+    <texts>
+      <li>[cold] The night fog was cold enough to bead on {A_nameDef}'s sleeves. Somewhere in it {X_indefinite} was moving along the wall, and {A_nameDef} listened until it moved off.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_Thunder</defName>
+    <encounter>Council_EncW_Thunder</encounter>
+    <texts>
+      <li>[child] {A_nameDef} hid under a blanket with {X_definite} through the storm, and explained that thunder was only giants moving furniture, which didn't convince {X_definite} at all.</li>
+      <li>[night] The storm woke {A_nameDef}, and {X_definite} was already at the bedside, trembling. {A_nameDef} talked to {X_objective} in the dark until the thunder rolled away.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_RainEaves</defName>
+    <encounter>Council_EncW_RainEaves</encounter>
+    <texts>
+      <li>[cold] Cold rain, and {X_definite} pressed so close to {A_nameDef} under the eaves that the two of them steamed together.</li>
+      <li>[working] {A_nameDef} kept working through the rain, with {X_definite} soaked at {A_possessive} heels and unwilling to be left behind.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_FirstSnow</defName>
+    <encounter>Council_EncW_FirstSnow</encounter>
+    <texts>
+      <li>In the doorway {X_definite} stared at the snow as if someone had played a trick on {X_objective}, then went out and ate some. {A_nameDef} laughed out loud.</li>
+      <li>[night] In the snowy dark {A_nameDef} heard {X_definite} snuffling about in the drifts, and let {X_objective} in caked white to the ears.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncL_FrostBreath</defName>
+    <encounter>Council_EncL_FrostBreath</encounter>
+    <texts>
+      <li>In the cold, still air {A_nameDef} could hear {X_indefinite} tearing at the frozen grass from clear across the field.</li>
+      <li>[working] {A_nameDef} stopped work to blow on {A_possessive} hands, and saw {X_indefinite} across the frosted field, breathing out clouds of its own.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_FirstFrost</defName>
+    <encounter>Council_EncW_FirstFrost</encounter>
+    <texts>
+      <li>[working] Out early to work in the first frost, {A_nameDef} found {X_indefinite} at the fence with its breath smoking, watching {A_objective} as if the cold were {A_possessive} doing.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncW_HeatLightning</defName>
+    <encounter>Council_EncW_HeatLightning</encounter>
+    <texts>
+      <li>[night] Too hot to sleep. {A_nameDef} sat out by the open door watching the sky flicker over the hills, and {X_indefinite} out in the grass flinched at every flash.</li>
+      <li>Silent light ran along the edge of the sky all evening. Out in the field {X_indefinite} paced back and forth, and {A_nameDef} couldn't sit still either.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The lands and the creatures ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncL_MarshLights</defName>
+    <encounter>Council_EncL_MarshLights</encounter>
+    <texts>
+      <li>[fog] In the fog over the marsh the lights hung low and still. {A_nameDef} felt {X_definite} press against {A_possessive} legs, and found it hard to look away.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncL_CaveMouth</defName>
+    <encounter>Council_EncL_CaveMouth</encounter>
+    <texts>
+      <li>[hot] In the heat of the day {X_definite} found the one cool place on the land, a cave mouth breathing cold air, and {A_nameDef} sat in it with {X_objective} longer than {A_pronoun} should have.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncC_ChildMeetsWild</defName>
+    <encounter>Council_EncC_ChildMeetsWild</encounter>
+    <texts>
+      <li>[spring] {A_nameDef} found {X_indefinite} grazing in the new grass and sat down a little way off. It let {A_objective} stay, and {A_nameDef} came home talking about nothing else.</li>
+      <li>[rain] {A_nameDef} and {X_indefinite} stood in the same patch of rain at the edge of the field and looked at each other a long time. Then {X_definite} shook the water off and wandered away.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncC_BeastSighted</defName>
+    <encounter>Council_EncC_BeastSighted</encounter>
+    <texts>
+      <li>[night] {A_nameDef} swears {X_definite} came right up to the wall in the dark, close enough to hear it breathe. {A_nameDef} hasn't slept well since.</li>
+      <li>[working] {A_nameDef} looked up from the work and saw {X_definite} watching from the trees, and finished the job with {A_possessive} back to the wall.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncC_MyBeastReturns</defName>
+    <encounter>Council_EncC_MyBeastReturns</encounter>
+    <texts>
+      <li>[hurt] {A_nameDef}'s old wounds ached when {X_definite} came out of the trees again, as if they remembered too.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== What their people remember, and what the colony has grown into ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncM_DebtMentioned</defName>
+    <encounter>Council_EncM_DebtMentioned</encounter>
+    <texts>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef} a story about a neighbor who took a gift and forgot the giver. It was a very pointed story, and {A_nameDef} understood every word of it.</li>
+      <li>{X_nameDef} asked after the colony's stores and its harvest, then remarked how glad {FACTION} had been to help when the colony had neither.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncM_ColdShoulder</defName>
+    <encounter>Council_EncM_ColdShoulder</encounter>
+    <texts>
+      <li>[eating] {X_nameDef} took {X_possessive} bowl to the far end of the table when {A_nameDef} sat down. The other visitors kept their eyes on their food.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncM_GrudgingTrader</defName>
+    <encounter>Council_EncM_GrudgingTrader</encounter>
+    <texts>
+      <li>[skill:Social] {A_nameDef} heard {X_nameDef} out on everything the colony did to {FACTION}, agreed with some of it, and got an ordinary price for the trouble.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncM_RescueThanks</defName>
+    <encounter>Council_EncM_RescueThanks</encounter>
+    <texts>
+      <li>[x:old] {X_nameDef} is old enough to have known the one the colony took in, and said so to {A_nameDef}, slowly, holding on to {A_possessive} sleeve.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncG_GoodHosts</defName>
+    <encounter>Council_EncG_GoodHosts</encounter>
+    <texts>
+      <li>[winter] Someone on the road had told {X_nameDef} that this colony never leaves a traveler out in the cold, and {X_nameDef} asked {A_nameDef}, shyly, whether it was true. {A_nameDef} said it was, and {FACTION} will hear so.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncG_Devout</defName>
+    <encounter>Council_EncG_Devout</encounter>
+    <texts>
+      <li>[evening] {X_nameDef} asked {A_nameDef} to teach {X_objective} the colony's evening words, and said them back carefully, twice, to be sure of them. {A_nameDef} hadn't said them so carefully in a while.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_EncG_LongMemoried</defName>
+    <encounter>Council_EncG_LongMemoried</encounter>
+    <texts>
+      <li>[x:old] {X_nameDef} is old enough to remember this land before the colony, and wanted to know everything that had happened on it since. {A_nameDef} told it all, in order, and was surprised how much there was.</li>
+    </texts>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

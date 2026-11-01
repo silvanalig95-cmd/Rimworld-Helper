@@ -43,6 +43,12 @@
           <li>[!lowtech] ...on a glitterworld, they say...</li>
           <li>[lowtech] ...the old king's crown...</li>
           <li>[lowtech] ...a knight with no name...</li>
+          <li>...and that's how the hill got its name...</li>
+          <li>...nobody ever saw the cart again...</li>
+          <li>...so she counted the sheep a second time...</li>
+          <li>...and the river ran the wrong way for a day...</li>
+          <li>[lowtech] ...the miller's three sons...</li>
+          <li>[!lowtech] ...the lights in the old city came back on...</li>
         </lines>
         <!-- The colony gathers round to hear the tales (PlayOut/): those who come are near enough to be told them. -->
         <effects>
@@ -84,6 +90,10 @@
           <li>Rest well.</li>
           <li>We never forgot you.</li>
           <li>Thank you for looking after them.</li>
+          <li>Sleep easy, now.</li>
+          <li>It's a good place to rest.</li>
+          <li>We'll tell the others we found you.</li>
+          <li>They kept your grave well.</li>
         </lines>
         <!-- The one who knew the dead best goes to stand at the grave with them (PlayOut/). -->
         <effects>

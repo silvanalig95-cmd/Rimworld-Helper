@@ -83,6 +83,8 @@
       <li>[!lowtech] Wash your hands.</li>
       <li>Hold still, this stings.</li>
       <li>Come back tomorrow.</li>
+      <li>Chew it slowly, it's bitter.</li>
+      <li>Keep it clean and keep it dry.</li>
     </lines>
     <!-- Before they go, their best healer walks round the colony: the hurt and sick first, then those they treated,
          seeing to wounds that need it (CampLook.cs). -->
@@ -127,6 +129,7 @@
         <outcomes>
           <li>The healers' apprentice will come to see {A_nameDef} this afternoon, with {X_nameDef} looking over {X_possessive} shoulder.</li>
           <li>{X_nameDef} is sending the apprentice up to the colony with a bag of remedies, and will come too, to watch.</li>
+          <li>{X_nameDef} will bring the apprentice up to see {A_nameDef}, and has promised to stand at the apprentice's elbow the whole time.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} said they understood, and the apprentice went back to rolling bandages for the next town.</li>
@@ -244,6 +247,8 @@
       <li>[ideology] Praise to {IDEO}.</li>
       <li>Ring the bell, it's time.</li>
       <li>Rest now, walk tomorrow.</li>
+      <li>Lift together, and gently.</li>
+      <li>Mind the relics, they're older than all of us.</li>
     </lines>
     <!-- Said at the colony while they bless it at dusk (the errand for the help "blessing"). -->
     <momentLines>
@@ -557,6 +562,8 @@
       <li>[!lowtech] The batteries are flat.</li>
       <li>Mark it here.</li>
       <li>The map was wrong again.</li>
+      <li>Hold still, I'm sighting on you.</li>
+      <li>Write the height next to it.</li>
     </lines>
     <helpTexts>
       <li>[survey] {X_nameDef} from the surveyors' camp has been studying the colony's rock, and walked {A_nameDef} out to show {A_objective} a seam of {THING} the colony never knew was there.</li>
@@ -580,6 +587,7 @@
         <outcomes>
           <li>Two of the surveyors will set up in the middle of the colony this afternoon. {X_nameDef} asked that the colony's children keep off the tripod.</li>
           <li>{X_nameDef} thanked {A_nameDef} and went to fetch the instrument, which travels in a padded box only {X_pronoun} may carry.</li>
+          <li>Two of the surveyors will take their sighting from the middle of the colony this afternoon, and tell the colony what its rock holds when they're done.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} said they'd manage from the ridge, and the map would be less true for it.</li>

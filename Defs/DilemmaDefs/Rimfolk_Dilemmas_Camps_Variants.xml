@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the council's questions about a camp (Rimfolk_Dilemmas_Camps.xml) to read, merged in at startup
+    (LetterVariantsDef). They fit any kind of camp; the tags are the moment as A lives it (the weather, the season, the
+    hour), who A and B are ([trait:Kind], [skill:Plants], [b:skill:Animals]), the camp's person ([x:old]), their people
+    ([theirLowtech]) and the colony's name ([colony:Generous]). Each outcome tells what its answer's effects do.
+  -->
+
+  <!-- ===================== One of them wants to stay ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_StayBehind</defName>
+    <dilemma>Rimfolk_DlmC_StayBehind</dilemma>
+    <texts>
+      <li>[x:old] {X_nameDef} is the oldest in the {FACTION} camp, and says {X_pronoun} has walked enough roads. {X_nameDef} would like to stay on at the colony when the camp goes, near {A_nameDef}, who has sat through {X_possessive} stories most evenings. The camp says it needs {X_possessive} knowledge of the road more than ever.\n\n{A_nameDef} brought it to the council.</li>
+      <li>{X_nameDef} of the {FACTION} camp has a trade the colony could use and a friend in {A_nameDef}, and both of them would like {X_objective} to stay when the camp moves on. The camp's elders would not. They are short of hands as it is, and have said so to anyone who will listen.</li>
+      <li>[rain] {X_nameDef} came up from the {FACTION} camp through the rain to find {A_nameDef}, and asked whether there might be a place at the colony when the camp moves on. The elders have already said no, and said it loudly.\n\n{A_nameDef} brought it to the council.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{A_nameDef} went down to the camp to help {X_nameDef} with {X_possessive} things. The camp's elders turned their backs, and {X_nameDef} is one of the colony now.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[skill:Social] {A_nameDef} let the elders talk themselves out first, then made the case in a few words. By the time the pot was empty they had agreed. {X_nameDef} stays, with their blessing.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} sat at the camp's fire and made the case twice over. The elders listened politely and said no both times. {X_nameDef} goes on with them.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[colony:Generous] {A_nameDef} carried the silver down to the camp. The elders counted it and said they'd heard on the road that the colony was open-handed. {X_nameDef} stays.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[trait:Kind] {A_nameDef} told {X_nameDef} gently, and promised to look out for the camp on the road. {X_nameDef} went back down to the camp, and the elders nodded to the colony's gate that evening.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Missing from the camp ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_Theft</defName>
+    <dilemma>Rimfolk_DlmC_Theft</dilemma>
+    <texts>
+      <li>{X_nameDef} of the {FACTION} camp has come up to the colony about a missing purse, and won't look {A_nameDef} in the eye. Someone at the camp saw {A_nameDef} near their bedrolls yesterday. {A_nameDef} says {A_pronoun} went down to give back a borrowed pot.</li>
+      <li>[theirHightech] A sealed case has gone from the {FACTION} camp with their trade money in it, and {X_nameDef} has come to the gate about it. One of theirs saw {A_nameDef} at the edge of the camp last night. {A_nameDef} swears {A_pronoun} never went closer than that.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{A_nameDef} and {B_nameDef} searched every corner of the colony and turned up nothing but old boots. The next morning the camp found what they'd lost themselves, rolled up in a blanket, and {X_nameDef} came up to say so.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[b:trait:Kind] {B_nameDef} took the silver down to the camp and said the colony was sorry for their trouble. {A_nameDef} wasn't asked, and hasn't forgotten it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The council told {X_nameDef} it trusts {A_nameDef}'s word over a glimpse at dusk. {X_nameDef} left without another word, and the camp keeps to itself now.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{A_nameDef} went down to the camp and answered every question they had. While they were still asking, one of their own turned it up in a bundle of bedding.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} went down to the camp and told them plainly {A_pronoun} took nothing. They heard {A_objective} out, and didn't believe it.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== One of theirs in the storeroom ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_CaughtInStores</defName>
+    <dilemma>Rimfolk_DlmC_CaughtInStores</dilemma>
+    <texts>
+      <li>[night] {A_nameDef} heard the storeroom door in the night and found {X_nameDef} of the {FACTION} camp inside, filling a sack by feel in the dark. {X_nameDef} stopped, and said the camp's pot has been thin all week and the elders know nothing about this.</li>
+      <li>{X_nameDef} of the {FACTION} camp tried to walk out of the colony's storeroom as if {X_pronoun} belonged there, a sack over one shoulder. {A_nameDef} stopped {X_objective} at the door. The camp has gone short since they came, {X_nameDef} says, and asks {A_nameDef} not to tell the elders.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[trait:Kind] {A_nameDef} filled the sack to the top, carried it down to the camp beside {X_nameDef}, and said nothing to the elders about where it came from.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[winter] {X_nameDef} spent the short day felling trees near the camp and stacked the logs where the colony could fetch them. Both sides call it square.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} brought {X_nameDef} back to the camp and told the elders what had happened. They were short with the colony, and shorter with {X_nameDef}.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[colony:Guarded] The colony's gate is shut to the camp now, as it is to most. The camp stays on its own side, and the two fires keep their distance.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Their beasts in the fields ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_HerdInFields</defName>
+    <dilemma>Rimfolk_DlmC_HerdInFields</dilemma>
+    <texts>
+      <li>[rain] The {FACTION} camp's beasts have wandered into the colony's fields in the rain and are grazing along the rows. {A_nameDef} spotted them first. Their people are under cover and haven't noticed.</li>
+      <li>[morning] {A_nameDef} went out to the fields early and found them full of the {FACTION} camp's beasts, eating their way down the rows. The camp isn't up yet.</li>
+      <li>[skill:Plants] The {FACTION} camp's beasts are in the colony's fields, and {A_nameDef}, who planted most of it, came in white-faced to say so. They're still eating.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[rain] {A_nameDef} chased the beasts out of the rows in the rain, muddy to the knees, and they went back toward the camp at a trot. The camp's people stayed under cover and let {A_objective} do it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[b:skill:Animals] {B_nameDef} walked in among the beasts as if they were {B_possessive} own, and with one of the camp's people led them out of the rows and home without a plant trampled.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[skill:Plants] {A_nameDef} went down to the camp and told them, plant by plant, what the beasts had eaten. They paid, and left the silver at the edge of their camp for the colony to fetch.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[colony:Generous] The colony let the beasts eat their fill, as it would for anyone's. Their people came for them later and thanked the colony more than once.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An old quarrel at the camp ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_Feud</defName>
+    <dilemma>Rimfolk_DlmC_Feud</dilemma>
+    <texts>
+      <li>[theirLowtech] Riders of {ENEMY} were seen on the road by the {FACTION} camp this morning, {X_nameDef} says, and they won't leave the camp in peace while it stands on the colony's land. The quarrel goes back to their grandparents.\n\n{X_nameDef} wants to know whether the colony will stand with the camp, or ask it to go.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[trait:Brave] {A_nameDef} went out to the gate and told the riders of {ENEMY} that the camp is the colony's guest. They argued, then went. The camp's fire burned high that night.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[b:skill:Social] {B_nameDef} sat the two of them at opposite ends of the colony's table and moved them closer one course at a time. By the end of supper the old debt had a number on it that both could live with.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[colony:Guarded] {A_nameDef} told {X_nameDef} the colony keeps out of other people's quarrels. The camp packed up within the hour, and the riders watched them go.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A friend from the camp ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_Playmates</defName>
+    <dilemma>Rimfolk_DlmC_Playmates</dilemma>
+    <texts>
+      <li>[summer] {A_nameDef} and {X_nameDef} from the {FACTION} camp have spent every long evening this week out in the grass between the camp and the colony, and come back each time with grass stains and a new secret. {X_nameDef}'s people want to know whether the colony minds. Some of the colony do.</li>
+      <li>[rain] {A_nameDef} and {X_nameDef}, a child from the {FACTION} camp, have spent the wet days together, half of each at the camp and half at the colony. Now {A_nameDef} wants {X_nameDef} to come to supper.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[rain] The council let them be. {A_nameDef} ran down to the camp through the puddles and came back at dusk soaked through and very pleased.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[winter] {X_nameDef}'s family came up out of the cold for supper and stayed at the table long after it was cleared. The two children fell asleep under it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} stays on the colony's side now, and waves to {X_nameDef} across the grass when no grown-up is looking.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Their feast day ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_Festival</defName>
+    <dilemma>Rimfolk_DlmC_Festival</dilemma>
+    <texts>
+      <li>[winter] It's the winter feast among the {FACTION}, {X_nameDef} says, the one they keep with music until late, and a camp in the cold is a poor place for it. {X_nameDef} asked {A_nameDef} whether the camp might keep it in the colony's hall this year.</li>
+      <li>[theirLowtech] {X_nameDef} came up from the {FACTION} camp to say that tomorrow is their harvest feast, kept with bread and drums, and that a feast is better kept among friends. Would the colony's hall be theirs for an evening?</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[winter] The camp's people came up out of the cold at dusk with their drum, and the hall stayed loud until late.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} took a sack of the colony's food down to the camp in the afternoon, and at dusk the colony went down after it. There was music until late.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>The camp kept their feast at their own fire. The colony could hear the singing from the walls.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The fee falls short ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_DlmC_FeeShort</defName>
+    <dilemma>Rimfolk_DlmC_FeeShort</dilemma>
+    <texts>
+      <li>[winter] {X_nameDef} of the {FACTION} camp came up to say the fee, {COUNT} silver, isn't there. Winter has eaten into what they had. They'd make it good with a beast or a day's work, if the colony will take it.</li>
+      <li>{X_nameDef} brought the {FACTION} camp's fee up in a cloth and opened it in front of {A_nameDef}: it's short of the {COUNT} silver they agreed. The trading has been poor, {X_nameDef} says, and asks whether the colony would take something else for the rest.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[skill:Animals] {X_nameDef} brought a beast up on a rope. {A_nameDef} looked it over, teeth and feet, before taking the rope. The fee is settled.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[winter] The camp's people spent the short day felling trees near their camp, and left thirty logs stacked for the colony. The fee is settled.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[colony:Merciful] The council let it go, as the colony tends to. {X_nameDef} thanked {A_nameDef} twice and went back down to the camp.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <riskLines>
+          <li>The camp paid what it could and was packed up before dark. They won't be stopping here again.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More for what visitors say (Rimfolk_VisitorLines.xml, Rimfolk_VisitorActLines.xml, Rimfolk_VisitorTrade.xml,
+    Rimfolk_VisitorNotices.xml), merged into those pools at startup. A visitor's voice comes from their own traits, and
+    a tagged line that fits wins most of the time, so each voice needs more than one line for each moment, and the
+    kinds of visitor that come most often (riders, drivers, drovers, families, envoys, settlers) need lines of their
+    own. The weather, the season and the hour are the visitor's moment on the map. One short sentence each.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_More_VisitorLines</defName>
+    <pool>Rimfolk_VisitorLines</pool>
+    <lines>
+      <plain>
+        <!-- The weather, the season and the hour. -->
+        <li>[arrive,snow] Snow the whole way, and it's not done yet.</li>
+        <li>[arrive,night] Sorry to come knocking in the dark.</li>
+        <li>[arrive,hot] Is there any shade near this gate?</li>
+        <li>[arrive,fog] Couldn't see your gate until we were nearly on it.</li>
+        <li>[arrive,storm] That storm chased us the whole last mile.</li>
+        <li>[arrive,spring] Mud to the knees on every road this time of year.</li>
+        <li>[arrive,summer] Nothing but dust on the road since the river.</li>
+        <li>[arrive,fall] We wanted to get here before the roads turned bad.</li>
+        <li>[arrive,morning] We set off in the dark to be here this early.</li>
+        <li>[arrive,afterraid] We heard there was fighting here, is everyone all right?</li>
+        <li>[arrive,old] My legs aren't what they were, so I'll sit if I may.</li>
+        <li>[arrive,theirLowtech] Three days on foot from the river, and here we are.</li>
+        <li>[arrive,theirHightech] The map said there'd be a settlement here, and for once it was right.</li>
+        <li>[wait,rain] We'll keep under the wall, out of the rain, until you answer.</li>
+        <li>[wait,snow] The snow's settling on my shoulders out here.</li>
+        <li>[wait,hot] A cup of water while we wait wouldn't go amiss.</li>
+        <li>[wait,cold] I can't feel my feet, but I'll wait.</li>
+        <li>[wait,evening] It'll be dark soon, and I'd rather not walk back in it.</li>
+        <li>[wait,morning] No hurry, the day's still young.</li>
+        <li>[wait] Your people take their time over a thing, I'll say that.</li>
+        <li>[stay,winter] A night out of the wind, that's all we were hoping for.</li>
+        <li>[stay,rain] A dry corner, thank you, we'll be no trouble at all.</li>
+        <li>[stay,theirLowtech] We'll be gone before your fires are lit.</li>
+        <li>[stay] We'll keep to ourselves and leave the place as we found it.</li>
+        <li>[pass,rain] Heads down and keep moving, it's only rain.</li>
+        <li>[pass,snow] Walk in the tracks of the one in front.</li>
+        <li>[pass,night] Quiet going past, they'll be asleep in there.</li>
+        <li>[pass,hot] Water at the next ford, keep going.</li>
+        <li>[pass,animals] Keep the beasts on the road and out of their fields.</li>
+        <li>[pass] Nod to them as we go, it costs nothing.</li>
+        <li>[leave,rain] A wet road home, but it's home.</li>
+        <li>[leave,snow] If we go now we'll beat the worst of the drifts.</li>
+        <li>[leave,morning] An early start, and we'll be at the river by noon.</li>
+        <li>[leave,evening] We'll walk till dark and sleep by the road.</li>
+        <li>[leave,theirHightech] Back to the road, and the next dot on the map.</li>
+        <li>[leave] Thank your council for hearing us out.</li>
+        <li>[fire] Pass the pot round, there's enough for one more.</li>
+        <li>[fire,winter] Shift up, there's room by the fire if we squeeze.</li>
+        <li>[fire,rain] Wet wood, but it'll catch if you're patient.</li>
+        <li>[fire,night] Last stick on, then we sleep.</li>
+        <li>[fire,clear,night] Not a cloud tonight, look at those stars.</li>
+
+        <!-- The kinds of visitor that come most often. -->
+        <li>[arrive,rider] I've a message from my people, and I'm to wait for your answer.</li>
+        <li>[arrive,rider,winter] The ford froze over, so I came the long way round.</li>
+        <li>[arrive,rider,theirLowtech] Our headman sends his greetings, and a question.</li>
+        <li>[wait,rider] I'll rest my legs while your people talk it over.</li>
+        <li>[wait,rider,evening] If I set off by dark I'll be home by morning.</li>
+        <li>[wait,rider] My people will be watching the road for me.</li>
+        <li>[stay,rider] One night, and I'm off at first light.</li>
+        <li>[leave,rider] I'll carry your word back just as you gave it.</li>
+        <li>[leave,rider] Straight home, and no stopping on the way.</li>
+        <li>[arrive,driver] Long road, short pay, same as ever.</li>
+        <li>[arrive,driver,rain] The road's all mud from here to the river.</li>
+        <li>[wait,driver] I'm paid by the trip, not the hour, so take your time.</li>
+        <li>[wait,driver,animals] The beast could do with water, if it's no trouble.</li>
+        <li>[leave,driver] Back down the road before the light goes.</li>
+        <li>[leave,driver,animals] Up, you lazy beast, we're going home.</li>
+        <li>[arrive,drovers] We'll keep them well clear of your crops.</li>
+        <li>[stay,drovers] One of us sits up with the herd, we take turns.</li>
+        <li>[fire,drovers] Count them again in the morning, I make it one short.</li>
+        <li>[pass,drovers,animals] Steady them past the gate, don't let them spook.</li>
+        <li>[leave,drovers,animals] Get them moving, there's grass in the next valley.</li>
+        <li>[arrive,pilgrims,winter] Even the holy road is cold in winter.</li>
+        <li>[wait,pilgrims] Whatever you decide, we'll bless this gate.</li>
+        <li>[pass,pilgrims] Peace on this house, and on its fields.</li>
+        <li>[leave,pilgrims] We'll remember this house in our prayers.</li>
+        <li>[fire,pilgrims] One more hymn, then sleep.</li>
+        <li>[arrive,family] Stay close, all of you, and mind your manners.</li>
+        <li>[arrive,family,cold] Keep your hands in your sleeves while we wait.</li>
+        <li>[wait,family] Sit down, we may be here a while.</li>
+        <li>[stay,family] Everyone lie down, and no more talking.</li>
+        <li>[leave,family,morning] Up you get, it's a long way before supper.</li>
+        <li>[arrive,envoy] I speak for my people, and I'll speak to your council.</li>
+        <li>[wait,envoy] My people are patient, up to a point.</li>
+        <li>[leave,envoy] Your answer will be carried back word for word.</li>
+        <li>[arrive,runner,hot] Water first, then I'll tell you why I've come.</li>
+        <li>[wait,runner] I'll get my breath back while you decide.</li>
+        <li>[leave,runner] Downhill all the way home, at least.</li>
+        <li>[arrive,settlers] We're from the new place down the valley, your neighbors.</li>
+        <li>[arrive,settlers,theirLowtech] Three fields cleared and one house up, so far.</li>
+        <li>[wait,settlers] We know you're busy, we're busy too.</li>
+        <li>[leave,settlers] Come and see our place some time.</li>
+        <li>[wait,travelers] Anywhere out of the wind would do.</li>
+        <li>[stay,travelers,winter] We'll sleep in our coats, don't trouble yourselves.</li>
+        <li>[leave,travelers] We'll tell the next town where to find you.</li>
+        <li>[arrive,foreman] I've a crew waiting on me, so I'll keep it short.</li>
+        <li>[wait,foreman] My crew can't start until I bring them word.</li>
+        <li>[leave,foreman] Back to the crew, they'll want to hear it.</li>
+        <li>[wait,elder] I've waited longer for less, take your time.</li>
+        <li>[leave,elder] My knees thank you for the rest, and so do I.</li>
+        <li>[wait,herald] I am to wait for the colony's reply.</li>
+        <li>[leave,herald] My lord will have your answer as you gave it.</li>
+        <li>[arrive,hunters,theirLowtech] We follow the herd, and the herd came here.</li>
+        <li>[wait,hunters] The trail's going cold while we stand here.</li>
+        <li>[stay,hunters] We'll be up before the game is.</li>
+        <li>[leave,hunters] Good hunting country, this.</li>
+        <li>[fire,hunters] Tomorrow we try the far ridge.</li>
+        <li>[arrive,wardens] We keep the road, and the road brought us to you.</li>
+        <li>[wait,wardens] The road can spare us an hour.</li>
+        <li>[leave,wardens] Back to the road, it doesn't watch itself.</li>
+        <li>[pass,retinue] Heads up, and keep in line past the gate.</li>
+        <li>[pass,band] Look at the gate as we go, but don't stop.</li>
+        <li>[pass,band,theirLowtech] Blades stay sheathed, we're only passing.</li>
+        <li>[pass,herders,animals] Walk them slow, they've come a long way.</li>
+        <li>[stay,herders] The animals will sleep well on this grass.</li>
+        <li>[wait,singer] I'll hum while I wait, if nobody minds.</li>
+        <li>[stay,singer] A song tonight to pay for the roof, then.</li>
+        <li>[leave,singer] If you catch yourself humming it, think of me.</li>
+        <li>[glean,gleaners] Another handful, and the sack's half full.</li>
+        <li>[glean,gleaners] Slow and careful, mind the rows.</li>
+        <li>[leave,gleaners] Full sacks, and your fields none the worse.</li>
+        <li>[find,prospectors,winter] Cold water and colder hands, but there's color.</li>
+        <li>[find,prospectors] Not much, but it shines.</li>
+        <li>[pass,mourners] Keep it level on the slope.</li>
+        <li>[pass,mourners,rain] Keep the rain off them, as best you can.</li>
+        <li>[arrive,orphans] They're good children, they won't be any trouble.</li>
+        <li>[wait,orphans] Sit still now, the people here are deciding.</li>
+        <li>[arrive,carter] They even took my boots, can you believe it.</li>
+        <li>[wait,carter] A meal, that's all, then I'll walk on.</li>
+        <li>[arrive,reeve] The town asked me to come, or I'd not have troubled you.</li>
+        <li>[leave,tinker] Anything breaks, keep it for me till next time.</li>
+      </plain>
+      <warm>
+        <li>[arrive] Thank you for seeing us at all.</li>
+        <li>[arrive] It's good to come to a place where people are at work.</li>
+        <li>[wait] Take your time, it's a lot to ask.</li>
+        <li>[wait] I'll keep out of everyone's way while you talk.</li>
+        <li>[stay] We'll leave your corner as clean as we found it.</li>
+        <li>[stay] You've been good to strangers, and we won't forget it.</li>
+        <li>[pass] Good health to everyone inside.</li>
+        <li>[pass] We'll tell the road you let us by in peace.</li>
+        <li>[leave] Thank you, all of you, for the welcome.</li>
+        <li>[leave] If you're ever our way, ask for us by name.</li>
+      </warm>
+      <blunt>
+        <li>[arrive] Let's get this done, I've a long walk back.</li>
+        <li>[arrive] I'll say it once, so listen.</li>
+        <li>[wait] I didn't walk all this way to stand at a gate.</li>
+        <li>[wait] Yes or no will do.</li>
+        <li>[stay] A roof's a roof, I'm not fussy.</li>
+        <li>[stay] Nobody wake me before it's light.</li>
+        <li>[pass] Nothing to see here, keep walking.</li>
+        <li>[leave] Right, that's done.</li>
+        <li>[leave] Don't expect me back soon.</li>
+      </blunt>
+      <cheerful>
+        <li>[arrive] Hello, the gate, is anybody home?</li>
+        <li>[arrive,clear] What a fine day for a walk!</li>
+        <li>[wait] I don't mind waiting, it's a pretty spot.</li>
+        <li>[wait] I'll count the clouds while your people decide.</li>
+        <li>[stay] A real roof tonight, I could sing.</li>
+        <li>[stay] Best offer I've had all month!</li>
+        <li>[pass] Lovely place, wish we could stop!</li>
+        <li>[pass,morning] Morning, neighbors!</li>
+        <li>[leave] That was a good stop, we'll come this way again.</li>
+        <li>[leave,clear] Sun on our backs all the way home!</li>
+      </cheerful>
+      <gloomy>
+        <li>[arrive] We've been turned away twice already this week.</li>
+        <li>[arrive,rain] Wet to the bone, and still a long way from anywhere.</li>
+        <li>[wait] They'll say no, they always do.</li>
+        <li>[stay] A night's sleep, then the road again.</li>
+        <li>[stay] It's more than most places would give us.</li>
+        <li>[pass] Another place we can't stop at.</li>
+        <li>[pass] Keep walking, there's nothing for us here.</li>
+        <li>[leave] The walk back is always longer.</li>
+      </gloomy>
+      <cold>
+        <li>[arrive] Fetch whoever decides things here.</li>
+        <li>[arrive] I'm expected back, so be quick about it.</li>
+        <li>[wait] Your answer, when you have it.</li>
+        <li>[wait] I've stood at worse gates.</li>
+        <li>[stay] A place to sleep, nothing more is needed.</li>
+        <li>[stay] Wake me when it's light.</li>
+        <li>[pass] Eyes on the road.</li>
+        <li>[pass] Nothing here we need.</li>
+        <li>[leave] We're finished here.</li>
+        <li>[leave] Good day to you.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- At the colony's instrument, the hunters' kill and its dressing (Visitors/VisitorActs.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_More_VisitorActLines</defName>
+    <pool>Rimfolk_VisitorActLines</pool>
+    <lines>
+      <plain>
+        <li>[play] Here's one my mother used to play.</li>
+        <li>[play] Sit a while, this one's short.</li>
+        <li>[play,night] A quiet one, so nobody's woken.</li>
+        <li>[play,winter] Cold fingers, so forgive the first few notes.</li>
+        <li>[play,theirLowtech] We've nothing like this at home, only pipes and drums.</li>
+        <li>[play,singer] You sing the chorus, I'll keep the tune.</li>
+        <li>[kill] Clean, it never knew a thing.</li>
+        <li>[kill,winter] Thin from the winter, but it'll do.</li>
+        <li>[kill,hunters] One more like that and we can go home.</li>
+        <li>[kill,theirHightech] One shot, that's how it's done.</li>
+        <li>[dress] Keep the liver, it's the best part.</li>
+        <li>[dress,winter] The cold will keep the meat, at least.</li>
+        <li>[dress,theirLowtech] The sinew's for bowstrings, the bones for needles.</li>
+        <li>[dress,night] Hold the light closer, I can't find the joint.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- At the colony's market stalls (Visitors/VisitorTrade.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_More_MarketBuy</defName>
+    <pool>Rimfolk_Pool_MarketBuy</pool>
+    <lines>
+      <plain>
+        <li>[buy] A fair price, and a fair stall.</li>
+        <li>[buy,clothes,winter] Something warm before the passes, good.</li>
+        <li>[buy,meal,winter] Food for a cold road, worth every coin.</li>
+        <li>[buy,drink,winter] Something to keep the cold out tonight.</li>
+        <li>[buy,medicine,pilgrims] For the sick we meet on the road.</li>
+        <li>[buy,roadfood,drovers] That'll see us to the next market.</li>
+        <li>[buy,rawfood,family] The children will eat well tonight.</li>
+        <li>[buy,textiles] Enough cloth for a new coat, at last.</li>
+        <li>[buy,art,theirHightech] Handmade, they'll love this back home.</li>
+        <li>[buy,metal,theirLowtech] Good metal's hard to come by where we live.</li>
+        <li>[dear] Maybe on the way back, if the road's been kind.</li>
+        <li>[dear,theirLowtech] We don't carry that much silver between us.</li>
+        <li>[none] I'll look again on the way back.</li>
+        <li>[none] Nothing on the counter I need, never mind.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- What they notice of the colony (Immersion/VisitorNotices.cs). -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_More_VisitorNotices</defName>
+    <pool>Council_Pool_VisitorNotices</pool>
+    <lines>
+      <plain>
+        <li>[shrine] A shrine kept this clean says something about a place.</li>
+        <li>[shrine,theirLowtech] Your shrine is plainer than ours, but well kept.</li>
+        <li>[fields,summer] Tall crops already, you'll eat well this year.</li>
+        <li>[fields,fall] A good harvest coming, by the look of it.</li>
+        <li>[beasts] You've more beasts than my whole village.</li>
+        <li>[beasts,theirLowtech] Good beasts, well fed, someone here knows animals.</li>
+        <li>[art] Someone here has a good eye.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>
