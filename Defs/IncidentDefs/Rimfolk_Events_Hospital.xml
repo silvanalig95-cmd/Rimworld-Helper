@@ -35,6 +35,10 @@
           <li>[!camp,known,!lowtech] The nearest doctor on {X_nameDef}'s road is days away, and travelers say the colony's hospital is a good one. So {X_nameDef} of {FACTION} has come to the gate with a {TALE}, and asks for a doctor.</li>
           <li>[!camp,renowned] Across the region they have a saying now: if you must fall ill, fall ill near the colony. {X_nameDef} of {FACTION} has taken it at its word, and come from the far side of the region with a {TALE}. {X_nameDef} would like to see {A_nameDef}, if there's time.</li>
           <li>[!camp] {X_nameDef}, a traveler of {FACTION}, stopped at the colony with a {TALE} and asked for its doctor by name: {A_nameDef}. Someone on the road had told {X_objective} to.</li>
+          <li>[!camp,winter] {X_nameDef} of {FACTION} has come through the cold with a {TALE}, and asks whether {A_nameDef} could spare an hour for it.</li>
+          <li>[!camp,skill:Medicine] People on the road say the colony's doctor, {A_nameDef}, will look at anything and seems to enjoy it. {X_nameDef} of {FACTION} has come with a {TALE} to find out if that's true.</li>
+          <li>[!camp,colony:Merciful] Word on the road is that this colony turns nobody away. {X_nameDef} of {FACTION} is counting on it, with a {TALE} and not much silver.</li>
+          <li>[camp,rain] {X_nameDef} of {FACTION} came over from the camp through the rain with a {TALE}, and asked for {A_nameDef} by name.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -45,6 +49,9 @@
               <li>[camp] {A_nameDef} went over to the camp with a bag and treated {X_nameDef}'s {TALE} by their fire, with most of the camp watching. They've been calling {A_objective} "the doctor" ever since, as if there were no other.</li>
               <li>[lowtech] {A_nameDef} ground something bitter, wrapped something warm, and sent {X_nameDef} off with instructions for the {TALE}.</li>
               <li>[!lowtech] {A_nameDef} examined {X_nameDef}, treated the {TALE} and wrote out what to do for the next few days in a clear hand. {X_nameDef} folded the paper into {X_possessive} shirt pocket and patted it twice.</li>
+              <li>{A_nameDef} took a medicine from the stores, found {X_nameDef} and saw to the {TALE} there and then. {FACTION} will hear where the help came from.</li>
+              <li>[skill:Medicine] {A_nameDef} fetched a medicine from the shelf, knelt by {X_nameDef} and treated the {TALE} with the quick hands of someone who loves the work, talking all the while.</li>
+              <li>[winter] {A_nameDef} fetched a medicine and treated {X_nameDef}'s {TALE} with cold fingers and a great deal of advice about keeping warm.</li>
             </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_TendStranger" />
@@ -58,6 +65,9 @@
           <li>
             <label>Medicine for the road (1)</label>
             <outcome>{A_nameDef} handed over a dose of medicine and some advice about the {TALE}, and {X_nameDef} went on {X_possessive} way grateful.</outcome>
+            <outcomes>
+              <li>{A_nameDef} gave {X_nameDef} a dose of medicine and had {X_objective} say back twice when to take it.</li>
+            </outcomes>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
@@ -67,6 +77,9 @@
           <li>
             <label>A word of advice, nothing more</label>
             <outcome>{A_nameDef} told {X_nameDef} what would help with the {TALE} and wished {X_objective} well. The medicine stays on the shelf.</outcome>
+            <outcomes>
+              <li>[trait:Kind] {A_nameDef} hated having only words to give, and said so, but they were good words: what to do for the {TALE}, and what to watch for. The medicine stays on the shelf.</li>
+            </outcomes>
             <ways><mercy>-1</mercy></ways>
           </li>
         </options>

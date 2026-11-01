@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using ColonyCouncil;
 
@@ -9,7 +10,8 @@ using ColonyCouncil;
 /// (herbal medicine, a good doctor, steady tending); the serious ones that can't kill (measles, kidney stones,
 /// shingles) pass on their own; rabies is past saving once its symptoms show; tuberculosis comes back when treatment
 /// stops early; scurvy takes weeks to become dangerous and clears within two weeks of fresh food. The numbers are read
-/// from the defs, through the same race the game runs (AilmentMath.Simulate).
+/// from the defs, through the same race the game runs (AilmentMath.Simulate). And every ailment has a mood with a hint,
+/// and the other ways its message and letter are told fit where they go (Texts).
 /// </summary>
 public static class AilmentTests
 {
@@ -174,6 +176,57 @@ public static class AilmentTests
             check(AilmentMath.DaysToLethal(scurvy.course.startSeverity, scurvy.dietGrow) >= 45f, "scurvy takes many weeks to become fatal");
             check(AilmentMath.DaysToClear(0.75f, scurvy.dietRecover) <= 14f, "scurvy clears within two weeks of fresh food, even from its worst stage");
         }
+        Texts(root, check);
         return n;
+    }
+
+    /// <summary>
+    /// Every ailment has its mood and a hint for that mood. The other ways its message and its letter are told (gotTexts,
+    /// letters) name nobody but who has it ({PAWN_...}): a message always names them, a letter tagged [one] names its one
+    /// person (so it needs no list), and any other letter ends with a colon, for the list of who caught it that follows.
+    /// </summary>
+    private static void Texts(string root, Action<bool, string> check)
+    {
+        string defs = Path.Combine(root, "Defs");
+        var ailments = new List<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(defs, "HediffDefs"), "*.xml"))
+            foreach (var d in XDocument.Load(file).Root!.Elements("HediffDef"))
+                if (d.Descendants("li").Any(li => ((string)li.Attribute("Class") ?? "").EndsWith("HediffCompProperties_Ailment")))
+                    ailments.Add(d.Element("defName")?.Value ?? "");
+        var moods = new Dictionary<string, string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(defs, "ThoughtDefs"), "*.xml"))
+            foreach (var t in XDocument.Load(file).Root!.Elements("ThoughtDef"))
+                if (t.Element("hediff") != null) moods[t.Element("hediff")!.Value] = t.Element("defName")?.Value ?? "";
+        var hinted = new HashSet<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(defs, "MoodHintDefs"), "*.xml"))
+            foreach (var li in XDocument.Load(file).Root!.Descendants("thoughts").Elements("li"))
+                hinted.Add(li.Value.Trim());
+        check(ailments.Count >= 60, $"found the ailments ({ailments.Count})");
+        foreach (var a in ailments)
+        {
+            check(moods.TryGetValue(a, out var mood), $"{a} has a mood");
+            if (mood != null) check(hinted.Contains(mood), $"{a}'s mood {mood} has a hint");
+        }
+        var placeholder = new Regex(@"\{([^{}]+)\}");
+        int told = 0;
+        foreach (var file in Directory.GetFiles(defs, "*.xml", SearchOption.AllDirectories))
+        {
+            var doc = XDocument.Load(file);
+            foreach (var li in doc.Descendants("gotTexts").Elements("li").Concat(doc.Descendants("letters").Elements("li")))
+            {
+                told++;
+                string line = li.Value.Trim();
+                string tags = line.StartsWith("[") && line.IndexOf(']') > 0 ? line.Substring(1, line.IndexOf(']') - 1) : "";
+                string body = tags.Length > 0 ? line.Substring(line.IndexOf(']') + 1).Trim() : line;
+                string where = $"{Path.GetFileName(file)}: '{body}'";
+                foreach (Match m in placeholder.Matches(body))
+                    check(m.Groups[1].Value.StartsWith("PAWN_"), $"{where} names only who has it ({m.Value})");
+                bool letter = li.Parent!.Name.LocalName == "letters";
+                bool one = tags.Split(',').Any(t => t.Trim() == "one");
+                if (!letter || one) check(body.Contains("{PAWN_"), $"{where} names who has it");
+                else check(body.Contains("{PAWN_") || body.EndsWith(":"), $"{where} ends with a colon, for the list that follows");
+            }
+        }
+        check(told >= 40, $"found the ailments' other messages and letters ({told})");
     }
 }

@@ -211,6 +211,11 @@ namespace ColonyCouncil
         public List<AilmentAfterEffect> curedAfterEffects;
         /// <summary>A short message when it comes on: {PAWN} is who has it.</summary>
         [MustTranslate] public string gotText;
+        /// <summary>
+        /// More ways to say <see cref="gotText"/>, tagged like any line ([winter], [night], [old], [trait:Tough], and [again]
+        /// when they've had it before): one that fits is picked, the plain one among them (<see cref="AilmentTexts"/>).
+        /// </summary>
+        [MustTranslate] public List<string> gotTexts;
         /// <summary>The letter when a serious illness shows itself: {PAWN} is who has it.</summary>
         [MustTranslate] public string letterText;
         /// <summary>A doctor's note for the letter; lines may be tagged [lowtech] or [!lowtech].</summary>
@@ -274,6 +279,33 @@ namespace ColonyCouncil
         public bool sameVictims;
         /// <summary>The letter's opening; the list of who caught it follows, then <see cref="letterAfter"/>. {PAWN} is the first of them.</summary>
         [MustTranslate] public string letter;
+        /// <summary>
+        /// More openings for the letter, tagged like any line ([winter], [lowtech], [small], [again] when one of them has had
+        /// it before, [one] when it's one person): one that fits is picked, the plain one among them.
+        /// </summary>
+        [MustTranslate] public List<string> letters;
         [MustTranslate] public string letterAfter;
+    }
+
+    /// <summary>An ailment's message or letter told one of its ways: the first as written, or a variant that fits the moment.</summary>
+    public static class AilmentTexts
+    {
+        /// <summary>
+        /// One of <paramref name="first"/> and <paramref name="more"/> that fits <paramref name="p"/>'s moment and the
+        /// <paramref name="extra"/> tags, not one given out lately while another fits; tags removed. The first as written
+        /// when there are no variants or none fits.
+        /// </summary>
+        public static string Pick(string first, List<string> more, Pawn p, params string[] extra)
+        {
+            if (more.NullOrEmpty()) return first;
+            var all = new List<string>(more.Count + 1);
+            if (!first.NullOrEmpty()) all.Add(first);
+            all.AddRange(more);
+            var tags = Flavor.TagsFor(p);
+            foreach (var t in extra)
+                if (!t.NullOrEmpty())
+                    tags.Add(t);
+            return Flavor.PickFresh(all, tags, more) ?? first;
+        }
     }
 }

@@ -394,6 +394,11 @@
         <li>[byme] Come and see me if it ever bothers you.</li>
         <li>[byother] I'll return the favor one day, I hope not too soon.</li>
         <li>Let's both try to stay upright.</li>
+        <li>[byme] You know where to find me if it starts to throb.</li>
+        <li>[byother] Next time I'll try to need you less.</li>
+        <li>Let's talk about something other than wounds next time.</li>
+        <li>[byme] Keep it clean and dry, and don't pick at it.</li>
+        <li>[byother] I still don't know how you kept your hands so steady.</li>
       </plain>
     </lines>
   </ColonyCouncil.TalkLinesDef>

@@ -31,6 +31,7 @@
       <li>Since {X_nameDef} died, {A_nameDef} has kept working, short with anyone who speaks to {A_objective}, scrubbing the same table twice. This morning {A_nameDef} asked the council for a day away. No patients, no bandages. One day.\n\nIf someone is hurt today, there's no one else who can do what {A_nameDef} does. {B_nameDef} has offered to spend the day with {A_objective}, if the council agrees.</li>
       <li>[lowtech] {A_nameDef} washed {X_nameDef}'s body and sat by the grave until the fire went out. Now {A_pronoun} wants a day to walk the land alone before taking up the healer's work again.\n\n{B_nameDef} says {A_nameDef} shouldn't be alone at all.</li>
       <li>[trait:Kind|trait:Nervous] {A_nameDef} hasn't slept properly since {X_nameDef} died under {A_possessive} care. {A_nameDef} jumps at every knock on the infirmary door, and has asked for a day off in a voice the council had to lean in to hear.\n\n{B_nameDef} has offered to keep {A_objective} company.</li>
+      <li>[skill:Medicine] {A_nameDef} used to hum at the infirmary bench. Since {X_nameDef} died under {A_possessive} hands, {A_nameDef} hasn't, and this morning asked the council for a day away from it all.\n\n{B_nameDef} has offered to spend the day with {A_objective}.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -40,6 +41,7 @@
         <outcomes>
           <li>[winter] {A_nameDef} spent the day by the stove with a blanket and a book {A_pronoun} didn't read. By evening {A_nameDef} was eating again, and answering when spoken to.</li>
           <li>[lowtech] {A_nameDef} walked to the high ground and back, alone, as the old healers did after a death, and came home with a stone from the top in {A_possessive} pocket.</li>
+          <li>[rain] {A_nameDef} walked out into the rain without a hood and didn't seem to mind it, and came back soaked and calmer.</li>
         </outcomes>
         <ways><mercy>2</mercy><toil>-1</toil></ways>
         <effects>
@@ -57,6 +59,7 @@
         <outcomes>
           <li>[colony:Hardworking] This colony doesn't stop for grief, and {A_nameDef} knew that before asking. {A_nameDef} is back at work, and doing it well, and not looking at anyone.</li>
           <li>[trait:Industrious|trait:HardWorker] {A_nameDef} said keeping busy was probably better anyway, and was back in the infirmary within the hour, sleeves rolled up.</li>
+          <li>[trait:Tough] {A_nameDef} said the dead don't need a day off and neither does the doctor, and went back to the infirmary. Nobody believed the first part.</li>
         </outcomes>
         <ways><toil>2</toil><mercy>-1</mercy></ways>
         <effects>
@@ -71,6 +74,7 @@
         <outcomes>
           <li>[land:desert|land:tundra] {B_nameDef} and {A_nameDef} walked the edge of the colony all day and said perhaps twenty words between them, and came home in step.</li>
           <li>[b:trait:Kind] {B_nameDef} cooked {A_nameDef}'s favorite meal and sat with {A_objective} on the step while {A_pronoun} ate it, and then they talked until dark.</li>
+          <li>[winter] {B_nameDef} kept {A_nameDef} company through the short winter day, and they talked about {X_nameDef} until it was dark.</li>
         </outcomes>
         <ways><mercy>3</mercy></ways>
         <effects>
@@ -102,6 +106,8 @@
       <li>[trait:Industrious|trait:HardWorker] {A_nameDef} has never sat still for long, and convalescing hasn't changed that. This morning {A_nameDef} was found at the workbench before dawn, gray in the face, and announced that {A_pronoun} had never felt better.</li>
       <li>[child] {A_nameDef} is supposed to be resting while {A_pronoun} gets better, but keeps sneaking out to play with the others and coming back exhausted. The grown-ups want the council to say whether to keep {A_objective} in bed.</li>
       <li>[afterraid] The raid left the colony short of hands, and {A_nameDef}, still weak, wants to help with the repairs. The doctor says it will cost more days than it saves.</li>
+      <li>[old] {A_nameDef} says {A_pronoun} has been ill before, knows {A_possessive} own body, and would like to get back to work before it forgets how. The doctor says that is exactly the problem.</li>
+      <li>[winter] Winter work is piling up, and {A_nameDef}, still weak, can't stand watching the others do it. The doctor wants {A_objective} resting until the strength comes back.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -110,6 +116,7 @@
         <outcome>{A_nameDef} is back at work, on the light jobs only, and sits down whenever the doctor walks past. It's slow going, and {A_nameDef} has been whistling.</outcome>
         <outcomes>
           <li>[child] {A_nameDef} is allowed to play again, as long as it's sitting-down games. Most of them have turned into standing-up games.</li>
+          <li>[old] {A_nameDef} is back on the light jobs, and takes a seat between each one without being told. The doctor counts that as a win.</li>
         </outcomes>
         <ways><toil>2</toil></ways>
         <effects>
@@ -172,12 +179,16 @@
       <li>[child] {A_nameDef} is to have an operation, and {B_nameDef} wants to be asked first, as family should be. {B_nameDef} has questions for the doctor, a lot of them, and wants the answers before anyone picks up a knife.</li>
       <li>[lowtech] The healer has set a day to cut {A_nameDef}. {B_nameDef}, who is family, says that in the old way the family sits together and agrees before such a thing is done. This time {B_nameDef} wasn't asked.</li>
       <li>[trait:Nervous|trait:Wimp] {A_nameDef} is to have an operation and is frightened of it. {B_nameDef} has asked the council to wait until the two of them have talked, and {A_nameDef} seems relieved that someone said it out loud.</li>
+      <li>[old] {A_nameDef} has lived a long time and says the operation is {A_possessive} own business. {B_nameDef} says that is exactly why {B_pronoun} wants a say: {B_pronoun} would like a few more years of {A_objective}.</li>
     </texts>
     <defaultOption>0</defaultOption>
     <options>
       <li>
         <label>Go ahead as planned</label>
         <outcome>The operation goes ahead as planned. {A_nameDef} said it was better to get it over with. {B_nameDef} said nothing, and went to sit outside the infirmary door.</outcome>
+        <outcomes>
+          <li>[trait:Tough] {A_nameDef} said the sooner the better and asked the doctor to sharpen the knife. {B_nameDef} didn't laugh.</li>
+        </outcomes>
         <ways><toil>1</toil><openness>-1</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_GetItOver</thought></li>
@@ -229,6 +240,8 @@
       <li>{A_nameDef} has delivered most of the colony's babies so far, and says it's time someone else learned, before the night a baby comes and {A_nameDef} is ill, or away, or asleep after a raid. {A_nameDef} has picked {B_nameDef}, who has been hanging about the infirmary asking questions.\n\nTeaching takes time that would otherwise go to work.</li>
       <li>[lowtech] {A_nameDef} knows the old ways of bringing a child into the world, which herbs to boil and when to wait and when not to. {A_nameDef} wants to pass them on to {B_nameDef} before they're forgotten.</li>
       <li>[old] {A_nameDef} has brought several of the colony's children into the world and says {A_possessive} hands won't be steady forever. {A_nameDef} wants {B_nameDef} to start learning now.</li>
+      <li>[afterraid] The last raid set {A_nameDef} thinking: had {A_pronoun} been hurt, who would have delivered the next baby? {A_nameDef} wants {B_nameDef} to start learning now, while there's time.</li>
+      <li>[trait:Kind] {A_nameDef} says the colony's babies deserve two pairs of hands that know what they're doing, not one, and has asked for {B_nameDef} to learn.</li>
     </texts>
     <defaultOption>1</defaultOption>
     <options>
@@ -237,6 +250,7 @@
         <outcome>{B_nameDef} is {A_nameDef}'s apprentice now: reading, watching, and practicing on a sack of flour that has been through a great deal.</outcome>
         <outcomes>
           <li>[lowtech] {A_nameDef} took {B_nameDef} out to gather the birthing herbs and taught {B_objective} the name of each on the way back.</li>
+          <li>[skill:Medicine] {A_nameDef} started {B_nameDef} on the basics the same afternoon, and {B_nameDef} has been writing notes in the margins of everything since.</li>
         </outcomes>
         <ways><tradition>2</tradition></ways>
         <effects>

@@ -102,6 +102,8 @@ namespace ColonyCouncil
             if (got.NullOrEmpty()) return false;
             var info = Info;
             var tracker = AilmentTracker.Instance;
+            // One of them has had it before: the letter may say it's back.
+            bool again = tracker != null && got.Any(p => tracker.HadBefore(p, def.diseaseIncident));
             foreach (var p in got)
             {
                 var h = p.health?.hediffSet?.GetFirstHediffOfDef(def.diseaseIncident);
@@ -113,7 +115,7 @@ namespace ColonyCouncil
                 if (!h.Visible) h.Severity = Math.Max(h.Severity, FirstVisibleSeverity(h.def));
                 tracker?.Notify_Caught(p, h);
             }
-            if (parms.sendLetter) SendLetter(parms, got, blocked);
+            if (parms.sendLetter) SendLetter(parms, got, blocked, again);
             return true;
         }
 
@@ -126,7 +128,7 @@ namespace ColonyCouncil
             return d.initialSeverity;
         }
 
-        private void SendLetter(IncidentParms parms, List<Pawn> got, string blocked)
+        private void SendLetter(IncidentParms parms, List<Pawn> got, string blocked, bool again)
         {
             var sb = new StringBuilder();
             foreach (var p in got) sb.AppendLine("  - " + p.LabelShortCap);
@@ -135,10 +137,11 @@ namespace ColonyCouncil
             string text;
             try
             {
-                string opening = (ext?.letter ?? def.letterText ?? "").Formatted(got[0].Named("PAWN")).Resolve();
+                string raw = AilmentTexts.Pick(ext?.letter ?? def.letterText ?? "", ext?.letters, got[0], again ? "again" : null, got.Count == 1 ? "one" : null);
+                string opening = raw.Formatted(got[0].Named("PAWN")).Resolve();
                 string closing = ext?.letterAfter.NullOrEmpty() == false ? ext.letterAfter.Formatted(got[0].Named("PAWN")).Resolve() : null;
                 // A letter about one person that names them needs no list.
-                bool named = got.Count == 1 && ext?.letter != null && ext.letter.Contains("{PAWN_");
+                bool named = got.Count == 1 && ext?.letter != null && raw.Contains("{PAWN_");
                 text = named ? opening : opening + "\n\n" + list;
                 if (!closing.NullOrEmpty()) text += "\n\n" + closing;
             }

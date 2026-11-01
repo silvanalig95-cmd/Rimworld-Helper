@@ -48,8 +48,9 @@
       <li>Council_Ail_StrainedBack_Mood</li>
       <li>Council_Ail_SprainedAnkle_Mood</li>
       <li>Council_Ail_SoreHands_Mood</li>
+      <li>Council_Ail_SoreElbow_Mood</li>
     </thoughts>
-    <fix>A day or two in bed at the start, then light work until it heals; for sore hands, a break from the bench. Tending speeds all three along.</fix>
+    <fix>A day or two in bed at the start, then light work until it heals; for sore hands or a sore elbow, a break from the bench or the axe. Tending speeds them all along.</fix>
     <act>Bed rest, then light work</act>
     <article>Council_Alm_4_25_Ailments</article>
   </ColonyCouncil.MoodHintDef>
@@ -61,8 +62,9 @@
       <li>Council_Ail_StiffNeck_Mood</li>
       <li>Council_Ail_Chilblains_Mood</li>
       <li>Council_Ail_Sunburn_Mood</li>
+      <li>Council_Ail_ChappedHands_Mood</li>
     </thoughts>
-    <fix>They heal on their own, in a few days to a week. A proper bed prevents a stiff neck; warm clothes, chilblains; a hat, sunburn.</fix>
+    <fix>They heal on their own, in a few days to a week. A proper bed prevents a stiff neck; warm clothes, chilblains; gloves, chapped hands; a hat, sunburn.</fix>
     <act>Heals in a few days</act>
     <actionable>false</actionable>
     <article>Council_Alm_4_25_Ailments</article>
