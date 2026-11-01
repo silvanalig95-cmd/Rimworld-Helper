@@ -35,13 +35,30 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   `Defs/DefenseStepDefs/Rimfolk_DefenseSteps_Threats.xml` and `Defs/DefenseTemplateDefs/Rimfolk_DefenseTemplates_Threats.xml`;
   beacon role 'B', template kind "bait", placement "core"). Not tried in game: the menu, killbox previews, the bait
   yard beside a trap corridor, the EMP lane's distance from turrets.
-- Merged but not yet in a round: visitors trade (a parallel agent): `Integrations/RimMarketSale.cs` (RimMarketStall is
+- The player's direction for (a), binding: they are early/mid game (the save is day ~96, 9 colonists), overwhelmed by
+  balancing many things; they want help with what needs planning ahead (construction, production chains, base
+  expansion), not reacting to events. The helper ONLY SUGGESTS; the player does each step with one click ("act by
+  itself" to be reconsidered once they've tested that suggestions are consistent and helpful, so build each suggestion
+  as a discrete, undoable step with its reason). Every suggestion must come from the live game state (eaters incl.
+  guests, stocks, measured use, bench and worker throughput, season and growing days, freezer space, materials,
+  builder hours), show its reason in numbers, order by urgency, vanish when its reason is gone, and check whether the
+  last step worked; never fixed advice. "Not this" on everything. Research notes and the save's facts are in the
+  session scratchpad (automation/inventory-gaps.md); the save: 2 cooked meals for ~17 eaters (stove bills until 2 and
+  5), 2390 chickpeas from 35 cells, steel 31 / components 25 with machining bills waiting, nothing under construction.
+- 0.44.2, visitors (two parallel agents): `Visitors/VisitorMusic.cs` (StartPlaying/StopPlaying on a built instrument),
+  `Visitors/VisitorHunt.cs` + `VisitorActsMath.Fits`/`GamePrey` (wild, nobody's, unmarked, no predator, deer-sized at
+  most, the land's own kinds; `Patch_HuntedBeastHolds` on Pawn_MindState.StartManhunterBecauseOfPawnAction;
+  JobDriver_VisitDress), `Visitors/Borne.cs` + `Camps/CampDead.cs` (a real body from `Borne.MakeDead`, generated without
+  relations and killed off-map; road mourners carry it off, camp mourners lay it by the lamp; colonists near it get the
+  game's observed-corpse thought), `Visitors/VisitorBeds.cs` (Hospitality.Building_GuestBed by name,
+  ClaimBedIfNonMedical, given back on any ending), hooks in `Visitors/VisitorActs.cs`. Not confirmed without the game:
+  that a singer's StartPlaying keeps sounding outside the game's play job; that Hospitality's bed patch lets
+  LayDown through for Rimfolk's visitors.
+- Visitors trade (a parallel agent, in 0.44.2): `Integrations/RimMarketSale.cs` (RimMarketStall is
   partial; it copies RimMarket's `ColonyStalls.Sell` step by step by name, `SaleReady` false if anything is missing),
   `Visitors/VisitorTradeMath.cs` (tested), `Visitors/VisitorTrade.cs` (`JobGiver_VisitShop`, `JobDriver_MarketBuy`),
   `Camps/CampMarket.cs` (`CampKindDef.buys`), `Camps/CampMilk.cs` (the drovers' "milk" ask, paid on delivery through
-  `CampAsk.price`), setting `marketCampersBuy`. Still running at this point: the visitor acts agent (singer at the
-  colony's instrument, hunters taking real game, mourners carrying their dead, Hospitality guest beds); its round
-  (0.44.2) also takes the visitors trade points.
+  `CampAsk.price`), setting `marketCampersBuy`. 
 
 ## State (1 November 2026)
 

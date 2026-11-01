@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Visitors at the market, the hunt and the guest beds
+
+*1 November 2026, version 0.44.2*
+
+- With RimMarket, visitors camped on the colony's land and people from nearby camps walk over to the colony's own stalls by day and buy what suits them: drovers feed, a smith metal, a family a meal. They pay at the stall as RimMarket's shoppers do, and a dear price may put them off (setting "Campers buy at RimMarket's stalls").
+- The drovers' milk can be bought from their camp's page once a day: a drover milks every beast with milk to give and sets the milk down by the colony's gate, and a colonist then takes over the silver it came to.
+- A visiting singer walks over and plays the colony's harp or piano after dark, while the other pilgrims sing at their camp.
+- Visiting hunters take a real wild beast that is fair game: never the colony's or one it marked, nothing big or rare, and the beast never turns on them. They dress it at their camp and take the meat and hide home. Hunters warned off the land really go.
+- Mourners carry their dead in their arms: past the colony on the road, or into their camp, where the body lies by their lamp until they carry it home.
+- With Hospitality, visitors given a bed for the night sleep in the colony's free guest beds and give them back when they leave.
+- Camp drovers show a progress bar while they milk or shear.
+
 ## The colony's tools go by what really happens
 
 *1 November 2026, version 0.44.1*
