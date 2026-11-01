@@ -91,3 +91,24 @@ Midgame Guide pages, and Steam discussions.
 "until 5" (simple); raw food: chickpeas 2390 (35 cells), corn 440, potatoes 268, rice 252; steel 31 and components 25
 with machining bills that need them; 15 growing zones (wheat x4, healroot 79, drago tree 92, hops 63, tobacco 52 and
 others); one of each bench; nothing under construction.
+
+## The same rules for what already exists (the player's direction, 1 November 2026)
+
+Everything the mod already suggests or automates follows these rules too, through the shared suggestion core phase 1
+builds (one step type, one "Not this" store, one log with undo and the check whether it worked). What the inventory
+found missing, by system:
+
+- **Advisor cards** (Priorities page): no "Not this"; few act on a click; room-growth signals (dining, kitchen,
+  freezer, hospital, workshop outgrown) react once a room is already short: give them the live numbers (eaters with
+  guests, seats, freezer cells against the food stock target) and let them warn before it is short.
+- **Base review findings**: no "Not this"; distances are straight lines between room centres (use walking distance);
+  one finding per rule; several kinds (rooms far apart, the long meal walk, the freezer airlock, catch-all and spread
+  stores, empty filters) have no fix button.
+- **Plan page (next steps)**: a step that was let go comes back; steps carry no numbers or urgency of their own.
+- **Making page**: staple bills get fixed targets when set (meals at most 60, medicine at most 30) and are never
+  resized; only the first bench of a kind; idle benches only named. Phase 1's stock targets replace the fixed numbers.
+- **The 8 automations** (off by default, they act by themselves when switched on): each one's candidate should also
+  show as a suggestion the player can carry out by hand; an undone action must not come back after its cooldown (undo
+  counts as "Not this" for that key); their reasons carry numbers. Their switches stay as they are (off unless the
+  player turns them on); "act by itself" for the new helper is for later, after the player has tested the suggestions.
+- **Defense advice and line reviews**: "Not this" on notes; numbers in reasons where they're missing.
