@@ -338,12 +338,12 @@ Rimfolk's part of the save, roughly: **1,755 KB** after a year, **2,118 KB** aft
 | `CouncilSettings.cs:hudPanels` | the mod's settings file, not the save: one per panel | settings | 8 | 8 | 8 | (settings file) |
 | `CouncilSettings.cs:planMaterials` | the mod's settings file, not the save | settings | 30 | 30 | 30 | (settings file) |
 | `CouncilSettings.cs:savedRooms` | the mod's settings file, not the save: rooms the player saved | settings | 10 | 10 | 10 | (settings file) |
-| `Defense/DefenseLine.cs:done` | per line: one per step (counted under lines) | defs | 8 | 8 | 8 | (in its record) |
+| `Defense/DefenseLine.cs:done` | per line: one per step (counted under lines) | defs | 11 | 11 | 11 | (in its record) |
 | `Defense/DefenseLine.cs:downed` | per raid: 4 at most (counted under lines) | fixed | 4 | 4 | 4 | (in its record) |
 | `Defense/DefenseLine.cs:lessons` | per raid: 3 at most (counted under lines) | fixed | 3 | 3 | 3 | (in its record) |
 | `Defense/DefenseLine.cs:plans` | per line: DefenseLine.MaxPlans (counted under lines) | fixed | 24 | 24 | 24 | (in its record) |
 | `Defense/DefenseLine.cs:raids` | per line: the last DefenseLine.MaxRaids raids (counted under lines) | fixed | 5 | 5 | 5 | (in its record) |
-| `Defense/DefenseLine.cs:skipped` | per line: steps set aside by hand, one per step (counted under lines) | defs | 4 | 4 | 4 | (in its record) |
+| `Defense/DefenseLine.cs:skipped` | per line: steps set aside by hand, one per step (counted under lines) | defs | 6 | 6 | 6 | (in its record) |
 | `Defense/DefenseLine.cs:span` | per line: the cells across its gap, 29 at most (counted under lines) | fixed | 14 | 14 | 14 | (in its record) |
 | `Faith/FaithPeople.cs:leanings` | per colonist: the ideoligions they're drawn to, the strongest 6 at most, faded ones forgotten daily (counted under people) | fixed | 6 | 6 | 6 | (in its record) |
 | `Faith/FaithPeople.cs:notes` | per colonist: the newest faith moments, 120 days at most (counted under people) | fixed | 5 | 5 | 5 | (in its record) |
