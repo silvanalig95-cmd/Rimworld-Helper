@@ -145,6 +145,7 @@
             <label>Warn them off the colony's land</label>
             <outcome>The hunters from {PLACE} are told, politely, where the colony's land begins. They go, politely, and their faces say what their mouths don't.</outcome>
             <effects>
+              <li Class="ColonyCouncil.VisitEffect_Go"><what>hunters</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount></li>
             </effects>
             <flags><li>warned</li></flags>

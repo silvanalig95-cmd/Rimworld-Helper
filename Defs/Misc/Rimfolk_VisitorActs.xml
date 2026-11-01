@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What visitors do with the colony's land and things beyond their own work (Source/ColonyCouncil/Visitors): a visiting
+    singer plays the colony's instrument after dark with the game's own playing (VisitorMusic.cs); hunters take a beast
+    that is fair game with the game's own hunting, then carry it to their fire and dress it there (VisitorHunt.cs);
+    mourners carry their dead in their arms (Borne.cs). With Hospitality, guests given the night sleep in the colony's
+    guest beds (VisitorBeds.cs, the game's own lying down).
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_VisitPlay</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitPlay</driverClass>
+    <reportString>playing TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>sing</work>
+        <ticks>2000~3000</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitDress</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitDress</driverClass>
+    <reportString>dressing their kill.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>hunt</work>
+        <ticks>1100~1500</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitBear</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitBear</driverClass>
+    <reportString>carrying their dead.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- What visitors do with the colony's land and things (Source/ColonyCouncil/Visitors/VisitorActs.cs). -->
+  <CC_VisitAct_Kill>The hunters of {0} brought down {1}.</CC_VisitAct_Kill>
+
+</LanguageData>

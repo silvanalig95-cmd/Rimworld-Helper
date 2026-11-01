@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What visitors say at their doings with the colony's land and things (Source/ColonyCouncil/Visitors/VisitorActs.cs),
+    over their heads through Speech, picked by the same tags as Rimfolk_VisitorLines (what they are, their people's
+    ways, the speaker's moment). The moments: play (a singer sits down at the colony's instrument), kill (a hunter's beast
+    falls), dress (they've dressed it by their fire). One short sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_VisitorActLines</defName>
+    <lines>
+      <plain>
+        <li>[play] Just one song, and it's yours again.</li>
+        <li>[play] It's been a long road since I last played one of these.</li>
+        <li>[play] Your people built this, and built it well.</li>
+        <li>[play] Let's see if it remembers this tune.</li>
+        <li>[play,pilgrims] I'll play, and the others will keep singing at the camp.</li>
+        <li>[play,singer] A real instrument, after all those nights of singing alone.</li>
+        <li>[kill] Down at last, well done.</li>
+        <li>[kill] That's supper for the road.</li>
+        <li>[kill] That'll feed us for days.</li>
+        <li>[kill,hunters] Help me carry it back to the others.</li>
+        <li>[kill,theirLowtech] Thank you, brother beast.</li>
+        <li>[dress] Nothing goes to waste, not even the hide.</li>
+        <li>[dress] The meat's packed, the rest is for your dogs.</li>
+        <li>[dress] Good fat on this one.</li>
+        <li>[dress,hunters] That'll keep us fed all the way home.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

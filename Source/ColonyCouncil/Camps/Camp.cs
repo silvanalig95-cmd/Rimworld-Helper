@@ -432,6 +432,8 @@ namespace ColonyCouncil
             ExposeRequests();
             // What they're bringing over for the colony by hand (CampCarry.cs).
             ExposeCarries();
+            // The dead mourners carry home (CampDead.cs).
+            ExposeDead();
             // A child of theirs lost out on the land (CampLost.cs).
             ExposeLost();
             // The stay's beats, a camp come back, a war party's enemy (CampStory.cs).

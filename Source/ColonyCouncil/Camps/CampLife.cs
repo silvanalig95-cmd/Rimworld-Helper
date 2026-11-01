@@ -87,16 +87,9 @@ namespace ColonyCouncil
         /// <summary>Any of the colony's people or animals near the prey, or close to the line between hunter and prey.</summary>
         public bool ColonyInLineOfFire(IntVec3 from, IntVec3 to)
         {
+            // Near the animal, or near the line: a pawn in the way could take a shot meant for the animal.
             foreach (var p in map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer))
-            {
-                var c = p.Position;
-                if (c.InHorDistOf(to, 12f)) return true;
-                // Distance from the line: a pawn in the way could take a shot meant for the animal.
-                float dx = to.x - from.x, dz = to.z - from.z, len = dx * dx + dz * dz;
-                float t = len <= 0f ? 0f : Mathf.Clamp01(((c.x - from.x) * dx + (c.z - from.z) * dz) / len);
-                float ex = from.x + t * dx - c.x, ez = from.z + t * dz - c.z;
-                if (ex * ex + ez * ez <= 9f) return true;
-            }
+                if (VisitorActsMath.InLineOfFire(from.x, from.z, to.x, to.z, p.Position.x, p.Position.z)) return true;
             return false;
         }
 
@@ -159,6 +152,7 @@ namespace ColonyCouncil
             WatchRepair();
             WatchErrand();
             WatchCarries();
+            WatchDead();
             if (phase == CampPhase.Building) CheckBuilt();
             WatchTrade();
             if (Ends()) return;

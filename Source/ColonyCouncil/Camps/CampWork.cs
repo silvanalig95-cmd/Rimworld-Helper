@@ -450,11 +450,12 @@ namespace ColonyCouncil
             return JobMaker.MakeJob(camp.kind.task, cell, face);
         }
 
-        private static bool CanHunt(Pawn pawn) =>
-            pawn.equipment?.Primary != null && pawn.equipment.Primary.def.IsRangedWeapon && !pawn.WorkTypeIsDisabled(WorkTypeDefOf.Hunting)
-            && !pawn.WorkTagIsDisabled(WorkTags.Violent) && (pawn.health?.capacities?.CapableOf(PawnCapacityDefOf.Manipulation) ?? false);
+        private static bool CanHunt(Pawn pawn) => GamePrey.CanHunt(pawn);
 
-        /// <summary>A wild animal near the camp that is safe to hunt (not a predator, unlikely to turn on anyone), well away from the colony.</summary>
+        /// <summary>
+        /// A wild animal near the camp that is fair game (GamePrey: nobody's, no predator, nothing big or rare, none that
+        /// would turn on them), well away from the colony.
+        /// </summary>
         private static Pawn Prey(Camp camp, Pawn hunter)
         {
             int key = camp.id * 2;
@@ -464,12 +465,10 @@ namespace ColonyCouncil
             float bestD = float.MaxValue;
             foreach (var a in map.mapPawns.AllPawnsSpawned)
             {
-                if (a.Faction != null || a.RaceProps == null || !a.RaceProps.Animal || a.Dead || a.Downed || a.InMentalState || a.RaceProps.predator) continue;
-                if (a.BodySize > 2.5f || a.IsPrisoner || map.designationManager.DesignationOn(a) != null) continue;
+                if (a.Faction != null || a.RaceProps == null || !a.RaceProps.Animal || !GamePrey.Fits(a, hunter)) continue;
                 if (!camp.MayWork(a.Position)) continue;
                 // Nobody of the colony (people or animals) anywhere near the line of fire.
                 if (camp.ColonyInLineOfFire(hunter.Position, a.Position)) continue;
-                if (PawnUtility.GetManhunterOnDamageChance(a, hunter) > 0.04f) continue;
                 float d = a.Position.DistanceToSquared(camp.center);
                 if (d >= bestD || !hunter.CanReserveAndReach(a, PathEndMode.Touch, Danger.Some)) continue;
                 best = a;

@@ -31,13 +31,24 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A line from one of them at a moment of the visit: arrive, wait, stay, pass, leave.</summary>
-        public static void Say(Pawn p, VisitorTrip t, string moment)
+        private static readonly Dictionary<string, FlavorPoolDef> others = new Dictionary<string, FlavorPoolDef>();
+
+        private static FlavorPoolDef Other(string name)
+        {
+            if (!others.TryGetValue(name, out var def)) others[name] = def = DefDatabase<FlavorPoolDef>.GetNamedSilentFail(name);
+            return def;
+        }
+
+        /// <summary>
+        /// A line from one of them at a moment of the visit: arrive, wait, stay, pass, leave; from another pool of
+        /// visitors' lines when <paramref name="poolName"/> is given (VisitorActs: play, kill, dress).
+        /// </summary>
+        public static void Say(Pawn p, VisitorTrip t, string moment, string poolName = null)
         {
             if (p == null || t == null || !p.Spawned || p.Dead) return;
             try
             {
-                var lines = Lines?.lines;
+                var lines = (poolName == null ? Lines : Other(poolName))?.lines;
                 if (lines == null) return;
                 var tags = new HashSet<string> { moment };
                 if (!t.what.NullOrEmpty()) tags.Add(t.what);

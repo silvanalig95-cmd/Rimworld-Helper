@@ -98,6 +98,17 @@ namespace ColonyCouncil
         /// <summary>A world event's beat that tells of this visit afterward ("the retinue stayed the night"): held until they've gone.</summary>
         public string holdBeat;
 
+        // ---- What they do with the land and the colony's things (VisitorActs) ----
+
+        /// <summary>Mourners carrying their dead (Borne): one of them bears the body, named <see cref="deadName"/> when the words name it.</summary>
+        public bool bearDead;
+        public string deadName;
+        public Thing dead;
+        /// <summary>Hunters (VisitorHunt): the beast one of them is after, their kill not yet dressed, and how many they've dressed.</summary>
+        public Pawn prey;
+        public Thing kill;
+        public int kills;
+
         // ---- The people ----
 
         public List<Pawn> people = new List<Pawn>();
@@ -178,6 +189,19 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref fireLaid, "fireLaid");
             Scribe_Values.Look(ref saidWait, "saidWait");
             Scribe_Values.Look(ref holdBeat, "holdBeat");
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                // Nothing saved that's gone: a beast that fell is its body now (kept as their kill if it's theirs).
+                if (prey != null && (prey.Dead || prey.Destroyed)) prey = null;
+                if (kill != null && kill.Destroyed) kill = null;
+                if (dead != null && dead.Destroyed) dead = null;
+            }
+            Scribe_Values.Look(ref bearDead, "bearDead");
+            Scribe_Values.Look(ref deadName, "deadName");
+            Scribe_References.Look(ref dead, "dead");
+            Scribe_References.Look(ref prey, "prey");
+            Scribe_References.Look(ref kill, "kill");
+            Scribe_Values.Look(ref kills, "kills");
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);
             Scribe_Collections.Look(ref animals, "animals", LookMode.Reference);
             Scribe_References.Look(ref lord, "lord");
@@ -191,6 +215,8 @@ namespace ColonyCouncil
                 animals.RemoveAll(p => p == null);
                 // Prospectors let onto the creek before visits had their work: they pan it now.
                 if (work == null && what == "prospectors" && staySpot == VisitSpot.Water && stayNights > 0) work = VisitorWork.Prospect;
+                // The game doesn't save that the mourners' dead is kept from rotting.
+                if (dead != null) Borne.Keep(dead);
             }
         }
     }

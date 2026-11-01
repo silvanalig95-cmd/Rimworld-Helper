@@ -32,7 +32,9 @@ public static class ImmersionTests
         "Council_Pool_BubbleMends", "Council_Pool_BubbleDoodles", "Council_Pool_BubbleLightSleep",
         // The quirks the colony's events leave behind (Quirks/QuirkEvents.cs).
         "Council_Pool_BubbleLamp", "Council_Pool_BubbleSmoke", "Council_Pool_BubbleCoins", "Council_Pool_BubbleFields", "Council_Pool_BubbleDreamBook",
-        "Council_Pool_BubbleSalve", "Council_Pool_BubbleJuggles", "Council_Pool_BubbleColdTrick"
+        "Council_Pool_BubbleSalve", "Council_Pool_BubbleJuggles", "Council_Pool_BubbleColdTrick",
+        // Visitors at the colony's instrument, their kill, its dressing (Visitors/VisitorActs.cs).
+        "Rimfolk_VisitorActLines"
     };
 
     private static readonly string[] JournalPools =

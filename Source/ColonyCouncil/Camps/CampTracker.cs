@@ -495,6 +495,8 @@ namespace ColonyCouncil
                 }
                 return null;
             }
+            // Mourners carry their dead in from the edge (CampDead.cs).
+            c.BearDead();
             camp = c;
             return c;
         }

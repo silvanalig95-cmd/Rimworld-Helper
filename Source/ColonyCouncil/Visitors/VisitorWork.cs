@@ -11,7 +11,8 @@ namespace ColonyCouncil
     /// <summary>
     /// What visitors do at their spot when the letter says they came to do something (a visit's <c>work</c>): the
     /// prospectors pan the creek by day and on into the evening by lamplight, gleaners go over the colony's stubble,
-    /// pilgrims sing at their camp after dark, hunters walk the far side watching for game. And where visitors out of
+    /// pilgrims sing at their camp after dark (one of them at the colony's instrument, if it has one: VisitorMusic),
+    /// hunters take a beast that's fair game (VisitorHunt), else walk the far side watching for game. And where visitors out of
     /// doors may be: they sleep when they're tired or the night has come, on open ground near their spot, and walk only
     /// there, never in the colony's rooms or on its fields (the duties in Defs/Misc/Rimfolk_Visitors.xml).
     /// </summary>
@@ -200,9 +201,13 @@ namespace ColonyCouncil
                 case Glean:
                     return Stubble(p, out at) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitGlean, at, at) : null;
                 case Sing:
-                    return Ring(p, out at, out face) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitSing, at, face) : null;
+                    // One of them plays the colony's instrument if it has one free (VisitorMusic); the rest sing in the ring.
+                    return VisitorMusic.JobFor(p, VisitorTracker.Instance?.TripOf(p))
+                           ?? (Ring(p, out at, out face) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitSing, at, face) : null);
                 case Hunt:
-                    return Lookout(p, out at, out face) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitHunt, at, face) : null;
+                    // Real game when there's a beast that's fair game (VisitorHunt); else they watch for it.
+                    return VisitorHunt.JobFor(p, VisitorTracker.Instance?.TripOf(p))
+                           ?? (Lookout(p, out at, out face) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitHunt, at, face) : null);
             }
             return null;
         }
@@ -255,6 +260,12 @@ namespace ColonyCouncil
         protected override Job TryGiveJob(Pawn pawn)
         {
             if (pawn?.Map == null || !VisitorWork.WantsSleep(pawn)) return null;
+            // Shown in for the night with Hospitality's guest beds free: in their bed (VisitorBeds).
+            if (indoors)
+            {
+                var bed = VisitorBeds.SleepJob(pawn);
+                if (bed != null) return bed;
+            }
             var job = base.TryGiveJob(pawn);
             if (job == null || job.def != JobDefOf.LayDown || indoors) return job;
             if (!job.targetA.HasThing && VisitorWork.OutsideOk(job.targetA.Cell, pawn.Map)) return job;
