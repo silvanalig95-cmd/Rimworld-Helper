@@ -170,6 +170,12 @@
     <help>
       <li>wood</li>
     </help>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+      <li>Clothes</li>
+      <li>Medicine</li>
+    </buys>
     <pride>0.3</pride>
     <breakTerms>0.08</breakTerms>
     <tensionPerDay>1.2</tensionPerDay>

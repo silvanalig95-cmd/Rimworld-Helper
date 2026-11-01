@@ -58,6 +58,8 @@ namespace ColonyCouncil
         /// <summary>Chance per day that they do the colony a good turn, and what kinds of help they give.</summary>
         public float helpChance = 0.15f;
         public List<string> help = new List<string>();
+        /// <summary>What one of them walks over to buy at the colony's market stalls (with RimMarket), first first: Feed, Meal, RoadFood, RawFood, Medicine, Drink, Clothes, Textiles, Metal, Art. None: what anyone on the road needs (Visitors/VisitorTrade.cs).</summary>
+        public List<string> buys;
         /// <summary>How proud they are: refusing terms, refusing to leave, taking offense (0..1).</summary>
         public float pride = 0.2f;
         /// <summary>Chance per day that they bend the terms they agreed to.</summary>
@@ -158,6 +160,9 @@ namespace ColonyCouncil
             if (leaveBehind != null && leaveBehind.Any(g => g == null || g.key.NullOrEmpty() || (g.defs.NullOrEmpty() && !g.wildTrees))) yield return "camp gifts need a key and defs (or wildTrees)";
             if (farewellWalk != null && farewellWalk.to != "sick" && farewellWalk.to != "gate") yield return "farewellWalk.to must be sick or gate";
             if (farewellWalk?.gift != null && (leaveBehind == null || !leaveBehind.Any(g => g?.key == farewellWalk.gift))) yield return "farewellWalk.gift names no leaveBehind entry";
+            if (buys != null)
+                foreach (var b in buys.Where(b => VisitorTradeMath.Parse(b) == TradeGoods.None))
+                    yield return "buys names no kind of goods: " + b;
         }
     }
 

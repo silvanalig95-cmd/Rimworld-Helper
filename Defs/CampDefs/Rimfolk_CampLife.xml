@@ -41,8 +41,9 @@
 
   <!-- Something brought over for the colony by hand (Source/ColonyCouncil/Camps/CampCarry.cs): their healer out
        gathering at dawn (wild healroot harvested where it grows, else herbs picked among the grass on a walk beyond the
-       camp), a drover milking or shearing a beast of their herd (it stands for it), and the walk over with what they
-       have, set down at the camp's edge nearest the colony, or the colony's gate for goods it bought. -->
+       camp), a drover milking or shearing a beast of their herd (it stands for it, and a bar shows the work; for the
+       herd's milk the colony buys, every beast with milk to give, CampMilk.cs), and the walk over with what they have,
+       set down at the camp's edge nearest the colony, or the colony's gate for goods it bought. -->
   <JobDef ParentName="Council_CampJobBase">
     <defName>Council_CampGather</defName>
     <reportString>gathering herbs.</reportString>
@@ -55,7 +56,7 @@
     <defName>Council_CampMilk</defName>
     <reportString>milking TargetA.</reportString>
     <modExtensions>
-      <li Class="ColonyCouncil.CampJobExtension"><ticks>400</ticks><holdTarget>true</holdTarget></li>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>400</ticks><holdTarget>true</holdTarget><progress>true</progress></li>
     </modExtensions>
   </JobDef>
 
@@ -63,7 +64,7 @@
     <defName>Council_CampShear</defName>
     <reportString>shearing TargetA.</reportString>
     <modExtensions>
-      <li Class="ColonyCouncil.CampJobExtension"><ticks>500</ticks><holdTarget>true</holdTarget></li>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>500</ticks><holdTarget>true</holdTarget><progress>true</progress></li>
     </modExtensions>
   </JobDef>
 

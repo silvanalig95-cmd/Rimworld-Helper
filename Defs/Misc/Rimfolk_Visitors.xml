@@ -10,7 +10,8 @@
     do it (Rimfolk_VisitWork, VisitorWork.cs): panning the creek (and pocketing what it shows), gleaning the stubble
     into their sacks, singing at their camp after dark, watching for game on the far side. A camp out on the land has
     its own fire to sit round of an evening (VisitorCamp.cs); colonists may walk out to sit with them. Waiting at the
-    gate, they take a seat out there if there's one.
+    gate, they take a seat out there if there's one. Camped out on the land, one of them now and then walks over to buy
+    at the colony's market stalls, with RimMarket (JobGiver_VisitShop, VisitorTrade.cs).
   -->
   <DutyDef>
     <defName>Rimfolk_VisitWait</defName>
@@ -22,6 +23,7 @@
             <li Class="ColonyCouncil.JobGiver_VisitRest" />
           </subNodes>
         </li>
+        <li Class="ColonyCouncil.JobGiver_VisitShop" />
         <li Class="ColonyCouncil.JobGiver_VisitFire" />
         <li Class="ColonyCouncil.JobGiver_VisitSit" />
         <li Class="ColonyCouncil.JobGiver_VisitWander">
@@ -41,6 +43,7 @@
             <li Class="ColonyCouncil.JobGiver_VisitRest" />
           </subNodes>
         </li>
+        <li Class="ColonyCouncil.JobGiver_VisitShop" />
         <li Class="ColonyCouncil.JobGiver_VisitWork" />
         <li Class="ColonyCouncil.JobGiver_VisitFire" />
         <li Class="ColonyCouncil.JobGiver_VisitWander">

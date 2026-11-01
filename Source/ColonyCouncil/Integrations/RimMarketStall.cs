@@ -16,9 +16,11 @@ namespace ColonyCouncil
     /// keep at home), and the window reads and sets them through the stall's own SetOrder (either form), its prices and the shoppers' pull through RimMarket's ColonyStalls. All of it is found by name; when
     /// anything isn't there (another RimMarket version), RimMarket's own window opens as before. And with a powered
     /// orbital trade beacon on the map, what lies on a colony stall's counter is offered to trade ships too
-    /// (<see cref="Patch_StallGoodsForShips"/>), the setting "RimMarket's stall goods for trade ships".
+    /// (<see cref="Patch_StallGoodsForShips"/>), the setting "RimMarket's stall goods for trade ships". Visitors camped
+    /// on the colony's land and people from a camp near it buy off a colony stall's counter as RimMarket's own shoppers
+    /// do (Integrations/RimMarketSale.cs, Visitors/VisitorTrade.cs).
     /// </summary>
-    public static class RimMarketStall
+    public static partial class RimMarketStall
     {
         public const string PackageId = "forti.rimmarket";
 

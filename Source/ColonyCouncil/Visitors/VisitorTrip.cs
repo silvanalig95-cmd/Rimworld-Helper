@@ -94,6 +94,10 @@ namespace ColonyCouncil
         /// <summary>Their camp's fire out on the land (VisitorCamp), laid once.</summary>
         public Thing fire;
         public bool fireLaid;
+        /// <summary>Camped on the land: purchases made at the colony's market stalls (VisitorTrade), not again before <see cref="shopNext"/> (-1: not yet settled), and whether their coin for the road was counted out.</summary>
+        public int shopped;
+        public int shopNext = -1;
+        public bool purse;
         public bool saidWait;
         /// <summary>A world event's beat that tells of this visit afterward ("the retinue stayed the night"): held until they've gone.</summary>
         public string holdBeat;
@@ -176,6 +180,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref work, "work");
             Scribe_References.Look(ref fire, "fire");
             Scribe_Values.Look(ref fireLaid, "fireLaid");
+            Scribe_Values.Look(ref shopped, "shopped");
+            Scribe_Values.Look(ref shopNext, "shopNext", -1);
+            Scribe_Values.Look(ref purse, "purse");
             Scribe_Values.Look(ref saidWait, "saidWait");
             Scribe_Values.Look(ref holdBeat, "holdBeat");
             Scribe_Collections.Look(ref people, "people", LookMode.Reference);

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Visitors and campers buying at RimMarket's colony stalls (Source/ColonyCouncil/Visitors/VisitorTrade.cs). -->
+  <CC_Settings_MarketCampersBuy>Campers buy at RimMarket's stalls</CC_Settings_MarketCampersBuy>
+  <CC_Settings_MarketCampersBuy_Tip>With RimMarket: visitors staying the night out on the colony's land, and people from a camp near the colony, now and then walk over to the colony's own stalls in the market's hours and buy something lying on the counter that suits them: drovers feed for their herd, a smith metal, a family a meal, anyone on the road food that keeps. They pay as RimMarket's shoppers do: the article goes off the counter and off its sale line, and their silver is set down at the stall for someone to put away. A dear price may put them off. A few purchases a visit, only at peace and with the map quiet. Off: they keep to their camp.</CC_Settings_MarketCampersBuy_Tip>
+  <CC_SetNote_MarketCampersBuy>With RimMarket: visitors camped on the land and nearby camps buy off the colony's stalls.</CC_SetNote_MarketCampersBuy>
+  <CC_VisitTrade_Mote>{0}: {1} silver</CC_VisitTrade_Mote>
+  <CC_VisitTrade_Bought>{PAWN_nameDef} of {FACTION} bought {THING} at the colony's market stall for {COUNT} silver.</CC_VisitTrade_Bought>
+
+  <!-- The drovers' herd's milk for the colony to buy (Source/ColonyCouncil/Camps/CampMilk.cs). -->
+  <CC_CampMilk_Offer>about {0} {1} for about {2} silver</CC_CampMilk_Offer>
+  <CC_CampMilk_NoneWord>none to give now</CC_CampMilk_NoneWord>
+  <CC_CampMilk_Going>A drover is already seeing to the herd's milk.</CC_CampMilk_Going>
+  <CC_CampMilk_NoneReady>None of their beasts has milk to give now.</CC_CampMilk_NoneReady>
+  <CC_CampMilk_NoMilker>None of the drovers is free to milk.</CC_CampMilk_NoMilker>
+  <CC_CampMilk_Sold>{X_nameDef} set down {COUNT} {THING} from the herd by the colony's gate, and {SILVER} silver for it is going over to their camp.</CC_CampMilk_Sold>
+  <CC_CampMilk_SoldShort>{X_nameDef} set down {COUNT} {THING} from the herd by the colony's gate. It came to {PRICE} silver, but the colony had only {SILVER} left to send over to their camp, and the {NAME} took it badly.</CC_CampMilk_SoldShort>
+  <CC_CampMilk_SoldUnpaid>{X_nameDef} set down {COUNT} {THING} from the herd by the colony's gate, but the colony had no silver left for the {PRICE} it came to, and the {NAME} took it badly.</CC_CampMilk_SoldUnpaid>
+
+</LanguageData>

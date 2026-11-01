@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public EffecterDef effecter;
         /// <summary>An animal as the target stands still for the work (milking, shearing), as the game's own gathering has it.</summary>
         public bool holdTarget;
+        /// <summary>The work shows its progress in a bar, as the game's own milking and shearing do.</summary>
+        public bool progress;
     }
 
     /// <summary>
@@ -29,7 +31,8 @@ namespace ColonyCouncil
     /// (herbs gathered at dawn, a beast's milk, a gift, goods it bought), tend a colonist lying hurt outdoors nearby,
     /// build the camp, fetch their kills (to the butchering spot) and wood (to the stash), then by the time of day:
     /// butchering, cooking and sitting by the fire in the evening; mending one of the colony's buildings as a gift,
-    /// dressing kills, hunting, felling trees, porters' loads and their own work by day. Only their own goods are ever
+    /// dressing kills, a walk to buy at the colony's market, hunting, felling trees, porters' loads and their own work by
+    /// day. Only their own goods are ever
     /// used, and nothing is taken from inside or near the colony's home area.
     /// </summary>
     public class JobGiver_CampLife : ThinkNode_JobGiver
@@ -364,6 +367,9 @@ namespace ColonyCouncil
             }
             // Their trader keeps to the stall, where the colony can find them.
             if (pawn == camp.trader && kind.task != null && Rand.Chance(0.75f)) return Task(camp, pawn);
+            // One of them walks over to buy what the camp needs at the colony's market stalls (CampMarket.cs).
+            var shop = camp.MarketJob(pawn);
+            if (shop != null) return shop;
             if (camp.dayHunts < camp.huntsToday && camp.prey.Count == 0 && CanHunt(pawn))
             {
                 var animal = Prey(camp, pawn);
@@ -684,6 +690,7 @@ namespace ColonyCouncil
             };
             if (ext != null && ext.repairEffect) work.WithEffect(() => job.targetA.Thing?.def?.repairEffect ?? EffecterDefOf.ConstructMetal, TargetIndex.A);
             if (ext?.effecter != null) work.WithEffect(ext.effecter, job.targetB.IsValid ? TargetIndex.B : TargetIndex.A);
+            if (ext != null && ext.progress) work.WithProgressBarToilDelay(TargetIndex.A);
             yield return work;
             yield return Toils_General.Do(() => CampWork.Done(pawn, job));
         }

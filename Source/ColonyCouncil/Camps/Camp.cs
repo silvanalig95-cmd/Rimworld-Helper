@@ -439,6 +439,8 @@ namespace ColonyCouncil
             // Neighbours settled for good (Holding.cs), and the load they sent down the road for the colony (RoadPost.cs).
             ExposeHolding();
             ExposeRoadPost();
+            // Their trips to the colony's market stalls (CampMarket.cs).
+            ExposeMarket();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();
