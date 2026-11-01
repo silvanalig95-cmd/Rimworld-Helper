@@ -45,7 +45,13 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_SunsReturn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>4</amount><onlyStrained>true</onlyStrained></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the sun's return</label><woodPaid>true</woodPaid><hours>4~8</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the sun's return</label><woodPaid>true</woodPaid><hours>4~8</hours><duration>1.5~2</duration>
+            <lines>
+              <li>Stamp your feet, it helps with the cold.</li>
+              <li>There, on the ridge, look!</li>
+              <li>That's the first warm light since the dark came.</li>
+            </lines>
+          </li>
         </effects>
       </li>
       <li>
@@ -103,7 +109,13 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_RainWelcome</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the rain welcome</label><spots><li>Outdoors</li><li>Gather</li><li>Fields</li></spots><hours>6~20</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the rain welcome</label><spots><li>Outdoors</li><li>Gather</li><li>Fields</li></spots><hours>6~20</hours><duration>1~1.5</duration>
+            <lines>
+              <li>Feel that, it's real rain!</li>
+              <li>Turn your face up, it tastes of dust.</li>
+              <li>The fields will drink tonight.</li>
+            </lines>
+          </li>
         </effects>
       </li>
       <li>
@@ -406,7 +418,13 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_TreeSinging</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.06</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the tree-singing</label><music>true</music><spots><li>Outdoors</li><li>Fields</li></spots><hours>12~18</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the tree-singing</label><music>true</music><spots><li>Outdoors</li><li>Fields</li></spots><hours>12~18</hours><duration>1.5~2</duration>
+            <lines>
+              <li>Louder, so the old one can hear us.</li>
+              <li>I've forgotten the second verse already.</li>
+              <li>We took your shade and we took your wood.</li>
+            </lines>
+          </li>
         </effects>
       </li>
       <li>

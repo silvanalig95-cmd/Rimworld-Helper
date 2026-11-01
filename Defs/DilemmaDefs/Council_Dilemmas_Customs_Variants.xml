@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the seasonal customs and festivals to read (Council_Dilemmas_Customs.xml, Council_Dilemmas_Customs2.xml,
+    and more for those of Council_Dilemmas_Seasons.xml besides Council_Dilemmas_Seasons_Variants.xml): letter texts and
+    outcomes, merged into those defs at startup (Source/ColonyCouncil/Dilemmas/DilemmaChoices.cs, LetterVariantsDef).
+    Besides the usual tags (the season and weather, A's traits, passions and past, B's with b: in front, the colony's
+    name, the land), a custom's lines can ask how often it was kept before (Dilemmas/CustomYearsMath.cs): [again] once
+    its custom answer has been chosen before, [years] once three times or more, [tradition] while it is a tradition, and
+    [missed] when it is a tradition the council didn't keep the last time it came round (with the middle answer or the
+    refusal, so a [missed] line says only that the custom wasn't kept). An outcome's tags are as the custom stood before
+    the answer. Outcomes are listed by the answer's place in the def (0 = the first).
+  -->
+
+  <!-- ===================== The planting day ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_PlantingBlessing</defName>
+    <dilemma>Council_Dilemma_PlantingBlessing</dilemma>
+    <texts>
+      <li>[again] The fields are open again. {A_nameDef} has the seed sorted into sacks by the door, one for each field, and would like the planting day held as it was before, with every hand at the furrows and a word at the field's edge when they're done.</li>
+      <li>[again] {A_nameDef} turned over a spadeful in the far field this morning and found it soft and dark. The planting day comes round with the ground, {A_nameDef} says, and the ground is ready.</li>
+      <li>[tradition] The ground has thawed, and the colony sows together on the first day now. {A_nameDef} has the seed ready and wants the council's word for the day.</li>
+      <li>[tradition,years] {A_nameDef} can tell each planting day the colony has held by what came up after it. The fields are open again, and {A_nameDef} wants this year's sown the same way, all of it in one day, with a few words at dusk.</li>
+      <li>[missed] Last time the planting day wasn't kept, and {A_nameDef} hasn't let it go. The fields are open again. {A_nameDef} would like the day back, with the colony out in the fields together and a word over the furrows when they're sown.</li>
+      <li>[skill:Plants] {A_nameDef} has walked the furrows twice this morning, crumbling the soil between {A_possessive} fingers. It's ready, {A_nameDef} says, and it should be sown by all of them together, in one day, with a word at the end.</li>
+      <li>[old] {A_nameDef} has sown more springs than anyone here and would like to see this one done properly. One day with every hand in the fields, {A_nameDef} says, and a few words over the furrows when the seed is in.</li>
+      <li>[newcomer] {A_nameDef} has only been here a few days, but has come to the council about a planting day all the same. Where {A_nameDef} comes from, the first sowing belongs to everyone.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The colony sowed together again, row by row, until the light went. At dusk {A_nameDef} said the words over the furrows, and this time some of the others knew them too.</li>
+          <li>[tradition,years] By morning the seed sacks stood at the field's edge, by dark every row was sown, and at dusk {A_nameDef} said the few words, which get longer every year.</li>
+          <li>[years] Nobody had to be told what to do. They took a row each, the way they always do, and at dusk they stood at the field's edge while {A_nameDef} said the words.</li>
+          <li>[skill:Plants] {A_nameDef} went ahead down each row showing how deep, and the others sowed behind. At dusk {A_nameDef} said a few words over fields sown straight and even.</li>
+          <li>[large] With so many hands the sowing was done by mid-afternoon, and they came back out at dusk to hear {A_nameDef} say a few words over the furrows.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} sowed the first row by hand at first light, slowly, before the others were out. The rest of the seed went in over the next days with the usual work.</li>
+          <li>[tradition] {A_nameDef} sowed the first row alone at dawn. It isn't the planting day the colony keeps, and {A_nameDef} said as much at breakfast.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No planting day this year. The seed went in between the other jobs, a few rows at a time, and {A_nameDef} sowed {A_possessive} share without a word.</li>
+          <li>[skill:Plants] The seed went in with the other work. {A_nameDef} took the rows nearest the house and sowed them as if it were the planting day anyway.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The remembrance walk ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_RemembranceWalk</defName>
+    <dilemma>Council_Dilemma_RemembranceWalk</dilemma>
+    <texts>
+      <li>Spring has come, and the graves came through the winter with moss on the north side of every stone. {A_nameDef} would like one evening when the colony walks out to them together and says the names.</li>
+      <li>[again] Spring again, and {A_nameDef} has been out to see how the graves came through the winter. One of the markers has tipped. {A_nameDef} would like the walk again, at dusk, with every name said.</li>
+      <li>[tradition] The colony walks to its graves every spring now. {A_nameDef} has been asked about it twice this week already and brings it to the council: one evening, all of them, every name.</li>
+      <li>[tradition,years] {A_nameDef} knows every name on the graves by heart now, and the story that goes with most of them. Spring has come round, and with it the walk out to them that the colony makes every year.</li>
+      <li>[missed] The remembrance walk wasn't kept last spring. {A_nameDef} has been out to the graves alone since, pulling weeds, and hopes the council won't let it go a second year.</li>
+      <li>[grieving] {A_nameDef} is grieving and has been going out to the graves in the evenings. Would the others come once, {A_nameDef} wants to know, all together, and say the names with {A_objective}?</li>
+      <li>[rain] It's raining, and the path to the graves is mud. {A_nameDef} wants to walk out anyway, all of them together, and say the names before the grass grows over the stones.</li>
+      <li>[old] {A_nameDef} remembers most of the colony's dead and is afraid of forgetting them. An evening at the graves with the names said out loud, {A_nameDef} says, and the younger ones would learn them too.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The colony walked out to the graves again at dusk. More of them knew the names this time, and {A_nameDef} only had to start them off.</li>
+          <li>[tradition,years] The walk has its own order now, the oldest graves first and the newest last, with a story wherever someone has one. They walked back in the dark, talking.</li>
+          <li>[grieving] {A_nameDef} said one name more slowly than the others, and someone stood close beside {A_objective} until it was done.</li>
+          <li>[old] {A_nameDef} told a story at each grave that the younger ones hadn't heard. It was full dark before they started back.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] Only {A_nameDef} walked out to the graves this spring. The others meant to go another evening, and the custom went unkept.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No walk to the graves this spring. {A_nameDef} went out alone after dark and said every name, and it took a long time.</li>
+          <li>{A_nameDef} went out to the graves alone after dark and sat with them until late, saying the names under {A_possessive} breath.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The midsummer swim ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_MidsummerSwim</defName>
+    <dilemma>Council_Dilemma_MidsummerSwim</dilemma>
+    <texts>
+      <li>It's hot enough that people are snapping at each other over nothing. {A_nameDef} wants one afternoon off for all of them, down at the water, until they've cooled off.</li>
+      <li>[hot] It's too hot to work and they all know it. {A_nameDef} has already been down to the water to check it's still there, and would like the council to send the colony after {A_objective} for the afternoon.</li>
+      <li>[child] {A_nameDef} has asked every grown-up in the colony whether today is the swimming day, and every one of them said to ask the council. So here it is, from {A_nameDef}: an afternoon at the water, for everyone, please.</li>
+      <li>[again] Midsummer, and the water is warm again. {A_nameDef} has been talking about the last midsummer swim since breakfast and wants the afternoon for another.</li>
+      <li>[tradition] The midsummer swim is a custom here now, and the hottest day has come. {A_nameDef} has the towels folded by the door already and only wants the council's word.</li>
+      <li>[tradition,years] The colony has gone down to the water on the hottest day for years now, and each of them has a spot on the bank they think of as theirs. {A_nameDef} would like the afternoon again.</li>
+      <li>[missed] The swim wasn't kept last time, and people still bring it up when the weather turns warm. One afternoon at the water for all of them, {A_nameDef} says, and this year it should be kept.</li>
+      <li>[land:coast] The sea is calm and warm today, as warm as it gets. {A_nameDef} wants the colony down at the shore for the afternoon, in the water and out of it, until the sun is low.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] Back to the water for the afternoon. They found the same spots on the bank as before, and stayed until the shadows were long.</li>
+          <li>[tradition,years] The careful ones waded in, {A_nameDef} went straight under, and afterwards they all lay drying on the bank with their eyes shut, as they do every year.</li>
+          <li>[years] Every year someone swears the water is colder than the last time, and every year they go in anyway. This year it was {A_nameDef}.</li>
+          <li>[child] {A_nameDef} was in the water before the grown-ups had their boots off, and was the last one called out of it.</li>
+          <li>[hot] The water was the only cool place for miles, and they stayed in it as long as the afternoon lasted.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The work was done by evening and the water had kept the day's heat. They stayed in until they couldn't see the far bank.</li>
+          <li>[tradition] Work first, then the water, which isn't quite the custom. Still, they were all in it by sunset, and the grumbling stopped once they were.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] The hottest day went by at work, the first midsummer without the swim since the custom began. {A_nameDef} went to bed early, still hot.</li>
+          <li>{A_nameDef} worked through the heat with the others and poured a cup of water over {A_possessive} head at supper.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The harvest dance ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_HarvestDance</defName>
+    <dilemma>Council_Dilemma_HarvestDance</dilemma>
+    <texts>
+      <li>The harvest is in and stacked, and people are walking stiffly from it. {A_nameDef} says a night of dancing loosens a back better than a night of sleep, and wants one, with a fire and a drum.</li>
+      <li>[skill:Artistic] {A_nameDef} has been working out a dance tune all week on whatever can be beaten or blown, and wants the colony to dance to it tonight round a fire, until they're too tired to stand.</li>
+      <li>[again] The fields are bare again, and people have started humming the dance tune at work without meaning to. {A_nameDef} would like the harvest dance tonight.</li>
+      <li>[again] {A_nameDef} has been teaching the harvest dance in the dining room after supper to anyone who doesn't know it yet, and says they're as ready as they'll ever be. All the dance needs now is the fire and the council's word.</li>
+      <li>[tradition] It's the night of the harvest dance, or it should be. {A_nameDef} has swept the yard and stacked the wood for the fire, and only wants the council's word.</li>
+      <li>[tradition,years] The harvest dance has been danced here for years now, and the steps have changed since the first one. {A_nameDef} wants the fire lit again tonight, and promises to teach the newest turn to anyone who asks.</li>
+      <li>[years] The drum has hung by the door since the last harvest dance, and {A_nameDef} took it down this morning. The stores are full and the fields are bare, and the dance could be tonight.</li>
+      <li>[missed] The harvest dance wasn't kept last time, and the winter after it felt longer for that. {A_nameDef} hopes the council won't let it pass again.</li>
+      <li>[newcomer,again] {A_nameDef} hasn't been here long, but has heard about the harvest dance from nearly everyone, most of them showing the steps as they told it. Could it be tonight, {A_nameDef} wants to know.</li>
+      <li>[large] There are enough of them now for a proper dance, {A_nameDef} says, two rings round the fire with one going each way. Tonight would do, with the fields bare and the stores full.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] They danced round the fire until it was embers, the old steps first and then a few new ones that started an argument. {A_nameDef} was still on {A_possessive} feet at the end.</li>
+          <li>[tradition,years] It started slow round the fire, as it does every year, and got faster as the wood burned down, and the same three people were the last off their feet. {A_nameDef} was one of them.</li>
+          <li>[years] The drummer was changed three times and the fire was fed twice, and the last dancers only stopped when the embers were too low to see the steps by.</li>
+          <li>[skill:Artistic] {A_nameDef} kept the beat until {A_possessive} wrists ached, and the colony danced to it until the fire went to embers.</li>
+          <li>[newcomer] {A_nameDef} had to be shown every step twice and danced the whole night anyway. By the end the newest face in the colony knew the dance better than some of the old ones.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>One dance round the fire, the best they had, and then bed. {A_nameDef} asked for a second and was told to wait for next year.</li>
+          <li>[tradition] One dance and then bed, which isn't the custom. It was a good dance, but people went in looking back at the fire.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No harvest dance this year. {A_nameDef} sat at the cleared supper table afterwards, tapping out the steps with two fingers.</li>
+          <li>[again] {A_nameDef} went to bed early. Through the wall, the others could hear {A_objective} going over the steps on the floorboards.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== First-frost soup ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_FirstFrostSoup</defName>
+    <dilemma>Council_Dilemma_FirstFrostSoup</dilemma>
+    <texts>
+      <li>[again] Frost on the ground this morning, and {A_nameDef} had the big pot down off its hook before anyone asked. The soup would take about {COUNT} raw food, eaten together out of the one pot.</li>
+      <li>[tradition] First frost, and the colony knows what that means now. {A_nameDef} has the big pot scrubbed and the garden picked over, and wants the council's word for the soup, about {COUNT} raw food.</li>
+      <li>[tradition,years] {A_nameDef} has made the first-frost soup so many times now that people argue about which year's was best. The frost came this morning. About {COUNT} raw food, {A_nameDef} says, and all of them round the pot again.</li>
+      <li>[missed] The first-frost soup wasn't kept last time, and people noticed. The frost is back this morning, and {A_nameDef} would like it done properly this year, about {COUNT} raw food in the one pot.</li>
+      <li>[snow] Snow on the first cold morning, not just frost. {A_nameDef} wants the big pot on the fire by noon, about {COUNT} raw food, and the colony eating outside in it together.</li>
+      <li>[skill:Cooking] {A_nameDef} has been working out a soup in {A_possessive} head all autumn, waiting for the frost. It came this morning. About {COUNT} raw food, {A_nameDef} says, and everyone round one pot.</li>
+      <li>[lowtech] At home the first frost meant a fire in the yard and one pot hung over it, with each family bringing a bowl. {A_nameDef} would like to do it here, with about {COUNT} raw food.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The big pot came out again, and the soup was eaten standing in the cold, as it was before. Someone asked for the recipe and {A_nameDef} said there wasn't one.</li>
+          <li>[tradition,years] The first-frost soup is never quite the same twice, and each of them had an opinion on this year's. The pot was scraped clean before the light went.</li>
+          <li>[skill:Cooking] {A_nameDef} stood over the pot all afternoon and wouldn't let anyone else stir it. It was worth the wait.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] Only those out in the cold got a bowl this year. The ones indoors smelled it all afternoon and were sorry.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No first-frost soup this year. {A_nameDef} cooked the usual meals and left the big pot where it hung.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Lantern night ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_LanternNight</defName>
+    <dilemma>Council_Dilemma_LanternNight</dilemma>
+    <texts>
+      <li>[again] {A_nameDef} has taken the lanterns out of their box and found every one still sound. It's the dark of the year again, and {A_nameDef} wants them lit along the walls tonight, with the colony outside to see it.</li>
+      <li>[tradition] Lantern night is kept here every winter now, and the nights are at their longest. {A_nameDef} has the wood set aside for it and would like the lights to go up at dusk.</li>
+      <li>[tradition,years] Lantern night has its way now. The lights go up along the walls at dusk, the colony stands outside to look, and someone says it's the best one yet. {A_nameDef} is hoping for the same this winter.</li>
+      <li>[missed] Lantern night wasn't kept last winter, and the dark felt longer for it. {A_nameDef} has kept the lanterns dry since and hopes to see them lit this year.</li>
+      <li>[snow] Snow has covered the paths since noon. {A_nameDef} wants lanterns along the walls tonight, so the colony shows up yellow against all that white.</li>
+      <li>[evening] It's already dark, and supper isn't even cooked. One night of lanterns along the walls, {A_nameDef} says, before the winter gets any longer.</li>
+      <li>[trait:Kind] {A_nameDef} wants the lanterns lit along the walls one night this winter, for anyone out on the road in the dark. "So they know there's somewhere," {A_nameDef} says.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The lights went up along the walls at dusk, and the colony came out to look at them as they had before. It was a long while before anyone went in.</li>
+          <li>[tradition,years] Out in the cold again to look at the lights along the walls, and the same argument as every winter about which side looks best. {A_nameDef} still says the side facing the road.</li>
+          <li>[trait:Kind] The lights burned along the walls all night, and {A_nameDef} said that was the point. Anyone out on the road could see there was somewhere to come to.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] One lantern at the gate instead of a line of them along the walls. A few walked out to it before bed, and it looked fine on its own in the dark.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No lanterns this winter. The walls stayed dark, and {A_nameDef} kept looking out at them from the window.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The sun's return ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_SunsReturn</defName>
+    <dilemma>Council_Dilemma_SunsReturn</dilemma>
+    <texts>
+      <li>[again] {A_nameDef} has kept count on the notched stick again all winter. Tomorrow the sun clears the ridge, and {A_nameDef} wants the colony up on the high ground before dawn with a fire to meet it, as before.</li>
+      <li>[tradition] The sun's return is a custom here now. {A_nameDef} has carried the firewood up to the high ground already, and only needs the council to have them all woken before dawn.</li>
+      <li>[tradition,years] Year after year the colony has climbed up in the dark to meet the sun, and {A_nameDef} knows the way up without a light by now. Tomorrow is the day again.</li>
+      <li>[missed] The sun's return wasn't kept last spring, and {A_nameDef} hasn't forgiven the council for it. Tomorrow is the day. This time {A_nameDef} wants the fire on the high ground and all of them round it.</li>
+      <li>[snow] It's still snowing, but by {A_nameDef}'s stick the sun clears the ridge tomorrow. {A_nameDef} wants the colony up on the high ground at dawn round a fire, snow or no snow.</li>
+      <li>[old] {A_nameDef} says that at {A_possessive} age every sunrise after the long dark is worth getting up for, and the first one most of all. A fire on the high ground at dawn, {A_nameDef} says, and the colony round it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] Up before dawn again, round a fire on the high ground, stamping and waiting. When the sun cleared the ridge {A_nameDef} said "There," and they went down to breakfast warmer than they came up.</li>
+          <li>[tradition,years] The climb in the dark, the fire, the long wait, and then a cheer when the first light reached the ridge, the same as every year. {A_nameDef} cheered loudest.</li>
+          <li>[old] {A_nameDef} sat closest to the fire and watched the sun come up over the ridge without saying a word, and was the last to go back down.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] The sun came back with only a few awake to see it. The custom wasn't kept, and the others knew it at breakfast.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] The sun came back to a colony already at work, and the custom went unkept. {A_nameDef} didn't say much at breakfast.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The rain welcome ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_RainWelcome</defName>
+    <dilemma>Council_Dilemma_RainWelcome</dilemma>
+    <texts>
+      <li>[again] Rain again, the first since the dry spell set in. {A_nameDef} is already out in it, waving the others out to welcome it the way they did before.</li>
+      <li>[tradition] Rain on the dust, and the colony has a custom for that now. {A_nameDef} is at the door with the pots, waiting for the council's word to send the others out into it.</li>
+      <li>[tradition,years] The colony has danced in the first rain for years now, and {A_nameDef} has the steps worked out to the last splash. The others are being waved out to join in.</li>
+      <li>[missed] The rain wasn't welcomed last time it came, and the dry spell after it felt like the answer. It's raining again, and {A_nameDef} wants the colony out in it this time.</li>
+      <li>[skill:Plants] {A_nameDef} has watched the fields wilt for weeks. Now it's raining, and {A_nameDef} wants the colony out in it together, to thank it properly.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] Out in the rain again, faces turned up, soaked through in no time. More of them stayed out to the end this time.</li>
+          <li>[tradition,years] Out into the yard together as every year, hands out and faces up, until they were soaked through and the dust was mud.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] Every pot went out under the eaves, but nobody went out with them. The rain fell on an empty yard, and {A_nameDef} watched it from the door.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] The rain came and the colony stayed in. {A_nameDef} said it might not come back so soon after a welcome like that.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The blessing of the waters ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_WaterBlessing</defName>
+    <dilemma>Council_Dilemma_WaterBlessing</dilemma>
+    <texts>
+      <li>[again] The water is open again, and {A_nameDef} has baked the loaf with the mark on it. {A_nameDef} would like the blessing kept as before, with the colony at the water's edge in the morning and the loaf given to the water.</li>
+      <li>[tradition] The blessing of the waters is kept here every spring now. {A_nameDef} has the loaf baked and wants the council's word for the morning.</li>
+      <li>[tradition,years] The blessing has been said over the water for so many springs now that most of the colony knows the words. The loaf is baked, and {A_nameDef} wants them all at the water's edge tomorrow morning.</li>
+      <li>[missed] The water wasn't blessed last spring, and {A_nameDef} has blamed every muddy bucket on it since. This year {A_nameDef} wants the blessing said with the colony there to hear it.</li>
+      <li>[land:river] The river is running high and brown with the thaw. {A_nameDef} wants the colony down at the bank in the morning, with the loaf and the words, so the river is kind this year.</li>
+      <li>[land:coast] The sea is grey and calm in the mornings now. {A_nameDef} would like the colony on the shore at first light, the loaf given to the sea and a few words said over it, for a kind sea this year.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The colony stood at the water's edge again while {A_nameDef} said the words and set the loaf on the water. It drifted out a long way before it went under.</li>
+          <li>[tradition,years] The cold walk down, the words said and answered, the loaf set out on the water, as every spring. On the way back people talked about the year ahead.</li>
+          <li>[devout] {A_nameDef} said the faith's words over the water and the colony answered them. The loaf floated out of sight before it went under.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] {A_nameDef} went down alone at dawn with the loaf. The custom is meant for all of them, so {A_nameDef} said the words for all of them.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] The loaf was eaten at supper and the water went unblessed this spring. {A_nameDef} wouldn't take a piece.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The marsh lights ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_MarshLights</defName>
+    <dilemma>Council_Dilemma_MarshLights</dilemma>
+    <texts>
+      <li>[again] The biting things are back at dusk, thick as smoke. {A_nameDef} has tied the green-wood torches again and wants the walk round the colony's edge after dark, a light in every hand.</li>
+      <li>[tradition] The marsh lights are walked here every fever season now. {A_nameDef} has the torches stacked by the door and wants to know if it's tonight.</li>
+      <li>[tradition,years] {A_nameDef} knows the way round the colony's edge in the dark by now, every ditch and every root. It's the fever season again, and {A_nameDef} wants the torches lit and the colony walking.</li>
+      <li>[missed] The bounds weren't walked last summer, and the insects had the colony to themselves for weeks after. This year {A_nameDef} would like the torches walked again.</li>
+      <li>[ill] {A_nameDef} is still shaking off a fever and blames the biting things for it. The torches should go round the colony's edge tonight, {A_nameDef} says, carried by whoever is well enough to walk.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The torches went round the edge again after dark, smoking and spitting. The insects drew back from them, and the lights could be seen far out over the wet ground.</li>
+          <li>[tradition,years] The marsh lights went round in their usual line, the smoke rolling out over the wet ground behind them, and the colony slept that night without a hum in the rooms.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] A torch at each door instead of the walk. The insects came anyway, and people slapped at them all evening and talked about the custom.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No marsh lights this year. The torches stayed tied by {A_nameDef}'s door, going soft in the damp.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The high watch ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_HighWatch</defName>
+    <dilemma>Council_Dilemma_HighWatch</dilemma>
+    <texts>
+      <li>[again] The air has gone clear and cold again, the way it does before winter. {A_nameDef} wants the colony out together one evening to look over what it has, and see what has changed since the last high watch.</li>
+      <li>[tradition] The high watch is a custom here now. Before the weather closes in, {A_nameDef} would like one evening with the colony out on the high ground, looking over what they've made.</li>
+      <li>[tradition,years] From up high you can see the colony grow year by year, a roof here and a field there. This year's should be seen too, {A_nameDef} says, by all of them.</li>
+      <li>[missed] The high watch wasn't kept last autumn, and {A_nameDef} says the colony went into the winter without knowing what it had. {A_nameDef} would like it kept this year.</li>
+      <li>[skill:Construction] {A_nameDef} built a good share of what can be seen from the high ground, and wants the colony out one evening to see it whole, before the snow covers it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] Out again in the late light, all of them, looking over the roofs and fields. {A_nameDef} pointed out what had been built since the last time, and someone else pointed out what hadn't.</li>
+          <li>[tradition,years] They stood together in the late light and counted what they had: the roofs, the fields, the walls, and each other. {A_nameDef} counted the people last, and twice.</li>
+          <li>[skill:Construction] {A_nameDef} named every roof and wall the colony could see, who built it and how long it took, until someone asked to hear about the fields instead.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] Only a few went up this year. They came back after dark and told the others about the view, which isn't the same.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No high watch this autumn, and the first snow isn't far off. {A_nameDef} says the colony will have forgotten what it looks like from up there.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The night vigil ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_NightVigil</defName>
+    <dilemma>Council_Dilemma_NightVigil</dilemma>
+    <texts>
+      <li>[again] The longest nights are here again. {A_nameDef} has trimmed the lamps and wants the faithful to keep the vigil as before, the words said and answered deep into the dark.</li>
+      <li>[tradition] The vigil is kept here every winter now. {A_nameDef} has the lamps ready and the words written out for those who don't know them yet, and hopes it can be tonight.</li>
+      <li>[tradition,years] The faithful have kept the vigil here for years now, and this winter they came to {A_nameDef} about it before {A_nameDef} could come to them. The dark of the year is here, and they want the night.</li>
+      <li>[missed] The vigil wasn't kept last winter, and {A_nameDef} has felt it all year. The dark is here again, and {A_nameDef} wants the faithful gathered for it tonight.</li>
+      <li>[faith:devout] {A_nameDef} has been at prayer since morning to be ready, and hopes for the vigil tonight, the lamps lit at dusk and the old words said through the dark of the year.</li>
+      <li>[snow] Snow against the windows on the longest nights. {A_nameDef} wants the lamps lit and the faithful gathered inside to keep the vigil while it falls.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The vigil was kept again, the words said and answered with the lamps trimmed low. {A_nameDef} said the last words to whoever was still awake to hear them.</li>
+          <li>[tradition,years] The lamps at dusk, the long words, the short ones, and the silence after. The vigil has its own shape now, and they went to bed late and slept well.</li>
+          <li>[faith:devout] {A_nameDef} led the words through the evening without once looking at the page, and the faithful answered every line.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] Only the short vigil this year, the words at dusk and then bed. {A_nameDef} kept a lamp burning in the window for the rest of it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] The faithful went to bed without the vigil this winter. {A_nameDef} said the words alone by one lamp and kept it lit until dawn.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The tree-singing ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_TreeSinging</defName>
+    <dilemma>Council_Dilemma_TreeSinging</dilemma>
+    <texts>
+      <li>[again] The leaves are full again on the old tree. {A_nameDef} wants an afternoon to sing to it, the songs they sang before and one new one.</li>
+      <li>[tradition] The tree-singing is kept here every year now. {A_nameDef} has been humming the songs all week to remind people, and hopes for an afternoon of it soon.</li>
+      <li>[tradition,years] The colony has sung to the old tree for years now, and {A_nameDef} is sure it has grown toward the sound. This afternoon would suit it, {A_nameDef} says.</li>
+      <li>[missed] The trees went unsung last time. {A_nameDef} has been out apologizing to the old one on the colony's behalf, and wants it sung to properly this year.</li>
+      <li>[skill:Plants] {A_nameDef} has tended the trees round the colony all year and would like one afternoon of singing to them, all of them together, as thanks for the shade and the wood.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] They sang to the trees again until the light went gold. The songs came easier this year, and the leaves moved overhead the whole time.</li>
+          <li>[tradition,years] The first song started as it does every year, and the rest had joined in by the second line. The words haven't needed writing down for a long time.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] One song at dusk, not the afternoon the custom asks for. {A_nameDef} sang the last verse twice, to make up some of the difference.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No singing this year. {A_nameDef} says the old tree will have noticed.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The ancestors' supper ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_AncestorsSupper</defName>
+    <dilemma>Council_Dilemma_AncestorsSupper</dilemma>
+    <texts>
+      <li>[again] The year is turning again, and {A_nameDef} has taken the name-boards down from their shelf to dust them. A place for each of the dead and their names said, {A_nameDef} says, about {COUNT} raw food.</li>
+      <li>[tradition] The ancestors' supper is kept here every year now, and {A_nameDef} has the long table laid out in {A_possessive} head already. It would take about {COUNT} raw food, and the door left open for the evening.</li>
+      <li>[tradition,years] {A_nameDef} has laid the ancestors' table so many years now that each name-board goes to its place without a thought. The supper would take about {COUNT} raw food, as it does every year.</li>
+      <li>[missed] The ancestors' supper wasn't kept last time, and the dead went without their places at the table. {A_nameDef} wants the long table laid this year, with about {COUNT} raw food.</li>
+      <li>[grieving] {A_nameDef} is grieving, and wants the ancestors' supper this year more than anyone, with a place laid for each of the colony's dead and their names said. It would take about {COUNT} raw food.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The long table was laid again, a full bowl at each of the dead's places. {A_nameDef} said every name, and the stories came quicker this year, as if people had saved them up.</li>
+          <li>[tradition,years] The names first, then the food, then the stories, with the door open to the cold. Some stories are told the same way every year now, and people say the last lines along.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] No places laid this year, only the names said over supper. People raised their cups to each, and the door stayed shut.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No ancestors' supper this year. {A_nameDef} set one bowl on the windowsill and left it there all night.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!--
+    The seasonal festivals and the questions after a raid (Council_Dilemmas_Seasons.xml): more besides those in
+    Council_Dilemmas_Seasons_Variants.xml, mostly for a festival kept year after year.
+  -->
+
+  <!-- ===================== Midsummer ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Midsummer_More</defName>
+    <dilemma>Council_Dilemma_Midsummer</dilemma>
+    <texts>
+      <li>The woodpile is high and the night will be short. {A_nameDef} wants a midsummer bonfire in the yard, with music, and the night shift let off until the sky goes pale.\n\nIt would take a good stack of firewood.</li>
+      <li>[again] {A_nameDef} has been setting logs aside by the woodpile again, a few every evening, the way it was done before the last midsummer fire. The shortest night is tomorrow, and {A_nameDef} wants to light them.</li>
+      <li>[tradition] Midsummer, and the colony has its bonfire every year now. {A_nameDef} has the logs stacked and only wants the word to light them at dusk.</li>
+      <li>[tradition,years] {A_nameDef} has built the midsummer fire so many times now that the logs go up without anyone having to say where. Tonight is the shortest night, and {A_nameDef} wants it lit.</li>
+      <li>[missed] The midsummer bonfire wasn't kept last year, and the short night felt long without it. {A_nameDef} has the wood ready and hopes the council won't let it pass again.</li>
+      <li>[child] {A_nameDef} has been asking all week whether there will be a fire on the shortest night, and has carried sticks to the woodpile for it, one at a time. The question has reached the council, very seriously.</li>
+      <li>[clear] Not a cloud anywhere, and the shortest night of the year coming. {A_nameDef} is asking for a bonfire in the yard tonight, and the colony out round it until dawn.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] The midsummer fire went up at dusk, as tall as the last one or taller, depending who was asked. Most of the colony stayed round it until the logs fell in.</li>
+          <li>[tradition,years] Music until late, stories after, and a few still sitting at the embers when the others had gone to bed. The midsummer fire burns that way every year now.</li>
+          <li>[years] The midsummer fire has its songs now, and they were all sung, some of them twice. {A_nameDef} fed the fire and knew every word.</li>
+          <li>[child] {A_nameDef} was allowed to stay up for the fire and fell asleep before it burned down, which {A_nameDef} denies.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] No midsummer fire this year, the first midsummer without one since the custom began. The short night passed dark and quiet.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] A small fire instead of the bonfire the custom asks for. It was pleasant enough, but people kept looking over at the woodpile.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Harvest home ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_HarvestHome_More</defName>
+    <dilemma>Council_Dilemma_HarvestHome</dilemma>
+    <texts>
+      <li>[again] The harvest is in again, and {A_nameDef} has already set the best of it aside for the table. A harvest home the way it was kept before, {A_nameDef} says, about {COUNT} raw food.</li>
+      <li>[tradition] Harvest home is kept here every year now. The last of the crop came in this afternoon, and {A_nameDef} wants the supper, about {COUNT} raw food and one table for all of them.</li>
+      <li>[tradition,years] {A_nameDef} has brought in the harvest for years now, and has the supper planned down to the last dish. It would take about {COUNT} raw food, as every year.</li>
+      <li>[missed] Harvest home wasn't kept last year, and {A_nameDef} hasn't let the council forget it. The crop is in, and this time {A_nameDef} wants the supper, about {COUNT} raw food.</li>
+      <li>[colony:GreenFingered] The colony's fields are known well beyond its walls, and the last of this year's crop is in. {A_nameDef} wants to eat some of it before it all goes to the stores, about {COUNT} raw food for a harvest home.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] Harvest home again, the long table full and the cook sitting down for once. {A_nameDef} said a few words about the crop and kept them short, so the food wouldn't go cold.</li>
+          <li>[tradition,years] The best of the crop on one long table, the growers served first and the evening running late, the way the harvest home goes now. {A_nameDef} was served first of all.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] No harvest home this year. The crop went into storage, and supper was the same as any other night.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] A modest supper instead of the harvest home. It was good food, and people ate it talking about what the harvest home used to be like.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Midwinter ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Midwinter_More</defName>
+    <dilemma>Council_Dilemma_Midwinter</dilemma>
+    <texts>
+      <li>[again] The longest night has come round again. {A_nameDef} has been reminding people of the last midwinter supper all week, and wants the same again, extra food and all of them in one room until late.</li>
+      <li>[tradition] The midwinter supper is kept here every year now. {A_nameDef} has the extra rations counted out and only wants the council's word for the long evening.</li>
+      <li>[tradition,years] {A_nameDef} has a story about every midwinter the colony has kept, and means to tell most of them tonight, over the supper and the long evening the colony keeps every year.</li>
+      <li>[missed] The midwinter supper wasn't kept last year, and people still mention it. This time {A_nameDef} would like it kept, extra food and the colony together until late.</li>
+      <li>[newcomer] {A_nameDef} hasn't been here long and doesn't know yet how the colony keeps midwinter. Could it be together, {A_nameDef} wants to know, with extra food and one long evening round a fire?</li>
+      <li>[night] It's the middle of the longest night, and {A_nameDef} is still up, going from room to room to check on people. Tomorrow, {A_nameDef} tells the council, they should all be in one place.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[again] Extra rations and one long table again. {A_nameDef} told a story from the last midwinter, and people corrected the parts {A_nameDef} got wrong.</li>
+          <li>[tradition,years] Extra food, the songs that always get sung, and all of them in one warm room until late. The midwinter supper doesn't change much from year to year, and nobody wants it to.</li>
+          <li>[newcomer] {A_nameDef} was given the best seat at the table and the first plate, the way the newest face always is at midwinter here.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] Stories round the fire, but no supper this midwinter. The stories were good, and people still talked about the supper they didn't have.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[tradition] No midwinter supper this year. The longest night passed in separate rooms, the way it did before the custom began.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Naming the year ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_NameTheYear_More</defName>
+    <dilemma>Council_Dilemma_NameTheYear</dilemma>
+    <texts>
+      <li>[again] Spring, and the year needs a name again. The muffalo won before, and its supporters have chalked its name on the wall already. {A_nameDef} has rubbed it out and written {A_possessive} own.</li>
+      <li>[tradition] Naming the year after a muffalo is a custom here now, and the muffalo's supporters are confident. {A_nameDef} is campaigning against it, for {A_possessive} own name. The colony's dead have a few votes too.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[tradition] It is the year of {A_nameDef}, and the muffalo's supporters are outraged. A custom has been broken for one colonist's name, and {A_nameDef} is delighted.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[again] The year of the muffalo, again. Someone has started numbering them. {A_nameDef} is sulking, again.</li>
+          <li>[tradition,years] Another year of the muffalo. The list of years on the wall by the door is mostly muffaloes now, and {A_nameDef} has stopped arguing and started drawing them.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The spoils ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_Spoils_More</defName>
+    <dilemma>Council_Dilemma_Spoils</dilemma>
+    <texts>
+      <li>The raiders' gear is still on them where they fell, boots and coats and a few weapons worth keeping. {A_nameDef}, who did the most shooting, wants first choice, and the others want the council to say how it's shared.</li>
+      <li>[hurt] {A_nameDef} took a wound on the wall and kept shooting. Now {A_nameDef} wants first pick of the raiders' gear and says the wound should count for something. Others think a share is a share.</li>
+      <li>[skill:Shooting] {A_nameDef} has had an eye on one of the raiders' weapons since the shooting stopped, and says {A_possessive} aim earned it. The others would rather the council decided.</li>
+      <li>[large] With so many who fought, the raiders' gear won't go round. {A_nameDef} brought down the most of them and wants first pick; the rest want the council to decide how it's shared.</li>
+      <li>[newcomer] {A_nameDef} hasn't been here long, but fought harder today than anyone and wants first pick of the spoils. Some of the others think the newest face should wait its turn.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[hurt] {A_nameDef} took the best of the spoils, and most didn't begrudge the wounded the first choice. Some still say they fought as hard.</li>
+          <li>[newcomer] {A_nameDef} took first pick. The newest face in the colony is now one of its best dressed, and some of the old hands have noticed.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[skill:Shooting] Everything went to the common stores to be shared out. {A_nameDef} says the next raider can be shot by whoever wants the boots.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[large] Each of the fighters took a share, small ones with so many hands. The ones who stayed in got the cleanup.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The enemy dead ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_EnemyDead_More</defName>
+    <dilemma>Council_Dilemma_EnemyDead</dilemma>
+    <texts>
+      <li>[tradition] The colony buries the people it fights; that has been the way here for a while now. The raiders lie outside the wall, and {A_nameDef} wants to know whether it still is.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[tradition] Graves again, as the custom here goes, dug in a row outside the wall. Some grumbled about the digging and dug anyway.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] The raiders were burned, not buried, and the colony's custom of graves for its enemies was broken. Some were glad of it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Victory feast ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Dlm_VictoryFeast_More</defName>
+    <dilemma>Council_Dilemma_VictoryFeast</dilemma>
+    <texts>
+      <li>[hurt] {A_nameDef} came out of the fight hurt and grinning anyway. The attack is over, and {A_nameDef} wants a feast tonight for all who stood, about {COUNT} raw food, before the shaking sets in.</li>
+      <li>[again] The attackers are gone, and people are already looking toward the kitchen, remembering the last victory feast. {A_nameDef} wants another tonight, about {COUNT} raw food.</li>
+      <li>[tradition] The colony feasts after a fight it wins; that's the custom now. {A_nameDef} wants the council to say so tonight, with about {COUNT} raw food and the repairs left for the morning.</li>
+      <li>[small] There are only a few of them, and every one of them was needed today. A feast tonight for all of them, {A_nameDef} says, about {COUNT} raw food.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[tradition] The victory feast went on late, the way it does here after every fight. They drank to the walls, then to each other, then to the cook.</li>
+          <li>[hurt] {A_nameDef} sat with {A_possessive} wounds dressed and told the story of the fight three times, longer each time.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[tradition] No victory feast this time, only the walls and the wounded. People worked through the evening and looked toward the kitchen more than once.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>
