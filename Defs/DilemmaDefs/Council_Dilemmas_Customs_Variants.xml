@@ -708,7 +708,7 @@
 
   <!-- ===================== The enemy dead ===================== -->
   <ColonyCouncil.LetterVariantsDef>
-    <defName>Council_Var_Dlm_EnemyDead_More</defName>
+    <defName>Council_Var_Dlm_EnemyDead_Years</defName>
     <dilemma>Council_Dilemma_EnemyDead</dilemma>
     <texts>
       <li>[tradition] The colony buries the people it fights; that has been the way here for a while now. The raiders lie outside the wall, and {A_nameDef} wants to know whether it still is.</li>
@@ -731,7 +731,7 @@
 
   <!-- ===================== Victory feast ===================== -->
   <ColonyCouncil.LetterVariantsDef>
-    <defName>Council_Var_Dlm_VictoryFeast_More</defName>
+    <defName>Council_Var_Dlm_VictoryFeast_Years</defName>
     <dilemma>Council_Dilemma_VictoryFeast</dilemma>
     <texts>
       <li>[hurt] {A_nameDef} came out of the fight hurt and grinning anyway. The attack is over, and {A_nameDef} wants a feast tonight for all who stood, about {COUNT} raw food, before the shaking sets in.</li>

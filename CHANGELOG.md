@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Customs that remember their years
+
+*1 November 2026, version 0.45.1*
+
+- Seasonal customs and festivals have many more openings and outcomes, chosen to fit the weather, the people asking and the land.
+- A custom kept year after year reads like one: the letters remember the last time, speak of a custom kept for years, and say so when one was let go.
+- People talk about the occasion itself at the harvest dance, the midsummer fire, the swims, midwinter, harvest home, lantern night and other customs.
+- A letter or outcome no longer repeats the text it used most recently when another one fits.
+- Lantern night's words match what is set out, lanterns along the outside of the walls rather than one in every window, and the remembrance walk's smaller answer says only the one who asked visits the graves, as the map shows.
+
 ## More ways to ask, grumble and celebrate
 
 *1 November 2026, version 0.45.0*

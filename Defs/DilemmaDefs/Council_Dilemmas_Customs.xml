@@ -367,21 +367,21 @@
     <cooldownDays>50</cooldownDays>
     <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
     <texts>
-      <li>The nights are long and black, and {A_nameDef} wants one of them to be different: a lantern in every window and along every path, all lit at once at dusk, so the colony can be seen glowing from the hills.\n\nIt would burn a fair bit of wood.</li>
-      <li>There are forty-one lanterns under {A_nameDef}'s bed, made from scraps over the winter evenings. {A_nameDef} would like one night to light them all.</li>
-      <li>[lowtech] On the darkest night of the year, {A_nameDef} says, a candle goes in every window so the dead can find their way home. {A_nameDef} has been saving candle ends since the fall.</li>
-      <li>[!lowtech] {A_nameDef} wants the lamps off for one winter night and lanterns lit instead, real flames, the way {A_pronoun} remembers it from childhood.</li>
+      <li>The nights are long and black, and {A_nameDef} wants one of them to be different: lanterns all along the outside of the walls, lit at once at dusk, so the colony can be seen glowing from the hills.\n\nIt would burn a fair bit of wood.</li>
+      <li>{A_nameDef} has put wood aside all winter for one night of lanterns along the walls, and would like the council to choose the night.</li>
+      <li>[lowtech] On the darkest night of the year, {A_nameDef} says, lights burn along the walls so the dead can find their way home. {A_nameDef} has been saving wood for them since the fall.</li>
+      <li>[!lowtech] {A_nameDef} wants lanterns lit along the walls for one winter night, real flames, the way {A_pronoun} remembers it from childhood.</li>
     </texts>
     <traditionOption>0</traditionOption>
     <traditionLabel>lantern night</traditionLabel>
     <defaultOption>1</defaultOption>
     <options>
       <li>
-        <label>A lantern in every window</label>
+        <label>Lanterns along the walls</label>
         <outcome>At dusk the lanterns were lit all at once, and the colony stood outside in the cold to look at itself glowing. It was a long while before anyone went in.</outcome>
         <outcomes>
           <li>[snow] The lanterns lit up the falling snow. They stood out in it, looking, until their feet went numb.</li>
-          <li>[lowtech] A candle burned in every window until dawn. {A_nameDef} sat up to keep them lit, and said a name at each one.</li>
+          <li>[lowtech] The lights along the walls burned until first light, one for each of the colony's dead, {A_nameDef} said.</li>
         </outcomes>
         <ways><tradition>4</tradition><toil>-2</toil></ways>
         <effects>

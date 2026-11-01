@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.45.1</version>
+        <date>1 November 2026</date>
+        <title>Customs that remember their years</title>
+        <points>
+          <li>Seasonal customs and festivals have many more openings and outcomes, chosen to fit the weather, the people asking and the land.</li>
+          <li>A custom kept year after year reads like one: the letters remember the last time, speak of a custom kept for years, and say so when one was let go.</li>
+          <li>People talk about the occasion itself at the harvest dance, the midsummer fire, the swims, midwinter, harvest home, lantern night and other customs.</li>
+          <li>A letter or outcome no longer repeats the text it used most recently when another one fits.</li>
+          <li>Lantern night's words match what is set out, lanterns along the outside of the walls rather than one in every window, and the remembrance walk's smaller answer says only the one who asked visits the graves, as the map shows.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.45.0</version>
         <date>1 November 2026</date>
         <title>More ways to ask, grumble and celebrate</title>
