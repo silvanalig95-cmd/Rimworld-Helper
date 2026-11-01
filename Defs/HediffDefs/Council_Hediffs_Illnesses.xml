@@ -140,6 +140,7 @@
           <li>Bed, warmth, food and fluids, and tend the patient as often as we can. Sit them up so they can breathe.</li>
           <li>[lowtech] Keep the fire going and the patient propped up. Willow bark for the fever. It comes to a crisis around the fifth day; after that, the fever breaks or it doesn't.</li>
           <li>[!lowtech] Antibiotics, as soon as we can. With industrial medicine this is usually a week in bed. Without it, it's a coin toss for the old ones.</li>
+          <li>[spacer] A deep lung infection. The best medicine on the shelf, a warm bed, and keep them sitting up. The fever should break within the week.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -229,6 +230,7 @@
           <li>A room of their own, and treatment every day, without gaps, for as long as it takes. Stopping early lets it come back.</li>
           <li>[lowtech] Rest, fresh air, the best food we have, and a bed by an open window. Herbs ease the cough. It's a long road; some walk it, some don't.</li>
           <li>[!lowtech] A daily course of antibiotics from the medicine shelf, for weeks, and industrial medicine at least. Keep the patient apart until the cough has gone.</li>
+          <li>[tribal] The coughing sickness takes its time, so we take ours. One bed apart, good meat, clean air, and the healer every day.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -329,6 +331,7 @@
           <li>Wash the patient, burn the bedding and scrub that room. Then tend the fever as often as we can.</li>
           <li>[lowtech] Boil the clothes and blankets, cut the hair short, and keep the fever down with cool cloths and willow bark. A clean bed in a clean room.</li>
           <li>[!lowtech] Antibiotics clear it in a few days, so industrial medicine is the thing here. Delouse everyone who slept in that room.</li>
+          <li>[spacer] It's a rickettsial fever carried by lice. Treat the person and the room, or it starts again.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -682,6 +685,7 @@
           <li>Water, a little salt and a little sugar, a cup at a time, day and night. That's what saves them, more than any medicine. Then scrub everything.</li>
           <li>[lowtech] Boil all the water, and keep the sick away from the kitchen and the well. Salted water with honey, sip by sip, and someone sitting with them all night.</li>
           <li>[!lowtech] Oral rehydration salts, or a drip if they can't keep it down, and antibiotics. Boil the water and disinfect the latrine and that room.</li>
+          <li>[tribal] Water from the boiling pot only, salt and honey in it, a sip each time they wake. Someone sits with them all night.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -944,6 +948,7 @@
           <li>Bed, plenty to drink, the curtains drawn for the eyes, and someone to sit with them. Keep the other children out of that room.</li>
           <li>[lowtech] Cool cloths for the fever and broth when they'll take it. Keep the room dim. The other children sleep elsewhere until the rash fades.</li>
           <li>[!lowtech] Fever medicine, fluids and vitamin A. Watch for labored breathing. Children who haven't had it sleep apart.</li>
+          <li>[tribal] The spotted fever belongs to children. Keep the little ones apart, the fire low and the room dark until the spots fade.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -1024,6 +1029,7 @@
           <li>Water, and more water. Something for the pain, a hot cloth on the back, and patience. It will pass.</li>
           <li>[lowtech] Warm baths, a hot stone on the back and plenty of weak tea. Poppy for the worst of the pain, if we have any.</li>
           <li>[!lowtech] Strong painkillers, fluids, and a muscle relaxant to help it through. Strain the urine so we know when it's out.</li>
+          <li>[tribal] The stone sickness. Warm water to drink, a warm stone on the back, and wait for it to pass. It always does.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -1086,6 +1092,7 @@
           <li>Loose clothes, cool cloths and rest. Something for the pain at night so they can sleep.</li>
           <li>[lowtech] Cool compresses, a paste of oats, and willow bark for the pain. Keep it clean and covered, and don't let anyone burst the blisters.</li>
           <li>[!lowtech] Antivirals, the sooner the better, and proper painkillers. Keep the blisters covered around the children.</li>
+          <li>It's the old chickenpox, woken up. It can't hurt them, only make them miserable; something for the pain helps most.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">

@@ -29,7 +29,7 @@ A rare serious tier sits on top, behind its own setting: thirteen illnesses mode
       </li>
       <li>
         <heading>From the day's work</heading>
-        <text>The hours in the table don't bring an ailment on by themselves: they only make it possible that day. Then there's one small chance, about 1 in 80 for a strained back after a long day of hauling, so even someone who hauls every day goes months between strains. Some people are more at risk: older colonists, anyone who already has a bad back or is frail, and cataracts make eye strain likelier. Tough colonists get strains, sore hands, blisters and chilblains about half as often. The same ailment doesn't come back to the same person within about two weeks, and nobody carries more than two of these at once.</text>
+        <text>The hours in the table don't bring an ailment on by themselves: they only make it possible that day. Then there's one small chance, about 1 in 80 for a strained back after a long day of hauling, so even someone who hauls every day goes months between strains. Some people are more at risk: older colonists, anyone who already has a bad back or is frail, and cataracts make eye strain likelier. Tough colonists get strains, sore hands and elbows, blisters, chilblains and chapped hands about half as often. The same ailment doesn't come back to the same person within about two weeks, and nobody carries more than two of these at once.</text>
         <table>
           <li>Ailment | Comes from | Lasts | What helps</li>
           <li>Strained back | 6 hours of hauling, mining or building in a day (never children) | 1 to 2 weeks | Bed rest at first, tending</li>
@@ -58,6 +58,8 @@ A rare serious tier sits on top, behind its own setting: thirteen illnesses mode
           <li>Cold sore | 8 hours of worry or 4 hours in the midday heat; 1 in 10 colds leave one | 4 to 7 days | Tending, industrial best (an antiviral)</li>
           <li>Heartburn | A fine or lavish meal: 3.5% each, half again from 40 and double from 60 | 6 to 10 hours | Smaller helpings</li>
           <li>Hiccups | An alcoholic drink (5%) or a rich meal (1%) | 1 to 2 hours | Nothing; they stop</li>
+          <li>Sore elbow | 5 hours of felling or harvesting trees | 4 to 6 days | Turns at the felling; tending</li>
+          <li>Chapped hands | 6 hours of outdoor work between -10 and 6 °C | 4 to 8 days | Gloves, grease at night; tending</li>
           <li>Spore cough (invented; Alpha Biomes' mycotic jungle and miasmic mangrove only) | A night in a damp room, or 4 hours growing or cutting plants outdoors above 10 °C | 2 to 4 days, less with tending | A dry, roofed bedroom; a cloth over the face in the fields</li>
           <li>Fume headache (Alpha Biomes' tar pits and propane lakes only) | 5 hours of hauling, mining or building, or 4 hours at 32 °C or more | 1 to 2 days | Heavy work upwind of the seeps, a rest in the hottest hours</li>
           <li>Pollution cough (Biotech) | 4 hours outdoors on polluted ground or under the acid haze, without a gas mask | 2 to 4 days | A gas mask, clean air, cleaning up the ground; tending</li>

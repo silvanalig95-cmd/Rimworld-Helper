@@ -44,6 +44,7 @@
           <li>Rest, warmth and plenty to drink. It runs its course in about a week whatever we do; the ones who stay in bed get over it sooner.</li>
           <li>[lowtech] Hot broth, a warm bed and a cup of honey water at night. A cold goes when it's ready. Keep the old ones warm.</li>
           <li>[!lowtech] No medicine cures a cold. Fluids, rest and something for the aches. Keep an eye on the old and the frail: that's where a cold turns into pneumonia.</li>
+          <li>Bed for the worst days, and out of the cold. The ones who work through it take longest to shake it.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -103,6 +104,7 @@
           <li>Water, a little at a time, and a bowl by the bed. It's over in two days for most. Wash hands before cooking, or it goes round again.</li>
           <li>[lowtech] Boiled water with a pinch of salt, and keep the sick ones out of the kitchen. Two days, and they'll be eating again.</li>
           <li>[!lowtech] Fluids with salt and sugar so they don't dry out. Disinfect the latrine and keep the sick out of the kitchen until a day after it stops.</li>
+          <li>Wash every cup and keep whoever has it away from the cooking. It goes round on hands, not on the food.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -164,6 +166,7 @@
           <li>Keep them warm and out of the wind. The cough will hang on for a couple of weeks, and that's normal. If they get feverish and short of breath, call me at once: that's pneumonia.</li>
           <li>[lowtech] Steam from a pot of hot water, honey for the throat, and a warm bed. Watch the old ones.</li>
           <li>[!lowtech] It's viral, so antibiotics won't touch it. Warmth, fluids, rest. Watch for a high fever or labored breathing.</li>
+          <li>[medieval] A mustard poultice on the chest, a warm room, and something hot to drink at night. Let the cough run its course.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -220,6 +223,7 @@
           <li>Keep them indoors on windy days and wash the pollen off their face and hands in the evening. It lasts as long as the flowers do.</li>
           <li>[lowtech] Nettle and chamomile tea, a wet cloth over the eyes, and indoor work for a few days.</li>
           <li>[!lowtech] An antihistamine from the medicine shelf works well. Indoor work for a few days helps more than anything.</li>
+          <li>It isn't catching and it isn't dangerous, only miserable. Indoor work on the worst days.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -271,6 +275,7 @@
           <li>Wash the eyes with clean water, and nobody shares a towel. It's gone in a week.</li>
           <li>[lowtech] Bathe the eyes in cooled boiled water morning and night, and keep their hands away from their faces.</li>
           <li>[!lowtech] Antibiotic drops if it's bacterial, which shortens it a lot. Separate towels and pillowcases until it's gone.</li>
+          <li>One towel each, and hands washed after touching the face. That's what stops it going round.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -313,6 +318,7 @@
           <li>Cool cloths, a quiet room and someone to sit with them when they wake. Don't argue with what they saw. It passes in a few days.</li>
           <li>[lowtech] The old wives say a sprig of lavender under the pillow helps. It can't hurt.</li>
           <li>[!lowtech] The scanner shows nothing wrong but a mild fever and a very busy brain. Rest and fluids.</li>
+          <li>[tribal] The dream-sick are not to be woken roughly. Let them come back to us slowly; it passes in days.</li>
         </notes>
       </li>
       <li Class="HediffCompProperties_TendDuration">
@@ -373,6 +379,12 @@
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.3~0.65</startSeverity>
         <gotText>{PAWN_nameDef} has strained {PAWN_possessive} back with all the heavy work.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s back has gone again under the heavy work.</li>
+          <li>[old] {PAWN_nameDef}'s back has given out after a long day of heavy work.</li>
+          <li>[work:Mining] {PAWN_nameDef} felt {PAWN_possessive} back go at the rock face.</li>
+          <li>[work:Construction] {PAWN_nameDef} felt {PAWN_possessive} back go on the building site.</li>
+        </gotTexts>
         <notes>
           <li>A day or two in bed, then light work until it stops twinging. Lift with the legs.</li>
           <li>[lowtech] Warm stones wrapped in cloth on the sore spot, and nothing heavier than a bucket for a week.</li>
@@ -436,6 +448,10 @@
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef}'s hands are sore from long hours at the bench.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s wrists have swollen up from the bench again.</li>
+          <li>[old] {PAWN_nameDef}'s old hands are aching from the bench work.</li>
+        </gotTexts>
         <notes>
           <li>Rest the hands. Other work for a few days, nothing that grips.</li>
           <li>[lowtech] Cold well water on the wrists, a cloth splint at night, and no fine work for a week.</li>
@@ -483,6 +499,9 @@
         <cooldownDays>8</cooldownDays>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has blisters from all the walking.</gotText>
+        <gotTexts>
+          <li>[again] The walking has raised blisters on {PAWN_nameDef}'s feet again.</li>
+        </gotTexts>
         <notes>
           <li>Clean them, cover them, and don't pop them. Dry feet at night.</li>
           <li>[lowtech] Wash the feet, wrap them in clean linen, and let them air by the fire at night.</li>
@@ -531,6 +550,10 @@
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has chilblains from working out in the cold.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s fingers and toes are red and itching with chilblains again.</li>
+          <li>[snow] Work out in the snow has given {PAWN_nameDef} chilblains.</li>
+        </gotTexts>
         <notes>
           <li>Warm them up slowly, not right by the fire. Dry gloves and indoor work for a while.</li>
           <li>[lowtech] Wool, more wool, and no scratching. A little goose fat on the cracked skin.</li>
@@ -578,6 +601,9 @@
         <cooldownDays>8</cooldownDays>
         <startSeverity>0.25~0.6</startSeverity>
         <gotText>{PAWN_nameDef} is sunburned from working bareheaded in the heat.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has burned in the sun again, bareheaded as before.</li>
+        </gotTexts>
         <notes>
           <li>Cool water, shade and plenty to drink. A hat next time.</li>
           <li>[lowtech] Aloe if we have it, cool wet cloths if we don't. And a wide-brimmed hat.</li>
@@ -620,6 +646,10 @@
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a cough from the smoke in that small room.</gotText>
+        <gotTexts>
+          <li>[again] The smoke in that small room has {PAWN_nameDef} coughing again.</li>
+          <li>[winter] Shut in with a wood fire against the cold, {PAWN_nameDef} has a smoke cough.</li>
+        </gotTexts>
         <notes>
           <li>Fresh air. That's all it needs, and a room where the smoke can get out.</li>
           <li>[lowtech] Move the fire to a bigger room, or open a smoke hole in the roof.</li>
@@ -659,6 +689,10 @@
         <cooldownDays>30</cooldownDays>
         <startSeverity>0.3~0.6</startSeverity>
         <gotText>{PAWN_nameDef} has a toothache.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has another bad tooth.</li>
+          <li>[old] One of {PAWN_nameDef}'s old teeth has started to throb.</li>
+        </gotTexts>
         <notes>
           <li>That tooth needs seeing to. One treatment should settle it.</li>
           <li>[lowtech] Clove oil on the gum for the pain, then the pliers. It's quick.</li>
@@ -708,6 +742,9 @@
         <cooldownDays>10</cooldownDays>
         <startSeverity>0.25~0.45</startSeverity>
         <gotText>{PAWN_nameDef} woke up with a stiff neck.</gotText>
+        <gotTexts>
+          <li>[again] Another hard night's sleep has left {PAWN_nameDef} with a stiff neck.</li>
+        </gotTexts>
         <notes>
           <li>A warm cloth and some gentle stretching. A real bed would help more than I can.</li>
           <li>[lowtech] Warm stones in a cloth on the neck. A mattress of fresh straw would stop it happening.</li>
@@ -740,6 +777,10 @@
         <cooldownDays>20</cooldownDays>
         <startSeverity>0.35~0.6</startSeverity>
         <gotText>{PAWN_nameDef} has sprained an ankle on the rough ground.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has turned the same ankle again on the rough ground.</li>
+          <li>[snow] {PAWN_nameDef} has sprained an ankle in the deep snow.</li>
+        </gotTexts>
         <notes>
           <li>Rest, cold, strapping, and the foot up. A day or two in bed, then a stick to lean on.</li>
           <li>[lowtech] Cold water from the stream, a tight linen wrap and a crutch.</li>
@@ -789,6 +830,9 @@
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.25~0.45</startSeverity>
         <gotText>{PAWN_nameDef} has a headache from working in poor light.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has strained {PAWN_possessive} eyes in the dark again.</li>
+        </gotTexts>
         <notes>
           <li>Sleep is the cure. A lamp at that workbench is the prevention.</li>
           <li>[lowtech] A torch or a candle by the bench, and rest the eyes now and then.</li>
@@ -823,6 +867,10 @@
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a rimrot cough from sleeping in a damp room.</gotText>
+        <gotTexts>
+          <li>[again] The damp room has given {PAWN_nameDef} a rimrot cough again.</li>
+          <li>[rain] Damp nights have settled in {PAWN_nameDef}'s chest as a rattling rimrot cough.</li>
+        </gotTexts>
         <notes>
           <li>Clean that room and fix the roof, or the cough will just come back.</li>
           <li>[lowtech] Dry the room out with a fire, sweep it, and air the bedding in the sun.</li>
@@ -873,6 +921,9 @@
         <cooldownDays>8</cooldownDays>
         <startSeverity>0.3~0.6</startSeverity>
         <gotText>{PAWN_nameDef} has a chestful of ash and soot.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} is coughing up ash and soot again.</li>
+        </gotTexts>
         <notes>
           <li>Clean air and rest. A wet cloth over the mouth next time.</li>
           <li>[lowtech] Steam and honey for the throat, and a wet rag over the face when fighting fires.</li>
@@ -926,6 +977,10 @@
         <oldFactor>1.3</oldFactor>
         <startSeverity>0.3~0.55</startSeverity>
         <gotText>{PAWN_nameDef} hasn't been sleeping properly.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} is lying awake at night again.</li>
+          <li>[lowmood] Worry is keeping {PAWN_nameDef} awake at night.</li>
+        </gotTexts>
         <notes>
           <li>The same bedtime every night, and no work once it's dark. Something warm to drink before bed.</li>
           <li>[lowtech] Chamomile, or warm milk with honey, before bed. Nothing heavier than mending after dark, and no talk of raids at supper.</li>
@@ -977,6 +1032,9 @@
         <cooldownDays>10</cooldownDays>
         <startSeverity>0.4~0.7</startSeverity>
         <gotText>{PAWN_nameDef} has a migraine and needs a dark room.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s migraine is back, and {PAWN_pronoun} needs a dark room.</li>
+        </gotTexts>
         <notes>
           <li>Bed, curtains drawn, and quiet. A cold cloth on the forehead. It'll be gone by morning.</li>
           <li>[lowtech] Willow bark tea, a cold cloth and a dark corner. Make sure they eat something once they can.</li>
@@ -1030,6 +1088,11 @@
         <cooldownDays>2</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has heartburn after that rich meal.</gotText>
+        <gotTexts>
+          <li>[again] That rich meal has given {PAWN_nameDef} heartburn again.</li>
+          <li>[old] {PAWN_nameDef} is paying for that rich meal with heartburn.</li>
+          <li>[trait:Gourmand] {PAWN_nameDef} ate that fine meal with gusto, and now has the heartburn to show for it.</li>
+        </gotTexts>
         <notes>
           <li>Sit up, sip some water and wait. Smaller helpings next time.</li>
           <li>[lowtech] A cup of milk or a pinch of chalk in water. And don't lie down straight after a feast.</li>
@@ -1093,6 +1156,9 @@
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.35~0.6</startSeverity>
         <gotText>{PAWN_nameDef} is travel-sick from the caravan's sway.</gotText>
+        <gotTexts>
+          <li>[child] The caravan's sway has made {PAWN_nameDef} sick.</li>
+        </gotTexts>
         <notes>
           <li>Walk, don't ride, and keep your eyes on the horizon. Dry bread, small sips of water.</li>
           <li>[lowtech] Chew a piece of ginger root and walk at the front, where the air is fresh.</li>
@@ -1140,6 +1206,9 @@
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a splinter deep in one hand.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has another splinter from the felling.</li>
+        </gotTexts>
         <notes>
           <li>A clean needle, good light and a steady hand. Out it comes.</li>
           <li>[lowtech] Soak the hand in warm water, then the needle, heated in the fire first. Gloves for the woodcutters.</li>
@@ -1180,6 +1249,9 @@
         <cooldownDays>4</cooldownDays>
         <startSeverity>0.3~0.55</startSeverity>
         <gotText>{PAWN_nameDef} has been eaten alive by the insects.</gotText>
+        <gotTexts>
+          <li>[again] The insects have eaten {PAWN_nameDef} alive again.</li>
+        </gotTexts>
         <notes>
           <li>Don't scratch. Cool water on the bites, and long sleeves out there.</li>
           <li>[lowtech] A paste of clay and crushed leaves on the bites, and a smoky fire at dusk to keep them off.</li>
@@ -1223,6 +1295,10 @@
         <cooldownDays>15</cooldownDays>
         <startSeverity>0.3~0.6</startSeverity>
         <gotText>{PAWN_nameDef} has an itchy rash from some plant's sap.</gotText>
+        <gotTexts>
+          <li>[again] Some plant in the rows has given {PAWN_nameDef} a rash again.</li>
+          <li>[summer] Work in the summer rows has left {PAWN_nameDef} with an itchy rash from some plant's sap.</li>
+        </gotTexts>
         <notes>
           <li>Wash it with plenty of water and keep the hands out of the fields for a few days.</li>
           <li>[lowtech] Oatmeal in cool water for the itch, and find out which plant it was before someone else touches it.</li>
@@ -1270,6 +1346,9 @@
         <cooldownDays>5</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has frostnip on the fingertips and cheeks.</gotText>
+        <gotTexts>
+          <li>[again] The bitter cold has nipped {PAWN_nameDef}'s fingertips and cheeks again.</li>
+        </gotTexts>
         <notes>
           <li>Warm it slowly against the skin, never by the fire, and don't rub it. Mittens next time.</li>
           <li>[lowtech] Hands under the armpits, a warm drink and a fur hood. Snow rubbed on it is an old mistake.</li>
@@ -1337,6 +1416,10 @@
         <cooldownDays>20</cooldownDays>
         <startSeverity>0.3~0.55</startSeverity>
         <gotText>{PAWN_nameDef} has a cold sore on {PAWN_possessive} lip.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s cold sore is back.</li>
+          <li>[lowmood] A cold sore has come up on {PAWN_nameDef}'s lip, as they do in hard times.</li>
+        </gotTexts>
         <notes>
           <li>Leave it alone and keep your own cup. A week, and it's gone.</li>
           <li>[lowtech] A dab of honey or lemon balm on it, and no kissing anyone for a week.</li>
@@ -1382,6 +1465,10 @@
         <spreadWhileTended>0.2</spreadWhileTended>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has lice.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has lice again.</li>
+          <li>Lice have found their way into {PAWN_nameDef}'s hair and bedding.</li>
+        </gotTexts>
         <notes>
           <li>A fine comb, every evening, and all the bedding boiled. Then scrub that room.</li>
           <li>[lowtech] Cut the hair short, boil every blanket and shirt, and comb through with vinegar. The whole room, or they'll be back.</li>
@@ -1426,6 +1513,9 @@
         <cooldownDays>15</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has athlete's foot from wading through the wet.</gotText>
+        <gotTexts>
+          <li>[again] Wet feet have brought back {PAWN_nameDef}'s athlete's foot.</li>
+        </gotTexts>
         <notes>
           <li>Dry feet. Dry socks every morning and bare feet in the evening.</li>
           <li>[lowtech] Wash and dry between the toes, then a dusting of wood ash. Boots off by the fire at night.</li>
@@ -1476,8 +1566,12 @@
         <cooldownDays>1</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has the hiccups.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has the hiccups again.</li>
+        </gotTexts>
         <notes>
           <li>Hold your breath and count to twenty. Or wait.</li>
+          <li>A slow drink of water from the far side of the cup. If that fails, wait.</li>
         </notes>
       </li>
       <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
@@ -1974,6 +2068,7 @@
         <lingering>true</lingering>
         <notes>
           <li>It's just the cough hanging on. It'll go.</li>
+          <li>Honey in something warm at night, and out of the cold air for a few days.</li>
         </notes>
       </li>
       <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
@@ -1999,6 +2094,7 @@
         <lingering>true</lingering>
         <notes>
           <li>Plenty of food and sleep, and light work until the strength comes back.</li>
+          <li>Good food and short walks. Too much at once and they'll be back in bed.</li>
         </notes>
       </li>
       <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
@@ -2033,6 +2129,7 @@
         <lingering>true</lingering>
         <notes>
           <li>It's the nerve, still sore after the rash. It fades.</li>
+          <li>Warmth on the place where the rash was, and something for the pain at night. It fades.</li>
         </notes>
       </li>
       <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
@@ -2044,6 +2141,109 @@
         <label>burning</label>
         <painOffset>0.06</painOffset>
         <restFallFactor>1.05</restFallFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SoreElbow</defName>
+    <label>sore elbow</label>
+    <description>An aching, tender elbow from long hours of swinging an axe: the tendons on the outside of the elbow get sore from the same hard swing again and again. Gripping and lifting hurt. It eases in under a week once the arm gets a rest from felling, and tending (a strap below the elbow, a cold compress) helps. Taking turns at the felling prevents it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SoreElbow</key>
+        <causes><li><trigger>Chopping</trigger><hours>5</hours><chance>0.012</chance></li></causes>
+        <risks>
+          <li><trait>Tough</trait><factor>0.6</factor></li>
+        </risks>
+        <childFactor>0.5</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <startSeverity>0.25~0.45</startSeverity>
+        <gotText>{PAWN_nameDef}'s elbow is sore from a long day of felling.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s elbow has gone sore from the axe again.</li>
+          <li>[old] {PAWN_nameDef}'s elbow has had enough of the axe for now.</li>
+        </gotTexts>
+        <notes>
+          <li>Rest the arm from the axe for a few days, and nothing heavy in that hand.</li>
+          <li>[lowtech] A strip of leather bound tight below the elbow, cold water on it at night, and someone else on the felling for a week.</li>
+          <li>[!lowtech] A strap just below the elbow and something for the swelling. Someone else on the felling until it settles.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.08</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.07</severityPerDay>
+        <bedFactor>1.2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>aching elbow</label>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>tender elbow</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_ChappedHands</defName>
+    <label>chapped hands</label>
+    <description>Dry, cracked skin across the knuckles and fingers from hours of outdoor work in raw, cold air: the cracks sting, catch on everything and bleed a little when the hands bend. Harmless, and it heals in about a week once the hands are kept warm, dry and greased. Tending (a salve, a clean wrap at night) helps. Gloves, and drying the hands properly after wet work, prevent it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>ChappedHands</key>
+        <causes><li><trigger>ColdWork</trigger><hours>6</hours><chance>0.012</chance></li></causes>
+        <risks>
+          <li><trait>Tough</trait><factor>0.6</factor></li>
+        </risks>
+        <oldFactor>1.5</oldFactor>
+        <startSeverity>0.25~0.45</startSeverity>
+        <gotText>{PAWN_nameDef}'s hands are chapped and cracked from working out in the cold.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s knuckles have cracked in the cold again.</li>
+          <li>[rain|snow] The wet and the cold have cracked {PAWN_nameDef}'s hands across the knuckles.</li>
+        </gotTexts>
+        <notes>
+          <li>Keep the hands warm and dry, and grease them at night. Gloves outside.</li>
+          <li>[lowtech] Goose fat or tallow rubbed into the cracks at night, and the hands wrapped in clean linen till morning.</li>
+          <li>[!lowtech] A thick hand cream at night under cotton gloves, and proper work gloves outside.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>72</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.07</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.06</severityPerDay>
+        <bedFactor>1.1</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>dry knuckles</label>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.35</minSeverity>
+        <label>cracked hands</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.06</offset></li></capMods>
       </li>
     </stages>
   </HediffDef>

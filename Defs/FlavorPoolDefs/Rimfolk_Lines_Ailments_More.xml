@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More lines for the everyday ailments and the serious illnesses (Defs/HediffDefs/Council_Hediffs_Ailments.xml,
+    Council_Hediffs_Illnesses.xml), added to their journal pools (Council_Journal_Ailments.xml) and to what colonists
+    say while they have one (Council_Pool_SayAilment, Rimfolk_Immersion_Say.xml). Written first for the ones that come
+    round most often with the fewest lines (lice, sleepless nights, colds and coughs, a strained back, toothache,
+    heartburn). Each is tagged [ail:Key]; on a first journal line, [again] means they have had it before.
+    Doctors' lines are written at a doctor's first tending, so they say what a tending does: a look, a cleaning, a
+    dressing or a strapping, something for the pain, and advice.
+  -->
+
+  <!-- ===================== Coming down with it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_Start_More</defName>
+    <pool>Council_Journal_Ail_Start</pool>
+    <lines>
+      <plain>
+        <li>[everyday,again] This again. I know how it goes by now, which doesn't make it go any faster.</li>
+        <li>[ail:Lice] Found one crawling on my collar at breakfast. Then I found the rest.</li>
+        <li>[ail:Lice,again] Lice again. I know the comb by now, and the comb knows me.</li>
+        <li>[ail:Lice,night] Lay awake scratching. Every itch in the dark feels like it has legs.</li>
+        <li>[ail:Lice,old] Lice, at my age. I thought I'd left those behind with my childhood.</li>
+        <li>[ail:Insomnia] Heard every sound the house makes tonight. It makes a lot of them.</li>
+        <li>[ail:Insomnia,again] The sleepless nights are back. I know the cracks in the ceiling better than my own hands.</li>
+        <li>[ail:Insomnia,lowmood] Too much on my mind to sleep. It goes round and round, and none of it gets solved at night.</li>
+        <li>[ail:Insomnia,trait:Nervous] Every time I close my eyes I think of something else that could go wrong.</li>
+        <li>[ail:HeadCold,winter] A cold to go with the snow. I'm wearing two scarves indoors.</li>
+        <li>[ail:HeadCold,again] Another cold. I'd only just stopped sniffing from the last one.</li>
+        <li>[ail:HeadCold,old] A cold sits on me heavier than it used to. They've put me nearest the fire.</li>
+        <li>[ail:ChestCold] Coughed so hard at supper that I had to leave the table.</li>
+        <li>[ail:ChestCold,night] Lay propped up on one elbow half the night so I could breathe.</li>
+        <li>[ail:ChestCold,again] The cough is back in my chest. I know how this goes: two weeks of it.</li>
+        <li>[ail:RimrotCough] Woke up wet in the chest, as if I'd slept in a cellar. I suppose I did.</li>
+        <li>[ail:RimrotCough,again] The damp has got into my chest again. Somebody has to do something about that room.</li>
+        <li>[ail:RimrotCough,trait:Undergrounder] I like a room under the rock. My chest, it turns out, doesn't.</li>
+        <li>[ail:StrainedBack,again] My back's gone again, in the same place as last time.</li>
+        <li>[ail:StrainedBack,trait:Industrious|trait:HardWorker] Carried double loads to get it done by dark. My back will be paying for that all week.</li>
+        <li>[ail:StrainedBack,inbed] Lying flat on my back with my knees up. It's the only way that doesn't hurt.</li>
+        <li>[ail:Toothache,again] Another bad tooth, on the other side this time. I'm starting to think it's the sweets.</li>
+        <li>[ail:Toothache,night] The tooth kept me up. I lay there with my hand on my jaw, listening to everyone else sleep.</li>
+        <li>[ail:Toothache,trait:Gourmand] My tooth aches too much to taste my dinner. Of all the things to take from me.</li>
+        <li>[ail:SmokeCough] The room was blue with smoke by evening. I came out coughing and smelling like a ham.</li>
+        <li>[ail:SmokeCough,winter] Too cold to open the door and too smoky to keep it shut. My throat chose for me.</li>
+        <li>[ail:SmokeCough,again] Coughing from the smoke again. That fire needs a bigger room.</li>
+        <li>[ail:ColdSore,lowmood] A cold sore, right on the lip, the way they always come when things are bad.</li>
+        <li>[ail:ColdSore,again] The cold sore's back, in the same spot. I know what to do: my own cup, and patience.</li>
+        <li>[ail:Dreamfever,night] Woke at midnight sure that the colony was on fire. It wasn't. I checked twice anyway.</li>
+        <li>[ail:Dreamfever] Dreamt I was talking with someone I lost years ago. I woke up still answering.</li>
+        <li>[ail:Heartburn,trait:Gourmand] The best meal in weeks, and I'm paying for every bite. I'd do it again.</li>
+        <li>[ail:Heartburn,old] Rich food sits on my chest now. It never used to.</li>
+        <li>[ail:Heartburn,again] Heartburn again. I keep promising myself a smaller plate.</li>
+        <li>[ail:Heartburn,night] Lying down made the burning worse, so I'm sitting up in bed writing this.</li>
+        <li>[ail:Chilblains,winter] Came in from the cold and my fingers went red and fat by the fire. Now they itch.</li>
+        <li>[ail:Chilblains,again] Chilblains again. I'll wear the thick gloves tomorrow, even if I can't feel the work.</li>
+        <li>[ail:SoreHands,skill:Crafting|skill:Artistic] I love this work, but my hands don't. Wrapped them in a wet cloth tonight.</li>
+        <li>[ail:SoreHands,again] My wrists are swollen again. Too long at the bench.</li>
+        <li>[ail:SoreHands,old] My knuckles have gone stiff and fat. I couldn't hold a needle steady tonight.</li>
+        <li>[ail:StomachBug,night] Up four times in the night. I've stopped bothering with the blanket.</li>
+        <li>[ail:StomachBug] Kept down three sips of water and called it supper.</li>
+        <li>[ail:StomachBug,child] My tummy hurts and I was sick on the floor.</li>
+        <li>[ail:PlantRash,summer] Weeding in the heat with my sleeves rolled up. My arms are paying for it now.</li>
+        <li>[ail:PlantRash,skill:Plants] I know every plant in those rows, and one of them still got me.</li>
+        <li>[ail:HayFever,again] The flowers are out again, and so am I. Sneezing since dawn.</li>
+        <li>[ail:HayFever,spring] Spring smells lovely, I'm told. I wouldn't know; my nose has shut for the season.</li>
+        <li>[ail:Splinter,trait:Wimp] A splinter. A tiny one. It hurts more than it has any right to.</li>
+        <li>[ail:Splinter] Didn't feel it go in. Felt it every time I gripped the axe after.</li>
+        <li>[ail:Pinkeye] One eye red, the other itching. I've washed my hands so often they've gone dry.</li>
+        <li>[ail:Pinkeye,child] My eye is all red and sticky and I'm not allowed to rub it.</li>
+        <li>[ail:StiffNeck,again] Another night on a hard bed, another stiff neck.</li>
+        <li>[ail:StiffNeck] Woke up with my head stuck to one side. I've been talking to people sideways all day.</li>
+        <li>[ail:Sunburn,again] Sunburned again. The hat was on its peg the whole time.</li>
+        <li>[ail:Sunburn] My shirt rubs where the sun got me. I'm going about with my arms held out like a scarecrow.</li>
+        <li>[ail:Blisters] My boots and my feet have fallen out. The boots are winning.</li>
+        <li>[ail:Blisters,again] Blisters on the old spots, right on top of the hard skin from last time.</li>
+        <li>[ail:EyeStrain] Squinted at the work until the lines swam. I should have fetched a light.</li>
+        <li>[ail:EyeStrain,skill:Intellectual] One more page, I said, and then another. My eyes gave up before I did.</li>
+        <li>[ail:AshLung] Everything I cough up is gray. My handkerchief looks as if I cleaned the hearth with it.</li>
+        <li>[ail:AthletesFoot] Peeled off my boots tonight. The itch between my toes is worse than the smell, and the smell is bad.</li>
+        <li>[ail:HeatRash] Itchy little bumps wherever my shirt touches. I'd take it off if anyone would let me.</li>
+        <li>[ail:Frostnip] My cheeks went white and waxy out there. Now they're red and burning as they thaw.</li>
+        <li>[ail:Nosebleed] My nose started bleeding in the cold and wouldn't stop. Stood with my head tipped forward until it did.</li>
+        <li>[ail:MotionSick] Watched the horizon all afternoon like they told me to. It didn't hold still either.</li>
+        <li>[ail:InsectBites,night] Pulled the blanket over my head and they still found me.</li>
+        <li>[ail:Migraine,again] The headache's back, the bad kind. Everything too loud, everything too bright.</li>
+        <li>[ail:Hiccups] Hiccuped all through supper. Everyone laughed, and that made it worse.</li>
+        <li>[ail:SprainedAnkle,snow] Went over on my ankle in the snow. Hopped the rest of the way home.</li>
+        <li>[ail:SprainedAnkle,again] The same ankle again. It has never been quite right since last time.</li>
+        <li>[ail:BurnItch] The new skin on the burn is tight and shiny. I keep reaching for it and stopping myself.</li>
+        <li>[ail:SoreElbow] My elbow aches from the axe. By the end of the day every swing went straight up my arm.</li>
+        <li>[ail:SoreElbow] Can't lift the kettle without my elbow complaining. Too many trees.</li>
+        <li>[ail:SoreElbow,again] The elbow again. I should let someone else take a turn at the felling.</li>
+        <li>[ail:ChappedHands] My knuckles have cracked open in the cold. They sting every time I wash.</li>
+        <li>[ail:ChappedHands,winter] Hands like old leather, split at every knuckle. I rubbed fat into them and wore socks on them to bed.</li>
+        <li>[ail:ChappedHands,again] My hands have cracked again. Every winter the same.</li>
+      </plain>
+      <warm>
+        <li>[ail:HeadCold] Everyone has been kind about the sneezing. I've been trying to aim it away from them.</li>
+        <li>[ail:StrainedBack] I hate asking for help with the lifting. I'm going to have to, for a while.</li>
+      </warm>
+      <blunt>
+        <li>[ail:Lice] Lice. Comb, boil, wait.</li>
+        <li>[ail:Toothache] Bad tooth. Chewing on the other side.</li>
+        <li>[ail:StrainedBack] Back's out. Light work.</li>
+      </blunt>
+      <cheerful>
+        <li>[ail:HeadCold] A cold, which is as good an excuse as any for a blanket and a hot cup.</li>
+        <li>[ail:Heartburn] Heartburn, which means it was a very good dinner.</li>
+      </cheerful>
+      <gloomy>
+        <li>[ail:Insomnia] Another night awake. The dark goes on for a long time when you're the only one in it.</li>
+        <li>[ail:Lice] Lice. As if this place wasn't bad enough.</li>
+      </gloomy>
+      <cold>
+        <li>[ail:Insomnia] Poor sleep. My work will suffer until it passes.</li>
+        <li>[ail:HeadCold] A head cold. I'll keep to myself until it passes, so it goes no further.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_Serious_More</defName>
+    <pool>Council_Journal_Ail_Serious</pool>
+    <lines>
+      <plain>
+        <li>[serious,again] I've had this before. Knowing what's coming doesn't make it easier.</li>
+        <li>[ail:Tetanus] I can't open my mouth wide enough for a spoon. They're feeding me broth through the side of my teeth.</li>
+        <li>[ail:Pneumonia,old] At my age, they said, a cold can go to the lungs. It has.</li>
+        <li>[ail:Pneumonia] Hot, then shivering, then hot again. Every breath catches halfway.</li>
+        <li>[ail:Tuberculosis] Night sweats again. I woke in a bed as wet as if I'd been out in the rain.</li>
+        <li>[ail:Typhus] The fever came on all at once, like a door slamming. My head's splitting.</li>
+        <li>[ail:Meningitis] My neck won't bend. Every light is a knife.</li>
+        <li>[ail:Scurvy] An old cut on my hand has opened up again by itself. They say it's the food.</li>
+        <li>[ail:Glassblood] My knees click like beads when I bend them. I'm afraid to bend them.</li>
+        <li>[ail:Cholera] They keep a cup at my lips. Sip, rest, sip. I've lost count of the cups.</li>
+        <li>[ail:Appendicitis] I can't straighten up. Lying curled on my side is the only way it doesn't stab.</li>
+        <li>[ail:Rabies] I keep looking at the bite. It looks like any other bite. That's the frightening part.</li>
+        <li>[ail:Measles,child] My eyes hurt and they won't open the curtains. I'm bored and hot.</li>
+        <li>[ail:KidneyStone] It comes in waves. Between them I'm almost myself. Then the next one comes.</li>
+        <li>[ail:Shingles] It started as a tingle down one side. Now it's blisters, and they burn.</li>
+        <li>[ail:HiveFever] The sting has swollen up hard and hot. I can feel my heartbeat in it.</li>
+      </plain>
+      <warm>
+        <li>[ail:Measles,child] Someone sat by my bed and told me stories until I fell asleep.</li>
+      </warm>
+      <cold>
+        <li>[ail:Tuberculosis] Tuberculosis. Weeks of treatment, no gaps. I'll keep count myself.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Over it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_Better_More</defName>
+    <pool>Council_Journal_Ail_Better</pool>
+    <lines>
+      <plain>
+        <li>[ail:StomachBug] Ate a piece of bread and kept it. Then a bowl of porridge. The bug's gone.</li>
+        <li>[ail:ChestCold] The cough's down to a tickle. I can laugh again without doubling over.</li>
+        <li>[ail:HayFever] My eyes have stopped streaming. I can look at the flowers without wanting to burn them.</li>
+        <li>[ail:Pinkeye] Both eyes clear this morning. I'm keeping my own towel anyway.</li>
+        <li>[ail:Dreamfever] Slept and dreamed nothing at all. Best night in a week.</li>
+        <li>[ail:SoreHands] Made a fist this morning and it didn't hurt. Back to the bench tomorrow.</li>
+        <li>[ail:Blisters] The blisters have hardened over. My feet are tougher for it.</li>
+        <li>[ail:Chilblains] My fingers have stopped itching and gone back to the right color.</li>
+        <li>[ail:Sunburn] The burn has peeled, and the skin underneath is pink and new. Hat on from now on.</li>
+        <li>[ail:SmokeCough] Clean air did it. My throat's clear.</li>
+        <li>[ail:StiffNeck] I can look over my shoulder again.</li>
+        <li>[ail:EyeStrain] Slept it off. My eyes are fine this morning.</li>
+        <li>[ail:RimrotCough] The rattle has gone from my chest. I'm not sleeping in that damp again if I can help it.</li>
+        <li>[ail:AshLung] Coughed up clear this morning, not gray. The ash is out of me.</li>
+        <li>[ail:Migraine] The headache's gone. The world is an ordinary brightness again.</li>
+        <li>[ail:Heartburn] The burning's gone. Smaller helpings next time. Probably.</li>
+        <li>[ail:Nosebleed] My nose has stopped. I'll have a scarf over it next time I go out in that cold.</li>
+        <li>[ail:MotionSick] Solid ground under my feet, and my stomach has settled.</li>
+        <li>[ail:Splinter] The splinter's out. I kept it, for some reason.</li>
+        <li>[ail:InsectBites] The bites have faded to little marks. I can sleep without scratching.</li>
+        <li>[ail:PlantRash] The rash is drying up. Gloves in the rows from now on.</li>
+        <li>[ail:Frostnip] The feeling's back in my fingertips. It stung coming back, but it's back.</li>
+        <li>[ail:HeatRash] The bumps have gone down. Sleeping on top of the covers helped.</li>
+        <li>[ail:ColdSore] The cold sore has crusted over and gone. I can smile without it cracking.</li>
+        <li>[ail:AthletesFoot] My feet have stopped itching. Dry socks every night, they told me, and it worked.</li>
+        <li>[ail:Hiccups] The hiccups stopped on their own, halfway through a sentence.</li>
+        <li>[ail:Insomnia] Fell asleep before the lamp was out. First time in a week.</li>
+        <li>[ail:Lice] Not a single itch all day. Everything I own has been boiled, but it worked.</li>
+        <li>[ail:HeadCold] I can breathe through my nose again. I'd forgotten how good that is.</li>
+        <li>[ail:SprainedAnkle] Ran for the door when the rain started, and only noticed afterwards that the ankle didn't hurt.</li>
+        <li>[ail:PollutionCough] A few days of clean air and the cough's gone. The taste of metal too.</li>
+        <li>[ail:SoreElbow] My elbow has stopped aching. I'll take turns at the felling from now on.</li>
+        <li>[ail:ChappedHands] The cracks on my knuckles have closed up. Gloves in the cold, from now on.</li>
+        <li>[ail:Pneumonia,old] I've come through it. The doctor says not everyone my age does, and I believe it.</li>
+        <li>[ail:Typhus] The fever's gone. I'm as thin as a rake and I've never been happier to be hungry.</li>
+        <li>[ail:Meningitis] My neck bends again. I nodded at everyone at breakfast just to feel it.</li>
+        <li>[ail:Tetanus] The spasms have stopped. I can lie still without my back arching.</li>
+        <li>[ail:HiveFever] I can hear the wind again instead of the humming.</li>
+        <li>[ail:Glassblood] My joints bend without clicking. I keep bending them to be sure.</li>
+        <li>[ail:Tuberculosis] They say I'm not catching any more. I can sleep near people again.</li>
+        <li>[ail:Appendicitis] I can stand up straight again. I've been standing up straight all day, just because I can.</li>
+        <li>[ail:Scurvy] Bit into something fresh and my gums didn't bleed. I nearly cried.</li>
+        <li>[ail:Measles,child] I can go outside again and the light doesn't hurt.</li>
+      </plain>
+      <warm>
+        <li>[ail:HeadCold] The cold's gone. I'll be extra kind to whoever catches it next.</li>
+      </warm>
+      <blunt>
+        <li>[ail:StrainedBack] Back's fine. Lifting again.</li>
+      </blunt>
+      <gloomy>
+        <li>[ail:Insomnia] Slept last night. I don't trust it to last.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The doctor ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_Doctor_More</defName>
+    <pool>Council_Journal_Ail_Doctor</pool>
+    <lines>
+      <plain>
+        <li>[ail:HeadCold] Saw to {OTHER_nameDef}'s cold: something hot to drink, a blanket, and orders to stay in bed.</li>
+        <li>[ail:StomachBug] Saw to {OTHER_nameDef}'s stomach bug. Water a sip at a time, and out of the kitchen until it's over.</li>
+        <li>[ail:ChestCold] Listened to {OTHER_nameDef}'s chest. It rattles, but there's no fever. Warmth and rest.</li>
+        <li>[ail:HayFever] Bathed {OTHER_nameDef}'s streaming eyes and said to work indoors until the flowers are over.</li>
+        <li>[ail:Pinkeye] Bathed {OTHER_nameDef}'s eyes with a clean cloth, then washed my hands twice.</li>
+        <li>[ail:Dreamfever] Cool cloths and a dim room for {OTHER_nameDef}. The fever talks through {OTHER_objective}; I let it.</li>
+        <li>[ail:SoreHands] Bound {OTHER_nameDef}'s wrists and said to keep away from the bench for a few days.</li>
+        <li>[ail:Blisters] Cleaned {OTHER_nameDef}'s blisters and wrapped them. Dry socks, I said, and no popping them.</li>
+        <li>[ail:Chilblains] Warmed {OTHER_nameDef}'s hands slowly in lukewarm water. Not by the fire, however much {OTHER_pronoun} begged.</li>
+        <li>[ail:Sunburn] Cool water and salve on {OTHER_nameDef}'s shoulders. {OTHER_nameDef} hissed at every touch.</li>
+        <li>[ail:RimrotCough] Steam and a hot drink for {OTHER_nameDef}'s chest. It's the room that needs treating.</li>
+        <li>[ail:AshLung] Did what I could for {OTHER_nameDef}'s sooty chest. Clean air will do the rest.</li>
+        <li>[ail:Insomnia] Gave {OTHER_nameDef} something to help {OTHER_objective} sleep, and a word about going to bed at the same hour.</li>
+        <li>[ail:MotionSick] Gave {OTHER_nameDef} something for the stomach and said to keep {OTHER_possessive} eyes on the horizon.</li>
+        <li>[ail:InsectBites] Salve on {OTHER_nameDef}'s bites, all of them. It took a while.</li>
+        <li>[ail:PlantRash] Washed {OTHER_nameDef}'s arms and put salve on the rash. Gloves next time.</li>
+        <li>[ail:ColdSore] Dabbed something on {OTHER_nameDef}'s cold sore and set aside a cup for {OTHER_objective} alone.</li>
+        <li>[ail:AthletesFoot] Powdered between {OTHER_nameDef}'s toes. Not the best part of the job.</li>
+        <li>[ail:Toothache,skill:Medicine] Had a proper look at {OTHER_nameDef}'s tooth. It's dealt with, and {OTHER_nameDef} will forgive me by supper.</li>
+        <li>[ail:Lice] Treated {OTHER_nameDef}'s lice. The bedding and clothes want boiling, and the room a scrub.</li>
+        <li>[ail:SoreElbow] Strapped {OTHER_nameDef}'s forearm below the elbow and laid a cold cloth on it. No axe for a few days.</li>
+        <li>[ail:ChappedHands] Rubbed salve into {OTHER_nameDef}'s cracked knuckles and wrapped them for the night.</li>
+        <li>[ail:Glassblood] Cool cloths for {OTHER_nameDef}'s fever. There's a glitter along {OTHER_possessive} veins that I don't like at all.</li>
+        <li>[ail:Pneumonia,night] Sat with {OTHER_nameDef} into the night, counting breaths.</li>
+        <li>[ail:Tuberculosis] Day one of the long course for {OTHER_nameDef}. Every day for weeks, and I'll be the one who doesn't forget.</li>
+        <li>[ail:Measles] Cool cloths and water for {OTHER_nameDef}, and the curtains drawn against the light. Now we wait for the rash, and then for it to pass.</li>
+        <li>[ail:Cholera,skill:Medicine] Salted water with a little sugar for {OTHER_nameDef}, sip by sip. It isn't the medicine that saves them, it's the hours.</li>
+      </plain>
+      <warm>
+        <li>[everyday] Tended {OTHER_nameDef} and stayed a while to talk. Half of getting better is someone asking how you are.</li>
+      </warm>
+      <cold>
+        <li>[serious] Began treating {OTHER_nameDef}. I've written down every dose, and when.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_DoctorSaved_More</defName>
+    <pool>Council_Journal_Ail_DoctorSaved</pool>
+    <lines>
+      <plain>
+        <li>[ail:Tetanus] {OTHER_nameDef} ate a whole meal today, jaw working like anyone's. Weeks of a dark room, and it's over.</li>
+        <li>[ail:Pneumonia] {OTHER_nameDef}'s fever broke in the night. I heard the breathing change and knew before I touched {OTHER_possessive} forehead.</li>
+        <li>[ail:Tuberculosis] The cough is gone from {OTHER_nameDef}'s chest. Every day for weeks, and not one missed.</li>
+        <li>[ail:Typhus] {OTHER_nameDef} knew my name this morning. The fever's broken, and {OTHER_possessive} head is clear.</li>
+        <li>[ail:Meningitis] {OTHER_nameDef} turned {OTHER_possessive} head to look at me today, easy as anything. Two nights ago I wasn't sure of the morning.</li>
+        <li>[ail:Glassblood] {OTHER_nameDef}'s joints bend again, and the glitter has faded from {OTHER_possessive} arms. I didn't know if anything I did would help.</li>
+        <li>[ail:HiveFever] {OTHER_nameDef} says the humming has stopped. I believe it: {OTHER_pronoun} slept like a stone last night.</li>
+        <li>[ail:Appendicitis] {OTHER_nameDef}'s belly is soft again and the fever's gone. No knife needed: steady tending, and the body did the rest.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Ail_DoctorLost_More</defName>
+    <pool>Council_Journal_Ail_DoctorLost</pool>
+    <lines>
+      <plain>
+        <li>[ail:Pneumonia] {OTHER_nameDef}'s breathing grew shallower through the night until there wasn't any. I'd have given anything for better medicine.</li>
+        <li>[ail:Tuberculosis] Weeks of treatment, and {OTHER_nameDef} wasted away anyway. I keep counting the days I tended {OTHER_objective}, as if the number matters.</li>
+        <li>[ail:Meningitis] It went so fast with {OTHER_nameDef}. Two days. I was still learning what it was.</li>
+        <li>[ail:Cholera] I couldn't get the water into {OTHER_nameDef} fast enough. It went out of {OTHER_objective} faster.</li>
+        <li>[ail:Tetanus] The spasms took {OTHER_nameDef} in the end. I sat in the dark room afterwards for a long time.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Said aloud ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_SayAilment_More</defName>
+    <pool>Council_Pool_SayAilment</pool>
+    <lines>
+      <plain>
+        <li>[ail:Lice] Don't sit on my bed, I'm still combing them out.</li>
+        <li>[ail:Lice] If you start itching, it wasn't me.</li>
+        <li>[ail:Insomnia] I counted the roof beams again last night.</li>
+        <li>[ail:Insomnia,morning] Morning already, and I only just shut my eyes.</li>
+        <li>[ail:HeadCold] Pass me a rag, my nose is running like a tap.</li>
+        <li>[ail:HeadCold,winter] This cold and this winter are in it together.</li>
+        <li>[ail:ChestCold] Don't make me laugh, it sets the cough off.</li>
+        <li>[ail:ChestCold] Sorry if my coughing kept you up.</li>
+        <li>[ail:RimrotCough] That room's too damp to sleep in, just listen to my chest.</li>
+        <li>[ail:RimrotCough] I wake up every morning feeling like a wet rag.</li>
+        <li>[ail:StrainedBack] Somebody else will have to carry that, my back says no.</li>
+        <li>[ail:Toothache] Nothing hard to chew, please, this tooth won't have it.</li>
+        <li>[ail:SmokeCough] That fire needs a bigger room, or a smaller fire.</li>
+        <li>[ail:SmokeCough] My eyes are still stinging from the smoke.</li>
+        <li>[ail:ColdSore] Not today, I've got a cold sore.</li>
+        <li>[ail:Dreamfever] Did we talk this morning, or did I dream it?</li>
+        <li>[ail:Dreamfever] The dreams are still clinging to me like cobwebs.</li>
+        <li>[ail:Heartburn] It's like a coal sitting under my ribs.</li>
+        <li>[ail:Heartburn] Worth it, but I won't have seconds next time.</li>
+        <li>[ail:Chilblains] Don't let me scratch my toes, whatever I say.</li>
+        <li>[ail:SoreHands] Can you open this for me, my hands won't grip.</li>
+        <li>[ail:StomachBug] Keep the bucket close and the food far away.</li>
+        <li>[ail:StomachBug] Don't let me near the kitchen till this is over.</li>
+        <li>[ail:PlantRash] My arms itch like they're full of ants.</li>
+        <li>[ail:HayFever] Keep those flowers away from me, I mean it.</li>
+        <li>[ail:Splinter] It's only a splinter, but it's right where I grip.</li>
+        <li>[ail:Pinkeye] My eyes feel full of sand and they won't stop weeping.</li>
+        <li>[ail:StiffNeck] Say that again on my left, I can't turn my head.</li>
+        <li>[ail:Sunburn] Don't touch my back, it's burned to a crisp.</li>
+        <li>[ail:Blisters] My boots and my feet aren't speaking.</li>
+        <li>[ail:EyeStrain] Can we have more light in here, my eyes are aching.</li>
+        <li>[ail:AshLung] I taste ash every time I breathe in.</li>
+        <li>[ail:Migraine] Please talk quietly, my head's splitting.</li>
+        <li>[ail:Nosebleed] Head forward, not back, that's right, isn't it?</li>
+        <li>[ail:MotionSick] No more caravans for a while, my stomach's had enough.</li>
+        <li>[ail:InsectBites] They bit me in places I didn't know I had.</li>
+        <li>[ail:Frostnip] My cheeks are burning now they're warming up.</li>
+        <li>[ail:HeatRash] It's too hot for a shirt and too itchy for one.</li>
+        <li>[ail:AthletesFoot] I'm airing my feet, so stay upwind.</li>
+        <li>[ail:Hiccups] Every time I think they've stopped, another one comes.</li>
+        <li>[ail:SprainedAnkle] Lend me your shoulder as far as the door.</li>
+        <li>[ail:LingeringCough] Don't worry, it's only the cough that's left.</li>
+        <li>[ail:NervePain] The blisters are gone, but the burning stayed behind.</li>
+        <li>[ail:BurnItch] The new skin itches worse than the burn ever hurt.</li>
+        <li>[ail:Limp] Give me a minute on the stairs, the leg's still stiff.</li>
+        <li>[ail:SoreElbow] My elbow's had enough of that axe for one week.</li>
+        <li>[ail:SoreElbow] Hand me that, my elbow won't take the weight.</li>
+        <li>[ail:ChappedHands] My knuckles crack open every time I make a fist.</li>
+        <li>[ail:ChappedHands] Have you got any fat or salve for these hands?</li>
+        <li>[ail:Tetanus] Keep the room dark, the light sets the spasms off.</li>
+        <li>[ail:Pneumonia] Prop me up a bit more, I can't breathe lying down.</li>
+        <li>[ail:Tuberculosis] I'll sleep apart, I won't have anyone catching this.</li>
+        <li>[ail:Typhus] My head's pounding like a drum.</li>
+        <li>[ail:Meningitis] Close the shutters, the light is like knives.</li>
+        <li>[ail:Glassblood] My knees click when I bend them, like beads on a string.</li>
+        <li>[ail:Cholera] Just a sip at a time, I know, I know.</li>
+        <li>[ail:Appendicitis] Don't press there, please, not there.</li>
+        <li>[ail:Rabies] I keep looking at the bite and it looks like nothing.</li>
+        <li>[ail:Measles] Can I have the curtains open just a little?</li>
+        <li>[ail:KidneyStone] Here comes another wave, hold my hand.</li>
+        <li>[ail:Shingles] Even the shirt on my back feels like fire.</li>
+        <li>[ail:HiveFever] Can you hear that humming, or is it only me?</li>
+        <li>[ail:SwampFever] My calves ache like I've walked for a week.</li>
+      </plain>
+      <warm>
+        <li>[ail:HeadCold] Don't come too close, I don't want you catching this.</li>
+        <li>[ail:StomachBug] Don't worry about me, it'll be over in a day or two.</li>
+      </warm>
+      <blunt>
+        <li>[ail:Lice] Lice, yes, I know, stay back.</li>
+        <li>[ail:Toothache] Bad tooth, don't ask.</li>
+      </blunt>
+      <cheerful>
+        <li>[ail:Hiccups] I've decided they're a song, and I'm the only one who knows it.</li>
+        <li>[ail:Heartburn] Best meal of the month, and my chest agrees.</li>
+      </cheerful>
+      <gloomy>
+        <li>[ail:Insomnia] Every night's longer than the last.</li>
+        <li>[ail:HeadCold] I'll be sneezing till the end of time.</li>
+      </gloomy>
+      <cold>
+        <li>[ail:Lice] Lice, so keep your bedding away from mine.</li>
+        <li>[ail:StrainedBack] My back's strained, so give me the light jobs.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Getting back on their feet (Council_Pool_SayConvalescing) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_SayConvalescing_More</defName>
+    <pool>Council_Pool_SayConvalescing</pool>
+    <lines>
+      <plain>
+        <li>[walking] Twice round the yard today, and only one stop.</li>
+        <li>[walking,winter] Cold air in the lungs, but it's good to be out.</li>
+        <li>[inbed] Tell me what I've missed, all of it.</li>
+        <li>[eating] Everything tastes better after a few days of broth.</li>
+        <li>[old] Mending takes longer at my age, but it gets there.</li>
+        <li>[trait:Tough] A few more days and nobody will know I was down.</li>
+      </plain>
+      <warm>
+        <li>Everyone's been so good to me, I'll owe favors for a year.</li>
+      </warm>
+      <gloomy>
+        <li>The stairs never used to be this long.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The hospital (Rimfolk_Lines_Health_Hospital.xml) ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Outsider_More</defName>
+    <pool>Council_Journal_Health_Outsider</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} answered every question twice, as if I might send {OTHER_objective} away for a wrong one. I treated {OTHER_objective} all the same.</li>
+        <li>[winter] Treated {OTHER_nameDef}, who came through the cold to be seen. I made sure {OTHER_pronoun} warmed up before anything else.</li>
+        <li>[skill:Medicine] A new patient, {OTHER_nameDef}, and something I hadn't seen in a while. I like days like that.</li>
+      </plain>
+      <cold><li>Treated {OTHER_nameDef} from outside. One dose; well spent if their people remember it.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Health_Hospital_More</defName>
+    <pool>Council_Journal_Health_Hospital</pool>
+    <lines>
+      <plain>
+        <li>[known] Someone on the road asked a trader for "the colony with the good doctor". The trader pointed here.</li>
+        <li>[renowned] I used to know every patient's name before they came. Now they come knowing mine.</li>
+      </plain>
+      <cheerful><li>[known] They talk about our sickroom on the road! I'm trying very hard not to be smug.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Council_Lines_Journal_Evt_HospitalPatient_More</defName>
+    <pool>Council_Journal_Evt_HospitalPatient</pool>
+    <lines>
+      <plain>
+        <li>[opt0] Took a medicine from the stores and saw to {X_nameDef}'s {TALE}. Strangers ache the same as we do.</li>
+        <li>[opt0,winter] {X_nameDef} came through the cold with a {TALE}. Treated it, and told {X_objective} to stay warm.</li>
+        <li>[opt1] {X_nameDef} took the medicine for the road with both hands. I hope {X_pronoun} uses it when it counts.</li>
+        <li>[opt2] Gave {X_nameDef} advice for the {TALE} and kept the medicine. The right call, I think. I'm not sure.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

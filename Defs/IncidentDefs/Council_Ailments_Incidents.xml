@@ -35,6 +35,12 @@
         <weight>1.5</weight>
         <coldSeasonFactor>1.5</coldSeasonFactor>
         <letter>Runny noses at breakfast, sneezing at the workbench. A cold is going round, and so far these colonists have it:</letter>
+        <letters>
+          <li>[winter] Everyone's huddled indoors against the cold, and a cold is going round the huddle. So far these colonists have it:</li>
+          <li>[again] The cold is going round again, the same sniffling and sneezing as before. So far these colonists have it:</li>
+          <li>[one] {PAWN_nameDef} has come down with a head cold: a red nose, a sore throat and a pile of rags.</li>
+          <li>[large] With so many under one roof, a cold was bound to go round sooner or later. So far these colonists have it:</li>
+        </letters>
         <letterAfter>It spreads by coughs, sneezes and shared cups, and should be gone in about a week.</letterAfter>
       </li>
     </modExtensions>
@@ -51,6 +57,11 @@
     <modExtensions>
       <li Class="ColonyCouncil.AilmentIncident">
         <letter>Pale faces, and plates left half eaten. A stomach bug is going round, and these colonists are already sick:</letter>
+        <letters>
+          <li>[again] The stomach bug is back. These colonists have it:</li>
+          <li>[one] {PAWN_nameDef} has come down with a stomach bug: cramps, sickness and no appetite at all.</li>
+          <li>[night] A bad night for some: a stomach bug is going round, and these colonists have it:</li>
+        </letters>
         <letterAfter>It passes from hands to food and cups. It should be over in two or three days.</letterAfter>
       </li>
     </modExtensions>
@@ -68,6 +79,11 @@
       <li Class="ColonyCouncil.AilmentIncident">
         <maxOutdoorTemp>5</maxOutdoorTemp>
         <letter>Coughing through the walls all night. The cold weather has brought a chest cold with it, and these colonists have the cough:</letter>
+        <letters>
+          <li>[snow] Snow outside and coughing inside. A chest cold has come with the weather, and these colonists have it:</li>
+          <li>[one] {PAWN_nameDef} has a deep, chesty cough that the cold weather is making worse. It's a chest cold.</li>
+          <li>[again] The chest cold is back with the cold weather, and so is the coughing. These colonists have it:</li>
+        </letters>
         <letterAfter>Keep them warm. The cough can last a couple of weeks.</letterAfter>
       </li>
     </modExtensions>
@@ -92,6 +108,11 @@
         <needsPlants>true</needsPlants>
         <sameVictims>true</sameVictims>
         <letter>The flowers are out, and so is the pollen. These colonists have started sneezing:</letter>
+        <letters>
+          <li>[again] Red eyes and sneezing again, the same as before for some of them. The pollen is back, and these colonists have hay fever:</li>
+          <li>[one] The pollen is up, and {PAWN_nameDef} has started sneezing and can't stop. It's hay fever.</li>
+          <li>[spring] Spring has the land in flower, and these colonists are sneezing at all of it:</li>
+        </letters>
         <letterAfter>Hay fever isn't catching. Indoor work keeps it down.</letterAfter>
       </li>
     </modExtensions>
@@ -109,6 +130,10 @@
       <li Class="ColonyCouncil.AilmentIncident">
         <weight>0.7</weight>
         <letter>Red, weeping eyes, crusted shut in the mornings. It's pinkeye, and these colonists have it:</letter>
+        <letters>
+          <li>[one] {PAWN_nameDef} woke with one eye red and crusted shut. It's pinkeye.</li>
+          <li>[again] Pinkeye is going round again: red eyes, shared towels, the same old story. These colonists have it:</li>
+        </letters>
         <letterAfter>It spreads by hands and shared towels, and clears in about a week.</letterAfter>
       </li>
     </modExtensions>
@@ -126,6 +151,10 @@
       <li Class="ColonyCouncil.AilmentIncident">
         <weight>0.5</weight>
         <letter>Dreamfever has come to the colony. These colonists woke up confused, talking about dreams that felt more real than the room around them:</letter>
+        <letters>
+          <li>[one] {PAWN_nameDef} woke up asking about a room the colony doesn't have. It's dreamfever.</li>
+          <li>[again] Dreamfever is back. These colonists are sleeping badly and waking unsure of what was real:</li>
+        </letters>
         <letterAfter>It spreads among people who sleep close together, and passes in under a week.</letterAfter>
       </li>
     </modExtensions>
@@ -212,6 +241,9 @@
     <modExtensions>
       <li Class="ColonyCouncil.AilmentIncident">
         <letter>Measles has come to the colony, most likely with a visitor. These children have a high fever, a cough and red eyes, and the rash will follow in a day or two:</letter>
+        <letters>
+          <li>[one] {PAWN_nameDef} has a high fever, a cough and red eyes, and the rash will follow in a day or two. It's measles, most likely brought by a visitor.</li>
+        </letters>
         <letterAfter>It spreads to any child who shares their room and hasn't had it. Most children are over it in ten days or so with rest, fluids and someone keeping watch, and a child who has had measles never gets it again.</letterAfter>
       </li>
     </modExtensions>

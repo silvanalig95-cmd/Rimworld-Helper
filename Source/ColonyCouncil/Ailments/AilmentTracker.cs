@@ -428,6 +428,7 @@ namespace ColonyCouncil
             p.health.AddHediff(h);
             if (!p.health.hediffSet.hediffs.Contains(h)) return;
             int now = Find.TickManager.TicksGame;
+            bool again = HadBefore(p, def);
             Remember(p, def, now);
             if (info.serious)
             {
@@ -435,7 +436,7 @@ namespace ColonyCouncil
                 seriousNow.Add(def);
                 casesNow[def] = CasesOf(def) + 1;
             }
-            if (h.Visible) Shown(p, h, info);
+            if (h.Visible) Shown(p, h, info, again);
         }
 
         private void Remember(Pawn p, HediffDef def, int now)
@@ -453,6 +454,7 @@ namespace ColonyCouncil
             var info = InfoOf(h.def);
             if (info == null) return;
             int now = Find.TickManager.TicksGame;
+            bool again = HadBefore(p, h.def);
             Remember(p, h.def, now);
             announced.Add(h.loadID);
             if (info.serious)
@@ -461,28 +463,30 @@ namespace ColonyCouncil
                 seriousNow.Add(h.def);
                 casesNow[h.def] = CasesOf(h.def) + 1;
             }
-            if (p.Faction == Faction.OfPlayer && Rand.Chance(info.serious ? 0.7f : 0.4f)) Journal(p, info.serious ? "Council_Journal_Ail_Serious" : "Council_Journal_Ail_Start", h.def, info);
+            if (p.Faction == Faction.OfPlayer && Rand.Chance(info.serious ? 0.7f : 0.4f))
+                Journal(p, info.serious ? "Council_Journal_Ail_Serious" : "Council_Journal_Ail_Start", h.def, info, null, again);
         }
 
         /// <summary>
         /// The first time an illness shows: a message for an everyday one, a letter with a doctor's note for a serious
-        /// one, and now and then a line in their journal.
+        /// one, and now and then a line in their journal. <paramref name="again"/>: they've had it before (lines tagged [again]).
         /// </summary>
-        private void Shown(Pawn p, Hediff h, HediffCompProperties_Ailment info)
+        private void Shown(Pawn p, Hediff h, HediffCompProperties_Ailment info, bool again = false)
         {
             if (!announced.Add(h.loadID)) return;
             if (info.serious)
             {
                 SeriousLetter(p, h, info);
-                if (Rand.Chance(0.7f)) Journal(p, "Council_Journal_Ail_Serious", h.def, info);
+                if (Rand.Chance(0.7f)) Journal(p, "Council_Journal_Ail_Serious", h.def, info, null, again);
                 return;
             }
-            if (!info.gotText.NullOrEmpty())
+            if (!info.gotText.NullOrEmpty() || !info.gotTexts.NullOrEmpty())
             {
                 string text;
                 try
                 {
-                    text = info.gotText.Formatted(p.Named("PAWN")).Resolve();
+                    string raw = AilmentTexts.Pick(info.gotText, info.gotTexts, p, again ? "again" : null);
+                    text = raw.NullOrEmpty() ? null : raw.Formatted(p.Named("PAWN")).Resolve();
                 }
                 catch (Exception e)
                 {
@@ -492,7 +496,7 @@ namespace ColonyCouncil
                 if (!text.NullOrEmpty())
                     News.Post(text, new LookTargets(p), NewsKind.Health, MessageTypeDefOf.NegativeHealthEvent, info.quiet ? Importance.Flavor : Importance.Notable);
             }
-            if (Rand.Chance(0.4f)) Journal(p, "Council_Journal_Ail_Start", h.def, info);
+            if (Rand.Chance(0.4f)) Journal(p, "Council_Journal_Ail_Start", h.def, info, null, again);
         }
 
         /// <summary>Illnesses that were hidden (incubating) and show now get their letter or message.</summary>
@@ -545,11 +549,12 @@ namespace ColonyCouncil
             return (Avail.IsPreIndustrial ? "CC_Ail_NoteHeader_LowTech" : "CC_Ail_NoteHeader").Translate() + " " + note;
         }
 
-        private static void Journal(Pawn p, string pool, HediffDef def, HediffCompProperties_Ailment info, Pawn other = null)
+        /// <summary>A line in their journal, tagged [ail:Key], [serious] or [everyday], and [again] when they've had it before.</summary>
+        private static void Journal(Pawn p, string pool, HediffDef def, HediffCompProperties_Ailment info, Pawn other = null, bool again = false)
         {
             var journals = CouncilGameComponent.Instance?.journals;
             if (journals == null || p == null || p.Faction != Faction.OfPlayer) return;
-            var tags = info?.key.NullOrEmpty() == false ? new[] { "ail:" + info.key, info.serious ? "serious" : "everyday" } : null;
+            var tags = info?.key.NullOrEmpty() == false ? new[] { "ail:" + info.key, info.serious ? "serious" : "everyday", again ? "again" : null } : null;
             string illness = def?.label ?? "";
             if (other != null) journals.WriteTagged(p, pool, tags, null, illness.Named("ILLNESS"), other.Named("OTHER"));
             else journals.WriteTagged(p, pool, tags, null, illness.Named("ILLNESS"));
