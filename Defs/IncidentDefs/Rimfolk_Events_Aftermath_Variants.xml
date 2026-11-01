@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the events that follow a world event (Rimfolk_Events_Aftermath.xml) and the ends of a vendetta
+    (Rimfolk_Events_VendettaEnds.xml) to read, merged in at startup (LetterVariantsDef). Lines keep the tags their
+    workers set: what the world event was ([plague], [famine], [flood], [winter], [locusts], [drought], [fire]), how it
+    ended ([end:helped], [end:profiteer], [end:ignored]...), whether the colony helped ([helped], [ignored]), its flags
+    ([flag:sheltered]); the vendetta's [taken], [heir], [pet] or [atwar].
+  -->
+
+  <!-- ===================== Thanks after the plague ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_After_PlagueThanks</defName>
+    <incident>Council_Evt_After_PlagueThanks</incident>
+    <texts>
+      <li>[theirLowtech] {X_nameDef} and the others from {PLACE} came up the road slowly, the way people walk who have been in bed a long time, now that {TALE} has run its course there. They have brought a gift from {FACTION}, worth about {COUNT} silver, for the medicine the colony sent.\n\nThey'd also like to say the names of their dead aloud, away from the houses where they died.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} puts the gift in {A_nameDef}'s hands and says the names of three children who are alive because of the colony. Then {X_nameDef} and the others turn for home.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is told to take the gift back to {PLACE}, where the living need it more. {X_nameDef} looks at {A_nameDef} a long moment, nods, and ties the bundle shut again.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The first harvest ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_After_FirstHarvest</defName>
+    <incident>Council_Evt_After_FirstHarvest</incident>
+    <texts>
+      <li>{X_nameDef} of {FACTION} has carried the first good harvest since {TALE} up from {PLACE}, {COUNT} measures of {THING} in sacks on the bearers' backs. The colony fed them in the hungry months, and {FACTION} do not forget a thing like that.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The {THING} goes into the stores. {X_nameDef} won't stay for a meal, and says the fields at home won't plant themselves.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The long table is set and {X_nameDef} is put at the head of it, between the colony's oldest and youngest. {X_nameDef} is asked about the fields at {PLACE} until the plates are empty.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} hears where the grain should go instead, and smiles. "We'll tell them who sent it," {X_nameDef} says, and picks up the sacks again.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== What the river took ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_After_FloodBell</defName>
+    <incident>Council_Evt_After_FloodBell</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} puts both hands on the cold green metal as if it might be warm. {FACTION} take it home between them, and promise it will ring for the colony too.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{FACTION} pay the bronze's worth in full and haul it away. They are polite about it. They are also counting.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} and two others set off down the river with it, slung on poles, and the people from {PLACE} singing in front. {FACTION} will feed them well at the other end.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Guests of the winter ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_After_SpringReturn</defName>
+    <incident>Council_Evt_After_SpringReturn</incident>
+    <texts>
+      <li>[flag:sheltered] The two travelers who waited out {TALE} by the colony's fire are back, as they promised. Mud to the knee, grinning, with {COUNT} measures of {THING} for planting from {PLACE}'s best fields.\n\n{X_nameDef} says the debt isn't paid until the seed is in the ground.</li>
+      <li>[helped] {X_nameDef} of {FACTION} has come up from {PLACE} now the roads are open. They'd have frozen, {X_nameDef} says, without the colony's wood in {TALE}. The thanks come as {COUNT} measures of {THING} for the planting.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The seed goes into the stores, and the visitors sit down to a hot meal from the colony's kitchen. They talk about the winter as if it were years ago.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The visitors and the colony go out to the fields with the seed between them, and the first rows of it go into the wet spring ground.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} hands the seed back and says the winter's debt was paid by the company. They argue, and lose, and go home with it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Old friends ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_After_OldFriends</defName>
+    <incident>Council_Evt_After_OldFriends</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The {THING} goes into the stores, and {X_nameDef} goes back down the road before anyone can try to pay for it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} is sat at the head of the table, and the colony eats with an old friend for an evening. It's a plain supper, and {X_nameDef} says it's the best {X_pronoun} has had all year.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is sent home with the seed still on {X_possessive} back, for {PLACE}'s own hungry. {X_nameDef} says {FACTION} will be ashamed of themselves and proud of the colony, both at once.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A reckoning ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_After_Reckoning</defName>
+    <incident>Council_Evt_After_Reckoning</incident>
+    <texts>
+      <li>[ignored] An elder of {FACTION}, {X_nameDef}, has come up from {PLACE} on foot. During {TALE} the colony sent nothing, and {X_nameDef} has come to say so, face to face, and to see what the colony says back.\n\n{X_nameDef} has a list of names, and hasn't started reading it yet.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The silver is carried out to {X_nameDef} for {PLACE}'s widows, and {A_nameDef} says plainly that the colony should have helped. {X_nameDef} doesn't thank anyone, and doesn't need to.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} reads the names to the colony, and {A_nameDef} answers when the list is done: the colony was wrong. Some of the colony can't look at {X_nameDef} while it's said.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} says the colony's first duty was to its own. {X_nameDef} folds the list away and goes, and {FACTION} will hear exactly what was said.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The blood price ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_VendettaRansom</defName>
+    <incident>Council_Evt_VendettaRansom</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{A_nameDef} looks at the silver for a long time before taking it, then says {DEAD}'s name aloud, once, and that the oath is ended. {X_nameDef} bows low and leaves.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The choice is {A_nameDef}'s, the council says, because the oath was. {A_nameDef} takes a breath at the door and goes out to {X_nameDef}.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An apology ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_VendettaApology</defName>
+    <incident>Council_Evt_VendettaApology</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{A_nameDef} hears {X_nameDef} out to the end, and then speaks of {DEAD} for a while, as {DEAD} was. When it's done, {A_nameDef} says the oath is laid down.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is told that sorry is a word, and {DEAD} was a life. {X_nameDef} doesn't argue, and goes back down the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

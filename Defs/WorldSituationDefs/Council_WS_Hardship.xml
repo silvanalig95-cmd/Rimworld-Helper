@@ -575,6 +575,7 @@
         </titles>
         <texts>
           <li>The famine is over, and {FACTION} have started counting what it cost them. The colony's prices are on that list, near the top.\n\nIn {PLACE} the colony is the place that sold bread at four times its worth, and that is how they will tell it.</li>
+          <li>The famine has passed, and {FACTION} remember who sold them bread and at what price. At {PLACE} the colony's name is never said now without the price after it.</li>
         </texts>
         <chronicle>The famine among {FACTION} ended; they remember what the colony charged.</chronicle>
         <effects>
@@ -604,6 +605,7 @@
         </titles>
         <texts>
           <li>The famine among {FACTION} is over. {PLACE} came out of it smaller, and buried more of its old people than it should have.\n\n{FACTION} know the colony's granary was full the whole time.</li>
+          <li>The famine among {FACTION} has ended. At {PLACE} they say the colony's stores were full the whole time and stayed shut, and they say it often.</li>
         </texts>
         <chronicle>The famine among {FACTION} ended; the colony kept its stores to itself.</chronicle>
       </li>
@@ -709,6 +711,7 @@
         </titles>
         <texts>
           <li>Two travelers of {FACTION} came in out of the snow at dusk, caught between towns when the road closed. They ask to stay until it opens again, however long that takes.\n\nThey will eat for two and work for half that, one of them admits. They will also remember it.</li>
+          <li>The road closed behind two travelers of {FACTION} halfway between towns, and they walked the last of the light to the colony's gate with snow to the knee. They ask for a corner until the road opens again.\n\nOne of them has already been looking at the colony's woodpile, and trying not to.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -789,6 +792,7 @@
     <texts>
       <li>{FACTION} lost every field around {PLACE} in a single afternoon. The cloud that did it is still out there: a swarm of locusts as wide as a valley, and it hasn't settled yet.\n\nWhether it comes this way is up to the wind.</li>
       <li>[summer] The sky to the south went brown at midday, and a few minutes later came the sound, like rain that doesn't stop. Locusts. By evening a rider had brought word that {PLACE} was stripped to the dirt.\n\nThe swarm is still in the air.</li>
+      <li>A rider came through from {PLACE} without stopping, shouting the news over the gate: locusts. {FACTION}'s fields are gone, every one, and the swarm has lifted again and is drifting with the wind.\n\nWhere it comes down next is up to the wind.</li>
     </texts>
     <summaries>
       <li>Any day now the swarm may pass over the colony and strip its open fields. Roofed fields and greenhouses are safe, and smoke may turn it. Food will be scarcer in the region for a while.</li>
@@ -809,6 +813,7 @@
         </titles>
         <texts>
           <li>"Smoke," {A_nameDef} says. "Smudge fires the length of the fields, fed day and night. They lift and go around." Others want every ripe plant cut and under a roof before the swarm can get to it. A few want both.\n\n{A_nameDef} has already started stacking wood by the fields.</li>
+          <li>{A_nameDef} has seen a swarm before, and says smoke is what works. Smudge fires all along the fields, kept going day and night, and the swarm lifts and goes around. Others want the ripe crop cut and under a roof first. Some want both.\n\n{A_nameDef} is already stacking wood by the fields.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
@@ -859,6 +864,7 @@
         </titles>
         <texts>
           <li>The swarm has gone east. The smoke turned most of it from the colony's fields, and what it did take in the open will grow back.\n\n{FACTION} had no smoke to spare. They lost nearly everything around {PLACE}.</li>
+          <li>The swarm came down on the colony's fields and lifted again into the smoke. The damage is light, and will grow back. {FACTION} weren't so lucky, and around {PLACE} the ground is bare.</li>
         </texts>
         <chronicle>The locusts passed; the colony's smoke saved most of its fields.</chronicle>
         <effects>
@@ -967,6 +973,7 @@
         </titles>
         <texts>
           <li>Wet to the waist, a family from {PLACE} came up the river path this morning with a goat and a sack of seed. Their house is gone.\n\nThey ask whether the colony has room. They are not proud about it.</li>
+          <li>A family from {PLACE} came up the river path with their shoes in their hands and everything else on their backs. The water took the house, the father says, and the field after it.\n\nThey ask if the colony has room for them, and stand at the gate waiting for the answer.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -1010,6 +1017,7 @@
         </titles>
         <texts>
           <li>The water has gone down at {PLACE}, and {FACTION} are rebuilding. Everything they had stored is mud, and their foreman has come up the river road to ask the colony for {COUNT} logs: roofs first, then the mill.\n\nTheir carts can come up for the timber. They can pay something for it, if not much.</li>
+          <li>{FACTION}'s foreman has come up from {PLACE} with mud dried white to the knees. The water is down and the rebuilding has started, but every plank they had is ruined. They need {COUNT} logs, roofs first.\n\nTheir carts can come up for the timber, and they can pay something for it.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -1049,6 +1057,7 @@
         </titles>
         <texts>
           <li>The water has dropped enough to walk the bank, and the flood has left things in the reeds: crates, a cart wheel, a door with the paint still on it. {A_nameDef} pulled out what was worth keeping and brought it up to the colony.\n\nSome of it was somebody's in {PLACE}. There's no telling whose.</li>
+          <li>The river has gone down and left a line of wreckage along the colony's bank: a barrel, a chair, a crate still nailed shut. {A_nameDef} brought up what could be used.\n\nMost of it came from {PLACE}, and there's no way of knowing whose it was.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_Loot"><value>150~350</value><by>Home</by></li>

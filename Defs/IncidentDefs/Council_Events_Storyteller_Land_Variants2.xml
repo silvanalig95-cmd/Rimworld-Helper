@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A second round of ways for the home and land events of the storyteller batch to read (Council_Events_Storyteller_Home.xml,
+    Council_Events_Storyteller_Land.xml), merged in at startup (LetterVariantsDef). Each line keeps the tag its worker
+    sets where it needs one: the child's find ([fossil], [coin], [skull], [geode], [machine]), the patient's [healer] or
+    [doctor], the crate's [other] or [same]. Answers whose words the worker writes itself (the crate opened, the
+    star-iron forged, the sign followed, the bees' honey, the old map's place gone) get no outcome lines here.
+  -->
+
+  <!-- ===================== A child's find ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_ChildFind</defName>
+    <incident>Council_Evt_ChildFind</incident>
+    <texts>
+      <li>[fossil,winter] The stream had frozen back from its banks, and in the mud it left {A_nameDef} found a flat stone with a tiny fish in it, every bone in place.\n\n{A_nameDef} wants to know how a fish got inside a stone. {B_nameDef} could tell {A_objective}, given an hour.</li>
+      <li>[coin,summer] {A_nameDef} has been digging holes all summer looking for treasure, and today found some: a small square coin with a hole in the middle, threaded on a rotted string.\n\n{A_nameDef} wants to know who carried it. {B_nameDef} has a guess or two.</li>
+      <li>[skull,!lowtech] {A_nameDef} came back from the scrub with a small skull in a jar, cleaned with a toothbrush that was not {A_possessive} own. {A_nameDef} has named it already, and wants to know what it was.\n\n{B_nameDef} could look it up with {A_objective}.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[fossil] {B_nameDef} tells {A_nameDef} about the sea that was here once, and {A_nameDef} wants to know where all the water went, and then where it is now.</li>
+          <li>[coin] {B_nameDef} thinks the coin is from a trading town that burned long ago. {A_nameDef} has given the town a name, a market and a king since.</li>
+          <li>[machine] {A_nameDef} has learned from {B_nameDef} that it was part of a radio, and has stopped calling it a brain, mostly.</li>
+          <li>{A_nameDef} asks {B_nameDef} more questions in an afternoon than the rest of the colony does in a week, and {B_nameDef} answers most of them.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[geode] The stone sits on the windowsill by {A_nameDef}'s bed, where the morning light comes through it purple.</li>
+          <li>It goes in a box under {A_nameDef}'s bed with {A_possessive} other treasures, and comes out to be looked at whenever anyone asks.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>A neighbor's buyer pays {COUNT} silver for it, and their runner brings the silver up to the colony. {A_nameDef} asks twice whether the buyer will look after it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Recognized ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Recognized</defName>
+    <incident>Council_Evt_Recognized</incident>
+    <texts>
+      <li>[summer] Water first, then shade: {X_nameDef} of {FACTION} came for one and stayed for the other, and has spent the whole afternoon looking at {A_nameDef}. At last {X_pronoun} came over and named a price: {COUNT} silver, to forget a face from a notice, from the years when {A_nameDef} was {TALE}.</li>
+      <li>[colony:Harsh] {X_nameDef} of {FACTION} knows what this colony does to people who cross it, and asks {A_nameDef} for silence money anyway, in a low voice and with an eye on the gate. {X_nameDef} remembers {A_nameDef} from {A_possessive} time as {TALE}. The price is {COUNT} silver.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} takes the silver, says {X_pronoun} has a bad memory for faces after all, and is on the road again before anyone can change their mind.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} is told to say what {X_pronoun} likes, and leaves with nothing but a sour look.</li>
+        </lines>
+        <riskLines>
+          <li>{X_nameDef} leaves empty-handed and angry, and tells the story at every stop on the way home. {FACTION} know now what {A_nameDef} used to be.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>Whatever {A_nameDef} says to {X_nameDef}, it is said low and it is said once. {X_nameDef} doesn't mention silver again, and leaves without looking at anyone.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} loses {A_possessive} temper halfway through, and {X_nameDef} backs off toward the gate promising that {FACTION} will hear every word.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The old commander ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_OldCommander</defName>
+    <incident>Council_Evt_OldCommander</incident>
+    <texts>
+      <li>[summer] {FACTION}'s rider came in caked in dust, with a letter for {A_nameDef} from {X_nameDef}, the commander {A_pronoun} served under once. The summer campaign against {ENEMY} has gone on longer than anyone planned, and the wagons are empty.\n\n{X_nameDef} asks for {TALE}, and promises a share of the spoils if they win.</li>
+      <li>[colony:Generous] "They say your people give," {X_nameDef} writes to {A_nameDef}, {A_possessive} old commander, from {FACTION}'s camp in the field against {ENEMY}. "I hope they say right. We need {TALE}."\n\nIf {FACTION} win, the colony will have a share of the spoils.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{FACTION}'s rider takes the supplies off the colony's hands, and a short letter from {A_nameDef} goes with them, signed with {A_possessive} old rank.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef}'s answer wishes {X_nameDef} luck against {ENEMY} and sends nothing else. {A_nameDef} has been short with people since.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A former patient ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_FormerPatient</defName>
+    <incident>Council_Evt_FormerPatient</incident>
+    <texts>
+      <li>[doctor,summer] In this heat, {X_nameDef} of {FACTION} has walked a long way with a gift on {X_possessive} back, to thank {A_nameDef} for a night years ago when {A_nameDef} kept {X_objective} breathing on a camp table. {X_nameDef} shows the scar to anyone who asks.</li>
+      <li>[healer,colony:Hospitable] {X_nameDef} of {FACTION} heard the colony takes in travelers, and hoped the healer who once set {X_possessive} broken arm might be among them. It's {A_nameDef}. {X_nameDef} has brought a gift, and had to sit down for a moment at the gate.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} sets the gift down in front of {A_nameDef} and tells the story of that night to anyone in earshot, getting the worst parts wrong.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} says {X_pronoun} owes {A_nameDef} a life anyway, so it might as well be spent here, and asks where the beds are.</li>
+        </lines>
+        <riskLines>
+          <li>{X_nameDef} can't stay: there are people at home who need {X_objective} the way {X_pronoun} once needed {A_nameDef}. The gift stays with the colony all the same.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} promises to tell the story at every hearth between here and home, and says {X_pronoun} tells it well.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A sealed crate ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_SealedCrate</defName>
+    <incident>Council_Evt_SealedCrate</incident>
+    <texts>
+      <li>[same] {A_nameDef} turned up a sealed crate digging by the wall, and has been turning it over and listening to it ever since. The lock is good work, {A_nameDef} says, and good work can be undone.\n\nA hammer would be quicker. {FACTION} would pay {COUNT} silver for it sealed.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{FACTION}'s rider brings {COUNT} silver up to the gate and takes the crate away unopened. The colony will never know what it sold.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A lightning-struck tree ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_StruckTree</defName>
+    <incident>Council_Evt_StruckTree</incident>
+    <texts>
+      <li>[fall] The night's storm stripped the last leaves off the old {BEAST} by the colony and then split it with one bolt. Its heartwood is baked dark and hard.\n\n{A_nameDef} wants to carve from it. Felled, the rest would be about {COUNT} wood for the winter, or it could stand as it is.</li>
+      <li>[colony:Artful] Lightning split the old {BEAST} near the colony last night, and {A_nameDef} was out at first light with {A_possessive} hand on the heartwood. A colony that likes beautiful things, {A_nameDef} says, should not burn wood like this.\n\nCut up, it's about {COUNT} wood, or it can be left standing.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The tree comes down and most of it is cut up for wood. {A_nameDef} spent the felling looking at the heartwood, and has an idea now that {A_pronoun} sketches on every scrap {A_pronoun} can find.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The split tree comes down in two halves and is cut into {COUNT} wood of seasoned timber, already dry enough to burn.</li>
+          <li>[winter] The tree is felled and sawn into {COUNT} wood, seasoned on the stump. It will burn hot and slow through the cold nights.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The split tree stays where the sky put it. People have started giving directions by it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A fallen star (the answers the worker leaves as written) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_StarIron</defName>
+    <incident>Council_Evt_StarIron</incident>
+    <texts>
+      <li>[summer] On a hot clear night the sky lit up white and something hit the land {PLACE} hard enough to wake the sleepers. {A_nameDef} found it at sunrise: a pitted black lump in a ring of burnt grass, too hot to touch.\n\nIt's iron, and better iron than any mine gives. {A_nameDef} wants to forge a {TALE} from it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <riskLines>
+          <li>{A_nameDef} works the star-iron at the forge, and in the quench it splits along a line nobody could have seen. What comes out of the water is ordinary steel.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The fallen star is broken up with picks where it lies, and the pieces wait in the scorched hollow to be hauled in as good steel.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The star stays in its hollow, cooling. In the evenings people walk out to it and put a hand on the black metal.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A sign at dawn (the offering, the hunt, the leaving) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_OmenBeast</defName>
+    <incident>Council_Evt_OmenBeast</incident>
+    <texts>
+      <li>[summer] At sunrise an old {BEAST} came down out of the long grass and stopped just outside the fields, looking at the houses with its head high. It doesn't move when people come near.\n\n{A_nameDef} thinks it means to be followed. It could also be left an offering, or hunted.</li>
+      <li>[faith:devout] {A_nameDef} saw it first: an old {BEAST} standing at the edge of the colony at dawn, still as a carving, looking at the houses. {A_nameDef} hasn't stopped saying it's a sign.\n\n{A_nameDef} wants to follow it when it goes. It could also be left an offering, or hunted.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The offering is set down past the fields and left. When someone goes to look, the {BEAST} has gone back into the wild and the food has gone with it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The hunters are told to take the {BEAST}. A few people at the colony won't look at them while they get ready.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>Nobody goes near the {BEAST}. After a while it lowers its head, turns, and goes back into the wild the way it came.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Wild bees (the swarm that wins) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_WildBees</defName>
+    <incident>Council_Evt_WildBees</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <riskLines>
+          <li>The smoke doesn't take. The swarm comes out of the hollow like a thrown sack and sees {A_nameDef} all the way back to the houses. The comb stays in the tree, and so do the bees.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An old map (kept) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_OldMap</defName>
+    <incident>Council_Evt_OldMap</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The map goes back into its old hiding place. Some evenings {A_nameDef} takes it out and looks at the cross, and puts it away again.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

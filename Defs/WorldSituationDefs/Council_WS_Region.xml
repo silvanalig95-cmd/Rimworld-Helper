@@ -174,6 +174,7 @@
         </titles>
         <texts>
           <li>{FACTION} have given up the first fields at {PLACE} for lost and are rationing what's left. Their rider asks for {COUNT} portions of food, any kind, to stretch the stores until the rains come, and porters will follow to fetch it if the colony agrees.\n\nThey can pay something. They would rather pay the colony than the grain dealers.</li>
+          <li>The fields at {PLACE} are cracked and white, and {FACTION} have started eating their seed grain. Their rider asks the colony for {COUNT} portions of food to last until the rains, and porters will come to fetch it if the colony says yes.\n\nThey can pay something, and would rather it went to the colony than to the grain dealers.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -233,6 +234,7 @@
         </titles>
         <texts>
           <li>Late but heavy, the rains came back to {FACTION}'s country. {NAME} cost them a harvest, and {FACTION} remember the colony's share in getting through it.</li>
+          <li>The rains have come back to {FACTION}'s country at last. {NAME} took a harvest from them, and {FACTION} haven't forgotten the colony's share in what was left.</li>
         </texts>
         <chronicle>{NAME} broke, and the colony had done its share.</chronicle>
         <effects>
@@ -247,6 +249,7 @@
         </titles>
         <texts>
           <li>The rains came too late for {FACTION}'s fields. {NAME} is over, but the harvest is gone with it, and the storehouses at {PLACE} are empty.\n\nHunger is coming to the region, and it won't stop at {FACTION}'s borders.</li>
+          <li>The rains didn't come in time. {NAME} has burned the harvest at {PLACE} down to stubble, and the granaries there are empty.\n\nThe hunger that follows won't stop at {FACTION}'s borders.</li>
         </texts>
         <chronicle>{NAME} broke too late, and hunger followed.</chronicle>
         <effects>
@@ -260,6 +263,7 @@
         </titles>
         <texts>
           <li>{NAME} is over, and {PLACE} lost a harvest and a good many animals to it.\n\nWhen {FACTION} talk about who stood by them that year, the colony doesn't come up.</li>
+          <li>{NAME} is over. {PLACE} lost its harvest and half its herds, and {FACTION} got through it without the colony.</li>
         </texts>
         <chronicle>{NAME} ran its course; the colony kept to itself.</chronicle>
       </li>
@@ -328,6 +332,7 @@
         </titles>
         <texts>
           <li>The road gang's foreman has walked up to the colony's gate with a tally stick and a question. They're short of timber for the bridges and the culverts, {COUNT} logs at least, and the colony has a woodpile.\n\n{FACTION} will pay a fair price for it, or remember it as the colony's share of the road.</li>
+          <li>The road gang's foreman is at the gate, dusty to the eyebrows. The bridges need timber, {COUNT} logs of it, and the colony's woodpile is the nearest.\n\n{FACTION} will pay a fair price, or count it as the colony's share of the road.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -369,6 +374,7 @@
         </titles>
         <texts>
           <li>The surveyors have two lines for the road past the colony, and they've asked the council to choose. One runs right past the gate, with all the traffic that brings, good and bad. The other swings around behind the hill, a day's work longer and much quieter.\n\nThe surveyors will go with the colony's word.</li>
+          <li>The surveyors have staked out two lines past the colony and want the council to pick one. Past the gate means carts, traders and trouble at the door. Behind the hill means a quieter colony and a longer road.\n\nThey'll build whichever the colony says.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -405,6 +411,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s road gang has set the footing for the river bridge below the colony twice now, and twice the current has taken it. They've heard {A_nameDef} knows building, and ask for a day of {A_possessive} time at the crossing. They'll pay {COUNT} silver.</li>
+          <li>The river has washed away the footing for {FACTION}'s new bridge below the colony twice. The road gang has heard {A_nameDef} knows building, and offers {COUNT} silver for a day of {A_possessive} advice at the crossing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -446,6 +453,7 @@
         </titles>
         <texts>
           <li>The money ran out before the road did. {FACTION}'s gangs have gone home, and {NAME} ends in a heap of stones a mile past the colony.\n\nThe grass is already coming up through the gravel.</li>
+          <li>{NAME} stops a mile past the colony, in a heap of gravel and a few stakes. {FACTION} ran out of silver before they ran out of road, and the gangs have gone home.</li>
         </texts>
         <chronicle>{NAME} was abandoned half built.</chronicle>
       </li>
@@ -475,6 +483,7 @@
         </titles>
         <texts>
           <li>{NAME} runs behind the hill, as the colony asked, and opened this week. On a still night, the carts can just be heard.</li>
+          <li>{NAME} is open, behind the hill where the colony asked for it. The traffic passes out of sight, and mostly out of mind.</li>
         </texts>
         <chronicle>{NAME} opened, passing behind the hill.</chronicle>
         <effects>
@@ -488,6 +497,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s carts are already on {NAME}. It isn't the colony's road, but the colony will use it.</li>
+          <li>{NAME} is open, and {FACTION}'s carts are on it already. It passes the colony at a distance, and the colony will use it all the same.</li>
         </texts>
         <chronicle>{NAME} opened near the colony.</chronicle>
         <effects>
@@ -587,6 +597,7 @@
         </titles>
         <texts>
           <li>In {NAME}, every household at {PLACE} is asked to forgive one debt. {FACTION}'s priests have written to ask the colony to do the same. A family of {FACTION} owes the colony {COUNT} silver from a bad year, and has never managed to pay more than a few coins at a time.\n\nIf the colony holds them to it, they can raise about half now.</li>
+          <li>{FACTION}'s priests have written to the colony about {NAME}: in this year, every house at {PLACE} forgives one debt, and they hope the colony will do the same. A family of {FACTION} has owed the colony {COUNT} silver since a bad harvest, and has paid it back a few coins at a time.\n\nPressed now, they could find about half.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -654,6 +665,7 @@
         </titles>
         <texts>
           <li>{NAME} has ended with a feast at {PLACE}, and the priests of {FACTION} read out the names of those who kept it well. The colony was one of them.\n\nPilgrims on their way home have been stopping at the gate to say so.</li>
+          <li>{NAME} is over, and at {PLACE} the priests of {FACTION} have named the houses that kept it well. The colony's name was among them.</li>
         </texts>
         <chronicle>{NAME} ended; {FACTION} named the colony among those who kept it well.</chronicle>
         <effects>
@@ -671,6 +683,7 @@
         </titles>
         <texts>
           <li>The last pilgrims of {NAME} have gone home past the colony's gate. {FACTION} remember that the colony kept some of the year with them.</li>
+          <li>{NAME} has ended, and {FACTION} remember that the colony kept some part of it with them.</li>
         </texts>
         <chronicle>{NAME} ended; the colony had kept some of it.</chronicle>
         <effects>
@@ -684,6 +697,7 @@
         </titles>
         <texts>
           <li>{NAME} is over. The pilgrims have gone home, the bells at {PLACE} have stopped, and the colony went on through it all as if nothing were happening.\n\n{FACTION} noticed.</li>
+          <li>{NAME} has ended, and the bells at {PLACE} have gone back to ringing the hours. The colony kept none of it, and {FACTION} took note.</li>
         </texts>
         <chronicle>{NAME} passed; the colony kept to itself.</chronicle>
       </li>
@@ -785,6 +799,7 @@
         </titles>
         <texts>
           <li>"Under a dead pine with a split in it you could put your arm through," says the man at the gate, one of {NAME}'s, and holds up a scrap of map. Only a few of the band knew where the bandit lord buried the hoard, and he is one of them. The map is the colony's for {COUNT} silver.\n\n{FACTION} would very much like to know where it is too. Most of what's in it was theirs.</li>
+          <li>One of {NAME}'s old band is at the gate with a scrap of map in a dirty hand. Only a few of them knew where the bandit lord buried the hoard, he says, and he's one. The map is the colony's for {COUNT} silver.\n\n{FACTION} would want to hear about it. Most of what's down there was taken from them.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -842,6 +857,7 @@
         </titles>
         <texts>
           <li>{FACTION} are holding a feast at {PLACE} to mark the end of {NAME}, and every neighbor who suffered from the band is asked to send something for the tables. Their carts are going around the farms to collect it.</li>
+          <li>{FACTION} mean to mark the end of {NAME} with a feast at {PLACE}, and they are asking every neighbor who lost something to the band to send something for the tables. Their carts are already going round the farms.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -873,6 +889,7 @@
         </titles>
         <texts>
           <li>The last of {NAME}'s band has scattered or come in from the cold, and the roads around {PLACE} are quiet for the first season in years. {FACTION} remember who helped them finish it.\n\nSome of the band's old fighters are looking for work, and not all of them are particular about what kind.</li>
+          <li>The roads around {PLACE} are quiet now, the first quiet season since {NAME} took them. {FACTION} remember who stood with them at the end.\n\nSome of the band's old fighters are still out there, looking for any kind of work.</li>
         </texts>
         <chronicle>After the fall of {NAME}, the roads around {PLACE} went quiet; {FACTION} remember the colony's part.</chronicle>
         <effects>
@@ -888,6 +905,7 @@
         </titles>
         <texts>
           <li>The band of {NAME} didn't stay broken. One of the lieutenants has pulled the pieces back together under {ENEMY}'s banner, and the stories from the roads have started again.\n\nIt's too early to say how bad it will get.</li>
+          <li>{NAME} is dead, and someone else answers to the name now. One of the old lieutenants has pulled the band back together under {ENEMY}'s banner, and carts on the roads are traveling in groups again.</li>
         </texts>
         <chronicle>After the fall of {NAME}, a lieutenant pulled {ENEMY}'s band back together.</chronicle>
         <effects>
@@ -901,6 +919,7 @@
         </titles>
         <texts>
           <li>The band of {NAME} is gone. A few are dead and a few are in {FACTION}'s cells, and the rest have scattered too far for any new leader to find.\n\nThe roads around {PLACE} are slowly filling with carts again.</li>
+          <li>What was left of {NAME}'s band has broken up and gone its separate ways, and no new leader has managed to call it back. {FACTION} have a few of them in their cells.\n\nThe roads around {PLACE} are quiet again.</li>
         </texts>
         <chronicle>The band of {NAME} scattered after the bandit lord's fall.</chronicle>
         <effects>
@@ -962,6 +981,7 @@
         </titles>
         <texts>
           <li>The notice from {FACTION}'s herd-masters is the same one every neighbor got:\n\nKeep all beasts penned, off the common grazing and away from the roads, until {NAME} has passed. It goes by touch, and a short way on the wind.\n\nPenning the colony's animals would mean a few weeks of hauling feed. It would also make them much less likely to catch it.</li>
+          <li>{FACTION}'s herd-masters have sent riders to every farm with the same message: pen every beast until {NAME} has gone by. It spreads by touch, and some way on the wind.\n\nPenned animals have to be fed by hand, every day. Free ones may catch it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -995,6 +1015,7 @@
         </titles>
         <texts>
           <li>Word has reached {PLACE} that {A_nameDef} knows animals as well as anyone in the region. {FACTION}'s herders are losing animals faster than they can bury them, and they ask whether {A_nameDef} would look at the sick ones and tell them what to do.\n\n{A_nameDef} would have to keep well apart from the colony's own animals for a few days afterward.</li>
+          <li>{FACTION}'s herders at {PLACE} have heard that {A_nameDef} has a way with animals, and their own are dying. They ask {A_nameDef} to come and look, and to tell them what can be saved.\n\nAfterward {A_nameDef} would have to keep away from the colony's own herd for some days.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -1030,6 +1051,7 @@
         </titles>
         <texts>
           <li>With half their herds dead or burned, {FACTION} are short of meat and milk at {PLACE}, and the winter stores are going faster than they should. A rider asks whether the colony can spare {COUNT} portions of food.\n\nTheir porters would come for it on foot. Most of their oxen are dead.</li>
+          <li>The milk has stopped at {PLACE}, and the smokehouses are empty. {FACTION} ask whether the colony can spare {COUNT} portions of food to see them through.\n\nTheir porters will walk up for it. The oxen that would have pulled the carts are dead.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -1089,6 +1111,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s herds are thin and few now that {NAME} has passed, but they'll recover, and the colony helped where it was asked.</li>
+          <li>{NAME} is gone from {FACTION}'s pastures. The herds are small now and will take years to build back, and {FACTION} remember the colony's help in the worst of it.</li>
         </texts>
         <chronicle>{NAME} ended; the colony had lent a hand.</chronicle>
         <effects>
@@ -1102,6 +1125,7 @@
         </titles>
         <texts>
           <li>{NAME} has run its course, and left {FACTION} with half the herds they had and a lean season ahead. The colony's animals grazed where they always had, and the colony sent nothing.</li>
+          <li>{NAME} has passed. {FACTION} lost half their herds to it, and when they count the neighbors who helped, the colony isn't one of them.</li>
         </texts>
         <chronicle>{NAME} ran its course; the colony sent nothing.</chronicle>
         <effects>
@@ -1175,6 +1199,7 @@
         </titles>
         <texts>
           <li>A truck of {FACTION}'s salvagers has stopped at the gate on the way back from the wreck of {NAME}, loaded with steel plate and pulled components. They'd sell some of it to the colony, for {COUNT} silver, rather than haul it all the way home.</li>
+          <li>{FACTION}'s salvagers have pulled up at the gate on their way back from the wreck of {NAME}, their truck riding low on its springs with steel plate and pulled components. They'd sell a load to the colony for {COUNT} silver, sooner than haul it all the way home.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -1204,6 +1229,7 @@
         </titles>
         <texts>
           <li>A survivor of {NAME} is at the colony's gate, still in the rags of a ship's uniform. They climbed out of the wreck before the salvagers came and have been walking ever since.\n\nThey ask for water first, and then whether the colony takes in strays.</li>
+          <li>Someone in a burned ship's uniform is standing at the colony's gate, swaying a bit. A survivor of {NAME}, they say, who walked out of the wreck before the salvagers came and kept walking.\n\nThey'd like water, and then to know whether the colony takes people in.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -1246,6 +1272,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s salvagers have found {NAME}'s computer core intact, and none of them can read it. They've heard {A_nameDef} might, and offer {COUNT} silver for a day of {A_possessive} time at the wreck's data logs, brought up to the colony on a cart.</li>
+          <li>{FACTION}'s salvagers have the computer core of {NAME} in one piece, and not one of them can make sense of it. They've heard {A_nameDef} could, and offer {COUNT} silver for a day of {A_possessive} time with its logs, brought up to the colony on a cart.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -1291,6 +1318,7 @@
         </titles>
         <texts>
           <li>The wreck of {NAME} has been picked clean, down to the deck plates. {FACTION} took the lion's share, and they remember the colony's part in it.\n\nThe valley where it fell will be full of bent metal for years.</li>
+          <li>There's nothing left of {NAME} worth taking. {FACTION} have the best of it, and they haven't forgotten that the colony helped.</li>
         </texts>
         <chronicle>The wreck of {NAME} was salvaged; {FACTION} remember the colony's part.</chronicle>
         <effects>
@@ -1304,6 +1332,7 @@
         </titles>
         <texts>
           <li>The last of the salvagers have left the wreck of {NAME}. What's left in the valley is too heavy to move or too bent to sell.</li>
+          <li>The salvagers have gone, and the wreck of {NAME} lies in its valley stripped to the frame, too bent to sell and too heavy to move.</li>
         </texts>
         <chronicle>The wreck of {NAME} was picked clean.</chronicle>
       </li>

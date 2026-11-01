@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A second round of ways for the challenges and the "more" batch (Council_Events_Challenges.xml,
+    Council_Events_More.xml) to read, merged in at startup (LetterVariantsDef): a treasure map, a tribute demanded, a
+    contest, a talent scout, a writer, a traveling doctor. Mostly more ways to tell answers that had one. Fights only
+    ever come of the answer chosen, as before; the words say no more than the answer does.
+  -->
+
+  <!-- ===================== A treasure map ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_TreasureMap</defName>
+    <incident>Council_Evt_TreasureMap</incident>
+    <texts>
+      <li>[summer] All afternoon {X_nameDef} of {FACTION} sat in the colony's shade, waiting for the yard to empty. When it did, {X_nameDef} beckoned {A_nameDef} over and unfolded a map with a mark on the colony's own land.\n\nToo hot to dig, {X_nameDef} says, and too far from home. {COUNT} silver and the map is the colony's.</li>
+      <li>[colony:Thrifty] A colony that likes a bargain should hear this one, says {X_nameDef} of {FACTION}, and offers {A_nameDef} a map to a cache buried on the colony's own land, for {COUNT} silver. {A_nameDef} has asked to hold it up to the light first.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} takes the silver and hands the map over with both hands, like something precious. {A_nameDef} has already found the spot on the land it points to.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} holds the map against the land, and the marks match nothing: not the hills, not the stream, not the old road. The silver is gone.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} tucks the map back into {X_possessive} coat and says somebody else will be rich instead.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <riskLines>
+          <li>{B_nameDef} found the mark had been drawn over a copy of a real map, with the real cache scratched out. {X_nameDef} says it was a joke. The silver stays home.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Tribute demanded ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Tribute</defName>
+    <incident>Council_Evt_Tribute</incident>
+    <texts>
+      <li>[winter] {ENEMY} are hungry this winter, and someone has decided the colony will feed them. Their messenger came through the snow with the price: {COUNT} silver. If it isn't paid, {ENEMY} will come and take it, and whatever else they find.</li>
+      <li>[colony:Walled] {ENEMY} have looked at the colony's walls and decided silver is easier to take than a gate. Their messenger named it: {COUNT} silver, or a war party to collect it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The silver is carried to the gate and left for {ENEMY} to collect. The colony goes back to work, and nobody talks much at supper.</li>
+          <li>[colony:Harsh] The colony pays, this once, and hates it. The silver goes out to the gate for {ENEMY} to collect.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} names the colony's lean months, one by one, until {ENEMY} take half and call it settled. Half goes out to the gate.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} laughed at the price, and {ENEMY} heard the laugh. The tribute is off the table. A war party is on its way instead.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The colony sends back one word, and spends the rest of the day getting ready for what that word costs.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A challenger ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Champion</defName>
+    <incident>Council_Evt_Champion</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>Hands are shaken on the stake in front of witnesses, and {A_nameDef} goes off to get ready. The match is a couple of hours off.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>No silver, just the name of the winner, says {X_nameDef}, and that's the bit that lasts. The match starts in a couple of hours.</li>
+          <li>[colony:Traditional] A contest for honor, the way it was always done. The match starts in a couple of hours, and the old ones are already arguing about who will win.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Lost cargo ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_LostCargo</defName>
+    <incident>Council_Evt_LostCargo</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The cargo goes back to {FACTION}, every piece of it, with a note saying where it was found. {FACTION} will remember the colony for it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The cargo stays where the colony put it. When {FACTION} ask after it, they get no answer, and they draw their own conclusions.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A talent scout ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_TalentScout</defName>
+    <incident>Council_Evt_TalentScout</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{A_nameDef} goes with a bag over one shoulder and doesn't make a speech. {FACTION}'s silver comes in {A_possessive} place, and sits where it was left until supper.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} thinks it over and decides to stay. "Ask me again in ten years," is the word {A_nameDef} sends back to {FACTION}.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} thinks it over and says yes. There's a goodbye for everyone in turn, and then {A_nameDef} is gone down the road.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A writer comes ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Journalist</defName>
+    <incident>Council_Evt_Journalist</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} asks about everything, the food and the quarrels and the dead, and writes down the answers in a small fast hand. The colony will be read about.</li>
+          <li>[lowtech] {X_nameDef} listens to anyone who will talk and writes it all down on long strips of bark. The colony's story will be told in other halls.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} is shown the road. A colony that won't talk, {X_nameDef} says, is a story too.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <riskLines>
+          <li>{A_nameDef} got onto the subject of the colony's quarrels and couldn't get off it. {X_nameDef} filled three pages, and the piece will make the colony sound like a kennel.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A traveling doctor ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Inoculation</defName>
+    <incident>Council_Evt_Inoculation</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} goes from person to person with the case open, and even the ones who hide get found. The doses are given, and the silver is paid.</li>
+          <li>[lowtech] {X_nameDef} gives every colonist a cup of something bitter and stands there until they drink it. The silver goes into {X_possessive} pouch.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} snaps the case shut, says the colony knows where to find {X_objective}, and goes on to the next settlement.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

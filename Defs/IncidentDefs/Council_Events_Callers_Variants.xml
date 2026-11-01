@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways to tell the answers of the callers (Council_Events_Callers.xml), the land's own events
+    (Council_Events_Land.xml), the pasts (Council_Events_Pasts.xml) and a deserter (Council_Events_Battles.xml), merged
+    in at startup (LetterVariantsDef). Most of these answers had one way to end; the quiet ones (the work going on,
+    the colony staying home) get a second. Lines keep the tags their workers set: the land ([river], [forest]...),
+    [children], the comrade's [soldier] or [outlaw].
+  -->
+
+  <!-- ===================== A traveling musician ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Fiddler</defName>
+    <incident>Council_Evt_Fiddler</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} played for the whole colony after supper, one tune running into the next, and the last of them went to bed humming.</li>
+          <li>[winter] With the shutters closed and the stove going, {X_nameDef} played for the whole colony until the candles were stubs. {A_nameDef} asked for the slow one twice.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} played a few tunes at supper for {X_possessive} bed, the way traveling players do, and was gone again in the morning.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A peacemaker ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Peacemaker</defName>
+    <incident>Council_Evt_Peacemaker</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>On {X_nameDef}'s advice, {A_nameDef} and {B_nameDef} were set to the woodpile side by side. By the end of the afternoon the logs were split, and so was the work between them, without anyone telling them how.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is thanked and told the colony settles its own quarrels. {X_nameDef} glances over at {A_nameDef} and {B_nameDef}, and says nothing more about it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Guests at the council ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_CouncilGuests</defName>
+    <incident>Council_Evt_CouncilGuests</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The envoys from {FACTION} were given the colony's best and every answer they asked for, down to who mends the roof and who decided they should. They went home to {PLACE} with full notebooks.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The envoys are told the council meets behind a shut door. They take it well, sleep the night as guests, and go home to {PLACE} with nothing to write down.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A spirit-singer (sent on) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_SpiritSinger</defName>
+    <incident>Council_Evt_SpiritSinger</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} takes the bowl with both hands, eats with the drum across {X_possessive} knees, and goes on to sing for some other camp.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A photographer (for the papers) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Photographer</defName>
+    <incident>Council_Evt_Photographer</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} took pictures of the colony at its work all day, and paid half of {COUNT} silver for the right to print them. {A_nameDef} has asked to be sent a copy of the paper.</li>
+        </lines>
+        <riskLines>
+          <li>The one {FACTION}'s paper chose to print was of {A_nameDef} mid-sneeze, under a headline about frontier hardship. The silver was paid all the same.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The land's own: the quiet answers ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_WhiteNights</defName>
+    <incident>Council_Evt_WhiteNights</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>Blankets go up over the windows and the council keeps the usual hours. The light comes in round the edges anyway.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_DesertBloom</defName>
+    <incident>Council_Evt_DesertBloom</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The council keeps everyone at work. At dusk a few walk out to the flowers anyway, and come back with the smell of them on their hands.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_BirdsReturn</defName>
+    <incident>Council_Evt_BirdsReturn</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The colony keeps to its work, and the birds keep to theirs, building under every eave the colony has.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_LongRains</defName>
+    <incident>Council_Evt_LongRains</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The colony puts buckets under the leaks and waits. The rain goes on drumming on the roof as if it has nowhere else to be.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var_Evt_Rut</defName>
+    <incident>Council_Evt_Rut</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The council keeps the colony near the walls while the stags are roaring. The bellowing goes on {PLACE} without anyone going to look.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The pasts ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_OldComrade</defName>
+    <incident>Council_Evt_OldComrade</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} hears the answer at the road, looks up at the colony for a while, and goes. {A_nameDef} doesn't come down to see {X_objective} off.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_LostKin</defName>
+    <incident>Council_Evt_LostKin</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} is brought in, and {A_nameDef} doesn't let go of {X_possessive} sleeve all afternoon, as if {X_nameDef} might vanish again.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_OldFlame</defName>
+    <incident>Council_Evt_OldFlame</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} stays. {A_nameDef} has been laughing more than usual, and some of the colony have started laying bets.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} is told no, and goes without a scene. {A_nameDef} works late that night and says it was nothing.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Creditor</defName>
+    <incident>Council_Evt_Creditor</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The creditor counts the silver into a pouch and writes "paid" across the old note. {A_nameDef} reads the word twice.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The creditor is told no and goes, without threats. {A_nameDef} watches the road for a while afterward.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_BountyHunters</defName>
+    <incident>Council_Evt_BountyHunters</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The bounty is carried out to the gate for the hunters to count, and they go. {A_nameDef}'s old life is paid off at last.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A deserter ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Deserter</defName>
+    <incident>Council_Evt_Deserter</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is taken back to {ENEMY} under the colony's guard, and doesn't say a word the whole way. {ENEMY} are pleased with the colony, and say so.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{B_nameDef} carried {X_nameDef}'s coat to market, wet and torn, and told the story of the river so well that one of the listeners wept. {X_nameDef} is one of the colony now, and drowned as far as {ENEMY} know.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

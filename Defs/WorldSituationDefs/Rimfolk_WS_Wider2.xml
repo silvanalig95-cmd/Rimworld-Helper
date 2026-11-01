@@ -218,6 +218,7 @@
         </titles>
         <texts>
           <li>The ice road is gone with the thaw, and the lakes are open water again. On the last night, two sledges that had lost the poles came in toward the colony's fires and reached the shore with the ice cracking behind them.\n\n{FACTION} have sent their thanks, and the drivers have sent theirs separately.</li>
+          <li>The thaw has taken the ice road, and the lakes are open water. On the last night of it, sledges that had lost the poles in the dark steered for the colony's fires and came ashore safe.\n\n{FACTION} have sent their thanks, and so have the drivers.</li>
         </texts>
         <chronicle>The ice road thawed; the colony's fires brought the last sledges in.</chronicle>
         <effects>
