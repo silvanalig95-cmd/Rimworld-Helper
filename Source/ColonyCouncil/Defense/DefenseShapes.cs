@@ -26,8 +26,14 @@ namespace ColonyCouncil
         public float range = 30.9f;
         public float raidPoints = 500f;
 
-        /// <summary>Raids of 3000 points and more: a wider gap in the line, a longer and slowed way in.</summary>
+        /// <summary>Raids of 3000 points and more: a wider gap in the line, a longer and slowed way in, a second rank of shooters.</summary>
         public bool Big => raidPoints >= 3000f;
+
+        /// <summary>
+        /// Shooters for a second rank behind a first that holds <paramref name="first"/>: only against raids this big, and
+        /// only those the first rank has no room for, at most as many again.
+        /// </summary>
+        public int SecondRank(int first) => Big && shooters > first ? Math.Min(first, shooters - first) : 0;
 
         public DefenseShapeSpec Copy() => (DefenseShapeSpec)MemberwiseClone();
 
@@ -113,6 +119,8 @@ namespace ColonyCouncil
         public int behind;
         /// <summary>Cells from the doorway (or gate) straight back to the firing positions, and their number.</summary>
         public int depth, shooters;
+        /// <summary>Of the firing positions, those in a second rank behind the first (0 for none).</summary>
+        public int second;
         /// <summary>The cells raiders walk straight down before the doorway (the box), and how far the firing positions are from it.</summary>
         public int straight;
         public float nearest;
@@ -132,6 +140,10 @@ namespace ColonyCouncil
     /// close enough in that a raider in the gate has little cover from its sides.</item>
     /// <item>A firing line and a post of pockets (a wall in front, sandbags on the front corners and beside), a turret
     /// nest spaced by the turret's blast, a trap corridor with a fence beside each trap.</item>
+    /// <item>Against very big raids, when the colony has more shooters than the line of cover holds, a second rank three
+    /// rows behind the first (a box, side lines, a firing line): a walkway, then sandbags of its own, each of its firing
+    /// positions with only sandbags and the first rank straight in front of it, never a wall. A shot never
+    /// strikes anyone it passes within five cells of the shooter, so the first rank doesn't stop the second's shots.</item>
     /// </list>
     /// Pure, with no game types, so the tests draw every shape for a range of colonies and check each with the layout
     /// rules and the sight checker.
@@ -170,6 +182,20 @@ namespace ColonyCouncil
         private static int Clamp(int v, int lo, int hi) => v < lo ? lo : v > hi ? hi : v;
 
         private static int PerSide(DefenseShapeOptions o, DefenseShapeSpec s, int lo, int hi) => Clamp(((o.shooters > 0 ? o.shooters : s.shooters) + 1) / 2, lo, hi);
+
+        /// <summary>Rows from the first rank's firing positions back to the second rank's: a walkway, the second rank's cover, its firing positions.</summary>
+        public const int RankGap = 3;
+
+        /// <summary>
+        /// Firing positions on each side for a second rank behind a first of <paramref name="perSide"/> a side (none for a
+        /// plan that fixes its own number of shooters, like the small killbox's four).
+        /// </summary>
+        private static int SecondPerSide(DefenseShapeOptions o, DefenseShapeSpec s, int perSide)
+        {
+            if (o.shooters > 0) return 0;
+            int extra = s.SecondRank(2 * perSide);
+            return extra <= 0 ? 0 : Clamp((extra + 1) / 2, 1, perSide);
+        }
 
         /// <summary>How far back a firing position <paramref name="offset"/> cells off the axis must stand to be out of a grenade's throw from the doorway.</summary>
         public static int GrenadeDepth(int offset) => (int)Math.Ceiling(Math.Sqrt(Math.Max(0f, DefenseSight.GrenadeReach * DefenseSight.GrenadeReach - offset * offset)));
@@ -241,13 +267,22 @@ namespace ColonyCouncil
         /// <summary>
         /// A killbox, a tunnel killbox, a baffled gate or a palisade yard. From the top: an open row in front (a gate's),
         /// the wall line with the mouth, the way in (down from the mouth, across, then the straight to the doorway), the
-        /// bare box, the line of cover and the firing positions, and one open row behind, toward the colony.
+        /// bare box, the line of cover and the firing positions (against very big raids, a second rank behind them), and
+        /// one open row behind, toward the colony.
         /// </summary>
-        private static DefenseShape BuildBox(DefenseShapeOptions o, DefenseShapeSpec s)
+        private static DefenseShape BuildBox(DefenseShapeOptions o, DefenseShapeSpec s) => BoxWith(o, s, true) ?? BoxWith(o, s, false);
+
+        /// <summary>
+        /// The box, with a second rank when the colony wants one (<paramref name="ranked"/>); null when that rank won't
+        /// fit in the largest layout or stands beyond the colony's reach of the doorway.
+        /// </summary>
+        private static DefenseShape BoxWith(DefenseShapeOptions o, DefenseShapeSpec s, bool ranked)
         {
             string style = o.cover == "auto" || string.IsNullOrEmpty(o.cover) ? (s.lowTech ? "plain" : "pocket") : o.cover;
             bool pocket = style == "pocket", emb = style == "embrasure";
             int perSide = PerSide(o, s, 2, 3);
+            // A wall of embrasures leaves nobody behind it a line out: no second rank there.
+            int perSide2 = ranked && !emb ? SecondPerSide(o, s, perSide) : 0;
             // A wider gap on the axis for big raids: room for the melee fighters and the haulers, and the corner stays blind.
             int first = s.Big && pocket ? 4 : 3;
             int maxOff = first + 2 * (perSide - 1);
@@ -263,11 +298,18 @@ namespace ColonyCouncil
             a = Math.Max(minA, a + s.depth);
             int maxA = Math.Max(minA, RangeDepth(maxOff, s.range));
             if (a > maxA) a = maxA;
+            if (perSide2 > 0)
+            {
+                // Room for the second rank within the largest layout: a little less depth, never nearer the doorway than grenades allow.
+                int rest = (o.front ? 1 : 0) + Math.Max(1, drop) + straight + 2 + RankGap + (s.turretSize >= 2 && s.turrets > 0 ? 6 : 0);
+                int floor = Math.Max(minA, s.grenades ? GrenadeDepth(first) : 0);
+                if (a + rest > MaxSize) a = Math.Max(floor, MaxSize - rest);
+            }
 
             DefenseShape shape = null;
             for (int attempt = 0; attempt < 10; attempt++)
             {
-                shape = DrawBox(o, s, pocket, emb, perSide, first, hw, wallT, W, ax, drop, leg, straight, a);
+                shape = DrawBox(o, s, pocket, emb, perSide, first, hw, wallT, W, ax, drop, leg, straight, a, perSide2);
                 var reading = DefenseSight.Read(shape.grid);
                 if (reading.worstCover <= DefenseSight.MaxRaiderCover) break;
                 // Seen from the way in: a longer straight. From the box: a little further back (narrower angles).
@@ -276,21 +318,23 @@ namespace ColonyCouncil
                 if (worstRow < doorRow - 1 || a >= Math.Min(maxA + 2, MaxSize)) straight++;
                 else a++;
             }
+            if (perSide2 > 0 && (shape.grid.H > MaxSize || shape.depth + RankGap > RangeDepth(first + 1 + 2 * (perSide2 - 1), s.range))) return null;
             return shape;
         }
 
         private static DefenseShape DrawBox(DefenseShapeOptions o, DefenseShapeSpec s, bool pocket, bool emb, int perSide, int first, int hw, int wallT, int W, int ax,
-            int drop, int leg, int straight, int a)
+            int drop, int leg, int straight, int a, int perSide2)
         {
             int rl = o.front ? 1 : 0;
             int thick = Math.Max(1, o.thick);
             int rt = rl + Math.Max(1, drop);
             int rd = rt + straight;
             int rf = rd + a, rc = rf - 1;
+            int rf2 = perSide2 > 0 ? rf + RankGap : rf, rc2 = rf2 - 1;
             // A 2x2 turret stands behind the gap in the line, its corner (where its blast is measured) six rows behind the shooters.
             bool bigTurret = s.turretSize >= 2 && s.turrets > 0;
-            int rb = rf + 6;
-            int H = bigTurret ? rb + 2 : rf + 2;
+            int rb = rf2 + 6;
+            int H = bigTurret ? rb + 2 : rf2 + 2;
             int mx = ax - leg;
             var cv = new Canvas(W, H);
             if (o.front) cv.Row(0, DefenseLayout.Open);
@@ -351,6 +395,7 @@ namespace ColonyCouncil
                 // A wall of embrasures: the way on is a gate in its corner, with melee fighters behind it.
                 if (emb) cv[rc, ax + hw] = DefenseLayout.Gate;
             }
+            SecondRank(cv, ax, rf2, first, perSide2, hw);
 
             // Decoy turrets on the axis, in front of the line: they draw the fire, and none stands near a shooter or the doorway.
             // A big one would give a raider beside it half cover, so it stands behind the gap and shoots through it.
@@ -390,10 +435,29 @@ namespace ColonyCouncil
 
             var shape = Finish(cv, rl, rd, ax);
             shape.depth = a;
-            shape.shooters = 2 * perSide;
+            shape.second = 2 * perSide2;
+            shape.shooters = 2 * perSide + shape.second;
             shape.straight = straight;
             shape.nearest = (float)Math.Sqrt(a * a + first * first);
             return shape;
+        }
+
+        /// <summary>
+        /// A second rank of <paramref name="perSide2"/> a side, its firing positions on row <paramref name="rf2"/>, behind a
+        /// first whose own stand <paramref name="first"/>, first + 2, ... cells off the axis: on the columns between those
+        /// (first + 1, first + 3, ...), where only the first rank's sandbags stand in front of them, with a row of
+        /// sandbags of their own before them and the gap on the axis left open. Nothing goes further off the axis than
+        /// <paramref name="widest"/>.
+        /// </summary>
+        private static void SecondRank(Canvas cv, int ax, int rf2, int first, int perSide2, int widest)
+        {
+            if (perSide2 <= 0) return;
+            int outer = first + 1 + 2 * (perSide2 - 1);
+            foreach (int side in new[] { -1, 1 })
+            {
+                for (int off = first; off <= Math.Min(outer + 1, widest); off++) cv[rf2 - 1, ax + side * off] = DefenseLayout.Cover;
+                for (int k = 0; k < perSide2; k++) cv[rf2, ax + side * (first + 1 + 2 * k)] = DefenseLayout.Firing;
+            }
         }
 
         // ---------------- Side lines behind a gate ----------------
@@ -405,17 +469,26 @@ namespace ColonyCouncil
         /// outside the gate can shoot at them from good cover, a raider in the gate has little, and, against grenades,
         /// they are more than a throw from the gate.
         /// </summary>
-        private static DefenseShape BuildSideLines(DefenseShapeOptions o, DefenseShapeSpec s)
+        private static DefenseShape BuildSideLines(DefenseShapeOptions o, DefenseShapeSpec s) => SideLinesWith(o, s, true) ?? SideLinesWith(o, s, false);
+
+        /// <summary>
+        /// The side lines, with a second rank when the colony wants one (<paramref name="ranked"/>); null when no
+        /// placement keeps that rank hidden from outside and within the colony's reach of the gate.
+        /// </summary>
+        private static DefenseShape SideLinesWith(DefenseShapeOptions o, DefenseShapeSpec s, bool ranked)
         {
             int perSide = PerSide(o, s, 2, 4);
+            int perSide2 = ranked ? SecondPerSide(o, s, perSide) : 0;
             // Closest first: the least ground, then a little further back rather than wider. Reach and grenades are
-            // counted before anything is drawn (the nearest firing position to the gate is the inner one of a half).
+            // counted before anything is drawn (the nearest firing position to the gate is the inner one of a half,
+            // the furthest the outer one of the last rank).
             int aMin = Clamp(6 + s.depth, 5, 14);
+            int back = perSide2 > 0 ? RankGap : 0;
             var tries = new List<(int a, int o1, float score)>();
             for (int a = aMin; a <= 16; a++)
                 for (int o1 = 2; o1 <= 12; o1++)
                 {
-                    float far = (float)Math.Sqrt(a * a + (o1 + perSide - 1) * (o1 + perSide - 1));
+                    float far = (float)Math.Sqrt((a + back) * (a + back) + (o1 + perSide - 1) * (o1 + perSide - 1));
                     if (far > s.range - 0.5f) continue;
                     if (s.grenades && Math.Sqrt(a * a + o1 * o1) < DefenseSight.GrenadeReach) continue;
                     tries.Add((a, o1, (2 * (o1 + perSide) + 1) * (a + 5) + o1 * 0.5f));
@@ -428,7 +501,7 @@ namespace ColonyCouncil
                 float allowed = pass == 0 ? 0.3f : DefenseSight.MaxRaiderCover;
                 foreach (var (a, o1, _) in tries)
                 {
-                    var shape = DrawSideLines(o, perSide, a, o1, true);
+                    var shape = DrawSideLines(o, perSide, a, o1, true, perSide2);
                     var reading = DefenseSight.Read(shape.grid);
                     if (reading.worstCover > allowed) continue;
                     best = shape;
@@ -438,15 +511,17 @@ namespace ColonyCouncil
                     break;
                 }
             }
-            // Nothing fits the colony's reach: the plain one, which the review then sizes up.
+            // Nothing fits the colony's reach: one rank; with one, the plain one, which the review then sizes up.
             if (best == null)
             {
-                best = DrawSideLines(o, perSide, bestA, bestO, true);
+                if (perSide2 > 0) return null;
+                best = DrawSideLines(o, perSide, bestA, bestO, true, 0);
                 best.nearest = DefenseSight.Read(best.grid).nearestDoor;
             }
-            var result = o.behindGate ? DrawSideLines(o, perSide, bestA, bestO, false) : best;
+            var result = o.behindGate ? DrawSideLines(o, perSide, bestA, bestO, false, perSide2) : best;
             result.depth = bestA;
-            result.shooters = 2 * perSide;
+            result.second = 2 * perSide2;
+            result.shooters = 2 * perSide + result.second;
             result.nearest = best.nearest;
             result.behind = o.behindGate ? bestA - 2 : 0;
             return result;
@@ -454,9 +529,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The gate (an airlock or a plain one, <paramref name="withGate"/>) and the side lines <paramref name="a"/> cells
-        /// behind it, their inner firing positions <paramref name="o1"/> off the axis.
+        /// behind it, their inner firing positions <paramref name="o1"/> off the axis; a second rank of
+        /// <paramref name="perSide2"/> a side under each half's outer end, behind a walkway, its cap wall carried down.
         /// </summary>
-        private static DefenseShape DrawSideLines(DefenseShapeOptions o, int perSide, int a, int o1, bool withGate)
+        private static DefenseShape DrawSideLines(DefenseShapeOptions o, int perSide, int a, int o1, bool withGate, int perSide2)
         {
             int capOff = o1 + perSide;
             int W = 2 * capOff + 1, ax = W / 2;
@@ -467,7 +543,8 @@ namespace ColonyCouncil
             // The gate's inner door: the plain gate, or an airlock's second door one cell in.
             int inner = airlock ? rl + 2 : rl;
             int rf = inner + a, rc = rf - 1;
-            int H = rf + 2;
+            int rf2 = perSide2 > 0 ? rf + RankGap : rf, rc2 = rf2 - 1;
+            int H = rf2 + 2;
             var cv = new Canvas(W, H, DefenseLayout.Open);
             for (int r = rl; r < rl + thick; r++) cv.Row(r, DefenseLayout.Wall);
             cv[rl, ax] = DefenseLayout.Gate;
@@ -486,6 +563,10 @@ namespace ColonyCouncil
                 for (int off = o1 - 1; off < capOff; off++) cv[rc, ax + side * off] = DefenseLayout.Cover;
                 for (int off = o1; off < capOff; off++) cv[rf, ax + side * off] = DefenseLayout.Firing;
                 cv[rc, ax + side * capOff] = cv[rf, ax + side * capOff] = DefenseLayout.Wall;
+                if (perSide2 <= 0) continue;
+                for (int off = capOff - perSide2 - 1; off < capOff; off++) cv[rc2, ax + side * off] = DefenseLayout.Cover;
+                for (int off = capOff - perSide2; off < capOff; off++) cv[rf2, ax + side * off] = DefenseLayout.Firing;
+                for (int r = rf + 1; r <= rf2; r++) cv[r, ax + side * capOff] = DefenseLayout.Wall;
             }
             if (withGate || !o.behindGate)
             {
@@ -512,7 +593,13 @@ namespace ColonyCouncil
             int first = 2;
             int maxOff = first + 2 * (perSide - 1);
             int W = 2 * (maxOff + 1) + 1, ax = W / 2;
-            var cv = new Canvas(W, 4, DefenseLayout.Open);
+            int a = Math.Max(s.lowTech ? 8 : 9, ConeDepth(maxOff));
+            if (s.grenades) a = Math.Max(a, GrenadeDepth(first));
+            a = Clamp(a + s.depth, 5, Math.Max(5, RangeDepth(maxOff, s.range)));
+            // A second rank behind, between the pockets, when it still reaches the opening.
+            int perSide2 = SecondPerSide(o, s, perSide);
+            if (perSide2 > 0 && a + RankGap > RangeDepth(first + 1 + 2 * (perSide2 - 1), s.range)) perSide2 = 0;
+            var cv = new Canvas(W, perSide2 > 0 ? 4 + RankGap : 4, DefenseLayout.Open);
             for (int k = 0; k < perSide; k++)
                 foreach (int side in new[] { -1, 1 })
                 {
@@ -521,13 +608,12 @@ namespace ColonyCouncil
                     cv[1, c] = DefenseLayout.Wall;
                     cv[1, c - 1] = cv[1, c + 1] = cv[2, c - 1] = cv[2, c + 1] = DefenseLayout.Cover;
                 }
+            SecondRank(cv, ax, 2 + RankGap, first, perSide2, maxOff + 1);
             var shape = Finish(cv, -1, -1, ax);
-            int a = Math.Max(s.lowTech ? 8 : 9, ConeDepth(maxOff));
-            if (s.grenades) a = Math.Max(a, GrenadeDepth(first));
-            a = Clamp(a + s.depth, 5, Math.Max(5, RangeDepth(maxOff, s.range)));
             shape.depth = a;
             shape.behind = a - 2;
-            shape.shooters = 2 * perSide;
+            shape.second = 2 * perSide2;
+            shape.shooters = 2 * perSide + shape.second;
             shape.nearest = (float)Math.Sqrt(a * a + first * first);
             return shape;
         }

@@ -11,7 +11,8 @@ namespace ColonyCouncil
     /// <item><c>S</c> cover (sandbags, barricades), <c>T</c> trap, <c>F</c> something that slows raiders (a fence).</item>
     /// <item><c>U</c> a turret, <c>M</c> a mortar: the bottom-left cell of a block whose other cells are <c>u</c> or
     /// <c>m</c> (the room it may take: a 2x2 block holds a mini-turret or an autocannon alike).</item>
-    /// <item><c>H</c> a shelf (weapons by the beds, shells away from the mortars).</item>
+    /// <item><c>H</c> a shelf (weapons by the beds, shells away from the mortars), <c>B</c> an orbital trade beacon (a bait
+    /// yard's: drop pod raids that come down by it).</item>
     /// <item><c>f</c> a firing position: kept clear, with cover in front. <c>.</c> open ground kept clear (a kill zone, a
     /// walkway). <c>_</c> ground the plan doesn't touch.</item>
     /// </list>
@@ -21,9 +22,9 @@ namespace ColonyCouncil
     public static class DefenseLayout
     {
         public const char Wall = 'W', Gate = 'G', Embrasure = 'E', Cover = 'S', Trap = 'T', Slow = 'F', Turret = 'U', TurretRoom = 'u',
-            Mortar = 'M', MortarRoom = 'm', Shelf = 'H', Firing = 'f', Open = '.', Untouched = '_';
+            Mortar = 'M', MortarRoom = 'm', Shelf = 'H', Beacon = 'B', Firing = 'f', Open = '.', Untouched = '_';
 
-        private const string Known = "WGESTFUuMmHf._";
+        private const string Known = "WGESTFUuMmHBf._";
 
         /// <summary>The role a piece character stands for (the def's picks are by role), or null for ground.</summary>
         public static string RoleOf(char c)
@@ -39,12 +40,13 @@ namespace ColonyCouncil
                 case Turret: return "turret";
                 case Mortar: return "mortar";
                 case Shelf: return "shelf";
+                case Beacon: return "beacon";
                 default: return null;
             }
         }
 
         /// <summary>Every role a template can use, in the order the planner lists them.</summary>
-        public static readonly string[] Roles = { "wall", "gate", "embrasure", "cover", "slow", "trap", "turret", "mortar", "shelf" };
+        public static readonly string[] Roles = { "wall", "gate", "embrasure", "cover", "slow", "trap", "turret", "mortar", "shelf", "beacon" };
 
         /// <summary>Raiders and defenders can't walk through it (walls, gates when closed, turrets, mortars, shelves).</summary>
         public static bool Solid(char c) => c == Wall || c == Embrasure || c == Turret || c == TurretRoom || c == Mortar || c == MortarRoom || c == Shelf;
@@ -293,6 +295,9 @@ namespace ColonyCouncil
                 case "killbox":
                 case "traps":
                     if (!throughOpen) list.Add("raiders can't get through: a killbox or trap corridor must let them in, or they break walls elsewhere");
+                    break;
+                case "bait":
+                    if (g.Count("beacon") == 0) list.Add("a bait yard needs its beacon");
                     break;
                 case "keep":
                     for (int x = 0; x < g.W; x++)

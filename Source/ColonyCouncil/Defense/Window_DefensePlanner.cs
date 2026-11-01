@@ -303,6 +303,7 @@ namespace ColonyCouncil
                 said.Add("CC_Def_Drawn_Reach".Translate(spec.range.ToString("0")).Resolve());
                 if (spec.lowTech && family == DefenseShapes.Box) said.Add("CC_Def_Drawn_Bows".Translate().Resolve());
                 if (spec.Big && family == DefenseShapes.Box) said.Add("CC_Def_Drawn_Big".Translate(spec.raidPoints.ToString("0")).Resolve());
+                if (shape.second > 0) said.Add("CC_Def_Drawn_SecondRank".Translate(shape.second).Resolve());
             }
             Text.Font = GameFont.Tiny;
             GUI.color = Faint;

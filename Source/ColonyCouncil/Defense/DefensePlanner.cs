@@ -552,8 +552,9 @@ namespace ColonyCouncil
         /// Where a template goes at a defense line: relative to the line's gate and the side raiders come from, as
         /// <paramref name="placeAt"/> says. "line": the template's wall row on the gate (<paramref name="distance"/> cells
         /// back for a second skin of wall); "behind": its front row that many cells behind the gate; "front": its back row
-        /// that many cells in front; "between": halfway to the beds. With <paramref name="bothMirrors"/>, the mirrored
-        /// layout is tried too. False if nothing fits; the anchor, turn and mirror are then where it would stand.
+        /// that many cells in front (a bait yard also to either side of that); "between": halfway to the beds; "core":
+        /// deep inside (a mortar pit past the colony's middle, away from the gate). With <paramref name="bothMirrors"/>,
+        /// the mirrored layout is tried too. False if nothing fits; the anchor, turn and mirror are then where it would stand.
         /// </summary>
         public static bool FindSpotAt(DefenseTemplateDef t, Map map, DefensePlanConfig cfg, List<DefensePiece> resolved, IntVec3 gate, int facing, string placeAt, int distance,
             bool bothMirrors, out IntVec3 anchor, out int rot, out bool mirror)
@@ -696,11 +697,29 @@ namespace ColonyCouncil
             switch (placeAt)
             {
                 case "front":
-                    list.Add((gate + outward * Mathf.Max(1, distance), facing, midX, 0, 1));
+                {
+                    var at = gate + outward * Mathf.Max(1, distance);
+                    list.Add((at, facing, midX, 0, 1));
+                    // A bait yard needs only open ground out in front: off to either side when the way in is taken.
+                    if (t.kind == "bait")
+                    {
+                        var right = IntVec3.North.RotatedBy(new Rot4((facing + 1) % 4));
+                        foreach (int side in new[] { -1, 1 }) list.Add((at + right * (side * (g.W / 2 + 3)), facing, midX, 0, 2));
+                    }
                     break;
+                }
                 case "behind":
                     list.Add((gate - outward * Mathf.Max(1, distance > 0 ? distance : behind), facing, midX, g.H - 1, 2));
                     break;
+                case "core":
+                {
+                    // Among the beds, or for a mortar pit past the colony's middle, away from this gate: no mortar hits
+                    // anything within about thirty cells of it.
+                    var core = s != null ? (s.bedCenter.IsValid ? s.bedCenter : s.center) : gate - outward * 20;
+                    var from = t.kind == "mortar" && s != null ? s.center - outward * 6 : core;
+                    list.Add((from, facing, g.W / 2, g.H / 2, 8));
+                    break;
+                }
                 case "between":
                 {
                     var core = s != null ? (s.bedCenter.IsValid ? s.bedCenter : s.center) : gate - outward * 14;
@@ -765,7 +784,8 @@ namespace ColonyCouncil
             switch (t.placeAt)
             {
                 case "front":
-                    foreach (var (cell, facing) in spots) list.Add((cell + IntVec3.North.RotatedBy(new Rot4(facing)) * 2, facing, midX, 0, 2));
+                    // A bait yard stands further out, its beacon clear of the gate.
+                    foreach (var (cell, facing) in spots) list.Add((cell + IntVec3.North.RotatedBy(new Rot4(facing)) * (t.kind == "bait" ? Mathf.Max(2, behind) : 2), facing, midX, 0, 2));
                     break;
                 case "behind":
                     foreach (var (cell, facing) in spots) list.Add((cell - IntVec3.North.RotatedBy(new Rot4(facing)) * behind, facing, midX, g.H - 1, 3));
