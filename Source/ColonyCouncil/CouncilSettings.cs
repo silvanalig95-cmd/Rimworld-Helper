@@ -202,6 +202,8 @@ namespace ColonyCouncil
         public MessageLevel messageLevel = MessageLevel.Notable;
         /// <summary>Where the smaller news goes: a message as it happens, one letter each evening (default), or only the History tab (UI/News.cs).</summary>
         public NewsMode colonyNews = NewsMode.Digest;
+        /// <summary>A quiet day's few pieces of evening news come as one short message instead of a letter (UI/NewsQuiet.cs); busy days are as before.</summary>
+        public bool quietNewsDays = true;
         public EraMode era = EraMode.Auto;
         public float daysBetweenDilemmas = 10f;
         public bool eventWishes = true;
@@ -459,6 +461,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
             Scribe_Values.Look(ref colonyNews, "colonyNews", NewsMode.Digest);
+            Scribe_Values.Look(ref quietNewsDays, "quietNewsDays", true);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 10f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);

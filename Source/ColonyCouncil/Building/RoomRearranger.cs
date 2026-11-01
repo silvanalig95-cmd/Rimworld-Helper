@@ -44,6 +44,8 @@ namespace ColonyCouncil
         public List<string> notes = new List<string>();
         /// <summary>Shelves and stores with goods in them are moved too (the goods are set down and hauled back).</summary>
         public bool moveStocked;
+        /// <summary>The window's knobs for this room: the aisles' width and how firmly furniture keeps its place.</summary>
+        public RoomArrangeMath.Tuning tuning = new RoomArrangeMath.Tuning();
         /// <summary>Conduits are planned to the pieces that would be off the power at their new place.</summary>
         public bool layConduits = true;
         public string roomLabel;
@@ -107,12 +109,19 @@ namespace ColonyCouncil
             return result;
         }
 
-        /// <summary>Looks the room over and works out where everything goes. Null if the room can't be done.</summary>
-        public static RearrangePlan Survey(Room room, bool moveStocked)
+        /// <summary>
+        /// Looks the room over and works out where everything goes, with the window's knobs for this room (the aisles,
+        /// how firmly furniture keeps its place; null: as usual). Null if the room can't be done.
+        /// </summary>
+        public static RearrangePlan Survey(Room room, bool moveStocked, RoomArrangeMath.Tuning tuning = null)
         {
             if (!CanDo(room).Accepted) return null;
             var map = room.Map;
-            var plan = new RearrangePlan { room = room, map = map, rect = room.ExtentsClose, moveStocked = moveStocked, roomLabel = room.GetRoomRoleLabel() };
+            tuning ??= new RoomArrangeMath.Tuning();
+            var plan = new RearrangePlan
+            {
+                room = room, map = map, rect = room.ExtentsClose, moveStocked = moveStocked, tuning = tuning, roomLabel = room.GetRoomRoleLabel()
+            };
             var cells = new HashSet<IntVec3>(room.Cells);
             plan.cells.AddRange(cells);
             var rect = plan.rect;
@@ -163,7 +172,7 @@ namespace ColonyCouncil
             var items = plan.pieces.Select(p => p.item).ToList();
             for (int round = 0; round < 4; round++)
             {
-                plan.notes = RoomArrangeMath.Arrange(g, items);
+                plan.notes = RoomArrangeMath.Arrange(g, items, tuning);
                 bool again = false;
                 foreach (var p in plan.pieces)
                 {
@@ -186,8 +195,8 @@ namespace ColonyCouncil
             }
             try
             {
-                plan.before = RoomArrangeMath.Review(g, items, true);
-                plan.after = RoomArrangeMath.Review(g, items, false);
+                plan.before = RoomArrangeMath.Review(g, items, true, tuning);
+                plan.after = RoomArrangeMath.Review(g, items, false, tuning);
                 plan.unlitBefore = RoomArrangeMath.Unlit(g, items, true, out plan.anyLight);
                 plan.unlitAfter = RoomArrangeMath.Unlit(g, items, false, out _);
             }

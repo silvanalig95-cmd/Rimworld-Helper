@@ -22,6 +22,11 @@ namespace ColonyCouncil
 
         /// <summary>The room looked over, while its window is open.</summary>
         public RearrangePlan plan;
+        /// <summary>
+        /// The window's knobs for the room looked over (the aisles, how firmly furniture keeps its place). Rooms aren't
+        /// kept in the save, so they last while the window is used for this room and start as usual for the next.
+        /// </summary>
+        public RoomArrangeMath.Tuning tuning = new RoomArrangeMath.Tuning();
         /// <summary>The piece under the mouse in the window, drawn in full on the map with its name.</summary>
         public RearrangePiece hovered;
         private int hoveredFrame = -10;
@@ -62,6 +67,8 @@ namespace ColonyCouncil
         {
             var room = c.GetRoom(Map);
             if (!RoomRearranger.CanDo(room).Accepted) return;
+            // Another room: its knobs start as usual.
+            tuning = new RoomArrangeMath.Tuning();
             Look(room, Window_Rearrange.MoveStocked);
         }
 
@@ -70,7 +77,7 @@ namespace ColonyCouncil
         {
             try
             {
-                plan = RoomRearranger.Survey(room, moveStocked);
+                plan = RoomRearranger.Survey(room, moveStocked, tuning);
             }
             catch (System.Exception e)
             {
@@ -181,7 +188,46 @@ namespace ColonyCouncil
         /// <summary>Shelves and stores with goods in them are moved too. Remembered for the session.</summary>
         public static bool MoveStocked;
 
-        private const float Width = 460f, BottomH = 40f;
+        private const float Width = 460f, BottomH = 40f, KnobLabelW = 150f;
+
+        /// <summary>The aisle choices, in the order of RoomArrangeMath's AisleAsNeeded, AisleOne, AisleTwo.</summary>
+        private static readonly string[] AisleNames = { "Needed", "One", "Two" };
+        /// <summary>The keep choices and their weights.</summary>
+        private static readonly string[] KeepNames = { "Light", "Usual", "Firm" };
+        private static readonly float[] Keeps = { RoomArrangeMath.KeepLight, RoomArrangeMath.KeepUsual, RoomArrangeMath.KeepFirm };
+
+        private static int KeepIndex(float keep)
+        {
+            int best = 1;
+            for (int i = 0; i < Keeps.Length; i++)
+                if (Mathf.Abs(Keeps[i] - keep) < Mathf.Abs(Keeps[best] - keep)) best = i;
+            return best;
+        }
+
+        /// <summary>One knob: its label and a row of choices, the chosen one gold-edged. Returns the choice, clicked or as it was.</summary>
+        private static int Knob(float x, float y, float width, string labelKey, string prefix, string[] names, int chosen)
+        {
+            var lr = new Rect(x, y, KnobLabelW, 26f);
+            UiKit.LabelFit(lr, labelKey.Translate(), Color.white);
+            TooltipHandler.TipRegion(lr, (labelKey + "Tip").Translate());
+            float bw = (width - KnobLabelW - 4f * (names.Length - 1)) / names.Length;
+            int result = chosen;
+            for (int i = 0; i < names.Length; i++)
+            {
+                var r = new Rect(x + KnobLabelW + i * (bw + 4f), y, bw, 26f);
+                bool on = i == chosen;
+                UiKit.Card(r, null, on);
+                if (on) Widgets.DrawBoxSolid(new Rect(r.x, r.yMax - 2f, r.width, 2f), UiKit.Gold);
+                UiKit.LabelFit(new Rect(r.x + 4f, r.y, r.width - 8f, r.height), (prefix + names[i]).Translate(), on ? UiKit.Gold : Color.white, GameFont.Small, TextAnchor.MiddleCenter);
+                TooltipHandler.TipRegion(r, (prefix + names[i] + "_Tip").Translate());
+                if (!on && Widgets.ButtonInvisible(r))
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                    result = i;
+                }
+            }
+            return result;
+        }
 
         public static void OpenFor(Designator_RearrangeRoom des)
         {
@@ -252,7 +298,20 @@ namespace ColonyCouncil
             Widgets.CheckboxLabeled(new Rect(inRect.x, y, inRect.width, 24f), "CC_Rearr_MoveStocked".Translate(), ref MoveStocked);
             TooltipHandler.TipRegion(new Rect(inRect.x, y, inRect.width, 24f), "CC_Rearr_MoveStockedTip".Translate());
             y += 28f;
-            if (before != MoveStocked)
+            // The room's knobs (RoomArrangeMath.Tuning): how wide the aisles are kept, how firmly furniture keeps its place.
+            var t = des.tuning;
+            int aisle = Knob(inRect.x, y, inRect.width, "CC_Rearr_Aisle", "CC_Rearr_Aisle_", AisleNames, t.aisle);
+            y += 30f;
+            int keepWas = KeepIndex(t.keep);
+            int keep = Knob(inRect.x, y, inRect.width, "CC_Rearr_Keep", "CC_Rearr_Keep_", KeepNames, keepWas);
+            y += 32f;
+            bool turned = aisle != t.aisle || keep != keepWas;
+            if (turned)
+            {
+                t.aisle = aisle;
+                t.keep = Keeps[keep];
+            }
+            if (before != MoveStocked || turned)
             {
                 var room = des.RoomNow();
                 if (room != null) des.Look(room, MoveStocked);

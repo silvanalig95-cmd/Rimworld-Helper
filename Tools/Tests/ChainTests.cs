@@ -31,6 +31,40 @@ public static class ChainTests
         C(Math.Abs(ChainMath.LeadDays(new[] { 12f, 12f, 24f }) - 2f) < 0.001f && ChainMath.LeadDays(null) == 0f, "the lead time is the path's hours as days");
         C(Math.Abs(ChainMath.YieldADay(10f, 5f) - 1.2f) < 0.001f && ChainMath.YieldADay(10f, 0f) == 0f, "a plant yields its harvest over its growing days, at the land's share");
         C(ChainMath.CellsToSow(100, 10f) == 10 && ChainMath.CellsToSow(10, 10f) == 4 && ChainMath.CellsToSow(10000, 10f) == 60 && ChainMath.CellsToSow(10, 0f) == 0, "cells to sow: the want over the yield, four at least, sixty at most");
+
+        // Per bench: the hand's speed times the bench's, and a hand's day shared among the benches they keep busy.
+        C(Math.Abs(ChainMath.BenchSpeed(1.2f, 0.5f) - 0.6f) < 0.001f && ChainMath.BenchSpeed(1.2f, 0f) == 0f && ChainMath.BenchSpeed(-1f, 1f) == 0f,
+            "a quick hand at a half-speed bench works at a little over half; a bench that can't be worked, not at all");
+        C(ChainMath.HandHours(1) == ChainMath.WorkHoursADay && Math.Abs(ChainMath.HandHours(2) - ChainMath.WorkHoursADay / 2f) < 0.001f && ChainMath.HandHours(0) == ChainMath.WorkHoursADay,
+            "one hand at two benches gives each half the day");
+        C(ChainMath.BatchesADay(2500f, ChainMath.BenchSpeed(1f, 0.5f), ChainMath.HandHours(2)) == 2f, "half speed for half the hours: a quarter of the batches");
+        C(Math.Abs(ChainMath.BenchScore(10, 0f, 0.5f) - ChainMath.BenchScore(8, 0f)) < 0.001f, "a half-speed bench scores like a hand two levels worse");
+        C(ChainMath.BenchScore(10, 0f, 0f) < ChainMath.BenchScore(0, 100f), "a bench that can't be worked now scores below any that can");
+        C(ChainMath.BenchScore(0, 60f) + ChainMath.DoingBonus > ChainMath.BenchScore(20, 0f, 1.5f), "the bench a bill already stands on is the one that does it");
+
+        // The rolling record of use: amounts by key and day, the window, the time covered, rates a day.
+        const int Day = UseLog.TicksPerDay;
+        var log = new UseLog();
+        C(log.Covered(5 * Day) == 0f && !log.Enough(5 * Day) && log.ADay("u|1|Meal", 5 * Day) == 0f, "an empty record covers nothing and says nothing");
+        log.Add(10 * Day, "u|1|Meal", 4f);
+        log.Add(10 * Day + Day / 2, "u|1|Meal", 2f);
+        log.Add(10 * Day + Day / 2, "u|1|Herb", 1f);
+        log.Add(10 * Day + Day / 2, "u|1|Meal", 0f);
+        log.Add(10 * Day + Day / 2, "", 3f);
+        C(log.keys.Count == 2 && log.since == 10 * Day, $"the same thing on the same day is one entry; nothing and no key aren't counted ({log.keys.Count} entries)");
+        C(!log.Enough(10 * Day + Day / 2) && Math.Abs(log.Covered(10 * Day + Day / 2) - 0.5f) < 0.001f, "half a day in, the record isn't gone by yet");
+        log.Add(11 * Day + Day / 2, "u|1|Meal", 3f);
+        C(log.Enough(11 * Day + Day / 2) && Math.Abs(log.ADay("u|1|Meal", 11 * Day + Day / 2) - 6f) < 0.001f, "nine meals over a day and a half: six a day");
+        log.Add(20 * Day, "u|1|Meal", 2f);
+        C(log.keys.Count == 1 && log.days[0] == 20, "days before the window are let go");
+        C(Math.Abs(log.Covered(20 * Day + Day / 4) - (UseLog.WindowDays + 0.25f)) < 0.001f, "a long record covers the window: three days and today so far");
+        C(Math.Abs(log.ADay("u|1|Meal", 20 * Day + Day / 4) - 2f / (UseLog.WindowDays + 0.25f)) < 0.001f, "the rate is the window's total over the time it covers");
+        var totals = log.Totals(20 * Day + Day / 4);
+        C(totals.Count == 1 && totals["u|1|Meal"] == 2f && UseLog.Parts("w|12|34")[2] == "34" && UseLog.Key("p", 12, "Steel") == "p|12|Steel", "totals by key, and keys made and read in parts");
+        var broken = new UseLog { since = 5 };
+        broken.days.Add(1);
+        broken.Repair();
+        C(broken.days.Count == 0 && broken.keys.Count == 0 && broken.since == -1, "lists that don't go together are emptied on load");
         return n;
     }
 }

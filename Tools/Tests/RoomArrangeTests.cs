@@ -7,7 +7,8 @@ using ColonyCouncil;
 /// Tidying a built room (Building/RoomArrangeMath): drawn rooms with furniture scattered about, and what a sound
 /// arrangement has to keep to: nothing on top of anything, the doorway free, everything reachable, beds with their
 /// head to a wall, bedside tables by a bed, chairs at the table, shelves along the walls, what can't move left alone,
-/// and what already stands well left where it is.
+/// and what already stands well left where it is; and the window's knobs, the aisles' width and how firmly furniture
+/// keeps its place.
 /// </summary>
 public static class RoomArrangeTests
 {
@@ -558,6 +559,65 @@ public static class RoomArrangeTests
             RoomArrangeMath.Arrange(g2, new List<RoomArrangeMath.Item> { heavy });
             C(!heavy.moved && heavy.why == "kept", $"the same piece, heavy to move, stays on its wall ({heavy.x},{heavy.z} {heavy.why})");
             C(RoomArrangeMath.Keep(heavy) > RoomArrangeMath.Keep(light) && RoomArrangeMath.Keep(new RoomArrangeMath.Item { moveCost = 99f }) == RoomArrangeMath.KeepBonus + 5f, "the keep bonus grows with the work of moving, up to a point");
+
+            // The window's keep knob: firmly, the light pot stays on its wall; lightly, the heavy one goes to the corner.
+            var firm = Item(RoomArrangeMath.Decor, 1, 3);
+            var g3 = Pot();
+            RoomArrangeMath.Arrange(g3, new List<RoomArrangeMath.Item> { firm }, new RoomArrangeMath.Tuning { keep = RoomArrangeMath.KeepFirm });
+            C(!firm.moved && firm.why == "kept", $"with furniture keeping its place firmly, the light pot stays on its wall ({firm.x},{firm.z} {firm.why})");
+            var loose = Item(RoomArrangeMath.Decor, 1, 3);
+            loose.moveCost = 2.5f;
+            var g4 = Pot();
+            RoomArrangeMath.Arrange(g4, new List<RoomArrangeMath.Item> { loose }, new RoomArrangeMath.Tuning { keep = RoomArrangeMath.KeepLight });
+            C(loose.moved && loose.why == "corner", $"with furniture keeping its place lightly, the heavy pot goes to the corner ({loose.x},{loose.z} {loose.why})");
+            C(Math.Abs(RoomArrangeMath.Keep(heavy, 2f) - 2f * RoomArrangeMath.Keep(heavy)) < 0.001f && RoomArrangeMath.Keep(heavy, 0f) == 0f
+              && RoomArrangeMath.KeepLight < RoomArrangeMath.KeepUsual && RoomArrangeMath.KeepUsual < RoomArrangeMath.KeepFirm, "the keep weight scales the whole bonus");
+        }
+
+        // The window's aisle knob: when the ways count as main ways, and what a one-cell squeeze on them weighs.
+        {
+            C(RoomArrangeMath.WideWays(RoomArrangeMath.AisleTwo, 1, 1) && !RoomArrangeMath.WideWays(RoomArrangeMath.AisleOne, 2, 10),
+                "two-cell aisles make every way a main way, one-cell aisles none");
+            C(RoomArrangeMath.WideWays(RoomArrangeMath.AisleAsNeeded, 2, 0) && RoomArrangeMath.WideWays(RoomArrangeMath.AisleAsNeeded, 1, 6) && !RoomArrangeMath.WideWays(RoomArrangeMath.AisleAsNeeded, 1, 5),
+                "as needed: a room with two doors or six pieces is busy, a quieter one is not");
+            C(RoomArrangeMath.SqueezeWeight(RoomArrangeMath.AisleOne, true) == 0f
+              && RoomArrangeMath.SqueezeWeight(RoomArrangeMath.AisleAsNeeded, false) < RoomArrangeMath.SqueezeWeight(RoomArrangeMath.AisleAsNeeded, true)
+              && RoomArrangeMath.SqueezeWeight(RoomArrangeMath.AisleAsNeeded, true) < RoomArrangeMath.SqueezeWeight(RoomArrangeMath.AisleTwo, false),
+                "a squeeze weighs nothing with one-cell aisles, more in a busy room, most with two-cell aisles");
+        }
+
+        // A narrow workshop with a table in it: asked for two-cell aisles, the table goes to the wall and the way past it is two wide.
+        {
+            RoomArrangeMath.Grid Narrow() => Room(
+                "######",
+                "#....#",
+                "#....#",
+                "#....#",
+                "#....#",
+                "#....#",
+                "#....#",
+                "#..D.#",
+                "###+##");
+            List<RoomArrangeMath.Item> Make() => new List<RoomArrangeMath.Item>
+            {
+                Item(RoomArrangeMath.WallHugger, 2, 3), Bench(2, 4, 3), Item(RoomArrangeMath.WallHugger, 1, 2, 2), Item(RoomArrangeMath.Table, 1, 3, 0, 2, 2)
+            };
+            var wide = new RoomArrangeMath.Tuning { aisle = RoomArrangeMath.AisleTwo };
+            var usual = Make();
+            var gu = Narrow();
+            RoomArrangeMath.Arrange(gu, usual);
+            var two = Make();
+            var g2 = Narrow();
+            Dump("narrow workshop, two-cell aisles", g2, two, RoomArrangeMath.Arrange(g2, two, wide));
+            C(Sound(g2, two) == null, "the narrow workshop with two-cell aisles is sound: " + Sound(g2, two));
+            var ru = RoomArrangeMath.Review(gu, usual, false, wide);
+            var r2 = RoomArrangeMath.Review(g2, two, false, wide);
+            C(r2.squeezes == 0 && r2.narrowest >= 2, $"with two-cell aisles no way is one cell wide ({r2.squeezes} squeezes, narrowest {r2.narrowest})");
+            C(r2.squeezes < ru.squeezes, $"fewer squeezes than as usual ({ru.squeezes} as usual, {r2.squeezes} asked for two)");
+            var one = Make();
+            var g1 = Narrow();
+            RoomArrangeMath.Arrange(g1, one, new RoomArrangeMath.Tuning { aisle = RoomArrangeMath.AisleOne });
+            C(Sound(g1, one) == null, "the narrow workshop with one-cell aisles is sound: " + Sound(g1, one));
         }
 
         // The store room, walked: arranging it leaves no more dead-end slivers than before, and no floor cut off.

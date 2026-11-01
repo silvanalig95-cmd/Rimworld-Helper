@@ -65,6 +65,10 @@ namespace ColonyCouncil
             if (r.chains.Count > 0 || r.starved.Count > 0)
             {
                 y += UiKit.SectionTitle(0f, y, view.width, "CC_Making_Chains".Translate(), null, UiKit.HeaderColor) + 4f;
+                // Where the rates come from: the colony's record of the last days, or the estimate until it covers a day.
+                string from = r.measured ? "CC_Making_Chain_Record".Translate(r.measuredDays.ToString("0.#")).Resolve()
+                    : ColonyUse.Recording ? "CC_Making_Chain_RecordSoon".Translate().Resolve() : "CC_Making_Chain_RecordOff".Translate().Resolve();
+                y += UiKit.Paragraph(8f, y, view.width - 16f, from, UiKit.Faint, GameFont.Tiny) + 6f;
                 foreach (var root in r.chains)
                 {
                     foreach (var node in root.All()) y += DrawLink(node, root, r, 0f, y, view.width, map) + 3f;
@@ -197,6 +201,7 @@ namespace ColonyCouncil
                 float days = n.DaysLeft;
                 lines.Add("CC_Making_Chain_Rates".Translate(n.useADay.ToString("0.#").Named("USE"), n.makeADay.ToString("0.#").Named("MAKE"),
                     (days >= ChainMath.Far ? "CC_Making_Chain_Never".Translate().Resolve() : "CC_Making_Chain_Days".Translate(days.ToString("0.#")).Resolve()).Named("DAYS")).Resolve());
+                lines.Add((n.useMeasured && n.makeMeasured ? "CC_Making_Chain_FromBoth" : n.useMeasured ? "CC_Making_Chain_FromUse" : "CC_Making_Chain_FromNone").Translate().Resolve());
             }
             if (n.cycle) lines.Add("CC_Making_Chain_Cycle".Translate());
             else if (n.tooDeep) lines.Add("CC_Making_Chain_Deep".Translate());
@@ -204,6 +209,12 @@ namespace ColonyCouncil
             {
                 lines.Add("CC_Making_Chain_Batch".Translate(((int)n.perBatch).Named("N"), (n.hoursABatch >= ChainMath.Far ? "?" : n.hoursABatch.ToString("0.#")).Named("H"),
                     n.bench.LabelCap.ToString().Named("BENCH"), n.PartsLine.Named("PARTS")).Resolve());
+                // Who works the bench, for how long a day, and the bench's own speed.
+                if (n.benchSpeed <= 0f) lines.Add("CC_Making_Chain_BenchDown".Translate().Resolve());
+                else if (Mathf.Abs(n.benchSpeed - 1f) > 0.01f) lines.Add("CC_Making_Chain_BenchSpeed".Translate(n.benchSpeed.ToStringPercent()).Resolve());
+                if (n.hand == null) lines.Add("CC_Making_Chain_NoHand".Translate().Resolve());
+                else
+                    lines.Add((n.handSeen ? "CC_Making_Chain_HandSeen" : "CC_Making_Chain_Hand").Translate(n.hand.LabelShort.Named("HAND"), n.handHours.ToString("0.#").Named("HOURS")).Resolve());
                 if (n == root && n.parts.Count > 0) lines.Add("CC_Making_Chain_Lead".Translate(n.LeadDays.ToString("0.#")).Resolve());
             }
             else lines.Add("CC_Making_Chain_NoMaker".Translate());
