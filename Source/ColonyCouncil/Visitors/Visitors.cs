@@ -321,7 +321,7 @@ namespace ColonyCouncil
         /// <summary>How far water for a camp or a day's work stays from anything of the colony's.</summary>
         private const float WaterClear = 8f;
 
-        private static bool ClearOfColony(IntVec3 at, Map map)
+        public static bool ClearOfColony(IntVec3 at, Map map)
         {
             var home = map.areaManager?.Home;
             foreach (var c in GenRadial.RadialCellsAround(at, WaterClear, true))
@@ -413,7 +413,8 @@ namespace ColonyCouncil
                 if (food == null || food.CurLevelPercentage > 0.3f || p.Downed || !p.Awake() || p.CurJobDef == JobDefOf.Ingest) continue;
                 try
                 {
-                    if (p.RaceProps.Humanlike)
+                    // Someone with their arms full (their dead, a kill) eats on the way, rather than put it down.
+                    if (p.RaceProps.Humanlike && p.carryTracker?.CarriedThing == null)
                     {
                         var meal = p.inventory?.innerContainer?.FirstOrDefault(x => x.def.IsNutritionGivingIngestible && !x.def.IsDrug && FoodUtility.WillEat(p, x));
                         if (meal != null)

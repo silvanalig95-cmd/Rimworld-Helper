@@ -200,7 +200,7 @@
   </ThoughtDef>
 
   <!-- The mourners' camp asked the colony to stand by the road when they go (Rimfolk_CampKinds_Road.xml): their dead
-       go home as ashes, so nothing is said of a cart or a drum. -->
+       go home in someone's arms (Camps/CampDead.cs), so nothing is said of a cart or a drum. -->
   <ThoughtDef>
     <defName>Council_Camp_StoodWithMourners</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>

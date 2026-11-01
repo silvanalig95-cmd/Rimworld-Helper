@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -164,6 +165,8 @@ namespace ColonyCouncil
         public string holdBeat;
         /// <summary>What they do at their spot (VisitorWork), or nothing.</summary>
         public string work;
+        /// <summary>Mourners carrying their dead: one of them bears the body in their arms all the way, named as the event names it ({NAME}) (Borne).</summary>
+        public bool bearDead;
 
         public override void Apply(DilemmaContext ctx)
         {
@@ -184,11 +187,39 @@ namespace ColonyCouncil
                 t.stayNights = Mathf.Clamp(nights, 0, VisitorMath.MaxNights);
                 t.holdBeat = holdBeat;
                 t.work = work;
+                t.bearDead = bearDead;
+                if (bearDead) t.deadName = (ctx as SituationContext)?.name;
                 tracker.Add(t);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("visit come", e);
+            }
+        }
+    }
+
+    /// <summary>
+    /// The answer sends them home (hunters warned off the colony's land): the visit this world event set going
+    /// (VisitEffect_Come of the same event, of <see cref="what"/> if given) goes now, or never comes if it hasn't yet.
+    /// </summary>
+    public class VisitEffect_Go : DilemmaEffect
+    {
+        public string what;
+
+        public override void Apply(DilemmaContext ctx)
+        {
+            var tracker = VisitorTracker.Instance;
+            int situation = (ctx as SituationContext)?.situationId ?? -1;
+            if (tracker == null || situation < 0) return;
+            try
+            {
+                foreach (var t in tracker.trips.ToList())
+                    if (t.situationId == situation && (what.NullOrEmpty() || t.what == what))
+                        tracker.SendHome(t);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("visit sent home", e);
             }
         }
     }

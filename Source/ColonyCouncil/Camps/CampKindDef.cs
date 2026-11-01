@@ -47,6 +47,8 @@ namespace ColonyCouncil
         public float chopsPerDay;
         /// <summary>They carry bows or rifles, so they can hunt.</summary>
         public bool armedHunters;
+        /// <summary>Mourners carrying their dead home: the body comes in in someone's arms, lies by their lamp, and goes home with them (CampDead.cs).</summary>
+        public bool bearsDead;
         /// <summary>A daytime task of their own at one of their buildings (praying, prospecting, smithing, keeping the stall).</summary>
         public JobDef task;
         /// <summary>The role of the building the task is done at (see <see cref="CampStructure.role"/>); "herd": out among their animals; none = near the fire.</summary>

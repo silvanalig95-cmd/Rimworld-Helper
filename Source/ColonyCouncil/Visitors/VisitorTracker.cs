@@ -195,7 +195,10 @@ namespace ColonyCouncil
                         if (!AllGone(t) && t.MapThere) SendOff(t);
                         t.state = VisitState.Done;
                         if (t.endTick < 0) t.endTick = now;
+                        return;
                     }
+                    // Their dead or their kill put down on the way out is taken up again (VisitorActs).
+                    if (t.MapThere && !t.harmed) VisitorActs.Leaving(t, false);
                     return;
             }
         }
@@ -245,6 +248,7 @@ namespace ColonyCouncil
             }
             Visitors.Feed(t);
             VisitorCamp.Tend(t);
+            VisitorActs.Step(t);
             if (t.state == VisitState.Coming)
             {
                 if (t.lord.CurLordToil is LordToil_VisitHere)
@@ -298,11 +302,16 @@ namespace ColonyCouncil
                 }
                 case VisitKind.Stay:
                     if (t.leaveAt < 0) t.leaveAt = now;
-                    if (now >= t.leaveAt && (!Visitors.ErrandComing(t) || now - t.leaveAt > VisitorMath.ErrandWaitTicks)) Leave(t, VisitEnd.Done, false);
+                    // A hunt under way or a kill not yet dressed holds them a little (VisitorActs).
+                    if (now >= t.leaveAt && (!Visitors.ErrandComing(t) || now - t.leaveAt > VisitorMath.ErrandWaitTicks) && !VisitorActs.Holds(t, now, t.leaveAt))
+                        Leave(t, VisitEnd.Done, false);
                     return;
                 default:
-                    if (now - t.arrived >= Mathf.RoundToInt(t.hours * VisitorMath.TicksPerHour)) Leave(t, VisitEnd.Done, false);
+                {
+                    int due = t.arrived + Mathf.RoundToInt(t.hours * VisitorMath.TicksPerHour);
+                    if (now >= due && !VisitorActs.Holds(t, now, due)) Leave(t, VisitEnd.Done, false);
                     return;
+                }
             }
         }
 
@@ -358,11 +367,14 @@ namespace ColonyCouncil
                 var c = Visitors.SpotFor(t.staySpot, t.map, t.spot);
                 if (c.IsValid && c.InBounds(t.map) && t.Standing.All(p => p.CanReach(c, PathEndMode.OnCell, Danger.Some))) at = c;
             }
-            bool indoors = false;
+            bool indoors = false, guestBeds = false;
             if (t.stayInside)
             {
-                // Given a bed or a roof: a corner inside (the barn first, if the answer said so), else by the wall as before.
-                var inside = Visitors.IndoorsCell(t.map, t.Here, t.stayRoom);
+                // Given a bed or a roof: with Hospitality, the room with the colony's free guest beds (VisitorBeds); else a
+                // corner inside (the barn first, if the answer said so), else by the wall as before.
+                var inside = VisitorBeds.RoomCell(t);
+                guestBeds = inside.IsValid;
+                if (!inside.IsValid) inside = Visitors.IndoorsCell(t.map, t.Here, t.stayRoom);
                 if (inside.IsValid)
                 {
                     at = inside;
@@ -377,6 +389,8 @@ namespace ColonyCouncil
                 indoors = true;
             }
             if ((at != t.spot || indoors) && !Move(t, at, indoors)) return false;
+            // Each a free guest bed for the night, claimed as the game claims a bed (VisitorBeds; only with Hospitality).
+            if (guestBeds) VisitorBeds.Claim(t);
             t.kind = VisitKind.Stay;
             int hour = GenLocalDate.HourOfDay(t.map);
             t.leaveAt = now + VisitorMath.HoursToDawn(hour, t.stayNights) * VisitorMath.TicksPerHour + Rand.Range(0, VisitorMath.TicksPerHour * 2);
@@ -456,6 +470,15 @@ namespace ColonyCouncil
             }
             t.state = VisitState.Coming;
             t.setOut = Now;
+            // Mourners carrying their dead: one of them takes the body up at the edge (Borne).
+            try
+            {
+                Borne.Begin(t);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("mourners' dead taken up", e);
+            }
             VisitorWords.Coming(t);
             return true;
         }
@@ -484,6 +507,15 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("visitor leave", e);
             }
+            // Their hunt broken off, their dead and any kill carried off with them, the guest beds given back (VisitorActs).
+            try
+            {
+                VisitorActs.Going(t, hurry);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("visitors going with theirs", e);
+            }
             if (!wasHere) return;
             if (end == VisitEnd.Done && Rand.Chance(0.5f)) VisitorWords.Say(t.Standing.FirstOrDefault(), t, "leave");
             if (end == VisitEnd.Weather) VisitorWords.LeftForWeather(t);
@@ -496,6 +528,7 @@ namespace ColonyCouncil
             t.state = VisitState.Leaving;
             t.endTick = Now;
             Visitors.Forget(t);
+            VisitorActs.Ended(t);
             // Hurt, the group is on its way out already; one of them taken, the rest are told here.
             if (end == VisitEnd.Harmed && t.lord != null && t.map?.lordManager != null && t.map.lordManager.lords.Contains(t.lord))
                 t.lord.ReceiveMemo(LordJob_RimfolkVisit.MemoFlee);
@@ -533,6 +566,47 @@ namespace ColonyCouncil
             t.state = VisitState.Done;
             t.endTick = Now;
             Visitors.Forget(t);
+            VisitorActs.Ended(t);
+        }
+
+        /// <summary>
+        /// The visit goes home now, as the answer says (VisitEffect_Go): one still to come never comes, one on the map
+        /// walks off. False if it was over already.
+        /// </summary>
+        public bool SendHome(VisitorTrip t)
+        {
+            if (t == null) return false;
+            switch (t.state)
+            {
+                case VisitState.Pending:
+                    Finish(t, VisitEnd.Done);
+                    return true;
+                case VisitState.Coming:
+                case VisitState.Here:
+                    if (!t.MapThere)
+                    {
+                        Finish(t, VisitEnd.MapGone);
+                        return true;
+                    }
+                    Leave(t, VisitEnd.Done, false);
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>Their group has turned for the edge (a transition of its own): what of theirs it put down is taken up (VisitorActs).</summary>
+        public void Notify_Exiting(int tripId, bool hurry)
+        {
+            var t = Get(tripId);
+            if (t == null || t.harmed || !t.MapThere) return;
+            try
+            {
+                VisitorActs.Leaving(t, hurry);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("visitors carry theirs to the edge", e);
+            }
         }
 
         /// <summary>An animal of theirs left on its own walks off the map.</summary>
@@ -554,6 +628,8 @@ namespace ColonyCouncil
         public void Joined(VisitorTrip t, List<Pawn> joined)
         {
             if (t == null) return;
+            // Guest beds they had for the night go back to the colony, theirs who joined too (VisitorBeds).
+            VisitorActs.Ended(t);
             t.people.RemoveAll(joined.Contains);
             t.animals.RemoveAll(joined.Contains);
             t.end = VisitEnd.Joined;
@@ -582,6 +658,9 @@ namespace ColonyCouncil
                     case PawnLostCondition.ExitedMap:
                         // What they were given goes with them, not kept by the world's people.
                         if (p.inventory?.innerContainer != null && p.inventory.innerContainer.Count > 0) p.inventory.DestroyAll();
+                        // So do their dead and their kill, carried off in their arms (VisitorActs).
+                        var held = p.carryTracker?.CarriedThing;
+                        if (held != null && !held.Destroyed && (held == t.dead || held == t.kill)) held.Destroy();
                         break;
                 }
             }

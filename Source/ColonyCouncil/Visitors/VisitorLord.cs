@@ -79,6 +79,10 @@ namespace ColonyCouncil
             var flee = new LordToil_ExitMapAndDefendSelf();
             graph.AddToil(flee);
             LordToil away = onward ?? (LordToil)leave;
+            int id = tripId;
+            // Turning for the edge ends what they were doing (and puts down what they carried): their dead and their kill
+            // are taken up again to go with them (VisitorActs).
+            TransitionAction Exiting(bool hurry) => new TransitionAction_Custom(() => VisitorTracker.Instance?.Notify_Exiting(id, hurry));
 
             // At the spot (or near enough, after a long walk).
             var arrived = new Transition(travel, here);
@@ -90,9 +94,11 @@ namespace ColonyCouncil
             var goes = new Transition(travel, away);
             goes.AddSource(here);
             goes.AddTrigger(new Trigger_Memo(MemoLeave));
+            if (onward == null) goes.AddPostAction(Exiting(false));
             graph.AddTransition(goes);
             var late = new Transition(here, away);
             late.AddTrigger(new Trigger_TicksPassed(VisitorMath.TicksPerDay * 7 / 2));
+            if (onward == null) late.AddPostAction(Exiting(false));
             graph.AddTransition(late);
 
             // On the far side: off the map from there.
@@ -101,6 +107,7 @@ namespace ColonyCouncil
                 var off = new Transition(onward, leave);
                 off.AddTrigger(new Trigger_Memo("TravelArrived"));
                 off.AddTrigger(new Trigger_TicksPassed(VisitorMath.TicksPerHour * 5));
+                off.AddPostAction(Exiting(false));
                 graph.AddTransition(off);
             }
 
@@ -110,10 +117,10 @@ namespace ColonyCouncil
             if (onward != null) quick.AddSource(onward);
             quick.AddSource(leave);
             quick.AddTrigger(new Trigger_Memo(MemoHurry));
+            quick.AddPostAction(Exiting(true));
             graph.AddTransition(quick);
 
             // Hurt by the colony: they leave at once, defending themselves.
-            int id = tripId;
             var hurt = new Transition(travel, flee);
             hurt.AddSource(here);
             if (onward != null) hurt.AddSource(onward);
@@ -191,6 +198,9 @@ namespace ColonyCouncil
 
         public override void LordToilTick()
         {
+            // A hunter's beast has fallen: the hunt ends there, before the game's own hunt carries the body off to the
+            // colony's stores, and the body is theirs to dress (VisitorHunt).
+            if (lord.ticksInToil % 30 == 0) VisitorHunt.EndKills(lord, tripId);
             // Rimfolk's record of this visit is gone (the mod's part removed, or something broke): they just go.
             if (lord.ticksInToil % 2500 == 1700 && VisitorTracker.Instance?.Get(tripId)?.lord != lord) lord.ReceiveMemo(LordJob_RimfolkVisit.MemoLeave);
         }

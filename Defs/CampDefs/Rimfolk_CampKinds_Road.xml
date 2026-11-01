@@ -1012,6 +1012,8 @@
     <chopsPerDay>0.3</chopsPerDay>
     <task>Council_CampVigil</task>
     <taskAt>light</taskAt>
+    <!-- Their dead is a real body: carried in in someone's arms, laid by the lamp, carried home when they go (Camps/CampDead.cs). -->
+    <bearsDead>true</bearsDead>
     <hireChance>0.02</hireChance>
     <joinChance>0.02</joinChance>
     <helpChance>0.1</helpChance>
@@ -1042,23 +1044,23 @@
       <li>Carrying their dead home</li>
     </titles>
     <texts>
-      <li>A slow party of {FACTION} has come up the road. They are mourners, carrying the ashes of one of their own home to be buried with their people. {X_nameDef}, who leads them, asked {A_nameDef} whether they might stop {PLACE} for a night or two. They will keep to themselves.</li>
+      <li>A slow party of {FACTION} has come up the road. They are mourners, carrying one of their own home in their arms to be buried with their people. {X_nameDef}, who leads them, asked {A_nameDef} whether they might stop {PLACE} for a night or two. They will keep to themselves.</li>
       <li>[ws:mourning] There are mourners on every road after {SITUATION}, and a party of them has stopped near the colony. {X_nameDef} asked {A_nameDef}, in a voice worn thin, for a night or two's camp {PLACE}.</li>
-      <li>[ws:sickness] The one whose ashes the mourners of {FACTION} carry died of {SITUATION}. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of the living is sick.</li>
+      <li>[ws:sickness] The one the mourners of {FACTION} carry home died of {SITUATION}. {X_nameDef} asked {A_nameDef} for leave to stop {PLACE} a night or two, and swore none of the living is sick.</li>
       <li>[their:friend] Mourners of {FACTION} have stopped by the colony with their dead. {X_nameDef} asked for {A_nameDef} by name, and said the one they carry spoke of {A_objective} often. They would like to rest {PLACE} a night or two.</li>
-      <li>[winter] Mourners of {FACTION} came through the snow this morning, carrying the ashes of one of their own home. They'd like a sheltered place {PLACE} to stop a night or two, {X_nameDef} told {A_nameDef}, before the last of the road.</li>
+      <li>[winter] Mourners of {FACTION} came through the snow this morning, carrying one of their own home. They'd like a sheltered place {PLACE} to stop a night or two, {X_nameDef} told {A_nameDef}, before the last of the road.</li>
       <li>[colony:LongMemoried] Mourners of {FACTION} have stopped by the colony with their dead because, {X_nameDef} said, it is a place that remembers. They asked {A_nameDef} whether they might stop {PLACE} a night or two, and say their words where the colony says its own.</li>
     </texts>
     <settled>
-      <li>The mourners from {FACTION} have made a small camp {PLACE}, with a lamp a little way from the fire that is never let go out.</li>
+      <li>The mourners from {FACTION} have made a small camp {PLACE}, and laid their dead by a lamp a little way from the fire, a lamp that is never let go out.</li>
       <li>The mourners' camp is up {PLACE}. Through the day one of them sits by the lamp, keeping vigil.</li>
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the mourners {PLACE}, says there's nothing left at home now but the grave they're carrying their dead to, and the others can see it filled without {X_objective}. {X_nameDef} asks whether there might be a place here.</li>
-      <li>{X_nameDef}, who keeps the vigil by the lamp longer than any of them, says the one whose ashes they carry always meant to settle somewhere like this. {X_nameDef} would like to do it for them, if the colony will allow it.</li>
+      <li>{X_nameDef}, who keeps the vigil by the lamp longer than any of them, says the one they carry home always meant to settle somewhere like this. {X_nameDef} would like to do it for them, if the colony will allow it.</li>
     </joinTexts>
     <farewell>
-      <li>The mourners from {FACTION} went on, walking slowly, with the lamp packed and the ashes carried between them in turn.</li>
+      <li>The mourners from {FACTION} went on, walking slowly, with the lamp packed and their dead carried in their arms.</li>
       <li>[left:sprig] The mourners' camp {PLACE} is empty. On the way out, {X_nameDef} planted a sprig of green by the colony's gate, as {FACTION} do for those who let the dead rest a while.</li>
     </farewell>
     <lines>
