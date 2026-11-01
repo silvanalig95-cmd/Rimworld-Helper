@@ -70,7 +70,7 @@ namespace ColonyCouncil
         private static DefenseTemplateDef T(string name) => DefDatabase<DefenseTemplateDef>.GetNamedSilentFail(name);
         private static AlmanacArticleDef A(string name) => DefDatabase<AlmanacArticleDef>.GetNamedSilentFail(name);
 
-        private static string Factions(List<Faction> list)
+        internal static string Factions(List<Faction> list)
         {
             var names = list.Select(f => f.Name).Where(n => !n.NullOrEmpty()).Distinct().Take(3).ToList();
             if (list.Count > 3) names.Add("CC_Def_Others".Translate());

@@ -15,10 +15,11 @@ namespace ColonyCouncil
 
     /// <summary>
     /// One rung of the ladder a defense line climbs: close the gap, clear the field of fire, cover behind the gate,
-    /// traps on the way in, guns that never sleep, the killbox, harden the line, a line to fall back to. Each says why it
-    /// comes now, how it works and the common mistakes, names the Almanac page and the plan it places and where (on the
-    /// line, so many cells behind or in front of it, or between it and the beds), and has a worker that reads from the
-    /// map whether it's done.
+    /// traps on the way in, EMP for mechanoids, guns that never sleep, the killbox, a bait yard for drop pods, harden the
+    /// line, a line to fall back to, mortars for sieges. Each says why it comes now, how it works and the common mistakes,
+    /// names the Almanac page and the plan it places and where (on the line, so many cells behind or in front of it,
+    /// between it and the beds, or deep inside), and has a worker that reads from the map whether it's done and whether
+    /// it belongs on this colony's ladder at all (the last three only against the threats they answer, once researched).
     /// </summary>
     public class DefenseStepDef : Def
     {
@@ -35,7 +36,7 @@ namespace ColonyCouncil
         public List<string> nowFor;
         /// <summary>The plans to place, best first; looked up by name, so one that's missing is passed over.</summary>
         public List<string> templates;
-        /// <summary>Where, relative to the line: "line" (its wall row on the gate, <see cref="distance"/> cells back), "behind", "front", "between".</summary>
+        /// <summary>Where, relative to the line: "line" (its wall row on the gate, <see cref="distance"/> cells back), "behind", "front", "between", "core" (deep inside).</summary>
         public string placeAt;
         public int distance;
         [MustTranslate] public string labelLowTech;
@@ -91,15 +92,28 @@ namespace ColonyCouncil
         /// <summary>The first of <see cref="templates"/> the game has (available or not).</summary>
         public DefenseTemplateDef FirstTemplate => templates?.Select(t => DefDatabase<DefenseTemplateDef>.GetNamedSilentFail(t)).FirstOrDefault(t => t != null);
 
-        /// <summary>The steps for a line with this aim, in its order.</summary>
-        public static List<DefenseStepDef> Ladder(string aim) =>
-            DefDatabase<DefenseStepDef>.AllDefsListForReading.Where(d => d.BelongsTo(aim) && d.EraFits).OrderBy(d => d.OrderFor(aim)).ToList();
+        /// <summary>The steps for a line with this aim, in its order; with the line's facts, only those its worker puts on this colony's ladder.</summary>
+        public static List<DefenseStepDef> Ladder(string aim, DefenseLineFacts f = null) =>
+            DefDatabase<DefenseStepDef>.AllDefsListForReading.Where(d => d.BelongsTo(aim) && d.EraFits && (f == null || OnLadder(d, f))).OrderBy(d => d.OrderFor(aim)).ToList();
+
+        private static bool OnLadder(DefenseStepDef d, DefenseLineFacts f)
+        {
+            try
+            {
+                return d.Worker.OnLadder(f);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("defense step on the ladder " + d.defName, e);
+                return false;
+            }
+        }
 
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (!era.NullOrEmpty() && era != "lowtech" && era != "industrial") yield return "era must be lowtech or industrial";
-            if (!placeAt.NullOrEmpty() && placeAt != "line" && placeAt != "behind" && placeAt != "front" && placeAt != "between") yield return "unknown placeAt " + placeAt;
+            if (!placeAt.NullOrEmpty() && placeAt != "line" && placeAt != "behind" && placeAt != "front" && placeAt != "between" && placeAt != "core") yield return "unknown placeAt " + placeAt;
             if (aims != null)
                 foreach (var a in aims)
                     if (!DefenseLine.Aims.Contains(a)) yield return "unknown aim " + a;
@@ -147,6 +161,13 @@ namespace ColonyCouncil
     public class DefenseStepWorker
     {
         public DefenseStepDef def;
+
+        /// <summary>
+        /// Whether the step belongs on this colony's ladder at all: every step does, but those that answer one threat
+        /// with something the colony has to research first (mortars, EMP, a trade beacon) only once it has, and while
+        /// that threat can come.
+        /// </summary>
+        public virtual bool OnLadder(DefenseLineFacts f) => true;
 
         public virtual StepResult Evaluate(DefenseLineFacts f)
         {

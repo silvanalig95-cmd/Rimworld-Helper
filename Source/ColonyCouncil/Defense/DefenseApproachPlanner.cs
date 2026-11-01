@@ -32,8 +32,8 @@ namespace ColonyCouncil
             public int mine, fog;
         }
 
-        /// <summary>Plans placed in front of a line follow the way in.</summary>
-        public static bool Applies(DefenseTemplateDef t, string placeAt) => t != null && (placeAt == "front" || placeAt.NullOrEmpty() && t.placeAt == "front");
+        /// <summary>Plans placed in front of a line follow the way in (not a bait yard: it only needs open ground out there).</summary>
+        public static bool Applies(DefenseTemplateDef t, string placeAt) => t != null && t.kind != "bait" && (placeAt == "front" || placeAt.NullOrEmpty() && t.placeAt == "front");
 
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 

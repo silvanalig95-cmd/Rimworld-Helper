@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Steps on the ladder that answer one threat with something the colony researches first. Their workers
+    (Source/ColonyCouncil/Defense/DefenseStepWorkers_Threats.cs) put them on a line's ladder only while the threat can
+    come and the colony can build or make the answer: EMP while mechanoids raid it, a bait yard while its enemies drop
+    from orbit, mortars while they lay sieges or mechanoid clusters land. See Rimfolk_DefenseSteps.xml for the fields.
+  -->
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Emp</defName>
+    <label>EMP for the mechanoids</label>
+    <order>45</order>
+    <workerClass>ColonyCouncil.StepWorker_Emp</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_EmpLane</li>
+    </templates>
+    <placeAt>front</placeAt>
+    <distance>6</distance>
+    <whyNow>Mechanoids raid this colony now, and they don't burn, flee or give up. EMP stands them still long enough to bring them down.</whyNow>
+    <howItWorks>An EMP blast stuns every mechanoid in it, and the colony's own turrets too; after a stun a mechanoid shrugs off EMP for a while. An EMP IED on the way in goes off under the first mechanoid to step on it, before any of them reach the line. EMP grenades, the EMP launcher and EMP shells for a mortar do the same from a distance, where the colony can make them.</howItWorks>
+    <mistakes>
+      <li>An EMP IED within eleven cells of your own turrets: the blast stuns them along with the mechanoids.</li>
+      <li>Two blasts on the same mechanoids one after the other: the second does nothing to them.</li>
+      <li>EMP grenades left in storage: someone has to carry them as a weapon to throw them.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Mechanoids</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_BaitYard</defName>
+    <label>a bait yard for drop pods</label>
+    <order>65</order>
+    <workerClass>ColonyCouncil.StepWorker_BaitYard</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_BaitYard</li>
+    </templates>
+    <placeAt>front</placeAt>
+    <distance>5</distance>
+    <whyNow>This colony's enemies drop from orbit into the middle of it, past the wall and the gate. A trade beacon out in front of the gate brings some of those raids down where the line meets them.</whyNow>
+    <howItWorks>When raiders drop by pod into the middle of a colony, four times in ten the game brings them down by one of its orbital trade beacons instead; mechanoids never come that way. Out in front of the line, in a yard kept clear, the beacon brings those raids down outside the wall. From there they have to come in through the gate, into everything the line has.</howItWorks>
+    <mistakes>
+      <li>Trees, rubble or buildings round the beacon: the pods come down on open ground, further off when there is none beside it.</li>
+      <li>A roof over the beacon: the pods come down by one with open sky over it.</li>
+      <li>Another beacon under open sky near the beds: the pods may come down by that one instead.</li>
+      <li>Counting on it for every drop: six times in ten the raid still comes down among your people.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_DropPods</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+  <ColonyCouncil.DefenseStepDef>
+    <defName>Rimfolk_Step_Mortars</defName>
+    <label>mortars for sieges</label>
+    <order>90</order>
+    <minRaidPoints>500</minRaidPoints>
+    <workerClass>ColonyCouncil.StepWorker_Mortars</workerClass>
+    <templates>
+      <li>Rimfolk_Defense_MortarPit</li>
+    </templates>
+    <placeAt>core</placeAt>
+    <whyNow>A siege camps out of reach of every gun at the gate and shells the colony until something answers it. Mortars answer from deep inside, anywhere on the map.</whyNow>
+    <howItWorks>A mortar reaches across the whole map but can't hit anything within about thirty cells of it, can't fire from under a roof, and fires only while someone mans it. Two side by side make their misses overlap on the target. Walls between them and the shell shelf keep a mortar that blows up from setting off the other or the shells.</howItWorks>
+    <mistakes>
+      <li>Mortars by the edge of the base: a siege that camps close is inside their thirty cells.</li>
+      <li>A roof over the pit: a mortar can't fire from under one.</li>
+      <li>Shells stacked right beside the mortars, where one that blows up sets them off.</li>
+      <li>Nobody ready to man them when the siege comes.</li>
+    </mistakes>
+    <articles>
+      <li>Rimfolk_AlmDef_Sieges</li>
+      <li>Rimfolk_AlmDef_Mechanoids</li>
+    </articles>
+  </ColonyCouncil.DefenseStepDef>
+
+</Defs>

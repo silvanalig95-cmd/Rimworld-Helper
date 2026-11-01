@@ -106,7 +106,7 @@ namespace ColonyCouncil
             };
             var f = r.f = DefenseLineFacts.Read(map, s, line);
             int now = Find.TickManager.TicksGame;
-            foreach (var def in DefenseStepDef.Ladder(line.aim))
+            foreach (var def in DefenseStepDef.Ladder(line.aim, f))
             {
                 StepResult step;
                 if (line.Skipped(def.defName)) step = new StepResult { def = def, state = StepState.Skipped, template = def.FirstTemplate, look = f.gate };

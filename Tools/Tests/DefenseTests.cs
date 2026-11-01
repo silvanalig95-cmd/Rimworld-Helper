@@ -14,7 +14,7 @@ using ColonyCouncil;
 /// </summary>
 public static class DefenseTests
 {
-    private static readonly HashSet<string> Kinds = new() { "gate", "wall", "killbox", "traps", "nest", "post", "fallback", "keep", "mortar", "palisade" };
+    private static readonly HashSet<string> Kinds = new() { "gate", "wall", "killbox", "traps", "nest", "post", "fallback", "keep", "mortar", "palisade", "bait" };
     private static readonly HashSet<string> Places = new() { "choke", "front", "behind", "between", "core" };
 
     public class Template
@@ -78,7 +78,7 @@ public static class DefenseTests
         // ---------- The templates ----------
         var templates = Load(root);
         Check(templates.Count >= 10, $"found the defense templates ({templates.Count})");
-        foreach (var kind in new[] { "gate", "wall", "killbox", "traps", "nest", "post", "fallback", "keep", "mortar", "palisade" })
+        foreach (var kind in new[] { "gate", "wall", "killbox", "traps", "nest", "post", "fallback", "keep", "mortar", "palisade", "bait" })
             Check(templates.Any(t => t.kind == kind), $"a template of kind {kind}");
         int layouts = 0;
         foreach (var t in templates)
@@ -129,6 +129,7 @@ public static class DefenseTests
         Bad("a firing position nobody can reach", "post", -1, ".SSS.", "WfffW", "WWWWW");
         Bad("a keep open at the side", "keep", -1, "WWGWW", "W.S..", "W.f.W", "WWWWW");
         Bad("mortars side by side", "mortar", -1, ".SSSS.", ".mmmm.", ".MmMm.", "......");
+        Bad("a bait yard without its beacon", "bait", -1, "...", ".H.", "...");
         Bad("a firing position walled in front and at both sides", "post", -1, ".....", "SWWWS", "WWfWW", "W...W");
         Bad("a layout too big", "post", -1, Enumerable.Repeat(".SSS.", 1).Concat(Enumerable.Repeat("WfffW", 1)).Concat(Enumerable.Repeat("W...W", 41)).ToArray());
         // A pocket passes: a wall in front, sandbags at its front corners and beside it.
@@ -226,19 +227,21 @@ public static class DefenseTests
     }
 
     /// <summary>
-    /// Every drawn plan for a range of colonies (bows and rifles, with and against grenades, short and long reach,
-    /// small and big raids, no turret, a mini-turret, an autocannon, the planner's depth taken away or added): the
-    /// layout rules, what raiders can see and hit (nobody shoots at a firing position or a turret from better than 45%
-    /// cover; against grenades, nobody within a throw of the doorway unless the colony's reach or the player's depth leaves
-    /// no room; turrets out of each other's and the shooters' blast, and a box keeps its turrets), a placed plan's numbers read back from the save, and the
-    /// world checks in every turn for the colony in the middle of the range.
+    /// Every drawn plan for a range of colonies (four to twelve shooters, bows and rifles, with and against grenades,
+    /// short and long reach, small and big raids, no turret, a mini-turret, an autocannon, the planner's depth taken away
+    /// or added): the layout rules, what raiders can see and hit (nobody shoots at a firing position or a turret from
+    /// better than 45% cover; against grenades, nobody within a throw of the doorway unless the colony's reach or the
+    /// player's depth leaves no room; turrets out of each other's and the shooters' blast, and a box keeps its turrets),
+    /// a second rank only against big raids and for shooters the first has no room for, each of its firing positions
+    /// hitting at least half as much of the ground in front as the first rank does, a placed plan's numbers read back
+    /// from the save, and the world checks in every turn for the colony in the middle of the range and a big one.
     /// </summary>
     private static void DrawnChecks(List<Template> templates, Action<bool, string> check)
     {
         var drawn = templates.Where(t => t.shape != null).ToList();
         check(drawn.Count >= 10, $"most plans are drawn for the colony ({drawn.Count})");
         var specs = new List<DefenseShapeSpec>();
-        foreach (int shooters in new[] { 4, 6, 8 })
+        foreach (int shooters in new[] { 4, 6, 8, 12 })
             foreach (bool grenades in new[] { false, true })
                 foreach (bool lowTech in new[] { false, true })
                     foreach (float range in new[] { 22.9f, 30.9f, 44.9f })
@@ -266,11 +269,13 @@ public static class DefenseTests
                 // Reach and depth can leave no room to stand out of a throw; then the review says so, and nothing else may be wrong.
                 bool roomForGrenades = spec.depth >= 0 && spec.range >= 30f;
                 foreach (var p in DefenseSight.Problems(g, spec.grenades && roomForGrenades)) failures.Add($"{where}: {p}");
+                if (shape.second > 0) SecondRankChecks(shape, spec, where, failures);
                 if (t.shape.family != DefenseShapes.Box && t.shape.family != DefenseShapes.SideLines) return;
                 // A box keeps its turrets: moved out of the way in's sight, never left out for it.
                 if (t.shape.family == DefenseShapes.Box && spec.turretSize > 0 && spec.turrets > 0 && g.Count("turret") == 0) failures.Add($"{where}: its turrets were left out");
                 int firing = DefenseSight.Firing(g).Count;
                 if (firing < 4) failures.Add($"{where}: only {firing} firing positions");
+                if (firing != shape.shooters) failures.Add($"{where}: {firing} firing positions for {shape.shooters} shooters");
                 if (t.placeAt == "choke" && g.line < 0) failures.Add($"{where}: no wall line");
             });
         }
@@ -304,6 +309,17 @@ public static class DefenseTests
             check(deeper.depth == rifles.depth + 4 && deeper.grid.H >= rifles.grid.H + 4 && deeper.straight >= rifles.straight,
                 $"four rows more depth draw it four rows deeper ({rifles.depth} to {deeper.depth}; straight {rifles.straight} to {deeper.straight})");
             check(wider.grid.W < rifles.grid.W && wider.shooters == 4 && rifles.shooters == 6, "fewer shooters draw it narrower");
+            // A second rank: only against very big raids, for the shooters the first rank has no room for.
+            var ten = new DefenseShapeSpec { shooters = 10, grenades = true, range = 30.9f, raidPoints = 4000f, turretSize = 1, turrets = 2 };
+            var ranked = DefenseShapes.Build(killbox.shape, ten);
+            var small = ten.Copy();
+            small.raidPoints = 1500f;
+            var unranked = DefenseShapes.Build(killbox.shape, small);
+            check(ranked.second == 4 && ranked.shooters == 10 && DefenseSight.Firing(ranked.grid).Count == 10,
+                $"ten shooters against a big raid: six in pockets and four in a second rank ({ranked.shooters}, {ranked.second} behind)");
+            check(unranked.second == 0 && unranked.shooters == 6, $"against smaller raids the box holds one rank ({unranked.shooters})");
+            check(DefenseShapes.Build(killbox.shape, new DefenseShapeSpec { shooters = 6, grenades = true, range = 30.9f, raidPoints = 4000f }).second == 0,
+                "no second rank when the first holds every shooter");
         }
         var gate = drawn.FirstOrDefault(t => t.defName == "Rimfolk_Defense_Gate");
         if (gate != null)
@@ -312,6 +328,9 @@ public static class DefenseTests
             var grenade = DefenseShapes.Build(gate.shape, new DefenseShapeSpec { shooters = 6, range = 30.9f, grenades = true });
             check(grenade.nearest >= DefenseSight.GrenadeReach && plain.nearest < grenade.nearest, $"side lines stand further off against grenades ({plain.nearest:0.0} to {grenade.nearest:0.0})");
             check(DefenseSight.Read(plain.grid).worstCover <= 0.3f, "nobody outside the gate sees the side lines, and the gate gives little cover");
+            var twelve = DefenseShapes.Build(gate.shape, new DefenseShapeSpec { shooters = 12, range = 30.9f, grenades = true, raidPoints = 4000f });
+            check(twelve.second == 4 && twelve.shooters == 12 && DefenseSight.Read(twelve.grid).worstCover <= DefenseSight.MaxRaiderCover,
+                $"twelve shooters against a big raid: eight on the side lines and four in a second rank, still hidden from outside ({twelve.shooters}, {twelve.second} behind)");
             // The gate as laid out before plans were drawn (its fixed layout): its lines stand within a grenade's throw, the
             // shape a line's review reads from what stands; drawn against grenades they don't.
             var old = DefenseLayout.Parse(gate.rows, gate.line);
@@ -339,13 +358,44 @@ public static class DefenseTests
             check(back != null && back.Save() == spec.Save() && back.Key == spec.Key, $"a plan's numbers read back from the save ({spec.Save()})");
             check(DefenseShapeSpec.Parse(null) == null && DefenseShapeSpec.Parse("1,2") == null && DefenseShapeSpec.Parse("a,b,c,d,e,f,g,h") == null, "a plan placed before, or numbers that can't be read, give none");
         }
-        // In every turn, mirrored and not, for the colony in the middle of the range.
+        // In every turn, mirrored and not, for the colony in the middle of the range, and for a big one with a second rank.
         var middle = new DefenseShapeSpec { shooters = 6, grenades = true, range = 30.9f, raidPoints = 1500f, turretSize = 1, turrets = 2 };
+        var twoRanks = new DefenseShapeSpec { shooters = 12, grenades = true, range = 30.9f, raidPoints = 4000f, turretSize = 1, turrets = 2 };
         foreach (var t in drawn)
+            foreach (var spec in new[] { middle, twoRanks })
+            {
+                var g = DefenseShapes.Build(t.shape, spec).grid;
+                for (int m = 0; m < 2; m++)
+                    for (int turn = 0; turn < 4; turn++) WorldChecks(t, g, m == 1, turn, check);
+            }
+    }
+
+    /// <summary>
+    /// A second rank: only against big raids, and only for the shooters a first rank has no room for; it stands behind
+    /// the first; and each of its firing positions can hit at least half as many of the cells raiders cross in front of
+    /// the first rank as the first rank's middle position does (where there is ground in front to count).
+    /// </summary>
+    private static void SecondRankChecks(DefenseShape shape, DefenseShapeSpec spec, string where, System.Collections.Concurrent.ConcurrentBag<string> failures)
+    {
+        var g = shape.grid;
+        if (!spec.Big || spec.shooters <= shape.shooters - shape.second) failures.Add($"{where}: a second rank of {shape.second} for {spec.shooters} shooters");
+        var fire = DefenseSight.Firing(g);
+        int front = fire.Max(f => f.z);
+        var rear = fire.Where(f => f.z < front).ToList();
+        if (rear.Count != shape.second) failures.Add($"{where}: {rear.Count} firing positions behind the first rank, {shape.second} counted");
+        var raider = DefenseSight.RaiderCells(g);
+        var ground = new List<(int x, int z)>();
+        for (int x = 0; x < g.W; x++)
+            for (int z = front + 3; z < g.H; z++)
+                if (raider[x, z]) ground.Add((x, z));
+        if (ground.Count < 10 || rear.Count == 0) return;
+        int Hits(int fx, int fz) => ground.Count(c => DefenseSight.CanHit(g, c.x, c.z, fx, fz));
+        var first = fire.Where(f => f.z == front).Select(f => Hits(f.x, f.z)).OrderBy(n => n).ToList();
+        int middle = first[first.Count / 2];
+        foreach (var (fx, fz) in rear)
         {
-            var g = DefenseShapes.Build(t.shape, middle).grid;
-            for (int m = 0; m < 2; m++)
-                for (int turn = 0; turn < 4; turn++) WorldChecks(t, g, m == 1, turn, check);
+            int hits = Hits(fx, fz);
+            if (hits * 2 < middle) failures.Add($"{where}: the second rank's firing position ({fx},{fz}) hits {hits} cells in front, the first rank's middle one {middle}");
         }
     }
 

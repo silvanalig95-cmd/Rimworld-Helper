@@ -622,6 +622,7 @@ namespace ColonyCouncil
                     case "turret": if (b is Building_Turret) return true; break;
                     case "mortar": if (DefenseTemplateDef.IsMortar(b.def)) return true; break;
                     case "shelf": if (b.def.thingClass != null && typeof(Building_Storage).IsAssignableFrom(b.def.thingClass)) return true; break;
+                    case "beacon": if (DefenseTemplateDef.IsBeacon(b.def)) return true; break;
                 }
             }
             return false;

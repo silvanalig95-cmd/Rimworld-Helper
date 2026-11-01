@@ -320,8 +320,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A killbox the line built from a plan that no longer suits the colony: laid out before plans were drawn for the
-        /// colony (its last corner sees the shooters), or drawn for raiders without grenades, fewer shooters or smaller
-        /// raids than now. Says so, and makes it the first plan "Plan it again" offers, drawn for the colony as it is now.
+        /// colony (its last corner sees the shooters), or drawn for raiders without grenades, fewer shooters (a second
+        /// rank among them, against very big raids) or smaller raids than now. Says so, and makes it the first plan "Plan
+        /// it again" offers, drawn for the colony as it is now.
         /// </summary>
         private static void Outgrown(StepResult r, DefenseLineFacts f)
         {
@@ -337,7 +338,8 @@ namespace ColonyCouncil
                 var then = t.ShapeFor(was);
                 var fresh = t.ShapeFor(now);
                 if (now.grenades && !was.grenades) why = "CC_DefLine_Killbox_Grenades".Translate(t.LabelNow).Resolve();
-                else if (fresh.shooters > then.shooters) why = "CC_DefLine_Killbox_Shooters".Translate(t.LabelNow, then.shooters, fresh.shooters).Resolve();
+                else if (fresh.shooters > then.shooters)
+                    why = (fresh.second > then.second ? "CC_DefLine_Killbox_SecondRank" : "CC_DefLine_Killbox_Shooters").Translate(t.LabelNow, then.shooters, fresh.shooters).Resolve();
                 else if (now.Big && !was.Big) why = "CC_DefLine_Killbox_BigRaids".Translate(t.LabelNow).Resolve();
             }
             if (why == null) return;

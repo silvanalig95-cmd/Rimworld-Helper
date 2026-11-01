@@ -182,7 +182,7 @@
   <CC_Def_Size>{0} × {1} cells</CC_Def_Size>
   <CC_Def_DrawnFor>DRAWN FOR YOUR COLONY</CC_Def_DrawnFor>
   <CC_Def_Drawn_Shooters>Shooters: {0}</CC_Def_Drawn_Shooters>
-  <CC_Def_Drawn_Shooters_Tip>Firing positions, one for each of the colony's ranged fighters, four at least. More make the line wider and a box deeper, so every shooter stays where the doorway gives a raider no cover. A killbox's line takes up to six, side lines up to eight.</CC_Def_Drawn_Shooters_Tip>
+  <CC_Def_Drawn_Shooters_Tip>Firing positions, one for each of the colony's ranged fighters, four at least. More make the line wider and a box deeper, so every shooter stays where the doorway gives a raider no cover. A killbox's line takes up to six, side lines up to eight. Against raids of 3000 points and more, a second rank three rows behind takes the rest, up to as many again.</CC_Def_Drawn_Shooters_Tip>
   <CC_Def_Drawn_Depth>Shooters {0} cells back</CC_Def_Drawn_Depth>
   <CC_Def_Drawn_Depth_Tip>How far the firing positions stand back from the way in. Deeper keeps raiders under fire for longer before they reach the line and keeps grenades further off; shallower needs less room. It never comes so close that the doorway gives a raider cover from the outer shooters.</CC_Def_Drawn_Depth_Tip>
   <CC_Def_Drawn_Grenades>Against raiders who throw grenades: the shooters stand out of a throw from the way in.</CC_Def_Drawn_Grenades>

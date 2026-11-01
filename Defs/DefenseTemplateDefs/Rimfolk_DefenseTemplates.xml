@@ -45,6 +45,7 @@
       <li>Stone walls and a stone gate: wood burns, and raiders like to set fires.</li>
       <li>The wall at each line's outer end is for raiders who come through and swing wide: they can't shoot along the line from its open end. No walls between the sandbags: your people shoot at the gate at an angle, and a wall there would block their view of it.</li>
       <li>[lowtech]Archers behind sandbags, and someone with a spear or an axe beside the gate to meet whoever gets through first.</li>
+      <li>Against raids of 3000 points and more, with more shooters than the lines hold, a second rank stands three rows behind each line's outer end, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -76,6 +77,7 @@
       <li>Hold fire until they're out of the passage, or they stop in it and shoot back from the bend.</li>
       <li>A melee fighter in the gap of the line meets whoever gets that far, one at a time.</li>
       <li>[lowtech]Tribes carry no grenades: the yard can be shallower, and every bow reaches across it.</li>
+      <li>Against raids of 3000 points and more, with more shooters than the line holds, a second rank stands three rows behind it, each between two of the first rank's places, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -107,6 +109,7 @@
       <li>Send people to the firing positions before the raid reaches the gate, not when it's already through.</li>
       <li>[lowtech]Barricades of stone don't burn. Put your archers behind them and have them shoot together at one raider at a time.</li>
       <li>[!lowtech]Sandbags need only cloth or leather and don't burn: build these before any turret.</li>
+      <li>Against raids of 3000 points and more, with more shooters than the lines hold, a second rank stands three rows behind each line's outer end, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -137,6 +140,7 @@
       <li>Leave the ground in front empty for as far as your weapons reach: anything standing there is cover for them.</li>
       <li>Stone walls: they outlast sandbags by far, and a wall that falls opens a shooter's side.</li>
       <li>[lowtech]Barricades of stone around each archer: they lean out over them, and nothing here burns.</li>
+      <li>Against raids of 3000 points and more, with more shooters than the line holds, a second rank stands three rows behind it, each between two of the first rank's places, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -174,6 +178,7 @@
       <li>A door every fifteen to twenty-five cells lets your people out to chase off a breacher or take a shot.</li>
       <li>A door is weaker than the wall beside it. Put doors where someone can see them, and repair them first after a raid.</li>
       <li>[lowtech]Wood goes up fastest and burns. Raise it now if you must, and follow it with stone a stretch at a time.</li>
+      <li>Against raids of 3000 points and more, with more shooters than the lines hold, a second rank stands three rows behind each line's outer end, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -295,6 +300,7 @@
       <li>[!lowtech]Mini-turrets out in the box are decoys, to either side of its middle and more than four cells apart, so one blowing up doesn't take the next. An autocannon can't hit anything within about nine cells: it stands behind the line, off to one side of the gap. Neither stands where a raider at the last corner sees it, or he would stop there and shoot at it with the wall as his cover.</li>
       <li>[lowtech]Without turrets the box is just as deadly with bows: more archers at the line, closer in.</li>
       <li>Sappers, breachers and drop pods ignore a killbox. Keep weapons by the beds and a second line inside.</li>
+      <li>Against raids of 3000 points and more, with more shooters than the line holds, a second rank stands three rows behind it, each between two of the first rank's places, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 
@@ -348,6 +354,7 @@
       <li>Sappers dig a way of their own toward the beds. Keep a few fighters ready to meet them wherever they break through.</li>
       <li>[lowtech]Raiders come out of the tunnel close together. Several archers on the first one stop the rest bunching behind him.</li>
       <li>[!lowtech]A grenadier can't see the cover from the tunnel or reach it from the chamber's mouth: he has to walk out into the open to throw.</li>
+      <li>Against raids of 3000 points and more, with more shooters than the line holds, a second rank stands three rows behind it, each between two of the first rank's places, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>
     </tips>
   </ColonyCouncil.DefenseTemplateDef>
 

@@ -257,7 +257,7 @@ public static class DefenseLineTests
             .SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.DefenseTemplateDef")).Select(e => e.Element("defName")?.Value).ToHashSet();
         string src = string.Join("\n", Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil", "Defense"), "*.cs").Select(File.ReadAllText));
         var aims = new HashSet<string> { "gate", "killbox", "turrets", "archers" };
-        var places = new HashSet<string> { "line", "behind", "front", "between" };
+        var places = new HashSet<string> { "line", "behind", "front", "between", "core" };
         var orders = new HashSet<int>();
         foreach (var e in steps)
         {

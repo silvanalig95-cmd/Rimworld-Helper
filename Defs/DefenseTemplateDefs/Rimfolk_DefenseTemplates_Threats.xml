@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Plans for the ladder's steps against one threat (Defs/DefenseStepDefs/Rimfolk_DefenseSteps_Threats.xml): EMP IEDs on
+    the way in for mechanoids, and a bait yard round an orbital trade beacon for raids that drop from orbit. Layouts as
+    in Rimfolk_DefenseTemplates.xml; B is the beacon.
+  -->
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_EmpLane</defName>
+    <label>EMP IED lane</label>
+    <description>A walled lane two wide on the way in, with two EMP IEDs four cells apart down one side and a fence beside each on the other.</description>
+    <purpose>Mechanoids don't know where traps are, so they walk down the open side of the lane and set an IED off. Its blast stuns every mechanoid near it before they reach the line.</purpose>
+    <kind>traps</kind>
+    <order>42</order>
+    <placeAt>front</placeAt>
+    <era>industrial</era>
+    <iconDefs><li>TrapIED_EMP</li></iconDefs>
+    <pieces>
+      <li><role>trap</role><defs><li>TrapIED_EMP</li></defs></li>
+      <li><role>slow</role><optional>true</optional></li>
+    </pieces>
+    <layout>
+      <li>W..W</li>
+      <li>WTFW</li>
+      <li>W..W</li>
+      <li>W..W</li>
+      <li>W..W</li>
+      <li>WTFW</li>
+      <li>W..W</li>
+    </layout>
+    <tips>
+      <li>Keep the lane more than eleven cells from your own turrets: the blast stuns them as well.</li>
+      <li>A mechanoid stunned once shrugs off EMP for a while: the second IED is for those who come after.</li>
+      <li>An IED is gone once it goes off. Build it again after the raid.</li>
+      <li>A shot that hits an IED sets it off: don't fight beside the lane.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+  <ColonyCouncil.DefenseTemplateDef>
+    <defName>Rimfolk_Defense_BaitYard</defName>
+    <label>bait yard</label>
+    <description>An orbital trade beacon in the middle of a square of open ground eleven cells across, out in front of the gate.</description>
+    <purpose>Four times in ten, raiders who drop by pod into the middle of the colony come down by one of its orbital trade beacons instead. Out here they land outside the wall, on open ground, and have to come in through the gate like any other raid. Mechanoids never come down by a beacon.</purpose>
+    <kind>bait</kind>
+    <order>95</order>
+    <placeAt>front</placeAt>
+    <behind>5</behind>
+    <era>industrial</era>
+    <iconDefs><li>OrbitalTradeBeacon</li></iconDefs>
+    <pieces>
+      <li><role>beacon</role><defs><li>OrbitalTradeBeacon</li></defs></li>
+    </pieces>
+    <layout>
+      <li>...........</li>
+      <li>...........</li>
+      <li>...........</li>
+      <li>...........</li>
+      <li>...........</li>
+      <li>.....B.....</li>
+      <li>...........</li>
+      <li>...........</li>
+      <li>...........</li>
+      <li>...........</li>
+      <li>...........</li>
+    </layout>
+    <tips>
+      <li>Keep the yard bare: the pods come down on open ground beside the beacon, further off when there is none.</li>
+      <li>Leave the sky open over it: the pods come down by a beacon with no roof over it.</li>
+      <li>Keep the beacons in your storerooms under a roof, or the pods may come down there instead.</li>
+      <li>Only goods near a beacon can be sold to orbital traders: keep one by the stockpile as well.</li>
+      <li>Six times in ten a drop still comes down among your people: keep weapons by the beds.</li>
+    </tips>
+  </ColonyCouncil.DefenseTemplateDef>
+
+</Defs>

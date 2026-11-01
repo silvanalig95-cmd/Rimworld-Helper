@@ -32,15 +32,16 @@ namespace ColonyCouncil
     /// <summary>
     /// A defense the colony can place like a room plan: a gate in a wall line with sandbags, a killbox, a trap corridor, a
     /// turret nest, a shooting post, a stretch of perimeter wall, a fallback line, a keep, a mortar pit, a palisade with a
-    /// gatehouse. The layout is a grid of characters (<see cref="DefenseLayout"/>): drawn for the colony's own numbers
-    /// when the template has a <see cref="shape"/> (<see cref="DefenseShapes"/>), else the fixed one in the XML. Each role
+    /// gatehouse, a bait yard round an orbital trade beacon. The layout is a grid of characters (<see cref="DefenseLayout"/>):
+    /// drawn for the colony's own numbers when the template has a <see cref="shape"/> (<see cref="DefenseShapes"/>), else
+    /// the fixed one in the XML. Each role
     /// takes the first building the colony can build from the template's list, then from the role's own defaults, then
     /// anything that does the job and fits, so a medieval colony gets barricades and log gates where an industrial one gets
     /// sandbags and steel doors.
     /// </summary>
     public class DefenseTemplateDef : Def
     {
-        /// <summary>gate, wall, killbox, traps, nest, post, fallback, keep, mortar, palisade.</summary>
+        /// <summary>gate, wall, killbox, traps, nest, post, fallback, keep, mortar, palisade, bait.</summary>
         public string kind = "gate";
         public int order = 100;
         /// <summary>The wall line (row from the top) that "close the gap" carries on to either side, and that sits on a choke point; -1 for none.</summary>
@@ -65,7 +66,7 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> tips;
         public List<string> iconDefs;
 
-        public static readonly string[] Kinds = { "gate", "wall", "killbox", "traps", "nest", "post", "fallback", "keep", "mortar", "palisade" };
+        public static readonly string[] Kinds = { "gate", "wall", "killbox", "traps", "nest", "post", "fallback", "keep", "mortar", "palisade", "bait" };
         public static readonly string[] Places = { "choke", "front", "behind", "between", "core" };
 
         [Unsaved] private DefenseLayout.Grid grid;
@@ -250,6 +251,7 @@ namespace ColonyCouncil
                 case "turret": return new[] { "Turret_MiniTurret", "DankPyon_Turret_Scorpio", "Turret_Autocannon", "DankPyon_Turret_Ballista", "VFES_Turret_Ballista" };
                 case "mortar": return new[] { "Turret_Mortar" };
                 case "shelf": return new[] { "ShelfSmall" };
+                case "beacon": return new[] { "OrbitalTradeBeacon" };
                 default: return new string[0];
             }
         }
@@ -271,6 +273,8 @@ namespace ColonyCouncil
         private static bool IsEmbrasure(ThingDef d) =>
             d?.building != null && d.passability == Traversability.Impassable && d.fillPercent >= 0.5f && d.fillPercent < 0.99f && !d.IsDoor
             && (d.defName.IndexOf("Embrasure", StringComparison.OrdinalIgnoreCase) >= 0 || d.defName.IndexOf("EmbPalisade", StringComparison.OrdinalIgnoreCase) >= 0);
+
+        public static bool IsBeacon(ThingDef d) => d?.thingClass != null && typeof(Building_OrbitalTradeBeacon).IsAssignableFrom(d.thingClass);
 
         private static bool IsShelf(ThingDef d) =>
             d?.thingClass != null && typeof(Building_Storage).IsAssignableFrom(d.thingClass) && d.building?.fixedStorageSettings == null;
@@ -299,6 +303,7 @@ namespace ColonyCouncil
                 case "turret": return IsTurret(d);
                 case "mortar": return IsMortar(d);
                 case "shelf": return single && IsShelf(d);
+                case "beacon": return single && IsBeacon(d);
                 default: return false;
             }
         }

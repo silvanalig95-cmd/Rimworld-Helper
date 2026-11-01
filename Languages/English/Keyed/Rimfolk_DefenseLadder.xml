@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== Second ranks, and the ladder's steps against one threat (Defense/DefenseShapes.cs, Defense/DefenseStepWorkers_Threats.cs) ===================== -->
+
+  <CC_DefRole_beacon>trade beacon</CC_DefRole_beacon>
+  <CC_Def_Drawn_SecondRank>{0} of them in a second rank, three rows behind the first.</CC_Def_Drawn_SecondRank>
+  <CC_DefLine_Killbox_SecondRank>This {0} was drawn for {1} shooters, and against raids this big it can take {2} now, the last of them in a second rank behind the first. Planned again, it gets that rank.</CC_DefLine_Killbox_SecondRank>
+
+  <!-- EMP for the mechanoids -->
+  <CC_DefLadder_Emp_Make>EMP the colony can make, to fire from a distance: {0}.</CC_DefLadder_Emp_Make>
+  <CC_DefLadder_Emp_Nothing>Nothing in the colony fires EMP yet.</CC_DefLadder_Emp_Nothing>
+  <CC_DefLadder_Emp_None>No {0} stands on the way in yet.</CC_DefLadder_Emp_None>
+  <CC_DefLadder_Emp_Some>{0} of {1} EMP IEDs stand on the way in; {2} wait to be built.</CC_DefLadder_Emp_Some>
+  <CC_DefLadder_Emp_Held>The colony holds EMP to throw or fire; an EMP IED on the way in goes off by itself, before the mechanoids reach the line.</CC_DefLadder_Emp_Held>
+  <CC_DefLadder_Emp_NearTurret>The {0} stands within an EMP IED's blast: it is stunned along with the mechanoids.</CC_DefLadder_Emp_NearTurret>
+
+  <!-- A bait yard for drop pods -->
+  <CC_DefLadder_Bait_Who>Raiders who drop by pod: {0}.</CC_DefLadder_Bait_Who>
+  <CC_DefLadder_Bait_Others>{0} other beacon(s) stand under open sky: the pods may come down by one of those instead.</CC_DefLadder_Bait_Others>
+  <CC_DefLadder_Bait_Closed>close the gap first: raiders who land out in front should find the gate their only way in.</CC_DefLadder_Bait_Closed>
+  <CC_DefLadder_Bait_NoGuns>Nobody behind cover sees the gate yet, and no turret covers it: raiders who land out in front walk in unmet.</CC_DefLadder_Bait_NoGuns>
+  <CC_DefLadder_Bait_None>No orbital trade beacon stands out in front of the gate.</CC_DefLadder_Bait_None>
+  <CC_DefLadder_Bait_Roof>The beacon out in front is under a roof: the pods come down by a beacon with open sky over it.</CC_DefLadder_Bait_Roof>
+  <CC_DefLadder_Bait_NoPower>The beacon out in front has no power.</CC_DefLadder_Bait_NoPower>
+
+  <!-- Mortars for sieges -->
+  <CC_DefLadder_Mortar_Sieges>Raiders who lay sieges: {0}.</CC_DefLadder_Mortar_Sieges>
+  <CC_DefLadder_Mortar_Clusters>Mechanoid clusters land near the colony now: a mortar can shell one from outside the reach of its turrets.</CC_DefLadder_Mortar_Clusters>
+  <CC_DefLadder_Mortar_Roof>The {0} stands under a roof: it can't fire from there.</CC_DefLadder_Mortar_Roof>
+  <CC_DefLadder_Mortar_One>One mortar stands; a second beside it makes their misses overlap.</CC_DefLadder_Mortar_One>
+  <CC_DefLadder_Mortar_None>The colony has no mortar yet.</CC_DefLadder_Mortar_None>
+
+</LanguageData>

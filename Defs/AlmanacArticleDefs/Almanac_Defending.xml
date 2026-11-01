@@ -506,7 +506,7 @@ Use the stun: while they stand still, close in with melee or concentrate fire. E
           <li>A core you can hold: a keep or an inner ring among the beds.</li>
           <li>People spread out near cover, rather than everyone in one room.</li>
           <li>Firefoam and stone floors where they'd do most damage.</li>
-          <li>An unroofed, powered orbital trade beacon draws 40% of drops onto it: put it where you'd want to fight.</li>
+          <li>An unroofed, powered orbital trade beacon draws 40% of drops onto it: put it where you'd want to fight. A defense line's bait yard puts one out in front of its gate.</li>
         </points>
         <after>Raiders take a moment to climb out of their pods. That's the time to put a melee fighter among them.</after>
       </li>
