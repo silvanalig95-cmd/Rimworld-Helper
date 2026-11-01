@@ -4,6 +4,45 @@ Read this first; it is the whole state. CLAUDE.md has the binding rules and the 
 from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the player's words. The sections under
 "Older history" at the bottom are kept for reference only.
 
+## State (1 November 2026, later)
+
+- The player approved all eighteen items of the to-do list ("like all your suggestions"), then asked for (a) deep
+  automation so a complex late game can be "outsourced" (rooms, production chains, base layout, expansion), and (b) a
+  content variety, immersion and flavour update (more content, deeper existing mechanics, not new ones), in that order.
+  Research for (a) was under way: what Rimfolk already automates, and late-game pain points against the player's own
+  management mods (Colony Manager Fork, Better Workbench Management, Allow Tool, Pick Up And Haul, Haul to Stack,
+  Smart Medicine, Nice Bill Tab, Deep Storage; the full list is in the save's header). For (b), the player's save
+  shows the most repeated things: the shoddy clothes complaint (11), the armor wish (11), the comfortable temperature
+  wish (10), the tradition dance thought (9), the own room wish (8), the harvest dance (7); midwinter, midsummer and
+  the spoils have two opening texts each, and wishes have one line per temperament.
+- 0.44.1: `PlayCook.LetGo` (a visiting cook off the feast's bill ends the bill or stove-refuel job and drops a carried
+  ingredient or fuel; a carried thing stays in hand when a job ends). `Weather/RainWash.cs` (hourly from WeatherBook:
+  filth with `rainWashes` thins outdoors with chance min(0.25, 0.15 x RainRate) from rain 0.2; setting `rainWashesMore`).
+  Colony tools (a parallel agent): `Building/UseLog.cs` (pure, tested) and `Building/ColonyUse.cs` (`use` on the game
+  component, five read-only hooks: Thing.Ingested, TendUtility.DoTend, Bill_Production.Notify_IterationCompleted,
+  CompRefuelable.Refuel(List), Pawn_ApparelTracker.TakeWearoutDamageForDay by name) feed `Chains.cs` per bench
+  (`BenchFactor`, `FindHand`, `ChainMath.BenchSpeed/HandHours/DoingBonus`); `AutomationTracker.SettingsLine` under
+  each automation switch; `RoomArrangeMath.Tuning` (aisle, keep) from two rows in the rearrange window (not saved);
+  `UI/NewsQuietMath.cs` + `NewsQuiet.cs` (setting `quietNewsDays`). Worth a look in game: the Making page after a day
+  or two, the settings page with a game loaded, and that TakeWearoutDamageForDay doesn't throw on 1.7.
+- 0.44.0, defense (two parallel agents): `UI/DefenseLinesPanel.PlanMenu/Plan` ("Plan this step..." with every plan);
+  `DefenseSight` counts turrets as targets and watchers (`TurretSees`, `CanHitTurret`, `Reading.turretCover`), and
+  `DefenseShapes.BuildBox/DrawBox` move turrets through `DecoyOffsets`/`BigOffsets` out of the way in's sight;
+  `DefenseLineFacts.Turrets/TurretSight/OldLines` and `DefenseLineReview.Sight/OldLines` (a null saved shape, or the
+  `DefenseLineMath.OldGateLines` geometry, marks a pre-0.14 gate line); `DefenseShapeSpec.SecondRank` (raids of 3000
+  points or more, `DefenseTests.SecondRankChecks`); `Defense/DefenseStepWorkers_Threats.cs` (StepWorker_Emp,
+  StepWorker_BaitYard, StepWorker_Mortars, filtered by `DefenseStepWorker.OnLadder`; defs in
+  `Defs/DefenseStepDefs/Rimfolk_DefenseSteps_Threats.xml` and `Defs/DefenseTemplateDefs/Rimfolk_DefenseTemplates_Threats.xml`;
+  beacon role 'B', template kind "bait", placement "core"). Not tried in game: the menu, killbox previews, the bait
+  yard beside a trap corridor, the EMP lane's distance from turrets.
+- Merged but not yet in a round: visitors trade (a parallel agent): `Integrations/RimMarketSale.cs` (RimMarketStall is
+  partial; it copies RimMarket's `ColonyStalls.Sell` step by step by name, `SaleReady` false if anything is missing),
+  `Visitors/VisitorTradeMath.cs` (tested), `Visitors/VisitorTrade.cs` (`JobGiver_VisitShop`, `JobDriver_MarketBuy`),
+  `Camps/CampMarket.cs` (`CampKindDef.buys`), `Camps/CampMilk.cs` (the drovers' "milk" ask, paid on delivery through
+  `CampAsk.price`), setting `marketCampersBuy`. Still running at this point: the visitor acts agent (singer at the
+  colony's instrument, hunters taking real game, mourners carrying their dead, Hospitality guest beds); its round
+  (0.44.2) also takes the visitors trade points.
+
 ## State (1 November 2026)
 
 - 0.43.5, a break the player saw: RimMarket 1.0.13 (BenFD) gave `Building_MarketStall.SetOrder` two more parameters

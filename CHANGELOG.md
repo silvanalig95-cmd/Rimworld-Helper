@@ -5,6 +5,31 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The colony's tools go by what really happens
+
+*1 November 2026, version 0.44.1*
+
+- The Making page's chains go by what the colony actually ate, wore out and used up over the last three days, and say when they are still estimating.
+- Each link of a chain names who works its bench and for how many hours a day, and counts the bench's own speed. A bill already on a bench keeps that bench as the maker.
+- Each automation switch in the settings shows what it would do right now on your map.
+- The rearrange window has Aisles (as needed, one cell, two cells) and Keeps its place (lightly, as usual, firmly) for the room you picked. Left as they are, rooms are arranged as before.
+- On a quiet day, with a few small pieces of news and nothing bad among them, the evening's news comes as one short message instead of a letter (setting "Quiet days in one short message").
+- The harder it rains, the faster blood, dirt and other filth the game lets rain wash comes off the open ground. A drizzle adds nothing and nothing under a roof is touched (setting "Rain washes the yard").
+- A visiting cook who stops cooking the feast, because their people are leaving or the feast goes ahead, puts down the ingredient or stove fuel they were carrying, so nothing from the stores leaves the map with them.
+
+## Defense lines grow with the colony
+
+*1 November 2026, version 0.44.0*
+
+- A step of a defense line that isn't done yet offers all of its plans: "Plan this step..." lists the one picked for the line first, then the step's others, with how much of each already stands.
+- Killbox turrets stand where a raider at the last corner can't see them: the decoys a couple of cells to either side of the box's middle, the autocannon behind the line beside the gap.
+- A line's review reads its turrets, built or planned, as it reads the firing positions. One that can't see the gate is pointed out and shown on the map, and turrets that see it count toward the gate being covered.
+- Gate lines laid out before plans were drawn for the colony have their sandbags within a grenade's throw of the gate. Against raiders who throw grenades, the line's review says so and offers to plan the gate again.
+- Against raids of 3000 points and more, killboxes, gate sandbag lines and firing lines drawn for more shooters than one line holds get a second rank three rows behind the first, behind sandbags of its own.
+- Colonies facing mechanoid raids get an EMP step on each defense line: two EMP IEDs on the way in, and the EMP grenades, launcher and shells the colony can make.
+- A bait yard step places an orbital trade beacon in a clear yard in front of the gate. A raid of people dropping its pods into the colony's middle comes down at a powered beacon four times in ten (mechanoids don't), and there that is outside the wall.
+- Where enemies lay sieges or mechanoid clusters land, a mortar step places the mortar pit deep inside once mortars are researched.
+
 ## Rimfolk's sales table works with the new RimMarket
 
 *1 November 2026, version 0.43.5*
