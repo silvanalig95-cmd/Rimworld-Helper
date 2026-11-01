@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Planning ahead: the Making page's Ahead section (Source/ColonyCouncil/Building/Ahead.cs, ColonyNeeds.cs, AheadStuck.cs, UI/AheadPanel.cs). -->
+  <CC_Ahead_Section>Ahead</CC_Ahead_Section>
+  <CC_Ahead_SectionTip>What the colony will run short of, worked out each hour from what is on the map now and what the colony used over the last days: who eats here and how much, what is in store, what the bills and benches can make, what the fields give over the year. Each suggestion shows its numbers and is done only when you click it; set one aside with "Not this", undo a step from the list below it, and a while after a step the council checks whether it worked.</CC_Ahead_SectionTip>
+  <CC_Ahead_Intro>Worked out from the map now and what the colony used lately, for {0}. Only suggestions: nothing changes until you click.</CC_Ahead_Intro>
+  <CC_Ahead_FromRecord>Use measured over the last {0} days.</CC_Ahead_FromRecord>
+  <CC_Ahead_FromSoon>Use estimated until the colony's record covers a day.</CC_Ahead_FromSoon>
+  <CC_Ahead_FromOff>Use estimated: the record of use needs the deeper game hooks (Interface settings).</CC_Ahead_FromOff>
+  <CC_Ahead_None>Nothing to plan ahead right now: the stocks hold and the fields keep up.</CC_Ahead_None>
+
+  <!-- The stock rows. -->
+  <CC_Ahead_Col_Good>Stock</CC_Ahead_Col_Good>
+  <CC_Ahead_Col_GoodTip>What the colony keeps a stock of. Food is counted in nutrition, the rest by the piece.</CC_Ahead_Col_GoodTip>
+  <CC_Ahead_Col_Have>Have</CC_Ahead_Col_Have>
+  <CC_Ahead_Col_HaveTip>What is in store or lying about, not forbidden: nutrition for food, pieces for the rest.</CC_Ahead_Col_HaveTip>
+  <CC_Ahead_Col_ADay>A day</CC_Ahead_Col_ADay>
+  <CC_Ahead_Col_ADayTip>What goes in a day. For food, the eaters' own hunger (or what the record shows, if that is more); for the rest, the colony's record of the last days, or an estimate until it covers a day.</CC_Ahead_Col_ADayTip>
+  <CC_Ahead_Col_Days>Days left</CC_Ahead_Col_Days>
+  <CC_Ahead_Col_DaysTip>How long the stock lasts at that use with nothing more made.</CC_Ahead_Col_DaysTip>
+  <CC_Ahead_Col_Keep>To keep</CC_Ahead_Col_Keep>
+  <CC_Ahead_Col_KeepTip>The stock to keep: a day's use times the days set under Building, Planning ahead in the settings, cut to what keeps before it rots and to the room in the stores. Raw food and animal feed add the days nothing grows in the year ahead.</CC_Ahead_Col_KeepTip>
+  <CC_Ahead_Col_Status>How it stands</CC_Ahead_Col_Status>
+  <CC_Ahead_Col_StatusTip>Short: under a day left, or under a quarter of what to keep. Low: under three quarters. More than needed: over twice what to keep, with the storage cells it takes.</CC_Ahead_Col_StatusTip>
+  <CC_Ahead_Kind_meal>Meals</CC_Ahead_Kind_meal>
+  <CC_Ahead_Kind_raw>Raw food</CC_Ahead_Kind_raw>
+  <CC_Ahead_Kind_feed>Animal feed</CC_Ahead_Kind_feed>
+  <CC_Ahead_Kind_medicine>Medicine</CC_Ahead_Kind_medicine>
+  <CC_Ahead_Kind_clothes>Spare clothes</CC_Ahead_Kind_clothes>
+  <CC_Ahead_Noun_medicine>medicine</CC_Ahead_Noun_medicine>
+  <CC_Ahead_Noun_clothes>spare clothes</CC_Ahead_Noun_clothes>
+  <CC_Ahead_Status_Short>Short</CC_Ahead_Status_Short>
+  <CC_Ahead_Status_Low>Low</CC_Ahead_Status_Low>
+  <CC_Ahead_Status_Enough>Enough</CC_Ahead_Status_Enough>
+  <CC_Ahead_Status_More>More than needed ({0} cells)</CC_Ahead_Status_More>
+  <CC_Ahead_Status_NoUse>Not used lately</CC_Ahead_Status_NoUse>
+  <CC_Ahead_Status_ShortBy>{0} short for the blueprints</CC_Ahead_Status_ShortBy>
+  <CC_Ahead_Tip_Material>The blueprints and frames need {2} more {0} than the {1} in stock. The chains further down say which bench makes it.</CC_Ahead_Tip_Material>
+  <CC_Ahead_Tip_Food>Food is weighed by its nutrition, never by the number of pieces: a big pile of a crop with little nutrition in each piece is a small stock.</CC_Ahead_Tip_Food>
+  <CC_Ahead_Tip_PartFood>{LABEL}: {COUNT}, {NUTR} nutrition, in {CELLS} cells</CC_Ahead_Tip_PartFood>
+  <CC_Ahead_Tip_Part>{LABEL}: {COUNT}, in {CELLS} cells</CC_Ahead_Tip_Part>
+  <CC_Ahead_Tip_More>and {0} more</CC_Ahead_Tip_More>
+
+  <!-- Who eats here. -->
+  <CC_Ahead_Who_Colonist>1 colonist</CC_Ahead_Who_Colonist>
+  <CC_Ahead_Who_Colonists>{0} colonists</CC_Ahead_Who_Colonists>
+  <CC_Ahead_Who_Slave>1 slave</CC_Ahead_Who_Slave>
+  <CC_Ahead_Who_Slaves>{0} slaves</CC_Ahead_Who_Slaves>
+  <CC_Ahead_Who_Prisoner>1 prisoner</CC_Ahead_Who_Prisoner>
+  <CC_Ahead_Who_Prisoners>{0} prisoners</CC_Ahead_Who_Prisoners>
+  <CC_Ahead_Who_Guest>1 guest</CC_Ahead_Who_Guest>
+  <CC_Ahead_Who_Guests>{0} guests</CC_Ahead_Who_Guests>
+  <CC_Ahead_Who_Nobody>nobody</CC_Ahead_Who_Nobody>
+
+  <!-- The reasons, in numbers. -->
+  <CC_Ahead_Why_Meals>{COUNT} meals in store ({HAVE} nutrition); {WHO} eat here, about {USE} nutrition a day: {DAYS} days.</CC_Ahead_Why_Meals>
+  <CC_Ahead_Why_Raw>{HAVE} nutrition of raw food in store; the cooks need about {USE} a day to feed {WHO}: {DAYS} days.</CC_Ahead_Why_Raw>
+  <CC_Ahead_Why_Feed>{HAVE} nutrition of animal feed in store; {N} animals eat about {USE} a day from the stores: {DAYS} days.</CC_Ahead_Why_Feed>
+  <CC_Ahead_Why_Count>{HAVE} {KIND} in store, about {USE} used a day ({FROM}): {DAYS} days.</CC_Ahead_Why_Count>
+  <CC_Ahead_Measured>by the record</CC_Ahead_Measured>
+  <CC_Ahead_Estimated>estimated</CC_Ahead_Estimated>
+  <CC_Ahead_Why_Target>To keep: {TARGET}, {DAYS} days' worth.</CC_Ahead_Why_Target>
+  <CC_Ahead_Why_Keeps>What rots keeps about {0} days out of a freezer, so the target stops there.</CC_Ahead_Why_Keeps>
+  <CC_Ahead_Why_Cover>The bills make until {0}.</CC_Ahead_Why_Cover>
+  <CC_Ahead_BillUntil>{N} ({PRODUCT})</CC_Ahead_BillUntil>
+  <CC_Ahead_Why_Forever>A bill makes them for ever, so no count needs raising.</CC_Ahead_Why_Forever>
+  <CC_Ahead_Why_NoBill>No bill makes them now.</CC_Ahead_Why_NoBill>
+  <CC_Ahead_Why_Managed>Bills another mod sets (Everybody Gets One's per-person counts) are left as they are: {0}.</CC_Ahead_Why_Managed>
+  <CC_Ahead_Why_Linked>Better Workbench Management links it with {0} more bills; they change with it.</CC_Ahead_Why_Linked>
+  <CC_Ahead_Why_Lower>Meals keep about {KEEP} days without a freezer, and {TARGET} nutrition is what keeps.</CC_Ahead_Why_Lower>
+  <CC_Ahead_Why_Second>The benches with this bill can make about {CAN} a day with the hands there are; the colony uses about {USE}.</CC_Ahead_Why_Second>
+  <CC_Ahead_Why_Fields>The colony needs about {NEED} crop nutrition a day; its food fields give about {GIVE} a day over the year ({GROW} growing days of the next {CYCLE}, {WITHOUT} with nothing growing).</CC_Ahead_Why_Fields>
+  <CC_Ahead_Why_Grow>{CELLS} more cells of {CROP} give about {ADDS} a day more.</CC_Ahead_Why_Grow>
+  <CC_Ahead_Why_Switch>{CELLS} cells of {CROP} there give about {ADDS} a day more.</CC_Ahead_Why_Switch>
+  <CC_Ahead_Why_New>A new field of {CELLS} cells of {CROP} gives about {ADDS} a day.</CC_Ahead_Why_New>
+  <CC_Ahead_Why_OverFood>{STOCK} {PRODUCT} in store hold {NUTR} nutrition: {DAYS} days of the colony's crop food, in {SCELLS} storage cells.</CC_Ahead_Why_OverFood>
+  <CC_Ahead_Why_OverUse>{STOCK} {PRODUCT} in store at about {USE} used a day: {DAYS} days.</CC_Ahead_Why_OverUse>
+  <CC_Ahead_Why_OverUnused>{STOCK} {PRODUCT} in store, and none used over the last {DAYS} days.</CC_Ahead_Why_OverUnused>
+
+  <!-- The suggestions. -->
+  <CC_Ahead_Raise>Raise the {PRODUCT} bill at the {BENCH} from {FROM} to {TO}</CC_Ahead_Raise>
+  <CC_Ahead_Lower>Lower the {PRODUCT} bill at the {BENCH} from {FROM} to {TO}</CC_Ahead_Lower>
+  <CC_Ahead_Add>Add a bill at the {BENCH}: {PRODUCT}, until {TO}</CC_Ahead_Add>
+  <CC_Ahead_AddedParts>(and {0} bills for what feeds it)</CC_Ahead_AddedParts>
+  <CC_Ahead_ChainWhy>For the {0} bill.</CC_Ahead_ChainWhy>
+  <CC_Ahead_Second>Copy the {PRODUCT} bill to the {BENCH}</CC_Ahead_Second>
+  <CC_Ahead_Grow>Grow {ZONE} ({CROP}) by {CELLS} cells</CC_Ahead_Grow>
+  <CC_Ahead_Switch>Sow {CELLS} cells of {ZONE} with {CROP} instead of {OLD}</CC_Ahead_Switch>
+  <CC_Ahead_SwitchAll>Sow {ZONE} with {CROP} instead of {OLD}</CC_Ahead_SwitchAll>
+  <CC_Ahead_New>Lay out a new field of {CELLS} cells for {CROP}</CC_Ahead_New>
+  <CC_Ahead_StuckTitle>The {PRODUCT} bill at the {BENCH} is held up</CC_Ahead_StuckTitle>
+  <CC_Ahead_FieldStuckTitle>{ZONE} ({CROP}) is sown on {SOWN} of {CELLS} cells</CC_Ahead_FieldStuckTitle>
+  <CC_Ahead_NoRush>No rush</CC_Ahead_NoRush>
+  <CC_Ahead_ShortNow>Short now</CC_Ahead_ShortNow>
+  <CC_Ahead_ShortIn>Short in {0} days</CC_Ahead_ShortIn>
+  <CC_Ahead_UrgencyTip>How soon what this is about runs short at today's use with nothing more made. The suggestions are ordered by it, the soonest first.</CC_Ahead_UrgencyTip>
+
+  <!-- The buttons, and what each does. -->
+  <CC_Ahead_DoIt>Do it</CC_Ahead_DoIt>
+  <CC_Ahead_DoItTip>Nothing else happens on its own. Undo it from the list under the suggestions; a while later the council checks whether it worked.</CC_Ahead_DoItTip>
+  <CC_Ahead_Do_Raise>Raise to {0}</CC_Ahead_Do_Raise>
+  <CC_Ahead_Do_Lower>Lower to {0}</CC_Ahead_Do_Lower>
+  <CC_Ahead_Do_TargetTip>Sets the {PRODUCT} bill at the {BENCH} to make until the colony has {TO} (it was {FROM}). The bill stays yours: change it on the bench like any other.</CC_Ahead_Do_TargetTip>
+  <CC_Ahead_Do_LinkedTip>The {0} bills Better Workbench Management links with it get the same count.</CC_Ahead_Do_LinkedTip>
+  <CC_Ahead_Do_Add>Add the bill</CC_Ahead_Do_Add>
+  <CC_Ahead_Do_AddTip>Adds a bill at the {BENCH} to make {PRODUCT} until the colony has {TO}, and a bill for each of its parts that is short and that a bench here makes.</CC_Ahead_Do_AddTip>
+  <CC_Ahead_Do_Second>Copy the bill</CC_Ahead_Do_Second>
+  <CC_Ahead_Do_SecondTip>Adds a copy of the {PRODUCT} bill from the {FROM} to the {BENCH}, with the same count and ingredients, so two hands can work at once.</CC_Ahead_Do_SecondTip>
+  <CC_Ahead_Do_Grow>Add {0} cells</CC_Ahead_Do_Grow>
+  <CC_Ahead_Do_GrowTip>Adds {CELLS} free fertile cells next to {ZONE} to it; the growers sow them with {CROP} when they are free. Show outlines the cells first.</CC_Ahead_Do_GrowTip>
+  <CC_Ahead_Do_Switch>Sow {0}</CC_Ahead_Do_Switch>
+  <CC_Ahead_Do_SwitchTip>Moves a band of {CELLS} cells at one end of {ZONE} into a new zone growing {CROP} (the whole zone switches when that is all of it). The {OLD} standing there is cut when the new crop is sown. Show outlines the cells first.</CC_Ahead_Do_SwitchTip>
+  <CC_Ahead_Do_New>Lay out the field</CC_Ahead_Do_New>
+  <CC_Ahead_Do_NewTip>Lays out a growing zone of {CELLS} free fertile cells near the fields, growing {CROP}. Show outlines the cells first.</CC_Ahead_Do_NewTip>
+  <CC_Ahead_Show>Show</CC_Ahead_Show>
+  <CC_Ahead_ShowTip>Closes the window, moves the view there and outlines the cells for a few seconds. Nothing changes.</CC_Ahead_ShowTip>
+  <CC_Ahead_NotThis>Not this</CC_Ahead_NotThis>
+  <CC_Ahead_NotThisTip>Stops suggesting this. It is listed under "Set aside" at the end of the section, where you can bring it back.</CC_Ahead_NotThisTip>
+  <CC_Ahead_UndoTip>Takes back: {0}. A bill goes back to its old count or off its bench, a zone gives its new cells back, a priority goes back to what it was.</CC_Ahead_UndoTip>
+  <CC_Ahead_BringBack>Bring back</CC_Ahead_BringBack>
+  <CC_Ahead_BringBackTip>Suggests it again whenever its reason holds.</CC_Ahead_BringBackTip>
+  <CC_Ahead_DoneTitle>Done lately</CC_Ahead_DoneTitle>
+  <CC_Ahead_Aside>Set aside ({0})</CC_Ahead_Aside>
+  <CC_Ahead_State_Worked>It worked.</CC_Ahead_State_Worked>
+  <CC_Ahead_State_Failed>It didn't work: {0}</CC_Ahead_State_Failed>
+  <CC_Ahead_State_Undone>Undone.</CC_Ahead_State_Undone>
+  <CC_Ahead_State_Waiting>To be checked a while after it was done.</CC_Ahead_State_Waiting>
+  <CC_Ahead_State_NotYet>Not yet: {0} To be checked once more.</CC_Ahead_State_NotYet>
+  <CC_Ahead_State_Done>Done.</CC_Ahead_State_Done>
+  <CC_Ahead_NotYet_BillGone>the bill is gone.</CC_Ahead_NotYet_BillGone>
+  <CC_Ahead_NotYet_Eaten>the bench made some, but it was eaten as fast as it was made.</CC_Ahead_NotYet_Eaten>
+  <CC_Ahead_NotYet_Nothing>nothing was made yet, and nothing in the way could be named.</CC_Ahead_NotYet_Nothing>
+  <CC_Ahead_NotYet_Sown>{0} of the {1} cells are sown.</CC_Ahead_NotYet_Sown>
+
+  <!-- Why it's stuck, and the fixes. -->
+  <CC_Ahead_Stuck_Suspended>The {0} bill at the {1} is suspended.</CC_Ahead_Stuck_Suspended>
+  <CC_Ahead_Stuck_Forbidden>The {0} is forbidden.</CC_Ahead_Stuck_Forbidden>
+  <CC_Ahead_Stuck_Broken>The {0} is broken down: it needs a component and a hand to repair it.</CC_Ahead_Stuck_Broken>
+  <CC_Ahead_Stuck_Power>The {0} has no power.</CC_Ahead_Stuck_Power>
+  <CC_Ahead_Stuck_Fuel>The {0} is out of fuel ({2} {1} in store).</CC_Ahead_Stuck_Fuel>
+  <CC_Ahead_Stuck_Worker>The bill is kept for {0}, who can't do it now.</CC_Ahead_Stuck_Worker>
+  <CC_Ahead_Stuck_Nobody>Nobody here can do it ({0}, {1}).</CC_Ahead_Stuck_Nobody>
+  <CC_Ahead_Stuck_WorkOff>Nobody who can do it has {0} switched on.</CC_Ahead_Stuck_WorkOff>
+  <CC_Ahead_Stuck_CouldDo>{0} could do the {1}.</CC_Ahead_Stuck_CouldDo>
+  <CC_Ahead_Stuck_Missing>None of its ingredients is in stock: {0}.</CC_Ahead_Stuck_Missing>
+  <CC_Ahead_Stuck_MissingFix>The {1} here makes {0}.</CC_Ahead_Stuck_MissingFix>
+  <CC_Ahead_Stuck_Radius>Its ingredients are in stock, but not within the {0} cells the bill looks around its bench.</CC_Ahead_Stuck_Radius>
+  <CC_Ahead_Stuck_Storage>No stockpile that takes {0} has room left.</CC_Ahead_Stuck_Storage>
+  <CC_Ahead_Stuck_ZoneGone>The zone is gone.</CC_Ahead_Stuck_ZoneGone>
+  <CC_Ahead_Stuck_NoSow>Sowing is switched off in {0}.</CC_Ahead_Stuck_NoSow>
+  <CC_Ahead_Stuck_Season>It is too cold or too hot to sow {0} now; it is sown when the season turns.</CC_Ahead_Stuck_Season>
+  <CC_Ahead_Stuck_NoGrower>Nobody here can sow {0}: it needs growing work and plants skill {1}.</CC_Ahead_Stuck_NoGrower>
+  <CC_Ahead_Stuck_GrowOff>Nobody who can sow has growing switched on.</CC_Ahead_Stuck_GrowOff>
+  <CC_Ahead_Fix_Resume>Resume the bill</CC_Ahead_Fix_Resume>
+  <CC_Ahead_Fix_ResumeTip>Lifts the bill's suspension at the {0}, so it is taken up again. Undo suspends it again.</CC_Ahead_Fix_ResumeTip>
+  <CC_Ahead_Fix_Allow>Allow the bench</CC_Ahead_Fix_Allow>
+  <CC_Ahead_Fix_AllowTip>Allows the {0}, so it can be used. Undo forbids it again.</CC_Ahead_Fix_AllowTip>
+  <CC_Ahead_Fix_Anyone>Let anyone do it</CC_Ahead_Fix_Anyone>
+  <CC_Ahead_Fix_AnyoneTip>The bill was kept for {0}; this lets anyone able do it. Undo keeps it for them again.</CC_Ahead_Fix_AnyoneTip>
+  <CC_Ahead_Fix_FeedTip>Adds a bill at the {1} to make {0} until the colony has {2}, so the held-up bill gets what it needs. Undo takes the bill off again.</CC_Ahead_Fix_FeedTip>
+  <CC_Ahead_Fix_LetDo>Let {0} do {1}</CC_Ahead_Fix_LetDo>
+  <CC_Ahead_Fix_LetDoTip>Switches {1} on for {0} at priority 3, so they take up the work. Undo puts their priority back. Better Pawn Control may set it again when its presets switch.</CC_Ahead_Fix_LetDoTip>
+  <CC_Ahead_Fix_Radius>Search the whole map</CC_Ahead_Fix_Radius>
+  <CC_Ahead_Fix_RadiusTip>The bill only looks {0} cells around its bench for ingredients; this lets it look over the whole map. Undo puts the radius back.</CC_Ahead_Fix_RadiusTip>
+  <CC_Ahead_Fix_Sow>Allow sowing</CC_Ahead_Fix_Sow>
+  <CC_Ahead_Fix_SowTip>Allows sowing in {0}. Undo switches it off again.</CC_Ahead_Fix_SowTip>
+
+  <!-- The fields. -->
+  <CC_Ahead_FieldsLine>Fields: the colony needs about {NEED} crop nutrition a day and its food fields give about {GIVE} a day over the year. {LEFT} growing days are left this year; in {WITHOUT} of the next {CYCLE} days nothing grows.</CC_Ahead_FieldsLine>
+  <CC_Ahead_FieldsShort>About {0} cells short.</CC_Ahead_FieldsShort>
+  <CC_Ahead_FieldsEnough>They keep up.</CC_Ahead_FieldsEnough>
+  <CC_Ahead_FieldsNone>Fields: nobody here eats from the stores.</CC_Ahead_FieldsNone>
+  <CC_Ahead_FieldsTip>Crop nutrition a day is what the cooks need for the meals (a simple or fine meal takes 0.5 nutrition of ingredients and gives 0.9) and what the animals fed from the stores eat, less the share of raw food that came from meat by the record. A field gives its harvest's nutrition over the days it takes to grow at its soil, resting at night, on each day's warmth from the land's temperatures; a field under a roof grows by its room's warmth.</CC_Ahead_FieldsTip>
+  <CC_Ahead_FieldTipFood>{ZONE}: {CROP}, {CELLS} cells ({SOWN} sown), about {GIVE} nutrition a day while growing</CC_Ahead_FieldTipFood>
+  <CC_Ahead_FieldTipOther>{ZONE}: {CROP}, {CELLS} cells; {STOCK} {PRODUCT} in store</CC_Ahead_FieldTipOther>
+
+  <!-- The shared suggestion core (Source/ColonyCouncil/Building/Suggest/). -->
+  <CC_Suggest_Done>Done: {0}.</CC_Suggest_Done>
+  <CC_Suggest_Undone>Undone: {0}.</CC_Suggest_Undone>
+  <CC_Suggest_Couldnt>Couldn't do it now: {0}.</CC_Suggest_Couldnt>
+
+  <!-- Settings (Building page). -->
+  <CC_SetSec_Ahead>Planning ahead</CC_SetSec_Ahead>
+  <CC_SetSec_Ahead_Note>What the Ahead section at the top of the Making page works its stock targets out from. It only suggests: nothing changes until you click.</CC_SetSec_Ahead_Note>
+  <CC_Settings_AheadMealDays>Days of meals to keep cooked</CC_Settings_AheadMealDays>
+  <CC_Settings_AheadMealDays_Tip>The meals to keep: what the people who eat here need in a day times this, cut to the days meals keep without a freezer and to the room in the stores. The meal bills' counts are suggested from it.</CC_Settings_AheadMealDays_Tip>
+  <CC_SetNote_AheadMealDays>Meals for this many days, as far as they keep.</CC_SetNote_AheadMealDays>
+  <CC_Settings_AheadReserveDays>Days of food to keep in store</CC_Settings_AheadReserveDays>
+  <CC_Settings_AheadReserveDays_Tip>The raw food, animal feed, medicine and spare clothes to keep: a day's use times this. Raw food and feed add the days nothing grows in the year ahead, so the stores fill before the winter.</CC_Settings_AheadReserveDays_Tip>
+  <CC_SetNote_AheadReserveDays>Stores for this many days, plus the days nothing grows.</CC_SetNote_AheadReserveDays>
+</LanguageData>

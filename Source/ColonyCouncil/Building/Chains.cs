@@ -584,6 +584,27 @@ namespace ColonyCouncil
             return zone;
         }
 
+        /// <summary>So many cells the plant can grow on next to the zone, nearest first, without changing anything (the planning helper's look ahead).</summary>
+        public static List<IntVec3> Around(Map map, ThingDef plant, Zone_Growing zone, int count) =>
+            map == null || plant == null || zone == null || count <= 0 ? new List<IntVec3>() : Blob(map, plant, zone, count);
+
+        /// <summary>So many cells the plant can grow on near the fields, for a new zone, without changing anything.</summary>
+        public static List<IntVec3> NewGround(Map map, ThingDef plant, int count) =>
+            map == null || plant == null || count <= 0 ? new List<IntVec3>() : Blob(map, plant, null, count);
+
+        /// <summary>A new growing zone of these cells, sowing the plant; null when none of the cells is free.</summary>
+        public static Zone_Growing MakeZone(Map map, ThingDef plant, IEnumerable<IntVec3> cells)
+        {
+            if (map == null || plant == null || cells == null) return null;
+            var free = cells.Where(c => c.InBounds(map) && map.zoneManager.ZoneAt(c) == null).ToList();
+            if (free.Count == 0) return null;
+            var zone = new Zone_Growing(map.zoneManager);
+            map.zoneManager.RegisterZone(zone);
+            foreach (var c in free) zone.AddCell(c);
+            zone.SetPlantDefToGrow(plant);
+            return zone;
+        }
+
         /// <summary>Where new fields go: beside the biggest growing zone, else the colony's middle.</summary>
         private static IntVec3 NearFields(Map map)
         {

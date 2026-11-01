@@ -124,7 +124,10 @@ namespace ColonyCouncil
     // The game's events for the record of use (ColonyUse). Each class is its own small hook: one that can't be applied
     // is skipped alone (RimfolkPatches), and the "deeper game hooks" setting switches them off. They only read.
 
-    /// <summary>Something eaten at home by one of the colony's people, its prisoners or its animals: so many of it used.</summary>
+    /// <summary>
+    /// Something eaten at home by one of the colony's people, its prisoners, its animals, or Hospitality's guests from
+    /// the colony's stores (not from their own packs): so many of it used.
+    /// </summary>
     [HarmonyPatch(typeof(Thing), nameof(Thing.Ingested))]
     public static class Patch_UseEaten
     {
@@ -133,11 +136,14 @@ namespace ColonyCouncil
             __state = __instance?.stackCount ?? 0;
         }
 
+        private static bool GuestEatingOurs(Pawn p) =>
+            p.RaceProps.Humanlike && p.jobs?.curDriver is JobDriver_Ingest d && !d.EatingFromInventory && Strangers.IsHospitalityGuest(p);
+
         public static void Postfix(Thing __instance, Pawn ingester, int __state)
         {
             // Items only: a plant grazed or a corpse fed on isn't the colony's stores.
             if (!RimfolkPatches.On || ingester == null || __instance?.def == null || __instance.def.category != ThingCategory.Item || __instance is Corpse) return;
-            if (!(ingester.Faction != null && ingester.Faction == Faction.OfPlayerSilentFail) && !ingester.IsPrisonerOfColony) return;
+            if (!(ingester.Faction != null && ingester.Faction == Faction.OfPlayerSilentFail) && !ingester.IsPrisonerOfColony && !GuestEatingOurs(ingester)) return;
             try
             {
                 int taken = __instance.Destroyed ? __state : __state - __instance.stackCount;

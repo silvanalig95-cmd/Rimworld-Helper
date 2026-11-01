@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public bool bright;
         public bool labelAlways;
         public int frame;
+        /// <summary>Kept until this real time even when its page is no longer drawn (a page's "Show" after the window closes); 0 for none.</summary>
+        public float until;
     }
 
     /// <summary>
@@ -50,13 +52,24 @@ namespace ColonyCouncil
             Add(h);
         }
 
-        /// <summary>The highlights still current (added within the last couple of frames) on this map.</summary>
+        /// <summary>An outline with its label kept on the map for so many seconds, whether or not the page that showed it is still open.</summary>
+        public static void Hold(string key, Map map, IEnumerable<IntVec3> cells, Color color, string label, float seconds)
+        {
+            var h = new MapHighlight { key = key, map = map, color = color, label = label, bright = true, labelAlways = true, until = Time.realtimeSinceStartup + seconds };
+            foreach (var c in cells) if (c.IsValid && c.InBounds(map)) h.cells.Add(c);
+            if (h.cells.Count == 0) return;
+            h.labelAt = h.cells[0];
+            Add(h);
+        }
+
+        /// <summary>The highlights still current (added within the last couple of frames, or held) on this map.</summary>
         public static IEnumerable<MapHighlight> Current(Map map)
         {
             int now = Time.frameCount;
             stale.Clear();
+            float real = Time.realtimeSinceStartup;
             foreach (var kv in all)
-                if (now - kv.Value.frame > 2) stale.Add(kv.Key);
+                if (now - kv.Value.frame > 2 && real > kv.Value.until) stale.Add(kv.Key);
             foreach (var k in stale) all.Remove(k);
             foreach (var h in all.Values)
                 if (h.map == map) yield return h;

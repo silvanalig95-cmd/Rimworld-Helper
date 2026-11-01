@@ -56,6 +56,74 @@ A reader of the live colony (`ColonyNeeds.For(map)`, cached hourly, built on wha
 Where: the Making page gets a section at the top ("Ahead"): the stock rows and the suggestions, each with its numbers,
 Do it / Show / Not this, and a short log of what was done with Undo and whether it worked.
 
+### Phase 1 as built
+
+- **The model**: `Building/ColonyNeeds.cs`, `ColonyNeeds.For(map, force = false)` (cached per home map for an hour; a
+  forced read after a step). Fields the next phases use:
+  - who eats: `colonists`, `slaves`, `prisoners`, `guests` (Hospitality, `Strangers.IsHospitalityGuest`), `feedAnimals`
+    (can't graze, or nothing grows: `PlantUtility.GrowthSeasonNow` for grass), `grazers`; `humanNeed`, `feedNeed`
+    (nutrition a day, each from `Need_Food.FoodFallPerTickAssumingCategory(Fed) x 60000`);
+  - what is used: `record` (`ColonyUse.Read`), `measured`, `measuredDays`, `plantShare` (plants' share of the raw food
+    used), `medicineEstimate`;
+  - what there is: `stock` (`Making.Stock`), `goods` (`AheadGood`: kind meal/raw/feed/medicine/clothes/material, count,
+    nutrition each, stack limit, storage cells, rot days, frozen share, used a day, short for building), `defs`
+    (defName to ThingDef), `freezer` (a store below 0 that takes meals), `mealRotDays`, `mealRoom`, `HaveOf(kind)`;
+  - the land: `fields` (`AheadField` per growing zone: crop, product, food, cells, sown, nutrition a cell a day at its
+    soil, its own growth factor for each of the next 60 days, free fertile cells beside it, product stock and use),
+    `zones` (key to Zone_Growing), `crops` (food crops the colony can sow now), `plants`, `dayTemps`, `growFactors`,
+    `growingLeftThisYear`, `dayOfYear`, `newGround`;
+  - benches and bills: `bills` (`AheadBill`: meal, medicine and feed bills: mode, target, suspended, `managed` by another
+    mod, BWM `linked` count, what its bench can make a day, a free bench), `billOf`, `freeBenchOf`, `canAdd`/`addOf`;
+    `ColonyNeeds.WorkTypeFor(bench, recipe)` and `ColonyNeeds.Able(pawn, bill, work)`;
+  - `Input(mealDays, reserveDays, declined)` gives the planner's plain input.
+- **The arithmetic and the planner**: `Building/AheadMath.cs` (pure, `Tools/Tests/AheadTests.cs`, which also plans the
+  reference colony above end to end). `AheadMath.Plan(AheadInput)` returns `AheadPlan` (rows, ideas, field numbers).
+- **The steps**: `Building/Ahead.cs` (`Ahead.For(map)` makes each idea a `Suggestion`; `Ahead.Open(map)`),
+  `Building/AheadStuck.cs` (`BillStuck.Why`, `FieldStuck.Why`: the reason and its fix), checks `AheadStockCheck`,
+  `AheadSownCheck`, `AheadGoneCheck`. Bill mods: `Integrations/BillMods.cs` (Everybody Gets One's repeat modes
+  TD_PersonCount, TD_XPerPerson, TD_WithSurplusIng, and any repeat mode not the game's own, are only read; Better
+  Workbench Management's linked set from `ImprovedWorkbenches.ExtendedBillDataStorage.GetBillSetContaining(bill).Bills`
+  is changed together, because BWM copies the bill under the mouse onto its whole set).
+- **The page**: `UI/AheadPanel.cs` at the top of `UI/MakingPanel.cs`. Settings `aheadMealDays` (2) and
+  `aheadReserveDays` (5), Building page, "Planning ahead". Texts in `Languages/English/Keyed/Rimfolk_Ahead.xml`, the
+  Almanac page `Council_Alm_C_Ahead` (`Defs/AlmanacArticleDefs/Almanac_Ahead.xml`).
+- **Record of use**: `Patch_UseEaten` also counts Hospitality guests eating from the colony's stores (not their packs).
+- **When it runs**: `Ahead.Hourly` (from `HourlyPeople`) checks the steps done and works each home map's plan out
+  again; the page asks `Ahead.For(map)` (cached until the needs are read again, a setting changes or the tracker's
+  `Version` moves). The free ground beside fields is looked for only beside the six best food fields.
+- **Paste**: with a working nutrient paste dispenser the meal row goes by the record alone (no hunger floor).
+- Not yet: the spare clothes row has no bills behind it (tailoring bills are per garment); medicine and feed bills
+  are handled like meals; the field plan treats every food crop as one pool (hay counts for people too).
+
+## The shared suggestion core
+
+Every source of suggestions (Ahead now; the advisor, the base review, the Plan page's next steps, the defense advice
+and the eight automations next) goes through `Building/Suggest/`:
+
+- `Suggestion` (not saved; the source works it out again from the live game whenever asked, so it goes by itself once
+  its reason is gone): `key` (stable, "source:what:where"; "Not this" and the log go by it), `source`, `area`,
+  `title`, `reason` (with the numbers), `days` (until something runs short; `SuggestMath.NoRush` when it isn't about
+  time) or `level` (0 to 4, for sources that rank by level), `map`, `doLabel` and `doTip` (the button's whole words and
+  what it does on the map), `apply` (returns a `SuggestDone` with its undo and check, or null when it couldn't; a null
+  `apply` is a suggestion that only says why and shows where), `cells` (what Show outlines), `look`.
+- `SuggestUndo` (abstract, saved with the step): `Possible(map)`, `Undo(map)`. Ready-made in `SuggestUndos.cs`:
+  `UndoBillTarget` (bills' counts), `UndoBillsAdded`, `UndoBillSetting` (suspend, radius, worker),
+  `UndoWorkPriority`, `UndoForbid`, `UndoZone` (cells added, zone made, cells moved, sowing, the crop).
+- `SuggestCheck` (abstract, saved): `waitTicks` (the wait before the first look and between looks) and
+  `Worked(done, out whyNot)`. A step not working at its first look gets a second; then it is Failed with the reason.
+- `SuggestTracker` (`CouncilGameComponent.suggest`, saved): `Declined(key)`, `Decline(s, days = 0)` (0: until brought
+  back), `BringBack(key)`, `DeclinedFor(source)`, `DeclinedKeys()` (for a planner that gives a set-aside share to
+  the next way), `Waiting(key)` (a done step still to be checked isn't offered again), `Open(suggestions)` (without
+  those set aside or waiting, the soonest first), `Apply(s)`, `Undo(done)`, `DoneFor(source, map, n)`, `Hourly()`
+  (the checks; from `CouncilGameComponent.HourlyPeople` through `Ahead.Hourly`), `Version` (goes up on every change,
+  so a page knows to work its list out again).
+- `SuggestMath` (pure, tested): the order, `LevelOf(days)`, how long a "Not this" holds, when a check is due, what a
+  look makes of a step, how much is kept (`DoneKept` 20, `DeclinedKept` 80).
+- To route another source through it: build its suggestions as `Suggestion`s with keys "source:..." in its own
+  `For(map)`, draw them with the same three buttons (see `UI/AheadPanel.DrawStep`), and give each `apply` an undo from
+  `SuggestUndos.cs` (or a new `SuggestUndo`) and a `SuggestCheck`. The existing automations keep their own undo log
+  (`AutoAction`) until they are moved over.
+
 ## Phase 2: construction and the base's growth
 
 5. **What the colony will be short of**: per room kind, need against what is built (beds for the people and those
