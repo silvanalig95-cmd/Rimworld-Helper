@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More ways to ask, grumble and celebrate
+
+*1 November 2026, version 0.45.0*
+
+- Wishes that come up often, such as armor, a place to pray, a latrine, a seat at the table, a bath and warmth at night, now have three to five ways to be asked in every temperament, so the same colonist rarely asks the same way twice.
+- Small nuisances name what they are about: the badly made parka, the wood left lying in the way, the filthy dining room. Colonists also grumble aloud about bad clothes, clutter, dirty rooms and hard beds.
+- The enemy dead, the victory feast and who saved the colony have new openings, and every answer has new ways to turn out.
+- Friendly contests start and end in more ways, and talk about safety, health and washing has more to say.
+
 ## The planning buttons say what they do
 
 *1 November 2026, version 0.44.3*
