@@ -16,14 +16,14 @@ namespace ColonyCouncil
     public class CampCarry : IExposable
     {
         public Pawn by;
-        /// <summary>The good turn it is ("medicine", "herbs", "milk", "goods"), told when it's set down; "bought" for goods the colony paid for.</summary>
+        /// <summary>The good turn it is ("medicine", "herbs", "milk", "goods"), told when it's set down; "bought" for goods the colony paid for, "sale" for the herd's milk the colony buys (paid once it's set down, CampMilk.cs).</summary>
         public string help;
         public ThingDef def;
         /// <summary>How many they have so far (gathered, milked), or how many they are to bring.</summary>
         public int count;
-        /// <summary>How many herbs the healer means to gather before setting off.</summary>
+        /// <summary>How many herbs the healer means to gather before setting off (for the herd's milk the colony buys, how many beasts to milk).</summary>
         public int want;
-        /// <summary>Stops made on the gathering walk (or the one beast milked).</summary>
+        /// <summary>Stops made on the gathering walk (or the beasts milked).</summary>
         public int stops;
         public IntVec3 to = IntVec3.Invalid;
         /// <summary>Not before this tick (dawn, for the herbs); given up after <see cref="until"/>.</summary>
@@ -98,7 +98,7 @@ namespace ColonyCouncil
         /// <summary>A drover milks or shears a beast of their herd that's ready for it, and carries what it gives over. False with none ready.</summary>
         private bool StartMilk()
         {
-            if (Pending("milk") || ReadyBeast(null) == null || !share.IsValid) return false;
+            if (Pending("milk") || Pending(MilkSale) || ReadyBeast(null) == null || !share.IsValid) return false;
             var drover = Free.Where(p => !p.WorkTypeIsDisabled(WorkTypeDefOf.Handling))
                 .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
             if (drover == null || ReadyBeast(drover) == null) return false;
@@ -148,7 +148,7 @@ namespace ColonyCouncil
             if (c == null || Now < c.from) return null;
             if (!c.carrying)
             {
-                var job = c.help == "milk" ? MilkJob(p, c) : GatherJob(p, c);
+                var job = c.help == MilkSale ? MilkSaleJob(p, c) : c.help == "milk" ? MilkJob(p, c) : GatherJob(p, c);
                 if (job != null) return job;
                 // Nothing more to gather or milk: off with what they have, if anything.
                 if (c.count <= 0)
@@ -266,7 +266,8 @@ namespace ColonyCouncil
             var c = CarryOf(p);
             if (c == null || c.carrying || beast == null || p.inventory == null) return;
             c.stops++;
-            var comp = beast.Spawned ? Gatherable(beast) : null;
+            // For the colony's milk, a beast with milk to give though not yet full; else one ready, as the game milks.
+            var comp = !beast.Spawned ? null : c.help == MilkSale ? MilkOf(beast, c.def) : Gatherable(beast);
             var def = comp is CompMilkable m ? m.Props.milkDef : comp is CompShearable s ? s.Props.woolDef : null;
             if (def == null || !p.Spawned) return;
             var before = new HashSet<int>(GenRadial.RadialDistinctThingsAround(p.Position, map, 5f, true).Where(x => x.def == def).Select(x => x.thingIDNumber));
@@ -404,6 +405,9 @@ namespace ColonyCouncil
             {
                 case "bought":
                     Note(Text("CC_CampBring_Done", p, null, n, c.def.label), MessageTypeDefOf.PositiveEvent, Importance.Notable, look);
+                    return;
+                case MilkSale:
+                    MilkSold(p, c, n, look);
                     return;
                 case "medicine":
                     text = Text("CC_Camp_Help_medicine", p, null, n);

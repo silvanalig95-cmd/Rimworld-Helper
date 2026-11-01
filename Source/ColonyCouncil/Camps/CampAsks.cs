@@ -24,6 +24,11 @@ namespace ColonyCouncil
         [MustTranslate] public List<string> outcomes;
         /// <summary>Silver it costs, scaled by the colony's wealth (0: free).</summary>
         public int silver;
+        /// <summary>
+        /// What it costs instead of a set sum, paid only once the goods are set down by the colony's gate: "milk" (the
+        /// herd's milk ready now, at its worth, CampMilk.cs). {THING} says how much there is and what it comes to.
+        /// </summary>
+        public string price;
         /// <summary>Asked once per camp (else once a day).</summary>
         public bool once = true;
         /// <summary>Only after they've been settled this many days.</summary>
@@ -62,7 +67,11 @@ namespace ColonyCouncil
         /// <summary>The asks already made of this camp (once each), and the day each was last made.</summary>
         public List<string> asksMade = new List<string>();
 
-        public int AskCost(CampAsk a) => a == null || a.silver <= 0 ? 0 : CampAnswers.Round10(a.silver * LivingEvents.WealthFactor(map));
+        public int AskCost(CampAsk a) =>
+            a?.price == "milk" ? MilkCost() : a == null || a.silver <= 0 ? 0 : CampAnswers.Round10(a.silver * LivingEvents.WealthFactor(map));
+
+        /// <summary>What the ask is for, for {THING}: the herd's milk ready now ("about 26 milk for about 49 silver"); else nothing.</summary>
+        public string AskThing(CampAsk a) => a?.price == "milk" ? MilkWords() : null;
 
         /// <summary>Why this can't be asked now (null: it can).</summary>
         public string AskBlocked(CampAsk a)
@@ -96,6 +105,13 @@ namespace ColonyCouncil
                 case "ourPokemon":
                     if (PokeWorldCamp.OurBest(map) == null || PokeWorldCamp.TheirBest(this) == null) return "CC_CampAsk_NoPokemon".Translate();
                     break;
+                case "herdMilk":
+                {
+                    // Beasts of theirs with milk to give now, and a drover free to milk them (CampMilk.cs).
+                    string why = MilkSaleBlocked();
+                    if (why != null) return why;
+                    break;
+                }
             }
             int cost = AskCost(a);
             if (cost > 0 && CampAnswers.Silver(map) < cost) return "CC_Dilemma_NotEnough".Translate(cost, ThingDefOf.Silver.label);
@@ -137,7 +153,10 @@ namespace ColonyCouncil
             if (AskBlocked(a) != null) return null;
             int cost = AskCost(a);
             var ctx = AskContext(a);
-            if (cost > 0 && !CampAnswers.Pay(this, cost, ctx.a)) return null;
+            // A set price is carried over now; goods priced by what comes (the herd's milk) are paid when they're set down.
+            bool paysNow = a.price.NullOrEmpty();
+            string thing = AskThing(a);
+            if (cost > 0 && paysNow && !CampAnswers.Pay(this, cost, ctx.a)) return null;
             asksMade.Add(a.once ? a.key : a.key + "@" + GenDate.DaysPassed);
             string line = null;
             try
@@ -150,7 +169,7 @@ namespace ColonyCouncil
                 string raw = a.outcomes.NullOrEmpty() ? null : Flavor.Pick(a.outcomes, tags) ?? Flavor.PickText(a.outcomes);
                 // The one lying ill, by name (CampStory.cs).
                 if (raw != null && sick != null) raw = raw.Replace("{SICK}", sick.LabelShort);
-                line = Format(raw, ctx.stranger, ctx.a, cost);
+                line = Format(raw, ctx.stranger, ctx.a, cost, thing);
                 ctx.why = a.label;
                 ctx.cause = line;
                 // What people do plays out on the map (a gathering at the camp's fire, a lesson, a visit), the rest at once.
@@ -158,7 +177,7 @@ namespace ColonyCouncil
                 if (a.tension != 0f) AddTension(a.tension);
                 if (a.warm > 0) Warm(ctx.a, a.warm);
                 if (!a.deed.NullOrEmpty()) KinMemory.Note(faction, a.deed, ctx.a, place);
-                if (cost > 0) gifts++;
+                if (cost > 0 && paysNow) gifts++;
                 if (!line.NullOrEmpty())
                 {
                     Messages.Message(line, new LookTargets(new[] { ctx.a, ctx.stranger }.Where(p => p != null && p.Spawned)), MessageTypeDefOf.PositiveEvent, false);

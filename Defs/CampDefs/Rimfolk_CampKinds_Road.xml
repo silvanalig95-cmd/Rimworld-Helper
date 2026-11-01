@@ -57,6 +57,10 @@
       <li>goods</li>
       <li>tales</li>
     </help>
+    <buys>
+      <li>RawFood</li>
+      <li>Meal</li>
+    </buys>
     <pride>0.25</pride>
     <breakTerms>0.08</breakTerms>
     <tensionPerDay>0.8</tensionPerDay>
@@ -227,6 +231,11 @@
       <li>tales</li>
       <li>goods</li>
     </help>
+    <buys>
+      <li>Art</li>
+      <li>Textiles</li>
+      <li>Clothes</li>
+    </buys>
     <pride>0.35</pride>
     <breakTerms>0.06</breakTerms>
     <tensionPerDay>0.8</tensionPerDay>
@@ -331,6 +340,11 @@
       <li>milk</li>
       <li>tales</li>
     </help>
+    <buys>
+      <li>Feed</li>
+      <li>RoadFood</li>
+      <li>Medicine</li>
+    </buys>
     <pride>0.3</pride>
     <breakTerms>0.12</breakTerms>
     <tensionPerDay>1.2</tensionPerDay>
@@ -409,6 +423,27 @@
           <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><fromCamp>true</fromCamp><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Muffalo</li><li>Yak</li><li>Alpaca</li><li>Dromedary</li><li>Donkey</li><li>Horse</li></kinds></li>
         </effects>
       </li>
+      <!-- The herd's milk (Source/ColonyCouncil/Camps/CampMilk.cs): only their beasts on the map with milk to give now,
+           as much as they give; a drover milks them and sets the milk down by the colony's gate, and then a colonist
+           carries over the silver it comes to. -->
+      <li>
+        <key>milk</key>
+        <label>Buy the herd's milk: {THING}</label>
+        <tip>A drover milks every beast of the herd that has milk to give and carries the milk to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>milk</price>
+        <needs>herdMilk</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} has sent a drover out to the herd with a pail, and the milk will be set down by the colony's gate.</li>
+          <li>{X_nameDef} whistled for one of the drovers and pointed at the herd: the colony's milk is to be milked and carried up to the gate.</li>
+          <li>One of the drovers is going out among the beasts with a pail for the colony, and {X_nameDef} says the milk will be left by the gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMilkSale" />
+        </effects>
+      </li>
       <li>
         <key>herding</key>
         <label>Have {A_nameDef} learn herding from them</label>
@@ -485,6 +520,10 @@
       <li>blessing</li>
       <li>tales</li>
     </help>
+    <buys>
+      <li>RawFood</li>
+      <li>Meal</li>
+    </buys>
     <pride>0.15</pride>
     <breakTerms>0.02</breakTerms>
     <tensionPerDay>0.3</tensionPerDay>
@@ -607,6 +646,10 @@
       <li>blessing</li>
       <li>heal</li>
     </help>
+    <buys>
+      <li>RawFood</li>
+      <li>Meal</li>
+    </buys>
     <pride>0.25</pride>
     <breakTerms>0.03</breakTerms>
     <tensionPerDay>0.4</tensionPerDay>
@@ -726,6 +769,10 @@
     <help>
       <li>heal</li>
     </help>
+    <buys>
+      <li>Medicine</li>
+      <li>Textiles</li>
+    </buys>
     <pride>0.2</pride>
     <breakTerms>0.02</breakTerms>
     <tensionPerDay>0.3</tensionPerDay>
@@ -846,6 +893,10 @@
       <li>song</li>
       <li>tales</li>
     </help>
+    <buys>
+      <li>Drink</li>
+      <li>Meal</li>
+    </buys>
     <pride>0.35</pride>
     <breakTerms>0.1</breakTerms>
     <tensionPerDay>0.6</tensionPerDay>
@@ -967,6 +1018,10 @@
     <help>
       <li>tales</li>
     </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+    </buys>
     <pride>0.1</pride>
     <breakTerms>0.02</breakTerms>
     <tensionPerDay>0.2</tensionPerDay>

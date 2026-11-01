@@ -26,6 +26,11 @@
     <help>
       <li>heal</li>
     </help>
+    <buys>
+      <li>Medicine</li>
+      <li>Textiles</li>
+      <li>RoadFood</li>
+    </buys>
     <pride>0.15</pride>
     <breakTerms>0.05</breakTerms>
     <tensionPerDay>0.5</tensionPerDay>
@@ -183,6 +188,11 @@
     <help>
       <li>blessing</li>
     </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+      <li>Drink</li>
+    </buys>
     <pride>0.2</pride>
     <breakTerms>0.03</breakTerms>
     <tensionPerDay>0.4</tensionPerDay>
@@ -328,6 +338,11 @@
     <help>
       <li>show</li>
     </help>
+    <buys>
+      <li>Drink</li>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
     <pride>0.3</pride>
     <breakTerms>0.08</breakTerms>
     <tensionPerDay>0.5</tensionPerDay>

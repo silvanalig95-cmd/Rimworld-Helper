@@ -8,7 +8,9 @@
        Expanded - Classical's one-person tent (VFEC_Tent, a bed) for those who sleep in bedrolls, and a tent of Medieval
        Overhaul's hide or cloth walls (DankPyon_TentWall, which holds a roof) as the hut of a hunting party, traders,
        healers and players, with Outland's tent flap (Outland_TentDoor) for its door where Outland is loaded; refugees
-       put up a windbreak of cloth. Without the mods, the bedrolls, the plain wooden windbreak and no hut. -->
+       put up a windbreak of cloth. Without the mods, the bedrolls, the plain wooden windbreak and no hut. With RimMarket,
+       one of them now and then buys at the colony's stalls what their <buys> lists, first first (Camps/CampMarket.cs);
+       a kind without one buys what anyone on the road needs. -->
 
   <!-- ===================== A hunting party ===================== -->
 
@@ -31,6 +33,11 @@
     <help>
       <li>meat</li>
     </help>
+    <buys>
+      <li>RoadFood</li>
+      <li>Medicine</li>
+      <li>Drink</li>
+    </buys>
     <pride>0.35</pride>
     <breakTerms>0.15</breakTerms>
     <tensionPerDay>1.5</tensionPerDay>
@@ -180,6 +187,12 @@
     <help>
       <li>wood</li>
     </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+      <li>Clothes</li>
+      <li>Medicine</li>
+    </buys>
     <pride>0.05</pride>
     <breakTerms>0.05</breakTerms>
     <tensionPerDay>0.8</tensionPerDay>
@@ -351,6 +364,12 @@
     <hireChance>0.25</hireChance>
     <joinChance>0.03</joinChance>
     <helpChance>0</helpChance>
+    <buys>
+      <li>RoadFood</li>
+      <li>Meal</li>
+      <li>Medicine</li>
+      <li>Drink</li>
+    </buys>
     <pride>0.5</pride>
     <breakTerms>0.2</breakTerms>
     <tensionPerDay>1.5</tensionPerDay>
@@ -495,6 +514,11 @@
     <help>
       <li>medicine</li>
     </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+      <li>RoadFood</li>
+    </buys>
     <pride>0.1</pride>
     <breakTerms>0.03</breakTerms>
     <tensionPerDay>0.5</tensionPerDay>
@@ -635,6 +659,11 @@
     <hireChance>0.2</hireChance>
     <joinChance>0.03</joinChance>
     <helpChance>0</helpChance>
+    <buys>
+      <li>Art</li>
+      <li>Textiles</li>
+      <li>Clothes</li>
+    </buys>
     <pride>0.25</pride>
     <breakTerms>0.1</breakTerms>
     <tensionPerDay>0.6</tensionPerDay>
@@ -772,6 +801,10 @@
       <li>mend</li>
       <li>repair</li>
     </help>
+    <buys>
+      <li>Metal</li>
+      <li>RoadFood</li>
+    </buys>
     <pride>0.3</pride>
     <breakTerms>0.1</breakTerms>
     <tensionPerDay>1</tensionPerDay>
@@ -910,6 +943,10 @@
       <li>medicine</li>
       <li>meat</li>
     </help>
+    <buys>
+      <li>RawFood</li>
+      <li>Medicine</li>
+    </buys>
     <pride>0.45</pride>
     <breakTerms>0.1</breakTerms>
     <tensionPerDay>0.6</tensionPerDay>

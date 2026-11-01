@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Visitors camped out on the colony's land and people from a camp near it buying at the colony's market stalls
+    (Source/ColonyCouncil/Visitors/VisitorTrade.cs, with RimMarket): the walk to RimMarket's own place in front of a
+    colony stall's counter, a look over the goods facing it, then the purchase as RimMarket's shoppers make it (the
+    article off the counter into their pack, their silver set down at the stall for someone to put away). Visitors go
+    from their duty (JobGiver_VisitShop in Rimfolk_VisitWait and Rimfolk_VisitWork), a camp's people from their day
+    (Camps/CampMarket.cs).
+  -->
+  <JobDef>
+    <defName>Rimfolk_MarketBuy</defName>
+    <driverClass>ColonyCouncil.JobDriver_MarketBuy</driverClass>
+    <reportString>looking over the goods at TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+</Defs>

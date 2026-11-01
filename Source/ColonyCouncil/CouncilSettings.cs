@@ -247,6 +247,8 @@ namespace ColonyCouncil
         public bool marketStallShips = true;
         /// <summary>With RimMarket and Hospitality, guests may always reach the market's stalls to shop, whatever their guest area (Integrations/MarketGuests.cs).</summary>
         public bool marketGuestsShop = true;
+        /// <summary>With RimMarket: visitors camped on the colony's land and people from a camp near it buy off the colony's stalls (Visitors/VisitorTrade.cs).</summary>
+        public bool marketCampersBuy = true;
         /// <summary>With Hospitality: a guest joins of their own will only when they would, and the colony has its say (Integrations/GuestWill.cs).</summary>
         public bool guestWill = true;
         /// <summary>Hospitality's guests may be the strangers of Rimfolk's visitor stories (Strangers/GuestStories.cs).</summary>
@@ -490,6 +492,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref marketStallWindow, "marketStallWindow", true);
             Scribe_Values.Look(ref marketStallShips, "marketStallShips", true);
             Scribe_Values.Look(ref marketGuestsShop, "marketGuestsShop", true);
+            Scribe_Values.Look(ref marketCampersBuy, "marketCampersBuy", true);
             Scribe_Values.Look(ref guestWill, "guestWill", true);
             Scribe_Values.Look(ref guestStories, "guestStories", true);
             Scribe_Values.Look(ref guestCheck, "guestCheck", true);

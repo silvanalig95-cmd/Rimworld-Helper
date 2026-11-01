@@ -225,9 +225,10 @@ namespace ColonyCouncil
                     foreach (var a in camp.kind.asks.Where(x => x != null && !x.theyAsk))
                     {
                         int cost = camp.AskCost(a);
+                        string thing = camp.AskThing(a);
                         string why = camp.AskBlocked(a);
-                        string tip = a.tip.NullOrEmpty() ? null : camp.Format(a.tip, null, camp.AskColonist(a), cost);
-                        if (Button(ref y, camp.Format(a.label, null, camp.AskColonist(a), cost), why == null, why, null, tip)) reply = camp.DoAsk(a);
+                        string tip = a.tip.NullOrEmpty() ? null : camp.Format(a.tip, null, camp.AskColonist(a), cost, thing);
+                        if (Button(ref y, camp.Format(a.label, null, camp.AskColonist(a), cost, thing), why == null, why, null, tip)) reply = camp.DoAsk(a);
                     }
                     y += 6f;
                 }

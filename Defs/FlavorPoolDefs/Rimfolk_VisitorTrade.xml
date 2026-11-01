@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What a visitor or a camper says at the colony's market stall (Source/ColonyCouncil/Visitors/VisitorTrade.cs), over
+    their head through Speech. Every line has its moment: buy (they bought something, with what kind it was: feed, meal,
+    roadfood, rawfood, medicine, drink, clothes, textiles, metal, art), dear (the price put them off), none (nothing on
+    the counter for them). What they are (a visit's drovers, pilgrims...) may be a tag too. One short sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MarketBuy</defName>
+    <lines>
+      <plain>
+        <li>[buy] Just what we needed.</li>
+        <li>[buy] Fair enough, I'll take it.</li>
+        <li>[buy,feed] That'll keep the herd going a few more days.</li>
+        <li>[buy,feed,drovers] The beasts will thank you for this.</li>
+        <li>[buy,meal] A meal someone else cooked, at last.</li>
+        <li>[buy,roadfood] This will keep on the road.</li>
+        <li>[buy,rawfood] Something fresh for the pot tonight.</li>
+        <li>[buy,medicine] Better to carry it and not need it.</li>
+        <li>[buy,drink] Something for the fire tonight.</li>
+        <li>[buy,clothes] Warm, and it nearly fits.</li>
+        <li>[buy,textiles] Good cloth, it'll mend a lot of tears.</li>
+        <li>[buy,metal] Good metal, I can work with this.</li>
+        <li>[buy,art] Someone back home will pay well for this.</li>
+        <li>[dear] Too dear for me, I'll leave it.</li>
+        <li>[dear] Not at that price.</li>
+        <li>[dear] I'd hoped it would be cheaper.</li>
+        <li>[none] Nothing here for us today.</li>
+        <li>[none] Not what we need, more's the pity.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -116,6 +116,10 @@ Weeks after someone joins from a visit, their family may walk in from their peop
         <heading>Guests at the market</heading>
         <text>With Hospitality, guests always may walk to the market's stalls and buy what's on sale there, even where the stalls stand outside their guest area. Only the stalls and the cells in front of them are open to them; once they've shopped they go back into their area. RimMarket's own setting for guests shopping still applies, and the setting "Guests always shop at the market" (needs the deeper game hooks) turns it off.</text>
       </li>
+      <li>
+        <heading>Visitors and campers at the market</heading>
+        <text>Visitors staying the night out on the colony's land, and people from a camp near it, now and then walk over to the colony's own stalls in the market's hours and buy something lying on the counter that suits them: drovers feed for their herd, a smith metal, a refugee family a meal and clothes, pilgrims food for the pot, anyone on the road food that keeps or medicine. Whoever carries their coin stands at the counter a while, then the article goes off the counter and off its sale line into their pack, and their silver is set down at the stall for someone to put away, as with RimMarket's own shoppers. The line's price, a keeper at the stall and the market's demand count as they do for them, and a dear price may put them off. A visit buys twice at most, a camp once a day and three times in a stay, only at peace and with the map quiet. The setting "Campers buy at RimMarket's stalls" (Interface page) turns it off.</text>
+      </li>
     </sections>
     <keywords>
       <li>market</li>
