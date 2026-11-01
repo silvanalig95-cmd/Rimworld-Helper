@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.45.2</version>
+        <date>1 November 2026</date>
+        <title>Illnesses with more to say</title>
+        <points>
+          <li>Colonists write and talk about falling ill, getting better and the doctor who saw to them, in words that fit the season, the hour, their age and their temperament, and they notice when it is the second time.</li>
+          <li>Messages and letters about an illness going round read several ways, and a letter about one person names them instead of listing them.</li>
+          <li>Two new everyday ailments come from work the colony already does: a sore elbow after long days of felling trees, and chapped hands after hours of outdoor work in the cold. Both are tended like the others and listed in the Almanac.</li>
+          <li>Patients who come for the colony's hospital, and the council's health questions, have new openings and outcomes.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.45.1</version>
         <date>1 November 2026</date>
         <title>Customs that remember their years</title>

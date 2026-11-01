@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Illnesses with more to say
+
+*1 November 2026, version 0.45.2*
+
+- Colonists write and talk about falling ill, getting better and the doctor who saw to them, in words that fit the season, the hour, their age and their temperament, and they notice when it is the second time.
+- Messages and letters about an illness going round read several ways, and a letter about one person names them instead of listing them.
+- Two new everyday ailments come from work the colony already does: a sore elbow after long days of felling trees, and chapped hands after hours of outdoor work in the cold. Both are tended like the others and listed in the Almanac.
+- Patients who come for the colony's hospital, and the council's health questions, have new openings and outcomes.
+
 ## Customs that remember their years
 
 *1 November 2026, version 0.45.1*
