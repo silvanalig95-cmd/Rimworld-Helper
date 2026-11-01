@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More outcomes for the visitor events (Council_Events_Visitors.xml) and the camp's first word
+    (Council_Events_Camps.xml), merged in at startup (LetterVariantsDef). The same tags as the other variants: the era,
+    the season, A's traits and passions, the colony's name ([colony:Open]); a camp's letter also sees its people's faith
+    and the world event behind it (CampWords). Each outcome tells what the answer's effects do and no more.
+  -->
+
+  <!-- ===================== Strangers make camp ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_Evt_Camp</defName>
+    <incident>Council_Evt_Camp</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[colony:Open] Travelers are welcome here, as the road already knows. They'll camp {PLACE} for a while.</li>
+          <li>[skill:Social] {A_nameDef} sends word down that they're welcome, and asks where they've come from. They'll camp {PLACE} for a while.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[colony:Guarded] They may stay, on the colony's terms. The colony's terms are known on the road to be firm ones.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[colony:Thrifty] Paying people to leave isn't the colony's habit, but it paid. They take the silver and go.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[winter] They pack up in the cold without a word to anyone, and go.</li>
+          <li>[trait:Kind] {A_nameDef} is the one who tells them, as gently as it can be done. They go.</li>
+        </lines>
+      </li>
+      <li>
+        <option>4</option>
+        <lines>
+          <li>Three of the colony walk out to their camp to say it plainly. They pack in a hurry.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The scholar ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_Evt_Scholar</defName>
+    <incident>Council_Evt_Scholar</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[lowtech] {X_nameDef} tucks the books back into the satchel and goes on to the next settlement.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The apprentice ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_Evt_Apprentice</defName>
+    <incident>Council_Evt_Apprentice</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} took the answer well, or tried to, and went back the way {X_pronoun} came.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A wanderer with a secret ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_Evt_QuietStranger</defName>
+    <incident>Council_Evt_QuietStranger</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[!lowtech] {X_nameDef} stood at the gate a while longer, said nothing more, and walked back out to the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A lost child ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_Evt_LostChild</defName>
+    <incident>Council_Evt_LostChild</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[trait:Kind] {A_nameDef} sat with {X_nameDef} until the crying stopped, and then {X_nameDef} was walked back toward {X_possessive} people. {FACTION} will hear who brought their child home.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} stays, and asks every morning when {X_pronoun} is going home. The grown-ups change the subject.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

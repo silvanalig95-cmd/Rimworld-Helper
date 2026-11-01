@@ -86,6 +86,11 @@
       <li>[!lowtech] Keep your powder dry.</li>
       <li>Quiet now, they're close.</li>
       <li>Fresh sign, this morning's.</li>
+      <li>Hang it high, out of reach.</li>
+      <li>Two days of tracks, and nothing to show.</li>
+      <li>Skin it before it stiffens.</li>
+      <li>[lowtech] Fletch that one again, it pulls left.</li>
+      <li>[!lowtech] Count the rounds before we go out.</li>
     </lines>
     <!-- Their kills come back to the butchering spot and are dressed there by day (CampLook.cs). -->
     <momentLines>
@@ -261,6 +266,10 @@
       <li>Tomorrow we'll think about it.</li>
       <li>Eat slowly, make it last.</li>
       <li>Has anyone seen my other boot?</li>
+      <li>Wash your face, we have neighbors now.</li>
+      <li>Don't wander off past the fire.</li>
+      <li>Maybe we stay on a while longer.</li>
+      <li>Mend it, don't throw it away.</li>
     </lines>
     <!-- What they ask of the colony, and what the colony can offer them (CampAsks.cs, CampRequests.cs): work for food,
          help with their broken cart, and a place at the colony's table. -->
@@ -306,15 +315,18 @@
         <askTexts>
           <li>The family's handcart lost a wheel on the last hill, and {X_nameDef} has been trying to fix it with rope. {X_nameDef} asked {A_nameDef} whether the colony could spare someone handy, and a few lengths of wood.</li>
           <li>{X_nameDef} wheeled the broken cart as far as the colony's gate to show {A_nameDef} the cracked axle and the two missing spokes. Without it the family can't carry what they have left.</li>
+          <li>{X_nameDef} came up to the colony with a spoke in each hand and a sheepish look. The family's cart won't go another mile as it is, and {X_nameDef} asked whether the colony could spare some wood and someone who knows what to do with it.</li>
         </askTexts>
         <tip>{A_nameDef} carries twenty logs down to their camp and mends the cart there. Practice at building.</tip>
         <outcomes>
           <li>{A_nameDef} will take the wood down to the family's camp and see to the cart this afternoon. {X_nameDef} has already cleared a space by the fire to work in.</li>
           <li>[lowtech] {A_nameDef} is going down to cut a new axle for the family's cart from the colony's wood. {X_nameDef} wants to watch every stroke, to know how next time.</li>
+          <li>{A_nameDef} is taking the wood down to the family's camp to see to the cart, with {X_nameDef} to hold things steady.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} went back to binding the wheel with rope. It might hold as far as the next hill.</li>
           <li>The family spent the evening mending the cart themselves, by firelight, with the colony's answer between them.</li>
+          <li>{X_nameDef} thanked the colony anyway, and went back to the cart with the rope.</li>
         </refused>
         <refuseTension>4</refuseTension>
         <effects>
@@ -417,6 +429,9 @@
       <li>Dig, sift, dig.</li>
       <li>Bring the lamp over here.</li>
       <li>Just one more hole.</li>
+      <li>The ground's all wrong here.</li>
+      <li>Rock like this has a seam under it, mark my words.</li>
+      <li>Mark that hole, we'll fill it in later.</li>
     </lines>
     <!-- What the colony can ask of them, and what they ask of it (CampAsks.cs, CampRequests.cs): a lesson in reading
          rock, their cook's stew, and a test hole on the colony's side, with a share of what it gives. -->
@@ -462,15 +477,18 @@
         <askTexts>
           <li>{X_nameDef} came to the gate with a rolled-up map and a dirty finger on the colony's side of the ridge. They'd like to sink one test hole there, {X_nameDef} says, and share whatever turns up.</li>
           <li>There's a seam running toward the colony, {X_nameDef} insists, or under it. The prospectors ask leave to dig one hole on the colony's side, and promise a share.</li>
+          <li>The prospectors have dug every likely spot around their camp, {X_nameDef} says, and the likeliest of all is on the colony's side. They'd fill the hole in after, and share what they find.</li>
         </askTexts>
         <tip>Two of them dig at the edge of the colony for an afternoon and fill the hole in after. They leave a share of whatever they find beside it, most likely silver, now and then jade or gold.</tip>
         <outcomes>
           <li>{X_nameDef} and another of the prospectors are coming over with picks this afternoon. {X_nameDef} has promised the colony a fair share of whatever's down there.</li>
           <li>The prospectors will dig at the colony's edge this afternoon, and {X_nameDef} shook {A_nameDef}'s hand on the share.</li>
+          <li>Two of the prospectors will dig at the colony's edge this afternoon. {X_nameDef} has promised to fill the hole in after, and to leave the colony's share beside it.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} rolled the map back up very slowly, so {A_nameDef} could see how disappointed {X_pronoun} was.</li>
           <li>The prospectors went back to their own holes, muttering about the seam the colony is sitting on.</li>
+          <li>{X_nameDef} said the seam would keep, and went back to the camp's own holes.</li>
         </refused>
         <refuseTension>6</refuseTension>
         <refuseGoodwill>1</refuseGoodwill>
@@ -568,6 +586,9 @@
       <li>Mind your feet, they're all you have.</li>
       <li>One more day of walking.</li>
       <li>Bless the ones who let us rest.</li>
+      <li>Wash your feet, then pray.</li>
+      <li>Share the bread, there's enough.</li>
+      <li>Each step is a prayer.</li>
     </lines>
     <!-- What they ask of the colony, and what the colony can offer them (CampAsks.cs, CampRequests.cs): prayers at the
          colony's graves, a prayer at a sick colonist's side, and salve for their feet. -->
@@ -582,11 +603,13 @@
         <askTexts>
           <li>Before they walk on, the pilgrims would like to pray at the colony's graves. {X_nameDef} put it to {A_nameDef} gently. It's their custom, {X_nameDef} says, to pray for the dead of every place that gives them rest.</li>
           <li>The pilgrims of {FACTION} pray for the dead wherever they stop. {X_nameDef} came to ask, cap in hand, whether they might pray at the colony's graves this afternoon.</li>
+          <li>{X_nameDef} has heard that the colony buries its own here, and asked {A_nameDef} whether the pilgrims might say their prayers for the dead at the graves before they go on.</li>
         </askTexts>
         <tip>The pilgrims walk to the colony's graves and pray there for an hour or two. It is kindly meant, and taken that way.</tip>
         <outcomes>
           <li>The pilgrims will go to the colony's graves this afternoon. {X_nameDef} asked for the names of the dead, and wrote them down.</li>
           <li>{X_nameDef} thanked {A_nameDef} with both hands. The pilgrims will come to the graves after noon, two by two.</li>
+          <li>The pilgrims will pray at the colony's graves this afternoon. {X_nameDef} asked who lies in each, and listened to every name.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} bowed and said the pilgrims would pray for the colony's dead from where they are. They did, at dusk; the colony could hear it.</li>
@@ -713,6 +736,9 @@
       <li>Quiet day.</li>
       <li>Everything must go.</li>
       <li>I'll throw in the bag for free.</li>
+      <li>Silver, or something worth the same.</li>
+      <li>Last of the cloth, get it while you can.</li>
+      <li>Come back after supper, the lamp's lit.</li>
     </lines>
     <!-- What they ask of the colony, and what the colony can ask of them (CampAsks.cs, CampRequests.cs): a day's stall at
          the colony's gate, and a colonist learning to haggle at theirs. -->
@@ -727,11 +753,13 @@
         <askTexts>
           <li>{X_nameDef} would like to bring the stall up to the colony's gate for a day, where the customers are. They'd pack up by dusk and pay for the spot.</li>
           <li>"Closer to the customers," {X_nameDef} told {A_nameDef}, pointing at the colony's gate. The traders ask leave to set up there for a day, and offer some silver for the trouble.</li>
+          <li>{X_nameDef} has watched the colony's people walk past the camp for days without stopping. If the stall came to the gate instead, {X_nameDef} says, they would stop. The traders would pay for the spot.</li>
         </askTexts>
         <tip>Their trader and a porter set up by the colony's gate for most of the day, so anyone can walk over to trade. They pay for the spot.</tip>
         <outcomes>
           <li>The traders will keep their stall at the colony's gate today. {X_nameDef} paid for the spot in advance, and counted it out loud.</li>
           <li>{X_nameDef} and a porter are carrying the best of the goods up to the colony's gate, and left a few coins at the camp's edge for the spot.</li>
+          <li>The traders will set up at the colony's gate for the day, and have left the price of the spot at the edge of their camp.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} said the camp was a fine place for a stall too, and didn't sound as if {X_pronoun} meant it.</li>
@@ -848,6 +876,9 @@
       <li>Mind the sparks.</li>
       <li>Quench it now.</li>
       <li>Bring me the tongs.</li>
+      <li>Not yet, it's still too soft.</li>
+      <li>More charcoal on the fire.</li>
+      <li>That edge will last you years.</li>
     </lines>
     <!-- The smith's good turns: a colonist's worn gear mended, or one of the colony's damaged buildings (doors and gates
          first, the nearest to the camp), which the smith walks over to and mends as a gift (CampLook.cs). -->
@@ -903,11 +934,13 @@
         <askTexts>
           <li>{X_nameDef} has run out of good metal. If the colony can spare some steel, {X_nameDef} told {A_nameDef}, the smith will forge it a knife from part of it as thanks, and keep the rest to work on the road.</li>
           <li>The smith's camp has gone quiet, with no metal left to work. {X_nameDef} asked {A_nameDef} for steel, and offered a knife made from it in return.</li>
+          <li>{X_nameDef} held up the last bar of metal at the smith's camp and said it wouldn't make a nail. Steel from the colony's stores would keep the forge going, and the first thing out of it would be a knife for {A_nameDef}.</li>
         </askTexts>
         <tip>Forty of the colony's steel goes down to the smith; the smith makes a knife from it and brings it over to {A_nameDef}.</tip>
         <outcomes>
           <li>{A_nameDef} is carrying the steel down to the smith's fire. {X_nameDef} weighed the first bar in {X_possessive} hand, grunted, and said the knife would be ready by evening.</li>
           <li>The smith has the colony's steel, and has promised {A_nameDef} the first thing off the anvil.</li>
+          <li>The steel is going down to the smith's fire. {X_nameDef} has promised that the knife will be {A_nameDef}'s, and a good one.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} nodded and went back to mending other people's pots.</li>
@@ -1015,6 +1048,8 @@
       <li>Leave me be.</li>
       <li>Mind the snare.</li>
       <li>Go away. Please.</li>
+      <li>Wind's turning.</li>
+      <li>Plenty of room on the other side of the hill.</li>
     </lines>
     <momentLines>
       <li>[gift] Hm. For you.</li>

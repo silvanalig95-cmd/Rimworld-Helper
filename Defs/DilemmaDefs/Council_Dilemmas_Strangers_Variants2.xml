@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More for the stranger dilemmas with the fewest ways to read (Council_Dilemmas_Strangers.xml), merged in at startup
+    (LetterVariantsDef), with the same tags as Council_Dilemmas_Strangers_Variants.xml. Family in the cells comes up
+    whenever a captured raider is one of A's kin, so it gets the most.
+  -->
+
+  <!-- ===================== Family in the cells ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_DlmS_KinInChains</defName>
+    <dilemma>Council_DlmS_KinInChains</dilemma>
+    <texts>
+      <li>[past:soldier] {A_nameDef} has seen prisoners carried down to the cells before without a second look. Not this one: {X_nameDef} is {A_possessive} {RELATION}, taken with the rest of {FACTION}'s fighters. {A_nameDef} has asked the council what the colony means to do with {X_objective}.</li>
+      <li>[winter] It's a cold season to sit in a cell, and {A_nameDef} knows it better than anyone: the prisoner {X_nameDef} is {A_possessive} {RELATION}, who came here with {FACTION}. {A_nameDef} has asked the council what is to become of {X_objective}.</li>
+      <li>[trait:Kind] {A_nameDef} has asked to be the one who takes {X_nameDef}'s meals down to the cells. {X_nameDef} is {A_possessive} {RELATION}, and came with {FACTION}. Now {A_nameDef} asks the council what the colony owes family, even family that came with weapons.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The wardens have orders to let {X_nameDef} go home to {FACTION}. {A_nameDef} said nothing at the council, and thanked each of its members afterward.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} went down to the cells and talked with {X_nameDef} about home and the people they both knew. The wardens are to win {X_objective} over, and {A_nameDef} has made them a start.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is a prisoner like the others. {A_nameDef} has asked not to be the one who takes the meals down.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The beast comes back ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_DlmS_BeastReturns</defName>
+    <dilemma>Council_DlmS_BeastReturns</dilemma>
+    <texts>
+      <li>[summer] {A_nameDef} has seen {X_definite} twice in the long evenings at the edge of the fields, watching the colony. It's the beast that mauled a colonist and got away, grown fat on the summer.</li>
+      <li>[fog] Something big moved through the fog past the fields. {A_nameDef} heard it before seeing it, and knew it: {X_definite}, the beast that mauled a colonist and got away.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[trait:Brave] {A_nameDef} had a weapon in hand before the council had finished, and {X_definite} is marked for the hunt.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[skill:Animals] {A_nameDef} has asked to be among the first to try. The council marked {X_definite} for taming, and the rest of the colony is keeping well back.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A's nemesis in chains ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_DlmS_NemesisInChains</defName>
+    <dilemma>Council_DlmS_NemesisInChains</dilemma>
+    <texts>
+      <li>[afterraid] The fight is barely over, and {X_nameDef} is in the colony's cells: the one who hurt {A_nameDef} and got away last time. {A_nameDef} came straight to the council from the cell door, still out of breath.\n\nThe council has to decide what {X_nameDef} is now: a debt to be settled, a mouth to be fed, or a pair of hands to be won over.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[trait:Kind] The wardens have begun on {X_nameDef}. {A_nameDef} heard it out, said {A_pronoun} would try to understand, and didn't come to supper.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An old acquaintance knows A's secret ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_DlmS_OldAcquaintance</defName>
+    <dilemma>Council_DlmS_OldAcquaintance</dilemma>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} took the silver with a wink. {A_nameDef} has kept out of {X_possessive} way since, and sleeps better for it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} was taken aside by the woodpile and told what would happen if the story got out. {X_nameDef} took the point, and has kept well away from {A_nameDef} since.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A visitor wants to buy A's animal ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_DlmS_BuyTheAnimal</defName>
+    <dilemma>Council_DlmS_BuyTheAnimal</dilemma>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[trait:Greedy] {A_nameDef} counted the silver twice before handing over the lead. {PET_nameDef} looked back once.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[colony:Thrifty] The council named a price nobody sensible would pay. {X_nameDef} paid it, and {PET_nameDef} left with {X_objective}.</li>
+        </lines>
+        <riskLines>
+          <li>{X_nameDef} laughed at two hundred and fifty silver and went back to {X_possessive} people. {A_nameDef} has been grinning about it since.</li>
+        </riskLines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The traveling healer ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var2_DlmS_Healer</defName>
+    <dilemma>Council_DlmS_Healer</dilemma>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[theirLowtech] {X_nameDef} warmed stones in a fire and worked them along {A_nameDef}'s old injury all afternoon while {B_nameDef} watched and asked questions. It aches less now.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[theirHightech] For sixty silver {X_nameDef} went through the medical kit with {B_nameDef} item by item, with {A_nameDef}'s old injury to practice on.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

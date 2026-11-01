@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for a regular's return (Rimfolk_Events_Regulars.xml) to read, merged in at startup (LetterVariantsDef).
+    The tags are the event's own: their trade (tinker, scholar, doctor, healer, teacher, cook, scribe, teller, kindred),
+    visit2 or visit3plus, friend, cool, turning and skill, with A's traits and the colony's name ([colony:Open]). A warm
+    welcome is an evening by the fire with {X_nameDef}, where {A_nameDef} learns something of the trade; the outcomes
+    say no more than that.
+  -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Evt_RegularBack</defName>
+    <incident>Council_Evt_RegularBack</incident>
+    <titles>
+      <li>[visit3plus] {X_nameDef}, back again</li>
+      <li>[cool] {X_nameDef} at the gate again</li>
+      <li>[kindred] {X_nameDef} has come back to talk</li>
+    </titles>
+    <texts>
+      <li>[tinker,visit3plus] {X_nameDef} the tinker is back again, pack clanking, and asks {A_nameDef} what has broken since the last visit.</li>
+      <li>[scholar,visit3plus] {X_nameDef} the scholar is back at the gate, still turning over the point {A_nameDef} won last time, and asks for a bed and another try at it.</li>
+      <li>[doctor,visit3plus] {X_nameDef}, the traveling doctor, is back again, and asks after {A_nameDef} and the others {X_nameDef} saw on the last visit, each of them by name.</li>
+      <li>[healer,visit3plus] {X_nameDef} the healer is back. {A_nameDef} has kept a list of aches and coughs to ask about since the last visit.</li>
+      <li>[teacher,visit3plus] {X_nameDef} the teacher is back at the gate, and {A_nameDef} has a whole season's questions saved up for {X_objective}.</li>
+      <li>[cook,visit3plus] {X_nameDef} the cook is back, and the first thing {X_pronoun} asked at the gate was what the colony has been eating, and whether {A_nameDef} still burns the onions.</li>
+      <li>[scribe,visit3plus] {X_nameDef} the scribe is back with ink on {X_possessive} cuffs and the news of the towns down the road, and wants to see whether {A_nameDef}'s hand has stayed steady.</li>
+      <li>[teller,visit3plus] {X_nameDef} the teller is back. The tales {X_nameDef} left last time are still told at the colony's fire, changed in the telling, and {X_nameDef} wants to hear what the colony has done to them.</li>
+      <li>[kindred,visit3plus] {X_nameDef} is back, and asked for {A_nameDef} by name at the gate. The two of them still have a conversation from the last visit to finish.</li>
+      <li>[cool,visit3plus] {X_nameDef} the {TALE} has come back, though the last welcome was a cold one. {X_nameDef} waits at the gate, and asks after {A_nameDef} stiffly, as if unsure of the answer.</li>
+      <li>[visit2,colony:Open] {X_nameDef}, the {TALE} who came through last season, is back. On the road they say this colony's door is open to travelers, and {X_nameDef} wanted to knock on it again.</li>
+      <li>[visit2,trait:Kind] {X_nameDef}, the {TALE} who came through last season, is back, and remembers {A_nameDef} as the kindest face at the colony. {X_nameDef} asked after {A_objective} first.</li>
+      <li>[turning,skill] {X_nameDef} the {TALE} is back, and this time didn't set down the pack at the fire. The road is long, {X_nameDef} told the council, and a trade gets heavy carried from door to door. Would the colony have a {TALE}? Or would {A_nameDef} come along and learn the road?</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[scholar] By the fire that evening {X_nameDef} and {A_nameDef} argued a point of learning from both ends, and {A_nameDef} came away knowing more than {A_pronoun} went in with.</li>
+          <li>[doctor] {X_nameDef} sat with {A_nameDef} by the fire and went through the cases of the road, one by one. {A_nameDef} listened to every one of them.</li>
+          <li>[healer] {X_nameDef} spent the evening by the fire naming herbs for {A_nameDef}, and saying which ones to leave alone.</li>
+          <li>[teacher] By the fire, {X_nameDef} gave {A_nameDef} the lesson {X_nameDef} had saved for {A_objective}, and kept at it until the last log burned down.</li>
+          <li>[cook] {X_nameDef} and {A_nameDef} talked cooking by the fire all evening. {A_nameDef} has a new way with a stew to try.</li>
+          <li>[scribe] By the firelight, {X_nameDef} showed {A_nameDef} how to hold a pen so the line doesn't wander, and had {A_objective} practice until it didn't.</li>
+          <li>[visit3plus] {X_nameDef} took the same seat by the fire as last time, as if it had been kept, and talked with {A_nameDef} until late. {A_nameDef} came away with something learned.</li>
+          <li>[cool] {X_nameDef} sat stiffly by the fire at first. By the end of the evening the two of them were talking easily again, and {A_nameDef} had learned something.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[friend] {A_nameDef} said it before the council could, and {X_nameDef} set the pack down for good. The {TALE} is one of the colony's now.</li>
+          <li>[visit3plus] {X_nameDef} took a long breath and asked where {X_pronoun} should sleep. The {TALE} is one of the colony's now.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[friend] {A_nameDef} said goodbye to everyone, and set off down the road beside {X_nameDef} with a light pack and no look back.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>[cool] {X_nameDef} didn't argue, and went back down the road the way {X_pronoun} came.</li>
+          <li>[visit3plus] {X_nameDef} looked surprised, then hitched the pack higher and went on down the road.</li>
+          <li>[friend] {X_nameDef} asked {A_nameDef} to say goodbye to the others, and went on down the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>
