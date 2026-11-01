@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace ColonyCouncil
 {
-    /// <summary>A place someone shoots from behind the line's cover, whether it sees the gate, and how far it is.</summary>
+    /// <summary>A place someone shoots from behind the line's cover, or a turret by the line; whether it sees the gate, and how far it is.</summary>
     public class FirePos
     {
         public IntVec3 cell;
@@ -17,6 +17,9 @@ namespace ColonyCouncil
         public Thing cover;
         /// <summary>A pocket's: the cells beside it that someone there leans out into to shoot past the wall in front.</summary>
         public List<IntVec3> lean;
+        /// <summary>A turret's: the turret, or its blueprint or frame (<see cref="planned"/>). It shoots from the cells it stands on and never leans.</summary>
+        public Thing turret;
+        public bool planned;
     }
 
     /// <summary>A plan the line has placed, read again: how many of its pieces stand, and how many are planned and waiting for builders.</summary>
@@ -63,6 +66,24 @@ namespace ColonyCouncil
         public List<Building_Turret> turrets = new List<Building_Turret>();
         public int turretsWorking;
         public float turretWorth;
+        /// <summary>The turrets by the line, built or planned, and whether each sees the gate the way the firing positions are read.</summary>
+        public List<FirePos> turretSight = new List<FirePos>();
+        /// <summary>Working turrets that see the gate, within their gun's reach.</summary>
+        public int turretsSeeing;
+        /// <summary>The cells the firing positions and turrets are read against: inside the gate, and a killbox's box.</summary>
+        private readonly List<IntVec3> sightTargets = new List<IntVec3>();
+
+        /// <summary>
+        /// Lines of cover behind the gate laid out the way the gate's were before plans were drawn for the colony (0.14):
+        /// the firing positions that stand and see the gate, of a plan of the line's with lines off to the gate's sides
+        /// placed then (its numbers weren't kept with it, <see cref="oldLines"/>), or, where the line knows of none, firing
+        /// positions on both sides of the gate that no plan drawn for the colony put there. Empty when there are none.
+        /// </summary>
+        public List<FirePos> oldLinesAt = new List<FirePos>();
+        public DefenseLinePlan oldLines;
+
+        /// <summary>How near the gate the nearest of <see cref="oldLinesAt"/> stands.</summary>
+        public float OldLinesNearest => oldLinesAt.Count == 0 ? float.MaxValue : oldLinesAt.Min(p => p.dist);
         public int traps, trapsWaiting;
 
         public List<IntVec3> zone = new List<IntVec3>(), front = new List<IntVec3>();
@@ -123,6 +144,7 @@ namespace ColonyCouncil
             Plans(f);
             f.killboxMouth = f.spanOpenFar == 0 && f.spanClosed < f.span.Count && f.plans.Any(p => p.def.kind == "killbox" && p.Progress >= 0.5f);
             Cover(f);
+            OldLines(f);
             Turrets(f);
             Traps(f);
             Zone(f);
@@ -348,7 +370,8 @@ namespace ColonyCouncil
                 }
             }
             // In a killbox the entrance turns so nobody sees the mouth: the shooters' job is the box itself.
-            var targets = new List<IntVec3> { target };
+            var targets = f.sightTargets;
+            targets.Add(target);
             foreach (var kv in f.replanned)
             {
                 if (kv.Key.Def?.kind != "killbox") continue;
@@ -363,6 +386,38 @@ namespace ColonyCouncil
             }
             var near = f.firing.Where(p => p.sees).Select(p => Mathf.Abs(f.line.Ahead(p.cell))).OrderBy(d => d).ToList();
             f.coverAt = near.Count > 0 ? near[near.Count / 2] : 0;
+        }
+
+        // ---------------- Lines laid out before plans were drawn ----------------
+
+        /// <summary>Lines of cover a plan drawn now lays out to the gate's sides or across behind it: the gate's, the perimeter wall's, the sandbag line, the firing line.</summary>
+        private static bool LinesOfCover(DefenseTemplateDef t) => t?.shape != null && (t.shape.family == DefenseShapes.SideLines || t.shape.family == DefenseShapes.FiringLine);
+
+        /// <summary>
+        /// A plan's numbers are kept with it since plans are drawn for the colony (0.14): a plan of lines of cover without
+        /// them was placed before, as its old fixed layout. Where the line knows of no such plan, and has no lines drawn for
+        /// the colony, the old shape is read from what stands behind its gate: firing positions on both sides of it, the
+        /// nearest within a grenade's throw, that no plan put where they are by design.
+        /// </summary>
+        private static void OldLines(DefenseLineFacts f)
+        {
+            foreach (var kv in f.replanned)
+            {
+                if (!LinesOfCover(kv.Key.Def) || kv.Key.Spec != null) continue;
+                var cells = new HashSet<IntVec3>(kv.Value.firing);
+                var standing = f.firing.Where(p => p.sees && cells.Contains(p.cell)).ToList();
+                if (standing.Count == 0 || f.oldLines != null && standing.Min(p => p.dist) >= f.OldLinesNearest) continue;
+                f.oldLines = kv.Key;
+                f.oldLinesAt = standing;
+            }
+            // Read from what stands only behind a gate, and only where the line has no lines drawn for the colony.
+            if (f.oldLines != null || f.door == null || f.replanned.Keys.Any(p => LinesOfCover(p.Def) && p.Spec != null)) return;
+            var placed = new HashSet<IntVec3>();
+            foreach (var kv in f.replanned)
+                if (kv.Key.Spec != null || kv.Key.Def?.shape == null)
+                    foreach (var c in kv.Value.firing) placed.Add(c);
+            var loose = f.firing.Where(p => p.sees && !placed.Contains(p.cell) && f.line.Ahead(p.cell) < 0).ToList();
+            if (DefenseLineMath.OldGateLines(loose.Select(p => (f.line.Lateral(p.cell), f.line.Ahead(p.cell))))) f.oldLinesAt = loose;
         }
 
         // ---------------- Turrets and traps ----------------
@@ -393,19 +448,58 @@ namespace ColonyCouncil
             return null;
         }
 
+        private static bool IsTurret(ThingDef d) => d?.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass) && !DefenseTemplateDef.IsMortar(d);
+
+        private static bool ByLine(DefenseLineFacts f, IntVec3 c) => f.line.Ahead(c) <= 3 && c.DistanceTo(f.gate) <= 22f;
+
+        /// <summary>
+        /// The turrets by the line, and those planned there (a blueprint or a frame, the line's own plans' among them), read
+        /// against the same cells as the firing positions: a turret sees the gate when one of the cells it stands on does,
+        /// as it never leans out to shoot. One in front of the wall is read against the cell in front of the gate, as the
+        /// gate itself stands between it and the cell inside. A working one that sees it within its gun's reach covers the gate.
+        /// </summary>
         private static void Turrets(DefenseLineFacts f)
         {
-            foreach (var b in Avail.ColonyBuildings(f.map, d => d.thingClass != null && typeof(Building_Turret).IsAssignableFrom(d.thingClass) && !DefenseTemplateDef.IsMortar(d)))
+            foreach (var b in Avail.ColonyBuildings(f.map, IsTurret))
             {
-                if (!(b is Building_Turret t)) continue;
-                int ahead = f.line.Ahead(t.Position);
-                if (ahead > 3 || t.Position.DistanceTo(f.gate) > 22f) continue;
+                if (!(b is Building_Turret t) || !ByLine(f, t.Position)) continue;
                 f.turrets.Add(t);
                 if (t.def.useHitPoints && t.HitPoints < t.MaxHitPoints * 0.6f) f.damaged.Add(t);
+                var p = TurretSight(f, t, t.def, t.OccupiedRect(), false, out bool reaches);
                 if (!Avail.IsAutoTurret(t.def) || TurretTrouble(t) != null) continue;
                 f.turretsWorking++;
                 f.turretWorth += TurretWorth(t);
+                if (p.sees && reaches) f.turretsSeeing++;
             }
+            foreach (var group in new[] { ThingRequestGroup.Blueprint, ThingRequestGroup.BuildingFrame })
+                foreach (var t in f.map.listerThings.ThingsInGroup(group))
+                    if (t.Faction == Faction.OfPlayer && t.def.entityDefToBuild is ThingDef td && IsTurret(td) && ByLine(f, t.Position))
+                        TurretSight(f, t, td, GenAdj.OccupiedRect(t.Position, t.Rotation, td.size), true, out _);
+        }
+
+        private static FirePos TurretSight(DefenseLineFacts f, Thing t, ThingDef td, CellRect rect, bool planned, out bool reaches)
+        {
+            var map = f.map;
+            var verb = td.building?.turretGunDef?.Verbs?.FirstOrDefault();
+            float range = verb?.range ?? 0f, minRange = verb?.minRange ?? 0f;
+            var p = new FirePos { cell = t.Position, turret = t, planned = planned, dist = t.Position.DistanceTo(f.gate) };
+            reaches = false;
+            var front = f.gate + f.outward;
+            var targets = f.line.Ahead(t.Position) > 0 && front.InBounds(map) ? new List<IntVec3> { front } : f.sightTargets;
+            foreach (var target in targets)
+            {
+                foreach (var c in rect)
+                {
+                    if (c == target || !c.InBounds(map) || !GenSight.LineOfSight(c, target, map, true)) continue;
+                    p.sees = true;
+                    float d = c.DistanceTo(target);
+                    reaches = (range <= 0f || d <= range) && d >= minRange;
+                    break;
+                }
+                if (reaches) break;
+            }
+            f.turretSight.Add(p);
+            return p;
         }
 
         private static bool InFront(DefenseLineFacts f, IntVec3 c, int depth, int half)

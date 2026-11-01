@@ -20,6 +20,12 @@ namespace ColonyCouncil
         public RecipeDef recipe;
         public Building_WorkTable bench;
         public bool billed, canMake, cycle, tooDeep;
+        /// <summary>Who works the bench for it (the one the record saw there lately, else the best able hand), their hours a day there, and the bench's own speed.</summary>
+        public Pawn hand;
+        public bool handSeen;
+        public float handHours, benchSpeed = 1f;
+        /// <summary>The use and the make come from the colony's record of the last days rather than the estimate.</summary>
+        public bool useMeasured, makeMeasured;
         public List<ChainNode> parts = new List<ChainNode>();
         /// <summary>A plant that yields it, the cells to sow for the want, and the zone that grows it already, if any.</summary>
         public ThingDef plant;
@@ -78,10 +84,14 @@ namespace ColonyCouncil
     /// <summary>
     /// Production chains followed to the end: from a thing wanted (the blueprints short of it, a bill waiting on it) down
     /// through the recipes of the benches the colony has, each part a link of its own, four links at most and never
-    /// round in a circle; with each link's rate of use (meals eaten, medicine spent, what the active bills take) and
-    /// of make (what the active bills give, what the growing zones yield), how long its stock lasts, and the bench and
-    /// recipe that would make it best (the best able hand's skill, the distance from the materials' store, the product
-    /// for the hour). A link no bench makes names the plant that yields it (<see cref="Sowing"/>). Rules in
+    /// round in a circle; with each link's rate of use and of make, how long its stock lasts, and the bench and recipe
+    /// that would make it best. Use is what the colony actually ate, wore out and used up over the last few days
+    /// (<see cref="ColonyUse"/>), or until that record covers a day an estimate (meals eaten, medicine spent, what the
+    /// active bills take). Make is worked out bench by bench: what a bench made lately by its own record, else its
+    /// active bills at its hand's speed times the bench's own, a hand who keeps several benches busy sharing the day
+    /// among them; and what the growing zones yield. The bench that makes a link is the one a bill for it already
+    /// stands on, else the best by its hand's skill, its speed, the distance from the materials' store and the product
+    /// for the hour. A link no bench makes names the plant that yields it (<see cref="Sowing"/>). Rules in
     /// <see cref="ChainMath"/>.
     /// </summary>
     public static class Chains
@@ -97,7 +107,26 @@ namespace ColonyCouncil
             public Dictionary<ThingDef, float> use = new Dictionary<ThingDef, float>(), make = new Dictionary<ThingDef, float>();
             public int colonists;
             public List<Pawn> workers = new List<Pawn>();
+            /// <summary>The colony's record of the last days (what was used, what each bench made, who worked it); null without one.</summary>
+            public ColonyUse.Read record;
+            /// <summary>The use comes from the record rather than the estimate.</summary>
+            public bool useMeasured;
+            /// <summary>Products whose make came, at one bench or more, from that bench's own record.</summary>
+            public HashSet<ThingDef> makeMeasured = new HashSet<ThingDef>();
+            /// <summary>The benches an active bill of each recipe stands on: the ones that actually do it.</summary>
+            public Dictionary<RecipeDef, List<Building_WorkTable>> doneAt = new Dictionary<RecipeDef, List<Building_WorkTable>>();
+            /// <summary>The benches with active bills each hand works, for sharing their day.</summary>
+            public Dictionary<Pawn, HashSet<Building_WorkTable>> busy = new Dictionary<Pawn, HashSet<Building_WorkTable>>();
+            private readonly Dictionary<(Building_WorkTable, RecipeDef), (Pawn hand, bool seen)> hands = new Dictionary<(Building_WorkTable, RecipeDef), (Pawn, bool)>();
             private readonly Dictionary<ThingDef, (RecipeDef recipe, Building_WorkTable bench)> best = new Dictionary<ThingDef, (RecipeDef, Building_WorkTable)>();
+
+            /// <summary>Who works the bench for the recipe, and whether the record saw them there (worked out once).</summary>
+            public Pawn Hand(Building_WorkTable bench, RecipeDef recipe, out bool seen)
+            {
+                if (!hands.TryGetValue((bench, recipe), out var h)) hands[(bench, recipe)] = h = Chains.FindHand(this, bench, recipe);
+                seen = h.seen;
+                return h.hand;
+            }
 
             public float Use(ThingDef d) => d != null && use.TryGetValue(d, out float v) ? v : 0f;
             public float Make(ThingDef d) => d != null && make.TryGetValue(d, out float v) ? v : 0f;
@@ -120,6 +149,8 @@ namespace ColonyCouncil
             ctx.colonists = map.mapPawns.FreeColonistsSpawnedCount;
             try
             {
+                ctx.record = ColonyUse.ReadFor(map);
+                ctx.useMeasured = ctx.record != null && ctx.record.measured;
                 Rates(ctx);
             }
             catch (Exception e)
@@ -138,41 +169,79 @@ namespace ColonyCouncil
             d[key] = had + v;
         }
 
-        /// <summary>Everyone's use and make in a day: meals eaten, medicine spent, what the active bills take and give, what the growing zones yield.</summary>
+        /// <summary>
+        /// Everyone's use and make in a day. Use: what the record says the colony used, or until it covers a day the
+        /// estimate (meals eaten, medicine spent, what the active bills take). Make, bench by bench: what the bench made
+        /// lately by its own record, else its active bills at its hand's speed there; and what the growing zones yield.
+        /// </summary>
         private static void Rates(Context ctx)
         {
             var map = ctx.map;
-            // Meals: everyone eats, from the kind of meal there is most of (else a simple meal's worth).
-            var meals = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => Making.KindOf(d) == "meals" && ctx.have(d) > 0).OrderByDescending(ctx.have).FirstOrDefault()
-                        ?? ThingDefOf.MealSimple;
-            if (meals != null) Bump(ctx.use, meals, ChainMath.MealsADay(ctx.colonists, Mathf.Max(0.3f, meals.ingestible?.CachedNutrition ?? 0.9f)));
-            // Medicine: one a day for each who needs tending, and a tenth a head for the small hurts; from the kind there is most of.
-            int tending = map.mapPawns.FreeColonistsSpawned.Count(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff());
-            var medicine = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.IsMedicine && ctx.have(d) > 0).OrderByDescending(ctx.have).FirstOrDefault();
-            if (medicine != null) Bump(ctx.use, medicine, tending + 0.1f * ctx.colonists);
-            // The active bills: what each takes and gives in a day, a bench's hours shared by its bills.
+            // The active bills, bench by bench, and the benches each hand keeps busy.
+            var activeAt = new List<(Building_WorkTable bench, List<Bill_Production> bills)>();
             foreach (var kv in ctx.benches)
                 foreach (var wt in kv.Value)
                 {
                     if (wt.BillStack == null) continue;
                     var active = wt.BillStack.Bills.OfType<Bill_Production>().Where(b => !b.suspended && b.recipe != null && Making.StillWanted(b, ctx.have)).ToList();
                     if (active.Count == 0) continue;
+                    activeAt.Add((wt, active));
                     foreach (var bill in active)
                     {
-                        var recipe = bill.recipe;
-                        float batches = ChainMath.BatchesADay(Work(recipe), Speed(ctx, recipe)) / active.Count;
-                        if (batches <= 0f) continue;
-                        if (recipe.products != null)
-                            foreach (var p in recipe.products)
-                                Bump(ctx.make, p?.thingDef, batches * (p?.count ?? 0));
-                        if (recipe.ingredients != null)
-                            foreach (var ing in recipe.ingredients)
-                            {
-                                var pick = Pick(ctx, recipe, ing, bill.ingredientFilter, out float units);
-                                if (pick != null) Bump(ctx.use, pick, batches * units);
-                            }
+                        if (!ctx.doneAt.TryGetValue(bill.recipe, out var at)) ctx.doneAt[bill.recipe] = at = new List<Building_WorkTable>();
+                        if (!at.Contains(wt)) at.Add(wt);
+                    }
+                    var hand = ctx.Hand(wt, active[0].recipe, out _);
+                    if (hand == null) continue;
+                    if (!ctx.busy.TryGetValue(hand, out var benches)) ctx.busy[hand] = benches = new HashSet<Building_WorkTable>();
+                    benches.Add(wt);
+                }
+            if (ctx.useMeasured)
+                foreach (var kv in ctx.record.used) Bump(ctx.use, kv.Key, kv.Value);
+            else
+            {
+                // Meals: everyone eats, from the kind of meal there is most of (else a simple meal's worth).
+                var meals = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => Making.KindOf(d) == "meals" && ctx.have(d) > 0).OrderByDescending(ctx.have).FirstOrDefault()
+                            ?? ThingDefOf.MealSimple;
+                if (meals != null) Bump(ctx.use, meals, ChainMath.MealsADay(ctx.colonists, Mathf.Max(0.3f, meals.ingestible?.CachedNutrition ?? 0.9f)));
+                // Medicine: one a day for each who needs tending, and a tenth a head for the small hurts; from the kind there is most of.
+                int tending = map.mapPawns.FreeColonistsSpawned.Count(p => p.health?.hediffSet != null && p.health.hediffSet.HasTendableHediff());
+                var medicine = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.IsMedicine && ctx.have(d) > 0).OrderByDescending(ctx.have).FirstOrDefault();
+                if (medicine != null) Bump(ctx.use, medicine, tending + 0.1f * ctx.colonists);
+            }
+            // The active bills: what each gives in a day (and, without the record, takes), a bench's hours shared by its bills.
+            foreach (var (wt, active) in activeAt)
+            {
+                Dictionary<ThingDef, float> made = null;
+                if (ctx.useMeasured) ctx.record.made.TryGetValue(wt.thingIDNumber, out made);
+                var counted = new HashSet<ThingDef>();
+                foreach (var bill in active)
+                {
+                    var recipe = bill.recipe;
+                    // The bench's own record of this bill's products, when it has one.
+                    if (made != null && recipe.products != null && recipe.products.Any(p => p?.thingDef != null && made.ContainsKey(p.thingDef)))
+                    {
+                        foreach (var p in recipe.products)
+                        {
+                            if (p?.thingDef == null || !counted.Add(p.thingDef) || !made.TryGetValue(p.thingDef, out float v)) continue;
+                            Bump(ctx.make, p.thingDef, v);
+                            ctx.makeMeasured.Add(p.thingDef);
+                        }
+                        continue;
+                    }
+                    float batches = ChainMath.BatchesADay(Work(recipe), Speed(ctx, recipe, wt), Hours(ctx, wt, recipe)) / active.Count;
+                    if (batches <= 0f) continue;
+                    if (recipe.products != null)
+                        foreach (var p in recipe.products)
+                            Bump(ctx.make, p?.thingDef, batches * (p?.count ?? 0));
+                    if (ctx.useMeasured || recipe.ingredients == null) continue;
+                    foreach (var ing in recipe.ingredients)
+                    {
+                        var pick = Pick(ctx, recipe, ing, bill.ingredientFilter, out float units);
+                        if (pick != null) Bump(ctx.use, pick, batches * units);
                     }
                 }
+            }
             // The growing zones: each cell's plant yields its harvest over its growing days.
             foreach (var zone in map.zoneManager.AllZones.OfType<Zone_Growing>())
             {
@@ -228,47 +297,100 @@ namespace ColonyCouncil
             return true;
         }
 
-        /// <summary>The best able hand's work speed for the recipe (its own speed stat, else the plain one); 0 when nobody can.</summary>
-        private static float Speed(Context ctx, RecipeDef recipe)
+        /// <summary>A hand's own work speed for the recipe, as the game reckons it at a bench (its speed stat; plain without one).</summary>
+        private static float HandSpeed(Pawn p, RecipeDef recipe)
         {
-            float best = 0f;
-            var stat = recipe.workSpeedStat ?? StatDefOf.WorkSpeedGlobal;
-            foreach (var p in ctx.workers)
+            if (p == null) return 0f;
+            if (recipe.workSpeedStat == null) return 1f;
+            try
             {
-                if (!Able(p, recipe)) continue;
-                float v;
-                try
-                {
-                    v = p.GetStatValue(stat);
-                }
-                catch
-                {
-                    v = 1f;
-                }
-                if (v > best) best = v;
+                return p.GetStatValue(recipe.workSpeedStat);
             }
-            return best;
+            catch
+            {
+                return 1f;
+            }
         }
 
-        /// <summary>The best able hand's skill for the recipe (five when the recipe takes no skill); -1 when nobody can.</summary>
-        private static int Skill(Context ctx, RecipeDef recipe)
+        /// <summary>A hand's skill for the recipe (five when the recipe takes no skill).</summary>
+        private static int SkillOf(Pawn p, RecipeDef recipe) => recipe.workSkill != null ? p.skills?.GetSkill(recipe.workSkill)?.Level ?? 0 : 5;
+
+        /// <summary>The bench's own speed for the recipe (a hand tailoring bench works at half); 0 when it can't be worked now.</summary>
+        public static float BenchFactor(Building_WorkTable bench, RecipeDef recipe)
         {
-            int best = -1;
+            if (bench == null) return 1f;
+            try
+            {
+                if (!bench.UsableForBillsAfterFueling()) return 0f;
+                return recipe?.workTableSpeedStat == null ? 1f : bench.GetStatValue(recipe.workTableSpeedStat);
+            }
+            catch
+            {
+                return 1f;
+            }
+        }
+
+        /// <summary>
+        /// Who works the bench for the recipe: the one who did the most batches there lately by the record, when they are
+        /// still here and able; else the best able hand not busy at another bench yet, by skill, then speed; else the
+        /// best busy one. Null when nobody can.
+        /// </summary>
+        internal static (Pawn hand, bool seen) FindHand(Context ctx, Building_WorkTable bench, RecipeDef recipe)
+        {
+            if (bench != null && ctx.record != null && ctx.record.doers.TryGetValue(bench.thingIDNumber, out var by))
+            {
+                Pawn seen = null;
+                float most = 0f;
+                foreach (var p in ctx.workers)
+                    if (by.TryGetValue(p.thingIDNumber, out float n) && n > most && Able(p, recipe))
+                    {
+                        most = n;
+                        seen = p;
+                    }
+                if (seen != null) return (seen, true);
+            }
+            Pawn pick = null;
+            bool pickIdle = false;
+            int bestSkill = -1;
+            float bestSpeed = -1f;
             foreach (var p in ctx.workers)
             {
                 if (!Able(p, recipe)) continue;
-                int level = recipe.workSkill != null ? p.skills?.GetSkill(recipe.workSkill)?.Level ?? 0 : 5;
-                if (level > best) best = level;
+                bool idle = !ctx.busy.TryGetValue(p, out var at) || at.Count == 0 || at.Count == 1 && at.Contains(bench);
+                int level = SkillOf(p, recipe);
+                float speed = HandSpeed(p, recipe);
+                if (pick != null && (pickIdle && !idle || pickIdle == idle && (level < bestSkill || level == bestSkill && speed <= bestSpeed))) continue;
+                pick = p;
+                pickIdle = idle;
+                bestSkill = level;
+                bestSpeed = speed;
             }
-            return best;
+            return (pick, false);
+        }
+
+        /// <summary>The work speed at the bench: its hand's for the recipe times the bench's own; 0 when nobody can work it or it can't be worked.</summary>
+        private static float Speed(Context ctx, RecipeDef recipe, Building_WorkTable bench)
+        {
+            var hand = ctx.Hand(bench, recipe, out _);
+            return hand == null ? 0f : ChainMath.BenchSpeed(HandSpeed(hand, recipe), BenchFactor(bench, recipe));
+        }
+
+        /// <summary>The hours a day the bench's hand gives it: their day shared among the benches with bills they work (this one counted).</summary>
+        private static float Hours(Context ctx, Building_WorkTable bench, RecipeDef recipe)
+        {
+            var hand = ctx.Hand(bench, recipe, out _);
+            if (hand == null) return 0f;
+            int n = ctx.busy.TryGetValue(hand, out var benches) ? benches.Count + (benches.Contains(bench) ? 0 : 1) : 1;
+            return ChainMath.HandHours(n);
         }
 
         // ---------------- Choosing ----------------
 
         /// <summary>
-        /// The recipe and bench that would make the product best: among every recipe here that gives it and every bench of
-        /// that kind, the best able hand's skill, less the distance from the bench to the nearest store of a batch's parts,
-        /// plus a little for the product an hour of work gives (ChainMath.BenchScore, Efficiency).
+        /// The recipe and bench that would make the product best: the bench an active bill for it already stands on (the
+        /// one that does it), else among every recipe here that gives it and every bench of that kind, the bench's hand's
+        /// skill, its own speed, less the distance from the bench to the nearest store of a batch's parts, plus a little
+        /// for the product an hour of work gives (ChainMath.BenchScore, Efficiency).
         /// </summary>
         private static (RecipeDef recipe, Building_WorkTable bench) BestMaker(Context ctx, ThingDef product)
         {
@@ -279,8 +401,8 @@ namespace ColonyCouncil
             foreach (var (recipe, benchDef) in list)
             {
                 if (!ctx.benches.TryGetValue(benchDef, out var benches)) continue;
-                int skill = Skill(ctx, recipe);
                 float eff = ChainMath.Efficiency(PerBatch(recipe, product), Work(recipe));
+                ctx.doneAt.TryGetValue(recipe, out var doing);
                 foreach (var bench in benches)
                 {
                     try
@@ -291,7 +413,10 @@ namespace ColonyCouncil
                     {
                         // A modded recipe that can't say: count it as available.
                     }
-                    float score = ChainMath.BenchScore(Mathf.Max(0, skill), StoreDistance(ctx, bench, recipe)) + eff * 0.2f - (skill < 0 ? 100f : 0f);
+                    var hand = ctx.Hand(bench, recipe, out _);
+                    int skill = hand == null ? -1 : SkillOf(hand, recipe);
+                    float score = ChainMath.BenchScore(Mathf.Max(0, skill), StoreDistance(ctx, bench, recipe), BenchFactor(bench, recipe)) + eff * 0.2f
+                                  - (skill < 0 ? 100f : 0f) + (doing != null && doing.Contains(bench) ? ChainMath.DoingBonus : 0f);
                     if (score > bestScore)
                     {
                         bestScore = score;
@@ -341,7 +466,11 @@ namespace ColonyCouncil
 
         private static ChainNode Build(Context ctx, ThingDef thing, int want, int depth, HashSet<ThingDef> path, string why)
         {
-            var node = new ChainNode { thing = thing, stock = ctx.have(thing), want = want, depth = depth, why = why, useADay = ctx.Use(thing), makeADay = ctx.Make(thing) };
+            var node = new ChainNode
+            {
+                thing = thing, stock = ctx.have(thing), want = want, depth = depth, why = why, useADay = ctx.Use(thing), makeADay = ctx.Make(thing),
+                useMeasured = ctx.useMeasured, makeMeasured = ctx.makeMeasured.Contains(thing)
+            };
             if (path.Contains(thing))
             {
                 node.cycle = true;
@@ -359,7 +488,10 @@ namespace ColonyCouncil
             node.bench = bench;
             node.billed = ctx.billed.Contains(recipe);
             node.perBatch = PerBatch(recipe, thing);
-            node.hoursABatch = ChainMath.HoursABatch(Work(recipe), Speed(ctx, recipe));
+            node.hand = ctx.Hand(bench, recipe, out node.handSeen);
+            node.benchSpeed = BenchFactor(bench, recipe);
+            node.handHours = Hours(ctx, bench, recipe);
+            node.hoursABatch = ChainMath.HoursABatch(Work(recipe), Speed(ctx, recipe, bench));
             node.target = ChainMath.Target(node.stock, want, node.useADay, MakingMath.TargetFor(Making.KindOf(thing), ctx.colonists));
             node.canMake = true;
             path.Add(thing);

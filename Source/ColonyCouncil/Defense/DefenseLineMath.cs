@@ -674,6 +674,24 @@ namespace ColonyCouncil
             return Reach.Good;
         }
 
+        /// <summary>
+        /// The shape a gate's lines of cover had before plans were drawn for the colony (0.14): firing positions behind
+        /// the line on both sides of the gate, the nearest within a grenade's throw of it. Each is (lateral, ahead) from
+        /// the gate, ahead below 0 behind the line. Drawn for raiders who throw grenades, a gate's lines stand out of a throw.
+        /// </summary>
+        public static bool OldGateLines(IEnumerable<(int lateral, int ahead)> firing)
+        {
+            bool left = false, right = false, near = false;
+            foreach (var (lateral, ahead) in firing)
+            {
+                if (ahead >= 0) continue;
+                if (lateral < 0) left = true;
+                else if (lateral > 0) right = true;
+                if (System.Math.Sqrt(lateral * lateral + ahead * ahead) < DefenseSight.GrenadeReach) near = true;
+            }
+            return left && right && near;
+        }
+
         // ---------------- Steps ----------------
 
         /// <summary>A plan's progress: the share of its pieces that stand (0 when it has none).</summary>

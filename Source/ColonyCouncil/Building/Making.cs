@@ -102,6 +102,9 @@ namespace ColonyCouncil
             public List<ChainNeed> needs = new List<ChainNeed>();
             /// <summary>Bills waiting on an ingredient the colony has none of.</summary>
             public List<StarvedBill> starved = new List<StarvedBill>();
+            /// <summary>The chains' rates come from the colony's record of use (ColonyUse), over so many days; else they are estimated.</summary>
+            public bool measured;
+            public float measuredDays;
         }
 
         private static readonly Dictionary<int, Result> cache = new Dictionary<int, Result>();
@@ -275,6 +278,8 @@ namespace ColonyCouncil
             foreach (var kv in billWants)
                 if (!shortWants.ContainsKey(kv.Key)) wants.Add((kv.Key, kv.Value, "CC_Making_WantedBill".Translate(wantedByBill[kv.Key]).Resolve()));
             var ctx = Chains.Prepare(map, Have, benches, billed, makers);
+            r.measured = ctx.useMeasured;
+            r.measuredDays = ctx.record?.days ?? 0f;
             foreach (var (d, shortBy, why) in wants.OrderByDescending(w => w.shortBy).ThenBy(w => w.def.label))
             {
                 ChainNode root;

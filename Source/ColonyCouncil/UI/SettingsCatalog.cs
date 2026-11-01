@@ -343,6 +343,7 @@ namespace ColonyCouncil
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");
             Toggle("weatherForecast", "CC_Settings_WeatherForecast", "CC_SetNote_WeatherForecast", "deepHooks");
+            Toggle("rainWashesMore", "CC_Settings_RainWash", "CC_SetNote_RainWash");
             Section("CC_SetSec_Calendar");
             Toggle("colonyCalendar", "CC_Settings_Calendar", "CC_SetNote_Calendar");
             Section("CC_SetSec_PlayOut");
@@ -391,6 +392,7 @@ namespace ColonyCouncil
             Section("CC_Settings_Messages");
             Choice("messageLevel", "CC_SetLabel_MessageLevel", "CC_SetTip_MessageLevel", "CC_MsgLevel_", "CC_SetNote_MsgLevel_", new[] { "Everything", "Notable", "LettersOnly" });
             Choice("colonyNews", "CC_SetLabel_ColonyNews", "CC_SetTip_ColonyNews", "CC_NewsMode_", "CC_SetNote_News_", new[] { "AsItHappens", "Digest", "Off" });
+            Toggle("quietNewsDays", "CC_Settings_QuietNewsDays", "CC_SetNote_QuietNewsDays", "colonyNews=Digest", "CC_SetWhy_QuietNewsDays");
             Toggle("allDreamMessages", "CC_Settings_AllDreamMessages", "CC_SetNote_AllDreamMessages", "dreams");
             Toggle("wishLetters", "CC_Settings_WishLetters", "CC_SetNote_WishLetters");
             Toggle("grantedLetters", "CC_Settings_GrantedLetters", "CC_SetNote_GrantedLetters");

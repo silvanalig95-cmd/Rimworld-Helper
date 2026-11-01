@@ -12,7 +12,8 @@ namespace ColonyCouncil
     /// from the eight cells around the target, full against a shot from straight ahead and less the wider the angle, a
     /// diagonal cell counting as if the angle were 1.75 times wider, a third as much when the shooter stands right at it and
     /// two thirds one cell off, several combining as 1 - (1 - a)(1 - b)). Cover is always reckoned at the target's own cell,
-    /// even while it leans out to fire.
+    /// even while it leans out to fire. Turrets count both ways, as the firing positions do: raiders shoot at any cell a
+    /// turret stands on, as at any building, and a turret shoots from those cells without ever leaning out.
     /// <para>
     /// Layout characters as in <see cref="DefenseLayout"/>. A gate is taken as held open (raiders walk through and see
     /// through it), as it should be in a raid. Ground the plan leaves alone, and anything off the layout, is taken as open
@@ -162,6 +163,41 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>The layout's turrets: each a piece, its root cell where it stands and the block it takes.</summary>
+        public static List<DefenseLayout.Piece> Turrets(DefenseLayout.Grid g) => g.pieces.FindAll(p => p.role == "turret");
+
+        private static bool BigTurret(DefenseLayout.Piece t) => t.w > 1 || t.h > 1;
+
+        /// <summary>
+        /// A turret shooting at someone at (tx, tz): Verb.TryFindShootLineFromTo for a caster that isn't a person, which
+        /// tries each cell the turret stands on and never leans; an autocannon can't fire closer than its minimum range.
+        /// </summary>
+        public static bool TurretSees(DefenseLayout.Grid g, DefenseLayout.Piece t, int tx, int tz)
+        {
+            if (BigTurret(t) && Distance(t.x, t.z, tx, tz) < BigMinRange) return false;
+            for (int z = t.z; z < t.z + t.h; z++)
+                for (int x = t.x; x < t.x + t.w; x++)
+                    if (TurretCanHit(g, x, z, tx, tz)) return true;
+            return false;
+        }
+
+        /// <summary>
+        /// Whether someone at (sx, sz) can shoot a turret: at any cell it stands on, as at any building, with no leaning out
+        /// on its side (ShootLeanUtility.CalcShootableCellsOf), while they lean out toward its nearest cell as at anyone.
+        /// </summary>
+        public static bool CanHitTurret(DefenseLayout.Grid g, int sx, int sz, DefenseLayout.Piece t)
+        {
+            fromCells ??= new List<(int, int)>();
+            int nx = Math.Max(t.x, Math.Min(t.x + t.w - 1, sx)), nz = Math.Max(t.z, Math.Min(t.z + t.h - 1, sz));
+            LeanSources(g, sx, sz, nx, nz, fromCells);
+            fromCells.Insert(0, (sx, sz));
+            foreach (var (fx, fz) in fromCells)
+                for (int z = t.z; z < t.z + t.h; z++)
+                    for (int x = t.x; x < t.x + t.w; x++)
+                        if (LineOfSight(g, fx, fz, x, z)) return true;
+            return false;
+        }
+
         /// <summary>CoverUtility.CalculateOverallBlockChance: the chance a shot from (sx, sz) at someone on (tx, tz) is stopped by cover around them.</summary>
         public static float Cover(DefenseLayout.Grid g, int tx, int tz, int sx, int sz)
         {
@@ -209,14 +245,19 @@ namespace ColonyCouncil
 
         /// <summary>
         /// How well a layout holds up, the way the game plays it: the worst cover any raider has while able to shoot at a
-        /// firing position (and where, and at whom), and the share of the cells raiders cross, before they reach the firing
-        /// positions, that at least one and at least two firing positions can shoot at. Cells right at the firing positions
-        /// and behind all of them (where a raider has already reached the line or got past it) are left out.
+        /// firing position (and where, and at whom), the same for its turrets (against the turret's own fire: a decoy shot
+        /// at from a corner of the way in, say), and the share of the cells raiders cross, before they reach the line,
+        /// that at least one and at least two firing positions or turrets can shoot at. Cells right at the firing positions
+        /// and behind all of them (where a raider has already reached the line or got past it) are left out; where nobody
+        /// shoots from the layout (a turret nest), the turrets are the line.
         /// </summary>
         public class Reading
         {
             public float worstCover;
             public int worstX = -1, worstZ = -1, worstFx = -1, worstFz = -1;
+            /// <summary>The worst cover a raider has while able to shoot at a turret, against that turret's own fire, and where.</summary>
+            public float turretCover;
+            public int turretX = -1, turretZ = -1, turretTx = -1, turretTz = -1;
             public int crossed, seenByOne, seenByTwo;
             public float nearestDoor = float.MaxValue;
         }
@@ -226,16 +267,18 @@ namespace ColonyCouncil
             var r = new Reading();
             var raider = RaiderCells(g);
             var firing = Firing(g);
-            if (firing.Count == 0) return r;
+            var turrets = Turrets(g);
+            var line = firing.Count > 0 ? firing : turrets.ConvertAll(t => (t.x, t.z));
+            if (line.Count == 0) return r;
             int rearmost = int.MaxValue;
-            foreach (var (_, fz) in firing) rearmost = Math.Min(rearmost, fz);
+            foreach (var (_, fz) in line) rearmost = Math.Min(rearmost, fz);
             for (int x = 0; x < g.W; x++)
             {
                 for (int z = 0; z < g.H; z++)
                 {
                     if (!raider[x, z] || z < rearmost) continue;
                     bool atLine = false;
-                    foreach (var (fx, fz) in firing)
+                    foreach (var (fx, fz) in line)
                         if (Math.Abs(fx - x) <= 2 && Math.Abs(fz - z) <= 2) atLine = true;
                     if (atLine) continue;
                     int seen = 0;
@@ -253,6 +296,20 @@ namespace ColonyCouncil
                             r.worstFz = fz;
                         }
                     }
+                    foreach (var t in turrets)
+                    {
+                        if (TurretSees(g, t, x, z)) seen++;
+                        if (!CanHitTurret(g, x, z, t)) continue;
+                        float c = Cover(g, x, z, t.x, t.z);
+                        if (c > r.turretCover)
+                        {
+                            r.turretCover = c;
+                            r.turretX = x;
+                            r.turretZ = z;
+                            r.turretTx = t.x;
+                            r.turretTz = t.z;
+                        }
+                    }
                     r.crossed++;
                     if (seen >= 1) r.seenByOne++;
                     if (seen >= 2) r.seenByTwo++;
@@ -265,10 +322,10 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// What's wrong with a layout by how raids really play out: raiders who can shoot at a firing position from good
-        /// cover (a corner they lean round, the walls of a doorway), firing positions within a grenade's throw of the
-        /// doorway when <paramref name="grenades"/>, turrets that would take each other or the shooters with them when they
-        /// blow, and a big turret too close to the doorway to fire at it. Empty: nothing wrong.
+        /// What's wrong with a layout by how raids really play out: raiders who can shoot at a firing position or a turret
+        /// from good cover (a corner they lean round, the walls of a doorway), firing positions within a grenade's throw of
+        /// the doorway when <paramref name="grenades"/>, turrets that would take each other or the shooters with them when
+        /// they blow, and a big turret too close to the doorway to fire at it. Empty: nothing wrong.
         /// </summary>
         public static List<string> Problems(DefenseLayout.Grid g, bool grenades)
         {
@@ -276,9 +333,11 @@ namespace ColonyCouncil
             var reading = Read(g);
             if (reading.worstCover > MaxRaiderCover)
                 list.Add($"a raider at ({reading.worstX},{reading.worstZ}) can shoot at the firing position ({reading.worstFx},{reading.worstFz}) from {reading.worstCover * 100f:0}% cover");
+            if (reading.turretCover > MaxRaiderCover)
+                list.Add($"a raider at ({reading.turretX},{reading.turretZ}) can shoot at the turret at ({reading.turretTx},{reading.turretTz}) from {reading.turretCover * 100f:0}% cover");
             if (grenades && g.doorX >= 0 && reading.nearestDoor < GrenadeReach)
                 list.Add($"a firing position is {reading.nearestDoor:0.0} cells from the doorway, within a grenade's throw");
-            var turrets = g.pieces.FindAll(p => p.role == "turret");
+            var turrets = Turrets(g);
             var firing = Firing(g);
             for (int i = 0; i < turrets.Count; i++)
             {

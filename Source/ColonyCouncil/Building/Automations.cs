@@ -179,6 +179,52 @@ namespace ColonyCouncil
             return result;
         }
 
+        // ---------------- The settings page ----------------
+
+        private static readonly Dictionary<string, string> settingsLines = new Dictionary<string, string>();
+        private static float settingsLinesAt = -999f;
+        private static Map settingsLinesMap;
+
+        /// <summary>
+        /// The line under an automation's switch on the settings page: what it would do right now on the home map in view
+        /// (else the colony's first home), from <see cref="Preview"/>, looked at again every few seconds while the page is
+        /// open; or that no game is loaded. Null for a setting that isn't an automation's own switch.
+        /// </summary>
+        public static string SettingsLine(string key)
+        {
+            if (key == null || !key.StartsWith("auto", StringComparison.Ordinal)) return null;
+            bool playing = Current.ProgramState == ProgramState.Playing && Current.Game != null;
+            var map = !playing ? null : Find.CurrentMap != null && Find.CurrentMap.IsPlayerHome ? Find.CurrentMap : Find.AnyPlayerHomeMap;
+            float now = Time.realtimeSinceStartup;
+            if (now - settingsLinesAt > 3f || now < settingsLinesAt || map != settingsLinesMap)
+            {
+                settingsLinesAt = now;
+                settingsLinesMap = map;
+                settingsLines.Clear();
+                var tracker = playing ? CouncilGameComponent.Instance?.automations : null;
+                var preview = tracker != null && map != null ? tracker.Preview(map) : null;
+                foreach (var (k, _) in Switches())
+                {
+                    string line;
+                    if (!playing) line = "CC_Auto_SetNoGame".Translate().Resolve();
+                    else if (preview == null) line = "CC_Auto_SetNoMap".Translate().Resolve();
+                    else
+                    {
+                        var texts = preview.FirstOrDefault(p => p.key == k).texts;
+                        if (texts == null || texts.Count == 0) line = "CC_Auto_SetNowNothing".Translate().Resolve();
+                        else
+                        {
+                            string body = string.Join(" ", texts.Take(2));
+                            if (texts.Count > 2) body += " " + "CC_Auto_SetMore".Translate(texts.Count - 2).Resolve();
+                            line = "CC_Auto_SetNow".Translate(body).Resolve();
+                        }
+                    }
+                    settingsLines[k] = line;
+                }
+            }
+            return settingsLines.TryGetValue(key, out var found) ? found : null;
+        }
+
         /// <summary>Everything the automations would do now on this map (only those switched on, or all of them), each with its doing.</summary>
         private List<AutoPending> Candidates(Map map, bool onlyOn)
         {

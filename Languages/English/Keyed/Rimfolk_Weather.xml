@@ -68,6 +68,9 @@
   <CC_Settings_WeatherForecast>Forecasts</CC_Settings_WeatherForecast>
   <CC_Settings_WeatherForecast_Tip>A few hours before the weather changes, the colonist who reads it best (Plants 6 or more, or an older hand with 3) says what's coming, if they're in view; the Overview's Weather card shows it too. The weather that comes is then held to unless it can no longer come. The forecast itself is right seven times in ten for a fair hand (Plants 6), and up to nine in ten for an old hand at it; a weather station from Stormproof or Weather Control makes it nearly certain and lets anyone read it. Whoever got it wrong may own up to it. Needs the deeper game hooks.</CC_Settings_WeatherForecast_Tip>
   <CC_SetNote_WeatherForecast>The one who reads the weather best says what's coming, and is mostly right.</CC_SetNote_WeatherForecast>
+  <CC_Settings_RainWash>Rain washes the yard</CC_Settings_RainWash>
+  <CC_Settings_RainWash_Tip>The game already lets rain wash some filth off the open ground: blood, dirt, vomit and the like. With this on, the harder it rains the faster it goes, so a day of steady rain leaves the yard clean of most of it. A drizzle adds nothing, rubble and other filth rain doesn't wash stay, and nothing under a roof is touched.</CC_Settings_RainWash_Tip>
+  <CC_SetNote_RainWash>Steady rain washes blood and dirt off the open ground faster.</CC_SetNote_RainWash>
   <CC_Overview_WeatherForecast>{0} expects {1}.</CC_Overview_WeatherForecast>
   <CC_Forecast_Rain>rain</CC_Forecast_Rain>
   <CC_Forecast_Storm>a storm</CC_Forecast_Storm>

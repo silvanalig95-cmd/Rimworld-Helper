@@ -310,6 +310,9 @@ namespace ColonyCouncil
             bool on = SettingsAccess.Met(s, e);
             float controlH = ControlHeight(e, t, width);
             string note = on ? NoteText(s, e, t) : WhyOff(s, e);
+            // An automation's switch also says what it would do right now on the map (Building/Automations.cs).
+            string now = e.kind == SettingKind.Toggle ? AutomationTracker.SettingsLine(e.id) : null;
+            if (!now.NullOrEmpty()) note = (note.NullOrEmpty() ? "" : note + "\n") + now.Colorize(UiKit.Info);
             float noteH = note.NullOrEmpty() ? 0f : NoteHeight(note, width);
             float h = controlH + noteH + RowGap;
             if (y + h < visibleTop || y > visibleBottom) return h;

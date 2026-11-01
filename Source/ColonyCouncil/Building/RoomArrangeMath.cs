@@ -24,6 +24,8 @@ namespace ColonyCouncil
     /// costs, and each piece is tried at its few best places to find the arrangement that walks best as a whole, with
     /// no work spot on someone else's way, no chair in the aisle, the main ways two wide where the room is busy, no floor
     /// cut off or left in dead-end slivers, and the biggest open stretch kept for gatherings and for what comes next.
+    /// The player can ask, room by room, for aisles one cell or two cells wide and for furniture to keep its place more
+    /// or less firmly (<see cref="Tuning"/>).
     /// </summary>
     public static class RoomArrangeMath
     {
@@ -38,8 +40,44 @@ namespace ColonyCouncil
         /// <summary>How much better a new place has to be before a piece is moved, before its own weight (<see cref="Keep"/>).</summary>
         public const float KeepBonus = 2.5f;
 
-        /// <summary>How much better a new place has to be before this piece is moved: the plain bonus, and up to five more for the work of moving it.</summary>
-        public static float Keep(Item it) => KeepBonus + Math.Min(Math.Max(0f, it.moveCost), 5f);
+        /// <summary>
+        /// How much better a new place has to be before this piece is moved: the plain bonus, and up to five more for the
+        /// work of moving it, all times the room's keep weight (<see cref="Tuning.keep"/>, 1 as usual).
+        /// </summary>
+        public static float Keep(Item it, float weight = 1f) => Math.Max(0f, weight) * (KeepBonus + Math.Min(Math.Max(0f, it.moveCost), 5f));
+
+        /// <summary>The keep weights the rearrange window offers: furniture moves for a small gain, as usual, or only for a clear one.</summary>
+        public const float KeepLight = 0.3f, KeepUsual = 1f, KeepFirm = 2.5f;
+
+        /// <summary>The aisles the rearrange window offers: as the room needs (two wide where it is busy), one cell, two cells.</summary>
+        public const int AisleAsNeeded = 0, AisleOne = 1, AisleTwo = 2;
+
+        /// <summary>How much a cell of a main way one cell wide counts against an arrangement, by the aisles asked for.</summary>
+        public static float SqueezeWeight(int aisle, bool busy)
+        {
+            switch (aisle)
+            {
+                case AisleOne: return 0f;
+                case AisleTwo: return 2f;
+                default: return busy ? 0.6f : 0.2f;
+            }
+        }
+
+        /// <summary>
+        /// Whether every way in the room counts as a main way, where a one-cell squeeze matters: always for two-cell
+        /// aisles, never for one-cell aisles, and otherwise in a busy room (more than one door, or six movable pieces).
+        /// </summary>
+        public static bool WideWays(int aisle, int doors, int movable) =>
+            aisle == AisleTwo || aisle != AisleOne && (doors > 1 || movable >= 6);
+
+        /// <summary>The player's knobs for one room (the rearrange window): how wide the aisles are kept and how firmly furniture keeps its place.</summary>
+        public class Tuning
+        {
+            /// <summary><see cref="AisleAsNeeded"/>, <see cref="AisleOne"/> or <see cref="AisleTwo"/>.</summary>
+            public int aisle = AisleAsNeeded;
+            /// <summary>Times the plain keep bonus: under 1 furniture moves for a smaller gain, over 1 only for a clearer one.</summary>
+            public float keep = KeepUsual;
+        }
 
         /// <summary>A light lights what is used within this share of its glow radius well enough to work by.</summary>
         public const float LitShare = 0.7f;
@@ -186,11 +224,14 @@ namespace ColonyCouncil
             /// <summary>The item that needs each cell kept open (a screen's watch row; -1 none).</summary>
             public int[,] use;
             public List<Item> items;
+            /// <summary>The room's knobs (the aisles, the keep weight).</summary>
+            public Tuning tuning;
 
-            public State(Grid g, List<Item> items)
+            public State(Grid g, List<Item> items, Tuning tuning = null)
             {
                 this.g = g;
                 this.items = items;
+                this.tuning = tuning ?? new Tuning();
                 occ = new int[g.w, g.h];
                 spot = new int[g.w, g.h];
                 use = new int[g.w, g.h];
@@ -235,9 +276,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Places every item that isn't fixed. Returns notes on what happened. Afterwards each item has its result
-        /// fields set; a stranded one keeps its current place.
+        /// fields set; a stranded one keeps its current place. <paramref name="tuning"/> is the room's knobs (null: as usual).
         /// </summary>
-        public static List<string> Arrange(Grid g, List<Item> items)
+        public static List<string> Arrange(Grid g, List<Item> items, Tuning tuning = null)
         {
             var notes = new List<string>();
             if (g == null || items == null) return notes;
@@ -245,7 +286,7 @@ namespace ColonyCouncil
             // round that doesn't end it leaves one more piece standing, so it ends.
             for (int round = 0; round <= items.Count; round++)
             {
-                var state = new State(g, items);
+                var state = new State(g, items, tuning);
                 bool stranded = false;
                 for (int i = 0; i < items.Count; i++)
                 {
@@ -352,7 +393,7 @@ namespace ColonyCouncil
                         if (!Valid(s, i, it, reach)) continue;
                         float score = Score(s, i, it, out string why);
                         bool same = AtCurrent(it);
-                        if (same) score += Keep(it);
+                        if (same) score += Keep(it, s.tuning.keep);
                         // Ties: closest to where it stands, then the lowest, leftmost.
                         if (found && score <= best + 0.0001f)
                         {
@@ -444,6 +485,35 @@ namespace ColonyCouncil
         }
 
         // ---------------- Scoring ----------------
+
+        /// <summary>What a cell of a one-cell gap beside a piece costs it when two-cell aisles are asked for.</summary>
+        public const float GapCost = 2f;
+
+        /// <summary>
+        /// The cells beside a piece that are open floor with a wall or a solid piece right behind them: one-cell gaps,
+        /// where two people can't pass.
+        /// </summary>
+        private static int OneCellGaps(State s, Item it)
+        {
+            int gaps = 0;
+            void Look(int x, int z, int dx, int dz)
+            {
+                if (!s.g.Floor(x, z) || s.Solid(x, z)) return;
+                int bx = x + dx, bz = z + dz;
+                if (!s.g.Floor(bx, bz) || s.Solid(bx, bz)) gaps++;
+            }
+            for (int x = it.minX; x < it.minX + it.w; x++)
+            {
+                Look(x, it.minZ - 1, 0, -1);
+                Look(x, it.minZ + it.h, 0, 1);
+            }
+            for (int z = it.minZ; z < it.minZ + it.h; z++)
+            {
+                Look(it.minX - 1, z, -1, 0);
+                Look(it.minX + it.w, z, 1, 0);
+            }
+            return gaps;
+        }
 
         private static float Score(State s, int i, Item it, out string why)
         {
@@ -1158,8 +1228,11 @@ namespace ColonyCouncil
             return uses;
         }
 
+        /// <summary>Every way a main way, a one-cell squeeze on any of them counted (<see cref="WideWays"/>, by the room's aisles).</summary>
+        private static bool Wide(State s) => WideWays(s.tuning.aisle, s.g.doorInside.Count, s.items.Count(o => !o.fixedPlace));
+
         /// <summary>A busy room: many movable pieces or more than one door, where the main ways should be two wide.</summary>
-        private static bool Wide(State s) => s.g.doorInside.Count > 1 || s.items.Count(o => !o.fixedPlace) >= 6;
+        private static bool Busy(State s) => WideWays(AisleAsNeeded, s.g.doorInside.Count, s.items.Count(o => !o.fixedPlace));
 
         private static RoomWalkMath.Review Measure(State s) =>
             RoomWalkMath.Measure(s.g.w, s.g.h, (x, z) => CellOf(s, x, z), s.g.doorInside, Uses(s), Wide(s));
@@ -1177,14 +1250,13 @@ namespace ColonyCouncil
                 var it = s.items[i];
                 if (it.fixedPlace || it.stranded) continue;
                 q += Score(s, i, it, out _);
-                if (AtCurrent(it)) q += Keep(it);
+                if (AtCurrent(it)) q += Keep(it, s.tuning.keep);
             }
             review = Measure(s);
-            bool wide = Wide(s);
             q -= review.walk * 0.02f;
             q -= review.inWay * 2f;
             q -= review.slowed * 0.8f;
-            q -= review.squeezes * (wide ? 0.6f : 0.2f);
+            q -= review.squeezes * SqueezeWeight(s.tuning.aisle, Busy(s));
             q -= review.deadEnds * 0.3f;
             q -= review.lostFloor * 1f;
             q -= review.unreached * 3f;
@@ -1199,12 +1271,17 @@ namespace ColonyCouncil
             public string why;
         }
 
-        /// <summary>The piece's best valid, reachable places by its own score (its own place among them), best first.</summary>
+        /// <summary>
+        /// The piece's best valid, reachable places by its own score (its own place among them), best first. With two-cell
+        /// aisles asked for, a place that leaves a one-cell gap beside the piece ranks lower, so the places tried keep the
+        /// ways open.
+        /// </summary>
         private static List<Candidate> Candidates(State s, int i, bool[,] reach, int max)
         {
             var it = s.items[i];
             var all = new List<Candidate>();
             int facings = it.rotatable ? 4 : 1;
+            bool gaps = s.tuning.aisle == AisleTwo && !it.passable;
             for (int z = 0; z < s.g.h; z++)
                 for (int x = 0; x < s.g.w; x++)
                     for (int f = 0; f < facings; f++)
@@ -1212,7 +1289,8 @@ namespace ColonyCouncil
                         SetResult(it, x, z, f);
                         if (!Valid(s, i, it, reach)) continue;
                         float score = Score(s, i, it, out string why);
-                        if (AtCurrent(it)) score += Keep(it);
+                        if (AtCurrent(it)) score += Keep(it, s.tuning.keep);
+                        if (gaps) score -= OneCellGaps(s, it) * GapCost;
                         all.Add(new Candidate { x = x, z = z, rot = f, score = score, why = why });
                     }
             all.Sort((a, b) =>
@@ -1287,12 +1365,13 @@ namespace ColonyCouncil
 
         /// <summary>
         /// How the room walks and how its floor is used, with every piece where the arrangement puts it, or, with
-        /// <paramref name="now"/>, where each stands today (for the player to see what the arranging changes).
+        /// <paramref name="now"/>, where each stands today (for the player to see what the arranging changes). The squeezes
+        /// are counted on the ways the room's aisles make main ways (<paramref name="tuning"/>, null: as usual).
         /// </summary>
-        public static RoomWalkMath.Review Review(Grid g, List<Item> items, bool now)
+        public static RoomWalkMath.Review Review(Grid g, List<Item> items, bool now, Tuning tuning = null)
         {
             var shown = Shown(items, now);
-            var s = new State(g, shown);
+            var s = new State(g, shown, tuning);
             for (int i = 0; i < shown.Count; i++) s.Put(i, shown[i]);
             return Measure(s);
         }

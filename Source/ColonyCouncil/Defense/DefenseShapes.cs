@@ -135,7 +135,8 @@ namespace ColonyCouncil
     /// four or five cells so the corner before the last turn can't see the firing positions; a bare box as wide as the
     /// shooters need, no shooter within two cells of the axis, all of them within about 24° of it so the doorway gives
     /// a raider no cover; deep enough to cross under fire and, against grenades, more than a throw from the doorway;
-    /// double walls once past bows; decoy turrets on the axis; traps and things that slow in the way in, never in the box.</item>
+    /// double walls once past bows; decoy turrets beside the axis, or a big turret behind the line, where the way in can't
+    /// see them; traps and things that slow in the way in, never in the box.</item>
     /// <item>Side lines behind a gate: each half off to its side, far enough out that nobody outside the gate sees it,
     /// close enough in that a raider in the gate has little cover from its sides.</item>
     /// <item>A firing line and a post of pockets (a wall in front, sandbags on the front corners and beside), a turret
@@ -306,11 +307,14 @@ namespace ColonyCouncil
                 if (a + rest > MaxSize) a = Math.Max(floor, MaxSize - rest);
             }
 
+            bool big = s.turretSize >= 2 && s.turrets > 0;
+            var offsets = big ? BigOffsets : DecoyOffsets;
             DefenseShape shape = null;
+            DefenseSight.Reading reading = null;
             for (int attempt = 0; attempt < 10; attempt++)
             {
-                shape = DrawBox(o, s, pocket, emb, perSide, first, hw, wallT, W, ax, drop, leg, straight, a, perSide2);
-                var reading = DefenseSight.Read(shape.grid);
+                shape = DrawBox(o, s, pocket, emb, perSide, first, hw, wallT, W, ax, drop, leg, straight, a, perSide2, offsets[0]);
+                reading = DefenseSight.Read(shape.grid);
                 if (reading.worstCover <= DefenseSight.MaxRaiderCover) break;
                 // Seen from the way in: a longer straight. From the box: a little further back (narrower angles).
                 int worstRow = shape.grid.H - 1 - reading.worstZ;
@@ -319,11 +323,28 @@ namespace ColonyCouncil
                 else a++;
             }
             if (perSide2 > 0 && (shape.grid.H > MaxSize || shape.depth + RankGap > RangeDepth(first + 1 + 2 * (perSide2 - 1), s.range))) return null;
-            return shape;
+            // A turret the way in can see is shot at from its corner, where the turret's answer meets the wall: further
+            // off the axis until the way in can't see it, or left out where nowhere is out of its sight.
+            if (reading.turretCover <= DefenseSight.MaxRaiderCover) return shape;
+            for (int i = 1; i < offsets.Length; i++)
+            {
+                var moved = DrawBox(o, s, pocket, emb, perSide, first, hw, wallT, W, ax, drop, leg, straight, a, perSide2, offsets[i]);
+                if (moved == null) break;
+                var r = DefenseSight.Read(moved.grid);
+                if (r.turretCover <= DefenseSight.MaxRaiderCover && r.worstCover <= Math.Max(DefenseSight.MaxRaiderCover, reading.worstCover)) return moved;
+            }
+            return DrawBox(o, s, pocket, emb, perSide, first, hw, wallT, W, ax, drop, leg, straight, a, perSide2, -1);
         }
 
+        /// <summary>How far off the axis a box tries its decoy turrets (on alternate sides), and its big turret behind the line, in turn.</summary>
+        private static readonly int[] DecoyOffsets = { 2, 3, 4, 5, 6 }, BigOffsets = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
+
+        /// <summary>
+        /// The box, with a second rank of <paramref name="perSide2"/> a side, its turrets <paramref name="turretOff"/> cells
+        /// off the axis (-1: none); null when they wouldn't fit there.
+        /// </summary>
         private static DefenseShape DrawBox(DefenseShapeOptions o, DefenseShapeSpec s, bool pocket, bool emb, int perSide, int first, int hw, int wallT, int W, int ax,
-            int drop, int leg, int straight, int a, int perSide2)
+            int drop, int leg, int straight, int a, int perSide2, int turretOff)
         {
             int rl = o.front ? 1 : 0;
             int thick = Math.Max(1, o.thick);
@@ -397,18 +418,23 @@ namespace ColonyCouncil
             }
             SecondRank(cv, ax, rf2, first, perSide2, hw);
 
-            // Decoy turrets on the axis, in front of the line: they draw the fire, and none stands near a shooter or the doorway.
-            // A big one would give a raider beside it half cover, so it stands behind the gap and shoots through it.
-            if (bigTurret)
+            // Decoy turrets in front of the line, near the axis and on alternate sides of it: they draw the fire, none stands
+            // near a shooter or the doorway, and the way in can't see them (a raider at its last corner would shoot them from
+            // behind the wall). A big one would give a raider beside it half cover, so it stands behind the line and shoots
+            // through the gap, or over the cover beside it.
+            if (bigTurret && turretOff >= 0)
             {
-                cv[rb, ax - 1] = DefenseLayout.Turret;
-                cv[rb, ax] = cv[rb - 1, ax - 1] = cv[rb - 1, ax] = DefenseLayout.TurretRoom;
+                int c0 = ax - 1 + turretOff;
+                if (c0 + 1 >= W - wallT) return null;
+                cv[rb, c0] = DefenseLayout.Turret;
+                cv[rb, c0 + 1] = cv[rb - 1, c0] = cv[rb - 1, c0 + 1] = DefenseLayout.TurretRoom;
             }
-            else if (s.turretSize == 1)
+            else if (s.turretSize == 1 && turretOff >= 0)
                 for (int i = 0; i < Math.Min(s.turrets, 2); i++)
                 {
-                    int r = rc - 6 - 4 * i;
-                    if (r >= rd + 3) cv[r, ax] = DefenseLayout.Turret;
+                    int r = rc - 6 - 4 * i, c = ax + (i % 2 == 0 ? -turretOff : turretOff);
+                    if (c < wallT || c >= W - wallT) return null;
+                    if (r >= rd + 3) cv[r, c] = DefenseLayout.Turret;
                 }
 
             // The way in: things that slow every other cell in its outer part (a tunnel, big raids), and traps further in.

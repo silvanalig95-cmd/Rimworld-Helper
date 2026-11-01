@@ -75,4 +75,11 @@
   <CC_Check_Auto_None>Every automation is off: the council only suggests. Switch them on under Building in the settings.</CC_Check_Auto_None>
   <CC_Check_Auto_Nothing>Nothing done yet.</CC_Check_Auto_Nothing>
 
+  <!-- Under each automation's switch on the settings page: what it would do right now on the map. -->
+  <CC_Auto_SetNow>If it ran now: {0}</CC_Auto_SetNow>
+  <CC_Auto_SetNowNothing>If it ran now: nothing to do on this map.</CC_Auto_SetNowNothing>
+  <CC_Auto_SetMore>(and {0} more)</CC_Auto_SetMore>
+  <CC_Auto_SetNoGame>No game is loaded. In a game, this line says what it would do right now.</CC_Auto_SetNoGame>
+  <CC_Auto_SetNoMap>No home map is open. On the colony's map, this line says what it would do right now.</CC_Auto_SetNoMap>
+
 </LanguageData>

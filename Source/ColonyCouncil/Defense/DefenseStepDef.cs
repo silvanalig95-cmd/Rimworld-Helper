@@ -145,7 +145,7 @@ namespace ColonyCouncil
         public IntVec3 look = IntVec3.Invalid;
         /// <summary>Its disc's tooltip, made once per review.</summary>
         public string tip;
-        /// <summary>The plans a finished step offers to build again, made once per review (<see cref="DefenseStepWorker.Choices"/>).</summary>
+        /// <summary>The plans the step offers, its own pick first: to build again once done, to choose from before. Made once per review (<see cref="DefenseStepWorker.Choices"/>).</summary>
         public List<DefenseTemplateDef> choices;
 
         public bool Counts => state != StepState.Skipped && state != StepState.NotApplicable;
@@ -186,8 +186,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The plans a finished step can build again: the one it picked for the line first, then the rest of its own
-        /// that fit the colony's era. A step that picked no plan (the field of fire, a wall behind embrasures) has none.
+        /// The plans a step offers, to build again once it's done or to choose from before: the one it picked for the
+        /// line first, then the rest of its own that fit the colony's era. A step that picked no plan (the field of fire,
+        /// a wall behind embrasures) has none.
         /// </summary>
         public virtual List<DefenseTemplateDef> Choices(DefenseLineFacts f, StepResult r)
         {

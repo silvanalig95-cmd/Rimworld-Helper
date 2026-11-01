@@ -255,8 +255,8 @@
   <ColonyCouncil.DefenseTemplateDef>
     <defName>Rimfolk_Defense_Killbox</defName>
     <label>killbox</label>
-    <description>A wall with a single opening, a narrow entrance that turns twice and then runs straight for five cells, traps in the entrance, a deep bare box with decoy turrets in its middle, and at the far end a firing position in a pocket for each of your shooters, with a gap in the middle. Double walls past bows.</description>
-    <purpose>Raiders take the easiest way in, and this is it: they come round the turns one at a time into open ground under every gun the colony has. The way through stays open, so they keep coming rather than breaking walls elsewhere. Nobody at the last corner can see the shooters, the doorway gives a raider no cover from them, and they stand more than a grenade's throw from it. The decoys draw the fire; a big turret stands behind the gap, out of its own blast's reach of anyone.</purpose>
+    <description>A wall with a single opening, a narrow entrance that turns twice and then runs straight for five cells, traps in the entrance, a deep bare box with decoy turrets to either side of its middle, and at the far end a firing position in a pocket for each of your shooters, with a gap in the middle. Double walls past bows.</description>
+    <purpose>Raiders take the easiest way in, and this is it: they come round the turns one at a time into open ground under every gun the colony has. The way through stays open, so they keep coming rather than breaking walls elsewhere. Nobody at the last corner can see the shooters, the doorway gives a raider no cover from them, and they stand more than a grenade's throw from it. The decoys draw the fire where nobody at the last corner can see them; a big turret stands behind the line beside the gap, out of that corner's sight and its own blast's reach of anyone.</purpose>
     <kind>killbox</kind>
     <order>30</order>
     <line>0</line>
@@ -297,7 +297,7 @@
       <li>The turns and the straight after them stop raiders shooting from the corner with the wall as cover. One cell wide, the entrance is also where a good melee fighter holds them one at a time, just inside the box.</li>
       <li>Keep the box bare: a chunk, a tree or a stool in it is cover for them. And hold fire until they're in it, or every gun fires at the first one through and the rest stop in the bends.</li>
       <li>Each shooter stands behind a piece of wall with sandbags beside it: they lean out to shoot and keep the wall's cover.</li>
-      <li>[!lowtech]An autocannon can't hit anything within about nine cells: it stands behind the gap in the line, shooting through it. Mini-turrets out in the box are decoys, four cells apart, so one blowing up doesn't take the next.</li>
+      <li>[!lowtech]Mini-turrets out in the box are decoys, to either side of its middle and more than four cells apart, so one blowing up doesn't take the next. An autocannon can't hit anything within about nine cells: it stands behind the line, off to one side of the gap. Neither stands where a raider at the last corner sees it, or he would stop there and shoot at it with the wall as his cover.</li>
       <li>[lowtech]Without turrets the box is just as deadly with bows: more archers at the line, closer in.</li>
       <li>Sappers, breachers and drop pods ignore a killbox. Keep weapons by the beds and a second line inside.</li>
       <li>Against raids of 3000 points and more, with more shooters than the line holds, a second rank stands three rows behind it, each between two of the first rank's places, behind sandbags of its own. A shot never strikes anyone it passes within five cells of the shooter, so the first rank doesn't catch the second's shots.</li>

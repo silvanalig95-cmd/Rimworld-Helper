@@ -133,6 +133,8 @@ namespace ColonyCouncil
         public bool weatherTemperature = true;
         /// <summary>Someone who reads the weather (or a weather station) says what's coming, and is right as often as they're good at it.</summary>
         public bool weatherForecast = true;
+        /// <summary>The harder it rains, the faster blood, dirt and other filth the game lets rain wash comes off the open ground (Weather/RainWash.cs).</summary>
+        public bool rainWashesMore = true;
         /// <summary>How hard the fights a Rimfolk scenario promises hit (share of their usual strength).</summary>
         public float scenarioThreat = 1f;
         /// <summary>How often the smaller things happen: 1 = as designed, 0.25 = rarely, 3 = often.</summary>
@@ -200,6 +202,8 @@ namespace ColonyCouncil
         public MessageLevel messageLevel = MessageLevel.Notable;
         /// <summary>Where the smaller news goes: a message as it happens, one letter each evening (default), or only the History tab (UI/News.cs).</summary>
         public NewsMode colonyNews = NewsMode.Digest;
+        /// <summary>A quiet day's few pieces of evening news come as one short message instead of a letter (UI/NewsQuiet.cs); busy days are as before.</summary>
+        public bool quietNewsDays = true;
         public EraMode era = EraMode.Auto;
         public float daysBetweenDilemmas = 10f;
         public bool eventWishes = true;
@@ -412,6 +416,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref dynamicWeather, "dynamicWeather", true);
             Scribe_Values.Look(ref weatherTemperature, "weatherTemperature", true);
             Scribe_Values.Look(ref weatherForecast, "weatherForecast", true);
+            Scribe_Values.Look(ref rainWashesMore, "rainWashesMore", true);
             Scribe_Values.Look(ref scenarioThreat, "scenarioThreat", 1f);
             Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);
             Scribe_Values.Look(ref momentFrequency, "momentFrequency", 1f);
@@ -456,6 +461,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref allDreamMessages, "allDreamMessages", false);
             Scribe_Values.Look(ref messageLevel, "messageLevel", MessageLevel.Notable);
             Scribe_Values.Look(ref colonyNews, "colonyNews", NewsMode.Digest);
+            Scribe_Values.Look(ref quietNewsDays, "quietNewsDays", true);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             Scribe_Values.Look(ref daysBetweenDilemmas, "daysBetweenDilemmas", 10f);
             Scribe_Values.Look(ref eventWishes, "eventWishes", true);

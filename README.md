@@ -1305,12 +1305,14 @@ ranged fighters and their reach, whether the raiders it meets throw grenades, it
 turret it would build. A killbox's way in turns twice and then runs straight for four or five cells, so a raider at
 the last corner, leaning out round it, sees only the middle of the box; the box is bare, as wide as the shooters
 need, deep enough that every shooter is within about 24° of the doorway's line (where its walls give the raider in it
-no cover) and, against grenades, more than a throw from it; double walls once past bows; decoy mini-turrets on its
-middle line, or an autocannon behind the gap in the line, out of its blast's reach of anyone; traps and things that
-slow them in the way in, never in the box. Side lines behind a gate stand far enough out that nobody outside sees
+no cover) and, against grenades, more than a throw from it; double walls once past bows; decoy mini-turrets to either
+side of its middle line, or an autocannon behind the line beside the gap, where the last corner can't see them and out
+of their blast's reach of anyone; traps and things that slow them in the way in, never in the box. Side lines behind a gate stand far enough out that nobody outside sees
 them and close enough in that the gate gives a raider little cover. The planner says what a plan was drawn for, and
 **Shooters** and **Depth** add or take away; a placed plan remembers what it was drawn for, and a defense line's
-review offers to plan a killbox again when the colony outgrows it (or when it was laid out before plans were drawn). Each uses what the colony can build: barricades and log gates in a medieval colony,
+review offers to plan a killbox again when the colony outgrows it (or when it was laid out before plans were drawn),
+and a gate's lines of cover again when they were laid out before and stand within a grenade's throw of raiders who
+throw them. Each uses what the colony can build: barricades and log gates in a medieval colony,
 sandbags, mini-turrets and autocannons once researched, and the defenses of Medieval Overhaul and Vanilla Furniture
 Expanded - Security where they're there. A plan the colony can't build yet is greyed with what it lacks, research
 included. A plan with a wall line can **close the gap**: the wall carries on to the rock, a wall or deep water on both
@@ -1320,7 +1322,8 @@ deep inside, as the plan needs. Every plan is checked in every turn and mirrored
 gates in wall lines with a way through, every firing position covered toward the threat (or in a pocket it can lean
 out of) with open ground in front, traps on the raiders' way and never side by side or by a gate, turrets three cells
 apart. The tests also draw every drawn plan for about 650 different colonies and check each against a port of the
-game's own line of sight, leaning and cover: nobody may shoot at a firing position from better than 45% cover.
+game's own line of sight, leaning and cover: nobody may shoot at a firing position or a turret from better than 45%
+cover.
 
 **Defense lines** build one gap up a step at a time with the helper. Make a line from a gap's advice, from **New
 defense line** (the gaps without one, busiest first, or a spot picked on the map), or by putting a gate on a gap; say
@@ -1330,10 +1333,11 @@ ladder**: close the gap, clear the field of fire, cover behind the gate, traps o
 full or tunnel killbox as the place allows, tried at the gate first and, if it doesn't fit, where it would), harden the
 line, a line to fall back to. Each step says why now, how it works and the common mistakes, and is ticked off by what
 stands on the map, built by plan or by hand; **Plan this step** opens the planner already placed and turned for the
-line, and plans placed for a line (or near its gate) join it. The helper's notes check the line the way a seasoned
-player would, each with a fix where it can: the way round with the gate shut ("the wall stops 4 cells short of the
-rock to the west", with **Wall it off**), which firing positions see the gate and from how far against the colony's
-best weapon, trees and chunks raiders would shelter behind (**Cut and haul**), turrets that would blow each other up or
+line (a step with more than one plan lists them, the one picked for the line first), and plans placed for a line (or
+near its gate) join it. The helper's notes check the line the way a seasoned player would, each with a fix where it
+can: the way round with the gate shut ("the wall stops 4 cells short of the rock to the west", with **Wall it off**),
+which firing positions and turrets, built or planned, see the gate and from how far against the colony's best weapon,
+trees and chunks raiders would shelter behind (**Cut and haul**), turrets that would blow each other up or
 have no power, wood in the wall, a gate not held open, the dark for a belief that fights better in it, and upkeep
 after a raid. A rough **strength** sets the line against today's raids ("should hold a raid of about 1,500 points with
 everyone at their posts"), with its parts in the tooltip. While raiders are on the map the lines watch how they come

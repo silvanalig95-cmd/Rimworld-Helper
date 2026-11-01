@@ -47,6 +47,8 @@ namespace ColonyCouncil
             if (!due && PlayOutMath.HoursUntil(hour, p.hourFrom, p.hourTo) > PlayOutMath.CookLead) return false;
             Count(p);
             var bill = p.cookBill;
+            // A visiting cook whose people are leaving (or who is down) stops, and puts down what they had in hand for it.
+            if (p.cook != null && p.cook.Faction != Faction.OfPlayer && !Outsider(p, p.cook)) LetGo(p.cook, bill);
             // Enough cooked, or time the feast went ahead (it's been cooking a while once due, or it can't wait much
             // longer): the meal in the pot is the last.
             if (bill != null && !bill.DeletedOrDereferenced
@@ -112,6 +114,7 @@ namespace ColonyCouncil
             p.cookOver = true;
             if (p.state == PlayState.Pending) p.waitReason = null;
             var bill = p.cookBill;
+            if (p.cook != null && p.cook.Faction != Faction.OfPlayer) LetGo(p.cook, bill);
             p.cookBill = null;
             try
             {
@@ -120,6 +123,31 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("feast bill", e);
+            }
+        }
+
+        /// <summary>
+        /// A visiting cook off the feast's bill: their cooking (or fuelling the stove for it) stopped if it's still going,
+        /// and an ingredient or the stove's fuel they were carrying put down where they stand. A carried thing stays in
+        /// hand when a job ends, so without this something from the colony's stores could leave the map with them.
+        /// </summary>
+        private static void LetGo(Pawn x, Bill_Production bill)
+        {
+            if (x == null || !x.Spawned || bill == null) return;
+            try
+            {
+                var stove = bill.billStack?.billGiver as Thing;
+                var job = x.CurJob;
+                if (job != null && (job.bill == bill || stove != null && job.def == JobDefOf.Refuel && job.targetA.Thing == stove))
+                    x.jobs.EndCurrentJob(JobCondition.InterruptForced);
+                var held = x.carryTracker?.CarriedThing;
+                var fuel = (stove as ThingWithComps)?.GetComp<CompRefuelable>()?.Props?.fuelFilter;
+                if (held != null && !(held is Pawn) && (bill.IsFixedOrAllowedIngredient(held) || fuel != null && fuel.Allows(held)))
+                    x.carryTracker.TryDropCarriedThing(x.Position, ThingPlaceMode.Near, out _);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("a visiting cook leaving the stove", e);
             }
         }
 

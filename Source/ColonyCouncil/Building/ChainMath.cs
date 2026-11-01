@@ -7,7 +7,9 @@ namespace ColonyCouncil
     /// <summary>
     /// Production chains followed to the end (Building/Chains.cs) as plain rules: how many batches a bench turns out in
     /// a day, how long a stock lasts at its net use, what a parent's want asks of each part, a node's bill count, how
-    /// long a batch takes, which recipe and bench to prefer. Pure, so Tools/Tests can check them.
+    /// long a batch takes, which recipe and bench to prefer. A bench works at its hand's speed times its own (a hand
+    /// tailoring bench at half), and a hand who keeps several benches busy shares a day's work hours among them.
+    /// Pure, so Tools/Tests can check them.
     /// </summary>
     public static class ChainMath
     {
@@ -15,6 +17,16 @@ namespace ColonyCouncil
         public const int MaxDepth = 4;
         /// <summary>Hours a worker spends at a bench in a day, for the make rate.</summary>
         public const float WorkHoursADay = 8f;
+        /// <summary>The bench a bill for it already stands on is the one that does it: this much on top of its score.</summary>
+        public const float DoingBonus = 50f;
+        /// <summary>A bench that can't be worked now (no power, broken down) scores this much less.</summary>
+        public const float UnusablePenalty = 20f;
+
+        /// <summary>The work speed at a bench: the hand's own times the bench's (1 is plain, 0 when it can't be worked).</summary>
+        public static float BenchSpeed(float handSpeed, float benchFactor) => Math.Max(0f, handSpeed) * Math.Max(0f, benchFactor);
+
+        /// <summary>A hand's work hours a day at one bench, shared among the benches they keep busy.</summary>
+        public static float HandHours(int benches) => WorkHoursADay / Math.Max(1, benches);
         /// <summary>A node's bill count covers this many days of its use beyond the want.</summary>
         public const float BufferDays = 3f;
         /// <summary>Nutrition a person eats in a day.</summary>
@@ -56,8 +68,13 @@ namespace ColonyCouncil
         /// <summary>A recipe's worth for choosing: product per hour of work.</summary>
         public static float Efficiency(float perBatch, float workTicks) => workTicks <= 0f ? 0f : perBatch * TicksPerHour / workTicks;
 
-        /// <summary>A bench's worth for choosing: the best able worker's skill, less a point for every twenty cells from the materials' store.</summary>
-        public static float BenchScore(int skill, float distance) => skill - Math.Max(0f, distance) / 20f;
+        /// <summary>
+        /// A bench's worth for choosing: its hand's skill, less a point for every twenty cells from the materials' store,
+        /// and four points for each whole of speed the bench works below plain (a half-speed bench: two levels of skill);
+        /// a bench that can't be worked now scores far lower.
+        /// </summary>
+        public static float BenchScore(int skill, float distance, float benchFactor = 1f) =>
+            skill - Math.Max(0f, distance) / 20f + (benchFactor <= 0f ? -UnusablePenalty : 4f * (benchFactor - 1f));
 
         public static bool TooDeep(int depth) => depth >= MaxDepth;
 

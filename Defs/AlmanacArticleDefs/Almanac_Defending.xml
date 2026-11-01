@@ -185,7 +185,7 @@ That cuts both ways. With no open way, each raider goes for the walls and doors,
       <li>
         <heading>The entrance</heading>
         <points>
-          <li>Two turns, then a straight run of four or five cells into the box. A raider at the corner before the last turn leans out round it and looks down the straight with the wall as his cover: with a straight that long, all he sees is the middle of the box, where nobody stands.</li>
+          <li>Two turns, then a straight run of four or five cells into the box. A raider at the corner before the last turn leans out round it and looks down the straight with the wall as his cover: with a straight that long, all he sees is the middle of the box, where nobody stands and no turret.</li>
           <li>One cell wide, so they come one at a time and the doorway is where a melee fighter holds them, standing just inside the box.</li>
           <li>Two turns are enough. A longer way doesn't send ordinary raiders elsewhere, but it is more of your ground for them to wreck on the way.</li>
           <li>Fences or sandbags every second cell slow them; a continuous line doesn't, as they only slow down climbing over. Keep them to the outer stretch, well before the box.</li>
@@ -204,7 +204,7 @@ Hold the box until they break. Raiders give up and run once somewhere between fo
 
 Each shooter stands in a pocket: right behind a piece of wall, with sandbags at its front corners and beside it. They lean out past the wall to shoot and keep its three-quarters cover, more than sandbags give. A plain line of sandbags gives a little over half but lets everyone see the whole box; that's what a tribe's small box uses.
 
-Mini-turrets out in the box, on its middle line and four cells apart, are decoys: raiders shoot first at what shoots at them. An autocannon can't hit anything within 8.9 cells and a uranium slug turret nothing within 11.9; one stands behind the gap in the line, shooting through it, six cells or more from anyone, as its blast is measured from its bottom-left cell. Your own misses break the walls behind the raiders: build the box of stone, and double its walls and the wall the doorway is in.</text>
+Mini-turrets out in the box, a couple of cells to either side of its middle line and more than four cells apart, are decoys: raiders shoot first at what shoots at them. Not on that line: the corner before the last turn sees down it, and a raider there would stop and shoot at the turret with the wall as his cover. An autocannon can't hit anything within 8.9 cells and a uranium slug turret nothing within 11.9; one stands behind the line, off to one side of the gap where that corner can't see it, six cells or more from anyone, as its blast is measured from its bottom-left cell. Your own misses break the walls behind the raiders: build the box of stone, and double its walls and the wall the doorway is in.</text>
       </li>
       <li>
         <heading>Doors and gates</heading>

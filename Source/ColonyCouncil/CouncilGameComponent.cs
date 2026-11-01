@@ -90,6 +90,8 @@ namespace ColonyCouncil
         public AutomationTracker automations = new AutomationTracker();
         /// <summary>Lines being laid again under the walls, their old ones to take up once the new stand (Building/LineRoutes.cs).</summary>
         public LineRelayTracker relays = new LineRelayTracker();
+        /// <summary>What the colony used and made over the last few days, for the chains' rates (Building/ColonyUse.cs).</summary>
+        public ColonyUse use = new ColonyUse();
         /// <summary>The last year since the landing a year's letter was written for (World/YearLetter.cs).</summary>
         public int yearLetterLast;
         public EpithetTracker epithets = new EpithetTracker();
@@ -246,6 +248,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref annals, "annals");
             Scribe_Deep.Look(ref automations, "automations");
             Scribe_Deep.Look(ref relays, "relays");
+            Scribe_Deep.Look(ref use, "use");
             Scribe_Values.Look(ref yearLetterLast, "yearLetterLast");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
@@ -327,6 +330,7 @@ namespace ColonyCouncil
                 if (annals == null) annals = new AnnalsTracker();
                 if (automations == null) automations = new AutomationTracker();
                 if (relays == null) relays = new LineRelayTracker();
+                use ??= new ColonyUse();
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
                 if (offices == null) offices = new OfficeTracker();

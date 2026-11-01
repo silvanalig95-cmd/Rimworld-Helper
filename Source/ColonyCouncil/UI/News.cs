@@ -235,8 +235,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Keeps the day's minor news until the evening (saved with the game, so a save and load mid-day loses nothing) and
-    /// sends it around six as one "Colony news" letter. If the setting moves away from the digest, what was waiting
-    /// goes out at once the new way.
+    /// sends it around six as one "Colony news" letter (a quiet day's few lines as one short message, UI/NewsQuiet.cs).
+    /// If the setting moves away from the digest, what was waiting goes out at once the new way.
     /// </summary>
     public class NewsComponent : GameComponent
     {
@@ -305,10 +305,13 @@ namespace ColonyCouncil
 
         public void SendNow()
         {
-            // A busy colonist's lines come together as their day (Interplay/NewsDays.cs).
-            var items = NewsDays.Group(waiting.ToList());
+            var day = waiting.ToList();
             waiting.Clear();
-            News.Send(items);
+            // A busy colonist's lines come together as their day (Interplay/NewsDays.cs).
+            var items = NewsDays.Group(day);
+            // Else a quiet day's few lines come as one short message (UI/NewsQuiet.cs).
+            var quiet = items == day ? NewsQuiet.Fold(day) : null;
+            News.Send(quiet != null ? new List<NewsItem> { quiet } : items);
         }
 
         /// <summary>The setting changed: what was waiting goes out the new way.</summary>
