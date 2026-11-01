@@ -343,6 +343,7 @@ namespace ColonyCouncil
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");
             Toggle("weatherForecast", "CC_Settings_WeatherForecast", "CC_SetNote_WeatherForecast", "deepHooks");
+            Toggle("rainWashesMore", "CC_Settings_RainWash", "CC_SetNote_RainWash");
             Section("CC_SetSec_Calendar");
             Toggle("colonyCalendar", "CC_Settings_Calendar", "CC_SetNote_Calendar");
             Section("CC_SetSec_PlayOut");

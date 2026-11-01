@@ -115,6 +115,14 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("weather forecast", e);
             }
+            try
+            {
+                RainWash.Hourly(map);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("rain washing", e);
+            }
         }
 
         private void Hour(int tick)

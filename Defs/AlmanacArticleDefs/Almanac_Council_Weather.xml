@@ -53,6 +53,10 @@
         <text>Rimfolk's hail is seen coming. For two hours the sky turns green and the wind drops. The colonist who knows the fields best says so if they're in view, and a few others bring in the ripe crops from the open fields. Then the hail comes. It rains with the hail only while it's warm enough to rain, and a rain the hail brought doesn't run on for a day or two after it. When a warm spell sets in, someone outside feels the wind turn.</text>
       </li>
       <li>
+        <heading>Rain on the yard</heading>
+        <text>The game already lets rain wash some filth off the open ground: blood, dirt, vomit and the like. Rimfolk makes it go faster the harder it rains, so a day of steady rain leaves the yard clean of most of it. A drizzle adds nothing, rubble and other filth that rain doesn't wash stay where they are, and nothing under a roof is touched. The setting "Rain washes the yard" (Events page, under "The weather") turns it off.</text>
+      </li>
+      <li>
         <heading>The weather in people</heading>
         <points>
           <li>Three quirks: loves the snow (+3 while snow falls; stands out in it in their free time), follows the sun (+3 in sunshine out of doors, grows out of time outdoors and never comes to an undergrounder; sits in the sun), and sleeps best in rain (+3 with rain on the roof, in bed or indoors at night).</li>
