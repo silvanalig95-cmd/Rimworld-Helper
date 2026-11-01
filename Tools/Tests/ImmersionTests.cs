@@ -36,7 +36,9 @@ public static class ImmersionTests
         // Visitors and campers at the colony's market stalls (Visitors/VisitorTrade.cs).
         "Rimfolk_Pool_MarketBuy",
         // Visitors at the colony's instrument, their kill, its dressing (Visitors/VisitorActs.cs).
-        "Rimfolk_VisitorActLines"
+        "Rimfolk_VisitorActLines",
+        // What visitors say on arriving, waiting, staying and leaving (Visitors/VisitorWords.cs).
+        "Rimfolk_VisitorLines"
     };
 
     private static readonly string[] JournalPools =

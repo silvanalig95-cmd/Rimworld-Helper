@@ -60,14 +60,14 @@
         <li>[arrive,singer] I'll sing for my supper, if there's supper.</li>
         <li>[arrive,fugitive] Is there somewhere I can sit where the road can't see me?</li>
         <li>[arrive,elder] I came to hear it from your own mouths.</li>
-        <li>[arrive,tollman] The keeper's terms. Read them, I'll wait.</li>
+        <li>[arrive,tollman] Here are the keeper's terms; read them, and I'll wait.</li>
         <li>[arrive,smith] Don't mind the soot, it never comes off.</li>
         <li>[arrive,smith,animals] The cart's empty, and it doesn't have to be.</li>
         <li>[arrive,agent] My house buys from the good stops on this road.</li>
-        <li>[arrive,deserter] I'm not armed. I'm not anyone's soldier now.</li>
+        <li>[arrive,deserter] I'm not armed, and I'm not anyone's soldier now.</li>
         <li>[arrive,prospectors] There's color in these hills, mark my words.</li>
         <li>[arrive,prospectors,night] Bring the lamps down to the water.</li>
-        <li>[arrive,prospector] No pan this time. Just me.</li>
+        <li>[arrive,prospector] No pan this time, just me.</li>
         <li>[arrive,winter] Cold enough to split stones out there.</li>
         <li>[arrive,rain] Soaked through on the last mile.</li>
         <li>[wait] Still waiting on an answer here.</li>
@@ -78,7 +78,7 @@
         <li>[wait,pilgrims] We'll pray while we wait.</li>
         <li>[wait,winter] Getting colder out here.</li>
         <li>[wait,fugitive] Every rider on that road is looking for me.</li>
-        <li>[wait,elder] I have buried one boy this year. I can wait an hour.</li>
+        <li>[wait,elder] I have buried one boy this year, so I can wait an hour.</li>
         <li>[wait,smith] The widow's plow won't mend itself.</li>
         <li>[wait,agent] The wagon can't wait all day.</li>
         <li>[wait,deserter] If a patrol comes by, I wasn't here.</li>
@@ -86,7 +86,7 @@
         <li>[stay,travelers] We'll pay you back when the road opens.</li>
         <li>[stay,merchant] This goes in my ledger, and I don't forget my ledger.</li>
         <li>[stay,stargazer] I'll be out watching the sky all night, come and look if you like.</li>
-        <li>[stay,fugitive] I'll keep out of the way. You won't know I'm here.</li>
+        <li>[stay,fugitive] I'll keep out of the way, you won't know I'm here.</li>
         <li>[stay,pilgrims] We'll make camp by the water, out of your way.</li>
         <li>[stay,prospectors] We'll be down at the creek if you want us.</li>
         <li>[pass] Don't mind us, we're just passing.</li>
@@ -95,7 +95,7 @@
         <li>[pass,retinue] Banners up. They're watching from the wall.</li>
         <li>[pass,drovers] Keep them off the fields!</li>
         <li>[pass,herders] Down to the water, all of you.</li>
-        <li>[pass,rider] He came this way. I'm sure of it.</li>
+        <li>[pass,rider] He came this way, I'm sure of it.</li>
         <li>[leave] Time I was going.</li>
         <li>[leave,theirLowtech] If I go now I'll be home before the weather turns.</li>
         <li>[leave,family] Come on. Pick up your things.</li>
@@ -107,23 +107,23 @@
         <li>[leave,smith] Good steel's worth the walk.</li>
         <li>[leave,prospectors] On to the next creek.</li>
         <li>[leave,prospector] Next hill. There's always a next hill.</li>
-        <li>[arrive,preacher] I won't keep anyone long. Whoever wants to listen can listen.</li>
-        <li>[wait,preacher] There's no hurry. There never is.</li>
-        <li>[stay,preacher] A blanket is plenty. More than plenty.</li>
-        <li>[leave,preacher] Give away one thing. Just one, to start.</li>
-        <li>[arrive,digger] Straight out of the hill, this lot. Still smells of it.</li>
-        <li>[arrive,smuggler] Keep your voice down. It carries at night.</li>
+        <li>[arrive,preacher] I won't keep anyone long, and whoever wants to listen can listen.</li>
+        <li>[wait,preacher] There's no hurry, there never is.</li>
+        <li>[stay,preacher] A blanket is plenty, more than plenty.</li>
+        <li>[leave,preacher] Give away one thing, just one, to start.</li>
+        <li>[arrive,digger] Straight out of the hill, this lot, and it still smells of it.</li>
+        <li>[arrive,smuggler] Keep your voice down, it carries at night.</li>
         <li>[wait,smuggler] Every lamp on that road is a guard's.</li>
-        <li>[arrive,bailiff] The creditors' list. I only read it out.</li>
-        <li>[arrive,housemaster] Forty years I've run this house. Forty.</li>
-        <li>[arrive,roadkeeper] The ice is singing today. That means it's holding.</li>
+        <li>[arrive,bailiff] It's the creditors' list, and I only read it out.</li>
+        <li>[arrive,housemaster] Forty years I've run this house, forty years.</li>
+        <li>[arrive,roadkeeper] The ice is singing today, which means it's holding.</li>
         <li>[leave,roadkeeper] Back to the poles, then.</li>
         <li>[arrive,delegates] We'll take turns asking, if that helps.</li>
-        <li>[arrive,gleaners] Only what's on the ground. We know how it's done.</li>
+        <li>[arrive,gleaners] Only what's on the ground, we know how it's done.</li>
         <li>[arrive,tinker] Pots mended, knives ground, and the news for nothing.</li>
-        <li>[arrive,orphan] I can fetch water. And wood. I'm stronger than I look.</li>
-        <li>[arrive,mother] I won't come in. I only wanted to see the place.</li>
-        <li>[leave,mother] Tell him... no. Never mind. Thank you.</li>
+        <li>[arrive,orphan] I can fetch water and wood, I'm stronger than I look.</li>
+        <li>[arrive,mother] I won't come in, I only wanted to see the place.</li>
+        <li>[leave,mother] Tell him, no, never mind, thank you.</li>
       </plain>
       <warm>
         <li>[arrive] Your people look well fed, that's a good sign.</li>
@@ -142,7 +142,7 @@
         <li>[arrive] Well? Who do I talk to?</li>
         <li>[arrive,rider] I want an answer, and soon.</li>
         <li>[wait] How long does a council take?</li>
-        <li>[arrive,tollman] Pay or don't. There are other gates.</li>
+        <li>[arrive,tollman] Pay or don't, there are other gates.</li>
         <li>[arrive,smith] Steel. As much as you can spare.</li>
         <li>[stay] One night. We'll be gone before you're up.</li>
         <li>[pass] Eyes front. Keep moving.</li>
@@ -160,7 +160,7 @@
       <gloomy>
         <li>[arrive] Another gate, another answer.</li>
         <li>[arrive,travelers] We'd have died out there, simple as that.</li>
-        <li>[arrive,deserter] Three days without food. I stopped counting the miles.</li>
+        <li>[arrive,deserter] Three days without food, and I stopped counting the miles.</li>
         <li>[wait,fugitive] They'll find me, whatever you say.</li>
         <li>[wait] I'll stand here till someone tells me otherwise.</li>
         <li>[wait,night] Long night by a wall.</li>

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Visitors and camps with more to say
+
+*1 November 2026, version 0.45.3*
+
+- Visitors say more, in their own voice: every kind of visitor has lines for arriving, waiting at the gate, staying the night and leaving, with words for snow, rain, night and the season, and the riders, drivers, drovers and settlers who come most often have lines of their own.
+- A regular who comes back a third time is greeted in the terms of their trade, and the evening by the fire reads differently for the doctor, the cook, the scribe and the rest.
+- Camps feel more lived in: more talk around the fire, more arrivals and farewells, and new ways for the camp's own requests and the council's questions about the camp to read.
+- The stranger moments that come round most often have more variety: storms, fog and frost, visiting traders, people who remember the colony, and family found in the cells.
+- Visitors' spoken lines are all one sentence now, so none is cut short over their heads.
+
 ## Illnesses with more to say
 
 *1 November 2026, version 0.45.2*
