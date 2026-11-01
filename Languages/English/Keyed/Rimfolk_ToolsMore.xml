@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The chains' rates on the Making page (Source/ColonyCouncil/Building/Chains.cs, ColonyUse.cs, UI/MakingPanel.cs). -->
+  <CC_Making_Chain_Record>Use is what the colony ate, wore out and used up over the last {0} days. A bench's making is what it made in that time where it has a record, else its bills at its hand's speed there.</CC_Making_Chain_Record>
+  <CC_Making_Chain_RecordSoon>Use and making are estimated until the colony's record of what it uses covers a day: everyone's meals, the sick's medicine, and each bench's bills at its hand's speed there.</CC_Making_Chain_RecordSoon>
+  <CC_Making_Chain_RecordOff>Use and making are estimated (everyone's meals, the sick's medicine, each bench's bills at its hand's speed there): a record of what the colony uses needs the deeper game hooks switched on.</CC_Making_Chain_RecordOff>
+  <CC_Making_Chain_FromBoth>Both from the colony's record.</CC_Making_Chain_FromBoth>
+  <CC_Making_Chain_FromUse>Use from the colony's record, making estimated.</CC_Making_Chain_FromUse>
+  <CC_Making_Chain_FromNone>Both estimated.</CC_Making_Chain_FromNone>
+  <CC_Making_Chain_Hand>{HAND} would work it, about {HOURS} hours a day.</CC_Making_Chain_Hand>
+  <CC_Making_Chain_HandSeen>{HAND} has worked it lately, about {HOURS} hours a day.</CC_Making_Chain_HandSeen>
+  <CC_Making_Chain_NoHand>Nobody here can work it.</CC_Making_Chain_NoHand>
+  <CC_Making_Chain_BenchSpeed>The bench works at {0} speed.</CC_Making_Chain_BenchSpeed>
+  <CC_Making_Chain_BenchDown>The bench can't be worked now: it has no power or is broken down.</CC_Making_Chain_BenchDown>
+
+  <!-- The rearrange window's knobs for a room (Source/ColonyCouncil/Building/Designator_RearrangeRoom.cs, RoomArrangeMath.cs). -->
+  <CC_Rearr_Aisle>Aisles</CC_Rearr_Aisle>
+  <CC_Rearr_AisleTip>How wide the council keeps the ways through the room.</CC_Rearr_AisleTip>
+  <CC_Rearr_Aisle_Needed>As needed</CC_Rearr_Aisle_Needed>
+  <CC_Rearr_Aisle_Needed_Tip>Two cells wide where the room is busy (more than one door, or six pieces or more), one cell elsewhere.</CC_Rearr_Aisle_Needed_Tip>
+  <CC_Rearr_Aisle_One>One cell</CC_Rearr_Aisle_One>
+  <CC_Rearr_Aisle_One_Tip>Ways one cell wide are fine: the furniture may stand closer together, and people squeeze past each other.</CC_Rearr_Aisle_One_Tip>
+  <CC_Rearr_Aisle_Two>Two cells</CC_Rearr_Aisle_Two>
+  <CC_Rearr_Aisle_Two_Tip>The ways are kept two cells wide wherever the room allows, so nobody waits to get past.</CC_Rearr_Aisle_Two_Tip>
+  <CC_Rearr_Keep>Keeps its place</CC_Rearr_Keep>
+  <CC_Rearr_KeepTip>How much better a new place has to be before a piece is moved. Heavy pieces and full shelves always take a clearer gain than light ones.</CC_Rearr_KeepTip>
+  <CC_Rearr_Keep_Light>Lightly</CC_Rearr_Keep_Light>
+  <CC_Rearr_Keep_Light_Tip>Furniture moves for a small gain: the room comes out much as the rules would lay it, with more moves.</CC_Rearr_Keep_Light_Tip>
+  <CC_Rearr_Keep_Usual>As usual</CC_Rearr_Keep_Usual>
+  <CC_Rearr_Keep_Usual_Tip>Furniture moves when the new place is better by more than the work of moving it.</CC_Rearr_Keep_Usual_Tip>
+  <CC_Rearr_Keep_Firm>Firmly</CC_Rearr_Keep_Firm>
+  <CC_Rearr_Keep_Firm_Tip>Furniture moves only for a clear gain: a room that works stays much as it is.</CC_Rearr_Keep_Firm_Tip>
+
+  <!-- A quiet day's evening news (Source/ColonyCouncil/UI/NewsQuiet.cs). -->
+  <CC_News_QuietDay>A quiet day in the colony. {0}</CC_News_QuietDay>
+  <CC_Settings_QuietNewsDays>Quiet days in one short message</CC_Settings_QuietNewsDays>
+  <CC_Settings_QuietNewsDays_Tip>On a day with only two to four small pieces of colony news and nothing bad among them, the evening's news comes as one short message, kept in the History tab, instead of a letter. A busy day, or one with bad news, keeps its letter.</CC_Settings_QuietNewsDays_Tip>
+  <CC_SetNote_QuietNewsDays>A quiet day's news is one short message, not a letter.</CC_SetNote_QuietNewsDays>
+  <CC_SetWhy_QuietNewsDays>Only with the colony news gathered in the evening.</CC_SetWhy_QuietNewsDays>
+
+</LanguageData>
