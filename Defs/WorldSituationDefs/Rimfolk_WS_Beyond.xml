@@ -246,6 +246,7 @@
         </titles>
         <texts>
           <li>{PLACE} is coming back a roof at a time, with sailcloth stretched over the rest. {FACTION} haven't forgotten what the colony sent while the ashes were still warm.</li>
+          <li>New roofs are going up over {PLACE}, one street at a time. {FACTION} say the colony's help came while the ashes were still warm, and they tell every trader who asks.</li>
         </texts>
         <chronicle>{PLACE} began to rebuild after the fire; the colony did its part.</chronicle>
         <effects>
@@ -259,6 +260,7 @@
         </titles>
         <texts>
           <li>{PLACE} is rebuilding slowly, with whatever {FACTION} could beg and borrow. The colony gave nothing, and the people of {PLACE} know which neighbors did.</li>
+          <li>{PLACE} is rebuilding on its own, slowly. {FACTION} remember which neighbors sent help after the fire, and the colony isn't one of them.</li>
         </texts>
         <chronicle>{PLACE} rebuilt after the great fire without the colony's help.</chronicle>
       </li>
@@ -413,6 +415,7 @@
         </titles>
         <texts>
           <li>The families have agreed on a blood price for the life taken over {NAME}: so much silver, paid by {FACTION}'s family to {ENEMY}'s, and the matter closed for good. {FACTION}'s family has sold everything it can spare and is still {COUNT} short. An elder of {ENEMY}'s family has come to the gate to hear whether the colony will make up the rest.\n\n{A_nameDef} thinks it should, and that it would be the cheapest peace anyone ever bought.</li>
+          <li>Both families have agreed on a blood price for the life taken over {NAME}. {FACTION}'s family has sold its plow, its cow and its good coats, and is still {COUNT} silver short. An elder of {ENEMY}'s family has come to the gate to ask if the colony will make up the difference.\n\n{A_nameDef} says it would be the cheapest peace ever bought.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -483,6 +486,7 @@
         </titles>
         <texts>
           <li>{NAME} is over. The blood price is paid, the two families have eaten at one table, and the young man who ran has gone home to his mother.\n\n{FACTION} and {ENEMY} both give the colony the credit for it.</li>
+          <li>The blood price is paid and {NAME} is closed. The families of {FACTION} and {ENEMY} have shaken hands in front of witnesses, and both say the colony made it possible.</li>
         </texts>
         <chronicle>{NAME} ended in peace, with the colony between the families.</chronicle>
         <effects>
@@ -498,6 +502,7 @@
         </titles>
         <texts>
           <li>{NAME} has gone underground. There has been no more blood, but the families of {FACTION} and {ENEMY} cross the street to avoid each other, and every wedding is a risk.\n\nOn both sides, the talks at the colony's table are remembered as the day it got worse.</li>
+          <li>{NAME} hasn't ended. It has gone quiet, the way a fire does under ash. The families of {FACTION} and {ENEMY} won't sit in the same room, and both say it was the colony's table that made it so.</li>
         </texts>
         <chronicle>{NAME} smoldered on after talks at the colony went wrong.</chronicle>
         <effects>
@@ -513,6 +518,7 @@
         </titles>
         <texts>
           <li>The families never settled on a price, but there has been no blood since they sat at the colony's table. {NAME} has cooled into the kind of grudge people complain about at market instead of acting on.</li>
+          <li>No price was ever agreed, but no more blood has been spilled since the families met at the colony's table. {NAME} has settled into an ordinary grudge, the kind people grumble about at market.</li>
         </texts>
         <chronicle>{NAME} cooled after the families talked at the colony.</chronicle>
         <effects>
@@ -527,6 +533,7 @@
         </titles>
         <texts>
           <li>{NAME} is over, the way such things end when one side gets what it wanted. {ENEMY}'s family has had its satisfaction. {FACTION}'s family has a grave to tend and the colony's name to curse.</li>
+          <li>{NAME} ended when the colony handed over what {ENEMY}'s family wanted. They are satisfied. {FACTION}'s family is not, and the colony's name is said hard in their house.</li>
         </texts>
         <chronicle>{NAME} ended when the colony handed over the fugitive.</chronicle>
       </li>
@@ -862,6 +869,7 @@
         </titles>
         <texts>
           <li>The harvest is in all over the region, and every village is holding its supper. {A_nameDef} thinks the colony should hold one too: the long table, the good food, a toast to a year when the land was kind.\n\nIt would cost a feast's worth of food. This year the colony can afford it.</li>
+          <li>Every village in the region has held its harvest supper by now, and {A_nameDef} has been to none of them. The colony could hold its own: the long table, the good food, and a toast to the land.\n\nIt would take a feast's worth of food, and this year the stores can spare it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -930,6 +938,7 @@
     <texts>
       <li>The bells come over the hill before the herds do, and the dust hangs over the old drove roads from dawn to dark. {FACTION} are walking their herds to the great market beyond {PLACE}, and some of those roads pass close to the colony.\n\nDrovers are hard people and fair ones, mostly. They'll want grass, water and somewhere to stop.</li>
       <li>[theirHightech] {FACTION} are moving stock to market the old way this year, on the hoof, since fuel is dear. The drove roads past {PLACE} are busy for the first time in a generation, and the colony sits on one of them.</li>
+      <li>The old drove roads are busy again. {FACTION} are taking their herds to the market beyond {PLACE}, and the bawling and the bells reach the colony's walls before the dust is even in sight.\n\nThe drovers will be looking for grass, water and a place to stop.</li>
     </texts>
     <summaries>
       <li>Drovers camp near the colony more often, and may ask to graze their herds on its land. A stray or two may wander in, and the drovers' dogs and stories come with them.</li>
@@ -1009,6 +1018,7 @@
         </titles>
         <texts>
           <li>Two drovers of {FACTION} have fallen out over a heifer that each says is his, and they've come to the colony to settle it, since neither trusts the other's people. They've heard {A_nameDef} knows beasts.\n\nIt is, {A_nameDef} admits, an unusually good heifer.</li>
+          <li>Two drovers of {FACTION} are at the gate arguing about a heifer that each says is his. Neither will let the other's people judge it, and they've heard {A_nameDef} knows beasts.\n\nThey'd like an answer before the herds move on.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

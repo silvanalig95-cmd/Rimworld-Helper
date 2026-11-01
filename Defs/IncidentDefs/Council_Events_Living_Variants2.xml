@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More ways for the colony's own history to come back (Council_Events_Living.xml, Council_Events_Pasts.xml,
+    Council_Events_Roots.xml, Council_Events_Chains.xml, Council_Events_Remembered.xml) to read, merged in at startup
+    (LetterVariantsDef). Each line keeps the tags its worker sets: the buyer's [once] or [again], the lovers' family's
+    [mother] or [father], the prodigal's [quit] or [banished], the camp's kind ([camp:Hunters], [camp:Pilgrims]...),
+    the relief's [food] or [medicine]. Mostly more ways to tell answers that had one.
+  -->
+
+  <!-- ===================== A regular buyer ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_RegularBuyer</defName>
+    <incident>Council_Evt_RegularBuyer</incident>
+    <texts>
+      <li>[once,summer] {FACTION}'s rider came up the dusty road with a small gift for the colony and a big order: the last lot of goods sold so well at home that they want the same again, {TALE} for {COUNT} silver.\n\nThe whole order or none, they say, as before.</li>
+      <li>[again,colony:Hardworking] {FACTION} have stopped asking whether the colony can fill an order and simply send it: {TALE}, {COUNT} silver, the usual terms. The rider left a small gift on top, as they always do now.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The colony's yes goes back with the rider. {FACTION}'s people will come for {TALE} on the day, and count it on the spot.</li>
+          <li>[again] Word goes back that the order is taken. By now {FACTION}'s people know the way to the stores better than some colonists do.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The rider takes the colony's no back to {FACTION}, who will have to find their {TALE} somewhere else now, and won't ask here again.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The lovers' family ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_LoversKin</defName>
+    <incident>Council_Evt_LoversKin</incident>
+    <texts>
+      <li>[winter] {X_nameDef} of {FACTION} came through the snow to find {A_nameDef}, and stood at the gate stamping {X_possessive} feet and refusing to come in until {A_nameDef} came out. {X_nameDef} is {A_possessive} {RELATION}. The family has known for a while where {A_nameDef} and {B_nameDef} ran to.\n\n{X_nameDef} says {X_pronoun} only came to talk.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The door stayed shut most of the afternoon. When it opened, {X_nameDef} had {A_nameDef}'s hand in both of {X_possessive} own, and {B_nameDef} was carrying a letter for the family.</li>
+          <li>[mother] By the end of the talk {X_nameDef} had unpacked the basket from home on the table, and was telling {B_nameDef} how {A_nameDef} liked {A_possessive} bread.</li>
+        </lines>
+        <riskLines>
+          <li>The talk was going well until someone mentioned the match the family had made for {A_nameDef}. {X_nameDef} left before supper without saying goodbye.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The silver is carried out to {X_nameDef} for the family. {X_nameDef} weighs the purse in {X_possessive} hand, and says the family may yet write to {A_nameDef}. It's more than they said before.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is walked to the road and asked not to come back. {X_nameDef} goes without arguing, which {A_nameDef} says is worse.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Old scores ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_VendettaBand</defName>
+    <incident>Council_Evt_VendettaBand</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>A few of the colony's people walk out toward the camp, let themselves be seen, and turn for home at an easy pace. {ENEMY} follow. {A_nameDef} has been ready since the news came.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{ENEMY}'s band is left to its fire, and moves on. {A_nameDef} doesn't say a word about it to anyone.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A guest in midwinter ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_MidwinterGuest</defName>
+    <incident>Council_Evt_MidwinterGuest</incident>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} sat by the fire with a bowl on {X_possessive} knees until the shivering stopped, and {A_nameDef} sat with {X_objective}. They talked about roads, and weather, and nothing much, until late.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} eats the hot food in a few gulps, thanks the colony with {X_possessive} mouth full, and turns back into the dark toward the nearest shelter.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The knocking goes on a long time, and then it stops. {X_nameDef}'s tracks lead away from the gate into the snow.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The prodigal ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Prodigal</defName>
+    <incident>Council_Evt_Prodigal</incident>
+    <texts>
+      <li>[quit,summer] {X_nameDef}, who left the colony for something better, is sitting on a rock by the road below the fields in the heat, waiting to be noticed. Whatever {X_pronoun} found out there, it wasn't better. {X_nameDef} asks to come home.\n\n{A_nameDef} saw {X_objective} first, and has brought the question to the council.</li>
+      <li>[banished,colony:Merciful] {X_nameDef}, who was sent away, has heard that the colony forgives a great deal, and has come back to the road below the fields to find out how much. {A_nameDef} brought the request in, and is watching the council's faces.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[quit] {X_nameDef} comes back in with {X_possessive} pack and stands in the yard a while, looking at everything that changed while {X_pronoun} was gone.</li>
+          <li>[banished] {X_nameDef} is let in. Some of the colony shake {X_possessive} hand. Some of them don't, and {X_nameDef} notices which.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} hears the answer, nods as if {X_pronoun} expected it, and walks back down the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A feast at the camp ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_CampFeast</defName>
+    <incident>Council_Evt_CampFeast</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The colony went over with nothing in its hands and was fed until it couldn't eat any more. The camp wouldn't hear of thanks, and asked only for a song.</li>
+          <li>[camp:Hunters] The hunters cut the colony the best of the roast and wouldn't let anyone else carve. They told the story of the kill three times, getting the beast bigger each time.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The colony's thanks go over to the camp, and the colony stays home. Across the fields the fire burns until late, and the laughing can be heard in bed.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A neighbor's bridge ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_BridgeWork</defName>
+    <incident>Council_Evt_BridgeWork</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>Eighty wood goes down to the gate in loads, and {FACTION}'s people come and take it off toward {PLACE}. The silver they leave is less than the timber was worth, and about what they could spare.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{FACTION} are told the colony's builders are needed at home. Their rider goes back to {PLACE} with the drawings unopened.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A sick herd ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_SickHerd</defName>
+    <incident>Council_Evt_SickHerd</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>Two doses go to {X_nameDef} for silver. {X_nameDef} tucks them inside {X_possessive} shirt to keep them safe and sets off back to the herd at a trot.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} is told the colony can't help. {X_nameDef} thanks it anyway, and goes back up the road to sit with the sick animals.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The deserter found ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_DeserterFound</defName>
+    <incident>Council_Evt_DeserterFound</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} shakes hands with whoever will, and walks out to {ENEMY} with nothing in {A_possessive} hands.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The lost child, grown ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_ChildGrown</defName>
+    <incident>Council_Evt_ChildGrown</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>Forty silver goes into {X_nameDef}'s pack for the family that searched the hills for {X_objective} years ago. {X_nameDef} says they'll never believe it, and that {X_pronoun} will make them.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Help from an old friend ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Relief</defName>
+    <incident>Council_Evt_Relief</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The {THING} comes in, and sixty silver goes out to {X_nameDef} for the road. {X_nameDef} calls it too much, and the colony calls it not enough, and both are right.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{B_nameDef} has a hot meal in front of the people from {PLACE} before they've set the {THING} down. They eat it with their coats still on, and leave a good word behind with the load.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

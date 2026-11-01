@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A third round of ways for the variety events (Council_Events_Variety.xml) to read, merged in at startup
+    (LetterVariantsDef), on top of Council_Events_Variety_Variants.xml and Rimfolk_Events_More_Variants.xml. Mostly more
+    ways to tell the answers that had one: an order taken or turned down, medicine sent to the neighbors, a judgment,
+    runaway lovers, a box of letters. Each line keeps the tags its worker sets: the dispute's [water], [herd], [land]
+    or [salvage].
+  -->
+
+  <!-- ===================== An order from the neighbors ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_BulkOrder</defName>
+    <incident>Council_Evt_BulkOrder</incident>
+    <texts>
+      <li>[fall] The harvest failed in two of {FACTION}'s valleys, and their rider has come up the road with an order before the winter makes it worse: {TALE}, for {COUNT} silver, more than a trader would give.\n\nThey'll send for it when it's due, and they need every bit of it.</li>
+      <li>[colony:Thrifty] A colony that wastes nothing must have something to spare, {FACTION} reckon. Their rider has brought an order for {TALE}, at {COUNT} silver, above a trader's price.\n\nIt's the whole order or none, collected on the day.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>Word goes back to {FACTION} that the order is taken, and their copy of it has the colony's mark at the bottom now.</li>
+          <li>[their:grudge] {FACTION}'s rider takes the colony's yes without a smile, and says their people will count every piece of {TALE} when they come.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The rider hears the colony's answer with a nod and turns {FACTION}'s order over to look for the next name on the list.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Sickness among the neighbors ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_NeighborsSick</defName>
+    <incident>Council_Evt_NeighborsSick</incident>
+    <texts>
+      <li>[spring] The thaw brought a fever into {FACTION}'s settlement with the floodwater, and it has gone through every house. Their healer used the last of the medicine a week ago.\n\nThey ask for {TALE}, and will pay {COUNT} silver for it if they must.</li>
+      <li>[colony:Thrifty] {FACTION} know the colony counts every coin, and have sent the price with the request: {COUNT} silver for {TALE}, for the fever going through their houses. Their runner says they'd still rather have it as a kindness.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The {THING} is carried out to the gate with no price asked. {FACTION}'s runner looks at it a long time before saying thank you.</li>
+          <li>[colony:Merciful] The {THING} goes out to the gate before the runner has finished asking. A colony that spares its enemies can spare medicine for its neighbors.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The {THING} is carried out to the gate, and {FACTION} pay the {COUNT} silver without a word about the price. They will remember it, one way or the other.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{FACTION}'s runner is told there's nothing to spare, and turns for home at once to try the next settlement.</li>
+          <li>[winter] The colony keeps its medicine for its own winter. {FACTION}'s runner goes home through the snow with nothing.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A quarrel between neighbors ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_Dispute</defName>
+    <incident>Council_Evt_Dispute</incident>
+    <texts>
+      <li>[herd,winter] Half a dozen of {ENEMY}'s goats wintered in {FACTION}'s byre after a storm, eating {FACTION}'s hay. {ENEMY} want the goats back. {FACTION} want the hay paid for, or the goats kept in its place.\n\nBoth have asked the colony to settle it.</li>
+      <li>[land,colony:Traditional] {FACTION} and {ENEMY} both say the old boundary stone between their lands was moved. They've asked the colony because it is known for keeping to the old ways, and they want someone to say where the stone stood.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The council finds for {FACTION}, and sends the judgment to both sides in writing. {ENEMY}'s answer is one line long.</li>
+          <li>[water] The spring is {FACTION}'s, says the council. {ENEMY} will have to dig a well, and they say they won't forget who made them.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The council finds for {ENEMY}, who send their thanks the same day. From {FACTION} there is no word at all.</li>
+          <li>[herd] The young animals go to {ENEMY}, says the council. {FACTION} call it theft with a seal on it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} works out a split point by point and puts it to both sides. Neither likes it and both accept it, which {A_nameDef} says is how it should be.</li>
+          <li>[land] {A_nameDef} has the strip divided by the furrow, one row each, alternating. Both sides think it's ridiculous, and both accept it.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} tries every way to split it, and each one offends somebody more than the last. Both sides send word that the colony favored the other.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>The colony stays out of it. {FACTION} and {ENEMY} go back to arguing on their own ground, each blaming the other for asking.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Runaway lovers ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_Elopers</defName>
+    <incident>Council_Evt_Elopers</incident>
+    <texts>
+      <li>[summer] {X_nameDef} and {TALE}, two young people of {FACTION}, walked up to the gate barefoot with their shoes tied round their necks to save the leather. Their families won't hear of the match, so they left.\n\n"We'll work," said {TALE}. "We'll do anything." {A_nameDef} has gone to find them something to eat.</li>
+      <li>[colony:Traditional] {X_nameDef} and {TALE} of {FACTION} ran away from families who had other matches planned for them, and came to a colony that people say keeps to old ways. They seem to hope old ways include taking in the young.\n\n{A_nameDef} has let them sit inside the gate while the council decides.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} and {TALE} are colonists now. They own one bag between them, and they unpack it the same afternoon.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} sees them to the road home, and neither of them lets go of the other's hand the whole way. {FACTION} send their thanks.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} and {TALE} are given the road again. They go off holding hands, arguing about which way to try next.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A box of old letters ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_OldLetters</defName>
+    <incident>Council_Evt_OldLetters</incident>
+    <texts>
+      <li>[summer] {A_nameDef} found the box in the dry bed of the stream, where the water had dropped low enough to show it. The letters inside are bundled by year, two people writing back and forth from a long way apart. The names are from {FACTION}'s lands.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{A_nameDef} reads the letters out after supper. In the eleventh year the two of them finally meet, and somebody at the table asks to have that one read twice.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The box goes to {FACTION} with the next traveler going that way, still sealed, with a note saying where it was found.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The box goes up on a high shelf, still sealed. {A_nameDef} looks at it sometimes, and leaves it shut.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An old grave (left be) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_OldGrave</defName>
+    <incident>Council_Evt_OldGrave</incident>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The earth goes back over the bones the way it lay, and {A_nameDef} marks the place in {A_possessive} memory so the spade never goes there again.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== Stranded merchants (the materials sold) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var3_Evt_Stranded</defName>
+    <incident>Council_Evt_Stranded</incident>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>The merchants count out {COUNT} silver for {TALE}, and do the repair themselves by the road with a good deal of shouting. It holds well enough to get them moving.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

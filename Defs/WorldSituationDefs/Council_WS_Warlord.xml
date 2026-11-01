@@ -287,6 +287,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} rode home with {FACTION}'s silver paid, and the colony is richer by {COUNT}. {NAME} broke up anyway. Few fighters want to follow a leader who had to be bought out of a cell.\n\n{X_nameDef} is alive, and remembers the inside of that cell.</li>
+          <li>{FACTION} paid what the colony asked, and {X_nameDef} went home, and the colony is {COUNT} silver richer. {NAME} didn't last long after. Fighters don't follow a leader who was bought back out of a cell.</li>
         </texts>
         <chronicle>The colony let {FACTION} ransom {X_nameDef} for {COUNT} silver.</chronicle>
         <effects>
@@ -359,6 +360,7 @@
         </titles>
         <texts>
           <li>The company the colony hired, led by {OTHER_nameDef}, fell on {FACTION} at {PLACE}. {X_nameDef} was there, and did not come out of it.\n\nThe colony's silver bought more than anyone expected. {NAME} is finished.</li>
+          <li>{OTHER_nameDef}'s company caught {FACTION} at {PLACE}, in the colony's pay, and {X_nameDef} didn't leave the field. {NAME} is finished, and the colony's silver did it.</li>
         </texts>
         <chronicle>Mercenaries in the colony's pay brought down {X_nameDef} of {NAME}.</chronicle>
         <effects>
@@ -393,6 +395,7 @@
         </titles>
         <texts>
           <li>{FACTION} are finished, and {NAME} with them. With nothing to go home to, the band has scattered, and {X_nameDef} has not been seen since.</li>
+          <li>{NAME} has no home to go back to now that {FACTION} are finished. The band has scattered across the region, and {X_nameDef} with it, wherever {X_pronoun} went.</li>
         </texts>
         <chronicle>{FACTION} fell, and {NAME} with them.</chronicle>
         <effects>
@@ -407,6 +410,7 @@
         </titles>
         <texts>
           <li>{FACTION} have made peace with the colony, and there is no place in that peace for {X_nameDef}. {NAME} has been told to disband, and has. {X_nameDef} left {PLACE} the same night.</li>
+          <li>The peace between {FACTION} and the colony had no room in it for {NAME}. The band was told to disband, and did, and {X_nameDef} rode out of {PLACE} alone.</li>
         </texts>
         <chronicle>Peace with {FACTION} ended {NAME}.</chronicle>
         <effects>
@@ -421,6 +425,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} hasn't been seen in days. Some say a fever in the hills, some say a knife in the back from one of {X_possessive} own. {NAME} has broken up either way, and the roads are quieter for it.</li>
+          <li>The last anyone saw of {X_nameDef} was a fire going out on a hillside. Whatever happened after, {NAME} has broken up without {X_objective}, and the roads are quieter.</li>
         </texts>
         <chronicle>{X_nameDef} vanished, and {NAME} broke up.</chronicle>
         <effects>

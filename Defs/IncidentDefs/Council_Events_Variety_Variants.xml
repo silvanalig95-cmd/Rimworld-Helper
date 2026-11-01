@@ -48,7 +48,7 @@
     <defName>Council_Var_Evt_Dispute</defName>
     <incident>Council_Evt_Dispute</incident>
     <texts>
-      <li>[water,summer] It's a dry summer, and the spring in the hills between {FACTION} and {ENEMY} is the only water for a day's walk. Both say it's theirs. Both have sent someone to the colony to argue it, and both expect to win.</li>
+      <li>[water,summer] It's a dry summer, and the spring in the hills between {FACTION} and {ENEMY} is the only water for a day's walk. Both say it's theirs. Both have sent the colony their case in writing, and both expect to win.</li>
       <li>[herd,lowtech] A bull of {ENEMY}'s broke through a fence and sired half of {FACTION}'s spring calves. {ENEMY} want a share of the calves. {FACTION} want the fence paid for. They've asked the colony to judge.</li>
       <li>[land,spring] Planting season has come, and {FACTION} and {ENEMY} have both put stakes in the same strip of bottomland. They've asked the colony to say whose stakes stay in the ground.</li>
       <li>[salvage] A wagon of {ENEMY}'s went over in a ditch on {FACTION}'s land, and {FACTION} say whatever lands on their ground is theirs. {ENEMY} disagree, loudly. Both have asked the colony to settle it.</li>

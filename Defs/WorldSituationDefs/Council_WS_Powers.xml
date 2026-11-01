@@ -113,6 +113,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} has settled into the seat at {PLACE}, and the region is learning what that means: a short temper, a long memory, and a hard line with most of the neighbors.\n\nNot with the colony, though. {X_nameDef} remembers the gift at the funeral, and has said so.</li>
+          <li>{X_nameDef} rules {PLACE} as hard as anyone feared, and the neighbors have felt it in their trade and their tolls. The colony's riders are the exception: they are waved through, and {X_nameDef} asks after the colony by name.</li>
         </texts>
         <chronicle>{X_nameDef}, the new {TITLE} of {FACTION}, remembers the colony's gift.</chronicle>
         <effects>
@@ -176,6 +177,7 @@
     <texts>
       <li>{DEAD}, {TITLE} of {FACTION}, is dying in {PLACE} and has named no heir. Two have stepped forward. {X_nameFull} is of {DEAD}'s own blood, young, careful and well liked by the traders. {OTHER_nameFull} is a war captain who has spent ten years on {FACTION}'s borders and thinks they have been soft for too long.\n\nBoth have sent riders to the neighbors. Both want to know where the colony stands.</li>
       <li>[theirLowtech] {DEAD}, {TITLE} of {FACTION}, has taken to bed in {PLACE} and will not get up again. The hall is already split. On one side stands {X_nameFull}, {DEAD}'s child, young and cautious and liked by the merchants. On the other stands {OTHER_nameFull}, a war captain with the border garrisons behind {OTHER_objective}.\n\nWhoever the neighbors back may tip it.</li>
+      <li>{DEAD}, {TITLE} of {FACTION}, is dying in {PLACE} with no heir named, and two claimants are already counting their friends. {X_nameFull} has {DEAD}'s blood and the merchants' good will. {OTHER_nameFull} has ten years on the borders and the garrisons behind {OTHER_objective}.\n\nRiders from both have been seen on the road to the colony.</li>
     </texts>
     <summaries>
       <li>{FACTION} will settle it within days, one way or the other. Back the winner and they will remember it; back the loser and they will remember that too.</li>
@@ -196,6 +198,7 @@
         </titles>
         <texts>
           <li>Two riders have come to the gate within an hour of each other, one in {X_nameDef}'s colors and one in {OTHER_nameDef}'s, and each asks the same thing.\n\n"{X_nameDef} will keep the roads open and the prices fair," says the first. "Ask your traders."\n\n"{OTHER_nameDef} will see that {FACTION} are never pushed around again," says the second, "and remembers friends."</li>
+          <li>A rider in {X_nameDef}'s colors reached the gate before noon, and one in {OTHER_nameDef}'s an hour after. Each was polite to the other, and each wants the colony's word for their own.\n\n"Trade," says the first, of {X_nameDef}. "Strength," says the second, of {OTHER_nameDef}. Neither says what {FACTION} will think of the colony afterward.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -229,6 +232,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} is the new {TITLE} of {FACTION}. {DEAD} died the night it was settled, and {OTHER_nameDef} rode out of {PLACE} the next morning with a few loyal captains and has not been seen since.\n\n{X_nameDef} has not forgotten that the colony spoke up early.</li>
+          <li>The seat at {PLACE} is {X_nameDef}'s. {OTHER_nameDef} took a handful of captains and left before the new {TITLE} was named, and {X_nameDef}'s first letters went to the neighbors who backed {X_objective}. The colony's was one of them.</li>
         </texts>
         <chronicle>{X_nameDef} took {FACTION}'s seat, with the colony's backing.</chronicle>
         <effects>
@@ -243,6 +247,7 @@
         </titles>
         <texts>
           <li>{X_nameDef} won {FACTION}'s seat in the end. {DEAD} is buried and {OTHER_nameDef} has gone into exile.\n\nThe new {TITLE} is polite about the colony in public. In private, by every account, {X_nameDef} remembers which side it took.</li>
+          <li>{X_nameDef} is {TITLE} of {FACTION} now, and {OTHER_nameDef} has gone into exile. The new {TITLE} greets the colony's riders civilly, and remembers, by every account, which name the colony spoke for.</li>
         </texts>
         <chronicle>{X_nameDef} took {FACTION}'s seat, against the colony's choice.</chronicle>
         <effects>
@@ -257,6 +262,7 @@
         </titles>
         <texts>
           <li>{DEAD} died the night it was settled, and {X_nameDef} is the new {TITLE} of {FACTION}. {OTHER_nameDef} has left {PLACE} for good, the roads are quiet, and the traders are relieved.</li>
+          <li>{X_nameDef} is the new {TITLE} of {FACTION}, and {OTHER_nameDef} has left {PLACE} with a few loyal captains. The traders say the roads will stay open, and so far they have.</li>
         </texts>
         <chronicle>{X_nameDef} took {FACTION}'s seat.</chronicle>
       </li>
@@ -268,6 +274,7 @@
         </titles>
         <texts>
           <li>{OTHER_nameDef} holds {FACTION}'s seat. The garrisons marched into {PLACE} the day {DEAD} died, and {X_nameDef} left by the back gate that night.\n\n{OTHER_nameDef} promised that friends would be rewarded, and the first letter under the new seal names the colony as one.</li>
+          <li>{OTHER_nameDef} has the seat at {PLACE}, and {X_nameDef} is gone into exile. {OTHER_nameDef} has written to the neighbors who backed {OTHER_objective}, and the colony is thanked by name.</li>
         </texts>
         <chronicle>{OTHER_nameDef} took {FACTION}'s seat, with the colony's backing.</chronicle>
         <effects>
@@ -282,6 +289,7 @@
         </titles>
         <texts>
           <li>The garrisons marched into {PLACE} the day {DEAD} died, and {OTHER_nameDef} holds {FACTION}'s seat now. {X_nameDef} is in exile.\n\nThe new {TITLE} keeps a list of the neighbors who backed the wrong side, and the colony's name is near the top.</li>
+          <li>{OTHER_nameDef} holds {PLACE}, and {X_nameDef} is in exile. The new {TITLE} remembers who spoke for the other side, and the colony's riders are made to wait at {FACTION}'s gates.</li>
         </texts>
         <chronicle>{OTHER_nameDef} took {FACTION}'s seat, against the colony's choice.</chronicle>
         <effects>
@@ -296,6 +304,7 @@
         </titles>
         <texts>
           <li>{FACTION} will be harder neighbors under {OTHER_nameDef}, to everyone. The garrisons marched into {PLACE} the day {DEAD} died, and {X_nameDef} is in exile.</li>
+          <li>{OTHER_nameDef} rules {FACTION} now, with the garrisons in {PLACE} and {X_nameDef} in exile. {FACTION} will be harder to deal with for a while, for everyone.</li>
         </texts>
         <chronicle>{OTHER_nameDef} took {FACTION}'s seat.</chronicle>
         <effects>
@@ -309,6 +318,7 @@
         </titles>
         <texts>
           <li>The quarrel over {FACTION}'s seat has been settled in {PLACE}, behind closed doors.</li>
+          <li>{FACTION} have settled the seat among themselves at {PLACE}, and the neighbors weren't asked.</li>
         </texts>
       </li>
     </endings>
@@ -360,6 +370,7 @@
         </titles>
         <texts>
           <li>Two preachers arrived on the same morning and have been arguing at the gate since noon. One speaks for {TALE} and {FACTION}, the other for {ITEM} and {ENEMY}. Both want the colony to say, out loud, which of them is right.\n\n{A_nameDef} thinks the colony could host a proper debate instead, with both of them and anyone who wants to listen. It could go well. It could also go very badly.</li>
+          <li>A preacher for {TALE} and {FACTION} and another for {ITEM} and {ENEMY} came to the colony on the same day, each to win it over, and found each other at the gate. They have been at it since morning.\n\n{A_nameDef} says the colony could give them a proper debate, with anyone who wants to listen. It might not end well.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
@@ -468,6 +479,7 @@
     <texts>
       <li>{FACTION} and {ENEMY} have been at war longer than the colony has stood. This season, for the first time anyone remembers, both sides are tired enough to talk.\n\nThey need somewhere neither of them owns, and someone both of them half trust. Riders from both have asked whether that could be the colony.</li>
       <li>[winter] A hard season has worn {FACTION} and {ENEMY} down to the point where even old enemies start counting what the war costs. Both have sent riders to the colony, separately and a day apart, with the same question: would it host the talks?</li>
+      <li>Riders came to the colony a day apart, one from {FACTION} and one from {ENEMY}, and both asked the same thing. The two have been at war longer than anyone at the colony can remember, and both are tired of it.\n\nThey want a table neither of them owns, at a place both half trust. They have asked whether it could be the colony's.</li>
     </texts>
     <summaries>
       <li>If the colony hosts the talks, the two may make peace for good, and both will owe the colony for it. It costs food for the delegations and a few days of everyone's patience.</li>
@@ -483,6 +495,7 @@
         </titles>
         <texts>
           <li>The riders of {FACTION} and {ENEMY} are waiting for an answer, at opposite ends of the colony's yard. Hosting means a table, a roof, and food for both delegations, {COUNT} portions or so, and someone to keep the peace at the table.\n\n{A_nameDef} would be the one doing that. {A_nameDef} has already started thinking about the seating.</li>
+          <li>The riders of {FACTION} and {ENEMY} have kept to opposite sides of the yard all morning, waiting for the colony's answer. Hosting the talks means a table, a roof and food for both delegations, {COUNT} portions or so.\n\n{A_nameDef} would sit at the head of that table, and has been trying to work out where to put everyone else.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -536,6 +549,7 @@
         </titles>
         <texts>
           <li>The talks broke down on the third day, over a strip of border the colony had never heard of. The delegations left an hour apart, by different roads.\n\nThey tried, though, and both sides thanked the colony for the chance.</li>
+          <li>The talks came apart over an old grievance neither side would let go of, and the delegations left by different roads. The war goes on.\n\nBoth sides sent their thanks for the table all the same.</li>
         </texts>
         <chronicle>Peace talks between {FACTION} and {ENEMY} at the colony broke down.</chronicle>
         <effects>
@@ -549,6 +563,7 @@
         </titles>
         <texts>
           <li>The talk of peace between {FACTION} and {ENEMY} has come to nothing. Somewhere between their lands, the war goes on.</li>
+          <li>No other table could be found for {FACTION} and {ENEMY}, and the war between them goes on.</li>
         </texts>
         <chronicle>Talk of peace between {FACTION} and {ENEMY} came to nothing.</chronicle>
       </li>
@@ -587,6 +602,7 @@
     <texts>
       <li>A mercenary company, {NAME}, has come down from the hills and made camp a day's march from the colony. Their captain, {X_nameFull}, has been to every settlement in the region looking for work.\n\nThey are good, by all accounts, and expensive, and not particular about who pays.</li>
       <li>[againstWarlord] There's a war on the wind, and {NAME} has followed it into the region. Their captain, {X_nameFull}, has heard about the warlord of {ENEMY} and what's been happening to the neighbors.\n\n{X_nameDef} thinks there's money to be made in it, and is already asking who in the region has silver.</li>
+      <li>{NAME}, a mercenary company out of the hills, has made camp a day's march from the colony and sent riders to every gate in the region. Their captain, {X_nameFull}, has swords for hire and an empty war chest.\n\nThe company will fight for whoever pays first, and says so.</li>
     </texts>
     <summaries>
       <li>{X_nameDef} will offer the company's swords for hire against {ENEMY}. It ends when they ride on, with or without the colony's silver.</li>
@@ -664,6 +680,7 @@
         </titles>
         <texts>
           <li>{NAME} did not come back from {PLACE}. A few stragglers passed the colony days later, carrying their wounded, and didn't stop.\n\nThe colony's silver is gone with the rest.</li>
+          <li>Word came back from {PLACE} with a carter, not with {NAME}. The company was broken there, its captain with it, and the colony's silver went down with them.</li>
         </texts>
         <chronicle>{NAME}, in the colony's pay, was broken at {PLACE}.</chronicle>
       </li>
@@ -708,6 +725,7 @@
     <texts>
       <li>The road between the colony and {PLACE} has turned bad. Bandits of {ENEMY} have been stopping carts in the cuttings and taking everything, and twice now they've taken the drivers too.\n\n{FACTION}'s caravans have stopped using it. So has anyone else with sense.</li>
       <li>[enemyHightech] Raiders of {ENEMY} have set up on the road to {PLACE} with a roadblock and a machine gun nest, and are charging a toll of everything a traveler owns. {FACTION}'s trucks have stopped running.\n\nAnyone who can find another way is taking it.</li>
+      <li>Carts that leave {PLACE} for the colony have stopped arriving. The one driver who made it through says {ENEMY} have taken the road: they wait in the cuttings, take the load and the oxen, and send the drivers home on foot.\n\n{FACTION}'s traders have stopped using it, and the colony's gate sees fewer faces every week.</li>
     </texts>
     <summaries>
       <li>Caravans and visitors come less often, merchants get stranded, and the bandits may try the colony itself. Clearing the road would take silver, or patience.</li>
@@ -734,6 +752,7 @@
         </titles>
         <texts>
           <li>A rider from {PLACE} brings word that {FACTION} mean to clear the road, and would welcome the colony's help paying for it. Guards cost money, and {COUNT} silver from the colony would get them out this week instead of next season.\n\nThe rider can take the silver back today.</li>
+          <li>{FACTION}'s rider has come from {PLACE} with a plan to put guards on the road. With {COUNT} silver from the colony, the guards could be out much sooner than {FACTION} could manage alone.\n\nThe rider will carry the silver back today, if the colony agrees.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -815,6 +834,7 @@
         </titles>
         <texts>
           <li>The guards the colony helped pay for cleared the road to {PLACE} within a few days. The bandits of {ENEMY} have gone back where they came from, and the first carts are already through.\n\n{FACTION} know who paid for it.</li>
+          <li>The road to {PLACE} is open again. The guards the colony helped pay for drove {ENEMY} out of the cuttings, and {FACTION}'s carters have started greeting the colony's people by name.</li>
         </texts>
         <chronicle>The road to {PLACE} was cleared, with the colony's silver.</chronicle>
         <effects>
@@ -829,6 +849,7 @@
         </titles>
         <texts>
           <li>{FACTION} cleared the road to {PLACE} at last, without the colony's help. The bandits of {ENEMY} have scattered, and the carts are running again.</li>
+          <li>The road to {PLACE} is clear. {FACTION} cleared it alone, and when they tell how it was done, the colony isn't part of the story.</li>
         </texts>
         <chronicle>{FACTION} cleared the road to {PLACE}.</chronicle>
       </li>
@@ -839,6 +860,7 @@
         </titles>
         <texts>
           <li>Whoever was robbing carts on the road to {PLACE} has moved on, to another road or another region. They weren't chased off. They ran out of carts to rob.\n\nThe traders are coming back, slowly.</li>
+          <li>The bandits have left the road to {PLACE} as suddenly as they came. With no carts on it there was nothing left to take, and the first traders are trying it again.</li>
         </texts>
         <chronicle>The bandits on the road to {PLACE} moved on.</chronicle>
       </li>

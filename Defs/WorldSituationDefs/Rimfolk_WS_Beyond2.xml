@@ -167,6 +167,7 @@
         </titles>
         <texts>
           <li>{NAME} is buried, and {FACTION} have gone back to their fields and their trades. The gray cloth is folded away for next time.</li>
+          <li>{NAME} lies in the ground at last, and {FACTION} have taken the gray cloth down from their doors. Their towns have gone back to work, more slowly than before.</li>
         </texts>
         <chronicle>{FACTION} buried {NAME}.</chronicle>
       </li>
@@ -326,6 +327,7 @@
       <li>[theirLowtech] {FACTION} have put a chain across the road at {PLACE}, and a man with a box beside it. Every cart, every pack animal and every traveler pays to pass, and the price has doubled twice since spring.\n\nTraders are going the long way around, or not at all.</li>
       <li>[theirHightech] {FACTION} have set up a checkpoint on the highway at {PLACE}, with papers, inspections and a fee for every vehicle. The fee, they say, is for the roads. The roads, everyone else says, look the same as before.\n\nTraders are going around, or staying home.</li>
       <li>[their:grudge] {FACTION} have set a toll on the road at {PLACE}, and their tollmen have been told to look very hard at anyone from the colony. Carts that come from the colony's way are unloaded to the last sack and searched, and then charged double.</li>
+      <li>[theirLowtech] A chain hangs across the road at {PLACE} now, and a tollman of {FACTION} sits beside it on a stool with a box on his knees. Every cart pays, every mule pays, and anyone on foot pays something.\n\nThe traders who used to come the colony's way are finding other roads.</li>
     </texts>
     <summaries>
       <li>Fewer traders and visitors get through while the toll stands. The colony can pay its way, petition against it with the other villages, or wait it out.</li>
@@ -351,6 +353,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s toll-keeper has sent his man to the gate with the terms chalked on a board:\n\n{COUNT} silver, paid now. The colony's carts, and every caravan bound for it, pass the chain free until the season ends.\n\nIt's a lot of silver. It's less than the colony would lose without traders.</li>
+          <li>A man from {FACTION}'s tollhouse has come to the gate with an offer: {COUNT} silver now, and the colony's carts, and any caravan bound for it, pass the chain free for the rest of the season.\n\nIt's a lot of silver. Losing the traders would cost more.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -380,6 +383,7 @@
         </titles>
         <texts>
           <li>The villages along the road have had enough of {FACTION}'s chain. They are taking a petition to {FACTION}'s {TITLE}, with a spokesman from every village, and they ask whether the colony will send {A_nameDef}.\n\nIf enough of them stand together, the chain may come down. If not, {FACTION} will remember who signed.</li>
+          <li>Every village along the road is sending a spokesman to {FACTION}'s {TITLE} with a petition against the chain, and they've asked the colony to send one too: {A_nameDef}.\n\nIf enough of them stand together, the chain may come down. If not, {FACTION} will remember the names.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -458,6 +462,7 @@
         </titles>
         <texts>
           <li>{FACTION} have taken the chain off the road at {PLACE}. They say it was always meant to be for a season. Along the road, people say it was the petition that did it, and that {A_nameDef} spoke first.\n\nThe traders are already coming back.</li>
+          <li>The chain at {PLACE} is down, and the tollman's stool with it. {FACTION} say the toll was only ever meant for a season. Along the road they say it was the petition, and that {A_nameDef} spoke well for the colony.</li>
         </texts>
         <chronicle>The toll at {PLACE} was lifted after the villages' petition.</chronicle>
         <effects>

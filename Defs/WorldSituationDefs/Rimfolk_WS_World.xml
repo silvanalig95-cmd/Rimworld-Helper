@@ -477,6 +477,7 @@
     <texts>
       <li>{TALE} has found its traffic. Carts of {FACTION} go past the colony's gate most days now, and traders, pilgrims and people with no good reason to be anywhere go with them. Some of them turn in at the gate. Some of them will be trouble.\n\nA road brings the world to the door. The colony asked for this one.</li>
       <li>[theirLowtech] The dust never quite settles on {TALE} now. Ox carts of {FACTION}, a tinker's wagon, a string of pack beasts, people walking: the colony's gate sees more faces in a week than it used to in a season.\n\n{FACTION}'s wardens ride the road once in a while, and the colony will see them too.</li>
+      <li>Since {TALE} opened, the colony's gate has learned the sound of cartwheels. {FACTION}'s carts pass most days, with tinkers and pilgrims and people going nowhere in particular among them. Some will turn in at the gate, and not all of them will be welcome.\n\nThe colony chose to have the road past its door, and now it has it.</li>
     </texts>
     <summaries>
       <li>Traders and travelers come by more often while the road is busy, and so does what preys on them. {FACTION}'s road wardens will stop at the gate; make them welcome and they may think of putting a post here.</li>
@@ -499,6 +500,7 @@
         </effects>
         <texts>
           <li>Merchants off {TALE} have turned in at the colony's gate to trade.</li>
+          <li>A trader's wagon has turned off {TALE} and pulled up at the colony's gate.</li>
         </texts>
       </li>
       <li>
@@ -510,6 +512,7 @@
         </effects>
         <texts>
           <li>Travelers of {FACTION} are resting by the road outside the colony before they go on.</li>
+          <li>A few travelers of {FACTION} have stopped by the roadside outside the colony to rest their feet before going on.</li>
         </texts>
       </li>
       <li>
@@ -525,6 +528,7 @@
         </titles>
         <texts>
           <li>A carter of {FACTION} is at the gate with no cart. Men came out of the trees a mile down {TALE}, he says, took the ox, the load and his boots, and left him his life. He has walked here in his stockings.\n\nHe asks for a meal and a night, or a little silver for the road to {PLACE}, or just for someone to tell.</li>
+          <li>A carter of {FACTION} has come up to the gate barefoot, with a cut on his head and nothing else. Robbers on {TALE} took the cart, the ox and his boots a mile below the colony, and let him go.\n\nHe'd like a meal and a bed, or some silver for the road to {PLACE}.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -614,6 +618,7 @@
         </titles>
         <texts>
           <li>{TALE} has settled into its traffic, and the colony's gate is one of its stopping places. {FACTION}'s wardens have taken to resting there when they ride through, and the talker among them has said more than once that a post by the colony would make sense.</li>
+          <li>Carters on {TALE} know the colony's gate now as a place to water the oxen. {FACTION}'s wardens stop there whenever they ride through, and their talker has twice raised the idea of a post beside it.</li>
         </texts>
         <chronicle>{TALE} came into use, and the colony's gate became a stopping place on it.</chronicle>
         <effects>
@@ -627,6 +632,7 @@
         </titles>
         <texts>
           <li>{TALE} has settled into its traffic: carts most days, trouble some days, and the colony's gate a place the travelers know.</li>
+          <li>{TALE} has become an ordinary road, busy some days and empty others, and the colony's gate is one of the places along it that travelers know.</li>
         </texts>
         <chronicle>{TALE} came into use past the colony's gate.</chronicle>
       </li>
@@ -720,6 +726,7 @@
         <message>true</message>
         <texts>
           <li>The wardens' post is taking shape at the edge of the colony's land: a palisade, a fire, a stack of spears.</li>
+          <li>Posts are going in at the edge of the colony's land, and a fire is lit where the wardens' hut will stand.</li>
         </texts>
       </li>
       <li>
@@ -734,6 +741,7 @@
         </titles>
         <texts>
           <li>The wardens' post at the edge of the colony's land is finished, and {FACTION}'s wardens will keep it from now on, three or four at a time, changing with the season. The road past the colony's gate is watched from it, and whatever comes up the road meets them first.\n\nThey are the colony's neighbours now, and can be dealt with as neighbours are.</li>
+          <li>The wardens of {FACTION} have finished their post at the edge of the colony's land, and will keep it from now on, a few at a time, changing with the season. Anything that comes up the road meets them before it meets the colony's gate.\n\nThey are neighbors now, and can be dealt with as neighbors are.</li>
         </texts>
       </li>
     </beats>
@@ -747,6 +755,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s wardens keep their post by the colony, and the road with it. Carters on it say the stretch past the colony is the safest for a week's travel, and {FACTION} say the colony made it so.</li>
+          <li>The wardens' post by the colony is kept day and night, and {FACTION} speak of the colony's gate as the safest on the road.</li>
         </texts>
         <chronicle>{FACTION}'s wardens made a post by the colony and kept the road from it.</chronicle>
         <effects>
@@ -776,6 +785,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s wardens have their post a day down the road, as the colony asked. Carters say the road is safer for it. The colony hears their horn on still mornings, and nothing else.</li>
+          <li>{FACTION}'s wardens keep their post a day down the road. The road is safer, and the colony's land is still its own.</li>
         </texts>
         <chronicle>{FACTION}'s wardens put a post on the road a day from the colony.</chronicle>
         <effects>
@@ -790,6 +800,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s wardens keep the road from {PLACE}, as before, and ride past the colony's gate without stopping.</li>
+          <li>{FACTION}'s wardens ride the road from {PLACE} as they always have, and don't stop at the colony's gate on the way.</li>
         </texts>
         <chronicle>The colony refused {FACTION}'s wardens ground for a post.</chronicle>
       </li>
@@ -800,6 +811,7 @@
         </titles>
         <texts>
           <li>{FACTION}'s wardens put their post up a day down the road after all; the colony's land wasn't to be had when they came for it. The road is safer for it.</li>
+          <li>{FACTION}'s wardens built their post down the road in the end, and the stretch past the colony is safer for it.</li>
         </texts>
         <chronicle>{FACTION}'s wardens put a post on the road near the colony.</chronicle>
       </li>
@@ -856,6 +868,7 @@
         </effects>
         <texts>
           <li>Traders from the market at {PLACE} have come up the road to the colony's gate.</li>
+          <li>A few traders from the market at {PLACE} have brought their wares up the road to the colony's gate.</li>
         </texts>
       </li>
       <li>
@@ -899,6 +912,7 @@
         </effects>
         <texts>
           <li>{PLACE} held its first market day, and some of the crowd has walked up the road to see the colony.</li>
+          <li>Market day at {PLACE} drew a crowd, and part of it has wandered up the road to look at the colony.</li>
         </texts>
       </li>
     </beats>

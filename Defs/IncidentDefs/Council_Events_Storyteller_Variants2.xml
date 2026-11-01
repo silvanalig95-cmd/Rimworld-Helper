@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A second round of ways for the storyteller-batch events (Council_Events_Storyteller.xml) to read, merged in at
+    startup like the first (LetterVariantsDef). Openings for the season, the colony's name and who answers the gate,
+    and more ways to tell each answer, so an event that comes back doesn't end the same way twice. Outcomes say only
+    what the answer's effects and its worker really do on the map: gear handed over by the one who sold it, silver
+    and prisoners collected by the buyers' own people, a lesson at the bench.
+  -->
+
+  <!-- ===================== An old adventurer ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_OldAdventurer</defName>
+    <incident>Council_Evt_OldAdventurer</incident>
+    <texts>
+      <li>[summer] At midday {X_nameDef} of {FACTION} came in with {X_possessive} coat over one arm and an old pack on {X_possessive} back, asked for water first, and then whether the colony buys gear.\n\nThe pack and everything in it goes for {COUNT} silver. {X_nameDef} would like to be rid of the weight before the road gets any hotter.</li>
+      <li>[colony:Hospitable] Travelers on the road say this colony feeds anyone who knocks, so {X_nameDef} of {FACTION} knocked. The pack {X_pronoun} set down inside the door holds forty years of other people's fights.\n\nAll of it is for sale, for {COUNT} silver. {X_nameDef} is in no hurry to leave the table.</li>
+      <li>[past:outlaw] {X_nameDef} of {FACTION} and {A_nameDef} looked at each other a long moment at the gate, the way two people do who once worked the same roads from different sides. Then {X_nameDef} laughed and put the pack down.\n\nThe kit is for sale, {COUNT} silver for the lot. {X_nameDef} swears every piece of it was paid for.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} lays the gear out on a blanket, names every piece and where it was carried, and takes the silver without counting it.</li>
+          <li>[winter] {X_nameDef} hands the gear over one piece at a time, and keeps back only {X_possessive} own scarf for the road.</li>
+          <li>[colony:Thrifty] {X_nameDef} counts the colony's silver twice and calls it a hard bargain from hard people, then hands over the gear with a grin.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} says yes before {A_nameDef} has finished asking, and wants to know only which bed is nearest the stove.</li>
+          <li>[colony:Hospitable] Forty years on the road showed {X_nameDef} few tables as good as this one, {X_pronoun} says, and the pack goes under a bed of {X_possessive} own.</li>
+        </lines>
+        <riskLines>
+          <li>{X_nameDef} thanks the colony and says there is still one road {X_pronoun} means to walk to the end. The stories that night go on until the fire is low.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} tells the one about the river crossing twice, because the first time somebody laughed in the wrong place. The pack stays shut.</li>
+          <li>[past:soldier] {A_nameDef} and {X_nameDef} end the evening telling their old campaigns over each other, and agree on none of the dates.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{X_nameDef} buckles the pack, says the next settlement will pay more, and takes the road without looking back.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A mapmaker ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Cartographer</defName>
+    <incident>Council_Evt_Cartographer</incident>
+    <texts>
+      <li>[winter] Snow shows the shape of the land better than any season, says {X_nameDef}, a mapmaker of {FACTION}, stamping {X_possessive} boots at the gate. Every ridge stands out, and every overhang.\n\nFor {COUNT} silver {X_nameDef} would map the colony's hills properly. With {A_nameDef} to guide {X_objective}, it would be free and rough, and might come to nothing.</li>
+      <li>[colony:Delvers] {X_nameDef} of {FACTION} has heard that this colony digs, and has come with a satchel of charts to sell it what lies under the hills. A proper survey costs {COUNT} silver.\n\nIf {A_nameDef} goes along as a guide, {X_nameDef} would do a rough one for nothing, and promise nothing.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} pockets the silver and leaves the colony with a map drawn in three colors of ink. One spot on it has been gone over so many times the paper is thin.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} talks {A_nameDef} through reading the land ridge by ridge, and draws the survey from what {A_nameDef} knows of it. It is rough, and it cost nothing.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} and {X_nameDef} go over every rock face the colony knows of, and none of them holds anything worth digging. {A_nameDef} can read a survey now, at least.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} rolls up the charts, thanks the colony for the water, and heads off toward the next valley.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A silent guest ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_SilentMonk</defName>
+    <incident>Council_Evt_SilentMonk</incident>
+    <texts>
+      <li>[summer] The noon heat didn't seem to trouble {X_nameDef} of {FACTION}, who came up the road with nothing but a water skin and a bowl, and bowed at the gate. With {X_possessive} hands {X_nameDef} asked for a place in the shade, near people, for a day or two.\n\n{A_nameDef} has been in a dark mood all week, and was the one who filled the bowl.</li>
+      <li>[faith:devout] {A_nameDef} knew the sign {X_nameDef} of {FACTION} made at the gate before anyone else did: a vow of silence, kept for a season. {X_nameDef} asks only to sit near people for a day or two.\n\n{A_nameDef} has had a hard time lately, and has been standing near the gate ever since.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} sits by the fields from morning to dark without a word, and the colony is calmer for having {X_objective} there.</li>
+          <li>[winter] {X_nameDef} sits out by the fields in the snow, as still as a post, breath smoking. The colony is easier for having {X_objective} there.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} and {X_nameDef} sit together through the afternoon, watching the same patch of ground. When {A_nameDef} gets up, {A_pronoun} looks like someone who has slept.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} touches {X_possessive} heart, bows to the gate, and walks on down the road.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The limb-maker (answers the worker doesn't tell) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_LimbMaker</defName>
+    <incident>Council_Evt_LimbMaker</incident>
+    <texts>
+      <li>[colony:Craftsfolk] {X_nameDef}, a limb-maker of {FACTION}, has heard the colony makes things well, and came to see its benches as much as to sell. Then {X_pronoun} saw {A_nameDef}, and offered a {TALE}, fitted before {X_pronoun} goes.\n\n{COUNT} silver, says {X_nameDef}, or {PLACE} in materials.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} hangs the samples back on the cart, wishes {A_nameDef} well, and drives on.</li>
+        </lines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{X_nameDef} talks {B_nameDef} through every measurement twice and makes {B_objective} do the third alone. {A_nameDef} sat for all of it, and will be the first one {B_nameDef} makes.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A merchant's venture ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Venture</defName>
+    <incident>Council_Evt_Venture</incident>
+    <texts>
+      <li>[summer] The roads are dry and the passes are open, and {X_nameDef} of {FACTION} means to be over them before either changes. The run needs backers, and pays twice the stake back in about ten days.\n\n{A_nameDef} listened to the whole pitch, and has asked to see the pack beasts.</li>
+      <li>[colony:Thrifty] {X_nameDef} of {FACTION} has heard this colony counts its silver twice, and has come anyway with a caravan venture: twice the stake back in about ten days. {A_nameDef} has the figures and is going over them a third time.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} ties the silver into a cloth, writes the colony's name in a fat book, and shakes {A_nameDef}'s hand twice on the way out.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} takes the colony's smaller stake, says a careful backer is still a backer, and enters it in the book.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} says the colony will hear how rich the caravan came home, and goes off to find braver backers.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A prisoner wanted ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_WantedPrisoner</defName>
+    <incident>Council_Evt_WantedPrisoner</incident>
+    <texts>
+      <li>[winter] {FACTION} sent word through the snow: they want {X_nameDef} of {ENEMY}, the colony's prisoner, for a raid on one of their farms last fall. The herds that farm lost won't come back, their rider says, but someone can answer for them.\n\nThey offer {COUNT} silver, paid when they collect.</li>
+      <li>[x:old] {FACTION} want the colony's prisoner, {X_nameDef} of {ENEMY}, gray as {X_pronoun} is. They say {X_nameDef} led raids on their villages for twenty years, and they mean to see {X_objective} answer for them.\n\nThey'll pay {COUNT} silver when they come for {X_objective}.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{FACTION}'s people come for {X_nameDef} and walk {X_objective} out between them. The silver they leave is all there.</li>
+          <li>[trait:Kind] {X_nameDef} goes with {FACTION}'s people. {A_nameDef} argued against it to the end, and the silver doesn't sit well with {A_objective}.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{X_nameDef} is let out of the cells and leaves the colony's land without looking back, in case it changes its mind. {FACTION} will hear of it.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} stays in the colony's cells, and {FACTION} go without the trial they wanted. They won't forget being turned down.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A wounded stranger ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_WoundedStranger</defName>
+    <incident>Council_Evt_WoundedStranger</incident>
+    <texts>
+      <li>[fall] {A_nameDef} went out for the last of the berries and found {X_nameDef} instead, lying under the bushes in a bed of wet leaves with a wound in {X_possessive} side and a weapon in {X_possessive} hand. {X_nameDef} asks for a place to lie low, and nothing else.\n\nWhoever did this hasn't been seen. That doesn't mean they're gone.</li>
+      <li>[past:healer] {A_nameDef} found {X_nameDef} past the fields and had the wound looked at before thinking to be afraid of the weapon. It's a deep cut, cleanly made, and {X_nameDef} won't say by whom.\n\nIt will heal with care. Whoever made it may come to see that it doesn't.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} is brought in and put to bed, and thanks {A_nameDef} in the first full sentence {X_pronoun} has said.</li>
+        </lines>
+        <riskLines>
+          <li>{X_nameDef} is brought in and put to bed. Out where {X_pronoun} was found, the ground is trampled with fresh tracks: {ENEMY} are looking for {X_objective}, and they'll come.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>What the colony could spare is set down beside {X_nameDef}, within reach. {X_nameDef} watches it come with a hand on the weapon, and says nothing.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} leaves {X_nameDef} where {X_pronoun} lay, with the weapon and the silence, and goes back to the fields.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The lord's tithe ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Tithe</defName>
+    <incident>Council_Evt_Tithe</incident>
+    <texts>
+      <li>[winter] Winter or no winter, {X_nameDef}, reeve to a lord of {FACTION}, has come for the tithe: {COUNT} silver, or {TALE} in kind, for {PLACE}.\n\n"My lord's people are hungry too," {X_nameDef} says, and doesn't look up from the ledger. {A_nameDef} has a few things to say about the lord's people.</li>
+      <li>[colony:Walled] {X_nameDef}, reeve to a lord of {FACTION}, took a long look at the colony's walls before reading out the claim: {COUNT} silver, or {TALE} in kind, owed to {PLACE} for land within the lord's bounds.\n\n{A_nameDef} points out that the walls were built without the lord's help, and would like to argue the rest.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>{X_nameDef} bites one of the coins, enters the colony in the ledger in a careful hand, and leaves.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>Every sack is entered in {X_nameDef}'s ledger, and the lord's carters come to haul them off.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{A_nameDef} names every boundary stone between here and {PLACE}, and asks whose seal is on each. {X_nameDef} closes the ledger with a sigh and says the lord will be told the claim is in doubt.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} argues well, but {X_nameDef} has the seal, the witnesses and a second ledger. The colony pays the tithe and a fine for the reeve's afternoon.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>3</option>
+        <lines>
+          <li>{X_nameDef} reads the refusal back aloud to be sure of it, writes it down in full, and rides off with the ledger under {X_possessive} arm.</li>
+          <li>[colony:Guarded] {X_nameDef} is told at the gate that the colony owes nothing to anyone, and is not asked in. The reeve writes for a long time before leaving.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== An envoy ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Envoy</defName>
+    <incident>Council_Evt_Envoy</incident>
+    <texts>
+      <li>[colony:Merciful] {ENEMY} have heard that this colony spares the people it beats, and have sent {X_nameDef} to find out whether it will make peace too. The price {X_nameDef} names is {COUNT} silver, or {TALE}.\n\n{X_nameDef} stands below the gate with empty hands and waits for an answer.</li>
+      <li>[their:grudge] {X_nameDef} of {ENEMY} came to the gate unarmed and didn't pretend to like it. The feud has cost both sides enough, {X_nameDef} says. For {COUNT} silver, or {TALE}, {ENEMY} will call it ended.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The silver is carried out to {X_nameDef} at the gate, and {X_nameDef} counts it there. The word that comes back from {ENEMY} is the one the colony wanted: the feud is over.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>Sack after sack goes out to the gate while {X_nameDef} keeps count on {X_possessive} fingers. {ENEMY}'s people will come to haul it, and the feud ends with the last sack.</li>
+        </lines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{X_nameDef} hears the answer, folds the white cloth, and walks back the way {X_pronoun} came. {ENEMY} will take it as a no.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A crashed drone ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_CrashedDrone</defName>
+    <incident>Council_Evt_CrashedDrone</incident>
+    <texts>
+      <li>[winter] A drone of {FACTION}'s came down {PLACE} and skidded a long black line through the snow before it stopped. Its lights are still on.\n\n{A_nameDef} thinks the memory could be read before the cold kills the core. The parts are worth having, and {FACTION} would pay for its return.</li>
+      <li>[skill:Intellectual] {A_nameDef} was out {PLACE} before the smoke had cleared, kneeling by a drone of {FACTION}'s with one hand on its warm casing, trying to read the serial plate.\n\nThe memory might still be there. So are the parts, and {FACTION}'s reward if they get it back.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>The drone is taken apart down to the bolts, and the good pieces are stacked by the wreck. What's left of the casing stays where it fell, too bent to use.</li>
+        </lines>
+      </li>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} has the core open and copied before it can wipe itself. There are surveys in it of land nobody here has seen, and some of it fits what the colony is studying.</li>
+        </lines>
+        <riskLines>
+          <li>The core hums, then goes dark under {A_nameDef}'s fingers. Whatever it knew is gone, and one good component is all the casing gives up.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>{FACTION}'s people come for the wreck and haul it off between them, and leave {COUNT} silver and a word of thanks.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== A signal (the trace and the silence; the answer is told by the worker) ===================== -->
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Council_Var2_Evt_Signal</defName>
+    <incident>Council_Evt_Signal</incident>
+    <texts>
+      <li>[winter] On the coldest night so far the comms picked up a voice, slow and careful, reading out the same short message over and over. {A_nameDef} has been sitting by the set in a blanket ever since.\n\nAnswering would tell whoever it is where the colony is. {A_nameDef} could try to trace it without a word.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>{A_nameDef} works the dial a hair at a time, and pins the signal to a spot out on the colony's own land.</li>
+        </lines>
+        <riskLines>
+          <li>{A_nameDef} follows the signal from band to band until it fades out and doesn't come back.</li>
+        </riskLines>
+      </li>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>The set is turned down, and the signal is left calling to itself until it stops.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

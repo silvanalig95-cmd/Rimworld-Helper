@@ -202,6 +202,7 @@
         </titles>
         <texts>
           <li>The last carts are leaving {PLACE}, and what didn't fit is being left behind: timber, tools, half a mill. {FACTION} don't much mind who takes the rest.\n\n{A_nameDef} says the colony could fill a few carts of its own. Some think it's no different from picking over a grave.</li>
+          <li>{FACTION} are leaving {PLACE} with what their carts can hold, and leaving the rest: beams, doors, a forge too heavy to move. Anyone who wants it can have it, they say.\n\n{A_nameDef} thinks the colony should take its share. Some of the others would rather not pick over a town that's still warm.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -242,6 +243,7 @@
         </titles>
         <texts>
           <li>{PLACE} is mostly empty now, but not all of it. A few families refused to leave, and {FACTION} have stopped trying to make them. The town stays on the map, smaller and quieter than it was.</li>
+          <li>Most of {PLACE} has gone, but a handful of families stayed on in the upper town and won't be moved. {FACTION} have let them be. Smoke still rises there in the evenings.</li>
         </texts>
         <chronicle>{PLACE} hung on, half empty.</chronicle>
       </li>
@@ -406,6 +408,7 @@
     <texts>
       <li>{FACTION} are holding {NAME} at {PLACE}, the biggest in years. Traders, players, cooks and craftsmen are coming from every town in the region, and there will be contests on the green: the best shot, the best cook, the finest work.\n\nThe colony has been invited, along with everyone else.</li>
       <li>[theirHightech] {FACTION} have announced {NAME} at {PLACE}: market stalls, music, a contest in every trade worth having, and floodlights so it can run all night.\n\nThe colony's invitation came on stiff card, printed in two colors, with its name spelled nearly right.</li>
+      <li>Riders from {PLACE} have been round every settlement in the region with the news: {FACTION} are holding {NAME}, with stalls, music and a contest in every trade worth having.\n\nThe last fair at {PLACE} is still talked about. This one, {FACTION} promise, will be bigger, and the colony is asked to come.</li>
     </texts>
     <summaries>
       <li>The colony can send a cart of its surplus to sell at fair prices, and put its best forward in a contest. Visitors and traders come more often while it lasts.</li>
@@ -455,6 +458,7 @@
         </titles>
         <texts>
           <li>There is a contest in {SKILL} at {NAME}, with a prize for the winner and bragging rights for the winner's town. {A_nameDef} is the best the colony has, and the others have been dropping hints all week.</li>
+          <li>{NAME} will judge {SKILL} on its last day, and the prize is worth having. The talk in the region is that the colony's {A_nameDef} could take it, and {A_nameDef} has heard the talk.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -543,6 +547,7 @@
         </titles>
         <texts>
           <li>Pilgrims on the road to {PLACE} have stopped at the colony's gate, the first of a long column. Their leader asks whether they may camp by the water for a few nights and rest their feet before the last stretch. They would need feeding, {COUNT} portions or so.\n\nThey have nothing to trade but songs and news. Some at the colony think they should pay to camp; most think that would be a shameful thing to ask of pilgrims.</li>
+          <li>The first column of pilgrims bound for {PLACE} has reached the colony's gate, footsore and dusty. Their leader asks to camp by the water a few nights before the last stretch. They would need feeding, {COUNT} portions or so.\n\nThey can pay in songs and news. A few in the colony think they should pay in silver too.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -597,6 +602,7 @@
         </titles>
         <texts>
           <li>On their way home from {PLACE}, the pilgrims have stopped again at the colony's gate. Their leader means to say a blessing over the fields and the people in them, in the old way, and they will be on the road again before anyone can offer supper.\n\nEven the colony's doubters keep their heads bowed while it lasts.</li>
+          <li>The pilgrims are back from {PLACE}, slower and quieter than they went. Their leader has stopped at the colony's gate to bless its fields on the way past, as their custom asks, and they won't stay to eat.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.VisitEffect_AtGate"><what>pilgrims</what><count>3~5</count><onward>true</onward><hours>1~2</hours></li>
@@ -644,6 +650,7 @@
     <texts>
       <li>Someone in {PLACE} found silver in a creek bed last month, and now half the region is out with picks and pans. Prospectors have been passing the colony for days, and some of them are looking hard at the colony's own hills.\n\nMost will find nothing. A few will get rich, and a few will want to stay.</li>
       <li>[theirHightech] A survey crew out of {PLACE} hit a silver seam last month, and the news got out before the claim was filed. Now prospectors with metal detectors and borrowed trucks are combing every hill in the region, the colony's included.\n\nThe claims office at {PLACE} has a line out the door and around the block.</li>
+      <li>A creek near {PLACE} turned up silver last month, a fistful in a single pan, and the whole region has heard. Prospectors are on every road with picks over their shoulders, and some have been looking hard at the colony's hills.\n\nMost of them will go home with sore backs. A few won't go home at all.</li>
     </texts>
     <summaries>
       <li>Travelers and prospectors pass the colony often, and some will ask to stay. The colony can let them work its land for a share of what they find.</li>
@@ -669,6 +676,7 @@
         </titles>
         <texts>
           <li>A party of prospectors from {PLACE} is at the gate, asking to work the creek beds on the colony's land. They will pay a share of whatever they find when the rush is over, or {COUNT} silver now, whichever the colony prefers.\n\nThey seem honest enough. Prospectors usually do.</li>
+          <li>Prospectors from {PLACE} have come up to the gate with their pans and a proposal: let them work the colony's creek beds, and they'll pay a share of what they find when the rush is over, or {COUNT} silver now.\n\nThey look honest. Prospectors always do.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -711,6 +719,7 @@
         </effects>
         <texts>
           <li>One of the prospectors found a nugget the size of a thumb in the colony's creek, and they mean to come back and work it by lamplight.</li>
+          <li>The prospectors in the colony's creek turned up a nugget as big as a thumb this morning, and they're coming back up to work the spot by lamplight.</li>
         </texts>
       </li>
       <li>
@@ -725,6 +734,7 @@
         </titles>
         <texts>
           <li>One of the prospectors has given up on getting rich, and has come up to the gate. After three weeks in the creek beds with nothing to show for it, there are worse things than a roof, regular meals and work that pays in something besides hope.\n\nThe prospector asks whether the colony could use another pair of hands.</li>
+          <li>One of the prospectors has walked up from the creek with an empty pan and a sunburned neck, and asks for work instead. Three weeks of panning paid nothing, and a roof and a meal a day would pay better.\n\nThe prospector wants to know if the colony could use another pair of hands.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

@@ -312,7 +312,7 @@
           <li>{FACTION} and {ENEMY} disagree</li>
         </titles>
         <texts>
-          <li>[water] {FACTION} and {ENEMY} both claim the same spring, in the hills between their lands. The argument has gone on all season, and now both have asked the colony to judge. Each has sent someone to make its case at the colony's table, and each expects to win.</li>
+          <li>[water] {FACTION} and {ENEMY} both claim the same spring, in the hills between their lands. The argument has gone on all season, and now both have asked the colony to judge. Each has written out its case and sent it to the colony's table, and each expects to win.</li>
           <li>[herd] Sheep from {ENEMY}'s flocks strayed onto {FACTION}'s land last spring and lambed there. The ewes were theirs, say {ENEMY}, so the lambs are theirs. The grass was ours, say {FACTION}, and so is everything that grew fat on it.\n\nBoth have asked the colony to settle it.</li>
           <li>[land] {FACTION} and {ENEMY} can't agree where one's land ends and the other's begins, along a strip of good bottomland both want to plant. They've asked the colony to draw the line.</li>
           <li>[salvage,!lowtech] A cargo pod came down between the lands of {FACTION} and {ENEMY}, and both reached it the same morning. Each says it got there first. They've agreed to let the colony settle it, which mostly means each expects the colony to side with them.</li>
@@ -340,7 +340,7 @@
             <outcome>{A_nameDef} talks with both sides at length and gets them to a split that neither likes and both accept.</outcome>
             <riskChance>0.6</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>{A_nameDef} looks for a middle way, but both sides walk out, each sure the colony favored the other.</riskOutcome>
+            <riskOutcome>{A_nameDef} looks for a middle way, but both sides turn it down, each sure the colony favored the other.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount><enemy>true</enemy></li>
