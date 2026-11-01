@@ -45,6 +45,7 @@
     <Compile Include="../../Source/ColonyCouncil/Building/LineRouteMath.cs" Link="LineRouteMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Dilemmas/CustomYearsMath.cs" Link="CustomYearsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Couriers/CourierMath.cs" Link="CourierMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/OnMapMath.cs" Link="OnMapMath.cs" />

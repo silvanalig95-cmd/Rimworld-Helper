@@ -262,7 +262,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The outcome to tell: the risk's when it came true (if it has one), else the plain one, either way picked among
-        /// its variants by tags. Null or empty when the option has nothing to say.
+        /// its variants by tags, and not the one it told lately while another fits. Null or empty when the option has
+        /// nothing to say.
         /// </summary>
         public static string Outcome(DilemmaOption o, bool risk, HashSet<string> tags)
         {
@@ -276,7 +277,7 @@ namespace ColonyCouncil
                 var lines = new List<string>();
                 if (!plain.NullOrEmpty()) lines.Add(plain);
                 lines.AddRange(more);
-                return Flavor.Pick(lines, tags) ?? plain ?? Flavor.PickText(more);
+                return Flavor.PickFresh(lines, tags, more) ?? plain ?? Flavor.PickText(more);
             }
             catch (System.Exception e)
             {

@@ -914,6 +914,18 @@ namespace ColonyCouncil
 
         public IEnumerable<DilemmaDef> Traditions => traditions.Select(n => DefDatabase<DilemmaDef>.GetNamedSilentFail(n)).Where(d => d != null);
 
+        /// <summary>
+        /// How a custom stands as it comes round again, for its letter's and its answers' lines (<see cref="CustomYearsMath"/>):
+        /// kept before ("again"), for years ("years"), a tradition ("tradition"), let go the last time ("missed").
+        /// </summary>
+        public void AddCustomTags(DilemmaDef def, HashSet<string> tags)
+        {
+            if (def == null || tags == null || def.traditionOption < 0) return;
+            int kept = traditionCount.TryGetValue(def.defName, out int n) ? n : 0;
+            int breaks = traditionBreaks.TryGetValue(def.defName, out int b) ? b : 0;
+            foreach (var t in CustomYearsMath.Tags(kept, breaks, IsTradition(def))) tags.Add(t);
+        }
+
         private static CouncilSettings S => ColonyCouncilMod.Settings;
 
         public int lastFiredTick = -999999;
@@ -990,8 +1002,12 @@ namespace ColonyCouncil
 
         private void Send(DilemmaContext ctx)
         {
-            // Lines may be tagged for the moment and the people in it ([winter], [trait:Kind], [b:past:healer]...).
-            ctx.text = Flavor.Pick(ctx.def.texts, LetterTags.For(ctx)) ?? Flavor.PickText(ctx.def.texts);
+            // Lines may be tagged for the moment and the people in it ([winter], [trait:Kind], [b:past:healer]...), and
+            // a custom's for how often it was kept before ([again], [years], [tradition], [missed]); not the text it
+            // had lately while another fits.
+            var tags = LetterTags.For(ctx);
+            AddCustomTags(ctx.def, tags);
+            ctx.text = Flavor.PickFresh(ctx.def.texts, tags, ctx.def.texts) ?? Flavor.PickText(ctx.def.texts);
             var letterDef = DefDatabase<LetterDef>.GetNamedSilentFail("Council_DilemmaLetter");
             var look = new LookTargets(new[] { ctx.a, ctx.b, ctx.stranger }.Where(p => p != null));
             string tradition = IsTradition(ctx.def)
@@ -1015,6 +1031,9 @@ namespace ColonyCouncil
             if (ctx.a == null || ctx.a.Dead) return;
             ctx.cause = "CC_Cause_Decision".Translate(ctx.def.label, ctx.Format(option.label)).Resolve();
             using var _cause = Causes.Push(ctx.cause);
+            // How the custom stood before this answer, for the outcome's lines: keeping it now doesn't make it "again".
+            var customTags = new HashSet<string>();
+            AddCustomTags(ctx.def, customTags);
             if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
             // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
             DilemmaChoices.PickHelpers(option, ctx);
@@ -1030,7 +1049,9 @@ namespace ColonyCouncil
                 plays = PlayOuts.Collected();
             }
             // After the effects, so a helper they picked (B) is in the tags and the text.
-            string outcome = DilemmaChoices.Outcome(option, risk, LetterTags.For(ctx));
+            var outcomeTags = LetterTags.For(ctx);
+            outcomeTags.UnionWith(customTags);
+            string outcome = DilemmaChoices.Outcome(option, risk, outcomeTags);
             // An answer nobody gave says less about the colony than one the council chose.
             comp?.character.Shift(byDefault ? option.ways?.Scaled(0.5f) : option.ways, "CC_Ways_Why_Dilemma".Translate(ctx.def.label, ctx.Format(option.label)).Resolve());
             Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.def.label, ctx.Format(option.label));
