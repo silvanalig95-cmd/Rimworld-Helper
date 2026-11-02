@@ -148,7 +148,7 @@ namespace ColonyCouncil
             if (c == null || Now < c.from) return null;
             if (!c.carrying)
             {
-                var job = c.help == MilkSale ? MilkSaleJob(p, c) : c.help == "milk" ? MilkJob(p, c) : GatherJob(p, c);
+                var job = c.help == MilkSale ? MilkSaleJob(p, c) : c.help == "milk" ? MilkJob(p, c) : FromStash(c.help) ? StashJob(p, c) : GatherJob(p, c);
                 if (job != null) return job;
                 // Nothing more to gather or milk: off with what they have, if anything.
                 if (c.count <= 0)
@@ -408,6 +408,11 @@ namespace ColonyCouncil
                     return;
                 case MilkSale:
                     MilkSold(p, c, n, look);
+                    return;
+                case CatchSale:
+                case HaulShare:
+                    // The fishers' catch the colony bought, the salvagers' share of the haul (CampKindsLand.cs).
+                    StashBrought(p, c, n, look);
                     return;
                 case "medicine":
                     text = Text("CC_Camp_Help_medicine", p, null, n);

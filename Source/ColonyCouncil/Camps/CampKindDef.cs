@@ -27,6 +27,15 @@ namespace ColonyCouncil
         public bool canSettle;
         /// <summary>A camp about Pokémon (traveling trainers): only with PokéWorld's Pokémon in play (Integrations/PokeWorld.cs).</summary>
         public bool pokemon;
+        /// <summary>
+        /// What the land must have for them to come, and what they pitch near (Camps/CampKindsLand.cs): "fish" (water with
+        /// fish in it, and fishing open to the colony), "ruins" (ancient pieces to strip outside the home area), "harvest"
+        /// (more ripe crop than the growers can bring in before the season ends), "edge" (a craft come down by the map's
+        /// edge), "monolith" (Anomaly's monolith woken on this map). None: any land.
+        /// </summary>
+        public string needs;
+        /// <summary>Their own work on the land by day (Camps/CampKindsLand.cs): "fish", "strip", "reap", "hull", "watch".</summary>
+        public string work;
         /// <summary>Settled as neighbours, they bring word of the road when one comes up to the gate: a FlavorPoolDef of lines (Camps/RoadPost.cs).</summary>
         public string roadWord;
         /// <summary>The people they come from must be at least / at most this advanced.</summary>
@@ -148,6 +157,9 @@ namespace ColonyCouncil
 
         /// <summary>Only when it could come at all: a kind for one kind of faith needs Ideology.</summary>
         public bool Possible => (memes.NullOrEmpty() || ModsConfig.IdeologyActive) && (!pokemon || (PokeWorldLink.Active && PokeWorldLink.PokemonShare() > 0f));
+
+        /// <summary>The land has what they come for (see <see cref="needs"/>).</summary>
+        public bool FitsMap(Map map) => needs.NullOrEmpty() || CampLand.Fits(this, map);
 
         public override IEnumerable<string> ConfigErrors()
         {

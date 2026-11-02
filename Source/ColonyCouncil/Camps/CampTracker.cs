@@ -231,7 +231,7 @@ namespace ColonyCouncil
         /// </summary>
         public CampSetup Prepare(Map map, List<string> why = null)
         {
-            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights).ToList();
+            var kinds = DefDatabase<CampKindDef>.AllDefs.Where(k => k.FitsEra() && k.Possible && !k.fights && k.FitsMap(map)).ToList();
             if (kinds.Count == 0)
             {
                 why?.Add("no kind of camp can come now");
@@ -250,7 +250,9 @@ namespace ColonyCouncil
             var past = CampReturns.Pick(map);
             if (past != null)
             {
-                var back = Make(map, center, colony, past.kind, past.faction, hot, why, past);
+                // Some kinds pitch by what they came for (the water, the ruins, the monolith: CampKindsLand.cs).
+                var at = CampLand.SiteFor(past.kind, map, center, hot);
+                var back = at.IsValid ? Make(map, at, colony, past.kind, past.faction, hot, why, past) : null;
                 if (back != null) return back;
             }
             for (int tries = 0; tries < 6; tries++)
@@ -263,7 +265,13 @@ namespace ColonyCouncil
                     why?.Add(kind.label + ": no friendly people for it");
                     continue;
                 }
-                var setup = Make(map, center, colony, kind, f, hot, why, null);
+                var site = CampLand.SiteFor(kind, map, center, hot);
+                if (!site.IsValid)
+                {
+                    why?.Add(kind.label + ": no spot by what they came for");
+                    continue;
+                }
+                var setup = Make(map, site, colony, kind, f, hot, why, null);
                 if (setup != null) return setup;
                 if (why != null && why.Count > 0 && why[why.Count - 1].EndsWith("doesn't fit at the spot")) return null;
             }
@@ -278,14 +286,14 @@ namespace ColonyCouncil
         public Camp StartKind(Map map, CampKindDef kind, Faction f, List<string> why = null)
         {
             if (map == null || kind == null || camp != null || !Enabled) return null;
-            if (!kind.FitsEra() || !kind.Possible)
+            if (!kind.FitsEra() || !kind.Possible || !kind.FitsMap(map))
             {
                 why?.Add(kind.label + ": not in this era");
                 return null;
             }
             var usual = CampWeather.StayRange(map, GenDate.TicksPerDay * 7);
             bool hot = CampWeatherMath.PitchForHeat(usual.high);
-            if (!CampSite.TryFind(map, out var center, hot))
+            if (!CampSite.TryFind(map, out var center, hot) || !(center = CampLand.SiteFor(kind, map, center, hot)).IsValid)
             {
                 why?.Add("no spot for a camp was found");
                 return null;
@@ -498,6 +506,8 @@ namespace ColonyCouncil
             // Mourners carry their dead in from the edge (CampDead.cs).
             c.BearDead();
             camp = c;
+            // What the land kinds bring with them: the spacers' wrecked craft (CampKindsLand.cs).
+            c.LandStarted();
             return c;
         }
 
