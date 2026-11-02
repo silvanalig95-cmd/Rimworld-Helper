@@ -13,7 +13,11 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 - 0.53.2: ailment balance (`Tools/Balance`, 800 runs a setup): well run 9.3%, average 13.9%, neglectful 30.5% of the
   time with an everyday ailment (was 11.7 / 17.2 / 36.6); catching clock `AilmentTracker.EverydayCatchingDays` 35 to
   50 days, mild ailments shorter, bed rest and tending count for more. `docs/balance-report.md` regenerated.
-- Open questions to the player: the six Alpha Genes proposals P1 to P6 (`docs/alphagenes-proposals.md`; the fixes F1
+- The player's answers (2 November): letter texts and quotes may have two or more sentences, and they don't want
+  everything short (the one-sentence rule is for words said over a head only; the wishes', ambitions' and decrees'
+  own lines stay as they are); of the Alpha Genes proposals only P3 (mood hints) and P5 (ailment risks from genes)
+  are wanted; an evening with a single piece of news stays a message (not a letter).
+- (Answered, kept for the record) Open questions to the player: the six Alpha Genes proposals P1 to P6 (`docs/alphagenes-proposals.md`; the fixes F1
   to F7 shipped in 0.53.3: `PlayOut/PlaySafety.cs` in PlaySpots.Ok and PlayOuts.CanJoin, a "fasting" tag from the real
   hunger rate, natural armour, the `LikeThought` and `Heard` extensions, comfort offsets per body, no forecast with a
   weather maker; tested in `BodyTests`); whether an evening with only one piece of news should also come as a letter
