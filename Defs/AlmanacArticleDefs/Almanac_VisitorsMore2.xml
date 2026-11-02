@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The second round of visitors (Source/ColonyCouncil/Happenings/Workers_Visitors2.cs, Visitors/VisitorsMore2.cs):
+    pilgrims to the relic, pilgrims at the anima tree, kin of the blood, gawkers at the gravship, the book swapper and
+    the regulars' own lives.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Rimfolk_Alm_VisitorsMore2</defName>
+    <label>visitors for what the colony keeps</label>
+    <category>Council</category>
+    <order>22</order>
+    <summary>Pilgrims come to the colony's relic and its anima tree, a colonist's own kind come to meet them, gawkers come to see the gravship, a reader comes to swap books, and the regulars you know best come back changed.</summary>
+    <tip>These only come for what the colony really has: a relic in a reliquary, an anima tree, a colonist who isn't a baseliner, a gravship just landed near a friendly settlement, books on a shelf or in storage, a regular known for three visits.</tip>
+    <description>Each of these visitors walks in from the edge of the map with the letter and waits at the gate for your answer, as the other visitors on the map do (see "visitors on the map"), and each comes only when they really can: "Goods and people come and go on the map" on, the map safe, and room for another group. What the answer says they do, they do on the map, in the hours it's done in, and then they go. Answered at night, they sleep by the gate and start in the morning.</description>
+    <sections>
+      <li>
+        <heading>Who comes, and what they do</heading>
+        <table>
+          <li>Who | When | What happens</li>
+          <li>Pilgrims to the relic (Ideology) | A relic of an ideoligion in one of the colony's reliquaries, and a people at peace with the colony | Two to four pilgrims of the relic's faith (their people hold it, or they are its converts among another people) ask to be let in. Let in, they walk in to the reliquary and pray before it for about five hours, with your colonist walking them in; at the gate only, they pray there for about three hours facing it; asked an offering, they hand over 25 silver a head and pray inside for four hours. The relic's faithful in the colony are glad or sorry by the answer, and their certainty steadied or shaken; those not of the faith mind strangers inside</li>
+          <li>Pilgrims at the anima tree (Royalty) | An anima tree on the map | Two to four meditators, often tribal folk or the Empire's psycasters. Welcomed and fed (a meal each, carried out), they meditate in a ring round the tree for about nine hours, and their meditation feeds the tree's grass exactly as a colonist's does; your colonist (a psycaster first) spends a while with them there. For a fee of 20 silver a head, they meditate about four hours</li>
+          <li>Kin of the blood (Biotech) | A grown colonist of a xenotype that isn't baseliner (of the game's or a mod's, never one made for a single person) | Two or three of that xenotype, from a people whose folk are of it when there is one, ask for the colonist by name. Hosted, they stay the night by the gate, sit at the evening's fire with the colonist, and give a lesson in the skill their genes favour most; a word at the gate is the colonist walking out to talk a while</li>
+          <li>Gawkers at the gravship (Odyssey) | A few hours after the colony's gravship lands within 8 tiles of a friendly settlement on the ground | Three to five of that settlement's folk. Shown round, they walk the hull's outside for about four hours with your colonist beside them; trading at the gate, they set down their own goods, worth about 1.4 times the silver you carry out for them</li>
+          <li>The book swapper | The colony has a book on a bookcase or lying in storage (Vanilla Books Expanded's books count) | A reader with a real book of theirs in the pack. Swap and they walk in to the shelf, take your book and leave theirs in its place (beside the shelf if it won't take it); sell and they leave the silver there; lend it and they spend the day copying it at the bookcase and leave it be</li>
+          <li>A regular, married, with a child, or old | A regular known for three visits or more, with a warm bond | They come back with the one they married, a child they took in on the road, or (from 50) the apprentice who will walk the road in their place, and carry in a carving for their friend. A gift is carried out to them (silver, or a coat for the child); the apprentice can become the regular the colony keeps up with</li>
+          <li>Word of a regular | The same, when their death on the road had a real cause: great age (72 or more) or an illness that kills that they carried | A fellow traveler brings the word and the dead regular's carving for their friend. The regular is really gone, and the colony stops waiting for them. Your colonist and those close to them can keep a vigil at the gate, or send silver for the regular's people</li>
+        </table>
+      </li>
+    </sections>
+    <keywords><li>relic pilgrims</li><li>anima tree pilgrims</li><li>kin of the blood</li><li>xenotype kin</li><li>gravship gawkers</li><li>book swapper</li><li>regular married</li><li>apprentice</li></keywords>
+    <seeAlso><li>Council_Alm_C_Visitors</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

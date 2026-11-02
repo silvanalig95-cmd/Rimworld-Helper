@@ -72,6 +72,9 @@ PLAY = {
     "DilemmaEffect_Race": "race",
     # The game's own wedding ceremony, on the evening the council set (Social/WeddingPlans.cs), and what follows it.
     "DilemmaEffect_PlanWedding": "wedding",
+    # Visitors set to what they came for at the colony's relic, anima tree, gravship or bookcase, or kept by the gate
+    # for a word or a lesson (Visitors/VisitorsMore2.cs).
+    "VisitEffect_WorkHere": "visitors at it",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

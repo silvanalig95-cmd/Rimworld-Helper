@@ -35,7 +35,8 @@ namespace ColonyCouncil
                 case Hunt: return hour >= 5 && hour < 19;
                 case Fire: return hour >= 17 && hour < 23;
                 case Sit: return true;
-                default: return false;
+                // The second round's kinds (VisitorWork2Math): the relic, the anima tree, the gravship, the bookcase.
+                default: return VisitorWork2Math.InHours(work, hour);
             }
         }
 
@@ -151,6 +152,7 @@ namespace ColonyCouncil
         /// </summary>
         public static void Done(Pawn p, string work, IntVec3 at)
         {
+            if (VisitorWork2.Done(p, work, at)) return;
             if (p?.Map == null || p.inventory?.innerContainer == null) return;
             ThingDef what = null;
             int count = 0;
@@ -209,7 +211,7 @@ namespace ColonyCouncil
                     return VisitorHunt.JobFor(p, VisitorTracker.Instance?.TripOf(p))
                            ?? (Lookout(p, out at, out face) ? JobMaker.MakeJob(VisitorDefOf.Rimfolk_VisitHunt, at, face) : null);
             }
-            return null;
+            return VisitorWork2.JobFor(p, work);
         }
     }
 

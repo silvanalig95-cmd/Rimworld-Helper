@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods from the second round of visitors (Defs/IncidentDefs/Rimfolk_Events_VisitorsMore2.xml). -->
+
+  <!-- Pilgrims to the relic: for those of the relic's faith, and for those who aren't (DilemmaEffect_RelicFaith). -->
+  <ThoughtDef>
+    <defName>Rimfolk_V2_RelicHonored</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>pilgrims prayed before our relic</label><description>People walked for weeks to pray before the relic we keep, and we let them in to it. It is ours to keep for all of them.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_V2_RelicGate</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>pilgrims prayed at our gate</label><description>Pilgrims of our faith prayed at the gate, facing the relic. They came a long way for it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Contentment</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_V2_StrangersInside</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>strangers in our halls</label><description>Strangers walked in through our doors to pray at a relic that isn't even mine to care about.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_V2_RelicCharged</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>we charged pilgrims to pray</label><description>Pilgrims of our own faith had to pay silver at the gate before we let them near the relic.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_V2_RelicTurnedAway</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>pilgrims turned from our relic</label><description>People of our faith walked all that way to pray before the relic, and we sent them back from the gate.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- Kin of the blood: the colonist of the xenotype. -->
+  <ThoughtDef>
+    <defName>Rimfolk_V2_KinMet</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>6</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>an evening with my own kind</label><description>People of my own blood came all this way to meet me, and we sat at the fire half the night. I hadn't known how much I missed that.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_V2_KinWord</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>my own kind asked after me</label><description>People of my own blood came to the gate asking for me by name. We only had a little while, but they came.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Fellowship</li></feelings><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_V2_KinTurnedAway</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>my own kind sent away</label><description>People of my own blood came to the gate asking for me, and the colony sent them off before I could say a word to them.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- Regulars' own lives: their friend in the colony. -->
+  <ThoughtDef>
+    <defName>Rimfolk_V2_RegularGlad</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>4</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>glad for a friend from the road</label><description>A friend from the road came back with news of their own life, and we did right by them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Gratitude</li><li>Fellowship</li></feelings><felt>4</felt></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>
