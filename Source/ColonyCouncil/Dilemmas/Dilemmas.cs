@@ -455,6 +455,16 @@ namespace ColonyCouncil
         CloseToA
     }
 
+    /// <summary>Who of a group an effect is for, by the colony's faith (Ideology).</summary>
+    public enum FaithFilter
+    {
+        Any,
+        /// <summary>Of the colony's own faith.</summary>
+        Faithful,
+        /// <summary>Of no faith, or another.</summary>
+        NotFaithful
+    }
+
     public abstract class DilemmaEffect
     {
         public DilemmaTarget target = DilemmaTarget.A;
@@ -468,6 +478,16 @@ namespace ColonyCouncil
         public float chance = 1f;
         /// <summary>World events: only when the colony actually chose this answer, not when it fell to the default.</summary>
         public bool onlyIfChosen;
+        /// <summary>Ideology: only the colony's own faithful (Faithful), or only those outside it (NotFaithful).</summary>
+        public FaithFilter faithFilter = FaithFilter.Any;
+        /// <summary>Ideology: only those whose ideoligion holds one of these precepts ("Slavery_Honorable|Slavery_Acceptable").</summary>
+        public string precepts;
+        /// <summary>Only those with this hediff now ("FoodPoisoning": the sick).</summary>
+        public HediffDef withHediff;
+        /// <summary>Only the colony's children (Biotech).</summary>
+        public bool childrenOnly;
+        /// <summary>What to call those a filter above leaves ("the sick", "the devout"), for what the answer does.</summary>
+        [MustTranslate] public string groupLabel;
 
         /// <summary>Why the option can't be picked (not enough silver), or null.</summary>
         public virtual string Unavailable(DilemmaContext ctx) => null;
@@ -545,6 +565,10 @@ namespace ColonyCouncil
                     int d = traits.DegreeOfTrait(degreeTrait);
                     if (d < minDegree || d > maxDegree) continue;
                 }
+                if (faithFilter != FaithFilter.Any && DecreeWork.Believer(p) != (faithFilter == FaithFilter.Faithful)) continue;
+                if (!precepts.NullOrEmpty() && !precepts.Split('|').Any(n => Beliefs.HasPrecept(p, n.Trim()))) continue;
+                if (withHediff != null && p.health?.hediffSet?.GetFirstHediffOfDef(withHediff) == null) continue;
+                if (childrenOnly && !p.DevelopmentalStage.Child()) continue;
                 if (chance < 1f && !Rand.Chance(chance)) continue;
                 yield return p;
             }

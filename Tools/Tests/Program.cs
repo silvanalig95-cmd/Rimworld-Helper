@@ -467,6 +467,7 @@ Console.WriteLine($"Checked {ChainTests.Run(Check)} things about production chai
 Console.WriteLine($"Checked {AheadTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_AHEAD_PRINT") == "1")} things about planning ahead (stocks, bills, fields) and the shared suggestions.");
 Console.WriteLine($"Checked {NewsQuietTests.Run(Check)} things about a quiet day's evening news.");
 Console.WriteLine($"Checked {ImpactTests.Run(Check)} things about what each answer does (chances, merging, the short line).");
+Console.WriteLine($"Checked {AnswerShiftTests.Run(Check)} things about what answers change for a while (hours, work, a new limb).");
 Console.WriteLine($"Checked {ConduitTests.Run(Check)} things about laying a conduit to a piece off the power.");
 Console.WriteLine($"Checked {LineRouteTests.Run(Check)} things about lines laid again under the walls.");
 Console.WriteLine($"Checked {GuestWillTests.Run(Check)} things about guests who'd stay (ties at home, what they want, the cost, family asking them back).");

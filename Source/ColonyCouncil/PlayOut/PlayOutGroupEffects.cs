@@ -113,10 +113,21 @@ namespace ColonyCouncil
         {
             int n = Going(Everyone(ctx).Count);
             if (n == 0) return;
+            if (PlayRoutes.Known(route))
+            {
+                sheet.Play(("CC_Impact_Route_" + route).Translate(label, n, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+                return;
+            }
             sheet.Play("CC_Impact_Procession".Translate(label, n, DilemmaImpact.Spot(to, ctx), DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
         }
 
         public PlaySpot to = PlaySpot.Walk;
+        /// <summary>
+        /// Round from stop to stop instead of out to one place (PlayRoutes.cs): "bounds", the colony's edge walked from
+        /// one turn to the next; "bounds-stones", a stone set at each turn (or found where one was set before); "hives",
+        /// from one of the colony's beehives to the next.
+        /// </summary>
+        public string route;
 
         public DilemmaEffect_Procession()
         {
@@ -134,6 +145,11 @@ namespace ColonyCouncil
             if (!base.Fill(p, ctx)) return false;
             p.to = to;
             p.other = ctx.stranger;
+            if (PlayRoutes.Known(route))
+            {
+                p.mode = route;
+                p.to = PlaySpot.Walk;
+            }
             return true;
         }
     }
@@ -450,7 +466,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A hunt: game is marked for the hunters (with <see cref="mark"/>, on by default; else what's already marked), and
-    /// the colony's hunters (<see cref="who"/> first, when they can hunt; up to <see cref="count"/>) go out after it with
+    /// the colony's hunters (<see cref="who"/> first, when they can hunt; up to <see cref="count"/>, three at most) go out after it with
     /// the game's own hunting, by its own rules. The game: the event's animal (X), else the kinds in
     /// <see cref="kinds"/> ("Elk|Deer"), else the best eating on the map; <see cref="animals"/> of them. Never a predator,
     /// anything likely to turn on its hunters, or anyone's animal; only hunters with a hunting weapon. Over when the game
@@ -461,7 +477,7 @@ namespace ColonyCouncil
         protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
         {
             string what = ctx.stranger != null && ctx.stranger.RaceProps.Animal ? ctx.stranger.LabelShort : DilemmaImpact.Kinds(kinds, Math.Max(1, Math.Min(3, animals)));
-            sheet.Play("CC_Impact_HuntParty".Translate(label, Math.Max(1, Math.Min(2, count)), what, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+            sheet.Play("CC_Impact_HuntParty".Translate(label, Math.Max(1, Math.Min(3, count)), what, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
         }
 
         public PlayWho who = PlayWho.None;
@@ -497,7 +513,7 @@ namespace ColonyCouncil
             p.game = game;
             p.invited = hunters;
             p.organizer = first;
-            p.count = Math.Max(1, Math.Min(2, count));
+            p.count = Math.Max(1, Math.Min(3, count));
             p.durationTicks = PlayOutMath.DurationTicks(PlayOutMath.CapHours(duration.RandomInRange, false));
             Messages.Message("CC_Play_Hunt".Translate(TextUtil.JoinAnd(game.Select(a => a.LabelShort).ToList())).Resolve(), new LookTargets(game),
                 MessageTypeDefOf.NeutralEvent, false);

@@ -247,7 +247,7 @@
     <options>
       <li>
         <label>{B_nameDef} learns from {A_nameDef}</label>
-        <outcome>{B_nameDef} is {A_nameDef}'s apprentice now: reading, watching, and practicing on a sack of flour that has been through a great deal.</outcome>
+        <outcome>{B_nameDef} is {A_nameDef}'s apprentice now: reading, watching, and practicing on a sack of flour that has been through a great deal. The two of them are only half at their usual work for a while.</outcome>
         <outcomes>
           <li>[lowtech] {A_nameDef} took {B_nameDef} out to gather the birthing herbs and taught {B_objective} the name of each on the way back.</li>
           <li>[skill:Medicine] {A_nameDef} started {B_nameDef} on the basics the same afternoon, and {B_nameDef} has been writing notes in the margins of everything since.</li>
@@ -257,7 +257,9 @@
           <li Class="ColonyCouncil.DilemmaEffect_Teach"><skill>Medicine</skill><xp>300</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_PassingItOn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_Apprenticed</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student><skill>Medicine</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student><skill>Medicine</skill><duration>2.5~3.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_DlmL_HalfDay</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>8</amount></li>
         </effects>
       </li>
       <li>
@@ -266,6 +268,8 @@
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_NotYet</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><chance>0.2</chance></li>
         </effects>
       </li>
       <li>
@@ -274,7 +278,8 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmH_WatchedBirth</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>200</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>600</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmH_PassingItOn</thought><chance>0.75</chance></li>
         </effects>
       </li>
     </options>

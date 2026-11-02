@@ -34,7 +34,7 @@
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
-    <stages><li><label>the harvest dance</label><description>We danced until the fire burned down. My feet hurt and I don't care.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>the harvest dance</label><description>We danced until the fire burned down. My feet hurt and I don't care.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef>

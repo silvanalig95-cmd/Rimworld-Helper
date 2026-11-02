@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The dilemmas and customs from the colony's own life (Dilemmas/DilemmaWorkers_Variety.cs, AnswerShifts.cs, PlayOut/PlayRoutes.cs). -->
+
+  <!-- Who gets the new leg -->
+  <CC_DlmV_NoPartFor>{0} has nothing missing now that a {1} would fit.</CC_DlmV_NoPartFor>
+  <CC_Impact_Operation>{0}: the operation to fit the {1} to the {2} goes on the medical tab, for a doctor to do with the part from the stores</CC_Impact_Operation>
+  <CC_Impact_OperationBrief>the {1} for {0}</CC_Impact_OperationBrief>
+  <CC_DlmV_OperationAdded>{0}'s operation is on the medical tab: {1} ({2}).</CC_DlmV_OperationAdded>
+
+  <!-- A bad batch -->
+  <CC_Impact_HandOver>{0} hands the {1} to {2} for {3} days, and takes it back after</CC_Impact_HandOver>
+  <CC_Impact_HandOverBrief>{0} does the {1} for a while</CC_Impact_HandOverBrief>
+  <CC_DlmV_HandOverLabel>a few days away from the {0}</CC_DlmV_HandOverLabel>
+  <CC_DlmV_HandedOver>{2} has taken over the {1} from {0} for a few days.</CC_DlmV_HandedOver>
+
+  <!-- Hours and work put back -->
+  <CC_Shift_Back>{1} back to the usual hours and work, after {0}.</CC_Shift_Back>
+  <CC_DlmV_HoursLabel_heat>the heat wave</CC_DlmV_HoursLabel_heat>
+  <CC_DlmV_HoursLabel_siesta>the heat wave</CC_DlmV_HoursLabel_siesta>
+  <CC_DlmV_HoursLabel_night>the night at work</CC_DlmV_HoursLabel_night>
+  <CC_DlmV_HoursLabel_late>the late night</CC_DlmV_HoursLabel_late>
+  <CC_Impact_Hours_heat>{0}: sleep through the midday heat (11 to 16) and work by night (21 to 2), until the heat wave ends</CC_Impact_Hours_heat>
+  <CC_Impact_HoursBrief_heat>{0} work by night</CC_Impact_HoursBrief_heat>
+  <CC_Impact_Hours_siesta>{0}: 12 to 15 o'clock turned to rest in the shade, until the heat wave ends</CC_Impact_Hours_siesta>
+  <CC_Impact_HoursBrief_siesta>{0} rest at midday</CC_Impact_HoursBrief_siesta>
+  <CC_Impact_Hours_night>{0}: tonight's sleep turned to work, and the morning after slept in (6 to 10)</CC_Impact_Hours_night>
+  <CC_Impact_HoursBrief_night>{0} work through the night</CC_Impact_HoursBrief_night>
+  <CC_Impact_Hours_late>{0}: a late start, asleep until 9 the next morning</CC_Impact_Hours_late>
+  <CC_Impact_HoursBrief_late>{0} sleep in</CC_Impact_HoursBrief_late>
+  <CC_DlmV_Hours_heat>{0} will sleep through the midday heat and work by night until the heat wave ends.</CC_DlmV_Hours_heat>
+  <CC_DlmV_Hours_siesta>{0} will rest in the shade at midday until the heat wave ends.</CC_DlmV_Hours_siesta>
+  <CC_DlmV_Hours_night>{0} will work through tonight and sleep the morning after.</CC_DlmV_Hours_night>
+  <CC_DlmV_Hours_late>{0} will sleep in tomorrow morning.</CC_DlmV_Hours_late>
+
+  <!-- The doctor is the patient -->
+  <CC_Impact_SelfTend>{0}: self-tend switched on, at the game's lower care for tending oneself</CC_Impact_SelfTend>
+  <CC_Impact_SelfTendBrief>{0} tends their own wounds</CC_Impact_SelfTendBrief>
+  <CC_DlmV_SelfTend>Self-tend is on for {0}.</CC_DlmV_SelfTend>
+  <CC_Impact_MedCare>{0}: tended with the best medicine in the stores ({1}) from now on</CC_Impact_MedCare>
+  <CC_Impact_MedCareBrief>the best medicine ({0})</CC_Impact_MedCareBrief>
+  <CC_DlmV_MedCare>{0} will be tended with the best medicine there is.</CC_DlmV_MedCare>
+
+  <!-- The drug bench -->
+  <CC_Impact_SuspendBills>{0} bills for {1} suspended at their benches (you can resume them)</CC_Impact_SuspendBills>
+  <CC_Impact_SuspendBillsBrief>{0} drug bills stopped</CC_Impact_SuspendBillsBrief>
+  <CC_DlmV_BillsSuspended>{0} drug bills are suspended at their benches. They can be resumed from the bills tab.</CC_DlmV_BillsSuspended>
+
+  <!-- A slave's freedom -->
+  <CC_DlmV_NoHome>{0} has no people of their own to go back to.</CC_DlmV_NoHome>
+  <CC_DlmV_HomeHostile>{0}'s people, {1}, are at war with the colony.</CC_DlmV_HomeHostile>
+  <CC_Impact_FreedHome>{0} is set free and walks home to {1}, no longer one of the colony</CC_Impact_FreedHome>
+  <CC_Impact_FreedHomeBrief>{0} goes home</CC_Impact_FreedHomeBrief>
+  <CC_Impact_Freed>{0} is freed into the colony by the game's own emancipation (a warden goes to them)</CC_Impact_Freed>
+  <CC_Impact_FreedBrief>{0} is freed</CC_Impact_FreedBrief>
+  <CC_DlmV_Emancipating>The wardens will free {0} into the colony.</CC_DlmV_Emancipating>
+
+  <!-- Who an effect is for -->
+  <CC_Impact_Who_Faithful>the faithful ({0})</CC_Impact_Who_Faithful>
+  <CC_Impact_Who_NotFaithful>those outside the faith ({0})</CC_Impact_Who_NotFaithful>
+
+  <!-- Work parties and walks -->
+  <CC_Impact_Task_Fish>fish</CC_Impact_Task_Fish>
+  <CC_Impact_Route_bounds>{0}: {1} walk the bounds together from one turn to the next, {2}, for {3}</CC_Impact_Route_bounds>
+  <CC_Impact_Route_bounds-stones>{0}: {1} walk the bounds together, setting a stone at each turn (or finding the last one), {2}, for {3}</CC_Impact_Route_bounds-stones>
+  <CC_Impact_Route_hives>{0}: {1} go round the beehives together, {2}, for {3}</CC_Impact_Route_hives>
+  <CC_Play_Where_Bounds>round the bounds</CC_Play_Where_Bounds>
+  <CC_Play_Where_Hives>round the beehives</CC_Play_Where_Hives>
+  <CC_Play_Note_Bounds>{0} stones set, {1} found again</CC_Play_Note_Bounds>
+
+</LanguageData>

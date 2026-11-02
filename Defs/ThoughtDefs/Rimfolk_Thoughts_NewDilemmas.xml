@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Memories from the dilemmas and customs of the colony's own life (Defs/DilemmaDefs/Rimfolk_Dilemmas_New.xml and
+    Rimfolk_Dilemmas_Customs_New.xml). Kept small: good moods share one budget.
+  -->
+
+  <!-- ===================== Who gets the new leg ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_LimbFitted</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>chosen for the new part</label><description>The council gave it to me. Soon I'll have what I lost, or near enough.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_PassedOver</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>passed over for the part</label><description>There was one, and it went to someone else. I'm the one still limping.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_DlmV_GotMyPart</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>got the part I was waiting for</label><description>There was one part, and they got it. I know it's not their fault. I still can't look at them.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_FairIfHard</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>fair, if hard</label><description>Their work needs it more than mine. I know that. It doesn't make the waiting easier.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_LikeTools</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>chosen like a tool</label><description>The council weighed two people by what their hands are good for. That's a cold way to decide.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_StillWaiting</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>still waiting for a part</label><description>There's one in the stores, and it's staying there until there are two. I can wait. I'd rather not.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A bad batch ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_KeptTheStove</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>kept the stove</label><description>The council scrubbed the kitchen and left me at the stove. They still trust my cooking.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_CookStung</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>taken off the cooking</label><description>One bad batch, and someone else is at my stove. I'll get it back, but it stings.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_TrustedWithTheStove</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>trusted with the stove</label><description>The cooking is mine for a few days. I mean to do it properly.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Cooking</skill><xp>300</xp><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_SickIgnored</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>nobody listened about the food</label><description>I spent the night sick, and the council blamed the meat and left it there.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_CleanKitchen</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the kitchen scrubbed</label><description>They scrubbed the kitchen from the floor up after the bad batch. I'll eat there again.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The precept broken ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_LetOffLightly</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>let off with a quiet word</label><description>They broke the faith's ways, and all they got was a talk by the fire. The faith deserves more than that.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_FaithSlighted</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the council stood against the faith</label><description>Someone broke the faith's ways, and the council stood up for them.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_PenanceDone</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a penance at the altar</label><description>I spent the day scrubbing the altar on my knees, with the faithful walking past. It was meant to sting, and it did.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The doctor is the patient ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_OwnStitches</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>stitching my own wounds</label><description>I tended my own wounds with one hand and a mirror. It was the right call, and it hurt.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_BestCare</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the best medicine for me</label><description>They opened the good medicine for me. I'll be back on my feet sooner for it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_TalkedThrough</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a bad patient</label><description>Lying there telling someone else how to do my work. Every stitch, I wanted to take the needle back.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The heat wave's hours ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_CoolNights</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>working in the cool of the night</label><description>We sleep through the worst of the heat and work under the stars. It's strange, and it's better.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_Shade</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a rest in the shade</label><description>When the sun is at its worst we stop and sit in the shade with water. The afternoons are bearable again.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_Sweltering</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>worked through the heat</label><description>The council said carry on, so we carried on in the heat. My shirt hasn't been dry since.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== So close ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_LetMeFinish</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>let me finish it</label><description>The work is nearly done, and they let me stay at it through the night. I can see the end of it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_SentToBed</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>sent to bed when it was nearly done</label><description>I was so close, and they sent me to bed. I lay there going over it all night anyway.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_SecondPair</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a second pair of eyes</label><description>Someone sat beside me at the bench and asked good questions. It went slower, and I didn't mind.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Lessons through the bars ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_CellLessons</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>lessons at the cell</label><description>The prisoner knows more about it than anyone I've met, and they're teaching me. Strange teacher, good lessons.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_PrisonerVisits</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>someone's sitting with the prisoner</label><description>One of ours spends an hour in the cell with the prisoner. Someone's going to get careless.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_LessonsWait</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my lessons can wait</label><description>Recruit them first, the council says, and then I can learn from them. If they ever come round.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_NoLessons</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>no lessons from the prisoner</label><description>The best teacher I'll ever find is sitting in a cell, and I'm not allowed near them.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The drug bench ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_DrugsStopped</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the council listened about the drugs</label><description>I asked them to stop making that poison, and they did. The bench stands idle.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_LostTrade</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>good silver thrown away</label><description>Traders pay well for what that bench made. Now it makes nothing.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_NoComforts</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>they stopped all the drugs</label><description>Not just the hard stuff: the beer, the smoke, the lot. What's left to look forward to at night?</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_DrugsKept</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>they kept making the drugs</label><description>I told the council what that stuff does to people, and the bench is still running.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== A slave's freedom ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_FriendFreed</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my friend is free</label><description>The council freed my friend, and we eat at the same table now. It should always have been this way.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_FriendWentHome</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my friend went home</label><description>I walked my friend to the edge and watched them go. They're free, and they're gone.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_FriendKept</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>my friend is still a slave</label><description>I asked for my friend's freedom, and the council said not now. Not now is a long time.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_SlaveFreed</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a slave set free</label><description>The council freed a slave because someone was fond of them. Our ways mean nothing, then.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The quiet answers' small upsides (also for the rebalanced older dilemmas) ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_WorkFirst</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the work comes first</label><description>The council didn't let it take the day from the work that needed doing. That's sense.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_SavedForWinter</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>kept back for the cold months</label><description>The council kept back what we'll need when it's cold. Better a plain night now than a hungry one later.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_NoFuss</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>no fuss made</label><description>The council let it be, and nobody had to sit through a fuss over it. Good.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><trust>1</trust><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_OneDance</defName>
+    <durationDays>2.5</durationDays>
+    <stages><li><label>one good dance</label><description>Just the one dance after the harvest, and a good one. Then bed, with the tune still going round my head.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_EveningSwim</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>an evening swim</label><description>Work first, then the water, still warm from the day. We stayed in until the first stars.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Customs ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_SpringClean</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>spring cleaning</label><description>A whole day of brooms and buckets, then a toast in a clean room. The place feels new.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_TidyGlad</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>everything in its place</label><description>The whole colony cleaned and put away, all at once. I could weep.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_TidyGrumble</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>no spring cleaning</label><description>Winter's dirt is still in every corner, and the council says not this year.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_Bounds</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>walked the bounds</label><description>We walked round the edge of the colony together and stopped at every turn. I know where our land ends now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_MissedTheWalk</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>left out of the bounds walk</label><description>The grown-ups walked the edge of the land without us.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_Stars</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a night under the stars</label><description>We sat out late on a warm night and looked up until our necks ached. Somebody named every star wrong.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_Fishing</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>the fishing match</label><description>An afternoon at the water with a line in, and fish for supper after. Nobody agrees who won.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_Hunt</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>the autumn hunt</label><description>The hunters went out together before the cold, and we ate well that night.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Dlm_Trad_Bees</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>told the bees</label><description>We went from hive to hive and told the bees our news. It's an old custom, and it felt right.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>3</felt><journal>true</journal></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_DlmV_BeesUntold</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>the bees weren't told</label><description>Nobody went to tell the bees. It's only a custom, I know.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

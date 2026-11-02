@@ -96,7 +96,7 @@ public static class CustomYearsTests
         Check(written >= 40, $"customs have lines for the years they were kept ({written})");
 
         // ---------- Said over heads at the seasonal customs: one short sentence ----------
-        foreach (var file in new[] { "Council_Dilemmas_Customs.xml", "Council_Dilemmas_Customs2.xml", "Council_Dilemmas_Seasons.xml" })
+        foreach (var file in new[] { "Council_Dilemmas_Customs.xml", "Council_Dilemmas_Customs2.xml", "Council_Dilemmas_Seasons.xml", "Rimfolk_Dilemmas_Customs_New.xml", "Rimfolk_Dilemmas_New.xml" })
         {
             string path = Path.Combine(root, "Defs", "DilemmaDefs", file);
             if (!File.Exists(path)) continue;

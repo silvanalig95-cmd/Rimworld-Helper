@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More seasonal customs, in the pattern of Council_Dilemmas_Customs.xml: chosen two years running, the custom's answer
+    becomes a tradition that comes round every year in its season. ColonyCouncil.DilemmaWorker_CustomMore reads
+    CustomConditions and CustomMore (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Variety.cs): spring cleaning when
+    winter's dirt is about, the bounds walked on a dry summer day (a stone set at each turn, found again in later years:
+    PlayOut/PlayRoutes.cs), a clear warm night under the stars, a fishing match at the colony's fishing zones (Odyssey's
+    own fishing), the autumn hunt when the meat won't last the winter, and telling the bees the colony's news (Alpha
+    Bees' beehouses, by name). Lines for a custom kept year after year are tagged [again], [years], [tradition], [missed].
+  -->
+
+  <!-- ===================== Spring cleaning ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_SpringCleaning</defName>
+    <label>spring cleaning</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CustomMore</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li></seasons>
+    <texts>
+      <li>The first warm days are here, and winter's dirt is in every corner: tracked mud, ash, things put down and never picked up. {A_nameDef} wants a day of it, everyone with a broom, and a toast in a clean room after.</li>
+      <li>{A_nameDef} opened every door this morning to let the spring in, and didn't like what it showed. {A_nameDef} asks for a day for the cleaning, all hands, before the sowing takes everyone.</li>
+      <li>[again] The warm days are back, and so is the dirt. {A_nameDef} has the brooms out already, and asks whether it's to be a day of spring cleaning again.</li>
+      <li>[tradition] It's the time of year for the spring cleaning, and {A_nameDef} has been counting buckets. The colony has kept the day for years now.</li>
+      <li>[missed] Last spring the cleaning was let go, and the colony felt it all year. {A_nameDef} asks that it not happen twice.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>spring cleaning</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>All hands for a day</label>
+        <outcome>They cleaned from one end of the colony to the other, then carried everything lying about to where it belongs, and finished with a toast in a room that smelled of soap.</outcome>
+        <outcomes>
+          <li>[years] The spring cleaning went the way it always does: brooms first, then the hauling, then a toast. Someone found a thing that went missing last autumn.</li>
+        </outcomes>
+        <ways><tradition>3</tradition><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the spring cleaning</label><target>Colony</target><count>6</count><tasks><li>Clean</li><li>Haul</li></tasks><hours>7~12</hours><duration>3.5~4</duration>
+            <lines>
+              <li>Behind the shelves too, it's spring.</li>
+              <li>Whose boots are these, and why are they here?</li>
+              <li>Sweep it out the door, not under the rug.</li>
+              <li>I found the good knife under here.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast in a clean room</label><hours>17~21</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_SpringClean</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_TidyGlad</thought><withHediff>Council_Quirk_Tidy</withHediff><groupLabel>tidy</groupLabel></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Nonsense</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+      </li>
+      <li>
+        <label>The morning only</label>
+        <outcome>Four of them cleaned and hauled through the morning, and the rest got on with the day. The worst of it is gone.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the spring cleaning</label><target>Colony</target><count>4</count><tasks><li>Clean</li><li>Haul</li></tasks><hours>7~11</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_SpringClean</thought><chance>0.85</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_TidyGlad</thought><withHediff>Council_Quirk_Tidy</withHediff><groupLabel>tidy</groupLabel><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>The dirt can wait for the cleaners' own time, and the day's work goes on. {A_nameDef} put the brooms back, slowly.</outcome>
+        <ways><tradition>-2</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_TidyGrumble</thought><withHediff>Council_Quirk_Tidy</withHediff><groupLabel>tidy</groupLabel></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><chance>0.4</chance></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <minTemp>10</minTemp>
+      </li>
+      <li Class="ColonyCouncil.CustomMore">
+        <minFilth>20</minFilth>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The bounds walk ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_BoundsWalk</defName>
+    <label>the bounds walk</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CustomMore</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <texts>
+      <li>A warm, dry day, and {A_nameDef} wants the colony to walk its bounds: all round the edge of the land, stopping at every turn to set a stone, so the young ones grow up knowing where home ends.</li>
+      <li>{A_nameDef} grew up walking the bounds every summer, and says a place isn't really yours until you've walked all the way round it together. It would take the morning.</li>
+      <li>[again] The bounds want walking again, {A_nameDef} says, and the stones want finding.</li>
+      <li>[tradition] It's bounds-walking weather. {A_nameDef} has a list of every stone they set, and wants to see them all again.</li>
+      <li>[missed] Nobody walked the bounds last summer, and {A_nameDef} wonders aloud whether the stones are still where they were left.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the bounds walk</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone walks the bounds</label>
+        <outcome>The colony walked all round its edge in the morning sun, stopping at every turn, and set a stone at each one. The children ran ahead to find the next.</outcome>
+        <outcomes>
+          <li>[again] They walked the bounds again and found the stones where they'd left them, and set new ones where any had gone. The children knew the way this time.</li>
+        </outcomes>
+        <ways><tradition>4</tradition><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the bounds walk</label><target>Colony</target><count>8</count><route>bounds-stones</route><hours>7~11</hours><duration>2.5~3.5</duration>
+            <lines>
+              <li>This is where our land ends, remember it.</li>
+              <li>Set it straight, it has to last.</li>
+              <li>Is that the stone from last year?</li>
+              <li>One more turn and we're halfway round.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Bounds</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><childrenOnly>true</childrenOnly><skill>Plants</skill><xp>200</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} walks it with one other</label>
+        <outcome>{A_nameDef} and one other walked the bounds and set the stones. It was quicker, and the young ones stayed home.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the bounds walk</label><target>Colony</target><count>2</count><route>bounds-stones</route><hours>7~12</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Bounds</thought><chance>0.85</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_MissedTheWalk</thought><childrenOnly>true</childrenOnly></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>The bounds can stay unwalked another year, and the morning's work goes on. {A_nameDef} didn't say much at supper.</outcome>
+        <ways><tradition>-2</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><chance>0.2</chance></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <minTemp>15</minTemp>
+      </li>
+      <li Class="ColonyCouncil.CustomMore">
+        <dry>true</dry>
+        <hours>6~13</hours>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The star night ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_StarNight</defName>
+    <label>the star night</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CustomMore</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <answerDays>0.25</answerDays>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <roleA>
+      <passion>Intellectual</passion>
+    </roleA>
+    <texts>
+      <li>It's a clear, warm evening without a cloud, and {A_nameDef} wants everyone outside tonight: blankets on the ground, lights out, and the whole sky. It would mean a late night, and a late start tomorrow.</li>
+      <li>{A_nameDef} has been watching the sky all week and says tonight will be the clearest yet. {A_nameDef} wants to sit out late with everyone and name what's up there.</li>
+      <li>[again] Another clear summer night, and {A_nameDef} already has the blankets out for the star night.</li>
+      <li>[tradition] It's the star night, and {A_nameDef} has been waiting for a sky like this one all summer.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the star night</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone sits out late</label>
+        <outcome>They lay out on blankets until long past midnight while {A_nameDef} named the stars, some of them correctly. Everyone slept late the next morning.</outcome>
+        <outcomes>
+          <li>[years] The star night, as every summer: blankets, the same stars named the same wrong way, and a slow morning after.</li>
+        </outcomes>
+        <ways><tradition>3</tradition><toil>-3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the star night</label><spots><li>Outdoors</li></spots><hours>21~23</hours><duration>2~3</duration>
+            <lines>
+              <li>That one isn't a star, it moves.</li>
+              <li>Lie down, you see more lying down.</li>
+              <li>I've never seen so many.</li>
+              <li>Which one's ours, do you think?</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>Colony</target><plan>late</plan><label>the star night</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Stars</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>An hour under the stars, then bed</label>
+        <outcome>They sat out for an hour and looked up, and went to bed at the usual time with stiff necks.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an hour under the stars</label><spots><li>Outdoors</li></spots><hours>21~23</hours><duration>1~1.25</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Stars</thought><chance>0.7</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Bed as usual</label>
+        <outcome>Everyone went to bed at the usual time, and was up for work at the usual time. {A_nameDef} sat by the window a while first.</outcome>
+        <ways><tradition>-1</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <minTemp>14</minTemp>
+      </li>
+      <li Class="ColonyCouncil.CustomMore">
+        <dry>true</dry>
+        <hours>17~22</hours>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The fishing match ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_FishingMatch</defName>
+    <label>the fishing match</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CustomMore</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <thingCount>12</thingCount>
+    <roleB>
+      <minOpinionOfA>0</minOpinionOfA>
+    </roleB>
+    <texts>
+      <li>The water is warm and the fish are rising, and {A_nameDef} wants a fishing match: everyone who can hold a line out at the water for the afternoon, and whatever they catch cooked for supper after.</li>
+      <li>{A_nameDef} swears {A_pronoun} can out-fish anyone in the colony, and {B_nameDef} has laughed at that once too often. {A_nameDef} wants to settle it with a match, and a fish supper for everyone.</li>
+      <li>[again] It's fishing weather, and {A_nameDef} wants the match again, if only to win it this time.</li>
+      <li>[tradition] The fishing match comes round with the summer, and {A_nameDef} has been sharpening hooks for a week.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the fishing match</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>A match and a fish supper</label>
+        <outcome>The colony fished all afternoon and argued about the biggest catch all through supper. Nobody agrees who won.</outcome>
+        <ways><tradition>3</tradition><toil>-3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the fishing match</label><target>Colony</target><count>6</count><tasks><li>Fish</li></tasks><hours>9~15</hours><duration>2.5~3.5</duration>
+            <lines>
+              <li>Quiet, you'll scare them off.</li>
+              <li>That one counts, it was this big.</li>
+              <li>Mine's bigger and you know it.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the fish supper</label><hours>17~21</hours><duration>2~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Fishing</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>A quiet afternoon for two</label>
+        <outcome>{A_nameDef} and {B_nameDef} spent the afternoon at the water with a line each, and came back with fish and a story each about the one that got away.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>an afternoon at the water</label><target>AAndB</target><count>2</count><tasks><li>Fish</li></tasks><hours>11~16</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Trad_Fishing</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not now</label>
+        <outcome>No match this summer, and nobody leaves their work for the water. {A_nameDef} says {A_pronoun} would have won.</outcome>
+        <ways><tradition>-1</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><chance>0.2</chance></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <minTemp>12</minTemp>
+        <foodFactor>1.5</foodFactor>
+        <forbiddenBy><li>NoFishing</li></forbiddenBy>
+      </li>
+      <li Class="ColonyCouncil.CustomMore">
+        <fishing>true</fishing>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The autumn hunt ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_AutumnHunt</defName>
+    <label>the autumn hunt</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CustomMore</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Fall</li></seasons>
+    <roleA>
+      <bestAt>Shooting</bestAt>
+      <canFight>true</canFight>
+    </roleA>
+    <texts>
+      <li>The meat in the stores won't see the colony through the winter, and there's game on the land. {A_nameDef} wants a proper autumn hunt: three hunters out after several beasts, and fresh meat for supper.</li>
+      <li>{A_nameDef} has been watching the herds move across the far side of the land all week. Before the cold comes, {A_pronoun} says, the colony should hunt, and eat well the night it does.</li>
+      <li>[again] It's the season for the autumn hunt again, and {A_nameDef} has been oiling the bows.</li>
+      <li>[tradition] The autumn hunt is a custom here now, and {A_nameDef} has picked the game already.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the autumn hunt</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>A big hunt, and supper after</label>
+        <outcome>The hunters went out together and came back with the game slung between them. The whole colony ate at one table that night.</outcome>
+        <ways><tradition>3</tradition><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the autumn hunt</label><who>A</who><count>3</count><animals>3</animals><hours>7~15</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the hunters' supper</label><hours>18~21</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Hunt</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>One hunter, one beast</label>
+        <outcome>{A_nameDef} went out alone after one good beast, and the stores are a little fuller for it.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HuntParty"><label>the autumn hunt</label><who>A</who><count>1</count><animals>1</animals><hours>7~15</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_Hunt</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>No hunt this year</label>
+        <outcome>No autumn hunt. The stores will have to do, or the traders. {A_nameDef} hung the bow back on its peg.</outcome>
+        <ways><tradition>-1</tradition><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.3</chance></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <forbiddenBy><li>NoHunting</li><li>NoViolence</li></forbiddenBy>
+      </li>
+      <li Class="ColonyCouncil.CustomMore">
+        <meatShort>20</meatShort>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Telling the bees (Alpha Bees) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_TellingTheBees</defName>
+    <label>telling the bees</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CustomMore</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>20</cooldownDays>
+    <roleA>
+      <bestAt>Plants</bestAt>
+    </roleA>
+    <texts>
+      <li>{A_nameDef}, who keeps the colony's bees, says there's news the bees should hear, and that it's done hive by hive, by the family, the old way.</li>
+      <li>[news:death] Someone of the colony has died, and {A_nameDef} says the bees must be told, hive by hive, or they'll grieve without knowing why.</li>
+      <li>[news:birth] There's a new child in the colony, and {A_nameDef} wants to go round the hives and tell the bees before anyone else outside the family hears.</li>
+      <li>[news:wedding] Two of the colony are married, and {A_nameDef} says the bees must hear it from the family, hive by hive.</li>
+      <li>[tradition] There's news, and the colony tells the bees its news: {A_nameDef} is waiting at the first hive.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>telling the bees</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>The family walks round the hives with {A_nameDef}</label>
+        <outcome>They went from hive to hive with {A_nameDef}, and at each one {A_nameDef} knocked and told the bees the news in a low voice.</outcome>
+        <outcomes>
+          <li>[news:death] They went from hive to hive, and at each one {A_nameDef} told the bees who was gone. Someone tied a strip of black cloth to every hive.</li>
+          <li>[news:birth] At each hive {A_nameDef} told the bees the new child's name, and the bees went on humming.</li>
+        </outcomes>
+        <ways><tradition>3</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>telling the bees</label><target>CloseToA</target><count>4</count><route>hives</route><hours>8~18</hours><duration>2~2.5</duration>
+            <lines>
+              <li>Bees, there is news, so listen.</li>
+              <li>Knock gently, they don't like a fuss.</li>
+              <li>That's every hive told.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>CloseToA</target><thought>Council_Dlm_Trad_Bees</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} goes round alone</label>
+        <outcome>{A_nameDef} went from hive to hive alone and told the bees the news at each one.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>telling the bees</label><target>A</target><count>1</count><route>hives</route><hours>8~18</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Trad_Bees</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>It isn't done here</label>
+        <outcome>Nobody went to the hives. The bees went on with their work. {A_nameDef} looked at them a long while all the same.</outcome>
+        <ways><tradition>-2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_BeesUntold</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_BeesUntold</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.3</chance></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomMore">
+        <beehives>true</beehives>
+        <newsDays>3</newsDays>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

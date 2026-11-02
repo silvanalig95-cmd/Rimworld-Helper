@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Questions from the colony's own life (Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Variety.cs): who gets the new
+    part, a bad batch from the kitchen, a precept broken, the doctor who is the patient, the heat wave's hours, a
+    research project nearly done, lessons from a prisoner, the drug bench, a slave's freedom. Each comes only when the
+    colony is as its letter says, and each answer's words happen in the game: the operation on the medical tab, the
+    cooking handed over, timetables shifted until the heat wave breaks, bills suspended, the game's own emancipation.
+    Every answer has its own upside and its own cost; the safe one gives the least.
+  -->
+
+  <!-- ===================== Who gets the new part ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_NewLimb</defName>
+    <label>who gets the new part</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_NewLimb</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>30</cooldownDays>
+    <texts>
+      <li>There's a {THING} in the stores, and two of the colony who could use it: {A_nameDef} and {B_nameDef}. {A_nameDef}'s {SKILL} would go easier with it. {B_nameDef} has been waiting just as long, and says so.</li>
+      <li>[part:leg] {A_nameDef} and {B_nameDef} have both been getting about on one good leg, and now there's a {THING} on the shelf. The doctor can fit one of them. The council has to say which.</li>
+      <li>[part:arm] A {THING} has come into the stores. {A_nameDef} has been working one-handed at {A_possessive} {SKILL} for weeks. {B_nameDef} has been managing too, and would like to stop managing.</li>
+      <li>[part:eye] The {THING} sits in the stores. {A_nameDef} and {B_nameDef} have each lost an eye, and only one of them can have it.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Fit it to {A_nameDef}, whose {SKILL} needs it most</label>
+        <outcome>The council looked at what each of them does all day and chose {A_nameDef}. The operation is on {A_possessive} medical tab. {B_nameDef} said {B_pronoun} understood, and went quiet. Some of the others thought it a cold way to choose.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Operation"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_LimbFitted</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmV_FairIfHard</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_LikeTools</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Fit it to {B_nameDef}</label>
+        <outcome>The {THING} goes to {B_nameDef}, and the operation is on {B_possessive} medical tab. Most of the others think that was fair. {A_nameDef} hasn't said a word to {B_objective} since.</outcome>
+        <ways><mercy>2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Operation"><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmV_LimbFitted</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_PassedOver</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_GotMyPart</thought><about>B</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep it until there's one for each</label>
+        <outcome>The {THING} stays in the stores until another can be found. {A_nameDef} and {B_nameDef} keep getting by, and keep looking at it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmV_StillWaiting</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.7</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A bad batch ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_BadBatch</defName>
+    <label>a bad batch</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_BadBatch</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{COUNT} of the colony were up half the night, sick from their food, and {A_nameDef} cooked it. {A_nameDef} swears the food was fine. {B_nameDef} has offered to take the cooking for a while.</li>
+      <li>[cause:filth] {COUNT} of the colony are sick from their food, and the kitchen floor tells why. {A_nameDef} has been cooking in the dirt. {B_nameDef} could take the stove for a few days, or everyone could scrub.</li>
+      <li>[cause:cook] {COUNT} of them are sick from {A_nameDef}'s cooking, and {A_nameDef} knows it was a careless batch. {B_nameDef} says {B_pronoun} could cook for a few days.</li>
+      <li>[cause:rotten] {COUNT} sick from their food. {A_nameDef} says something had turned and nobody noticed. {B_nameDef} wonders aloud whether the cook should have.</li>
+      <li>[cooksick] Even {A_nameDef}, who cooked it, is sick from it, and {A_nameDef} isn't the only one. {B_nameDef} has offered to take the stove while the kitchen is looked at.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Scrub the kitchen top to bottom</label>
+        <outcome>The kitchen was scrubbed from the floor up: the stove, the benches, the corners nobody looks in. {A_nameDef} is back at the stove, cooking carefully.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the kitchen scrubbed</label><target>Colony</target><count>6</count><tasks><li>Clean</li></tasks><at>kitchen</at><hours>7~18</hours><duration>3~4</duration>
+            <lines>
+              <li>Under the stove too, that's where it starts.</li>
+              <li>Hot water and plenty of it.</li>
+              <li>I didn't know the bench was that colour.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_KeptTheStove</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_CleanKitchen</thought><withHediff>FoodPoisoning</withHediff><groupLabel>sick</groupLabel></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} cooks for a few days</label>
+        <outcome>{B_nameDef} has the stove for the next few days, and hands it back after. {A_nameDef} gave up the ladle without a word and went to find other work.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HandOver"><work>Cooking</work><label>the bad batch</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_CookStung</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmV_TrustedWithTheStove</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><withHediff>FoodPoisoning</withHediff><groupLabel>sick</groupLabel></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Blame the meat</label>
+        <outcome>The council put it down to bad meat, and {A_nameDef} goes on cooking as before. The ones who were sick have their own opinion about that.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_SickIgnored</thought><withHediff>FoodPoisoning</withHediff><groupLabel>sick</groupLabel><exceptTrait><li>Kind</li></exceptTrait></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The precept broken (Ideology) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_PreceptBroken</defName>
+    <label>the precept broken</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_PreceptBroken</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <texts>
+      <li>{B_nameDef} came to the council about {A_nameDef}, who has gone against the faith's ways. Some of the faithful have talked of little else since.</li>
+      <li>[precept:MeatEating] {A_nameDef} ate meat, and the faith holds against it. {B_nameDef} says the faithful are waiting to see what the council does.</li>
+      <li>[precept:Drug|precept:Drugs|precept:DrugUse] {A_nameDef} took a drug the faith forbids, and the faithful know it. {B_nameDef} asks the council what is to be done.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>A quiet word from {B_nameDef}</label>
+        <outcome>{B_nameDef} sat {A_nameDef} down by the fire for a long, quiet talk about the faith's ways. {A_nameDef} came away settled. Some of the faithful think it was let off too lightly.</outcome>
+        <ways><mercy>3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef}'s word with {A_nameDef}</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Fire</sitBy><hours>17~22</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_LetOffLightly</thought><faithFilter>Faithful</faithFilter><chance>0.6</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Penance: {A_nameDef} cleans the altar room</label>
+        <outcome>{A_nameDef} spent the day on {A_possessive} knees by the altar with a brush and a bucket, and the faithful saw it. The faith's ways were kept.</outcome>
+        <ways><tradition>2</tradition><mercy>-1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef}'s penance</label><target>A</target><organizer>A</organizer><count>1</count><tasks><li>Clean</li></tasks><at>altar</at><hours>8~16</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_PenanceDone</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Faith"><amount>0.04</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><faithFilter>Faithful</faithFilter></li>
+        </effects>
+      </li>
+      <li>
+        <label>The council stands by {A_nameDef}</label>
+        <outcome>The council told {B_nameDef} that {A_nameDef} has nothing to answer for. Those outside the faith were glad of it. The faithful were not.</outcome>
+        <ways><openness>3</openness><tradition>-2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><faithFilter>NotFaithful</faithFilter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmV_FaithSlighted</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_FaithSlighted</thought><faithFilter>Faithful</faithFilter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-2</amount><faithFilter>Faithful</faithFilter></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The doctor is the patient ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_DoctorPatient</defName>
+    <label>the doctor is the patient</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_DoctorPatient</workerClass>
+    <weight>1.3</weight>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>{A_nameDef} is the only one in the colony who really knows medicine, and now {A_pronoun} needs tending. {B_nameDef} is the next best, with half the skill or less.</li>
+      <li>[ill] {A_nameDef} has {ILLNESS}, and the best hands in the colony for it are {A_possessive} own. {B_nameDef} has offered to tend {A_objective}, a little nervously.</li>
+      <li>[!ill] {A_nameDef} is hurt and already asking for the kit, to see to it alone. {B_nameDef} is hovering nearby with a bandage.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} tends {A_possessive} own wounds</label>
+        <outcome>Self-tend is on for {A_nameDef}, who sees to {A_possessive} own wounds as they need it: slower and clumsier than with another patient, but done by the best hands in the colony.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SelfTend"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_OwnStitches</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} tends {A_objective}, talked through it</label>
+        <outcome>{B_nameDef} sat at {A_nameDef}'s side while {A_nameDef} talked {B_objective} through it step by step. {B_nameDef} learned more in an afternoon than in a month, and {A_nameDef} bit {A_possessive} tongue a great deal.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} talking {B_nameDef} through it</label><teacher>A</teacher><student>B</student><skill>Medicine</skill><xpPerHour>300</xpPerHour><hours>8~21</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_TalkedThrough</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>The best medicine for {A_objective}</label>
+        <outcome>{A_nameDef} is to be tended with the best medicine in the stores, by whoever tends {A_objective}. The shelf will be emptier for it.</outcome>
+        <ways><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_MedCare"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_BestCare</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_StoresBare</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The heat wave's hours ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_HeatWave</defName>
+    <label>the heat wave's hours</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HeatWave</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>20</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>The heat wave hasn't broken, and {A_nameDef} came in from outside at noon grey in the face. {A_nameDef} wants the colony to work by night and sleep through the worst of the day until it passes.</li>
+      <li>Out in the heat again, {A_nameDef} has stopped sweating, which {A_pronoun} says is a bad sign. Some want to work by night until it passes, some want a long rest in the shade at midday, and some say carry on.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Work by night, sleep through the heat</label>
+        <outcome>From today the colony sleeps from late morning to the end of the afternoon and works through the cool of the night. The timetables go back when the heat wave breaks.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>Colony</target><plan>heat</plan><condition>HeatWave</condition></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_CoolNights</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+        <riskChance>0.3</riskChance>
+        <riskOutcome>The colony works by night now, but not all of them can sleep in daylight, and a few are walking about half awake.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Colony</target><hediff>Council_Dlm_Sleepless</hediff><chance>0.4</chance></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>A midday rest in the shade</label>
+        <outcome>The hottest hours of the day are for resting in the shade until the heat wave breaks. Less gets done, and nobody faints.</outcome>
+        <ways><toil>-2</toil><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>Colony</target><plan>siesta</plan><condition>HeatWave</condition></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_Shade</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+      </li>
+      <li>
+        <label>Carry on</label>
+        <outcome>The work goes on in the heat. The hard workers approve. Everyone else drinks a great deal of water.</outcome>
+        <ways><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_Sweltering</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>1</amount><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== So close ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_SoClose</defName>
+    <label>so close</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_SoClose</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>25</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <roleA>
+      <bestAt>Intellectual</bestAt>
+    </roleA>
+    <texts>
+      <li>The research is nearly done, and {A_nameDef} is at the bench and won't hear of stopping. {A_nameDef} wants to stay at it through the night and finish.</li>
+      <li>{A_nameDef} is at the research bench, muttering. Three quarters done, {A_pronoun} says, and the rest is within reach if nobody makes {A_objective} go to bed.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Let {A_nameDef} work through tonight</label>
+        <outcome>{A_nameDef} has tonight for work instead of sleep, and the morning after to sleep it off.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>A</target><plan>night</plan></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_LetMeFinish</thought></li>
+        </effects>
+        <riskChance>0.35</riskChance>
+        <riskOutcome>{A_nameDef} has tonight for work instead of sleep, and will feel it for a couple of days after.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
+        </riskEffects>
+      </li>
+      <li>
+        <label>Send {A_objective} to bed</label>
+        <outcome>{A_nameDef} was sent to bed and went, eventually. The research will be there in the morning.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>A</target><sleep>true</sleep></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_SentToBed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>A second pair of eyes</label>
+        <outcome>{B_nameDef} sat beside {A_nameDef} at the bench and asked questions. The work went slower, and {B_nameDef} learned a great deal.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Intellectual</skill><minLevel>3</minLevel><asB>true</asB></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{B_nameDef} at {A_nameDef}'s side</label><teacher>A</teacher><student>B</student><skill>Intellectual</skill><hours>8~21</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_SecondPair</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about><chance>0.15</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Lessons through the bars ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_CellLessons</defName>
+    <label>lessons through the bars</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_PrisonerLessons</workerClass>
+    <weight>1.1</weight>
+    <cooldownDays>40</cooldownDays>
+    <stranger>
+      <kind>Prisoner</kind>
+      <adult>true</adult>
+    </stranger>
+    <texts>
+      <li>{X_nameDef}, in the cell, knows more about {SKILL} than anyone in the colony, and {A_nameDef}, who loves it, has noticed. {A_nameDef} wants an hour at the cell to learn.</li>
+      <li>{A_nameDef} has been lingering by the prison door, listening to {X_nameDef} talk about {SKILL}. {A_nameDef} asks to be let in, to learn properly.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Lessons at the cell</label>
+        <outcome>{A_nameDef} sat with {X_nameDef} in the cell for an hour and came out talking about {SKILL} like a convert. {X_nameDef} seemed glad of someone to teach.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef}'s lesson at the cell</label><teacher>X</teacher><student>A</student><xpPerHour>300</xpPerHour><hours>9~18</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-3</resistance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_CellLessons</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_PrisonerVisits</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Recruit {X_objective} first</label>
+        <outcome>The wardens are to work on bringing {X_nameDef} round. Once {X_pronoun} is one of the colony, {A_nameDef} can learn all {A_pronoun} likes.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>AttemptRecruit</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_LessonsWait</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.5</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>No contact with the prisoner</label>
+        <outcome>Nobody goes into the cell but the wardens. {A_nameDef} still listens at the door when {A_pronoun} thinks nobody is looking.</outcome>
+        <ways><openness>-2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_NoLessons</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.75</chance></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The drug bench ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_DrugBench</defName>
+    <label>the drug bench</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_DrugLab</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>40</cooldownDays>
+    <texts>
+      <li>{A_nameDef} came to the council about the {THING} being made at the bench, and wants it stopped.</li>
+      <li>[objector:teetotaler] {A_nameDef} has never touched a drug and doesn't see why the colony makes {THING} at all. {A_nameDef} has asked the council to stop the bench.</li>
+      <li>[objector:faith] The faith forbids it, {A_nameDef} says, and the colony makes {THING} anyway. {A_nameDef} wants the bench stopped.</li>
+      <li>[objector:parent] {A_nameDef} found {A_possessive} child watching the {THING} being made, and came straight to the council.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Stop the hard drugs</label>
+        <outcome>The bills for the hard drugs are suspended at their benches. {A_nameDef} is relieved. Those who counted on the silver they fetch are not.</outcome>
+        <ways><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SuspendBills" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_DrugsStopped</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_LostTrade</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+        </effects>
+      </li>
+      <li>
+        <label>Stop every drug but medicine</label>
+        <outcome>Every drug bill but the medicine is suspended: the hard drugs, the beer, the smoke, the teas. {A_nameDef} is delighted. Plenty of the others are not.</outcome>
+        <ways><generosity>-2</generosity><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SuspendBills"><all>true</all></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_DrugsStopped</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_LostTrade</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_NoComforts</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>DrugDesire</degreeTrait><maxDegree>-1</maxDegree></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep making them</label>
+        <outcome>The bench keeps running. {A_nameDef} has stopped going near it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_DrugsKept</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A slave's freedom (Ideology) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_DlmV_SlaveFreedom</defName>
+    <label>a slave's freedom</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_SlaveFreedom</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>40</cooldownDays>
+    <texts>
+      <li>{A_nameDef} and {X_nameDef} have grown close, and {X_nameDef} is still a slave. {A_nameDef} asks the council to set {X_objective} free.</li>
+      <li>{X_nameDef} has worked for the colony a season and more without a word of complaint. {A_nameDef}, who counts {X_objective} a friend, wants that rewarded with freedom.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Free {X_nameDef} into the colony</label>
+        <outcome>{X_nameDef} is to be freed into the colony, one of them now. {A_nameDef} has hardly stopped smiling. Not everyone is glad.</outcome>
+        <ways><mercy>3</mercy><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Emancipate" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_FriendFreed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_SlaveFreed</thought><precepts>Slavery_Honorable|Slavery_Acceptable</precepts><groupLabel>slavery-minded</groupLabel></li>
+        </effects>
+      </li>
+      <li>
+        <label>Free {X_nameDef} to go home</label>
+        <outcome>{A_nameDef} walked {X_nameDef} to the edge of the land and saw {X_objective} off, free, back to {X_possessive} own people.</outcome>
+        <ways><mercy>3</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} seeing {X_nameDef} off</label><to>Stranger</to><hours>7~17</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Emancipate"><home>true</home></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>15</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_FriendWentHome</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_SlaveFreed</thought><precepts>Slavery_Honorable|Slavery_Acceptable</precepts><groupLabel>slavery-minded</groupLabel></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not now</label>
+        <outcome>The council said not now. {A_nameDef} took the answer to {X_nameDef}, and neither of them said much after.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmV_FriendKept</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><precepts>Slavery_Honorable|Slavery_Acceptable</precepts><groupLabel>slavery-minded</groupLabel></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

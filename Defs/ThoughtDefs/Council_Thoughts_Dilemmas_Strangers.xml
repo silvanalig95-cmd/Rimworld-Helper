@@ -77,8 +77,8 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SoldTheHeirloom</defName>
-    <durationDays>12</durationDays>
-    <stages><li><label>sold what they left me</label><description>I sold the last thing I had of them to a trader. I counted the silver twice and couldn't have told you what it came to.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <durationDays>8</durationDays>
+    <stages><li><label>sold what they left me</label><description>I sold the last thing I had of them to a trader. I counted the silver twice and couldn't have told you what it came to.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -258,8 +258,8 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_MyVeryOwn</defName>
-    <durationDays>6</durationDays>
-    <stages><li><label>it's mine now</label><description>They said I can keep it! It almost knows its name already.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+    <durationDays>5</durationDays>
+    <stages><li><label>it's mine now</label><description>They said I can keep it! It almost knows its name already.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -271,7 +271,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_HoldingTheFood</defName>
     <durationDays>4</durationDays>
-    <stages><li><label>helping the handlers</label><description>I get to help tame it! I hold the food, and they said that's the most important job.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+    <stages><li><label>helping the handlers</label><description>I get to help tame it! I hold the food, and they said that's the most important job.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -409,8 +409,8 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_GrimSatisfaction</defName>
-    <durationDays>10</durationDays>
-    <stages><li><label>my nemesis will answer for it</label><description>The wardens have their orders. I asked to be there when it happens, and they said yes.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <durationDays>6</durationDays>
+    <stages><li><label>my nemesis will answer for it</label><description>The wardens have their orders. I asked to be there when it happens, and they said yes.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -421,8 +421,8 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_UnderOurRoof</defName>
-    <durationDays>6</durationDays>
-    <stages><li><label>my nemesis under our roof</label><description>The one who hurt me eats our bread a few doors from my bed. I can hear them coughing at night.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <durationDays>5</durationDays>
+    <stages><li><label>my nemesis under our roof</label><description>The one who hurt me eats our bread a few doors from my bed. I can hear them coughing at night.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -441,8 +441,8 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_DlmS_SoldMyAnimal</defName>
-    <durationDays>12</durationDays>
-    <stages><li><label>my animal was sold</label><description>They sold my animal to a stranger. I still get up at feeding time.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+    <durationDays>6</durationDays>
+    <stages><li><label>my animal was sold</label><description>They sold my animal to a stranger. I still get up at feeding time.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

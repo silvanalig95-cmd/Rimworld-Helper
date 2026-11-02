@@ -62,12 +62,13 @@
       </li>
       <li>
         <label>Not until {A_nameDef} is older</label>
-        <outcome>{A_nameDef} took the no well enough at the table, then slammed every door on the way to bed.</outcome>
+        <outcome>{A_nameDef} took the no well enough at the table, then slammed every door on the way to bed. {B_nameDef} looked relieved, and so did the careful ones.</outcome>
         <ways><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_TooYoung</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li><li>Wimp</li></onlyTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_FairsFair</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li><li>Wimp</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -126,18 +127,20 @@
         <ways><mercy>2</mercy><tradition>5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Comforted</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_KindLie</thought><onlyTrait><li>TooSmart</li><li>Psychopath</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about><chance>0.3</chance></li>
         </effects>
       </li>
       <li>
         <label>Tell the plain truth</label>
-        <outcome>{B_nameDef} told {A_nameDef} the truth: the body goes into the ground, and that's all. {A_nameDef} took it calmly, but has been afraid of the dark since.</outcome>
+        <outcome>{B_nameDef} told {A_nameDef} the truth: the body goes into the ground, and that's all. {A_nameDef} took it calmly, asked a great many questions about how bodies work, and has been afraid of the dark since.</outcome>
         <ways><mercy>-2</mercy><tradition>-5</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Worms</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>300</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>TooSmart</li><li>Psychopath</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
@@ -156,10 +159,10 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>10</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Comforted</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about><chance>0.35</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_AnimalFuneral</thought><exceptTrait><li>Psychopath</li><li>Abrasive</li></exceptTrait><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_AnimalFuneral</thought><exceptTrait><li>Psychopath</li><li>Abrasive</li></exceptTrait><chance>0.3</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Nonsense</thought><onlyTrait><li>Psychopath</li><li>Abrasive</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Nonsense</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the animal's funeral</label><spots><li>Outdoors</li><li>Gather</li></spots><pool>Council_Pool_PlayRemembrance</pool><duration>1~1.5</duration></li>
@@ -167,10 +170,11 @@
       </li>
       <li>
         <label>Change the subject</label>
-        <outcome>{A_nameDef} has added it to the list of things the adults won't talk about.</outcome>
+        <outcome>{A_nameDef} has added it to the list of things the adults won't talk about. Nobody else had to stop what they were doing over it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Unanswered</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_NoFuss</thought><chance>0.8</chance></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskOutcome>{A_nameDef} asks the question at every meal now, of anyone who will sit still for it.</riskOutcome>
@@ -305,8 +309,8 @@
         <label>Keep {PET_nameDef} penned for a while</label>
         <outcome>{PET_nameDef} is penned until further notice. {A_nameDef} visits every day and sits by the fence.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><whom>Pet</whom><duration>1~1.5</duration></li>
@@ -325,23 +329,26 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_ReleasePet" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_PetReleased</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Wimp</li></onlyTrait></li>
         </effects>
       </li>
       <li>
         <label>Let it go</label>
-        <outcome>{PET_nameDef} goes unpunished. {B_nameDef} gives {PET_nameDef} a wide berth now, wherever the animal happens to be lying.</outcome>
+        <outcome>{PET_nameDef} goes unpunished, to {A_nameDef}'s relief. {B_nameDef} gives {PET_nameDef} a wide berth now, wherever the animal happens to be lying.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about><chance>0.5</chance></li>
         </effects>
-        <riskChance>0.25</riskChance>
+        <riskChance>0.15</riskChance>
         <riskOutcome>{PET_nameDef} went unpunished, and bit {B_nameDef} again before the day was out, on the other hand.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_BittenAgain</thought></li>
@@ -641,7 +648,7 @@
         <outcome>The coffin is finished and stands in the corner of {A_nameDef}'s room. {A_nameDef} lies in it some evenings to read, and the others have stopped visiting.</outcome>
         <ways><tradition>4</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>30</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>40</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_CoffinReady</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Morbid</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
@@ -687,10 +694,11 @@
       </li>
       <li>
         <label>Say nothing and hope it passes</label>
-        <outcome>{A_nameDef} said "all right" to the room in general, and hasn't brought it up again.</outcome>
+        <outcome>{A_nameDef} said "all right" to the room in general, and hasn't brought it up again. Most of the others were glad not to have a funeral to plan.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_NoFuss</thought><chance>0.8</chance></li>
         </effects>
         <riskChance>0.2</riskChance>
         <riskOutcome>With no answer to wait for, {A_nameDef} has gone out past the fields to choose a spot alone.</riskOutcome>
@@ -775,9 +783,10 @@
       </li>
       <li>
         <label>{A_nameDef} can't help it</label>
-        <outcome>With no help from the council, {B_nameDef} now sleeps with a chair against the door and a boot in one hand.</outcome>
+        <outcome>{A_nameDef} is spared the bolt and the bell, and is grateful for it. With no help from the council, {B_nameDef} now sleeps with a chair against the door and a boot in one hand.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Forgiven</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Sleepless</hediff></li>

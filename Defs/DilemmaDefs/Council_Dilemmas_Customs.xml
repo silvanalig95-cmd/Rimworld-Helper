@@ -118,18 +118,20 @@
         <outcome>{A_nameDef} went out to the graves at dusk and said the names there. The others said they would go another evening, in their own time.</outcome>
         <ways><tradition>2</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Walk</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Walk</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.8</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><hours>16~21</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>
         <label>The living have work to do</label>
-        <outcome>{A_nameDef} went out to the graves alone after dark and came back with mud on {A_possessive} knees.</outcome>
+        <outcome>The rest of the colony kept at its work. {A_nameDef} went out to the graves alone after dark and came back with mud on {A_possessive} knees.</outcome>
         <ways><tradition>-4</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_WorkFirst</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><hours>18~23</hours><duration>1~1</duration></li>
         </effects>
       </li>
@@ -189,6 +191,7 @@
         <ways><tradition>1</tradition><toil>2</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_EveningSwim</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening swim</label><spots><li>Water</li><li>Outdoors</li></spots><hours>17~21</hours><duration>1.5~2</duration>
             <lines>
@@ -239,7 +242,7 @@
     <options>
       <li>
         <label>Dance until the fire burns down</label>
-        <outcome>They danced until the fire was embers and the drummer's hands gave out. Even the ones who swore they couldn't dance were dragged up for at least one.</outcome>
+        <outcome>They danced until the fire was embers and the drummer's hands gave out. Even the ones who swore they couldn't dance were dragged up for at least one, and nobody was up early the next day.</outcome>
         <outcomes>
           <li>[lowtech] The last sheaf went round the fire on {A_nameDef}'s shoulders, and the colony danced after it until the stars moved.</li>
         </outcomes>
@@ -249,6 +252,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><target>Colony</target><amount>5</amount><onlyStrained>true</onlyStrained></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>Colony</target><plan>late</plan><label>the harvest dance</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Nonsense</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the harvest dance</label><music>true</music><hours>17~23</hours><duration>4~5</duration>
             <lines>
               <li>One more round, then I'm sitting down.</li>
@@ -267,6 +272,7 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmV_OneDance</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the harvest dance</label><music>true</music><hours>17~22</hours><duration>1~1.5</duration>
             <lines>
@@ -336,18 +342,18 @@
         <outcome>{A_nameDef} took a bowl out to each of the ones working in the cold, and they ate it where they stood. The ones indoors kept finding reasons to step outside.</outcome>
         <ways><generosity>1</generosity><toil>1</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_FrostSoup</thought><chance>0.4</chance></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_FrostSoup</thought><chance>0.65</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Rounds"><label>the soup taken round</label><outdoors>true</outdoors><serve>true</serve><count>6</count><hours>11~16</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
       <li>
         <label>Everything goes to the winter stores</label>
-        <outcome>The big pot went back on its hook. {A_nameDef} made the usual meals and said nothing about it.</outcome>
+        <outcome>The big pot went back on its hook, and the food went into the winter stores. {A_nameDef} made the usual meals and said nothing about it. The thrifty among them approved.</outcome>
         <ways><generosity>-3</generosity><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_SavedForWinter</thought><chance>0.4</chance></li>
         </effects>
       </li>
     </options>
@@ -406,19 +412,19 @@
         <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>5</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Lanterns</thought><chance>0.4</chance></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Trad_Lanterns</thought><chance>0.7</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the walk out to the lantern</label><count>4</count><to>Gate</to><pool>Council_Pool_PlayRemembrance</pool><hours>19~23</hours><duration>0.75~1</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lanterns"><count>1</count><at>gate</at></li>
         </effects>
       </li>
       <li>
         <label>Save the fuel for the cold</label>
-        <outcome>The lanterns stayed in their box. The night was as dark as all the others.</outcome>
+        <outcome>The lanterns stayed in their box and the wood stayed on the pile for the cold. The night was as dark as all the others.</outcome>
         <ways><generosity>-2</generosity><tradition>-3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_NoCelebration</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.5</chance></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_SavedForWinter</thought><chance>0.4</chance></li>
         </effects>
       </li>
     </options>

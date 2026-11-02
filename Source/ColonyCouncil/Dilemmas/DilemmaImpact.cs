@@ -374,6 +374,10 @@ namespace ColonyCouncil
             if (!group || reached.Count <= 3) return TextUtil.JoinAnd(reached.Select(p => p.LabelShort).ToList());
             int n = reached.Count;
             string a = ctx?.a?.LabelShort ?? "?";
+            // A group the answer names ("the sick", "the devout"), or the colony's faithful.
+            if (!(e?.groupLabel).NullOrEmpty()) return "CC_Impact_Who_The".Translate(ctx != null ? ctx.Format(e.groupLabel) : e.groupLabel, n).Resolve();
+            if (e != null && e.faithFilter != FaithFilter.Any)
+                return (e.faithFilter == FaithFilter.Faithful ? "CC_Impact_Who_Faithful" : "CC_Impact_Who_NotFaithful").Translate(n).Resolve();
             string traits = TraitWords(e?.onlyTrait, e?.degreeTrait, e?.minDegree ?? -99, e?.maxDegree ?? 99);
             if (traits != null) return "CC_Impact_Who_The".Translate(traits, n).Resolve();
             string text;

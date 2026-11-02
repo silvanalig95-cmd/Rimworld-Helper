@@ -30,7 +30,7 @@ namespace ColonyCouncil
                 case PlayKind.Give: return 1;
                 case PlayKind.Rounds: return 1;
                 case PlayKind.Haul: return 4;
-                case PlayKind.Hunt: return 2;
+                case PlayKind.Hunt: return 3;
                 case PlayKind.Search: return 4;
                 case PlayKind.Vigil: return 4;
                 case PlayKind.WorkParty: return 6;
@@ -234,6 +234,8 @@ namespace ColonyCouncil
                 p.cell = mid;
                 where = "CC_Play_Where_NewRoom".Translate();
             }
+            // Round from stop to stop: the bounds, or the hives (PlayRoutes.cs).
+            if (PlayRoutes.Known(p.mode) && !PlayRoutes.Start(p, lead, out where)) return false;
             if (!p.cell.IsValid) p.cell = PlaySpots.FocusCell(p, p.to, lead, out where);
             if (!p.cell.IsValid)
             {
@@ -511,7 +513,9 @@ namespace ColonyCouncil
                 if (!h.left && !going.Contains(h) && now - p.started > 500)
                     h.left = true;
             int arrived = going.Count(h => h.phase == p.phase && h.cell.IsValid && h.pawn.Position.InHorDistOf(h.cell, 2.5f));
-            int next = PlayOutMath.NextWalkPhase(p.phase, arrived, going.Count, now - p.phaseStarted, PlayOutMath.WalkStay(p.durationTicks));
+            int next = PlayOutMath.NextWalkPhase(p.phase, arrived, going.Count, now - p.phaseStarted, PlayRoutes.Stay(p));
+            // A round of stops goes on to the next one rather than home (PlayRoutes.cs).
+            if (next == 3 && p.phase == 2 && PlayRoutes.Next(p)) next = 1;
             if (next != p.phase)
             {
                 p.phase = next;
@@ -523,6 +527,8 @@ namespace ColonyCouncil
                 if (next == 2) PlayDepart.Arrived(p);
                 // There: the ground the walk went for is marked (a reburial, something buried).
                 if (next == 2) PlayMarkers.Arrived(p);
+                // At a turn of the bounds: its stone set, or found where it was set before.
+                if (next == 2) PlayRoutes.AtStop(p);
             }
             if (p.phase >= 4 || going.Count == 0) Finish(t, p, false, null);
         }
@@ -813,7 +819,7 @@ namespace ColonyCouncil
             switch (p.kind)
             {
                 case PlayKind.WorkParty: return PlayOutMath.WorkCounts(h.done, h.ticks, p.durationTicks);
-                case PlayKind.Procession: return PlayOutMath.WalkCounts(h.ticks, PlayOutMath.WalkStay(p.durationTicks));
+                case PlayKind.Procession: return PlayOutMath.WalkCounts(h.ticks, PlayRoutes.Stay(p));
                 case PlayKind.Vigil: return PlayOutMath.VigilCounts(h.ticks, p.durationTicks);
                 case PlayKind.Search: return PlayOutMath.SearchCounts(h.done, h.route.Count);
                 case PlayKind.Hunt: return p.tally > 0 && h.ticks >= 250;
