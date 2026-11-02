@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A drink before work
+
+*2 November 2026, version 0.54.2*
+
+- With Alpha Skills, a colonist with the drunken passion in a skill usually takes one drink from the stores before work that trains it, then goes straight on to that work, so the passion is awake while they learn. Now and then they say a word as the cup is raised.
+- Only a drink their drug policy and beliefs allow, at most once in eight hours, and never for a teetotaler, a child, someone addicted, pregnant or hurt, or someone whose tolerance is getting high. They stay warm or tipsy, never drunk, and never drink before tending, surgery, hunting or work with animals.
+- The setting "A drink before work" turns it off. The Almanac's advice on the rainy day passion now says it wakes while it rains on the map, indoors or out.
+
 ## Hints in words under each answer
 
 *2 November 2026, version 0.54.1*
