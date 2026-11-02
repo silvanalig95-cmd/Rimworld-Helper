@@ -243,6 +243,7 @@ namespace ColonyCouncil
             Toggle("decreeRequests", "CC_Settings_DecreeRequests", "CC_SetNote_DecreeRequests");
             Toggle("colonyCharacter", "CC_Settings_Character", "CC_SetNote_Character");
             Toggle("offices", "CC_Settings_Offices", "CC_SetNote_Offices");
+            Toggle("electionEvent", "CC_Settings_ElectionEvent", "CC_SetNote_ElectionEvent", "offices");
             Section("CC_Settings_Meetings");
             Slider("daysBetweenMeetings", "CC_Settings_DaysBetweenMeetings", "CC_SetNote_DaysBetweenMeetings", 5f, 60f, 1f, "0", "enableAmbitions");
             Slider("ambitionDeadlineFactor", "CC_Settings_AmbitionDeadline", "CC_SetNote_AmbitionDeadline", 0.5f, 3f, 0.05f, "%", "enableAmbitions");

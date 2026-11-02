@@ -199,6 +199,15 @@ MODEL = {
     # Offices, epithets
     "Offices/Offices.cs:holders": ("defs", ("OfficeDef", 1), D, "one per office"),
     "Offices/Offices.cs:elected": ("defs", ("OfficeDef", 1), 40, "one per office"),
+    # An election on the map (Offices/OfficesElection.cs): only from its letter to the count, a few days a year.
+    "Offices/Election.cs:races": ("while", 14, 200, "an election's seats, while it lasts"),
+    "Offices/Election.cs:entries": ("while", 14 * 3, 260, "two or three candidates a seat, with their platform, while it lasts"),
+    "Offices/Election.cs:ballots": ("while", 14 * COLONISTS, 40, "one ranked ballot a voter a seat, while it lasts"),
+    "Offices/Election.cs:pollDays": ("while", 14 * 6, 60, "the poll a day for six days a seat, while it lasts"),
+    "Offices/Election.cs:campaigners": ("while", COLONISTS, 120, "one per candidate, while it lasts"),
+    "Offices/Election.cs:canvassed": ("while", COLONISTS * 9, 90, "three visits a day for three days a candidate, while it lasts"),
+    "Offices/Election.cs:heard": ("while", COLONISTS * COLONISTS, P, "who heard each candidate at the hustings, while it lasts"),
+    "Offices/Election.cs:voted": ("while", COLONISTS, P, "who has voted, while it lasts"),
     "Epithets/Epithets.cs:holders": ("defs", ("EpithetDef", 1), D, "one per title"),
     "Epithets/Epithets.cs:founders": ("fixed", 6, 40, "those here in the colony's first two days (by ThingID)"),
     # Heart

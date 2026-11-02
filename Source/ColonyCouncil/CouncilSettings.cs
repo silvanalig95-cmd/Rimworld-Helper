@@ -78,6 +78,8 @@ namespace ColonyCouncil
         public bool epithets = true;
         public bool journals = true;
         public bool offices = true;
+        /// <summary>An election is an event on the map: announced for a date, a campaign, the hustings, polling day and the count aloud (off: the instant letter).</summary>
+        public bool electionEvent = true;
         public bool socialWeb = true;
         /// <summary>Rimfolk's column in the game's own Social tab (bonds, groups, name, shared memories, talks, secrets), and a line about the pair on its rows.</summary>
         public bool socialTabColumn = true;
@@ -389,6 +391,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref epithets, "epithets", true);
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);
+            Scribe_Values.Look(ref electionEvent, "electionEvent", true);
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
             Scribe_Values.Look(ref socialTabColumn, "socialTabColumn", true);
             Scribe_Values.Look(ref socialLife, "socialLife", true);

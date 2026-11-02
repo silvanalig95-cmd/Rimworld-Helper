@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- An election that plays out on the map (Offices/OfficesElection.cs, ElectionPanel.cs, ElectionLetter.cs). -->
+
+  <!-- The setting -->
+  <CC_Settings_ElectionEvent>Elections play out on the map</CC_Settings_ElectionEvent>
+  <CC_Settings_ElectionEvent_Tip>An election is announced for a date on the colony calendar, with two or three candidates for each seat and what each of them stands for. In the days before, the candidates make their case to people in their free time; on the evening before, they speak at the hustings; on election day everyone at home walks over and casts a vote, and that evening the votes are counted aloud. The council can back a candidate or call a seat's vote off and appoint someone. A colony too small for a race gets a short ceremony instead.\n\nTurned off, the colony votes at once and the result comes in a single letter, as before.</CC_Settings_ElectionEvent_Tip>
+  <CC_SetNote_ElectionEvent>On: a campaign, the hustings, polling day and a count aloud. Off: the colony votes at once.</CC_SetNote_ElectionEvent>
+
+  <!-- The announcement -->
+  <CC_Elect_AnnounceTitle>Election day, year {0}</CC_Elect_AnnounceTitle>
+  <CC_Elect_AnnounceByTitle>An election for an empty seat</CC_Elect_AnnounceByTitle>
+  <CC_Elect_CeremonyTitle>The council's officers, year {0}</CC_Elect_CeremonyTitle>
+  <CC_Elect_AnnounceText>The colony will choose its council again, and election day is the {DATE}. Until then the candidates will make their case to people in their free time. On the evening before, they speak at the hustings {VENUE}. On the day itself everyone at home who is up to it casts a vote there, and that evening the votes are counted aloud.</CC_Elect_AnnounceText>
+  <CC_Elect_AnnounceByText>A seat on the council stands empty, and the colony will vote to fill it on election day, the {DATE}. Until then the candidates will make their case to people in their free time. On the evening before, they speak at the hustings {VENUE}. On the day itself everyone at home who is up to it casts a vote there, and that evening the votes are counted aloud.</CC_Elect_AnnounceByText>
+  <CC_Elect_CeremonyText>The colony will choose its council again, but no seat has more than one person able to stand for it. On the evening of the {DATE}, {CHAIR} will name the officers at a short ceremony {VENUE}.</CC_Elect_CeremonyText>
+  <CC_Elect_CeremonyByText>A seat on the council stands empty, and only one person can take it. On the evening of the {DATE}, {CHAIR} will name them to it at a short ceremony {VENUE}.</CC_Elect_CeremonyByText>
+  <CC_Elect_Standing>Standing for their seats: {0}.</CC_Elect_Standing>
+  <CC_Elect_Unopposed>Standing unopposed: {0}.</CC_Elect_Unopposed>
+  <CC_Elect_ForSeat>{0} for {1}</CC_Elect_ForSeat>
+  <CC_Elect_NoPlatform>{PAWN_nameDef} says {PAWN_pronoun} can do the work, and leaves it at that.</CC_Elect_NoPlatform>
+  <CC_Elect_AnnounceHand>The council can back one candidate for a seat, which wins them votes among those who trust it but costs it a little trust with everyone leaning to someone else. Or it can call a seat's vote off and appoint someone, which costs it trust with those who would have voted for the likely winner. Until the polls open, the Decrees page shows how support leans each day.</CC_Elect_AnnounceHand>
+  <CC_Elect_VenueAny>at the meeting place</CC_Elect_VenueAny>
+  <CC_Elect_TheCouncil>the council</CC_Elect_TheCouncil>
+
+  <!-- The letter's choices and the council's hand -->
+  <CC_Elect_Choice_Vote>Let the colony vote.</CC_Elect_Choice_Vote>
+  <CC_Elect_Choice_Endorse>Back a candidate...</CC_Elect_Choice_Endorse>
+  <CC_Elect_Choice_CallOff>Call a seat's vote off and appoint someone...</CC_Elect_Choice_CallOff>
+  <CC_Elect_TooLate>The polls are open; it is the colony's vote now.</CC_Elect_TooLate>
+  <CC_Elect_NothingToBack>The council has already backed someone in every race.</CC_Elect_NothingToBack>
+  <CC_Elect_Menu_Endorse>Back {0} for {1} ({2} leaning to someone else trust the council a little less)</CC_Elect_Menu_Endorse>
+  <CC_Elect_Menu_AppointFree>Appoint {0} as {1} (the one the colony leans to)</CC_Elect_Menu_AppointFree>
+  <CC_Elect_Menu_Appoint>Appoint {0} as {1} ({2} who would vote for {3} trust the council less)</CC_Elect_Menu_Appoint>
+  <CC_Elect_Endorsed>The council backs {PAWN_nameDef} for {OFFICE}, and those who trust it will weigh that when they vote. {WHO} leaned to someone else and trust the council a little less for it.</CC_Elect_Endorsed>
+  <CC_Elect_EndorsedNobody>The council backs {PAWN_nameDef} for {OFFICE}, and those who trust it will weigh that when they vote. Nobody was leaning to anyone else.</CC_Elect_EndorsedNobody>
+  <CC_Log_ElectionEndorsed>The council backed {0} for {1}</CC_Log_ElectionEndorsed>
+  <CC_Elect_CalledOff>The vote for {OFFICE} is called off. {WHO} would have voted for {PAWN_nameDef}, and trust the council less for it.</CC_Elect_CalledOff>
+  <CC_Elect_CalledOffNobody>The vote for {OFFICE} is called off, and the council appointed the one the colony was leaning to anyway.</CC_Elect_CalledOffNobody>
+  <CC_Log_ElectionCalledOff>The council called off the vote for {0}, which {1} would have won</CC_Log_ElectionCalledOff>
+
+  <!-- While it goes on -->
+  <CC_Elect_Dropped>{PAWN_nameDef} is no longer standing for {OFFICE}.</CC_Elect_Dropped>
+  <CC_Elect_SeatLetGo>Nobody is left standing for {OFFICE}, so the seat stays as it is until another election.</CC_Elect_SeatLetGo>
+  <CC_Elect_LogCanvass>{PAWN_nameDef} made {PAWN_possessive} case to {OTHER_nameDef} for the seat of {OFFICE}.</CC_Elect_LogCanvass>
+  <CC_Elect_HustingsStart>The hustings begin {VENUE}. {CHAIR_nameDef} calls the candidates up to speak, and anyone free can come and listen.</CC_Elect_HustingsStart>
+  <CC_Elect_HustingsPutOff>There are no hustings this evening, because {REASON}. They are put off to the next evening, and election day moves to the {DATE}.</CC_Elect_HustingsPutOff>
+  <CC_Elect_HustingsBrokenOff>The hustings broke up before most of the candidates had spoken. They will be held again the next evening, and election day moves to the {DATE}.</CC_Elect_HustingsBrokenOff>
+  <CC_Elect_HustingsLetGo>Again there are no hustings, because {REASON}. The colony will vote without them on the {DATE}.</CC_Elect_HustingsLetGo>
+  <CC_Elect_HustingsOver>The hustings are over, and the colony votes tomorrow {VENUE}.</CC_Elect_HustingsOver>
+  <CC_Elect_HustingsOverEarly>The hustings broke up early, and the colony votes tomorrow {VENUE}.</CC_Elect_HustingsOverEarly>
+  <CC_Elect_SpokeWell>{0} spoke well.</CC_Elect_SpokeWell>
+  <CC_Elect_SpokePoorly>{0} struggled.</CC_Elect_SpokePoorly>
+  <CC_Elect_DidNotSpeak>{0} didn't speak.</CC_Elect_DidNotSpeak>
+  <CC_Elect_PollsOpen>The polls are open {VENUE}. Everyone at home will walk over and cast a vote when they can, and the votes are counted this evening.</CC_Elect_PollsOpen>
+  <CC_Elect_PollsKeptOpen>Fewer than half of those at home could vote today, so the polls stay open tomorrow, the {DATE}, and the votes are counted that evening.</CC_Elect_PollsKeptOpen>
+  <CC_Elect_NowCeremony>No seat has a race any more, so there will be no vote: the officers will be named at a short ceremony {VENUE} on the evening of the {DATE} instead.</CC_Elect_NowCeremony>
+  <CC_Elect_CountStart>{CHAIR_nameDef} is counting the votes aloud {VENUE}, and anyone free can come and hear.</CC_Elect_CountStart>
+  <CC_Elect_CeremonyStart>{CHAIR_nameDef} is naming the council's officers at a short ceremony {VENUE}, and anyone free can come.</CC_Elect_CeremonyStart>
+  <CC_Elect_CountPutOff>The votes weren't counted this evening, because {REASON}. The count is put off to the evening of the {WHEN}.</CC_Elect_CountPutOff>
+  <CC_Elect_CeremonyPutOff>The ceremony wasn't held this evening, because {REASON}. It is put off to the evening of the {WHEN}.</CC_Elect_CeremonyPutOff>
+  <CC_Elect_Why_BrokenOff>the gathering broke up</CC_Elect_Why_BrokenOff>
+  <CC_Elect_Report_Hustings>at the hustings.</CC_Elect_Report_Hustings>
+  <CC_Elect_Report_Count>at the count.</CC_Elect_Report_Count>
+  <CC_Elect_Numbers>none,one,two,three,four,five,six,seven,eight,nine,ten,eleven,twelve</CC_Elect_Numbers>
+
+  <!-- The results letter -->
+  <CC_Elect_ResultText>{CHAIR} counted the votes aloud {VENUE} on the evening of the {DATE}. {VOTED} of the {VOTERS} with a say cast a vote.</CC_Elect_ResultText>
+  <CC_Elect_ResultBrokenOff>{CHAIR} began counting the votes aloud {VENUE} on the evening of the {DATE}, and finished at the council table when {REASON}. {VOTED} of the {VOTERS} with a say cast a vote.</CC_Elect_ResultBrokenOff>
+  <CC_Elect_ResultTable>The votes were not counted at a gathering, because {REASON}: {CHAIR} counted them at the council table on the {DATE}. {VOTED} of the {VOTERS} with a say cast a vote.</CC_Elect_ResultTable>
+  <CC_Elect_CeremonyResult>{CHAIR} named the council's officers at a short ceremony {VENUE} on the evening of the {DATE}, each of them unopposed.</CC_Elect_CeremonyResult>
+  <CC_Elect_CeremonyResultTable>There was no ceremony, because {REASON}: {CHAIR} named the council's officers at the council table on the {DATE}, each of them unopposed.</CC_Elect_CeremonyResultTable>
+  <CC_Elect_MissedOne>{0} ({1})</CC_Elect_MissedOne>
+  <CC_Elect_Missed>Missed the vote: {0}.</CC_Elect_Missed>
+  <CC_Elect_Why_Away>away</CC_Elect_Why_Away>
+  <CC_Elect_Why_Sick>in a sickbed</CC_Elect_Why_Sick>
+  <CC_Elect_Why_Busy>never got there</CC_Elect_Why_Busy>
+  <CC_Elect_ResultEndorsed>The council backed {0}.</CC_Elect_ResultEndorsed>
+  <CC_Elect_LineUnopposed>{0}: {PAWN_nameDef}, unopposed.</CC_Elect_LineUnopposed>
+  <CC_Elect_LineHands>{0}: {PAWN_nameDef}. No ballot for this seat reached the count, so it was settled by asking everyone with a say: {2} of {3}.</CC_Elect_LineHands>
+  <CC_Elect_Moved>Some votes went to their next choice, because their first had already won another seat or was no longer standing.</CC_Elect_Moved>
+
+  <!-- The Decrees page -->
+  <CC_Elect_UnderWay>Election under way</CC_Elect_UnderWay>
+  <CC_Elect_UnderWayTip>An election is already under way: its candidates and dates are below.</CC_Elect_UnderWayTip>
+  <CC_Elect_Panel_Title>Election, year {0}</CC_Elect_Panel_Title>
+  <CC_Elect_Panel_ByTitle>Election for an empty seat</CC_Elect_Panel_ByTitle>
+  <CC_Elect_Panel_Ceremony>The officers' ceremony, year {0}</CC_Elect_Panel_Ceremony>
+  <CC_Elect_Panel_StatusCampaign>Election day is the {DATE}. The candidates are making their case; the hustings are on the evening before, {VENUE}.</CC_Elect_Panel_StatusCampaign>
+  <CC_Elect_Panel_StatusHustings>The hustings are this evening {VENUE}, when it is calm enough to gather. Election day is the {DATE}.</CC_Elect_Panel_StatusHustings>
+  <CC_Elect_Panel_StatusHustingsOn>The hustings are under way {VENUE}. Election day is the {DATE}.</CC_Elect_Panel_StatusHustingsOn>
+  <CC_Elect_Panel_StatusPolling>Election day, the {DATE}: {VOTED} of the {VOTERS} with a say have voted {VENUE}. The votes are counted that evening.</CC_Elect_Panel_StatusPolling>
+  <CC_Elect_Panel_StatusCount>The votes are counted this evening {VENUE}, when it is calm enough to gather.</CC_Elect_Panel_StatusCount>
+  <CC_Elect_Panel_StatusCountOn>The votes are being counted aloud {VENUE}.</CC_Elect_Panel_StatusCountOn>
+  <CC_Elect_Panel_StatusCeremony>The officers will be named at a short ceremony {VENUE} on the evening of the {DATE}.</CC_Elect_Panel_StatusCeremony>
+  <CC_Elect_Panel_Endorse>Back...</CC_Elect_Panel_Endorse>
+  <CC_Elect_Panel_EndorseTip>Back one of the candidates: it counts on the ballots of those who trust the council, and those leaning to someone else trust it a little less.</CC_Elect_Panel_EndorseTip>
+  <CC_Elect_Panel_CallOff>Call it off...</CC_Elect_Panel_CallOff>
+  <CC_Elect_Panel_CallOffTip>Call this seat's vote off and appoint someone. Unless it is the one the colony leans to, those who would have voted for them trust the council less.</CC_Elect_Panel_CallOffTip>
+  <CC_Elect_Panel_Unopposed>unopposed</CC_Elect_Panel_Unopposed>
+  <CC_Elect_Panel_Votes>about {0} votes</CC_Elect_Panel_Votes>
+  <CC_Elect_Panel_PollTip>The votes each candidate could expect if everyone with a say voted now: skill, liking, friendship, the names the colony gave them, their visits, the hustings and the council's backing, without the luck of the day.</CC_Elect_Panel_PollTip>
+  <CC_Elect_Panel_Backed>backed by the council</CC_Elect_Panel_Backed>
+  <CC_Elect_Panel_Days>Day by day: {0} ({1})</CC_Elect_Panel_Days>
+
+  <!-- The calendar -->
+  <CC_Elect_Cal_Day>Election day</CC_Elect_Cal_Day>
+  <CC_Elect_Cal_Ceremony>The officers' ceremony</CC_Elect_Cal_Ceremony>
+  <CC_Elect_Cal_Note>The council's election: the hustings the evening before, the vote by day, the count that evening.</CC_Elect_Cal_Note>
+  <CC_Elect_Cal_CeremonyNote>The council's officers named at a short ceremony in the evening.</CC_Elect_Cal_CeremonyNote>
+  <CC_Elect_Cal_Coming>The council's election, on the {0}.</CC_Elect_Cal_Coming>
+  <CC_Elect_Cal_Tip>Once, not every year. The candidates and how support leans are on the Decrees page.</CC_Elect_Cal_Tip>
+
+</LanguageData>
