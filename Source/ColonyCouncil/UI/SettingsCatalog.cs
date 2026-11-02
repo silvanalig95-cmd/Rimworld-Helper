@@ -405,6 +405,7 @@ namespace ColonyCouncil
             Choice("speechShows", "CC_SetLabel_SpeechShows", "CC_SetTip_SpeechShows", "CC_SpeechShows_", "CC_SetNote_SpeechShows_",
                 new[] { "Bubbles", "Floating", "Off" });
             Toggle("visualTouches", "CC_Settings_VisualTouches", "CC_SetNote_VisualTouches");
+            Toggle("moodBubbleText", "CC_Settings_MoodBubbleText", "CC_SetNote_MoodBubbleText");
             Section("CC_Settings_Alerts");
             Toggle("advisorAlert", "CC_Settings_AdvisorAlert", "CC_SetNote_AdvisorAlert", "enableAdvisor");
             Toggle("wishAlert", "CC_Settings_WishAlert", "CC_SetNote_WishAlert", "enableWishes");

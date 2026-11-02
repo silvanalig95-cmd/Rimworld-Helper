@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A mood bubble says what it is
+
+*2 November 2026, version 0.53.6*
+
+- When the game shows its small mood bubble over a colonist, the mood's name now floats up beside it, green for a good one and red for a bad one, so you see what happened without clicking them.
+- The setting "Name the mood in a mood bubble" on the Interface page turns it off.
+
 ## Gatherings in a fitting place
 
 *2 November 2026, version 0.53.5*

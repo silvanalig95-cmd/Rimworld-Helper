@@ -222,6 +222,8 @@ namespace ColonyCouncil
         public SpeechMode speechShows = SpeechMode.Bubbles;
         /// <summary>The game's own flecks, sky colors and sounds for what Rimfolk says is happening (Touches/).</summary>
         public bool visualTouches = true;
+        /// <summary>The name of a mood floats up beside the game's mood bubble over a colonist (Immersion/MoodBubbleText.cs).</summary>
+        public bool moodBubbleText = true;
         /// <summary>Recreation Rimfolk's knowledge makes likelier: graves visited, slow walks, the fire after a fight (Immersion/SmallHabits.cs).</summary>
         public bool smallHabits = true;
 
@@ -485,6 +487,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref speechShows, "speechShows", SpeechMode.Bubbles);
             if (Scribe.mode == LoadSaveMode.LoadingVars && !speechText) speechShows = SpeechMode.Off;
             Scribe_Values.Look(ref visualTouches, "visualTouches", true);
+            Scribe_Values.Look(ref moodBubbleText, "moodBubbleText", true);
             Scribe_Values.Look(ref smallHabits, "smallHabits", true);
             Scribe_Values.Look(ref daysBetweenMeetings, "daysBetweenMeetings", 15f);
             Scribe_Values.Look(ref ambitionDeadlineFactor, "ambitionDeadlineFactor", 1f);
