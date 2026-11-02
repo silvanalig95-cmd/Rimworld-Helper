@@ -1264,12 +1264,14 @@ namespace ColonyCouncil
         /// a hospital or an armory, the fields for a barn, quiet for a bedroom, the rock to mine and the walk to the
         /// colony's middle. Only spots where all of it can be built.
         /// </summary>
-        public static List<SpotCandidate> FindSpots(RoomTemplateDef t, Map map, List<ResolvedThing> furniture, RoomPlanConfig cfg, int want = 3, HashSet<IntVec3> taken = null)
+        public static List<SpotCandidate> FindSpots(RoomTemplateDef t, Map map, List<ResolvedThing> furniture, RoomPlanConfig cfg, int want = 3, HashSet<IntVec3> taken = null,
+            List<string> extraNear = null)
         {
             var result = new List<SpotCandidate>();
             if (t == null || map == null) return result;
             var center = ColonyCenter(map);
-            var nearRoles = RoomNeighbours.Near(t);
+            // The rooms it goes with: the template's own, and those the caller adds (building ahead: bedrooms together, the freezer by the kitchen).
+            var nearRoles = extraNear == null || extraNear.Count == 0 ? RoomNeighbours.Near(t) : RoomNeighbours.Near(t).Concat(extraNear).Distinct().ToList();
             var avoidRoles = RoomNeighbours.Avoid(t);
             var near = nearRoles.Select(r => RoleCenters(map, r)).ToList();
             var avoid = avoidRoles.Select(r => RoleCenters(map, r)).ToList();
