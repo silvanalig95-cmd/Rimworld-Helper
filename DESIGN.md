@@ -1435,6 +1435,20 @@ prevent and a colony of five ideoligions). Small steps, one at a time, measured 
 - Measured (6 colonists): well run +3.1 to +3.5, average 0.0 to +0.7, neglected -10.9 to -8.9. The rates for the
   same work and meal in `Rates.cs` were lowered to match the new rules (they are assumptions, not read from code).
 
+**Everyday ailments, a third pass** (November 2026). Averaged over the five cases that leave ailments at 100% (6 and
+12 colonists, Story-rich, Demanding, no budget or fading; 800 runs each), a colonist had an everyday ailment 17.2% of
+the time in an average colony, 11.7% in a well-run one and 36.5% in a neglected one. The levers, in this order:
+- The mildest are shorter: heartburn, a splinter, sunburn, blisters, a smoke cough, a stiff neck, a smoker's cough,
+  an itching burn, chapped hands, a cold sore and the cough after a cold; sore hands, a sore elbow, chilblains, plant
+  rash and a rimrot cough a day or so.
+- The commonest come less often: the catching clock went from 35 to 50 days, a strained back is 1 in 200 after a long day
+  of hauling (was 1 in 140), sore hands 1 in 140 at the bench (was 1 in 110), and toothache, lice, a rimrot cough, insomnia from late nights
+  and a cold sore from worry a little less.
+- Care counts for more, so a well-run colony gains more than a neglected one: bed rest speeds sore hands, a sore
+  elbow, chilblains and chapped hands more, and tending does more for insomnia, a rimrot cough and chilblains.
+
+Measured the same way: average 13.9%, well run 9.3%, neglected 30.5%. Rimfolk's mood moved by a few tenths at most.
+
 **The presets** each aim at their own balance: Light touch about +5, +4 and 0 (well run, average, neglected) with
 fewer questions; Story-rich the default's moods with a question a little more often than every two days; Demanding
 about 0, -4 and -18. Each preset's tooltip says so.

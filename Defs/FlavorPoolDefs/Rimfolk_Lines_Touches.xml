@@ -15,93 +15,93 @@
       <plain>
         <li>[touch:plantpot] The windowsill gets the morning sun, so that's where the pot goes.</li>
         <li>[touch:plantpot] I'd like one plant in my room that never ends up in the soup pot.</li>
-        <li>[touch:plantpot,winter] Everything outside is brown or buried. I want one green thing to look at.</li>
+        <li>[touch:plantpot,winter] Everything outside is brown or buried, and I want one green thing to look at.</li>
         <li>[touch:plantpot,lowtech] A pot of mint by the bed keeps the fleas off, my grandmother used to say.</li>
-        <li>[touch:light] I've been sewing by moonlight, and my stitches show it. A lamp would help.</li>
+        <li>[touch:light] I've been sewing by moonlight and my stitches show it, so a lamp would help.</li>
         <li>[touch:light,lowtech] A torch on my wall, so I can see to braid my hair before the others wake.</li>
-        <li>[touch:light,winter] It's dark by supper now. A light in my room would give me my evenings back.</li>
+        <li>[touch:light,winter] It's dark by supper now, and a light in my room would give me my evenings back.</li>
         <li>[touch:endtable] A table by the bed, for my cup and whatever I'm mending.</li>
-        <li>[touch:endtable] I've been using a crate as a bedside table. I'd like a real one.</li>
-        <li>[touch:endtable,old] My knees don't like bending to the floor for my cup at night. A table by the bed, then.</li>
+        <li>[touch:endtable] I've been using a crate as a bedside table, and I'd like a real one.</li>
+        <li>[touch:endtable,old] My knees don't like bending to the floor for my cup at night, so a table by the bed.</li>
         <li>[touch:dresser] I've marked a spot for a dresser, so my spare shirt stops living on the bedpost.</li>
-        <li>[touch:dresser] My spare clothes are rolled up under my pillow. A dresser would be kinder to them and to my neck.</li>
-        <li>[touch:dresser,winter] My winter things take up half the floor. A dresser would hold them.</li>
+        <li>[touch:dresser] My spare clothes are rolled up under my pillow; a dresser would be kinder to my neck.</li>
+        <li>[touch:dresser,winter] My winter things take up half the floor, and a dresser would hold them.</li>
       </plain>
       <warm>
         <li>There's a spot in my room I've been looking at for a while, and {THING} would suit it.</li>
         <li>[newcomer] I'd like to settle in properly, and {THING} in my room would help.</li>
         <li>I've marked out {THING} for my room, tucked against the wall, whenever there's time.</li>
-        <li>[touch:plantpot] I miss the smell of a garden indoors. A pot by my window would bring some of it in.</li>
+        <li>[touch:plantpot] I miss the smell of a garden, and a pot by my window would bring some of it in.</li>
         <li>[touch:plantpot] I'd like to grow a few herbs by my bed, for tea on the nights I can't sleep.</li>
         <li>[touch:plantpot] If there's a spare pot, I know just where it would go.</li>
-        <li>[touch:light] A small light by my bed, if there's time to build one. I'd read the letters I've kept.</li>
-        <li>[touch:light] I'd love a lamp in my room for the evenings. I've put the mark where it won't bother anyone.</li>
+        <li>[touch:light] A small light by my bed, if there's time, so I can read the letters I've kept.</li>
+        <li>[touch:light] I'd love a lamp in my room for the evenings, marked where it won't bother anyone.</li>
         <li>[touch:light] With a light, I could write my journal at night instead of from memory in the morning.</li>
-        <li>[touch:endtable] A small table by the bed, for the things I want close. I've marked the spot.</li>
-        <li>[touch:endtable] Somewhere to set down a book at night. I'd be grateful.</li>
+        <li>[touch:endtable] A small table by the bed for the things I want close, and I've marked the spot.</li>
+        <li>[touch:endtable] Somewhere to set down a book at night, and I'd be grateful.</li>
         <li>[touch:endtable] A bedside table would make my room feel finished, whenever someone has time.</li>
-        <li>[touch:dresser] I'd like to keep my clothes neat for once. A dresser would help, when someone's free.</li>
-        <li>[touch:dresser] I've marked a place for a dresser. My good shirt deserves better than the floor.</li>
+        <li>[touch:dresser] I'd like to keep my clothes neat for once, so a dresser, when someone's free.</li>
+        <li>[touch:dresser] I've marked a place for a dresser, because my good shirt deserves better than the floor.</li>
         <li>[touch:dresser] A dresser, if it's no trouble, so the things people have given me stay safe.</li>
       </warm>
       <blunt>
         <li>It's {THING}, it's my room, and it costs next to nothing.</li>
-        <li>I've planned {THING}. It's out of the way, so leave it.</li>
-        <li>[touch:plantpot] Don't ask why I want a plant. I just do.</li>
-        <li>[touch:plantpot] One pot of dirt with a green thing in it. Cheap.</li>
+        <li>I've planned {THING} out of the way, so leave it.</li>
+        <li>[touch:plantpot] Don't ask why I want a plant, I just do.</li>
+        <li>[touch:plantpot] One pot of dirt with a green thing in it, cheap.</li>
         <li>[touch:plantpot] The room's ugly, and a plant helps.</li>
-        <li>[touch:light] I'm sick of the dark. Lamp's planned.</li>
-        <li>[touch:light] Need a light in my room. Blueprint's by the bed.</li>
-        <li>[touch:light] Can't see my own hands in there at night. Light's going in.</li>
-        <li>[touch:endtable] My cup keeps getting kicked over. Table by the bed.</li>
-        <li>[touch:endtable] The floor's not a shelf. I want a table.</li>
-        <li>[touch:endtable] End table, a small one. Not much to ask.</li>
+        <li>[touch:light] I'm sick of the dark, so the lamp's planned.</li>
+        <li>[touch:light] Need a light in my room, and the blueprint's by the bed.</li>
+        <li>[touch:light] Can't see my own hands in there at night, so a light's going in.</li>
+        <li>[touch:endtable] My cup keeps getting kicked over, so a table by the bed.</li>
+        <li>[touch:endtable] The floor's not a shelf, and I want a table.</li>
+        <li>[touch:endtable] End table, a small one, not much to ask.</li>
         <li>[touch:dresser] Drawers. I want drawers.</li>
-        <li>[touch:dresser] I'm done digging through a heap for a clean shirt. Dresser's planned.</li>
-        <li>[touch:dresser] Clothes go in a dresser, not on the floor. I'm getting one.</li>
+        <li>[touch:dresser] I'm done digging through a heap for a clean shirt, so the dresser's planned.</li>
+        <li>[touch:dresser] Clothes go in a dresser, not on the floor, so I'm getting one.</li>
       </blunt>
       <cheerful>
         <li>My room is getting {THING}, and I've already paced out where it goes!</li>
         <li>I've been planning {THING} for my room all week, and the blueprint's finally down.</li>
         <li>[touch:plantpot] I'll wake up to green leaves every morning!</li>
-        <li>[touch:plantpot] A plant pot for my room! I've been saving my wash water for it.</li>
+        <li>[touch:plantpot] A plant pot for my room, and I've been saving my wash water for it!</li>
         <li>[touch:plantpot] I'm getting a plant, and I'm going to be the best plant-keeper this colony has seen.</li>
-        <li>[touch:light] I'm getting a lamp! I'll find my bed without counting the steps.</li>
+        <li>[touch:light] I'm getting a lamp, so I'll find my bed without counting the steps!</li>
         <li>[touch:light] A lamp of my own, so mine's the room people visit after dark!</li>
         <li>[touch:light] My room's about to get a lot brighter, and I've picked the corner.</li>
         <li>[touch:endtable] A table by my bed, like the ones at an inn!</li>
         <li>[touch:endtable] I'm getting a bedside table, and I already know what goes on it first.</li>
-        <li>[touch:endtable] Somewhere to put my cup at night! I've been balancing it on the bed frame.</li>
+        <li>[touch:endtable] Somewhere to put my cup at night, instead of balancing it on the bed frame!</li>
         <li>[touch:dresser] A dresser! My clothes are going to be so organized.</li>
         <li>[touch:dresser] I'm getting drawers, and I'm going to fold everything twice.</li>
-        <li>[touch:dresser] A dresser for my room! The floor can finally have a rest.</li>
+        <li>[touch:dresser] A dresser for my room, so the floor can finally have a rest!</li>
       </cheerful>
       <gloomy>
-        <li>I've planned {THING}. It's a thing to look forward to, at least.</li>
-        <li>Four bare walls get to you after a while. I've marked out {THING}.</li>
-        <li>[touch:plantpot] A plant in my room. It'll probably die, but I'd like to try.</li>
+        <li>I've planned {THING}, a thing to look forward to, at least.</li>
+        <li>Four bare walls get to you after a while, so I've marked out {THING}.</li>
+        <li>[touch:plantpot] A plant in my room; it'll probably die, but I'd like to try.</li>
         <li>[touch:plantpot] I'd like to watch one plant grow that isn't headed for the kitchen.</li>
-        <li>[touch:plantpot,winter] Winter takes everything green. I'd like to keep one thing back from it.</li>
-        <li>[touch:light] A light by the bed. The dark gets into my head at night.</li>
-        <li>[touch:light] I've planned a lamp. Lying awake is worse when you can't see the walls.</li>
+        <li>[touch:plantpot,winter] Winter takes everything green, and I'd like to keep one thing back from it.</li>
+        <li>[touch:light] A light by the bed, because the dark gets into my head at night.</li>
+        <li>[touch:light] I've planned a lamp, since lying awake is worse when you can't see the walls.</li>
         <li>[touch:light] Some light in the room, so I can at least see the ceiling I keep staring at.</li>
         <li>[touch:endtable] Something to keep my cup off the floor, where everything else I own ends up.</li>
-        <li>[touch:endtable] A bedside table. Not much, but it would be mine.</li>
+        <li>[touch:endtable] A bedside table, not much, but it would be mine.</li>
         <li>[touch:endtable] Somewhere for my few things at night, off the floor.</li>
         <li>[touch:dresser] My clothes are most of what I own, so they might as well have a dresser.</li>
         <li>[touch:dresser] I might as well keep my things tidy while I'm here, drawers and all.</li>
         <li>[touch:dresser] A dresser, so I stop living out of a heap as if I'm about to run.</li>
       </gloomy>
       <cold>
-        <li>I've placed a blueprint for {THING}. It won't take long to build.</li>
-        <li>I've chosen the exact spot for {THING}. It will improve the room.</li>
-        <li>[touch:plantpot] A plant pot costs almost nothing to build. The blueprint is by the window.</li>
-        <li>[touch:plantpot] The plant pot is planned. I'll tend it myself, so it's done properly.</li>
+        <li>I've placed a blueprint for {THING}, and it won't take long to build.</li>
+        <li>I've chosen the exact spot for {THING}, and it will improve the room.</li>
+        <li>[touch:plantpot] A plant pot costs almost nothing to build, and the blueprint is by the window.</li>
+        <li>[touch:plantpot] The plant pot is planned, and I'll tend it myself so it's done properly.</li>
         <li>[touch:plantpot] A pot by the wall, where the draft won't reach it.</li>
-        <li>[touch:light] A lamp lets me work on small things at night. The blueprint is down.</li>
-        <li>[touch:light] I've planned a light. A dark bedroom wastes the evening.</li>
-        <li>[touch:light] A light by the bed. I wake before the others and need to see.</li>
-        <li>[touch:endtable] A table beside the bed is the shortest reach for a cup. I've marked one.</li>
+        <li>[touch:light] A lamp lets me work on small things at night, and the blueprint is down.</li>
+        <li>[touch:light] I've planned a light, since a dark bedroom wastes the evening.</li>
+        <li>[touch:light] A light by the bed, since I wake before the others and need to see.</li>
+        <li>[touch:endtable] A table beside the bed is the shortest reach for a cup, and I've marked one.</li>
         <li>[touch:endtable] An end table keeps my tools off the floor and out of the dust.</li>
         <li>[touch:endtable] The end table goes left of the bed, where my hand falls when I wake.</li>
         <li>[touch:dresser] A dresser keeps my things where I can count them.</li>

@@ -171,7 +171,7 @@
   <CC_WishLetterTitleForOther>{PAWN_labelShort} speaks up for {FOR_labelShort}</CC_WishLetterTitleForOther>
   <CC_WishGrantedTitle>Wish granted: {PAWN_labelShort}, {WISH}</CC_WishGrantedTitle>
   <CC_WishExpiredTitle>{PAWN_labelShort} gave up on {WISH}</CC_WishExpiredTitle>
-  <CC_ForOtherFallback>{FOR_nameDef} could really use this: {WISH}. Could we see to it?</CC_ForOtherFallback>
+  <CC_ForOtherFallback>{FOR_nameDef} could really use this: {WISH}, if we could see to it.</CC_ForOtherFallback>
   <CC_ThanksFallback>Thank you. Really.</CC_ThanksFallback>
   <CC_ExpiredFallback>Never mind. It doesn't matter.</CC_ExpiredFallback>
   <CC_InspirationReason>{PAWN_nameDef} is inspired now that {PAWN_possessive} wish ({WISH}) has come true.</CC_InspirationReason>
@@ -179,11 +179,11 @@
   <CC_PetitionGranted>The petition is answered. {0} are pleased too.</CC_PetitionGranted>
   <CC_PetitionJoined>{PAWN_labelShort} backs {OTHER_labelShort}'s wish: {WISH} ({COUNT} colonists now)</CC_PetitionJoined>
   <CC_CoSignLine_Plain>I'm with {PAWN_nameDef} on this one.</CC_CoSignLine_Plain>
-  <CC_CoSignLine_Warm>{PAWN_nameDef} is right, you know. I'd love that too.</CC_CoSignLine_Warm>
+  <CC_CoSignLine_Warm>{PAWN_nameDef} is right, you know, and I'd love that too.</CC_CoSignLine_Warm>
   <CC_CoSignLine_Blunt>Do what {PAWN_nameDef} asked.</CC_CoSignLine_Blunt>
   <CC_CoSignLine_Cheerful>Oh, yes, what {PAWN_nameDef} said!</CC_CoSignLine_Cheerful>
-  <CC_CoSignLine_Gloomy>{PAWN_nameDef} asked. I'm asking too. Not that it'll help.</CC_CoSignLine_Gloomy>
-  <CC_CoSignLine_Cold>{PAWN_nameDef}'s request is sensible. I support it.</CC_CoSignLine_Cold>
+  <CC_CoSignLine_Gloomy>{PAWN_nameDef} asked, and I'm asking too, not that it'll help.</CC_CoSignLine_Gloomy>
+  <CC_CoSignLine_Cold>{PAWN_nameDef}'s request is sensible, and I support it.</CC_CoSignLine_Cold>
   <CC_RewardMood>{0} mood for {1} days</CC_RewardMood>
   <CC_RewardInspiration>{0} chance of inspiration</CC_RewardInspiration>
   <CC_RewardSmall>a happier colonist</CC_RewardSmall>
@@ -629,16 +629,16 @@
 
   <!-- ===================== Personal touches ===================== -->
   <CC_Touch_Message>{PAWN_labelShort} planned {THING} for {PAWN_possessive} bedroom (cancel the blueprint if you'd rather not).</CC_Touch_Message>
-  <CC_Touch_Plain>My room needs {THING}. I've marked the spot.</CC_Touch_Plain>
-  <CC_Touch_Warm>I thought {THING} would make my room cozier. I hope that's all right.</CC_Touch_Warm>
-  <CC_Touch_Blunt>I'm putting {THING} in my room. Don't argue.</CC_Touch_Blunt>
+  <CC_Touch_Plain>My room needs {THING}, and I've marked the spot.</CC_Touch_Plain>
+  <CC_Touch_Warm>I thought {THING} would make my room cozier, if that's all right.</CC_Touch_Warm>
+  <CC_Touch_Blunt>I'm putting {THING} in my room, so don't argue.</CC_Touch_Blunt>
   <CC_Touch_Cheerful>Ooh, {THING} would look perfect right there!</CC_Touch_Cheerful>
   <CC_Touch_Gloomy>Maybe {THING} will make my room feel less like a cell.</CC_Touch_Gloomy>
   <CC_Touch_Cold>Placing {THING} there is the optimal arrangement.</CC_Touch_Cold>
-  <CC_TouchDone_Plain>The {THINGBARE} is in. My room feels like mine now.</CC_TouchDone_Plain>
-  <CC_TouchDone_Warm>The {THINGBARE} is perfect. Thank you to whoever built it!</CC_TouchDone_Warm>
+  <CC_TouchDone_Plain>The {THINGBARE} is in, and my room feels like mine now.</CC_TouchDone_Plain>
+  <CC_TouchDone_Warm>The {THINGBARE} is perfect, so thank you to whoever built it!</CC_TouchDone_Warm>
   <CC_TouchDone_Blunt>Good. The {THINGBARE} is where it belongs.</CC_TouchDone_Blunt>
-  <CC_TouchDone_Cheerful>My {THINGBARE}! It looks even better than I imagined.</CC_TouchDone_Cheerful>
+  <CC_TouchDone_Cheerful>My {THINGBARE} looks even better than I imagined!</CC_TouchDone_Cheerful>
   <CC_TouchDone_Gloomy>The {THINGBARE} helps, I suppose.</CC_TouchDone_Gloomy>
   <CC_TouchDone_Cold>Arrangement complete.</CC_TouchDone_Cold>
   <CC_Chronicle_Touch>{0} planned a new {1} for their bedroom.</CC_Chronicle_Touch>

@@ -25,7 +25,7 @@
       </warm>
       <blunt>
         <li>[give] Taking it over now.</li>
-        <li>[burn] Nobody touches this. It's going on the fire.</li>
+        <li>[burn] Nobody touches this, it's going on the fire.</li>
       </blunt>
       <cheerful>
         <li>[give] Wait till {OTHER_nameDef} sees this.</li>
@@ -47,7 +47,7 @@
       <plain>
         <li>There.</li>
         <li>[give] For you, {OTHER_nameDef}.</li>
-        <li>[give] I made it for you. Don't make a fuss.</li>
+        <li>[give] I made it for you, so don't make a fuss.</li>
         <li>[give] It's yours now.</li>
         <li>[burn] That's the end of that.</li>
         <li>[burn] Stand back, it'll catch quick.</li>
@@ -60,10 +60,10 @@
         <li>[give] Here. Take it.</li>
       </blunt>
       <cheerful>
-        <li>[give] Go on, open it. Well, look at it.</li>
+        <li>[give] Go on, open it, or look at it, anyway.</li>
       </cheerful>
       <gloomy>
-        <li>[give] It's not much. It's what I had in me.</li>
+        <li>[give] It's not much, but it's what I had in me.</li>
         <li>[burn] Up it goes.</li>
       </gloomy>
       <cold>
@@ -121,7 +121,7 @@
     <defName>Council_Pool_PlayRoundsInvite</defName>
     <lines>
       <plain>
-        <li>I'll come to each of you. Don't go far.</li>
+        <li>I'll come to each of you, so don't go far.</li>
         <li>[outdoors] Soup's coming round.</li>
       </plain>
       <warm>
@@ -129,10 +129,10 @@
         <li>[outdoors] Hot soup for whoever's out in the cold.</li>
       </warm>
       <blunt>
-        <li>Stay where you are. I'll find you.</li>
+        <li>Stay where you are, I'll find you.</li>
       </blunt>
       <cheerful>
-        <li>Nobody escapes. Everyone gets seen.</li>
+        <li>Nobody escapes, everyone gets seen.</li>
       </cheerful>
       <gloomy>
         <li>Right. One at a time, then.</li>
@@ -151,7 +151,7 @@
         <li>Your turn, {OTHER_nameDef}.</li>
         <li>Hold still a moment.</li>
         <li>[outdoors] Here, mind, it's hot.</li>
-        <li>[outdoors] Bowl, {OTHER_nameDef}. Drink it while it's warm.</li>
+        <li>[outdoors] Bowl, {OTHER_nameDef}, and drink it while it's warm.</li>
       </plain>
       <warm>
         <li>How are you keeping, {OTHER_nameDef}?</li>
@@ -161,7 +161,7 @@
         <li>Next.</li>
       </blunt>
       <cheerful>
-        <li>[outdoors] Soup delivery. No charge.</li>
+        <li>[outdoors] Soup delivery, no charge.</li>
       </cheerful>
       <gloomy>
         <li>[outdoors] It was hot when I left the kitchen.</li>
@@ -216,10 +216,10 @@
     <lines>
       <plain>
         <li>Gloves on. Let's get it done.</li>
-        <li>[pyre] Out past the gate with them. We'll build the pyre there.</li>
-        <li>[treeline] To the tree line. Leave them where the trees start.</li>
+        <li>[pyre] Out past the gate with them, and we'll build the pyre there.</li>
+        <li>[treeline] To the tree line, and leave them where the trees start.</li>
         <li>[graves] We'll dig them a grave each, out past the wall.</li>
-        <li>[trench] One long trench outside the wall. Bring the shovels.</li>
+        <li>[trench] One long trench outside the wall, so bring the shovels.</li>
         <li>[crematorium] To the crematorium, one at a time.</li>
       </plain>
       <warm>
@@ -311,7 +311,7 @@
       <plain>
         <li>I've something to tell all of you.</li>
         <li>Let me get through it before anyone says anything.</li>
-        <li>This isn't easy. Bear with me.</li>
+        <li>This isn't easy, so bear with me.</li>
       </plain>
       <warm>
         <li>I'd rather you heard it from me.</li>
@@ -320,7 +320,7 @@
         <li>I'll just say it.</li>
       </blunt>
       <cheerful>
-        <li>Everyone comfortable? Good. This might take a minute.</li>
+        <li>If everyone's comfortable, this might take a minute.</li>
       </cheerful>
       <gloomy>
         <li>You might think less of me after this.</li>

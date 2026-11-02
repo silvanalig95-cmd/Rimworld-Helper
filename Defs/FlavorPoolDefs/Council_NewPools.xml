@@ -15,59 +15,59 @@
     <defName>Council_Pool_Touch</defName>
     <lines>
       <plain>
-        <li>I spend a third of my life in that room. It can have {THING}.</li>
+        <li>I spend a third of my life in that room, so it can have {THING}.</li>
         <li>Nothing big. Just {THING}, so the room stops feeling borrowed.</li>
-        <li>There's been an empty corner in my room for weeks. I've marked it out for {THING}.</li>
-        <li>[touch:plantpot] My room smells like boots and old sweat. A plant might help.</li>
-        <li>[touch:light] Every night I find my bed by memory and bruised shins. I'd like a light.</li>
-        <li>[touch:endtable] I keep putting my things on the floor and then stepping on them. I've marked a spot by the bed.</li>
-        <li>[touch:dresser] Everything I own lives in a heap at the foot of my bed, and {THING} would give it somewhere to go.</li>
-        <li>[skill:Plants,touch:plantpot] I grow food for the rest of you all day. This one's just for me.</li>
-        <li>[trait:NightOwl,touch:light] I'm up all night anyway. I'd like to see what I'm doing.</li>
-        <li>[winter] Long winter ahead, and I'll spend half of it in that room. It's getting {THING}.</li>
-        <li>[afterraid] We nearly lost everything this week. I want something in my room that's worth keeping.</li>
-        <li>[poor] I know we're scraping by, but {THING} barely costs anything. I checked.</li>
+        <li>There's been an empty corner in my room for weeks, and I've marked it out for {THING}.</li>
+        <li>[touch:plantpot] My room smells like boots and old sweat, and a plant might help.</li>
+        <li>[touch:light] Every night I find my bed by memory and bruised shins, so I'd like a light.</li>
+        <li>[touch:endtable] I keep stepping on the things I put on the floor, so I've marked a spot by the bed.</li>
+        <li>[touch:dresser] Everything I own lives in a heap by my bed, and {THING} would give it somewhere to go.</li>
+        <li>[skill:Plants,touch:plantpot] I grow food for the rest of you all day, but this one's just for me.</li>
+        <li>[trait:NightOwl,touch:light] I'm up all night anyway, so I'd like to see what I'm doing.</li>
+        <li>[winter] Long winter ahead, and I'll spend half of it in that room, so it's getting {THING}.</li>
+        <li>[afterraid] We nearly lost everything this week, and I want something in my room worth keeping.</li>
+        <li>[poor] I know we're scraping by, but {THING} barely costs anything; I checked.</li>
         <li>[newcomer] If I'm staying, my room should look lived in, and {THING} is a start.</li>
-        <li>[trait:Greedy] I've seen the other rooms. Mine's getting {THING}, to start with.</li>
-        <li>[skill:Artistic] My room's a blank canvas. I'm starting with {THING} and working outward.</li>
+        <li>[trait:Greedy] I've seen the other rooms, and mine's getting {THING}, to start with.</li>
+        <li>[skill:Artistic] My room's a blank canvas, and I'm starting with {THING} and working outward.</li>
         <li>[lowmood] I need something in that room besides four walls and bad dreams.</li>
-        <li>[child] I want {THING} in my room, a real one! I drew where it goes.</li>
+        <li>[child] I want {THING} in my room, a real one, and I drew where it goes!</li>
         <li>[old] At my age I'm done waiting for the right moment to fix up my room.</li>
         <li>I'd like my room to look like someone cares about it, starting with {THING}.</li>
       </plain>
       <warm>
-        <li>Would anyone mind if my room got {THING}? I've marked a spot where it won't be in anyone's way.</li>
-        <li>I've planned {THING} for my room, whenever someone has a spare hour. There's no rush.</li>
-        <li>[touch:plantpot] I'd like to look after something small for a change. A plant seems like a good start.</li>
-        <li>[touch:light] I like to read before sleep when there's time. A light would save my eyes.</li>
-        <li>[touch:endtable] Somewhere beside the bed for a cup of water and a keepsake or two, if someone has the time.</li>
-        <li>[touch:dresser] I'd love a place to fold things properly. It's how I was raised.</li>
+        <li>Would anyone mind if my room got {THING}, in a spot where it won't be in anyone's way?</li>
+        <li>I've planned {THING} for my room, whenever someone has a spare hour; there's no rush.</li>
+        <li>[touch:plantpot] I'd like to look after something small for a change, and a plant seems a good start.</li>
+        <li>[touch:light] I like to read before sleep when there's time, and a light would save my eyes.</li>
+        <li>[touch:endtable] Somewhere beside the bed for a cup and a keepsake or two, if someone has the time.</li>
+        <li>[touch:dresser] I'd love a place to fold things properly, the way I was raised.</li>
         <li>[touch:plantpot] Something green by my window would be lovely, if no one minds.</li>
         <li>[touch:light] A light by my bed, so I can mend things in the evening without keeping anyone up.</li>
         <li>[touch:endtable] Just a table by my bed, since I've been keeping my cup on the windowsill.</li>
         <li>[touch:dresser] I'd like a dresser, so my things stop spilling out into the hall.</li>
       </warm>
       <blunt>
-        <li>My room, my corner, my {THINGBARE}. Any questions?</li>
-        <li>Blueprint's down. If anyone cancels it, I'll find out who.</li>
-        <li>[touch:plantpot] Yes, I want a plant. Don't look at me like that.</li>
-        <li>[touch:light] I've stubbed every toe I own in that room. I want a light.</li>
+        <li>My room, my corner, my {THINGBARE}, any questions?</li>
+        <li>Blueprint's down, and if anyone cancels it, I'll find out who.</li>
+        <li>[touch:plantpot] Yes, I want a plant, so don't look at me like that.</li>
+        <li>[touch:light] I've stubbed every toe I own in that room, and I want a light.</li>
         <li>[touch:endtable] I need somewhere to put things that isn't the floor or my boots.</li>
         <li>[touch:dresser] My clothes have been on the floor long enough.</li>
-        <li>[touch:plantpot] I'm getting a plant. Don't water it for me.</li>
-        <li>[touch:light] Dark room. Want a light. Blueprint's down.</li>
-        <li>[touch:endtable] Table by the bed. That's all.</li>
+        <li>[touch:plantpot] I'm getting a plant, and don't water it for me.</li>
+        <li>[touch:light] Dark room, want a light, blueprint's down.</li>
+        <li>[touch:endtable] Table by the bed, that's all.</li>
         <li>[touch:dresser] I want drawers, because my clothes are on the floor.</li>
       </blunt>
       <cheerful>
-        <li>I've marked a spot for {THING}! My room is finally going to feel like mine.</li>
-        <li>I'm decorating my room! It's the nicest job I've had all season.</li>
+        <li>I've marked a spot for {THING}, and my room is finally going to feel like mine!</li>
+        <li>I'm decorating my room, the nicest job I've had all season!</li>
         <li>[touch:plantpot] A plant pot! I'm going to talk to it every morning.</li>
-        <li>[touch:light] A light in my room! I'll finally see what color the walls are.</li>
-        <li>[touch:endtable] A bedside table! Somewhere to put my cup at night, like a civilized person.</li>
-        <li>[touch:dresser] Real drawers! I can lose my socks in an organized way now.</li>
+        <li>[touch:light] A light in my room, so I'll finally see what color the walls are!</li>
+        <li>[touch:endtable] A bedside table, somewhere to put my cup at night like a civilized person!</li>
+        <li>[touch:dresser] Real drawers, so I can lose my socks in an organized way now!</li>
         <li>[touch:plantpot] My plant's getting a name before it's even in the soil!</li>
-        <li>[touch:light] My very own light! I'll read in bed every night.</li>
+        <li>[touch:light] My very own light, and I'll read in bed every night!</li>
         <li>[touch:endtable] A table for my bedside, for my cup and my lucky stone!</li>
         <li>[touch:dresser] A dresser! My good shirt finally gets a drawer of its own.</li>
       </cheerful>
@@ -75,25 +75,25 @@
         <li>I'll probably be dead before anyone builds it, but I've marked out {THING} anyway.</li>
         <li>Maybe if the room looks lived-in, I'll feel like I live there.</li>
         <li>[touch:plantpot] I'd like one living thing in that room besides me.</li>
-        <li>[touch:light] The dark in my room is starting to feel like company. I'd rather have a light.</li>
+        <li>[touch:light] The dark in my room is starting to feel like company, and I'd rather have a light.</li>
         <li>[touch:endtable] A table by the bed, for the water cup and the long nights.</li>
-        <li>[touch:dresser] Somewhere to keep my things. It'll be easier for whoever clears out my room.</li>
-        <li>[touch:plantpot] Something green in my room. It might outlast me.</li>
+        <li>[touch:dresser] Somewhere to keep my things, easier for whoever clears out my room.</li>
+        <li>[touch:plantpot] Something green in my room, and it might outlast me.</li>
         <li>[touch:light] A light, for the nights when I can't sleep.</li>
         <li>[touch:endtable] A table by the bed, since I'm awake in the night often enough to need one.</li>
-        <li>[touch:dresser] My clothes on the floor make the room feel like a cell. A dresser might help.</li>
+        <li>[touch:dresser] My clothes on the floor make the room feel like a cell, and a dresser might help.</li>
       </gloomy>
       <cold>
-        <li>My room has an unused wall. I've assigned it {THING}.</li>
+        <li>My room has an unused wall, and I've assigned it {THING}.</li>
         <li>I sleep better with {THING} in the room, and I work better when I've slept.</li>
-        <li>[touch:plantpot] I'm told plants calm people. I'll test it on myself first.</li>
-        <li>[touch:light] I lose minutes every night looking for things in the dark. A light gets them back.</li>
+        <li>[touch:plantpot] I'm told plants calm people, so I'll test it on myself first.</li>
+        <li>[touch:light] I lose minutes every night looking for things in the dark, and a light gets them back.</li>
         <li>[touch:endtable] An end table keeps everything I need within reach of the bed.</li>
-        <li>[touch:dresser] Clothes last longer folded than heaped. A dresser is just maintenance.</li>
-        <li>[touch:plantpot] A plant improves a room at very little cost. I've marked the spot.</li>
-        <li>[touch:light] Reading in the evening requires a light. I've planned one.</li>
+        <li>[touch:dresser] Clothes last longer folded than heaped, so a dresser is just maintenance.</li>
+        <li>[touch:plantpot] A plant improves a room at very little cost, and I've marked the spot.</li>
+        <li>[touch:light] Reading in the evening requires a light, so I've planned one.</li>
         <li>[touch:endtable] I've measured the space by my bed, and an end table fits exactly.</li>
-        <li>[touch:dresser] My belongings need sorting. A dresser does that.</li>
+        <li>[touch:dresser] My belongings need sorting, and a dresser does that.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

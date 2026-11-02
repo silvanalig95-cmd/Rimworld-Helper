@@ -231,10 +231,10 @@
         <li>I suppose there are bigger problems right now.</li>
         <li>[trusting] I don't like it, but I understand.</li>
         <li>[poor] I know we're stretched thin, but it doesn't make it easier.</li>
-        <li>[afterraid] Right. Walls first. I get it.</li>
+        <li>[afterraid] Right, walls first, I get it.</li>
       </plain>
       <warm>
-        <li>That's all right. I'd rather know than wonder.</li>
+        <li>That's all right, I'd rather know than wonder.</li>
         <li>Thank you for being honest with me.</li>
       </warm>
       <blunt>
@@ -243,8 +243,8 @@
         <li>[bitter] You didn't even think about it, did you?</li>
       </blunt>
       <cheerful>
-        <li>Oh well, can't win them all! I'll ask again another day.</li>
-        <li>No? That's all right! I'll think of something else to ask for.</li>
+        <li>Oh well, can't win them all, so I'll ask again another day!</li>
+        <li>No? That's all right, I'll think of something else to ask for!</li>
       </cheerful>
       <gloomy>
         <li>Of course not.</li>
@@ -271,7 +271,7 @@
         <li>[petition] There are several of us still waiting on "{WISH}".</li>
         <li>I keep meaning to ask again about "{WISH}", so here I am.</li>
         <li>Any news on "{WISH}"?</li>
-        <li>"{WISH}" hasn't happened yet. I'm only mentioning it.</li>
+        <li>I'm only mentioning it, but "{WISH}" hasn't happened yet.</li>
         <li>[promised] I'm holding you to that promise about "{WISH}".</li>
         <li>[winter] Winter's dragging on, and so is "{WISH}".</li>
         <li>[petition] We're still waiting on "{WISH}", the lot of us, and we talk about it at supper.</li>
@@ -286,7 +286,7 @@
         <li>Still waiting on "{WISH}".</li>
         <li>I asked days ago, so is anyone listening?</li>
         <li>I'm asking about "{WISH}" again; did anyone hear me the first time?</li>
-        <li>"{WISH}", any day now.</li>
+        <li>Still waiting on "{WISH}", any day now.</li>
         <li>Why is there still nothing on "{WISH}"?</li>
       </blunt>
       <cheerful>
@@ -296,7 +296,7 @@
         <li>Just checking in on "{WISH}", still hopeful!</li>
       </cheerful>
       <gloomy>
-        <li>I suppose "{WISH}" isn't going to happen. I'll stop mentioning it.</li>
+        <li>I suppose "{WISH}" isn't going to happen, so I'll stop mentioning it.</li>
         <li>There's always something more important than "{WISH}".</li>
         <li>Still no "{WISH}", and I'm not surprised.</li>
         <li>Not a word about "{WISH}" in days, and I can take a hint.</li>
@@ -304,7 +304,7 @@
       <cold>
         <li>I'd like to know where things stand on "{WISH}".</li>
         <li>I note that "{WISH}" is still outstanding.</li>
-        <li>"{WISH}" remains unaddressed, and I'm keeping count of the days.</li>
+        <li>I'm keeping count of the days that "{WISH}" remains unaddressed.</li>
         <li>I asked for "{WISH}" some time ago, and I expect an answer.</li>
       </cold>
     </lines>
@@ -318,7 +318,7 @@
         <li>I've asked about "{WISH}" for long enough, and after this I'm done.</li>
         <li>[promised] You promised me "{WISH}", and time's nearly up on that promise.</li>
         <li>[petition] There are a few of us waiting on "{WISH}" now, and we've started talking among ourselves.</li>
-        <li>This is the last time I'll raise "{WISH}". After this I'll stop hoping.</li>
+        <li>This is the last time I'll raise "{WISH}", and after this I'll stop hoping.</li>
         <li>If "{WISH}" doesn't happen soon, I'll take that as my answer.</li>
         <li>I've waited a long time for "{WISH}", and my patience is nearly gone.</li>
         <li>[promised] A promise is a promise, so "{WISH}", please, before it's too late.</li>
@@ -331,7 +331,7 @@
         <li>Please don't forget "{WISH}"; it's the only thing I've asked for.</li>
       </warm>
       <blunt>
-        <li>"{WISH}", now, or forget I ever asked.</li>
+        <li>Now, "{WISH}", or forget I ever asked.</li>
         <li>I'm done being polite about "{WISH}".</li>
         <li>You've got a few days, and then I stop caring what you think of me.</li>
         <li>Last chance on "{WISH}", then I'm done asking.</li>
@@ -346,14 +346,14 @@
       <gloomy>
         <li>I'll keep waiting, then, since it's what I'm good at.</li>
         <li>I seem to be the only one who cares about "{WISH}".</li>
-        <li>I knew "{WISH}" would come to nothing. I'm just saying it out loud now.</li>
-        <li>After this I won't ask about "{WISH}" again. There's no point.</li>
+        <li>I knew "{WISH}" would come to nothing, and I'm just saying it out loud now.</li>
+        <li>After this I won't ask about "{WISH}" again; there's no point.</li>
       </gloomy>
       <cold>
-        <li>This is my final request about "{WISH}". I'll draw my own conclusions afterward.</li>
+        <li>This is my final request about "{WISH}", and I'll draw my own conclusions afterward.</li>
         <li>You are running out of time to address "{WISH}".</li>
         <li>My patience about "{WISH}" ends soon.</li>
-        <li>Consider this the last reminder about "{WISH}". After it, I'll act as I see fit.</li>
+        <li>Consider this the last reminder about "{WISH}"; after it, I'll act as I see fit.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -364,18 +364,18 @@
       <plain>
         <li>If you want something done around here, apparently you do it yourself.</li>
         <li>I waited long enough, so I did it myself.</li>
-        <li>[trait:Industrious|trait:HardWorker] I'd rather work than wait. It's done.</li>
+        <li>[trait:Industrious|trait:HardWorker] I'd rather work than wait, so it's done.</li>
       </plain>
       <warm>
-        <li>I didn't want to bother anyone. I hope that's all right.</li>
+        <li>I didn't want to bother anyone, so I hope that's all right.</li>
         <li>I figured everyone was busy, so I took care of it.</li>
       </warm>
       <blunt>
-        <li>Did it myself. You're welcome.</li>
-        <li>Next time I ask for something, maybe just say yes. Saves time.</li>
+        <li>Did it myself, you're welcome.</li>
+        <li>Next time I ask for something, maybe just say yes and save time.</li>
       </blunt>
       <cheerful>
-        <li>I took care of it myself! It only took twice as long as it should have.</li>
+        <li>I took care of it myself, and it only took twice as long as it should have!</li>
         <li>Look at me, solving problems!</li>
       </cheerful>
       <gloomy>
@@ -383,7 +383,7 @@
         <li>Doesn't feel as good when you have to do it yourself.</li>
       </gloomy>
       <cold>
-        <li>The request was not addressed. I addressed it.</li>
+        <li>The request was not addressed, so I addressed it.</li>
         <li>Waiting was costing me more than the work.</li>
       </cold>
     </lines>
@@ -422,19 +422,19 @@
     <defName>Council_Pool_BrokenPromise</defName>
     <lines>
       <plain>
-        <li>You promised. You actually promised.</li>
+        <li>You promised, you actually promised.</li>
         <li>I stopped asking because you gave me your word, and more fool me.</li>
         <li>Remember this the next time you ask me to trust you.</li>
       </plain>
       <warm>
-        <li>I believed you, that's all. I really did.</li>
+        <li>I believed you, that's all, I really did.</li>
       </warm>
       <blunt>
         <li>Don't bother promising me anything else.</li>
         <li>Never again.</li>
       </blunt>
       <cheerful>
-        <li>Well, you fooled me! I'll know better next time.</li>
+        <li>Well, you fooled me, and I'll know better next time!</li>
       </cheerful>
       <gloomy>
         <li>I knew better, and I believed you anyway.</li>

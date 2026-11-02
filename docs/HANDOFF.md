@@ -6,6 +6,17 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.53.1: every source of words said over a head is in `ImmersionTests` (pools collected from all Defs folders, def
+  `<lines>`, keyed fallbacks); 336 lines made one sentence. Open, the player's call: the wishes', ambitions' and
+  decrees' own lines (about 3,600 of 6,300 are two sentences; they are also letter quotes; a bubble shows whole
+  sentences up to 90 characters). Social-log narration is third person and left out of the rule.
+- 0.53.2: ailment balance (`Tools/Balance`, 800 runs a setup): well run 9.3%, average 13.9%, neglectful 30.5% of the
+  time with an everyday ailment (was 11.7 / 17.2 / 36.6); catching clock `AilmentTracker.EverydayCatchingDays` 35 to
+  50 days, mild ailments shorter, bed rest and tending count for more. `docs/balance-report.md` regenerated.
+- Open questions to the player: the six Alpha Genes proposals P1 to P6 (`docs/alphagenes-proposals.md`; the fixes F1
+  to F7 were started as bugs); whether an evening with only one piece of news should also come as a letter
+  (`News.Send` shows a single item as a message, as before 0.44.1).
+
 - 0.53.0, plan ahead phase 3 (details in `docs/plan-ahead.md` "Phase 3 as built"): `Integrations/ColonyManagerBridge.cs`
   (reflection on FluffyManager, not yet run against the real mod), `Building/AheadMore.cs` + `AheadMoreMath.cs` (tested,
   `AheadMoreTests`), `UI/AheadMorePanel.cs`; spare clothes bills; `AheadField.feedOnly`; quest joiners in beds and seats;

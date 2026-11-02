@@ -329,8 +329,8 @@
     <defName>Rimfolk_Pool_Group_PeacemakerSays</defName>
     <lines>
       <plain>
-        <li>Not between us. Not over this.</li>
-        <li>You'll still have to live with each other tomorrow. Settle it now.</li>
+        <li>Not between us, not over this.</li>
+        <li>You'll still have to live with each other tomorrow, so settle it now.</li>
         <li>Let it go. You'll laugh about it next week.</li>
         <li>Whoever's right, it isn't worth this.</li>
         <li>Come on, we're all on the same side here.</li>
@@ -339,8 +339,8 @@
         <li>[persona:calm] Slowly. Tell me what happened, from the start.</li>
       </plain>
       <warm>
-        <li>I hate seeing you like this. Talk to me.</li>
-        <li>You don't really want this. I know you don't.</li>
+        <li>I hate seeing you like this, so talk to me.</li>
+        <li>You don't really want this, I know you don't.</li>
       </warm>
       <blunt>
         <li>Enough. Save it for the raiders.</li>

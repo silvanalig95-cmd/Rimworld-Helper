@@ -5,6 +5,21 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ailments less often, and care counts for more
+
+*2 November 2026, version 0.53.2*
+
+- Everyday ailments come less often: an average colonist now has one about a seventh of the time instead of a sixth, and in a well-run colony about a tenth.
+- The mildest ailments pass sooner (heartburn in a few hours, a stiff neck or a smoke cough in about a day, splinters, sunburn and blisters in a few days), and colds and the other catching ailments go round about every 50 days instead of 35.
+- Rest and care count for more: bed rest speeds sore hands and elbows, chilblains and chapped hands, and tending does more for insomnia, a rimrot cough and chilblains.
+
+## One sentence over a head
+
+*2 November 2026, version 0.53.1*
+
+- Colonists say one sentence at a time over their heads in many more places: answers to their wishes and reminders, the council's meetings, gossip, jokes retold, couriers, the weather and forecasts, setbacks, gatherings and personal touches for a room.
+- A few lines that were too long for a bubble, such as an objection to letting a prisoner go, are shorter now, so their endings are no longer cut off.
+
 ## Planning ahead: the manager, the shopping list and spare clothes
 
 *2 November 2026, version 0.53.0*

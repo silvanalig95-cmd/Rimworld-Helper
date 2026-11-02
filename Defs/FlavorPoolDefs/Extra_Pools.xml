@@ -298,7 +298,7 @@
         <li>It might not be pretty when it's finished, but it's mine to worry about now.</li>
       </plain>
       <warm>
-        <li>I hope you don't mind. I didn't want anyone else to have to stop what they were doing.</li>
+        <li>I hope you don't mind; I didn't want anyone else to stop what they were doing.</li>
         <li>I've made a start on my own, so please don't feel bad about it.</li>
       </warm>
       <blunt>
@@ -306,7 +306,7 @@
         <li>I've started it myself, so stay out of my way.</li>
       </blunt>
       <cheerful>
-        <li>Who needs a council? I've got two hands and a plan!</li>
+        <li>Who needs a council when I've got two hands and a plan?</li>
         <li>I'm doing it myself, and I've got a plan and everything!</li>
       </cheerful>
       <gloomy>
@@ -421,7 +421,7 @@
     <pool>Council_Pool_MeetingOpen</pool>
     <lines>
       <plain>
-        <li>Find a seat {VENUE}, everyone. This might take a while.</li>
+        <li>Find a seat {VENUE}, everyone, this might take a while.</li>
         <li>Order, everyone, order, and that includes the back row.</li>
         <li>[night] It's late, so let's keep it to one argument each.</li>
         <li>[poor] Somebody fetch another crate to sit on, and then we'll start.</li>
@@ -514,7 +514,7 @@
     <pool>Council_Pool_MeetingAside</pool>
     <lines>
       <plain>
-        <li>Whose turn is it to wash the bowls? Because it isn't mine.</li>
+        <li>It isn't my turn to wash the bowls, so whose is it?</li>
         <li>Does anyone else hear that scratching in the walls?</li>
         <li>Somebody's foot is touching my foot, and I'd like to know whose.</li>
         <li>[rain] The roof's dripping right on my seat, same as last time.</li>
@@ -531,7 +531,7 @@
         <li>[trait:Masochist] I like how hard this bench is.</li>
         <li>[trait:Wimp] If anyone raises their voice, I'm leaving.</li>
         <li>[skill:Cooking] Whoever salted the stew, we need to talk after this.</li>
-        <li>[skill:Medicine] Anyone feeling feverish? You, you look feverish. Sit over there.</li>
+        <li>[skill:Medicine] You, you look feverish, so sit over there, away from the rest.</li>
         <li>[skill:Mining] I found a good seam today, and I'd rather be digging it out than sitting here.</li>
         <li>[skill:Plants] The crops won't harvest themselves, you know.</li>
         <li>[skill:Shooting] Somebody's moved my weapon, and I will find out who.</li>
@@ -547,16 +547,16 @@
         <li>[poor] We could sell this table and eat for a week, I'm just saying.</li>
       </plain>
       <warm>
-        <li>Has everyone had something to eat? There's more in the pot.</li>
+        <li>There's more in the pot, if anyone hasn't had something to eat.</li>
       </warm>
       <blunt>
-        <li>Some of you should talk less. Most of you.</li>
+        <li>Some of you should talk less, most of you.</li>
       </blunt>
       <cheerful>
         <li>I love this, everyone squashed in together, arguing!</li>
       </cheerful>
       <gloomy>
-        <li>Every meeting, I count heads. One day the count will be lower.</li>
+        <li>Every meeting I count heads, and one day the count will be lower.</li>
       </gloomy>
       <cold>
         <li>If this runs much longer, I'm going to start ranking all of you.</li>
