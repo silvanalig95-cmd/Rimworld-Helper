@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Market days, a court and a seam of ore
+
+*2 November 2026, version 0.49.0*
+
+- With RimMarket, market days can come: for a fortnight buyers from a friendly people walk up to your stocked stalls and buy off the counters, and traders may ask for a pitch.
+- With a working comms console the orbital lanes can get busy: more orbital traders, debris from the lanes, and an agent who walks up from their shuttle to buy one thing you have.
+- A circuit judge may hold court in a nearby friendly town: hand a prisoner to the court's guards for a reward, bring a grievance against another people, or give the judge a bed on the way.
+- After a hunt a young animal may stay by the kill, and at dusk a wild one of your own livestock kind may come down to the pens: tame it, take it in, watch it or send it off.
+- A miner under the mountain may break into a real pocket of ore with a seam beyond it, and a visitor may sit down across your chess or poker table to play your best.
+- Neighbours may commission a fine coat, bow, blade or gun: a bill goes up at the right bench, their rider collects the first piece good enough, and a masterwork brings them back.
+- Your mechs, slaves and the entities on your holding platforms now have small moments with your people, and what is said to a slave follows your colonists' own beliefs.
+
 ## Planning ahead: building and growing the base
 
 *2 November 2026, version 0.48.0*
