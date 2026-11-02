@@ -383,6 +383,10 @@
   <CC_MeetWhy_Ritual>at a ritual</CC_MeetWhy_Ritual>
   <CC_MeetWhy_Gathering>at another gathering</CC_MeetWhy_Gathering>
   <CC_MeetWhy_Elsewhere>busy with something that couldn't wait</CC_MeetWhy_Elsewhere>
+  <CC_MeetWhy_Sun>kept out of the sun</CC_MeetWhy_Sun>
+  <CC_MeetWhy_Water>kept away from the water</CC_MeetWhy_Water>
+  <CC_MeetWhy_Gas>kept out of closed rooms by the gas they breathe out</CC_MeetWhy_Gas>
+  <CC_MeetWhy_Dead>kept away from the dead</CC_MeetWhy_Dead>
   <CC_MeetWho_Someone>someone</CC_MeetWho_Someone>
   <!-- What someone was doing when called, read as "Kai was cutting wood on the far side of the map" -->
   <CC_MeetDo_Wood>cutting wood</CC_MeetDo_Wood>

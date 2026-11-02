@@ -313,13 +313,17 @@ namespace ColonyCouncil
             return c.IsValid ? c : FreeCellNear(TemplatePlanner.ColonyCenter(p.map), p.map, pawn);
         }
 
-        /// <summary>Somewhere to stand: on the map, walkable, not a prison cell, not forbidden, and reachable without danger.</summary>
+        /// <summary>
+        /// Somewhere to stand: on the map, walkable, not a prison cell, not forbidden, reachable without danger, and nowhere
+        /// that would hurt them (the sun on a skin that burns, water near a thalassophobe, a roof over gas they breathe out:
+        /// PlaySafety.cs), so every place found is found to fit whoever it's found for.
+        /// </summary>
         public static bool Ok(IntVec3 c, Map map, Pawn pawn)
         {
             if (!c.IsValid || !c.InBounds(map) || !c.Standable(map) || c.Fogged(map)) return false;
             var room = c.GetRoom(map);
             if (room != null && room.IsPrisonCell) return false;
-            if (pawn != null && (c.IsForbidden(pawn) || !pawn.CanReach(c, PathEndMode.OnCell, Danger.None))) return false;
+            if (pawn != null && (c.IsForbidden(pawn) || !PlaySafety.Safe(pawn, c, map) || !pawn.CanReach(c, PathEndMode.OnCell, Danger.None))) return false;
             return true;
         }
 

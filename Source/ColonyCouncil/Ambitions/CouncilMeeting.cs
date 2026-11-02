@@ -540,7 +540,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Who drifts over on their own: not those who didn't bother or were too far off to be called, not those the
-        /// player drafted or sent elsewhere during it, and not anyone without a say. Everyone else may still come when
+        /// player drafted or sent elsewhere during it, not those the place would hurt, and not anyone without a say. Everyone else may still come when
         /// they're free (late, but they come).
         /// </summary>
         public override float VoluntaryJoinPriorityFor(Pawn p)
@@ -549,6 +549,8 @@ namespace ColonyCouncil
             // they're judged as for any gathering.
             try
             {
+                // Never to a place that would hurt them (PlayOut/PlaySafety.cs).
+                if (!PlaySafety.Safe(p, spot, Map)) return 0f;
                 var m = CouncilGameComponent.Instance?.ambitions.meeting;
                 if (m != null && m.invites.Count > 0)
                 {

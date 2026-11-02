@@ -61,8 +61,11 @@ namespace ColonyCouncil
                         if (!weather.isBad && weather.rainRate <= 0.01f && weather.snowRate <= 0.01f) tags.Add("clear");
                     }
                     float temp = map.mapTemperature.OutdoorTemp;
-                    if (temp >= 32f) tags.Add("hot");
-                    else if (temp <= 0f) tags.Add("cold");
+                    // Hot and cold for them: their own comfortable range moves the lines (Health/BodyMath.cs).
+                    float cold = 0f, heat = 0f;
+                    if (p != null) BodyFit.TempShift(p, out cold, out heat);
+                    if (BodyMath.HotDay(temp, heat)) tags.Add("hot");
+                    else if (BodyMath.ColdDay(temp, cold)) tags.Add("cold");
                     int sinceThreat = Find.TickManager.TicksGame - map.storyState.LastThreatBigTick;
                     if (map.storyState.LastThreatBigTick > 0 && sinceThreat < GenDate.TicksPerDay * 2) tags.Add("afterraid");
                     float wealth = map.wealthWatcher.WealthTotal;

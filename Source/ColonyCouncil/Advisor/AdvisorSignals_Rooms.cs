@@ -119,8 +119,8 @@ namespace ColonyCouncil
             if (row != null && needs != null) s.detail = BuildAhead.RowReason(row, needs) + (s.detail.NullOrEmpty() ? "" : " " + s.detail);
         }
 
-        /// <summary>Who eats here, guests included: the dining row's eaters.</summary>
-        public static int Eaters(GrowthNeeds n) => n == null ? 0 : n.input.colonists + n.input.slaves + n.input.guests;
+        /// <summary>Who eats here, guests included and those who barely eat aside: the dining row's eaters.</summary>
+        public static int Eaters(GrowthNeeds n) => n == null ? 0 : GrowthMath.Eaters(n.input);
     }
 
     /// <summary>

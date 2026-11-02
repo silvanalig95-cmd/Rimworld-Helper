@@ -55,6 +55,7 @@
     <durationDays>3</durationDays>
     <stackLimit>1</stackLimit>
     <stages><li><label>the spirit-singer's song</label><description>A spirit-singer sang to the land by our fire, one long song with the drum under it. I can still hear the drum.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.Heard" /></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

@@ -999,6 +999,9 @@ namespace ColonyCouncil
             if (def == null || p?.needs?.mood?.thoughts?.memories == null) return;
             if (!ColonyCouncilMod.Settings.MoodEffects) return;
             if (def.IsSocial && (otherPawn == null || otherPawn == p)) return;
+            // A mood the game silences for them (its nullifiers: Rimfolk's tellings of its moods take theirs, Moods/LikeThought.cs),
+            // and nothing heard for someone who can't hear.
+            if (BodyFit.Nullified(p, def) || !Heard.CanHave(p, def)) return;
             var thought = ThoughtMaker.MakeThought(def) as Thought_Memory;
             if (thought == null) return;
             bool positive = def.stages != null && def.stages.Count > 0 && def.stages[0] != null && def.stages[0].baseMoodEffect >= 0f;

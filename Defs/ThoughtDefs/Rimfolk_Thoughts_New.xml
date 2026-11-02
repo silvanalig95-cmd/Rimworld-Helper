@@ -76,7 +76,7 @@
     <defName>Council_EncS_HeardSong</defName>
     <durationDays>0.5</durationDays>
     <stages><li><label>heard a song from far away</label><description>A harvest song from a long way off. I'd never heard it before.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><feelings><li>Curiosity</li></feelings><felt>1</felt></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><feelings><li>Curiosity</li></feelings><felt>1</felt></li><li Class="ColonyCouncil.Heard" /></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

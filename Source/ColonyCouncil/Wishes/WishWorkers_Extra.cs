@@ -309,7 +309,7 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Artists and socialites want music: an instrument somewhere in the colony.</summary>
+    /// <summary>Artists and socialites who can hear want music: an instrument somewhere in the colony.</summary>
     public class WishWorker_Music : WishWorker
     {
         private static bool IsInstrument(ThingDef d) => d.thingClass != null && typeof(Building_MusicalInstrument).IsAssignableFrom(d.thingClass);
@@ -320,7 +320,8 @@ namespace ColonyCouncil
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
             var map = HomeMap(pawn);
-            if (map == null || Avail.ColonyHas(map, IsInstrument)) yield break;
+            // Music is nothing to someone deaf (the game's Hearing: a deaf gene, ears lost in a raid).
+            if (map == null || !BodyFit.Hears(pawn) || Avail.ColonyHas(map, IsInstrument)) yield break;
             var instrument = Avail.BestBuildable(map, IsInstrument, "Harp", "Harpsichord", "Piano");
             if (instrument == null) yield break;
             var art = pawn.skills?.GetSkill(SkillDefOf.Artistic);
@@ -336,18 +337,20 @@ namespace ColonyCouncil
         public override bool IsFulfilled(Wish wish) => Avail.ColonyHas(wish.Beneficiary.MapHeld, IsInstrument);
     }
 
-    /// <summary>A fighter with nothing between their skin and the bullets wants armor the colony can make.</summary>
+    /// <summary>A fighter with nothing between their skin and the bullets wants armor the colony can make (armour grown in the skin counts).</summary>
     public class WishWorker_Armor : WishWorker
     {
         public const float Wanted = 0.35f;
 
+        /// <summary>The best of what they wear and the armour grown in their skin (bark, ferrous or plasteel skin: Health/BodyFit.cs).</summary>
         public static float BestArmor(Pawn p)
         {
-            if (p.apparel == null) return 0f;
+            if (p == null) return 0f;
             float best = 0f;
-            foreach (var a in p.apparel.WornApparel)
-                best = UnityEngine.Mathf.Max(best, a.GetStatValue(StatDefOf.ArmorRating_Sharp));
-            return best;
+            if (p.apparel != null)
+                foreach (var a in p.apparel.WornApparel)
+                    best = UnityEngine.Mathf.Max(best, a.GetStatValue(StatDefOf.ArmorRating_Sharp));
+            return BodyMath.Armor(best, BodyFit.NaturalArmor(p));
         }
 
         public static bool CanMakeArmor(Map map) => DefDatabase<RecipeDef>.AllDefsListForReading.Any(r => r.AvailableNow && r.ProducedThingDef != null

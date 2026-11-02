@@ -47,6 +47,7 @@
     <defName>Council_Nuisance_LongWalk</defName>
     <durationDays>0.5</durationDays>
     <stages><li><label>a long walk to the table</label><description>My bed is at one end of the colony and the table is at the other. I'm starving before I get there.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>AteWithoutTable</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

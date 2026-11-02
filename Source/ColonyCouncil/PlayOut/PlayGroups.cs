@@ -44,10 +44,7 @@ namespace ColonyCouncil
             if (x == null || x.Dead || x.health?.capacities == null) return false;
             if (!x.health.capacities.CapableOf(PawnCapacityDefOf.Moving)) return false;
             // Out in the open (a walk, a search, an errand to the gate, a watch kept outside): never for those whose faith keeps them indoors.
-            bool outside = p.kind == PlayKind.Procession || p.kind == PlayKind.Search || p.kind == PlayKind.Hunt || p.kind == PlayKind.Haul
-                           || (p.kind == PlayKind.Vigil && p.to != PlaySpot.Person) || (p.kind == PlayKind.Carry && p.other == null)
-                           || (p.kind == PlayKind.Give && p.mode == PlayGive.Burn) || (p.kind == PlayKind.Rounds && p.mode == PlayRounds.Outdoors);
-            if (outside && Beliefs.Forbids(x, Belief.Indoors)) return false;
+            if (Outside(p) && Beliefs.Forbids(x, Belief.Indoors)) return false;
             switch (p.kind)
             {
                 case PlayKind.WorkParty: return PlayWork.CanDo(p, x);
@@ -61,6 +58,12 @@ namespace ColonyCouncil
                 default: return true;
             }
         }
+
+        /// <summary>Out in the open: a walk, a search, a hunt, carrying the dead, an errand to the gate, a watch kept outside, a fire in the yard, rounds outdoors.</summary>
+        public static bool Outside(PlayOut p) =>
+            p.kind == PlayKind.Procession || p.kind == PlayKind.Search || p.kind == PlayKind.Hunt || p.kind == PlayKind.Haul
+            || (p.kind == PlayKind.Vigil && p.to != PlaySpot.Person) || (p.kind == PlayKind.Carry && p.other == null)
+            || (p.kind == PlayKind.Give && p.mode == PlayGive.Burn) || (p.kind == PlayKind.Rounds && p.mode == PlayRounds.Outdoors);
 
         /// <summary>Free to go now: here and up, not in any lord (the game's gatherings come first), on no other plan, doing nothing that matters more, and not hungry or tired.</summary>
         public static bool Free(PlayOutTracker t, PlayOut p, Pawn x) =>
@@ -135,8 +138,12 @@ namespace ColonyCouncil
                     .ThenByDescending(x => x.workSettings != null && x.workSettings.WorkIsActive(WorkTypeDefOf.Hunting))
                     .ThenByDescending(x => x.skills?.GetSkill(SkillDefOf.Shooting)?.Level ?? 0).ToList();
             int cap = Cap(p.kind);
-            int wanted = PlayOutMath.GroupSize(capable.Count, p.count, cap);
-            var able = capable.Where(x => Free(t, p, x)).ToList();
+            // Those it would take somewhere that would hurt them stay behind (PlaySafety.cs): a walk out in the noon sun for
+            // a skin that burns, the water for a thalassophobe. It goes without them, and its moods go to those who went.
+            bool outside = Outside(p);
+            var going = capable.Where(x => PlaySafety.CanGo(p, x, outside)).ToList();
+            int wanted = PlayOutMath.GroupSize(going.Count, p.count, cap);
+            var able = going.Where(x => Free(t, p, x)).ToList();
             // A walk seeing someone off waits for them.
             if (p.leaving != null && PlayOuts.OurPerson(p.leaving) && !able.Contains(p.leaving))
             {
@@ -145,7 +152,7 @@ namespace ColonyCouncil
             }
             if (!PlayOutMath.GroupReady(able.Count, wanted))
             {
-                var missing = capable.FirstOrDefault(x => !able.Contains(x));
+                var missing = going.FirstOrDefault(x => !able.Contains(x)) ?? capable.FirstOrDefault(x => !able.Contains(x));
                 p.waitReason = wanted <= 2 && missing != null ? "CC_Play_Why_NotFree".Translate(missing.Named("PAWN")).Resolve() : "CC_Play_Why_Busy".Translate().ToString();
                 return;
             }

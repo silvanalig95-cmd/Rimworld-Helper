@@ -90,11 +90,13 @@ DankPyon_Wine_Mulberry
 AG_Disgust
 AG_Drakonori
 AG_Efreet
+AG_HeatRadiating
 AG_Helixien
 AG_Lapis
 AG_LightSustenance
 AG_MindDevourer
 AG_Nereid
+AG_Thalassophobia
 AG_Wretch
 # Alpha Memes 1.6 (sarg.alphamemes)
 AM_Artist

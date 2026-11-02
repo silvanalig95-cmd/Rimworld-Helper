@@ -65,8 +65,8 @@
         <weight>0.06</weight>
         <cooldownDays>3</cooldownDays>
         <mods><li>sarg.alphagenes</li></mods>
-        <initiatorTags>xeno:AG_Drakonori|xeno:AG_Efreet</initiatorTags>
-        <recipientTags>winter,!xeno:AG_Drakonori,!xeno:AG_Efreet</recipientTags>
+        <initiatorTags>warmbody</initiatorTags>
+        <recipientTags>winter,!warmbody</recipientTags>
         <minOpinion>0</minOpinion>
         <bumpTie>Friends</bumpTie>
         <bumpAmount>2</bumpAmount>

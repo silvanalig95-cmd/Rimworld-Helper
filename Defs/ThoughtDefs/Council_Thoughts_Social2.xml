@@ -115,6 +115,7 @@
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stages><li><label>insulted at dinner</label><description>They insulted me loud enough for the whole table to hear. I didn't finish my meal.</description><baseMoodEffect>-4</baseMoodEffect><baseOpinionOffset>-12</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Insulted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

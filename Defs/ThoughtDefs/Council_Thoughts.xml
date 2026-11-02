@@ -710,6 +710,7 @@
         <baseMoodEffect>4</baseMoodEffect>
       </li>
     </stages>
+    <modExtensions><li Class="ColonyCouncil.Heard" /></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

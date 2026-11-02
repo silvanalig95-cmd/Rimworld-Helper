@@ -95,7 +95,7 @@ namespace ColonyCouncil
     /// Who someone is, as tags (see <see cref="Flavor"/>): their traits (trait:Kind, trait:Priest, degree names like
     /// trait:Industrious), passions (skill:Cooking), their ideoligion's memes (meme:VME_Royal), their xenotype
     /// (xeno:Hussar), the <see cref="TagGroupDef"/> groups they belong to (mage, fighter...), and what their body asks
-    /// of them: nosleep (no need to sleep), nofood (no need to eat), hemogenic, deathrest, psycaster. Flavor lines,
+    /// of them: nosleep (no need to sleep), nofood (no need to eat), fasting (barely eats), deaf, hemogenic, deathrest, psycaster. Flavor lines,
     /// decree reactions, office preferences, dilemma roles, dreams and life goals can all ask for these by name, so a
     /// mod's trait, class or meme counts when the mod is there and costs nothing when it isn't.
     /// </summary>
@@ -177,7 +177,11 @@ namespace ColonyCouncil
             {
                 if (p.needs.rest == null) tags.Add("nosleep");
                 if (p.needs.food == null) tags.Add("nofood");
+                // Barely eats: hunger at under a tenth of an ordinary adult's (foodless, fed by light or minerals: Health/BodyFit.cs).
+                else if (BodyFit.ReadBarelyEats(p)) tags.Add("fasting");
             }
+            // Can't hear (the game's Hearing: a deaf gene, ears lost in a raid).
+            if (!BodyFit.Hears(p)) tags.Add("deaf");
             if (ModsConfig.RoyaltyActive && p.HasPsylink) tags.Add("psycaster");
             // Their name in the colony: rep:brave, rep:cruel, rep:gossip... (Social/Gossip/).
             Reputations.AddTags(p, tags);

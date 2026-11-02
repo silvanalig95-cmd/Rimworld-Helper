@@ -181,6 +181,10 @@ namespace ColonyCouncil
                 return Busy(inv, "CC_MeetWhy_Mental".Translate(), true);
             }
             if (MedicalRest(p)) return awake ? Busy(inv, "CC_MeetWhy_Recovering".Translate(), true) : Sleeping(inv, "CC_MeetWhy_AsleepSick".Translate());
+            // Not called to a place that would hurt them or those round them (the sun on a skin that burns, a closed room
+            // for gas they breathe out: PlayOut/PlaySafety.cs); excused, as it's nothing they chose.
+            var harm = m.spot.IsValid ? PlaySafety.HarmAt(p, m.spot, map) : PlaySafety.Harm.None;
+            if (harm != PlaySafety.Harm.None) return Busy(inv, PlaySafety.Why(harm), true);
             if (!awake)
             {
                 string why = null;

@@ -95,7 +95,9 @@ namespace ColonyCouncil
             bool outdoors = room == null || room.PsychologicallyOutdoors;
             if (Smoky(room)) mask |= Bit(AilmentTrigger.SmokyRoom);
             float temp = p.AmbientTemperature;
-            if (temp >= 32f || (temp >= 27f && WetBiome(map))) mask |= Bit(AilmentTrigger.Sweltering);
+            // The heat and cold lines move with their own comfortable range: genes, traits, race (Health/BodyMath.cs).
+            BodyFit.TempShift(p, out float cold, out float heat);
+            if (BodyMath.Sweltering(temp, WetBiome(map), heat)) mask |= Bit(AilmentTrigger.Sweltering);
             if (outdoors && temp >= 18f && WetBiome(map)) mask |= Bit(AilmentTrigger.Insects);
             if (!awake)
             {
@@ -120,7 +122,8 @@ namespace ColonyCouncil
             if (heavy) mask |= Bit(AilmentTrigger.HeavyWork);
             bool hands = working && (work == "Crafting" || work == "Smithing" || work == "Tailoring" || work == "Art");
             if (hands) mask |= Bit(AilmentTrigger.HandWork);
-            if ((hands || work == "Research") && map.glowGrid.PsychGlowAt(p.Position) == PsychGlow.Dark) mask |= Bit(AilmentTrigger.DarkWork);
+            // Eyes that see in the dark don't strain in it (Health/BodyFit.cs).
+            if ((hands || work == "Research") && map.glowGrid.PsychGlowAt(p.Position) == PsychGlow.Dark && !BodyFit.SeesInDark(p)) mask |= Bit(AilmentTrigger.DarkWork);
             bool moving = p.pather != null && p.pather.Moving;
             // Long walks: out on a map away from home, or out hunting. Errands around the home don't wear out feet.
             if (moving && (!map.IsPlayerHome || work == "Hunting")) mask |= Bit(AilmentTrigger.Walking);
@@ -132,8 +135,8 @@ namespace ColonyCouncil
             if (moving && WetGround(p.Position, map)) mask |= Bit(AilmentTrigger.WetFeet);
             if (outdoors)
             {
-                if (working && temp >= -10f && temp <= 6f) mask |= Bit(AilmentTrigger.ColdWork);
-                if (temp < -10f) mask |= Bit(AilmentTrigger.BitterCold);
+                if (working && BodyMath.ColdWork(temp, cold)) mask |= Bit(AilmentTrigger.ColdWork);
+                if (BodyMath.BitterCold(temp, cold)) mask |= Bit(AilmentTrigger.BitterCold);
                 if (InTheSun(p, map, temp)) mask |= Bit(AilmentTrigger.SunWork);
                 if (moving && RoughGround(p.Position, map)) mask |= Bit(AilmentTrigger.RoughGround);
                 if (AshBiome(map) || ConditionOn(map, GameConditionDefOf.VolcanicWinter)) mask |= Bit(AilmentTrigger.Ashfall);

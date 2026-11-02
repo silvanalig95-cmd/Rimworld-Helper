@@ -276,6 +276,7 @@
       </li>
     </needs>
     <!-- Lives on sunlight more than on meals (Alpha Genes): no wishes for finer food. -->
+    <!-- Barely eats (hunger at under a tenth of an ordinary adult's: foodless, fed by light or minerals): no wishes about meals or seats. -->
     <notFor>
       <li>
         <who>sunfed</who>
@@ -284,11 +285,22 @@
           <li>Council_Wish_Honey</li>
         </wishes>
       </li>
+      <li>
+        <who>fasting</who>
+        <wishes>
+          <li>Council_Wish_BetterFood</li>
+          <li>Council_Wish_DiningTable</li>
+          <li>Council_Wish_Honey</li>
+          <li>Council_Wish_SeatsForAll</li>
+        </wishes>
+      </li>
     </notFor>
     <decrees>
-      <li><decree>Council_Decree_Rationing</decree><who>nofood|sunfed</who><reaction>Neutral</reaction><first>true</first></li>
+      <li><decree>Council_Decree_Rationing</decree><who>nofood|sunfed|fasting</who><reaction>Neutral</reaction><first>true</first></li>
       <li><decree>Council_Decree_LongHours</decree><who>nosleep</who><reaction>Neutral</reaction></li>
       <li><decree>Council_Decree_OnGuard</decree><who>nosleep</who><reaction>Neutral</reaction></li>
+      <!-- Can't hear (a deaf gene, ears lost): the singing is nothing to them either way. -->
+      <li><decree>Council_Decree_WorkSong</decree><who>deaf</who><reaction>Neutral</reaction><first>true</first></li>
     </decrees>
   </ColonyCouncil.ModPeopleDef>
 

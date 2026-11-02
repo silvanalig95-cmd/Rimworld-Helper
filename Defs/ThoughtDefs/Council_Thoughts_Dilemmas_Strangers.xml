@@ -53,6 +53,7 @@
     <defName>Council_DlmS_Stung</defName>
     <durationDays>4</durationDays>
     <stages><li><label>insulted under my own roof</label><description>A guest said that to my face at my own table, and we went on passing the salt. I keep thinking of better answers.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Insulted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -286,6 +287,7 @@
     <defName>Council_DlmS_SwallowedIt</defName>
     <durationDays>5</durationDays>
     <stages><li><label>sneered at by a noble</label><description>A titled guest called my best work a pigsty, and I had to keep quiet. I built the table they were eating off.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Insulted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

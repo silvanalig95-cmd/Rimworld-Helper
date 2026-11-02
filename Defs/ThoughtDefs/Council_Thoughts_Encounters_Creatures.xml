@@ -186,7 +186,7 @@
     <defName>Council_EncC_Birdsong</defName>
     <durationDays>1</durationDays>
     <stages><li><label>birdsong</label><description>Birds sang in the bushes all morning. For a few hours I forgot to listen for raiders.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><joyKind>Meditative</joyKind><felt>2</felt></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.05</joy><joyKind>Meditative</joyKind><felt>2</felt></li><li Class="ColonyCouncil.Heard" /></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -135,6 +135,7 @@
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncP_FireSongs</defName>
     <label>songs by the fire</label>
+    <colonist><adult>false</adult><tags>!deaf</tags></colonist>
     <weight>1.0</weight>
     <cooldownDays>6</cooldownDays>
     <nightOnly>true</nightOnly>

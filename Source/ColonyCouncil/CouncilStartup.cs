@@ -32,6 +32,15 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("event pools", e);
             }
+            try
+            {
+                // Rimfolk's tellings of the game's moods take the originals' nullifiers (Moods/LikeThought.cs).
+                LikeThought.Apply();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("like thoughts", e);
+            }
         }
 
         /// <summary>

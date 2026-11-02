@@ -22,6 +22,7 @@ namespace ColonyCouncil
     /// every 250 ticks), a morning fog burns off by late morning (<see cref="Patch_WeatherStarted"/>), and someone who
     /// reads the weather says what's coming a few hours before it does; what comes is then held to unless it can no
     /// longer come (<see cref="Patch_WeatherForecastHeld"/>), and the forecast is right as often as they're good at it.
+    /// Nobody foretells the weather while someone whose body sets it is on the map (<see cref="WeatherMakerOn"/>).
     ///
     /// Only on home maps with weather of their own (not a pocket map or open space). Nothing new is put on the map: the
     /// state is in the map's <see cref="WeatherBook"/>, and only the forecast and the events' pulls are saved.
@@ -349,6 +350,15 @@ namespace ColonyCouncil
             var st = book.dyn;
             var wd = map.weatherDecider;
             var wm = map.weatherManager;
+            // Someone on the map whose body sets the weather: what the sky would do won't come, so nobody foretells it,
+            // and a forecast already made is let go.
+            if (WeatherMakerOn(map))
+            {
+                st.pin = null;
+                st.said = null;
+                st.by = null;
+                return;
+            }
             if (st.pin != null || wm.curWeather == null || wd.ForcedWeather != null || TutorSystem.TutorialMode) return;
             int start = now - wm.curWeatherAge;
             if (st.forecastStart == start) return;
@@ -390,6 +400,29 @@ namespace ColonyCouncil
             st.during = wm.curWeather.defName;
             st.by = by;
             WeatherTalk.SayBy(by, PoolFor(st.said));
+        }
+
+        /// <summary>
+        /// Someone on the map (a colonist, a visitor, a raider, an animal) carries the Vanilla Expanded Framework's
+        /// weather-changing hediff (Alpha Genes' rainmaker, snow maker, fogger and the like), which sets the map's weather
+        /// whatever the sky would do. Matched by type name; without the framework it's never there.
+        /// </summary>
+        public static bool WeatherMakerOn(Map map)
+        {
+            var pawns = map?.mapPawns?.AllPawnsSpawned;
+            if (pawns == null) return false;
+            foreach (var p in pawns)
+            {
+                var hediffs = p?.health?.hediffSet?.hediffs;
+                if (hediffs == null) continue;
+                foreach (var h in hediffs)
+                {
+                    if (!(h is HediffWithComps hc) || hc.comps == null) continue;
+                    foreach (var c in hc.comps)
+                        if (c != null && c.GetType().Name == "HediffComp_ChangeWeather") return true;
+                }
+            }
+            return false;
         }
 
         private static string PoolFor(string said)
