@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.53.1</version>
+        <date>2 November 2026</date>
+        <title>One sentence over a head</title>
+        <points>
+          <li>Colonists say one sentence at a time over their heads in many more places: answers to their wishes and reminders, the council's meetings, gossip, jokes retold, couriers, the weather and forecasts, setbacks, gatherings and personal touches for a room.</li>
+          <li>A few lines that were too long for a bubble, such as an objection to letting a prisoner go, are shorter now, so their endings are no longer cut off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.53.0</version>
         <date>2 November 2026</date>
         <title>Planning ahead: the manager, the shopping list and spare clothes</title>

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## One sentence over a head
+
+*2 November 2026, version 0.53.1*
+
+- Colonists say one sentence at a time over their heads in many more places: answers to their wishes and reminders, the council's meetings, gossip, jokes retold, couriers, the weather and forecasts, setbacks, gatherings and personal touches for a room.
+- A few lines that were too long for a bubble, such as an objection to letting a prisoner go, are shorter now, so their endings are no longer cut off.
+
 ## Planning ahead: the manager, the shopping list and spare clothes
 
 *2 November 2026, version 0.53.0*
