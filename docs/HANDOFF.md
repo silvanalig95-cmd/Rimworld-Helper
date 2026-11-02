@@ -14,7 +14,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
   time with an everyday ailment (was 11.7 / 17.2 / 36.6); catching clock `AilmentTracker.EverydayCatchingDays` 35 to
   50 days, mild ailments shorter, bed rest and tending count for more. `docs/balance-report.md` regenerated.
 - Open questions to the player: the six Alpha Genes proposals P1 to P6 (`docs/alphagenes-proposals.md`; the fixes F1
-  to F7 were started as bugs); whether an evening with only one piece of news should also come as a letter
+  to F7 shipped in 0.53.3: `PlayOut/PlaySafety.cs` in PlaySpots.Ok and PlayOuts.CanJoin, a "fasting" tag from the real
+  hunger rate, natural armour, the `LikeThought` and `Heard` extensions, comfort offsets per body, no forecast with a
+  weather maker; tested in `BodyTests`); whether an evening with only one piece of news should also come as a letter
   (`News.Send` shows a single item as a message, as before 0.44.1).
 
 - 0.53.0, plan ahead phase 3 (details in `docs/plan-ahead.md` "Phase 3 as built"): `Integrations/ColonyManagerBridge.cs`

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Bodies that differ
+
+*2 November 2026, version 0.53.3*
+
+- Answers no longer take anyone where the place would hurt them, such as the open sun for UV sensitivity, the water for someone who fears it, or a closed room for someone who breathes out gas; the others go, and the good moods go to those who were there.
+- Colonists who barely eat, such as the foodless, the light-fed and mineral absorbers, are no longer asked about meals or seats, counted at the table, or given scurvy.
+- Armour that grows in the skin now counts for the armour wish.
+- Rimfolk's own slights and nuisances pass by anyone the game would spare the same mood, such as a drakonori's inner peace or a nereid's scales.
+- Cold and heat ailments and room nuisances follow each colonist's own comfortable range, and deaf colonists get no music wishes or moods from what they'd have heard.
+- Nobody forecasts the weather while a rainmaker or other weather maker is on the map.
+
 ## Ailments less often, and care counts for more
 
 *2 November 2026, version 0.53.2*
