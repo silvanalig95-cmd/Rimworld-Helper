@@ -57,6 +57,7 @@
     <Compile Include="../../Source/ColonyCouncil/Camps/CampWeatherMath.cs" Link="CampWeatherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampStoryMath.cs" Link="CampStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Happenings/RegularMath.cs" Link="RegularMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Visitors/CallerMath.cs" Link="CallerMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/RivalMath.cs" Link="RivalMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/RoadPostMath.cs" Link="RoadPostMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/HerdStoryMath.cs" Link="HerdStoryMath.cs" />

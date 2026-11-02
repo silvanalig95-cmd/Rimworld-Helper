@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- What visitors who came to do something do on the map (Source/ColonyCouncil/Visitors/Callers.cs, CallerJobs.cs):
+       the art collector looking at a piece and the colonist carrying one out to them, the barber and the colonist
+       having a cut, the animal doctor tending and training, the undertakers digging, burying and loading the dead, a
+       captive's kin talking at their door, and whoever stands still for the work. -->
+
+  <JobDef>
+    <defName>Rimfolk_CallerView</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerView</driverClass>
+    <reportString>looking at the art.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerCarryArt</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerCarryArt</driverClass>
+    <reportString>carrying a piece out to its buyer.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerCut</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerCut</driverClass>
+    <reportString>cutting hair.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerGetCut</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerGetCut</driverClass>
+    <reportString>having a haircut.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerHold</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerHold</driverClass>
+    <reportString>standing still.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerTend</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerTend</driverClass>
+    <reportString>tending an animal.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerTrain</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerTrain</driverClass>
+    <reportString>working an animal.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerDig</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerDig</driverClass>
+    <reportString>digging a grave.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerBury</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerBury</driverClass>
+    <reportString>laying the dead in a grave.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerLoad</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerLoad</driverClass>
+    <reportString>carrying the dead to the pack beast.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_CallerTalk</defName>
+    <driverClass>ColonyCouncil.JobDriver_CallerTalk</driverClass>
+    <reportString>talking at the door.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+</Defs>

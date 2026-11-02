@@ -387,6 +387,14 @@ MODEL = {
     "Happenings/VisitorServices.cs:tasks": ("cap", (const("Happenings/VisitorServices.cs", "MaxTasks", 8), 0.2), 300, "a night to a day each, at most VisitorServices.MaxTasks at once"),
     "Happenings/VisitorServices.cs:things": ("fixed", 10, P, "per task: what the tinker still has to mend (30 at most, fewer as the work goes on), mending only"),
     "Happenings/VisitorServices.cs:pawns": ("fixed", 4, P, "per task: who is still to have a dose (one per colonist at most), doses only"),
+    # Visitors who came to do something, doing it (Visitors/Callers.cs): the collector's walk, the barber's cuts, the
+    # animal doctor's rounds, the undertakers' graves, a captive's kin, a wedding party's night; and commissions owed
+    "Visitors/Callers.cs:tasks": ("cap", (const("Visitors/Callers.cs", "MaxTasks", 8), 0.1), 300, "half a day to a day each, at most Callers.MaxTasks at once"),
+    "Visitors/Callers.cs:things": ("fixed", 4, P, "per task: the art still to see (seven at most) or the dead still to lay to rest (eight graves at most)"),
+    "Visitors/Callers.cs:pawns": ("fixed", 4, P, "per task: who is still to have a cut (one per colonist), or the animals still to tend (CallerMath.MaxPatients at most)"),
+    "Visitors/Callers.cs:people": ("fixed", 2, P, "per task: the undertakers (four at most) or the wedding party (five at most)"),
+    "Visitors/Callers.cs:plots": ("fixed", 2, 40, "per task: the undertakers' row of graves (CallerMath.MaxGraves at most), graves only"),
+    "Visitors/Callers.cs:commissions": ("cap", (const("Visitors/Callers.cs", "MaxCommissions", 3), 0.02), 200, "a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions"),
     "PlayOut/PlayOuts.cs:named": ("fixed", 2, P, "per play-out: those the answer names (counted under plays)"),
     "PlayOut/PlayOuts.cs:hands": ("fixed", 6, 200, "per play-out: who went (counted under plays)"),
     "PlayOut/PlayOuts.cs:route": ("fixed", 6, 40, "per searcher: the places they look over (counted under plays)"),
