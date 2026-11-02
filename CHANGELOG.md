@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New ailments with real causes
+
+*2 November 2026, version 0.49.1*
+
+- Gout can come to colonists of 45 and over who eat and drink well, half as often when there have been fruit or vegetables lately.
+- Mining under the mountain or cutting stone blocks in a small closed room can bring a dry stone-dust cough, and a day on the knees cleaning or sowing can leave sore knees.
+- Raw meat or fish can bring worms that make someone hungry all the time, until a doctor's dose clears them or the body throws them off.
+- Handling animals can bring an itchy ring of ringworm that passes on in dirty bedrooms, smoking can bring a morning cough, and with Alpha Bees the hives can sting.
+- The commonest small ailments, such as lice, damp and smoke coughs, sleepless nights and heartburn, come a little less often, so the colony is not sick more overall.
+- A butcher's table where people eat or sleep, and a cold draught from a door straight outside by the bed, are now small nuisances with a plain fix.
+- With a coffee or tea mod, an early riser can pick up a new habit, making the first pot, and take a real cup from the stores to a friend in the morning.
+
 ## Market days, a court and a seam of ore
 
 *2 November 2026, version 0.49.0*

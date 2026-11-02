@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.49.1</version>
+        <date>2 November 2026</date>
+        <title>New ailments with real causes</title>
+        <points>
+          <li>Gout can come to colonists of 45 and over who eat and drink well, half as often when there have been fruit or vegetables lately.</li>
+          <li>Mining under the mountain or cutting stone blocks in a small closed room can bring a dry stone-dust cough, and a day on the knees cleaning or sowing can leave sore knees.</li>
+          <li>Raw meat or fish can bring worms that make someone hungry all the time, until a doctor's dose clears them or the body throws them off.</li>
+          <li>Handling animals can bring an itchy ring of ringworm that passes on in dirty bedrooms, smoking can bring a morning cough, and with Alpha Bees the hives can sting.</li>
+          <li>The commonest small ailments, such as lice, damp and smoke coughs, sleepless nights and heartburn, come a little less often, so the colony is not sick more overall.</li>
+          <li>A butcher's table where people eat or sleep, and a cold draught from a door straight outside by the bed, are now small nuisances with a plain fix.</li>
+          <li>With a coffee or tea mod, an early riser can pick up a new habit, making the first pot, and take a real cup from the stores to a friend in the morning.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.49.0</version>
         <date>2 November 2026</date>
         <title>Market days, a court and a seam of ore</title>
