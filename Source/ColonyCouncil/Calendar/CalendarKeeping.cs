@@ -1032,6 +1032,21 @@ namespace ColonyCouncil
             var list = new List<WorldNote>();
             var self = Instance;
             var map = Home;
+            // Election day, while an election is under way (Offices/OfficesElection.cs): on the calendar whatever its setting.
+            var election = CouncilGameComponent.Instance?.offices?.election;
+            if (election != null && ColonyCouncilMod.Settings.offices)
+            {
+                int day = election.ceremony ? election.countTick : election.pollTick;
+                list.Add(new WorldNote
+                {
+                    title = (election.ceremony ? "CC_Elect_Cal_Ceremony" : "CC_Elect_Cal_Day").Translate().ToString(),
+                    text = "CC_Elect_Cal_Coming".Translate(OfficeTracker.ElectionDay(election)).Resolve(),
+                    icon = Icons.Office,
+                    color = UiKit.Gold,
+                    due = day,
+                    click = () => MainTabWindow_Council.OpenTab("Decrees")
+                });
+            }
             if (self == null || map == null || !On) return list;
             int today = GenLocalDate.DayOfYear(map);
             int year = GenLocalDate.Year(map);

@@ -220,4 +220,8 @@
   <CC_SetReset_Confirm>Put every setting back to how Rimfolk ships? This changes {0}:\n\n{1}\n\nYour saved rooms and the colony's era are kept.</CC_SetReset_Confirm>
   <CC_SetReset_Nothing>Every setting is already at its default.</CC_SetReset_Nothing>
 
+  <CC_Settings_MoodBubbleText>Name the mood in a mood bubble</CC_Settings_MoodBubbleText>
+  <CC_Settings_MoodBubbleText_Tip>When the game shows a small mood bubble over a colonist (a meal eaten without a table, a corpse seen, a fine room), the mood's name floats up beside it: green for a good mood, red for a bad one. Without it, only the icon shows and what happened is found by clicking them.</CC_Settings_MoodBubbleText_Tip>
+  <CC_SetNote_MoodBubbleText>The name of a mood floats up beside the game's mood bubble.</CC_SetNote_MoodBubbleText>
+
 </LanguageData>

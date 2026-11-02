@@ -481,6 +481,8 @@ namespace ColonyCouncil
             Safe("tamings", () => Tamings.Hourly(this));
             Safe("everyday pressures", () => pressures.Hourly(this));
             Safe("social events", () => SocialEvents.Hourly(this));
+            // An election under way: the campaign, the hustings, polling day and the count (Offices/OfficesElection.cs).
+            if (offices.election != null) Safe("election", () => offices.ElectionHourly(this));
             // Moments waiting for two people to be together (Social/Together.cs).
             Safe("together", () =>
             {

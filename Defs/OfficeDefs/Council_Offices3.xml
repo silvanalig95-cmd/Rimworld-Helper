@@ -33,6 +33,10 @@
       <li>{PAWN_nameDef} has already asked after everyone who lost someone this year, by name.</li>
       <li>{PAWN_nameDef} says the faith is a lamp, not a whip, and means to keep it that way.</li>
     </elected>
+    <planks>
+      <li><key>comfort</key><when>LowMood</when><text>{PAWN_nameDef} says the faith is a comfort in hard days, and promises to be there for whoever needs it.</text></li>
+      <li><key>faith</key><when>Always</when><text>{PAWN_nameDef} promises the colony's rites kept faithfully, and a word for anyone whose belief wears thin.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -56,6 +60,10 @@
       <li>{PAWN_nameDef} has swept out a corner for guests to sit, and put a pot of water on.</li>
       <li>{PAWN_nameDef} says a stranger is only a stranger until supper.</li>
     </elected>
+    <planks>
+      <li><key>gate</key><when>RecentRaid</when><text>{PAWN_nameDef} says friends at the gate must be told apart from raiders, and welcomed when they are friends.</text></li>
+      <li><key>guests</key><when>Always</when><text>{PAWN_nameDef} promises visitors a fire, a meal and a fair word, and the colony a good name for it.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -82,6 +90,10 @@
       <li>{PAWN_nameDef} has already told the young ones the story about the winter of the wolves. Twice.</li>
       <li>{PAWN_nameDef} took the seat by the fire, which everyone agrees was always {PAWN_possessive} seat anyway.</li>
     </elected>
+    <planks>
+      <li><key>wisdom</key><when>Always</when><text>{PAWN_nameDef} says the colony has made the same mistakes twice, and would like to spare it a third time.</text></li>
+      <li><key>young</key><when>Always</when><text>{PAWN_nameDef} wants to pass on what {PAWN_pronoun} knows to the young before it is forgotten.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
 </Defs>

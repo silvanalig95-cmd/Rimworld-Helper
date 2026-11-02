@@ -393,6 +393,16 @@ Overrule the vote only when the difference matters. The colonist who won the ele
 Two more things weigh on a ballot. Someone whose granted wish the council took back in the last year holds it against everyone sitting on the council (about a third of a vote's worth). And the names the colony gave a candidate count for them, a dubious one against.</text>
       </li>
       <li>
+        <heading>Election days</heading>
+        <text>With "Elections play out on the map" on (the default), an election is an event. A letter names election day by its date and puts it on the colony calendar: three days off for the yearly election, two for an empty seat. It lists two or three candidates for each seat (three once the colony has 6 voters), chosen by the same rules as the vote, with what each stands for, drawn from how the colony is doing: a marshal after a hard raid talks of the wall, a quartermaster when meals are short of the stores. Nobody stands for more than two seats, and the likely winner of one seat doesn't stand for the seats after it.
+
+In the days before, candidates walk over to people in their free time and make their case. Each visit moves the listener a little, more from a good talker and from someone they like; someone they dislike only puts them off. On the evening before, the candidates speak at the hustings. A good showing (Social, mood, a kind or steady nature) wins over those listening, a poor one loses them a little, and the crowd cheers and heckles.
+
+On election day everyone at home walks to the meeting place in their free time (from two in the afternoon from work too) and casts a vote. The sick and those away miss it. That evening the outgoing speaker, or the eldest, counts the votes aloud, seat by seat, the winner gets a cheer, and the evening ends with a toast; the results letter follows with the tallies. Danger puts off the hustings, the polls or the count to another day rather than calling anyone into it, and a colony where no seat has two candidates gets a short ceremony instead.
+
+The council can back one candidate for a seat (it counts on the ballots of those who trust the council, and costs 2 trust with each colonist leaning to someone else) or call a seat's vote off and appoint someone (3 trust with each who would have voted for the likely winner, if that isn't who it appoints). The Decrees page shows the candidates, what they stand for and how support leans each day, until the polls open. Turned off, the colony votes at once in a single letter, as before.</text>
+      </li>
+      <li>
         <heading>In the colony's life</heading>
         <text>With "Systems talk to each other" on, the offices also do their jobs where you can see them:</text>
         <table>

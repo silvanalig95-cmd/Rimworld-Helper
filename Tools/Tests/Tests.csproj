@@ -18,6 +18,7 @@
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartMath.cs" Link="HeartMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Heart/HeartNeedMath.cs" Link="HeartNeedMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ambitions/MeetingMath.cs" Link="MeetingMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Offices/ElectionMath.cs" Link="ElectionMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/LifeRiskMath.cs" Link="LifeRiskMath.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/CustomYearsMath.cs" Link="CustomYearsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/PlayOut/YardMath.cs" Link="YardMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/OutcomeMath.cs" Link="OutcomeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Couriers/CourierMath.cs" Link="CourierMath.cs" />

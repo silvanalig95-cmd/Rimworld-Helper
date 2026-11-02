@@ -83,7 +83,7 @@ namespace ColonyCouncil
             }
             else
             {
-                var c = p.mode == Burn ? PlaySpots.OpenCell(p.map, carrier) : TableCell(p, carrier);
+                var c = p.mode == Burn ? PlaySpots.OpenCell(p.map, carrier, true) : TableCell(p, carrier);
                 if (!c.IsValid)
                 {
                     p.waitReason = "CC_Play_Why_Place".Translate();

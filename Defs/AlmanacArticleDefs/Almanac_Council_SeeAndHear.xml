@@ -51,6 +51,10 @@ Each waiting moment is looked at again every hour, for a day or two. If the two 
         <after>A line one person says never goes into the Log tab, so the log isn't filled with remarks about the weather. A moment between two people (a social event, an encounter, a secret confided, thanks for a lesson) is kept in both their logs whatever the setting, and shows only once over their heads. Interaction Bubbles' own toggle among the play settings hides its bubbles, Rimfolk's with them. The small "+ recreation" note over someone who got something other than a mood isn't speech: it stays floating text, while speech shows at all.</after>
       </li>
       <li>
+        <heading>The mood bubble's name</heading>
+        <text>The game shows a small mood bubble over a colonist when they gain some moods: a meal eaten without a table, a corpse seen, a fine room. It shows only the mood's icon. Rimfolk floats the mood's name up beside it, green for a good mood and red for a bad one, so what happened is seen without clicking them. The setting "Name the mood in a mood bubble" (Interface page) turns it off.</text>
+      </li>
+      <li>
         <heading>What is news, not talk</heading>
         <text>Some things reach people wherever they are, because they hear of them rather than live them side by side: the council's decisions and elections, a petition or an objection put to the council, a name the colony gives someone, someone leaving or coming of age, a eulogy (a letter). Those still come at once.
 

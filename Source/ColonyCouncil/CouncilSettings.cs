@@ -80,6 +80,8 @@ namespace ColonyCouncil
         public bool epithets = true;
         public bool journals = true;
         public bool offices = true;
+        /// <summary>An election is an event on the map: announced for a date, a campaign, the hustings, polling day and the count aloud (off: the instant letter).</summary>
+        public bool electionEvent = true;
         public bool socialWeb = true;
         /// <summary>Rimfolk's column in the game's own Social tab (bonds, groups, name, shared memories, talks, secrets), and a line about the pair on its rows.</summary>
         public bool socialTabColumn = true;
@@ -224,6 +226,8 @@ namespace ColonyCouncil
         public SpeechMode speechShows = SpeechMode.Bubbles;
         /// <summary>The game's own flecks, sky colors and sounds for what Rimfolk says is happening (Touches/).</summary>
         public bool visualTouches = true;
+        /// <summary>The name of a mood floats up beside the game's mood bubble over a colonist (Immersion/MoodBubbleText.cs).</summary>
+        public bool moodBubbleText = true;
         /// <summary>Recreation Rimfolk's knowledge makes likelier: graves visited, slow walks, the fire after a fight (Immersion/SmallHabits.cs).</summary>
         public bool smallHabits = true;
 
@@ -393,6 +397,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref epithets, "epithets", true);
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);
+            Scribe_Values.Look(ref electionEvent, "electionEvent", true);
             Scribe_Values.Look(ref socialWeb, "socialWeb", true);
             Scribe_Values.Look(ref socialTabColumn, "socialTabColumn", true);
             Scribe_Values.Look(ref socialLife, "socialLife", true);
@@ -491,6 +496,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref speechShows, "speechShows", SpeechMode.Bubbles);
             if (Scribe.mode == LoadSaveMode.LoadingVars && !speechText) speechShows = SpeechMode.Off;
             Scribe_Values.Look(ref visualTouches, "visualTouches", true);
+            Scribe_Values.Look(ref moodBubbleText, "moodBubbleText", true);
             Scribe_Values.Look(ref smallHabits, "smallHabits", true);
             Scribe_Values.Look(ref daysBetweenMeetings, "daysBetweenMeetings", 15f);
             Scribe_Values.Look(ref ambitionDeadlineFactor, "ambitionDeadlineFactor", 1f);

@@ -26,6 +26,11 @@
       <li>{PAWN_nameDef} says the soil here is better than it looks, and means to prove it.</li>
       <li>{PAWN_nameDef} has already changed the planting order twice.</li>
     </elected>
+    <planks>
+      <li><key>fields</key><when>Growing</when><text>{PAWN_nameDef} wants more sown while the season lasts, and the weeds kept down.</text></li>
+      <li><key>harvest</key><when>Cold</when><text>{PAWN_nameDef} wants every last crop brought in and stored before the cold settles.</text></li>
+      <li><key>seed</key><when>Always</when><text>{PAWN_nameDef} promises to walk the fields every morning and be the first to see a blight.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -49,6 +54,10 @@
       <li>{PAWN_nameDef} says the door is always open, and has propped it open with a stone to prove it.</li>
       <li>The first thing {PAWN_nameDef} did was ask who isn't speaking to whom.</li>
     </elected>
+    <planks>
+      <li><key>quarrels</key><when>Rivalries</when><text>{PAWN_nameDef} names no names, but says the colony's quarrels have gone on long enough.</text></li>
+      <li><key>calm</key><when>Always</when><text>{PAWN_nameDef} promises an ear for anyone who is sore at someone, before it turns to shouting.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -69,6 +78,10 @@
       <li>{PAWN_nameDef} already knows how many days it is until the next one worth keeping.</li>
       <li>{PAWN_nameDef} asked everyone for their birthdays before the votes were even counted.</li>
     </elected>
+    <planks>
+      <li><key>traditions</key><when>Traditions</when><text>{PAWN_nameDef} wants the colony's traditions kept properly, the way they were the first time.</text></li>
+      <li><key>days</key><when>Always</when><text>{PAWN_nameDef} promises that no day the colony cares about will go by unmarked.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -92,6 +105,10 @@
       <li>{PAWN_nameDef} has named every animal in the colony by supper, including the ones that already had names.</li>
       <li>{PAWN_nameDef} says the herd voted too, and it was unanimous.</li>
     </elected>
+    <planks>
+      <li><key>herd</key><when>Herd</when><text>{PAWN_nameDef} says the herd needs someone who knows every animal by name, and does.</text></li>
+      <li><key>animals</key><when>Always</when><text>{PAWN_nameDef} wants the colony to keep animals worth keeping, and to keep them well.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
 </Defs>

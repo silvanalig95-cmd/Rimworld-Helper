@@ -132,8 +132,8 @@ public static class TogetherTests
             if (text.Contains("MoteMaker.ThrowText(")) throwers.Add(rel);
             if (Regex.IsMatch(text, @"PlayLog\.Add\(|AllEntries\.Insert\(")) loggers.Add(rel);
         }
-        Check(throwers.All(f => f == "Immersion/Speech.cs" || f == "Moods/RewardInstead.cs" || f == "Integrations/RimMarketSale.cs"),
-            "text over heads only from Speech (and the reward mark and a market sale's price, RimMarket's own, which aren't speech): " + string.Join(", ", throwers));
+        Check(throwers.All(f => f == "Immersion/Speech.cs" || f == "Moods/RewardInstead.cs" || f == "Integrations/RimMarketSale.cs" || f == "Immersion/MoodBubbleText.cs"),
+            "text over heads only from Speech (and the reward mark, a market sale's price, RimMarket's own, and a mood bubble's name, which aren't speech): " + string.Join(", ", throwers));
         Check(loggers.All(f => f == "Immersion/Speech.cs"), "only Speech adds to the play log: " + string.Join(", ", loggers));
         string speak = File.ReadAllText(Path.Combine(src, "CouncilGameComponent.cs"));
         Check(Regex.IsMatch(speak, @"public static void Speak\(Pawn p, string line, Color color\) => Speech\.Say\("), "the council's Speak goes through Speech");

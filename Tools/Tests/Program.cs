@@ -409,11 +409,13 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {VisitorTradeTests.Run(root, Check)} things about visitors and campers buying at the colony's stalls, and the drovers' milk.");
         Console.WriteLine($"Checked {CallerTests.Run(root, Check)} things about visitors who come to do something (prices, cuts, their jobs and lines).");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
+        Console.WriteLine($"Checked {YardTests.Run(Check)} things about where the colony gathers out of doors (terraces and seats, not the machinery).");
         Console.WriteLine($"Checked {CustomYearsTests.Run(root, Check)} things about customs kept year after year (their tags, lines that can come true, what's said at them).");
         Console.WriteLine($"Checked {OutcomeTests.Run(root, Check)} things about how answers are told (the risk's words, variants picked by tags, world situations' answers).");
         Console.WriteLine($"Checked {StrayBeastTests.Run(root, Check)} things about the neighbors' stray (really there, where the letter says, led home or kept).");
         Console.WriteLine($"Checked {ImmersionTests.Run(root, Check)} things about what colonists say and their small habits.");
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
+        Console.WriteLine($"Checked {ElectionTests.Run(root, Check)} things about elections on the map (the poll, the campaign, the hustings, the count, the planks).");
         Console.WriteLine($"Checked {PersonaTests.Run(root, Check)} things about characters (nature, marks, drift, words, likeness).");
         Console.WriteLine($"Checked {FaithTests.Run(root, Check)} things about faith in the colony (devout, wavering, swaying, a split colony).");
         Console.WriteLine($"Checked {FaithPeopleTests.Run(root, Check)} things about faith among the people (talks that sway, crises, views beside certainty).");

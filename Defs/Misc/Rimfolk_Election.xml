@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    An election that plays out on the map (Source/ColonyCouncil/Offices/OfficesElection.cs): the hustings and the count
+    are gatherings of their own (LordJob_Election), never picked at random; polling day sends people to the meeting place
+    to cast a vote (JobDriver_CastVote); the announcement is a letter with the council's choices (ChoiceLetter_Election).
+  -->
+  <GatheringDef>
+    <defName>Rimfolk_ElectionGathering</defName>
+    <label>election gathering</label>
+    <randomSelectionWeight>0</randomSelectionWeight>
+    <letterTitle>Election</letterTitle>
+    <letterText>The colony is gathering for the election.</letterText>
+    <calledOffMessage>The election gathering broke up early.</calledOffMessage>
+    <finishedMessage>The election gathering is over.</finishedMessage>
+    <duty>Party</duty>
+    <respectTimetable>false</respectTimetable>
+    <workerClass>ColonyCouncil.GatheringWorker_Election</workerClass>
+  </GatheringDef>
+
+  <JobDef>
+    <defName>Rimfolk_CastVote</defName>
+    <driverClass>ColonyCouncil.JobDriver_CastVote</driverClass>
+    <reportString>going to cast a vote.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <LetterDef>
+    <defName>Rimfolk_ElectionLetter</defName>
+    <letterClass>ColonyCouncil.ChoiceLetter_Election</letterClass>
+    <color>(205, 190, 125)</color>
+    <flashColor>(235, 220, 155)</flashColor>
+    <flashInterval>90</flashInterval>
+    <arriveSound>LetterArrive</arriveSound>
+    <bounce>true</bounce>
+  </LetterDef>
+
+</Defs>
