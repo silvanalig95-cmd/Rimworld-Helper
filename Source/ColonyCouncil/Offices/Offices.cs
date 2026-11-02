@@ -37,6 +37,8 @@ namespace ColonyCouncil
         public float ageWeight;
         /// <summary>Competence for being of the colony's own faith, and as much against for another (Ideology).</summary>
         public float faithWeight;
+        /// <summary>What a candidate for the seat runs on in an election, by what the colony is going through (Offices/ElectionPlanks.cs).</summary>
+        public List<OfficePlank> planks;
 
         /// <summary>The seat exists in this game: with Ideology and a faith for the chaplain.</summary>
         public bool Available => !needsIdeology || DecreeWork.ColonyFaith != null;
@@ -106,13 +108,15 @@ namespace ColonyCouncil
         }
     }
 
-    public class OfficeTracker : IExposable
+    public partial class OfficeTracker : IExposable
     {
         private Dictionary<string, Pawn> holders = new Dictionary<string, Pawn>();
         /// <summary>Holders the colony voted for (to know when the council overrules them).</summary>
         private Dictionary<string, Pawn> elected = new Dictionary<string, Pawn>();
         public int lastElectionYear = -1;
         public int lastElectionTick = -999999;
+        /// <summary>An election under way on the map, from its letter to the count (Offices/OfficesElection.cs), or null.</summary>
+        public Election election;
 
         private List<string> k1, k2;
         private List<Pawn> v1, v2;
@@ -202,20 +206,29 @@ namespace ColonyCouncil
                 }
             }
             SyncHediffs();
-            if (!S.offices) return;
+            if (!S.offices)
+            {
+                election = null;
+                return;
+            }
             var map = Find.AnyPlayerHomeMap;
             if (map == null || Find.TickManager.TicksGame < GenDate.TicksPerDay * 8) return;
-            if (Eligible().Count < 3) return;
-            int year = GenLocalDate.Year(map);
-            bool firstEver = lastElectionYear < 0;
-            bool newYear = year > lastElectionYear;
-            // An open seat with nobody in it, and someone free to fill it (a small colony doesn't vote every few days for seats it can't fill).
-            var eligible = Eligible();
-            bool vacancy = Offices.Any(o => o.OpenFor(eligible.Count) && Enumerable.Range(0, o.Seats).Any(s => HolderOf(o, s) == null)
-                                            && eligible.Any(p => OfficeOf(p) == null && o.CanHold(p)))
-                           && Find.TickManager.TicksGame - lastElectionTick > GenDate.TicksPerDay * 3;
-            if (firstEver || newYear) Hold(comp, year, false);
-            else if (vacancy) Hold(comp, year, true);
+            // An election already under way: the day's look is its own (Offices/OfficesElection.cs).
+            if (election != null) ElectionDaily(comp);
+            else
+            {
+                if (Eligible().Count < 3) return;
+                int year = GenLocalDate.Year(map);
+                bool firstEver = lastElectionYear < 0;
+                bool newYear = year > lastElectionYear;
+                // An open seat with nobody in it, and someone free to fill it (a small colony doesn't vote every few days for seats it can't fill).
+                var eligible = Eligible();
+                bool vacancy = Offices.Any(o => o.OpenFor(eligible.Count) && Enumerable.Range(0, o.Seats).Any(s => HolderOf(o, s) == null)
+                                                && eligible.Any(p => OfficeOf(p) == null && o.CanHold(p)))
+                               && Find.TickManager.TicksGame - lastElectionTick > GenDate.TicksPerDay * 3;
+                if (firstEver || newYear) Call(comp, year, false);
+                else if (vacancy) Call(comp, year, true);
+            }
             try
             {
                 Peacemaking(comp);
@@ -279,7 +292,53 @@ namespace ColonyCouncil
                 if (p != null && p.IsColonist && !p.Dead) CouncilGameComponent.GiveThought(p, thought, null, -1f, cause);
         }
 
-        /// <summary>Everyone votes, office by office; nobody holds two.</summary>
+        /// <summary>
+        /// An election is due: with "Elections play out on the map" on, it is announced and held over the next days
+        /// (Offices/OfficesElection.cs); otherwise, or where a ruler names the officers, everyone votes at once.
+        /// </summary>
+        public void Call(CouncilGameComponent comp, int year, bool byElection)
+        {
+            if (S.electionEvent && Announce(comp, year, byElection)) return;
+            Hold(comp, year, byElection);
+        }
+
+        /// <summary>
+        /// The seats and people of one round of voting (the instant vote or an election's count): who is out of the
+        /// running (holders of seats not being voted on, and each seat's winner for the seats after it), and what is
+        /// only known once every seat is filled.
+        /// </summary>
+        private sealed class SeatingRound
+        {
+            public List<Pawn> voters;
+            public Pawn ruler;
+            public List<OfficeDef> open;
+            public readonly HashSet<Pawn> taken = new HashSet<Pawn>();
+            public readonly HashSet<Pawn> winners = new HashSet<Pawn>();
+            public readonly HashSet<string> filled = new HashSet<string>();
+            // On a bench (the elders' three seats) someone voted out of one seat may win the next: who lost their place,
+            // and who lost the vote, is only known once every seat is filled.
+            public readonly List<(OfficeDef office, Pawn who, Pawn to)> benchLost = new List<(OfficeDef, Pawn, Pawn)>();
+            public readonly List<(OfficeDef office, Pawn who, Pawn to)> benchBeaten = new List<(OfficeDef, Pawn, Pawn)>();
+        }
+
+        /// <summary>The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.</summary>
+        private static IEnumerable<(OfficeDef office, int seat)> SeatOrder(List<OfficeDef> open, List<Pawn> voters)
+        {
+            foreach (var office in open.OrderBy(o => voters.Count(p => o.CanHold(p))).ThenBy(o => o.order).ToList())
+                for (int seat = 0; seat < office.Seats; seat++)
+                    yield return (office, seat);
+        }
+
+        /// <summary>Only those who can do the work stand, and only those competent enough unless nobody who can is.</summary>
+        private static List<Pawn> Standing(OfficeDef office, IEnumerable<Pawn> people)
+        {
+            var able = people.Where(office.CanHold).ToList();
+            if (able.Count == 0) return able;
+            float bestAble = able.Max(p => office.Competence(p));
+            return able.Where(p => office.Competence(p) >= Mathf.Min(OfficeDef.MinCompetence, bestAble)).ToList();
+        }
+
+        /// <summary>Everyone votes, office by office, at once and with one letter; nobody holds two.</summary>
         public void Hold(CouncilGameComponent comp, int year, bool byElection)
         {
             using var _cause = Causes.Push("CC_Cause_Election".Translate().Resolve());
@@ -291,34 +350,20 @@ namespace ColonyCouncil
             var ballots = ruler != null ? new List<Pawn> { ruler } : voters;
             lastElectionYear = year;
             lastElectionTick = Find.TickManager.TicksGame;
-            var taken = new HashSet<Pawn>();
+            var round = new SeatingRound { voters = voters, ruler = ruler, open = Offices.Where(o => o.OpenFor(voters.Count)).ToList() };
             // A seat a colony this size doesn't need yet stays as it is.
             foreach (var office in Offices.Where(o => !o.OpenFor(voters.Count)))
-                foreach (var h in HoldersOf(office)) taken.Add(h);
+                foreach (var h in HoldersOf(office)) round.taken.Add(h);
             var text = new StringBuilder();
             text.Append(ruler != null ? (byElection ? "CC_PM_Appoint_ByText" : "CC_PM_Appoint_Text").Translate(ruler.Named("PAWN")).Resolve()
                 : (byElection ? "CC_Election_ByText" : "CC_Election_Text").Translate(year).Resolve());
-            var open = Offices.Where(o => o.OpenFor(voters.Count)).ToList();
             if (byElection)
-                foreach (var office in open)
-                    foreach (var h in HoldersOf(office)) taken.Add(h);
-            var winners = new HashSet<Pawn>();
-            var filled = new HashSet<string>();
-            // On a bench (the elders' three seats) someone voted out of one seat may win the next: who lost their place,
-            // and who lost the vote, is only known once every seat is filled.
-            var benchLost = new List<(OfficeDef office, Pawn who, Pawn to)>();
-            var benchBeaten = new List<(OfficeDef office, Pawn who, Pawn to)>();
-            // The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.
-            foreach (var office in open.OrderBy(o => voters.Count(p => o.CanHold(p))).ThenBy(o => o.order).ToList())
-            for (int seat = 0; seat < office.Seats; seat++)
+                foreach (var office in round.open)
+                    foreach (var h in HoldersOf(office)) round.taken.Add(h);
+            foreach (var (office, seat) in SeatOrder(round.open, voters).ToList())
             {
-                string key = Key(office, seat);
                 if (byElection && HolderOf(office, seat) != null) continue;
-                // Only those who can do the work stand, and only those competent enough unless nobody who can is.
-                var able = voters.Where(p => !taken.Contains(p) && office.CanHold(p)).ToList();
-                if (able.Count == 0) continue;
-                float bestAble = able.Max(p => office.Competence(p));
-                var candidates = able.Where(p => office.Competence(p) >= Mathf.Min(OfficeDef.MinCompetence, bestAble)).ToList();
+                var candidates = Standing(office, voters.Where(p => !round.taken.Contains(p)));
                 if (candidates.Count == 0) continue;
                 var tally = new Dictionary<Pawn, int>();
                 foreach (var voter in ballots)
@@ -327,71 +372,93 @@ namespace ColonyCouncil
                     tally[pick] = (tally.TryGetValue(pick, out int n) ? n : 0) + 1;
                 }
                 var ranked = tally.OrderByDescending(kv => kv.Value).ThenByDescending(kv => office.Competence(kv.Key)).ToList();
-                var winner = ranked[0].Key;
-                var previous = HolderOf(office, seat);
-                holders[key] = winner;
-                elected[key] = winner;
-                taken.Add(winner);
-                winners.Add(winner);
-                filled.Add(key);
-                text.Append("\n\n").Append(ruler != null ? "CC_PM_Appoint_Line".Translate(office.LabelCap, winner.Named("PAWN")).Resolve()
-                    : "CC_Election_Line".Translate(office.LabelCap, winner.Named("PAWN"), ranked[0].Value, voters.Count).Resolve());
-                var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
-                if (losers.Count > 0) text.Append(" ").Append("CC_Election_Others".Translate(string.Join(", ", losers)).Resolve());
-                if (!office.elected.NullOrEmpty()) text.Append(" ").Append(Flavor.PickText(office.elected).Formatted(winner.Named("PAWN")).Resolve());
-                // A speaker the colony has never once voted against (a name: Epithets/NameRecords.cs).
-                if (ruler == null && S.epithets && office.defName == "Council_Office_Speaker" && previous == winner && comp.epithets.HolderOf("Council_Epithet_Unbeaten") == winner)
-                    text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());
-                CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
-                comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
-                PersonaMarks.Notify_Elected(winner, office.label, previous == winner);
-                Deeds.Elected(winner, office, voters);
-                if (previous != null && previous != winner && Valid(previous))
-                {
-                    if (office.Seats > 1) benchLost.Add((office, previous, winner));
-                    else LostOffice(comp, office, previous, winner);
-                }
-                foreach (var kv in ranked.Skip(1))
-                {
-                    var t = kv.Key.story?.traits;
-                    if (kv.Value > 0 && t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous) || t.HasTrait(TraitDefOf.Abrasive)))
-                    {
-                        if (office.Seats > 1) benchBeaten.Add((office, kv.Key, winner));
-                        else LostElection(comp, office, kv.Key, winner);
-                    }
-                }
-                Setbacks.Notify_OfficeWon(winner, office, ranked.Where(kv => kv.Value > 0).Select(kv => kv.Key));
-                // Terms won and votes lost, for the names that count them (Epithets/NameRecords.cs); a bench's seats are shared, so single seats only.
-                if (office.Seats == 1)
-                    NameRecords.Notify_Election(office, winner, ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key)
-                        .Concat(previous != null && previous != winner && Valid(previous) ? new[] { previous } : new Pawn[0]), ruler != null);
-                comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, ruler != null
-                    ? "CC_PM_Chronicle_Named".Translate(ruler.LabelShort, winner.LabelShort, office.label).Resolve()
-                    : "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
+                string line = ruler != null ? "CC_PM_Appoint_Line".Translate(office.LabelCap, ranked[0].Key.Named("PAWN")).Resolve()
+                    : "CC_Election_Line".Translate(office.LabelCap, ranked[0].Key.Named("PAWN"), ranked[0].Value, voters.Count).Resolve();
+                Settle(comp, round, office, seat, ranked, line, text);
             }
+            string title = ruler != null ? (byElection ? "CC_PM_Appoint_ByTitle" : "CC_PM_Appoint_Title").Translate(year).Resolve()
+                : (byElection ? "CC_Election_ByTitle" : "CC_Election_Title").Translate(year).Resolve();
+            Finish(comp, round, title, text.ToString(), LookTargets.Invalid);
+        }
+
+        /// <summary>
+        /// One seat's outcome, from the instant vote or an election's count: the winner takes the seat (and is out of the
+        /// running for the seats after it), the letter gets its line, and everything that hangs off a win and a loss
+        /// follows (the mood, the journal, the persona's mark, the deed, a loser's grudge, setbacks, the names that count
+        /// terms, the chronicle). <paramref name="ranked"/>: the candidates by votes, the winner first.
+        /// </summary>
+        private void Settle(CouncilGameComponent comp, SeatingRound round, OfficeDef office, int seat, List<KeyValuePair<Pawn, int>> ranked, string line, StringBuilder text)
+        {
+            // apart: an election's outcome, told in its letter.
+            var ruler = round.ruler;
+            var voters = round.voters;
+            string key = Key(office, seat);
+            var winner = ranked[0].Key;
+            var previous = HolderOf(office, seat);
+            holders[key] = winner;
+            elected[key] = winner;
+            round.taken.Add(winner);
+            round.winners.Add(winner);
+            round.filled.Add(key);
+            text.Append("\n\n").Append(line);
+            var losers = ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key.LabelShort + " (" + kv.Value + ")").ToList();
+            if (losers.Count > 0) text.Append(" ").Append("CC_Election_Others".Translate(string.Join(", ", losers)).Resolve());
+            if (!office.elected.NullOrEmpty()) text.Append(" ").Append(Flavor.PickText(office.elected).Formatted(winner.Named("PAWN")).Resolve());
+            // A speaker the colony has never once voted against (a name: Epithets/NameRecords.cs).
+            if (ruler == null && S.epithets && office.defName == "Council_Office_Speaker" && previous == winner && comp.epithets.HolderOf("Council_Epithet_Unbeaten") == winner)
+                text.Append(" ").Append("CC_Election_Unbeaten".Translate(winner.Named("PAWN")).Resolve());
+            CouncilGameComponent.GiveThought(winner, CouncilDefOf.Council_ElectedToOffice);
+            comp.journals.Write(winner, "Council_Journal_Elected", null, office.label.Named("OFFICE"));
+            PersonaMarks.Notify_Elected(winner, office.label, previous == winner);
+            Deeds.Elected(winner, office, voters);
+            if (previous != null && previous != winner && Valid(previous))
+            {
+                if (office.Seats > 1) round.benchLost.Add((office, previous, winner));
+                else LostOffice(comp, office, previous, winner);
+            }
+            foreach (var kv in ranked.Skip(1))
+            {
+                var t = kv.Key.story?.traits;
+                if (kv.Value > 0 && t != null && (t.HasTrait(TraitDefOf.Greedy) || t.HasTrait(TraitDefOf.Jealous) || t.HasTrait(TraitDefOf.Abrasive)))
+                {
+                    if (office.Seats > 1) round.benchBeaten.Add((office, kv.Key, winner));
+                    else LostElection(comp, office, kv.Key, winner);
+                }
+            }
+            Setbacks.Notify_OfficeWon(winner, office, ranked.Where(kv => kv.Value > 0).Select(kv => kv.Key));
+            // Terms won and votes lost, for the names that count them (Epithets/NameRecords.cs); a bench's seats are shared, so single seats only.
+            if (office.Seats == 1)
+                NameRecords.Notify_Election(office, winner, ranked.Skip(1).Where(kv => kv.Value > 0).Select(kv => kv.Key)
+                    .Concat(previous != null && previous != winner && Valid(previous) ? new[] { previous } : new Pawn[0]), ruler != null);
+            comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, ruler != null
+                ? "CC_PM_Chronicle_Named".Translate(ruler.LabelShort, winner.LabelShort, office.label).Resolve()
+                : "CC_Chronicle_Elected".Translate(winner.LabelShort, office.label).Resolve(), winner));
+        }
+
+        /// <summary>Every seat is settled: the loose ends (seats left to their holders, the bench's losers), the edges, and the letter.</summary>
+        private void Finish(CouncilGameComponent comp, SeatingRound round, string title, string text, LookTargets look)
+        {
             // A seat nobody could be voted into this time (more seats than people, or none left who can do its work)
             // keeps its holder, unless they were just voted into another one: nobody holds two.
-            foreach (var office in open)
+            foreach (var office in round.open)
                 for (int seat = 0; seat < office.Seats; seat++)
                 {
                     string key = Key(office, seat);
-                    if (filled.Contains(key)) continue;
+                    if (round.filled.Contains(key)) continue;
                     var holder = HolderOf(office, seat);
-                    if (holder == null || !winners.Contains(holder)) continue;
+                    if (holder == null || !round.winners.Contains(holder)) continue;
                     holders.Remove(key);
                     elected.Remove(key);
                 }
             // The bench's losers: only those left without a seat on it (each once).
             var told = new HashSet<(OfficeDef, Pawn)>();
-            foreach (var (office, who, to) in benchLost)
+            foreach (var (office, who, to) in round.benchLost)
                 if (!HoldersOf(office).Contains(who) && told.Add((office, who))) LostOffice(comp, office, who, to);
             told.Clear();
-            foreach (var (office, who, to) in benchBeaten)
+            foreach (var (office, who, to) in round.benchBeaten)
                 if (!HoldersOf(office).Contains(who) && told.Add((office, who))) LostElection(comp, office, who, to);
             SyncHediffs();
-            string title = ruler != null ? (byElection ? "CC_PM_Appoint_ByTitle" : "CC_PM_Appoint_Title").Translate(year).Resolve()
-                : (byElection ? "CC_Election_ByTitle" : "CC_Election_Title").Translate(year).Resolve();
-            Find.LetterStack.ReceiveLetter(title, text.ToString(), LetterDefOf.NeutralEvent);
+            Find.LetterStack.ReceiveLetter(title, text, LetterDefOf.NeutralEvent, look);
         }
 
         /// <summary>Voted out of their seat (to <paramref name="to"/>).</summary>
@@ -410,8 +477,16 @@ namespace ColonyCouncil
             comp.social.Bump(who, to, TieKind.Rivals, 10f, "CC_TieNote_Election".Translate(office.label));
         }
 
-        /// <summary>How much this voter wants this candidate in this office.</summary>
-        private static float Score(OfficeDef office, Pawn voter, Pawn candidate)
+        /// <summary>How much this voter wants this candidate in this office, on the day: their lean and the luck of the day.</summary>
+        private static float Score(OfficeDef office, Pawn voter, Pawn candidate) => Leaning(office, voter, candidate) + Rand.Range(0f, ElectionMath.VoteNoise);
+
+        /// <summary>
+        /// How much this voter wants this candidate in this office, without the luck of the day (the poll reads this):
+        /// skill, liking, friendship and rivalry, a vote for oneself, what the colony's names and taken-back promises say,
+        /// and, while an election plays out, what the campaign did (<see cref="Election"/>: visits, the hustings, the
+        /// council's endorsement).
+        /// </summary>
+        internal static float Leaning(OfficeDef office, Pawn voter, Pawn candidate)
         {
             float s = office.Competence(candidate);
             if (voter.relations != null && voter != candidate) s += voter.relations.OpinionOf(candidate) / 12f;
@@ -424,7 +499,7 @@ namespace ColonyCouncil
                 s += vain ? 6f : 1.5f;
             }
             // A promise taken back counts against those in office; the names the colony gave count for them (Interplay/).
-            return s + Interplay.VoteLean(voter, candidate) + Reputations.VoteLean(voter, candidate) + Rand.Range(0f, 2.5f);
+            return s + Interplay.VoteLean(voter, candidate) + Reputations.VoteLean(voter, candidate) + CampaignLean(office, voter, candidate);
         }
 
         /// <summary>The council puts someone else in the seat. Overruling the vote costs the trust of those who wanted the winner.</summary>
@@ -439,6 +514,8 @@ namespace ColonyCouncil
             if (current == p) return;
             foreach (var k in holders.Where(kv => kv.Value == p).Select(kv => kv.Key).ToList()) holders.Remove(k);
             holders[key] = p;
+            // An election under way doesn't vote on this seat any more, nor put them up for another.
+            ElectionSeated(office, seat, p);
             bool overrule = current != null && elected.TryGetValue(key, out var e) && e == current;
             if (overrule)
             {
@@ -528,8 +605,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref elected, "elected", LookMode.Value, LookMode.Reference, ref k2, ref v2);
             Scribe_Values.Look(ref lastElectionYear, "lastElectionYear", -1);
             Scribe_Values.Look(ref lastElectionTick, "lastElectionTick", -999999);
+            Scribe_Deep.Look(ref election, "election");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (election != null && (election.races.Count == 0 || election.map == null)) election = null;
                 if (holders == null) holders = new Dictionary<string, Pawn>();
                 if (elected == null) elected = new Dictionary<string, Pawn>();
                 foreach (var k in holders.Where(kv => kv.Value == null).Select(kv => kv.Key).ToList()) holders.Remove(k);

@@ -608,18 +608,33 @@ namespace ColonyCouncil
 
         // ---------------- Offices ----------------
 
+        /// <summary>The council names an officer; a seat an election is voting on has its vote called off first, at that cost.</summary>
+        private static void AppointNow(CouncilGameComponent comp, OfficeDef office, Pawn p, int seat)
+        {
+            var race = comp.offices.RaceFor(office, seat);
+            if (race != null && comp.offices.CouncilMayStepIn) comp.offices.CallOff(race, p, comp);
+            else comp.offices.Appoint(office, p, comp, seat);
+        }
+
         private static float DrawOffices(CouncilGameComponent comp, float width, float y)
         {
             float start = y;
             UiKit.SectionTitle(0f, y, width - 210f, "CC_Offices_Header".Translate(), Icons.Office);
             UiKit.Divider(width - 210f, y + 25f, 210f);
-            if (Widgets.ButtonText(new Rect(width - 200f, y, 200f, 24f), "CC_Office_CallElection".Translate()))
+            // With an election under way, it is the one being held; otherwise one is called (announced, or at once with the event off).
+            bool running = comp.offices.election != null;
+            var call = new Rect(width - 200f, y, 200f, 24f);
+            if (Widgets.ButtonText(call, running ? "CC_Elect_UnderWay".Translate() : "CC_Office_CallElection".Translate(), active: !running) && !running)
             {
                 var map = Find.AnyPlayerHomeMap;
-                if (map != null) comp.offices.Hold(comp, GenLocalDate.Year(map), false);
+                if (map != null) comp.offices.Call(comp, GenLocalDate.Year(map), false);
             }
+            if (running) TooltipHandler.TipRegion(call, "CC_Elect_UnderWayTip".Translate());
             y += UiKit.SectionHeight;
             y += UiKit.Paragraph(0f, y, width, "CC_Offices_Sub".Translate(), UiKit.Faint) + 4f;
+            // The election under way: its dates, the candidates, how support leans, the council's hand (UI/ElectionPanel.cs).
+            float election = ElectionPanel.Draw(comp, width, y);
+            if (election > 0f) y += election + 8f;
             int i = 0;
             foreach (var office in OfficeTracker.Offices)
             for (int seat = 0; seat < office.Seats; seat++)
@@ -648,7 +663,7 @@ namespace ColonyCouncil
                         .OrderByDescending(p => office.CanHold(p))
                         .ThenByDescending(p => office.Competence(p))
                         .Select(p => office.CanHold(p)
-                            ? new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => comp.offices.Appoint(office, p, comp, seatNow))
+                            ? new FloatMenuOption(p.LabelShort + " (" + "CC_Office_Competence".Translate(office.Competence(p).ToString("0")) + ")", () => AppointNow(comp, office, p, seatNow))
                             : new FloatMenuOption(p.LabelShort + " (" + "CC_Office_CantHold".Translate() + ")", null))
                         .ToList();
                     if (options.Count > 0) Find.WindowStack.Add(new FloatMenu(options));

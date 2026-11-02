@@ -55,6 +55,11 @@ public static class ImmersionTests
         "Council_Pool_AmbitionHalfway", "Council_Pool_AmbitionDeadline", "Council_Pool_MeetingOpen", "Council_Pool_MeetingOnBehalf",
         "Council_Pool_MeetingDoubt", "Council_Pool_MeetingAside", "Council_Pool_MeetingSupport", "Council_Pool_MeetingWake",
         "Council_Pool_Interplay_MeetingSecret", "Council_Pool_FaithDecree_MeetingWord",
+        // An election on the map: the campaign, the hustings, polling day and the count (Offices/OfficesElection.cs).
+        "Rimfolk_Pool_ElectionCanvass", "Rimfolk_Pool_CanvassWon", "Rimfolk_Pool_CanvassUnmoved", "Rimfolk_Pool_HustingsOpen", "Rimfolk_Pool_HustingsGood",
+        "Rimfolk_Pool_HustingsPoor", "Rimfolk_Pool_HustingsCheer", "Rimfolk_Pool_HustingsHeckle", "Rimfolk_Pool_ElectionVote", "Rimfolk_Pool_CountOpen",
+        "Rimfolk_Pool_CountOne", "Rimfolk_Pool_CountSome", "Rimfolk_Pool_CountWinner", "Rimfolk_Pool_CountUnopposed", "Rimfolk_Pool_CeremonyOpen",
+        "Rimfolk_Pool_ElectionCheer", "Rimfolk_Pool_ElectionToast", "Rimfolk_Pool_ElectionConcede",
         // Animals spoken to (Animals/AnimalLife.cs, AnimalHerdmaster.cs).
         "Council_Pool_Herd_SayNewborn", "Council_Pool_SayToAnimal", "Council_Pool_AnimalFollows",
         // A personal touch planned and built (Building/PersonalTouches.cs).

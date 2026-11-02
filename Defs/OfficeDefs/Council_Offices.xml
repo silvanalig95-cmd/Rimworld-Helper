@@ -23,6 +23,12 @@
       <li>{PAWN_nameDef} promises short meetings. Nobody believes it.</li>
       <li>{PAWN_nameDef} has already been asked to settle three arguments, and settled two of them.</li>
     </elected>
+    <planks>
+      <li><key>trust</key><when>LowTrust</when><text>{PAWN_nameDef} says the council has stopped listening, and promises meetings where everyone gets a word in.</text></li>
+      <li><key>quarrels</key><when>Rivalries</when><text>{PAWN_nameDef} wants the colony's quarrels brought to the table before they turn into feuds.</text></li>
+      <li><key>heard</key><when>Always</when><text>{PAWN_nameDef} promises to speak for the colony plainly, and to say no when no is the answer.</text></li>
+      <li><key>short</key><when>Always</when><text>{PAWN_nameDef} promises shorter meetings that actually decide something.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -45,6 +51,11 @@
       <li>{PAWN_nameDef} has announced a drill for tomorrow at dawn, to general groaning.</li>
       <li>{PAWN_nameDef} wants to know where everyone sleeps, in case.</li>
     </elected>
+    <planks>
+      <li><key>raid</key><when>RecentRaid</when><text>{PAWN_nameDef} talks of the last raid, and wants the weak side of the wall seen to before the next one.</text></li>
+      <li><key>drills</key><when>Quiet</when><text>{PAWN_nameDef} says a quiet spell is when drills count, and wants everyone at them.</text></li>
+      <li><key>watch</key><when>Always</when><text>{PAWN_nameDef} promises a proper watch at night, with nobody sleeping through it.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -64,6 +75,11 @@
       <li>{PAWN_nameDef} has started a ledger, and the cook is already in it.</li>
       <li>{PAWN_nameDef} says the next trader is going to regret coming.</li>
     </elected>
+    <planks>
+      <li><key>meals</key><when>MealsShort</when><text>{PAWN_nameDef} points at the empty shelves and promises meals put by before anyone goes hungry.</text></li>
+      <li><key>trade</key><when>FoodPlenty</when><text>{PAWN_nameDef} says the stores are full enough to trade from, and means to drive a hard bargain.</text></li>
+      <li><key>stores</key><when>Always</when><text>{PAWN_nameDef} promises a count of the stores every week, and nothing left to rot.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -84,6 +100,11 @@
       <li>{PAWN_nameDef} asked everyone how they were sleeping, and wrote the answers down.</li>
       <li>{PAWN_nameDef} says the first rule is clean hands, and the second rule is also clean hands.</li>
     </elected>
+    <planks>
+      <li><key>sick</key><when>Sick</when><text>{PAWN_nameDef} has been at the sickbeds lately, and wants a proper place for the ill and the hurt.</text></li>
+      <li><key>medicine</key><when>MedicineLow</when><text>{PAWN_nameDef} says the medicine is running low, and wants more made or bought before it is needed.</text></li>
+      <li><key>care</key><when>Always</when><text>{PAWN_nameDef} promises that nobody who is hurt will wait for a doctor.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
   <ColonyCouncil.OfficeDef>
@@ -103,6 +124,10 @@
       <li>{PAWN_nameDef} says a colony that never celebrates forgets why it bothers, and means to fix that.</li>
       <li>{PAWN_nameDef} lit a lamp in the common room and left it burning, as a start.</li>
     </elected>
+    <planks>
+      <li><key>spirits</key><when>LowMood</when><text>{PAWN_nameDef} says spirits are low, and promises more evenings worth staying up for.</text></li>
+      <li><key>feasts</key><when>Always</when><text>{PAWN_nameDef} promises feasts on the days that matter, and less grumbling in between.</text></li>
+    </planks>
   </ColonyCouncil.OfficeDef>
 
 </Defs>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What is said over heads while an election plays out (Source/ColonyCouncil/Offices/OfficesElection.cs): one sentence
+    each. {PAWN} is the speaker; {OTHER} the candidate spoken to or of (the voter, in a candidate's own pitch);
+    {OFFICE} the seat; {COUNT} the votes in a call at the count, as a word. A candidate's lines tagged [plank:KEY] are
+    about what they stand for (OfficeDef.planks); untagged lines suit anyone.
+  -->
+
+  <!-- A candidate makes their case to someone, in that person's company. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ElectionCanvass</defName>
+    <lines>
+      <plain>
+        <li>Vote for me as {OFFICE}, {OTHER_nameDef}, and I won't let you down.</li>
+        <li>I'm standing for {OFFICE}, and I'd like your vote.</li>
+        <li>You know me, {OTHER_nameDef}, so you know I'll do the work.</li>
+        <li>Put me in as {OFFICE} and you'll see the difference within a season.</li>
+        <li>I'll be brief: I want to be {OFFICE}, and I want your vote.</li>
+        <li>Think it over, {OTHER_nameDef}, but think of me when you vote.</li>
+        <li>[evening] Before you turn in, a word about the vote for {OFFICE}.</li>
+        <li>[plank:raid] After the last raid, I want the weak side of the wall fixed, so vote for me.</li>
+        <li>[plank:drills] It's quiet now, which is exactly when the drills count.</li>
+        <li>[plank:watch] Vote for me and nobody sleeps through their watch again.</li>
+        <li>[plank:meals] The shelves are nearly bare, and I mean to fill them, so vote for me.</li>
+        <li>[plank:trade] We've food to spare, and I know how to get a fair price for it.</li>
+        <li>[plank:stores] I'll count the stores every week, and nothing will go to rot.</li>
+        <li>[plank:sick] Too many of us have been in a sickbed lately, and I want to change that.</li>
+        <li>[plank:medicine] We're low on medicine, and I'll see more made before we need it.</li>
+        <li>[plank:care] Vote for me and nobody who's hurt waits for a doctor.</li>
+        <li>[plank:spirits] We could all do with a better evening now and then, and I'll see to it.</li>
+        <li>[plank:feasts] Make me {OFFICE} and the days that matter get a proper feast.</li>
+        <li>[plank:trust] The council has stopped listening, and I'd make it listen again.</li>
+        <li>[plank:quarrels] There are too many grudges in this colony, and I'd like to settle a few.</li>
+        <li>[plank:heard] I'll say plainly what the colony thinks, even when it's no.</li>
+        <li>[plank:short] Shorter meetings that decide something, that's my promise.</li>
+        <li>[plank:fields] More sown while the season lasts, that's what I'm after.</li>
+        <li>[plank:harvest] Every last crop in before the cold, that's my promise.</li>
+        <li>[plank:seed] I'll walk the fields every morning, so vote for me.</li>
+        <li>[plank:calm] If someone's got under your skin, I want to hear about it first.</li>
+        <li>[plank:traditions] Our traditions deserve keeping properly, and I'll keep them.</li>
+        <li>[plank:days] No day this colony cares about will slip by on my watch.</li>
+        <li>[plank:herd] I know every animal in the herd by name, so who better?</li>
+        <li>[plank:animals] Our animals deserve better keeping, and I'd give it to them.</li>
+        <li>[plank:comfort] Hard days are easier with faith, and I'll be there for anyone.</li>
+        <li>[plank:faith] I'll keep our rites the way they should be kept.</li>
+        <li>[plank:gate] Friends at the gate deserve a welcome, and I'll know them from raiders.</li>
+        <li>[plank:guests] Visitors should leave thinking well of us, and I'll see to that.</li>
+        <li>[plank:wisdom] We keep making the same mistakes, and I'd like to stop that.</li>
+        <li>[plank:young] I'd like to teach the young what I know while I still can.</li>
+      </plain>
+      <warm>
+        <li>I'd look after all of us as {OFFICE}, {OTHER_nameDef}, you included.</li>
+        <li>I'd be honoured to have your vote, {OTHER_nameDef}.</li>
+      </warm>
+      <blunt>
+        <li>I'm the best one for {OFFICE}, and you know it.</li>
+        <li>Vote for me, {OTHER_nameDef}, the others won't do the work.</li>
+      </blunt>
+      <cheerful>
+        <li>Guess who's standing for {OFFICE}, {OTHER_nameDef}!</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one spoken to, won round a little. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CanvassWon</defName>
+    <lines>
+      <plain>
+        <li>You've given me something to think about, {OTHER_nameDef}.</li>
+        <li>Fair enough, you might just have my vote.</li>
+        <li>That's more than the others have said to me.</li>
+        <li>I like the sound of that.</li>
+        <li>All right, I'll keep you in mind.</li>
+        <li>You'd do it well, I think.</li>
+      </plain>
+      <warm>
+        <li>I'd be glad to see you in that seat, {OTHER_nameDef}.</li>
+      </warm>
+      <cheerful>
+        <li>Now that's a promise I can vote for!</li>
+      </cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one spoken to, unmoved or put off. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CanvassUnmoved</defName>
+    <lines>
+      <plain>
+        <li>We'll see, {OTHER_nameDef}.</li>
+        <li>I've heard all that before.</li>
+        <li>I'll make up my own mind, thanks.</li>
+        <li>Nice words, but I'm not sure.</li>
+        <li>Maybe, maybe not.</li>
+        <li>You'll have to do better than that.</li>
+      </plain>
+      <blunt>
+        <li>Don't count on my vote, {OTHER_nameDef}.</li>
+      </blunt>
+      <cold>
+        <li>I'd rather you didn't ask.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The chair opens the hustings. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsOpen</defName>
+    <lines>
+      <plain>
+        <li>Quiet, everyone, the candidates have the floor.</li>
+        <li>Let's hear from those who want a seat, one at a time.</li>
+        <li>Each candidate gets a few words, and no shouting over them.</li>
+        <li>Right, the hustings are open, so speak up.</li>
+        <li>We vote tomorrow, so listen well tonight.</li>
+        <li>Candidates, come forward and tell us why.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A candidate's speech at the hustings, going well (or well enough). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsGood</defName>
+    <lines>
+      <plain>
+        <li>I'm standing for {OFFICE} because I know I can do it well.</li>
+        <li>Give me the seat of {OFFICE} and I'll give it everything I have.</li>
+        <li>You've seen my work, so you know what you'd get from me.</li>
+        <li>I won't promise the moon, only that I'll do the job properly.</li>
+        <li>A vote for me is a vote for getting things done.</li>
+        <li>I'd be proud to serve as {OFFICE}, and I'd work for every one of you.</li>
+        <li>[plank:raid] That raid showed us the weak side of the wall, and I'll see it mended.</li>
+        <li>[plank:drills] Quiet days are for drills, so that when trouble comes we're ready.</li>
+        <li>[plank:watch] A proper watch every night, with nobody asleep at it, that's my promise.</li>
+        <li>[plank:meals] Nobody here should go to bed hungry, and with me nobody will.</li>
+        <li>[plank:trade] We've more than we need, so let's trade it well.</li>
+        <li>[plank:stores] I'll know what's in the stores down to the last sack.</li>
+        <li>[plank:sick] Our sick deserve a proper place to get well, and I'll make one.</li>
+        <li>[plank:medicine] Medicine before we need it, not after, that's what I'll do.</li>
+        <li>[plank:care] Anyone who's hurt gets looked after at once, I promise you that.</li>
+        <li>[plank:spirits] Spirits are low, and I'll give you evenings worth staying up for.</li>
+        <li>[plank:feasts] Every day that matters will get a feast, and I'll cook if I must.</li>
+        <li>[plank:trust] The council should listen to you, and with me it will.</li>
+        <li>[plank:quarrels] Let's bring our quarrels to the table before they become feuds.</li>
+        <li>[plank:heard] I'll speak for you plainly, even when the answer is no.</li>
+        <li>[plank:short] Short meetings that decide things, that's all I promise.</li>
+        <li>[plank:fields] More in the ground while the sun's with us, that's the plan.</li>
+        <li>[plank:harvest] Every crop in and stored before the cold, mark my words.</li>
+        <li>[plank:seed] I'll be in the fields at dawn every day, and see a blight first.</li>
+        <li>[plank:calm] Bring me your grievances before they turn into shouting.</li>
+        <li>[plank:traditions] Our traditions are ours, and I'll see them kept as they should be.</li>
+        <li>[plank:days] Not one day that matters to us will go by unmarked.</li>
+        <li>[plank:herd] I know every animal we have, and I'll look after every one.</li>
+        <li>[plank:animals] Better pens and better care, our animals have earned it.</li>
+        <li>[plank:comfort] Faith is a comfort when days are hard, and I'll be there for you.</li>
+        <li>[plank:faith] I'll keep our rites as they should be kept, every one of them.</li>
+        <li>[plank:gate] Raiders we fight, but friends at the gate we welcome, and I'll know which.</li>
+        <li>[plank:guests] Every visitor should leave thinking well of us.</li>
+        <li>[plank:wisdom] I've seen us make the same mistakes twice, and I'd spare us a third.</li>
+        <li>[plank:young] Let me pass on what I know before it's lost with me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A candidate's speech at the hustings, going badly. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsPoor</defName>
+    <lines>
+      <plain>
+        <li>I, er, would like to be {OFFICE}, if that's all right.</li>
+        <li>Sorry, I had this all worked out, but I'd do a good job anyway.</li>
+        <li>I'm not much of a speaker, but please vote for me.</li>
+        <li>Where was I, oh yes, vote for me.</li>
+        <li>I'd make a good {OFFICE}, I think, probably.</li>
+        <li>Um, I've forgotten what I was going to say, but I meant it.</li>
+        <li>I'll keep this short, since it isn't going well.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone in the crowd backs a speech. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsCheer</defName>
+    <lines>
+      <plain>
+        <li>Hear, hear!</li>
+        <li>Well said, {OTHER_nameDef}!</li>
+        <li>That's the one for me.</li>
+        <li>{OTHER_nameDef} has my vote.</li>
+        <li>Now that's what we need.</li>
+        <li>Good on you, {OTHER_nameDef}.</li>
+        <li>Yes, more of that!</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone in the crowd heckles a speech (never anything that starts a fight). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HustingsHeckle</defName>
+    <lines>
+      <plain>
+        <li>We've heard that before, {OTHER_nameDef}.</li>
+        <li>And who's going to do the work?</li>
+        <li>Speak up, we can't hear you.</li>
+        <li>That's not what you said last week.</li>
+        <li>Get on with it, then.</li>
+        <li>Promises are cheap, {OTHER_nameDef}.</li>
+        <li>Sit down, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A voter at the meeting place, having cast their vote. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ElectionVote</defName>
+    <lines>
+      <plain>
+        <li>There, my vote is cast.</li>
+        <li>Done, and I'm not telling anyone who for.</li>
+        <li>That's my say, for what it's worth.</li>
+        <li>I knew who I wanted before I got here.</li>
+        <li>Took me a while to decide, but it's done.</li>
+        <li>I hope the others choose as well as I did.</li>
+        <li>Voted, and that's that.</li>
+        <li>It feels good to have a say.</li>
+        <li>I changed my mind twice on the way over.</li>
+        <li>[old] I've voted in more of these than I can count.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The counter opens the count. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CountOpen</defName>
+    <lines>
+      <plain>
+        <li>Settle down, I'm counting, and I'll read every one aloud.</li>
+        <li>Right, let's count, and nobody touches the ballots but me.</li>
+        <li>Quiet please, here comes the count.</li>
+        <li>Every vote read out, so nobody can say it was fixed.</li>
+        <li>Let's see who we've chosen, then.</li>
+        <li>I'll count slowly, so everyone can follow.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The counter reads out one vote. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CountOne</defName>
+    <lines>
+      <plain>
+        <li>One for {OTHER_nameDef}.</li>
+        <li>This one says {OTHER_nameDef}.</li>
+        <li>And one for {OTHER_nameDef}.</li>
+        <li>Another for {OTHER_nameDef}.</li>
+        <li>This one's for {OTHER_nameDef}.</li>
+        <li>{OTHER_nameDef}, one more.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The counter reads out a handful of votes for one candidate ({COUNT} of them, as a word). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CountSome</defName>
+    <lines>
+      <plain>
+        <li>{COUNT} for {OTHER_nameDef}.</li>
+        <li>Here's {COUNT} for {OTHER_nameDef}.</li>
+        <li>{COUNT} more for {OTHER_nameDef}.</li>
+        <li>And {COUNT} for {OTHER_nameDef}.</li>
+        <li>{OTHER_nameDef} gets {COUNT} from this pile.</li>
+        <li>This pile has {COUNT} for {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The counter names the winner of a seat. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CountWinner</defName>
+    <lines>
+      <plain>
+        <li>That settles it: {OTHER_nameDef} is our {OFFICE}.</li>
+        <li>{OTHER_nameDef} has it, and is our {OFFICE}.</li>
+        <li>The seat of {OFFICE} goes to {OTHER_nameDef}.</li>
+        <li>Our {OFFICE} is {OTHER_nameDef}, by the count.</li>
+        <li>{OTHER_nameDef} wins the vote for {OFFICE}.</li>
+        <li>It's {OTHER_nameDef} for {OFFICE}, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The counter (or the chair at a ceremony) names someone who stood alone for a seat. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CountUnopposed</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} stands alone for {OFFICE}, so the seat is theirs.</li>
+        <li>Nobody stood against {OTHER_nameDef}, who is our {OFFICE}.</li>
+        <li>{OTHER_nameDef} is our {OFFICE}, with no one standing against.</li>
+        <li>For {OFFICE}, only {OTHER_nameDef} stood, and the seat is theirs.</li>
+        <li>{OTHER_nameDef} takes the seat of {OFFICE}, unopposed.</li>
+        <li>No one else stood for {OFFICE}, so it's {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The chair opens a ceremony where every seat has one name. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_CeremonyOpen</defName>
+    <lines>
+      <plain>
+        <li>This won't take long, so gather round.</li>
+        <li>A few words, and then back to the evening.</li>
+        <li>Every seat has one name on it, so let's say them.</li>
+        <li>Gather round, the council's officers are to be named.</li>
+        <li>Short and simple, as promised, here are our officers.</li>
+        <li>No votes to count tonight, only names to say.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone cheers the winner of a seat. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ElectionCheer</defName>
+    <lines>
+      <plain>
+        <li>Well done, {OTHER_nameDef}!</li>
+        <li>Congratulations, {OTHER_nameDef}.</li>
+        <li>Good choice, if you ask me.</li>
+        <li>Three cheers for {OTHER_nameDef}!</li>
+        <li>About time, {OTHER_nameDef}.</li>
+        <li>You'll do well, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The counter's toast at the end, as the cups go up. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ElectionToast</defName>
+    <lines>
+      <plain>
+        <li>To the council, and may it serve us well.</li>
+        <li>Raise a cup to the council, everyone.</li>
+        <li>To our officers, and to next year's arguments.</li>
+        <li>A toast to everyone who stood, and to the winners most.</li>
+        <li>Cups up, to the council!</li>
+        <li>Here's to the ones we chose, and to us for choosing.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A loser who takes it well (the greedy, the jealous and the abrasive say nothing; they have their mood about it). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_ElectionConcede</defName>
+    <lines>
+      <plain>
+        <li>Congratulations, {OTHER_nameDef}, the better one won.</li>
+        <li>Fair and square, {OTHER_nameDef}.</li>
+        <li>Well done, {OTHER_nameDef}, and I'll be watching.</li>
+        <li>I'll help however I can, {OTHER_nameDef}.</li>
+        <li>Next year, maybe, but well done tonight.</li>
+        <li>No hard feelings, {OTHER_nameDef}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -105,8 +105,11 @@ namespace ColonyCouncil
             // The days, soonest first; the first snow, which has no date, last.
             var rows = UiCache.Get(cal, 4101, () => Rows(cal, map, today));
             y += UiKit.SectionTitle(0f, y, w, "CC_Cal_Days".Translate(), Icon, null, "CC_Cal_DaysCount".Translate(rows.Count).Resolve());
-            if (rows.Count == 0) y += UiKit.EmptyState(0f, y, w, Icon, "CC_Cal_NoDays".Translate(), 80f);
             int index = 0;
+            // Election day, while an election is under way: once, not every year (Offices/OfficesElection.cs).
+            y += DrawElection(0f, y, w, index);
+            if (CouncilGameComponent.Instance?.offices?.election != null) index++;
+            if (rows.Count == 0) y += UiKit.EmptyState(0f, y, w, Icon, "CC_Cal_NoDays".Translate(), 80f);
             foreach (var r in rows) y += DrawDay(r, 0f, y, w, index++);
             y += 14f;
 
@@ -172,6 +175,26 @@ namespace ColonyCouncil
                 list.Add(r);
             }
             return list;
+        }
+
+        /// <summary>Election day as a row of its own at the top of the days: its date, what it is, and a click to the Decrees page.</summary>
+        private static float DrawElection(float x, float y, float w, int index)
+        {
+            var e = CouncilGameComponent.Instance?.offices?.election;
+            if (e == null || !ColonyCouncilMod.Settings.offices) return 0f;
+            const float dateW = 130f;
+            var r = new Rect(x, y, w, 48f);
+            UiKit.Zebra(r, index);
+            Widgets.DrawHighlightIfMouseover(r);
+            UiKit.Icon(new Rect(x + 6f, y + 6f, 20f, 20f), Icons.Office, UiKit.Gold);
+            UiKit.LabelFit(new Rect(x + 32f, y + 3f, dateW, 22f), OfficeTracker.ElectionDay(e), UiKit.Gold);
+            float nx = x + 32f + dateW + 8f;
+            string name = (e.ceremony ? "CC_Elect_Cal_Ceremony" : "CC_Elect_Cal_Day").Translate();
+            UiKit.LabelFit(new Rect(nx, y + 3f, w - nx - 8f, 22f), name, Color.white);
+            UiKit.LabelFit(new Rect(nx, y + 25f, w - nx - 8f, 18f), (e.ceremony ? "CC_Elect_Cal_CeremonyNote" : "CC_Elect_Cal_Note").Translate(), UiKit.Faint, GameFont.Tiny);
+            TooltipHandler.TipRegion(r, "CC_Elect_Cal_Tip".Translate());
+            if (Widgets.ButtonInvisible(r)) MainTabWindow_Council.OpenTab("Decrees");
+            return 48f;
         }
 
         private static List<(string label, string tip)> Customs()
