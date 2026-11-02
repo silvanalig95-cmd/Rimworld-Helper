@@ -48,12 +48,13 @@ one-time errors about missing classes. They're harmless.
 ## What you get
 
 A **Council** button at the right end of the bottom bar (you can move it in the settings) opens the council
-window, organized in five sections:
+window, organized in six sections:
 
 | Section | Sub-tabs | What's there |
 |---|---|---|
-| **Colony** | This week · Overview · Priorities · Moods · World · Room plans · Defenses | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; ready-made rooms; where raiders come from and what to build against them |
-| **People** | Roster · Everyone · Bonds · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, groups, vendettas, secrets; open wishes, promises kept and trust |
+| **Colony** | This week · Overview · Priorities · Moods · World · Defenses | what needs you, what's coming and how people are; the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the advisor's ranked list of what the colony needs; every mood added up; what's coming and who's out there; where raiders come from and what to build against them |
+| **Planning** | Plan · Base · Making · Room plans | the colony's next steps and the rooms it will be short of; the base looked over; what the colony could make, its stocks against what it uses and the council's automations; ready-made rooms (see "Planning" below) |
+| **People** | Roster · Everyone · Bonds · Ideoligions · Wishes | every colonist at a glance with their full story; all colonists in one sortable table; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; open wishes, promises kept and trust |
 | **Council** | Decrees · Ambition · Our ways · Dilemmas | decrees, petitions and the council's offices (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for; questions waiting and how the answers went |
 | **History** | Chronicle · Calendar · Dreams · Journals | everything that happened (filter by wishes, council, people, strangers, world events, dreams, losses), the colony calendar, recent dreams, every colonist's journal |
 | **Almanac** | | the knowledge base |
@@ -87,10 +88,17 @@ on a section's heading (the heart, what weighs on them, their bonds...) folds it
 tab's column) remembers that for the session.
 
 ### Priorities: what the colony needs
-A ranked list of concerns (62 kinds of check), each with a short explanation, a rotating **"why it matters"** tip,
+A ranked list of concerns (65 kinds of check), each with a short explanation, a rotating **"why it matters"** tip,
 and buttons to jump to the problem, plan a fitting room, open the council page that deals with it, or read more in
 the Almanac. Some take the first step for you: open the camp's letter or the mission's quest, open the Work tab, or
-plan wall lamps and chairs where a room lacks them. It watches:
+plan wall lamps and chairs where a room lacks them. Every button says on hover what it opens, places or orders. The
+advisor never acts on its own, and it keeps the same rules as the rest of the council's advice (see "Planning"):
+**Not this** sets a piece of advice aside, here and on the Plan page alike, until you bring it back from **Set
+aside** at the end of the page; what a button does on the map is kept under **Done lately** with **Undo**, and a day
+or two later the council looks whether it worked. Seats at the tables, the cold store, beds and the hospital are
+counted as the Plan page's "Building ahead" counts them, guests and the prisoners being recruited included: the advice
+comes before the colony runs short, with the same numbers on both pages, and the room is proposed once, by Building
+ahead (the card's **Place the blueprints** is that same step, with the same Undo). It watches:
 - food vs. the coming winter (forecast from your map's actual climate), spoiling food, blight, ripe crops before frost
 - kitchen hygiene (butchering next to the stove, dirty kitchens), nobody cleaning, dirty hospitals
 - cold or hot months ahead, and what to do during heat waves, cold snaps, toxic fallout, solar flares,
@@ -127,9 +135,11 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-116 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+121 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
-heard several times lately becomes much less likely, and one nobody here has ever made a little more likely.
+heard several times lately becomes much less likely, and one nobody here has ever made a little more likely. The
+wishes that come up most often (armor, a place to pray, a latrine, a seat at the table, a bath, warmth at night) have
+three to five ways to be asked in every temperament, so the same colonist rarely asks the same way twice.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
 industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
 Wishes follow the land's year: clothes are asked for by the season coming (what someone wears has to keep them
@@ -142,12 +152,12 @@ small hot room of the colony's own, where people sit on cold days and talk.
 | **Home:** a room of their own, a bigger, roomier or nicer bedroom, a piece of furniture, a light, a plant, art for the bedroom, a fire in their room for winter, a real floor instead of bare earth, a bed for their pet | barracks sleepers, the greedy and jealous, night owls, rising expectations, the cold, the tidy |
 | **Love and family:** to share a bed with their partner, not to sleep next to someone, a wedding, a birthday treat, a crib for the little one, somewhere for children to learn and play | couples, feuding roommates, parents (Biotech) |
 | **Children and the old:** lessons from the colony's best, a pet to look after, new stories to read; a soft chair, a biosculpter pod, a resting place for when the time comes | children (Biotech); colonists of 50, 60 or 65 and over |
-| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best, or an apprentice to teach; somewhere to train; a weapon rack; a smokehouse; a beehive; a tool cabinet; stone blocks put by; a deep drill; a pen for the animals; a fishing spot (Odyssey, or Vanilla Fishing Expanded) | passionate colonists, the old, fighters, cooks, keepers |
-| **Stores:** better food, a freezer (in hot country, anyone), a brewery, a little something to drink, firewood for winter, fodder before winter, food that keeps, something fresh to eat, honey in the larder, more books, a stocked infirmary, healroot put by, a proper treasury | gourmands, cooks, the food-poisoned, keepers, readers, healers, the greedy |
+| **Work:** a workshop, kitchen, laboratory, hospital, greenhouse or barn; to do the work they love; lessons from the colony's best, or an apprentice to teach; somewhere to train; a weapon rack; a smokehouse; a beehive; a tool cabinet; stone blocks put by; a deep drill; a pen for the animals; a fishing spot (Odyssey, or Vanilla Fishing Expanded); a lamp at the bench they were seen working in the dark | passionate colonists, the old, fighters, cooks, keepers, anyone working in the dark |
+| **Stores and fields:** better food, a freezer (in hot country, anyone), a brewery, a little something to drink, firewood for winter, fodder before winter, food that keeps, something fresh to eat, honey in the larder, more books, a stocked infirmary, healroot put by, a proper treasury; in spring, a small field of a crop from home the colony could sow and grows nowhere; before and through a real winter, a sun lamp over an indoor field | gourmands, cooks, the food-poisoned, keepers, readers, healers, the greedy, growers, anyone gone without fresh food |
 | **Illness:** a bed for the sick, a pot of tea (Vanilla Brewing Expanded) | anyone down with a cold, flu or worse |
 | **Gear:** new clothes, clothes warm enough for the season (or, on hot land, cool enough), a hat, something fine, a piece of jewelry, proper armor, a decent weapon, something a visiting trader has | tattered clothes, anyone dressed wrong for the season coming, the vain, fighters, anyone who saw the trader's wares |
-| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around, a table where everyone fits, a telescope, a cooler for the hottest days, a sauna for the cold months | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring, the lonely, curious minds, anyone in the heat, the cold and the old |
-| **People:** a proper burial for a friend, a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home, an evening at the campers' fire, a council meeting (promising it calls one), a comms console, a bed kept for guests (Hospitality) | grieving friends, the bored and overworked, addicts, the kind, the vengeful, the sociable |
+| **Colony:** stronger defenses, a clean colony, music, art where people gather, another sculpture, flowers, a bath, a fountain, a banner, a place to pray, a bench to sit on outside, a fire to gather around, a table where everyone fits, a telescope, a cooler for the hottest days, a sauna for the cold months, in a wet land a roof over the way from their bed to the table | anyone shaken by a raid, the tidy, artists, the devout, everyone in spring, the lonely, curious minds, anyone in the heat, the cold and the old, anyone who came in soaked |
+| **People:** a proper burial for a friend, a grave for a named or bonded animal that died (its person digs it near the colony and carries the animal in), a party, a day off, time outside, help quitting a drug or a steady supply of it, a prisoner recruited, executed or set free, a kidnapped friend brought home, an evening at the campers' fire, a council meeting (promising it calls one), a comms console, a bed kept for guests (Hospitality) | grieving friends and owners, the bored and overworked, addicts, the kind, the vengeful, the sociable |
 | **Adventure:** to see something of the world (a caravan), a hunt, the beast that mauled someone hunted down | the restless, hunters, the beast's victims and their friends |
 | **Body and status:** a prosthetic, an animal companion, a favourite kind of animal, a pack animal of their own, a hurt animal patched up, a room befitting their title | the maimed, animal lovers, haulers and the restless, Royalty nobles |
 
@@ -266,17 +276,20 @@ now, for example "Good times: Rimfolk's good moods +11 of +18, 2 fading sooner �
 **Everyday frictions.** People who live close together get on each other's nerves. Colonists argue about the dishes,
 complain about a bunkmate's snoring, take the last good meal, keep a borrowed knife, correct each other at the table
 and give each other the cold shoulder after a spat. Some natures grate: an annoying voice, creepy breathing, a
-pyromaniac near the tinder, a nudist at supper, an ascetic lecturing a greedy one. So do the times: someone keeps
-away from a sick colonist, two argue about a camp, a temper snaps. Some follow something that really happened: a cook
+pyromaniac near the tinder, a nudist at supper, an ascetic lecturing a greedy one. So do the times: someone keeps away
+from a sick colonist, two argue about a camp, a temper snaps. Some follow something that really happened: a cook
 blamed by someone down with food poisoning, a bad day after a mental break turned into a joke, the proposer of a
 finished council project taking all the credit, a shared tool handed back chipped. A messy or cramped home adds its
-own (22 nuisances): a door that sticks, a leaking roof, smoke in a small room, a generator droning next to someone's
+own (24 nuisances): a door that sticks, a leaking roof, smoke in a small room, a generator droning next to someone's
 bed, a filthy room, a cold or stifling one, the dog asleep on the bed, building work right outside, vermin in the
 stores, a bare earth floor, rotten food in the stockpile, work in the rain with no coat when the colony could make
-one, junk left in a bedroom. Each costs a point or two of mood for half a day to a day and a half. In an ordinary colony they
-come about as often as the warm moments; less in a happy, roomy one, more in barracks or between people who dislike
-each other. Abrasive, volatile and jealous colonists start more of them, kind ones none. After a spat the two share
-no warm moments until it wears off or they clear the air. A setting turns them off.
+one, junk left in a bedroom, a butcher's table or spot where people eat or sleep, and in the cold a bed a few steps
+from a door straight outside (an anteroom stops the draught). Each names what it is about (the badly made parka, the
+wood left lying in the way, the filthy dining room), and colonists grumble aloud now and then about bad clothes,
+clutter, dirty rooms and hard beds. Each costs a point or two of mood for half a day to a day and a half. In an
+ordinary colony they come about as often as the warm moments; less in a happy, roomy one, more in barracks or between
+people who dislike each other. Abrasive, volatile and jealous colonists start more of them, kind ones none. After a
+spat the two share no warm moments until it wears off or they clear the air. A setting turns them off.
 
 **Everyday pressures.** A colony that has everything still has its everyday wear. Five small, fixable pressures show
 as moods while their cause lasts, each saying what caused it, with what helps in the Mood tab:
@@ -412,7 +425,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 175 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 208 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child (and, new, one of them who wants to
 stay, a purse gone from their stash with a colonist blamed, one of theirs caught in the storeroom, their beasts standing
@@ -423,12 +436,40 @@ wants to be back at work, family who want a say before an operation, a squabble 
 put down the tools, a child's question, a broken promise, the same meal every day. The young and the old have their
 own: a broken window and nobody owning up, a child frightened after a fight or grieving a parent, lessons or play,
 a youngster who wants to see the world, an elder who wants one last walk in the hills, won't see the doctor, has a
-tale to tell or feels the cold in their bones. Many answers call on whoever is
-best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes.
+tale to tell or feels the cold in their bones. Some come only when they fit the day: the mess after a fight, a sick
+night, lessons in a busy time, seed for a neighbour in spring. Many answers call on whoever is
+best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes. Many have
+several openings and several ways to turn out, picked to fit the moment, and a letter doesn't repeat the text it used
+last time when another fits.
 
-**Answers play out on the map.** When an answer describes something people do, they do it (434 answers of 134
-dilemmas and 126 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 21
-stages of 18 personal stories and 7 moments with visitors). A
+**What each answer does.** Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world
+events, has a short line under it: who feels what and for how long, trust, what it takes from the stores or gives,
+what happens on the map, and the odds of a gamble going wrong ("1 in 4"). Hover the answer for the whole list, grouped
+by kind, with gains in green and costs in red. Moods show their real size for each colonist (the reward and downside
+strengths and each colonist's standards count), goods are counted from the stores (an answer that would take the last
+medicine says so), and it is all read from the colony as it is when the letter opens. The Dilemmas page shows, on
+hover, what each answer given was to do. The setting **Show what each answer does** (Council page, on by default)
+turns the lines off. The dilemmas, the customs and the strangers' questions were rebalanced by the same reckoning:
+every answer has its own upside and its own cost, and the safe or quiet answer gives the least (making a thief work it
+off costs them a disciplined mood; the omen ceremony is a gamble).
+
+**Answers that change the colony's own settings** do it the way you would by hand, and say so under the answer. Who
+gets a new limb or eye lying in the stores puts the game's own operation on that colonist's medical tab. After a bad
+batch from the kitchen (food poisoning in two or more), the colony scrubs the kitchen, or the cooking goes to the next
+best cook for three days and back. Through a heat wave the timetables can turn round to sleep through the midday heat
+and work by night, or to a rest in the shade at midday, until it breaks. A researcher close to finishing can have one
+night at the bench and the morning after to sleep. When the only real doctor needs tending, self-tend can be switched
+on, the best medicine used, or the next best can tend them while the doctor talks them through it. A drug bench
+someone objects to can have its hard drug bills, or all but the medicine, suspended. A prisoner far better at a skill
+a colonist loves can teach them in the cell, or the wardens can be set to recruiting first. With Ideology, a
+slave a colonist has grown fond of can be freed into the colony by the game's own emancipation or walked to the edge
+to go home, and someone who broke one of the faith's precepts can be given a quiet word, a penance at the altar or the
+council's backing. Hours and work an answer changed go back by themselves when their time is up or the heat wave is
+over, with a message, but only where nobody changed them since: whatever you set by hand stays as you set it.
+
+**Answers play out on the map.** When an answer describes something people do, they do it (641 answers of 177
+dilemmas and 178 Rimfolk events, stories and world events, plus calendar days, six decrees and nine ambitions, 25
+stages of 20 personal stories and 7 moments with visitors). A
 victory feast is eaten at the dining table, each guest sent to eat a cooked meal, the finest first they may eat, and
 the food the answer spends on it is cooked for it first, at the colony's stove by its organizer or best cook. The midsummer bonfire is lit (with no campfire, one of the colony carries wood out and lays one first, burned down to ash
 after), a toast is raised, an apology, a reading or a visiting scholar's lesson is heard round the table (the speaker
@@ -464,15 +505,16 @@ sapling at the edge of the fields with a stone beside it, a room staked out is p
 room planner when the walk out to it gets there, a fallen star is forged into a blade at the colony's smithy, and a relapsed colonist's stash, or a found
 one the council won't keep, burns in the yard. Shearing day is a real shearing and milking party.
 
-Some answers keep something on the map for a while. Lantern night sets real torches along the colony's walls at dusk
-and takes them in at first light; the enemy dead are carried out by hand late in the afternoon to a pyre beyond the gate,
-which one of the colony lights at dusk with wood from the stores, the bodies burning on it until morning, or to the
-tree line and left there, or buried in graves the colony digs outside the wall, or burned in the colony's crematorium; an old colonist who can't get warm gets a fire in their
-room that burns the wood the council set aside; two colonists trade rooms when one gives up the warmer; a sleepwalker's
-door is bolted for three nights (only once they're in bed, and never while anything is wrong); a doctor goes round to
-everyone in turn, and a cook takes a pot round to those working outside; the first night watch walks the walls until
-dawn; a companion animal keeps at its person's heels for a day and a half, and a secret told is said in front of
-whoever gathers to hear it. Only things of the colony's own era and DLCs, and nobody is hurt.
+Some answers keep something on the map for a while. Lantern night sets real torches along the outside of the colony's
+walls at dusk and takes them in at first light; the enemy dead are carried out by hand late in the afternoon to a pyre
+beyond the gate, which one of the colony lights at dusk with wood from the stores, the bodies burning on it until
+morning, or to the tree line and left there, or buried in graves the colony digs outside the wall, or burned in the
+colony's crematorium; an old colonist who can't get warm gets a fire in their room that burns the wood the council set
+aside; two colonists trade rooms when one gives up the warmer; a sleepwalker's door is bolted for three nights (only
+once they're in bed, and never while anything is wrong); a doctor goes round to everyone in turn, and a cook takes a
+pot round to those working outside; the first night watch walks the walls until dawn; a companion animal keeps at its
+person's heels for a day and a half, and a secret told is said in front of whoever gathers to hear it. Only things of
+the colony's own era and DLCs, and nobody is hurt.
 
 **Goods and people come and go on the map.** What Rimfolk's events move between the colony and the outside world is
 carried by people you can see. When a village buys 250 corn, two porters walk in from the edge a few hours later, by
@@ -507,6 +549,23 @@ asking leave and a girl left at the gate by the famine (88 beats of 41 world eve
 collector and a runaway mule's owner; 137 lines of their own). Only peoples at peace with the colony come, only when
 it's safe, at most three groups at once; they go if hurt, if their people turn hostile, if raiders come, or if the
 cold or hunger gets to them. With the same setting off, or when nobody can come, the letter tells it as before.
+
+Visitors do what their letters say, and keep out of the colony's rooms and fields while they do. They sleep when
+they're tired or night has come, on open ground near their spot; guests given a bed or a roof sleep in a corner
+indoors, and with Hospitality in the colony's free guest beds, which they give back when they go. A camp out on the
+land lays a campfire of its own wood, sits round it of an evening and puts it out when it leaves, and colonists at
+leisure may walk out to sit with them. Prospectors pan the creek (a few pieces of silver now and then, rarely a flake
+of gold, into their packs), gleaners carry home a sack of the field's own crop, and pilgrims sing after dark, one of
+them walking over to play the colony's harp or piano if it has one. The other settlers' hunters take a real wild
+beast that is fair game (nobody's, not marked by the colony, no predator, nothing bigger than a deer), dress it at
+their camp and carry the meat and hide home, and the beast never turns on them; warned off, they go. Mourners carry
+their dead in their arms, past the colony on the road or into their camp, where the body lies by their lamp until they
+carry it home. The tinker mends the pile piece by piece where each lies (worn things on whoever wears them), the
+travelling doctor doses each colonist in turn, the bonesetter spends the afternoon with the one they treat, and a
+travelling cook given the kitchen cooks the feast at the colony's stove with a colonist at their elbow, leaving the
+meals by the stove (and, called away, setting down whatever they carried from the stores). Each kind of visitor has
+lines of its own for arriving, waiting, staying the night and leaving, with words for the weather, the night and the
+season.
 
 ### Ideoligions and the council
 With Ideology, a colony of many ideoligions gives the council something to work with (all of it off in classic mode,
@@ -826,35 +885,36 @@ Select a colonist and three places in their inspect panel tell Rimfolk's side of
   page) turns it off.
 
 ### Life goals
-A few days after settling in, each colonist sets their heart on something to do before they die: master a craft,
-marry for love, have a child, find three true friends, train a student until they can stand alone, make peace with
-a rival, earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, bring down twenty-five
-enemies, raise a hundred and fifty structures, tend a hundred wounds, bring in four hundred harvests, or simply live
-three more years. Children have goals of their own (Biotech): a best friend, getting good at a skill they love, and
-for older children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may
-want a grandchild, one more year or two students who can stand alone; believers a role in their ideoligion or the whole
-colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days
-in a row. Goals grow up with them: a child's dream of letters and numbers, a den of their own or an animal of their
-very own becomes a grown-up's goal (a scholar's, a builder's, a tamer's) when they come of age, and a teenager wants
-a grown-up's work, to be taken seriously, to see past the hills or a first love. The old have last wishes (to see a
-young one grown, one last fine piece, no grudge to the grave, family set right) that a friend may finish after
-them; the faithful want their faith found again or their ideoligion shared; a troubled heart wants to feel safe again, to let a grief
-go, to forgive itself or to find a friend for life. Goals respect belief: nobody whose ideoligion forbids books, pets,
-travel or love sets their heart on them. 84 in all, listed on the Almanac page "every life goal". Goals fit the
-person (their passions, traits and situation) and grow out of what happens to them: a battle makes a warrior, a
-brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child, a lost election
-someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal can make them
-want the same. Something big can change their mind, and when someone dies before reaching theirs, the person who
-loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why. Achieving one is a big
-moment: a letter, a long good mood, trust, friends who are glad for them, and something that stays: a toast at the
-table that evening, an inspiration that fits the goal, a mark on the skill it was about (it never slips again and comes
-a little faster), a younger colonist with the same passion learning at their side, and a title on their Story tab that
-the colony tells round in gossip. Dying before it is
-remembered: the chronicle notes what they never got to do, and their friends write about it.
+A few days after settling in, each colonist sets their heart on something to do before they die: master a craft, marry
+for love, have a child, find three true friends, train a student until they can stand alone, make peace with a rival,
+earn a seat on the council or a name the colony remembers, a bedroom fit for a noble, bring down twenty-five enemies,
+raise a hundred and fifty structures, tend a hundred wounds, bring in four hundred harvests, or simply live three more
+years. Children have goals of their own (Biotech): a best friend, getting good at a skill they love, and for older
+children growing up, which comes true when they come of age, so a grown-up's goal follows. The old may want a
+grandchild, one more year or two students who can stand alone; believers a role in their ideoligion or the whole
+colony sharing it (Ideology); some only want to feel at home or free again, the heart's need well met for ten days in
+a row. Goals grow up with them: a child's dream of letters and numbers, a den of their own or an animal of their very
+own becomes a grown-up's goal (a scholar's, a builder's, a tamer's) when they come of age, and a teenager wants a
+grown-up's work, to be taken seriously, to see past the hills or a first love. The old have last wishes (to see a
+young one grown, one last fine piece, no grudge to the grave, family set right) that a friend may finish after them;
+the faithful want their faith found again or their ideoligion shared; a troubled heart wants to feel safe again, to
+let a grief go, to forgive itself or to find a friend for life. A reader may set out on a reader's year: six different
+books from the colony's shelves, each counted once as it's seen being read. Goals respect belief: nobody whose
+ideoligion forbids books, pets, travel or love sets their heart on them. 85 in all, listed on the Almanac page "every
+life goal". Goals fit the person (their passions, traits and situation) and grow out of what happens to them: a battle
+makes a warrior, a brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child,
+a lost election someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal
+can make them want the same. Something big can change their mind, and when someone dies before reaching theirs, the
+person who loved them most may take it up and finish it for them. The Social tab shows everyone's progress and why.
+Achieving one is a big moment: a letter, a long good mood, trust, friends who are glad for them, and something that
+stays: a toast at the table that evening, an inspiration that fits the goal, a mark on the skill it was about (it
+never slips again and comes a little faster), a younger colonist with the same passion learning at their side, and a
+title on their Story tab that the colony tells round in gossip. Dying before it is remembered: the chronicle notes
+what they never got to do, and their friends write about it.
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
-There are 30 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+There are 32 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
@@ -862,25 +922,28 @@ friend who let a secret slip), an old debt (a rescue or a kindness repaid with s
 grown-up does well), passing it on (an elder's craft handed down), a long grief, the one left (a husband, wife or
 betrothed dead: the empty side of the bed, their things, a first season), a secret told (to a friend first, then
 everyone), a fear faced (an enemy who got away, a dread of the dark or of storms), the fear laid to rest (that enemy
-in the cells or gone for good, and the fear not yet), the recurring dream, a grudge laid down, and within reach (halfway to a life goal and doubting it). Others grow out of the world and the colony's
-offices: the road calls (a friend made at a camp, and the itch to go with them), the weight of office (a new seat on
-the council that sits heavy) and word from far away (family out in the world when sickness, famine or war comes
-there). The young and the old have their own: bad nights (a child's nightmares), not a child any more (a teenager
-and a grown-up who won't see it), a new parent (Biotech), one more spring (an elder in poor health) and the last two
-of us (two old rivals, the last of their generation). Four are **stories of three**: a rival in love (two people
-fond of the same one, who chooses, or doesn't), torn between two students (a mentor with two learners), brothers and
-sisters (a parent and two children at odds) and caught in the middle (someone between two friends who can't stand
-each other). Their talks need the two people together, they can end with either one ahead, and the third keeps a
-journal of it too. With A RimWorld of Magic there's a 29th, the long discipline (a mage or a fighter hits a wall in
-their art and works through it). Each starts from what Rimfolk already knows about the
-colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on only when something
-happens in play: a skill reached, a talk between the two of them in the social log, a piece of excellent quality made,
-a fight at home come through, days with a good mood or a room of their own. Every stage is written in their journal in
-their own voice (and often in the other person's), and in the chronicle; the end brings a letter that tells it all,
-modest earned moods, and sometimes something that lasts: a friendship, a mentorship, a rivalry ended, an inspiration, a
-quirk or a name (the Wanderer, Steadyhand, the Unafraid). Stories can fizzle too, gently, and a death mid-story is
-remembered by the one who shared it. At most one per colonist; how often is a setting (off, rare, normal, frequent).
-The Almanac page "personal stories" lists them all.
+in the cells or gone for good, and the fear not yet), the recurring dream, a grudge laid down, within reach (halfway
+to a life goal and doubting it), getting clean (someone in drug withdrawal and a friend who sits with them of an
+evening, stays through the worst night and raises a cup of tea at supper once it's over; a slip ends it without blame)
+and the new leg (the first steps on a fitted leg with a friend at their side, a frustrating day, the first full day's
+work). Others grow out of the world and the colony's offices: the road calls (a friend made at a camp, and the itch to
+go with them), the weight of office (a new seat on the council that sits heavy) and word from far away (family out in
+the world when sickness, famine or war comes there). The young and the old have their own: bad nights (a child's
+nightmares), not a child any more (a teenager and a grown-up who won't see it), a new parent (Biotech), one more
+spring (an elder in poor health) and the last two of us (two old rivals, the last of their generation). Four are
+**stories of three**: a rival in love (two people fond of the same one, who chooses, or doesn't), torn between two
+students (a mentor with two learners), brothers and sisters (a parent and two children at odds) and caught in the
+middle (someone between two friends who can't stand each other). Their talks need the two people together, they can
+end with either one ahead, and the third keeps a journal of it too. With A RimWorld of Magic there's a 33rd, the long
+discipline (a mage or a fighter hits a wall in their art and works through it). Each starts from what Rimfolk already
+knows about the colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on
+only when something happens in play: a skill reached, a talk between the two of them in the social log, a piece of
+excellent quality made, a fight at home come through, days with a good mood or a room of their own. Every stage is
+written in their journal in their own voice (and often in the other person's), and in the chronicle; the end brings a
+letter that tells it all, modest earned moods, and sometimes something that lasts: a friendship, a mentorship, a
+rivalry ended, an inspiration, a quirk or a name (the Wanderer, Steadyhand, the Unafraid). Stories can fizzle too,
+gently, and a death mid-story is remembered by the one who shared it. At most one per colonist; how often is a setting
+(off, rare, normal, frequent). The Almanac page "personal stories" lists them all.
 
 ### Secrets, vendettas and eulogies
 Some colonists carry a **secret** (61 of them), often from the life their backstory hints at: a raider's past, noble
@@ -948,7 +1011,10 @@ leave on better terms); someone who watched the pyre burn can't stand the smell 
 trader's mark counts every coin twice (better prices), a farmer who lost a crop to locusts walks the fields at dawn (a
 better harvest), someone whose dream came true keeps a dream book (more dreams, all written down), a healer's patient
 swears by their salve (faster healing), one who saw the players juggles at supper (a little recreation for those beside
-them), and one taught a traveler's trick against the cold feels it less. 60 quirks in all. Picking one up and letting it
+them), and one taught a traveler's trick against the cold feels it less. With a coffee or tea mod, an early riser may
+take up making the first pot: on a morning with coffee or tea in the stores they carry a real cup from the stockpile
+to a friend at their leisure, who drinks it there (never to someone whose drug policy, ideoligion or teetotalism rules
+it out). 61 quirks in all. Picking one up and letting it
 fade are written in the journal in the colonist's own voice. Quirks show up between people too: a hummer grates on a
 nervous neighbor or gets a duet, a sleep talker's words are repeated at breakfast, an early riser wakes a night owl,
 the singing cook wins over the gourmand, a whittler carves a gift, two superstitious colonists compare precautions,
@@ -1004,9 +1070,17 @@ Colonists meet everyone else on the map, too:
 - **What their people remember:** a visitor whose people the colony once rescued thanks them, a trader of a grateful
   people gives a friend's price, one whose people hold a grudge charges double or won't haggle, and a visitor whose
   people helped the colony mentions it, and one whose people remember a colonist by name stops them to say thank
-  you. 213 kinds of encounter in all. Most of these small
+  you. 225 kinds of encounter in all. Most of these small
   moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
   against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
+- **Mechs, slaves and what the platforms hold:** with Biotech the colony's own mechs have small moments with those
+  who work beside them (a child names one, someone picks up a trick working the rows beside the agrihand, a mechanitor
+  goes over a damaged mech of their own), for recreation or practice. With Ideology a colonist may have a kind word or
+  a question about home for a slave (the slave thinks better of them and their suppression eases a little), sing them
+  a song from home, or give a hard word, and which words come follows the colonist's own beliefs: nobody whose creed
+  holds slavery honourable stops for a kind word, and nobody kind gives the hard one. With Anomaly an entity on a
+  holding platform is met where it stands: a researcher's fascination is practice, a child's questions too, and a
+  passer-by may feel uneasy for half a day.
 - **The council decides** when it gets harder: a visitor who wants to stay, a rude guest, a trader who wants an
   heirloom, beggars at the gate, a wounded raider who's still breathing, a predator's den, a child who wants to
   keep a wild animal, an old acquaintance who knows a secret.
@@ -1035,8 +1109,19 @@ The herd and the pets are part of the colony's life, not only its larder and its
   out with the herd, and brushing down a horse.
 - **Wishes and life goals:** an animal of one's own, a favourite kind of animal from those of the land (a favourite
   Pokémon with PokéWorld; bonded, it means more), a pack animal of one's own, a barn for a herd that sleeps out (with
-  Giddy-Up 2, something to ride); a champion that fights at one's side, a great beast tamed, a herd worth the name, an animal that knows
-  everything it can be taught.
+  Giddy-Up 2, something to ride), a grave for a named or bonded animal that died (its person digs it near the colony
+  and carries the animal in); a champion that fights at one's side, a great beast tamed, a herd worth the name, an
+  animal that knows everything it can be taught.
+- **From the land:** after a hunter brings down a grown wild animal that has young (never a predator), the young one
+  may stay by the kill: tame it, take it in at once with the hunter bringing it food, or leave it (a kind hunter takes
+  that hard). At dusk a wild animal of a kind the colony keeps, living wild on the land, may come down to the pens: tame
+  it, let it be (the colony watches it and someone names it), or drive it off. A neighbour's stray beast is really
+  there when its letter comes, in the barn, the pen or about the colony, and the letter says where: given back, with
+  or without a finder's fee, their drover walks in with the thanks or the fee and leads it home; kept, that same beast
+  becomes the colony's.
+- **Visitors for the animals:** a drovers' animal doctor tends the colony's hurt and sick animals where they stand
+  and, paid, works one through a step of its training; a travelling beast show camps with beasts from far places to
+  buy, takes one of the colony's grown beasts for seven tenths of its worth, and lets the children help feed them.
 - **Personal stories:** an old companion's last good days (its death ends the story with a farewell), an orphan raised
   by hand until the two may bond, a stray that comes in from the edge of the colony, a feud with an animal that ends in
   a grudging truce.
@@ -1076,7 +1161,7 @@ welcomed (their people's goodwill rises); the elders sit with the young and pass
 ### Traditions
 Choose the same answer to a seasonal dilemma two years running (a midsummer feast, a harvest celebration, a vigil
 on the longest night) and it becomes a tradition. From then on it comes up first every year: keeping it pleases
-everyone, breaking it disappoints them. Twenty-eight customs can become traditions, among them the **planting day** (asked
+everyone, breaking it disappoints them. Thirty-four customs can become traditions, among them the **planting day** (asked
 when the fields open after a cold season: the colony sows together, the grower says a few words at the field's edge,
 and a crop sown in full is remembered as a good start) and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
 the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
@@ -1084,7 +1169,16 @@ to the land: **the sun's return** in the tundra, **the rain welcome** in the des
 the sea or a river, **the marsh lights** in a swamp or jungle, **the high watch** in the hills. Some to the ideoligion,
 with Ideology: **the night vigil**, **the tree-singing** and **the ancestors' supper**. Four are the
 children's (Biotech): a **snow day** off when the snow comes, the **children's race** in summer, the children's
-**gleaning** after the harvest, and **a tree for every child** planted in spring.
+**gleaning** after the harvest, and **a tree for every child** planted in spring. Six more come round with the
+year: **spring cleaning** when winter's dirt is about (a day with brooms and hauling, and a toast in a clean room),
+**the bounds walk** on a dry summer day (the colony walks the edge of its land and sets a stone at each turn, found
+again in later years), **the star night** on a clear warm night, **the fishing match** at the colony's fishing spots
+(Odyssey), **the autumn hunt** when the meat won't last the winter, and **telling the bees** the colony's news at Alpha
+Bees' beehouses.
+
+A custom kept year after year reads like one: its letters remember the last time, speak of a custom kept for years,
+and say so when one was let go; people talk about the occasion itself while it's kept; and openings and outcomes fit
+the weather, the people asking and the land, never the same text twice running when another fits.
 
 ### The colony calendar
 The days that matter to this colony, written down as its history happens: its **founding day**, its **first good
@@ -1170,25 +1264,189 @@ archive*, *renowned hosts*): only the current stage counts, and a message says w
 archive* and *a hospital of the stars*, and with Hospitality the colony can set out to become *renowned hosts*. The
 Almanac page "council projects" lists them all.
 
+### Planning: what to build, make and grow next
+The council window's **Planning** section, between Colony and People, is for what needs planning ahead rather than
+reacting to: the base's growth, its stores and its production. It has four pages, **Plan**, **Base**, **Making** and
+**Room plans**. A small planning button in the bottom bar, after the rooms button, opens the section where you left it
+and closes the window when clicked again (the setting "A planning button in the bottom bar" hides it).
+
+Everything here only suggests. Each suggestion is worked out from the colony as it is now and what it really used
+over the last days (eaters with guests, stocks, measured use, benches and the hands who work them, the season and the
+growing days left, freezer space, materials, builders' hours), gives its reason in numbers ("2 meals in store; 17 eat
+here, about 27 meals' worth a day: 0.1 days"), is ordered by how soon something runs short, and goes by itself once
+its reason is gone. Nothing changes on the map until you click, and every button says on hover what it opens, places
+or orders.
+
+#### The same rules for all the council's advice
+Every piece of the council's advice works the same way: the advisor's cards on the Priorities page, the steps on the
+Plan page, the base review's findings, the Ahead and Building ahead suggestions, the defense advice and the notes on a
+defense line, and the automations' next actions.
+- **Do it** (or the step's own button, such as Place the blueprints or Plan the airlock) carries it out as one step
+  and tells you in a message; **Show** moves the view there and outlines the cells.
+- **Not this** sets it aside, on every page it shows on, until you bring it back from **Set aside** at the end of the
+  page.
+- What a button does on the map is kept under **Done lately** with **Undo** (a bill goes back to its old count or off
+  its bench, a zone gives its new cells back, blueprints and orders are cancelled, a priority goes back to what it was).
+  A day or two later the council looks whether it worked: the stock rose, the zone was sown, the finding has gone. If
+  not, it looks once more, then says what is in the way (a suspended bill, a bench without power or fuel, nobody with
+  the work switched on, pieces still unbuilt, orders still waiting). A step waiting for its check isn't suggested
+  again, and the last 20 steps are kept.
+
+#### The Plan page and building ahead
+The **Plan** page opens with **Building ahead**: the rooms the colony will be short of, in a table of beds, cold store
+places, seats at tables, hospital beds, workshop bench places and store places, each with what is needed, built and
+planned (blueprints, frames and rooms being built) and how it stands, the reason in numbers on hover:
+- **beds** for everyone who sleeps here (colonists, slaves, quest lodgers), the prisoners being recruited once they
+  join and the people an accepted quest brings once they come;
+- **cold store** places for a stack of the meals and raw food the Making page's stock targets keep, then for the days
+  without growing ahead, by the nutrition a place of the colony's own food holds; stores in a room below zero and
+  powered fridges (RimFridge's among them) count;
+- **seats** for everyone who eats here, Hospitality's guests and those who will join too, less one (someone is always
+  asleep or out);
+- **hospital beds**, one for every four people to start with, or as many as were laid up at once over the last 15 days;
+- **workshop** places for every bench, and one more beside a bench kept busy with no idle bench of its kind;
+- **store** places for the stacks lying about at home that a store would take.
+
+The next one or two rooms are suggested before the colony runs short, the most urgent first. **Place the blueprints**
+puts the room down as the room planner would, with your materials and settings, beside the rooms it goes with
+(bedrooms together, the freezer and the dining room by the kitchen, workshop and storeroom side by side, a hospital
+near the gate) and never over a field; Undo takes the blueprints and the marks to cut or mine away again. Never more
+building is suggested than the builders do in a couple of days (a builder's day counts six hours at their construction
+speed, the walking doubled, the rock to mine at the miners' pace); while more is queued, the next room waits and the
+page says so.
+
+A room being built, from here or by you with the room planner, is followed stage by stage: clearing the ground, walls,
+doors and roof, cooling, heating and power, floors, furniture. With build priorities on, the stage at hand can be set
+to high so the walls go up before the furniture; a material the site needs 40 or more of, with no store taking it
+nearby, gets a stockpile beside the site; and what holds the room up is named with its fix where there is one (nobody
+with Construction switched on, a roof nobody marked, too little skill, forbidden pieces, materials short with how
+many, research). Each new room keeps one side free to grow into, 3 to 6 cells deep: the kept ground shows on the map
+while you place a building, a zone or a room, and a blueprint put down there gets a warning you can act on or set
+aside.
+
+Under it come the colony's **next steps**, in your order. Each hour the council proposes steps from what it watches
+(the priorities, the defense advice, an idle research bench), at most eight at once, each with its level and its reason
+in numbers; take one into the plan, set it aside, add your own (with a room plan if it's a room to build), and move
+them up and down or order the plan by urgency. Each step opens what does it: the room planner at a suggested spot, the
+defense plan, the research, or the thing on the map; hovering a step shows on the map what it points at. A step is done
+when you say so, or when the need behind it has passed for three hours running. The first step shows on This week and
+in the council panel. **Ground plan** draws the plan's rooms and the proposals on the map together, each at the spot
+that fits best with the ones before it kept clear (around the rooms being built and their kept sides too), each in its
+own colour with its reasons; "Plan it here", or a click on the drawn outline, opens the planner there.
+
+#### The base, looked over
+The **Base** page is the council's walk round the base, once an hour or when you ask, most pressing first:
+- **rooms** far from what they belong with (a kitchen from the freezer or the dining room, a workshop from its store, a
+  hospital from the gate, a barn from the fields), measured by the walk people really take, round walls and through
+  doors, with the straight line beside it; bedrooms or the hospital right by a workshop or a barn, a cell by the
+  bedrooms; a long walk from the bedrooms to meals (with a dining room offered). "Plan the room" opens the planner on
+  the cheaper of a pair at a spot found beside the other;
+- **doors** with the same room on both sides, and a freezer door straight into the warm, with **Plan the airlock**
+  where there is room (a second door one cell further out and a wall either side of the cell between);
+- **walls**: short stubs left over from rebuilding, never a pillar, a wall with a lamp on it or one holding up a roof;
+- **conduits and pipes** that lead nowhere or are joined to nothing (Dubs Bad Hygiene's and Vanilla Expanded's pipes
+  too), and lines lying over floors and open ground that could run under the walls instead: "Lay them under the walls"
+  plans the new way, and the old pieces are taken down only once every new one stands, so nothing goes dark or dry;
+- **stores**: several stockpiles that take everything at the same priority (**Keep one for anything**: the largest
+  stays, the others go one priority lower), goods lying about that no store takes (**Make a stockpile for them**), a
+  bench far from the store of its materials (**Make a store beside it**, never for raw food or corpses), one kind of
+  goods kept in three rooms or more (**Keep it in one room**), and stores whose filter allows nothing.
+
+Doors, stubs, conduits and pipes have a button that gives the take-down orders. A little map of the base on the left
+shows the rooms by their use and every finding in its part's colour; while the page is open the findings are drawn on
+the real map too, and "Show on the map" keeps them drawn with the window closed. The findings are also proposed as
+steps on the Plan page.
+
+#### What you could make, and Ahead
+The **Making** page opens with **Ahead**: each stock the colony relies on (meals, raw food, animal feed, medicine,
+spare clothes, the materials the blueprints are short of), with what there is, what goes a day, how long it lasts, what
+to keep and how it stands (short, low, enough, more than needed). Food is weighed by its nutrition and storage by its
+cells, so a big pile of a crop with little in each piece is a small stock. Everyone who eats here counts by their own
+hunger (Hospitality's guests and the animals fed from the stores too), food in a RimFridge fridge counts as kept cold,
+and the use comes from the colony's record of the last three days (through the deeper game hooks; estimated until it
+covers a day). What to keep is a day's use times the days set under **Planning ahead** on the Building page of the
+settings (two days of meals and five of food by default, plus the days nothing grows ahead), cut to what keeps without
+a freezer and to the room in the stores.
+
+The suggestions come from those rows, the soonest short first, each with its numbers: raise or lower a meal, medicine
+or feed bill; add a missing bill with bills for what feeds it; copy a bill to a second bench when the first can't keep
+up with the hands there are; grow a food field onto the fertile ground beside it, sow a band of a crop the colony has
+far too much of with a better one, or lay out a new field, each saying how much food a day it adds. The fields are set
+against the next 60 days, the days without growing included; hay and the crops only animals eat feed the animals and
+never count as the people's food. A bill behind a short stock that isn't moving says why, with a one-click fix where
+there is one: it is suspended, its bench is forbidden, broken, unpowered or out of fuel, nobody here can do it or has
+the work switched on, its ingredients are missing or out of its radius, or no store has room for what it makes. For
+spare clothes, the council counts the garments worn below half their hit points, those that soon will be and those
+worn through lately, and keeps enough whole spares in store with a bill. Under the fields comes a **shopping list** for
+the next trader: what the colony wants and can't make here (steel for components, neutroamine for medicine, materials
+the blueprints are short of, clothes no bench makes), with how many, their worth and whether a trader on the map or in
+orbit carries them; for a mineral with a known deposit on the map, a suggestion marks the nearest rock to mine, a
+reachable cell at a time and never one that would leave a roof unsupported. Bills set by Everybody Gets One are left
+alone, and bills Better Workbench Management links change together. With Colony Manager, its hunting, logging,
+mining and foraging jobs and its herds show beside the stock rows; the council only reads them, suggests raising a
+target when the colony wants more of what a job brings in (meat, wood, a mineral on the shopping list) or resuming a
+suspended job, and says first when a manager can't work at all (no desk, a desk off or forbidden, nobody with Managing
+switched on).
+
+Below Ahead, the page reads the recipes of every bench the colony has against the stock, so any mod's benches count.
+"You could make now" lists, bench by bench, each batch the stock allows with no bill for it, the staples first; "Set a
+bill" adds it, and meal, medicine and feed bills go by the stock targets above (the target less what your other bills
+of the kind keep, a day's use at least), with the reason under the batch. The chains, "Wanted for the building and the
+bills", follow each material the blueprints or a waiting bill are short of down through the recipes of the benches you
+have, four links at most: each link with what there is and what is wanted, what is used and made in a day (by what the
+colony actually ate, wore out and used up, and by each bench's own speed and the hand who works it, for how many hours
+a day), how long the stock lasts, the bench and recipe that would make it best and the chain's lead time; "Set the
+chain's bills" sets them all, and a link only a plant yields says how many cells to sow ("Sow it"). Harvests and finds
+nothing here uses are named with the bench that would use them (hops for a brewery, chunks for a stonecutter), and
+benches standing without bills at the bottom.
+
+#### The council's automations
+Under Building in the settings, **Automations: the council does it for you** has eight switches, all off unless you
+turn them on: bills for what the colony lacks (meals, medicine, components and the chains, each its own switch), urgent
+steps straight into the plan, an idle research bench taking up the cheapest project of the colony's era, a stockpile for
+goods nobody stores, take-down orders for what serves nothing, lamps and chairs planned for dark bedrooms and benches,
+trees marked for chopping when the firewood won't see the cold through, and sowing for what a chain wants. Switched on,
+the council does each hour what it would otherwise only suggest, tells you in a quiet message and keeps a log on the
+check-myself page; it never acts while there is fighting on the map or over your own orders, a materials budget a day
+bounds the blueprints it places, and daily caps bound its take-down orders and chopping marks. Each switch shows on the
+settings page, with a game loaded, what it would do right now on your map. At the bottom of the Making page every
+automation's next action is also a step you can do by hand, switched on or not, with its numbers. What the automations
+did is listed there too, each undone at a click, and undoing one counts as Not this: the automation doesn't do it
+again, nor offers it by hand, until you bring it back.
+
+#### Rearrange a room
+**Rearrange a room**, on the Room plans page and in the rooms window, takes a built room and shows where the council
+would put its furniture, on the map, before you say go. Beds get their head to a wall and room to get in, benches
+stand with their back to a wall and their work spot free (in a big workshop in rows, then back to back in islands),
+the table in the middle with the chairs facing it, a lamp where it lights the work, a tool cabinet where it reaches
+the most benches. The council walks the room from its doors as people would and tries each piece at its few best
+places, keeping the main ways clear and the biggest open stretch free, and weighs a better place against the work of
+moving there. The window says how the room walks now and after (the narrowest way, squeeze points, dead ends, the
+walking a day), why each piece goes where it goes, and has two choices for the room: **Aisles** (as needed, one cell
+or two cells) and **Keeps its place** (lightly, as usual or firmly). The moves are the game's own reinstall orders, a
+few at a time as the cells free up; walls, doors, plumbed fixtures, growing plants, filled graves and ritual pieces
+stay (and shelves with goods in them, unless you tick the box), and a piece that would be off the power at its new
+place gets a run of conduit planned to it.
+
 ### Build: room plans
-108 ready-made rooms, grouped by purpose. 28 kinds of room come in several sizes and kinds, picked in the
-planner: a cozy, standard or roomy bedroom, or a sleeping hut for a tribe; a dining room for 4, 8 or 12; an
-infirmary, two hospitals, a ward or a surgery; a prison cell, a furnished cell for a prisoner you hope to recruit, a
-shared cell, or a cell block of three cells off a corridor; a kitchen with one stove, two, or a butchery behind an
-inner door; a scholar's study, laboratory, large laboratory or research wing; a forge, smithy or armorer's
-workshop; a study, library or reading hall; a games corner, rec room or recreation hall; a tomb, crypt or
-catacomb; a weapons locker, armory or arsenal; and smaller and larger greenhouses, breweries, barns and kennels,
-freezers, storerooms, workshops, tailor's shops, drug labs and galleries. The **council chamber** is a room for
-the council's meetings: a council fire for a tribe, or a table for 6, 10 or 20 (the council meets in the biggest
+On the **Room plans** page (Planning section): 108 ready-made rooms, grouped by purpose. 28 kinds of room come in
+several sizes and kinds, picked in the planner: a cozy, standard or roomy bedroom, or a sleeping hut for a tribe; a
+dining room for 4, 8 or 12; an infirmary, two hospitals, a ward or a surgery; a prison cell, a furnished cell for a
+prisoner you hope to recruit, a shared cell, or a cell block of three cells off a corridor; a kitchen with one stove,
+two, or a butchery behind an inner door; a scholar's study, laboratory, large laboratory or research wing; a forge,
+smithy or armorer's workshop; a study, library or reading hall; a games corner, rec room or recreation hall; a tomb,
+crypt or catacomb; a weapons locker, armory or arsenal; and smaller and larger greenhouses, breweries, barns and
+kennels, freezers, storerooms, workshops, tailor's shops, drug labs and galleries. The **council chamber** is a room
+for the council's meetings: a council fire for a tribe, or a table for 6, 10 or 20 (the council meets in the biggest
 dining room). Rooms of their own: tavern corner, butcher's room, heat shelter (no power needed), stonecutter's and
-component workshops, art studio, crematorium, guard post, battery room, and a longhouse and a great hall for
-tribal and medieval colonies. With the DLCs: throne rooms from an audience chamber to a grand throne room, and a
-meditation room (Royalty); a shrine, chapel or temple (Ideology); a schoolroom, playroom, three sizes of nursery,
-a mechanitor's bay and a gene lab (Biotech); a containment cell (Anomaly). With Dubs Bad Hygiene: a small,
-standard or family bathroom and a shared washroom with stall doors, a bathhouse, sauna, laundry and a master
-suite with its own bathroom; with Hospitality a guest room. A room shows up once your colony can build its main
-piece; tribal and medieval colonies get sizes of their own (a council fire, a forge, a scholar's study), and the
-research wing waits for the multi-analyzer. Benches people can sit at come with a chair on the work spot.
+component workshops, art studio, crematorium, guard post, battery room, and a longhouse and a great hall for tribal
+and medieval colonies. With the DLCs: throne rooms from an audience chamber to a grand throne room, and a meditation
+room (Royalty); a shrine, chapel or temple (Ideology); a schoolroom, playroom, three sizes of nursery, a mechanitor's
+bay and a gene lab (Biotech); a containment cell (Anomaly). With Dubs Bad Hygiene: a small, standard or family
+bathroom and a shared washroom with stall doors, a bathhouse, sauna, laundry and a master suite with its own bathroom;
+with Hospitality a guest room. A room shows up once your colony can build its main piece; tribal and medieval colonies
+get sizes of their own (a council fire, a forge, a scholar's study), and the research wing waits for the
+multi-analyzer. Benches people can sit at come with a chair on the work spot.
 
 Pick one from this tab or from the **"rooms"** button in the bottom bar. A color-coded preview
 follows the mouse, and a planner panel lets you:
@@ -1284,11 +1542,15 @@ The page shows the map in a few colors with the ways in and the gaps, the facts 
 commonly done** for the colony's era and land, and **advice ranked by what matters most now**, each with its reasons:
 "Raiders mostly come from the north: about 7 in 10 of their ways in pass here. The way in there is a gap between two
 rock faces, 5 cells wide. A gate there with sandbags behind it holds them." Done advice is marked and moves to the
-end. **Plan it here** opens the plan at the place the advice is about, turned to face the raiders; nothing is built
-until you click. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate or a line holds one,
-labelled "covered by the south-west pass") and where a gate's wall would cross (gold), also with the window closed.
+end, and each piece says what it counts now (the traps in front of the way in, the turrets and cover near it, the raid
+points). **Plan it here** opens the plan at the place the advice is about, turned to face the raiders; nothing is
+built until you click. **Not this** sets a piece of advice aside, here and on the Plan page alike, until you bring it
+back from **Set aside** under the advice; each note on a defense line's card has its own Not this, and a line under
+the notes brings them back. **Show on the map** draws the ways in (red), the gaps (yellow, blue where a gate or a line
+holds one, labelled "covered by the south-west pass") and where a gate's wall would cross (gold), also with the window
+closed.
 
-**Seventeen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
+**Nineteen defense plans**, placed like room plans with every turn and mirror, material choices from what you have,
 rock mined and plants cut where you allow it, and a preview that shows what's ready, waiting or in the way: a gate
 with sandbag lines, a baffled gate (a passage that turns into a walled yard, a small killbox that is also the colony's
 way in), a sandbag or barricade line to put behind a gate you already have, a firing line of pockets for where
@@ -1296,23 +1558,26 @@ raiders come straight on (each shooter behind a piece of wall with sandbags besi
 perimeter wall two thick with an airlock (a gate, a cell, a gate), a second layer of wall that makes an existing line
 two thick, a small killbox for a narrow gap and bows, a killbox, a tunnel killbox dug into a mountain's entrance, a
 trap corridor (a trap every other cell, a fence beside each), a turret nest, a sniper's or archers' post, a fallback
-line, a keep, a mortar pit, and with Medieval Overhaul a palisade and a castle gate with a killing yard (archers
+line, a keep, a mortar pit, a lane of EMP IEDs on the way in, a bait yard (an orbital trade beacon in a clear yard in
+front of the gate), and with Medieval Overhaul a palisade and a castle gate with a killing yard (archers
 behind embrasures across its far side, the way on through a gate in its corner). They are the pieces a defense line
 is built from, a step at a time.
 
 Most of them are **drawn for the colony** rather than fixed, by what the 1.6 game code shows raiders do: from its
 ranged fighters and their reach, whether the raiders it meets throw grenades, its bows, how big raids are and the
 turret it would build. A killbox's way in turns twice and then runs straight for four or five cells, so a raider at
-the last corner, leaning out round it, sees only the middle of the box; the box is bare, as wide as the shooters
-need, deep enough that every shooter is within about 24° of the doorway's line (where its walls give the raider in it
-no cover) and, against grenades, more than a throw from it; double walls once past bows; decoy mini-turrets to either
+the last corner, leaning out round it, sees only the middle of the box; the box is bare, as wide as the shooters need,
+deep enough that every shooter is within about 24° of the doorway's line (where its walls give the raider in it no
+cover) and, against grenades, more than a throw from it; double walls once past bows; decoy mini-turrets to either
 side of its middle line, or an autocannon behind the line beside the gap, where the last corner can't see them and out
-of their blast's reach of anyone; traps and things that slow them in the way in, never in the box. Side lines behind a gate stand far enough out that nobody outside sees
-them and close enough in that the gate gives a raider little cover. The planner says what a plan was drawn for, and
-**Shooters** and **Depth** add or take away; a placed plan remembers what it was drawn for, and a defense line's
-review offers to plan a killbox again when the colony outgrows it (or when it was laid out before plans were drawn),
-and a gate's lines of cover again when they were laid out before and stand within a grenade's throw of raiders who
-throw them. Each uses what the colony can build: barricades and log gates in a medieval colony,
+of their blast's reach of anyone; traps and things that slow them in the way in, never in the box. Side lines behind a
+gate stand far enough out that nobody outside sees them and close enough in that the gate gives a raider little cover.
+The planner says what a plan was drawn for, and **Shooters** and **Depth** add or take away; a placed plan remembers
+what it was drawn for, and a defense line's review offers to plan a killbox again when the colony outgrows it (or when
+it was laid out before plans were drawn), and a gate's lines of cover again when they were laid out before and stand
+within a grenade's throw of raiders who throw them. Against raids of 3,000 points and more, killboxes, gate sandbag
+lines and firing lines drawn for more shooters than one line holds get a second rank three rows behind the first,
+behind sandbags of its own. Each uses what the colony can build: barricades and log gates in a medieval colony,
 sandbags, mini-turrets and autocannons once researched, and the defenses of Medieval Overhaul and Vanilla Furniture
 Expanded - Security where they're there. A plan the colony can't build yet is greyed with what it lacks, research
 included. A plan with a wall line can **close the gap**: the wall carries on to the rock, a wall or deep water on both
@@ -1330,22 +1595,29 @@ defense line** (the gaps without one, busiest first, or a spot picked on the map
 what it should become (hold a gate, a killbox, a turret line, an archers' wall), and it climbs an **eight-step
 ladder**: close the gap, clear the field of fire, cover behind the gate, traps on the way in, guns that never sleep
 (turrets, or an archers' post), the killbox (once raids reach about 700 points, at once for a killbox line: the small,
-full or tunnel killbox as the place allows, tried at the gate first and, if it doesn't fit, where it would), harden the
-line, a line to fall back to. Each step says why now, how it works and the common mistakes, and is ticked off by what
-stands on the map, built by plan or by hand; **Plan this step** opens the planner already placed and turned for the
-line (a step with more than one plan lists them, the one picked for the line first), and plans placed for a line (or
-near its gate) join it. The helper's notes check the line the way a seasoned player would, each with a fix where it
-can: the way round with the gate shut ("the wall stops 4 cells short of the rock to the west", with **Wall it off**),
-which firing positions and turrets, built or planned, see the gate and from how far against the colony's best weapon,
-trees and chunks raiders would shelter behind (**Cut and haul**), turrets that would blow each other up or
-have no power, wood in the wall, a gate not held open, the dark for a belief that fights better in it, and upkeep
-after a raid. A rough **strength** sets the line against today's raids ("should hold a raid of about 1,500 points with
-everyone at their posts"), with its parts in the tooltip. While raiders are on the map the lines watch how they come
-in, every few seconds and only then: through the gate, round it or through the walls, and where colonists fall; after
-the raid each line keeps what it taught ("9 came through the gate, 3 went round to the west; Hana was downed at the
-sandbags on the left") with a button to the check or step it points at. A setting reminds you once a raid when a
-line's gate is shut, and a shut gate's note says what that means: raiders break it if there's no other way, so hold it
-open to keep them coming through.
+full or tunnel killbox as the place allows, tried at the gate first and, if it doesn't fit, where it would), harden
+the line, a line to fall back to. Three more steps join the ladder only while their threat can come and the colony can
+build or make the answer: **EMP for the mechanoids** while mechanoids raid it (two EMP IEDs on the way in, and the EMP
+grenades, launcher and shells the colony can make), **a bait yard for drop pods** while its enemies drop from orbit (a
+raid of people dropping into the colony's middle comes down by a powered beacon four times in ten, mechanoids never,
+and there that is outside the wall), and **mortars for sieges** where enemies lay sieges or mechanoid clusters land
+(the mortar pit deep inside, once mortars are researched). Each step says why now, how it works and the common
+mistakes, and is ticked off by what stands on the map, built by plan or by hand; **Plan this step** opens the planner
+already placed and turned for the line (a step with more than one plan lists them, the one picked for the line first,
+each with how much of it already stands), and plans placed for a line (or near its gate) join it. A step that is done
+keeps **Plan it again**: the same plan placed and turned for the line once more, or another of the step's (the full
+killbox in place of the small one you built, say). The helper's notes check the line the way a seasoned player would,
+each with a fix where it can: the way round with the gate shut ("the wall stops 4 cells short of the rock to the
+west", with **Wall it off**), which firing positions and turrets, built or planned, see the gate and from how far
+against the colony's best weapon, trees and chunks raiders would shelter behind (**Cut and haul**), turrets that would
+blow each other up or have no power, wood in the wall, a gate not held open, the dark for a belief that fights better
+in it, and upkeep after a raid. A rough **strength** sets the line against today's raids ("should hold a raid of about
+1,500 points with everyone at their posts"), with its parts in the tooltip. While raiders are on the map the lines
+watch how they come in, every few seconds and only then: through the gate, round it or through the walls, and where
+colonists fall; after the raid each line keeps what it taught ("9 came through the gate, 3 went round to the west;
+Hana was downed at the sandbags on the left") with a button to the check or step it points at. A setting reminds you
+once a raid when a line's gate is shut, and a shut gate's note says what that means: raiders break it if there's no
+other way, so hold it open to keep them coming through.
 
 A gap the survey finds that a line already holds (its own cells, the same pass measured a few cells off, or the same
 ways in within about 12 cells) is shown as covered by that line and never offered as a new one; a gap on another way
@@ -1437,8 +1709,10 @@ on a warm day, colder on clear nights and much colder in the desert, milder unde
 up). **A forecast**: a few hours before the weather changes, the colonist who reads it best says what's coming, the
 weather that comes is held to, and the forecast is right as often as they're good at it (nearly always with a weather
 station from Stormproof or Weather Control). **Each year leans** a little wetter or drier, warmer or colder, and the
-annals say so when it was. Three settings under "The weather" on the Events page; all need the deeper game hooks, and
-nothing is added to the map.
+annals say so when it was. **Rain washes the yard**: the harder it rains, the faster blood, dirt and the other filth
+the game lets rain wash comes off the open ground; a drizzle adds nothing, and nothing under a roof is touched. Four
+settings under "The weather" on the Events page; the first three need the deeper game hooks, and nothing is added to
+the map.
 
 ### Annals
 When a new year begins, the colony's best reader or talker writes up the year that ended: how many you were and
@@ -1571,6 +1845,12 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   people feel about the colony's ways.
 - **Xenotypes (Biotech, Alpha Genes):** people who never sleep don't ask for beds or bedrooms, people who never eat
   don't ask for meals, and long-lived genes no longer make a grown adult read as a teenager.
+- **Alpha Genes' looks:** the repulsive gene's disgust reaches everyone within six cells, through walls. Someone who
+  carries it no longer disgusts the people around them while they wear something over the whole head, like a burka or
+  a full helmet, and clothes over the body and legs, and angelic beauty's awe is hidden the same way. The "disgusting
+  colonist" mood's What to do names the real remedies: a covering, Kind colonists and carriers of the Teratophilia gene
+  (who aren't bothered), and some distance, such as a room of their own and work away from the others. The setting "A
+  covered face hides looks (Alpha Genes)" turns the covering off; it is one of the deeper game hooks.
 - **Vanilla Skills Expanded:** a life goal to earn an expertise in a skill they love.
 - **Alpha Animals and other animal mods:** the hunting wish only picks ordinary game, nobody goes after a giant
   beast on their own, and the predator by the colony is a wolf or a bear, not a monster. Colonists meet Alpha
@@ -1653,6 +1933,26 @@ the mod's own def names (the tests hold the list):
 - **People who change mid-game** (Big & Small, Character Editor, Pawn Editor, a xenogerm): who they are is read again
   at once, wishes their new body can't use are set aside without blame, someone left without an inner life has theirs
   set aside, and a new race, xenotype or body size gets a line in their own journal. Their records carry over.
+
+### Your mods in the planning pages and the colony's days
+The Planning section, the newer visitors and a few small moments read these mods too, each by name and only when it's
+there:
+- **RimFridge** (and any fridge whose part is named like a refrigerator): its powered fridges count as cold storage
+  for Ahead's stocks and Building ahead's cold store places.
+- **Everybody Gets One:** bills it sets ("one per person", "X per person", "with surplus"), and any bill whose repeat
+  mode another mod added, are read and never changed. **Better Workbench Management:** a bill it links with others is
+  changed together with its whole set. With **Better Pawn Control**, a work priority the council set may change again
+  when its presets switch.
+- **Colony Manager:** its hunting, logging, mining and foraging jobs and its herds show beside Ahead's stocks, read only;
+  a target is raised or a suspended job resumed as a step you click, and a manager that can't work is named first.
+- **Shelves of any mod** count like stockpiles on the Base page, and **Dubs Bad Hygiene's** and **Vanilla Expanded's**
+  pipes are looked over and laid under the walls like conduit.
+- **Coffee and tea mods** (Vanilla Brewing Expanded's coffees and teas, and others): two colonists who have coffee or
+  tea in the same room within the hour share a word over their cups and grow a little closer, and an early riser may
+  take up making the first pot (see Quirks).
+- **Alpha Bees:** stings at the beehouses, and the custom of telling the bees.
+- **Vanilla Books Expanded:** its books count for the book swapper. **Vanilla Fishing Expanded:** fishers camp on open
+  water even without Odyssey.
 
 ## Why am I feeling this?
 Every mood Rimfolk gives says what caused it, under the description in its tooltip: whose wish came true (or
@@ -1746,8 +2046,46 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   A colonist's own life: **word of a death** far away (a wake, a day alone, or straight back to work), a **keepsake**
   from their old life on a trader's blanket, and being **called home** (stay, send silver instead, or let them go,
   seen off at the gate). The neighbors' troubles: **goods with no questions asked**, a **gambler**, a neighbor's
-  **stray beast** in your barn, **hands for hire** who fell trees for a meal, and a **teacher** for the colony's
+  **stray beast** really standing in your barn, pen or about the colony (given back, their drover leads it home;
+  kept, it is the colony's), **hands for hire** who fell trees for a meal, and a **teacher** for the colony's
   children. What you do is remembered by the people it touched.
+- **From what the colony is doing.** A young animal left by a hunter's kill, a wild one of the colony's own livestock
+  kind come down to the pens at dusk (see "The colony's animals"), a miner under the mountain breaking into a real
+  pocket of ore with a seam running on deeper (follow it and the deep rock opens, where insects nest), a visitor who
+  sits down across the colony's chess or poker table to play its best (skill and luck decide it while they play; for
+  silver the stake changes hands), and a neighbour's **commission** for one fine coat, bow, blade or gun the colony can
+  make: a bill goes up at the right bench counting only pieces of the quality asked, their rider collects the first one
+  good enough and pays, and a masterwork brings them back for another.
+- **Faces that come back.** The tinker, the scholar, the doctor, the schoolteacher, the bonesetter, the wandering
+  cook, the scribe, the players' storyteller, the kindred spirit, the art collector and the animal doctor are
+  remembered when they go, up to five at a time. From twenty days on one of them may come back as a familiar face at
+  the gate, asking after the colonist they dealt with and teaching a lesson in their trade for a welcome, greeted in
+  the terms of their trade from the third visit on. Warm visits deepen the thread and cold ones fray it; on a third
+  visit or later they may ask to stay for good, or ask their friend to come along on the road. The World page lists
+  them under "Out there".
+- **Visitors for what the colony keeps.** Each comes only for what the colony really has, waits at the gate for your
+  answer and does on the map what it says. With Ideology, **pilgrims** of a relic's faith come to pray before it: let
+  into the reliquary, kept to the gate, or let in for an offering of silver; with Royalty, **meditators** sit in a ring round the anima tree and their
+  meditation feeds its grass as a colonist's does; with Biotech, **kin of the blood**, two or three of a colonist's own
+  xenotype, ask for them by name, spend the evening at the fire with them and give a lesson in the skill their genes
+  favour; with Odyssey, when the gravship lands near a friendly settlement its folk walk out to see it, to be shown
+  round the hull or to trade at the gate; and a **book swapper** trades one of their real books for one of yours,
+  making the swap at your shelf by their own hand (Vanilla Books Expanded's books count). The regulars the colony knows
+  best (above) come back married, with a child taken in on the road, or from fifty with the
+  apprentice who will walk the road in their place, carrying a carving for their friend; and when one of them dies of
+  great age or an illness they carried, a fellow traveller brings the word and the carving, and the colony can keep a
+  vigil at the gate.
+- **Visitors who come to do something.** An **art collector** comes when the colony has three good sculptures or more,
+  walks round them and offers for one of the finest by its title: sold, it is taken up and carried out to them; a
+  commission has your best sculptor make them a small one, and they come back for it. A neighbouring **couple asks to
+  marry** at the colony, with their families at the wedding feast and a night under your roof (the couple sharing a
+  spare bed) or round their own fire. After a fight with four or more enemy dead still lying out, a **burial order**
+  digs graves for them beyond the gate for silver, or loads them on their pack beast with their gear and takes them
+  away for nothing. A **captive's family** brings silver for a prisoner's freedom (walked out by your wardens, or a
+  slave set free) or asks to talk with them through the cell door (their resistance falls). A **travelling barber**
+  sets a stool by the gate, or works at your styling station with Ideology, and gives those who want one a cut in a
+  style they like. A drovers' **animal doctor** tends the colony's hurt and sick animals where they stand and, paid,
+  works one through a step of its training. The collector and the animal doctor become faces that come back.
 - **Strangers who make camp.** Now and then a group that isn't hostile settles part of your map for days to a
   season: a **hunting party** following a herd, a **refugee family**, **prospectors**, **pilgrims** at rest,
   **traders** with a stall, a **traveling smith**, a **hermit** who builds a hut, **traveling healers** who ease an
@@ -1779,6 +2117,28 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   take; trade, gifts and friendships ease it. The World page shows the camp and lets you talk to them. One camp at a
   time, never in a colony's first twenty days, with its own switch.
 
+  A camp's good turns come from somewhere real: the healer gathers wild healroot at dawn, the drovers milk or shear a
+  beast of their own herd (with a progress bar while they work), and a caravan's gift comes out of its trader's stock.
+  The drovers' milk can also be bought from their camp's page once a day: a drover milks every beast with milk to give,
+  sets it down by the colony's gate, and a colonist carries over the silver. With RimMarket, people from a camp walk
+  over to the colony's own stalls by day and buy what suits them (drovers feed, a smith metal, a family a meal), paying
+  at the stall as RimMarket's shoppers do, and a dear price may put them off (setting "Campers buy at RimMarket's
+  stalls"). Camps talk more round their fire, arrive and leave in more ways, and their requests and the council's
+  questions about them read differently each time.
+
+  Some camps come only when the land has what they come for, and what they take is real. **Fishers** camp by water
+  that holds fish, well clear of the colony, and fish it by day (with Odyssey the water's own fish stock goes down by
+  their catch; Vanilla Fishing Expanded on open water too): buy their catch at the gate, ask where the fish bite, or ask
+  them to keep to the far water. A **scrap crew** (industrial and later) takes the ancient ruins on the colony's land
+  apart piece by piece, never anything that holds a sleeper, a quest or a roof: ask for half the haul, pay to clear the
+  nearest ruin first, or claim the ruins (a proud crew leaves, the rest pay a fee to finish). When the growers can't
+  bring in a ripe harvest before the season ends, **harvest hands** offer to reap it for one sheaf in ten, 120 silver or
+  a hot supper each evening. **Stranded spacers** camp by their wrecked hull, trade spacer parts and glitterworld
+  medicine for components, plasteel or steel, and leave the hull behind for the colony to take apart. With Anomaly,
+  **watchers of the monolith** keep a night watch on the woken monolith, share their notes with the colony's study and
+  ask for its free beds on a stormy evening. A travelling **beast show** brings beasts from far places (see "The
+  colony's animals").
+
 Some events pick up where an earlier one left off: the **deserter**'s old unit tracks them down; the **lost child**
 you walked home comes back years later, grown, with a gift; a **champion** you beat comes back for a rematch (or one
 who beat you, to defend the title); the **great beast**'s young turns up a season after it fell; **pilgrims** you fed
@@ -1809,7 +2169,9 @@ when the fever does, returns well to work off the debt or stay, and later asks f
 own town. Each ending gets its own letter and a line in the chronicle; a path brings at most one fight, and only with
 battles on. Nine of the events that come round most often (the fortune teller, the tinker, stranded merchants, the
 harvest fair, a family visit, the traveling cook, the scribe, the hedge healer, the spirit singer) have more ways to
-read and to turn out.
+read and to turn out. The storyteller's and the land's events open in more ways too, by the season, the land, what
+the colony is known for and who answers the gate, and most answers have several endings, the one that fits the moment
+picked (a neighbours' dispute nobody comes in person for is sent in writing, and the letter says so).
 
 **Missions** are a neighbor's request with clear terms: goods for a **funeral or a wedding** by a set day (meals,
 sculptures, stone blocks, beer), a prize animal that **bolted** onto your land to tame and hand back (or buy, or
@@ -1854,7 +2216,9 @@ doctors and neighbors asking for medicine in a plague year, more hungry pilgrims
 warlord rises), and so do some of the game's own (more herds in a migration, more cold snaps in a hard winter, plague
 likelier in a plague year; this needs the deeper game hooks, and only matters where your storyteller picks by
 weight). It puts two or three questions to the council along the way, sends its own visitors and caravans, and ends in
-a way that depends on what the colony did, with a letter that pays off what came before. The region remembers who
+a way that depends on what the colony did, with a letter that pays off what came before. Each has several ways to
+begin, more letters along the way and more ways to end, and its answers, like a dilemma's, can turn out in more than
+one way, picked to fit the moment, so one that comes back reads differently. The region remembers who
 helped: a people the colony stood by in a plague says so when the next hard year comes, and a famous healer charges
 the colony half.
 
@@ -1888,12 +2252,21 @@ the colony half.
   abandoned** (gone from the map when it ends, unless you have a caravan on its way or a quest there), a **trading
   season**, a **great fair** (send a cart of surplus, enter your best in a contest), a **pilgrimage**, a **silver
   rush**, a **new road** built past the colony (sell timber, lend a builder, have a say in its route; a trading season
-  may follow).
+  may follow), and **the assize**: a circuit judge holds court in a nearby friendly town for a few weeks (hand a
+  prisoner to the court's guards for a reward, bring a grievance against another people, a bed or bread for the judge
+  on the way).
+- **Trade:** with RimMarket, **market days** while a colony stall has goods on its counter: for a fortnight buyers
+  from a friendly people walk up every few days and buy off the colony's counters, each with their own purse, traders
+  may ask for a pitch for their camp, and two buyers may quarrel over a price at the gate. With a working comms console
+  the **orbital lanes** get busy: orbital traders call far more often, debris from the lanes comes down, and an agent
+  walks up from their shuttle to buy the one thing they came for (at half again its worth, or haggled for twice).
 - **The land:** a **famous healer** touring the region, who can mend a colonist's worst lasting condition (a lost
   limb, a chronic illness, an old scar) and teach your doctor; the **great herds**; and with your mods, **strange
   herds** (Alpha Animals) and a **season of wild magic** (A RimWorld of Magic). In an industrial or spacer world, a
   **ship comes down** in the hills: salvage going cheap, survivors, scavengers, and pirates who may come for the
-  wreck.
+  wreck. With Odyssey, **the run**: in spring or fall the fish come up the water in numbers, the colony's water stays
+  full of fish until the run thins, a fishing family may camp by it, and the colony can hold a supper for the first big
+  catch or salt it down.
 - **Beyond the walls:** a **great fire** in a neighbor's town (timber, a builder for the roofs, a burned-out family
   to take in), a **blood feud** between two families of two peoples (hide the one who ran, sit a talker between them,
   pay the last of the blood price), a **comet** (a night watch, a stargazer), a **bumper harvest**, the **drove
@@ -2255,7 +2628,7 @@ Rimfolk's own save data. The only trace in a save is a colonist in the middle of
 the game can't load that mental state, logs it once and lets them go back to work.
 
 ## Ailments and illnesses
-Colony life wears on the body too. **Everyday ailments** (44 of them) are small and temporary: they never kill, never
+Colony life wears on the body too. **Everyday ailments** (53 of them) are small and temporary: they never kill, never
 leave a mark, last from a night to two weeks, and say in their description what helps. Doctors tend them like any
 illness.
 
@@ -2275,8 +2648,15 @@ illness.
   two of its lands have their own: a spore cough in the mycotic jungle and the miasmic mangrove, a fume headache at
   the tar pits and the propane lakes. Snow blindness on bright snow or ice with nothing over the eyes, leeches from
   wading in a swamp, a pollution cough on polluted ground or under the acid haze (Biotech, not with a gas mask), and
-  orbit sickness in the first days aloft (Odyssey). Never more than two at once, never the same one again within days,
-  and never on guests, prisoners or babies.
+  orbit sickness in the first days aloft (Odyssey). A sore elbow after long days of felling trees and chapped hands
+  after hours of outdoor work in the cold; a dry stone-dust cough from mining under the mountain or cutting stone
+  blocks in a small closed room, and sore knees after a day of cleaning or sowing; ringworm from handling animals,
+  which passes on in dirty bedrooms like lice; worms from raw meat or fish (never cooked food), which make someone
+  hungry all the time until a doctor's dose clears them or the body throws them off; gout from fine meals and drink
+  for colonists of 45 and over, half as often with fruit or vegetables lately; a smoker's morning cough; and with Alpha
+  Bees, stings at the hives (less for a skilled handler). The commonest small ones (lice, damp and smoke coughs,
+  sleepless nights, heartburn) come a little less often than they did, so the colony is not sick more overall. Never
+  more than two at once, never the same one again within days, and never on guests, prisoners or babies.
 - **After what happened**, once it's over: a cough after the flu, swellings after the plague, a limp once a broken leg
   bone has knit, an itching burn once a bad burn has healed, bad nights after a fight at home (likelier for those hurt
   in it), and with Anomaly, unease after a horror (an entity's wound, a chimera, the labyrinth, a psychic ritual).
@@ -2297,7 +2677,9 @@ fresh food cures scurvy). Appendicitis can be cut out with a "remove appendix" o
 one of them. The Almanac's **ailments and illnesses** page has the tables.
 
 With Rimfolk: ailments feed the heart's frustration and serious illnesses its fear (and so a little strain); doctors
-and patients write about them in their journals; dreamfever, serious illnesses and many everyday ailments color their
+and patients write and talk about falling ill, getting better and the doctor who saw to them, in words that fit the
+season, the hour, their age and their temperament, and notice when it's the second time; a letter about one person's
+illness names them; dreamfever, serious illnesses and many everyday ailments color their
 dreams; friends visit the sick; a doctor with a serious case is more likely to ask for a stocked infirmary when
 medicine is short, and pulling a patient through lifts both. Settings (Heart & health page): everyday ailments on or off,
 serious illnesses on or off, and how often (25% to 200%). Off, nothing new starts; what's running finishes its
@@ -2484,8 +2866,8 @@ The pages:
   whether Rimfolk's systems talk to each other (see below); with the strength of downsides and of rewards; wish frequency, how many can be open at once and how long they
   last, jealousy and favoritism, wishes after events, reminders, self-help, granted wishes taken back (and the grace
   before they mind), leaving, wishes for others and
-  petitions; dilemmas (and how often), decree requests, the colony's character and offices; the meeting interval,
-  ambition deadlines, and whether meetings call people from their work.
+  petitions; dilemmas (and how often), **Show what each answer does**, decree requests, the colony's character and
+  offices; the meeting interval, ambition deadlines, and whether meetings call people from their work.
 - **People & moods**: **life's ups and downs** (how hard the everyday pressures and setbacks press: **gentle**, half
   strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default, a little under written strength; or **demanding**,
   half again as strong), rising standards (and whether they also cover the game's comforts), whether Rimfolk's good
@@ -2497,22 +2879,33 @@ The pages:
 - **Heart & health**: feelings and strain, the day off at the end of one's rope, the inspector line, how quickly
   strain builds (50% to 150%); everyday ailments, the serious (possibly fatal) illnesses on their own switch, how
   often ailments come (25% to 200%); convalescence and sickbed visits, and doctors' and midwives' reputations.
-- **Events & world**: encounters with strangers and animals (and how often), nemeses (and whether they return),
-  pets as companions; **Rimfolk events** on or off, whether they may bring fights, camps on the map, missions in the
-  Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's own timer does (and how
-  often); the strength of fights in Rimfolk's scenarios; **world events** on or off and how often (about one every
-  45 days by default); whether the world's **peoples remember the colony**; the colony calendar's days; and whether
-  answers play out on the map (feasts eaten, fires lit, visits paid, work parties, vigils and errands).
+- **Events & world**: encounters with strangers and animals (and how often), nemeses (and whether they return), pets
+  as companions, and Hospitality's guests (joining only when they would, guests in the colony's stories, recruiting
+  spelled out on the guest tab); **Rimfolk events** on or off, whether they may bring fights, camps on the map,
+  missions in the Quests tab, and whether the storyteller draws them (and how likely each is) or Rimfolk's own timer
+  does (and how often); the strength of fights in Rimfolk's scenarios; **world events** on or off and how often (about
+  one every 45 days by default); whether the world's **peoples remember the colony**; the weather (weather that
+  changes like weather, its pull on the temperature, the forecast, rain washing the yard); the colony calendar's days;
+  and whether answers play out on the map (feasts eaten, fires lit, visits paid, work parties, vigils and errands) and
+  goods and people come and go by hand.
 - **Building**: personal touches and how often; what the room planner does by default (plan the furniture, cut
-  plants, mine rock, replace your own buildings, smooth stone; the planner shows the same switches); and **material
-  counts in build menus** (the game's own material list shows what the colony has; one of the deeper game hooks).
+  plants, mine rock, replace your own buildings, smooth stone; the planner shows the same switches); **material
+  counts in build menus** (the game's own material list shows what the colony has) and build priorities on
+  blueprints; reserved slots on shelves and drinks and smokes kept out of the freezer (all four among the deeper game
+  hooks); the council's **automations** (each its own switch, all off to begin with, with the materials budget and the
+  daily caps); and **Planning ahead**, the days of meals to keep cooked and of food to keep in store that the Making
+  page's stock targets are worked out from.
 - **Interface & integrations**: how chatty Rimfolk is: **Everything**, **Notable only** (default: messages for what
   changes something; small moments stay in the journals, the Story tab and History) or **Important only**; where the
   smaller news goes (**Colony news**: one letter each evening by default, as it happens, or off, to the History tab
   only); a message for every dream, letters or messages for new and granted wishes, a letter after each update (on
   by default; see CHANGELOG.md), how colonists' speech shows
-  (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the two alerts; mood insight (and its hints in the Needs tab), the slow speed buttons (and putting them
-  back), where the council button sits in the bottom bar, the rooms button, which page the council window opens on
+  (bubbles with Interaction Bubbles, floating text, or off), the visual and sound touches; the alerts (and the
+  reminder about a defense line's shut gate); mood insight (and its hints in the Needs tab), taking cover with a drag,
+  RimMarket's stalls (Rimfolk's sales table, stall goods for trade ships, guests and campers buying at the stalls),
+  **A covered face hides looks (Alpha Genes)**, the slow speed buttons (and putting them
+  back), where the council button sits in the bottom bar, the defense, rooms and planning buttons, a "more" button for
+  the bottom bar's buttons you put away, which page the council window opens on
   (**This week** by default, or the last page), the Almanac's text size; the **on-screen panels** (each panel's
   options, lock, hiding, the game's own alert list, look, text size, the food and mood lines, putting them back) and
   the **hover card** (the game's tooltip under it too); the
@@ -2535,9 +2928,14 @@ new setting needs a row there.
 - **RimMarket** by BenFD: a colony stall's "Set up the stall" opens Rimfolk's own sales table (setting on the
   Interface page): the colony's goods by category on the left, a click to put them on the counter; what is for sale on
   the right, a card a line, with the count, the quality range, the price on a slider with what it fetches and how well
-  it sells (and, with RimMarket 1.0.13 or later, its Refill and Keep home); one price for every line at once; and what
-  it all comes to and how often shoppers come. It reads and sets RimMarket's own sale lines, by name, and RimMarket's
-  window opens if they're not what Rimfolk expects. With a powered
+  it sells (and, with RimMarket 1.0.13 or later, its Refill and Keep home: Refill keeps that many on the counter for
+  good, Keep home stops the haulers once the colony is down to that many, and changing a line's count, quality or price
+  keeps both as they were); one price for every line at once; and what
+  it all comes to and how often shoppers come. It reads and sets RimMarket's own sale lines, by name, with the old
+  RimMarket and the new, and RimMarket's window opens if they're not what Rimfolk expects. People from a camp on the
+  colony's land walk over to the stalls by day and buy what suits them, paying at the stall (setting "Campers buy at
+  RimMarket's stalls"), and **market days**, a world event, bring buyers from a friendly people up the road for a
+  fortnight while a stall has goods on its counter (see "World events"). With a powered
   orbital trade beacon on the map, what lies on the colony's stalls is offered to trade ships too, after what lies in
   the beacon's range, and what a ship buys from a stall comes off its sale line; a stall alone is never a beacon
   (setting "RimMarket's stall goods for trade ships"). With Hospitality too, guests always may shop at the market's
@@ -2566,16 +2964,15 @@ lab from ever being started, while the builders went off to mine or tend animals
 instead, so each build is judged on its own. The game's rule stays: a build gets a material only once all of it that
 it still needs is on the map (the frame's inspect pane shows what's still missing). Needs the deeper game hooks.
 
-Version 0.4. It compiles against RimWorld 1.6 and is checked against 1.7 (the same DLL runs on both), and all XML
-is checked against the real game types by the included validator. It runs in a live game with a 200+ mod medieval
-list. If something misbehaves, open the debug log (Options → Development mode, then the log button): lines starting
-with `[Rimfolk]` are from this mod.
-Please share them so they can be fixed. Quicker still: with development mode on, open the debug actions and pick
-**Rimfolk: check myself** (under Rimfolk). One window shows the game, Rimfolk and Harmony versions, which game hooks
-applied and which didn't (and why), which parts are switched off or changed from their defaults, which of the mods
-Rimfolk works with it found, whether a camp or a trade caravan could come to the home map now and what stops it, and
-its own errors and warnings this session; a screenshot of it (or the "Copy to clipboard" button) says most of what a
-bug report needs.
+Version 0.52.1 (CHANGELOG.md has every round). It compiles against RimWorld 1.6 and is checked against 1.7 (the same
+DLL runs on both), and all XML is checked against the real game types by the included validator. It runs in a live
+game with a 200+ mod medieval list. If something misbehaves, open the debug log (Options → Development mode, then the
+log button): lines starting with `[Rimfolk]` are from this mod. Please share them so they can be fixed. Quicker still:
+with development mode on, open the debug actions and pick **Rimfolk: check myself** (under Rimfolk). One window shows
+the game, Rimfolk and Harmony versions, which game hooks applied and which didn't (and why), which parts are switched
+off or changed from their defaults, which of the mods Rimfolk works with it found, whether a camp or a trade caravan
+could come to the home map now and what stops it, and its own errors and warnings this session; a screenshot of it (or
+the "Copy to clipboard" button) says most of what a bug report needs.
 
 ## For modders
 
@@ -2588,7 +2985,11 @@ bug report needs.
 - `Tools/ApiDiff/`: checks that the built DLL still runs on another game version (every game member, override,
   constant, Harmony target and by-name lookup it uses). `-p:RimRef=1.7` builds against the 1.7 references. See
   "Checking a new game version" in [DESIGN.md](DESIGN.md).
-- `Tools/Tests/`: tests for the room rotation and mirroring math (`dotnet run --project Tools/Tests`).
+- `Tools/Tests/`: the tests, from the room and defense layouts in every turn to the planning arithmetic (stock
+  targets, building ahead), the settings catalog and the rules for speech (`cd Tools/Tests && dotnet run -c Release`).
+  Pure code shared with the mod is linked in `Tools/Tests/Tests.csproj`.
+- `python3 Tools/dilemma_balance.py` weighs every answer of every dilemma in points per scale and flags those whose
+  answers are dominated or too easy (`docs/dilemma-balance.md`).
 - `Tools/Balance/`: a colony-year simulator for balance. It plays a settled colony of 6 and of 12 through one year,
   well run, average and neglected, from the defs, the code's rates and the mod's own mood arithmetic, and writes
   `docs/balance-report.md` (moods, trust, letters per day by system, ailments, the presets), against the targets in
