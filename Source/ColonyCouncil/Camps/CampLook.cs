@@ -268,6 +268,7 @@ namespace ColonyCouncil
             if (g.pokemon) return PokeWorldCamp.TrainerKind(map);
             var biome = map.Biome;
             var opts = (g.kinds ?? new List<string>()).Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n))
+                .Concat(g.tags.NullOrEmpty() ? Enumerable.Empty<PawnKindDef>() : DefDatabase<PawnKindDef>.AllDefs.Where(k => CampLand.ShowBeast(k, g.tags))).Distinct()
                 .Where(k => k?.race?.race != null && k.RaceProps.Animal && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)
                             && (!k.RaceProps.packAnimal || biome == null || biome.IsPackAnimalAllowed(k.race))).ToList();
             if (opts.Count == 0) return null;

@@ -172,6 +172,7 @@ namespace ColonyCouncil
                     }
                     case "colony": return PlaySpots.OpenCell(map, walker);
                     case "A": return a != null && a.Spawned && a.Map == map && !a.Dead ? a.Position : IntVec3.Invalid;
+                    default: return LandErrandCell(to, walker);
                 }
             }
             catch (Exception e)

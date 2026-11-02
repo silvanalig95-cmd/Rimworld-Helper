@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Camps that come for something on the land (ColonyCouncil.CampKindDef needs and work, Source/ColonyCouncil/Camps/
+       CampKindsLand.cs): fishers by water with fish in it, a scrap crew at the ancient ruins, harvest hands for fields
+       the growers can't bring in before the season ends, spacers by their wrecked craft at the map's edge, watchers of
+       Anomaly's woken monolith, and a travelling beast show. Each comes only when the land has what it comes for, and
+       pitches by it. -->
+
+  <!-- ===================== Their work ===================== -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampFish</defName>
+    <reportString>fishing.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2200</ticks><effecterNamed>Fishing</effecterNamed><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampStrip</defName>
+    <reportString>taking apart TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks><repairEffect>true</repairEffect><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampReap</defName>
+    <reportString>reaping TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>320</ticks><effecter>Harvest_Plant</effecter><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampTakeUp</defName>
+    <reportString>taking up TargetA.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>90</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampHull</defName>
+    <reportString>working on the wrecked hull.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks><repairEffect>true</repairEffect></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampWatch</defName>
+    <reportString>watching the monolith.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Camp_SoldOurBeast</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>sold the beast I kept</label><description>The colony sold the beast I looked after to the travelling show. I know it'll be fed. It's not the same.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Fishers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Fishers</defName>
+    <label>fishers</label>
+    <minTech>Neolithic</minTech>
+    <weight>0.8</weight>
+    <people>3~5</people>
+    <days>3~6</days>
+    <ages>14~60</ages>
+    <family>true</family>
+    <needs>fish</needs>
+    <work>fish</work>
+    <chopsPerDay>0.3</chopsPerDay>
+    <hireChance>0.25</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>fish</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Medicine</li>
+      <li>Textiles</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.25</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>run</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>3</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <animals>
+      <li><kinds><li>LabradorRetriever</li><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <titles>
+      <li>Fishers on the bank</li>
+      <li>A fishing family</li>
+    </titles>
+    <texts>
+      <li>A fishing family of {FACTION} has come down to the water with their lines and baskets. {X_nameDef}, who does the talking for them, asked {A_nameDef} for leave to camp {PLACE}, by the water, and fish there for a few days.</li>
+      <li>[ws:run] The fish are running, and a fishing family of {FACTION} has followed them. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE}, by the water, while the run lasts.</li>
+      <li>[their:grateful] The fishers of {FACTION} remember the colony kindly. {X_nameDef} came up from the water to ask {A_nameDef}, as an old friend would, for a few days' camp {PLACE}.</li>
+      <li>[winter] A fishing family of {FACTION}, fishing through the cold months, asked {A_nameDef} for leave to camp {PLACE} by the open water. {X_nameDef} says the fish are slow, but they bite.</li>
+    </texts>
+    <settled>
+      <li>The fishers from {FACTION} have made camp {PLACE}, close to the water, with a fire for drying the catch.</li>
+      <li>The fishing family's camp is up {PLACE}: a fire, a windbreak, lines hung out to dry and a dog asleep by the baskets.</li>
+      <li>The fishers have settled {PLACE} by the water, and one of them is already out at the edge with a line.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the fishers' youngest, says {X_pronoun} is tired of moving from bank to bank, and asks whether the colony could use someone who knows the water.</li>
+      <li>{X_nameDef} from the fishers' camp has been bringing fish up to the colony's door of an evening, unasked. Tonight {X_pronoun} asked whether {X_pronoun} might stay for good.</li>
+      <li>{X_nameDef} of the fishing family says the others will manage without {X_objective}, and asks whether there's room in the colony for one more pair of hands.</li>
+    </joinTexts>
+    <farewell>
+      <li>The fishers from {FACTION} rolled up their lines at first light and walked on along the water, baskets on their backs.</li>
+      <li>The fishers' camp {PLACE} is empty, and there's a ring of fish bones round the cold fire.</li>
+      <li>The fishing family from {FACTION} packed up and moved on to the next good water, the dog running ahead.</li>
+    </farewell>
+    <lines>
+      <li>They're biting this morning.</li>
+      <li>Mind the line.</li>
+      <li>Keep your shadow off the water.</li>
+      <li>That one got away.</li>
+      <li>The deep pool's where they sit.</li>
+      <li>Bring the basket over.</li>
+      <li>Rain brings them up.</li>
+      <li>Salt that lot before it turns.</li>
+    </lines>
+    <momentLines>
+      <li>[fish] A good one.</li>
+      <li>[fish] There, see it?</li>
+      <li>[fish] Basket's filling.</li>
+      <li>[fish] Easy, easy, don't lose it.</li>
+      <li>[fish] Small, but it'll do for supper.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[fish] {X_nameDef} set out {COUNT} {THING} from the fishers' catch at the edge of their camp for the colony, wrapped in leaves.</li>
+      <li>[fish] The fishers left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} waved at {A_nameDef} to come and take it.</li>
+      <li>[tales] {A_nameDef} sat with the fishers at their fire and heard about every river, lake and coast between here and the sea, and which of them are fished out.</li>
+    </helpTexts>
+    <asks>
+      <!-- Their catch (Camps/CampKindsLand.cs): the fish in their stash now, at its worth; one of them takes it up and
+           carries it to the colony's gate, where the colony pays. -->
+      <li>
+        <key>catch</key>
+        <label>Buy their catch: {THING}</label>
+        <tip>One of the fishers takes up the fish lying at their camp and carries it to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>catch</price>
+        <needs>theirCatch</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} nodded and sent one of the family to the baskets: the catch will be set down by the colony's gate.</li>
+          <li>The fishers are bringing their catch up to the colony's gate, and {X_nameDef} wants it eaten fresh.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampCatchSale" />
+        </effects>
+      </li>
+      <li>
+        <key>where</key>
+        <label>Ask where the fish bite</label>
+        <tip>{X_nameDef} walks to the water near the colony that holds the most fish and waits there an hour or so, so the colony knows where to fish. Fishers keep their best water to themselves, so they take the asking a little hard.</tip>
+        <tension>3</tension>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} thought about it for a while, then said {X_pronoun} would show {A_nameDef} the best water this afternoon, and nobody else.</li>
+          <li>{X_nameDef} laughed and said fishers never tell, then said {X_pronoun} would walk down to it anyway.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>richwater</to>
+            <count>1</count>
+            <doing>showfish</doing>
+            <hours>1~1.5</hours>
+            <when>8~17</when>
+            <lines>
+              <li>Here, where it's deep and slow.</li>
+              <li>Fish it early, before the sun's on it.</li>
+              <li>Watch the rings on the water.</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
+      <li>
+        <key>farwater</key>
+        <label>Ask them to fish only the far water</label>
+        <tip>The fishers keep to the water away from the colony's side of their camp and away from its fishing spots, so the colony's water keeps its fish. They catch less, and they don't like it.</tip>
+        <needs>farWater</needs>
+        <tension>8</tension>
+        <warm>0</warm>
+        <outcomes>
+          <li>{X_nameDef} said the far water is thin, but the fishers will keep to it.</li>
+          <li>{X_nameDef} agreed, without much grace. The fishers will fish the far water from now on.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampFarWater"><far>true</far></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Salvagers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Salvagers</defName>
+    <label>salvagers</label>
+    <eras>
+      <li>industrial</li>
+      <li>spacer</li>
+    </eras>
+    <minTech>Medieval</minTech>
+    <weight>0.8</weight>
+    <people>3~5</people>
+    <days>4~8</days>
+    <ages>18~60</ages>
+    <needs>ruins</needs>
+    <work>strip</work>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>scrap</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>RoadFood</li>
+      <li>Medicine</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.15</breakTerms>
+    <tensionPerDay>1.2</tensionPerDay>
+    <extendChance>0.25</extendChance>
+    <situationKinds>
+      <li>ruins</li>
+      <li>wreck</li>
+      <li>rebuild</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>4</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <animals>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Donkey</li></kinds><count>1~2</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>A scrap crew</li>
+      <li>Salvagers at the ruins</li>
+    </titles>
+    <texts>
+      <li>A scrap crew of {FACTION} has come for the old ruins on the colony's land, with pry bars, cutting tools and a pack beast for the haul. {X_nameDef}, their foreman, asked {A_nameDef} for leave to camp {PLACE} and take the ruins apart.</li>
+      <li>[ws:ruins] Word of the old ruins has got about, and a scrap crew of {FACTION} has come for them. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and strip what's there.</li>
+      <li>[their:grateful] The salvagers of {FACTION} remember the colony as fair dealers. {X_nameDef} asked {A_nameDef} for a camp {PLACE}, by the ruins, and promised the colony its share.</li>
+    </texts>
+    <settled>
+      <li>The salvagers from {FACTION} have made camp {PLACE}, near the ruins, with their tools laid out on a cloth by the fire.</li>
+      <li>The scrap crew's camp is up {PLACE}: a fire, a windbreak, and a pack beast tied up beside an empty space for the haul.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the scrap crew says {X_pronoun} has pulled apart enough ruins for one life, and asks whether the colony needs someone who can build things up instead.</li>
+      <li>{X_nameDef} from the salvagers' camp asks to stay on with the colony. {X_pronoun} says the foreman keeps the best of every haul.</li>
+    </joinTexts>
+    <farewell>
+      <li>The salvagers from {FACTION} loaded their haul and walked on, the pack beast complaining under it.</li>
+      <li>The scrap crew's camp {PLACE} is empty, and where the ruins stood there's mostly open ground now.</li>
+    </farewell>
+    <lines>
+      <li>Steel under all that rust.</li>
+      <li>Mind your fingers on that edge.</li>
+      <li>Stack it by the fire.</li>
+      <li>Whoever built this built it well.</li>
+      <li>Pry bar, not your hands.</li>
+      <li>That wall's coming down tomorrow.</li>
+      <li>Count the plates again.</li>
+      <li>Old work, good metal.</li>
+    </lines>
+    <momentLines>
+      <li>[strip] Right, this one next.</li>
+      <li>[strip] Easy, it's heavier than it looks.</li>
+      <li>[strip] Stand clear.</li>
+      <li>[strip] Good steel in this one.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[scrap] {X_nameDef} set out {COUNT} {THING} from the salvagers' haul at the edge of their camp, for the colony.</li>
+      <li>[scrap] The scrap crew left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} said it was only fair.</li>
+      <li>[tales] {A_nameDef} sat with the salvagers at their fire and heard where the old cities were, and what was found in them.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>split</key>
+        <label>Ask for half the haul</label>
+        <tip>Two of the crew take up half of the two biggest piles of what they've stripped so far and carry it to the colony's gate. They give it, but they had counted on it.</tip>
+        <needs>theirHaul</needs>
+        <tension>10</tension>
+        <warm>0</warm>
+        <outcomes>
+          <li>{X_nameDef} looked at the pile for a long moment, then told two of the crew to carry half of it up to the colony's gate.</li>
+          <li>{X_nameDef} said the land is the colony's and so is half the haul, and sent it up to the gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHaulShare" />
+        </effects>
+      </li>
+      <li>
+        <key>clearnear</key>
+        <label>Pay them to clear the ruin nearest the colony ({COUNT} silver)</label>
+        <tip>The crew starts on the pieces of the ruins nearest the colony, outside its home area, and takes them down before any others. The colony gets the ground back; what they strip is still theirs.</tip>
+        <silver>150</silver>
+        <needs>nearRuin</needs>
+        <tension>-4</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} counted the silver and said the crew will start on the ruin nearest the colony tomorrow.</li>
+          <li>The salvagers will clear the old ruin nearest the colony first, and {X_nameDef} says it'll be flat ground by the end of their stay.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampClearNear" />
+        </effects>
+      </li>
+      <li>
+        <key>ours</key>
+        <label>Tell them these ruins are the colony's</label>
+        <tip>{A_nameDef} tells the crew the ruins belong to the colony. A proud or an uneasy crew packs up and goes; otherwise they pay the colony a fee every five days to finish.</tip>
+        <tension>12</tension>
+        <warm>0</warm>
+        <outcomes>
+          <li>{A_nameDef} told {X_nameDef} the ruins on this land are the colony's.</li>
+          <li>{A_nameDef} went down to the crew's fire and said the ruins belong to the colony.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampRuinsOurs" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Harvest hands ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_HarvestHands</defName>
+    <label>harvest hands</label>
+    <minTech>Neolithic</minTech>
+    <weight>1.2</weight>
+    <people>4~6</people>
+    <days>3~6</days>
+    <ages>16~55</ages>
+    <needs>harvest</needs>
+    <work>reap</work>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+      <li>Clothes</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.1</extendChance>
+    <situationKinds>
+      <li>harvest</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Harvest hands</li>
+      <li>A reaping crew</li>
+    </titles>
+    <texts>
+      <li>A reaping crew of {FACTION} is following the end of the season from farm to farm, and they've seen the colony's fields standing ripe. {X_nameDef}, their gang master, asked {A_nameDef} for leave to camp {PLACE}, and will ask about the work once they're settled.</li>
+      <li>[ws:harvest] With the harvest on all over the region, a reaping crew of {FACTION} has come by. {X_nameDef} asked {A_nameDef} for a camp {PLACE}, and looked hard at the colony's fields while asking.</li>
+      <li>[fall] The cold is coming, and a reaping crew of {FACTION} has come by with their sickles. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and said the colony's crop won't wait for the frost.</li>
+    </texts>
+    <settled>
+      <li>The harvest hands from {FACTION} have made camp {PLACE}: bedrolls round a fire, and their sickles sharpened before supper.</li>
+      <li>The reaping crew's camp is up {PLACE}, and {X_nameDef} is already walking along the edge of the colony's fields, looking.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the reaping crew says {X_pronoun} has followed the harvest long enough, and asks whether the colony would keep a grower through the winter.</li>
+      <li>{X_nameDef} from the harvest hands' camp asks to stay on. {X_pronoun} says the colony's fields are the best {X_pronoun} has worked this year.</li>
+    </joinTexts>
+    <farewell>
+      <li>The harvest hands from {FACTION} shouldered their sickles and walked on to the next farm, singing.</li>
+      <li>The reaping crew's camp {PLACE} is empty, and the colony's fields are bare and in.</li>
+    </farewell>
+    <lines>
+      <li>Keep the rows straight.</li>
+      <li>Low and steady with the blade.</li>
+      <li>Frost's not far off.</li>
+      <li>Another row before supper.</li>
+      <li>Good crop, this.</li>
+      <li>Mind the edge of the field.</li>
+      <li>Leave it for the haulers.</li>
+      <li>My back says it's evening.</li>
+    </lines>
+    <momentLines>
+      <li>[reap] That's the row done.</li>
+      <li>[reap] Lovely crop.</li>
+      <li>[reap] Leave it where it falls, they'll take it in.</li>
+      <li>[reap] Keep up, keep up.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the harvest hands at their fire and heard about every farm from here to the coast, and which of them pay.</li>
+    </helpTexts>
+    <asks>
+      <!-- Their offer, by letter once the camp stands (Camps/CampKindsLand.cs). Turned down, they move on. The same work
+           can be taken on from their page for silver or for suppers instead. -->
+      <li>
+        <key>work</key>
+        <theyAsk>true</theyAsk>
+        <label>Take them on for one sheaf in ten</label>
+        <refuseLabel>Decline: the colony will bring its own harvest in</refuseLabel>
+        <needs>notHired</needs>
+        <tension>-3</tension>
+        <deed>favorDone</deed>
+        <askTexts>
+          <li>{X_nameDef} has walked the colony's fields, and says there's more standing ripe than the colony's growers will get in before the season ends. The crew would reap it all for one sheaf in ten of what they cut.</li>
+          <li>The reaping crew has had a look at the colony's crop. {X_nameDef} offers to bring it all in before the cold comes, the crew to keep one sheaf in ten.</li>
+        </askTexts>
+        <tip>The crew reaps the colony's ripe crops by day and leaves them where they grew for the colony's haulers; one in ten of what each plant gives goes in their own packs. Their page also offers the work for silver, or for a hot supper each evening they worked.</tip>
+        <outcomes>
+          <li>{X_nameDef} shook {A_nameDef}'s hand on it, and the crew will be in the fields in the morning.</li>
+          <li>The harvest hands will start on the colony's fields at first light, one sheaf in ten to them.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the next farm down the road will want them, and the crew is packing up.</li>
+          <li>{X_nameDef} shrugged and said the frost will decide who was right. The crew is moving on.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHireHands"><pay>sheaf</pay></li>
+        </effects>
+      </li>
+      <li>
+        <key>paysilver</key>
+        <label>Take them on for silver ({COUNT})</label>
+        <tip>The crew reaps the colony's ripe crops by day and leaves every plant's yield where it grew for the colony's haulers. The silver is carried over to their camp now.</tip>
+        <silver>120</silver>
+        <needs>notHired</needs>
+        <tension>-5</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} counted the silver into a pouch, and the crew will be in the colony's fields in the morning.</li>
+          <li>The harvest hands took the silver, and said the colony can keep every sheaf.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHireHands"><pay>silver</pay></li>
+        </effects>
+      </li>
+      <li>
+        <key>paymeals</key>
+        <label>Take them on for a hot supper each night</label>
+        <tip>The crew reaps the colony's ripe crops by day and leaves it all for the colony's haulers. Each evening they worked, a colonist carries a cooked meal for each of them over to their camp. With no meals in the stores, they go without, and take it badly.</tip>
+        <needs>notHired</needs>
+        <tension>-4</tension>
+        <deed>favorDone</deed>
+        <outcomes>
+          <li>{X_nameDef} said a hot supper is worth more than silver at the end of a long day, and the crew will start in the morning.</li>
+          <li>The harvest hands agreed to work for their suppers. {X_nameDef} asked only that the food be hot.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampHireHands"><pay>meals</pay></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Stranded spacers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Spacers</defName>
+    <label>stranded spacers</label>
+    <eras>
+      <li>industrial</li>
+      <li>spacer</li>
+    </eras>
+    <minTech>Spacer</minTech>
+    <weight>0.6</weight>
+    <people>2~4</people>
+    <days>4~7</days>
+    <ages>20~60</ages>
+    <needs>edge</needs>
+    <work>hull</work>
+    <hireChance>0.4</hireChance>
+    <joinChance>0.12</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>repair</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Medicine</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>wreck</li>
+      <li>sky</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Synthread</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Spacers down by the edge</li>
+      <li>A wrecked craft</li>
+    </titles>
+    <texts>
+      <li>A small craft of {FACTION} came down hard near the edge of the colony's land, and its crew walked away from it. {X_nameDef}, its pilot, asked {A_nameDef} for leave to camp {PLACE} by the wreck while they strip what they can carry and wait for their people to send for them.</li>
+      <li>[ws:sky] Something came down out of the sky near the map's edge: a craft of {FACTION}, and its crew alive. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} by the hull a few days.</li>
+    </texts>
+    <settled>
+      <li>The spacers from {FACTION} have made camp {PLACE}, in the lee of their wrecked hull, with a fire they don't quite know how to keep.</li>
+      <li>The stranded crew's camp is up {PLACE}, beside the broken hull, and someone is already inside it with a light.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, a passenger on the wrecked craft, says {X_pronoun} has no wish to go back up, and asks whether the colony would take {X_objective} in.</li>
+      <li>{X_nameDef} of the stranded spacers asks to stay with the colony when the others go. {X_pronoun} says this is the first ground in years that felt like ground.</li>
+    </joinTexts>
+    <farewell>
+      <li>The spacers from {FACTION} shouldered what they stripped from their craft and walked out to meet their people beyond the edge. The broken hull stays where it came down.</li>
+      <li>The stranded crew's camp {PLACE} is empty. Their wrecked hull is left for whoever wants to take it apart.</li>
+    </farewell>
+    <lines>
+      <li>Gravity's heavier than I remember.</li>
+      <li>Drive's cracked right through.</li>
+      <li>Strip the coupling first.</li>
+      <li>No signal yet.</li>
+      <li>Is the air always this wet?</li>
+      <li>Keep the cells dry.</li>
+      <li>We came down lucky.</li>
+      <li>Someone will come for us.</li>
+    </lines>
+    <momentLines>
+      <li>[hull] Hand me the cutter.</li>
+      <li>[hull] This panel's still good.</li>
+      <li>[hull] Mind the coolant.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the stranded spacers at their fire and heard about the stations above, and the long dark between them.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>components</key>
+        <label>Sell them 8 components for an advanced component</label>
+        <tip>A colonist carries 8 components from the stores to their camp; one of the crew brings an advanced component from the wreck to the colony's gate.</tip>
+        <needs>hull</needs>
+        <tension>-4</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} agreed at once: the crew needs plain parts, and has better ones it can't carry.</li>
+          <li>The spacers will take the components, and {X_nameDef} is already pulling an advanced one out of the wreck for the colony.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>components for the spacers</label><what>ComponentIndustrial</what><count>8</count><to>Camp</to><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>ComponentSpacer</thing><count>1</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>plasteel</key>
+        <label>Sell them 25 plasteel for glitterworld medicine</label>
+        <tip>A colonist carries 25 plasteel from the stores to their camp; one of the crew brings 2 doses of glitterworld medicine from the wreck's stores to the colony's gate.</tip>
+        <needs>hull</needs>
+        <tension>-4</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} took the deal, and said the medicine was meant for a worse day than this.</li>
+          <li>The spacers will take the plasteel, and send up two doses of their medicine in exchange.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>plasteel for the spacers</label><what>Plasteel</what><count>25</count><to>Camp</to><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>MedicineUltratech</thing><count>2</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>steel</key>
+        <label>Sell them 60 steel for glitterworld medicine</label>
+        <tip>A colonist carries 60 steel from the stores to their camp; one of the crew brings a dose of glitterworld medicine to the colony's gate.</tip>
+        <needs>hull</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} agreed: the crew needs steel to brace what they carry out, and has a dose of medicine to spare.</li>
+          <li>The spacers will take the steel, and {X_nameDef} will send one dose of their medicine up to the gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>steel for the spacers</label><what>Steel</what><count>60</count><to>Camp</to><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>MedicineUltratech</thing><count>1</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>mechanic</key>
+        <label>Lend them {A_nameDef} for the day</label>
+        <tip>{A_nameDef} works beside their pilot at the wrecked hull for some hours, stripping it of what can be carried, and learns how spacer craft are put together. Crafting practice.</tip>
+        <skill>Crafting</skill>
+        <needs>hull</needs>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going down to the wreck to work beside {X_nameDef} for the day.</li>
+          <li>{X_nameDef} was glad of the help, and {A_nameDef} is off to the hull with a toolbox.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><xpPerHour>200</xpPerHour><duration>4~6</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Watchers of the monolith (Anomaly) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Watchers</defName>
+    <label>watchers of the monolith</label>
+    <minTech>Medieval</minTech>
+    <weight>1</weight>
+    <people>2~4</people>
+    <days>4~8</days>
+    <ages>22~70</ages>
+    <needs>monolith</needs>
+    <work>watch</work>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>1.4</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>sky</li>
+      <li>comet</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <titles>
+      <li>Watchers of the monolith</li>
+      <li>Scholars at a distance</li>
+    </titles>
+    <texts>
+      <li>A few quiet scholars of {FACTION} have heard the monolith on the colony's land has woken, and have come to watch it. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, within sight of it, and keep watch at night. They will not touch it, {X_pronoun} says.</li>
+      <li>{X_nameDef} and a few others of {FACTION}, scholars of the old and strange, asked {A_nameDef} whether they might camp {PLACE} and keep a watch on the monolith. They carry notebooks, a lamp and very little else.</li>
+    </texts>
+    <settled>
+      <li>The watchers from {FACTION} have made camp {PLACE}, facing the monolith, and their lamp burns there all night.</li>
+      <li>The scholars' camp is up {PLACE}, with every bedroll turned toward the monolith.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the watchers says {X_pronoun} would rather study the monolith from inside the colony's walls, and asks to stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The watchers from {FACTION} packed up their notebooks and their lamp and walked away from the monolith without looking back.</li>
+      <li>The watchers' camp {PLACE} is empty. Their fire is cold, and the monolith is just as it was.</li>
+    </farewell>
+    <lines>
+      <li>Write the hour down.</li>
+      <li>It's quieter tonight.</li>
+      <li>Don't look at it too long.</li>
+      <li>The lines on it have moved.</li>
+      <li>Keep the lamp lit.</li>
+      <li>We watch, we don't touch.</li>
+      <li>My turn at the watch.</li>
+      <li>Something answered it, out there.</li>
+    </lines>
+    <momentLines>
+      <li>[watch] My turn at the watch.</li>
+      <li>[watch] Still there.</li>
+      <li>[watch] Write the hour down.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the watchers at their lamp and heard what other monoliths did, in other places, before they slept again.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>notes</key>
+        <label>Share notes on the monolith</label>
+        <tip>{A_nameDef} spends a few hours at the watchers' side comparing notes (Intellectual practice), and the colony's study of the unnatural gains from what they've seen. They stay two days longer to finish.</tip>
+        <skill>Intellectual</skill>
+        <needs>study</needs>
+        <tension>2</tension>
+        <warm>2</warm>
+        <deed>campHelped</deed>
+        <outcomes>
+          <li>{A_nameDef} is going over to the watchers' camp to compare notes with {X_nameDef}, and {X_nameDef} has asked to stay a little longer for it.</li>
+          <li>{X_nameDef} opened a notebook full of the hours and the changes, and asked {A_nameDef} to bring the colony's own.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMonolithNotes"><knowledge>3</knowledge><days>2</days></li>
+        </effects>
+      </li>
+      <li>
+        <key>shelter</key>
+        <theyAsk>true</theyAsk>
+        <once>false</once>
+        <label>Let them sleep under the colony's roof tonight</label>
+        <refuseLabel>They'll have to weather it at their camp</refuseLabel>
+        <needs>storm</needs>
+        <tension>-6</tension>
+        <deed>sheltered</deed>
+        <askTexts>
+          <li>The weather has turned foul, and the watchers' camp has no roof. {X_nameDef} asked {A_nameDef} whether they might sleep in the colony tonight, and promised they'd be gone at first light.</li>
+          <li>{X_nameDef} came up from the watchers' camp soaked through, and asked for beds under the colony's roof until the weather clears.</li>
+        </askTexts>
+        <tip>The watchers walk in at nightfall and sleep in the colony's free beds (none that anyone else owns), and give them back in the morning. Nobody keeps the watch at the monolith tonight.</tip>
+        <outcomes>
+          <li>{X_nameDef} thanked {A_nameDef}. The watchers will come in when it's dark.</li>
+          <li>The watchers will sleep in the colony tonight. {X_nameDef} said the monolith can watch itself for one night.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said they'd manage, and went back down to the camp in the rain.</li>
+          <li>The watchers are sitting out the weather at their camp, huddled round their lamp.</li>
+        </refused>
+        <refuseTension>5</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampShelter" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== The beast show ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_BeastShow</defName>
+    <label>beast show</label>
+    <minTech>Neolithic</minTech>
+    <weight>0.7</weight>
+    <people>3~5</people>
+    <days>3~6</days>
+    <ages>16~60</ages>
+    <family>true</family>
+    <task>Council_CampHerd</task>
+    <taskAt>herd</taskAt>
+    <hireChance>0.2</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.3</helpChance>
+    <help>
+      <li>show</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>Medicine</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <situationKinds>
+      <li>fair</li>
+      <li>beast</li>
+    </situationKinds>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>bed</role><defs><li>Bedroll</li><li>SleepingSpot</li></defs><stuff><li>Cloth</li><li>Leather_Plain</li></stuff></li>
+      <li><role>wall</role><defs><li>Fence</li><li>Wall</li></defs><stuff><li>WoodLog</li></stuff><count>6</count></li>
+      <li><role>light</role><defs><li>TorchLamp</li></defs></li>
+    </structures>
+    <!-- Beasts from far off, kept by the fence: any tame-able beast with an exotic or uncommon trade tag (the animal mods'
+         beasts too), never a predator; or one of these. -->
+    <animals>
+      <li><kinds><li>Elephant</li><li>Ostrich</li><li>Emu</li><li>Cassowary</li><li>Capybara</li><li>Alpaca</li><li>Dromedary</li></kinds><tags><li>AnimalExotic</li><li>AnimalUncommon</li></tags><count>3~4</count><at>wall</at></li>
+    </animals>
+    <titles>
+      <li>A beast show on the road</li>
+      <li>The beast show</li>
+    </titles>
+    <texts>
+      <li>A travelling show of {FACTION} is on the road with beasts from far places, and they'd like to camp {PLACE} a few days. {X_nameDef}, who keeps the beasts, asked {A_nameDef} and promised a show at their fire.</li>
+      <li>[ws:fair] A beast show of {FACTION}, on its way to the fair, asked {A_nameDef} for a few days' camp {PLACE}. {X_nameDef} says the beasts need rest more than the keepers do.</li>
+    </texts>
+    <settled>
+      <li>The beast show from {FACTION} has made camp {PLACE}, with a fence for the beasts and a fire for the keepers.</li>
+      <li>The show's camp is up {PLACE}. The beasts are by the fence, and children could watch them all day.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the show's keepers, asks whether the colony could use someone who has fed and doctored every kind of beast there is.</li>
+    </joinTexts>
+    <farewell>
+      <li>The beast show from {FACTION} led its beasts out at first light, the keepers walking beside them.</li>
+      <li>The show's camp {PLACE} is empty, and the ground by the fence is trampled flat.</li>
+    </farewell>
+    <lines>
+      <li>Don't feed that one by hand.</li>
+      <li>She's gentle, mostly.</li>
+      <li>Walk them round once more.</li>
+      <li>Fresh water by the fence.</li>
+      <li>He came from the far south.</li>
+      <li>Children, keep back a little.</li>
+      <li>Brush that coat before the show.</li>
+      <li>They like it here.</li>
+    </lines>
+    <momentLines>
+      <li>[herd] There, there, easy.</li>
+      <li>[herd] Walk on, slowly.</li>
+      <li>[herd] Good coat on this one.</li>
+      <li>[herd] Somebody's hungry.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[show] The keepers put on their show at the fire this evening, and {X_nameDef} had the beasts walk the ring one after another while the colony watched.</li>
+      <li>[tales] {A_nameDef} sat with the keepers at their fire and heard where every one of the beasts came from, and how.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>beast</key>
+        <label>Buy one of their beasts ({COUNT} silver)</label>
+        <tip>One of the show's beasts becomes the colony's where it stands, at the keepers' price.</tip>
+        <silver>220</silver>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} picked a beast from the show, put its rope in {A_nameDef}'s hand and told {A_objective} everything it won't eat.</li>
+          <li>{A_nameDef} chose one of the show's beasts, and {X_nameDef} spent an hour on how to keep it content.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><fromCamp>true</fromCamp><kinds><li>Ostrich</li><li>Emu</li><li>Cassowary</li><li>Capybara</li><li>Alpaca</li><li>Dromedary</li></kinds></li>
+        </effects>
+      </li>
+      <li>
+        <key>sellbeast</key>
+        <label>Sell them {THING}</label>
+        <tip>The keepers have had their eye on one of the colony's beasts, grown and sound and out of any pen. It becomes theirs and joins their beasts; one of them carries the silver to the colony's gate. Whoever kept it will mind.</tip>
+        <price>beastsale</price>
+        <needs>ourBeast</needs>
+        <tension>-4</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} looked the beast over once more and nodded: it goes with the show, and the silver comes up to the gate.</li>
+          <li>The keepers are glad of it, and {X_nameDef} says the beast will be the pride of the show by the next town.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTakeBeast" />
+        </effects>
+      </li>
+      <li>
+        <key>children</key>
+        <label>Let the children help feed the beasts ({COUNT} silver)</label>
+        <tip>Up to two of the colony's children spend an hour or two at the side of the show's best keeper, feeding and brushing the beasts. Practice with animals. The silver pays for the feed.</tip>
+        <silver>30</silver>
+        <needs>children</needs>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <deed>welcomed</deed>
+        <outcomes>
+          <li>{X_nameDef} laughed and said the beasts like children better than keepers, and the colony's children are off to the show.</li>
+          <li>The colony's children are going down to the show to help with the feeding, and {X_nameDef} has promised to watch them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampChildrenFeed" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>
