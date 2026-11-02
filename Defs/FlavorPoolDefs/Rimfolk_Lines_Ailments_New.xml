@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines for the newer everyday ailments (Defs/HediffDefs/Rimfolk_Hediffs_Ailments_New.xml and _Mods_New.xml), added
+    to the journal pools (Council_Journal_Ailments.xml) and to what colonists say while they have one
+    (Council_Pool_SayAilment). Each is tagged [ail:Key]. Doctors' lines are written at a doctor's first tending, so
+    they say what a tending does.
+  -->
+
+  <!-- ===================== Coming down with it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Start_New</defName>
+    <pool>Council_Journal_Ail_Start</pool>
+    <lines>
+      <plain>
+        <li>[ail:Gout] Woke in the night with my big toe on fire. The blanket on it was too much to bear.</li>
+        <li>[ail:Gout,again] The gout's back, in the same toe. I know exactly which feast to blame.</li>
+        <li>[ail:Gout,trait:Gourmand] Gout. The price of eating well, they say. I'd still pay it, most days.</li>
+        <li>[ail:StoneDust] Came up from the rock face coughing gray. The dust gets into everything down there.</li>
+        <li>[ail:StoneDust,again] The stone dust is back in my chest. I'll take my turn somewhere with air next time.</li>
+        <li>[ail:SoreKnees] Spent the whole day on my knees. Now they've swollen up like bread dough.</li>
+        <li>[ail:SoreKnees,old] My knees aren't what they were. A day of kneeling and they've given up on me.</li>
+        <li>[ail:Ringworm] Found a red ring on my arm after milking. It itches like nothing else.</li>
+        <li>[ail:Ringworm,child] There's a red circle on my wrist. They say I got it from the animals.</li>
+        <li>[ail:Worms] I'm hungry an hour after every meal. Worms, from that raw meat, I'd bet.</li>
+        <li>[ail:Worms,again] Worms again. I should have waited for the cook.</li>
+        <li>[ail:SmokersCough,morning] Woke up coughing before the sun was up. Maybe I'll smoke less.</li>
+        <li>[ail:SmokersCough] The cough first thing in the morning has started to stay for an hour.</li>
+        <li>[ail:BeeStings] The bees caught me on the hand at the hives. It's twice its size tonight.</li>
+        <li>[ail:BeeStings,again] Stung again. The bees know I'm nervous, I'm sure of it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Over it ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Better_New</defName>
+    <pool>Council_Journal_Ail_Better</pool>
+    <lines>
+      <plain>
+        <li>[ail:Gout] I can put my boot on again. Greens with supper from now on, I promised.</li>
+        <li>[ail:StoneDust] The cough has gone, and the air tastes of nothing again.</li>
+        <li>[ail:SoreKnees] Knelt to tie my boot without thinking about it. The knees are fine.</li>
+        <li>[ail:Ringworm] The ring on my arm has faded to nothing. I wash after the animals now.</li>
+        <li>[ail:Worms] I'm hungry at the right times again. Cooked meat only, from now on.</li>
+        <li>[ail:SmokersCough] No cough this morning. I'll try to keep it that way.</li>
+        <li>[ail:BeeStings] The swelling's gone down. Back to the hives tomorrow, slowly.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The doctor ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_Journal_Ail_Doctor_New</defName>
+    <pool>Council_Journal_Ail_Doctor</pool>
+    <lines>
+      <plain>
+        <li>[ail:Gout] Saw to {OTHER_nameDef}'s gout: the foot up, a cold cloth, and a word about the drink.</li>
+        <li>[ail:SoreKnees] Wrapped {OTHER_nameDef}'s knees and told them to keep off them for a few days.</li>
+        <li>[ail:Ringworm] Put salve on the ring on {OTHER_nameDef}'s arm and sent the bedding to be washed.</li>
+        <li>[ail:Worms] Gave {OTHER_nameDef} a dose for the worms. Cooked meat only, I told them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== Said aloud ===================== -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_Lines_SayAilment_New</defName>
+    <pool>Council_Pool_SayAilment</pool>
+    <lines>
+      <plain>
+        <li>[ail:Gout] Don't come near my foot, the gout has it.</li>
+        <li>[ail:Gout] Greens with supper for me, the doctor's orders.</li>
+        <li>[ail:StoneDust] Sorry, that's the stone dust talking, not me.</li>
+        <li>[ail:StoneDust] I still taste rock every time I cough.</li>
+        <li>[ail:SoreKnees] Someone else can scrub that floor, my knees are done.</li>
+        <li>[ail:SoreKnees] Help me up, would you, my knees have gone stiff.</li>
+        <li>[ail:Ringworm] Don't touch my arm, it's only ringworm, but still.</li>
+        <li>[ail:Worms] Is there any more bread, I'm starving again.</li>
+        <li>[ail:Worms] I just ate and I'm hungry already.</li>
+        <li>[ail:SmokersCough,morning] Give me a minute, it's the morning cough.</li>
+        <li>[ail:SmokersCough] Excuse me, this cough won't let go of me.</li>
+        <li>[ail:BeeStings] The bees won today, look at my hand.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

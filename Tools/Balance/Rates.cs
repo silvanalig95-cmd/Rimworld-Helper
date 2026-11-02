@@ -235,14 +235,19 @@ namespace Balance
         /// </summary>
         public static readonly Dictionary<string, Dictionary<string, float>> RoleDays = new Dictionary<string, Dictionary<string, float>>
         {
-            ["Builder"] = new Dictionary<string, float> { ["HeavyWork"] = 0.7f, ["Chopping"] = 0.15f, ["Walking"] = 0.1f, ["ColdWork"] = 0.7f, ["SunWork"] = 0.5f, ["AncientWork"] = 0.01f },
-            ["Grower"] = new Dictionary<string, float> { ["PlantWork"] = 0.8f, ["Chopping"] = 0.3f, ["SunWork"] = 0.7f, ["ColdWork"] = 0.5f, ["HeavyWork"] = 0.1f },
-            ["Crafter"] = new Dictionary<string, float> { ["HandWork"] = 0.75f, ["HeavyWork"] = 0.05f },
-            ["Cook"] = new Dictionary<string, float> { ["HandWork"] = 0.1f },
-            ["Researcher"] = new Dictionary<string, float> { ["HandWork"] = 0.05f },
-            ["Hunter"] = new Dictionary<string, float> { ["Walking"] = 0.5f, ["RoughGround"] = 0.35f, ["ColdWork"] = 0.6f, ["SunWork"] = 0.3f, ["WetFeet"] = 0.15f },
-            ["Doctor"] = new Dictionary<string, float> { ["HeavyWork"] = 0.2f }
+            // Stone dust: mining under the mountain, or the stone saw in a small closed room; kneeling: sowing and cleaning;
+            // handling: milking, shearing, training and taming (the hunter here is the colony's animal hand too).
+            ["Builder"] = new Dictionary<string, float> { ["HeavyWork"] = 0.7f, ["Chopping"] = 0.15f, ["Walking"] = 0.1f, ["ColdWork"] = 0.7f, ["SunWork"] = 0.5f, ["AncientWork"] = 0.01f, ["StoneDust"] = 0.15f },
+            ["Grower"] = new Dictionary<string, float> { ["PlantWork"] = 0.8f, ["Chopping"] = 0.3f, ["SunWork"] = 0.7f, ["ColdWork"] = 0.5f, ["HeavyWork"] = 0.1f, ["Kneeling"] = 0.3f },
+            ["Crafter"] = new Dictionary<string, float> { ["HandWork"] = 0.75f, ["HeavyWork"] = 0.05f, ["StoneDust"] = 0.1f },
+            ["Cook"] = new Dictionary<string, float> { ["HandWork"] = 0.1f, ["Kneeling"] = 0.15f },
+            ["Researcher"] = new Dictionary<string, float> { ["HandWork"] = 0.05f, ["Kneeling"] = 0.1f },
+            ["Hunter"] = new Dictionary<string, float> { ["Walking"] = 0.5f, ["RoughGround"] = 0.35f, ["ColdWork"] = 0.6f, ["SunWork"] = 0.3f, ["WetFeet"] = 0.15f, ["Handling"] = 0.3f },
+            ["Doctor"] = new Dictionary<string, float> { ["HeavyWork"] = 0.2f, ["Kneeling"] = 0.1f }
         };
+
+        /// <summary>The share of colonists at or above this age (human years): about three in ten are 45 or older.</summary>
+        public static float ShareFromAge(float age) => age >= 60f ? 0.1f : age >= 45f ? 0.3f : age >= 30f ? 0.55f : 1f;
 
         /// <summary>Outdoor work needs the season: cold work in autumn and winter, sun in summer, plants above 10 °C.</summary>
         public static float Season(string trigger, int quadrum)
@@ -257,6 +262,8 @@ namespace Balance
                 case "Sweltering": return quadrum == 1 ? 0.12f : 0f;
                 case "SnowGlare": return quadrum == 3 ? 1f : 0f;
                 case "RoughGround": return quadrum == 3 ? 1.3f : 1f;
+                // Sowing is spring to autumn; the floors need scrubbing all year.
+                case "Kneeling": return quadrum == 3 ? 0.5f : 1f;
                 default: return 1f;
             }
         }
@@ -286,6 +293,8 @@ namespace Balance
 
             // Ailments
             public float tendShare, tendQuality, bedShare;
+            /// <summary>Share of days a colonist eats raw meat or fish, has a smoke, and has had fruit or vegetables in the last days.</summary>
+            public float rawFood, smokes, freshShare;
             /// <summary>Share of days that hold each home cause: a hard bed, damp, a dirty crowded room, smoke, the dark, hunger, late nights.</summary>
             public Dictionary<string, float> home;
             // ... and what ailments follow (AilmentTracker.Afters): the day they got over the flu or the plague, a break or
@@ -319,7 +328,7 @@ namespace Balance
             vanillaGood = 34f, vanillaBad = -8f, vanillaSpread = 6f,
             grant = 0.8f, grantFrom = 0.1f, grantTo = 0.55f, promise = 0.2f, promiseKept = 0.95f, discomforts = 0.1f,
             best = 0.7f, byDefault = 0.05f, calendarPass = 0.05f, ambitionDone = 0.75f,
-            tendShare = 0.85f, tendQuality = 0.85f, bedShare = 0.5f,
+            tendShare = 0.85f, tendQuality = 0.85f, bedShare = 0.5f, rawFood = 0.005f, smokes = 0.15f, freshShare = 0.9f,
             home = new Dictionary<string, float>
             {
                 ["HardBed"] = 0f, ["DampSleep"] = 0f, ["CrowdedDirty"] = 0f, ["SmokyRoom"] = 0f, ["DarkWork"] = 0.02f, ["Hungry"] = 0.01f, ["NightWork"] = 0.08f,
@@ -342,7 +351,7 @@ namespace Balance
             vanillaGood = 26f, vanillaBad = -13f, vanillaSpread = 7f,
             grant = 0.5f, grantFrom = 0.2f, grantTo = 0.85f, promise = 0.12f, promiseKept = 0.7f, discomforts = 0.5f,
             best = 0.35f, byDefault = 0.2f, calendarPass = 0.15f, ambitionDone = 0.5f,
-            tendShare = 0.55f, tendQuality = 0.65f, bedShare = 0.3f,
+            tendShare = 0.55f, tendQuality = 0.65f, bedShare = 0.3f, rawFood = 0.03f, smokes = 0.2f, freshShare = 0.7f,
             home = new Dictionary<string, float>
             {
                 ["HardBed"] = 0.1f, ["DampSleep"] = 0.05f, ["CrowdedDirty"] = 0.05f, ["SmokyRoom"] = 0.1f, ["DarkWork"] = 0.1f, ["Hungry"] = 0.05f, ["NightWork"] = 0.12f,
@@ -363,7 +372,7 @@ namespace Balance
             vanillaGood = 18f, vanillaBad = -22f, vanillaSpread = 8f,
             grant = 0.12f, grantFrom = 0.4f, grantTo = 1f, promise = 0.05f, promiseKept = 0.3f, discomforts = 1.8f,
             best = 0.1f, byDefault = 0.65f, calendarPass = 0.1f, ambitionDone = 0.15f,
-            tendShare = 0.2f, tendQuality = 0.5f, bedShare = 0.1f,
+            tendShare = 0.2f, tendQuality = 0.5f, bedShare = 0.1f, rawFood = 0.12f, smokes = 0.3f, freshShare = 0.4f,
             home = new Dictionary<string, float>
             {
                 ["HardBed"] = 0.6f, ["DampSleep"] = 0.3f, ["CrowdedDirty"] = 0.4f, ["SmokyRoom"] = 0.4f, ["DarkWork"] = 0.4f, ["Hungry"] = 0.25f, ["NightWork"] = 0.2f,

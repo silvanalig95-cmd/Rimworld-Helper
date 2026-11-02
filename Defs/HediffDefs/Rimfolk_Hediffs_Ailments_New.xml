@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Six more everyday ailments (Source/ColonyCouncil/Ailments/), the same kind as Council_Hediffs_Ailments.xml: mild,
+    short, never lethal, and each with a cause the code checks and a plain way to prevent it. Gout comes from living
+    well (rich meals and drinks, from 45, half as often with fruit or vegetables lately); stone-dust cough from mining
+    under the mountain or cutting stone blocks in a small closed room; sore knees from cleaning and sowing; worms from
+    raw meat or raw fish (never cooked food, never with a strong stomach); ringworm from handling animals, passed on in
+    dirty bedrooms like lice; a smoker's cough per smoke, likelier for a daily smoker. So that the colony's time with an
+    ailment doesn't rise, the commonest ones (lice, the damp and smoke coughs, sleepless nights, a strained back,
+    heartburn and a few more) were made a little rarer at the same time, measured with Tools/Balance.
+  -->
+
+  <!-- ===================== From living well ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Gout</defName>
+    <label>gout</label>
+    <description>A hot, swollen, very tender big toe: gout, from crystals settling in the joint. It comes to people of 45 and over who eat and drink well, after a fine or lavish meal or a drink, and it likes to come back to those it has visited before. Fruit or vegetables in the last few days make it half as likely. It eases in three to six days; rest with the foot up and a cold cloth help, and so does tending. Plainer meals with vegetables and fewer drinks prevent it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Gout</key>
+        <causes>
+          <li><trigger>RichMeal</trigger><chance>0.003</chance></li>
+          <li><trigger>Drink</trigger><chance>0.002</chance></li>
+        </causes>
+        <minAge>45</minAge>
+        <freshFactor>0.5</freshFactor>
+        <freshDays>3</freshDays>
+        <childFactor>0</childFactor>
+        <cooldownDays>15</cooldownDays>
+        <startSeverity>0.35~0.55</startSeverity>
+        <gotText>{PAWN_nameDef}'s big toe is hot and swollen with gout after all the good food.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s gout has flared up again, in the same toe as last time.</li>
+          <li>[old] {PAWN_nameDef} is paying for the good living with a toe swollen with gout.</li>
+          <li>[trait:Gourmand] {PAWN_nameDef} ate like a king, and now has a king's gout in the big toe.</li>
+        </gotTexts>
+        <notes>
+          <li>Foot up, a cold cloth on the toe, and plain food with greens for a while. Go easy on the drink.</li>
+          <li>[lowtech] Keep the blanket off that toe, a cold wet rag on it, and a bowl of greens instead of the roast.</li>
+          <li>[!lowtech] Rest, the foot raised, something for the swelling, and plenty of water. Fewer feasts.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.04</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.1</severityPerDay>
+        <bedFactor>1.3</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>stiff toe</label>
+        <painOffset>0.04</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.25</minSeverity>
+        <label>gouty toe</label>
+        <painOffset>0.08</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.15</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== From the day's work ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_StoneDust</defName>
+    <label>stone-dust cough</label>
+    <description>A dry, tickling cough and a tight chest from fine stone dust: four hours or more in a day of mining under the mountain, or of cutting stone blocks in a closed room of 60 cells or fewer, fill the air with it. It clears in two or three days of cleaner air. A large or open stone workshop, and taking turns at the rock face, prevent it.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>StoneDust</key>
+        <causes><li><trigger>StoneDust</trigger><hours>4</hours><chance>0.012</chance></li></causes>
+        <childFactor>0.5</childFactor>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a dry cough from the stone dust.</gotText>
+        <gotTexts>
+          <li>[again] The stone dust has {PAWN_nameDef} coughing again.</li>
+          <li>[work:Mining] Hours at the rock face under the mountain have left {PAWN_nameDef} with a dusty cough.</li>
+          <li>[work:Crafting] The stonecutting in that small room has left {PAWN_nameDef} with a dusty cough.</li>
+        </gotTexts>
+        <notes>
+          <li>Clean air for a few days, and somebody else at the rock face or the saw.</li>
+          <li>[lowtech] Out of the dust, a wet cloth over the mouth next time, and the stonecutting out in the open.</li>
+          <li>[!lowtech] Fresh air and water. Next time a damp mask, and a bigger room for the stone saw.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.15</severityPerDay>
+        <bedFactor>1.2</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>dusty throat</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.04</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>coughing dust</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.08</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SoreKnees</defName>
+    <label>sore knees</label>
+    <description>Sore, puffy knees from long hours kneeling: five hours or more in a day of scrubbing floors or sowing along the rows. It eases in a few days once they're off their knees, faster with rest, and tending (a wrap, a cold cloth) helps a little. A second cleaner, so nobody spends the whole day on their knees, prevents it.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SoreKnees</key>
+        <causes><li><trigger>Kneeling</trigger><hours>5</hours><chance>0.008</chance></li></causes>
+        <risks>
+          <li><trait>Tough</trait><factor>0.6</factor></li>
+        </risks>
+        <childFactor>0.3</childFactor>
+        <oldFactor>1.5</oldFactor>
+        <cooldownDays>12</cooldownDays>
+        <startSeverity>0.25~0.45</startSeverity>
+        <gotText>{PAWN_nameDef}'s knees are sore from a long day on them.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s knees have gone sore again.</li>
+          <li>[work:Cleaning] {PAWN_nameDef} scrubbed floors on {PAWN_possessive} knees all day, and the knees have had enough.</li>
+          <li>[work:Growing] {PAWN_nameDef} knelt along the rows all day, sowing, and the knees have had enough.</li>
+        </gotTexts>
+        <notes>
+          <li>A few days off the knees, and something soft to kneel on next time.</li>
+          <li>[lowtech] A folded sack to kneel on, a cold wet cloth at night, and someone else on the floors for a while.</li>
+          <li>[!lowtech] Rest, a cold pack, and a kneeling pad. Share the cleaning out.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.05</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.1</severityPerDay>
+        <bedFactor>1.5</bedFactor>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>stiff knees</label>
+        <capMods><li><capacity>Moving</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>sore knees</label>
+        <painOffset>0.02</painOffset>
+        <capMods><li><capacity>Moving</capacity><offset>-0.06</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Ringworm</defName>
+    <label>ringworm</label>
+    <description>Ringworm: no worm at all but a skin fungus, a round, red, itchy ring, caught from two hours or more in a day of handling animals (milking, shearing, training, taming). Children catch it more easily. It passes to whoever sleeps in the same dirty room, or to someone unwashed, the way lice do. Left alone it fades in a week or so; a doctor's salve clears it sooner. Clean bedrooms and washing keep it from going round.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Ringworm</key>
+        <causes><li><trigger>Handling</trigger><hours>2</hours><chance>0.01</chance></li></causes>
+        <childFactor>2</childFactor>
+        <cooldownDays>20</cooldownDays>
+        <spreadPerHour>0.002</spreadPerHour>
+        <spreadNeedsDirt>true</spreadNeedsDirt>
+        <spreadWhileTended>0.2</spreadWhileTended>
+        <startSeverity>0.3~0.45</startSeverity>
+        <gotText>{PAWN_nameDef} has an itchy red ring on {PAWN_possessive} arm: ringworm, from the animals.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has ringworm again, a new ring on the other arm.</li>
+          <li>[child] {PAWN_nameDef} came in from the animals with an itchy red ring on {PAWN_possessive} wrist: ringworm.</li>
+        </gotTexts>
+        <notes>
+          <li>A salve on it twice a day, and the bedding washed. Keep it covered.</li>
+          <li>[lowtech] Vinegar or garlic on the ring, a clean bandage, and the blankets boiled. Wash after the animals.</li>
+          <li>[!lowtech] An antifungal cream for a week, the bedding through a hot wash, and hands washed after the animals.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.12</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>itchy ring</label>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== From what they eat and smoke ===================== -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_Worms</defName>
+    <label>worms</label>
+    <description>Gut worms, picked up from eating raw meat or raw fish, never from anything cooked: a gnawing hunger that no meal quite fills, as the worms take their share. Left alone the body throws them off in a week or so; a doctor's dose clears them in about a day, better with proper medicine than herbs. Cooking the meat prevents it, and someone with a strong stomach never gets them.</description>
+    <tendable>true</tendable>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>Worms</key>
+        <causes><li><trigger>RawFood</trigger><chance>0.02</chance></li></causes>
+        <risks>
+          <li><gene>StrongStomach</gene><factor>0</factor></li>
+        </risks>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>10</cooldownDays>
+        <startSeverity>0.35~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has worms from eating the meat raw.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef} has worms again. The raw meat, again.</li>
+          <li>[child] {PAWN_nameDef} has worms, from raw meat that should have gone to the cook.</li>
+        </gotTexts>
+        <notes>
+          <li>One good dose and they'll be gone. And cook the meat, every time.</li>
+          <li>[lowtech] A bitter draught of wormwood and pumpkin seeds, and nothing raw from now on.</li>
+          <li>[!lowtech] A worming tablet clears it in a day. Cook all the meat and fish from now on.</li>
+        </notes>
+      </li>
+      <li Class="HediffCompProperties_TendDuration">
+        <baseTendDurationHours>48</baseTendDurationHours>
+        <severityPerDayTended>0</severityPerDayTended>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentMedicine">
+        <severityPerDayTended>-0.8</severityPerDayTended>
+        <basic>0.5</basic>
+        <industrial>1</industrial>
+        <ultra>1.2</ultra>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.05</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>hungry all the time</label>
+        <hungerRateFactor>1.25</hungerRateFactor>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_SmokersCough</defName>
+    <label>smoker's cough</label>
+    <description>A rough cough first thing in the morning from smoking: joints, cigarettes or cigars. Each smoke can bring it on, three times as likely in someone who smokes every day. It clears in a day or two without smoke. Fewer smokes prevent it. The game's own effects of the drug are unchanged.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>SmokersCough</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>Smoke</trigger><chance>0.006</chance></li></causes>
+        <cooldownDays>8</cooldownDays>
+        <startSeverity>0.3~0.5</startSeverity>
+        <gotText>{PAWN_nameDef} has a smoker's cough.</gotText>
+        <gotTexts>
+          <li>[again] {PAWN_nameDef}'s smoker's cough is back.</li>
+          <li>[morning] {PAWN_nameDef} woke up coughing from all the smoking.</li>
+        </gotTexts>
+        <notes>
+          <li>A few days without smoking, and it goes. Fewer smokes and it stays gone.</li>
+          <li>[lowtech] Honey in hot water, and put the pipe away for a few days.</li>
+          <li>[!lowtech] Warm drinks, no smoking for a few days. Cutting down keeps it away.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.2</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>morning cough</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.03</offset></li></capMods>
+      </li>
+      <li>
+        <minSeverity>0.3</minSeverity>
+        <label>hacking cough</label>
+        <capMods><li><capacity>Breathing</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

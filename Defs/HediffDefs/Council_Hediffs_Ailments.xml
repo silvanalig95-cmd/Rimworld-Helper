@@ -369,7 +369,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>StrainedBack</key>
-        <causes><li><trigger>HeavyWork</trigger><hours>6</hours><chance>0.009</chance></li></causes>
+        <causes><li><trigger>HeavyWork</trigger><hours>6</hours><chance>0.007</chance></li></causes>
         <risks>
           <li><hediff>BadBack</hediff><factor>3</factor></li>
           <li><hediff>Frail</hediff><factor>2</factor></li>
@@ -542,7 +542,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Chilblains</key>
-        <causes><li><trigger>ColdWork</trigger><hours>5</hours><chance>0.013</chance></li></causes>
+        <causes><li><trigger>ColdWork</trigger><hours>5</hours><chance>0.011</chance></li></causes>
         <risks>
           <li><trait>Tough</trait><factor>0.6</factor></li>
           <li><hediff>Frail</hediff><factor>1.5</factor></li>
@@ -642,7 +642,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>SmokeCough</key>
         <quiet>true</quiet>
-        <causes><li><trigger>SmokyRoom</trigger><hours>4</hours><chance>0.06</chance></li></causes>
+        <causes><li><trigger>SmokyRoom</trigger><hours>4</hours><chance>0.045</chance></li></causes>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a cough from the smoke in that small room.</gotText>
@@ -684,7 +684,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Toothache</key>
-        <causes><li><trigger>Sweets</trigger><chance>0.0012</chance></li></causes>
+        <causes><li><trigger>Sweets</trigger><chance>0.001</chance></li></causes>
         <childFactor>0.5</childFactor>
         <cooldownDays>30</cooldownDays>
         <startSeverity>0.3~0.6</startSeverity>
@@ -863,7 +863,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>RimrotCough</key>
-        <causes><li><trigger>DampSleep</trigger><hours>4</hours><chance>0.04</chance></li></causes>
+        <causes><li><trigger>DampSleep</trigger><hours>4</hours><chance>0.03</chance></li></causes>
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a rimrot cough from sleeping in a damp room.</gotText>
@@ -970,8 +970,8 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Insomnia</key>
         <causes>
-          <li><trigger>Worry</trigger><hours>8</hours><chance>0.012</chance></li>
-          <li><trigger>NightWork</trigger><hours>3</hours><chance>0.012</chance></li>
+          <li><trigger>Worry</trigger><hours>8</hours><chance>0.008</chance></li>
+          <li><trigger>NightWork</trigger><hours>3</hours><chance>0.008</chance></li>
         </causes>
         <childFactor>0.5</childFactor>
         <oldFactor>1.3</oldFactor>
@@ -1083,7 +1083,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Heartburn</key>
         <quiet>true</quiet>
-        <causes><li><trigger>RichMeal</trigger><chance>0.035</chance></li></causes>
+        <causes><li><trigger>RichMeal</trigger><chance>0.02</chance></li></causes>
         <childFactor>0.2</childFactor>
         <cooldownDays>2</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
@@ -1202,7 +1202,7 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Splinter</key>
         <quiet>true</quiet>
-        <causes><li><trigger>Chopping</trigger><hours>4</hours><chance>0.02</chance></li></causes>
+        <causes><li><trigger>Chopping</trigger><hours>4</hours><chance>0.016</chance></li></causes>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a splinter deep in one hand.</gotText>
@@ -1291,7 +1291,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>PlantRash</key>
-        <causes><li><trigger>PlantWork</trigger><hours>5</hours><chance>0.011</chance></li></causes>
+        <causes><li><trigger>PlantWork</trigger><hours>5</hours><chance>0.009</chance></li></causes>
         <cooldownDays>15</cooldownDays>
         <startSeverity>0.3~0.6</startSeverity>
         <gotText>{PAWN_nameDef} has an itchy rash from some plant's sap.</gotText>
@@ -1409,8 +1409,8 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>ColdSore</key>
         <causes>
-          <li><trigger>Worry</trigger><hours>8</hours><chance>0.008</chance></li>
-          <li><trigger>SunWork</trigger><hours>4</hours><chance>0.009</chance></li>
+          <li><trigger>Worry</trigger><hours>8</hours><chance>0.006</chance></li>
+          <li><trigger>SunWork</trigger><hours>4</hours><chance>0.007</chance></li>
         </causes>
         <childFactor>0.6</childFactor>
         <cooldownDays>20</cooldownDays>
@@ -1457,7 +1457,7 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Lice</key>
-        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.03</chance></li></causes>
+        <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.022</chance></li></causes>
         <childFactor>1.5</childFactor>
         <cooldownDays>10</cooldownDays>
         <spreadPerHour>0.004</spreadPerHour>

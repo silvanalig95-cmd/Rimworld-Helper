@@ -94,12 +94,22 @@ public static class AilmentTests
             "frequency 200% halves and 25% quadruples the catching clock");
         check(AilmentMath.CatchingMtbDays(20f, 1f, 1f, 1f, 1f) >= 10f && AilmentMath.CatchingMtbDays(20f, 9999f, 1f, 1f, 1f) <= 40f, "the biome's disease rate is clamped to half or double");
 
+        // The skill that keeps bee stings off, a daily smoker's cough, and gout's fresh food.
+        check(AilmentMath.SkillFactor(0) == 1f && Math.Abs(AilmentMath.SkillFactor(10) - 0.5f) < 1e-4f && AilmentMath.SkillFactor(15) == 0.25f && AilmentMath.SkillFactor(20) == 0.25f,
+            "skill keeps an ailment off: 1 at level 0, a half at 10, a quarter from 15");
+        check(AilmentMath.SmokeFactor(0f) == 1f && AilmentMath.SmokeFactor(1f) == 3f && AilmentMath.SmokeFactor(2f) == 3f, "a daily smoker is three times as likely to get the cough");
+        check(AilmentMath.FreshFactor(true, 0.5f) == 0.5f && AilmentMath.FreshFactor(false, 0.5f) == 1f, "fruit or vegetables lately halve gout");
+
         // Everyday ailments: never lethal, and over within about two weeks with no care at all.
-        foreach (var a in Load(Path.Combine(root, "Defs", "HediffDefs", "Council_Hediffs_Ailments.xml")))
+        var everyday = new[] { "Council_Hediffs_Ailments.xml", "Rimfolk_Hediffs_Ailments_New.xml", "Rimfolk_Hediffs_Ailments_Mods_New.xml" }
+            .SelectMany(f => Load(Path.Combine(root, "Defs", "HediffDefs", f))).ToList();
+        foreach (var a in everyday)
         {
             n++;
             check(!a.lethal, $"{a.name} is an everyday ailment and must not be lethal");
             check(a.course.maxSeverity <= 1f, $"{a.name} caps its severity at 1");
+            // The ones that simply get better do so within three weeks at most, even from a bad start.
+            if (a.recovery < 0f) check(AilmentMath.DaysToClear(0.6f, a.recovery) <= 21f, $"{a.name} clears on its own within three weeks ({AilmentMath.DaysToClear(0.6f, a.recovery):0} days)");
             if (!a.immunizable) continue;
             var o = AilmentMath.Simulate(a.course, 0f, 1f, 0f);
             check(!o.died && o.days <= 14f, $"{a.name} passes untreated within two weeks, took {o.days:0.0} days");

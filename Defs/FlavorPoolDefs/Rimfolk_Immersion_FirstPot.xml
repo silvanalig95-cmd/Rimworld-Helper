@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- One who makes the first pot, to the friend just handed a cup ({OTHER}) (Source/ColonyCouncil/Immersion/FirstPot.cs). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_HabitFirstPot</defName>
+    <lines>
+      <plain>
+        <li>Morning, {OTHER_nameDef}, I made the first pot.</li>
+        <li>Here, drink it while it's hot.</li>
+        <li>I was up anyway, so I brought you a cup.</li>
+        <li>First cup of the day, {OTHER_nameDef}.</li>
+        <li>[winter] Something hot for a cold morning.</li>
+        <li>[rain] A wet morning wants a hot cup.</li>
+        <li>[partner] Morning, love, I brought you a cup.</li>
+      </plain>
+      <warm><li>I thought of you when I poured it, {OTHER_nameDef}.</li></warm>
+      <blunt><li>Cup. Drink it.</li></blunt>
+      <cheerful><li>Rise and shine, {OTHER_nameDef}, the pot's fresh!</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

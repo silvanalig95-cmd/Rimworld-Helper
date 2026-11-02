@@ -110,5 +110,24 @@ namespace ColonyCouncil
         public static float DaysToLethal(float start, float growPerDay, float lethal = 1f) => growPerDay <= 0f ? float.MaxValue : (lethal - start) / growPerDay;
 
         public static float DaysToClear(float from, float recoverPerDay) => recoverPerDay >= 0f ? float.MaxValue : from / -recoverPerDay;
+
+        /// <summary>
+        /// The factor on an ailment that skill keeps off (bee stings and Animals): 1 for a beginner, falling by a twentieth
+        /// a level to a quarter from level 15 on.
+        /// </summary>
+        public static float SkillFactor(int level)
+        {
+            float f = 1f - (level < 0 ? 0 : level) / 20f;
+            return f < 0.25f ? 0.25f : f;
+        }
+
+        /// <summary>
+        /// The factor on a smoker's cough for one smoke, from the tolerance the game keeps for that drug (0 to 1): someone
+        /// who smokes every day, with a tolerance near its top, is three times as likely as an occasional smoker.
+        /// </summary>
+        public static float SmokeFactor(float tolerance) => 1f + 2f * (tolerance < 0f ? 0f : tolerance > 1f ? 1f : tolerance);
+
+        /// <summary>The factor on a meal or a drink for someone who has (or hasn't) had fruit or vegetables lately (gout: 0.5 when they have).</summary>
+        public static float FreshFactor(bool ateFresh, float factor) => ateFresh ? factor : 1f;
     }
 }
