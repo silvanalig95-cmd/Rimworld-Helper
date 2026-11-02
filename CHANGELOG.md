@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New questions for the council, new customs for the year
+
+*2 November 2026, version 0.52.0*
+
+- The council settles who gets a new limb or eye lying in the stores, and the operation appears on that colonist's medical tab.
+- After a bad batch from the kitchen, the colony can scrub the kitchen or hand the cooking to someone else for a few days.
+- A heat wave can turn the colony's hours around, sleeping through the midday heat and working by night until it breaks.
+- New questions about the drug bench, a prisoner who could teach, a doctor who needs tending, and, with Ideology, a broken precept and a slave's freedom.
+- Six new customs: spring cleaning, the bounds walk with its stones, the star night, the fishing match, the autumn hunt and telling the bees.
+- Hours and work an answer changes go back by themselves when their time is up, unless you changed them first.
+- The older customs and the strangers' questions were rebalanced, so the quiet answer has its own small upside and the big one its cost.
+
 ## The same rules for all the council's advice
 
 *2 November 2026, version 0.51.0*

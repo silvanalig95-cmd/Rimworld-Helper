@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.52.0</version>
+        <date>2 November 2026</date>
+        <title>New questions for the council, new customs for the year</title>
+        <points>
+          <li>The council settles who gets a new limb or eye lying in the stores, and the operation appears on that colonist's medical tab.</li>
+          <li>After a bad batch from the kitchen, the colony can scrub the kitchen or hand the cooking to someone else for a few days.</li>
+          <li>A heat wave can turn the colony's hours around, sleeping through the midday heat and working by night until it breaks.</li>
+          <li>New questions about the drug bench, a prisoner who could teach, a doctor who needs tending, and, with Ideology, a broken precept and a slave's freedom.</li>
+          <li>Six new customs: spring cleaning, the bounds walk with its stones, the star night, the fishing match, the autumn hunt and telling the bees.</li>
+          <li>Hours and work an answer changes go back by themselves when their time is up, unless you changed them first.</li>
+          <li>The older customs and the strangers' questions were rebalanced, so the quiet answer has its own small upside and the big one its cost.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.51.0</version>
         <date>2 November 2026</date>
         <title>The same rules for all the council's advice</title>
