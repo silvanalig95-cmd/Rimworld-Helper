@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Election days
+
+*2 November 2026, version 0.54.0*
+
+- The council election is now an event: a letter names election day by its date, puts it on the colony calendar, and lists two or three candidates for each seat with what each stands for.
+- In the days before the vote, candidates walk over to people in their free time and make their case, and a good talker who is liked can win someone over.
+- On the evening before, the candidates speak at the hustings, where a good speech wins listeners, a poor one loses a few, and the crowd cheers and heckles.
+- On election day everyone at home walks to the meeting place and casts a vote, and that evening the speaker counts the votes aloud before a toast to the new council.
+- The council can back a candidate or call a seat's vote off and appoint someone, and the Decrees page shows how support leans each day.
+- Danger puts off the hustings, the polls or the count, and a colony with no contested seat names its officers at a short ceremony; a setting brings back the old single letter.
+
 ## A mood bubble says what it is
 
 *2 November 2026, version 0.53.6*

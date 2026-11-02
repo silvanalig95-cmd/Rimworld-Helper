@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 421; modelled: 421; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,882 KB** after a year, **2,266 KB** after two, **2,383 KB** after five.
+Saved collections found: 429; modelled: 429; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,946 KB** after a year, **2,330 KB** after two, **2,447 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -37,6 +37,8 @@ Rimfolk's part of the save, roughly: **1,882 KB** after a year, **2,266 KB** aft
 | `Arcs/ArcTracker.cs:past` | ArcTracker.MaxPast | cap | 18 | 36 | 90 | 17.6 |
 | `Pressures/Pressures.cs:people` | one per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 17.6 |
 | `Setbacks/SetbackTracker.cs:last` | 20 days | window | 200 | 200 | 200 | 17.6 |
+| `Offices/Election.cs:canvassed` | three visits a day for three days a candidate, while it lasts | while | 180 | 180 | 180 | 15.8 |
+| `Offices/Election.cs:heard` | who heard each candidate at the hustings, while it lasts | while | 400 | 400 | 400 | 15.6 |
 | `Calendar/CalendarTracker.cs:days` | 12 the colony's, 8 the player's, traditions and the founding | cap | 12 | 24 | 26 | 15.2 |
 | `Social/Groups/GroupTracker.cs:groups` | groups of 3 to 9, the dead and departed dropped daily, ended below two | cap | 6 | 6 | 6 | 14.6 |
 | `CouncilGameComponent.cs:history` | a sample a day, 120 days | window | 60 | 120 | 120 | 14.1 |
@@ -47,6 +49,8 @@ Rimfolk's part of the save, roughly: **1,882 KB** after a year, **2,266 KB** aft
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |
 | `Social/Moments.cs:pairs` | pair tones forgotten after 4 quiet days or when one is gone | pairs | 95 | 95 | 95 | 11.1 |
 | `Ailments/AilmentTracker.cs:had` | known pawns only | known | 165 | 180 | 225 | 11.0 |
+| `Offices/Election.cs:ballots` | one ranked ballot a voter a seat, while it lasts | while | 280 | 280 | 280 | 10.9 |
+| `Offices/Election.cs:entries` | two or three candidates a seat, with their platform, while it lasts | while | 42 | 42 | 42 | 10.7 |
 | `Couriers/CourierTracker.cs:trips` | trips waiting or under way: CourierMath.MaxTrips; ended ones dropped within two days | cap | 12 | 12 | 12 | 10.5 |
 | `Happenings/Happenings.cs:memos` | memos 3 years (children's 10), used ones a day | window | 18 | 36 | 54 | 10.5 |
 | `Standing.cs:asked` | per colonist, one per wish def asked for | colonists | 300 | 300 | 300 | 10.3 |
@@ -80,6 +84,7 @@ Rimfolk's part of the save, roughly: **1,882 KB** after a year, **2,266 KB** aft
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `Building/BuildProjects.cs:projects` | rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand | fixed | 16 | 16 | 16 | 5.0 |
+| `Offices/Election.cs:pollDays` | the poll a day for six days a seat, while it lasts | while | 84 | 84 | 84 | 4.9 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `Building/BuildAhead.cs:pieceDefs` | with the above: what each blueprint was | fixed | 120 | 120 | 120 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
@@ -105,6 +110,7 @@ Rimfolk's part of the save, roughly: **1,882 KB** after a year, **2,266 KB** aft
 | `Wishes/Kept.cs:watches` | granted wishes still watched (grace days) | window | 8 | 8 | 8 | 2.9 |
 | `World/WorldSituations.cs:active` | 2 running | fixed | 2 | 2 | 2 | 2.9 |
 | `Faith/FaithPeople.cs:waiting` | crises waiting to be felt: one per kind per colonist, let go after 6 days | cap | 9 | 18 | 20 | 2.7 |
+| `Offices/Election.cs:races` | an election's seats, while it lasts | while | 14 | 14 | 14 | 2.7 |
 | `Quirks/Quirks.cs:practice` | one per colonist who works or keeps late or early hours; dead and departed dropped daily and at saving, faded-out ones removed | colonists | 20 | 20 | 20 | 2.7 |
 | `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 31 | 31 | 31 | 2.7 |
 | `Ailments/AilmentTracker.cs:healing` | injuries an ailment may follow; let go when healed, known pawns only | known | 16 | 18 | 22 | 2.6 |
@@ -121,6 +127,7 @@ Rimfolk's part of the save, roughly: **1,882 KB** after a year, **2,266 KB** aft
 | `Defense/DefenseLinesWatch.cs:running` | one per line while a raid lasts | while | 4 | 4 | 4 | 2.3 |
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
 | `Happenings/VisitorServices.cs:tasks` | a night to a day each, at most VisitorServices.MaxTasks at once | cap | 8 | 8 | 8 | 2.3 |
+| `Offices/Election.cs:campaigners` | one per candidate, while it lasts | while | 20 | 20 | 20 | 2.3 |
 | `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
 | `Visitors/Callers.cs:tasks` | half a day to a day each, at most Callers.MaxTasks at once | cap | 6 | 8 | 8 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
@@ -202,6 +209,7 @@ Rimfolk's part of the save, roughly: **1,882 KB** after a year, **2,266 KB** aft
 | `Camps/Camp.cs:kills` | while the camp stays (a stay is days, not years) | while | 20 | 20 | 20 | 0.8 |
 | `Camps/Camp.cs:plans` | while the camp stays | while | 4 | 4 | 4 | 0.8 |
 | `Health/HealthTracker.cs:known` | known pawns only | colonists | 20 | 20 | 20 | 0.8 |
+| `Offices/Election.cs:voted` | who has voted, while it lasts | while | 20 | 20 | 20 | 0.8 |
 | `PlayOut/PlayOutLord.cs:fed` | while the gathering lasts | while | 20 | 20 | 20 | 0.8 |
 | `PlayOut/PlayOutLord.cs:served` | while the gathering lasts | while | 20 | 20 | 20 | 0.8 |
 | `Social/Autonomy.cs:pawns` | who acted when: the last 2 days | window | 20 | 20 | 20 | 0.8 |
