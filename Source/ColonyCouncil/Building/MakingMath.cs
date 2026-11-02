@@ -64,6 +64,21 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// A staple's bill count from planning ahead's stock target (meals, medicine, feed), so the Making page and the
+        /// Ahead section agree: the row's target less what the colony's other bills of the kind keep already (a day's
+        /// use at least, so a bill still keeps some of its own), in pieces of this product, rounded up to fives. -1 when the
+        /// row has no target to go by (nothing used yet): then the usual count.
+        /// </summary>
+        public static int StapleCount(float rowTarget, float otherBillsKeep, float useADay, float unit)
+        {
+            if (rowTarget <= 0f || unit <= 0f) return -1;
+            float cover = otherBillsKeep >= AheadMath.Far ? rowTarget : Math.Max(0f, otherBillsKeep);
+            float need = Math.Max(rowTarget - cover, Math.Max(0f, useADay));
+            if (need <= 0f) return -1;
+            return AheadMath.RoundUp5((float)Math.Ceiling(need / unit - 0.0001f));
+        }
+
+        /// <summary>
         /// The bill's count when something is wanted (the blueprints are short of it, a bill waits on it): the stock,
         /// what's short and a margin of a fifth (five at least), rounded up to fives; never under the usual.
         /// </summary>

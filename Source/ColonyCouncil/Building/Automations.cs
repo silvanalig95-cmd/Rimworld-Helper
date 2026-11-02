@@ -25,8 +25,24 @@ namespace ColonyCouncil
         /// <summary>Cells added to a zone that was there already (grow), to take back.</summary>
         public List<IntVec3> cells = new List<IntVec3>();
         public bool undone;
+        /// <summary>Its key in the shared suggestion core ("auto:bill:...", "base:stubs", "adv:..."): undone, it is set aside there, so it doesn't come back.</summary>
+        public string key;
+        /// <summary>How it is taken back, the same undo a step done by hand keeps (older actions have none: their kind says).</summary>
+        public SuggestUndo undo;
 
-        public bool CanUndo => !undone && map != null;
+        public bool CanUndo => !undone && map != null && (undo == null || SafePossible());
+
+        private bool SafePossible()
+        {
+            try
+            {
+                return undo.Possible(map);
+            }
+            catch
+            {
+                return false;
+            }
+        }
 
         public void ExposeData()
         {
@@ -41,6 +57,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref zoneId, "zoneId", -1);
             Scribe_Collections.Look(ref cells, "cells", LookMode.Value);
             Scribe_Values.Look(ref undone, "undone");
+            Scribe_Values.Look(ref key, "key");
+            Scribe_Deep.Look(ref undo, "undo");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 things ??= new List<Thing>();
@@ -52,11 +70,24 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Something an automation would do now: its switch, what it is, and the doing of it.</summary>
+    /// <summary>
+    /// Something an automation would do now: its switch, what it is in words with its numbers, and the doing of it. The
+    /// same thing is a step the player can do by hand (<see cref="AutomationTracker.HandSteps"/>): <see cref="run"/> does
+    /// it and returns its undo and check; <see cref="act"/> is the automation's own doing (the run, then its log).
+    /// </summary>
     public class AutoPending
     {
+        /// <summary>The automation's switch ("autoBills").</summary>
         public string key;
+        /// <summary>Its key in the shared suggestion core: set aside there, neither the automation nor the page offers it.</summary>
+        public string stepKey;
         public string text;
+        /// <summary>Why, in the colony's numbers.</summary>
+        public string reason;
+        public string doLabel, doTip;
+        public LookTargets look;
+        public int level = 1;
+        public Func<SuggestDone> run;
         public Action act;
     }
 
@@ -231,6 +262,7 @@ namespace ColonyCouncil
             var list = new List<AutoPending>();
             var s = S;
             if (s == null) return list;
+            var tracker = SuggestTracker.Instance;
             void Gather(string key, bool on, Func<Map, IEnumerable<AutoPending>> f)
             {
                 if (onlyOn && !on) return;
@@ -238,6 +270,9 @@ namespace ColonyCouncil
                 {
                     foreach (var p in f(map))
                     {
+                        // The shared "Not this": what the player set aside, or did by hand and is still to be checked, isn't
+                        // done again; nor, by the automation, what the player undid the last time it was done.
+                        if (p.stepKey != null && tracker != null && (!tracker.Offered(p.stepKey) || onlyOn && tracker.UndoneLast(p.stepKey))) continue;
                         p.key = key;
                         list.Add(p);
                     }
@@ -256,6 +291,54 @@ namespace ColonyCouncil
             Gather("autoFirewood", s.autoFirewood && s.enableAdvisor, Firewood);
             Gather("autoGrow", s.autoGrow, Grow);
             return list;
+        }
+
+        // ---------------- By hand ----------------
+
+        /// <summary>The source a step's key belongs to ("auto", "base", "adv"), for the pages' lists.</summary>
+        private static string SourceOf(string key)
+        {
+            int i = key?.IndexOf(':') ?? -1;
+            return i > 0 ? key.Substring(0, i) : AutomationSource;
+        }
+
+        public const string AutomationSource = "auto";
+
+        /// <summary>
+        /// What each automation would do now (switched on or not) as steps the player does by hand, through the shared
+        /// suggestion core: the same doing, kept in the log with its undo and checked later, "Not this" to set it aside
+        /// (then the automation leaves it alone too). Grouped by switch, at most <paramref name="perSwitch"/> each.
+        /// </summary>
+        public List<(string key, bool on, List<Suggestion> steps)> HandSteps(Map map, int perSwitch = 2)
+        {
+            NewDay();
+            var result = new List<(string, bool, List<Suggestion>)>();
+            if (map == null) return result;
+            List<AutoPending> all;
+            try
+            {
+                all = Candidates(map, false);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("automations by hand", e);
+                all = new List<AutoPending>();
+            }
+            foreach (var (key, on) in Switches())
+            {
+                var steps = new List<Suggestion>();
+                foreach (var p in all.Where(x => x.key == key && x.run != null && x.stepKey != null).Take(perSwitch))
+                {
+                    var pending = p;
+                    steps.Add(new Suggestion
+                    {
+                        key = p.stepKey, source = SourceOf(p.stepKey), area = key, title = p.text, reason = p.reason, level = p.level, map = map, look = p.look,
+                        doLabel = p.doLabel, doTip = p.doTip, apply = () => pending.run()
+                    });
+                }
+                result.Add((key, on, steps));
+            }
+            return result;
         }
 
         // ---------------- The memory ----------------
@@ -296,10 +379,10 @@ namespace ColonyCouncil
             droppedTicks.Add(Now);
         }
 
-        /// <summary>Told quietly, kept for the check-myself page, and kept as an action to undo.</summary>
-        private AutoAction Record(string kind, Map map, string text, LookTargets look = null)
+        /// <summary>Told quietly, kept for the check-myself page, and kept as an action to undo (with the step's undo and key when it has them).</summary>
+        private AutoAction Record(string kind, Map map, string text, LookTargets look = null, SuggestDone done = null, string key = null)
         {
-            var a = new AutoAction { kind = kind, map = map, tick = Now, text = text };
+            var a = new AutoAction { kind = kind, map = map, tick = Now, text = text, undo = done?.undo, key = key };
             actions.Add(a);
             while (actions.Count > AutomationMath.ActionsKept) actions.RemoveAt(0);
             log.Add(GenDate.DaysPassed + ": " + text);
@@ -357,44 +440,59 @@ namespace ColonyCouncil
                 foreach (var c in r.needs.ToList())
                 {
                     if (set >= AutomationMath.BillsAnHour) yield break;
-                    if (c.billed || c.bench == null || Dropped(BillKey(c.bench, c.recipe))) continue;
+                    if (c.billed || c.bench == null || Dropped(BillKey(c.bench, c.recipe)) || !Offered(BillStepKey(c.bench, c.recipe))) continue;
                     var link = c;
-                    string text = "CC_Auto_BillSet".Translate(link.product.label.Named("PRODUCT"), link.target.Named("N"), link.bench.LabelCap.ToString().Named("BENCH"), link.why.Named("WHY")).Resolve();
+                    string numbers = "CC_Same_Auto_BillNumbers".Translate(link.stock.Named("HAVE"), link.target.Named("N")).Resolve();
+                    string text = "CC_Auto_BillSet".Translate(link.product.label.Named("PRODUCT"), link.target.Named("N"), link.bench.LabelCap.ToString().Named("BENCH"), link.why.Named("WHY")).Resolve()
+                                  + " " + numbers;
                     set++;
-                    yield return new AutoPending
-                    {
-                        text = text,
-                        act = () =>
-                        {
-                            Making.SetUpChain(link, true);
-                            billKeys.Add(BillKey(link.bench, link.recipe));
-                            var a = Record(AutoAction.Bill, map, text, new LookTargets(link.bench));
-                            a.things.Add(link.bench);
-                            a.recipe = link.recipe.defName;
-                        }
-                    };
+                    yield return BillPending(map, link.bench, link.recipe, link.product, link.target, link.stock, text, link.why + " " + numbers + (link.parts.NullOrEmpty() ? "" : " " + link.PartsLine));
                 }
             foreach (var o in r.could.ToList())
             {
                 if (set >= AutomationMath.BillsAnHour) yield break;
-                if (o.bench == null || o.wantedBy != null || !KindOn(o.kind) || Dropped(BillKey(o.bench, o.recipe))) continue;
+                if (o.bench == null || o.wantedBy != null || !KindOn(o.kind) || Dropped(BillKey(o.bench, o.recipe)) || !Offered(BillStepKey(o.bench, o.recipe))) continue;
                 var option = o;
-                string text = "CC_Auto_BillSet".Translate(option.product.label.Named("PRODUCT"), option.target.Named("N"), option.bench.LabelCap.ToString().Named("BENCH"),
-                    "CC_Auto_Why_Staple".Translate().Resolve().Named("WHY")).Resolve();
+                string why = option.targetWhy ?? "CC_Auto_Why_Staple".Translate().Resolve();
+                string text = "CC_Auto_BillSet".Translate(option.product.label.Named("PRODUCT"), option.target.Named("N"), option.bench.LabelCap.ToString().Named("BENCH"), why.Named("WHY")).Resolve()
+                              + " " + "CC_Same_Auto_BillNumbers".Translate(option.productStock.Named("HAVE"), option.target.Named("N")).Resolve();
                 set++;
-                yield return new AutoPending
-                {
-                    text = text,
-                    act = () =>
-                    {
-                        Making.SetUpBill(option, true);
-                        billKeys.Add(BillKey(option.bench, option.recipe));
-                        var a = Record(AutoAction.Bill, map, text, new LookTargets(option.bench));
-                        a.things.Add(option.bench);
-                        a.recipe = option.recipe.defName;
-                    }
-                };
+                yield return BillPending(map, option.bench, option.recipe, option.product, option.target, option.productStock, text, why + " " + option.PartsLine);
             }
+        }
+
+        private static string BillStepKey(Building_WorkTable bench, RecipeDef recipe) => AutomationSource + ":bill:" + BillKey(bench, recipe);
+
+        private static bool Offered(string key) => SuggestTracker.Instance?.Offered(key) ?? true;
+
+        /// <summary>A "make until" bill as a pending action: the bill set (by hand or by the automation), its undo the bill taken off, its check whether the stock rose.</summary>
+        private AutoPending BillPending(Map map, Building_WorkTable bench, RecipeDef recipe, ThingDef product, int target, int stock, string text, string reason)
+        {
+            string key = BillStepKey(bench, recipe);
+            Func<SuggestDone> run = () =>
+            {
+                var bill = Making.AddBill(bench, recipe, product, target, true);
+                if (bill == null) return null;
+                return new SuggestDone
+                {
+                    undo = new UndoBillsAdded { bills = { bill } }, map = map,
+                    check = new BillStockCheck { bench = bench, bill = bill, product = product, before = stock, target = target, waitTicks = SuggestMath.TicksPerDay }
+                };
+            };
+            return new AutoPending
+            {
+                stepKey = key, text = text, reason = reason, look = new LookTargets(bench), run = run,
+                doLabel = "CC_Making_SetBill".Translate(target).Resolve(), doTip = "CC_Making_SetBillTip".Translate(bench.LabelCap.ToString()).Resolve(),
+                act = () =>
+                {
+                    var d = run();
+                    if (d == null) return;
+                    billKeys.Add(BillKey(bench, recipe));
+                    var a = Record(AutoAction.Bill, map, text, new LookTargets(bench), d, key);
+                    a.things.Add(bench);
+                    a.recipe = recipe.defName;
+                }
+            };
         }
 
         // ---------------- The plan ----------------
@@ -404,16 +502,26 @@ namespace ColonyCouncil
         {
             foreach (var s in NextSteps.ProposedFor(map).ToList())
             {
-                if (NextStepsMath.LevelOf(s.score) < AutomationMath.PlanLevel) continue;
+                int level = NextStepsMath.LevelOf(s.score);
+                if (level < AutomationMath.PlanLevel) continue;
                 var step = s;
-                string text = "CC_Auto_Planned".Translate(step.title.Named("STEP")).Resolve();
+                string key = AutomationSource + ":plan:" + step.key;
+                string text = "CC_Auto_Planned".Translate(step.title.Named("STEP")).Resolve() + " " + "CC_Same_Auto_PlanLevel".Translate(("CC_Level_" + (AdviceLevel)level).Translate().Named("LEVEL")).Resolve();
+                Func<SuggestDone> run = () =>
+                {
+                    if (!step.Proposed) return null;
+                    NextSteps.Take(step);
+                    return new SuggestDone { undo = new UndoPlanTaken { stepKey = step.key }, map = map };
+                };
                 yield return new AutoPending
                 {
-                    text = text,
+                    stepKey = key, text = text, reason = step.detail, level = level, look = step.look.IsValid ? new LookTargets(step.look, map) : null, run = run,
+                    doLabel = "CC_Plan_Take".Translate().Resolve(), doTip = "CC_Plan_TakeTip".Translate().Resolve(),
                     act = () =>
                     {
-                        NextSteps.Take(step);
-                        var a = Record(AutoAction.Plan, map, text, step.look.IsValid ? new LookTargets(step.look, map) : null);
+                        var d = run();
+                        if (d == null) return;
+                        var a = Record(AutoAction.Plan, map, text, step.look.IsValid ? new LookTargets(step.look, map) : null, d, key);
                         a.stepKey = step.key;
                     }
                 };
@@ -428,16 +536,27 @@ namespace ColonyCouncil
             if (Find.ResearchManager.GetProject() != null || !map.listerBuildings.ColonistsHaveResearchBench() || !Due("research", AutomationMath.ResearchDays)) yield break;
             var next = AdvisorWorker_Research.SuggestNext();
             if (next == null) yield break;
-            string text = "CC_Auto_Research".Translate(next.LabelCap.ToString().Named("PROJECT")).Resolve();
+            string key = AutomationSource + ":research:" + next.defName;
+            string text = "CC_Auto_Research".Translate(next.LabelCap.ToString().Named("PROJECT")).Resolve() + " "
+                          + "CC_Same_Auto_ResearchCost".Translate(next.CostApparent.ToString("0").Named("COST")).Resolve();
+            Func<SuggestDone> run = () =>
+            {
+                var prev = Find.ResearchManager.GetProject();
+                if (prev != null || next.IsFinished || !next.CanStartNow) return null;
+                Find.ResearchManager.SetCurrentProject(next);
+                return new SuggestDone { undo = new UndoResearchPick { prev = prev, picked = next }, map = map };
+            };
             yield return new AutoPending
             {
-                text = text,
+                stepKey = key, text = text, reason = "CC_Plan_Research_Detail".Translate(next.LabelCap.ToString().Named("PROJECT"), next.CostApparent.ToString("0").Named("COST")).Resolve(),
+                run = run, doLabel = "CC_Plan_StartResearch".Translate().Resolve(), doTip = "CC_Plan_StartResearchTip".Translate(next.LabelCap).Resolve(),
                 act = () =>
                 {
                     var prev = Find.ResearchManager.GetProject();
-                    Find.ResearchManager.SetCurrentProject(next);
+                    var d = run();
+                    if (d == null) return;
                     Done("research");
-                    var a = Record(AutoAction.Research, map, text);
+                    var a = Record(AutoAction.Research, map, text, null, d, key);
                     a.prev = prev;
                 }
             };
@@ -450,18 +569,20 @@ namespace ColonyCouncil
         {
             var f = BaseReview.Finding(map, "unstored");
             if (f?.fix == null || f.Level < AdviceLevel.Medium || !Due("unstored", AutomationMath.StockpileDays)) yield break;
+            string key = BaseReview.KeyOf(f);
             string text = "CC_Auto_Stockpile".Translate(f.title.Named("WHAT")).Resolve();
+            var fix = f.fix;
             yield return new AutoPending
             {
-                text = text,
+                stepKey = key, text = text, reason = f.detail, level = (int)f.Level, look = f.look.IsValid ? new LookTargets(f.look, map) : null, run = fix,
+                doLabel = f.fixLabel, doTip = f.fixTip,
                 act = () =>
                 {
-                    var before = new HashSet<int>(map.zoneManager.AllZones.Select(z => z.ID));
-                    f.fix();
+                    var d = fix();
+                    if (d == null) return;
                     Done("unstored");
-                    var a = Record(AutoAction.Stockpile, map, text, f.look.IsValid ? new LookTargets(f.look, map) : null);
-                    var made = map.zoneManager.AllZones.FirstOrDefault(z => !before.Contains(z.ID));
-                    if (made != null) a.zoneId = made.ID;
+                    var a = Record(AutoAction.Stockpile, map, text, f.look.IsValid ? new LookTargets(f.look, map) : null, d, key);
+                    if (d.undo is UndoZone z) a.zoneId = z.zoneId;
                 }
             };
         }
@@ -482,16 +603,20 @@ namespace ColonyCouncil
                 var things = f.things.Where(t => t != null && !t.Destroyed).Take(left).ToList();
                 if (things.Count == 0) continue;
                 left -= things.Count;
+                string key = BaseReview.KeyOf(finding);
                 string text = "CC_Auto_TakeDown".Translate(finding.title.Named("WHAT"), things.Count.Named("N")).Resolve();
+                Func<SuggestDone> run = () => BaseReview.Deconstruct(map, things);
                 yield return new AutoPending
                 {
-                    text = text,
+                    stepKey = key, text = text, reason = finding.detail, level = (int)finding.Level, look = finding.look.IsValid ? new LookTargets(finding.look, map) : null, run = run,
+                    doLabel = finding.fixLabel, doTip = finding.fixTip,
                     act = () =>
                     {
-                        BaseReview.Deconstruct(map, things);
+                        var d = run();
+                        if (d == null) return;
                         takenDownToday += things.Count;
                         if (things.Count >= finding.things.Count) Done("takedown:" + finding.key);
-                        var a = Record(AutoAction.TakeDown, map, text, finding.look.IsValid ? new LookTargets(finding.look, map) : null);
+                        var a = Record(AutoAction.TakeDown, map, text, finding.look.IsValid ? new LookTargets(finding.look, map) : null, d, key);
                         a.things.AddRange(things);
                     }
                 };
@@ -516,18 +641,23 @@ namespace ColonyCouncil
                     continue;
                 }
                 var signal = s;
+                string key = AdvisorSteps.KeyOf(signal);
                 string text = "CC_Auto_Acted".Translate(signal.title.Named("WHAT")).Resolve();
+                var step = AdvisorSteps.StepOf(signal, map);
+                if (step.apply == null) continue;
                 yield return new AutoPending
                 {
-                    text = text,
+                    stepKey = key, text = text, reason = signal.detail, level = (int)signal.Level, look = signal.look, run = step.apply, doLabel = step.doLabel, doTip = step.doTip,
                     act = () =>
                     {
-                        var before = new HashSet<Thing>(map.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint));
-                        signal.act();
+                        var d = step.apply();
+                        if (d == null) return;
                         Done(signal.def.defName);
-                        var placed = map.listerThings.ThingsInGroup(ThingRequestGroup.Blueprint).Where(t => !before.Contains(t)).ToList();
-                        spentToday += placed.Sum(Worth);
-                        var a = Record(AutoAction.Lamps, map, text, signal.look);
+                        var placed = (d.undo as UndoOrders)?.pieceCells.SelectMany(c => c.GetThingList(map).OfType<Blueprint_Build>()).Distinct().Cast<Thing>().ToList() ?? new List<Thing>();
+                        float worth = placed.Sum(Worth);
+                        spentToday += worth;
+                        string line = text + " " + "CC_Same_Auto_Placed".Translate(placed.Count.Named("N"), Mathf.RoundToInt(worth).Named("WORTH")).Resolve();
+                        var a = Record(AutoAction.Lamps, map, line, signal.look, d, key);
                         a.things.AddRange(placed);
                     }
                 };
@@ -557,24 +687,37 @@ namespace ColonyCouncil
             if (want <= 0) yield break;
             var trees = Trees(map).Take(want).ToList();
             if (trees.Count == 0) yield break;
-            string text = "CC_Auto_Firewood".Translate(trees.Count.Named("N")).Resolve();
+            const string key = AutomationSource + ":firewood";
+            // The wood the trees give, against what the advice says the fires will burn.
+            float wood = trees.Sum(p => p.YieldNow());
+            string text = "CC_Auto_Firewood".Translate(trees.Count.Named("N")).Resolve() + " " + "CC_Same_Auto_FirewoodWood".Translate(Mathf.RoundToInt(wood).Named("WOOD")).Resolve();
+            Func<SuggestDone> run = () =>
+            {
+                var dm = map.designationManager;
+                var undo = new UndoOrders();
+                foreach (var p in trees)
+                {
+                    if (p.Destroyed || !p.Spawned || dm.DesignationOn(p) != null) continue;
+                    dm.AddDesignation(new Designation(p, DesignationDefOf.HarvestPlant));
+                    undo.marked.Add(p);
+                    undo.markedDefs.Add(DesignationDefOf.HarvestPlant.defName);
+                }
+                if (undo.Count == 0) return null;
+                // Worked once the firewood advice has gone (enough wood for the fires till spring).
+                return new SuggestDone { undo = undo, map = map, check = new SourceGoneCheck { key = AdvisorSteps.KeyOf(s), waitTicks = 2 * SuggestMath.TicksPerDay } };
+            };
             yield return new AutoPending
             {
-                text = text,
+                stepKey = key, text = text, reason = s.detail, level = (int)s.Level, look = new LookTargets(trees[0]), run = run,
+                doLabel = "CC_Same_Auto_FirewoodDo".Translate(trees.Count).Resolve(), doTip = "CC_Same_Auto_FirewoodDoTip".Translate(trees.Count).Resolve(),
                 act = () =>
                 {
-                    var dm = map.designationManager;
-                    int marked = 0;
-                    foreach (var p in trees)
-                    {
-                        if (p.Destroyed || !p.Spawned || dm.DesignationOn(p) != null) continue;
-                        dm.AddDesignation(new Designation(p, DesignationDefOf.HarvestPlant));
-                        marked++;
-                    }
-                    if (marked == 0) return;
+                    var d = run();
+                    if (d == null) return;
+                    int marked = (d.undo as UndoOrders)?.marked.Count ?? 0;
                     choppedToday += marked;
                     Done("firewood");
-                    var a = Record(AutoAction.Firewood, map, text, new LookTargets(trees[0]));
+                    var a = Record(AutoAction.Firewood, map, text, new LookTargets(trees[0]), d, key);
                     a.things.AddRange(trees.Cast<Thing>());
                 }
             };
@@ -612,20 +755,36 @@ namespace ColonyCouncil
                     if (n.plant == null || n.recipe != null || n.zone != null || n.cells <= 0 || !seen.Add(n.thing)) continue;
                     if (!Due("grow:" + n.thing.defName, AutomationMath.GrowDays)) continue;
                     var node = n;
-                    string text = "CC_Auto_Grow".Translate(node.cells.Named("N"), node.plant.label.Named("PLANT"), node.thing.label.Named("PRODUCT")).Resolve();
+                    string key = AutomationSource + ":grow:" + node.thing.defName;
+                    string text = "CC_Auto_Grow".Translate(node.cells.Named("N"), node.plant.label.Named("PLANT"), node.thing.label.Named("PRODUCT")).Resolve() + " "
+                                  + "CC_Same_Auto_BillNumbers".Translate(node.stock.Named("HAVE"), node.want.Named("N")).Resolve();
+                    Func<SuggestDone> run = () =>
+                    {
+                        var before = new HashSet<int>(map.zoneManager.AllZones.Select(z => z.ID));
+                        var zone = Sowing.Sow(map, node.plant, node.cells);
+                        if (zone == null) return null;
+                        bool added = before.Contains(zone.ID);
+                        var cells = added ? zone.Cells.TakeLast(node.cells).ToList() : zone.Cells.ToList();
+                        Making.For(map, true);
+                        return new SuggestDone
+                        {
+                            undo = new UndoZone { what = added ? UndoZone.Added : UndoZone.Made, zoneId = zone.ID, cells = cells }, map = map,
+                            check = new AheadSownCheck { zoneId = zone.ID, plant = node.plant, cells = cells }
+                        };
+                    };
                     yield return new AutoPending
                     {
-                        text = text,
+                        stepKey = key, text = text, reason = node.partsLine.NullOrEmpty() ? null : node.PartsLine,
+                        run = run, doLabel = "CC_Same_Auto_GrowDo".Translate(node.cells).Resolve(), doTip = "CC_Same_Auto_GrowDoTip".Translate(node.cells.Named("N"), node.plant.label.Named("PLANT")).Resolve(),
                         act = () =>
                         {
-                            var before = new HashSet<int>(map.zoneManager.AllZones.Select(z => z.ID));
-                            var zone = Sowing.Sow(map, node.plant, node.cells);
-                            if (zone == null) return;
+                            var d = run();
+                            if (d == null) return;
                             Done("grow:" + node.thing.defName);
-                            var a = Record(AutoAction.Grow, map, text, zone.Cells.Count > 0 ? new LookTargets(zone.Cells[0], map) : null);
-                            a.zoneId = zone.ID;
-                            if (before.Contains(zone.ID)) a.cells.AddRange(zone.Cells.TakeLast(node.cells));
-                            Making.For(map, true);
+                            var z = d.undo as UndoZone;
+                            var a = Record(AutoAction.Grow, map, text, z != null && z.cells.Count > 0 ? new LookTargets(z.cells[0], map) : null, d, key);
+                            a.zoneId = z?.zoneId ?? -1;
+                            if (z != null && z.what == UndoZone.Added) a.cells.AddRange(z.cells);
                         }
                     };
                 }
@@ -633,13 +792,35 @@ namespace ColonyCouncil
 
         // ---------------- Undoing ----------------
 
-        /// <summary>Takes an action back: the bill off the bench (and not set again), the step back to proposed, the research pick, the zone, the orders, the blueprints, the marks.</summary>
+        /// <summary>
+        /// Takes an action back: the bill off the bench (and not set again), the step back to proposed, the research pick,
+        /// the zone, the orders, the blueprints, the marks. Undone, it counts as "Not this" for its key in the shared
+        /// suggestion core: after its cooldown it doesn't come back, by itself or as a step to do by hand, until the player
+        /// brings it back.
+        /// </summary>
         public void Undo(AutoAction a)
         {
             if (a == null || !a.CanUndo) return;
             var map = a.map;
             try
             {
+                if (a.undo != null)
+                {
+                    // The same undo a step done by hand keeps.
+                    a.undo.Undo(map);
+                    if (a.kind == AutoAction.Bill)
+                    {
+                        var bench = a.things.OfType<Building_WorkTable>().FirstOrDefault();
+                        if (bench != null && a.recipe != null)
+                        {
+                            string key = bench.thingIDNumber + ":" + a.recipe;
+                            billKeys.Remove(key);
+                            Drop(key);
+                        }
+                    }
+                    if (map != null) Making.For(map, true);
+                }
+                else
                 switch (a.kind)
                 {
                     case AutoAction.Bill:
@@ -715,6 +896,14 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("undo " + a.kind, e);
             }
             a.undone = true;
+            // An older action has no key: a bill's is its bench and recipe.
+            string stepKey = a.key;
+            if (stepKey == null && a.kind == AutoAction.Bill && a.recipe != null)
+            {
+                var bench = a.things.OfType<Building_WorkTable>().FirstOrDefault();
+                if (bench != null) stepKey = AutomationSource + ":bill:" + bench.thingIDNumber + ":" + a.recipe;
+            }
+            if (stepKey != null) SuggestTracker.Instance?.Decline(stepKey, a.text);
             log.Add(GenDate.DaysPassed + ": " + "CC_Auto_Undone".Translate(a.text).Resolve());
             while (log.Count > AutomationMath.LogLines) log.RemoveAt(0);
             Messages.Message("CC_Auto_Undone".Translate(a.text).Resolve(), MessageTypeDefOf.SilentInput, false);

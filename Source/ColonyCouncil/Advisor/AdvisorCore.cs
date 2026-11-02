@@ -103,6 +103,13 @@ namespace ColonyCouncil
         public string actLabel;
         /// <summary>What the button does on the map, for its tooltip (else the label alone).</summary>
         public string actTip;
+        /// <summary>The action only opens something (a letter, a quest, a tab): not a step kept with Undo.</summary>
+        public bool actOpens;
+        /// <summary>
+        /// The kind of room building ahead reckons this by (GrowthMath.Beds, Cold, Dining, Hospital): the numbers are its
+        /// row's, and on the Plan page its "Building ahead" section proposes the room, so the plan doesn't propose it twice.
+        /// </summary>
+        public string buildKind;
         public string key = "";
 
         public float Score => severity * (0.5f + 0.5f * urgency) * (0.6f + 0.4f * confidence) * (def?.importance ?? 1f);
@@ -188,7 +195,29 @@ namespace ColonyCouncil
             return now / then - 1f;
         }
 
+        /// <summary>
+        /// The advice now, without what the player set aside with "Not this" and without a step they did whose check is
+        /// still to come (the shared suggestion core, by AdvisorSteps.KeyOf): what every page and the automations go by.
+        /// </summary>
         public List<AdvisorSignal> Signals
+        {
+            get
+            {
+                Refresh(false);
+                var tracker = SuggestTracker.Instance;
+                if (tracker == null) return signals;
+                if (open == null || openFrom != signals || openVersion != tracker.Version)
+                {
+                    open = signals.Where(s => tracker.Offered(AdvisorSteps.KeyOf(s))).ToList();
+                    openFrom = signals;
+                    openVersion = tracker.Version;
+                }
+                return open;
+            }
+        }
+
+        /// <summary>Every piece of advice now, set aside or not (for the check of a step done).</summary>
+        public List<AdvisorSignal> AllSignals
         {
             get
             {
@@ -196,6 +225,9 @@ namespace ColonyCouncil
                 return signals;
             }
         }
+
+        private List<AdvisorSignal> open, openFrom;
+        private int openVersion = -1;
 
         public void Refresh(bool force)
         {

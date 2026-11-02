@@ -119,6 +119,20 @@ namespace ColonyCouncil
             return list;
         }
 
+        /// <summary>
+        /// For a near rule by walking: the rooms of role a whose walk to the nearest room of role b (the walk from each, and
+        /// which b it reached first) is too far. A room no walk reaches is left out: that is a door or a wall to look at, not
+        /// a distance.
+        /// </summary>
+        public static List<(int a, int b, float distance)> TooFarWalking(NearRule rule, IList<float> walks, IList<int> nearest)
+        {
+            var list = new List<(int, int, float)>();
+            if (walks == null || nearest == null) return list;
+            for (int i = 0; i < walks.Count && i < nearest.Count; i++)
+                if (walks[i] >= 0f && nearest[i] >= 0 && walks[i] > rule.far) list.Add((i, nearest[i], walks[i]));
+            return list;
+        }
+
         /// <summary>How much a too-far finding matters: the rule's weight, more the farther apart, up to twice.</summary>
         public static float FarScore(NearRule rule, float distance) => rule.weight * Math.Min(2f, Math.Max(1f, distance / rule.far));
 
@@ -141,6 +155,143 @@ namespace ColonyCouncil
                 sum += d;
             }
             return sum / bedrooms.Count;
+        }
+
+        /// <summary>The average walk from each bedroom to its nearest dining room, of those a walk reaches; -1 when none is reached.</summary>
+        public static float MealWalkOf(IList<float> walks)
+        {
+            if (walks == null) return -1f;
+            float sum = 0f;
+            int n = 0;
+            foreach (var w in walks)
+                if (w >= 0f)
+                {
+                    sum += w;
+                    n++;
+                }
+            return n == 0 ? -1f : sum / n;
+        }
+
+        // ---------------- Walking ----------------
+
+        /// <summary>
+        /// Walks over the map's cells as people walk them: a step to a side costs one cell, a step on the slant the
+        /// square root of two, never cutting a corner past a wall or a door (the game's own rule). Cells are numbered
+        /// z x width + x, as the game numbers them. Searched from the sources outwards until every target is reached, so a
+        /// compact base costs little; the arrays are kept between walks.
+        /// </summary>
+        public sealed class WalkGrid
+        {
+            private readonly int width, height;
+            private readonly bool[] walkable, blocksDiagonal;
+            private readonly int[] cost, from, stamp;
+            private int generation;
+
+            public const int Straight = 10, Slant = 14;
+
+            public WalkGrid(int width, int height, bool[] walkable, bool[] blocksDiagonal)
+            {
+                this.width = width;
+                this.height = height;
+                this.walkable = walkable;
+                this.blocksDiagonal = blocksDiagonal ?? walkable;
+                int n = width * height;
+                cost = new int[n];
+                from = new int[n];
+                stamp = new int[n];
+            }
+
+            private bool Blocks(int i) => blocksDiagonal == walkable ? !walkable[i] : blocksDiagonal[i];
+
+            /// <summary>
+            /// The walk in cells from the nearest source to each target (-1 where none reaches it), and which source's id
+            /// that was. A source or target off the grid or in a wall is skipped.
+            /// </summary>
+            public float[] Walk(IList<int> sources, IList<int> ids, IList<int> targets, out int[] nearest)
+            {
+                generation++;
+                int n = width * height;
+                var heap = new List<(int c, int i)>();
+                void Push(int c, int i)
+                {
+                    heap.Add((c, i));
+                    int k = heap.Count - 1;
+                    while (k > 0)
+                    {
+                        int p = (k - 1) / 2;
+                        if (heap[p].c <= heap[k].c) break;
+                        (heap[p], heap[k]) = (heap[k], heap[p]);
+                        k = p;
+                    }
+                }
+                (int c, int i) Pop()
+                {
+                    var top = heap[0];
+                    int last = heap.Count - 1;
+                    heap[0] = heap[last];
+                    heap.RemoveAt(last);
+                    int k = 0;
+                    while (true)
+                    {
+                        int l = 2 * k + 1, r = l + 1, m = k;
+                        if (l < heap.Count && heap[l].c < heap[m].c) m = l;
+                        if (r < heap.Count && heap[r].c < heap[m].c) m = r;
+                        if (m == k) break;
+                        (heap[m], heap[k]) = (heap[k], heap[m]);
+                        k = m;
+                    }
+                    return top;
+                }
+                for (int s = 0; s < sources.Count; s++)
+                {
+                    int i = sources[s];
+                    if (i < 0 || i >= n || !walkable[i]) continue;
+                    if (stamp[i] == generation && cost[i] <= 0) continue;
+                    stamp[i] = generation;
+                    cost[i] = 0;
+                    from[i] = ids != null && s < ids.Count ? ids[s] : s;
+                    Push(0, i);
+                }
+                var wanted = new HashSet<int>();
+                foreach (var t in targets)
+                    if (t >= 0 && t < n && walkable[t]) wanted.Add(t);
+                var settled = new HashSet<int>();
+                int left = wanted.Count;
+                while (heap.Count > 0 && left > 0)
+                {
+                    var (c, i) = Pop();
+                    if (c > cost[i] || !settled.Add(i)) continue;
+                    if (wanted.Contains(i)) left--;
+                    int x = i % width, z = i / width;
+                    for (int dx = -1; dx <= 1; dx++)
+                        for (int dz = -1; dz <= 1; dz++)
+                        {
+                            if (dx == 0 && dz == 0) continue;
+                            int nx = x + dx, nz = z + dz;
+                            if (nx < 0 || nz < 0 || nx >= width || nz >= height) continue;
+                            int j = nz * width + nx;
+                            if (!walkable[j]) continue;
+                            bool slant = dx != 0 && dz != 0;
+                            if (slant && (Blocks(z * width + nx) || Blocks(nz * width + x))) continue;
+                            int nc = c + (slant ? Slant : Straight);
+                            if (stamp[j] == generation && cost[j] <= nc) continue;
+                            stamp[j] = generation;
+                            cost[j] = nc;
+                            from[j] = from[i];
+                            Push(nc, j);
+                        }
+                }
+                var result = new float[targets.Count];
+                nearest = new int[targets.Count];
+                for (int t = 0; t < targets.Count; t++)
+                {
+                    int i = targets[t];
+                    bool reached = i >= 0 && i < n && stamp[i] == generation && settled.Contains(i);
+                    result[t] = reached ? cost[i] / (float)Straight : -1f;
+                    nearest[t] = reached ? from[i] : -1;
+                }
+                return result;
+            }
         }
 
         // ---------------- Doors ----------------
@@ -288,6 +439,35 @@ namespace ColonyCouncil
 
         public static bool AirlockWanted(float freezerTemp, float beyondTemp, int beyondCells, int beyondDoors, bool beyondOutdoors) =>
             freezerTemp <= FreezerTemp && (beyondOutdoors || beyondTemp >= WarmBeyond) && !(beyondCells <= LobbyCells && beyondDoors >= 2);
+
+        /// <summary>
+        /// An airlock outside a freezer door that opens towards (dx, dz): the cell beyond the door kept as a lobby, a
+        /// second door one cell further, a wall either side of the lobby, the cells either side of the second door (left
+        /// open, so people walk round it), and the cell beyond the second door (open, so the door leads somewhere).
+        /// </summary>
+        public struct Airlock
+        {
+            public (int x, int z) lobby, door, wallA, wallB, roundA, roundB, beyond;
+        }
+
+        public static Airlock AirlockAt((int x, int z) freezerDoor, (int dx, int dz) dir)
+        {
+            var (x, z) = freezerDoor;
+            var (dx, dz) = dir;
+            // At right angles to the way out.
+            int px = -dz, pz = dx;
+            var a = new Airlock
+            {
+                lobby = (x + dx, z + dz),
+                door = (x + 2 * dx, z + 2 * dz),
+                beyond = (x + 3 * dx, z + 3 * dz)
+            };
+            a.wallA = (a.lobby.x + px, a.lobby.z + pz);
+            a.wallB = (a.lobby.x - px, a.lobby.z - pz);
+            a.roundA = (a.door.x + px, a.door.z + pz);
+            a.roundB = (a.door.x - px, a.door.z - pz);
+            return a;
+        }
 
         // ---------------- Scores ----------------
 

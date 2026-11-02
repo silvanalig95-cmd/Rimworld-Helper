@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ColonyCouncil
 {
@@ -17,6 +18,33 @@ namespace ColonyCouncil
         public const int SpreadRooms = 3;
 
         public static bool IsCatchAll(int allowed, int storable) => storable > 0 && allowed >= storable * CatchAllShare;
+
+        /// <summary>
+        /// The muddle among catch-all stockpiles: the most of them at one priority (goods go to whichever is nearer).
+        /// Catch-alls at different priorities are an overflow on purpose: the haulers fill the higher one first and move
+        /// goods up when it has room. Returns that count and the priority.
+        /// </summary>
+        public static int CatchAllMuddle(IList<int> priorities, out int priority)
+        {
+            priority = -1;
+            int best = 0;
+            if (priorities == null) return 0;
+            var counts = new Dictionary<int, int>();
+            foreach (var p in priorities)
+            {
+                counts.TryGetValue(p, out int n);
+                counts[p] = ++n;
+                if (n > best || n == best && p > priority)
+                {
+                    best = n;
+                    priority = p;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>The priority the other catch-alls go to so the main one takes goods first: one step lower, never below the lowest a store has (1).</summary>
+        public static int OverflowPriority(int priority) => Math.Max(1, priority - 1);
 
         /// <summary>Two catch-all stockpiles are a muddle; more are worse, up to a point.</summary>
         public static float CatchAllScore(int zones) => zones < 2 ? 0f : Math.Min(0.3f, 0.12f + (zones - 2) * 0.05f);

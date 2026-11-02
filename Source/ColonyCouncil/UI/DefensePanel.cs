@@ -22,6 +22,7 @@ namespace ColonyCouncil
         private static float modelAt = -1f;
         private static Texture2D mini;
         private static DefenseSurvey miniFor;
+        private static readonly Folds adviceFolds = new Folds("aside");
         private static readonly Dictionary<(string, int, GameFont), float> heights = new Dictionary<(string, int, GameFont), float>();
 
         private static readonly Color CriticalColor = new Color(0.9f, 0.3f, 0.25f);
@@ -378,7 +379,8 @@ namespace ColonyCouncil
                 y += mr.height + 4f;
             }
             foreach (var a in m.advice) y = AdviceCard(a, s, x, y, w) + 6f;
-            y += 8f;
+            // The advice set aside with "Not this", to bring back.
+            y += AheadPanel.Aside(x, y, w, DefenseAdvice.Source, adviceFolds) + 8f;
             y += UiKit.SectionTitle(x, y, w, "CC_Def_Plans".Translate(), Icons.Rooms, null, "CC_Def_PlansSub".Translate().Resolve());
             foreach (var (t, line, reason) in m.plans) y = PlanCard(t, line, reason, s, x, y, w) + 6f;
             return y;
@@ -404,7 +406,7 @@ namespace ColonyCouncil
             float whyH = Measure(a.why ?? "", textW, GameFont.Tiny);
             bool gap = a.choke >= 0 && a.choke < s.chokes.Count && a.key != null && (a.key.StartsWith("gap") || a.key.StartsWith("cover"));
             var lineThere = gap ? DefenseLines.Of(s.map)?.ForChoke(s, s.chokes[a.choke]) : null;
-            int buttons = (a.template != null && !a.done ? 1 : 0) + (a.look.IsValid ? 1 : 0) + (a.article != null ? 1 : 0) + (gap ? 1 : 0);
+            int buttons = (a.template != null && !a.done ? 1 : 0) + (a.look.IsValid ? 1 : 0) + (a.article != null ? 1 : 0) + (gap ? 1 : 0) + (a.done ? 0 : 1);
             float h = Mathf.Max(56f, titleH + whyH + 16f, buttons * 28f + 8f);
             var color = a.done ? UiKit.Good : LevelColor(a.Level);
             var r = new Rect(x, y, w, h);
@@ -438,16 +440,23 @@ namespace ColonyCouncil
             }
             if (a.look.IsValid)
             {
-                if (Widgets.ButtonText(new Rect(bx, by, ButtonsW, 24f), "CC_Show".Translate()))
+                var sr = new Rect(bx, by, ButtonsW, 24f);
+                if (Widgets.ButtonText(sr, "CC_Show".Translate()))
                 {
                     Find.MainTabsRoot.EscapeCurrentTab(false);
                     DefenseOverlay.Show = true;
                     CameraJumper.TryJump(a.look, s.map);
                 }
+                TooltipHandler.TipRegion(sr, "CC_Plan_ShowTip".Translate());
                 by += 28f;
             }
-            if (a.article != null && Widgets.ButtonText(new Rect(bx, by, ButtonsW, 24f), "CC_ReadMore".Translate())) MainTabWindow_Council.OpenAlmanac(a.article);
-            if (a.article != null) by += 28f;
+            if (a.article != null)
+            {
+                var ar = new Rect(bx, by, ButtonsW, 24f);
+                if (Widgets.ButtonText(ar, "CC_ReadMore".Translate())) MainTabWindow_Council.OpenAlmanac(a.article);
+                TooltipHandler.TipRegion(ar, "CC_Same_ReadMoreTip".Translate(a.article.label.CapitalizeFirst()));
+                by += 28f;
+            }
             if (gap)
             {
                 var lr = new Rect(bx, by, ButtonsW, 24f);
@@ -457,7 +466,10 @@ namespace ColonyCouncil
                     else DefenseLinesPanel.MakeFromAdvice(s, a.choke);
                 }
                 TooltipHandler.TipRegion(lr, (lineThere != null ? "CC_DefLine_OpenIts_Tip" : "CC_DefLine_MakeLine_Tip").Translate());
+                by += 28f;
             }
+            // Not this: set aside here and on the Plan page alike, until brought back below the advice.
+            if (!a.done && AheadPanel.NotThis(new Rect(bx, by, ButtonsW, 24f), DefenseAdvice.KeyOf(a), a.title)) modelAt = -1f;
             return y + h;
         }
 
