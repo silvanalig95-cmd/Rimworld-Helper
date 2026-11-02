@@ -417,6 +417,14 @@ camps come sooner to good hosts, and refugees and exiles seek them out; pilgrims
 players, minstrels and mourners a long-memoried one. Each has its own visitors on the road and lines in letters, and
 each leans the colony's old hands when an answer goes against it.
 
+Four more come from what visitors see. A visitor at the gate, or a guest staying with Hospitality, says so when the
+colony has something worth remarking on, once per thing seen: a great hall, art of excellent quality, three graves or
+more, a shrine, walls with turrets or a long run of wall, many animals, wide fields. When enough of them have remarked
+on the same thing over the months, word spreads and the colony is known for it: a **famed hall** (tourists, the
+celebrity, the players and guests of note come more often), **artful** (tourists, the celebrity, scholars and
+scribes), **hallowed** (pilgrims) or **walled** (tourists). "Travellers speak of..." on the World page says what the
+colony is known for. Like the work names, these fade if the colony stops living up to them.
+
 ### Dilemmas: hard choices
 Every week or so (sooner while everyone is content) the council has to settle something, and every answer costs
 someone. A thief caught in the stores: forgive, make them work it off, or make an example of them? Two colonists
@@ -1130,10 +1138,28 @@ The herd and the pets are part of the colony's life, not only its larder and its
   the ideoligion frowns on. Nobody's own animal, nothing bonded or named, is ever culled or lost.
 - **The herd's year:** the lambing watch, shearing day and bringing the herd home (before the winter, in a cold snap
   or after a raid: a work party walks the animals into the barn or pen on ropes) can become traditions; the colony's first foal and a beloved
-  animal's day are on the calendar.
+  animal's day are on the calendar. The first animal born to the herd each spring is a moment of its own: a letter, a
+  small glad thought for everyone, and the keeper walks down to the pens and stays until it stands.
+- **The herd's leader and its line:** once the herd is four head or more, the eldest adult of the kind there is most
+  of leads it, named (if it had no name) by its keeper, the herdmaster or whoever is best with animals, who speaks to it
+  at the pens; a letter and the chronicle tell it. From then on its line is counted: a calf born to the leader is the
+  second generation, its calf the third, and the first of each new generation is news. When the leader grows old its
+  last season is told and the keeper sits with it at the pens of an evening; when it dies the keeper takes it hard for
+  a few days, and within a day or two the herd follows a new leader, the old one's own blood first if any is grown,
+  else the eldest of the many, and a new line begins.
+- **A beast that stays:** a wild animal of some size (a wolf, a bear, a stag, a boar; never an insect or a great
+  beast) seen on the colony's land three days running is given a name, by a child if there is one, else by someone
+  with a love of animals, and from then on whoever sees it says so in their own words. Four days later the council is
+  asked what to make of it, and again every eight days while it stays, three times at most: leave food out (the namer
+  carries meat, hay or raw food out to where it is), keep everyone close with the best shot at the gate that night,
+  send the hunters, let the namer try to tame it, let it be, or drive it off with torches at dusk. After fifteen days
+  it is part of the land and its story closes, the namer glad of it; hunted, tamed, driven off or gone, it closes
+  sooner, and the chronicle keeps how. Another can take its place twenty days later.
 - **Dreams** of the herd, of talking animals, of riding, of an old pet young again, and of a lost one coming back.
 
-The Almanac page "the colony's animals" has the numbers.
+The Overview page's card **The herd and the land** shows who leads the herd, of which line and generation, whether
+the old leader is in its last season, the beast the colony watches and what it has made of it, a shiny rumour on the
+wind (with PokéWorld) and the neighbours settled for good. The Almanac page "the colony's animals" has the numbers.
 
 ### Offices and elections
 Five council seats: **speaker** (chairs meetings, everyone's trust rises a little each day), **marshal** (drills
@@ -1304,16 +1330,19 @@ planned (blueprints, frames and rooms being built) and how it stands, the reason
 - **seats** for everyone who eats here, Hospitality's guests and those who will join too, less one (someone is always
   asleep or out);
 - **hospital beds**, one for every four people to start with, or as many as were laid up at once over the last 15 days;
-- **workshop** places for every bench, and one more beside a bench kept busy with no idle bench of its kind;
+- **workshop** places for every bench, and one more beside a bench that is busy with no idle bench of its kind: by the
+  record of the last days, worked six of a hand's eight hours a day with as much work again waiting (until the record
+  covers a day, more work waiting than its hands do in two days);
 - **store** places for the stacks lying about at home that a store would take.
 
 The next one or two rooms are suggested before the colony runs short, the most urgent first. **Place the blueprints**
 puts the room down as the room planner would, with your materials and settings, beside the rooms it goes with
 (bedrooms together, the freezer and the dining room by the kitchen, workshop and storeroom side by side, a hospital
 near the gate) and never over a field; Undo takes the blueprints and the marks to cut or mine away again. Never more
-building is suggested than the builders do in a couple of days (a builder's day counts six hours at their construction
-speed, the walking doubled, the rock to mine at the miners' pace); while more is queued, the next room waits and the
-page says so.
+building is suggested than the builders do in a couple of days: a builder's day counts six hours at their
+construction speed with the walking doubled, and rock to mine for a room, still to place or marked inside one being
+built, counts at the miners' pace. While more is queued, the next room waits and the page says so. Building ahead
+stays on the Plan page even with the colony's next steps switched off in the settings.
 
 A room being built, from here or by you with the room planner, is followed stage by stage: clearing the ground, walls,
 doors and roof, cooling, heating and power, floors, furniture. With build priorities on, the stage at hand can be set
@@ -1332,7 +1361,8 @@ defense plan, the research, or the thing on the map; hovering a step shows on th
 when you say so, or when the need behind it has passed for three hours running. The first step shows on This week and
 in the council panel. **Ground plan** draws the plan's rooms and the proposals on the map together, each at the spot
 that fits best with the ones before it kept clear (around the rooms being built and their kept sides too), each in its
-own colour with its reasons; "Plan it here", or a click on the drawn outline, opens the planner there.
+own colour with its reasons; "Plan it here", or a click on the drawn outline, opens the planner there. The setting
+"The colony's next steps" (Council page) turns the steps off.
 
 #### The base, looked over
 The **Base** page is the council's walk round the base, once an hour or when you ask, most pressing first:
@@ -1372,21 +1402,44 @@ The suggestions come from those rows, the soonest short first, each with its num
 or feed bill; add a missing bill with bills for what feeds it; copy a bill to a second bench when the first can't keep
 up with the hands there are; grow a food field onto the fertile ground beside it, sow a band of a crop the colony has
 far too much of with a better one, or lay out a new field, each saying how much food a day it adds. The fields are set
-against the next 60 days, the days without growing included; hay and the crops only animals eat feed the animals and
-never count as the people's food. A bill behind a short stock that isn't moving says why, with a one-click fix where
-there is one: it is suspended, its bench is forbidden, broken, unpowered or out of fuel, nobody here can do it or has
-the work switched on, its ingredients are missing or out of its radius, or no store has room for what it makes. For
-spare clothes, the council counts the garments worn below half their hit points, those that soon will be and those
-worn through lately, and keeps enough whole spares in store with a bill. Under the fields comes a **shopping list** for
-the next trader: what the colony wants and can't make here (steel for components, neutroamine for medicine, materials
-the blueprints are short of, clothes no bench makes), with how many, their worth and whether a trader on the map or in
-orbit carries them; for a mineral with a known deposit on the map, a suggestion marks the nearest rock to mine, a
-reachable cell at a time and never one that would leave a roof unsupported. Bills set by Everybody Gets One are left
-alone, and bills Better Workbench Management links change together. With Colony Manager, its hunting, logging,
-mining and foraging jobs and its herds show beside the stock rows; the council only reads them, suggests raising a
-target when the colony wants more of what a job brings in (meat, wood, a mineral on the shopping list) or resuming a
-suspended job, and says first when a manager can't work at all (no desk, a desk off or forbidden, nobody with Managing
-switched on).
+against the next 60 days, the days without growing included. Hay and the other crops only animals eat are kept apart:
+they feed the animals fed from the stores and never count as the colonists' food, what the people's fields give
+beyond their need feeds the animals too, a hay field is grown only for the animals, and a store of hay nobody eats can
+be switched to a food crop. A bill behind a short stock that isn't moving says why, with a one-click fix where there
+is one: it is suspended, its bench is forbidden, broken, unpowered or out of fuel, nobody here can do it or has the
+work switched on, its ingredients are missing or out of its radius, or no store has room for what it makes. Bills set
+by Everybody Gets One are left alone, and bills Better Workbench Management links change together.
+
+**Spare clothes.** For each garment the colony's people wear, the council counts those worn below half their hit
+points (the game's frayed clothes, with their bad mood), those that will be within the days set, and those worn
+through lately. When they outrun the whole spares in store and what the bills will still make, a suggestion raises the
+garment's "do until" bill or adds one at a bench that can make it, counting only whole pieces, so worn ones in store
+don't stand in for spares. At most three garments are suggested at once, the most short first, and two days after a
+step the council checks that the bill made some.
+
+**The shopping list** comes under the fields: what the colony wants and can't make here, for the next trader. That is
+the parts down a chain that no bench here makes and no field grows (steel for components, neutroamine for medicine),
+the materials the blueprints are short of, what a waiting bill needs that nothing here makes, components before
+Fabrication, medicine itself when no bench makes it, and clothes no bench here makes. Each row gives how many are
+short, what there is against what is wanted, their worth in silver and where they may come from, and a trader on the
+map or in orbit is checked for what of the list they carry, with how many. What the land gives (crops, meat, hides,
+wool, milk, eggs, wood, stone chunks) never goes on the list, and ore already marked to mine counts at the rock's
+yield. **Where to mine:** for a mineral on the list with a deposit known on the map, a suggestion marks the rock to
+mine, at the nearest deposit the colony can walk up to: the cells nearest the way in first, so each can be reached once
+the one before is mined, as many as the shortfall takes, 40 at most a step, and never a cell whose mining would leave a
+roof without a support in reach. Undo takes the marks off what isn't mined yet, and two days later the council checks
+that half of it was.
+
+**With Colony Manager**, its hunting, logging, mining and foraging jobs show beside the stock rows with what each
+counts, what there is and its target, and each herd with its animals against the count wanted. The council only reads
+them. When the colony wants more of what a job brings in than its target (meat for the raw food, by the share of meat
+the record saw eaten; wood for the blueprints, the chains and what the fires, stoves and bills used lately; the
+minerals on the shopping list, where its mining job raises its target instead of the rock being marked), a suggestion
+raises the target, by tens up to 200 and by fifties above, never past the job's own limit; Undo puts it back, and two
+days later the council checks that the count rose. A suspended job whose goods are wanted gets a suggestion to resume
+it. A manager that can't work at all is named first: no manager desk (and which desk can be built now), a desk without
+power, forbidden or broken down, or nobody with Managing switched on, each with its fix where there is one; a working
+AI manager does the work by itself. Foraging and the herds are only shown.
 
 Below Ahead, the page reads the recipes of every bench the colony has against the stock, so any mod's benches count.
 "You could make now" lists, bench by bench, each batch the stock allows with no bill for it, the staples first; "Set a
@@ -1720,6 +1773,13 @@ are, who joined, who died and who walked out, how often trouble came, whether yo
 council granted, declared and decided, the closest friends and the worst enemies, who trusts the council most and
 least, and a last word in the author's own voice. Past years can be reread from the Chronicle tab.
 
+At each anniversary of the landing a second letter comes, with the same setting, written by the annalist too: the
+year on the land and from beyond it, which the annals leave out. The herd (its head, who leads it and of which line,
+the young born this year, a new leader, one in its last season), the beast that stays, the neighbours settled for good
+and the loads that went down the road from their post, the camps that came, the faces that came back, the world
+events that ended and how, the allies, and a few lines of the year's chronicle about strangers and the world. The
+founding day's own event still marks the day.
+
 ### Chronicle
 A running history of wishes, promises, petitions, meetings and ambitions. It keeps 300 lines; once it is full, the older
 everyday ones make way first, so the colony's losses, ambitions and life events are still there years later.
@@ -1800,7 +1860,11 @@ Each of these switches itself on only when its mod is there, and only asks for w
   and the Recruit button's tooltip says what's missing. What taking
   them costs their people goes by who they are (less with no family there, twice for the leader's family). Before
   someone is recruited from the guest tab, a colonist who objects has their say at the council, and weeks later their family may walk in
-  to take them home: let them go, send silver, or keep them at a price in goodwill and longing.
+  to take them home: let them go, send silver, or keep them at a price in goodwill and longing. A guest already
+  staying can be the stranger a story is about, about half the time when one fits: the old flame can turn out to be
+  someone at the guest beds, and so can the one who asks to learn a trade, or the tinker or teller who becomes a
+  regular. The story finds them where they are, and an answer that has them join hands them over through Hospitality's
+  own joining (setting "Guests in the colony's stories").
 - **Medieval Overhaul:** its pies, stews, slop, cheese, wine, ale, smoked meat and library leave memories that become
   days in the journals, and visitors notice the colony's cheese, wine, hearth, oven, hives and books once it has them.
 - **Vanilla Cooking and Brewing Expanded:** grills and gourmet dishes count as fine or lavish meals for birthday
@@ -1871,8 +1935,16 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   bond; a Pokémon that faints worries its trainer, and one that dies is mourned. Trainers spar (nobody hurt), talk
   moves and have a story with a new partner; colonists wish for a Pokémon of their own or ball belts on the rack, set
   out to catch them all or raise one to its best, and the council can make filling the Pokédex its project. Wild
-  Pokémon watch, play with children and shine; a rare one may come onto the land for a couple of days. Rimfolk only
-  reads the mod (by name, quietly skipping what a version lacks). Five Almanac pages explain it.
+  Pokémon watch, play with children and shine; a rare one may come onto the land for a couple of days. The beast that
+  stays can be a wild Pokémon: until it is fed or caught it gets into the stores now and then and makes off with a few
+  of what it would eat, and the council's answers include the namer walking out to catch it, a ball at the belt (the
+  throw is yours, with PokéWorld's own balls). A trainer at the gate may bring a **shiny rumour**, a shiny of some
+  species seen in the region: keep an eye out and for twenty days the shiny may show itself at the edge of the land,
+  where it is named like any beast that stays, or it was a story after all. **Travelling trainers** camp on the land,
+  two or three of a friendly people with their Pokémon at their heels: they trade, teach training to whoever asks, and
+  put on a friendly contest with the colony's best Pokémon as a show at their fire (the higher level likelier to win,
+  never surely, nobody hurt), and when they come back like any remembered camp, the next contest is a rematch. Rimfolk
+  only reads the mod (by name, quietly skipping what a version lacks). Five Almanac pages explain it.
 - **Giddy-Up 2:** a hunter, a restless soul or an animal lover may wish for a mount of their own.
 
 ### Your mods in Rimfolk's newer systems
@@ -2203,6 +2275,60 @@ all, never on top of another fight, and at a share of the storyteller's own raid
 event can be fired from **Debug actions → Incidents** (they're named `Council_Evt_...`; a story's first stage is
 `Council_Story_...`, a mission's offer `Council_Mission_...`).
 
+### Camps over a stay, a year and for good
+**A stay with a shape.** Every camp's stay follows a shape, with the day's chance events around it. They arrive and
+settle. A day and a half in, they ask something of the colony (one of their kind's requests) or do it a good turn.
+Midway through a stay of three days or more trouble comes: one of the council's questions about them (a theft, their
+beasts in the fields, one of them who wants to stay), or one of theirs falls ill and they ask for the colony's doctor,
+who tends them with the colony's medicine (refused, they nurse their own and keep their distance), or their cart breaks
+and they ask for wood or steel to mend it (refused, they mend it with green wood and stay a day longer). On the last
+day whoever speaks for them comes to the gate to say goodbye: the colony can ask them back, give them two meals a head
+for the road (a gift their people remember), or let them go.
+
+**Camps that come back.** A camp that stayed its time and left in peace is remembered, with up to four of its people:
+whoever spoke for them, their trader and the ones the colonists liked best. The colony keeps six such memories, and
+they fade after some seasons or when their people fall out with the colony. A month or more after they left, when a
+camp could come again, it may be the same faces coming back: likelier after a warm stay (help given, gifts, trade) or
+when the colony asked them back, less each time, and never more than three times. The letter brings news of what
+became of them since; they start with no unease and settle in quicker, and the colonist who made a friend of them is
+glad to see them. The World page lists the camps that may pass this way again, and when no camp is on the land it says
+why none has come (danger on the map, the weather, no friendly people, no room, the days since the last) or that the
+way is open.
+
+**Help in a fight.** When enemies have been on the colony's land for an hour (a raid, a siege, a mechanoid cluster), a
+people at peace with the colony and at war with the attacker may send three to seven fighters, about half as strong as
+the threat, by their goodwill and likelier with an old quarrel against the attacker. A letter asks what to make of
+them: welcome them (they hunt the enemy wherever they find them on the map, alongside the colony's own), ask them to
+hold at the edge (they only defend themselves), or send them away (their people remember the slight). When the fight
+is over they camp a day or two as a war party: a fire, bedrolls, a trader with what the fight left them, fighters for
+hire, and two asks on their page, the colony's doctor for their wounded and pay for their help. Their people remember
+that the colony owes them, and the colonists remember who stood with them. A new threat while they rest sends them
+after it; a fight that drags on for two days sends them home.
+
+**Neighbours for good.** A refugee family or a hermit whose stay of three days or more went well may ask, at their
+parting, to stay on the colony's land for good. Let settle, the camp becomes the colony's neighbours at the edge of its
+land (one such neighbour at a time; camps still come and go beside them). They live off the land round their camp,
+their trader takes on a new stock every fifteen days, one of them comes over to the gate every few days, and the
+council's questions about a camp (a theft, their beasts in the fields, one who wants to join) can be about them. Their
+unease eases a little each day instead of growing. Now and then one of them falls ill and they ask for the colony's
+doctor, and enemies on the land may kill one of them, after which the rest may bury their dead and move on. Their
+card on the World page, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
+to ask them to move on. Or the colony takes them all in instead, camp and goods and children.
+
+**Road wardens and deserters** come with the world's events rather than on their own. The wardens camp to build a post
+on the colony's land when it lets them (see "the road, over a year" under World events), and when the post stands they
+settle as its neighbours: they fight whatever comes up the road like a war party, can be asked to walk the colony's
+bounds at dusk, and can be paid for keeping the road. Their post is a trading stop. From their page, send thirty raw
+food, or twenty of the hide or wool the stores hold most of, down the road with the carters: one of the colony carries
+the load to the post, and three to five days later, when the carters come back through, a warden brings eight tenths
+of its worth up to the gate in silver, one load on the road at a time. A letter to their people can go down with the
+next cart, written at the wardens' fire, and a warden who comes up to the gate brings word from the road: the world
+events the carters saw, or a quiet road. Deserters camp out of sight at the edge of the land, rarely on their own and
+three times as often while a war, a holy war, a levy or a mercenary company is in the news: a handful of a friendly
+people's fighters, done with soldiering, who ask for steel to mend their gear, take silver for the road, hire out
+readily and can be asked to stand guard. Any camp asked to stand guard takes up arms against whatever threatens the
+colony while it stands.
+
 ## World events
 Now and then, something bigger than the colony happens in the region around it, and lasts: a plague among the
 neighbors, a famine, a warlord's rise, a chief's death and the quarrel over the seat, a town founded or abandoned, a
@@ -2290,6 +2416,29 @@ the colony half.
   boards from its new mill, the drovers leave a young beast on the way home, mourners' kin send a keepsake, an exile's
   mother needs medicine, gleaners ask for the stubble, a carter dodging a toll asks for the old lane across the colony's
   land, and the smiths the colony taught send their first new iron.
+- **Over a year:** once the colony is well established, **other settlers** of a friendly people may found a steading
+  a few days off, a new town on the world map, and their leader walks up to say hello and ask for timber. It is the
+  longest world event, nearly a year: their hunters work the colony's woods (let them, divide the hunting grounds, or
+  warn them off), a hungry month comes when their first planting fails (or, slighted, their traps turn up on the
+  colony's side of the stream), the steading grows household by household on the World page, and at the turning of the
+  year the leader comes back in person. Every warm answer is weighed against every slight, and the year ends in an
+  alliance, in the settlers coming over to join the colony (while the steading is still small), in bad blood (a
+  scuffle at the stream that hurts nobody badly), in the settlers giving up and going home, or in plain neighbours.
+  Allies answer in a bad year: when the colony's stores fall under six days of food they send two of theirs with sacks
+  of their harvest (accept it, sit them down to eat first, or send it back), and when the colony is attacked their
+  fighters come first. **The road, over a year**: when the surveyors ran "a new road" past the colony's gate, it comes
+  into use weeks later (merchants turn in, travellers rest by it, a carter robbed on it walks up in his stockings, the
+  people's road wardens stop to water their horses). Wardens made welcome later ask for ground for a post: let them
+  build on the colony's land and their camp comes to put it up and then settles as the colony's neighbours (see "Camps
+  over a stay, a year and for good"), or the post goes up a day down the road, or not at all. Where the post was kept,
+  a crossroads town grows up at it a season or two later, a new town on the world map with a market every week, and its
+  reeve asks whether it may take the colony's name. Each follows the one before, so the road's story takes a year or
+  two.
+- **People a world event leaves behind:** in a plague, an old woman may bring two children orphaned by the sickness to
+  the gate (take the children in, send them on with food toward their people's elders, or turn them away); in a famine
+  the hungry family and the orphan girl come and refugee camps come three times as often; and a war, a holy war, a levy
+  or a mercenary company brings deserters, who camp out of sight at the edge of the land and can be asked to stand
+  guard.
 - **Particular peoples** (with their DLC or mod): **the Empire's levy** (Royalty: pay in full and be named in the
   dispatches, pay half, or decline), **deserters on the roads** (Vanilla Factions Expanded - Empire: shelter a
   deserter, hand them over for the reward, or feed them and send them on), **the republic votes** (Classical: back
@@ -2857,7 +3006,7 @@ has the numbers). What Rimfolk adds to a colonist's mood, in a well-run, an ordi
 
 The pages:
 - **Council & wishes**: a quick setup (*Everything on*, *Council only*, *Advisor only*, also with a list of what
-  changes); the advisor, wishes and council meetings on or off; **Stakes**:
+  changes); the advisor, the colony's next steps, wishes and council meetings on or off; **Stakes**:
   - **Gentle**: only upsides (decrees still cost some mood, at half strength, because you chose them)
   - **Balanced** (default): upsides and downsides in proportion
   - **Demanding**: downsides 50% stronger; bitter colonists may sulk
@@ -2964,7 +3113,7 @@ lab from ever being started, while the builders went off to mine or tend animals
 instead, so each build is judged on its own. The game's rule stays: a build gets a material only once all of it that
 it still needs is on the map (the frame's inspect pane shows what's still missing). Needs the deeper game hooks.
 
-Version 0.52.1 (CHANGELOG.md has every round). It compiles against RimWorld 1.6 and is checked against 1.7 (the same
+Version 0.53.0 (CHANGELOG.md has every round). It compiles against RimWorld 1.6 and is checked against 1.7 (the same
 DLL runs on both), and all XML is checked against the real game types by the included validator. It runs in a live
 game with a 200+ mod medieval list. If something misbehaves, open the debug log (Options → Development mode, then the
 log button): lines starting with `[Rimfolk]` are from this mod. Please share them so they can be fixed. Quicker still:
