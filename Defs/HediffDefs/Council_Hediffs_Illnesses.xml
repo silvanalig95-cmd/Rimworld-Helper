@@ -1233,6 +1233,10 @@
           <li>ColdBog</li>
         </biomes>
         <causes><li><trigger>WetFeet</trigger><hours>3</hours><chance>0.006</chance></li></causes>
+        <risks>
+          <li><hediff>AG_Hover</hediff><factor>0.5</factor></li>
+          <li><hediff>AG_HoverExploder</hediff><factor>0.5</factor></li>
+        </risks>
         <cooldownDays>90</cooldownDays>
         <afterEffects>
           <li><hediff>Council_Ail_Convalescent</hediff><severity>0.5~0.7</severity></li>

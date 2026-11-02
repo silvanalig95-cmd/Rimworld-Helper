@@ -225,6 +225,8 @@
         <causes><li><trigger>RawFood</trigger><chance>0.02</chance></li></causes>
         <risks>
           <li><gene>StrongStomach</gene><factor>0</factor></li>
+          <li><gene>AG_FrailStomach</gene><factor>1.5</factor></li>
+          <li><gene>AG_VFEI_VenomGland</gene><factor>0.5</factor></li>
         </risks>
         <childFactor>1.5</childFactor>
         <cooldownDays>10</cooldownDays>

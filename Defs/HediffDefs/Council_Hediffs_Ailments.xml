@@ -374,6 +374,8 @@
           <li><hediff>BadBack</hediff><factor>3</factor></li>
           <li><hediff>Frail</hediff><factor>2</factor></li>
           <li><trait>Tough</trait><factor>0.5</factor></li>
+          <li><gene>AG_PackMule</gene><factor>0.5</factor></li>
+          <li><gene>AG_FrailBack</gene><factor>1.5</factor></li>
         </risks>
         <childFactor>0</childFactor>
         <oldFactor>1.5</oldFactor>
@@ -772,6 +774,10 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>SprainedAnkle</key>
         <causes><li><trigger>RoughGround</trigger><hours>2</hours><chance>0.015</chance></li></causes>
+        <risks>
+          <li><hediff>AG_Hover</hediff><factor>0.5</factor></li>
+          <li><hediff>AG_HoverExploder</hediff><factor>0.5</factor></li>
+        </risks>
         <childFactor>0.7</childFactor>
         <oldFactor>1.3</oldFactor>
         <cooldownDays>20</cooldownDays>
@@ -864,6 +870,10 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>RimrotCough</key>
         <causes><li><trigger>DampSleep</trigger><hours>4</hours><chance>0.025</chance></li></causes>
+        <risks>
+          <li><gene>AG_LungRotImmunity</gene><factor>0.5</factor></li>
+          <li><gene>AG_LungRotStrength</gene><factor>0.5</factor></li>
+        </risks>
         <oldFactor>1.5</oldFactor>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a rimrot cough from sleeping in a damp room.</gotText>
@@ -1084,6 +1094,9 @@
         <key>Heartburn</key>
         <quiet>true</quiet>
         <causes><li><trigger>RichMeal</trigger><chance>0.02</chance></li></causes>
+        <risks>
+          <li><gene>AG_FrailStomach</gene><factor>1.5</factor></li>
+        </risks>
         <childFactor>0.2</childFactor>
         <cooldownDays>2</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
@@ -1203,6 +1216,10 @@
         <key>Splinter</key>
         <quiet>true</quiet>
         <causes><li><trigger>Chopping</trigger><hours>4</hours><chance>0.016</chance></li></causes>
+        <risks>
+          <li><gene>AG_ArmourMajor</gene><factor>0.5</factor></li>
+          <li><gene>AG_FungalSkin</gene><factor>0.5</factor></li>
+        </risks>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a splinter deep in one hand.</gotText>
@@ -1245,6 +1262,10 @@
         <key>InsectBites</key>
         <quiet>true</quiet>
         <causes><li><trigger>Insects</trigger><hours>3</hours><chance>0.05</chance></li></causes>
+        <risks>
+          <li><gene>AG_ArmourMajor</gene><factor>0.5</factor></li>
+          <li><gene>AG_FungalSkin</gene><factor>0.5</factor></li>
+        </risks>
         <childFactor>1.2</childFactor>
         <cooldownDays>4</cooldownDays>
         <startSeverity>0.3~0.55</startSeverity>
@@ -1509,6 +1530,10 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>AthletesFoot</key>
         <causes><li><trigger>WetFeet</trigger><hours>3</hours><chance>0.03</chance></li></causes>
+        <risks>
+          <li><hediff>AG_Hover</hediff><factor>0.5</factor></li>
+          <li><hediff>AG_HoverExploder</hediff><factor>0.5</factor></li>
+        </risks>
         <childFactor>0.7</childFactor>
         <cooldownDays>15</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>
@@ -1881,6 +1906,9 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>PollutionCough</key>
         <causes><li><trigger>Polluted</trigger><hours>4</hours><chance>0.02</chance></li></causes>
+        <risks>
+          <li><gene>AG_ToxicEnvironmentResistance_Frail</gene><factor>1.5</factor></li>
+        </risks>
         <childFactor>1.5</childFactor>
         <oldFactor>1.3</oldFactor>
         <cooldownDays>8</cooldownDays>
@@ -1926,6 +1954,9 @@
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>SnowBlind</key>
         <causes><li><trigger>SnowGlare</trigger><hours>4</hours><chance>0.03</chance></li></causes>
+        <risks>
+          <li><gene>AG_UVSensitivity_Minor</gene><factor>1.5</factor></li>
+        </risks>
         <childFactor>1.2</childFactor>
         <cooldownDays>6</cooldownDays>
         <startSeverity>0.3~0.6</startSeverity>
@@ -1977,6 +2008,12 @@
           <li>TropicalSwamp</li>
         </biomes>
         <causes><li><trigger>WetFeet</trigger><hours>2</hours><chance>0.06</chance></li></causes>
+        <risks>
+          <li><gene>AG_ArmourMajor</gene><factor>0.5</factor></li>
+          <li><gene>AG_FungalSkin</gene><factor>0.5</factor></li>
+          <li><hediff>AG_Hover</hediff><factor>0.5</factor></li>
+          <li><hediff>AG_HoverExploder</hediff><factor>0.5</factor></li>
+        </risks>
         <childFactor>1.3</childFactor>
         <cooldownDays>3</cooldownDays>
         <startSeverity>0.3~0.5</startSeverity>

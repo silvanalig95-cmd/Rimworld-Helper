@@ -24,6 +24,10 @@
           <li><trigger>DampSleep</trigger><hours>4</hours><chance>0.05</chance></li>
           <li><trigger>PlantWork</trigger><hours>4</hours><chance>0.03</chance></li>
         </causes>
+        <risks>
+          <li><gene>AG_LungRotImmunity</gene><factor>0.5</factor></li>
+          <li><gene>AG_LungRotStrength</gene><factor>0.5</factor></li>
+        </risks>
         <cooldownDays>10</cooldownDays>
         <startSeverity>0.25~0.5</startSeverity>
         <gotText>{PAWN_nameDef} has a cough from the spores in the air.</gotText>

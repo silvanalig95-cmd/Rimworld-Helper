@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
 
-  <!-- What to do about Alpha Genes' looks (they load only with the mod). The covering is Rimfolk's
-       (Source/ColonyCouncil/Integrations/CoveredLooks.cs); the Kind trait, the Teratophilia gene and Inhumanized are
-       the mod's own. -->
+  <!-- What to do about Alpha Genes' moods (they load only with the mod), each written from the thought's def and the
+       gene, hediff or code that gives it. The covering is Rimfolk's (Source/ColonyCouncil/Integrations/CoveredLooks.cs);
+       who is spared (the Kind trait, the Teratophilia gene, Inhumanized, masochists) and the surgery for parasitic eggs
+       are Alpha Genes' own. The corpse feeding gene's "smell of corpse-rotting gas" has no hint: Alpha Genes gives it to
+       the carrier, whose own gene silences it, so nobody ever has it. -->
 
   <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
     <defName>Rimfolk_Mood_AG_Disgust</defName>
@@ -11,6 +13,76 @@
     <fix>It comes from being within six cells of someone with the repulsive gene, and it comes back each time they're near. It stops while that person wears something over the whole head, like a burka or a full helmet, and clothes over the body and legs. Kind colonists and carriers of the Teratophilia gene aren't bothered at all, and it helps to give the carrier their own room and work away from the others.</fix>
     <act>Cover them, or keep some distance</act>
     <keep>Once they're covered, or have their own corner of the colony, it fades within a day and doesn't come back.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_Thalassophobia</defName>
+    <thoughts><li>AG_Thalassophobia</li></thoughts>
+    <fix>It comes from the thalassophobia gene: open water they can see within twenty cells, or rain falling on them with no roof overhead, terrifies them, and near water they can panic and run from it until it's out of sight. Give them a bed, work and paths away from rivers, lakes and the sea, with a wall or a building between them and any water close by, and roof the walks they use in the rain.</fix>
+    <act>Keep them away from water</act>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_SunlightSensitivity</defName>
+    <thoughts><li>AG_SunlightSensitivity_Minor</li></thoughts>
+    <fix>It comes from minor UV sensitivity, which every animusen carries: their eyes hurt in direct sunlight and see a little less there, and it stops as soon as they're under a roof or the sun is down. Give them indoor work by day, roof the paths they use most, and move their outdoor jobs to the evening and night in the schedule.</fix>
+    <act>Keep them out of the sun</act>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_Volatile</defName>
+    <thoughts><li>AG_Mood_Volatile</li></thoughts>
+    <fix>It comes from the volatile gene: once a day it rolls again, with an even chance of a good day or a low one, whatever happens in the colony. Nothing settles it, so on a low day keep the rest of their life easy: a good meal, a full night's sleep and some recreation carry them to the next roll.</fix>
+    <act>Rolls again within a day</act>
+    <actionable>false</actionable>
+    <keep>It can't be kept or helped along: the gene rolls again each day, and a low day is as likely as a good one.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_PukedRats</defName>
+    <thoughts><li>AG_PukedRats</li></thoughts>
+    <fix>It comes from the rat vomit gene: whenever they're sick, what comes up turns into a live rat, and the memory stays with them for a day. Fewer reasons to be sick keep it away: a clean kitchen and a skilled cook against food poisoning, and a doctor for a stomach bug or anything else that turns their stomach.</fix>
+    <act>Keep food poisoning away</act>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_Implanted</defName>
+    <thoughts><li>AG_Implanted</li></thoughts>
+    <fix>Someone with a stinger gene stung them: the sting downed them, wrote the stinger's xenogenes or germline over their own, and left them in a coma for four days. Masochists don't mind it; for anyone else it only fades, over ten days, and until then good meals, rest and recreation make up for it.</fix>
+    <act>Fades over ten days</act>
+    <actionable>false</actionable>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_Parasite</defName>
+    <thoughts><li>AG_Parasite</li></thoughts>
+    <fix>Someone with the parasitic stinger, as every hiveling has, stung eggs into them. The eggs grow for about fifteen days and then hatch out of them, which kills them, unless a doctor with Medicine 3 removes the parasitic implantation by surgery with two medicine; a failed operation can kill too. The memory itself fades only over sixty days.</fix>
+    <act>Have a doctor remove the eggs</act>
+    <actionable>false</actionable>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_Awe</defName>
+    <thoughts><li>AG_Awe</li></thoughts>
+    <keep>It comes from being within six cells of someone with angelic beauty, as every drakonori has, and lasts a day after each time. It stops while that person wears something over the whole head and clothes over the body and legs, so leave their face uncovered and let them work and eat among the others.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_PsychicDrone</defName>
+    <thoughts><li>AG_PsychicDrone</li></thoughts>
+    <keep>It comes from being within six cells of a master psychic, as every animusen is, and lasts a day after each time; the psychically deaf and other master psychics don't feel it. Meals, work and recreation in the same rooms as the master psychic keep it going.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_RaidedBioLab</defName>
+    <thoughts><li>AG_RaidedBioLab</li></thoughts>
+    <keep>It came when colonists went near the ruined radio beacon in an abandoned biotech lab, which called a raid down on them at once. It lasts a day, and each beacon calls only once.</keep>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef MayRequire="sarg.alphagenes">
+    <defName>Rimfolk_Mood_AG_XenotypeInjector</defName>
+    <thoughts><li>AG_UsedXenotypeInjector</li></thoughts>
+    <keep>A brief lift after the xenotype injector swapped all their genes for a random xenotype; it fades within about an hour.</keep>
   </ColonyCouncil.MoodHintDef>
 
 </Defs>
