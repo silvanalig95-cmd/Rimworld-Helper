@@ -44,8 +44,9 @@
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Penance</hediff></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Disciplined</thought></li>
         </effects>
       </li>
       <li>
@@ -59,6 +60,9 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef}'s punishment at supper</label><organizer>None</organizer><spots><li>Dining</li><li>Gather</li></spots><hours>17~21</hours><duration>0.75~1</duration><pool>Council_Pool_PlayReckoning</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>2</amount><exceptTrait><li>Kind</li></exceptTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
         <!-- When it goes wrong, the fight comes at once: nothing is held for a supper that's already broken up. -->
@@ -71,6 +75,9 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought><about>B</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>2</amount><exceptTrait><li>Kind</li></exceptTrait></li>
         </riskEffects>
       </li>
     </options>
@@ -97,6 +104,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Spawn" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Stash</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the night the stash was shared</label><hours>17~23</hours><spots><li>Rec</li><li>Dining</li><li>Fire</li><li>Outdoors</li></spots></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Squandered</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
         </effects>
       </li>
       <li>
@@ -106,6 +114,8 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Spawn"><forbidden>true</forbidden></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_LockedAway</thought><degreeTrait>DrugDesire</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>DrugDesire</degreeTrait><maxDegree>-1</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Ascetic</li></onlyTrait></li>
         </effects>
       </li>
       <li>
@@ -117,6 +127,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Clean</thought><degreeTrait>DrugDesire</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Clean</thought><onlyTrait><li>Ascetic</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_BurnIt"><label>the stash burned in the yard</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>2</amount><degreeTrait>DrugDesire</degreeTrait><maxDegree>-1</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>2</amount><onlyTrait><li>Ascetic</li></onlyTrait></li>
         </effects>
       </li>
     </options>
@@ -229,7 +241,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Feast</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>Colony</target><amount>0.05</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>Colony</target><amount>0.08</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.3</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s feast</label><hours>16~22</hours></li>
@@ -283,6 +295,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-20</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
       </li>
       <li>
@@ -293,8 +306,9 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Dismissed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
         </effects>
-        <riskChance>0.25</riskChance>
+        <riskChance>0.1</riskChance>
         <riskOutcome>{A_nameDef} went back to work, but before the shift was over dropped {A_possessive} tools and wandered off, staring at nothing.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_MentalState"><target>A</target><mentalState>Wander_Sad</mentalState></li>
@@ -306,11 +320,12 @@
         <ways><mercy>4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><about>B</about><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Helped</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>-12</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
       </li>
     </options>

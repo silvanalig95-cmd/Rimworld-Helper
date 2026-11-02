@@ -265,18 +265,16 @@ namespace ColonyCouncil
         /// its variants by tags, and not the one it told lately while another fits. Null or empty when the option has
         /// nothing to say.
         /// </summary>
-        public static string Outcome(DilemmaOption o, bool risk, HashSet<string> tags)
+        public static string Outcome(DilemmaOption o, bool risk, HashSet<string> tags) =>
+            o == null ? null : Outcome(o.outcome, o.outcomes, o.riskOutcome, o.riskOutcomes, risk, tags);
+
+        /// <summary>The same, from an answer's texts (a world situation's answer: SituationOption).</summary>
+        public static string Outcome(string outcome, List<string> outcomes, string riskOutcome, List<string> riskOutcomes, bool risk, HashSet<string> tags)
         {
-            if (o == null) return null;
-            bool riskText = risk && (!o.riskOutcome.NullOrEmpty() || !o.riskOutcomes.NullOrEmpty());
-            string plain = riskText ? o.riskOutcome : o.outcome;
-            var more = riskText ? o.riskOutcomes : o.outcomes;
+            var lines = OutcomeMath.Pool(outcome, outcomes, riskOutcome, riskOutcomes, risk, out string plain, out var more);
             if (more.NullOrEmpty()) return plain;
             try
             {
-                var lines = new List<string>();
-                if (!plain.NullOrEmpty()) lines.Add(plain);
-                lines.AddRange(more);
                 return Flavor.PickFresh(lines, tags, more) ?? plain ?? Flavor.PickText(more);
             }
             catch (System.Exception e)
@@ -299,6 +297,24 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Needs : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // A condition: who will do it (the best fit, when it picks a helper), and what must be in the stores (not used).
+            if (ctx == null) return;
+            if (skill != null)
+            {
+                var c = Candidates(ctx).Where(p => !asB || p != ctx.a).OrderByDescending(p => p.skills.GetSkill(skill).Level).FirstOrDefault();
+                var who = asB && ctx.b != null && target != DilemmaTarget.A ? ctx.b : c;
+                if (who?.skills?.GetSkill(skill) is SkillRecord r)
+                    sheet.Add(ImpactKind.Other, 0, "CC_Impact_Helper".Translate(who.LabelShort, skill.label, r.Level).Resolve(), "", "helper|" + skill.defName);
+            }
+            if (!what.NullOrEmpty() && count > 0) sheet.Add(ImpactKind.Other, 0, "CC_Impact_NeedsStores".Translate(Mathf.Max(1, count), what == "silver" ? ThingDefOf.Silver.label
+                : what == "rawfood" ? "CC_Dilemma_RawFood".Translate().Resolve() : what == "medicine" ? "CC_Dilemma_Medicine".Translate().Resolve()
+                : DefDatabase<ThingDef>.GetNamedSilentFail(what)?.label ?? what).Resolve(), "", "needs|" + what);
+        }
+
         public SkillDef skill;
         public int minLevel;
         public string tags;

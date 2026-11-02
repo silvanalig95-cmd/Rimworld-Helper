@@ -269,17 +269,14 @@ namespace ColonyCouncil
                     int index = i;
                     var o = beat.options[i];
                     if (!s.Worker.Offered(s, beat, i)) continue;
-                    var opt = new DiaOption(ctx.Format(o.label));
                     // The default answer is always possible, so the letter can never trap the player.
                     string why = i == beat.defaultOption ? null : s.Worker.Unavailable(s, ctx, beat, i) ?? o.effects?.Select(e => e.Unavailable(ctx)).FirstOrDefault(r => r != null);
-                    if (why != null) opt.Disable(why);
-                    opt.action = () =>
+                    // What the answer does, under it and on hover (Dilemmas/DilemmaImpact.cs).
+                    yield return DilemmaImpact.Option(ctx, s, o, ctx.Format(o.label), why, () =>
                     {
                         WorldSituations.Instance?.Resolve(this, index, false);
                         Find.LetterStack.RemoveLetter(this);
-                    };
-                    opt.resolveTree = true;
-                    yield return opt;
+                    });
                 }
                 yield return Option_Postpone;
             }

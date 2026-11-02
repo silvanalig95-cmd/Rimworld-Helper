@@ -174,6 +174,18 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Cull : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null) return;
+            int n = count > 0 ? count : Math.Max(1, ctx.count);
+            var dm = ctx.map.designationManager;
+            int can = AnimalFacts.Herd(ctx.map).Count(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && dm.DesignationOn(a) == null && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger());
+            n = Math.Min(n, can);
+            if (n > 0) sheet.Add(ImpactKind.People, -1, "CC_Impact_Cull".Translate(n).Resolve(), "CC_Impact_CullBrief".Translate(n).Resolve(), "cull");
+        }
+
         public int count;
 
         public override void Apply(DilemmaContext ctx)
@@ -206,6 +218,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_TurnOut : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null) return;
+            int n = count > 0 ? count : Math.Max(1, ctx.count);
+            n = Math.Min(n, AnimalFacts.Herd(ctx.map).Count(a => PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical) && !AnimalFacts.Pregnant(a) && !a.IsQuestLodger()));
+            if (n > 0) sheet.Add(ImpactKind.People, -1, "CC_Impact_TurnOut".Translate(n).Resolve(), "CC_Impact_TurnOutBrief".Translate(n).Resolve(), "turnout");
+        }
+
         public int count;
 
         public override void Apply(DilemmaContext ctx)
@@ -245,6 +267,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_LoseAnimal : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null) return;
+            bool Spare(Pawn a) => a != null && AnimalFacts.Livestock(a) && a.Spawned && PetTracker.PersonOf(a) == null && (a.Name == null || a.Name.Numerical);
+            if (Spare(ctx.pet) || AnimalFacts.Herd(ctx.map).Any(Spare))
+                sheet.Add(ImpactKind.People, -1, "CC_Impact_LoseAnimal".Translate().Resolve(), "CC_Impact_LoseAnimalBrief".Translate().Resolve(), "loseanimal");
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (ctx?.map == null) return;
@@ -270,6 +302,13 @@ namespace ColonyCouncil
     /// <summary>The care the dilemma's animal ({PET}) gets from the doctors: the medical care setting, the game's own.</summary>
     public class DilemmaEffect_AnimalCare : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var a = ctx?.pet;
+            if (!AnimalFacts.Ours(a) || a.playerSettings == null) return;
+            sheet.Add(ImpactKind.Health, 0, "CC_Impact_AnimalCare".Translate(a.LabelShort, care.GetLabel()).Resolve());
+        }
+
         public MedicalCareCategory care = MedicalCareCategory.Best;
 
         public override void Apply(DilemmaContext ctx)
@@ -286,6 +325,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CropsEaten : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x == null || ctx.map == null || !x.Spawned) return;
+            sheet.Add(ImpactKind.Goods, -1, "CC_Impact_CropsEatenBy".Translate(Math.Max(1, count), x.LabelShort).Resolve(), "CC_Impact_CropsEatenBrief".Translate(Math.Max(1, count)).Resolve(), "cropseaten");
+        }
+
         public int count = 6;
 
         public override void Apply(DilemmaContext ctx)
@@ -319,6 +367,17 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_PassAnimal : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var a = ctx?.pet;
+            if (!AnimalFacts.Ours(a) || a.playerSettings == null || ctx.map == null) return;
+            var hm = AnimalFacts.Herdmaster;
+            var to = hm != null && hm != ctx.a && hm != ctx.b && hm.Spawned && hm.Map == ctx.map ? hm
+                : ctx.Colonists.Where(p => p != ctx.a && p != ctx.b && !p.WorkTypeIsDisabled(WorkTypeDefOf.Handling) && !p.DevelopmentalStage.Juvenile())
+                    .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Animals)?.Level ?? 0).FirstOrDefault();
+            if (to != null) sheet.Add(ImpactKind.People, 0, "CC_Impact_PassAnimal".Translate(a.LabelShort, to.LabelShort).Resolve(), "CC_Impact_PassAnimalBrief".Translate(a.LabelShort, to.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var a = ctx?.pet;

@@ -148,7 +148,7 @@ namespace ColonyCouncil
         public bool scenario;
         /// <summary>A place the texts name ({PLACE}): a neighbor's town, the guest room, the land around the colony.</summary>
         public string placeName;
-        /// <summary>Something the event's code keeps for the answer (a def name), never shown.</summary>
+        /// <summary>Something the event's code keeps for the answer (a def name, where a stray stands), never shown.</summary>
         public string note;
 
         public HappeningExtension Ext => incident?.GetModExtension<HappeningExtension>();
@@ -221,17 +221,14 @@ namespace ColonyCouncil
                 {
                     int index = i;
                     var o = ext.options[i];
-                    var opt = new DiaOption(ctx.Format(o.label));
                     // The default answer is always possible, so the letter can never trap the player.
                     string why = i == ext.defaultOption ? null : ctx.Worker.Unavailable(ctx, i) ?? o.effects.Select(e => e.Unavailable(ctx)).FirstOrDefault(r => r != null);
-                    if (why != null) opt.Disable(why);
-                    opt.action = () =>
+                    // What the answer does, under it and on hover (Dilemmas/DilemmaImpact.cs).
+                    yield return DilemmaImpact.Option(ctx, o, ctx.Format(o.label), why, () =>
                     {
                         CouncilGameComponent.Instance?.happenings.Resolve(this, index, false);
                         Find.LetterStack.RemoveLetter(this);
-                    };
-                    opt.resolveTree = true;
-                    yield return opt;
+                    });
                 }
                 // Someone waiting at the edge of the map can't be clicked on: show who they are.
                 var x = ctx.stranger;

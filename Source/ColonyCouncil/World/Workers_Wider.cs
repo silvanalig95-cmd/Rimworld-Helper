@@ -45,6 +45,12 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Lend : WorldEffect_Pay
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            base.Describe(ctx, sheet);
+            if (ctx != null) sheet.Add(ImpactKind.Goods, 0, "CC_Impact_Lent".Translate().Resolve(), "", "lent");
+        }
+
         public const string Key = "lent";
 
         public override void Apply(DilemmaContext ctx)
@@ -63,6 +69,14 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Repay : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var s = SituationEffectUtil.Of(ctx);
+            if (s == null || !Allowed(ctx)) return;
+            int lent = s.Num(WorldEffect_Lend.Key);
+            if (lent > 0) sheet.Silver(Mathf.Max(10, Mathf.RoundToInt(lent * Mathf.Max(0f, factor) / 10f) * 10));
+        }
+
         public float factor = 1f;
 
         public override void Apply(DilemmaContext ctx)

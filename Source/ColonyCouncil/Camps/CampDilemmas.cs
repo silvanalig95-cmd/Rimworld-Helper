@@ -158,6 +158,14 @@ namespace ColonyCouncil
     /// <summary>The colony's standing with the other people of a camp's quarrel ({ENEMY}); a loss stops short of enmity.</summary>
     public class DilemmaEffect_RivalGoodwill : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var rival = (ctx as CampRivalContext)?.rival;
+            if (rival != null) sheet.Goodwill(rival, amount);
+        }
+
         public int amount;
 
         public override void Apply(DilemmaContext ctx)

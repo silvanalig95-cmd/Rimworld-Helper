@@ -37,6 +37,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Smash : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var place = (ctx as HappeningContext)?.place;
+            if (place == null || place.Destroyed) return;
+            sheet.Add(ImpactKind.Goods, -1, "CC_Impact_Smash".Translate(place.LabelShort).Resolve(), "CC_Impact_SmashBrief".Translate(place.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var piece = (ctx as HappeningContext)?.place;

@@ -45,6 +45,8 @@ namespace ColonyCouncil
         public string playLabel;
         /// <summary>A word on how that went, once it's over ("14 jobs done", "found 6 healroot").</summary>
         public string playNote;
+        /// <summary>What the answer was to do, as it stood when it was given (Dilemmas/DilemmaImpact.cs), or null.</summary>
+        public string impact;
 
         public DilemmaWent Went
         {
@@ -74,6 +76,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref fellThrough, "fellThrough");
             Scribe_Values.Look(ref playLabel, "playLabel");
             Scribe_Values.Look(ref playNote, "playNote");
+            Scribe_Values.Look(ref impact, "impact");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 plays ??= new List<int>();
@@ -98,7 +101,7 @@ namespace ColonyCouncil
         public static List<DilemmaRecord> Records => WeekMemory.Instance?.dilemmas;
 
         /// <summary>An answer was given (or the time ran out). Never throws: the dilemma itself matters more than its record.</summary>
-        public static void Record(DilemmaContext ctx, DilemmaOption option, string told, bool risk, bool byDefault)
+        public static void Record(DilemmaContext ctx, DilemmaOption option, string told, bool risk, bool byDefault, string impact = null)
         {
             try
             {
@@ -114,7 +117,8 @@ namespace ColonyCouncil
                     who = ctx.a?.LabelShort,
                     tick = now,
                     risk = risk,
-                    byDefault = byDefault
+                    byDefault = byDefault,
+                    impact = impact
                 };
                 // What the answer set going on the map this very tick.
                 var plays = PlayOutTracker.Instance?.plays;

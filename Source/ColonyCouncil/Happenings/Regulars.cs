@@ -240,6 +240,13 @@ namespace ColonyCouncil
     /// <summary>The regular stays for good: one of the colony now, with the chronicle's word on it.</summary>
     public class DilemmaEffect_RegularStays : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x == null || x.Dead) return;
+            sheet.Add(ImpactKind.People, 1, "CC_Impact_Join".Translate(x.LabelShort).Resolve(), "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
+        }
+
         public override string Unavailable(DilemmaContext ctx) =>
             ctx?.stranger == null || ctx.stranger.Dead ? "CC_Regular_Gone".Translate().ToString() : null;
 

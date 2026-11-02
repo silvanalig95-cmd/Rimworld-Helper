@@ -119,6 +119,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Faith : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (DecreeWork.ColonyFaith == null || amount == 0f) return;
+            var who = Reached(ctx).Where(DecreeWork.Believer).ToList();
+            if (who.Count > 0) DilemmaImpact.Certainty(sheet, WhoOf(ctx, who), amount * Interplay.FaithFactor);
+        }
+
         /// <summary>Certainty, as a share (0.05 = 5%).</summary>
         public float amount = 0.05f;
 

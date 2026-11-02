@@ -152,7 +152,7 @@
         <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_NotShutAway</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_SleepingNearIt</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_SleepingNearIt</thought><onlyTrait><li>Wimp</li></onlyTrait></li>
         </effects>
@@ -175,8 +175,8 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_Nursed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.05</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_DlmL_Nursing</hediff></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>400</xp></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>250</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><duration>3~4</duration></li>
         </effects>
         <riskChance>0.2</riskChance>
@@ -241,6 +241,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Rest</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_TimeToMend</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_ColdSuppers</thought><exceptTrait><li>Ascetic</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.05</severity></li>
         </effects>
       </li>
     </options>
@@ -299,7 +300,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Others</target><skill>Medicine</skill><minLevel>3</minLevel></li>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.12</severity><immunity>0.05</immunity></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.15</severity><immunity>0.05</immunity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_RemedyRefused</thought></li>
         </effects>
       </li>
@@ -313,6 +314,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_Nursed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmL_RemedyTrusted</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmL_RemedyHouse</thought><chance>0.3</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
         </effects>
       </li>
     </options>
@@ -981,8 +983,8 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_DlmL_Retired</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_EarnedMyRest</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.4</chance><exceptTrait><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>7</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.7</chance><exceptTrait><li>Psychopath</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
       </li>
@@ -994,11 +996,12 @@
         </outcomes>
         <ways><tradition>4</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Teach"><xp>300</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Teach"><xp>150</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_DlmL_LightDuty</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_PassingItOn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
         </effects>
       </li>
       <li>
@@ -1343,6 +1346,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Teach"><reverse>true</reverse><xp>400</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_LearningATrade</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.3</chance></li>
         </effects>
       </li>
       <li>
@@ -1352,6 +1356,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_ChoresRotated</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.7</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><degreeTrait>Industriousness</degreeTrait><minDegree>2</minDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.6</chance></li>
         </effects>
       </li>
       <li>
@@ -1451,6 +1456,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_RealWork</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Crafting</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmSoc_Tagalong</thought></li>
         </effects>
       </li>
       <li>

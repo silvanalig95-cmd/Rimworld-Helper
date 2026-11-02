@@ -11,6 +11,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Carving : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var carving = DefDatabase<ThingDef>.GetNamedSilentFail("SculptureSmall");
+            if (ctx?.a == null || !ctx.a.Spawned || carving == null) return;
+            sheet.Add(ImpactKind.Goods, 1, "CC_Impact_Carving".Translate(carving.label, quality.GetLabel()).Resolve(), "CC_Impact_MadeBrief".Translate(carving.label).Resolve(), "carving");
+        }
+
         public QualityCategory quality = QualityCategory.Poor;
 
         public override void Apply(DilemmaContext ctx)

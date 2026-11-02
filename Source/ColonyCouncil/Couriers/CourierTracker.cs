@@ -522,12 +522,16 @@ namespace ColonyCouncil
             if (first && by != null) CourierWords.Say(by, t, "collect");
         }
 
-        /// <summary>Still there to be taken away: the colony's prisoner, or the colony's animal, on this map.</summary>
+        /// <summary>
+        /// Still there to be taken away: the colony's prisoner, or the colony's animal (or one of their own the colony
+        /// kept for them: a stray, Happenings/StrayBeast.cs), on this map.
+        /// </summary>
         public static bool FetchOk(CourierTrip t)
         {
             var x = t.fetch;
             if (x == null || x.Dead || !x.Spawned || x.Map != t.map) return false;
-            return t.fetchPrisoner ? x.IsPrisonerOfColony : x.Faction == Faction.OfPlayer;
+            if (t.fetchPrisoner) return x.IsPrisonerOfColony;
+            return x.Faction == Faction.OfPlayer || (x.Faction != null && x.Faction == t.preferred);
         }
 
         /// <summary>The one they came for is handed over: theirs now, and they walk off with the group.</summary>

@@ -76,6 +76,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_TendStranger : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null) return;
+            if (ctx.a != null && ctx.stranger != null) sheet.Play("CC_Impact_TendStranger".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort).Resolve(), "CC_Impact_TendBrief".Translate(ctx.stranger.LabelShort).Resolve());
+            sheet.Goods(-1, "CC_Dilemma_Medicine".Translate().Resolve(), 1, "medicine");
+        }
+
         public override string Unavailable(DilemmaContext ctx) => new DilemmaEffect_Consume { what = "medicine", count = 1 }.Unavailable(ctx);
 
         public override void Apply(DilemmaContext ctx)

@@ -256,6 +256,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CampTendSick : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            var sick = c?.sick;
+            if (sick == null || sick.Dead || ctx?.a == null) return;
+            sheet.Play("CC_Impact_TendAtCamp".Translate(ctx.a.LabelShort, sick.LabelShort).Resolve(), "CC_Impact_TendBrief".Translate(sick.LabelShort).Resolve());
+            sheet.Goods(-1, "CC_Dilemma_Medicine".Translate().Resolve(), 1, "medicine");
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
@@ -298,6 +307,14 @@ namespace ColonyCouncil
     /// <summary>The makings of a cart's mending from the colony's stores, carried over to the camp: wood for a wheel, or steel for an axle in a later age.</summary>
     public class DilemmaEffect_CampCartParts : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampTracker.Asked ?? CampTracker.Instance?.camp;
+            if (ctx?.map == null || c == null) return;
+            sheet.Goods(-1, Part, Count);
+            sheet.Play("CC_Impact_CarryCamp".Translate(ctx.a?.LabelShort ?? "CC_Impact_Someone".Translate().Resolve(), c.Label).Resolve());
+        }
+
         public static ThingDef Part => Avail.IsPreIndustrial ? ThingDefOf.WoodLog : ThingDefOf.Steel;
         public static int Count => Avail.IsPreIndustrial ? 25 : 15;
 

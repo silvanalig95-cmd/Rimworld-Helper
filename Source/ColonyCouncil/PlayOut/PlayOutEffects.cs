@@ -19,6 +19,22 @@ namespace ColonyCouncil
     /// </summary>
     public abstract class DilemmaEffect_PlayOut : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        /// <summary>What it's called on the map ("the victory feast").</summary>
+        protected string LabelFor(DilemmaContext ctx) => (!label.NullOrEmpty() ? ctx.Format(label) : DefaultLabel(ctx)).CapitalizeFirst();
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // With "Answers play out on the map" off, nothing is set going (its moods come at once, as they always did).
+            if (!PlayOuts.On || ctx?.map == null) return;
+            DescribePlay(ctx, sheet, LabelFor(ctx));
+        }
+
+        /// <summary>What plays out: by default its name, when and for how long.</summary>
+        protected virtual void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label) =>
+            sheet.Play("CC_Impact_Play".Translate(label, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+
         [MustTranslate] public string label;
         public IntRange hours = new IntRange(PlayOutMath.DayFrom, PlayOutMath.DayTo);
         public float waitHours = PlayOutMath.DefaultWaitHours;
@@ -98,6 +114,27 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Gathering : DilemmaEffect_PlayOut
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            var who = Everyone(ctx);
+            var lead = PlayOuts.Who(organizer, ctx);
+            if (lead != null && PlayOuts.OurPerson(lead) && !who.Contains(lead)) who.Add(lead);
+            if (who.Count == 0) return;
+            string text = "CC_Impact_Gathering".Translate(label, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration), WhoOf(ctx, who)).Resolve();
+            if (music) text += "CC_Impact_WithMusic".Translate().Resolve();
+            if (!guests.NullOrEmpty()) text += "CC_Impact_WithGuests".Translate().Resolve();
+            sheet.Play(text + Extra(ctx), label);
+            Costs(ctx, sheet, who);
+        }
+
+        /// <summary>More words on what happens there (a fire laid, drinks poured).</summary>
+        protected virtual string Extra(DilemmaContext ctx) => "";
+
+        /// <summary>What it takes from the stores (a feast's meals).</summary>
+        protected virtual void Costs(DilemmaContext ctx, ImpactSheet sheet, List<Pawn> who)
+        {
+        }
+
         public List<PlaySpot> spots;
         public PlayWho organizer = PlayWho.A;
         public bool music;
@@ -153,6 +190,14 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Feast : DilemmaEffect_Gathering
     {
+        protected override void Costs(DilemmaContext ctx, ImpactSheet sheet, List<Pawn> who)
+        {
+            // Everyone who comes is sent to eat a cooked meal from the stores; raw food the answer spends is cooked for it first.
+            var cat = DefDatabase<ThingCategoryDef>.GetNamedSilentFail("FoodMeals");
+            int meals = cat == null ? 0 : ctx.map.resourceCounter.GetCountIn(cat);
+            sheet.Add(ImpactKind.Goods, -1, "CC_Impact_FeastMeals".Translate(who.Count, meals).Resolve(), "CC_Impact_FeastMealsBrief".Translate(who.Count).Resolve(), "feastmeals");
+        }
+
         public DilemmaEffect_Feast()
         {
             duration = new FloatRange(2.5f, 3.5f);
@@ -173,6 +218,8 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Bonfire : DilemmaEffect_Gathering
     {
+        protected override string Extra(DilemmaContext ctx) => build && !woodPaid ? "CC_Impact_BonfireLaid".Translate().Resolve() : "";
+
         public bool build = true;
         /// <summary>The answer already takes the wood for the fire (a Consume of WoodLog): a fire laid for it takes none more.</summary>
         public bool woodPaid;
@@ -204,6 +251,8 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Toast : DilemmaEffect_Gathering
     {
+        protected override string Extra(DilemmaContext ctx) => "CC_Impact_ToastDrinks".Translate().Resolve();
+
         public DilemmaEffect_Toast()
         {
             duration = new FloatRange(0.75f, 1.25f);
@@ -223,6 +272,13 @@ namespace ColonyCouncil
     public class DilemmaEffect_Words : DilemmaEffect_Toast
     {
         protected override string DefaultPool => "Council_Pool_PlayWords";
+
+        // Words heard, not a toast: no drinks are poured (ToastDrinks.Pour), and the speaker is the organizer.
+        protected override string Extra(DilemmaContext ctx)
+        {
+            var by = PlayOuts.Who(organizer, ctx);
+            return by != null && PlayOuts.OurPerson(by) ? "CC_Impact_WordsBy".Translate(by.LabelShort).Resolve() : "";
+        }
 
         protected override bool Fill(PlayOut p, DilemmaContext ctx)
         {
@@ -244,6 +300,21 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Visit : DilemmaEffect_PlayOut
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            var v = PlayOuts.Who(who, ctx);
+            if (v == null || v.Dead || !(v.RaceProps?.Humanlike ?? false)) return;
+            Pawn other = null;
+            if (to == PlaySpot.Person || to == PlaySpot.Stranger)
+            {
+                var w = to == PlaySpot.Stranger ? PlayWho.X : whom == who && who == PlayWho.B ? PlayWho.A : whom;
+                other = PlayOuts.Who(w, ctx);
+                if (other == null || other == v || !Here(other, ctx)) return;
+            }
+            string place = other != null ? DilemmaImpact.Spot(PlaySpot.Person, ctx, other) : DilemmaImpact.Spot(to, ctx);
+            sheet.Play("CC_Impact_Visit".Translate(label, v.LabelShort, place, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+        }
+
         public PlayWho who = PlayWho.A;
         public PlaySpot to = PlaySpot.Person;
         public PlayWho whom = PlayWho.B;
@@ -325,6 +396,18 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Lesson : DilemmaEffect_PlayOut
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            var t = PlayOuts.Who(teacher, ctx);
+            var s = PlayOuts.Who(student, ctx);
+            if (t == null || s == null || t == s || s.Dead || !s.RaceProps.Humanlike || !t.RaceProps.Humanlike) return;
+            var sk = skill ?? ctx.skill ?? BestToLearn(t, s);
+            if (sk == null) return;
+            sheet.Play("CC_Impact_Lesson".Translate(label, s.LabelShort, sk.label, t.LabelShort, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+            sheet.Add(ImpactKind.Skill, 1, "CC_Impact_XpRange".Translate(s.LabelShort, (xpPerHour * duration.min).ToString("0"), (xpPerHour * duration.max).ToString("0"), sk.label).Resolve(),
+                "CC_Impact_XpBrief".Translate(s.LabelShort, (xpPerHour * duration.Average).ToString("0"), sk.label).Resolve(), "lesson|" + s.thingIDNumber + "|" + sk.defName);
+        }
+
         public PlayWho teacher = PlayWho.B;
         public PlayWho student = PlayWho.A;
         public SkillDef skill;
@@ -367,6 +450,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Rest : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!PlayOuts.On || ctx?.map == null) return;
+            var who = Reached(ctx).Where(p => PlayOuts.OurPerson(p) && p.Spawned && p.Map == ctx.map).ToList();
+            if (who.Count == 0) return;
+            string w = WhoOf(ctx, who);
+            sheet.Play((sleep ? "CC_Impact_Sleep" : "CC_Impact_Rest").Translate(w).Resolve(), (sleep ? "CC_Impact_SleepBrief" : "CC_Impact_RestBrief").Translate(w).Resolve());
+        }
+
         public bool sleep;
 
         public override void Apply(DilemmaContext ctx)
@@ -398,6 +490,17 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Hunt : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!PlayOuts.On || ctx?.map == null) return;
+            if (!ctx.map.mapPawns.FreeColonistsSpawned.Any(p => !p.Downed && p.workSettings != null && p.workSettings.WorkIsActive(WorkTypeDefOf.Hunting)
+                                                               && WorkGiver_HunterHunt.HasHuntingWeapon(p))) return;
+            string what = ctx.stranger != null && ctx.stranger.RaceProps.Animal ? ctx.stranger.LabelShort : DilemmaImpact.Kinds(kinds, Math.Max(1, count));
+            sheet.Play("CC_Impact_Hunt".Translate(what).Resolve(), "CC_Impact_HuntBrief".Translate(what).Resolve());
+        }
+
         public int count = 1;
         public string kinds;
 

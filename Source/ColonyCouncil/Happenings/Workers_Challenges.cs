@@ -179,6 +179,13 @@ namespace ColonyCouncil
     /// <summary>The colony takes up the challenge: the contest happens in a couple of hours.</summary>
     public class DilemmaEffect_Contest : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.stranger == null) return;
+            sheet.Play("CC_Impact_Contest".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort, ctx.skill?.label ?? "").Resolve(), "CC_Impact_ContestBrief".Translate().Resolve());
+            if (stake && ctx.count > 0) sheet.Add(ImpactKind.Goods, 0, "CC_Impact_Stake".Translate(ctx.count).Resolve(), "CC_Impact_StakeBrief".Translate(ctx.count).Resolve(), "stake");
+        }
+
         public bool stake;
 
         public override string Unavailable(DilemmaContext ctx) =>

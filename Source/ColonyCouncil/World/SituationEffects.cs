@@ -24,6 +24,17 @@ namespace ColonyCouncil
     /// </summary>
     public abstract class WorldEffect : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        /// <summary>The situation's flags allow it (whatever its chance): for telling what it does.</summary>
+        protected bool Allowed(DilemmaContext ctx)
+        {
+            if (requires.NullOrEmpty() && forbids.NullOrEmpty()) return true;
+            var s = SituationEffectUtil.Of(ctx);
+            if (!requires.NullOrEmpty() && (s == null || !s.Has(requires))) return false;
+            return forbids.NullOrEmpty() || s == null || !s.Has(forbids);
+        }
+
         public string requires;
         public string forbids;
 
@@ -55,6 +66,20 @@ namespace ColonyCouncil
     /// <summary>Goodwill that never turns a people hostile: a loss stops at -60.</summary>
     public class WorldEffect_Goodwill : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx == null || !Allowed(ctx)) return;
+            var h = ctx as HappeningContext;
+            switch (who)
+            {
+                case SituationPeople.Faction: sheet.Goodwill(ctx.faction, amount); break;
+                case SituationPeople.Enemy: sheet.Goodwill(h?.enemy, amount); break;
+                case SituationPeople.Both: sheet.Goodwill(ctx.faction, amount); sheet.Goodwill(h?.enemy, amount); break;
+                case SituationPeople.Neighbors: sheet.Add(ImpactKind.Goodwill, amount >= 0 ? 1 : -1, "CC_Impact_GoodwillNeighbors".Translate(ImpactMath.Signed(amount)).Resolve()); break;
+                case SituationPeople.Hunters: sheet.Add(ImpactKind.Goodwill, amount >= 0 ? 1 : -1, "CC_Impact_GoodwillHunters".Translate(ImpactMath.Signed(amount)).Resolve()); break;
+            }
+        }
+
         public int amount;
         public SituationPeople who = SituationPeople.Faction;
 
@@ -85,6 +110,11 @@ namespace ColonyCouncil
     /// <summary>Sets (or clears) a flag on the situation, for the beats, modifiers and endings that read it.</summary>
     public class WorldEffect_Flag : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // A note the event keeps for how it ends: what it leads to is told when it comes.
+        }
+
         public string flag;
         public bool clear;
 
@@ -103,6 +133,11 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Medicine : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx != null) sheet.Goods(-1, "CC_WS_Medicine".Translate().Resolve(), Need(ctx), "medicine");
+        }
+
         /// <summary>How many (0: the beat's {COUNT}).</summary>
         public int count;
         public GoodsBy by;
@@ -142,6 +177,13 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Silver : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx == null || !Allowed(ctx)) return;
+            int n = Mathf.RoundToInt((count > 0 ? count : ctx.count) * factor);
+            if (n > 0) sheet.Silver(n);
+        }
+
         public int count;
         public float factor = 1f;
         /// <summary>
@@ -169,6 +211,14 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Join : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx == null || !Allowed(ctx)) return;
+            string n = DilemmaImpact.Range(count.min, count.max);
+            sheet.Add(ImpactKind.People, 1, (family ? "CC_Impact_WorldJoinFamily" : "CC_Impact_WorldJoin").Translate(n).Resolve(), "CC_Impact_WorldJoinBrief".Translate(n).Resolve(), "worldjoin");
+            if (!animal.NullOrEmpty()) sheet.Add(ImpactKind.People, 1, "CC_Impact_WorldJoinAnimal".Translate().Resolve(), "", "worldjoinanimal");
+        }
+
         public IntRange count = new IntRange(1, 1);
         public FloatRange ages = new FloatRange(18f, 50f);
         /// <summary>A family: at least two, a couple sharing a name, any more their children.</summary>
@@ -280,6 +330,13 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Incident : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var def = DefDatabase<IncidentDef>.GetNamedSilentFail(incident ?? "");
+            if (def == null || ctx == null || !Allowed(ctx)) return;
+            sheet.Add(ImpactKind.People, 0, "CC_Impact_Incident".Translate(def.label).Resolve(), "CC_Impact_IncidentBrief".Translate(def.label).Resolve());
+        }
+
         public string incident;
         /// <summary>From the situation's people (their caravan, their visitors); with <see cref="enemy"/>, the second people.</summary>
         public bool withFaction;
@@ -325,6 +382,13 @@ namespace ColonyCouncil
     /// <summary>One of Rimfolk's own events, now, if it can happen (its own season, people and cooldown rules apply).</summary>
     public class WorldEffect_Event : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var def = DefDatabase<IncidentDef>.GetNamedSilentFail(incident ?? "");
+            if (def == null || ctx == null || !def.HasModExtension<HappeningExtension>() || !Allowed(ctx)) return;
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_Incident".Translate(def.label).Resolve(), "CC_Impact_IncidentBrief".Translate(def.label).Resolve());
+        }
+
         public string incident;
 
         public override void Apply(DilemmaContext ctx)
@@ -352,6 +416,16 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Sell : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var d = ctx == null ? null : Def(ctx);
+            if (d == null) return;
+            int n = Need(ctx);
+            sheet.Goods(-1, d, n);
+            int silver = Mathf.RoundToInt(n * d.BaseMarketValue * price);
+            if (silver > 0) sheet.Silver(silver);
+        }
+
         public ThingDef thing;
         public int count;
         public float price = 1f;
@@ -415,6 +489,18 @@ namespace ColonyCouncil
     /// <summary>Thoughts for the colonists the situation hurt (the warlord's raids), or for everyone else.</summary>
     public class WorldEffect_Thought : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var s = SituationEffectUtil.Of(ctx);
+            var map = SituationEffectUtil.MapOf(ctx);
+            if (thought == null || map == null || !Allowed(ctx)) return;
+            var hurt = s?.sufferers.Where(p => p != null && !p.Dead && p.IsColonist).ToList() ?? new List<Pawn>();
+            IEnumerable<Pawn> all = sufferers ? hurt : IncidentWorker_Happening.Colonists(map).Where(p => !others || !hurt.Contains(p));
+            var who = all.Where(p => (onlyTrait.NullOrEmpty() || (p.story?.traits != null && onlyTrait.Any(p.story.traits.HasTrait)))
+                                     && (exceptTrait.NullOrEmpty() || p.story?.traits == null || !exceptTrait.Any(p.story.traits.HasTrait))).ToList();
+            if (who.Count > 0) sheet.Thought(who, DilemmaImpact.Who(ctx, DilemmaTarget.Colony, who, this), thought, _ => null);
+        }
+
         public ThoughtDef thought;
         /// <summary>Only those it hurt; with <see cref="others"/>, everyone it didn't.</summary>
         public bool sufferers;
@@ -445,6 +531,11 @@ namespace ColonyCouncil
     /// <summary>Another world situation may follow this one (a locust year can bring a famine).</summary>
     public class WorldEffect_Follow : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            // Another world event may follow: told when it comes (no countdown).
+        }
+
         public string situation;
 
         public override void Apply(DilemmaContext ctx)
@@ -460,6 +551,14 @@ namespace ColonyCouncil
     /// <summary>Ripe crops in the open are marked for harvest (before the swarm or the frost gets them).</summary>
     public class WorldEffect_Harvest : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var map = SituationEffectUtil.MapOf(ctx);
+            if (map == null || !Allowed(ctx)) return;
+            int n = GameCondition_Hail.Crops(map).Count(p => p.Growth >= minGrowth && p.HarvestableNow);
+            if (n > 0) sheet.Play("CC_Impact_Harvest".Translate(n).Resolve(), "CC_Impact_HarvestBrief".Translate().Resolve());
+        }
+
         public float minGrowth = 0.6f;
 
         public override void Apply(DilemmaContext ctx)
@@ -481,6 +580,11 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Pay : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx != null) sheet.Silver(-Amount(ctx.count, factor));
+        }
+
         public float factor = 1f;
         public GoodsBy by;
 
@@ -533,6 +637,15 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Loot : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var map = SituationEffectUtil.MapOf(ctx);
+            if (map == null || !Allowed(ctx)) return;
+            float f = LivingEvents.WealthFactor(map);
+            sheet.Add(ImpactKind.Goods, 1, "CC_Impact_Loot".Translate(DilemmaImpact.Range(Mathf.RoundToInt(value.min * f), Mathf.RoundToInt(value.max * f))).Resolve(),
+                "CC_Impact_LootBrief".Translate().Resolve(), "loot");
+        }
+
         public FloatRange value = new FloatRange(300f, 600f);
         public bool fancy;
         /// <summary>Sent by drop pod in an industrial colony (a gift from afar); else carried to where traders drop their goods.</summary>
@@ -553,6 +666,13 @@ namespace ColonyCouncil
     /// <summary>A thought for one of the situation's people: A, B (a doctor, a slayer) or everyone who isn't them.</summary>
     public class WorldEffect_ThoughtFor : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var p = b ? ctx?.b : ctx?.a;
+            if (thought == null || p == null || p.Dead || !p.IsColonist || !Allowed(ctx)) return;
+            sheet.Thought(new List<Pawn> { p }, p.LabelShort, thought, _ => null);
+        }
+
         public ThoughtDef thought;
         public bool b;
 
@@ -567,6 +687,14 @@ namespace ColonyCouncil
     /// <summary>Experience for A (or B): what they learned from the situation (a healer's teaching, a hard winter's work).</summary>
     public class WorldEffect_Learn : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var p = b ? ctx?.b : ctx?.a;
+            var rec = skill != null ? p?.skills?.GetSkill(skill) : null;
+            if (rec == null || rec.TotallyDisabled || !Allowed(ctx)) return;
+            DilemmaImpact.Xp(sheet, p.LabelShort, p.thingIDNumber.ToString(), skill, xp, false);
+        }
+
         public SkillDef skill;
         public float xp = 1000f;
         public bool b;
@@ -583,6 +711,14 @@ namespace ColonyCouncil
     /// <summary>Silver the colony is owed when the situation ends (a share of a silver strike, a cart's takings): paid then, and told as {COUNT}.</summary>
     public class WorldEffect_Owe : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (SituationEffectUtil.Of(ctx) == null || !Allowed(ctx)) return;
+            float f = wealthScaled ? LivingEvents.WealthFactor(SituationEffectUtil.MapOf(ctx)) : 1f;
+            int lo = Mathf.Max(10, Mathf.RoundToInt(amount.min * f / 10f) * 10), hi = Mathf.Max(10, Mathf.RoundToInt(amount.max * f / 10f) * 10);
+            sheet.Add(ImpactKind.Goods, 1, "CC_Impact_Owed".Translate(DilemmaImpact.Range(lo, hi)).Resolve(), "CC_Impact_OwedBrief".Translate().Resolve(), "owed");
+        }
+
         public IntRange amount = new IntRange(200, 400);
         public bool wealthScaled = true;
 

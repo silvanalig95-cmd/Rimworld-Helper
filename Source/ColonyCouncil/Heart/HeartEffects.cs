@@ -86,6 +86,13 @@ namespace ColonyCouncil
     /// <summary>A dilemma's answer that lightens (negative) or adds to (positive) someone's strain.</summary>
     public class DilemmaEffect_Strain : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!Heart.On || amount == 0f) return;
+            var who = Reached(ctx).Where(p => Heart.Eligible(p)).ToList();
+            if (who.Count > 0) DilemmaImpact.Strain(sheet, WhoOf(ctx, who), KeyOf(who), amount, who.Count > 1);
+        }
+
         public float amount;
 
         public override void Apply(DilemmaContext ctx)

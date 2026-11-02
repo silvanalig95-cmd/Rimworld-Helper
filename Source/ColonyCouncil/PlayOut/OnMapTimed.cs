@@ -1228,6 +1228,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Race : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!PlayOuts.On || ctx?.map == null) return;
+            int kids = ctx.Colonists.Count(x => x.DevelopmentalStage.Child() && !x.Downed);
+            if (kids > 0) sheet.Play("CC_Impact_Race".Translate(Math.Min(8, kids)).Resolve(), "CC_Impact_RaceBrief".Translate().Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var map = ctx?.map;
@@ -1256,6 +1263,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_SmudgeFires : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!PlayOuts.On || ctx?.map == null) return;
+            sheet.Play("CC_Impact_Smudge".Translate(count, ImpactMath.Number(days)).Resolve(), "CC_Impact_SmudgeBrief".Translate().Resolve());
+        }
+
         public int count = 5;
         public float days = 2f;
 
@@ -1282,6 +1295,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Lanterns : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!PlayOuts.On || ctx?.map == null || OnMapTimed.LanternDef(ctx.map) == null) return;
+            string where = at == "gate" || at == "doors" ? at : "paths";
+            sheet.Play(("CC_Impact_Lanterns_" + where).Translate(Math.Max(1, count), OnMapTimed.LanternDef(ctx.map).label).Resolve(), "CC_Impact_LanternsBrief".Translate().Resolve());
+        }
+
         public int count = 10;
         public string at = "paths";
 
@@ -1310,6 +1332,19 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_KeepFire : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var p = PlayOuts.Who(forWhom, ctx);
+            var map = ctx?.map;
+            if (p == null || p.Dead || map == null || ThingDefOf.Campfire == null || !Avail.CanBuild(ThingDefOf.Campfire, map)) return;
+            var room = RoomUtil.BedRoom(p);
+            // Only a cold room of their own, inside walls: otherwise the words alone.
+            if (room == null || room.Map != map || !room.ProperRoom || room.PsychologicallyOutdoors || room.IsHuge || room.Temperature >= 21f) return;
+            sheet.Play("CC_Impact_KeepFire".Translate(p.LabelShort, wood, ImpactMath.Number(maxDays)).Resolve(), "CC_Impact_KeepFireBrief".Translate(p.LabelShort).Resolve());
+        }
+
         public PlayWho forWhom = PlayWho.A;
         public int wood = 40;
         public float maxDays = 8f;
@@ -1360,6 +1395,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_BoltDoor : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var a = ctx?.a;
+            if (!PlayOuts.On || ctx?.map == null || a == null || a.Dead || !a.Spawned || OnMapTimed.OwnDoor(a) == null) return;
+            sheet.Play("CC_Impact_Bolt".Translate(a.LabelShort, Mathf.Clamp(nights, 1, 10)).Resolve(), "CC_Impact_BoltBrief".Translate(a.LabelShort).Resolve());
+        }
+
         public int nights = 3;
 
         public override void Apply(DilemmaContext ctx)
@@ -1392,6 +1436,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Follow : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var a = ctx?.a;
+            var pet = ctx?.pet;
+            if (!PlayOuts.On || a == null || pet == null || a.Dead || pet.Dead || pet.Faction != Faction.OfPlayer || !(pet.RaceProps?.Animal ?? false)) return;
+            if (AnimalPenUtility.NeedsToBeManagedByRope(pet)) return;
+            sheet.Play("CC_Impact_Follow".Translate(pet.LabelShort, a.LabelShort, ImpactMath.Number(Mathf.Clamp(hours, 4f, 72f))).Resolve(), "CC_Impact_FollowBrief".Translate(pet.LabelShort).Resolve());
+        }
+
         public float hours = 36f;
 
         public override void Apply(DilemmaContext ctx)

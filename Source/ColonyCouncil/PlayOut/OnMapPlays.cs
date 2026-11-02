@@ -272,6 +272,14 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_BurnIt : DilemmaEffect_PlayOut
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!PlayOuts.On || ctx?.map == null || ctx.thing == null || ctx.count <= 0) return;
+            var carrier = PlayOuts.Who(who, ctx);
+            if (!PlayOuts.OurPerson(carrier)) return;
+            sheet.Play("CC_Impact_BurnIt".Translate(carrier.LabelShort, ctx.count, ctx.thing.label).Resolve(), "CC_Impact_BurnItBrief".Translate(ctx.thing.label).Resolve());
+        }
+
         public PlayWho who = PlayWho.A;
 
         [Unsaved] private Thing pending;
@@ -358,6 +366,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Rounds : DilemmaEffect_PlayOut
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            var v = PlayOuts.Who(who, ctx);
+            if (!PlayOuts.OurPerson(v)) return;
+            int n = Mathf.Clamp(count, 1, OnMapMath.MaxRounds);
+            sheet.Play((outdoors ? "CC_Impact_RoundsOut" : "CC_Impact_Rounds").Translate(label, v.LabelShort, n, DilemmaImpact.When(hours)).Resolve(), label);
+            if (serve) sheet.Add(ImpactKind.Goods, -1, "CC_Impact_RoundsMeals".Translate(n).Resolve(), "CC_Impact_FeastMealsBrief".Translate(n).Resolve(), "roundsmeals");
+        }
+
         public PlayWho who = PlayWho.A;
         public bool outdoors;
         public bool serve;
@@ -579,6 +596,14 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_HaulDead : DilemmaEffect_Group
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            int dead = PlayHaul.EnemyDead(ctx.map, Mathf.Clamp(most, 1, OnMapMath.MaxDead)).Count;
+            int n = Going(Everyone(ctx).Count);
+            if (dead == 0 || n == 0) return;
+            sheet.Play(("CC_Impact_Haul_" + Mode).Translate(label, n, dead, DilemmaImpact.When(hours)).Resolve(), label);
+        }
+
         public string to = PlayHaul.Pyre;
         public int most = OnMapMath.MaxDead;
 

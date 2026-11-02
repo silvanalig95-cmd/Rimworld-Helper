@@ -34,6 +34,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Favorites</thought><onlyTrait><li>Jealous</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Shirking</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>{A_nameDef} got the season off and spent the first week of it mostly asleep, while the others covered {A_possessive} chores.</riskOutcome>
@@ -50,6 +51,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.15</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest" />
         </effects>
       </li>
       <li>
@@ -142,7 +144,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Backed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.25</chance></li>
         </effects>
         <riskChance>0.2</riskChance>
         <riskSkill>Social</riskSkill>
@@ -191,7 +193,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><hours>16~22</hours></li>
         </effects>
-        <riskChance>0.3</riskChance>
+        <riskChance>0.2</riskChance>
         <riskReplaces>true</riskReplaces>
         <riskOutcome>{B_nameDef} gave {A_nameDef} two evenings and spent most of them explaining why the plan was wrong. The second ended in a shouting match, and they've avoided each other since.</riskOutcome>
         <riskEffects>
@@ -208,9 +210,9 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Mentored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_AskedToTeach</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>3</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.6</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmSoc_Reshuffled</thought><chance>0.9</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Lesson"><hours>16~22</hours></li>
         </effects>
@@ -253,11 +255,12 @@
         <ways><mercy>2</mercy><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the council's word at dinner</label><organizer>None</organizer><hours>17~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.3</chance></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>The council stood behind {A_nameDef}'s dream, in public. {B_nameDef} took it as a personal insult, and has been telling anyone who'll listen that the council has gone soft.</riskOutcome>
@@ -287,11 +290,17 @@
         <outcome>The council set the terms: if {A_nameDef} pulls it off, {B_nameDef} cooks for a week and apologizes at dinner. {A_nameDef} is working at it harder than ever, and {B_nameDef} has started asking, casually, how it's going.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Wager</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.35</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.2</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Bet</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.25</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>10</amount></li>
         </effects>
+        <riskChance>0.3</riskChance>
+        <riskOutcome>The terms were set, and by supper half the colony was betting against {A_nameDef} and saying so where {A_pronoun} could hear.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Doubted</thought></li>
+        </riskEffects>
       </li>
       <li>
         <label>Stay out of it</label>
@@ -409,7 +418,7 @@
         <ways><tradition>3</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_AskedToStay</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>FriendsOfA</target><thought>Council_DlmGoal_FriendStayed</thought></li>
         </effects>
         <riskChance>0.25</riskChance>
@@ -574,8 +583,9 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Remembered</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmGoal_Promised</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>B</target><amount>6</amount></li>
         </effects>
       </li>
       <li>
