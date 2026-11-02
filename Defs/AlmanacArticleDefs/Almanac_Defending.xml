@@ -34,7 +34,7 @@
         <heading>What the Defenses page does</heading>
         <text>It reads the map once when you open it, and again when the colony's buildings have changed, at most once an hour: the edges raiders can reach you from, the ways they walk, the narrow places on those ways with their width and how many raids pass, and whether your home is walled in. It counts what stands already, who fights and what you can build, and looks at the factions around you and the threats your DLCs bring.
 
-From that it ranks its advice and marks what's done. "Plan it here" opens a defense plan at the place the advice is about, turned to face the raiders; nothing is built until you click. "Show on the map" draws the ways in (red), the gaps (yellow, blue where a gate holds one) and where a gate's wall would cross (gold).</text>
+From that it ranks its advice and marks what's done, each piece with what it counts now (the traps in front of the way in, the turrets and cover near it, the doors between it and the beds, the mortars, the raid points). "Plan it here" opens a defense plan at the place the advice is about, turned to face the raiders; nothing is built until you click. "Not this" sets a piece of advice aside, here and on the Plan page alike, until you bring it back from "Set aside" under the advice; a note on a line's card has its own "Not this", and the line under the notes brings them back. "Show on the map" draws the ways in (red), the gaps (yellow, blue where a gate holds one) and where a gate's wall would cross (gold).</text>
       </li>
       <li>
         <heading>The plans</heading>

@@ -79,6 +79,10 @@ public static class AdvisorTests
         Check(!AdvisorMath.KitchenOutgrown(6, 1, 3, 0), "a small colony is fine with one stove");
         Check(!AdvisorMath.KitchenOutgrown(10, 2, 3, 0), "two stoves for ten");
         Check(!AdvisorMath.KitchenOutgrown(10, 0, 3, 0), "no stove at all is other advice");
+        Check(AdvisorMath.KitchenOutgrown(10, 1, 2, true, true), "by the meal row: short, and the stove's bills can't keep up");
+        Check(!AdvisorMath.KitchenOutgrown(10, 1, 2, true, false), "short, but the stove could keep up: raise the bill, not the kitchen");
+        Check(!AdvisorMath.KitchenOutgrown(10, 1, 2, false, true), "meals enough against the stock target");
+        Check(!AdvisorMath.KitchenOutgrown(6, 1, 3, true, true), "by the meal row too, a small colony is fine with one stove");
 
         // ---------- Freezers ----------
         Check(AdvisorMath.FreezerTooSmall(20, 18, 40), "nine tenths full and food out in the warm");

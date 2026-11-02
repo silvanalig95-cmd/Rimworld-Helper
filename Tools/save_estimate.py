@@ -235,6 +235,17 @@ MODEL = {
                                                "per step (counted under done): the cells a field step added or moved, AheadMath.MaxCellsAStep at most"),
     "Building/Ahead.cs:cells": ("fixed", const("Building/AheadMath.cs", "MaxCellsAStep", 80), 25,
                                 "per step (counted under done): the cells a field step's check looks at, AheadMath.MaxCellsAStep at most"),
+    # The same rules for what already existed (Building/Suggest/SameRules.cs): the undos of the advisor's, the base
+    # review's and the automations' steps, counted under done (and under an automation's action)
+    "Building/Suggest/SameRules.cs:pieceCells": ("fixed", 16, 25, "per step: the blueprints an order-giving step placed (lamps, chairs, an airlock)"),
+    "Building/Suggest/SameRules.cs:pieceDefs": ("fixed", 16, 40, "with the above: what each blueprint was"),
+    "Building/Suggest/SameRules.cs:marked": ("fixed", 300, P, "per step: the things it gave an order on (taken down, trees marked, a firebreak's brush)"),
+    "Building/Suggest/SameRules.cs:markedDefs": ("fixed", 300, 30, "with the above: which order"),
+    "Building/Suggest/SameRules.cs:markedCells": ("fixed", 30, 25, "per step: the orders it gave on cells rather than things (rare)"),
+    "Building/Suggest/SameRules.cs:markedCellDefs": ("fixed", 30, 30, "with the above: which order"),
+    "Building/Suggest/SameRules.cs:owners": ("fixed", 12, 30, "per store step: the stores whose priority or filter it changed"),
+    "Building/Suggest/SameRules.cs:priorities": ("fixed", 12, V, "with the above: the priority each had"),
+    "Building/Suggest/SameRules.cs:defs": ("fixed", 12, 40, "with the above: the kind each was set not to take"),
     # Building ahead (Building/BuildAhead.cs, BuildProjects.cs): the rooms followed, and the undos of its steps (counted under done)
     "Building/BuildProjects.cs:projects": ("fixed", const("Building/BuildProjects.cs", "MaxProjects", 16), 320,
                                            "rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand"),

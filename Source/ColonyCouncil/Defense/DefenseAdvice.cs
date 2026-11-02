@@ -43,11 +43,32 @@ namespace ColonyCouncil
     /// </summary>
     public static class DefenseAdvice
     {
-        private static DefenseSurvey forSurvey;
-        private static List<DefenseAdviceItem> items;
+        /// <summary>The source of its advice in the shared suggestion core: keys "def:" and the advice's key, the same the Plan page proposes it by.</summary>
+        public const string Source = "def";
 
-        /// <summary>The advice for a survey, worked out once per survey.</summary>
+        private static DefenseSurvey forSurvey;
+        private static List<DefenseAdviceItem> items, open, openFrom;
+        private static int openVersion = -1;
+
+        public static string KeyOf(DefenseAdviceItem a) => a == null ? null : Source + ":" + a.key;
+
+        /// <summary>The advice for a survey, worked out once per survey, without what the player set aside with "Not this".</summary>
         public static List<DefenseAdviceItem> For(DefenseSurvey s)
+        {
+            var all = All(s);
+            var tracker = SuggestTracker.Instance;
+            if (tracker == null) return all;
+            if (open == null || openFrom != all || openVersion != tracker.Version)
+            {
+                open = all.Where(a => !tracker.Declined(KeyOf(a))).ToList();
+                openFrom = all;
+                openVersion = tracker.Version;
+            }
+            return open;
+        }
+
+        /// <summary>Every piece of advice for a survey, set aside or not.</summary>
+        public static List<DefenseAdviceItem> All(DefenseSurvey s)
         {
             if (s == null) return new List<DefenseAdviceItem>();
             if (forSurvey == s && items != null) return items;
@@ -175,7 +196,7 @@ namespace ColonyCouncil
                             {
                                 key = "wood" + i,
                                 title = "CC_Def_Adv_Wood_Title".Translate(),
-                                why = "CC_Def_Adv_Wood".Translate(dir),
+                                why = "CC_Def_Adv_Wood".Translate(dir) + " " + "CC_Same_Def_Wood".Translate(c.woodWalls).Resolve(),
                                 score = 0.3f,
                                 look = c.cell,
                                 article = A("Rimfolk_AlmDef_WallsGates")
@@ -232,7 +253,7 @@ namespace ColonyCouncil
                     {
                         key = "traps",
                         title = "CC_Def_Adv_Traps_Title".Translate(),
-                        why = "CC_Def_Adv_Traps".Translate(mainDir, trap.label),
+                        why = "CC_Def_Adv_Traps".Translate(mainDir, trap.label) + " " + "CC_Same_Def_Traps".Translate(near).Resolve(),
                         score = 0.28f,
                         done = near >= 3,
                         template = T("Rimfolk_Defense_TrapCorridor"),
@@ -249,7 +270,7 @@ namespace ColonyCouncil
                     {
                         key = "turrets",
                         title = "CC_Def_Adv_Turrets_Title".Translate(),
-                        why = "CC_Def_Adv_Turrets".Translate(mainDir),
+                        why = "CC_Def_Adv_Turrets".Translate(mainDir) + " " + "CC_Same_Def_Turrets".Translate(main?.turretsNear ?? 0, s.raidPoints.ToString("0")).Resolve(),
                         score = 0.27f,
                         done = main != null && main.turretsNear >= 2,
                         template = T("Rimfolk_Defense_TurretNest"),
@@ -263,7 +284,7 @@ namespace ColonyCouncil
                     {
                         key = "post",
                         title = "CC_Def_Adv_Post_Title".Translate(),
-                        why = "CC_Def_Adv_Post".Translate(mainDir, s.ranged),
+                        why = "CC_Def_Adv_Post".Translate(mainDir, s.ranged) + " " + "CC_Same_Def_Cover".Translate(main?.coverInside ?? 0).Resolve(),
                         score = 0.27f,
                         done = main != null && main.coverInside >= 6,
                         template = T("Rimfolk_Defense_Post"),
@@ -291,7 +312,7 @@ namespace ColonyCouncil
                     {
                         key = "fallback",
                         title = "CC_Def_Adv_Fallback_Title".Translate(),
-                        why = "CC_Def_Adv_Fallback".Translate(),
+                        why = "CC_Def_Adv_Fallback".Translate() + " " + "CC_Same_Def_Fallback".Translate(s.doorsOnWay).Resolve(),
                         score = 0.3f,
                         done = s.doorsOnWay >= 2,
                         template = T("Rimfolk_Defense_Fallback"),
@@ -350,7 +371,7 @@ namespace ColonyCouncil
                 {
                     key = "siege",
                     title = "CC_Def_Adv_Siege_Title".Translate(),
-                    why = "CC_Def_Adv_Siege".Translate(Factions(besiegers)) + " " + how,
+                    why = "CC_Def_Adv_Siege".Translate(Factions(besiegers)) + " " + how + " " + "CC_Same_Def_Mortars".Translate(s.mortars).Resolve(),
                     score = 0.4f,
                     done = s.mortars >= 1,
                     template = pit,
@@ -362,7 +383,7 @@ namespace ColonyCouncil
                 {
                     key = "mechs",
                     title = "CC_Def_Adv_Mechs_Title".Translate(),
-                    why = (pre ? "CC_Def_Adv_MechsLow" : "CC_Def_Adv_Mechs").Translate(),
+                    why = (pre ? "CC_Def_Adv_MechsLow" : "CC_Def_Adv_Mechs").Translate() + " " + "CC_Same_Def_Points".Translate(s.raidPoints.ToString("0"), s.fighters).Resolve(),
                     score = 0.38f,
                     done = !pre && s.emp,
                     standing = pre,
@@ -415,7 +436,8 @@ namespace ColonyCouncil
                 {
                     key = "medical",
                     title = "CC_Def_Adv_Medical_Title".Translate(),
-                    why = "CC_Def_Adv_Medical".Translate(s.medicine).Resolve() + (s.hospital ? "" : " " + "CC_Def_Adv_NoHospital".Translate().Resolve()),
+                    why = "CC_Def_Adv_Medical".Translate(s.medicine).Resolve() + " " + "CC_Same_Def_Medical".Translate(s.fighters).Resolve()
+                          + (s.hospital ? "" : " " + "CC_Def_Adv_NoHospital".Translate().Resolve()),
                     score = 0.32f,
                     done = ok,
                     article = A("Rimfolk_AlmDef_Fallback")

@@ -121,8 +121,10 @@ and the eight automations next) goes through `Building/Suggest/`:
   look makes of a step, how much is kept (`DoneKept` 20, `DeclinedKept` 80).
 - To route another source through it: build its suggestions as `Suggestion`s with keys "source:..." in its own
   `For(map)`, draw them with the same three buttons (see `UI/AheadPanel.DrawStep`), and give each `apply` an undo from
-  `SuggestUndos.cs` (or a new `SuggestUndo`) and a `SuggestCheck`. The existing automations keep their own undo log
-  (`AutoAction`) until they are moved over.
+  `SuggestUndos.cs` (or a new `SuggestUndo`) and a `SuggestCheck`. A source whose advice isn't a `Suggestion` (an
+  advisor card, a defense note) sets aside by key with `Decline(key, title)`; `DeclinedFor`/`DoneFor` take several
+  sources (`SuggestMath.OfSource`: "base" takes "base:stubs"). The automations keep their `AutoAction` log, but a new
+  action holds the same `SuggestUndo` a step done by hand does (see the last section).
 
 ## Phase 2: construction and the base's growth
 
@@ -202,8 +204,8 @@ and the eight automations next) goes through `Building/Suggest/`:
   workshop and the stores enough. The rooms in order: the cold store, the dining room, then the hospital. Nothing is
   queued, so the freezer is suggested whatever its size; the dining room beside it only while the two together take the
   four builders' 2 days (48 hours at 24 a day), else it waits for the freezer and the page says so.
-- Not yet: the advisor's own room-outgrown signals still propose through NextSteps beside these steps (the "same rules"
-  part should route them here); the busy-bench count reads queued bills, not the record of bench hours; quest offers of
+- Not yet: (done in the "same rules" pass: the advisor's room signals read these rows and the plan proposes the room
+  once); the busy-bench count reads queued bills, not the record of bench hours; quest offers of
   joiners are not read; mining work is not counted in a room's hours; a room's kept side is not offered to the ground
   plan's own spot search.
 
@@ -250,3 +252,61 @@ found missing, by system:
   counts as "Not this" for that key); their reasons carry numbers. Their switches stay as they are (off unless the
   player turns them on); "act by itself" for the new helper is for later, after the player has tested the suggestions.
 - **Defense advice and line reviews**: "Not this" on notes; numbers in reasons where they're missing.
+
+### The same rules as built
+
+Shared: `Building/Suggest/SameRules.cs` (`SameRules.StillOpen(map, key)` for "adv:" and "base:" keys, `SameRules.Orders`
+runs an order-giving action as a step by diffing blueprints and designations, `OwnerOf`/`SettingsOf` name a store by
+"zone:<id>"/"thing:<ThingID>"); undos `UndoOrders` (blueprints placed by cell and def, designations on things and
+cells), `UndoStorePriority`, `UndoStoreAllow`, `UndoPlanTaken`, `UndoResearchPick`, `UndoRelay` (LineRoutes.cs); checks
+`SourceGoneCheck` (the advice or finding behind a key gone; else the pieces unbuilt, nobody building, the orders
+waiting), `BillStockCheck`. `SuggestTracker.Decline(key, title)`, `Offered(key)`, `UndoneLast(key)`,
+`DeclinedFor`/`DoneFor` over several sources. UI pieces in `AheadPanel`: `NotThis`, `DoStep`, `DoTip`,
+`ButtonsWidth`, and `Done`/`Aside` over several sources.
+
+- **Advisor cards**: done. Keys `AdvisorSteps.KeyOf` ("adv:<def>:<key>", the same the Plan page proposes by), so "Not
+  this" on either page holds on both; `CouncilMapComponent.Signals` leaves out what is set aside or waiting for its
+  check (every page and the automations go by it), `AllSignals` keeps all. An action that gives orders
+  (`AdvisorSteps.ActIsStep`, not `actOpens`) is a step with `UndoOrders` and a `SourceGoneCheck` two days on. Buttons
+  as wide as their labels, each with a tooltip; "Done lately" and "Set aside" under the cards. One source of truth
+  with building ahead: `RoomGrowth.Wanting(map, kind)` gives GrowthNeeds' row when the colony is short now or soon
+  (and not when the player set the room aside); dining outgrown, the plain dining advice, the plain freezer advice,
+  freezer outgrown, no medical bed and no bed read their row (`ForBuildAhead`: the row's numbers in the detail,
+  `buildKind`, "Go to Plan", and the room step's own Do it on the card), and `NextSteps` leaves signals with a
+  `buildKind` out of its proposals. Dining cramped and the eaten-without-a-table advice step aside while the seats
+  row wants. The kitchen reads the Ahead meal row (short or low, the meal bills' make a day below the use, no free
+  stove: `AdvisorMath.KitchenOutgrown(people, stoves, cooks, mealsShort, behind)`); the hospital upgrade, low food,
+  medicine and no doctor got their numbers. Not yet: most other advice texts were left as they were (they mostly carry
+  counts in their titles); the workshop upgrade isn't a GrowthMath kind (bench places) and stays its own advice.
+- **Base review**: done. `BaseReview.For` leaves out what is set aside or waiting, `All` keeps all; `KeyOf`,
+  `StepOf`, `Apply`; `BaseFinding.fix` returns a `SuggestDone`. Rooms far apart and the meal walk go by walking
+  (`BaseReviewMath.WalkGrid`, cost 10 straight and 14 on the slant, no corner cut past a wall or door, stops when every
+  target is reached; `TooFarWalking`, `MealWalkOf`), the straight line in the words beside it; the meal walk offers a
+  dining room. New fixes: the freezer airlock (`BaseReviewMath.AirlockAt`: door, lobby, side walls, the cells left to
+  walk round; `UndoOrders`), catch-alls (only those at one priority are a muddle, `StorageReviewMath.CatchAllMuddle`;
+  the others go one priority lower, `UndoStorePriority`), spread stores (the room holding the most keeps the kind,
+  `UndoStoreAllow`). Take-downs and stockpiles keep `UndoOrders`/`UndoZone` and a `SourceGoneCheck`; the relay of lines
+  `UndoRelay`. The empty-filter finding has its cells counted but no fix (an empty store may be meant). Not yet: the
+  bench far from its store still measures in a straight line.
+- **Plan page**: done. "Not this" (planned or proposed, with a source) declines the key for good; old saves' let-go
+  steps are converted; a planned step set aside on its own page leaves the plan. Proposals skip what is set aside or
+  waiting. The level pill on planned steps too; the research step counts idle benches and researchers (key
+  "plan:research", started through the core with `UndoResearchPick`); a base fix and an advisor action from a step go
+  through the core. "Done lately" and "Set aside" for adv/def/base/plan at the end of the page. Button columns grow to
+  their longest label.
+- **Making page staples**: done. `MakingMath.StapleCount(rowTarget, otherBillsKeep, useADay, unit)`: meals, medicine
+  and feed by the Ahead rows (target less the other bills' cover, a day's use at least, rounded up to fives);
+  `MakingOption.targetWhy` under the batch and on the button. Not yet: only the first bench of a kind; idle benches
+  only named.
+- **Automations**: done. Each `AutoPending` has its `stepKey` ("auto:bill:<bench>:<recipe>", "auto:plan:<step>",
+  "auto:research:<def>", "auto:firewood", "auto:grow:<def>", or the base finding's or advisor card's own key), its
+  `reason`, and `run` (the doing, returning its undo and check) apart from `act` (run, then the log); candidates that
+  aren't `Offered` are skipped, and by the automation also those whose last step was undone. `HandSteps(map)` gives
+  them as `Suggestion`s, drawn as cards under each switch on the Making page with "Done lately" and "Set aside". A
+  new `AutoAction` keeps `key` and the step's `undo`; undoing it declines the key. Log lines carry their numbers (in
+  store and wanted, the research cost, pieces and their worth, the wood the trees give).
+- **Defense advice and line notes**: done. `DefenseAdvice.For` leaves out what is set aside (`All` keeps all), "Not
+  this" on each card and "Set aside" under the advice; the keys "def:<key>" are the Plan page's too. Numbers added to
+  wood, traps, turrets, the archers' post, the fallback, sieges, mechanoids and medicine. Notes on a line: "Not this"
+  per note (key "line:<id>:<note>"), and a line under the notes brings them back. Not yet: the notes that are plain
+  facts (the gate shut, no way on) carry no number.

@@ -22,7 +22,8 @@ namespace ColonyCouncil
         public string fixLabel;
         /// <summary>What the fix does on the map, for its button's tooltip.</summary>
         public string fixTip;
-        public Action fix;
+        /// <summary>The fix, done as a step of the shared suggestion core: returns what it did, with its undo and check (null when it couldn't).</summary>
+        public Func<SuggestDone> fix;
         /// <summary>A room the planner can put beside what this one is far from (the Plan the room button).</summary>
         public RoomTemplateDef template;
         /// <summary>What it draws on the map: the cells it's about, a second set (the other room, the nearest store), a line between two points, a short label.</summary>
@@ -118,17 +119,44 @@ namespace ColonyCouncil
     /// </summary>
     public static class BaseReview
     {
+        /// <summary>The source of its steps in the shared suggestion core: keys "base:" and the finding's key.</summary>
+        public const string Source = "base";
+
         private class Cache
         {
             public int tick = -999999;
             public List<BaseFinding> findings = new List<BaseFinding>();
+            public List<BaseFinding> open, openFrom;
+            public int openVersion = -1;
         }
 
         private static readonly Dictionary<int, Cache> caches = new Dictionary<int, Cache>();
 
+        /// <summary>
+        /// The findings now, without those the player set aside with "Not this" and those whose fix was done and is still
+        /// to be checked (the shared suggestion core): what the page, the plan's proposals and the automations go by.
+        /// </summary>
         public static List<BaseFinding> For(Map map, bool force = false)
         {
-            if (map == null || !map.IsPlayerHome) return new List<BaseFinding>();
+            var c = CacheOf(map, force);
+            if (c == null) return new List<BaseFinding>();
+            var tracker = SuggestTracker.Instance;
+            if (tracker == null) return c.findings;
+            if (c.open == null || c.openFrom != c.findings || c.openVersion != tracker.Version)
+            {
+                c.open = c.findings.Where(f => tracker.Offered(KeyOf(f))).ToList();
+                c.openFrom = c.findings;
+                c.openVersion = tracker.Version;
+            }
+            return c.open;
+        }
+
+        /// <summary>Every finding now, set aside or not (for the check of a step done).</summary>
+        public static List<BaseFinding> All(Map map, bool force = false) => CacheOf(map, force)?.findings ?? new List<BaseFinding>();
+
+        private static Cache CacheOf(Map map, bool force)
+        {
+            if (map == null || !map.IsPlayerHome) return null;
             if (!caches.TryGetValue(map.uniqueID, out var c)) caches[map.uniqueID] = c = new Cache();
             int now = Find.TickManager.TicksGame;
             if (force || now - c.tick > Sched.HourTicks || now < c.tick)
@@ -144,10 +172,39 @@ namespace ColonyCouncil
                     c.findings = new List<BaseFinding>();
                 }
             }
-            return c.findings;
+            return c;
         }
 
         public static BaseFinding Finding(Map map, string key) => For(map).FirstOrDefault(f => f.key == key);
+
+        /// <summary>A finding's key in the shared suggestion core ("base:stubs"), the same the Plan page proposes it by.</summary>
+        public static string KeyOf(BaseFinding f) => f == null ? null : Source + ":" + f.key;
+
+        /// <summary>A finding as a step: its words and level, Show, and its fix as Do it with the fix's undo and a look later whether the finding has gone.</summary>
+        public static Suggestion StepOf(Map map, BaseFinding f)
+        {
+            if (f == null) return null;
+            var fix = f.fix;
+            var cells = f.cells.ToList();
+            return new Suggestion
+            {
+                key = KeyOf(f), source = Source, area = f.group, title = f.title, reason = f.detail, level = (int)f.Level, map = map,
+                doLabel = f.fixLabel, doTip = f.fixTip, look = f.look.IsValid ? new LookTargets(f.look, map) : null, cells = cells.Count > 0 ? (Func<List<IntVec3>>)(() => cells) : null,
+                apply = fix == null ? null : (Func<SuggestDone>)(() =>
+                {
+                    var d = fix();
+                    For(map, true);
+                    return d;
+                })
+            };
+        }
+
+        /// <summary>Carries out a finding's fix through the shared suggestion core (the player's click): kept with Undo, checked later.</summary>
+        public static SuggestDone Apply(Map map, BaseFinding f)
+        {
+            var step = StepOf(map, f);
+            return step?.apply == null ? null : SuggestTracker.Instance?.Apply(step);
+        }
 
         // ---------------- Rooms ----------------
 
@@ -156,7 +213,43 @@ namespace ColonyCouncil
             public Room room;
             public string role;
             public (float x, float z) mid;
+            /// <summary>The room's own cell nearest its middle: where a walk to or from it starts.</summary>
+            public IntVec3 middle;
             public string label;
+        }
+
+        /// <summary>The map's cells as people walk them (walls and rock closed, doors open but never passed on the slant), for walks between rooms.</summary>
+        private static BaseReviewMath.WalkGrid WalkGridOf(Map map)
+        {
+            int w = map.Size.x, h = map.Size.z;
+            var walk = new bool[w * h];
+            var diag = new bool[w * h];
+            var ci = map.cellIndices;
+            foreach (var c in map.AllCells)
+            {
+                int i = ci.CellToIndex(c);
+                bool ok = c.Walkable(map);
+                walk[i] = ok;
+                diag[i] = !ok || c.GetEdifice(map) is Building_Door;
+            }
+            return new BaseReviewMath.WalkGrid(w, h, walk, diag);
+        }
+
+        private static IntVec3 MiddleOf(Room room)
+        {
+            var mid = room.ExtentsClose.CenterCell;
+            var best = IntVec3.Invalid;
+            int d = int.MaxValue;
+            foreach (var c in room.Cells)
+            {
+                int dd = (c - mid).LengthHorizontalSquared;
+                if (dd < d)
+                {
+                    d = dd;
+                    best = c;
+                }
+            }
+            return best.IsValid ? best : mid;
         }
 
         /// <summary>The colony's rooms with the review's roles, for the little map.</summary>
@@ -213,7 +306,7 @@ namespace ColonyCouncil
                 string role = RoleName(room, map);
                 if (role == null) continue;
                 var mid = room.ExtentsClose.CenterCell;
-                list.Add(new RoomInfo { room = room, role = role, mid = (mid.x, mid.z), label = role == "Freezer" ? RoleLabel(role) : room.GetRoomRoleLabel() });
+                list.Add(new RoomInfo { room = room, role = role, mid = (mid.x, mid.z), middle = MiddleOf(room), label = role == "Freezer" ? RoleLabel(role) : room.GetRoomRoleLabel() });
             }
             return list;
         }
@@ -239,19 +332,42 @@ namespace ColonyCouncil
                 }
                 return byRole.TryGetValue(role, out var l) ? l.Select(r => r.mid).ToList() : new List<(float, float)>();
             }
+            // Where walks to and from a role start: each room's middle cell, the gate, the field cells.
+            List<int> WalkCells(string role)
+            {
+                var ci = map.cellIndices;
+                if (role == "Gate")
+                {
+                    var gate = RoomNeighbours.GateCell(map);
+                    return gate.IsValid && gate.InBounds(map) ? new List<int> { ci.CellToIndex(gate) } : new List<int>();
+                }
+                if (role == "Fields")
+                {
+                    var fields = RoomNeighbours.FieldCells(map);
+                    return fields == null ? new List<int>() : fields.Where(c => c.InBounds(map)).Select(c => ci.CellToIndex(c)).ToList();
+                }
+                return byRole.TryGetValue(role, out var l) ? l.Select(r => ci.CellToIndex(r.middle)).ToList() : new List<int>();
+            }
+            BaseReviewMath.WalkGrid grid = null;
+            BaseReviewMath.WalkGrid Grid() => grid ??= WalkGridOf(map);
 
-            // Rooms that belong together, far apart.
+            // Rooms that belong together, far apart: by the walk between them, as people go (a door on the far side
+            // makes a long way round), with the straight line beside it in the words.
             foreach (var rule in BaseReviewMath.NearRules)
             {
                 var a = Mids(rule.a);
                 var b = Mids(rule.b);
-                var far = BaseReviewMath.TooFar(rule, a, b);
+                if (a.Count == 0 || b.Count == 0) continue;
+                var walks = Grid().Walk(WalkCells(rule.b), null, WalkCells(rule.a), out var nearest);
+                var far = BaseReviewMath.TooFarWalking(rule, walks, nearest);
                 if (far.Count == 0) continue;
                 // One finding per rule, about the worst case; the rest in the detail.
                 var worst = far.OrderByDescending(f => f.distance).First();
                 var roomA = byRole[rule.a][worst.a];
                 string other = RoleLabel(rule.b);
+                float crow = worst.b >= 0 && worst.b < b.Count ? Mathf.Sqrt((a[worst.a].x - b[worst.b].x) * (a[worst.a].x - b[worst.b].x) + (a[worst.a].z - b[worst.b].z) * (a[worst.a].z - b[worst.b].z)) : -1f;
                 string detail = ("CC_Base_Far_" + rule.key).Translate(roomA.label.Named("A"), other.Named("B"), ((int)worst.distance).Named("D")).Resolve();
+                if (crow >= 0f) detail += " " + "CC_Same_Base_Walk".Translate(((int)worst.distance).Named("WALK"), ((int)crow).Named("CROW")).Resolve();
                 if (far.Count > 1) detail += " " + "CC_Base_FarMore".Translate(far.Count - 1).Resolve();
                 // The cheaper of the two to build anew beside the other: the planner's spot finder weighs the same rule.
                 var template = Rebuild(rule.key, map);
@@ -290,24 +406,32 @@ namespace ColonyCouncil
                 });
             }
 
-            // Long walks to meals.
-            float walk = BaseReviewMath.MealWalk(Mids("Bedroom"), Mids("DiningRoom"));
-            if (walk > BaseReviewMath.LongMealWalk)
+            // Long walks to meals: the walk from each bedroom to the nearest dining room, as people go.
+            if (byRole.TryGetValue("Bedroom", out var bedrooms) && byRole.TryGetValue("DiningRoom", out var diners))
             {
-                var farthest = byRole["Bedroom"].OrderByDescending(r =>
+                var walks = Grid().Walk(WalkCells("DiningRoom"), null, WalkCells("Bedroom"), out var nearestDining);
+                float walk = BaseReviewMath.MealWalkOf(walks);
+                if (walk > BaseReviewMath.LongMealWalk)
                 {
-                    BaseReviewMath.Nearest(r.mid, Mids("DiningRoom"), out float d);
-                    return d;
-                }).First();
-                findings.Add(new BaseFinding
-                {
-                    key = "mealwalk", group = "walks", score = Mathf.Min(0.4f, 0.15f + (walk - BaseReviewMath.LongMealWalk) / 100f),
-                    title = "CC_Base_MealWalk".Translate().Resolve(), detail = "CC_Base_MealWalk_Detail".Translate(((int)walk).Named("D"), byRole["Bedroom"].Count.Named("N")).Resolve(),
-                    look = farthest.room.ExtentsClose.CenterCell,
-                    cells = farthest.room.Cells.ToList(), other = NearestRoom(farthest, byRole["DiningRoom"])?.room.Cells.ToList() ?? new List<IntVec3>(),
-                    from = farthest.room.ExtentsClose.CenterCell, to = NearestRoom(farthest, byRole["DiningRoom"])?.room.ExtentsClose.CenterCell ?? IntVec3.Invalid,
-                    mapLabel = "CC_Base_Map_MealWalk".Translate(((int)walk).Named("D")).Resolve()
-                });
+                    int far = 0;
+                    for (int i = 1; i < walks.Length; i++)
+                        if (walks[i] > walks[far]) far = i;
+                    var farthest = bedrooms[far];
+                    var dining = nearestDining[far] >= 0 && nearestDining[far] < diners.Count ? diners[nearestDining[far]] : NearestRoom(farthest, diners);
+                    var template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_DiningRoom");
+                    if (template != null && template.UnavailableReason(map) != null) template = null;
+                    findings.Add(new BaseFinding
+                    {
+                        key = "mealwalk", group = "walks", score = Mathf.Min(0.4f, 0.15f + (walk - BaseReviewMath.LongMealWalk) / 100f),
+                        title = "CC_Base_MealWalk".Translate().Resolve(),
+                        detail = "CC_Base_MealWalk_Detail".Translate(((int)walk).Named("D"), walks.Count(w => w >= 0f).Named("N")).Resolve() + " "
+                                 + "CC_Same_Base_MealWalkFar".Translate(farthest.label.Named("ROOM"), ((int)walks[far]).Named("D")).Resolve(),
+                        look = farthest.room.ExtentsClose.CenterCell, template = template,
+                        cells = farthest.room.Cells.ToList(), other = dining?.room.Cells.ToList() ?? new List<IntVec3>(),
+                        from = farthest.room.ExtentsClose.CenterCell, to = dining?.room.ExtentsClose.CenterCell ?? IntVec3.Invalid,
+                        mapLabel = "CC_Base_Map_MealWalk".Translate(((int)walk).Named("D")).Resolve()
+                    });
+                }
             }
 
             Doors(map, findings);
@@ -721,14 +845,21 @@ namespace ColonyCouncil
                         int doors = outdoors ? 0 : DoorCount(beyond, map);
                         if (!BaseReviewMath.AirlockWanted(r.room.Temperature, beyond.Temperature, beyond.CellCount, doors, outdoors)) continue;
                         string beyondLabel = outdoors ? "CC_Base_Outdoors".Translate().Resolve() : beyond.GetRoomRoleLabel();
+                        var fix = AirlockFix(map, door, GenAdj.CardinalDirections[i], out var lockCells, out int walls);
+                        string detail = "CC_Base_FreezerDoor_Detail".Translate(((int)r.room.Temperature).Named("T"), ((int)beyond.Temperature).Named("TB")).Resolve();
+                        detail += " " + (fix != null ? "CC_Same_Base_AirlockHow".Translate(walls.Named("WALLS")).Resolve() : "CC_Same_Base_AirlockNoRoom".Translate().Resolve());
+                        var marks = new List<IntVec3> { door.Position };
+                        if (fix != null) marks.AddRange(lockCells);
                         findings.Add(new BaseFinding
                         {
                             key = "freezer:" + door.thingIDNumber, group = "doors", score = outdoors ? 0.3f : 0.22f,
                             title = "CC_Base_FreezerDoor".Translate(beyondLabel.Named("B")).Resolve().CapitalizeFirst(),
-                            detail = "CC_Base_FreezerDoor_Detail".Translate(((int)r.room.Temperature).Named("T"), ((int)beyond.Temperature).Named("TB")).Resolve(),
+                            detail = detail,
                             look = door.Position,
-                            cells = new List<IntVec3> { door.Position }, other = cells.ToList(),
-                            mapLabel = "CC_Base_Map_Freezer".Translate(((int)beyond.Temperature).Named("TB")).Resolve()
+                            cells = marks, other = cells.ToList(),
+                            mapLabel = "CC_Base_Map_Freezer".Translate(((int)beyond.Temperature).Named("TB")).Resolve(),
+                            fix = fix, fixLabel = fix != null ? "CC_Same_Base_AirlockDo".Translate().Resolve() : null,
+                            fixTip = fix != null ? "CC_Same_Base_AirlockDoTip".Translate(walls.Named("WALLS")).Resolve() : null
                         });
                         break;
                     }
@@ -754,20 +885,90 @@ namespace ColonyCouncil
 
         // ---------------- Fixes ----------------
 
-        /// <summary>Orders what the finding named taken down, as the player's own deconstruct orders (cancel them like any other).</summary>
-        public static void Deconstruct(Map map, List<Thing> things)
+        /// <summary>
+        /// Orders what the finding named taken down, as the player's own deconstruct orders (cancel them like any other):
+        /// a step with Undo (the orders taken back) and a look two days on whether the finding has gone. Null when there
+        /// was nothing left to order.
+        /// </summary>
+        public static SuggestDone Deconstruct(Map map, List<Thing> things)
         {
             int n = 0;
             var dm = map.designationManager;
+            var undo = new UndoOrders();
             foreach (var t in things)
             {
                 if (t == null || t.Destroyed || !t.Spawned || t.Map != map || t.Faction != Faction.OfPlayer) continue;
                 if (dm.DesignationOn(t, DesignationDefOf.Deconstruct) != null) continue;
                 dm.AddDesignation(new Designation(t, DesignationDefOf.Deconstruct));
+                undo.marked.Add(t);
+                undo.markedDefs.Add(DesignationDefOf.Deconstruct.defName);
                 n++;
             }
             Messages.Message("CC_Base_TakenDown".Translate(n), n > 0 ? new LookTargets(things[0]) : null, MessageTypeDefOf.SilentInput, false);
             For(map, true);
+            return n == 0 ? null : new SuggestDone { undo = undo, map = map, check = new SourceGoneCheck { waitTicks = 2 * SuggestMath.TicksPerDay } };
+        }
+
+        // ---------------- The freezer's airlock ----------------
+
+        /// <summary>
+        /// An airlock outside a freezer door as a plan the player places at a click: a second door one cell further out
+        /// (the freezer door's kind and material) and a wall either side of the cell between (the freezer wall's
+        /// material), where all of it can go and people can still walk round it. Null when it can't go there.
+        /// </summary>
+        private static Func<SuggestDone> AirlockFix(Map map, Building door, IntVec3 dir, out List<IntVec3> cells, out int newWalls)
+        {
+            cells = new List<IntVec3>();
+            newWalls = 0;
+            var a = BaseReviewMath.AirlockAt((door.Position.x, door.Position.z), (dir.x, dir.z));
+            IntVec3 C((int x, int z) p) => new IntVec3(p.x, 0, p.z);
+            IntVec3 lobby = C(a.lobby), door2 = C(a.door), beyond = C(a.beyond);
+            var sides = new[] { C(a.wallA), C(a.wallB) };
+            var round = new[] { C(a.roundA), C(a.roundB) };
+            if (!lobby.InBounds(map) || !door2.InBounds(map) || !beyond.InBounds(map) || lobby.Fogged(map) || door2.Fogged(map)) return null;
+            if (lobby.GetEdifice(map) != null || !lobby.Standable(map) || door2.GetEdifice(map) != null || !beyond.Walkable(map)) return null;
+            var doorDef = door.def;
+            var doorStuff = door.Stuff;
+            var rot = door.Rotation;
+            if (!GenConstruct.CanPlaceBlueprintAt(doorDef, door2, rot, map, false, null, null, doorStuff).Accepted) return null;
+            // The freezer wall's material beside the door, else the usual.
+            var wallDef = ThingDefOf.Wall;
+            ThingDef wallStuff = null;
+            foreach (var side in new[] { door.Position + new IntVec3(-dir.z, 0, dir.x), door.Position - new IntVec3(-dir.z, 0, dir.x) })
+            {
+                var ed = side.InBounds(map) ? side.GetEdifice(map) : null;
+                if (ed != null && ed.def == wallDef && ed.Stuff != null)
+                {
+                    wallStuff = ed.Stuff;
+                    break;
+                }
+            }
+            wallStuff ??= GenStuff.DefaultStuffFor(wallDef);
+            var walls = new List<IntVec3>();
+            for (int i = 0; i < 2; i++)
+            {
+                var w = sides[i];
+                if (!w.InBounds(map) || w.Fogged(map)) return null;
+                var ed = w.GetEdifice(map);
+                if (ed != null)
+                {
+                    if (ed.def.IsWall || TemplatePlanner.IsWallLike(ed.def)) continue;
+                    return null;
+                }
+                // A new wall here mustn't shut a way: the cell beside the second door stays open to walk round.
+                if (!round[i].InBounds(map) || !round[i].Walkable(map)) return null;
+                if (!GenConstruct.CanPlaceBlueprintAt(wallDef, w, Rot4.North, map, false, null, null, wallStuff).Accepted) return null;
+                walls.Add(w);
+            }
+            cells.Add(lobby);
+            cells.Add(door2);
+            cells.AddRange(walls);
+            newWalls = walls.Count;
+            return () => SameRules.Orders(map, () =>
+            {
+                GenConstruct.PlaceBlueprintForBuild(doorDef, door2, map, rot, Faction.OfPlayer, doorStuff);
+                foreach (var w in walls) GenConstruct.PlaceBlueprintForBuild(wallDef, w, map, Rot4.North, Faction.OfPlayer, wallStuff);
+            }, 3 * SuggestMath.TicksPerDay);
         }
     }
 }

@@ -76,6 +76,9 @@ public static class AheadTests
             "a step is looked at a wait after it was done, and again a wait later");
         C(SuggestMath.AfterLook(true, 0) == SuggestMath.Worked && SuggestMath.AfterLook(false, 0) == SuggestMath.Waiting && SuggestMath.AfterLook(false, 1) == SuggestMath.Failed,
             "not working at the first look gets a second; at the last it is stuck");
+        C(SuggestMath.OfSource("base:stubs", new[] { "base" }) && SuggestMath.OfSource("plan:research", new[] { "adv", "plan" }) && !SuggestMath.OfSource("basement:x", new[] { "base" })
+          && SuggestMath.OfSource("line:12:leak", new[] { "line:12" }) && !SuggestMath.OfSource("line:123:leak", new[] { "line:12" }) && SuggestMath.OfSource("anything", null)
+          && !SuggestMath.OfSource(null, new[] { "base" }), "a key belongs to a source by its start and a colon");
         var kept = Enumerable.Range(0, 30).ToList();
         C(SuggestMath.TrimOldest(kept, SuggestMath.DoneKept) == 10 && kept.First() == 10 && SuggestMath.TrimOldest(kept, SuggestMath.DoneKept) == 0, "the log keeps the newest");
 
