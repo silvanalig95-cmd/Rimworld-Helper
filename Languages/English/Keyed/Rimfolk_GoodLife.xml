@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Used to the good life (Source/ColonyCouncil/Moods/GoodLife.cs) and the quiet troubles (Source/ColonyCouncil/Setbacks/Troubles.cs). -->
+
+  <!-- Settings -->
+  <CC_Settings_GoodLife>Used to the good life</CC_Settings_GoodLife>
+  <CC_Settings_GoodLife_Tip>A colonist with a pile of good moods stops feeling all of it. Their good moods (from the game, other mods and Rimfolk alike) count in full up to a line set by their standards: 45 points for the modest, falling to 30 for the spoiled. Above it, half of the first 20 points and three quarters of the rest are taken back, as one bad mood with its own line in the Mood tab. Every good thing still helps, so a well-run colony stays happy, but it settles below the top of the mood bar, where a bad day still shows. Bad moods are never touched, and it fades in hard times, to nothing for anyone near a break.</CC_Settings_GoodLife_Tip>
+  <CC_SetNote_GoodLife>A big pile of good moods counts for less above a line set by standards.</CC_SetNote_GoodLife>
+  <CC_Settings_QuietTroubles>Quiet troubles</CC_Settings_QuietTroubles>
+  <CC_Settings_QuietTroubles_Tip>Someone content for days on end can still have a low day with a real cause from their life: worry about family out in the world, the day someone they loved died coming round again, missing the life they had before, days of the same work and recreation, an old injury or the years aching, a bad night, a rival's honor. The chance grows the longer they've been content, up to about one day in eight, and never more than once in ten days. Each lasts a day or two and passes sooner after a deep talk or a good time with a friend. They follow "Life's ups and downs".</CC_Settings_QuietTroubles_Tip>
+  <CC_SetNote_QuietTroubles>Now and then, a low day with a real cause for someone content a while.</CC_SetNote_QuietTroubles>
+
+  <!-- Used to the good life: the why line -->
+  <CC_GoodLife_Why>their good moods add up to {GOOD}. Above {LINE}, the line for {LEVEL} standards, half of the first {FIRST} points and three quarters of the rest are taken back: {TAKEN} points.</CC_GoodLife_Why>
+  <CC_GoodLife_Hard>Times are hard for {PAWN_objective} just now, so it counts for less: {FELT} points, and nothing at the edge of a break.</CC_GoodLife_Hard>
+
+  <!-- Quiet troubles: what caused each one, shown as "Why: ..." in its tooltip -->
+  <CC_Trouble_Cause_Worry>{OTHER_nameDef}, {PAWN_possessive} {RELATION}, is {WHERE}.</CC_Trouble_Cause_Worry>
+  <CC_Trouble_Cause_AnniversaryOne>{NAME} died on this day a year ago.</CC_Trouble_Cause_AnniversaryOne>
+  <CC_Trouble_Cause_AnniversaryMany>{NAME} died on this day {YEARS} years ago.</CC_Trouble_Cause_AnniversaryMany>
+  <CC_Trouble_Cause_FormerLife>before {PAWN_nameDef} came here {TIME} ago, {PAWN_pronoun} was {TITLE}.</CC_Trouble_Cause_FormerLife>
+  <CC_Trouble_Cause_RestlessJoy>{DAYS} days in a row of {WORK}, and nothing but {JOY} for recreation lately.</CC_Trouble_Cause_RestlessJoy>
+  <CC_Trouble_Cause_RestlessWork>{DAYS} days in a row of {WORK}.</CC_Trouble_Cause_RestlessWork>
+  <CC_Trouble_Cause_AchesInjury>an old injury on {PAWN_possessive} {PART} ({WHAT}) aches today.</CC_Trouble_Cause_AchesInjury>
+  <CC_Trouble_Cause_AchesChronic>{PAWN_possessive} {WHAT} aches today.</CC_Trouble_Cause_AchesChronic>
+  <CC_Trouble_Cause_AchesAge>{PAWN_nameDef} is {AGE}, and today {PAWN_possessive} body feels every year of it.</CC_Trouble_Cause_AchesAge>
+  <CC_Trouble_Weather_Cold>The cold makes it worse.</CC_Trouble_Weather_Cold>
+  <CC_Trouble_Weather_Wet>The damp makes it worse.</CC_Trouble_Weather_Wet>
+  <CC_Trouble_Cause_BadNight>a nightmare last night: "{DREAM}"</CC_Trouble_Cause_BadNight>
+  <CC_Trouble_Cause_EnvySeat>{OTHER_nameDef}, a rival, holds the council's seat of {HONOR}.</CC_Trouble_Cause_EnvySeat>
+  <CC_Trouble_Cause_EnvyName>{OTHER_nameDef}, a rival, goes by "{HONOR}".</CC_Trouble_Cause_EnvyName>
+  <CC_Trouble_Cause_EnvyTitle>{OTHER_nameDef}, a rival, holds the title of {HONOR}.</CC_Trouble_Cause_EnvyTitle>
+
+  <!-- Quiet troubles: company that made one pass sooner -->
+  <CC_Trouble_Eased>Time with {0} helped: it will pass sooner.</CC_Trouble_Eased>
+  <CC_Trouble_EasedGathering>Being with the others helped: it will pass sooner.</CC_Trouble_EasedGathering>
+
+</LanguageData>

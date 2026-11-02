@@ -55,4 +55,4 @@ Directory.CreateDirectory(Path.GetDirectoryName(Path.GetFullPath(outPath)));
 File.WriteAllText(outPath, Report.Write(defs, src, results, before, runs));
 Console.WriteLine("wrote " + outPath);
 foreach (var r in results)
-    Console.WriteLine($"{r.Key,-34} net {r.summary.net,6:0.0}  good {r.summary.good,5:0.0} (raw {r.summary.goodRaw,5:0.0})  bad {r.summary.bad,6:0.0}  steady {r.summary.steadyGood,4:0.0}/{r.summary.steadyBad,5:0.0}  mood {r.summary.mood:P0}  decisions/day {r.summary.decisionsPerDay:0.00}  ill {r.summary.illShare:P0}");
+    Console.WriteLine($"{r.Key,-34} net {r.summary.net,6:0.0}  good {r.summary.good,5:0.0} (raw {r.summary.goodRaw,5:0.0})  bad {r.summary.bad,6:0.0}  steady {r.summary.steadyGood,4:0.0}/{r.summary.steadyBad,5:0.0}  mood {r.summary.mood:P0} ({r.summary.moodP10:P0}-{r.summary.moodP90:P0}, top {r.summary.pinned:P0})  decisions/day {r.summary.decisionsPerDay:0.00}  ill {r.summary.illShare:P0}");

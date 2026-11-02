@@ -26,15 +26,16 @@ namespace Balance
             sb.AppendLine("`dotnet run -c Release --project Tools/Balance -- . --before Tools/Balance/before.json`). It plays a settled colony through one");
             sb.AppendLine($"60-day year ({Colony.WarmupDays} days of warm-up first, so standards and trust have settled) {runs} times for each case, without the game:");
             sb.AppendLine("the moods, wishes, dilemmas, events and ailments come from the def XML, the rates from the code (read from the source");
-            sb.AppendLine("where it can, see the last section), and the mood rules from the mod's own `GoodTimesMath`, `PressureMath`,");
-            sb.AppendLine("`SetbackMath`, `AilmentMath` and `ArcMath`, compiled in as they are. What it can't know (how often the storyteller");
+            sb.AppendLine("where it can, see the last section), and the mood rules from the mod's own `GoodTimesMath`, `GoodLifeMath`,");
+            sb.AppendLine("`PressureMath`, `SetbackMath`, `AilmentMath` and `ArcMath`, compiled in as they are. What it can't know (how often the storyteller");
             sb.AppendLine("sends visitors, how a player plays) is in `Tools/Balance/Rates.cs`, one documented table. Treat the numbers as");
             sb.AppendLine("a model's: good for comparing settings and changes, not a promise about one game.");
             sb.AppendLine();
             sb.AppendLine("**Rimfolk's mood** below is everything Rimfolk adds to a colonist's mood, per colonist, averaged over the year:");
             sb.AppendLine("its good memories (after the shared budget and fading sooner in good times), its bad memories (setbacks, a lapsed");
-            sb.AppendLine("wish, frictions, a nightmare), and its steady moods (trust, the colony's ways, everyday pressures, ailments, a wish");
-            sb.AppendLine("still waiting, strain). The game's own moods aren't in it.");
+            sb.AppendLine("wish, frictions, a nightmare, a quiet trouble), and its steady moods (trust, the colony's ways, everyday pressures,");
+            sb.AppendLine("ailments, a wish still waiting, strain, and what being used to the good life takes back of all the good moods,");
+            sb.AppendLine("the game's included). The game's own moods aren't in it.");
             sb.AppendLine();
 
             // ---------------- Targets ----------------

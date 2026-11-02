@@ -86,7 +86,7 @@ Granting one of their wishes or keeping a promise to them is usually enough to m
     <tip>Feed them fine meals for a season and they'll start complaining about simple ones.</tip>
     <description>While a colonist is happy, their standards creep up from modest to comfortable, particular and spoiled. High standards make the council's rewards count for less, its letdowns hurt more, and the game's own comforts count for less. Hard times bring them back down, and so does the austerity decree.
 
-None of this takes anything away. A colony that lives well still feels it; it just doesn't float at the top of the mood bar on a pile of small pleasures. A life goal reached is the exception to everything on this page: it counts in full, whatever their standards and however good life already is.</description>
+None of this makes a good thing count against them. A colony that lives well still feels it; it just doesn't float at the top of the mood bar on a pile of small pleasures. A life goal reached is the exception to everything on this page: it counts in full, whatever their standards and however good life already is.</description>
     <sections>
       <li>
         <heading>How they move</heading>
@@ -134,6 +134,18 @@ The "Good times" line in a colonist's Mood tab says what these rules take off ri
           <li>Sixth and after | A quarter</li>
         </table>
         <after>Nothing is hidden: every good mood stays on the Needs tab at what it counts for now, so a +3 deep in the pile still shows as +1, and its tooltip says "+0.8 instead of +3". Bad moods, the good moods of the game and other mods, and a life goal reached aren't part of it. The "Good moods add up slowly" setting turns this off.</after>
+      </li>
+      <li>
+        <heading>Used to the good life</heading>
+        <text>A colony that does everything right can still stack up so many good moods (fine meals, impressive rooms, a wedding, an office, trust in the council) that everyone sits at the top of the mood bar, where a bad day doesn't even show. So a colonist's good moods, from the game, other mods and Rimfolk alike, count in full only up to a line set by their standards. Of what is above it, half of the first 20 points and three quarters of the rest are taken back, as one bad mood of its own: "used to the good life". Its tooltip gives their numbers.</text>
+        <table>
+          <li>Standards | The line | With +50 of good moods | With +80 | With +120</li>
+          <li>Modest | +45 | 2.5 taken back | 21 | 51</li>
+          <li>Comfortable | +40 | 5 taken back | 25 | 55</li>
+          <li>Particular | +35 | 7.5 taken back | 29 | 59</li>
+          <li>Spoiled | +30 | 10 taken back | 32.5 | 62.5</li>
+        </table>
+        <after>Every good thing still helps: each point above the line still adds at least a quarter of a point, so a better colony is always a happier one. With a handful of small worries (-10 in all), a spoiled colonist with +50 of good moods sits at 80% instead of 90%, and one with +80 at about 88% instead of the very top, where a bad day shows again. Bad moods are never touched, and in hard times it fades, to nothing at the edge of a break, so it never pushes anyone over. The "Used to the good life" setting turns it off.</after>
       </li>
       <li>
         <heading>Good moments that aren't moods</heading>
@@ -956,7 +968,9 @@ A colonist sinking toward a break line needs help now: a fine meal, recreation, 
       </li>
       <li>
         <heading>Setbacks</heading>
-        <text>Rimfolk's bad moods come from something that happened, never from nowhere: the council's decisions, frictions between people, everyday pressures, and setbacks in the colony's life (work wrecked, a crop lost, a sick friend, long quiet days). Each names its cause in its tooltip, and the Mood tab says what helps. The Almanac's setbacks page lists them all.</text>
+        <text>Rimfolk's bad moods come from something that happened, never from nowhere: the council's decisions, frictions between people, everyday pressures, and setbacks in the colony's life (work wrecked, a crop lost, a sick friend, long quiet days). Each names its cause in its tooltip, and the Mood tab says what helps. The Almanac's setbacks page lists them all.
+
+Two of them keep a happy colony from going stale. Someone content for days may have a quiet trouble now and then, a low day read from their own life: family out in the world, the day someone they loved died, the life they had before, an old injury aching, a bad night, a rival's honor. And a colonist with a big pile of good moods feels part of it less ("used to the good life", on the rising standards page), so their mood settles below the top of the bar, where ups and downs show.</text>
       </li>
       <li>
         <heading>What colonists fix themselves</heading>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What colonists say and write when a quiet trouble comes (Source/ColonyCouncil/Setbacks/Troubles.cs): a line said
+    over their head (Rimfolk_Pool_Trouble_..., one sentence each) and often a journal entry (Rimfolk_Journal_Trouble_...;
+    a bad night's entry is the dream itself). {PAWN_...} is the one speaking or writing. Per pool:
+      Worry        {OTHER_...} the relative, {RELATION} what they are to them; [partner], [parent], [child], [kin]
+      Anniversary  {NAME} the dead, {YEARS}; [kin] or [friend], [firstyear] or [years]
+      FormerLife   {TITLE} what they were, with "a" or "an"; [past:soldier], [past:farmer]... (Happenings/HappeningHelpers.cs, Pasts)
+      Restless     {WORK} the work, {DAYS} how many days of it; [samejoy] when their recreation was the same too
+      Aches        [chronic] with {WHAT} (a bad back), [scar] with {PART} (left leg), or [age]; the weather's own tags
+      Envy         {OTHER_...} the rival, {HONOR} the seat, name or title; [seat], [name] or [title]
+  -->
+
+  <!-- ===================== Said as it comes ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Trouble_Worry</defName>
+    <lines>
+      <plain>
+        <li>I wonder how {OTHER_nameDef} is getting on out there.</li>
+        <li>No word from my {RELATION}, and no way to get any.</li>
+        <li>[partner] I keep thinking about {OTHER_nameDef} today.</li>
+        <li>[parent] I hope my {RELATION} is keeping well, wherever they are.</li>
+        <li>[child] Somewhere out there my {RELATION} is getting on without me.</li>
+        <li>[cold] I hope {OTHER_nameDef} has a warm place to sleep.</li>
+        <li>[rain|snow] I hope {OTHER_nameDef} is under a roof in this weather.</li>
+      </plain>
+      <warm>
+        <li>Wherever {OTHER_nameDef} is, I hope someone is looking after them.</li>
+      </warm>
+      <blunt>
+        <li>Can't stop thinking about my {RELATION} today.</li>
+      </blunt>
+      <cheerful>
+        <li>{OTHER_nameDef} is tougher than I am, so I'm sure they're fine.</li>
+      </cheerful>
+      <gloomy>
+        <li>Out there, anything could have happened to {OTHER_nameDef} by now.</li>
+      </gloomy>
+      <cold>
+        <li>My {RELATION} is out there somewhere, and there's nothing I can do about it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Trouble_Anniversary</defName>
+    <lines>
+      <plain>
+        <li>Today's the day {NAME} died.</li>
+        <li>[firstyear] A year ago today, we lost {NAME}.</li>
+        <li>[years] {YEARS} years today since {NAME} died.</li>
+        <li>I keep looking round for {NAME}, today of all days.</li>
+        <li>[kin] I miss {NAME} today more than most days.</li>
+        <li>[friend] {NAME} would have had something to say about all this.</li>
+      </plain>
+      <warm>
+        <li>I think {NAME} would be glad of how we're doing here.</li>
+      </warm>
+      <blunt>
+        <li>{NAME} died on this day, and I'm not in the mood for talking.</li>
+      </blunt>
+      <cheerful>
+        <li>{NAME} would hate to see me moping, but here I am.</li>
+      </cheerful>
+      <gloomy>
+        <li>Today I can't stop seeing {NAME}'s face.</li>
+        <li>[years] Every year this day comes round, and every year it's the same.</li>
+      </gloomy>
+      <cold>
+        <li>Today is the day {NAME} died, that's all.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Trouble_FormerLife</defName>
+    <lines>
+      <plain>
+        <li>Some days I miss being {TITLE}.</li>
+        <li>I was {TITLE} once, before all this.</li>
+        <li>I keep thinking about the life I had before I came here.</li>
+        <li>[newcomer] It still doesn't feel like home here yet.</li>
+        <li>[past:farmer] I miss the fields I used to work.</li>
+        <li>[past:soldier] I keep thinking about the people I served with.</li>
+        <li>[past:trader] I keep thinking of the markets I used to know.</li>
+        <li>[past:noble] I had a name that opened doors once, and now look at me.</li>
+        <li>[past:scholar] I miss the arguments I used to have over books.</li>
+        <li>[past:healer] I wonder who looks after the people I used to care for.</li>
+        <li>[past:artisan] I miss my old workshop and the sound of it.</li>
+        <li>[past:outlaw] Part of me misses the old days, and I'm not proud of it.</li>
+      </plain>
+      <warm>
+        <li>This is a good place, but I left people behind to come here.</li>
+      </warm>
+      <blunt>
+        <li>Missing the old life today.</li>
+      </blunt>
+      <cheerful>
+        <li>Funny, I never thought I'd miss being {TITLE}.</li>
+      </cheerful>
+      <gloomy>
+        <li>Whoever I was before, I'm not that anymore.</li>
+      </gloomy>
+      <cold>
+        <li>I was {TITLE}, and now I'm this, and that's how it is.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Trouble_Restless</defName>
+    <lines>
+      <plain>
+        <li>{DAYS} days of {WORK} in a row, and I need a change.</li>
+        <li>Same work, same evenings, every single day.</li>
+        <li>I need something different to do, anything at all.</li>
+        <li>I could do {WORK} in my sleep by now.</li>
+        <li>Every day is the same day here lately.</li>
+        <li>[samejoy] One more evening spent the same way and I'll scream.</li>
+      </plain>
+      <warm>
+        <li>I love it here, I just need a change of pace.</li>
+      </warm>
+      <blunt>
+        <li>Sick of {WORK}.</li>
+      </blunt>
+      <cheerful>
+        <li>It wouldn't hurt to shake things up around here.</li>
+      </cheerful>
+      <gloomy>
+        <li>Is this all it's going to be, day after day?</li>
+      </gloomy>
+      <cold>
+        <li>{WORK} again today, and again tomorrow.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Trouble_Aches</defName>
+    <lines>
+      <plain>
+        <li>Everything aches today.</li>
+        <li>Slow going today, my body won't cooperate.</li>
+        <li>[cold] This cold gets right into my bones.</li>
+        <li>[rain] The damp is in my joints today.</li>
+        <li>[snow] Snow weather, and my joints know it.</li>
+        <li>[scar] My {PART} hasn't been right since that old wound.</li>
+        <li>[chronic] My {WHAT} is playing up again.</li>
+        <li>[age] I'm not as young as I was, and today I feel it.</li>
+        <li>[morning] Getting out of bed took longer than it should have.</li>
+      </plain>
+      <warm>
+        <li>Don't mind me, I'm just a bit stiff today.</li>
+      </warm>
+      <blunt>
+        <li>Everything hurts, so don't ask.</li>
+      </blunt>
+      <cheerful>
+        <li>Creaking like an old door, but still going.</li>
+      </cheerful>
+      <gloomy>
+        <li>One day this body is going to give out on me.</li>
+      </gloomy>
+      <cold>
+        <li>Pain is pain, and I'll work through it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Trouble_BadNight</defName>
+    <lines>
+      <plain>
+        <li>I hardly slept a wink last night.</li>
+        <li>That dream is still with me.</li>
+        <li>I keep thinking about that nightmare.</li>
+        <li>[morning] I need a quiet morning after that night.</li>
+      </plain>
+      <warm>
+        <li>I'll be fine, it was only a dream.</li>
+      </warm>
+      <blunt>
+        <li>Bad dreams, all night.</li>
+      </blunt>
+      <cheerful>
+        <li>Well, that's one dream I won't miss.</li>
+      </cheerful>
+      <gloomy>
+        <li>I don't want to close my eyes tonight.</li>
+      </gloomy>
+      <cold>
+        <li>A dream, nothing more, and I'll manage.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Trouble_Envy</defName>
+    <lines>
+      <plain>
+        <li>[seat] {OTHER_nameDef} on the council, and I'm supposed to clap.</li>
+        <li>[name] They call {OTHER_nameDef} {HONOR} now, and I'm tired of hearing it.</li>
+        <li>[title] {OTHER_nameDef} with a title, of all people.</li>
+        <li>Why does {OTHER_nameDef} get all the honors around here?</li>
+        <li>I could do what {OTHER_nameDef} does, and better.</li>
+        <li>Some of us work just as hard without anyone noticing.</li>
+      </plain>
+      <warm>
+        <li>I should be glad for {OTHER_nameDef}, and I'm trying.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} doesn't deserve it.</li>
+      </blunt>
+      <cheerful>
+        <li>My turn will come, I suppose.</li>
+      </cheerful>
+      <gloomy>
+        <li>Nobody's ever going to give me anything like that.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} has what should be mine.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Written down ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Trouble_Worry</defName>
+    <lines>
+      <plain>
+        <li>Thought about {OTHER_nameDef} all day. My {RELATION} is out there somewhere, and I have no way of knowing how things are.</li>
+        <li>Couldn't settle today. I kept wondering whether {OTHER_nameDef} has enough to eat, and who looks out for them now.</li>
+        <li>[partner] Missed {OTHER_nameDef} today the way you miss a step in the dark. I keep reaching for something that isn't there.</li>
+        <li>[parent] My {RELATION} always said I'd end up somewhere strange. I wonder if they know how right they were.</li>
+        <li>[child] Somewhere out there my {RELATION} is making their own way. I hope they're doing better at it than I did.</li>
+        <li>Nobody here can tell me anything about {OTHER_nameDef}. I've half a mind to ask the next trader for news.</li>
+      </plain>
+      <warm>
+        <li>Thought of {OTHER_nameDef} before bed. Wherever they are, I hope they're warm and among friends.</li>
+      </warm>
+      <gloomy>
+        <li>It's been so long since I saw {OTHER_nameDef} that I'm starting to forget their voice. That frightens me more than I can say.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef} chose their road and I chose mine. Still, I thought about them today.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Trouble_Anniversary</defName>
+    <lines>
+      <plain>
+        <li>[firstyear] A year today since {NAME} died. I kept looking up every time the door opened.</li>
+        <li>[years] {YEARS} years today since we lost {NAME}. I still think of something to tell {NAME} before I remember.</li>
+        <li>Today was {NAME}'s day. I didn't say much to anyone, and I don't think I could have.</li>
+        <li>[kin] Some days I can still hear {NAME} laughing. Today was one of them, and it hurt.</li>
+        <li>[friend] Went about my work and thought about {NAME} the whole time. They'd have had a joke for every mistake I made.</li>
+        <li>I keep {NAME}'s memory close. Today it was too close.</li>
+      </plain>
+      <warm>
+        <li>Thought of {NAME} all day. I hope they'd be proud of what we've made here.</li>
+      </warm>
+      <gloomy>
+        <li>Another year without {NAME}. The world just keeps going as if nothing happened.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Trouble_FormerLife</defName>
+    <lines>
+      <plain>
+        <li>I was {TITLE} once. Today I caught myself missing it, the good parts and the bad.</li>
+        <li>Some days this colony feels like someone else's life. Today was one of those days.</li>
+        <li>[newcomer] Still finding my feet here. Everything I knew how to do belongs to a life I've left behind.</li>
+        <li>[past:farmer] Kept thinking of the old fields today. I miss the smell of turned earth.</li>
+        <li>[past:soldier] Thought about the people I served with today. I don't miss the fighting, but I miss them.</li>
+        <li>[past:trader] Kept thinking of the markets I used to work. Haggling was half the fun.</li>
+        <li>[past:artisan] I miss my old workshop and the sound of it. I knew where every tool hung.</li>
+        <li>[past:healer] I wonder who looks after the people I used to care for. I hope someone does.</li>
+        <li>[past:scholar] I miss the long arguments of my old life. Nobody here wants to argue about anything that doesn't feed us.</li>
+        <li>[past:noble] Once I had a name that opened doors. Here it opens nothing, and today that stung.</li>
+        <li>[past:outlaw] The old life was no good, and I know it. Some days I still miss the freedom of it.</li>
+      </plain>
+      <cold>
+        <li>I was {TITLE}. That's over. I'm writing it down so I stop thinking about it.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Trouble_Restless</defName>
+    <lines>
+      <plain>
+        <li>{DAYS} days of {WORK} in a row. I need something to change, even a small thing.</li>
+        <li>Same work, same faces, same evening. I'm not unhappy, I'm just stuck.</li>
+        <li>[samejoy] If I spend one more evening the same way, I'll go mad. There has to be something else to do around here.</li>
+        <li>More {WORK} today. I could do it with my eyes shut by now, and that's the trouble.</li>
+        <li>Felt restless all day. I couldn't tell you why, except that every day lately has been the same.</li>
+        <li>Couldn't settle after work today. I need a change of scene, or a change of something.</li>
+      </plain>
+      <cheerful>
+        <li>Life's good here, but it's the same good every day. Maybe tomorrow brings something new.</li>
+      </cheerful>
+      <gloomy>
+        <li>Is this what the rest of my life looks like? {WORK}, supper, sleep, and again.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Trouble_Aches</defName>
+    <lines>
+      <plain>
+        <li>Everything ached today. I got my work done, but it took longer than it should have.</li>
+        <li>[cold] The cold got into my bones today. I couldn't get warm.</li>
+        <li>[rain] Damp weather, and my joints let me know about it all day.</li>
+        <li>[scar] My {PART} hasn't been the same since that old wound. Today it reminded me.</li>
+        <li>[chronic] My {WHAT} played up all day. Some days I forget about it. Today wasn't one of them.</li>
+        <li>[age] I'm not as young as I was. Today my body made very sure I knew it.</li>
+        <li>Slow day. Stiff in the morning and sore by evening.</li>
+      </plain>
+      <gloomy>
+        <li>Every year the aches get a little worse. I try not to think about where that ends.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_Trouble_Envy</defName>
+    <lines>
+      <plain>
+        <li>[seat] {OTHER_nameDef} carries that council seat as if they were born to it. I smiled today. I didn't mean it.</li>
+        <li>[name] Heard {OTHER_nameDef} called {HONOR} again today. I know what they did to earn it, and I know what I've done that nobody named me for.</li>
+        <li>[title] {OTHER_nameDef} with a title. I've worked just as hard, and nobody's handing me one.</li>
+        <li>I'm tired of watching {OTHER_nameDef} get the credit. It's petty, I know it's petty, and it still eats at me.</li>
+        <li>Tried to be glad for {OTHER_nameDef} today. Mostly I managed.</li>
+        <li>Why is it always {OTHER_nameDef}? I'd like to know what they have that I don't.</li>
+      </plain>
+      <cold>
+        <li>{OTHER_nameDef} holds what should be mine. I can wait.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

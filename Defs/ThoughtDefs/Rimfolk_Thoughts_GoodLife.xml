@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A good life grown ordinary, and the quiet troubles that still come to someone content.
+
+    Used to the good life (Source/ColonyCouncil/Moods/GoodLife.cs): a lasting mood as big as the share of a colonist's
+    good moods that a good life takes back right now. The stage's -1 only marks it as a bad mood; the code gives its size
+    (GoodLifeMath: above a line of 45 for the modest down to 30 for the spoiled, half of the first 20 points and three
+    quarters of the rest), easing in hard times to nothing at the minor-break line. Its "why" gives the numbers.
+
+    Quiet troubles (Source/ColonyCouncil/Setbacks/Troubles.cs): memories with a real cause read from the colonist's life,
+    given as "Life's ups and downs" setbacks (the setting and their standards scale them, never under a whole point).
+    The cause goes in the tooltip; a deep talk, a good time with someone close or a party makes one pass sooner. What
+    helps is in Defs/MoodHintDefs/Rimfolk_MoodHints_GoodLife.xml, what they say in
+    Defs/FlavorPoolDefs/Rimfolk_GoodLife_Lines.xml.
+  -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_UsedToGoodLife</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_GoodLife</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_GoodLife</thoughtClass>
+    <validWhileDespawned>true</validWhileDespawned>
+    <stages>
+      <li>
+        <label>used to the good life</label>
+        <description>Life here has been good for a long while, and I've got used to it. Good things still lift me, only not the way they did when they were new.</description>
+        <baseMoodEffect>-1</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Quiet troubles ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Trouble_Worry</defName>
+    <thoughtClass>ColonyCouncil.Thought_Trouble</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Worry</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>worried about family out there</label>
+        <description>Some of my family are out there, a long way from here. Today I can't stop wondering how they're getting on.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>worried about someone I love out there</label>
+        <description>Someone I love is out there in the world, and I can't do a thing for them from here. Today it's all I can think about.</description>
+        <baseMoodEffect>-8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Trouble_Anniversary</defName>
+    <thoughtClass>ColonyCouncil.Thought_Trouble</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Grief</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>a hard day to remember</label>
+        <description>It was on this day that we lost them. The others may not remember the date, but I do.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+      <li>
+        <label>the day I lost them</label>
+        <description>This is the day they died. I knew it was coming round again, and it still caught me.</description>
+        <baseMoodEffect>-9</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Trouble_FormerLife</defName>
+    <thoughtClass>ColonyCouncil.Thought_Trouble</thoughtClass>
+    <durationDays>1.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Homesick</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>missing my old life</label>
+        <description>I keep thinking about the life I had before I came here. It wasn't better, but it was mine, and some days I miss it.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Trouble_Restless</defName>
+    <thoughtClass>ColonyCouncil.Thought_Trouble</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Restless</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>restless</label>
+        <description>The same work every day, the same few things to do in the evening. Nothing's wrong, exactly. I just need something to change.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Trouble_Aches</defName>
+    <thoughtClass>ColonyCouncil.Thought_Trouble</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Frustration</li></feelings><weight>0.5</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>aching today</label>
+        <description>Everything takes longer today, and everything hurts more than it should. Some days the body just complains.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Trouble_BadNight</defName>
+    <thoughtClass>ColonyCouncil.Thought_Trouble</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Dread</li></feelings><weight>0.6</weight></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>a bad night</label>
+        <description>A nightmare had me awake half the night, and I've been carrying it around all day.</description>
+        <baseMoodEffect>-6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Trouble_Envy</defName>
+    <thoughtClass>ColonyCouncil.Thought_Trouble</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <showBubble>true</showBubble>
+    <modExtensions>
+      <li Class="ColonyCouncil.SetbackExtension"><group>Life</group><envy>true</envy></li>
+      <li Class="ColonyCouncil.HeartTags"><feelings><li>Envy</li></feelings></li>
+    </modExtensions>
+    <stages>
+      <li>
+        <label>envious of a rival</label>
+        <description>My rival holds an honor I don't, and every day I'm meant to smile about it. Today I couldn't.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

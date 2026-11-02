@@ -69,6 +69,10 @@ namespace Balance
         public bool varied, quiet, researchIdle, envy, worry, inReach, pride, heirloom;
         public int anniversary;
         public int convalescentUntil = -1, convalescentFrom = -1;
+        /// <summary>Days in a row content, and the hour of the last quiet trouble (Setbacks/Troubles.cs).</summary>
+        public int contentDays, lastTrouble = -99999;
+        /// <summary>What a good life takes back from them now (Moods/GoodLife.cs), for the report.</summary>
+        public float takenBack;
 
         public bool Ill => ails.Count > 0;
     }
@@ -358,6 +362,36 @@ namespace Balance
             AddMemory(c, t, own * factor);
         }
 
+        /// <summary>
+        /// A quiet trouble (Setbacks/Troubles.cs): the causes in their life today (Rates.Troubles), one picked by weight
+        /// and given as a "Life's ups and downs" setback; with none, nothing comes and the gap doesn't start.
+        /// </summary>
+        private void QuietTrouble(Colonist c)
+        {
+            var options = new List<(string thought, int stage, float weight)>();
+            foreach (var (thought, stage, share, weight) in Rates.Troubles)
+            {
+                if (thought == "Rimfolk_Trouble_BadNight" && !set.B("dreams")) continue;
+                if (thought == "Rimfolk_Trouble_Envy" && !set.B("jealousy")) continue;
+                float s = share >= 0f ? share : style.sameWork[2] + style.sameWork[3] + style.sameWork[1] / 3f;
+                if (Chance(s)) options.Add((thought, stage, weight));
+            }
+            if (options.Count == 0) return;
+            var pick = Weighted(options, o => o.weight);
+            string was = source;
+            source = "quiet troubles";
+            try
+            {
+                SetbackInner(c, pick.thought, pick.stage);
+            }
+            finally
+            {
+                source = was;
+            }
+            c.lastTrouble = hour;
+            Count("quiet troubles");
+        }
+
         private void Trust(Colonist c, float delta)
         {
             if (Math.Abs(delta) < 0.01f) return;
@@ -511,13 +545,24 @@ namespace Balance
             parts = record && Measuring ? new Dictionary<string, double>() : null;
             var (good, raw, bad, n) = Memories(c);
             var (sg, sb) = Steady(c);
+            float comfort = set.B("standardsCoverComforts") && set.B("risingStandards") ? GoodTimesMath.ComfortFactor((int)Math.Min(3, c.standards * 4f)) : 1f;
+            // Used to the good life (Moods/GoodLife.cs): part of every good mood above the line their standards set, the
+            // game's comforts and Rimfolk's alike, is taken back as one bad mood of Rimfolk's.
+            c.takenBack = 0f;
+            if (set.MoodEffects && set.B("usedToGoodLife"))
+            {
+                float positives = Math.Max(0f, c.vanillaGood) * comfort + good + sg;
+                float line = GoodLifeMath.LineFor(set.B("risingStandards") ? GoodLifeMath.Level(c.standards) : 0);
+                c.takenBack = GoodLifeMath.InHardTimes(GoodLifeMath.TakeBack(positives, line), Hard(c));
+                sb -= c.takenBack;
+                if (parts != null && c.takenBack > 0f) parts["used to the good life"] = parts.GetValueOrDefault("used to the good life") - c.takenBack;
+            }
             if (parts != null)
             {
                 foreach (var kv in parts) partSum[kv.Key] = partSum.GetValueOrDefault(kv.Key) + kv.Value;
                 partSamples++;
                 parts = null;
             }
-            float comfort = set.B("standardsCoverComforts") && set.B("risingStandards") ? GoodTimesMath.ComfortFactor((int)Math.Min(3, c.standards * 4f)) : 1f;
             float vanilla = c.vanillaGood * comfort + c.vanillaBad;
             c.mood = Math.Clamp(0.5f + (vanilla + good + bad + sg + sb) / 100f, 0f, 1f);
             if (!record || !Measuring) return;
@@ -616,6 +661,11 @@ namespace Balance
                     float f = Rates.CareSetbacks.Contains(thought) ? style.setbackFactor * style.setbackFactor : style.setbackFactor;
                     if (Chance(perDay * f)) Setback(c, thought, stage);
                 }
+                // Quiet troubles (Setbacks/Troubles.cs): content days in a row, then a chance a day of a low day from their life.
+                c.contentDays = GoodLifeMath.NextContentDays(c.contentDays, c.mood);
+                if (set.MoodEffects && set.B("quietTroubles") && hour - c.lastTrouble >= GoodLifeMath.TroubleGapDays * 24
+                    && Chance(GoodLifeMath.TroubleChance(c.contentDays)))
+                    QuietTrouble(c);
                 // Convalescence (Health/): after an illness, an operation or a long bed rest.
                 if (set.B("convalescence") && c.convalescentUntil < hour && Chance(style.convalescencePerYear / YearDays))
                 {
