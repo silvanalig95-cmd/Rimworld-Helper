@@ -206,6 +206,17 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A beast the colony could start watching now (an answer that lets it be): none watched yet, and one such a story fits.</summary>
+        public bool CanTakeUp(Pawn a) => On && animal == null && a != null && a.Spawned && !knownIds.Contains(a.thingIDNumber) && Fits(a, a.Map);
+
+        /// <summary>The colony starts watching this beast now (seen, named, watched), as if it had stayed the days it takes. False when it can't.</summary>
+        public bool TakeUp(CouncilGameComponent comp, Pawn a)
+        {
+            if (comp == null || !CanTakeUp(a)) return false;
+            Become(comp, a.Map, a);
+            return true;
+        }
+
         /// <summary>Who names it: a child, else someone with a love of animals, else anyone.</summary>
         private static Pawn Namer(Map map)
         {

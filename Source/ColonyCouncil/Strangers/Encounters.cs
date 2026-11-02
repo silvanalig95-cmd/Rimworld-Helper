@@ -54,6 +54,11 @@ namespace ColonyCouncil
         /// game doesn't have (a DLC or mod that isn't loaded) is never on, so the rare skies stay rare.
         /// </summary>
         public List<string> conditions;
+        /// <summary>
+        /// Only when A's ideoligion holds one of these precepts (PreceptDef names, Ideology): a kind word to a slave where
+        /// slavery is frowned on, a hard one where it's honourable. A name the game doesn't have never fits.
+        /// </summary>
+        public List<string> precepts;
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -87,7 +92,10 @@ namespace ColonyCouncil
             { StrangerKind.Prisoner, 0.03f },
             { StrangerKind.Fallen, 0.25f },
             { StrangerKind.Pet, 0.02f },
-            { StrangerKind.Wild, 0.015f }
+            { StrangerKind.Wild, 0.015f },
+            { StrangerKind.Mech, 0.015f },
+            { StrangerKind.Slave, 0.025f },
+            { StrangerKind.Entity, 0.015f }
         };
 
         /// <summary>
@@ -221,11 +229,12 @@ namespace ColonyCouncil
         {
             a = x = null;
             var strangers = Strangers.On(map, def.stranger.kind)
-                .Where(s => !s.RaceProps.Humanlike || def.stranger.kind == StrangerKind.Fallen || s.Awake()).ToList();
+                .Where(s => !s.RaceProps.Humanlike || def.stranger.kind == StrangerKind.Fallen || def.stranger.kind == StrangerKind.Entity || s.Awake()).ToList();
             if (strangers.Count == 0) return false;
             foreach (var p in colonists.InRandomOrder())
             {
                 if (def.colonist != null ? !def.colonist.Allows(p, null) : !def.children && p.DevelopmentalStage.Juvenile()) continue;
+                if (!def.precepts.NullOrEmpty() && !def.precepts.Any(n => Beliefs.HasPrecept(p, n))) continue;
                 // Only a stranger they are really with: within talking range for people, in sight not far off for animals.
                 var met = strangers.Where(x => Meets(p, x)).ToList();
                 if (met.Count == 0) continue;
@@ -239,9 +248,14 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>A colonist and a stranger together: people within talking range (SocialLog.Near), animals in sight a little way off.</summary>
+        /// <summary>
+        /// A colonist and a stranger together: people within talking range (SocialLog.Near), animals and mechs in sight a
+        /// little way off, an entity on its holding platform in sight close by.
+        /// </summary>
         private static bool Meets(Pawn p, Pawn x)
         {
+            if (Together.Able(p) && x != null && !x.Spawned && x.ParentHolder is Thing holder && holder.Spawned && holder.Map == p.Map)
+                return p.Position.InHorDistOf(holder.Position, 10f) && (p.GetRoom() == holder.GetRoom() || GenSight.LineOfSight(p.Position, holder.Position, p.Map, true));
             if (!Together.Able(p) || x == null || !x.Spawned || x.Map != p.Map) return false;
             return x.RaceProps != null && x.RaceProps.Humanlike ? SocialLog.Near(p, x) : Together.Hears(p, x, 16f);
         }
@@ -266,7 +280,8 @@ namespace ColonyCouncil
             }
             comp.character.Shift(def.ways, text);
             Deeds.Encounter(def, a, x);
-            News.Post(text, new LookTargets(a, x), NewsKind.World, MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
+            // An entity is met where its holding platform stands.
+            News.Post(text, new LookTargets(a, x.Spawned ? x : x.SpawnedParentOrMe), NewsKind.World, MessageTypeDefOf.SilentInput, def.notable ? Importance.Notable : Importance.Flavor);
             // Into the social log too, where Interaction Bubbles picks it up (Integrations/SocialLog.cs).
             SocialLog.Add(a, x, text);
             if (def.notable) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Stranger, text, a));

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Memories from the colony's mechs, slaves and held entities (Defs/EncounterDefs/Rimfolk_Encounters_New.xml), and from
+       the orphaned young, the game for a stake (Defs/IncidentDefs/Rimfolk_Events_New.xml). -->
+
+  <!-- ===================== The colony's mechs: rewards, not moods ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_NamedMech</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>gave a mech a name</label><description>It needed a proper name, so I found one. It doesn't answer to it yet.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><feelings><li>Tenderness</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_RowTalk</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>worked the rows with the agrihand</label><description>I talked the whole way down the row. It worked the whole way, and I learned something from watching it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Plants</skill><xp>250</xp><joy>0.04</joy><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_QuietHour</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>a quiet hour with my mech</label><description>I went over every dent it took. I know now where it gets hit, and why.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Crafting</skill><xp>300</xp><feelings><li>Contentment</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncM_Lifter</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a neat delivery</label><description>The lifter set the crate down square to the wall. It made me laugh.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The colony's slaves ===================== -->
+
+  <ThoughtDef>
+    <defName>Council_EncS_KindWord</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>spoke kindly to me</label><description>They treated me like a person today. I won't forget it.</description><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncS_HardWord</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>stood over me</label><description>They shouted at me in front of everyone and stood over me until the work was done.</description><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Council_EncS_Listened</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
+    <stages><li><label>took my way of doing it</label><description>I showed them how we do it back home, and they listened.</description><baseOpinionOffset>5</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncS_SangHome</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>sang a song from home</label><description>Someone wanted to hear a song from home, so I sang it properly.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncS_HeardSong</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>heard a song from far away</label><description>A harvest song from a long way off. I'd never heard it before.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.06</joy><feelings><li>Curiosity</li></feelings><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncS_Shown</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>shown a better way</label><description>I was making heavy work of it until I was shown how it's done where they come from.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skillFrom>theirs</skillFrom><xp>300</xp><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== At the holding platforms ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncE_Fascinated</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>studied the held entity</label><description>A page of notes on how it moves, and a dozen new questions.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Intellectual</skill><xp>350</xp><feelings><li>Curiosity</li></feelings><felt>2</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncE_Uneasy</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>uneasy near the holding room</label><description>It turned to watch me go by. I took the long way round after that.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_EncE_Wondered</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>wondered about the held thing</label><description>Does it get lonely? Does it dream? Nobody would say.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><skill>Intellectual</skill><xp>150</xp><feelings><li>Curiosity</li></feelings><felt>1</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== Events ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Evt_LeftYoung</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>left the young one by its mother</label><description>I brought down its mother, and then we left it standing there.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Evt_RaisedYoung</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>raising the young one by hand</label><description>I took its mother, so the least I can do is see it fed.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><feelings><li>Tenderness</li></feelings><felt>3</felt><skill>Animals</skill><xp>300</xp></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Evt_WonTableGame</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>won the game at the table</label><description>A visitor sat down across the table from me to win, and I beat them.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Evt_LostTableGame</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>lost the game at the table</label><description>The visitor beat me fair and square, with everyone watching.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>
