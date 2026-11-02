@@ -368,8 +368,8 @@ Also note `isBad` passions with a normal rate (Alpha Skills' traumatic, rate 1.0
 - Link: https://steamcommunity.com/sharedfiles/filedetails/?id=3448953006 (GitHub: https://github.com/juanosarg/AlphaSkills)
 - What it adds (needs VSE): 26 passions (Workshop count), many as inactive/active pairs that swap the pawn's passion
   value: drunken (1.0 / 2.5), stoned (1.0 / 1.8), night (1.0 / 2.5), vengeful (1.0 / 3.0 for three days after a colony
-  loss), nomadic (1.0 / 2.25 on caravans), rainy day (1.0 / 2.0), competitive (0.25 / 2.5 while the colony's best),
-  nudist (0.5 / 2.0), intimate (0.75 / 1.75), moody (0.1 to 2.0, rerolled daily); fixed ones: youth 3.0 (fades with
+  loss), nomadic (1.0 / 2.25 on caravans), rainy day (1.0 / 2.0), competitive (0.25 while the colony's best, 2.5
+  while someone on the map is better; see docs/alphaskills-proposals.md), nudist (0.5 / 2.0), intimate (0.75 / 1.75), moody (0.1 to 2.0, rerolled daily); fixed ones: youth 3.0 (fades with
   age), dedicated 1.25, obsessive 1.25 (others x0.9), forbidden 1.75, synergistic 1.0 (others x1.1), like-minded 1.0,
   frozen 0 and dunce 0 (isBad), traumatic 1.0 (isBad); DLC ones in `Mods/` (sanguine, transhumanist, toxic...).
   19 expertises (Blasting, Mortaring, Firestarter, Cleaving, Evading, Enduring, Crafting quality/yield, Smelting,

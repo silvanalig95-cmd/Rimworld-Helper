@@ -11,7 +11,9 @@ using ColonyCouncil;
 /// </summary>
 public static class ModsTests
 {
-    private static readonly Regex Name = new(@"\b(?:AG|AM|Outland|DankPyon|Dank|VFEC|VFEPD_AP|AP)_[A-Za-z0-9_]+");
+    private static readonly Regex Name = new(@"\b(?:AG|AM|AS|Outland|DankPyon|Dank|VFEC|VFEPD_AP|AP)_[A-Za-z0-9_]+");
+    /// <summary>An Alpha Skills name given in Rimfolk's code as a string (Integrations/DrinkBeforeWork.cs reads its passion by name).</summary>
+    private static readonly Regex CodeName = new(@"""(AS_[A-Za-z0-9_]+)""");
     private static readonly Regex ModPeople = new(@"\bmod:([a-z0-9_.]+)");
 
     public static int Run(string root, Action<bool, string> check)
@@ -67,6 +69,14 @@ public static class ModsTests
             }
         }
         Check(named > 80, $"found the other mods' names in the defs ({named})");
+        int inCode = 0;
+        foreach (var file in Directory.GetFiles(Path.Combine(root, "Source", "ColonyCouncil"), "*.cs", SearchOption.AllDirectories))
+            foreach (Match m in CodeName.Matches(File.ReadAllText(file)))
+            {
+                inCode++;
+                Check(known.Contains(m.Groups[1].Value), $"{Path.GetFileName(file)}: {m.Groups[1].Value} is in Alpha Skills' own defs (or add it to ModDefNames.txt from them)");
+            }
+        Check(inCode >= 1, $"found Alpha Skills' names in the code ({inCode})");
 
         // ---------- People who change in the middle of a game ----------
         var before = new ChangeMath.Look
