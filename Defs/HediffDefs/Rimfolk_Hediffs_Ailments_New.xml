@@ -285,7 +285,7 @@
         </notes>
       </li>
       <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
-        <severityPerDay>-0.2</severityPerDay>
+        <severityPerDay>-0.25</severityPerDay>
       </li>
     </comps>
     <stages>
