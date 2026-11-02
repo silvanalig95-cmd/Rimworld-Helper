@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Used to the good life
+
+*2 November 2026, version 0.55.0*
+
+- Colonists can get used to the good life: once their good moods pile up past a line set by their standards, part of the excess is taken back as one mood of its own, so a well-run colony settles below the top of the mood bar and a bad day shows again.
+- Every good thing still helps, bad moods are never touched, and the take-back fades in hard times so it never pushes anyone toward a break.
+- Quiet troubles: someone content for days may have a low day with a real cause from their own life, such as worry about family out in the world, the day someone they loved died, missing their old life, an old injury aching in the cold, a nightmare, or a rival's honor.
+- Each quiet trouble says what caused it, comes with a line said aloud and often one in the journal, and passes sooner after a deep talk or a good time with a friend.
+- Both have their own setting on the People page, and the Almanac's pages on standards and setbacks explain them.
+
 ## A drink before work
 
 *2 November 2026, version 0.54.2*

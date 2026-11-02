@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 429; modelled: 429; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,957 KB** after a year, **2,354 KB** after two, **2,470 KB** after five.
+Saved collections found: 430; modelled: 430; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,959 KB** after a year, **2,356 KB** after two, **2,472 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -153,6 +153,7 @@ Rimfolk's part of the save, roughly: **1,957 KB** after a year, **2,354 KB** aft
 | `Integrations/ModLinks.cs:lastWater` | today and yesterday only | colonists | 20 | 20 | 20 | 1.8 |
 | `Lives/Legacy.cs:heirlooms` | until the heir dies or is discarded, or the thing is lost | cap | 1 | 2 | 6 | 1.8 |
 | `Quirks/Quirks.cs:battleTick` | within the longest quirk window | colonists | 20 | 20 | 20 | 1.8 |
+| `Setbacks/SetbackTracker.cs:contentDays` | one per colonist, rebuilt each day from those here | colonists | 20 | 20 | 20 | 1.8 |
 | `Strangers/Nuisances.cs:last` | 10 days | window | 20 | 20 | 20 | 1.8 |
 | `UI/WeekMemory.cs:trustValues` | 8 days of trust each | colonists | 20 | 20 | 20 | 1.7 |
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |

@@ -6,6 +6,13 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.55.0, the player's request (colonists stuck at full mood): used to the good life (`Moods/GoodLife.cs`,
+  `GoodLifeMath.cs`, thought `Thought_GoodLife`; line 45/40/35/30 by standards level, half of the first 20 points
+  over it and three quarters of the rest taken back, fading to nothing at the minor-break line; reads the game's
+  `SituationalThoughtHandler.cachedThoughts`, present in 1.6 and 1.7) and quiet troubles (`Setbacks/Troubles.cs`,
+  Life's ups and downs, from the third content day). Settings `usedToGoodLife` and `quietTroubles`; tested in
+  `GoodLifeTests`; `Tools/Balance` models both. To check in game: the "Why" sum against the Needs tab, the drift
+  down from 100% on the player's save, the nightmare message for a bad night.
 - 0.54.2, the player's request: with Alpha Skills, a drink before work for the drunken passion
   (`Integrations/DrinkBeforeWork.cs`, `DrinkBeforeWorkMath.cs`, `DrinkBeforeWorkTests`; setting `drinkBeforeWork`;
   pool `Rimfolk_Pool_DrinkBeforeWork`). The other conditional passions are in `docs/alphaskills-proposals.md` (P1 to
