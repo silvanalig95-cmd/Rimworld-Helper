@@ -444,7 +444,7 @@ namespace ColonyCouncil
                     if (p.sit && p.kind == PlayKind.Visit && !o.InBed() && !o.Downed && !o.DevelopmentalStage.Baby())
                     {
                         bool late = now > p.created + (p.deadline - p.created) * 2 / 3;
-                        if (PlaySit.Free(this, p, o) && PlaySit.Seats(map, v, o, p.sitBy, out var seatV, out var seatO, out var focus))
+                        if (PlaySit.Free(this, p, o) && PlaySit.Seats(map, v, o, p.sitBy, out var seatV, out var seatO, out var focus, p.place))
                         {
                             if (TryStartSit(p, v, o, seatV, seatO, focus, now)) return;
                         }

@@ -521,13 +521,13 @@ namespace ColonyCouncil
 
         // ---------------- Errands ----------------
 
-        /// <summary>A colonist is on the way out to one of them with something (an errand of PlayOut/).</summary>
+        /// <summary>A colonist is on the way out to one of them with something (an errand of PlayOut/), or to talk with them (a visit).</summary>
         public static bool ErrandComing(VisitorTrip t)
         {
             var plays = PlayOutTracker.Instance?.plays;
             if (plays == null) return false;
             foreach (var p in plays)
-                if (p != null && p.kind == PlayKind.Carry && p.state != PlayState.Done && p.other != null && t.people.Contains(p.other))
+                if (p != null && (p.kind == PlayKind.Carry || p.kind == PlayKind.Visit) && p.state != PlayState.Done && p.other != null && t.people.Contains(p.other))
                     return true;
             return false;
         }

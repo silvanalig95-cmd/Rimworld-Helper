@@ -30,15 +30,18 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Two seats for <paramref name="a"/> and <paramref name="b"/>: at the nearest of the colony's tables to
-        /// <paramref name="b"/> with two free places (chairs first), as far apart round it as can be; or beside a fire.
+        /// <paramref name="b"/> with two free places (chairs first), as far apart round it as can be; or beside a fire; or
+        /// (<see cref="PlaySpot.Place"/>) at the very thing the event named, a game table across which two play.
         /// <paramref name="focus"/>: what they sit round.
         /// </summary>
-        public static bool Seats(Map map, Pawn a, Pawn b, PlaySpot by, out IntVec3 seatA, out IntVec3 seatB, out IntVec3 focus)
+        public static bool Seats(Map map, Pawn a, Pawn b, PlaySpot by, out IntVec3 seatA, out IntVec3 seatB, out IntVec3 focus, Thing at = null)
         {
             seatA = seatB = focus = IntVec3.Invalid;
             if (map == null || a == null || b == null) return false;
             IEnumerable<Thing> round;
-            if (by == PlaySpot.Fire)
+            if (by == PlaySpot.Place)
+                round = at != null && at.Spawned && at.Map == map && !at.IsForbidden(a) ? new[] { at } : Enumerable.Empty<Thing>();
+            else if (by == PlaySpot.Fire)
             {
                 var fire = PlaySpots.ColonyFire(map, b);
                 round = fire != null ? new[] { fire } : Enumerable.Empty<Thing>();

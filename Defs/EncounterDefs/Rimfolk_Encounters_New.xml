@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Three kinds of stranger the colony lives beside without them being colonists:
+    - Mech: the colony's own mechanoids, up and working (Biotech). Rewards rather than moods.
+    - Slave: the colony's slaves (Ideology). Suppression (DilemmaEffect_Suppression) and opinion move by what is said,
+      and which words come at all follows A's own precepts on slavery (precepts).
+    - Entity: entities held on the colony's holding platforms (Anomaly), met where the platform stands.
+    Never start a sentence with an {X_...} placeholder: unnamed mechs and entities come out lowercase ("the lifter").
+  -->
+
+  <!-- ======================= The colony's mechs ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_ChildNames</defName>
+    <label>a name for a mech</label>
+    <stranger>
+      <kind>Mech</kind>
+    </stranger>
+    <colonist>
+      <child>true</child>
+    </colonist>
+    <mods><li>Ludeon.RimWorld.Biotech</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>All morning {A_nameDef} followed {X_definite} about, trying names on it one after another until one seemed to fit.</li>
+      <li>{A_nameDef} has decided that {X_definite} is a friend, and friends need names. The grown-ups have been told the new one twice.</li>
+      <li>It took {A_nameDef} most of the afternoon, sitting on a crate and watching {X_definite} work, to settle on a name for it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_NamedMech</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_RowTalk</defName>
+    <label>talk down the rows</label>
+    <stranger>
+      <kind>Mech</kind>
+      <races><li>Mech_Agrihand</li></races>
+    </stranger>
+    <mods><li>Ludeon.RimWorld.Biotech</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>{A_nameDef} worked the next row over from {X_definite} for an hour, talking the whole time about frost, beetles and which beds want water. It said nothing back and did its row well.</li>
+      <li>Watching {X_definite} take the weeds out of a bed one by one, {A_nameDef} picked up a trick or two about spacing that {A_pronoun} hadn't thought of.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_RowTalk</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_QuietHour</defName>
+    <label>a quiet hour with a damaged mech</label>
+    <stranger>
+      <kind>Mech</kind>
+      <ofA>true</ofA>
+      <hurt>true</hurt>
+    </stranger>
+    <mods><li>Ludeon.RimWorld.Biotech</li></mods>
+    <weight>1.2</weight>
+    <cooldownDays>6</cooldownDays>
+    <texts>
+      <li>{A_nameDef} spent a quiet hour beside {X_definite}, going over the damage plate by plate and talking to it under {A_possessive} breath.</li>
+      <li>After the others had gone in, {A_nameDef} stayed out with {X_definite} and looked over every dent and scorch mark on it, and noted how each one came.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_QuietHour</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncM_Lifter</defName>
+    <label>a neat delivery</label>
+    <stranger>
+      <kind>Mech</kind>
+      <races><li>Mech_Lifter</li></races>
+    </stranger>
+    <children>true</children>
+    <mods><li>Ludeon.RimWorld.Biotech</li></mods>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>The way {X_definite} set its load down beside {A_nameDef}, square to the wall and not a hand's width out, made {A_objective} laugh out loud.</li>
+      <li>{A_nameDef} thanked {X_definite} for carrying the crate before remembering it couldn't hear, and then thanked it again anyway.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_Lifter</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= The colony's slaves ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_KindWord</defName>
+    <label>a kind word at work</label>
+    <stranger>
+      <kind>Slave</kind>
+    </stranger>
+    <colonist>
+      <notTrait><li>Psychopath</li></notTrait>
+    </colonist>
+    <precepts><li>Slavery_Abhorrent</li><li>Slavery_Horrible</li><li>Slavery_Disapproved</li><li>Slavery_Acceptable</li></precepts>
+    <mods><li>Ludeon.RimWorld.Ideology</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>5</cooldownDays>
+    <texts>
+      <li>{A_nameDef} took the heavy end of the load from {X_nameDef} without being asked, and the two of them carried it the rest of the way together.</li>
+      <li>{A_nameDef} told {X_nameDef} the work was good, and meant it. {X_nameDef} didn't answer, but stood a little straighter for the rest of the day.</li>
+      <li>{A_nameDef} asked {X_nameDef} where {X_pronoun} grew up, and listened to the answer all the way to the end of the row.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncS_KindWord</thought><about>A</about></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Suppression"><amount>-0.06</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>200</xp></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_SongFromHome</defName>
+    <label>a song from home</label>
+    <stranger>
+      <kind>Slave</kind>
+    </stranger>
+    <children>true</children>
+    <mods><li>Ludeon.RimWorld.Ideology</li></mods>
+    <weight>0.9</weight>
+    <cooldownDays>7</cooldownDays>
+    <texts>
+      <li>{X_nameDef} was singing under {X_possessive} breath at work, a song from home. {A_nameDef} stopped to listen, and {X_nameDef} sang the last verse properly.</li>
+      <li>{A_nameDef} heard {X_nameDef} humming a tune {A_pronoun} didn't know and asked what it was. A harvest song, {X_nameDef} said, from a long way off.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncS_SangHome</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Suppression"><amount>-0.03</amount></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_HeardSong</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_HardWord</defName>
+    <label>a hard word from the overseer</label>
+    <stranger>
+      <kind>Slave</kind>
+    </stranger>
+    <colonist>
+      <notTrait><li>Kind</li></notTrait>
+    </colonist>
+    <precepts><li>Slavery_Honorable</li><li>Slavery_Acceptable</li></precepts>
+    <mods><li>Ludeon.RimWorld.Ideology</li></mods>
+    <weight>1.0</weight>
+    <cooldownDays>5</cooldownDays>
+    <texts>
+      <li>{A_nameDef} caught {X_nameDef} idling by the stores and told {X_objective} so, loudly enough for everyone in earshot to hear.</li>
+      <li>{X_nameDef} was slow with the work again, and {A_nameDef} stood over {X_objective} until it was done.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncS_HardWord</thought><about>A</about></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Suppression"><amount>0.12</amount></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncS_Trick</defName>
+    <label>a trick from home</label>
+    <stranger>
+      <kind>Slave</kind>
+      <adult>true</adult>
+    </stranger>
+    <colonist>
+      <notTrait><li>Psychopath</li></notTrait>
+    </colonist>
+    <mods><li>Ludeon.RimWorld.Ideology</li></mods>
+    <weight>0.8</weight>
+    <cooldownDays>8</cooldownDays>
+    <texts>
+      <li>Working beside {A_nameDef}, {X_nameDef} showed {A_objective} the way {X_possessive} people do it back home. It was quicker, and {A_nameDef} said so.</li>
+      <li>{A_nameDef} was making heavy work of it until {X_nameDef} quietly showed {A_objective} a better grip.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncS_Shown</thought><about>X</about></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncS_Listened</thought><about>A</about></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ======================= At the holding platforms ======================= -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncE_Fascination</defName>
+    <label>a researcher's fascination</label>
+    <stranger>
+      <kind>Entity</kind>
+    </stranger>
+    <colonist>
+      <passion>Intellectual</passion>
+    </colonist>
+    <mods><li>Ludeon.RimWorld.Anomaly</li></mods>
+    <weight>1.1</weight>
+    <cooldownDays>6</cooldownDays>
+    <texts>
+      <li>{A_nameDef} stood at the holding platform watching {X_definite} for most of an hour, filling a page with notes on how it moves.</li>
+      <li>{A_nameDef} came out of the holding room with a new question about {X_definite} and spent the evening trying to answer it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncE_Fascinated</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncE_Unease</defName>
+    <label>unease at the platforms</label>
+    <stranger>
+      <kind>Entity</kind>
+    </stranger>
+    <colonist>
+      <notTrait><li>Psychopath</li></notTrait>
+    </colonist>
+    <mods><li>Ludeon.RimWorld.Anomaly</li></mods>
+    <weight>0.9</weight>
+    <cooldownDays>6</cooldownDays>
+    <texts>
+      <li>{A_nameDef} walked past the holding room and felt {X_definite} turn to watch {A_objective} go, and after that {A_pronoun} took the long way round.</li>
+      <li>Something about the way {X_definite} lay still on the platform kept {A_nameDef} looking over {A_possessive} shoulder all afternoon.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncE_Uneasy</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Council_EncE_ChildQuestion</defName>
+    <label>a child's question</label>
+    <stranger>
+      <kind>Entity</kind>
+    </stranger>
+    <colonist>
+      <child>true</child>
+    </colonist>
+    <mods><li>Ludeon.RimWorld.Anomaly</li></mods>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <texts>
+      <li>{A_nameDef} stood at the door of the holding room and asked whether {X_definite} gets lonely. Nobody had an answer.</li>
+      <li>{A_nameDef} wanted to know what {X_definite} eats, where it came from and whether it dreams, and kept asking until someone fetched a book.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncE_Wondered</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

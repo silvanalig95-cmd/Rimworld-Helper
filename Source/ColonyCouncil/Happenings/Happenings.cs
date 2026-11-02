@@ -545,6 +545,8 @@ namespace ColonyCouncil
             Safe("great beast", () => HappeningWorker_GreatBeast.Hourly(this, comp));
             // A neighbor's order the colony took on: a reminder, then the collection (even with world events off since).
             Safe("orders", () => HappeningWorker_Order.Hourly(this, comp, now));
+            // A commission the colony took on: collected when it's made, or given up at its deadline (Workers_NewEvents.cs).
+            Safe("commissions", () => HappeningWorker_Commission.Hourly(this, comp, now));
             // Later parts of the fourth batch: arrivals, caravans and fairs coming back, old memories fading, founding day.
             Safe("living", () => LivingEvents.Hourly(this, comp, now));
             // The storyteller batch's own: ventures, campaigns and gifts coming back (Workers_Storyteller.cs).
@@ -814,6 +816,7 @@ namespace ColonyCouncil
                         case "tales": keep = HappeningWorker_Storyteller.Hour(v, comp, now); break;
                         case "grave": keep = HappeningWorker_GraveVisitors.Hour(v, comp, now); break;
                         case "contest": keep = HappeningWorker_Champion.Hour(v, comp, now); break;
+                        case HappeningWorker_TableGame.Kind: keep = HappeningWorker_TableGame.Hour(v, comp, now); break;
                         default: keep = false; break;
                     }
                 }
@@ -859,6 +862,9 @@ namespace ColonyCouncil
             public bool foe;
             /// <summary>Finished off after the fight, lying downed: counted, but nobody's glory.</summary>
             public bool afterFight;
+            /// <summary>A wild animal on a home map (a hunt's kill, for the orphaned young), and where it fell.</summary>
+            public bool wild;
+            public IntVec3 cell;
         }
 
         public DeathNote Before(Pawn victim)
@@ -866,6 +872,8 @@ namespace ColonyCouncil
             var note = new DeathNote { beast = victim == beast, name = victim.LabelShort };
             note.foe = victim.Spawned && victim.Map.IsPlayerHome && !victim.IsPrisoner && victim.HostileTo(Faction.OfPlayer);
             note.afterFight = note.foe && victim.Downed && !GenHostility.AnyHostileActiveThreatToPlayer(victim.Map, false, false);
+            note.wild = victim.Spawned && victim.Map.IsPlayerHome && victim.RaceProps.Animal && victim.Faction == null;
+            note.cell = victim.Spawned ? victim.Position : IntVec3.Invalid;
             if (victim.RaceProps.Humanlike && victim.IsPrisonerOfColony && victim.Faction != null && !victim.Faction.IsPlayer && !victim.Faction.Hidden)
                 note.prisonerOf = victim.Faction;
             return note;
@@ -877,6 +885,7 @@ namespace ColonyCouncil
             if (victim == null) return;
             if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn);
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
+            if (note.wild && !note.beast) HappeningWorker_Orphan.Killed(this, victim, dinfo, note.cell);
             if (note.prisonerOf != null)
             {
                 grudges.Add(new Grudge { name = note.name, faction = note.prisonerOf, tick = Now });
@@ -943,7 +952,7 @@ namespace ColonyCouncil
         /// Memos that are promises still running (a scenario's hunt or debt, an order, a caravan or a guest on the way):
         /// never dropped to make room, or the goods and people they stand for would vanish without a word.
         /// </summary>
-        private static bool Keeps(Memo m) => ScenarioStakes.Lasting(m) || LivingEvents.IsPending(m) || StorytellerEvents.IsPending(m) || (m != null && !m.used && m.kind == "order");
+        private static bool Keeps(Memo m) => ScenarioStakes.Lasting(m) || LivingEvents.IsPending(m) || StorytellerEvents.IsPending(m) || (m != null && !m.used && (m.kind == "order" || m.kind == HappeningWorker_Commission.Kind));
 
         private void Prune()
         {
