@@ -396,6 +396,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {StoryChainTests.Run(root, Check)} things about story chains told from data and event variants (routes, endings, flags, answers).");
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");
+        Console.WriteLine($"Checked {ImpactHintTests.Run(root, Check)} things about the hints in words under each answer (sizes, order, length, no numbers).");
         Console.WriteLine($"Checked {AlmanacLayoutTests.Run(root, Check)} things about the Almanac's layout (columns, tables, text sizes).");
         Console.WriteLine($"Checked {LeaningTests.Run(Check)} things about leanings (how colonists are drawn to other ideoligions, and how fast).");
         Console.WriteLine($"Checked {PracticeTests.Run(Check)} things about practice (habits that grow from what colonists do, kept while lived).");

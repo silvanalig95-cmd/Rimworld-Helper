@@ -293,7 +293,11 @@ namespace ColonyCouncil
             float strength = (m?.strength ?? 0.5f) * share;
             sheet.Add(ImpactKind.Mood, -1, "CC_Impact_HeldBack".Translate(p.LabelShort, MovingOnMath.RampDays.ToString("0"), MovingOnMath.PeaceDays).Resolve(), "CC_Impact_HeldBackBrief".Translate(p.LabelShort).Resolve(), "heldback");
             if (trust > 0f) sheet.Trust(p.LabelShort, p.thingIDNumber.ToString(), -MovingOnMath.TrustLoss(trust, strength), false);
-            if (promised) sheet.Add(ImpactKind.Other, 0, "CC_Impact_RoomPromised".Translate(MovingOnMath.PromiseDays, MovingOnMath.KeptPromiseTrust.ToString("0"), MovingOnMath.BrokenPromiseTrust.ToString("0")).Resolve());
+            if (!promised) return;
+            var l = sheet.Add(ImpactKind.Other, 0, "CC_Impact_RoomPromised".Translate(MovingOnMath.PromiseDays, MovingOnMath.KeptPromiseTrust.ToString("0"), MovingOnMath.BrokenPromiseTrust.ToString("0")).Resolve());
+            if (l == null) return;
+            l.hint = "CC_Impact_PromiseRoomBrief".Translate().Resolve();
+            l.hintFull = "CC_ImpactHint_RoomPromised".Translate().Resolve();
         }
 
         public string kind = "family";

@@ -142,7 +142,8 @@ namespace ColonyCouncil
             ["hudPanels"] = "each on-screen panel's place and options, set on the panels themselves (their menu) or with the buttons under \"On-screen panels\"",
             ["councilPageState"] = "the filters and sort orders the council's pages remember, set on the pages themselves",
             ["lastSeenVersion"] = "the Rimfolk version the player last saw, so the letter after an update comes once (the row \"What's new letter\")",
-            ["speechText"] = "the old switch for colonists speaking, kept in step with speechShows (the row \"Colonists' speech shows as\") so older settings files load"
+            ["speechText"] = "the old switch for colonists speaking, kept in step with speechShows (the row \"Colonists' speech shows as\") so older settings files load",
+            ["showImpact"] = "the old switch for what each answer does, kept in step with impactShows (the row \"What each answer does\") so older settings files load"
         };
 
         public static IReadOnlyList<SettingEntry> All => all;
@@ -239,7 +240,7 @@ namespace ColonyCouncil
             Section("CC_Settings_CouncilLife");
             Toggle("enableDilemmas", "CC_Settings_Dilemmas", "CC_SetNote_Dilemmas");
             Slider("daysBetweenDilemmas", "CC_Settings_DaysBetweenDilemmas", "CC_SetNote_DaysBetweenDilemmas", 3f, 30f, 1f, "0", "enableDilemmas");
-            Toggle("showImpact", "CC_Settings_ShowImpact", "CC_SetNote_ShowImpact");
+            Choice("impactShows", "CC_Settings_ShowImpact", "CC_Settings_ShowImpact_Tip", "CC_ImpactShows_", "CC_SetNote_ImpactShows_", new[] { "Hints", "Exact", "Off" });
             Toggle("decreeRequests", "CC_Settings_DecreeRequests", "CC_SetNote_DecreeRequests");
             Toggle("colonyCharacter", "CC_Settings_Character", "CC_SetNote_Character");
             Toggle("offices", "CC_Settings_Offices", "CC_SetNote_Offices");

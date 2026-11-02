@@ -451,13 +451,17 @@ several openings and several ways to turn out, picked to fit the moment, and a l
 last time when another fits.
 
 **What each answer does.** Every answer in a dilemma's letter, and in the letters of Rimfolk's events and world
-events, has a short line under it: who feels what and for how long, trust, what it takes from the stores or gives,
-what happens on the map, and the odds of a gamble going wrong ("1 in 4"). Hover the answer for the whole list, grouped
-by kind, with gains in green and costs in red. Moods show their real size for each colonist (the reward and downside
-strengths and each colonist's standards count), goods are counted from the stores (an answer that would take the last
-medicine says so), and it is all read from the colony as it is when the letter opens. The Dilemmas page shows, on
-hover, what each answer given was to do. The setting **Show what each answer does** (Council page, on by default)
-turns the lines off. The dilemmas, the customs and the strangers' questions were rebalanced by the same reckoning:
+events, has a short line under it, and hovering it shows more, grouped by kind, with gains in green and costs in red.
+The setting **What each answer does** (Council page) chooses how. **Hints in words** (the default) never shows a
+number: what happens on the map and when, which way spirits and trust go and roughly how far ("a little",
+"noticeably", "greatly"), who by name or group, what it costs ("uses some of the stores' beer", "costs a few hours of
+work"), how likely ("may", "likely"), whether it's a gamble, and which way the colony leans
+(`Dilemmas/ImpactHints.cs`, made from the same lines as the numbers). **Exact numbers** shows who feels what and for
+how long, trust, what it takes from the stores or gives, what happens on the map, and the odds of a gamble going wrong
+("1 in 4"): moods show their real size for each colonist (the reward and downside strengths and each colonist's
+standards count) and goods are counted from the stores (an answer that would take the last medicine says so). **Off**
+leaves the letters as they are. It is all read from the colony as it is when the letter opens. The Dilemmas page
+shows, on hover, what each answer given was to do, in words or numbers as the setting has it. The dilemmas, the customs and the strangers' questions were rebalanced by the same reckoning:
 every answer has its own upside and its own cost, and the safe or quiet answer gives the least (making a thief work it
 off costs them a disciplined mood; the omen ceremony is a gamble).
 
@@ -3015,7 +3019,7 @@ The pages:
   whether Rimfolk's systems talk to each other (see below); with the strength of downsides and of rewards; wish frequency, how many can be open at once and how long they
   last, jealousy and favoritism, wishes after events, reminders, self-help, granted wishes taken back (and the grace
   before they mind), leaving, wishes for others and
-  petitions; dilemmas (and how often), **Show what each answer does**, decree requests, the colony's character and
+  petitions; dilemmas (and how often), **What each answer does** (hints in words, exact numbers or off), decree requests, the colony's character and
   offices; the meeting interval, ambition deadlines, and whether meetings call people from their work.
 - **People & moods**: **life's ups and downs** (how hard the everyday pressures and setbacks press: **gentle**, half
   strength, no half-built work or the fussiest setbacks, and high standards don't make frictions sting more; **normal**, the default, a little under written strength; or **demanding**,

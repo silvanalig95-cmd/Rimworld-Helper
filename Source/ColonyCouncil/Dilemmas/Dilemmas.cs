@@ -675,8 +675,11 @@ namespace ColonyCouncil
             if (who.Count == 0 || Mathf.Abs(amount) < 0.001f || !ColonyCouncilMod.Settings.risingStandards) return;
             string w = WhoOf(ctx, who);
             // Higher standards make good moods smaller and bad ones bigger: a cost.
-            sheet.Amount(ImpactKind.Needs, -1, amount * 100f, "CC_Impact_Standards".Translate(w, ImpactSheet.Mark).Resolve(),
+            var l = sheet.Amount(ImpactKind.Needs, -1, amount * 100f, "CC_Impact_Standards".Translate(w, ImpactSheet.Mark).Resolve(),
                 "CC_Impact_StandardsBrief".Translate(w, ImpactSheet.Mark).Resolve(), "standards|" + KeyOf(who));
+            if (l == null) return;
+            l.topic = HintTopic.Standards;
+            l.who = w;
         }
 
         public override void Apply(DilemmaContext ctx)
@@ -743,7 +746,10 @@ namespace ColonyCouncil
             string w = WhoOf(ctx, who);
             var l = sheet.Add(ImpactKind.Needs, 1, inspiration != null ? "CC_Impact_InspireThis".Translate(w, inspiration.label).Resolve() : "CC_Impact_Inspire".Translate(w).Resolve(),
                 "CC_Impact_InspireBrief".Translate(w).Resolve(), "inspire|" + KeyOf(who));
-            if (l != null) l.each = who.Count > 1;
+            if (l == null) return;
+            l.each = who.Count > 1;
+            l.topic = HintTopic.Inspire;
+            l.who = w;
         }
 
         public override void Apply(DilemmaContext ctx)
@@ -798,7 +804,11 @@ namespace ColonyCouncil
             string w = WhoOf(ctx, who);
             var l = sheet.Add(ImpactKind.Health, -1, "CC_Impact_Break".Translate(w, mentalState.label).Resolve(), "CC_Impact_BreakBrief".Translate(w, mentalState.label).Resolve(),
                 "break|" + mentalState.defName + "|" + KeyOf(who));
-            if (l != null) l.each = who.Count > 1;
+            if (l == null) return;
+            l.each = who.Count > 1;
+            l.topic = HintTopic.Break;
+            l.who = w;
+            l.about = mentalState.label;
         }
 
         public override void Apply(DilemmaContext ctx)
@@ -1228,7 +1238,7 @@ namespace ColonyCouncil
             // Whoever the answer calls on (a doctor, a talker) first, so their skill counts against the risk.
             DilemmaChoices.PickHelpers(option, ctx);
             // What it does, as it stands before it's done (the tradition too), for Council -> Dilemmas.
-            string impact = DilemmaImpact.Record(ctx, option);
+            string impact = DilemmaImpact.Record(ctx, option, out string impactHint);
             if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
             bool risk = option.riskChance > 0f && Rand.Chance(DilemmaChoices.RiskChance(option, ctx, option.riskChance));
             // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
@@ -1250,7 +1260,7 @@ namespace ColonyCouncil
             Setbacks.Notify_Answer(ctx, option.ways, byDefault, risk, ctx.def.label, ctx.Format(option.label));
             string told = ctx.Format(outcome);
             // Written down for Council → Dilemmas, with what it set going on the map (UI/DilemmaLog.cs).
-            DilemmaLog.Record(ctx, option, told, risk, byDefault, impact);
+            DilemmaLog.Record(ctx, option, told, risk, byDefault, impact, impactHint);
             // What the answer set going on the map tells its outcome when it's over; until then, only when it will be.
             if (!told.NullOrEmpty() && !PlayOuts.TellWhenDone(plays, told, byDefault ? "CC_Dilemma_NoAnswer".Translate().ToString() : null))
             {
