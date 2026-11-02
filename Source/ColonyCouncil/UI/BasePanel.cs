@@ -112,6 +112,8 @@ namespace ColonyCouncil
 
         // ---------------- Right: the findings ----------------
 
+        private static readonly Folds folds = new Folds("aside");
+
         private static float DrawFindings(Map map, List<BaseFinding> findings, float x, float y, float w)
         {
             if (findings.Count == 0) y += UiKit.EmptyState(x, y, w, Icons.Base, "CC_Base_AllGood".Translate(), 140f);
@@ -123,18 +125,49 @@ namespace ColonyCouncil
                 foreach (var f in part) y += DrawFinding(f, x, y, w, map) + 6f;
                 y += 8f;
             }
+            // The fixes done lately, with Undo and whether each worked; and the findings set aside, to bring back.
+            y += AheadPanel.Done(x, y, w, map, BaseReview.Source) + 4f;
+            y += AheadPanel.Aside(x, y, w, BaseReview.Source, folds) + 8f;
             return y;
+        }
+
+        /// <summary>A finding's buttons: Show, Plan the room, its fix as a step (Undo, a check later), Not this; each its whole label wide.</summary>
+        private static List<(string label, string tip, System.Action act)> ButtonsOf(BaseFinding f, Map map)
+        {
+            var list = new List<(string, string, System.Action)>();
+            if (f.look.IsValid) list.Add(("CC_Show".Translate().Resolve(), "CC_Plan_ShowTip".Translate().Resolve(), () => MainTabWindow_Council.Jump(new LookTargets(f.look, map))));
+            if (f.fix != null && !f.fixLabel.NullOrEmpty())
+            {
+                string tip = (f.fixTip.NullOrEmpty() ? f.fixLabel : f.fixTip) + (f.things != null ? "\n\n" + "CC_Base_FixTip".Translate(f.things.Count).Resolve() : "")
+                             + "\n\n" + "CC_Ahead_DoItTip".Translate().Resolve();
+                list.Add((f.fixLabel, tip, () =>
+                {
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
+                    BaseReview.Apply(map, f);
+                }));
+            }
+            if (f.template != null)
+                list.Add(("CC_PlanIt".Translate().Resolve(), "CC_Plan_PlanItTip".Translate(f.template.label).Resolve(), () => MainTabWindow_Council.StartPlanning(f.template, true)));
+            string key = BaseReview.KeyOf(f), title = f.title;
+            list.Add(("CC_Ahead_NotThis".Translate().Resolve(), "CC_Ahead_NotThisTip".Translate().Resolve(), () =>
+            {
+                SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+                SuggestTracker.Instance?.Decline(key, title);
+            }));
+            return list;
         }
 
         private static float DrawFinding(BaseFinding f, float x, float y, float width, Map map)
         {
             var level = f.Level;
             var color = LevelColor(level);
+            var buttonsList = ButtonsOf(f, map);
+            float buttonsW = AheadPanel.ButtonsWidth(buttonsList.Select(b => b.label), ButtonsW - 12f) + 12f;
             Text.Font = GameFont.Small;
-            float textW = Mathf.Max(80f, width - LeftW - ButtonsW - 12f);
+            float textW = Mathf.Max(80f, width - LeftW - buttonsW - 12f);
             float titleH = Text.CalcHeight(f.title ?? "", textW);
             float detailH = f.detail.NullOrEmpty() ? 0f : Text.CalcHeight(f.detail, textW);
-            int buttons = (f.look.IsValid ? 1 : 0) + (f.fix != null ? 1 : 0) + (f.template != null ? 1 : 0);
+            int buttons = buttonsList.Count;
             float h = Mathf.Max(48f, titleH + detailH + 18f, buttons * 30f + 10f);
             var row = new Rect(x, y, width, h);
             UiKit.Card(row, color);
@@ -154,36 +187,13 @@ namespace ColonyCouncil
                 GUI.color = Color.white;
             }
 
-            float bx = x + width - ButtonsW + 4f, bw = ButtonsW - 12f, by = y + 6f;
-            if (f.look.IsValid)
+            float bx = x + width - buttonsW + 4f, bw = buttonsW - 12f, by = y + 6f;
+            foreach (var (label, tip, act) in buttonsList)
             {
-                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_ShowTip".Translate());
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(new LookTargets(f.look, map));
+                var r = new Rect(bx, by, bw, 26f);
+                TooltipHandler.TipRegion(r, tip);
+                if (Widgets.ButtonText(r, label)) act();
                 by += 30f;
-            }
-            if (f.template != null) TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_PlanItTip".Translate(f.template.label));
-            if (f.template != null && Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_PlanIt".Translate()))
-            {
-                MainTabWindow_Council.StartPlanning(f.template, true);
-            }
-            if (f.template != null) by += 30f;
-            if (f.fix != null)
-            {
-                var fixRect = new Rect(bx, by, bw, 26f);
-                if (!f.fixTip.NullOrEmpty()) TooltipHandler.TipRegion(fixRect, f.fixTip);
-                if (Widgets.ButtonText(fixRect, UiKit.Fit(f.fixLabel, bw - 8f)))
-                {
-                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                    try
-                    {
-                        f.fix();
-                    }
-                    catch (System.Exception e)
-                    {
-                        CouncilLog.ErrorOnce("base review fix " + f.key, e);
-                    }
-                }
-                if (f.things != null) TooltipHandler.TipRegion(fixRect, "CC_Base_FixTip".Translate(f.things.Count));
             }
             return h;
         }

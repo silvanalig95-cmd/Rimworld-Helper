@@ -87,38 +87,73 @@ namespace ColonyCouncil
 
         /// <summary>"A bedroom", "an infirmary": a plan's name for advice text.</summary>
         public static string WithArticle(RoomTemplateDef t, bool full = false) => t == null ? "" : Find.ActiveLanguageWorker.WithIndefiniteArticle(full ? t.FullLabel : t.label);
+
+        // ---------------- One source of truth with building ahead ----------------
+
+        /// <summary>
+        /// Building ahead's row for a kind of room (GrowthNeeds: who eats and sleeps here with the guests, the seats at
+        /// the tables, the cold store places against the food the stock targets keep and the winter ahead, the medical
+        /// beds against the most laid up lately), when the colony is short of it now or will be soon. Null when it isn't,
+        /// or when the player set that room aside on the Plan page: the advice then says nothing either.
+        /// </summary>
+        public static GrowthRow Wanting(Map map, string kind, out GrowthNeeds needs)
+        {
+            needs = GrowthNeeds.For(map);
+            var r = needs?.plan?.Row(kind);
+            if (r == null || !r.Wanting || r.why == null) return null;
+            if (SuggestTracker.Instance?.Declined(GrowthMath.RoomKey(kind)) ?? false) return null;
+            return r;
+        }
+
+        /// <summary>How much a row's shortfall matters, as the advisor's severity: the same level as building ahead's step.</summary>
+        public static float Severity(GrowthRow r) => r == null ? 0f : r.level >= 4 ? 0.75f : r.level >= 3 ? 0.5f : r.level >= 2 ? 0.3f : r.level >= 1 ? 0.16f : 0.1f;
+
+        /// <summary>
+        /// Marks advice as building ahead's: its words carry the row's numbers, the Plan page's "Building ahead" section
+        /// proposes the room (so the plan's own proposals leave it out), and the card goes to that page.
+        /// </summary>
+        public static void ForBuildAhead(AdvisorSignal s, string kind, GrowthRow row, GrowthNeeds needs)
+        {
+            s.buildKind = kind;
+            s.page = "Plan";
+            if (row != null && needs != null) s.detail = BuildAhead.RowReason(row, needs) + (s.detail.NullOrEmpty() ? "" : " " + s.detail);
+        }
+
+        /// <summary>Who eats here, guests included: the dining row's eaters.</summary>
+        public static int Eaters(GrowthNeeds n) => n == null ? 0 : n.input.colonists + n.input.slaves + n.input.guests;
     }
 
-    /// <summary>The dining rooms seat fewer than the colony has people now: the next size up, or more chairs.</summary>
+    /// <summary>
+    /// The tables seat fewer than eat here (guests included), now or once the prisoners being recruited join: the next
+    /// size up, or more chairs. The numbers are building ahead's dining row (GrowthNeeds), so the Priorities page and the
+    /// Plan page say the same, and the Plan page proposes the room once, in its "Building ahead" section.
+    /// </summary>
     public class AdvisorWorker_DiningOutgrown : AdvisorSignalWorker
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            var role = RoomUtil.DiningRoom;
-            if (role == null) yield break;
-            int people = RoomGrowth.People(map).Count;
-            if (people < 4) yield break;
-            int seats = 0, best = -1;
+            var row = RoomGrowth.Wanting(map, GrowthMath.Dining, out var needs);
+            // No seat at a table at all is the plain dining advice.
+            if (row == null || row.built <= 0) yield break;
+            int best = -1;
             Room main = null;
-            foreach (var room in RoomUtil.RoomsWithRole(map, role))
-            {
-                int n = RoomUtil.RoomCount(room, Avail.IsChair);
-                seats += n;
-                if (n > best)
+            if (RoomUtil.DiningRoom != null)
+                foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom))
                 {
-                    best = n;
-                    main = room;
+                    int n = RoomUtil.RoomCount(room, Avail.IsChair);
+                    if (n > best)
+                    {
+                        best = n;
+                        main = room;
+                    }
                 }
-            }
-            // No dining room at all is the plain dining advice; one seat short is fine (someone is always asleep or out).
-            if (main == null || seats >= people - 1) yield break;
-            var plan = RoomGrowth.SizeFor("Council_RT_DiningRoom", "chair", people, best, map);
-            string detail = plan != null
-                ? "CC_Adv_DiningOutgrown_Detail".Translate(seats, people, RoomGrowth.WithArticle(plan, true).CapitalizeFirst()).Resolve()
-                : "CC_Adv_DiningOutgrown_DetailNoPlan".Translate(seats, people).Resolve();
-            var s = Signal(0.25f + 0.04f * Mathf.Min(6, people - seats), "CC_Adv_DiningOutgrown_Title".Translate(seats, people), detail, 0.3f);
+            int eaters = RoomGrowth.Eaters(needs);
+            var plan = RoomGrowth.SizeFor("Council_RT_DiningRoom", "chair", Mathf.Max(row.need, row.soon), Mathf.Max(0, best), map);
+            string how = plan != null ? "CC_Same_Adv_SeatsPlan".Translate(RoomGrowth.WithArticle(plan, true).CapitalizeFirst()).Resolve() : "CC_Same_Adv_SeatsNoPlan".Translate().Resolve();
+            var s = Signal(RoomGrowth.Severity(row), "CC_Same_Adv_SeatsTitle".Translate(row.built.Named("SEATS"), eaters.Named("EATERS")).Resolve(), how, row.Short > 0 ? 1f : 0.5f);
+            RoomGrowth.ForBuildAhead(s, GrowthMath.Dining, row, needs);
             s.template = plan;
-            var table = RoomGrowth.FirstIn(main, Avail.IsEatingTable);
+            var table = main != null ? RoomGrowth.FirstIn(main, Avail.IsEatingTable) : map.listerBuildings.allBuildingsColonist.FirstOrDefault(b => Avail.IsEatingTable(b.def));
             if (table != null) s.look = new LookTargets(table);
             s.key = "dining-outgrown";
             yield return s;
@@ -223,8 +258,12 @@ namespace ColonyCouncil
                 if (unclean * 3 > main.CellCount) items.Add("CC_Adv_HospitalUpgrade_Floor".Translate(sterile.label).Resolve());
             }
             if (items.Count == 0) yield break;
+            // The beds against the colony's size and the most laid up lately, as building ahead counts them.
+            var growth = GrowthNeeds.For(map);
+            string count = growth?.input == null ? "" : " " + "CC_Same_Adv_HospitalBeds".Translate(beds.Named("BEDS"), (growth.input.colonists + growth.input.slaves).Named("PEOPLE"),
+                growth.input.patientsMost.Named("MOST"), growth.input.patientDays.Named("DAYS")).Resolve();
             var s = Signal(0.2f + 0.06f * items.Count + 0.02f * Mathf.Min(beds, 5), "CC_Adv_HospitalUpgrade_Title".Translate(),
-                "CC_Adv_HospitalUpgrade_Detail".Translate(TextUtil.JoinAnd(items)).Resolve(), 0.35f);
+                "CC_Adv_HospitalUpgrade_Detail".Translate(TextUtil.JoinAnd(items)).Resolve() + count, 0.35f);
             s.template = RoomGrowth.ClosestSize("Council_RT_Hospital", "bed", beds, map);
             s.upgrade = true;
             s.suggestThing = suggest;

@@ -19,6 +19,9 @@ namespace ColonyCouncil
             {
                 var s = Signal(0.75f + 0.05f * noBed.Count, "CC_Adv_NoBeds_Title".Translate(noBed.Count),
                     "CC_Adv_NoBeds_Detail".Translate(TextUtil.JoinAnd(noBed.Select(p => p.LabelShort).ToList()), Avail.Indefinite(bedDef)));
+                // Building ahead counts the beds against who sleeps here and who is joining: its bedroom is the Plan page's step.
+                var row = RoomGrowth.Wanting(map, GrowthMath.Beds, out var needs);
+                if (row != null) RoomGrowth.ForBuildAhead(s, GrowthMath.Beds, row, needs);
                 s.look = new LookTargets(noBed);
                 s.suggestThing = bedDef;
                 s.key = "nobed";
@@ -120,7 +123,12 @@ namespace ColonyCouncil
 
             if (days < 4f)
             {
-                var s = Signal(0.95f - days * 0.1f, "CC_Adv_FoodLow_Title".Translate(days.ToString("0.#")), "CC_Adv_FoodLow_Detail".Translate(), 1f);
+                // What is in store and who eats it, as planning ahead reads it (nutrition, not pieces).
+                var view = Ahead.For(map);
+                var meal = view.plan?.Row(AheadMath.Meal);
+                var raw = view.plan?.Row(AheadMath.Raw);
+                string numbers = meal != null && raw != null && view.needs != null ? " " + Ahead.RowReason(meal, view.needs) + " " + Ahead.RowReason(raw, view.needs) : "";
+                var s = Signal(0.95f - days * 0.1f, "CC_Adv_FoodLow_Title".Translate(days.ToString("0.#")), "CC_Adv_FoodLow_Detail".Translate() + numbers, 1f);
                 s.key = "low";
                 yield return s;
                 yield break;
@@ -149,8 +157,13 @@ namespace ColonyCouncil
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
-            if (RoomUtil.HasFreezer(map) || !SeasonUtil.HasSeasons(map)) yield break;
+            if (!SeasonUtil.HasSeasons(map)) yield break;
             if (SeasonUtil.MaxTempNextTwelfths(map, 1) < 4f) yield break; // the world is already a freezer
+            // Building ahead's cold row: nothing kept cold while the food wants places (a cold store with too few places
+            // is the outgrown freezer's advice).
+            var row = RoomGrowth.Wanting(map, GrowthMath.Cold, out var needs);
+            if (row != null && row.built > 0) yield break;
+            if (row == null && RoomUtil.HasFreezer(map)) yield break;
             int rotting = 0;
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree))
             {
@@ -159,17 +172,17 @@ namespace ColonyCouncil
                 if (rot == null || rot.PropsRot.daysToRotStart > 15f) continue;
                 if (t.AmbientTemperature > 0f) rotting += t.stackCount;
             }
-            if (rotting < 30) yield break;
             var cooler = Avail.BestBuildable(map, d => d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass), "Cooler");
-            if (cooler != null)
+            if (cooler != null && row != null)
             {
-                var s = Signal(0.35f + UnityEngine.Mathf.Min(0.3f, rotting / 600f), "CC_Adv_Freezer_Title".Translate(),
-                    "CC_Adv_Freezer_Detail".Translate(rotting, Avail.Indefinite(cooler)), 0.7f);
+                var s = Signal(RoomGrowth.Severity(row) + UnityEngine.Mathf.Min(0.15f, rotting / 1000f), "CC_Same_Adv_ColdNoneTitle".Translate(row.need.Named("NEED")).Resolve(),
+                    "CC_Same_Adv_ColdNoneHow".Translate(rotting.Named("ROTTING"), Avail.Indefinite(cooler).Named("COOLER")).Resolve(), row.Short > 0 ? 1f : 0.6f);
+                RoomGrowth.ForBuildAhead(s, GrowthMath.Cold, row, needs);
                 s.template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_Freezer");
                 s.suggestThing = cooler;
                 yield return s;
             }
-            else if (!AdvisorWorker_WinterStores.Applies(map))
+            else if (rotting >= 30 && cooler == null && !AdvisorWorker_WinterStores.Applies(map))
             {
                 // With winter coming, the winter stores advice says this and more (AdvisorSignals5.cs).
                 var pemmican = DefDatabase<ThingDef>.GetNamedSilentFail("Pemmican");
@@ -262,23 +275,38 @@ namespace ColonyCouncil
             if (colonists.Count == 0) yield break;
             bool anyDoctor = colonists.Any(p => p.workSettings != null && !p.WorkTypeIsDisabled(WorkTypeDefOf.Doctor) && p.workSettings.GetPriority(WorkTypeDefOf.Doctor) > 0);
             if (!anyDoctor)
-                yield return Signal(0.6f, "CC_Adv_NoDoctor_Title".Translate(), "CC_Adv_NoDoctor_Detail".Translate());
+            {
+                // Who would doctor best of those who can.
+                var best = colonists.Where(p => !p.WorkTypeIsDisabled(WorkTypeDefOf.Doctor) && !p.DevelopmentalStage.Juvenile())
+                    .OrderByDescending(p => p.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0).FirstOrDefault();
+                string who = best != null ? " " + "CC_Same_Adv_DoctorBest".Translate(best.LabelShort.Named("PAWN"), (best.skills?.GetSkill(SkillDefOf.Medicine)?.Level ?? 0).Named("LEVEL"),
+                    colonists.Count.Named("COUNT")).Resolve() : "";
+                var s = Signal(0.6f, "CC_Adv_NoDoctor_Title".Translate(), "CC_Adv_NoDoctor_Detail".Translate() + who);
+                if (best != null) s.look = new LookTargets(best);
+                yield return s;
+            }
 
             int meds = MapFacts.Of(map).Medicine;
             if (meds < colonists.Count * 2)
             {
                 var healroot = DefDatabase<ThingDef>.GetNamedSilentFail("Plant_Healroot");
                 bool canGrow = healroot?.plant != null && (healroot.plant.sowResearchPrerequisites == null || healroot.plant.sowResearchPrerequisites.All(r => r.IsFinished));
+                // The medicine row of planning ahead: what there is, what goes a day, how long it lasts.
+                var view = Ahead.For(map);
+                var medRow = view.plan?.Row(AheadMath.Medicine);
+                string numbers = medRow != null && view.needs != null ? " " + Ahead.RowReason(medRow, view.needs) : "";
                 var s = Signal(meds == 0 ? 0.5f : 0.3f, "CC_Adv_Medicine_Title".Translate(meds),
-                    canGrow ? "CC_Adv_Medicine_Grow".Translate(healroot.label) : "CC_Adv_Medicine_Detail".Translate(), 0.5f);
+                    (canGrow ? "CC_Adv_Medicine_Grow".Translate(healroot.label) : "CC_Adv_Medicine_Detail".Translate()) + numbers, 0.5f);
                 s.key = "meds";
                 yield return s;
             }
 
-            bool medicalBed = Avail.ColonyBuildings(map, d => d.IsBed).OfType<Building_Bed>().Any(b => b.Medical);
-            if (!medicalBed && colonists.Count >= 3)
+            // No medical bed while building ahead's hospital row wants some (one for every four people, or as many as lay up at once lately).
+            var row = RoomGrowth.Wanting(map, GrowthMath.Hospital, out var needs);
+            if (row != null && row.built <= 0)
             {
-                var s = Signal(0.28f, "CC_Adv_Hospital_Title".Translate(), "CC_Adv_Hospital_Detail".Translate(), 0.4f);
+                var s = Signal(UnityEngine.Mathf.Max(0.28f, RoomGrowth.Severity(row)), "CC_Adv_Hospital_Title".Translate(), "CC_Adv_Hospital_Detail".Translate(), 0.4f);
+                RoomGrowth.ForBuildAhead(s, GrowthMath.Hospital, row, needs);
                 s.template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_Hospital");
                 s.key = "hospital";
                 yield return s;
@@ -380,6 +408,9 @@ namespace ColonyCouncil
             var table = Avail.BestBuildable(map, Avail.IsEatingTable, "Table2x2c", "Table1x2c");
             if (table == null) yield break;
             var s = Signal(0.3f, "CC_Adv_Dining_Title".Translate(), "CC_Adv_Dining_Detail".Translate(Avail.Indefinite(table)), 0.5f);
+            // Building ahead counts the seats against who eats here: its dining room is the Plan page's step.
+            var row = RoomGrowth.Wanting(map, GrowthMath.Dining, out var needs);
+            if (row != null) RoomGrowth.ForBuildAhead(s, GrowthMath.Dining, row, needs);
             s.template = DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_DiningRoom");
             s.suggestThing = table;
             yield return s;

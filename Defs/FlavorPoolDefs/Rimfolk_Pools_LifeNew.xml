@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Lines for the newer wishes and life moments.
+    A pet's grave (PlayOut/PlayPetGrave.cs): the call as its person sets off and the words while they dig and carry are
+    said over heads (one sentence each, ImmersionTests); the journal afterwards, or when it never came about.
+    {PAWN_...} the speaker or writer, {OTHER_...} the animal.
+    The burial told once it's done (WishEffect_PetBuried): {PAWN_...} its person, {PET_...} the animal; [small], [big],
+    [midsize], [bonded] or [master]. These are the lines that say the animal was buried: they used to be said when it
+    died, before anyone had buried it.
+    The morning cup (Lives/LifeNew.cs): two colonists who had coffee or tea in the same room within the hour, in the
+    social log. {PAWN_...} and {OTHER_...} the two.
+  -->
+
+  <!-- ===================== A pet's grave ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PetGraveInvite</defName>
+    <lines>
+      <plain>
+        <li>Let's give {OTHER_nameDef} a proper grave.</li>
+        <li>Somewhere quiet, near home.</li>
+        <li>Bring a shovel, please.</li>
+        <li>[winter] The ground's hard, but it can be dug.</li>
+      </plain>
+      <warm><li>Come on, {OTHER_nameDef}, one last walk.</li></warm>
+      <blunt><li>Not the butcher's table, not for {OTHER_nameDef}.</li></blunt>
+      <cheerful><li>Let's find {OTHER_nameDef} a spot in the sun.</li></cheerful>
+      <gloomy><li>I knew this day would come.</li></gloomy>
+      <cold><li>A grave first, then everything else.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PetGrave</defName>
+    <lines>
+      <plain>
+        <li>Deep enough that nothing digs it up.</li>
+        <li>Gently now.</li>
+        <li>This spot gets the morning sun.</li>
+      </plain>
+      <warm><li>You were a good one, {OTHER_nameDef}.</li></warm>
+      <blunt><li>Nearly deep enough.</li></blunt>
+      <cheerful><li>You'd have dug this faster than me, {OTHER_nameDef}.</li></cheerful>
+      <gloomy><li>Easy, easy, nearly there.</li></gloomy>
+      <cold><li>A little deeper.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_PetGrave</defName>
+    <lines>
+      <plain>
+        <li>We buried {OTHER_nameDef} today, near home, deep enough to keep the body safe.</li>
+        <li>{OTHER_nameDef} is in the ground now. I didn't think a grave could take so long, or be over so fast.</li>
+        <li>[winter] The ground was hard as iron. {OTHER_nameDef} got a grave anyway.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} has a grave now, a quiet one. I said goodbye before it was filled in.</li></warm>
+      <blunt><li>Buried {OTHER_nameDef}. Done.</li></blunt>
+      <gloomy><li>A hole in the ground and a good animal in it. That was the whole day.</li></gloomy>
+      <cold><li>{OTHER_nameDef} is buried properly. It was the right thing to do.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_PetGraveMissed</defName>
+    <lines>
+      <plain>
+        <li>We meant to bury {OTHER_nameDef} today. It didn't happen, and the body is still lying there.</li>
+      </plain>
+      <blunt>
+        <li>Nobody buried {OTHER_nameDef}. I'll do it myself if I have to.</li>
+      </blunt>
+      <gloomy>
+        <li>{OTHER_nameDef} is still out there. I keep looking at the spot.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PetBuried</defName>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} lies in a grave near the colony now, where {PAWN_nameDef} can find it.</li>
+        <li>[small] It's a small grave, and {PAWN_nameDef} says it's the right size for {PET_nameDef}.</li>
+        <li>[big] {PET_nameDef} needed a big grave, and {PAWN_nameDef} says it was worth the work.</li>
+        <li>[winter] {PET_nameDef}'s grave was dug in frozen ground, and {PAWN_nameDef} says that's the least {PET_nameDef} deserved.</li>
+        <li>[bonded] {PAWN_nameDef} says {PET_nameDef} is home for good now.</li>
+      </plain>
+      <warm>
+        <li>{PAWN_nameDef} thanked everyone who helped bury {PET_nameDef}, one at a time.</li>
+      </warm>
+      <blunt>
+        <li>{PET_nameDef} is buried. {PAWN_nameDef} didn't want to talk about it, and nobody made {PAWN_objective}.</li>
+      </blunt>
+      <cheerful>
+        <li>{PAWN_nameDef} says {PET_nameDef} would have liked the spot, and that's what matters.</li>
+      </cheerful>
+      <gloomy>
+        <li>{PAWN_nameDef} says {PET_nameDef}'s grave is the one good thing to come out of a bad week.</li>
+      </gloomy>
+      <cold>
+        <li>{PAWN_nameDef} wrote the day of {PET_nameDef}'s burial in the ledger, under the day it died.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_PetBuried</defName>
+    <lines>
+      <plain>
+        <li>{PET_nameDef} is in the ground now, near home. I know where to go when I miss it.</li>
+        <li>[small] Such a small grave. It looked smaller still once it was filled in.</li>
+        <li>[big] It took a long time to make a grave big enough for {PET_nameDef}. Worth every minute.</li>
+      </plain>
+      <warm><li>I said goodbye properly this time. {PET_nameDef} was a good animal, the best.</li></warm>
+      <blunt><li>{PET_nameDef}'s buried. That's all I want to write.</li></blunt>
+      <cheerful><li>{PET_nameDef} would have hated sitting still in a grave. I hope it's chasing something, wherever it is.</li></cheerful>
+      <gloomy><li>At least nobody will butcher {PET_nameDef} now. That's what I keep telling myself.</li></gloomy>
+      <cold><li>{PET_nameDef}: buried. The body won't draw scavengers now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The morning cup ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Log_MorningCup</defName>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} and {OTHER_nameDef} shared a quiet word over their cups.</li>
+        <li>{PAWN_nameDef} sat down with a cup beside {OTHER_nameDef}, and they talked about the day ahead.</li>
+        <li>[morning] {PAWN_nameDef} and {OTHER_nameDef} warmed their hands on their morning cups and talked about nothing much.</li>
+        <li>[evening] {PAWN_nameDef} and {OTHER_nameDef} finished their cups together and talked over the day.</li>
+      </plain>
+      <warm><li>{PAWN_nameDef} asked {OTHER_nameDef} how {OTHER_pronoun} had slept, and listened to the whole answer over the cups.</li></warm>
+      <blunt><li>{PAWN_nameDef} and {OTHER_nameDef} drank their cups side by side and said what needed saying, which wasn't much.</li></blunt>
+      <cheerful><li>{PAWN_nameDef} raised a cup to {OTHER_nameDef}, and the two of them laughed about something nobody else heard.</li></cheerful>
+      <gloomy><li>{PAWN_nameDef} and {OTHER_nameDef} agreed over their cups that this was the best part of the day.</li></gloomy>
+      <cold><li>{PAWN_nameDef} and {OTHER_nameDef} compared notes on the day's work over their cups.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

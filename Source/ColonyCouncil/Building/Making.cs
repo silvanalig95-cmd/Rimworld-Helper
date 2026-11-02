@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public int target;
         /// <summary>Why it is wanted beyond the usual: the blueprints are short of it, a bill waits on it (null: a plain suggestion).</summary>
         public string wantedBy;
+        /// <summary>Where the count comes from, in numbers (a staple's: planning ahead's stock target); null for the usual count.</summary>
+        public string targetWhy;
 
         public string PartsLine => string.Join(", ", parts.Select(p => p.def.label + " " + ((int)p.have) + "/" + ((int)p.need)));
     }
@@ -243,6 +245,13 @@ namespace ColonyCouncil
                     var option = new MakingOption { benchDef = def, bench = first, recipe = recipe, product = product, productStock = productStock, kind = KindOf(product) };
                     if (!Parts(recipe, Have, option.parts)) continue;
                     option.target = MakingMath.TargetFor(option.kind, colonists);
+                    // Meals, medicine and feed by planning ahead's stock targets, as the Ahead section above reckons them.
+                    int staple = StapleTarget(map, option.kind, product, out string why);
+                    if (staple > 0)
+                    {
+                        option.target = staple;
+                        option.targetWhy = why;
+                    }
                     if (shortWants.TryGetValue(product, out int shortBy))
                     {
                         option.target = MakingMath.DemandTarget(productStock, shortBy, option.target);
@@ -498,6 +507,38 @@ namespace ColonyCouncil
                         r.starved.Add(new StarvedBill { bench = wt, bill = bp, missing = string.Join(", ", missing), wants = wants });
                     }
                 }
+        }
+
+        /// <summary>The row of planning ahead's stock targets a kind of product goes by: meals, medicine, feed; null for the rest.</summary>
+        private static string RowKindOf(string kind)
+        {
+            switch (kind)
+            {
+                case "meals": return AheadMath.Meal;
+                case "medicine": return AheadMath.Medicine;
+                case "feed": return AheadMath.Feed;
+                default: return null;
+            }
+        }
+
+        /// <summary>
+        /// A staple's bill count from planning ahead's stock target (MakingMath.StapleCount) with its reason in numbers;
+        /// -1 when the kind has no row or the row nothing to go by (then the usual count stands).
+        /// </summary>
+        private static int StapleTarget(Map map, string kind, ThingDef product, out string why)
+        {
+            why = null;
+            string rowKind = RowKindOf(kind);
+            if (rowKind == null || product == null) return -1;
+            var row = Ahead.For(map).plan?.Row(rowKind);
+            if (row == null || row.useADay <= 0f) return -1;
+            float unit = rowKind == AheadMath.Medicine ? 1f : product.GetStatValueAbstract(StatDefOf.Nutrition);
+            int n = MakingMath.StapleCount(row.target, row.billsCover, row.useADay, unit);
+            if (n <= 0) return -1;
+            string N(float v) => v >= AheadMath.Far ? "-" : v.ToString(v < 10f ? "0.#" : "0");
+            why = "CC_Same_Making_Staple".Translate(n.Named("N"), N(row.target).Named("TARGET"), N(row.targetDays).Named("DAYS"), N(row.useADay).Named("USE"),
+                N(row.billsCover >= AheadMath.Far ? row.target : row.billsCover).Named("COVER"), (row.food ? "CC_Same_Making_Nutrition" : "CC_Same_Making_Pieces").Translate().Resolve().Named("UNIT")).Resolve();
+            return n;
         }
 
         /// <summary>A bill whose work is still wanted: forever, so many still to make, or short of its count.</summary>

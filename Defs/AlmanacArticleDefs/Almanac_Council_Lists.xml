@@ -41,6 +41,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>A cooler for the hottest days | Anyone, while it's 30°C or more outside and nothing in the colony cools. A passive cooler before electricity.</li>
           <li>A sauna for the cold months | On cold land (its coldest month freezing or worse) in fall and winter: the cold, the old and the sociable, while the colony has no sauna. With Dubs Bad Hygiene its sauna heater; without, a sauna of the colony's own: a small closed room (30 cells at most, no bed or workbench) with a seat and a heater set to 28 °C or more, or a campfire before electricity (as warm as it gets). Planned from the sweat room layout. On cold days people sit in it a while ("Small habits"): warmed through (comfort and a little rest, no mood), and two in there together talk.</li>
           <li>Time outside, more time to rest | The cooped-up, the worn out and the lazy.</li>
+          <li>A roof over the way to the table | In a wet land, anyone who came in soaked to the table or to bed, when 3 to 40 steps of the way from their bed to the nearest dining table are open to the sky, all close enough to a wall for a roof to hold. Promising it marks those steps for the game's own roof building; fulfilled when every one is roofed.</li>
         </table>
       </li>
       <li>
@@ -66,6 +67,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>An apprentice | Someone at 12 or more in a skill they love, when someone keen is still learning it (a child, often). The old ask most. Promising it starts the lessons.</li>
           <li>Somewhere to train, a weapon rack | Fighters.</li>
           <li>A tool cabinet by the workbench | Crafters.</li>
+          <li>A lamp at the bench | Anyone seen working at a bench or researching in the dark in the last 3 days, while no lamp lights that bench's work spot. Promising it (or, out of patience, a handy colonist) plans a standing lamp beside it, a torch lamp without power; fulfilled when a lamp's light reaches the work spot, day or night.</li>
           <li>Stone blocks put by | Builders, when the colony can cut stone and has fewer than 300 blocks.</li>
           <li>A deep drill | Miners, once the colony has electricity and the research.</li>
           <li>A smokehouse, a beehive, fodder before winter | Cooks; growers and animal lovers; handlers with three or more animals in fall.</li>
@@ -82,6 +84,8 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
           <li>Better meals, honey in the larder | Gourmands and anyone sick of raw food or paste.</li>
           <li>Something to drink or smoke | Those with a taste for chemicals.</li>
           <li>Something fresh to eat | Anyone in winter and spring, when the stores hold fewer than 60 vegetables, fruit or grain. Scurvy makes it urgent.</li>
+          <li>Something green in winter | Fall or winter, in a land with a real winter (10 days or more of it), when the colony makes power and can build a sun lamp and has none lit over a field: growers, and anyone who has gone without fresh food (scurvy makes it urgent). Fulfilled when a lit sun lamp stands over 6 or more roofed cells of a growing zone or hydroponics; promising it plans one in the middle of an indoor field.</li>
+          <li>A field of a crop from home | In spring: anyone, growers most, for a fruit, a vegetable or a flower (modded crops too) the colony could sow now, within its growers' skill, and grows nowhere. The same person misses the same crop. Promising it lays out a small field of it beside the others; fulfilled when 6 plants of it are sown.</li>
           <li>Food that keeps | Anyone in fall and winter, with real cold coming, and any time of year in hot country where nothing can keep food frozen yet: pemmican, packaged meals or canned goods, whichever the colony can make.</li>
           <li>Firewood for the winter | When the colony burns wood and the cold is coming.</li>
           <li>A stocked infirmary | Doctors, when there's less than two medicine per colonist.</li>
@@ -118,6 +122,7 @@ Some wishes belong to an era (healroot for a tribe or a medieval village, a deep
         <table>
           <li>Wish | Who asks, and when</li>
           <li>A proper burial, a party | The grieving; the sociable and the miserable.</li>
+          <li>A grave for a pet | The person of a named or bonded animal that died, while its body lies whole at home and a grave can be dug. Promising it (or their own patience running out) sends them to dig a grave near the colony, by the other graves if there are any, and carry the body in, with someone who can dig if they can't. Fulfilled when the body rests in any grave; then the burial is told in the chronicle and their journal.</li>
           <li>A prisoner recruited, executed or set free | The kind, the lonely, the vengeful.</li>
           <li>A kidnapped friend brought home | Those who loved them.</li>
           <li>To see something of the world, an animal companion | The restless; animal lovers.</li>
@@ -310,6 +315,7 @@ Some run for a whole season: so many days in a row with something kept up, where
           <li>become someone nobody wants to face up close | Melee fighters; a battle, being downed.</li>
           <li>bring down 25 enemies or 10 mechanoids | Fighters; a battle, a loss.</li>
           <li>keep the colony spotless, put out 30 fires, bury 15 of the dead | Anyone; the kind, after seeing the dead left lying.</li>
+          <li>read 6 different books from the colony's shelves | Anyone who can read, in a colony with 3 or more different books. Each book counts once, seen being read with the game's own reading.</li>
         </table>
       </li>
       <li>

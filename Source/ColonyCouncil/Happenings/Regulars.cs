@@ -12,7 +12,7 @@ namespace ColonyCouncil
     {
         public int id;
         public Pawn pawn;
-        /// <summary>Their trade on the road: tinker, scholar, doctor, healer, teacher, cook, scribe, teller, kindred.</summary>
+        /// <summary>Their trade on the road: tinker, scholar, doctor, healer, teacher, cook, scribe, teller, kindred, collector (of art), vet (an animal doctor).</summary>
         public string kind;
         public Faction faction;
         /// <summary>The colonist they dealt with first, and ask after.</summary>
@@ -40,6 +40,8 @@ namespace ColonyCouncil
                     case "cook": return SkillDefOf.Cooking;
                     case "scribe": return SkillDefOf.Artistic;
                     case "teller": return SkillDefOf.Social;
+                    case "collector": return SkillDefOf.Artistic;
+                    case "vet": return SkillDefOf.Animals;
                     default: return null;
                 }
             }

@@ -33,6 +33,15 @@ public static class MakingTests
         C(MakingMath.DemandTarget(3, 4, 10) == 15, "a small want still gets five more");
         C(MakingMath.DemandTarget(50, 0, 10) == 10, "nothing short: the usual");
         C(MakingMath.Short(100, 30) == 70 && MakingMath.Short(10, 30) == 0, "what the building lacks beyond the stock");
+
+        // Staples by planning ahead's stock targets (the Making page and the Ahead section agree).
+        // The reference colony: 27.3 nutrition of meals a day, two days kept: 54.6; simple meals at 0.9 each.
+        C(MakingMath.StapleCount(54.6f, 0f, 27.3f, 0.9f) == 65, "no other meal bill: the whole target in meals, rounded up to fives (61 to 65)");
+        C(MakingMath.StapleCount(54.6f, 45f, 27.3f, 0.9f) == 35, "other bills keep 45: still a day's use of this meal (31 to 35)");
+        C(MakingMath.StapleCount(54.6f, AheadMath.Far, 27.3f, 0.9f) == 35, "a forever bill keeps it all: a day's use of this one");
+        C(MakingMath.StapleCount(12f, 4f, 0.6f, 1f) == 10, "medicine by pieces: the target less what the other bills keep (8 to 10)");
+        C(MakingMath.StapleCount(0f, 0f, 0f, 0.9f) == -1 && MakingMath.StapleCount(10f, 0f, 1f, 0f) == -1, "no target or no unit: the usual count stands");
+        C(MakingMath.StapleCount(54.6f, 0f, 27.3f, 0.9f) > MakingMath.TargetFor("meals", 1), "a large colony's meals aren't held to the old small cap");
         C(MakingMath.WantedRank("weapons", true) < MakingMath.WantedRank("meals", false), "what is waited on comes before the staples");
         return n;
     }

@@ -220,6 +220,11 @@ namespace ColonyCouncil
         /// lines tagged [otherdead], and the news calls it ended rather than come to nothing.
         /// </summary>
         public bool otherDeathEnds;
+        /// <summary>
+        /// The same colonist may have it again after it came to nothing (getting clean after a slip): otherwise a story
+        /// is had once in a life.
+        /// </summary>
+        public bool again;
 
         // ---- What the workers look for (each worker reads the ones it needs) ----
 

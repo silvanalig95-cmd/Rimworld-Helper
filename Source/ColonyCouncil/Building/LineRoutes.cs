@@ -342,10 +342,10 @@ namespace ColonyCouncil
         /// Plans the new lines of every net of this kind as blueprints, and leaves the old ones to the tracker: they come up
         /// once the new ones stand. A plan that only takes up lines nothing needs gives its orders at once.
         /// </summary>
-        public static void Lay(Map map, string kind)
+        public static bool Lay(Map map, string kind)
         {
             var comp = CouncilGameComponent.Instance;
-            if (map == null || comp == null) return;
+            if (map == null || comp == null) return false;
             int placed = 0, up = 0;
             foreach (var p in Plans(map, true).Where(x => x.kind == kind && x.inSightAfter < x.inSightBefore))
             {
@@ -366,6 +366,7 @@ namespace ColonyCouncil
                 Messages.Message("CC_Relay_Placed".Translate(placed.Named("N"), KindLabel(kind).Named("KIND"), up.Named("UP")).Resolve(), MessageTypeDefOf.TaskCompletion, false);
             caches.Remove(map.uniqueID);
             BaseReview.For(map, true);
+            return placed > 0 || up > 0;
         }
 
         /// <summary>For the tracker: of the old lines, the ones the net can do without as it stands now.</summary>
@@ -421,7 +422,11 @@ namespace ColonyCouncil
                         title = "CC_Base_Relaying".Translate(kindLabel.Named("KIND"), built.Named("BUILT"), total.Named("ALL")).Resolve(),
                         detail = "CC_Base_Relaying_Detail".Translate().Resolve(),
                         look = all.SelectMany(x => x.lay).FirstOrDefault(), fixLabel = "CC_Base_Relay_Off".Translate().Resolve(), fixTip = "CC_Base_Relay_OffTip".Translate().Resolve(),
-                        fix = () => comp.relays.CallOff(map, kind),
+                        fix = () =>
+                        {
+                            comp.relays.CallOff(map, kind);
+                            return new SuggestDone { map = map };
+                        },
                         cells = all.SelectMany(x => x.lay).ToList(), other = all.SelectMany(x => x.takeUp).ToList(),
                         mapLabel = "CC_Base_Map_Relay".Translate().Resolve()
                     });
@@ -441,10 +446,26 @@ namespace ColonyCouncil
                     key = "relay:" + kind, group = "works", score = BaseReviewMath.TidyScore(before - after, 0.01f, 0.25f),
                     title = "CC_Base_Relay".Translate((before - after).Named("N"), kindLabel.Named("KIND")).Resolve(),
                     detail = "CC_Base_Relay_Detail".Translate(lay.Count.Named("LAY"), up.Count.Named("UP"), before.Named("BEFORE"), after.Named("AFTER"), kindLabel.Named("KIND")).Resolve(),
-                    look = lay.Count > 0 ? lay[0] : up.FirstOrDefault(), fixLabel = "CC_Base_Relay_Fix".Translate().Resolve(), fixTip = "CC_Base_Relay_FixTip".Translate().Resolve(), fix = () => Lay(map, kind),
+                    look = lay.Count > 0 ? lay[0] : up.FirstOrDefault(), fixLabel = "CC_Base_Relay_Fix".Translate().Resolve(), fixTip = "CC_Base_Relay_FixTip".Translate().Resolve(), fix = () => Lay(map, kind) ? new SuggestDone { map = map, undo = new UndoRelay { kind = kind } } : null,
                     cells = lay, other = up, mapLabel = "CC_Base_Map_Relay".Translate().Resolve()
                 });
             }
+        }
+    }
+
+    /// <summary>A laying of lines again called off: the new lines not yet built cancelled, the old ones left standing.</summary>
+    public class UndoRelay : SuggestUndo
+    {
+        public string kind;
+
+        public override bool Possible(Map map) =>
+            map != null && (CouncilGameComponent.Instance?.relays?.list.Any(r => r.mapId == map.uniqueID && r.kind == kind) ?? false);
+
+        public override void Undo(Map map) => CouncilGameComponent.Instance?.relays?.CallOff(map, kind);
+
+        public override void ExposeData()
+        {
+            Scribe_Values.Look(ref kind, "kind");
         }
     }
 

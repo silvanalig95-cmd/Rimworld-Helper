@@ -125,6 +125,10 @@ namespace ColonyCouncil
             // Long walks: out on a map away from home, or out hunting. Errands around the home don't wear out feet.
             if (moving && (!map.IsPlayerHome || work == "Hunting")) mask |= Bit(AilmentTrigger.Walking);
             if (job != null && Chopping(job)) mask |= Bit(AilmentTrigger.Chopping);
+            if (job != null && StoneDust(p, job, map)) mask |= Bit(AilmentTrigger.StoneDust);
+            if (job != null && (job.def == JobDefOf.Clean || job.def == JobDefOf.Sow)) mask |= Bit(AilmentTrigger.Kneeling);
+            if (work == "Handling") mask |= Bit(AilmentTrigger.Handling);
+            if (job != null && (BeeThing(job.targetA.Thing) || BeeThing(job.targetB.Thing))) mask |= Bit(AilmentTrigger.Beekeeping);
             if (moving && WetGround(p.Position, map)) mask |= Bit(AilmentTrigger.WetFeet);
             if (outdoors)
             {
@@ -223,6 +227,43 @@ namespace ColonyCouncil
         {
             if (!(job.targetA.Thing is Plant plant) || plant.def.plant == null || !plant.def.plant.IsTree) return false;
             return job.def == JobDefOf.CutPlant || job.def == JobDefOf.CutPlantDesignated || job.def == JobDefOf.Harvest || job.def == JobDefOf.HarvestDesignated;
+        }
+
+        /// <summary>
+        /// Stone dust: mining rock with a mountain overhead (a thick rock roof over the cell being dug), or cutting stone
+        /// blocks at a bench in a closed room of 60 cells or fewer. A big or open workshop lets the dust settle.
+        /// </summary>
+        private static bool StoneDust(Pawn p, Verse.AI.Job job, Map map)
+        {
+            if (job.def == JobDefOf.Mine)
+            {
+                var c = job.targetA.Cell;
+                if (!c.IsValid || !c.InBounds(map)) return false;
+                var roof = map.roofGrid.RoofAt(c);
+                return roof != null && roof.isThickRoof;
+            }
+            if (job.def != JobDefOf.DoBill) return false;
+            ThingDef made;
+            try
+            {
+                made = job.bill?.recipe?.ProducedThingDef;
+            }
+            catch
+            {
+                return false;
+            }
+            if (made == null || !made.IsWithinCategory(ThingCategoryDefOf.StoneBlocks)) return false;
+            var room = p.GetRoom();
+            return room != null && room.ProperRoom && !room.PsychologicallyOutdoors && room.CellCount <= 60;
+        }
+
+        /// <summary>An Alpha Bees beehouse or bee chamber, by name (RB_Beehouse and its kinds, the brood and hybridization chambers).</summary>
+        private static bool BeeThing(Thing t)
+        {
+            string n = t?.def?.defName;
+            if (n == null || !n.StartsWith("RB_", StringComparison.Ordinal)) return false;
+            return n.IndexOf("Beehouse", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("BroodChamber", StringComparison.Ordinal) >= 0
+                   || n.IndexOf("HybridizationChamber", StringComparison.Ordinal) >= 0;
         }
 
         /// <summary>Water, marsh or mud underfoot (not sand or snow, which are only hard going).</summary>

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorld;
@@ -118,6 +119,23 @@ namespace ColonyCouncil
             if (map == null || !SaleReady) return list;
             foreach (var b in map.listerBuildings.allBuildingsColonist)
                 if (stallType.IsInstanceOfType(b) && b.Spawned && IsColonyStall(b) && OpenForSale(b)) list.Add(b);
+            return list;
+        }
+
+        /// <summary>The colony's stalls on the map with something for sale on the counter, open now or not (market days ask for these).</summary>
+        public static List<Thing> StockedStalls(Map map)
+        {
+            var list = new List<Thing>();
+            if (map == null || !SaleReady) return list;
+            try
+            {
+                foreach (var b in map.listerBuildings.allBuildingsColonist)
+                    if (stallType.IsInstanceOfType(b) && b.Spawned && IsColonyStall(b) && Stock(b).Any(t => ForSale(b, t))) list.Add(b);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("RimMarket stocked stalls", e);
+            }
             return list;
         }
 

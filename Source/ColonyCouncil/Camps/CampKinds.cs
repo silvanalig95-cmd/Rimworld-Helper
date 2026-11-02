@@ -322,7 +322,8 @@ namespace ColonyCouncil
                     return true;
                 }
             }
-            return false;
+            // The land kinds' good turns: some of the fishers' catch, a piece of the salvagers' haul (CampKindsLand.cs).
+            return LandHelp(h);
         }
     }
 }

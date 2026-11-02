@@ -31,6 +31,142 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.51.0</version>
+        <date>2 November 2026</date>
+        <title>The same rules for all the council's advice</title>
+        <points>
+          <li>Every piece of advice, base finding, plan step, defense note and automation now has "Not this", and what you set aside stays gone until you bring it back from "Set aside".</li>
+          <li>What a button does on the map is kept under "Done lately" with Undo, and a day or two later the council says whether it worked and, if not, what is in the way.</li>
+          <li>The advisor's seats, freezer, beds and hospital advice uses the Plan page's numbers, counting guests and new joiners, warns before you run short, and each room is proposed only once.</li>
+          <li>The base review measures rooms far apart and the walk to meals by how people really walk, and offers new fixes for a freezer airlock, catch-all stockpiles and goods spread over many rooms.</li>
+          <li>Meal, medicine and feed bills on the Making page go by the stock targets above them instead of fixed caps.</li>
+          <li>Each automation's next action can also be done by hand from the Making page, and undoing one it did stops it coming back.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.50.2</version>
+        <date>2 November 2026</date>
+        <title>Callers with a purpose</title>
+        <points>
+          <li>An art collector may come to see the colony's finest sculptures and offer for one by its title; sold, it is carried out to them, and a commission brings them back for the piece your sculptor makes.</li>
+          <li>A neighbouring couple may ask to marry at the colony, with their families at the wedding feast and a night under your roof or round their own fire.</li>
+          <li>After a fight, a burial order may offer to dig graves for the raiders outside the wall, or take the dead away on their pack beast with the raiders' gear.</li>
+          <li>A prisoner's family may come with silver for their freedom, or ask to talk with them at the door of their cell.</li>
+          <li>A travelling barber may set a stool by the gate and give your people new cuts in the styles they like.</li>
+          <li>A drovers' animal doctor may tend your hurt and sick animals where they stand and work one through a step of its training.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.50.1</version>
+        <date>2 November 2026</date>
+        <title>Wishes for a grave, a crop from home and a lamp</title>
+        <points>
+          <li>A named or bonded animal that dies can be given a grave: its person digs one near the colony and carries it in.</li>
+          <li>In spring, someone may miss a crop from home that the colony could sow; promised, a small field of it is laid out.</li>
+          <li>Before and through a real winter, growers and anyone short of fresh food can ask for a sun lamp over an indoor field.</li>
+          <li>Working a bench in the dark brings a wish for a lamp beside it, and coming in soaked brings a wish to roof the way from bed to table.</li>
+          <li>Two new personal stories: getting clean of a drug with a friend's help, and the first days on a new leg.</li>
+          <li>Colonists who have coffee or tea together share a word over their cups, and a new life goal counts the books someone reads.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.50.0</version>
+        <date>2 November 2026</date>
+        <title>Camps that come for the land</title>
+        <points>
+          <li>Fishers camp by water that holds fish and fish it with the game's own catch, and the water's fish stock goes down by it. Their catch can be bought at the gate.</li>
+          <li>A scrap crew comes for the ancient ruins on the colony's land and takes them apart piece by piece. The colony can ask for half the haul, pay to clear the nearest ruin, or claim the ruins.</li>
+          <li>When the growers can't bring in the harvest before the season ends, harvest hands offer to reap it for a sheaf in ten, silver or a hot supper.</li>
+          <li>Stranded spacers camp by their wrecked hull, trade spacer parts and medicine for components, plasteel or steel, and leave the hull behind as salvage.</li>
+          <li>With Anomaly, quiet scholars keep a night watch on the woken monolith, share their notes with the colony's study and ask for beds in a storm.</li>
+          <li>A travelling beast show brings beasts from far places. Buy one, sell them one of the colony's, or let the children help feed them.</li>
+          <li>With Odyssey, the run: in spring or fall the fish come up the water in numbers, and the colony's water stays full of fish until it thins.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.49.3</version>
+        <date>2 November 2026</date>
+        <title>Colony news as a letter every day again</title>
+        <points>
+          <li>The evening's Colony news comes as a letter every day again, as it did before 0.44.1; a quiet day no longer turns it into a short message at the top of the screen.</li>
+          <li>The setting "Quiet days in one short message" is gone with it.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.49.2</version>
+        <date>2 November 2026</date>
+        <title>Pilgrims, kin and old friends</title>
+        <points>
+          <li>With Ideology, pilgrims of your faith walk to the colony to pray before its relic, inside the reliquary or at the gate, as you allow.</li>
+          <li>With Royalty, meditators ask to sit at your anima tree, and their meditation feeds its grass as a colonist's does.</li>
+          <li>With Biotech, people of a colonist's own xenotype come to meet them, for an evening at the fire and a lesson in what their genes favour.</li>
+          <li>With Odyssey, when your gravship lands near a friendly settlement its folk walk out to see it, and you can show them round or trade at the gate.</li>
+          <li>A book swapper offers one of their books for one of yours, and makes the swap at your shelf by their own hand.</li>
+          <li>The regulars you know best come back married, with a child taken in on the road, or with the apprentice who will carry on their trade, and when one of them dies of old age or a long illness, word reaches the friend they made here.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.49.1</version>
+        <date>2 November 2026</date>
+        <title>New ailments with real causes</title>
+        <points>
+          <li>Gout can come to colonists of 45 and over who eat and drink well, half as often when there have been fruit or vegetables lately.</li>
+          <li>Mining under the mountain or cutting stone blocks in a small closed room can bring a dry stone-dust cough, and a day on the knees cleaning or sowing can leave sore knees.</li>
+          <li>Raw meat or fish can bring worms that make someone hungry all the time, until a doctor's dose clears them or the body throws them off.</li>
+          <li>Handling animals can bring an itchy ring of ringworm that passes on in dirty bedrooms, smoking can bring a morning cough, and with Alpha Bees the hives can sting.</li>
+          <li>The commonest small ailments, such as lice, damp and smoke coughs, sleepless nights and heartburn, come a little less often, so the colony is not sick more overall.</li>
+          <li>A butcher's table where people eat or sleep, and a cold draught from a door straight outside by the bed, are now small nuisances with a plain fix.</li>
+          <li>With a coffee or tea mod, an early riser can pick up a new habit, making the first pot, and take a real cup from the stores to a friend in the morning.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.49.0</version>
+        <date>2 November 2026</date>
+        <title>Market days, a court and a seam of ore</title>
+        <points>
+          <li>With RimMarket, market days can come: for a fortnight buyers from a friendly people walk up to your stocked stalls and buy off the counters, and traders may ask for a pitch.</li>
+          <li>With a working comms console the orbital lanes can get busy: more orbital traders, debris from the lanes, and an agent who walks up from their shuttle to buy one thing you have.</li>
+          <li>A circuit judge may hold court in a nearby friendly town: hand a prisoner to the court's guards for a reward, bring a grievance against another people, or give the judge a bed on the way.</li>
+          <li>After a hunt a young animal may stay by the kill, and at dusk a wild one of your own livestock kind may come down to the pens: tame it, take it in, watch it or send it off.</li>
+          <li>A miner under the mountain may break into a real pocket of ore with a seam beyond it, and a visitor may sit down across your chess or poker table to play your best.</li>
+          <li>Neighbours may commission a fine coat, bow, blade or gun: a bill goes up at the right bench, their rider collects the first piece good enough, and a masterwork brings them back.</li>
+          <li>Your mechs, slaves and the entities on your holding platforms now have small moments with your people, and what is said to a slave follows your colonists' own beliefs.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.48.0</version>
+        <date>2 November 2026</date>
+        <title>Planning ahead: building and growing the base</title>
+        <points>
+          <li>The Plan page opens with Building ahead: beds, cold storage, dining seats, hospital beds, workshop room and store space, each set against what the colony needs, with the reason in numbers.</li>
+          <li>The next one or two rooms to build are suggested before you run short, beside the rooms they belong with. A click places them as blueprints, and Undo takes them away again.</li>
+          <li>Cold storage is sized by the nutrition your own food takes per place and allows for the days without growing ahead; fridges from RimFridge count.</li>
+          <li>A room being built is followed stage by stage: its walls first, a stockpile for its materials beside the site, and what holds it up, with a fix where there is one.</li>
+          <li>Each new room keeps one side free to grow into. It shows while you place things, and a blueprint put there gets a warning you can act on or set aside.</li>
+          <li>Never more building is suggested than your builders can do in a couple of days, and nothing is placed until you click Do it.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.47.1</version>
+        <date>2 November 2026</date>
+        <title>The stray beast is really there</title>
+        <points>
+          <li>A neighbor's stray beast is really there when the letter comes, standing in the barn, the pen or about the colony, and the letter says where.</li>
+          <li>Give it back, with or without a finder's fee, and their drover walks in with the thanks or the fee and leads it home; keep it and that same beast becomes the colony's.</li>
+          <li>World situation answers can end in more than one way, picked to fit the moment as dilemmas and events are.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.47.0</version>
         <date>2 November 2026</date>
         <title>Every answer says what it does</title>

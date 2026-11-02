@@ -33,6 +33,7 @@ namespace ColonyCouncil
                 case "hunger":
                 case "crowded":
                 case "moved":
+                case "declined":
                 case "empty":
                     return true;
                 default:

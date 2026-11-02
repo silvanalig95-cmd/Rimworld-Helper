@@ -1,12 +1,20 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace ColonyCouncil
 {
-    /// <summary>Colony → Priorities: what the advisor thinks the colony needs, most urgent first, as cards.</summary>
+    /// <summary>
+    /// Colony → Priorities: what the advisor thinks the colony needs, most urgent first, as cards. Each card says why in
+    /// the colony's numbers and offers what helps: Show, the room planner, its own action as a step of the shared
+    /// suggestion core (kept with Undo and checked later), the page that deals with it, the Almanac, and "Not this" (set
+    /// aside until brought back, here and on the Plan page alike). Under the cards: the steps done lately with Undo and
+    /// whether each worked, and what was set aside. Every button shows its whole label and says what it does.
+    /// </summary>
     public static class PrioritiesPanel
     {
         private static readonly Color CriticalColor = new Color(0.9f, 0.3f, 0.25f);
@@ -14,21 +22,29 @@ namespace ColonyCouncil
         private static readonly Color MediumColor = new Color(0.9f, 0.85f, 0.35f);
         private static readonly Color LowColor = new Color(0.65f, 0.65f, 0.65f);
         private static readonly Color IdeaColor = new Color(0.45f, 0.7f, 0.95f);
+        private static readonly Folds folds = new Folds("aside");
         private static Vector2 scroll;
         private static float height = 1000f;
 
         private const float LeftW = 124f;
-        private const float ButtonsW = 140f;
+        private const float LeastButtonsW = 140f;
         private const float ThingW = 34f;
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
 
-        /// <summary>A card's text and its measurements, kept until the width changes or the advisor refreshes.</summary>
+        /// <summary>One button of a card: its whole label, what it does on the map, and the doing.</summary>
+        private class Button
+        {
+            public string label, tip;
+            public Action act;
+        }
+
+        /// <summary>A card's text, buttons and measurements, kept until the width changes or the advisor refreshes.</summary>
         private class Layout
         {
-            public float width = -1f, at, titleH, detailH, tipH, height;
+            public float width = -1f, at, titleH, detailH, tipH, height, buttonsW;
             public string tip;
-            public int buttons;
+            public List<Button> buttons = new List<Button>();
         }
 
         private static readonly Dictionary<AdvisorSignal, Layout> layouts = new Dictionary<AdvisorSignal, Layout>();
@@ -54,11 +70,13 @@ namespace ColonyCouncil
                 if (signals[i].Level >= AdviceLevel.High) urgent++;
             string stat = urgent > 0 ? "CC_UI_Stat_Urgent".Translate(urgent).Resolve() : null;
             float top = UiKit.PageHeader(rect, Icons.Priorities, "CC_Priorities_Header".Translate(), era, stat, HighColor, 160f);
-            if (Widgets.ButtonText(new Rect(rect.xMax - 150f, rect.y + 6f, 150f, 30f), "CC_Refresh".Translate()))
+            var refresh = new Rect(rect.xMax - 150f, rect.y + 6f, 150f, 30f);
+            if (Widgets.ButtonText(refresh, "CC_Refresh".Translate()))
             {
                 mc?.Refresh(true);
                 layouts.Clear();
             }
+            TooltipHandler.TipRegion(refresh, "CC_Same_RefreshTip".Translate());
 
             var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
             var view = new Rect(0f, 0f, outRect.width - 18f, height);
@@ -73,8 +91,71 @@ namespace ColonyCouncil
                 if (y + layout.height >= scroll.y && y <= scroll.y + outRect.height) DrawSignal(s, layout, 0f, y, view.width, map);
                 y += layout.height + 8f;
             }
+            // The steps done from these cards lately, with Undo and whether each worked; and what was set aside.
+            y += AheadPanel.Done(0f, y + 4f, view.width, map, AdvisorSteps.Source) + 4f;
+            y += AheadPanel.Aside(0f, y, view.width, AdvisorSteps.Source, folds) + 8f;
             height = Mathf.Max(y + 10f, 100f);
             Widgets.EndScrollView();
+        }
+
+        /// <summary>What a card offers, the main thing first: each with its whole label and what it does on the map.</summary>
+        private static List<Button> ButtonsOf(AdvisorSignal s, Map map)
+        {
+            var list = new List<Button>();
+            if (s.look != null && s.look.IsValid)
+                list.Add(new Button { label = "CC_Show".Translate(), tip = "CC_Plan_ShowTip".Translate(), act = () => MainTabWindow_Council.Jump(s.look) });
+            // A room building ahead reckons: its step placed from here as from the Plan page (the same step, the same Undo).
+            if (s.buildKind != null)
+            {
+                var step = BuildAhead.Open(map).FirstOrDefault(x => x.key == GrowthMath.RoomKey(s.buildKind));
+                if (step?.apply != null)
+                    list.Add(new Button { label = step.doLabel ?? "CC_Ahead_DoIt".Translate().Resolve(), tip = step.title + "\n\n" + AheadPanel.DoTip(step), act = () => AheadPanel.DoStep(step) });
+            }
+            if (s.template != null && map != null && s.template.UnavailableReason(map) == null)
+                list.Add(new Button
+                {
+                    label = (s.upgrade ? "CC_UpgradeIt" : "CC_PlanIt").Translate(), tip = (s.upgrade ? "CC_Plan_UpgradeItTip" : "CC_Plan_PlanItTip").Translate(s.template.label),
+                    act = () =>
+                    {
+                        if (s.upgrade) Designator_PlanRoom.Begin(s.template, false, true);
+                        else MainTabWindow_Council.StartPlanning(s.template, true);
+                    }
+                });
+            // Something the advice can do now: orders on the map go through the shared core (Undo, a check later); opening a letter, a quest or a tab just opens it.
+            if (s.act != null && !s.actLabel.NullOrEmpty())
+            {
+                if (AdvisorSteps.ActIsStep(s))
+                {
+                    var step = AdvisorSteps.StepOf(s, map);
+                    list.Add(new Button { label = s.actLabel, tip = AheadPanel.DoTip(step), act = () => AheadPanel.DoStep(step) });
+                }
+                else
+                    list.Add(new Button
+                    {
+                        label = s.actLabel, tip = s.actTip.NullOrEmpty() ? s.actLabel : s.actTip, act = () =>
+                        {
+                            try
+                            {
+                                s.act();
+                            }
+                            catch (Exception e)
+                            {
+                                CouncilLog.ErrorOnce("advisor action " + s.def?.defName, e);
+                            }
+                        }
+                    });
+            }
+            if (MainTabWindow_Council.IsPage(s.page))
+            {
+                string page = MainTabWindow_Council.TabName(s.page);
+                list.Add(new Button { label = "CC_Mood_GoTo".Translate(page).Resolve(), tip = "CC_Plan_GoToTip".Translate(page), act = () => MainTabWindow_Council.OpenTab(s.page) });
+            }
+            var article = s.article ?? s.def.article;
+            if (article != null)
+                list.Add(new Button { label = "CC_ReadMore".Translate(), tip = "CC_Same_ReadMoreTip".Translate(article.label.CapitalizeFirst()), act = () => MainTabWindow_Council.OpenAlmanac(article) });
+            string key = AdvisorSteps.KeyOf(s), title = s.title;
+            list.Add(new Button { label = "CC_Ahead_NotThis".Translate(), tip = "CC_Ahead_NotThisTip".Translate(), act = () => SuggestTracker.Instance?.Decline(key, title) });
+            return list;
         }
 
         private static Layout LayoutOf(AdvisorSignal s, float width, Map map)
@@ -82,25 +163,22 @@ namespace ColonyCouncil
             float now = Time.realtimeSinceStartup;
             if (layouts.TryGetValue(s, out var l) && Mathf.Abs(l.width - width) < 0.5f && now - l.at < 2f) return l;
             l = new Layout { width = width, at = now, tip = s.Tip };
-            float textW = TextWidth(s, width);
+            l.buttons = ButtonsOf(s, map);
+            l.buttonsW = AheadPanel.ButtonsWidth(l.buttons.Select(b => b.label), LeastButtonsW - 12f) + 12f;
+            float textW = TextWidth(s, width, l.buttonsW);
             Text.Font = GameFont.Small;
             l.titleH = Text.CalcHeight(s.title ?? "", textW);
             l.detailH = Text.CalcHeight(s.detail ?? "", textW);
             Text.Font = GameFont.Tiny;
             l.tipH = l.tip.NullOrEmpty() ? 0f : Text.CalcHeight("CC_WhyItMatters".Translate() + ": " + l.tip, textW);
             Text.Font = GameFont.Small;
-            if (s.look != null && s.look.IsValid) l.buttons++;
-            if (s.template != null && map != null && s.template.UnavailableReason(map) == null) l.buttons++;
-            if ((s.article ?? s.def.article) != null) l.buttons++;
-            if (s.act != null && !s.actLabel.NullOrEmpty()) l.buttons++;
-            if (MainTabWindow_Council.IsPage(s.page)) l.buttons++;
             // Tall enough for the text, the level badge, and the column of buttons.
-            l.height = Mathf.Max(68f, l.titleH + l.detailH + l.tipH + 16f, l.buttons * 30f + 10f);
+            l.height = Mathf.Max(68f, l.titleH + l.detailH + l.tipH + 16f, l.buttons.Count * 30f + 10f);
             layouts[s] = l;
             return l;
         }
 
-        private static float TextWidth(AdvisorSignal s, float width) => Mathf.Max(60f, width - LeftW - ButtonsW - (s.suggestThing != null ? ThingW : 0f));
+        private static float TextWidth(AdvisorSignal s, float width, float buttonsW) => Mathf.Max(60f, width - LeftW - buttonsW - (s.suggestThing != null ? ThingW : 0f));
 
         private static void DrawSignal(AdvisorSignal s, Layout l, float x, float y, float width, Map map)
         {
@@ -114,7 +192,7 @@ namespace ColonyCouncil
             UiKit.LabelFit(new Rect(x + 12f, y + 32f, LeftW - 16f, 18f), ("CC_Cat_" + s.def.category).Translate(), UiKit.Faint, GameFont.Tiny);
 
             float textX = x + LeftW;
-            float textW = TextWidth(s, width);
+            float textW = TextWidth(s, width, l.buttonsW);
             float cy = y + 8f;
             GUI.color = color;
             Widgets.Label(new Rect(textX, cy, textW, l.titleH), s.title);
@@ -139,51 +217,22 @@ namespace ColonyCouncil
                 TooltipHandler.TipRegion(iconRect, s.suggestThing.LabelCap);
             }
 
-            float bx = x + width - ButtonsW + 4f;
-            float bw = ButtonsW - 12f;
+            // The buttons, each its whole label wide, each saying what it does.
+            float bx = x + width - l.buttonsW + 4f;
+            float bw = l.buttonsW - 12f;
             float by = y + 6f;
-            if (s.look != null && s.look.IsValid)
+            foreach (var b in l.buttons)
             {
-                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_ShowTip".Translate());
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_Show".Translate())) MainTabWindow_Council.Jump(s.look);
-                by += 30f;
-            }
-            if (s.template != null && map != null && s.template.UnavailableReason(map) == null)
-            {
-                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), (s.upgrade ? "CC_Plan_UpgradeItTip" : "CC_Plan_PlanItTip").Translate(s.template.label));
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), (s.upgrade ? "CC_UpgradeIt" : "CC_PlanIt").Translate()))
+                var r = new Rect(bx, by, bw, 26f);
+                if (!b.tip.NullOrEmpty()) TooltipHandler.TipRegion(r, b.tip);
+                if (Widgets.ButtonText(r, b.label))
                 {
-                    if (s.upgrade) Designator_PlanRoom.Begin(s.template, false, true);
-                    else MainTabWindow_Council.StartPlanning(s.template, true);
+                    SoundDefOf.Click.PlayOneShotOnCamera();
+                    b.act?.Invoke();
+                    layouts.Clear();
                 }
                 by += 30f;
             }
-            // Something the advice can do now (plan the lamps, open the letter), and the council page that deals with it.
-            if (s.act != null && !s.actLabel.NullOrEmpty())
-            {
-                var actRect = new Rect(bx, by, bw, 26f);
-                if (!s.actTip.NullOrEmpty()) TooltipHandler.TipRegion(actRect, s.actTip);
-                if (Widgets.ButtonText(actRect, UiKit.Fit(s.actLabel, bw - 8f)))
-                {
-                    try
-                    {
-                        s.act();
-                    }
-                    catch (System.Exception e)
-                    {
-                        CouncilLog.ErrorOnce("advisor action " + s.def?.defName, e);
-                    }
-                }
-                by += 30f;
-            }
-            if (MainTabWindow_Council.IsPage(s.page))
-            {
-                TooltipHandler.TipRegion(new Rect(bx, by, bw, 26f), "CC_Plan_GoToTip".Translate(MainTabWindow_Council.TabName(s.page)));
-                if (Widgets.ButtonText(new Rect(bx, by, bw, 26f), UiKit.Fit("CC_Mood_GoTo".Translate(MainTabWindow_Council.TabName(s.page)).Resolve(), bw - 8f))) MainTabWindow_Council.OpenTab(s.page);
-                by += 30f;
-            }
-            var article = s.article ?? s.def.article;
-            if (article != null && Widgets.ButtonText(new Rect(bx, by, bw, 26f), "CC_ReadMore".Translate())) MainTabWindow_Council.OpenAlmanac(article);
         }
 
         private static Color LevelColor(AdviceLevel level)

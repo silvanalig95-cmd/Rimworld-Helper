@@ -18,6 +18,33 @@
     </thinkNode>
   </DutyDef>
 
+  <!--
+    A neighbors' stray held at the colony until their drover comes for it or the colony keeps it
+    (Source/ColonyCouncil/Happenings/StrayBeast.cs): it eats when hungry and rests when tired close to where it was
+    found, and otherwise wanders a few steps, keeping to the barn it stands in.
+  -->
+  <DutyDef>
+    <defName>Rimfolk_StrayHold</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ThinkNode_ForbidOutsideFlagRadius">
+          <maxDistToSquadFlag>6</maxDistToSquadFlag>
+          <subNodes>
+            <li Class="JobGiver_GetFood">
+              <minCategory>Hungry</minCategory>
+            </li>
+            <li Class="JobGiver_GetRest">
+              <minCategory>Tired</minCategory>
+            </li>
+          </subNodes>
+        </li>
+        <li Class="ColonyCouncil.JobGiver_StrayWander">
+          <wanderRadius>3</wanderRadius>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
   <JobDef>
     <defName>Council_CourierDrop</defName>
     <driverClass>ColonyCouncil.JobDriver_CourierDrop</driverClass>

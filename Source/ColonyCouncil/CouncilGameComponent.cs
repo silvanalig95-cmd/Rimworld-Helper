@@ -94,6 +94,8 @@ namespace ColonyCouncil
         public ColonyUse use = new ColonyUse();
         /// <summary>The council's suggestions: what was set aside with "Not this", and the steps done with their undo and check (Building/Suggest/).</summary>
         public SuggestTracker suggest = new SuggestTracker();
+        /// <summary>Building ahead: the rooms placed and followed in stages, and the most laid up at once lately (Building/BuildProjects.cs).</summary>
+        public BuildAheadTracker buildAhead = new BuildAheadTracker();
         /// <summary>The last year since the landing a year's letter was written for (World/YearLetter.cs).</summary>
         public int yearLetterLast;
         public EpithetTracker epithets = new EpithetTracker();
@@ -252,6 +254,7 @@ namespace ColonyCouncil
             Scribe_Deep.Look(ref relays, "relays");
             Scribe_Deep.Look(ref use, "use");
             Scribe_Deep.Look(ref suggest, "suggest");
+            Scribe_Deep.Look(ref buildAhead, "buildAhead");
             Scribe_Values.Look(ref yearLetterLast, "yearLetterLast");
             Scribe_Deep.Look(ref epithets, "epithets");
             Scribe_Deep.Look(ref journals, "journals");
@@ -335,6 +338,7 @@ namespace ColonyCouncil
                 if (relays == null) relays = new LineRelayTracker();
                 use ??= new ColonyUse();
                 suggest ??= new SuggestTracker();
+                buildAhead ??= new BuildAheadTracker();
                 if (epithets == null) epithets = new EpithetTracker();
                 if (journals == null) journals = new JournalTracker();
                 if (offices == null) offices = new OfficeTracker();
@@ -488,6 +492,8 @@ namespace ColonyCouncil
             Safe("automations", () => automations.Hourly(this));
             Safe("suggestions", Ahead.Hourly);
             Safe("lines under the walls", () => relays.Hourly(this));
+            // Books being read, benches worked in the dark, coming in soaked (Lives/LifeNew.cs).
+            Safe("life moments", () => LifeNewTracker.Hourly(this));
         }
 
         private void HourlyEvents()

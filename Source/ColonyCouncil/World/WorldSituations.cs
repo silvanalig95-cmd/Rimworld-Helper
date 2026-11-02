@@ -527,7 +527,6 @@ namespace ColonyCouncil
                         s.pendingTick = Now + Mathf.RoundToInt(o.endDays.RandomInRange * GenDate.TicksPerDay);
                     }
                 }
-                string outcome = o.outcome;
                 if (risk)
                 {
                     if (o.riskEffects != null)
@@ -535,8 +534,9 @@ namespace ColonyCouncil
                             if (!byDefault || !e.onlyIfChosen) HappeningTracker.Safe(e, ctx);
                     if (o.riskFlags != null) foreach (var f in o.riskFlags) s.Set(f);
                     if (!o.riskNext.NullOrEmpty()) Call(s, o.riskNext, o.nextDays.RandomInRange);
-                    if (!o.riskOutcome.NullOrEmpty()) outcome = o.riskOutcome;
                 }
+                // The risk's words when it came true, else the plain ones, picked among their variants by the situation's tags.
+                string outcome = DilemmaChoices.Outcome(o.outcome, o.outcomes, o.riskOutcome, o.riskOutcomes, risk, worker.Tags(s));
                 outcome = worker.Chosen(s, ctx, beat, i, risk, byDefault, outcome);
                 comp?.character.Shift(byDefault ? o.ways?.Scaled(0.5f) : o.ways, "CC_Ways_Why_Event".Translate(s.def.label, ctx.Format(o.label)).Resolve());
                 Setbacks.Notify_Answer(ctx, o.ways, byDefault, risk, s.def.label, ctx.Format(o.label));

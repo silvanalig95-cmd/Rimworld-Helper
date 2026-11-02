@@ -5,9 +5,10 @@
     More ways for the neighbors' and the hard times' events (Rimfolk_Events_Neighbors.xml, Rimfolk_Events_Hardships.xml)
     and the allies' food (Rimfolk_Events_Allies.xml) to read, merged in at startup (LetterVariantsDef). These events
     are told from data (HappeningWorker_Setting), whose tags the lines can ask for: the land ([cold], [hot], [dry],
-    [wet], [river], [coast], [forest], [hills], [tundra], [desert]), [children], [grave], and how worn A is ([strained],
-    [worn]); the allies' [starving]. The answers keep to what their effects set going on the map: a wake, a day alone,
-    a tree planted, a herd at the river, a watch on the pens or the walls, a crew felling trees.
+    [wet], [river], [coast], [forest], [hills], [tundra], [desert]), [children], [grave], how worn A is ([strained],
+    [worn]), where the neighbors' stray stands ([barn], [pen], [yard]: it is really there); the allies' [starving]. The
+    answers keep to what their effects set going on the map: a wake, a day alone, a tree planted, a herd at the river,
+    a watch on the pens or the walls, a crew felling trees.
   -->
 
   <!-- ===================== Word of a death ===================== -->
@@ -184,8 +185,8 @@
     <defName>Council_Var_Evt_StrayBeast</defName>
     <incident>Council_Evt_StrayBeast</incident>
     <texts>
-      <li>[summer] A beast with {PLACE}'s brand on its flank walked in out of the heat yesterday, drank the trough dry and lay down in the colony's shade as if it had paid for it. {A_nameDef} has been feeding it.\n\n{FACTION} will be missing a good animal. They may not know where to look.</li>
-      <li>[river] The river brought it: a draft beast of {FACTION}'s, {PLACE}'s brand on its flank, washed down in the night and dragged out on the colony's bank, cold and furious. {A_nameDef} got it into the barn to dry off.\n\n{FACTION} will want it back, if they know where it went.</li>
+      <li>[summer,barn] A beast with {PLACE}'s brand on its flank walked in out of the heat yesterday and lay down in the cool of the colony's barn as if it had paid for it. {A_nameDef} has been feeding it.\n\n{FACTION} will be missing a good animal. They may not know where to look.</li>
+      <li>[river,barn] The river brought it: a draft beast of {FACTION}'s, {PLACE}'s brand on its flank, washed down in the night and dragged out on the colony's bank, cold and furious. {A_nameDef} got it into the barn to dry off.\n\n{FACTION} will want it back, if they know where it went.</li>
     </texts>
     <outcomes>
       <li>

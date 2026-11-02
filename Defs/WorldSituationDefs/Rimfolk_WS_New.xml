@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- World events that come from what the colony has built (Source/ColonyCouncil/World/Workers_NewSituations.cs):
+       market days at its RimMarket stalls, busy orbital lanes over its comms console, and an assize in the nearest
+       friendly town. Each answer has a single outcome. -->
+
+  <!-- ===================== Market days (RimMarket) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_MarketDays</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>market days</label>
+    <workerClass>ColonyCouncil.SituationWorker_MarketDays</workerClass>
+    <weight>1.2</weight>
+    <earliestDay>15</earliestDay>
+    <cooldownDays>60</cooldownDays>
+    <durationDays>12~16</durationDays>
+    <kind>trade</kind>
+    <mods><li>forti.rimmarket</li></mods>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+      <minGoodwill>0</minGoodwill>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <optional>true</optional>
+    </second>
+    <names>
+      <li>the market days</li>
+      <li>[spring] the spring market</li>
+      <li>[fall] the harvest market</li>
+    </names>
+    <titles>
+      <li>Market days</li>
+      <li>{NAME} at the colony</li>
+    </titles>
+    <texts>
+      <li>Word has gone round {PLACE} and the farms beyond it that the colony's stalls are worth the walk. For a fortnight or so, {FACTION} mean to make the colony's market their own: buyers will come up the road in the mornings, a few at a time, with their purses.\n\nWhat's on the counters is what they'll buy.</li>
+      <li>[stalls] {FACTION} have taken to calling the colony's row of stalls "the market", as if it were a town's. Buyers from {PLACE} will be coming up the road most mornings for a fortnight or so.\n\nThe better the counters are stocked, the more they'll take home.</li>
+    </texts>
+    <summaries>
+      <li>Buyers from {FACTION} come to the colony's stalls every few days and buy off the counters. Traders may ask for a pitch, and visitors come more often.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>VisitorGroup</incident><factor>1.3</factor></li>
+      <li><incident>TraderCaravanArrival</incident><factor>1.2</factor></li>
+      <li><rimfolk>Council_Evt_RegularBuyer</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_BulkOrder</rimfolk><factor>1.5</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>buyers</key>
+        <day>0.3~1.2</day>
+        <repeatDays>2~3</repeatDays>
+        <maxTimes>5</maxTimes>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>buyers</what><count>2~4</count><spot>Road</spot><hourFrom>7</hourFrom><hourTo>10</hourTo><delay>0.2~1</delay><stopHours>5~7</stopHours></li>
+        </effects>
+      </li>
+      <li>
+        <key>pitch</key>
+        <day>2~5</day>
+        <count>60~120</count>
+        <wealthScaled>true</wealthScaled>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>merchant</what><ages>25~60</ages></li>
+        </effects>
+        <titles>
+          <li>A pitch for traders</li>
+        </titles>
+        <texts>
+          <li>A merchant of {FACTION} is at the gate, cap in hand. Her people would like to set up a stall of their own on the colony's land for a few days, near the colony's market where the buyers come.\n\nShe offers {COUNT} silver for the pitch, or the colony could let them have it for nothing and be thanked for it.</li>
+          <li>A trader of {FACTION} has come to the gate to ask for a pitch: a patch of the colony's land where his people can camp and keep a stall while the market lasts.\n\nHe has {COUNT} silver for it, if the colony wants paying.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A pitch for {COUNT} silver</label>
+            <outcome>The merchant pays the pitch money at the gate. Their camp will come up on the colony's land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Paid" />
+              <li Class="ColonyCouncil.WorldEffect_Camp"><kind>Council_Camp_Market</kind><flag>pitch</flag></li>
+            </effects>
+            <deed>let traders of {FACTION} keep a stall</deed>
+          </li>
+          <li>
+            <label>A pitch for nothing</label>
+            <outcome>The colony lets them have the pitch for nothing, and {FACTION} hear of it. Their camp will come up on the colony's land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Camp"><kind>Council_Camp_Market</kind><flag>pitch</flag></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>gave traders of {FACTION} a pitch</deed>
+            <ways><generosity>2</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>No room for them</label>
+            <outcome>The merchant nods, puts her cap back on and goes back down the road.</outcome>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>order</key>
+        <day>4~8</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Event"><incident>Council_Evt_BulkOrder</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>quarrel</key>
+        <day>5~10</day>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>buyer</what><ages>25~60</ages></li>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>buyer</what><ages>25~60</ages><enemy>true</enemy><stranger>false</stranger></li>
+        </effects>
+        <titles>
+          <li>A quarrel over a price</li>
+        </titles>
+        <texts>
+          <li>Two buyers are at the gate, one of {FACTION} and one of {ENEMY}, and both want the colony's {THING}. Each says the other offered a price only to spoil the sale, and each wants the colony to say who has the better claim.\n\nWhoever the colony sides with will remember it, and so will the other.</li>
+          <li>A buyer of {FACTION} and a buyer of {ENEMY} have been arguing at the gate over the colony's {THING} since first light. It started over the price and is now about everything their two peoples have ever done to each other.\n\nThey want the colony to settle it.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Side with {FACTION}'s buyer</label>
+            <outcome>The colony finds for {FACTION}'s buyer. {ENEMY}'s goes off without a word.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>-5</amount></li>
+            </effects>
+            <deed>sided with {FACTION} in a quarrel at the market</deed>
+          </li>
+          <li>
+            <label>Side with {ENEMY}'s buyer</label>
+            <outcome>The colony finds for {ENEMY}'s buyer. {FACTION}'s calls it a poor way to treat old customers.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>6</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-5</amount></li>
+            </effects>
+            <deed>sided with {ENEMY} in a quarrel at the market</deed>
+          </li>
+          <li>
+            <label>Send {A_nameDef} to settle it</label>
+            <outcome>{A_nameDef} goes out to the gate to hear both of them out and find a price they can both stand.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Both</who><amount>3</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Social</skill><xp>500</xp></li>
+            </effects>
+            <help>1</help>
+            <deed>settled a quarrel at the market</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Leave them to it</label>
+            <outcome>Nobody at the colony takes a side, and the two of them go off still arguing.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>closes</key>
+        <titles>
+          <li>{NAME} are over</li>
+        </titles>
+        <texts>
+          <li>[pitch] The market days are over. The traders' stall has come down, and the buyers of {FACTION} will be back next season, they say, if the colony's counters are as good.</li>
+          <li>[!pitch] The market days are over, and the road from {PLACE} is quiet again. {FACTION} say the colony's stalls were the best thing about the season.</li>
+        </texts>
+        <chronicle>Market days at the colony came to an end.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Busy orbital lanes ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_OrbitalLanes</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>busy orbital lanes</label>
+    <workerClass>ColonyCouncil.SituationWorker_OrbitalLanes</workerClass>
+    <weight>0.9</weight>
+    <earliestDay>20</earliestDay>
+    <cooldownDays>90</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>orbit</kind>
+    <minTech>Industrial</minTech>
+    <faction>
+      <friendly>true</friendly>
+      <minGoodwill>0</minGoodwill>
+    </faction>
+    <titles>
+      <li>Busy orbital lanes</li>
+      <li>Traffic overhead</li>
+    </titles>
+    <texts>
+      <li>The comms console has been busy all week. Ships are running the orbital lanes over the region in numbers nobody here has seen before, and every few hours another one hails the colony with a list of goods.\n\nA trading house of {FACTION} has asked for the colony by name. They may send someone down.</li>
+      <li>Somewhere above the clouds, the orbital lanes have filled up. The comms console picks up a new trader's call most evenings, and the night sky has more moving lights in it than stars.\n\nOne of the calls was from a trading house of {FACTION}, asking what the colony has to sell.</li>
+    </texts>
+    <summaries>
+      <li>Orbital traders call much more often. Debris from the lanes can come down, and a trading house of {FACTION} may send an agent down to buy.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>OrbitalTraderArrival</incident><factor>2.5</factor></li>
+      <li><incident>ShipChunkDrop</incident><factor>1.5</factor></li>
+      <li><rimfolk>Council_Evt_Signal</rimfolk><factor>2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>trader</key>
+        <day>1~3</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>OrbitalTraderArrival</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>agent</key>
+        <day>3~8</day>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>agent</what><ages>25~55</ages></li>
+        </effects>
+        <titles>
+          <li>An agent from orbit</li>
+        </titles>
+        <texts>
+          <li>A trading house of {FACTION} has sent an agent down. Their shuttle set down beyond the ridge, and the agent walked the last of the way and is waiting at the gate in a good coat and clean boots.\n\nThey want {ITEM}, and will pay half again its worth, in silver, here and now.</li>
+          <li>The agent at the gate came down from orbit this morning and walked up from where the shuttle landed, out past the colony's land. They are polite, in a hurry, and want exactly one thing: {ITEM}.\n\nHalf again its worth, they say, paid on the spot. They might go higher, if pushed. They might also walk away.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {ITEM} at half again its worth</label>
+            <outcome>The goods are carried out to the agent, who counts out the silver at the gate and walks back toward the shuttle.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><price>1.5</price><toVisitor>true</toVisitor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <deed>sold goods to an agent from orbit</deed>
+          </li>
+          <li>
+            <label>Haggle for twice its worth</label>
+            <outcome>The agent sighs, agrees to twice its worth, and pays it at the gate once the goods are carried out.</outcome>
+            <riskChance>0.5</riskChance>
+            <riskReplaces>true</riskReplaces>
+            <riskSkill>Social</riskSkill>
+            <riskOutcome>The agent smiles, thanks the colony for its time, and walks back toward the shuttle with the silver still in their coat.</riskOutcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><price>2</price><toVisitor>true</toVisitor></li>
+            </effects>
+            <riskEffects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+            </riskEffects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Not for sale</label>
+            <outcome>The agent nods, makes a note, and goes back the way they came.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>debris</key>
+        <day>5~12</day>
+        <chance>0.6</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Incident"><incident>ShipChunkDrop</incident></li>
+        </effects>
+      </li>
+      <li>
+        <key>signal</key>
+        <day>7~14</day>
+        <chance>0.5</chance>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Event"><incident>Council_Evt_Signal</incident></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>quiet</key>
+        <titles>
+          <li>The lanes go quiet</li>
+        </titles>
+        <texts>
+          <li>The traffic overhead has thinned out, and the comms console is quiet most nights again. Whatever brought the ships to the region has moved on, and the ships with it.</li>
+        </texts>
+        <chronicle>The orbital lanes over the region went quiet again.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The assize ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Council_WS_Assize</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the assize</label>
+    <workerClass>ColonyCouncil.SituationWorker_Assize</workerClass>
+    <weight>0.8</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>120</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>court</kind>
+    <faction>
+      <friendly>true</friendly>
+      <minGoodwill>0</minGoodwill>
+      <maxDistance>15</maxDistance>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <maxGoodwill>10</maxGoodwill>
+      <optional>true</optional>
+    </second>
+    <names>
+      <li>the assize</li>
+      <li>[theirLowtech] the judge's court</li>
+      <li>[theirHightech] the circuit court</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>A circuit judge has come to {PLACE}, and {FACTION} are holding {NAME} there for the next few weeks. Every quarrel in the region that has waited a year for a hearing is on its way to the judge's table.\n\nThe colony may have business of its own to bring.</li>
+      <li>{FACTION} have opened {NAME} at {PLACE}. The judge rides a circuit of the region's towns and only comes this way once a year, so the court will be busy.\n\nThe court's clerk is writing to every settlement nearby, the colony among them.</li>
+    </texts>
+    <summaries>
+      <li>The court at {PLACE} will try a prisoner the colony hands over, or hear the colony's grievance against another people. The judge may stop at the colony on the way on.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>court</key>
+        <day>1~4</day>
+        <titles>
+          <li>A letter from the court's clerk</li>
+        </titles>
+        <texts>
+          <li>The clerk of {NAME} writes in a neat, tired hand. The court will try anyone the colony holds who has wronged the region, and pays the colony {COUNT} silver for each it hands over; the court's guards would come for them. Or, if the colony has a grievance against another people, the judge will hear it.\n\n{A_nameDef} would put the colony's case.</li>
+          <li>The court at {PLACE} has sent its clerk's letter round. The judge will hear any settlement's grievance against another, and will try any prisoner handed over to the court's guards, for a reward of {COUNT} silver.\n\nThe colony would send {A_nameDef} to speak for it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Hand {X_nameDef} over for trial</label>
+            <outcome>The court's guards will come for {X_nameDef}, and set the reward down once they have them.</outcome>
+            <flags><li>handed</li></flags>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>handed a prisoner over to the court at {PLACE}</deed>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Bring a grievance against {ENEMY}</label>
+            <outcome>{A_nameDef} writes out the colony's case against {ENEMY} and sends it to the court. The judge will rule within the week.</outcome>
+            <flags><li>grievance</li></flags>
+            <next>verdict</next>
+            <nextDays>3~6</nextDays>
+            <deed>brought a grievance against {ENEMY} before the court</deed>
+          </li>
+          <li>
+            <label>Keep out of it</label>
+            <outcome>The colony has no business with the court this year.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>verdict</key>
+        <called>true</called>
+        <titles>
+          <li>The judge rules</li>
+        </titles>
+        <texts>
+          <li>[won] The judge at {PLACE} has found for the colony. {ENEMY} are ordered to pay {COUNT} silver in damages, and their speaker left the court looking at the floor.</li>
+          <li>[lost] The judge at {PLACE} has found against the colony. {A_nameDef}'s case was heard, and heard fairly, and it wasn't enough. {ENEMY} went home pleased with themselves.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Silver"><enemy>true</enemy><fromAfar>true</fromAfar><requires>won</requires></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>-4</amount><requires>won</requires></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><requires>won</requires></li>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Enemy</who><amount>2</amount><requires>lost</requires></li>
+        </effects>
+      </li>
+      <li>
+        <key>judge</key>
+        <day>7~12</day>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>judge</what><count>2</count><ages>40~70</ages></li>
+        </effects>
+        <titles>
+          <li>The judge at the gate</li>
+        </titles>
+        <texts>
+          <li>The judge of {NAME} is on the road to the next town on the circuit, and has stopped at the colony's gate with a clerk at their side. It will be dark before they reach anywhere else.\n\nThey ask for a bed for the night, or failing that, water and bread at the gate.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>A bed for the night</label>
+            <outcome>The judge and the clerk are shown inside to a warm corner for the night, and go on at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>gave the circuit judge a bed for the night</deed>
+            <ways><generosity>1</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Bread and water at the gate</label>
+            <outcome>Bread and water are taken out to the gate, and the judge thanks the colony before going on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>bread for the judge</label><what>meals</what><count>2</count><to>Stranger</to></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>The gate stays shut, and the judge and the clerk go on in the dusk.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-2</amount></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>rises</key>
+        <titles>
+          <li>{NAME} rises</li>
+        </titles>
+        <texts>
+          <li>[handed] {NAME} at {PLACE} has risen, and the judge has moved on along the circuit. The prisoner the colony handed over was tried and sentenced, and {FACTION} speak of the colony as a neighbour that keeps the peace.</li>
+          <li>[!handed] {NAME} at {PLACE} has risen, and the judge has moved on along the circuit. The region's quarrels are settled for another year, more or less.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} rose.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><requires>handed</requires></li>
+        </effects>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

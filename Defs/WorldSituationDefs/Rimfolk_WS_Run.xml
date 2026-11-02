@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The run (Source/ColonyCouncil/World/Workers_Run.cs, Odyssey): in spring or autumn the fish come up the water in
+       numbers. The water's own fish stock on the colony's map is kept full until the run thins; a fishing family may
+       camp by the water for it (Rimfolk_Camp_Fishers); the colony's own fishers make the first big catch; and the
+       fishers' camp and the colony may fall out over the best water. Only with water that holds fish and fishing open
+       to the colony. -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Run</defName>
+    <label>the run</label>
+    <workerClass>ColonyCouncil.SituationWorker_Run</workerClass>
+    <weight>1</weight>
+    <earliestDay>20</earliestDay>
+    <cooldownDays>100</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <kind>run</kind>
+    <seasons>
+      <li>Spring</li>
+      <li>Fall</li>
+    </seasons>
+    <mods>
+      <li>Ludeon.RimWorld.Odyssey</li>
+    </mods>
+    <titles>
+      <li>The fish are running</li>
+      <li>The run</li>
+    </titles>
+    <texts>
+      <li>The fish have come up the water in numbers, as they do some years. They can be seen from the bank in the shallows, dark backs crowding the current.\n\nFor a week or so, every line in the water should come up heavy.</li>
+      <li>[spring] The fish are coming up the water to spawn, so thick in places that the surface boils with them. Every fisher in the region is out.\n\nIt won't last long, and it doesn't come every year.</li>
+      <li>[fall] Ahead of the cold, the fish are crowding the water, fat from the summer. The fishers of the region are out on every bank.\n\nIt won't last long. What's caught now is what's salted for winter.</li>
+    </texts>
+    <summaries>
+      <li>While the run lasts, the colony's water holds all the fish it can, so every fishing trip brings in the most it can. A fishing family may come and camp by the water.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>camp</key>
+        <day>0.5~2</day>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Camp"><kind>Rimfolk_Camp_Fishers</kind><flag>fishers</flag></li>
+        </effects>
+      </li>
+      <li>
+        <key>catch</key>
+        <day>2~4</day>
+        <titles>
+          <li>The first big catch</li>
+        </titles>
+        <texts>
+          <li>The colony's fishers came up from their fishing spot with more fish than one basket would hold, and they say it's like that every time a line goes in.\n\nThe run is in. It could be marked with a supper, or every fish of it salted down for the winter.</li>
+          <li>The colony's fishers are bringing in more than they ever have. The water is so full, they say, the fish nearly jump into the basket.\n\nIt could be marked with a supper, or every fish salted down for later.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Hold a supper for the run</label>
+            <outcome>The colony sits down to a supper for the run this evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the run's supper</label><hours>17~21</hours><spots><li>Fire</li><li>Dining</li><li>Outdoors</li></spots><guests>camp</guests></li>
+            </effects>
+            <help>0</help>
+          </li>
+          <li>
+            <label>Salt it all down for the winter</label>
+            <outcome>The catch stays in the stores, every fish of it, for the lean months.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>quarrel</key>
+        <day>3~6</day>
+        <requires>
+          <li>fishers</li>
+        </requires>
+        <titles>
+          <li>A quarrel over the best water</li>
+        </titles>
+        <texts>
+          <li>The colony's fishers are angry. The fishing family from the camp has been working the same water as the colony's fishing spot, and the colony's lines come up lighter whenever theirs are in.\n\nThe fishers could be told to keep to the far water, or the water could be shared.</li>
+          <li>The camp's fishers and the colony's have had words at the water's edge: both want the best of it while the run lasts.\n\nThe camp could be told to fish the far water, or both could go on sharing it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Keep the best water for the colony</label>
+            <outcome>The fishers were told to keep to the far water. They do, and they're sour about it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CampFarWater"><far>true</far><tension>8</tension></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let them share it</label>
+            <outcome>The water is shared. Both sides catch a little less, and nobody is happy about it, but nobody is angry either.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>thinning</key>
+        <day>7~9</day>
+        <message>true</message>
+        <titles>
+          <li>The run thins</li>
+        </titles>
+        <texts>
+          <li>Fewer fish are rising now. The run is thinning, and the water by the colony is going back to what it usually holds.</li>
+        </texts>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Flag"><flag>thinning</flag></li>
+        </effects>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>The run is over</li>
+        </titles>
+        <texts>
+          <li>[fishers] The run is over. The fishing family had full baskets right to the end, and the water by the colony is quiet again.</li>
+          <li>[!fishers] The run is over, and the water by the colony holds what it usually does again.</li>
+        </texts>
+        <chronicle>The fish ran in the colony's water.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

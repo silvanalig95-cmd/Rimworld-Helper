@@ -564,9 +564,16 @@ namespace ColonyCouncil
 
         private const int NotesShown = 4;
 
+        /// <summary>A note's key in the shared suggestion core: "line:" the line's id and the note's key, set aside with "Not this".</summary>
+        public static string NoteKey(DefenseLineReview r, LineNote n) => "line:" + r.line.id + ":" + n.key;
+
         private static float Notes(DefenseLineReview r, float x, float y, float w, bool draw)
         {
-            if (r.notes.Count == 0) return y;
+            var tracker = SuggestTracker.Instance;
+            // What the player set aside with "Not this" stays out until brought back (things done well are never set aside).
+            var notes = r.notes.Where(n => n.good || tracker == null || !tracker.Declined(NoteKey(r, n))).ToList();
+            int setAside = r.notes.Count - notes.Count;
+            if (notes.Count == 0 && setAside == 0) return y;
             if (draw)
             {
                 UiKit.Divider(x, y + 2f, w);
@@ -574,7 +581,7 @@ namespace ColonyCouncil
             }
             y += 22f;
             bool all = allNotes.Contains(r.line.id);
-            var list = all ? r.notes : r.notes.Take(NotesShown).ToList();
+            var list = all ? notes : notes.Take(NotesShown).ToList();
             foreach (var n in list)
             {
                 float h = Bullet(x + 4f, y, w - 4f, n.text, n.good ? DoneColor : Color.white, draw, n.good);
@@ -590,21 +597,46 @@ namespace ColonyCouncil
                 if (n.article != null && !n.good)
                 {
                     var page = n.article;
-                    buttons.Add(("CC_ReadMore".Translate().ToString(), page.label.CapitalizeFirst(), (System.Action)(() => MainTabWindow_Council.OpenAlmanac(page)), true));
+                    buttons.Add(("CC_ReadMore".Translate().ToString(), "CC_Same_ReadMoreTip".Translate(page.label.CapitalizeFirst()).Resolve(), (System.Action)(() => MainTabWindow_Council.OpenAlmanac(page)), true));
+                }
+                if (!n.good)
+                {
+                    string key = NoteKey(r, n), text = n.text;
+                    buttons.Add(("CC_Ahead_NotThis".Translate().ToString(), "CC_Same_Line_NotThisTip".Translate().Resolve(), (System.Action)(() =>
+                    {
+                        SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+                        tracker?.Decline(key, text);
+                    }), true));
                 }
                 if (buttons.Count > 0 && !n.good) y = ButtonRow(buttons, x + 12f, y, w - 12f, draw, 20f, GameFont.Tiny);
                 y += 2f;
             }
-            if (r.notes.Count > NotesShown)
+            if (notes.Count > NotesShown)
             {
                 var more = new Rect(x + 4f, y, w - 8f, 18f);
                 if (draw)
                 {
-                    Tiny(more, (all ? "CC_DefLine_NotesFewer" : "CC_DefLine_NotesMore").Translate(r.notes.Count - NotesShown).Resolve(), UiKit.Info);
+                    Tiny(more, (all ? "CC_DefLine_NotesFewer" : "CC_DefLine_NotesMore").Translate(notes.Count - NotesShown).Resolve(), UiKit.Info);
                     if (Widgets.ButtonInvisible(more))
                     {
                         if (!allNotes.Remove(r.line.id)) allNotes.Add(r.line.id);
                         SoundDefOf.Click.PlayOneShotOnCamera();
+                    }
+                }
+                y += 20f;
+            }
+            // The notes set aside, brought back at a click.
+            if (setAside > 0)
+            {
+                var back = new Rect(x + 4f, y, w - 8f, 18f);
+                if (draw)
+                {
+                    Tiny(back, "CC_Same_Line_Aside".Translate(setAside).Resolve(), UiKit.Info);
+                    TooltipHandler.TipRegion(back, "CC_Same_Line_AsideTip".Translate());
+                    if (Widgets.ButtonInvisible(back) && tracker != null)
+                    {
+                        foreach (var (key, _, _) in tracker.DeclinedFor("line:" + r.line.id)) tracker.BringBack(key);
+                        SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     }
                 }
                 y += 20f;

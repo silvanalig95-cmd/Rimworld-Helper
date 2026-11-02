@@ -160,6 +160,68 @@ public static class BaseReviewTests
             C(!BaseReviewMath.AirlockWanted(5f, 21f, 40, 1, false), "a cool room that isn't a freezer doesn't");
         }
 
+        // An airlock outside a freezer door.
+        {
+            var a = BaseReviewMath.AirlockAt((5, 5), (0, 1));
+            C(a.lobby == (5, 6) && a.door == (5, 7) && a.beyond == (5, 8), "the lobby, the second door and the way on lie straight out from the freezer door");
+            C(new[] { a.wallA, a.wallB }.OrderBy(c => c.x).SequenceEqual(new[] { (4, 6), (6, 6) }), "the walls stand either side of the lobby");
+            C(new[] { a.roundA, a.roundB }.OrderBy(c => c.x).SequenceEqual(new[] { (4, 7), (6, 7) }), "the way round passes either side of the second door");
+            var w = BaseReviewMath.AirlockAt((5, 5), (-1, 0));
+            C(w.lobby == (4, 5) && w.door == (3, 5) && new[] { w.wallA, w.wallB }.OrderBy(c => c.z).SequenceEqual(new[] { (4, 4), (4, 6) }), "facing west, the walls stand north and south of the lobby");
+        }
+
+        // Walking between rooms, as people walk.
+        {
+            // A wall between two rooms with its door at the far end: the walk goes round, the straight line doesn't.
+            string[] plan =
+            {
+                "..........",
+                "####D#####",
+                "..........",
+                ".........."
+            };
+            int width = plan[0].Length, height = plan.Length;
+            var walk = new bool[width * height];
+            var diag = new bool[width * height];
+            for (int r = 0; r < height; r++)
+                for (int x = 0; x < width; x++)
+                {
+                    int z = height - 1 - r, i = z * width + x;
+                    walk[i] = plan[r][x] != '#';
+                    diag[i] = plan[r][x] == '#' || plan[r][x] == 'D';
+                }
+            var grid = new BaseReviewMath.WalkGrid(width, height, walk, diag);
+            int Idx(int x, int z) => z * width + x;
+            // From (9, 3) above the wall to (9, 0) below it: through the door at (4, 2).
+            var got = grid.Walk(new List<int> { Idx(9, 3) }, null, new List<int> { Idx(9, 0), Idx(9, 3) }, out var nearest);
+            C(got[1] == 0f && nearest[1] == 0, "a walk to where it starts is no walk");
+            C(got[0] >= 10f && got[0] < 13f, $"the walk round the wall through the door is about ten cells, not three ({got[0]})");
+            // Through a door never on the slant: (3, 3) to (5, 1) takes the door straight on.
+            var door = grid.Walk(new List<int> { Idx(3, 3) }, null, new List<int> { Idx(5, 1) }, out _);
+            C(Math.Abs(door[0] - 4f) < 0.01f, $"a door is passed straight on, never cut on the slant ({door[0]})");
+            // Two sources: the nearest wins.
+            var two = grid.Walk(new List<int> { Idx(0, 0), Idx(9, 0) }, new List<int> { 7, 8 }, new List<int> { Idx(8, 0) }, out var which);
+            C(which[0] == 8 && Math.Abs(two[0] - 1f) < 0.01f, "the nearest of several starts is the one reached");
+            // A room shut off: no walk.
+            var shut = new bool[width * height];
+            shut[Idx(0, 0)] = true;
+            shut[Idx(9, 3)] = true;
+            var none = new BaseReviewMath.WalkGrid(width, height, shut, null).Walk(new List<int> { Idx(0, 0) }, null, new List<int> { Idx(9, 3) }, out var nobody);
+            C(none[0] < 0f && nobody[0] < 0, "a place no walk reaches has no distance");
+            var kf = BaseReviewMath.NearRules.First(r => r.key == "kitchenfreezer");
+            var far = BaseReviewMath.TooFarWalking(kf, new List<float> { 12f, 31f, -1f }, new List<int> { 0, 1, -1 });
+            C(far.Count == 1 && far[0].a == 1 && far[0].b == 1 && far[0].distance == 31f, "by walking, only the kitchen with a long way round is far; one no walk reaches is left out");
+            C(Math.Abs(BaseReviewMath.MealWalkOf(new List<float> { 10f, 30f, -1f }) - 20f) < 0.01f && BaseReviewMath.MealWalkOf(new List<float> { -1f }) < 0f,
+                "the meal walk averages the bedrooms a walk reaches");
+        }
+
+        // The stores: catch-alls at one priority are the muddle; at different ones, an overflow.
+        {
+            C(StorageReviewMath.CatchAllMuddle(new List<int> { 2, 2, 3 }, out int p) == 2 && p == 2, "two catch-alls at Normal are a muddle beside one at Preferred");
+            C(StorageReviewMath.CatchAllMuddle(new List<int> { 2, 1 }, out _) == 1, "a catch-all at Low beside one at Normal is an overflow, not a muddle");
+            C(StorageReviewMath.OverflowPriority(2) == 1 && StorageReviewMath.OverflowPriority(1) == 1, "the others go one step lower, never below Low");
+        }
+
         C(BaseReviewMath.TidyScore(1, 0.06f) < BaseReviewMath.TidyScore(3, 0.06f) && BaseReviewMath.TidyScore(100, 0.06f) == 0.3f, "tidy-up findings grow with the count and stop at the cap");
         return n;
     }

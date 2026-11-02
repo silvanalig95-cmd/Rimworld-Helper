@@ -18,8 +18,10 @@ namespace ColonyCouncil
         private static Vector2 scroll;
         private static float height = 600f;
         private static List<(string key, bool on, List<string> texts)> preview = new List<(string, bool, List<string>)>();
-        private static int previewFrame = -999;
+        private static int previewFrame = -999, previewVersion = -1;
         private static Map previewMap;
+        private static List<(string key, bool on, List<Suggestion> steps)> byHand = new List<(string, bool, List<Suggestion>)>();
+        private static readonly Folds autoFolds = new Folds("aside");
 
         private const float ButtonsW = 160f;
 
@@ -102,19 +104,34 @@ namespace ColonyCouncil
             {
                 y += UiKit.SectionTitle(0f, y, view.width, "CC_Auto_Section".Translate(), null, UiKit.HeaderColor) + 4f;
                 TooltipHandler.TipRegion(new Rect(0f, y - 28f, view.width, 24f), "CC_Auto_SectionTip".Translate());
-                if (Time.frameCount - previewFrame > 120 || previewMap != map)
+                int version = SuggestTracker.Instance?.Version ?? 0;
+                if (Time.frameCount - previewFrame > 120 || previewMap != map || version != previewVersion)
                 {
                     preview = auto.Preview(map);
+                    byHand = auto.HandSteps(map);
                     previewFrame = Time.frameCount;
                     previewMap = map;
+                    previewVersion = version;
                 }
+                // Each automation: whether it is on, and what it would do now as steps to do by hand (the same doing, kept
+                // with Undo and checked later; "Not this" sets it aside for the automation too).
                 foreach (var (key, on, texts) in preview)
                 {
                     string label = ("CC_Settings_" + char.ToUpperInvariant(key[0]) + key.Substring(1)).Translate();
                     string state = (on ? "CC_Check_Auto_On" : "CC_Check_Auto_Off").Translate();
-                    string body = texts.Count == 0 ? "CC_Auto_WouldNothing".Translate().Resolve() : string.Join(" ", texts.Take(3));
-                    y += UiKit.Paragraph(8f, y, view.width - 16f, label + " (" + state + "): " + body, on ? UiKit.Good : UiKit.Faint) + 4f;
+                    var steps = byHand.FirstOrDefault(h => h.key == key).steps ?? new List<Suggestion>();
+                    // Lines with nothing to do by hand (the day's budget spent) still say so.
+                    var said = texts.Where(t => !steps.Any(s => s.title == t)).Take(2).ToList();
+                    string body = steps.Count == 0 && said.Count == 0 ? "CC_Auto_WouldNothing".Translate().Resolve() : string.Join(" ", said);
+                    y += UiKit.Paragraph(8f, y, view.width - 16f, label + " (" + state + ")" + (body.NullOrEmpty() ? "" : ": " + body), on ? UiKit.Good : UiKit.Faint) + 4f;
+                    foreach (var s in steps)
+                    {
+                        if (SuggestTracker.Instance != null && !SuggestTracker.Instance.Offered(s.key)) continue;
+                        y += AheadPanel.DrawStep(s, 8f, y, view.width - 8f) + 4f;
+                    }
                 }
+                y += AheadPanel.Done(0f, y + 4f, view.width, map, AutomationTracker.AutomationSource) + 4f;
+                y += AheadPanel.Aside(0f, y, view.width, AutomationTracker.AutomationSource, autoFolds) + 4f;
                 var last = auto.actions.AsEnumerable().Reverse().Take(6).ToList();
                 if (last.Count > 0)
                 {
@@ -157,7 +174,7 @@ namespace ColonyCouncil
         {
             Text.Font = GameFont.Small;
             float textW = width - ButtonsW - 60f;
-            string line = "CC_Making_From".Translate(o.PartsLine.Named("PARTS")).Resolve();
+            string line = "CC_Making_From".Translate(o.PartsLine.Named("PARTS")).Resolve() + (o.targetWhy != null ? " " + o.targetWhy : "");
             Text.Font = GameFont.Tiny;
             float lineH = Text.CalcHeight(line, textW);
             Text.Font = GameFont.Small;
@@ -182,7 +199,7 @@ namespace ColonyCouncil
                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
                 Making.SetUpBill(o);
             }
-            TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(o.bench.LabelCap.ToString()));
+            TooltipHandler.TipRegion(br, "CC_Making_SetBillTip".Translate(o.bench.LabelCap.ToString()) + (o.targetWhy != null ? "\n\n" + o.targetWhy : ""));
             return h;
         }
 

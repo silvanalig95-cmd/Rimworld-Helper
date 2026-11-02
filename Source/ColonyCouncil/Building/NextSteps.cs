@@ -30,6 +30,8 @@ namespace ColonyCouncil
         public string page;
         public IntVec3 look = IntVec3.Invalid;
         public Map map;
+        /// <summary>A room building ahead reckons (not saved): its section on the Plan page proposes it, so the plan doesn't propose it twice.</summary>
+        public bool buildAhead;
 
         public bool Planned => state == NextStepsMath.Planned;
         public bool Proposed => state == NextStepsMath.Proposed;
@@ -62,6 +64,8 @@ namespace ColonyCouncil
             {
                 kind ??= KindOwn;
                 key ??= "own:" + addedTick;
+                // The research step's key before it had a source of its own in the shared suggestion core.
+                if (key == "research") key = NextSteps.ResearchKey;
                 title ??= "?";
             }
         }
@@ -77,6 +81,12 @@ namespace ColonyCouncil
     /// </summary>
     public static class NextSteps
     {
+        /// <summary>The plan's own steps in the shared suggestion core ("plan:research"); its proposals keep their source's key ("adv:", "def:", "base:").</summary>
+        public const string Source = "plan";
+
+        /// <summary>The sources whose steps the Plan page proposes, for its "set aside" and "done lately" lists.</summary>
+        public static readonly string[] Sources = { AdvisorSteps.Source, DefenseAdvice.Source, BaseReview.Source, Source };
+
         public static bool On => ColonyCouncilMod.Settings?.nextSteps ?? true;
 
         private static List<NextStep> List => CouncilGameComponent.Instance?.nextSteps;
@@ -104,8 +114,15 @@ namespace ColonyCouncil
             if (list == null || !On) return;
             int now = Now;
             int day = GenDate.TicksPerDay;
-            // Let-go steps forgotten after a fortnight, done ones taken off the list after a few days.
-            list.RemoveAll(s => s == null || s.Dropped && !NextStepsMath.StillDropped(s.changedTick, now, day) || s.Done && !NextStepsMath.StillShownDone(s.changedTick, now, day));
+            var tracker = SuggestTracker.Instance;
+            // A step let go in an older save is set aside like any other (the shared "Not this", until brought back).
+            foreach (var s in list.Where(s => s != null && s.Dropped).ToList())
+            {
+                tracker?.Decline(s.key, s.title);
+                list.Remove(s);
+            }
+            // Done ones taken off the list after a few days; a planned step set aside since (on its own page) leaves the plan.
+            list.RemoveAll(s => s == null || s.Done && !NextStepsMath.StillShownDone(s.changedTick, now, day) || s.Planned && s.HasSource && tracker != null && tracker.Declined(s.key));
             foreach (var map in Find.Maps.Where(m => m.IsPlayerHome))
             {
                 List<NextStep> found;
@@ -140,7 +157,8 @@ namespace ColonyCouncil
                 var scores = found.Select(c => c.score).ToList();
                 var inPlan = found.Select(c => keys.Any(s => s.Planned && s.key == c.key)).ToList();
                 var doneLately = found.Select(c => keys.Any(s => s.Done && s.key == c.key)).ToList();
-                var dropped = found.Select(c => keys.Any(s => s.Dropped && s.key == c.key)).ToList();
+                // Not proposed: what was set aside, a step done that waits for its check, and a room building ahead proposes above.
+                var dropped = found.Select(c => c.buildAhead || tracker != null && !tracker.Offered(c.key)).ToList();
                 foreach (int i in NextStepsMath.Propose(scores, inPlan, doneLately, dropped))
                 {
                     var c = found[i];
@@ -166,7 +184,10 @@ namespace ColonyCouncil
             to.look = from.look;
         }
 
-        private static string KeyOf(AdvisorSignal s) => "adv:" + s.def.defName + (s.key.NullOrEmpty() ? "" : ":" + s.key);
+        private static string KeyOf(AdvisorSignal s) => AdvisorSteps.KeyOf(s);
+
+        /// <summary>The key of the research step (an idle bench).</summary>
+        public const string ResearchKey = "plan:research";
 
         /// <summary>Everything the council could propose now: the advisor's priorities, the defense advice, an idle research bench.</summary>
         private static List<NextStep> Candidates(Map map)
@@ -186,7 +207,9 @@ namespace ColonyCouncil
                     {
                         key = key, kind = NextStep.KindAdvisor, title = s.title, detail = s.detail, score = s.Score, map = map,
                         template = s.template, upgrade = s.upgrade, thing = s.suggestThing, page = MainTabWindow_Council.IsPage(s.page) ? s.page : null,
-                        look = s.look != null && s.look.IsValid && s.look.PrimaryTarget.Cell.IsValid ? s.look.PrimaryTarget.Cell : IntVec3.Invalid
+                        look = s.look != null && s.look.IsValid && s.look.PrimaryTarget.Cell.IsValid ? s.look.PrimaryTarget.Cell : IntVec3.Invalid,
+                        // A room building ahead reckons (the seats, the cold store, the beds, the hospital): proposed once, by its section above.
+                        buildAhead = s.buildKind != null
                     });
                 }
             }
@@ -196,7 +219,7 @@ namespace ColonyCouncil
                 foreach (var item in DefenseAdvice.For(survey))
                 {
                     if (item.done || item.standing || item.template == null) continue;
-                    string key = "def:" + item.key;
+                    string key = DefenseAdvice.KeyOf(item);
                     if (!seen.Add(key) || !NextStepsMath.WorthProposing(item.score, true)) continue;
                     found.Add(new NextStep
                     {
@@ -213,7 +236,7 @@ namespace ColonyCouncil
             {
                 foreach (var f in BaseReview.For(map, true))
                 {
-                    string key = "base:" + f.key;
+                    string key = BaseReview.KeyOf(f);
                     if (!seen.Add(key) || !NextStepsMath.WorthProposing(f.score, true)) continue;
                     found.Add(new NextStep { key = key, kind = NextStep.KindBase, title = f.title, detail = f.detail, score = f.score, map = map, look = f.look, page = "Base", template = f.template });
                 }
@@ -225,13 +248,20 @@ namespace ColonyCouncil
             if (map.listerBuildings.ColonistsHaveResearchBench() && Find.ResearchManager.GetProject() == null)
             {
                 var next = AdvisorWorker_Research.SuggestNext(true);
-                if (next != null && seen.Add("research"))
+                if (next != null && seen.Add(ResearchKey))
+                {
+                    // How much stands idle: the benches, and who has Research on.
+                    int benches = map.listerBuildings.allBuildingsColonist.Count(b => b is Building_ResearchBench);
+                    var research = DefDatabase<WorkTypeDef>.GetNamedSilentFail("Research");
+                    int people = research == null ? 0 : map.mapPawns.FreeColonistsSpawned.Count(p => p.workSettings != null && p.workSettings.WorkIsActive(research));
                     found.Add(new NextStep
                     {
-                        key = "research", kind = NextStep.KindResearch, title = "CC_Plan_Research_Title".Translate().Resolve(),
-                        detail = "CC_Plan_Research_Detail".Translate(next.LabelCap.ToString().Named("PROJECT"), next.CostApparent.ToString("0").Named("COST")).Resolve(),
+                        key = ResearchKey, kind = NextStep.KindResearch, title = "CC_Plan_Research_Title".Translate().Resolve(),
+                        detail = "CC_Plan_Research_Detail".Translate(next.LabelCap.ToString().Named("PROJECT"), next.CostApparent.ToString("0").Named("COST")).Resolve() + " "
+                                 + "CC_Same_Plan_ResearchIdle".Translate(benches.Named("BENCHES"), people.Named("PEOPLE")).Resolve(),
                         score = 0.25f, research = next, map = map
                     });
+                }
             }
             return found;
         }
@@ -257,18 +287,17 @@ namespace ColonyCouncil
             foreach (var s in ProposedFor(map)) Take(s);
         }
 
-        /// <summary>Let go: a proposal or a planned step with a source isn't proposed again for a fortnight; the player's own step just goes.</summary>
+        /// <summary>
+        /// Not this: a proposal or a planned step with a source is set aside in the shared store until the player brings it
+        /// back (on this page, or the page it came from: the same key); the player's own step, or a done one, just goes.
+        /// </summary>
         public static void Drop(NextStep s)
         {
             var list = List;
             if (s == null || list == null) return;
-            if (!s.HasSource || s.Done)
-            {
-                list.Remove(s);
-                return;
-            }
-            s.state = NextStepsMath.Dropped;
-            s.changedTick = Now;
+            list.Remove(s);
+            if (!s.HasSource || s.Done) return;
+            SuggestTracker.Instance?.Decline(s.key, s.title);
         }
 
         public static void MarkDone(NextStep s)
@@ -359,8 +388,17 @@ namespace ColonyCouncil
                 if (r.CanStartNow && Find.ResearchManager.GetProject() == null)
                     acts.Add(("CC_Plan_StartResearch".Translate().Resolve(), "CC_Plan_StartResearchTip".Translate(r.LabelCap).Resolve(), () =>
                     {
-                        Find.ResearchManager.SetCurrentProject(r);
-                        Messages.Message("CC_Plan_ResearchStarted".Translate(r.LabelCap.ToString().Named("PROJECT")).Resolve(), MessageTypeDefOf.SilentInput, false);
+                        // A step of the shared core: kept in the log, Undo picks what was studied before.
+                        SuggestTracker.Instance?.Apply(new Suggestion
+                        {
+                            key = s.key, source = Source, title = "CC_Plan_ResearchStarted".Translate(r.LabelCap.ToString().Named("PROJECT")).Resolve(), map = map,
+                            apply = () =>
+                            {
+                                var prev = Find.ResearchManager.GetProject();
+                                Find.ResearchManager.SetCurrentProject(r);
+                                return new SuggestDone { undo = new UndoResearchPick { prev = prev, picked = r }, map = map };
+                            }
+                        });
                     }));
                 acts.Add(("CC_Plan_OpenResearch".Translate().Resolve(), "CC_Plan_OpenResearchTip".Translate(r.LabelCap).Resolve(), () =>
                 {
@@ -368,26 +406,23 @@ namespace ColonyCouncil
                     if (MainButtonDefOf.Research.TabWindow is MainTabWindow_Research w) w.Select(r);
                 }));
             }
-            if (s.kind == NextStep.KindBase && map != null && s.key != null && s.key.StartsWith("base:"))
+            if (s.kind == NextStep.KindBase && map != null && s.key != null && s.key.StartsWith(BaseReview.Source + ":"))
             {
-                var finding = BaseReview.Finding(map, s.key.Substring(5));
+                // The finding's fix as a step of the shared core: kept in the log with Undo, checked later.
+                var finding = BaseReview.Finding(map, s.key.Substring(BaseReview.Source.Length + 1));
                 if (finding?.fix != null && !finding.fixLabel.NullOrEmpty())
-                    acts.Add((finding.fixLabel, finding.fixTip.NullOrEmpty() ? "CC_Plan_FixTip".Translate().Resolve() : finding.fixTip, () =>
-                    {
-                        try
-                        {
-                            finding.fix();
-                        }
-                        catch (Exception e)
-                        {
-                            CouncilLog.ErrorOnce("next step fix " + s.key, e);
-                        }
-                    }));
+                    acts.Add((finding.fixLabel, finding.fixTip.NullOrEmpty() ? "CC_Plan_FixTip".Translate().Resolve() : finding.fixTip, () => BaseReview.Apply(map, finding)));
             }
             var live = LiveSignal(s);
             if (live?.act != null && !live.actLabel.NullOrEmpty())
                 acts.Add((live.actLabel, live.actTip.NullOrEmpty() ? "CC_Plan_FixTip".Translate().Resolve() : live.actTip, () =>
                 {
+                    // An action that gives orders goes through the shared core (Undo, a check); one that only opens something just opens it.
+                    if (AdvisorSteps.ActIsStep(live))
+                    {
+                        SuggestTracker.Instance?.Apply(AdvisorSteps.StepOf(live, map));
+                        return;
+                    }
                     try
                     {
                         live.act();

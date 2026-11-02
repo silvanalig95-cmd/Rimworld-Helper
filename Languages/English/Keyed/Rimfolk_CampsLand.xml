@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Camps that come for something on the land (Source/ColonyCouncil/Camps/CampKindsLand.cs). -->
+
+  <!-- ===================== The arrival letter ===================== -->
+  <CC_CampLand_Facts_fish>They will fish the water by their camp, away from the colony's own fishing spots, and dry the catch at their fire.</CC_CampLand_Facts_fish>
+  <CC_CampLand_Facts_strip>They will take the ruins near their camp apart, piece by piece, and stack what comes out of them at their camp.</CC_CampLand_Facts_strip>
+  <CC_CampLand_Facts_reap>They are looking for harvest work: taken on, they reap the colony's ripe crops by day.</CC_CampLand_Facts_reap>
+  <CC_CampLand_Facts_hull>Their wrecked craft lies by their camp, and they will work at it by day; when they go, they leave it behind.</CC_CampLand_Facts_hull>
+  <CC_CampLand_Facts_watch>One or two of them will keep watch at the monolith through the night, by turns.</CC_CampLand_Facts_watch>
+
+  <!-- ===================== Their work and their leaving ===================== -->
+  <CC_CampLand_HullLeft>The {NAME} left their wrecked hull {PLACE}. It is nobody's now, and the colony can take it apart.</CC_CampLand_HullLeft>
+  <CC_Camp_End_declined>The {NAME} from {FACTION} found no work at the colony, packed up their camp {PLACE} and moved on to the next farm.</CC_Camp_End_declined>
+  <CC_CampReap_SupperLabel>supper for the {NAME}</CC_CampReap_SupperLabel>
+  <CC_CampReap_NoSupper>The {NAME} worked the colony's fields all day, and there were no meals in the stores for their supper. They went to bed hungry, and they won't forget it.</CC_CampReap_NoSupper>
+  <CC_Camp_Help_fish>{X_nameDef} left {COUNT} {THING} from their catch at the edge of the camp {PLACE}, for the colony.</CC_Camp_Help_fish>
+  <CC_Camp_Help_scrap>{X_nameDef} left {COUNT} {THING} from their haul at the edge of the camp {PLACE}, for the colony.</CC_Camp_Help_scrap>
+
+  <!-- ===================== Errands ===================== -->
+  <CC_CampErrand_Arrived_showfish>{X_nameDef} of the {NAME} is standing by the water where the fish are thickest, showing the colony where to fish.</CC_CampErrand_Arrived_showfish>
+  <CC_CampErrand_Week_showfish>{X_nameDef} of the {NAME} shows the colony where the fish are thickest</CC_CampErrand_Week_showfish>
+  <CC_CampErrand_No_richwater>There's no water with fish in it near the colony that they could reach.</CC_CampErrand_No_richwater>
+  <CC_Impact_CampTo_richwater>the water with the most fish</CC_Impact_CampTo_richwater>
+
+  <!-- ===================== Why an ask can't be made ===================== -->
+  <CC_CampLand_NoFarWater>There's no water away from the colony for them to fish.</CC_CampLand_NoFarWater>
+  <CC_CampLand_NoRuin>There are no ruins left outside the home area for them to take down.</CC_CampLand_NoRuin>
+  <CC_CampLand_Hired>They're already at work in the colony's fields.</CC_CampLand_Hired>
+  <CC_CampLand_NoBeast>The colony has no beast they'd buy: grown, sound, out of any pen and bonded to nobody.</CC_CampLand_NoBeast>
+  <CC_CampLand_NoChildren>The colony has no children old enough to help.</CC_CampLand_NoChildren>
+  <CC_CampLand_NoStudy>The colony has no study of the unnatural under way for their notes to add to.</CC_CampLand_NoStudy>
+  <CC_CampLand_NoHull>Their wrecked craft is gone.</CC_CampLand_NoHull>
+  <CC_CampLand_NoStorm>Only when the weather is foul.</CC_CampLand_NoStorm>
+  <CC_CampLand_NoBeds>The colony has no free bed under a roof for them.</CC_CampLand_NoBeds>
+  <CC_CampLand_CatchGoing>One of them is already bringing their catch over.</CC_CampLand_CatchGoing>
+  <CC_CampLand_NoCatch>They haven't caught enough to sell yet.</CC_CampLand_NoCatch>
+  <CC_CampLand_NoPorter>None of them is free to carry it.</CC_CampLand_NoPorter>
+  <CC_CampLand_HaulGoing>Their share of the haul is already on its way.</CC_CampLand_HaulGoing>
+  <CC_CampLand_NoHaul>They haven't stripped enough yet to split.</CC_CampLand_NoHaul>
+
+  <!-- ===================== {THING} in an ask's label ===================== -->
+  <CC_CampLand_NoCatchWord>nothing caught yet</CC_CampLand_NoCatchWord>
+  <CC_CampLand_NoBeastWord>none of the colony's beasts</CC_CampLand_NoBeastWord>
+  <CC_CampLand_BeastOffer>{0} the {1}, for {2} silver</CC_CampLand_BeastOffer>
+
+  <!-- ===================== What happened ===================== -->
+  <CC_CampLand_CatchSold>{X_nameDef} set down {COUNT} {THING} from the fishers' catch by the colony's gate, and {SILVER} silver for it is going over to their camp.</CC_CampLand_CatchSold>
+  <CC_CampLand_CatchSoldShort>{X_nameDef} set down {COUNT} {THING} by the colony's gate. It came to {PRICE} silver, but the colony had only {SILVER} left to send over, and the {NAME} took it badly.</CC_CampLand_CatchSoldShort>
+  <CC_CampLand_CatchSoldUnpaid>{X_nameDef} set down {COUNT} {THING} by the colony's gate, but the colony had no silver left for the {PRICE} it came to, and the {NAME} took it badly.</CC_CampLand_CatchSoldUnpaid>
+  <CC_CampLand_HaulBrought>{X_nameDef} of the {NAME} set down {COUNT} {THING} from their haul by the colony's gate: the colony's half.</CC_CampLand_HaulBrought>
+  <CC_CampLand_RuinsLeave>The {NAME} won't work ruins somebody else claims. They're packing up their camp {PLACE}.</CC_CampLand_RuinsLeave>
+  <CC_CampLand_RuinsFee>The {NAME} will pay the colony {COUNT} silver every five days to finish the ruins, the first tomorrow, set out at the edge of their camp.</CC_CampLand_RuinsFee>
+  <CC_CampLand_BeastSold>{THING} is the {NAME}'s now and goes to their fence; one of them is bringing {COUNT} silver up to the colony's gate. {A_nameDef} watched it go.</CC_CampLand_BeastSold>
+  <CC_CampLand_BeastSoldNoKeeper>{THING} is the {NAME}'s now and goes to their fence; one of them is bringing {COUNT} silver up to the colony's gate.</CC_CampLand_BeastSoldNoKeeper>
+  <CC_CampLand_FeedLabel>feeding the {NAME}'s beasts</CC_CampLand_FeedLabel>
+
+  <!-- ===================== What an answer does ===================== -->
+  <CC_Impact_CatchSale>One of the {0} carries their catch to the colony's gate, and the colony pays for it there</CC_Impact_CatchSale>
+  <CC_Impact_CatchSaleBrief>catch bought</CC_Impact_CatchSaleBrief>
+  <CC_Impact_HaulShare>Two of the {0} carry half of their biggest piles of salvage to the colony's gate</CC_Impact_HaulShare>
+  <CC_Impact_HaulShareBrief>half the haul</CC_Impact_HaulShareBrief>
+  <CC_Impact_FarWater>The {0} fish only the water away from the colony and its fishing spots, and catch less</CC_Impact_FarWater>
+  <CC_Impact_FarWaterBrief>they fish the far water</CC_Impact_FarWaterBrief>
+  <CC_Impact_NearWater>The {0} may fish the water near the colony again</CC_Impact_NearWater>
+  <CC_Impact_NearWaterBrief>they fish near the colony</CC_Impact_NearWaterBrief>
+  <CC_Impact_ClearNear>The {0} take down the ruin nearest the colony first; what they strip stays theirs</CC_Impact_ClearNear>
+  <CC_Impact_ClearNearBrief>the near ruin cleared</CC_Impact_ClearNearBrief>
+  <CC_Impact_RuinsLeave>The {0} pack up and leave</CC_Impact_RuinsLeave>
+  <CC_Impact_RuinsLeaveBrief>they leave</CC_Impact_RuinsLeaveBrief>
+  <CC_Impact_RuinsFee>The {0} pay {1} silver every five days to finish</CC_Impact_RuinsFee>
+  <CC_Impact_RuinsFeeBrief>they pay to finish</CC_Impact_RuinsFeeBrief>
+  <CC_Impact_Reap>The {0} reap the colony's ripe crops by day and leave them for its haulers</CC_Impact_Reap>
+  <CC_Impact_ReapBrief>the harvest reaped</CC_Impact_ReapBrief>
+  <CC_Impact_ReapSheaf>One in ten of what they reap goes in their packs</CC_Impact_ReapSheaf>
+  <CC_Impact_ReapSheafBrief>a sheaf in ten</CC_Impact_ReapSheafBrief>
+  <CC_Impact_ReapMeals>{0} cooked meals carried to their camp each evening they worked</CC_Impact_ReapMeals>
+  <CC_Impact_ReapMealsBrief>their suppers</CC_Impact_ReapMealsBrief>
+  <CC_Impact_MonolithNotes>The colony's study of the unnatural gains {0} knowledge</CC_Impact_MonolithNotes>
+  <CC_Impact_MonolithNotesBrief>knowledge</CC_Impact_MonolithNotesBrief>
+  <CC_Impact_StayLonger>The {0} stay {1} longer</CC_Impact_StayLonger>
+  <CC_Impact_StayLongerBrief>they stay longer</CC_Impact_StayLongerBrief>
+  <CC_Impact_Shelter>The {0} sleep in the colony's free beds tonight and give them back in the morning</CC_Impact_Shelter>
+  <CC_Impact_ShelterBrief>beds for the night</CC_Impact_ShelterBrief>
+  <CC_Impact_BeastGoes>{0} goes to the {1}</CC_Impact_BeastGoes>
+  <CC_Impact_BeastGoesBrief>{0} sold</CC_Impact_BeastGoesBrief>
+  <CC_Impact_ChildrenFeed>{0} help the keepers of the {1} feed their beasts for an hour or two (Animals practice)</CC_Impact_ChildrenFeed>
+  <CC_Impact_ChildrenFeedBrief>the children help</CC_Impact_ChildrenFeedBrief>
+
+</LanguageData>

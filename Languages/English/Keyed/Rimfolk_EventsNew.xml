@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Market days, the orbital lanes and the assize (World/Workers_NewSituations.cs); the orphaned young, a wild one at
+       the pens, a rich seam, a game for a stake and a commission (Happenings/Workers_NewEvents.cs); the colony's mechs,
+       slaves and held entities (Strangers/). -->
+
+  <CC_Visit_Come_buyers>Buyers of {0} are on the road to the colony's market stalls.</CC_Visit_Come_buyers>
+
+  <Rimfolk_Impact_Suppression>{0}'s suppression: {1}</Rimfolk_Impact_Suppression>
+  <Rimfolk_Impact_SuppressionBrief>suppression {0}</Rimfolk_Impact_SuppressionBrief>
+  <Rimfolk_Impact_WatchBeast>The colony keeps watch on {0}, and someone gives it a name</Rimfolk_Impact_WatchBeast>
+  <Rimfolk_Impact_WatchBeastBrief>a beast watched and named</Rimfolk_Impact_WatchBeastBrief>
+  <Rimfolk_Impact_MineSeam>{0} cells of ore marked for mining</Rimfolk_Impact_MineSeam>
+  <Rimfolk_Impact_MineSeamBrief>{0} ore marked to mine</Rimfolk_Impact_MineSeamBrief>
+
+  <Rimfolk_Evt_GameOdds>At this game the colony's best is {A_nameDef} ({4} {2}). {X_nameDef} is about {3}. The better player usually wins, but not always.</Rimfolk_Evt_GameOdds>
+  <Rimfolk_Evt_GameOff>The game at the table never happened: the two of them never sat down to it.</Rimfolk_Evt_GameOff>
+  <Rimfolk_Evt_Game_Chess>chess</Rimfolk_Evt_Game_Chess>
+  <Rimfolk_Evt_Game_Poker>poker</Rimfolk_Evt_Game_Poker>
+  <Rimfolk_Evt_GameWonTitle>{A_nameDef} won at {GAME}</Rimfolk_Evt_GameWonTitle>
+  <Rimfolk_Evt_GameLostTitle>{A_nameDef} lost at {GAME}</Rimfolk_Evt_GameLostTitle>
+  <Rimfolk_Evt_GameWon>{A_nameDef} beat {X_nameDef} at {GAME}. It was close for a while, and then it wasn't.</Rimfolk_Evt_GameWon>
+  <Rimfolk_Evt_GameWonStake>{A_nameDef} beat {X_nameDef} at {GAME}, and {X_nameDef} counted out the {COUNT} silver they had staked.</Rimfolk_Evt_GameWonStake>
+  <Rimfolk_Evt_GameLost>{X_nameDef} beat {A_nameDef} at {GAME}, and was gracious about it.</Rimfolk_Evt_GameLost>
+  <Rimfolk_Evt_GameLostStake>{X_nameDef} beat {A_nameDef} at {GAME}. The {COUNT} silver the colony staked goes to {X_nameDef}.</Rimfolk_Evt_GameLostStake>
+
+  <Rimfolk_Evt_CantTame>A wild {0} can't be tamed.</Rimfolk_Evt_CantTame>
+  <Rimfolk_Evt_CommissionNoBench>The bench that would make it is gone.</Rimfolk_Evt_CommissionNoBench>
+  <Rimfolk_World_Commission>{0} want a {1} ({2} or better) for {3} silver; their rider comes when it's made, and they give up in {4}.</Rimfolk_World_Commission>
+
+</LanguageData>

@@ -99,11 +99,23 @@ namespace ColonyCouncil
             var cooking = AdvisorFacts.Cooking;
             int cooks = cooking == null ? 0 : Colonists(map).Count(p => p.workSettings != null && p.workSettings.WorkIsActive(cooking));
             int meals = AdvisorFacts.Meals(map);
-            if (!AdvisorMath.KitchenOutgrown(people, stoves, cooks, meals)) yield break;
+            // The meals as planning ahead reads them (the Making page's stock row): short or low against the stock
+            // target, and the stoves' bills making less a day than is eaten with no free stove for a second bill (a free
+            // stove is the Making page's "a copy on a second bench", not a bigger kitchen).
+            var food = ColonyNeeds.For(map);
+            var row = Ahead.For(map).plan?.Row(AheadMath.Meal);
+            var mealBills = food.bills.Where(b => b.kind == AheadMath.Meal && !b.suspended && !b.managed).ToList();
+            float canMake = mealBills.Count > 0 && mealBills.All(b => b.canMakeADay < AheadMath.Far) ? mealBills.Sum(b => b.canMakeADay * b.unit) : AheadMath.Far;
+            bool mealsShort = row != null && row.useADay > 0f && (row.status == AheadMath.Short || row.status == AheadMath.Low);
+            bool behind = row != null && (canMake >= AheadMath.Far || canMake < row.useADay * AheadMath.BillCovered) && mealBills.All(b => b.freeBench == null);
+            if (!AdvisorMath.KitchenOutgrown(people, stoves, cooks, mealsShort, behind)) yield break;
             int want = AdvisorMath.StovesFor(people);
             var plan = RoomGrowth.SizeFor("Council_RT_Kitchen", "cook", want, best, map);
             var stove = RoomGrowth.FirstIn(main, Avail.IsCookingStation);
-            string detail = "CC_Adv_KitchenOutgrown_Detail".Translate(stoves, people, meals, cooks).Resolve() + " "
+            string N(float v) => v >= AheadMath.Far ? "-" : v.ToString(v < 10f ? "0.#" : "0");
+            string numbers = "CC_Same_Adv_KitchenNumbers".Translate(N(row.have).Named("HAVE"), N(row.target).Named("TARGET"), N(row.useADay).Named("USE"), N(row.daysLeft).Named("DAYS"),
+                (canMake >= AheadMath.Far ? "-" : N(canMake)).Named("MAKE")).Resolve();
+            string detail = "CC_Adv_KitchenOutgrown_Detail".Translate(stoves, people, meals, cooks).Resolve() + " " + numbers + " "
                             + (plan != null ? "CC_Adv_KitchenOutgrown_Plan".Translate(RoomGrowth.WithArticle(plan, true).CapitalizeFirst()).Resolve() : "CC_Adv_KitchenOutgrown_NoPlan".Translate().Resolve());
             var s = Signal(0.3f + 0.05f * Mathf.Min(4, want - stoves), "CC_Adv_KitchenOutgrown_Title".Translate(stoves, people).Resolve(), detail, 0.5f);
             s.template = plan;
@@ -117,11 +129,17 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>A freezer whose storage is nearly full, while food that spoils sits out in the warm.</summary>
+    /// <summary>
+    /// The cold store holds fewer places than the food wants: the meals the stock target keeps and the raw food for the
+    /// days set and the winter ahead, by building ahead's cold row (GrowthNeeds), so it warns before the freezer is full.
+    /// </summary>
     public class AdvisorWorker_FreezerOutgrown : AdvisorSignalWorker
     {
         public override IEnumerable<AdvisorSignal> Evaluate(Map map)
         {
+            var row = RoomGrowth.Wanting(map, GrowthMath.Cold, out var needs);
+            // Nothing kept cold at all is the plain freezer advice.
+            if (row == null || row.built <= 0) yield break;
             // Freezer rooms: indoors, below zero, with stockpile or shelf storage.
             var freezers = new HashSet<Room>();
             int cells = 0, used = 0;
@@ -137,7 +155,6 @@ namespace ColonyCouncil
                     if (c.GetFirstItem(map) != null) used++;
                 }
             }
-            if (freezers.Count == 0) yield break;
             int spoiling = 0;
             Thing example = null;
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree))
@@ -149,14 +166,18 @@ namespace ColonyCouncil
                 spoiling += t.stackCount;
                 example ??= t;
             }
-            if (!AdvisorMath.FreezerTooSmall(cells, used, spoiling)) yield break;
-            var main = freezers.OrderByDescending(r => r.CellCount).First();
-            var plan = RoomSizes.LargerThan("Council_RT_Freezer", main.CellCount, map);
-            string detail = "CC_Adv_FreezerOutgrown_Detail".Translate(used, cells, spoiling).Resolve() + " "
+            var main = freezers.OrderByDescending(r => r.CellCount).FirstOrDefault();
+            var plan = RoomSizes.LargerThan("Council_RT_Freezer", main?.CellCount ?? 0, map);
+            string detail = (cells > 0 ? "CC_Adv_FreezerOutgrown_Detail".Translate(used, cells, spoiling).Resolve() + " " : "")
                             + (plan != null ? "CC_Adv_FreezerOutgrown_Plan".Translate(RoomGrowth.WithArticle(plan, true).CapitalizeFirst()).Resolve() : "CC_Adv_FreezerOutgrown_NoPlan".Translate().Resolve());
-            var s = Signal(0.3f + Mathf.Min(0.25f, spoiling / 800f), "CC_Adv_FreezerOutgrown_Title".Translate().Resolve(), detail, 0.6f);
+            string title = row.Short > 0
+                ? "CC_Same_Adv_ColdShortTitle".Translate(row.built.Named("BUILT"), row.need.Named("NEED")).Resolve()
+                : "CC_Same_Adv_ColdSoonTitle".Translate(row.built.Named("BUILT"), Mathf.Max(row.need, row.soon).Named("NEED")).Resolve();
+            var s = Signal(RoomGrowth.Severity(row) + Mathf.Min(0.1f, spoiling / 2000f), title, detail, row.Short > 0 ? 1f : 0.6f);
+            RoomGrowth.ForBuildAhead(s, GrowthMath.Cold, row, needs);
             s.template = plan;
             if (example != null) s.look = new LookTargets(example);
+            else if (main != null) s.look = new LookTargets(new TargetInfo(main.Cells.First(), map));
             s.key = "freezer-outgrown";
             yield return s;
         }
@@ -182,8 +203,8 @@ namespace ColonyCouncil
                     main = room;
                 }
             }
-            // Too few seats is the outgrown dining room's advice.
-            if (main == null || seats < people - 1) yield break;
+            // Too few seats (now or once the prisoners join) is the outgrown dining room's advice, by building ahead's row.
+            if (main == null || RoomGrowth.Wanting(map, GrowthMath.Dining, out _) != null) yield break;
             float space = RoomUtil.Space(main);
             if (!AdvisorMath.DiningCramped(space, people)) yield break;
             var plan = RoomSizes.LargerThan("Council_RT_DiningRoom", main.CellCount, map);

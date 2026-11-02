@@ -27,6 +27,8 @@ namespace ColonyCouncil
         public float days = SuggestMath.NoRush;
         /// <summary>For sources that rank by level instead (4 critical to 0 an idea); used after the days.</summary>
         public int level;
+        /// <summary>What the urgency pill says when it isn't a matter of days ("when the prisoners join"); null: by the days.</summary>
+        public string when;
         public Map map;
         /// <summary>The button's words and what it does on the map (null: "Do it" and the reason).</summary>
         public string doLabel, doTip;
@@ -162,9 +164,19 @@ namespace ColonyCouncil
         public void Decline(Suggestion s, float days = 0f)
         {
             if (s?.key == null) return;
-            BringBack(s.key);
-            declinedKeys.Add(s.key);
-            declinedTitles.Add(s.title ?? s.key);
+            Decline(s.key, s.title, days);
+        }
+
+        /// <summary>
+        /// Sets aside by key, for a source whose advice isn't built as a Suggestion (an advisor card, a base finding, a
+        /// piece of defense advice, a note on a line, an automation's action undone): the same store, the same Bring back.
+        /// </summary>
+        public void Decline(string key, string title, float days = 0f)
+        {
+            if (key.NullOrEmpty()) return;
+            BringBack(key);
+            declinedKeys.Add(key);
+            declinedTitles.Add(title.NullOrEmpty() ? key : title);
             declinedUntil.Add(SuggestMath.DeclineUntil(Now, days));
             while (declinedKeys.Count > SuggestMath.DeclinedKept) RemoveDeclined(0);
             Version++;
@@ -185,12 +197,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>What a source has set aside, newest first: key, the words it had, and until when (-1 for good).</summary>
-        public List<(string key, string title, int until)> DeclinedFor(string source)
+        public List<(string key, string title, int until)> DeclinedFor(string source) => DeclinedFor(source == null ? null : new[] { source });
+
+        /// <summary>What any of these sources has set aside (by the start of the key: "adv", "base", "line:12"), newest first.</summary>
+        public List<(string key, string title, int until)> DeclinedFor(IList<string> sources)
         {
             var list = new List<(string, string, int)>();
             int now = Now;
             for (int i = declinedKeys.Count - 1; i >= 0; i--)
-                if ((source == null || declinedKeys[i].StartsWith(source + ":", StringComparison.Ordinal)) && SuggestMath.StillDeclined(declinedUntil[i], now))
+                if (SuggestMath.OfSource(declinedKeys[i], sources) && SuggestMath.StillDeclined(declinedUntil[i], now))
                     list.Add((declinedKeys[i], declinedTitles[i], declinedUntil[i]));
             return list;
         }
@@ -209,6 +224,17 @@ namespace ColonyCouncil
 
         /// <summary>A step done whose check hasn't come yet: not suggested again meanwhile.</summary>
         public bool Waiting(string key) => done.Any(d => d.key == key && d.state == SuggestMath.Waiting);
+
+        /// <summary>The last time this step was done it was undone again: an automation leaves it alone (the player took it back).</summary>
+        public bool UndoneLast(string key)
+        {
+            for (int i = done.Count - 1; i >= 0; i--)
+                if (done[i].key == key) return done[i].state == SuggestMath.Undone;
+            return false;
+        }
+
+        /// <summary>Neither set aside nor waiting for its check: a key that may be offered (or done by an automation) now.</summary>
+        public bool Offered(string key) => !key.NullOrEmpty() && !Declined(key) && !Waiting(key);
 
         /// <summary>What a source's suggestions are left once those set aside and those waiting for their check are taken out, the soonest first.</summary>
         public List<Suggestion> Open(IEnumerable<Suggestion> all) =>
@@ -265,8 +291,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>The steps a source did on a map, newest first.</summary>
-        public List<SuggestDone> DoneFor(string source, Map map, int count) =>
-            done.AsEnumerable().Reverse().Where(d => (source == null || d.source == source) && (map == null || d.map == null || d.map == map)).Take(count).ToList();
+        public List<SuggestDone> DoneFor(string source, Map map, int count) => DoneFor(source == null ? null : new[] { source }, map, count);
+
+        /// <summary>The steps any of these sources did on a map (by the source's name, or the start of the key), newest first.</summary>
+        public List<SuggestDone> DoneFor(IList<string> sources, Map map, int count) =>
+            done.AsEnumerable().Reverse().Where(d => (sources == null || sources.Contains(d.source) || SuggestMath.OfSource(d.key, sources)) && (map == null || d.map == null || d.map == map))
+                .Take(count).ToList();
 
         // ---------------- The hour ----------------
 

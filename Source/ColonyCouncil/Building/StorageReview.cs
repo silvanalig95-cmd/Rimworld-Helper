@@ -58,13 +58,44 @@ namespace ColonyCouncil
                 // Shelves take everything by default and that's fine; a zone that does is the muddle.
                 if (g.parent is Zone_Stockpile) zones.Add(g);
             }
-            if (zones.Count < 2) return;
+            // The muddle is several taking everything at the same priority: goods go to whichever is nearer. At different
+            // priorities the lower one is an overflow, filled only when the higher one is full.
+            int same = StorageReviewMath.CatchAllMuddle(zones.Select(g => (int)g.Settings.Priority).ToList(), out int priority);
+            if (same < 2) return;
+            zones = zones.Where(g => (int)g.Settings.Priority == priority).OrderByDescending(g => g.CellsList.Count).ToList();
+            var main = zones[0];
+            var others = zones.Skip(1).ToList();
+            var lower = (StoragePriority)StorageReviewMath.OverflowPriority(priority);
+            bool canLower = (int)lower < priority;
+            string mainName = NameOf(main);
+            string detail = "CC_Store_CatchAll_Detail".Translate(string.Join(", ", zones.Take(4).Select(g => NameOf(g) + " (" + g.CellsList.Count + ")"))).Resolve();
+            if (canLower)
+                detail += " " + "CC_Same_Store_CatchAllHow".Translate(mainName.Named("MAIN"), main.CellsList.Count.Named("CELLS"), others.Count.Named("N"), lower.Label().Named("PRIORITY")).Resolve();
             findings.Add(new BaseFinding
             {
                 key = "catchall", group = "stores", score = StorageReviewMath.CatchAllScore(zones.Count),
                 title = "CC_Store_CatchAll".Translate(zones.Count).Resolve(),
-                detail = "CC_Store_CatchAll_Detail".Translate(string.Join(", ", zones.Take(4).Select(NameOf))).Resolve(),
-                look = Where(zones[0]), cells = zones.Take(3).SelectMany(z => z.CellsList).ToList(), mapLabel = "CC_Store_Map_CatchAll".Translate().Resolve()
+                detail = detail,
+                look = Where(zones[0]), cells = zones.Take(3).SelectMany(z => z.CellsList).ToList(), mapLabel = "CC_Store_Map_CatchAll".Translate().Resolve(),
+                fix = !canLower ? null : (System.Func<SuggestDone>)(() =>
+                {
+                    var undo = new UndoStorePriority();
+                    foreach (var g in others)
+                    {
+                        var st = g.Settings;
+                        string owner = SameRules.OwnerOf(g);
+                        if (st == null || owner == null) continue;
+                        undo.owners.Add(owner);
+                        undo.priorities.Add((int)st.Priority);
+                        st.Priority = lower;
+                    }
+                    if (undo.owners.Count == 0) return null;
+                    Messages.Message("CC_Same_Store_CatchAllDone".Translate(undo.owners.Count.Named("N"), lower.Label().Named("PRIORITY"), mainName.Named("MAIN")).Resolve(),
+                        new LookTargets(Where(main), map), MessageTypeDefOf.SilentInput, false);
+                    return new SuggestDone { undo = undo, map = map, check = new SourceGoneCheck { waitTicks = SuggestMath.TicksPerDay / 4 } };
+                }),
+                fixLabel = canLower ? "CC_Same_Store_CatchAllDo".Translate().Resolve() : null,
+                fixTip = canLower ? "CC_Same_Store_CatchAllDoTip".Translate(others.Count.Named("N"), lower.Label().Named("PRIORITY"), mainName.Named("MAIN")).Resolve() : null
             });
         }
 
@@ -229,6 +260,8 @@ namespace ColonyCouncil
                 var rooms = new HashSet<int>();
                 SlotGroup example = null;
                 var marks = new List<IntVec3>();
+                // Each room's stores that take it, and how much of it lies in them now.
+                var byRoom = new Dictionary<int, (List<SlotGroup> stores, int held, string name)>();
                 foreach (var g in groups)
                 {
                     if (catchAll.Contains(g) || g.Settings == null || g.Settings.Priority < StoragePriority.Normal || g.CellsList.Count == 0) continue;
@@ -239,16 +272,49 @@ namespace ColonyCouncil
                     {
                         if (rooms.Count == 2) example = g;
                         marks.AddRange(g.CellsList.Take(12));
+                        byRoom[id] = (new List<SlotGroup>(), 0, id < 0 ? "CC_Base_Outdoors".Translate().Resolve() : room.GetRoomRoleLabel());
                     }
+                    var entry = byRoom[id];
+                    entry.stores.Add(g);
+                    entry.held += g.HeldThings.Where(t => defs.Contains(t.def)).Sum(t => t.stackCount);
+                    byRoom[id] = entry;
                 }
                 if (rooms.Count < StorageReviewMath.SpreadRooms) continue;
+                string kind = ("CC_Store_Kind_" + key).Translate().Resolve();
+                // The room that holds the most of it keeps it; the stores of the others are set not to take it.
+                var keep = byRoom.OrderByDescending(kv => kv.Value.held).ThenBy(kv => kv.Key < 0 ? 1 : 0).First();
+                var elsewhere = byRoom.Where(kv => kv.Key != keep.Key).SelectMany(kv => kv.Value.stores).ToList();
+                string list = string.Join(", ", byRoom.OrderByDescending(kv => kv.Value.held).Take(5).Select(kv => kv.Value.name + " " + kv.Value.held));
+                var kindDefs = defs;
                 findings.Add(new BaseFinding
                 {
                     key = "spread:" + key, group = "stores", score = StorageReviewMath.SpreadScore(rooms.Count),
-                    title = "CC_Store_Spread".Translate(("CC_Store_Kind_" + key).Translate().Named("KIND"), rooms.Count.Named("N")).Resolve().CapitalizeFirst(),
-                    detail = "CC_Store_Spread_Detail".Translate().Resolve(),
+                    title = "CC_Store_Spread".Translate(kind.Named("KIND"), rooms.Count.Named("N")).Resolve().CapitalizeFirst(),
+                    detail = "CC_Store_Spread_Detail".Translate().Resolve() + " " + "CC_Same_Store_SpreadHeld".Translate(list.Named("LIST")).Resolve(),
                     look = example != null ? Where(example) : IntVec3.Invalid, cells = marks,
-                    mapLabel = "CC_Store_Map_Spread".Translate(("CC_Store_Kind_" + key).Translate().Named("KIND")).Resolve()
+                    mapLabel = "CC_Store_Map_Spread".Translate(kind.Named("KIND")).Resolve(),
+                    fixLabel = "CC_Same_Store_SpreadDo".Translate().Resolve(),
+                    fixTip = "CC_Same_Store_SpreadDoTip".Translate(elsewhere.Count.Named("N"), (byRoom.Count - 1).Named("ROOMS"), kind.Named("KIND"), keep.Value.name.Named("ROOM"),
+                        keep.Value.held.Named("HELD")).Resolve(),
+                    fix = () =>
+                    {
+                        var undo = new UndoStoreAllow();
+                        foreach (var g in elsewhere)
+                        {
+                            var st = g.Settings;
+                            string owner = SameRules.OwnerOf(g);
+                            if (st?.filter == null || owner == null) continue;
+                            foreach (var d in kindDefs)
+                            {
+                                if (!st.filter.Allows(d)) continue;
+                                st.filter.SetAllow(d, false);
+                                undo.owners.Add(owner);
+                                undo.defs.Add(d.defName);
+                            }
+                        }
+                        if (undo.owners.Count == 0) return null;
+                        return new SuggestDone { undo = undo, map = map, check = new SourceGoneCheck { waitTicks = SuggestMath.TicksPerDay / 4 } };
+                    }
                 });
             }
         }
@@ -263,7 +329,8 @@ namespace ColonyCouncil
             {
                 key = "emptyfilter", group = "stores", score = StorageReviewMath.EmptyScore(empty.Count),
                 title = "CC_Store_Empty".Translate(empty.Count).Resolve(),
-                detail = "CC_Store_Empty_Detail".Translate(string.Join(", ", empty.Take(4).Select(NameOf))).Resolve(),
+                detail = "CC_Store_Empty_Detail".Translate(string.Join(", ", empty.Take(4).Select(NameOf))).Resolve() + " "
+                         + "CC_Same_Store_EmptyCells".Translate(empty.Sum(g => g.CellsList.Count)).Resolve(),
                 look = Where(empty[0]), cells = empty.Take(4).SelectMany(g => g.CellsList).ToList(), mapLabel = "CC_Store_Map_Empty".Translate().Resolve()
             });
         }
@@ -275,9 +342,9 @@ namespace ColonyCouncil
         /// <paramref name="near"/>, taking only <paramref name="defs"/>, at the given priority. Smaller when the ground
         /// is tight; nothing when there's no room at all.
         /// </summary>
-        private static void MakeStockpile(Map map, List<ThingDef> defs, IntVec3 near, int size, StoragePriority priority, string name, Thing keepClear = null)
+        private static SuggestDone MakeStockpile(Map map, List<ThingDef> defs, IntVec3 near, int size, StoragePriority priority, string name, Thing keepClear = null)
         {
-            if (map == null || defs == null || defs.Count == 0 || !near.IsValid) return;
+            if (map == null || defs == null || defs.Count == 0 || !near.IsValid) return null;
             var clear = new HashSet<IntVec3>();
             if (keepClear != null)
             {
@@ -308,13 +375,18 @@ namespace ColonyCouncil
             if (got == 0)
             {
                 Messages.Message("CC_Store_NoRoom".Translate(), MessageTypeDefOf.RejectInput, false);
-                return;
+                return null;
             }
             var zone = new Zone_Stockpile(StorageSettingsPreset.DefaultStockpile, map.zoneManager);
             map.zoneManager.RegisterZone(zone);
+            var made = new List<IntVec3>();
             for (int x = 0; x < got; x++)
                 for (int z = 0; z < got; z++)
-                    zone.AddCell(new IntVec3(corner.x + x, 0, corner.z + z));
+                {
+                    var c = new IntVec3(corner.x + x, 0, corner.z + z);
+                    zone.AddCell(c);
+                    made.Add(c);
+                }
             var filter = zone.settings.filter;
             filter.SetDisallowAll();
             foreach (var d in defs) filter.SetAllow(d, true);
@@ -322,6 +394,7 @@ namespace ColonyCouncil
             if (!name.NullOrEmpty()) zone.label = name;
             Messages.Message("CC_Store_Made".Translate(zone.label, got * got), new LookTargets(new IntVec3(corner.x, 0, corner.z), map), MessageTypeDefOf.TaskCompletion, false);
             BaseReview.For(map, true);
+            return new SuggestDone { undo = new UndoZone { what = UndoZone.Made, zoneId = zone.ID, cells = made }, map = map, check = new SourceGoneCheck { waitTicks = SuggestMath.TicksPerDay } };
         }
     }
 }

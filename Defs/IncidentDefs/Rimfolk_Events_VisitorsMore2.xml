@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The second round of visitors (Source/ColonyCouncil/Happenings/Workers_Visitors2.cs): each comes only when the
+       colony has the thing (a relic in a reliquary, an anima tree, a colonist of a xenotype, a landed gravship, books,
+       a regular known well), walks in to the gate with its letter, and does what the answer says on the map
+       (Visitors/VisitorsMore2.cs). -->
+
+  <!-- ===================== Pilgrims to the relic (Ideology) ===================== -->
+  <!-- {TALE}: the relic. {PLACE}: its ideoligion. {COUNT}: the offering. Tags: theirFaith (their people hold it) or
+       converts (they hold it among a people who don't), believer (A holds it). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RelicPilgrims</defName>
+    <label>pilgrims to the relic</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RelicPilgrims</workerClass>
+    <baseChance>1.0</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>2~4</count>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Pilgrims to {TALE}</li>
+          <li>Pilgrims at the gate</li>
+        </titles>
+        <texts>
+          <li>[theirFaith] Pilgrims of {PLACE} from {FACTION} are at the gate, dusty to the knees. They have walked a long way to pray before {TALE}, and they ask whether the doors of the reliquary might be opened to them for a day.\n\nThey would pray at the gate if that is all the colony allows.</li>
+          <li>[converts] A few of {FACTION}'s people have come to {PLACE}, though their own people haven't, and they walked here to pray before {TALE}. Their leader asks at the gate whether they may be let in to the reliquary for a day.\n\nThey have little, but they would leave something for the shrine if it were asked.</li>
+          <li>[believer] {A_nameDef} saw them first: pilgrims of {PLACE} at the gate, heads bowed, asking to pray before {TALE}. They came from {FACTION}, and they would like to go in to the reliquary itself.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Open the doors to the reliquary</label>
+            <outcome>{A_nameDef} walked the pilgrims in, and they prayed before {TALE} through the day before going home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>relic</work><hours>5</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>walking the pilgrims in</label><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RelicFaith"><believers>Rimfolk_V2_RelicHonored</believers><others>Rimfolk_V2_StrangersInside</others><certainty>0.06</certainty></li>
+            </effects>
+            <ways><openness>2</openness><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let them pray at the gate</label>
+            <outcome>The pilgrims prayed at the gate for a few hours, facing the reliquary, then went on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>pray</work><hours>3</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RelicFaith"><believers>Rimfolk_V2_RelicGate</believers><certainty>0.02</certainty></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Ask an offering for the shrine ({COUNT} silver)</label>
+            <outcome>The pilgrims counted out {COUNT} silver at the gate and were let in to pray before {TALE}. A few of the colony's own faithful didn't like to see it asked.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Paid" />
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>relic</work><hours>4</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-2</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RelicFaith"><believers>Rimfolk_V2_RelicCharged</believers><others>Rimfolk_V2_StrangersInside</others></li>
+            </effects>
+            <ways><generosity>-2</generosity></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>The pilgrims were told the reliquary is not for visitors, and went back the way they came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_RelicFaith"><believers>Rimfolk_V2_RelicTurnedAway</believers><certainty>-0.03</certainty></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Pilgrims at the anima tree (Royalty) ===================== -->
+  <!-- {COUNT}: the fee. Tags: psycaster (A has a psylink), tribal, empire (the people). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_AnimaPilgrims</defName>
+    <label>pilgrims at the anima tree</label>
+    <workerClass>ColonyCouncil.HappeningWorker_AnimaPilgrims</workerClass>
+    <baseChance>1.0</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>2~4</count>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Pilgrims for the anima tree</li>
+          <li>Meditators at the gate</li>
+        </titles>
+        <texts>
+          <li>[tribal] Folk of {FACTION} are at the gate with bare feet and painted hands. They have heard the colony keeps an anima tree, and they ask to sit before it for a day and a night, as their elders taught them.\n\nWhere they meditate, they say, the tree's grass comes up thicker.</li>
+          <li>[empire] Psycasters of {FACTION} have stopped at the gate on their way through. Anima trees are rare, their leader says, and they would like to meditate at the colony's for a day. They would pay for the privilege, if the colony asked.</li>
+          <li>Travelers of {FACTION} who meditate at anima trees wherever they find them are at the gate. They ask leave to sit before the colony's tree for a day.\n\nThe tree's grass grows where people meditate before it, whoever they are.</li>
+          <li>[psycaster] Meditators of {FACTION} are at the gate, asking after the colony's anima tree. {A_nameDef}, who knows the tree's quiet as well as anyone, could sit with them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Welcome them, and feed them</label>
+            <outcome>The pilgrims meditated in a ring before the anima tree from morning into the night, and {A_nameDef} spent a while with them there. Their meditation fed the tree's grass as a colonist's does.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the pilgrims</label><what>meals</what><variant>true</variant></li>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>meditate</work><hours>9</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>sitting with the pilgrims at the tree</label><to>Place</to><duration>1.5~2.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>6</amount></li>
+            </effects>
+            <ways><openness>2</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Let them in, for a fee ({COUNT} silver)</label>
+            <outcome>The pilgrims paid {COUNT} silver at the gate and meditated at the tree for a few hours before going on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Paid" />
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>meditate</work><hours>4</hours></li>
+            </effects>
+            <ways><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep them away from the tree</label>
+            <outcome>The pilgrims were told the tree is the colony's own, and went on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-3</amount></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Kin of the blood (Biotech) ===================== -->
+  <!-- {A}: the colonist. {TALE}: their xenotype. {SKILL}: what their genes favour. Tags: theirKind (their people are of
+       it) or fewOfThem (a few of it living among another), skill (a lesson in it). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_KinOfBlood</defName>
+    <label>kin of the blood</label>
+    <workerClass>ColonyCouncil.HappeningWorker_KinOfBlood</workerClass>
+    <baseChance>1.0</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>2~3</count>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>{A_nameDef}'s own kind</li>
+          <li>Kin of {A_nameDef}'s blood</li>
+        </titles>
+        <texts>
+          <li>[theirKind,skill] Folk of {FACTION} are at the gate, asking for {A_nameDef} by name. They are {TALE}, as {A_pronoun} is, and word reached them that one of their own blood lives here.\n\nThey would stay the night if asked, and they know a thing or two about {SKILL}.</li>
+          <li>[fewOfThem] There are not many of {A_nameDef}'s kind among {FACTION}, and the few {TALE} there heard that {A_pronoun} lives here. Now they are at the gate, asking for {A_objective} by name.\n\nThey would like an evening with one of their own.</li>
+          <li>Travelers of {FACTION} are at the gate, {TALE} like {A_nameDef}. They heard one of their own blood lives at the colony, and they would like to meet {A_objective}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Host them for the night</label>
+            <outcome>{A_nameDef}'s kin stayed the night by the gate. {A_nameDef} spent the evening with them at the fire, and before they went they showed {A_objective} a thing or two of their own.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an evening at the fire with {A_nameDef}'s kin</label><guests>stranger</guests><guestCount>4</guestCount><organizer>A</organizer></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>a lesson from {A_nameDef}'s kin</label><teacher>X</teacher><student>A</student><hours>7~18</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_V2_KinMet</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>A word with {A_nameDef} at the gate</label>
+            <outcome>{A_nameDef} went out to the gate and talked with them a while. They went on before evening, glad to have met {A_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><hours>3</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a word with {A_nameDef}'s kin</label><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_V2_KinWord</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{A_nameDef}'s kin were told {A_pronoun} couldn't be spared. They looked toward the colony a long moment, and went.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_V2_KinTurnedAway</thought></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Gawkers at the gravship (Odyssey) ===================== -->
+  <!-- Never by chance: queued a few hours after the gravship lands a few tiles from a friendly settlement
+       (Visitors/GravshipLanding.cs). {PLACE}: the settlement. {TALE}: the ship. {COUNT}: the silver their goods cost. -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GravshipGawkers</defName>
+    <label>gawkers at the gravship</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GravshipGawkers</workerClass>
+    <baseChance>0</baseChance>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>3~5</count>
+        <amount>80~160</amount>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Gawkers from {PLACE}</li>
+          <li>Come to see {TALE}</li>
+        </titles>
+        <texts>
+          <li>Half of {PLACE} saw {TALE} come down, and a few of them walked out to see it close. They are at the gate now, craning their necks at the hull, asking whether someone might show them round it.\n\nThey brought a few things of their own to trade, too.</li>
+          <li>Folk of {FACTION} from {PLACE} have walked out to the colony to see the ship that came down out of the sky. They would give a good deal to walk round {TALE}, they say, and they have goods with them if the colony would rather trade.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Show them round the hull</label>
+            <outcome>{A_nameDef} walked the folk from {PLACE} round {TALE}, answering questions until the light went. They will talk about it in {PLACE} for a long time.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>gawk</work><hours>4</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>showing the gawkers round the ship</label><to>Stranger</to><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Trade at the gate ({COUNT} silver)</label>
+            <outcome>The folk from {PLACE} set down their goods at the gate and took the colony's {COUNT} silver home, still looking back at the ship.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for the gawkers' goods</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_GawkersGoods" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Keep them back from the ship</label>
+            <outcome>The folk from {PLACE} were kept at the gate. They looked at {TALE} from there a while, and walked home.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-2</amount></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The book swapper ===================== -->
+  <!-- {TALE}: the colony's book. {PLACE}: theirs. {THING}: what the colony's book is. {COUNT}: what they'd pay for it.
+       Tags: theirsBetter, theirsWorse (theirs is of better or worse make). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BookSwapper</defName>
+    <label>the book swapper</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BookSwapper</workerClass>
+    <baseChance>1.0</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The book swapper</li>
+          <li>A swap for {TALE}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} walks the roads with a pack of books and swaps them one for one. {X_pronoun} heard the colony has {TALE}, and offers {PLACE} for it.\n\nOr {X_pronoun} would pay {COUNT} silver, or sit a day at the colony's shelf and copy it out.</li>
+          <li>[theirsBetter] A reader from {FACTION}, {X_nameDef}, is at the gate with a pack full of books. {X_pronoun} offers {PLACE}, a finer copy than most, for the colony's {TALE}.\n\nShort of a swap, {X_pronoun} would buy it for {COUNT} silver, or borrow it a day to copy.</li>
+          <li>[theirsWorse] {X_nameDef}, a reader from {FACTION}, would like {TALE}, and offers {PLACE} for it, though {X_possessive} copy has seen better days.\n\n{X_pronoun} would pay {COUNT} silver instead, or copy it at the colony's shelf if it can't be spared.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Swap them</label>
+            <outcome>{X_nameDef} took {TALE} and left {PLACE} in its place.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BookDeal"><mode>swap</mode></li>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>swap</work><hours>3</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Lend it for copying</label>
+            <outcome>{X_nameDef} spent the day at the colony's bookcase, copying {TALE} into a notebook, and left the book where it was.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BookDeal"><mode>copy</mode></li>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>read</work><hours>8</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><generosity>1</generosity><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Sell it ({COUNT} silver)</label>
+            <outcome>{X_nameDef} took {TALE} and left {COUNT} silver in its place.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BookDeal"><mode>sell</mode></li>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><work>swap</work><hours>3</hours></li>
+            </effects>
+          </li>
+          <li>
+            <label>Keep the colony's books</label>
+            <outcome>{X_nameDef} shrugged, shouldered the pack and went on to the next town.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Regulars' own lives ===================== -->
+  <!-- A regular known well (three visits, a warm bond) comes back changed. {X}: the regular (in "died", the one who brings
+       the word). {TALE}: their trade. {PLACE}: the one who came with them. {DEAD}: the regular's name. {RELATION}: what they
+       died of. Tags: their trade, friend (A is the one they knew first), old or ill (what they died of). -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RegularWed</defName>
+    <label>a regular, married</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RegularLife</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>40</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.RegularLifeExtension"><turn>wed</turn></li>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Keepsake" />
+        </effects>
+        <titles>
+          <li>{X_nameDef} is married</li>
+          <li>The {TALE}, married</li>
+        </titles>
+        <texts>
+          <li>[friend] {X_nameDef} the {TALE} is back, and not alone: {X_pronoun} married {PLACE} on the road since the last visit. {X_pronoun} wanted {A_nameDef} to be the first here to know, and brought a carving for {A_objective}.</li>
+          <li>{X_nameDef}, the {TALE} the colony knows well, is at the gate with {PLACE}, married since the last time through. {X_pronoun} has brought a carving for {A_nameDef}, and a story about how it all happened.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>A wedding gift (60 silver)</label>
+            <outcome>{A_nameDef} carried a purse of silver out to the gate for the new couple. {X_nameDef} said the colony would hear about the children, when there were any.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a wedding gift</label><what>silver</what><count>60</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_V2_RegularGlad</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Wish them well at the gate</label>
+            <outcome>{A_nameDef} went out to the gate to wish the couple well, and they went on before evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><hours>3</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>wishing {X_nameDef} well</label><to>Stranger</to><duration>1~1.5</duration></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} and {PLACE} were sent on their way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RegularChild</defName>
+    <label>a regular, with a child</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RegularLife</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>40</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.RegularLifeExtension"><turn>child</turn></li>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Keepsake" />
+        </effects>
+        <titles>
+          <li>{X_nameDef} and {PLACE}</li>
+          <li>The {TALE} has a child now</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} the {TALE} is back, with a child at {X_possessive} side: {PLACE}, found alone on the road and kept ever since. {X_pronoun} brought a carving for {A_nameDef} too.</li>
+          <li>[friend] {X_nameDef} is at the gate with {PLACE}, a child {X_pronoun} took in on the road. {X_pronoun} wanted {A_nameDef} to meet the child, and brought a carving for {A_objective}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>A warm coat for the child</label>
+            <outcome>{A_nameDef} brought out a coat from the colony's stores for {PLACE} to take on the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a coat for the child</label><what>coat</what><count>1</count><toGroup>true</toGroup></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_V2_RegularGlad</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>An evening at the fire</label>
+            <outcome>{X_nameDef} and {PLACE} stayed the night, and spent the evening at the colony's fire with {A_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an evening with {X_nameDef} and {PLACE}</label><guests>stranger</guests><guestCount>2</guestCount><organizer>A</organizer></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} and {PLACE} were sent on their way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RegularApprentice</defName>
+    <label>a regular's apprentice</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RegularLife</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>40</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.RegularLifeExtension"><turn>apprentice</turn></li>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Keepsake" />
+        </effects>
+        <titles>
+          <li>{X_nameDef}'s last round</li>
+          <li>The {TALE}'s apprentice</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} the {TALE} is back, slower than before, with a young one at {X_possessive} side: {PLACE}, the apprentice who will walk the road in {X_possessive} place. This is {X_possessive} last time round, {X_pronoun} says. {X_pronoun} brought a carving for {A_nameDef}, to remember {X_objective} by.</li>
+          <li>[friend] {X_nameDef} wanted {A_nameDef} to meet {PLACE}, the apprentice who will carry the trade on. The knees won't take the road much longer, {X_pronoun} says, and there is a carving for {A_nameDef} in {X_possessive} pack.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take {PLACE} on as the colony's {TALE}</label>
+            <outcome>{A_nameDef} went out to the gate to meet {PLACE}. From now on it is {PLACE} the colony will see coming up the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_RegularHeir" />
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><hours>3</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>meeting the new {TALE}</label><to>Stranger</to><duration>1~1.5</duration></li>
+            </effects>
+            <ways><openness>1</openness><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>A last lesson from {X_nameDef}</label>
+            <outcome>{A_nameDef} spent a while at {X_nameDef}'s side, learning one last thing of the trade, and then the two travelers went on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><hours>5</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>a last lesson from {X_nameDef}</label><teacher>X</teacher><student>A</student><hours>8~18</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_V2_RegularGlad</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>Thank them at the gate</label>
+            <outcome>{A_nameDef} thanked {X_nameDef} at the gate for all the years, and {X_nameDef} and {PLACE} went on down the road together.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><hours>3</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>thanking {X_nameDef}</label><to>Stranger</to><duration>1~1.5</duration></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_RegularDied</defName>
+    <label>word of a regular</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RegularLife</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>40</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.RegularLifeExtension"><turn>died</turn></li>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.5</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Keepsake"><ofDead>true</ofDead></li>
+        </effects>
+        <titles>
+          <li>Word of {DEAD}</li>
+          <li>{DEAD} won't be coming back</li>
+        </titles>
+        <texts>
+          <li>[old] {X_nameDef} of {FACTION} is at the gate with word of {DEAD} the {TALE}: {DEAD} died on the road, of nothing but old age, in a bed {X_pronoun} had found for the night. {DEAD} asked that a carving be brought to {A_nameDef}, and {X_nameDef} has brought it.</li>
+          <li>[ill] {X_nameDef}, who walked the road with {DEAD} the {TALE}, is at the gate. {DEAD} died of {RELATION} a few weeks back, {X_pronoun} says, and wanted {A_nameDef} to have the carving in {X_possessive} pack.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Keep a vigil for {DEAD}</label>
+            <outcome>{A_nameDef} and a few others kept watch at the gate that night for {DEAD}, as the colony does for its own.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>the vigil for {DEAD}</label><to>Gate</to><target>CloseToA</target><count>3</count></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Send silver for those {DEAD} left (50 silver)</label>
+            <outcome>{A_nameDef} carried silver out to {X_nameDef} for {DEAD}'s people, and {X_nameDef} promised to see it into the right hands.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver for {DEAD}'s people</label><what>silver</what><count>50</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Thank {X_nameDef} for the word</label>
+            <outcome>{X_nameDef} was thanked for the word, and went on.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

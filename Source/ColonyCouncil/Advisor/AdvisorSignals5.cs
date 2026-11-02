@@ -61,6 +61,7 @@ namespace ColonyCouncil
                     s.act = () => Missions.ShowQuest(mission);
                     s.actLabel = "CC_Adv_Act_ShowQuest".Translate();
                     s.actTip = "CC_Adv_Act_ShowQuestTip".Translate();
+                    s.actOpens = true;
                 }
                 s.key = "mission:" + m.id;
                 yield return s;
@@ -153,6 +154,7 @@ namespace ColonyCouncil
                 s.act = () => letter.OpenLetter();
                 s.actLabel = "CC_Adv_Act_OpenLetter".Translate();
                 s.actTip = "CC_Adv_Act_OpenLetterTip".Translate();
+                s.actOpens = true;
                 var here = camp.members.Where(p => p != null && p.Spawned && !p.Dead).Take(3).ToList();
                 if (here.Count > 0) s.look = new LookTargets(here);
                 s.key = "camp-letter:" + l.ID;
@@ -518,6 +520,7 @@ namespace ColonyCouncil
                 s.act = () => Find.MainTabsRoot.SetCurrentTab(work);
                 s.actLabel = "CC_Adv_Act_WorkTab".Translate();
                 s.actTip = "CC_Adv_Act_WorkTabTip".Translate();
+                s.actOpens = true;
             }
             s.key = "doctor-backup";
             yield return s;
@@ -590,9 +593,10 @@ namespace ColonyCouncil
             if (thought == null || !WishWorker_DiningTable.HasDiningSpot(map)) yield break;
             var colonists = Colonists(map);
             if (colonists.Count < 2) yield break;
-            // Fewer seats than people is the outgrown dining room's advice.
+            // Fewer seats than eat here (building ahead's dining row, guests and joiners counted) is the outgrown dining room's advice.
             int seats = RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).Sum(r => RoomUtil.RoomCount(r, Avail.IsChair));
-            if (RoomUtil.DiningRoom != null && seats > 0 && seats < RoomGrowth.People(map).Count - 1) yield break;
+            var row = RoomGrowth.Wanting(map, GrowthMath.Dining, out _);
+            if (row != null && row.built > 0) yield break;
             var ate = colonists.Where(p =>
             {
                 var m = p.needs?.mood?.thoughts?.memories?.GetFirstMemoryOfDef(thought);

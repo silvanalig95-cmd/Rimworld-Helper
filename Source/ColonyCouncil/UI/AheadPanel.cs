@@ -154,21 +154,59 @@ namespace ColonyCouncil
         // ---------------- The suggestions ----------------
 
         /// <summary>The buttons of a step: each as wide as its label, one under the other.</summary>
-        private static float ButtonsWidth(IEnumerable<string> labels)
+        public static float ButtonsWidth(IEnumerable<string> labels, float least = 90f)
         {
             Text.Font = GameFont.Small;
-            float w = 90f;
+            float w = least;
             foreach (var l in labels) w = Mathf.Max(w, Text.CalcSize(l ?? "").x + 20f);
             return w;
         }
 
+        /// <summary>
+        /// "Not this" for any source (an advisor card, a base finding, a piece of defense advice, a step of the plan): its
+        /// key set aside in the shared store until brought back. Returns true when pressed.
+        /// </summary>
+        public static bool NotThis(Rect r, string key, string title)
+        {
+            bool pressed = Widgets.ButtonText(r, "CC_Ahead_NotThis".Translate());
+            if (pressed)
+            {
+                SoundDefOf.Tick_Low.PlayOneShotOnCamera();
+                SuggestTracker.Instance?.Decline(key, title);
+            }
+            TooltipHandler.TipRegion(r, "CC_Ahead_NotThisTip".Translate());
+            return pressed;
+        }
+
+        /// <summary>Does a step through the shared core (the player's click) and reads the pages' numbers again; true when it was done.</summary>
+        public static bool DoStep(Suggestion s)
+        {
+            if (s?.apply == null) return false;
+            var d = SuggestTracker.Instance?.Apply(s);
+            if (d != null) Refresh(s.map);
+            return d != null;
+        }
+
+        /// <summary>A step's Do it tooltip: what it does on the map, and that it can be undone and is checked later.</summary>
+        public static string DoTip(Suggestion s) => (s?.doTip ?? s?.title ?? "") + "\n\n" + "CC_Ahead_DoItTip".Translate().Resolve();
+
         private static string UrgencyText(Suggestion s) =>
-            s.days >= SuggestMath.NoRush || s.days >= AheadMath.Far ? "CC_Ahead_NoRush".Translate().Resolve()
+            s.days >= SuggestMath.NoRush || s.days >= AheadMath.Far ? (s.when.NullOrEmpty() ? "CC_Ahead_NoRush".Translate().Resolve() : s.when)
             : s.days < 0.05f ? "CC_Ahead_ShortNow".Translate().Resolve() : "CC_Ahead_ShortIn".Translate(Num(s.days)).Resolve();
+
+        /// <summary>After a step was done or undone: the needs read again, so the pages show the map as it is now.</summary>
+        private static void Refresh(Map map)
+        {
+            if (map == null) return;
+            ColonyNeeds.For(map, true);
+            Making.For(map, true);
+            BuildAhead.Refresh(map);
+        }
 
         private static Color LevelColor(int level) => level >= 4 ? UiKit.Bad : level >= 3 ? UiKit.Warn : level >= 2 ? UiKit.Gold : level >= 1 ? UiKit.Info : UiKit.Faint;
 
-        private static float DrawStep(Suggestion s, float x, float y, float width)
+        /// <summary>One suggestion as a card, from any source: its urgency, its words and numbers, and Do it / Show / Not this.</summary>
+        public static float DrawStep(Suggestion s, float x, float y, float width)
         {
             var labels = new List<string>();
             string doLabel = s.CanApply ? s.doLabel ?? "CC_Ahead_DoIt".Translate().Resolve() : null;
@@ -209,11 +247,7 @@ namespace ColonyCouncil
                 if (Widgets.ButtonText(r, doLabel))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                    if (tracker?.Apply(s) != null && s.map != null)
-                    {
-                        ColonyNeeds.For(s.map, true);
-                        Making.For(s.map, true);
-                    }
+                    if (tracker?.Apply(s) != null) Refresh(s.map);
                 }
                 TooltipHandler.TipRegion(r, (s.doTip ?? s.title) + "\n\n" + "CC_Ahead_DoItTip".Translate().Resolve());
                 by += 28f;
@@ -253,10 +287,14 @@ namespace ColonyCouncil
 
         // ---------------- Done lately ----------------
 
-        private static float Done(float x, float y, float width, Map map)
+        /// <summary>The steps a source did lately on a map, each with Undo and whether it worked.</summary>
+        public static float Done(float x, float y, float width, Map map, string source = Ahead.Source) => Done(x, y, width, map, new[] { source });
+
+        /// <summary>The steps any of these sources did lately on a map, each with Undo and whether it worked.</summary>
+        public static float Done(float x, float y, float width, Map map, IList<string> sources)
         {
             var tracker = SuggestTracker.Instance;
-            var done = tracker?.DoneFor(Ahead.Source, map, 6);
+            var done = tracker?.DoneFor(sources, map, 6);
             if (done == null || done.Count == 0) return 0f;
             float top = y;
             Text.Font = GameFont.Small;
@@ -308,11 +346,7 @@ namespace ColonyCouncil
                     {
                         SoundDefOf.Tick_Low.PlayOneShotOnCamera();
                         tracker.Undo(d);
-                        if (d.map != null)
-                        {
-                            ColonyNeeds.For(d.map, true);
-                            Making.For(d.map, true);
-                        }
+                        Refresh(d.map);
                     }
                     TooltipHandler.TipRegion(ur, "CC_Ahead_UndoTip".Translate(d.text).Resolve());
                 }
@@ -323,13 +357,17 @@ namespace ColonyCouncil
 
         // ---------------- Set aside ----------------
 
-        private static float Aside(float x, float y, float width)
+        /// <summary>What the player set aside of a source's suggestions, folded, each to bring back.</summary>
+        public static float Aside(float x, float y, float width, string source = Ahead.Source, Folds into = null) => Aside(x, y, width, new[] { source }, into);
+
+        /// <summary>What the player set aside of any of these sources, folded, each to bring back.</summary>
+        public static float Aside(float x, float y, float width, IList<string> sources, Folds into = null)
         {
             var tracker = SuggestTracker.Instance;
-            var aside = tracker?.DeclinedFor(Ahead.Source);
+            var aside = tracker?.DeclinedFor(sources);
             if (aside == null || aside.Count == 0) return 0f;
             float top = y;
-            y += UiKit.FoldTitle(x, y, width, "CC_Ahead_Aside".Translate(aside.Count), folds, "aside", out bool open, null, UiKit.Faint);
+            y += UiKit.FoldTitle(x, y, width, "CC_Ahead_Aside".Translate(aside.Count), into ?? folds, "aside", out bool open, null, UiKit.Faint);
             if (!open) return y - top;
             string back = "CC_Ahead_BringBack".Translate().Resolve();
             float bw = ButtonsWidth(new[] { back });

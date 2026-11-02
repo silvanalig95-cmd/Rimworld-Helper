@@ -89,6 +89,14 @@ namespace ColonyCouncil
         public static bool KitchenOutgrown(int people, int stoves, int cooks, int meals) =>
             stoves > 0 && stoves < StovesFor(people) && cooks > stoves && meals < people;
 
+        /// <summary>
+        /// The same, by planning ahead's meal row: the meals short or low against their stock target, and the stoves'
+        /// bills making less a day than is eaten with no free stove to copy a bill to (that is a bill to copy, not a
+        /// kitchen to build).
+        /// </summary>
+        public static bool KitchenOutgrown(int people, int stoves, int cooks, bool mealsShort, bool stovesBehind) =>
+            stoves > 0 && stoves < StovesFor(people) && cooks > stoves && mealsShort && stovesBehind;
+
         /// <summary>The freezer is full (most of its storage taken) and food that spoils is left out in the warm.</summary>
         public static bool FreezerTooSmall(int storageCells, int usedCells, int spoilingOutside) =>
             storageCells > 0 && usedCells * 20 >= storageCells * 17 && spoilingOutside >= 30;

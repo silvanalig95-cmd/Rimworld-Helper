@@ -331,6 +331,18 @@ namespace ColonyCouncil
         private void Place(PlacementPlan plan)
         {
             string summary = TemplatePlanner.Execute(plan, Map);
+            // Building ahead follows the room in stages and keeps a side of it free to grow into (Building/BuildAhead.cs).
+            if (!plan.upgrade)
+            {
+                try
+                {
+                    BuildAhead.Placed(plan, Map);
+                }
+                catch (System.Exception e)
+                {
+                    CouncilLog.ErrorOnce("build ahead placed", e);
+                }
+            }
             var look = plan.door.IsValid ? new LookTargets(plan.door, Map) : plan.upgradeRoom != null ? new LookTargets(plan.upgradeRoom.Cells.First(), Map) : LookTargets.Invalid;
             // Something left out for the ground: still placed, but said in the warning color.
             Messages.Message(summary, look, plan.LeavesOutGround ? MessageTypeDefOf.CautionInput : MessageTypeDefOf.TaskCompletion, false);

@@ -49,6 +49,19 @@ namespace ColonyCouncil
         /// <summary>What a look makes of a step: it worked; not yet (another look later); or, after the last look, it didn't.</summary>
         public static int AfterLook(bool worked, int triesSoFar) => worked ? Worked : triesSoFar + 1 >= Tries ? Failed : Waiting;
 
+        /// <summary>
+        /// A key belongs to one of these sources when it starts with one of them and a colon ("base" takes
+        /// "base:stubs"), or is one of them exactly; no sources at all takes every key.
+        /// </summary>
+        public static bool OfSource(string key, IList<string> sources)
+        {
+            if (sources == null) return true;
+            if (key == null) return false;
+            foreach (var s in sources)
+                if (!string.IsNullOrEmpty(s) && (key == s || key.Length > s.Length && key[s.Length] == ':' && key.StartsWith(s, StringComparison.Ordinal))) return true;
+            return false;
+        }
+
         /// <summary>Lets the oldest go past a cap; how many went.</summary>
         public static int TrimOldest<T>(List<T> list, int cap)
         {

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- The same rules for what already existed (docs/plan-ahead.md, last section): the advisor's cards, the base review,
+       the Plan page, the Making page's staples, the automations and the defense advice through the shared suggestion
+       core (Source/ColonyCouncil/Building/Suggest/SameRules.cs and the pages). -->
+
+  <!-- Shared. -->
+  <CC_Same_ReadMoreTip>Opens the Almanac page: {0}.</CC_Same_ReadMoreTip>
+  <CC_Same_RefreshTip>Looks the colony over again now, instead of waiting for the hour.</CC_Same_RefreshTip>
+  <CC_Same_Check_Still>It still stands: {0}.</CC_Same_Check_Still>
+  <CC_Same_Check_Pieces>{0} of the {1} pieces planned aren't built yet.</CC_Same_Check_Pieces>
+  <CC_Same_Check_NoBuilders>Nobody here has Construction switched on.</CC_Same_Check_NoBuilders>
+  <CC_Same_Check_Orders>{0} of the {1} orders still wait to be carried out.</CC_Same_Check_Orders>
+
+  <!-- The advisor's cards, by building ahead's rows and planning ahead's stock rows. -->
+  <CC_Same_Adv_SeatsTitle>{SEATS} seats at the tables for {EATERS} who eat here</CC_Same_Adv_SeatsTitle>
+  <CC_Same_Adv_SeatsPlan>{0} would seat everyone at once; a few more chairs around the table you have help too.</CC_Same_Adv_SeatsPlan>
+  <CC_Same_Adv_SeatsNoPlan>More chairs at the tables, or a second table, would seat everyone.</CC_Same_Adv_SeatsNoPlan>
+  <CC_Same_Adv_ColdNoneTitle>Nothing is kept cold, and the food wants {NEED} places</CC_Same_Adv_ColdNoneTitle>
+  <CC_Same_Adv_ColdNoneHow>{ROTTING} pieces of food that spoils lie in the warm now; a closed room kept below freezing with {COOLER} keeps it fresh.</CC_Same_Adv_ColdNoneHow>
+  <CC_Same_Adv_ColdShortTitle>The cold store has {BUILT} places for the {NEED} the food wants</CC_Same_Adv_ColdShortTitle>
+  <CC_Same_Adv_ColdSoonTitle>The cold store's {BUILT} places will fall short of the {NEED} the winter wants</CC_Same_Adv_ColdSoonTitle>
+  <CC_Same_Adv_HospitalBeds>{BEDS} medical bed(s) for {PEOPLE} people; at most {MOST} laid up at once over the last {DAYS} day(s).</CC_Same_Adv_HospitalBeds>
+  <CC_Same_Adv_KitchenNumbers>Meals: {HAVE} nutrition in store against a stock target of {TARGET}, about {USE} eaten a day ({DAYS} days); the stoves' bills make about {MAKE} a day.</CC_Same_Adv_KitchenNumbers>
+  <CC_Same_Adv_DoctorBest>{PAWN} has the best Medicine of the {COUNT} colonists ({LEVEL}).</CC_Same_Adv_DoctorBest>
+
+  <!-- The base review. -->
+  <CC_Same_Base_Walk>That is a walk of {WALK} cells, {CROW} as the crow flies.</CC_Same_Base_Walk>
+  <CC_Same_Base_MealWalkFar>The farthest ({ROOM}) is a walk of {D} cells.</CC_Same_Base_MealWalkFar>
+  <CC_Same_Base_AirlockHow>Plan the airlock lays that out here: a second door one cell further out and {WALLS} new wall piece(s), with room left to walk round it.</CC_Same_Base_AirlockHow>
+  <CC_Same_Base_AirlockNoRoom>There's no room for one in front of this door as it stands: something is in the way, or a new wall would shut a path.</CC_Same_Base_AirlockNoRoom>
+  <CC_Same_Base_AirlockDo>Plan the airlock</CC_Same_Base_AirlockDo>
+  <CC_Same_Base_AirlockDoTip>Places blueprints for a second door one cell beyond this one and {WALLS} wall piece(s) either side of the cell between, of the freezer's own door and wall materials. Your builders build it; Undo takes the blueprints away.</CC_Same_Base_AirlockDoTip>
+  <CC_Same_Store_CatchAllHow>Keep one for anything keeps {MAIN} ({CELLS} cells) as the place for anything and sets the other {N} to {PRIORITY}.</CC_Same_Store_CatchAllHow>
+  <CC_Same_Store_CatchAllDo>Keep one for anything</CC_Same_Store_CatchAllDo>
+  <CC_Same_Store_CatchAllDoTip>Sets the other {N} stockpile(s) to {PRIORITY} priority, so {MAIN} takes goods first and they hold only what doesn't fit; the haulers move goods up as room opens. Undo puts the priorities back.</CC_Same_Store_CatchAllDoTip>
+  <CC_Same_Store_CatchAllDone>{N} stockpile(s) set to {PRIORITY}: {MAIN} takes goods first.</CC_Same_Store_CatchAllDone>
+  <CC_Same_Store_SpreadHeld>In store now, by room: {LIST}.</CC_Same_Store_SpreadHeld>
+  <CC_Same_Store_SpreadDo>Keep it in one room</CC_Same_Store_SpreadDo>
+  <CC_Same_Store_SpreadDoTip>Sets {N} store(s) in the other {ROOMS} room(s) not to take {KIND}; the {ROOM} keeps it ({HELD} there now). Undo lets them take it again.</CC_Same_Store_SpreadDoTip>
+  <CC_Same_Store_EmptyCells>{0} cells in all.</CC_Same_Store_EmptyCells>
+
+  <!-- The Plan page. -->
+  <CC_Same_Plan_NotThisTip>Takes it off the plan and stops proposing it, here and on the page it comes from. It is listed under "Set aside" at the end of the page, where you can bring it back.</CC_Same_Plan_NotThisTip>
+  <CC_Same_Plan_LevelTip>How pressing it is now, as the page it comes from reckons it.</CC_Same_Plan_LevelTip>
+  <CC_Same_Plan_TakeAllTip>Takes every proposal into the plan, the most pressing first.</CC_Same_Plan_TakeAllTip>
+  <CC_Same_Plan_ResearchIdle>{BENCHES} research bench(es) stand idle; {PEOPLE} colonist(s) have Research on.</CC_Same_Plan_ResearchIdle>
+
+  <!-- The Making page's staples, by the stock targets. -->
+  <CC_Same_Making_Staple>Until {N}: the stock target above is {TARGET} {UNIT} ({DAYS} days at {USE} a day), and your other bills of the kind keep {COVER}.</CC_Same_Making_Staple>
+  <CC_Same_Making_Nutrition>nutrition</CC_Same_Making_Nutrition>
+  <CC_Same_Making_Pieces>pieces</CC_Same_Making_Pieces>
+
+  <!-- The automations, also as steps by hand. -->
+  <CC_Same_Auto_BillNumbers>{HAVE} in store now, {N} wanted.</CC_Same_Auto_BillNumbers>
+  <CC_Same_Auto_PlanLevel>Its level: {LEVEL}.</CC_Same_Auto_PlanLevel>
+  <CC_Same_Auto_ResearchCost>It costs {COST} research points.</CC_Same_Auto_ResearchCost>
+  <CC_Same_Auto_Placed>{N} piece(s) planned, worth about {WORTH} silver once built.</CC_Same_Auto_Placed>
+  <CC_Same_Auto_FirewoodWood>They give about {WOOD} wood.</CC_Same_Auto_FirewoodWood>
+  <CC_Same_Auto_FirewoodDo>Mark {0} trees</CC_Same_Auto_FirewoodDo>
+  <CC_Same_Auto_FirewoodDoTip>Marks the {0} nearest grown trees outside the growing zones for chopping (the game's own orders: cancel them like any other).</CC_Same_Auto_FirewoodDoTip>
+  <CC_Same_Auto_GrowDo>Sow {0} cells</CC_Same_Auto_GrowDo>
+  <CC_Same_Auto_GrowDoTip>Lays out {N} cells of {PLANT} as a growing zone on free fertile ground; Undo takes the cells away again.</CC_Same_Auto_GrowDoTip>
+
+  <!-- The defense advice and the notes on a line. -->
+  <CC_Same_Def_Wood>{0} wooden wall piece(s) stand by it.</CC_Same_Def_Wood>
+  <CC_Same_Def_Traps>Now {0} trap(s) stand in front of it; three or more cover the way.</CC_Same_Def_Traps>
+  <CC_Same_Def_Turrets>Now {0} turret(s) stand near it, with raids at about {1} points.</CC_Same_Def_Turrets>
+  <CC_Same_Def_Cover>{0} piece(s) of cover stand behind it now.</CC_Same_Def_Cover>
+  <CC_Same_Def_Fallback>Now {0} door(s) stand between the way in and the beds.</CC_Same_Def_Fallback>
+  <CC_Same_Def_Mortars>The colony has {0} mortar(s).</CC_Same_Def_Mortars>
+  <CC_Same_Def_Points>Raids are about {0} points now, against {1} fighter(s).</CC_Same_Def_Points>
+  <CC_Same_Def_Medical>The colony has {0} fighter(s).</CC_Same_Def_Medical>
+  <CC_Same_Line_NotThisTip>Stops showing this note on the line's card until you bring it back, with the line under the notes.</CC_Same_Line_NotThisTip>
+  <CC_Same_Line_Aside>{0} note(s) set aside: click to bring them back</CC_Same_Line_Aside>
+  <CC_Same_Line_AsideTip>Brings back every note on this line that was set aside with Not this.</CC_Same_Line_AsideTip>
+</LanguageData>

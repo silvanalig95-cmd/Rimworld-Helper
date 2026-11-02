@@ -265,7 +265,7 @@ namespace ColonyCouncil
             bool awake = RestUtility.Awake(p);
             if (newDay) Daily(p, day, circumstance);
             int mask = AilmentChecks.Sample(p, awake);
-            for (int t = 0; t < 31; t++)
+            for (int t = 0; t < 32; t++)
                 if ((mask & (1 << t)) != 0) d.hours[t] += 1f;
             Announce(p);
             if (!circumstance) return;
@@ -338,6 +338,13 @@ namespace ColonyCouncil
             if (info.risks != null)
                 for (int i = 0; i < info.risks.Count; i++)
                     if (info.risks[i] != null && info.risks[i].Applies(p)) f *= info.risks[i].factor;
+            // Someone who knows the work is spared most of it (a beekeeper who knows animals is stung less).
+            if (!info.skill.NullOrEmpty() && p.skills != null)
+            {
+                var sd = DefDatabase<SkillDef>.GetNamedSilentFail(info.skill);
+                var rec = sd != null ? p.skills.GetSkill(sd) : null;
+                if (rec != null && !rec.TotallyDisabled) f *= AilmentMath.SkillFactor(rec.Level);
+            }
             return f;
         }
 
@@ -353,6 +360,7 @@ namespace ColonyCouncil
             if (p.health.hediffSet.HasHediff(def)) return false;
             if (p.DevelopmentalStage.Juvenile() && info.childFactor <= 0f) return false;
             if (info.childrenOnly && !p.DevelopmentalStage.Juvenile()) return false;
+            if (info.minAge > 0f && Flavor.HumanAge(p) < info.minAge) return false;
             if (!info.biomes.NullOrEmpty() && (p.MapHeld?.Biome == null || !info.biomes.Contains(p.MapHeld.Biome.defName))) return false;
             if (info.once && HadBefore(p, def)) return false;
             int now = Find.TickManager.TicksGame;
@@ -683,7 +691,8 @@ namespace ColonyCouncil
                 if (info?.causes == null) continue;
                 foreach (var c in info.causes)
                 {
-                    if (c == null || c.trigger < AilmentTrigger.AfterIllness) continue;
+                    // From an illness got over to a horror: the per-meal and per-smoke ones after them roll in Notify_Ate.
+                    if (c == null || c.trigger < AilmentTrigger.AfterIllness || c.trigger > AilmentTrigger.Horror) continue;
                     var a = new AfterCause { def = def, info = info, cause = c };
                     if (c.trigger == AilmentTrigger.AfterIllness || c.trigger == AilmentTrigger.Healed)
                     {
@@ -1005,7 +1014,10 @@ namespace ColonyCouncil
         /// <summary>Whether the colony's meals are being watched (Rimfolk's meal hook is on and applied).</summary>
         public static bool DietKnown => RimfolkPatches.On && RimfolkPatches.Applied.Contains(nameof(Patch_AilmentDiet));
 
-        /// <summary>A colonist ate something: fruit and vegetables (raw or cooked in) and sweets are noted.</summary>
+        /// <summary>
+        /// A colonist ate something: fruit and vegetables (raw or cooked in) and sweets are noted, and a rich meal, a drink,
+        /// raw meat or fish, or a smoke gets its rolls (one ailment at most from it).
+        /// </summary>
         public void Notify_Ate(Pawn p, Thing food)
         {
             var def = food?.def;
@@ -1016,7 +1028,10 @@ namespace ColonyCouncil
             if (!On || !Eligible(p) || Find.TickManager.TicksGame < GenDate.TicksPerDay * 2) return;
             bool rich = def.ingestible.preferability >= FoodPreferability.MealFine;
             bool drink = IsAlcohol(def);
-            if (!rich && !drink) return;
+            bool raw = IsRawFlesh(def);
+            // A smoke counts for more from someone who smokes every day (the game's own tolerance for the drug).
+            float smoke = IsSmoke(def) ? AilmentMath.SmokeFactor(Tolerance(p, def)) : 0f;
+            if (!rich && !drink && !raw && smoke <= 0f) return;
             float age = Flavor.HumanAge(p);
             foreach (var d in Defs)
             {
@@ -1026,13 +1041,52 @@ namespace ColonyCouncil
                 float chance = c != null ? c.chance * (age >= 60f ? 2f : age >= 40f ? 1.5f : 1f) : 0f;
                 var dc = drink ? info.Cause(AilmentTrigger.Drink) : null;
                 if (dc != null) chance = Mathf.Max(chance, dc.chance);
+                var rc = raw ? info.Cause(AilmentTrigger.RawFood) : null;
+                if (rc != null) chance = Mathf.Max(chance, rc.chance);
+                var sc = smoke > 0f ? info.Cause(AilmentTrigger.Smoke) : null;
+                if (sc != null) chance = Mathf.Max(chance, sc.chance * smoke);
                 if (chance <= 0f) continue;
+                // Fruit or vegetables lately keep some away (gout: half as often).
+                if (info.freshFactor != 1f) chance *= AilmentMath.FreshFactor(AteFreshWithin(p, info.freshDays), info.freshFactor);
                 if (Rand.Chance(chance * Freq * PersonFactor(p, info)) && CanGet(p, d, info, false))
                 {
                     Give(p, d, info, false);
                     return;
                 }
             }
+        }
+
+        /// <summary>Raw meat or raw fish: meat that isn't in a meal and wasn't cooked (never a corpse eaten in desperation).</summary>
+        private static bool IsRawFlesh(ThingDef d)
+        {
+            var ing = d.ingestible;
+            if (ing == null || ing.IsMeal || d.IsCorpse) return false;
+            if (ing.preferability != FoodPreferability.RawBad && ing.preferability != FoodPreferability.RawTasty && ing.preferability != FoodPreferability.DesperateOnly) return false;
+            return d.IsMeat || (ing.foodType & FoodTypeFlags.Meat) != 0 || d.defName.IndexOf("Fish", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        /// <summary>
+        /// A smoke: a drug the game smokes (its sound or its order says so: a joint, a cigarette, a cigar), or one of
+        /// smokeleaf, nicotine or tobacco.
+        /// </summary>
+        private static bool IsSmoke(ThingDef d)
+        {
+            if (!d.IsDrug || d.ingestible == null) return false;
+            string sound = d.ingestible.ingestSound?.defName;
+            if (sound != null && sound.IndexOf("Smoke", StringComparison.OrdinalIgnoreCase) >= 0) return true;
+            string order = d.ingestible.ingestCommandString;
+            if (!order.NullOrEmpty() && order.StartsWith("Smoke", StringComparison.OrdinalIgnoreCase)) return true;
+            string chem = d.GetCompProperties<CompProperties_Drug>()?.chemical?.defName;
+            return chem != null && (chem.IndexOf("Smokeleaf", StringComparison.OrdinalIgnoreCase) >= 0 || chem.IndexOf("Nicotine", StringComparison.OrdinalIgnoreCase) >= 0
+                                    || chem.IndexOf("Tobacco", StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        /// <summary>Their tolerance for the drug's chemical (0 to 1): how much of it they've had lately, by the game's own count.</summary>
+        private static float Tolerance(Pawn p, ThingDef d)
+        {
+            var tol = d.GetCompProperties<CompProperties_Drug>()?.chemical?.toleranceHediff;
+            var h = tol != null ? p.health?.hediffSet?.GetFirstHediffOfDef(tol) : null;
+            return h?.Severity ?? 0f;
         }
 
         private static bool IsAlcohol(ThingDef d)

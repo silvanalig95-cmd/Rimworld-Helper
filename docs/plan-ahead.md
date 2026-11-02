@@ -121,8 +121,10 @@ and the eight automations next) goes through `Building/Suggest/`:
   look makes of a step, how much is kept (`DoneKept` 20, `DeclinedKept` 80).
 - To route another source through it: build its suggestions as `Suggestion`s with keys "source:..." in its own
   `For(map)`, draw them with the same three buttons (see `UI/AheadPanel.DrawStep`), and give each `apply` an undo from
-  `SuggestUndos.cs` (or a new `SuggestUndo`) and a `SuggestCheck`. The existing automations keep their own undo log
-  (`AutoAction`) until they are moved over.
+  `SuggestUndos.cs` (or a new `SuggestUndo`) and a `SuggestCheck`. A source whose advice isn't a `Suggestion` (an
+  advisor card, a defense note) sets aside by key with `Decline(key, title)`; `DeclinedFor`/`DoneFor` take several
+  sources (`SuggestMath.OfSource`: "base" takes "base:stubs"). The automations keep their `AutoAction` log, but a new
+  action holds the same `SuggestUndo` a step done by hand does (see the last section).
 
 ## Phase 2: construction and the base's growth
 
@@ -136,6 +138,76 @@ and the eight automations next) goes through `Building/Suggest/`:
    than the builders can do in a couple of days.
 8. **Room to grow**: keep the side a room will grow into free (the freezer's free wall, the end of the bedroom row) and
    warn before something is built there.
+
+### Phase 2 as built
+
+- **The arithmetic**: `Building/GrowthMath.cs` (pure, `Tools/Tests/GrowthTests.cs`, which also runs the reference colony;
+  `RIMFOLK_GROWTH_PRINT=1` prints it). `GrowthInput` (numbers) to `GrowthPlan` (`GrowthRow` per kind: need, soon, built,
+  planned, days, level, why; `GrowthIdea` per room to build, ordered by days, then level, then the kind's order). Kinds
+  `beds`, `cold`, `dining`, `hospital`, `workshop`, `storage`. Rules: beds for colonists and slaves (lodgers included),
+  plus prisoners being recruited "once they join"; cold store places (stack places) for `mealDays` of meals and
+  `reserveDays` of raw food, then the winter's days without growing (`WinterIn` = the first day under
+  `AheadMath.NoGrowFactor`, the row's days), each by the nutrition a place of the colony's own rotting raw food holds;
+  seats for colonists, slaves and guests less `DiningSlack` 1; hospital beds `ceil(people x 0.25)` or the most laid up
+  at once lately; workshop bench places = benches + one for each busy bench with no idle twin (`Busy`: queued hours over
+  2 days x 8 h), built = benches in a workshop + `SparePlaces` (10 free cells each); store places for 5+ stacks lying
+  about. Builders: `BuildHours(work) = work x 2 / (1.7 x 2500)`, `BuilderHoursADay = speeds x 6`, `Fits` = queued + room
+  within 2 days (any room when nothing is queued, nothing without builders). Stages `StageOf` (clear, walls+roof,
+  climate+power, floors, furniture), `StageMoved`, `RoomGoing`. Room to grow: `KeepDepth`, `GrowSide` (not the door's
+  side, most free rows, the far side on a tie, 3 to 6 deep), `Strip`.
+- **The reader**: `Building/GrowthNeeds.cs`, `GrowthNeeds.For(map, force)` (hourly, forgotten after a step). Beds:
+  `Building_Bed` for humans, not medical/prisoner/crib/Hospitality guest bed (by type name), planned from bed blueprints
+  and frames (not inside a hospital being built). Seats: chairs cardinally beside an eating table (planned: chair
+  blueprints beside a table or table blueprint). Hospital: medical beds; patients = in a medical bed or
+  `HealthAIUtility.ShouldSeekMedicalRest`, the day's most kept 15 days (`BuildAheadTracker.patients`). Cold: Ahead's meal
+  and raw rows' use, slot groups in a room at or below 0 °C or a powered fridge (`ColonyNeeds.Fridge`, now public) that
+  take the meal or a rotting raw food. Workshop: `WorkshopBench` (the bench's `workTableRoomRole`, else not a stove or
+  research bench; spots left out), queued hours of bills still wanted that `BillStuck.Why` lets go ahead. Stores:
+  `listerHaulables` at home, not in storage, that some store takes; free places in the non-cold stores. Builders:
+  Construction active, `ConstructionSpeed` summed; queued work = every blueprint's `WorkToBuild` and frame's `WorkLeft`.
+  Rooms being built add their `adds` as planned (cold, hospital, workshop, storage).
+- **The steps**: `Building/BuildAhead.cs`, source `"build"`. `BuildAhead.For(map)` (cached until the needs, the
+  tracker's `Version` or the projects' `Version` move). Room steps `build:room:<kind>` (at most
+  `GrowthMath.MaxRoomSteps` 2, while they fit the builders' 2 days, else `View.heldBack`): `Pick` takes the kind's
+  room type (`Council_RT_Bedroom` standard then cozy, `_Freezer`, `_DiningRoom`, `_Hospital` without the surgery,
+  `_Workshop`, `_Storeroom`), the smallest size whose resolved furniture adds what is wanted (else the largest), and
+  `TemplatePlanner.FindSpots` (new optional `extraNear`: bedrooms by bedrooms, freezer and dining by the kitchen,
+  workshop and storeroom side by side; the rooms followed and their kept sides as `taken`), the first valid spot with no
+  field under it that has a side to grow, else the best. Do it re-plans at the spot (else picks again) and runs
+  `TemplatePlanner.Execute` as the planner does; `UndoRoomPlaced` cancels its blueprints and frames (by cell and def),
+  unmarks what it marked and drops what it queued; `BuildRoomCheck` two days on. A room with no plan the colony can
+  build, or no spot, is a step that only says why. Nobody building: `build:nobuilder` with `BillStuck.LetDo`.
+- **Projects in stages**: `Building/BuildProjects.cs`. `BuildProject` (saved in `BuildAheadTracker`,
+  `CouncilGameComponent.buildAhead`, 16 at most): footprint, kind, adds, the kept strip. `BuildAhead.Placed(plan, map)`
+  is called by a step and by `Designator_PlanRoom.Place` (so the player's own rooms are followed and keep a side too).
+  `BuildProjects.Read` (pieces left per stage, work left, materials still needed, cutting, mining and taking down marked,
+  queued pieces, the roof: marked or not once the walls stand); `BuildProjects.Why` (nobody with Construction, plant
+  cutting or mining on, a roof nobody marked, skill, reach, forbidden, materials short with how many, research, the
+  builders' other work) with fixes (`LetDo`, mark the roof `UndoRoofMarked`, allow `UndoAllowed`). Steps per project:
+  held up `build:held:<id>:<why>`; else the stage at hand to high priority `build:stage:<id>:<stage>` (when build
+  priorities are on and other building waits; `UndoBuildPriority`, `BuildStageCheck`), and a stockpile for a material
+  needed 40 or more with no store taking it within 14 cells `build:stock:<id>:<def>` (preferred priority; `UndoZone`,
+  `BuildStockCheck`). Hourly (`BuildAhead.Hourly` from `Ahead.Hourly`): finished rooms marked done (kept while their
+  walls stand, for their strip), cancelled ones forgotten, the patients noted.
+- **Room to grow**: the strip is chosen when a room is placed; `build:grow:<id>` warns when blueprints or frames of the
+  colony stand in it (Do it cancels the blueprints, `UndoBlueprintsCancelled` places them again; frames stay), and
+  `BuildAheadOverlay` (a MapComponent) outlines every kept strip with its room's name while a build, zone or room
+  designator is selected, before anything is placed.
+- **The page**: `UI/BuildAheadPanel.cs` at the top of the Plan page (`UI/NextStepsPanel.cs`): the table (need, built,
+  planned, how it stands; the reason in numbers as its tooltip), the rooms being built with their stage, the held-back
+  line, the cards (`AheadPanel.DrawStep`, now public, as are `AheadPanel.Done` and `Aside` with a source), done lately
+  and set aside. `Suggestion.when` (new) is the pill's words when a step isn't about days. Texts in
+  `Languages/English/Keyed/Rimfolk_AheadBuild.xml`; the Almanac's Ahead page has two new sections.
+- **The reference colony** (the fixture's own fill-ins in `GrowthTests.Reference`): beds 9 of 9; nothing kept cold, 38
+  places short now (7 for meals, 31 for five days of raw food at 15.1 a day, 2.44 a place), 100 through the 10 days
+  without growing ahead (from day 13); 17 eat at 8 seats, 8 short; 2 hospital beds for 9, one short, no rush; the
+  workshop and the stores enough. The rooms in order: the cold store, the dining room, then the hospital. Nothing is
+  queued, so the freezer is suggested whatever its size; the dining room beside it only while the two together take the
+  four builders' 2 days (48 hours at 24 a day), else it waits for the freezer and the page says so.
+- Not yet: (done in the "same rules" pass: the advisor's room signals read these rows and the plan proposes the room
+  once); the busy-bench count reads queued bills, not the record of bench hours; quest offers of
+  joiners are not read; mining work is not counted in a room's hours; a room's kept side is not offered to the ground
+  plan's own spot search.
 
 ## Phase 3
 
@@ -180,3 +252,61 @@ found missing, by system:
   counts as "Not this" for that key); their reasons carry numbers. Their switches stay as they are (off unless the
   player turns them on); "act by itself" for the new helper is for later, after the player has tested the suggestions.
 - **Defense advice and line reviews**: "Not this" on notes; numbers in reasons where they're missing.
+
+### The same rules as built
+
+Shared: `Building/Suggest/SameRules.cs` (`SameRules.StillOpen(map, key)` for "adv:" and "base:" keys, `SameRules.Orders`
+runs an order-giving action as a step by diffing blueprints and designations, `OwnerOf`/`SettingsOf` name a store by
+"zone:<id>"/"thing:<ThingID>"); undos `UndoOrders` (blueprints placed by cell and def, designations on things and
+cells), `UndoStorePriority`, `UndoStoreAllow`, `UndoPlanTaken`, `UndoResearchPick`, `UndoRelay` (LineRoutes.cs); checks
+`SourceGoneCheck` (the advice or finding behind a key gone; else the pieces unbuilt, nobody building, the orders
+waiting), `BillStockCheck`. `SuggestTracker.Decline(key, title)`, `Offered(key)`, `UndoneLast(key)`,
+`DeclinedFor`/`DoneFor` over several sources. UI pieces in `AheadPanel`: `NotThis`, `DoStep`, `DoTip`,
+`ButtonsWidth`, and `Done`/`Aside` over several sources.
+
+- **Advisor cards**: done. Keys `AdvisorSteps.KeyOf` ("adv:<def>:<key>", the same the Plan page proposes by), so "Not
+  this" on either page holds on both; `CouncilMapComponent.Signals` leaves out what is set aside or waiting for its
+  check (every page and the automations go by it), `AllSignals` keeps all. An action that gives orders
+  (`AdvisorSteps.ActIsStep`, not `actOpens`) is a step with `UndoOrders` and a `SourceGoneCheck` two days on. Buttons
+  as wide as their labels, each with a tooltip; "Done lately" and "Set aside" under the cards. One source of truth
+  with building ahead: `RoomGrowth.Wanting(map, kind)` gives GrowthNeeds' row when the colony is short now or soon
+  (and not when the player set the room aside); dining outgrown, the plain dining advice, the plain freezer advice,
+  freezer outgrown, no medical bed and no bed read their row (`ForBuildAhead`: the row's numbers in the detail,
+  `buildKind`, "Go to Plan", and the room step's own Do it on the card), and `NextSteps` leaves signals with a
+  `buildKind` out of its proposals. Dining cramped and the eaten-without-a-table advice step aside while the seats
+  row wants. The kitchen reads the Ahead meal row (short or low, the meal bills' make a day below the use, no free
+  stove: `AdvisorMath.KitchenOutgrown(people, stoves, cooks, mealsShort, behind)`); the hospital upgrade, low food,
+  medicine and no doctor got their numbers. Not yet: most other advice texts were left as they were (they mostly carry
+  counts in their titles); the workshop upgrade isn't a GrowthMath kind (bench places) and stays its own advice.
+- **Base review**: done. `BaseReview.For` leaves out what is set aside or waiting, `All` keeps all; `KeyOf`,
+  `StepOf`, `Apply`; `BaseFinding.fix` returns a `SuggestDone`. Rooms far apart and the meal walk go by walking
+  (`BaseReviewMath.WalkGrid`, cost 10 straight and 14 on the slant, no corner cut past a wall or door, stops when every
+  target is reached; `TooFarWalking`, `MealWalkOf`), the straight line in the words beside it; the meal walk offers a
+  dining room. New fixes: the freezer airlock (`BaseReviewMath.AirlockAt`: door, lobby, side walls, the cells left to
+  walk round; `UndoOrders`), catch-alls (only those at one priority are a muddle, `StorageReviewMath.CatchAllMuddle`;
+  the others go one priority lower, `UndoStorePriority`), spread stores (the room holding the most keeps the kind,
+  `UndoStoreAllow`). Take-downs and stockpiles keep `UndoOrders`/`UndoZone` and a `SourceGoneCheck`; the relay of lines
+  `UndoRelay`. The empty-filter finding has its cells counted but no fix (an empty store may be meant). Not yet: the
+  bench far from its store still measures in a straight line.
+- **Plan page**: done. "Not this" (planned or proposed, with a source) declines the key for good; old saves' let-go
+  steps are converted; a planned step set aside on its own page leaves the plan. Proposals skip what is set aside or
+  waiting. The level pill on planned steps too; the research step counts idle benches and researchers (key
+  "plan:research", started through the core with `UndoResearchPick`); a base fix and an advisor action from a step go
+  through the core. "Done lately" and "Set aside" for adv/def/base/plan at the end of the page. Button columns grow to
+  their longest label.
+- **Making page staples**: done. `MakingMath.StapleCount(rowTarget, otherBillsKeep, useADay, unit)`: meals, medicine
+  and feed by the Ahead rows (target less the other bills' cover, a day's use at least, rounded up to fives);
+  `MakingOption.targetWhy` under the batch and on the button. Not yet: only the first bench of a kind; idle benches
+  only named.
+- **Automations**: done. Each `AutoPending` has its `stepKey` ("auto:bill:<bench>:<recipe>", "auto:plan:<step>",
+  "auto:research:<def>", "auto:firewood", "auto:grow:<def>", or the base finding's or advisor card's own key), its
+  `reason`, and `run` (the doing, returning its undo and check) apart from `act` (run, then the log); candidates that
+  aren't `Offered` are skipped, and by the automation also those whose last step was undone. `HandSteps(map)` gives
+  them as `Suggestion`s, drawn as cards under each switch on the Making page with "Done lately" and "Set aside". A
+  new `AutoAction` keeps `key` and the step's `undo`; undoing it declines the key. Log lines carry their numbers (in
+  store and wanted, the research cost, pieces and their worth, the wood the trees give).
+- **Defense advice and line notes**: done. `DefenseAdvice.For` leaves out what is set aside (`All` keeps all), "Not
+  this" on each card and "Set aside" under the advice; the keys "def:<key>" are the Plan page's too. Numbers added to
+  wood, traps, turrets, the archers' post, the fallback, sieges, mechanoids and medicine. Notes on a line: "Not this"
+  per note (key "line:<id>:<note>"), and a line under the notes brings them back. Not yet: the notes that are plain
+  facts (the gate shut, no way on) carry no number.

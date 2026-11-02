@@ -23,7 +23,13 @@ namespace ColonyCouncil
         /// <summary>The colony's animals.</summary>
         Pet,
         /// <summary>Wild animals, calm ones (not manhunting).</summary>
-        Wild
+        Wild,
+        /// <summary>The colony's own mechanoids, up and working (Biotech).</summary>
+        Mech,
+        /// <summary>The colony's slaves, up and calm (Ideology).</summary>
+        Slave,
+        /// <summary>Entities held on the colony's holding platforms (Anomaly): never spawned, met where the platform stands.</summary>
+        Entity
     }
 
     /// <summary>Requirements for the stranger (X) of an encounter or a dilemma. All given conditions must hold.</summary>
@@ -63,6 +69,8 @@ namespace ColonyCouncil
         public bool notOfA;
         /// <summary>Has a name.</summary>
         public bool named;
+        /// <summary>Hurt or damaged (a mech that came back from a fight): below full health.</summary>
+        public bool hurt;
         // ---- Anyone ----
         /// <summary>Within this many cells of A (0 = anywhere on the map).</summary>
         public float maxDistance;
@@ -92,17 +100,21 @@ namespace ColonyCouncil
 
     public static class Strangers
     {
-        public static bool IsHuman(StrangerKind k) => k == StrangerKind.Visitor || k == StrangerKind.Trader || k == StrangerKind.Lodger || k == StrangerKind.Prisoner || k == StrangerKind.Fallen;
+        public static bool IsHuman(StrangerKind k) => k == StrangerKind.Visitor || k == StrangerKind.Trader || k == StrangerKind.Lodger || k == StrangerKind.Prisoner || k == StrangerKind.Fallen || k == StrangerKind.Slave;
 
-        /// <summary>What kind of stranger this pawn is, or None (a colonist, an active raider, a mechanoid, a corpse...).</summary>
+        /// <summary>What kind of stranger this pawn is, or None (a colonist, an active raider, a raiding mechanoid, a corpse...).</summary>
         public static StrangerKind KindOf(Pawn x)
         {
-            if (x == null || x.Dead || !x.Spawned || x.RaceProps == null) return StrangerKind.None;
+            if (x == null || x.Dead || x.RaceProps == null) return StrangerKind.None;
+            if (!x.Spawned) return Held(x) ? StrangerKind.Entity : StrangerKind.None;
+            if (x.RaceProps.IsMechanoid)
+                return ModsConfig.BiotechActive && x.IsColonyMech && !x.Downed && !x.InMentalState ? StrangerKind.Mech : StrangerKind.None;
             if (x.RaceProps.Humanlike)
             {
                 if (!People.HasInnerLife(x)) return StrangerKind.None;
                 if (x.IsQuestLodger()) return x.Downed || x.InMentalState ? StrangerKind.None : StrangerKind.Lodger;
                 if (x.IsPrisonerOfColony) return StrangerKind.Prisoner;
+                if (ModsConfig.IdeologyActive && x.IsSlaveOfColony) return x.Downed || x.InMentalState ? StrangerKind.None : StrangerKind.Slave;
                 if (x.Faction == null || x.Faction.IsPlayer || x.IsSlave) return StrangerKind.None;
                 if (x.Faction.HostileTo(Faction.OfPlayer)) return x.Downed && !x.InMentalState ? StrangerKind.Fallen : StrangerKind.None;
                 if (x.Downed || x.InMentalState) return StrangerKind.None;
@@ -127,10 +139,30 @@ namespace ColonyCouncil
             return StrangerKind.None;
         }
 
+        /// <summary>An entity held on one of the colony's holding platforms that stands on a map (Anomaly).</summary>
+        public static bool Held(Pawn x) =>
+            ModsConfig.AnomalyActive && x != null && !x.Dead && x.ParentHolder is Building_HoldingPlatform b && b.Spawned && b.Faction == Faction.OfPlayer;
+
+        /// <summary>The entities held on the colony's holding platforms on the map.</summary>
+        public static IEnumerable<Pawn> HeldOn(Map map)
+        {
+            if (map == null || !ModsConfig.AnomalyActive) yield break;
+            foreach (var b in map.listerBuildings.AllBuildingsColonistOfClass<Building_HoldingPlatform>())
+            {
+                var x = b?.HeldPawn;
+                if (x != null && !x.Dead && Held(x)) yield return x;
+            }
+        }
+
         /// <summary>Everyone of this kind on the map.</summary>
         public static IEnumerable<Pawn> On(Map map, StrangerKind kind)
         {
             if (map == null || kind == StrangerKind.None) yield break;
+            if (kind == StrangerKind.Entity)
+            {
+                foreach (var x in HeldOn(map)) yield return x;
+                yield break;
+            }
             var all = map.mapPawns.AllPawnsSpawned;
             for (int i = 0; i < all.Count; i++)
                 if (KindOf(all[i]) == kind) yield return all[i];
@@ -146,6 +178,7 @@ namespace ColonyCouncil
                 var k = KindOf(p);
                 if (k != StrangerKind.None) set.Add(k);
             }
+            if (HeldOn(map).Any()) set.Add(StrangerKind.Entity);
             return set;
         }
 
@@ -162,8 +195,10 @@ namespace ColonyCouncil
         public static bool IsMajestic(Pawn x) =>
             x?.RaceProps != null && x.RaceProps.Animal && (x.RaceProps.baseBodySize >= 2.5f || x.GetStatValue(StatDefOf.Wildness) >= 0.95f);
 
+        /// <summary>A's own animal (bonded, or A is its master), or A's own mech (A oversees it).</summary>
         public static bool OfColonist(Pawn animal, Pawn a) =>
-            animal != null && a != null && (animal.playerSettings?.Master == a || (animal.relations?.DirectRelationExists(PawnRelationDefOf.Bond, a) ?? false));
+            animal != null && a != null && (animal.playerSettings?.Master == a || (animal.relations?.DirectRelationExists(PawnRelationDefOf.Bond, a) ?? false)
+                                            || (ModsConfig.BiotechActive && animal.RaceProps != null && animal.RaceProps.IsMechanoid && animal.GetOverseer() == a));
 
         public static bool Fits(StrangerRole r, Pawn x, Pawn a)
         {
@@ -174,7 +209,8 @@ namespace ColonyCouncil
             if (r.nemesis && !(nemeses?.IsNemesis(x) ?? false)) return false;
             if (r.nemesisOfA && (nemeses?.For(x) is Nemesis n ? !n.announced || n.victim != a : true)) return false;
             if (r.kinOfA && !Family.Of(a, x)) return false;
-            if (r.maxDistance > 0f && (a == null || !a.Spawned || a.Map != x.Map || x.Position.DistanceTo(a.Position) > r.maxDistance)) return false;
+            if (r.maxDistance > 0f && (a == null || !a.Spawned || a.Map != x.MapHeld || x.PositionHeld.DistanceTo(a.Position) > r.maxDistance)) return false;
+            if (r.hurt && !(x.health?.summaryHealth != null && x.health.summaryHealth.SummaryHealthPercent < 0.95f)) return false;
             if ((r.sick || !r.illness.NullOrEmpty()) && !LifeChecks.HasIllness(x, r.illness)) return false;
             if (IsHuman(r.kind))
             {
@@ -215,7 +251,7 @@ namespace ColonyCouncil
             var options = (pool ?? On(map, r.kind)).Where(x => Fits(r, x, a)).ToList();
             if (options.Count == 0) return null;
             if (a == null || !a.Spawned) return options.RandomElement();
-            return options.RandomElementByWeight(x => 1f / (1f + x.Position.DistanceTo(a.Position) / 25f));
+            return options.RandomElementByWeight(x => 1f / (1f + x.PositionHeld.DistanceTo(a.Position) / 25f));
         }
 
         /// <summary>
