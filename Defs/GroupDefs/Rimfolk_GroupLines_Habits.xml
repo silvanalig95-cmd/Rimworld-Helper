@@ -20,7 +20,7 @@
         <li>Pass the cup round, would you?</li>
         <li>Somebody put another log on.</li>
         <li>This is the hour I wait for all day.</li>
-        <li>Where were we last night? The bit about the river.</li>
+        <li>Where were we last night, the bit about the river?</li>
         <li>Tell the one about the boomalope again.</li>
         <li>Hear that? Just the wind.</li>
         <li>My feet have finally stopped aching.</li>
@@ -33,7 +33,7 @@
         <li>[rain] Let it pour out there.</li>
         <li>[afterraid] We made it through another one.</li>
         <li>[afterraid] I won't sleep much after a day like that.</li>
-        <li>[child] Can I stay up a bit longer? Just till the fire's low.</li>
+        <li>[child] Can I stay up a bit longer, just till the fire's low?</li>
         <li>[grouprole:anchor] Good, you came.</li>
         <li>[grouprole:anchor] Sit down, you've earned it.</li>
         <li>[grouprole:joker] I was going to tell a story, but you've all heard it.</li>
@@ -64,7 +64,7 @@
       </warm>
       <blunt>
         <li>Move, you're in my seat.</li>
-        <li>Fire's too small. Fix it.</li>
+        <li>Fire's too small, fix it.</li>
         <li>Don't start that story again.</li>
       </blunt>
       <cheerful>
@@ -92,7 +92,7 @@
         <li>We kept you a place.</li>
         <li>Eat first, talk after.</li>
         <li>Is that seconds you've got there?</li>
-        <li>Who made this? It's good.</li>
+        <li>Whoever made this, it's good.</li>
         <li>Same again tomorrow, then.</li>
         <li>Budge up, there's room.</li>
         <li>Anyone want the crust?</li>
@@ -115,7 +115,7 @@
         <li>[grouprole:newcomer] Where do I put my bowl after?</li>
         <li>[groupkind:faithful] Hands together first.</li>
         <li>[groupkind:faithful] We give thanks, and then we eat.</li>
-        <li>[groupkind:kitchen] Too much salt. Mine, I mean.</li>
+        <li>[groupkind:kitchen] Too much salt, mine, I mean.</li>
         <li>[groupkind:kitchen] Next time, less fire under it.</li>
         <li>[groupkind:fields] We grew these, you know.</li>
         <li>[groupkind:miners] I've still got rock dust in my teeth.</li>
@@ -126,7 +126,7 @@
       </plain>
       <warm>
         <li>Have some of mine, I'm full.</li>
-        <li>You look tired. Eat up.</li>
+        <li>You look tired, so eat up.</li>
       </warm>
       <blunt>
         <li>Stop talking with your mouth full.</li>
@@ -137,7 +137,7 @@
         <li>Best part of the day, this.</li>
       </cheerful>
       <gloomy>
-        <li>Same as yesterday. Same as tomorrow.</li>
+        <li>Same as yesterday, same as tomorrow.</li>
       </gloomy>
       <cold>
         <li>Eat. Don't chatter.</li>
@@ -156,7 +156,7 @@
         <li>Who's keeping score?</li>
         <li>Again. I want a rematch.</li>
         <li>I saw that.</li>
-        <li>That's twice you've won. Suspicious.</li>
+        <li>That's twice you've won, which is suspicious.</li>
         <li>Deal me in.</li>
         <li>Quiet, I'm thinking.</li>
         <li>Same stakes as last time.</li>
@@ -165,9 +165,9 @@
         <li>[child] Can I play? I know the rules.</li>
         <li>[child] I won! Did you see?</li>
         <li>[grouprole:anchor] Everyone gets a turn, and that means you.</li>
-        <li>[grouprole:joker] I wasn't cheating. I was improvising.</li>
+        <li>[grouprole:joker] I wasn't cheating, I was improvising.</li>
         <li>[grouprole:joker] That's the third time I've lost on purpose.</li>
-        <li>[grouprole:peacemaker] It's only a game. Shake hands.</li>
+        <li>[grouprole:peacemaker] It's only a game, so shake hands.</li>
         <li>[grouprole:firebrand] Rematch. Now.</li>
         <li>[grouprole:firebrand] Those rules are rubbish and you know it.</li>
         <li>[grouprole:worrier] We should stop before someone gets cross.</li>
@@ -219,9 +219,9 @@
         <li>[grouprole:anchor] Show the new hands how it's done.</li>
         <li>[grouprole:joker] If we work any harder, the council might notice.</li>
         <li>[grouprole:joker] I'm not slow, I'm thorough.</li>
-        <li>[grouprole:peacemaker] Your way's fine. So is theirs.</li>
+        <li>[grouprole:peacemaker] Your way's fine, and so is theirs.</li>
         <li>[grouprole:firebrand] We do all this, and who gets the thanks?</li>
-        <li>[grouprole:worrier] Is that safe? It doesn't look safe.</li>
+        <li>[grouprole:worrier] That doesn't look safe, is it?</li>
         <li>[grouprole:quiet] There.</li>
         <li>[grouprole:newcomer] Like this? Show me again.</li>
         <li>[groupkind:kitchen] Stir, don't stab it.</li>
@@ -237,7 +237,7 @@
         <li>[groupkind:healers] Clean hands, then we start.</li>
         <li>[groupkind:scholars] Read me that part again.</li>
         <li>[groupkind:keepers] Easy, easy. She doesn't like being rushed.</li>
-        <li>[groupkind:artists] Leave it rough. It's better rough.</li>
+        <li>[groupkind:artists] Leave it rough, it's better rough.</li>
         <li>[groupnorm:hardworkers] No sitting down until it's done.</li>
       </plain>
       <warm>
@@ -277,7 +277,7 @@
         <li>[winter] Cold hands make for bad aim.</li>
         <li>[rain] Rain's washing the trail away.</li>
         <li>[grouprole:anchor] Stay close, and don't go off alone.</li>
-        <li>[grouprole:joker] That's the one that got away last time. I know that smirk.</li>
+        <li>[grouprole:joker] That's the one that got away last time, I know that smirk.</li>
         <li>[grouprole:firebrand] I'm not going home with nothing.</li>
         <li>[grouprole:worrier] What if it charges?</li>
         <li>[grouprole:quiet] There.</li>
@@ -360,7 +360,7 @@
         <li>We could all use more faith right now.</li>
       </gloomy>
       <cold>
-        <li>Words don't fill the stores. But still.</li>
+        <li>Words don't fill the stores, but still.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -390,8 +390,8 @@
         <li>[grouprole:quiet] I'm listening.</li>
         <li>[grouprole:newcomer] Is it always like this here?</li>
         <li>[groupkind:healers] If every patient this week walks out on their own feet, I'll be happy.</li>
-        <li>[groupkind:scholars] I nearly had it today. Nearly.</li>
-        <li>[groupkind:offworlders] Do you miss the stars? The other ones, I mean.</li>
+        <li>[groupkind:scholars] I nearly had it today, nearly.</li>
+        <li>[groupkind:offworlders] Do you miss the stars, the other ones, I mean?</li>
         <li>[groupkind:curious] What do you think is out past where we've walked?</li>
         <li>[groupkind:grumblers] Mark my words, it'll go wrong.</li>
         <li>[groupnorm:curious] I heard of a new way of doing it.</li>
@@ -410,7 +410,7 @@
         <li>I don't know how much longer we can keep this up.</li>
       </gloomy>
       <cold>
-        <li>Talk if you like. I'll listen, mostly.</li>
+        <li>Talk if you like, I'll listen, mostly.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -436,7 +436,7 @@
         <li>[grouprole:joker] If we walk far enough, maybe the chores will forget us.</li>
         <li>[grouprole:worrier] Not too far from home.</li>
         <li>[grouprole:quiet] Lovely.</li>
-        <li>[groupkind:elders] My knees aren't what they were. Keep up anyway.</li>
+        <li>[groupkind:elders] My knees aren't what they were, but keep up anyway.</li>
         <li>[groupkind:elders] I remember when all this was bush.</li>
         <li>[groupkind:keepers] The animals are restless tonight.</li>
         <li>[groupkind:tribeborn] The land talks, if you walk it slow enough.</li>

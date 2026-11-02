@@ -346,14 +346,14 @@
       </plain>
       <warm>
         <li>[deed:campfriend] {SUBJECT_nameDef} made those travelers feel welcome, and I liked seeing it.</li>
-        <li>[deed:foundchild] {SUBJECT_nameDef} brought a lost child home, and I'll think well of {SUBJECT_objective} for it.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} brought a lost child home; I think well of {SUBJECT_objective} for it.</li>
         <li>[deed:pilgrim] {SUBJECT_nameDef} looked after that old pilgrim like family.</li>
         <li>[deed:harvesthands] {SUBJECT_nameDef} helped bring in another town's harvest, and never once complained.</li>
         <li>[deed:answeredcall] {SUBJECT_nameDef} helped people we'd never met, just because they asked.</li>
         <li>[deed:keptday] {SUBJECT_nameDef} worked hard so we'd all have a good day.</li>
         <li>[deed:nightwatch] I slept better knowing {SUBJECT_nameDef} was out on the wall.</li>
         <li>[deed:pyre] {SUBJECT_nameDef} did a hard job after the fight so the rest of us didn't have to.</li>
-        <li>[deed:rounds] {SUBJECT_nameDef} came round to see me when I was poorly. That meant something.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} came round to see me when I was poorly, and that meant something.</li>
       </warm>
       <blunt>
         <li>[deed:campfriend] {SUBJECT_nameDef} was over at that camp every night.</li>
@@ -379,25 +379,25 @@
       </cheerful>
       <gloomy>
         <li>[deed:campfriend] {SUBJECT_nameDef} made a friend at that camp, and now they've gone.</li>
-        <li>[deed:foundchild] {SUBJECT_nameDef} found that child just before dark. Any later and who knows.</li>
-        <li>[deed:pilgrim] {SUBJECT_nameDef} walked that pilgrim home. The old one's last journey, I'd say.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} found that child just before dark; any later and who knows.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} walked that pilgrim home, the old one's last journey, I'd say.</li>
         <li>[deed:harvesthands] {SUBJECT_nameDef} broke {SUBJECT_possessive} back in someone else's fields.</li>
-        <li>[deed:answeredcall] {SUBJECT_nameDef} went to help {DETAIL}. Who'll come for us when it's our turn?</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} went to help {DETAIL}, but who'll come for us when it's our turn?</li>
         <li>[deed:keptday] {SUBJECT_nameDef} did all that for one day, and now it's over.</li>
         <li>[deed:nightwatch] {SUBJECT_nameDef} was out on the wall all night, in that cold.</li>
-        <li>[deed:pyre] {SUBJECT_nameDef} carried the dead out. I couldn't have.</li>
-        <li>[deed:rounds] {SUBJECT_nameDef} went round the sick. There were a lot of us.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} carried the dead out, which I couldn't have done.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} went round the sick, and there were a lot of us.</li>
       </gloomy>
       <cold>
-        <li>[deed:campfriend] {SUBJECT_nameDef} got on well with the {DETAIL}. Useful, if they come back.</li>
-        <li>[deed:foundchild] {SUBJECT_nameDef} recovered the neighbors' child. They owe us now.</li>
-        <li>[deed:pilgrim] {SUBJECT_nameDef} escorted a pilgrim to {DETAIL}. It paid.</li>
-        <li>[deed:harvesthands] {SUBJECT_nameDef} worked the fields at {DETAIL} for a share. A fair deal.</li>
-        <li>[deed:answeredcall] {SUBJECT_nameDef} helped {DETAIL}. They'll owe us for it.</li>
-        <li>[deed:keptday] {SUBJECT_nameDef} ran {DETAIL}. Efficiently.</li>
-        <li>[deed:nightwatch] {SUBJECT_nameDef} stood the night watch. As asked.</li>
-        <li>[deed:pyre] {SUBJECT_nameDef} dealt with the enemy dead. Promptly.</li>
-        <li>[deed:rounds] {SUBJECT_nameDef} checked on the sick. Sensible.</li>
+        <li>[deed:campfriend] {SUBJECT_nameDef} got on well with the {DETAIL}, which is useful if they come back.</li>
+        <li>[deed:foundchild] {SUBJECT_nameDef} recovered the neighbors' child, so they owe us now.</li>
+        <li>[deed:pilgrim] {SUBJECT_nameDef} escorted a pilgrim to {DETAIL}, and it paid.</li>
+        <li>[deed:harvesthands] {SUBJECT_nameDef} worked the fields at {DETAIL} for a share, a fair deal.</li>
+        <li>[deed:answeredcall] {SUBJECT_nameDef} helped {DETAIL}, and they'll owe us for it.</li>
+        <li>[deed:keptday] {SUBJECT_nameDef} ran {DETAIL}, efficiently.</li>
+        <li>[deed:nightwatch] {SUBJECT_nameDef} stood the night watch, as asked.</li>
+        <li>[deed:pyre] {SUBJECT_nameDef} dealt with the enemy dead, promptly.</li>
+        <li>[deed:rounds] {SUBJECT_nameDef} checked on the sick, which was sensible.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>
@@ -435,7 +435,7 @@
     <lines>
       <plain>
         <li>[deed:campfriend] {SUBJECT_nameDef} sat at that camp every night while we did the dishes.</li>
-        <li>[deed:campfriend] {SUBJECT_nameDef} was very friendly with the {DETAIL}, for someone who'd known them a week.</li>
+        <li>[deed:campfriend] {SUBJECT_nameDef} was very friendly with the {DETAIL} for someone who'd known them a week.</li>
         <li>[deed:foundchild] {SUBJECT_nameDef} found the child, mostly by tripping over them.</li>
         <li>[deed:foundchild] Half of us were out looking, but {SUBJECT_nameDef} gets the credit.</li>
         <li>[deed:pilgrim] {SUBJECT_nameDef} went for a long walk and calls it a good deed.</li>
@@ -512,7 +512,7 @@
       </plain>
       <warm>
         <li>[deed:campquarrel] I wish {SUBJECT_nameDef} hadn't fallen out with those travelers.</li>
-        <li>[deed:letdown] I'm sure {SUBJECT_nameDef} meant to help {DETAIL}. It just didn't happen.</li>
+        <li>[deed:letdown] I'm sure {SUBJECT_nameDef} meant to help {DETAIL}; it just didn't happen.</li>
         <li>[deed:burneddish] Poor {SUBJECT_nameDef}, that {DETAIL} burned right in front of everyone.</li>
         <li>[deed:tablequarrel] I wish {SUBJECT_nameDef} had kept it in, on a day like that.</li>
       </warm>
@@ -535,10 +535,10 @@
         <li>[deed:tablequarrel] {SUBJECT_nameDef} couldn't even get through a feast without a quarrel.</li>
       </gloomy>
       <cold>
-        <li>[deed:campquarrel] {SUBJECT_nameDef} quarreled with the {DETAIL}. Bad for trade.</li>
-        <li>[deed:letdown] {SUBJECT_nameDef} failed {DETAIL}. That costs us.</li>
+        <li>[deed:campquarrel] {SUBJECT_nameDef} quarreled with the {DETAIL}, which is bad for trade.</li>
+        <li>[deed:letdown] {SUBJECT_nameDef} failed {DETAIL}, and that costs us.</li>
         <li>[deed:burneddish] {SUBJECT_nameDef} wasted a feast's worth of food.</li>
-        <li>[deed:tablequarrel] {SUBJECT_nameDef} made a scene at the feast. Noted.</li>
+        <li>[deed:tablequarrel] {SUBJECT_nameDef} made a scene at the feast; noted.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

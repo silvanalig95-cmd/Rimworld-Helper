@@ -51,7 +51,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampComes"><to>gate</to><count>2</count><hours>3~4</hours><when>17~21</when><doing>watch</doing>
-            <lines><li>Quiet night.</li><li>Nothing on the road.</li><li>Who goes there? Oh, the cat.</li></lines></li>
+            <lines><li>Quiet night.</li><li>Nothing on the road.</li><li>Who goes there, oh, it's the cat.</li></lines></li>
         </effects>
       </li>
       <li>

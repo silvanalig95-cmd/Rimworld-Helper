@@ -30,7 +30,7 @@
       </gloomy>
       <cold>
         <li>An execution upsets the others and loses us the ransom, which is poor value.</li>
-        <li>{ABOUT_nameDef} could be recruited, sold or ransomed. A corpse can only be buried.</li>
+        <li>{ABOUT_nameDef} could be recruited, sold or ransomed, but a corpse can only be buried.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -39,7 +39,7 @@
     <defName>Council_Pool_ObjectMercy</defName>
     <lines>
       <plain>
-        <li>Let {ABOUT_nameDef} go, and {ABOUT_pronoun}'ll be back with friends and a map of our weak spots.</li>
+        <li>Free {ABOUT_nameDef} and {ABOUT_pronoun}'ll be back with friends who know our weak spots.</li>
         <li>{OTHER_nameDef} wants to free {ABOUT_nameDef}, who was trying to kill us not long ago?</li>
         <li>[afterraid] Their blood is still on the floor, and it's too soon to let anyone go.</li>
       </plain>

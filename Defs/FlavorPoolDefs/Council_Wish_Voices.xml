@@ -13,13 +13,13 @@
     <lines>
       <plain>
         <li>[trait:Greedy] I'd like "{WISH}" before somebody else gets something first.</li>
-        <li>[trait:Jealous] Others have been given things since I asked for "{WISH}". I've noticed.</li>
-        <li>[trait:Nervous] Sorry to ask again about "{WISH}". I keep worrying it was forgotten.</li>
+        <li>[trait:Jealous] Others have been given things since I asked for "{WISH}", and I've noticed.</li>
+        <li>[trait:Nervous] Sorry to ask again about "{WISH}", I keep worrying it was forgotten.</li>
         <li>[trait:Ascetic] I don't ask for much, and I'm still waiting on "{WISH}".</li>
-        <li>[child] Is "{WISH}" happening yet? I asked ages ago.</li>
+        <li>[child] I asked ages ago, is "{WISH}" happening yet?</li>
         <li>[old] At my age I can't wait forever for "{WISH}".</li>
         <li>[doubtful] I'm starting to wonder whether "{WISH}" was ever going to happen.</li>
-        <li>[trusting] I'm sure you haven't forgotten "{WISH}". I'm only reminding you.</li>
+        <li>[trusting] I'm sure you haven't forgotten "{WISH}", I'm only reminding you.</li>
         <li>[repeat] I asked for "{WISH}" once before and it came to nothing, so I'm asking early this time.</li>
       </plain>
     </lines>
@@ -33,7 +33,7 @@
         <li>[trait:Volatile] One more day without "{WISH}" and I won't be responsible for what I say.</li>
         <li>[bitter] Ask, wait, nothing, so "{WISH}" was never going to happen, was it?</li>
         <li>[child] You said maybe about "{WISH}", and maybe means yes, right?</li>
-        <li>[old] I'm too old to keep asking for "{WISH}". This is the last time.</li>
+        <li>[old] I'm too old to keep asking for "{WISH}", so this is the last time.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

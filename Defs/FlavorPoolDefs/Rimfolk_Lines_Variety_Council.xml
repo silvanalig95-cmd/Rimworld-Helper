@@ -55,7 +55,7 @@
         <li>Still no "{WISH}", so I'll keep saying it.</li>
       </blunt>
       <cheerful>
-        <li>Guess what I'm still dreaming about? "{WISH}"!</li>
+        <li>Guess what I'm still dreaming about, "{WISH}"!</li>
         <li>Friendly reminder number three: "{WISH}".</li>
         <li>I've been telling the others all about "{WISH}", so it had better happen!</li>
         <li>Still smiling, and still asking about "{WISH}".</li>
@@ -499,7 +499,7 @@
     <lines>
       <plain>
         <li>[winter] We're burning wood faster than we can cut it, and {OTHER_nameDef} wants "{WISH}"?</li>
-        <li>[winter] Ask again in spring, {OTHER_nameDef}, when the woodpile isn't the first thing on our minds.</li>
+        <li>[winter] Ask again in spring, {OTHER_nameDef}, when the woodpile isn't our first thought.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

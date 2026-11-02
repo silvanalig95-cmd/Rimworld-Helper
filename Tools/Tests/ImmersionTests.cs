@@ -4,8 +4,11 @@ using System.Xml.Linq;
 /// <summary>
 /// What colonists say about themselves and the weather, and the small habits (Source/ColonyCouncil/Immersion/): every
 /// line said over a head is one sentence of 90 characters at most and doesn't start with a quote (the floating text
-/// keeps only the first sentence and trims quotes from the ends); every tag naming a feeling, an ailment, a setback or
-/// a personal story names one that exists, so a typo can't leave a line unsaid; every pool the code and the habits'
+/// keeps only the first sentence and trims quotes from the ends). That goes for the pools below, the pools the defs
+/// name for speech (a habit's, a group habit's, an answer's gathering or walk, an objection's), the lines the defs give
+/// to be said (an event's, an answer's play-out or errand, a camp's) and the game's own words said in their place;
+/// every tag naming a feeling, an ailment, a setback or a personal story names one that exists, so a typo can't leave
+/// a line unsaid; every pool the code and the habits'
 /// jobs name exists, and each of the twelve habits has a job of its own. How many feelings, ailments, setbacks and stories have lines of their own is reported, not
 /// required: the pools' untagged lines cover the rest, and a feeling without lines is simply not said.
 /// </summary>
@@ -42,7 +45,60 @@ public static class ImmersionTests
         // What visitors say at the relic, the anima tree, the gravship and the bookcase (Visitors/VisitorsMore2.cs).
         "Rimfolk_VisitorLines2",
         // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
-        "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave"
+        "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave",
+        // Wishes promised, refused, objected to, reminded of, given up on, backed and remembered (CouncilDynamics.cs,
+        // CouncilGameComponent.cs: said over the head, sometimes quoted in a message too).
+        "Council_Pool_Promised", "Council_Pool_Refused", "Council_Pool_Objection", "Council_Pool_Reminder", "Council_Pool_SelfHelp",
+        "Council_Pool_LastCall", "Council_Pool_PassedOver", "Council_Pool_BrokenPromise", "Council_Pool_Bitter", "Council_Pool_Quitting",
+        "Council_Pool_Anniversary", "Council_Pool_CoSign",
+        // Ambitions and the council's meeting (Ambitions/, Interplay/Interplay_Council.cs, Decrees/DecreeFaith.cs).
+        "Council_Pool_AmbitionHalfway", "Council_Pool_AmbitionDeadline", "Council_Pool_MeetingOpen", "Council_Pool_MeetingOnBehalf",
+        "Council_Pool_MeetingDoubt", "Council_Pool_MeetingAside", "Council_Pool_MeetingSupport", "Council_Pool_MeetingWake",
+        "Council_Pool_Interplay_MeetingSecret", "Council_Pool_FaithDecree_MeetingWord",
+        // Animals spoken to (Animals/AnimalLife.cs, AnimalHerdmaster.cs).
+        "Council_Pool_Herd_SayNewborn", "Council_Pool_SayToAnimal", "Council_Pool_AnimalFollows",
+        // A personal touch planned and built (Building/PersonalTouches.cs).
+        "Council_Pool_Touch", "Council_Pool_TouchDone",
+        // A faith evening stayed away from, couriers, peacemakers, a joke retold (Faith/, Couriers/, Interplay/, Social/).
+        "Council_Pool_FaithEveningAway", "Rimfolk_CourierLines", "Council_Pool_Interplay_PeacemakerSays", "Rimfolk_Pool_Group_PeacemakerSays",
+        "Rimfolk_JokeRetold_Tell", "Rimfolk_JokeRetold_Reply",
+        // Gossip, told and answered (Social/Gossip/Gossip.cs).
+        "Rimfolk_Gossip_Present", "Rimfolk_Gossip_Boast", "Rimfolk_Gossip_Good_Plain", "Rimfolk_Gossip_Good_Praise", "Rimfolk_Gossip_Good_Joke",
+        "Rimfolk_Gossip_Good_Scorn", "Rimfolk_Gossip_Bad_Plain", "Rimfolk_Gossip_Bad_Praise", "Rimfolk_Gossip_Bad_Joke", "Rimfolk_Gossip_Bad_Scorn",
+        "Rimfolk_Gossip_React_Admire", "Rimfolk_Gossip_React_Condemn", "Rimfolk_Gossip_React_Defend", "Rimfolk_Gossip_React_Doubt",
+        "Rimfolk_Gossip_React_Laugh", "Rimfolk_Gossip_React_Shrug", "Rimfolk_Gossip_React_Subject",
+        // The sky, the weather and the forecast (Touches/VisualTouches.cs, Immersion/WeatherTalk.cs, WeatherTouches.cs, Weather/).
+        "Council_Pool_TouchVictory", "Council_Pool_TouchTradition", "Council_Pool_TouchComet", "Council_Pool_TouchFireflies", "Council_Pool_TouchHail",
+        "Council_Pool_TouchWarmSpell", "Council_Pool_SayWarmSpell", "Council_Pool_SayHailComing", "Council_Pool_SayLightningRod",
+        "Council_Pool_SayLightningFlinch", "Council_Pool_SayRecordCold", "Council_Pool_SayRecordDry", "Council_Pool_SayRecordHot",
+        "Council_Pool_SayRecordWet", "Council_Pool_SayForecastClear", "Council_Pool_SayForecastCloud", "Council_Pool_SayForecastDust",
+        "Council_Pool_SayForecastFog", "Council_Pool_SayForecastRain", "Council_Pool_SayForecastSnow", "Council_Pool_SayForecastStorm",
+        "Council_Pool_SayForecastWind", "Council_Pool_SayForecastWrong",
+        // A creature evolved (Integrations/PokeWorldLife.cs).
+        "Council_Pool_PW_Congratulate", "Council_Pool_PW_SayEvolved",
+        // Setbacks said aloud (Setbacks/).
+        "Council_Pool_Setback_IdeaPassed", "Council_Pool_Setback_NoPlate", "Council_Pool_Setback_Surgery", "Rimfolk_Pool_Setback_Burned",
+        "Council_Pool_Setback_CropLost", "Council_Pool_Setback_Rained", "Council_Pool_Setback_Wrecked",
+        // Work parties, walks, vigils, searches, errands, hunts, gifts, rounds and hauls: the call to it and the lines while
+        // it goes on (PlayOut/PlayWords.cs); the gatherings' own when an answer names none (PlayOutEffects.cs, GatheringTouches.cs).
+        "Council_Pool_PlayWorkInvite", "Council_Pool_PlayWork", "Council_Pool_PlayWalkInvite", "Council_Pool_PlayWalk", "Council_Pool_PlayVigilInvite",
+        "Council_Pool_PlayVigil", "Council_Pool_PlaySearchInvite", "Council_Pool_PlaySearch", "Council_Pool_PlayCarryInvite", "Council_Pool_PlayCarry",
+        "Council_Pool_PlayHuntInvite", "Council_Pool_PlayHunt", "Council_Pool_PlayGiveInvite", "Council_Pool_PlayGive", "Council_Pool_PlayRoundsInvite",
+        "Council_Pool_PlayRounds", "Council_Pool_PlayHaulInvite", "Council_Pool_PlayHaul", "Council_Pool_PlayToast", "Council_Pool_PlayFeast",
+        "Council_Pool_PlayFire", "Council_Pool_PlayParty", "Council_Pool_PlaySong", "Council_Pool_PlayWords", "Council_Pool_PlaySaidAloud"
+    };
+
+    /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>
+    private static readonly HashSet<string> RarePools = new() { "Council_Pool_SayLightningRod", "Council_Pool_SayRecordDry", "Council_Pool_SayRecordWet" };
+
+    /// <summary>The game's own words said over a head in place of a pool's (Languages/English/Keyed).</summary>
+    private static readonly string[] SpokenKeys =
+    {
+        "CC_PromisedFallback", "CC_RefusedFallback", "CC_ExpiredFallback", "CC_ThanksFallback", "CC_ForOtherFallback",
+        "CC_CoSignLine_Plain", "CC_CoSignLine_Warm", "CC_CoSignLine_Blunt", "CC_CoSignLine_Cheerful", "CC_CoSignLine_Gloomy", "CC_CoSignLine_Cold",
+        "CC_Touch_Plain", "CC_Touch_Warm", "CC_Touch_Blunt", "CC_Touch_Cheerful", "CC_Touch_Gloomy", "CC_Touch_Cold",
+        "CC_TouchDone_Plain", "CC_TouchDone_Warm", "CC_TouchDone_Blunt", "CC_TouchDone_Cheerful", "CC_TouchDone_Gloomy", "CC_TouchDone_Cold",
+        "CC_Ambition_ChosenSpeech", "CC_Ambition_WishHelped", "CC_Evt_Contest_Won", "CC_Evt_Contest_Lost"
     };
 
     private static readonly string[] JournalPools =
@@ -64,35 +120,79 @@ public static class ImmersionTests
             check(ok, "immersion: " + what);
         }
 
-        // ---------- Every pool's lines, its own and those added to it from other files ----------
+        // ---------- Every pool's lines, its own and those added to it from other files (any folder of Defs) ----------
+        var defs = Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories).Select(f => XDocument.Load(f).Root!).ToList();
         var pools = new Dictionary<string, List<string>>();
-        foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs", "FlavorPoolDefs"), "*.xml"))
+        foreach (var el in defs.SelectMany(d => d.Elements()))
         {
-            foreach (var el in XDocument.Load(file).Root!.Elements())
-            {
-                string name = el.Name.LocalName == "ColonyCouncil.FlavorPoolDef" ? el.Element("defName")?.Value
-                    : el.Name.LocalName == "ColonyCouncil.FlavorExtensionDef" ? el.Element("pool")?.Value : null;
-                if (name == null) continue;
-                if (!pools.TryGetValue(name, out var lines)) pools[name] = lines = new List<string>();
-                var block = el.Element("lines");
-                if (block != null) lines.AddRange(block.Descendants("li").Select(li => li.Value));
-            }
+            string name = el.Name.LocalName == "ColonyCouncil.FlavorPoolDef" ? el.Element("defName")?.Value
+                : el.Name.LocalName == "ColonyCouncil.FlavorExtensionDef" ? el.Element("pool")?.Value : null;
+            if (name == null) continue;
+            if (!pools.TryGetValue(name, out var lines)) pools[name] = lines = new List<string>();
+            var block = el.Element("lines");
+            if (block != null) lines.AddRange(block.Descendants("li").Select(li => li.Value));
         }
-        foreach (var pool in SpokenPools.Concat(JournalPools)) Check(pools.TryGetValue(pool, out var l) && l.Count >= 6, $"{pool} exists with lines");
+        foreach (var pool in SpokenPools.Concat(JournalPools))
+            Check(pools.TryGetValue(pool, out var l) && l.Count >= (RarePools.Contains(pool) ? 1 : 6), $"{pool} exists with lines");
+
+        // The pools the defs name for speech: a small habit's and a group habit's, an answer's gathering, walk or words
+        // (said while it goes on, PlayWords.During and LordJob_PlayOut), an objection's, the road word a camp brings.
+        var named = new HashSet<string>();
+        foreach (var e in defs.SelectMany(d => d.Descendants()))
+        {
+            string cls = (string)e.Attribute("Class") ?? "";
+            if (cls == "ColonyCouncil.HabitExtension" || cls.StartsWith("ColonyCouncil.DilemmaEffect_") || e.Name.LocalName == "ColonyCouncil.GroupHabitDef")
+            {
+                string pool = e.Element("pool")?.Value.Trim();
+                if (!string.IsNullOrEmpty(pool)) named.Add(pool);
+            }
+            if (e.Name.LocalName == "objectionPool" || e.Name.LocalName == "roadWord") named.Add(e.Value.Trim());
+        }
+        Check(named.Count >= 40, $"the defs name pools to be said ({named.Count})");
+        foreach (var pool in named) Check(pools.ContainsKey(pool), $"{pool}, named by a def to be said, exists");
 
         // ---------- Said over a head: one short sentence each ----------
-        foreach (var pool in SpokenPools)
+        void Spoken(string where, string line)
+        {
+            string body = Strip(line, out _);
+            Check(!body.StartsWith("\"") && !body.EndsWith("\""), $"{where}: '{body}' doesn't start or end with a quote");
+            Check(FirstSentence(body) == body, $"{where}: '{body}' is one sentence");
+            Check(body.Length <= 90, $"{where}: '{body}' is 90 characters at most ({body.Length})");
+            Check(body.Count(c => c == '!') <= 1, $"{where}: '{body}' has one '!' at most");
+        }
+        foreach (var pool in SpokenPools.Union(named))
         {
             if (!pools.TryGetValue(pool, out var lines)) continue;
-            foreach (var line in lines)
-            {
-                string body = Strip(line, out _);
-                Check(!body.StartsWith("\"") && !body.EndsWith("\""), $"{pool}: '{body}' doesn't start or end with a quote");
-                Check(FirstSentence(body) == body, $"{pool}: '{body}' is one sentence");
-                Check(body.Length <= 90, $"{pool}: '{body}' is 90 characters at most ({body.Length})");
-                Check(body.Count(c => c == '!') <= 1, $"{pool}: '{body}' has one '!' at most");
-            }
+            foreach (var line in lines) Spoken(pool, line);
         }
+        // The lines the defs give to be said: an event's (Arrivals.Say, the callers' work), an answer's play-out or a
+        // camp's errand (PlayWords.During, LordJob_PlayOut, CampRequests.ErrandWorked), a camp's own (CampLife, CampLook).
+        int given = 0;
+        foreach (var e in defs.SelectMany(d => d.Descendants()))
+        {
+            string cls = (string)e.Attribute("Class") ?? "";
+            var fields = cls == "ColonyCouncil.HappeningExtension" || cls.StartsWith("ColonyCouncil.DilemmaEffect_") ? new[] { "lines" }
+                : e.Name.LocalName == "ColonyCouncil.CampKindDef" ? new[] { "lines", "momentLines" } : null;
+            if (fields == null) continue;
+            string where = e.Element("defName")?.Value ?? e.Ancestors().Select(a => a.Element("defName")?.Value).FirstOrDefault(n => n != null) ?? cls;
+            foreach (var f in fields)
+                foreach (var li in e.Element(f)?.Elements("li") ?? Enumerable.Empty<XElement>())
+                {
+                    given++;
+                    Spoken(where, li.Value);
+                }
+        }
+        Check(given >= 300, $"the defs give lines to be said ({given})");
+        // The game's own words, said when a pool has nothing that fits.
+        var keyed = new HashSet<string>();
+        foreach (var file in Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml"))
+            foreach (var el in XDocument.Load(file).Root!.Elements())
+                if (SpokenKeys.Contains(el.Name.LocalName))
+                {
+                    keyed.Add(el.Name.LocalName);
+                    Spoken(el.Name.LocalName, el.Value);
+                }
+        foreach (var key in SpokenKeys) Check(keyed.Contains(key), $"{key} exists");
 
         // ---------- Tags name real things ----------
         var feelings = Keys(root, "HeartDefs", "key");

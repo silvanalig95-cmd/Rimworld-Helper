@@ -149,8 +149,8 @@
       <plain>
         <li>Before we start: a word from {FAITH}, as the council asked.</li>
         <li>Let's begin as {FAITH} teaches, with a moment's quiet.</li>
-        <li>[faith:devout] A blessing on this meeting, in the way of {FAITH}. Now, to business.</li>
-        <li>May we choose well today. {FAITH} asks no more of us than that.</li>
+        <li>[faith:devout] A blessing on this meeting, in the way of {FAITH}, and now to business.</li>
+        <li>May we choose well today, for {FAITH} asks no more of us than that.</li>
       </plain>
       <cheerful><li>A word from {FAITH} first, and I promise it's a short one.</li></cheerful>
       <cold><li>Say only what you mean today, as {FAITH} asks of us.</li></cold>

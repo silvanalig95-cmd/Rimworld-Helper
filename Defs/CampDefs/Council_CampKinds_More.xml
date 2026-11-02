@@ -556,7 +556,7 @@
     </farewell>
     <lines>
       <li>Hold the rod straight.</li>
-      <li>Three hundred paces. Write it down.</li>
+      <li>Three hundred paces, write it down.</li>
       <li>That hill's in the wrong place.</li>
       <li>Check it again.</li>
       <li>[!lowtech] The batteries are flat.</li>
@@ -605,7 +605,7 @@
             <lines>
               <li>Hold the rod straight.</li>
               <li>Mark it.</li>
-              <li>Three degrees east. No, west.</li>
+              <li>Three degrees east, no, west.</li>
             </lines>
           </li>
         </effects>
