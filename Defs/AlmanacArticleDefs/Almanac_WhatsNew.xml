@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.53.5</version>
+        <date>2 November 2026</date>
+        <title>Gatherings in a fitting place</title>
+        <points>
+          <li>Gatherings, walks and fires held out of doors no longer meet at the first open patch near the middle of the colony. They go where the colony has made the outdoors pleasant: a terrace, seats and tables out in the open, a party spot or a fire, something good to look at, with room for everyone.</li>
+          <li>They keep away from the generators, batteries, coolers, turrets and traps, off stockpiles and fields and out of doorways, and a fire is only laid where nothing that burns stands close.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.53.4</version>
         <date>2 November 2026</date>
         <title>Alpha Genes' moods and bodies</title>

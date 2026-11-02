@@ -445,7 +445,7 @@
   <CC_Venue_RecRoom>in the rec room</CC_Venue_RecRoom>
   <CC_Venue_Campfire>around the campfire</CC_Venue_Campfire>
   <CC_Venue_GatherSpot>by the {0}</CC_Venue_GatherSpot>
-  <CC_Venue_Outside>in the open, on crates and rocks</CC_Venue_Outside>
+  <CC_Venue_Outside>out in the open air</CC_Venue_Outside>
   <CC_Log_VoteWon>their side won: {0}</CC_Log_VoteWon>
   <CC_Log_Overruled>had the votes for {0}, but was overruled</CC_Log_Overruled>
   <CC_Log_IdeaChosen>their idea was chosen: {0}</CC_Log_IdeaChosen>

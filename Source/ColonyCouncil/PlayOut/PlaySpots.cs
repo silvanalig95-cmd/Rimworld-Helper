@@ -345,9 +345,15 @@ namespace ColonyCouncil
         /// <summary>Good weather for being out (a fire is lit whatever the weather: that's half the point of it).</summary>
         private static bool Outside(Map map, PlayOut p) => p.kind == PlayKind.Bonfire || JoyUtility.EnjoyableOutsideNow(map);
 
-        /// <summary>An open, unroofed cell near the middle of the colony.</summary>
-        public static IntVec3 OpenCell(Map map, Pawn pawn)
+        /// <summary>
+        /// The open air where the colony gathers: the best outdoor place of the home ground (a terrace, seats out in the
+        /// open, a party spot, something good to look at; not by the machinery or on a stockpile: PlayYard.cs), else the
+        /// nearest open cell to the middle of the colony. With <paramref name="fire"/>, only where nothing that burns is close.
+        /// </summary>
+        public static IntVec3 OpenCell(Map map, Pawn pawn, bool fire = false)
         {
+            var best = PlayYard.Best(map, pawn, fire);
+            if (best.IsValid) return best;
             var center = TemplatePlanner.ColonyCenter(map);
             foreach (var c in GenRadial.RadialCellsAround(center, 16f, true))
                 if (c.InBounds(map) && !c.Roofed(map) && c.GetEdifice(map) == null && !(c.GetTerrain(map)?.IsWater ?? false) && Ok(c, map, pawn)) return c;

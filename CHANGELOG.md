@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Gatherings in a fitting place
+
+*2 November 2026, version 0.53.5*
+
+- Gatherings, walks and fires held out of doors no longer meet at the first open patch near the middle of the colony. They go where the colony has made the outdoors pleasant: a terrace, seats and tables out in the open, a party spot or a fire, something good to look at, with room for everyone.
+- They keep away from the generators, batteries, coolers, turrets and traps, off stockpiles and fields and out of doorways, and a fire is only laid where nothing that burns stands close.
+
 ## Alpha Genes' moods and bodies
 
 *2 November 2026, version 0.53.4*
