@@ -13,6 +13,8 @@ namespace ColonyCouncil
         public int joining;
         /// <summary>People an accepted quest will bring to join the colony: each wants a bed and a seat once they come.</summary>
         public int questJoining;
+        /// <summary>Colonists and slaves who barely eat (foodless, fed by light or minerals): no seat at the table for them.</summary>
+        public int fasting;
 
         /// <summary>Sleeping places in the colony's own beds (not medical, not for prisoners or guests), and in bed blueprints and frames.</summary>
         public int beds, bedsPlanned;
@@ -193,10 +195,13 @@ namespace ColonyCouncil
             return r;
         }
 
+        /// <summary>Who eats at the colony's tables: colonists, slaves and guests, but not those who barely eat.</summary>
+        public static int Eaters(GrowthInput x) => Math.Max(0, x.colonists + x.slaves + x.guests - x.fasting);
+
         public static GrowthRow DiningRow(GrowthInput x)
         {
             var r = new GrowthRow { kind = Dining, built = x.seats, planned = x.seatsPlanned };
-            int eaters = x.colonists + x.slaves + x.guests;
+            int eaters = Eaters(x);
             if (eaters < 2) return r;
             r.need = Math.Max(1, eaters - DiningSlack);
             r.soon = Math.Max(1, eaters + x.joining + x.questJoining - DiningSlack);

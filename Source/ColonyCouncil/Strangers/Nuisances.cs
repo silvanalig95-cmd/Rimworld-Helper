@@ -22,7 +22,7 @@ namespace ColonyCouncil
         NoisyGenerator,
         /// <summary>A wood fire (a campfire, a brazier) burning in the small closed room they're in.</summary>
         SmokyRoom,
-        /// <summary>Their bed is a long way from the nearest table to eat at.</summary>
+        /// <summary>Their bed is a long way from the nearest table to eat at (not for those who barely eat).</summary>
         LongWalk,
         /// <summary>A swamp or jungle, warm out, and they're outside.</summary>
         Insects,
@@ -36,9 +36,9 @@ namespace ColonyCouncil
         HardBed,
         /// <summary>The closed room they're in is filthy ({THING} is what the room is: "dining room", "barracks", or "room").</summary>
         DirtyRoom,
-        /// <summary>The closed room they're in is below 12 °C (not a freezer) while it's cold outside.</summary>
+        /// <summary>The closed room they're in is below 12 °C (not a freezer) while it's cold outside: for an ordinary body (Health/BodyMath.cs).</summary>
         ChillyRoom,
-        /// <summary>The closed room they're in is above 29 °C.</summary>
+        /// <summary>The closed room they're in is above 29 °C: for an ordinary body (Health/BodyMath.cs).</summary>
         StuffyRoom,
         /// <summary>One of the colony's animals is in their bedroom with them ({THING} is the animal: "the husky", or its name).</summary>
         PetInBed,
@@ -139,6 +139,8 @@ namespace ColonyCouncil
                 if ((child && !def.children) || (only != null && !only(def))) continue;
                 if (last.TryGetValue(p.ThingID + "|" + def.defName, out int t) && t <= now && now - t < def.cooldownDays * GenDate.TicksPerDay) continue;
                 if (!def.who.NullOrEmpty() && Flavor.Match(def.WhoExpr, tags) < 0) continue;
+                // A mood silenced for them (a trait, a gene, a precept: the game's own nullifiers, Moods/LikeThought.cs) is no nuisance to them.
+                if (BodyFit.Nullified(p, def.thought)) continue;
                 string thing;
                 try
                 {
@@ -286,6 +288,9 @@ namespace ColonyCouncil
 
         private static string LongWalk(Pawn p, Map map)
         {
+            // Those who barely eat seldom go to the table at all (Health/BodyFit.cs), and those who don't mind eating
+            // without one (the game's own "ate without a table" silenced for them) don't mind the walk.
+            if (!BodyFit.Eats(p) || BodyFit.Nullified(p, ThoughtDefOf.AteWithoutTable)) return null;
             var bed = Bed(p, map);
             if (bed == null) return null;
             int best = int.MaxValue;
@@ -371,16 +376,20 @@ namespace ColonyCouncil
         private static string ChillyRoom(Pawn p, Map map)
         {
             var room = IndoorRoom(p);
-            if (room == null || map.mapTemperature.OutdoorTemp > 5f) return null;
-            float t = room.Temperature;
-            // Below freezing is a freezer or a lost cause, not a draft.
-            return t >= 0f && t < 12f ? "" : null;
+            if (room == null) return null;
+            // From 0 to 12 °C while it's 5 °C or less outside, moved by their own comfortable range (genes, traits:
+            // Health/BodyMath.cs). Below that is a freezer or a lost cause, not a draft.
+            BodyFit.TempShift(p, out float cold, out _);
+            return BodyMath.ChillyRoom(room.Temperature, map.mapTemperature.OutdoorTemp, cold) ? "" : null;
         }
 
         private static string StuffyRoom(Pawn p)
         {
             var room = IndoorRoom(p);
-            return room != null && room.Temperature > 29f ? "" : null;
+            if (room == null) return null;
+            // Over 29 °C, moved by their own comfortable range (Health/BodyMath.cs).
+            BodyFit.TempShift(p, out _, out float heat);
+            return BodyMath.StuffyRoom(room.Temperature, heat) ? "" : null;
         }
 
         /// <summary>A colony animal in their own bedroom (not a barracks), while they're in it.</summary>

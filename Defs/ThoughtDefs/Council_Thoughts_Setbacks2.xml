@@ -302,6 +302,7 @@
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Council_Friction_Mocked</defName>
     <stages><li><label>laughed at my bad day</label><description>I wasn't myself for a while, and they've turned it into a joke. They told it at supper.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Insulted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
@@ -327,6 +328,7 @@
     <defName>Council_Nuisance_NoCoat</defName>
     <durationDays>0.5</durationDays>
     <stages><li><label>soaked through, no coat</label><description>Rain down the back of my neck all morning. A coat would have made all the difference.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>SoakingWet</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

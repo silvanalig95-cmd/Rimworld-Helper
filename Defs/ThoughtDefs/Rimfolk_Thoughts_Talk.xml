@@ -48,6 +48,7 @@
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">
     <defName>Rimfolk_Talk_TeasedStung</defName>
     <stages><li><label>made fun of me</label><description>They made a joke at my expense. I wasn't in the mood to laugh.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>-3</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Slighted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Rimfolk_TalkThoughtBase">

@@ -256,11 +256,21 @@ namespace ColonyCouncil
             }
             var organizer = p.organizer != null && able.Contains(p.organizer) ? p.organizer
                 : able.OrderByDescending(x => x.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).First();
+            organizer = SafeLead(p, organizer, able, map);
             // A bonfire with no fire to gather at: one of the colony lays and lights it first (PlayFire.cs).
             if (PlayFire.Waits(p, organizer, able)) return;
             if (!PlaySpots.TryFind(p, organizer, out var spot, out var where))
             {
                 p.waitReason = "CC_Play_Why_Place".Translate();
+                return;
+            }
+            // Those the place would hurt stay away (the sun on a skin that burns, the water a thalassophobe can't bear, a
+            // roof over gas they breathe out: PlaySafety.cs). "Everyone" at it means everyone who could come.
+            able.RemoveAll(x => x != organizer && !PlaySafety.Safe(x, spot, map));
+            int could = p.invited.Count(x => x == organizer || PlaySafety.Safe(x, spot, map));
+            if (!PlayOutMath.EnoughToGather(able.Count, could))
+            {
+                p.waitReason = "CC_Play_Why_Busy".Translate();
                 return;
             }
             // Held round the fire laid for it, which burns down when it's over.
@@ -286,6 +296,22 @@ namespace ColonyCouncil
             string begin = BeginText(p, where, meals, able.Count, laid != null ? p.fireBy : null);
             if (job.guests.Count > 0) begin += " " + "CC_Play_GuestsCome".Translate(PlayGuests.Names(job.guests)).Resolve();
             Messages.Message(begin, new LookTargets(new TargetInfo(spot, map)), MessageTypeDefOf.PositiveEvent, false);
+        }
+
+        /// <summary>
+        /// Who leads a gathering to its place. Anyone free may lead it but the one whose words it is; when the place it would
+        /// be held at would hurt the one asked to lead (PlaySafety.cs), someone it wouldn't leads instead and they stay away,
+        /// so the swim still goes to the water. The speaker of words keeps it, and the place is chosen to fit them.
+        /// </summary>
+        private static Pawn SafeLead(PlayOut p, Pawn organizer, List<Pawn> able, Map map)
+        {
+            if (p.words || PlaySafety.Of(organizer) == PlaySafety.Harm.None) return organizer;
+            IntVec3 first;
+            using (PlaySafety.Ignore())
+                if (!PlaySpots.TryFind(p, organizer, out first, out _)) return organizer;
+            if (PlaySafety.Safe(organizer, first, map)) return organizer;
+            return able.Where(x => x != organizer && PlaySafety.Safe(x, first, map))
+                       .OrderByDescending(x => x.skills?.GetSkill(SkillDefOf.Social)?.Level ?? 0).FirstOrDefault() ?? organizer;
         }
 
         private static string BeginText(PlayOut p, string where, int meals, int guests, Pawn laidBy)
@@ -461,6 +487,13 @@ namespace ColonyCouncil
                 }
             }
             if (!target.IsValid || (!target.HasThing && !v.CanReach(target, PathEndMode.OnCell, Danger.Some)))
+            {
+                p.waitReason = "CC_Play_Why_Place".Translate();
+                return;
+            }
+            // Never to a place that would hurt them (a grave under the noon sun for a skin that burns, the water for a
+            // thalassophobe, a room for gas they breathe out: PlaySafety.cs); it waits for the place to fit, or falls through.
+            if (!PlaySafety.Safe(v, target.HasThing ? target.Thing.PositionHeld : target.Cell, map))
             {
                 p.waitReason = "CC_Play_Why_Place".Translate();
                 return;

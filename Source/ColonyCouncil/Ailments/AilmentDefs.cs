@@ -20,13 +20,13 @@ namespace ColonyCouncil
         HandWork,
         /// <summary>Travelling with a caravan that's on the move, or walking about the map.</summary>
         Walking,
-        /// <summary>Working outdoors between -10 and 6 °C.</summary>
+        /// <summary>Working outdoors between -10 and 6 °C (for an ordinary body: their own comfortable range moves it, Health/BodyMath.cs).</summary>
         ColdWork,
         /// <summary>Outdoors under open sky around midday in the heat, with nothing on the head.</summary>
         SunWork,
         /// <summary>In a small closed room with a wood fire burning.</summary>
         SmokyRoom,
-        /// <summary>Research or hand work in the dark.</summary>
+        /// <summary>Research or hand work in the dark (not for eyes that see in it).</summary>
         DarkWork,
         /// <summary>On the move outdoors over marsh, mud, sand, shallow water or deep snow.</summary>
         RoughGround,
@@ -48,9 +48,9 @@ namespace ColonyCouncil
         Chopping,
         /// <summary>Growing or cutting plants outdoors, above 10 °C.</summary>
         PlantWork,
-        /// <summary>Outdoors below -10 °C.</summary>
+        /// <summary>Outdoors below -10 °C (for an ordinary body, as above).</summary>
         BitterCold,
-        /// <summary>Somewhere 32 °C or hotter (27 °C in a swamp or jungle), awake or asleep.</summary>
+        /// <summary>Somewhere 32 °C or hotter (27 °C in a swamp or jungle), awake or asleep (for an ordinary body, as above).</summary>
         Sweltering,
         /// <summary>Outdoors in a swamp or jungle, 18 °C or warmer.</summary>
         Insects,

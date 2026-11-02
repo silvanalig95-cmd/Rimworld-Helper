@@ -116,6 +116,7 @@
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
     <stages><li><label>made fun of</label><description>They had their fun at my expense. Very funny. I'll remember it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-6</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Insulted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -125,6 +126,7 @@
     <stackLimit>3</stackLimit>
     <stackLimitForSameOtherPawn>2</stackLimitForSameOtherPawn>
     <stages><li><label>made to feel small</label><description>They made me feel small, and didn't seem to mind that they had.</description><baseMoodEffect>-3</baseMoodEffect><baseOpinionOffset>-10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Slighted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

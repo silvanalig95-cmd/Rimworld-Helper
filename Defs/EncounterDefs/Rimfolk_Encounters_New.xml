@@ -123,6 +123,7 @@
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncS_SongFromHome</defName>
     <label>a song from home</label>
+    <colonist><adult>false</adult><tags>!deaf</tags></colonist>
     <stranger>
       <kind>Slave</kind>
     </stranger>

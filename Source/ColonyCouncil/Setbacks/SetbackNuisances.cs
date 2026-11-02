@@ -41,7 +41,10 @@ namespace ColonyCouncil
         }
     }
 
-    /// <summary>Working out in the rain with no coat, when the colony could make one.</summary>
+    /// <summary>
+    /// Working out in the rain with no coat, when the colony could make one. Not for those the game's own "soaking wet"
+    /// leaves untouched (a nereid's scales: the nuisance's thought takes that mood's nullifiers, Moods/LikeThought.cs).
+    /// </summary>
     public class NuisanceCheck_NoCoat : NuisanceCheckWorker
     {
         private static int lookedDay = -1;
@@ -52,6 +55,7 @@ namespace ColonyCouncil
             var weather = map.weatherManager;
             if (weather == null || weather.RainRate < 0.3f || map.mapTemperature.OutdoorTemp < 0f) return null;
             if (p.CurJob?.workGiverDef == null || IndoorRoom(p) != null || p.Position.Roofed(map)) return null;
+            if (BodyFit.Nullified(p, ThoughtDefOf.SoakingWet)) return null;
             var worn = p.apparel?.WornApparel;
             if (worn == null) return null;
             var shell = ApparelLayerDefOf.Shell;

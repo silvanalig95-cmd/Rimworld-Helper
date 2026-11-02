@@ -83,6 +83,8 @@ namespace ColonyCouncil
         {
             if (!x.InBounds(map) || !x.Standable(map) || x.GetFirstPawn(map) != null || x.Fogged(map)) return false;
             if (map.pawnDestinationReservationManager.IsReserved(x)) return false;
+            // Nowhere that would hurt either of them (PlaySafety.cs).
+            if (!PlaySafety.Safe(a, x, map) || !PlaySafety.Safe(b, x, map)) return false;
             return a.CanReach(x, PathEndMode.OnCell, Danger.Some) && b.CanReach(x, PathEndMode.OnCell, Danger.Some);
         }
 

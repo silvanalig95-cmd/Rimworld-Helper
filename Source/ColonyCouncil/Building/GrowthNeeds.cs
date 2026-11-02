@@ -93,11 +93,13 @@ namespace ColonyCouncil
             {
                 if (p.Dead || Baby(p)) continue;
                 x.colonists++;
+                if (BodyFit.BarelyEats(p)) x.fasting++;
                 if (p.IsQuestLodger()) x.lodgers++;
                 if (p.ownership?.OwnedBed != null && p.ownership.OwnedRoom == null && !(p.story?.traits?.HasTrait(TraitDefOf.Ascetic) ?? false)) barracks++;
             }
             x.shared = barracks;
             x.slaves = map.mapPawns.SlavesOfColonySpawned.Count(p => !p.Dead && !Baby(p));
+            x.fasting += map.mapPawns.SlavesOfColonySpawned.Count(p => !p.Dead && !Baby(p) && BodyFit.BarelyEats(p));
             foreach (var p in map.mapPawns.AllPawnsSpawned)
                 if (p != null && !p.Dead && p.RaceProps.Humanlike && !p.IsPrisonerOfColony && p.Faction != Faction.OfPlayerSilentFail && Strangers.IsHospitalityGuest(p)) x.guests++;
             foreach (var p in map.mapPawns.PrisonersOfColonySpawned)

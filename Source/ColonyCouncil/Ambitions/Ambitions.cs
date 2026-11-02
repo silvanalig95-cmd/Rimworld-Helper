@@ -618,7 +618,7 @@ namespace ColonyCouncil
 
         private static bool VenueStillGood(CouncilMeeting m, Pawn chair) =>
             m.spot.IsValid && !m.venue.NullOrEmpty() && m.spot.InBounds(m.map) && m.spot.Standable(m.map) && chair != null
-            && chair.CanReach(m.spot, Verse.AI.PathEndMode.Touch, Danger.None);
+            && chair.CanReach(m.spot, Verse.AI.PathEndMode.Touch, Danger.None) && PlaySafety.Safe(chair, m.spot, m.map);
 
         /// <summary>The evening is gone: four hours past the set time, or night has come (the clock never starts one at night).</summary>
         private static bool EveningOver(CouncilMeeting m, int now) =>

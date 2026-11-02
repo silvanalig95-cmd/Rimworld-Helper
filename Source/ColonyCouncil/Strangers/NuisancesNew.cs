@@ -37,7 +37,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// A draught at the bed: below 5 °C outside, their bed stands a few steps from a door that opens straight from the
+    /// A draught at the bed: below 5 °C outside (for an ordinary body; their own comfortable range moves it), their bed stands a few steps from a door that opens straight from the
     /// bedroom to the outside. The room can be warm on average; an anteroom (a second door) stops it. {THING} is the door.
     /// </summary>
     public class NuisanceCheck_DraughtyBed : NuisanceCheckWorker
@@ -47,7 +47,9 @@ namespace ColonyCouncil
 
         public override string Check(Pawn p, Map map)
         {
-            if (map.mapTemperature.OutdoorTemp >= 5f) return null;
+            // Below 5 °C outside, moved by their own comfortable range (genes, traits: Health/BodyMath.cs).
+            BodyFit.TempShift(p, out float cold, out _);
+            if (!BodyMath.Draughty(map.mapTemperature.OutdoorTemp, cold)) return null;
             var bed = p.ownership?.OwnedBed;
             if (bed == null || !bed.Spawned || bed.Map != map || bed.Medical) return null;
             var room = bed.GetRoom();

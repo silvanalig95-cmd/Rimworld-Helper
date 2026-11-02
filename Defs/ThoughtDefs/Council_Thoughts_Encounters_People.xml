@@ -52,7 +52,7 @@
     <defName>Council_EncP_FireSongs</defName>
     <durationDays>2</durationDays>
     <stages><li><label>songs from a traveler</label><description>A traveler had songs and stories I'd never heard. I've got one of the choruses already.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>2</felt></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.1</joy><felt>2</felt></li><li Class="ColonyCouncil.Heard" /></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -148,6 +148,7 @@
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
     <stages><li><label>rude host</label><description>They insulted me at their own gate. I'll remember them.</description><baseOpinionOffset>-15</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Insulted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>
@@ -331,6 +332,7 @@
     <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
     <stackedEffectMultiplier>0.5</stackedEffectMultiplier>
     <stages><li><label>insulted my cooking</label><description>They ate every crumb I brought to their cell, then called it slop.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Insulted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

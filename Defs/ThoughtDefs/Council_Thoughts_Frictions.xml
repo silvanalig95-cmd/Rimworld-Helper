@@ -105,6 +105,7 @@
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Council_Friction_Corrected</defName>
     <stages><li><label>corrected with others listening</label><description>I got one small thing wrong, and they made sure the others at the table heard about it.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Slighted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
@@ -122,6 +123,7 @@
     <defName>Council_Friction_Teased</defName>
     <durationDays>1.5</durationDays>
     <stages><li><label>teased too far</label><description>It was funny the first few times. Then they kept going.</description><baseMoodEffect>-2</baseMoodEffect><baseOpinionOffset>-5</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Slighted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
@@ -187,6 +189,7 @@
   <ThoughtDef ParentName="Council_FrictionThoughtBase">
     <defName>Council_Friction_ColdShoulder</defName>
     <stages><li><label>the cold shoulder</label><description>They looked right past me again. I don't know what I did, and I'm not going to ask.</description><baseMoodEffect>-1</baseMoodEffect><baseOpinionOffset>-4</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.LikeThought"><thought>Slighted</thought></li></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_FrictionThoughtBase">

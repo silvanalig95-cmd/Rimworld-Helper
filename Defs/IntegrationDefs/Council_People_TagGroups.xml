@@ -11,7 +11,7 @@
     tone / order: a voice for the wish and journal lines of people it fits, after the vanilla traits that set one
       (Psychopath, Abrasive, Kind, the mood traits); the lowest order wins.
     Besides these, every person also has trait:X, skill:X (passions), meme:X and xeno:X tags, and nosleep, nofood,
-    hemogenic, deathrest and psycaster where they apply (see PeopleTags in the source).
+    fasting (barely eats), deaf, hemogenic, deathrest and psycaster where they apply (see PeopleTags in the source).
   -->
 
   <!-- ==================== A RimWorld of Magic (torann.arimworldofmagic): classes are traits ==================== -->
@@ -146,6 +146,19 @@
   </ColonyCouncil.TagGroupDef>
 
   <!-- ==================== Bodies (Alpha Genes) ==================== -->
+
+  <ColonyCouncil.TagGroupDef>
+    <defName>Council_Tags_Warmbody</defName>
+    <label>warm-bodied</label>
+    <description>People whose bodies give off heat (Alpha Genes' efreet, and the heat radiating gene).</description>
+    <tag>warmbody</tag>
+    <xenotypes>
+      <li>AG_Efreet</li>
+    </xenotypes>
+    <genes>
+      <li>AG_HeatRadiating</li>
+    </genes>
+  </ColonyCouncil.TagGroupDef>
 
   <ColonyCouncil.TagGroupDef>
     <defName>Council_Tags_Sunfed</defName>

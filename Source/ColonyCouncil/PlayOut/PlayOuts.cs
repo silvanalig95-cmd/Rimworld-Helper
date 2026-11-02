@@ -755,7 +755,10 @@ namespace ColonyCouncil
             return lord == null || lord.LordJob is LordJob_PlayOut;
         }
 
-        /// <summary>The part of <see cref="CanTakePart"/> that also holds while they're at it (asked every so often).</summary>
+        /// <summary>
+        /// The part of <see cref="CanTakePart"/> that also holds while they're at it (asked every so often), with where
+        /// they're going for it: never somewhere that would hurt them (PlaySafety.cs).
+        /// </summary>
         public static bool CanJoin(Pawn p)
         {
             if (p == null || p.Dead || !p.Spawned || p.Downed || p.Drafted || p.InMentalState) return false;
@@ -770,6 +773,8 @@ namespace ColonyCouncil
             if (p.CurJob != null && p.CurJob.playerForced) return false;
             if (p.CurJob == null && p.carryTracker?.CarriedThing is Pawn) return false;
             if (MeetingAttendance.UrgentWork(p) != null) return false;
+            // Where an answer has them going turned against them (the sun up over a vigil, rain on a thalassophobe): PlaySafety.cs.
+            if (!PlaySafety.SafeWhereHeaded(p)) return false;
             return true;
         }
 

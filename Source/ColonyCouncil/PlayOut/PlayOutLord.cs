@@ -162,12 +162,15 @@ namespace ColonyCouncil
             return p != null && p.Faction == Faction.OfPlayer && p.IsColonist;
         }
 
-        /// <summary>The game's party rules, plus Rimfolk's: never from a sickbed, under arms, or in the middle of caring for someone.</summary>
+        /// <summary>
+        /// The game's party rules, plus Rimfolk's: never from a sickbed, under arms, or in the middle of caring for someone,
+        /// and never to a place that would hurt them (PlaySafety.cs).
+        /// </summary>
         public override float VoluntaryJoinPriorityFor(Pawn p)
         {
             try
             {
-                if (!IsInvited(p) || !PlayOuts.CanJoin(p)) return 0f;
+                if (!IsInvited(p) || !PlayOuts.CanJoin(p) || !PlaySafety.Safe(p, spot, Map)) return 0f;
             }
             catch (Exception e)
             {
@@ -185,6 +188,10 @@ namespace ColonyCouncil
             nextLook = now + 250;
             try
             {
+                // Anyone the place has turned against since (the sun up over an open-air gathering, rain on a
+                // thalassophobe) goes (PlaySafety.cs).
+                foreach (var p in lord.ownedPawns.ToList())
+                    if (p != null && p.Spawned && !PlaySafety.Safe(p, spot, Map)) lord.RemovePawn(p);
                 if (serve && kind == PlayKind.Feast) Serve();
                 // A drink from the stores to raise (Integrations/ToastDrinks.cs: beer, Vanilla Brewing Expanded's wines and teas).
                 if (kind == PlayKind.Toast) ToastDrinks.Pour(lord, Map, spot, words);

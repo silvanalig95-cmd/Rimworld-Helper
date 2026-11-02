@@ -299,7 +299,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Once a day per colonist: the diet, sweets, and the illnesses that come from them. Done once per game day even
-        /// across a reload. Days away (an outpost, cryptosleep) or while the meal hook is off count as days eaten well.
+        /// across a reload. Days away (an outpost, cryptosleep), while the meal hook is off, or for someone who barely eats
+        /// count as days eaten well.
         /// </summary>
         private void Daily(Pawn p, int day, bool circumstance)
         {
@@ -308,7 +309,8 @@ namespace ColonyCouncil
             if (!firstToday) return;
             bool away = seen > 0 && day - seen > 1;
             seenDay[id] = day;
-            if (!DietKnown || away || !freshDay.ContainsKey(id)) freshDay[id] = day;
+            // Those who barely eat (foodless, fed by light or minerals: Health/BodyFit.cs) never go short of fresh food.
+            if (!DietKnown || away || !freshDay.ContainsKey(id) || BodyFit.BarelyEats(p)) freshDay[id] = day;
             if (sweets.TryGetValue(id, out float sw)) sweets[id] = sw * 0.84f;
             if (!circumstance) return;
             int without = day - freshDay[id];

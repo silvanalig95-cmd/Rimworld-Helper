@@ -489,7 +489,7 @@
     <durationDays>2</durationDays>
     <stackLimit>1</stackLimit>
     <stages><li><label>music in the air</label><description>There's been music in the air, and the work goes easier for it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
-    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><felt>3</felt></li></modExtensions>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.12</joy><felt>3</felt></li><li Class="ColonyCouncil.Heard" /></modExtensions>
   </ThoughtDef>
 
   <ThoughtDef>

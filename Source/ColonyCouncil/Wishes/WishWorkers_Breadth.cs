@@ -282,14 +282,14 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>The colony's people who eat (babies and those who never eat aside).</summary>
+        /// <summary>The colony's people who eat (babies, those who never eat and those who barely eat aside: Health/BodyFit.cs).</summary>
         public static int Diners(Map map) =>
-            map == null ? 0 : map.mapPawns.FreeColonistsSpawned.Count(p => !p.DevelopmentalStage.Baby() && p.needs?.food != null && !p.IsQuestLodger());
+            map == null ? 0 : map.mapPawns.FreeColonistsSpawned.Count(p => !p.DevelopmentalStage.Baby() && BodyFit.Eats(p) && !p.IsQuestLodger());
 
         public override IEnumerable<WishCandidate> CandidatesFor(Pawn pawn)
         {
             var map = HomeMap(pawn);
-            if (map == null || pawn.needs?.food == null || !WishWorker_DiningTable.HasDiningSpot(map)) yield break;
+            if (map == null || !BodyFit.Eats(pawn) || !WishWorker_DiningTable.HasDiningSpot(map)) yield break;
             int diners = Diners(map);
             if (diners < 3) yield break;
             int seats = Seats(map);

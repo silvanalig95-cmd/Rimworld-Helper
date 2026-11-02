@@ -474,6 +474,7 @@
   <ColonyCouncil.EncounterDef>
     <defName>Council_EncC_Birdsong</defName>
     <label>birdsong</label>
+    <colonist><tags>!deaf</tags></colonist>
     <stranger>
       <kind>Wild</kind>
       <notPredator>true</notPredator>

@@ -188,7 +188,10 @@ namespace ColonyCouncil
             spot = IntVec3.Invalid;
             venue = "CC_Venue_Outside".Translate();
             var gd = GatheringDef;
+            // Never somewhere that would hurt the chair or those round them (the sun on a skin that burns, a closed room for
+            // gas they breathe out: PlayOut/PlaySafety.cs); the others the place would hurt are excused (MeetingAttendance).
             bool Ok(IntVec3 c) => c.IsValid && c.InBounds(map) && c.Standable(map) && (chair == null || chair.CanReach(c, Verse.AI.PathEndMode.Touch, Danger.None))
+                                  && (chair == null || PlaySafety.Safe(chair, c, map))
                                   && (!strict || gd == null || GatheringsUtility.ValidateGatheringSpot(c, gd, chair, true, true));
 
             foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).OrderByDescending(r => r.CellCount))
@@ -540,7 +543,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Who drifts over on their own: not those who didn't bother or were too far off to be called, not those the
-        /// player drafted or sent elsewhere during it, and not anyone without a say. Everyone else may still come when
+        /// player drafted or sent elsewhere during it, not those the place would hurt, and not anyone without a say. Everyone else may still come when
         /// they're free (late, but they come).
         /// </summary>
         public override float VoluntaryJoinPriorityFor(Pawn p)
@@ -549,6 +552,8 @@ namespace ColonyCouncil
             // they're judged as for any gathering.
             try
             {
+                // Never to a place that would hurt them (PlayOut/PlaySafety.cs).
+                if (!PlaySafety.Safe(p, spot, Map)) return 0f;
                 var m = CouncilGameComponent.Instance?.ambitions.meeting;
                 if (m != null && m.invites.Count > 0)
                 {
