@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 405; modelled: 405; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,850 KB** after a year, **2,231 KB** after two, **2,347 KB** after five.
+Saved collections found: 411; modelled: 411; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,853 KB** after a year, **2,235 KB** after two, **2,350 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -119,6 +119,7 @@ Rimfolk's part of the save, roughly: **1,850 KB** after a year, **2,231 KB** aft
 | `Happenings/Happenings.cs:departed` | the departed 2 years | window | 3 | 6 | 6 | 2.3 |
 | `Happenings/VisitorServices.cs:tasks` | a night to a day each, at most VisitorServices.MaxTasks at once | cap | 8 | 8 | 8 | 2.3 |
 | `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
+| `Visitors/Callers.cs:tasks` | half a day to a day each, at most Callers.MaxTasks at once | cap | 6 | 8 | 8 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
 | `Aspirations/Aspirations.cs:inspiredBy` | known pawns only | known | 16 | 18 | 22 | 2.0 |
@@ -214,6 +215,7 @@ Rimfolk's part of the save, roughly: **1,850 KB** after a year, **2,231 KB** aft
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
+| `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
 | `Building/ShelfReserves.cs:entries` | per shelf: the kinds it keeps slots for, with how they're kept | while | 6 | 6 | 6 | 0.5 |
 | `Faith/FaithCouncilTracker.cs:faithEvenings` | each faith's last evening of faith: one per faith, gone after 60 days or with the faith | fixed | 6 | 6 | 6 | 0.5 |
 | `Visitors/VisitorsMore2.cs:deals` | a book swapper's bargain, while their visit lasts, two days at most (Visitors/VisitorsMore2.cs) | while | 2 | 2 | 2 | 0.5 |
@@ -298,6 +300,8 @@ Rimfolk's part of the save, roughly: **1,850 KB** after a year, **2,231 KB** aft
 | `PlayOut/PlayOutLord.cs:abstained` | while the gathering lasts | while | 4 | 4 | 4 | 0.2 |
 | `Scenarios/ScenarioParts.cs:offices` | a scenario part's seats, fixed by the scenario | fixed | 4 | 4 | 4 | 0.2 |
 | `UI/WeekMemory.cs:pinnedPawns` | pins: only the player's clicks, the gone dropped | fixed | 4 | 4 | 4 | 0.2 |
+| `Visitors/Callers.cs:pawns` | per task: who is still to have a cut (one per colonist), or the animals still to tend (CallerMath.MaxPatients at most) | fixed | 4 | 4 | 4 | 0.2 |
+| `Visitors/Callers.cs:things` | per task: the art still to see (seven at most) or the dead still to lay to rest (eight graves at most) | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:deeds` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:held` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:sufferers` | per situation | fixed | 4 | 4 | 4 | 0.2 |
@@ -336,6 +340,8 @@ Rimfolk's part of the save, roughly: **1,850 KB** after a year, **2,231 KB** aft
 | `PlayOut/PlayOuts.cs:plots` | per play-out: where a burial's graves lie (OnMapMath.MaxDead at most), burials only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:round` | per play-out: those a round goes to (OnMapMath.MaxRounds at most), rounds only | fixed | 2 | 2 | 2 | 0.1 |
 | `PlayOut/PlayOuts.cs:things` | per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most) | fixed | 2 | 2 | 2 | 0.1 |
+| `Visitors/Callers.cs:people` | per task: the undertakers (four at most) or the wedding party (five at most) | fixed | 2 | 2 | 2 | 0.1 |
+| `Visitors/Callers.cs:plots` | per task: the undertakers' row of graves (CallerMath.MaxGraves at most), graves only | fixed | 2 | 2 | 2 | 0.1 |
 | `Camps/CampStory.cs:beats` | the beats of the stay played (ask, trouble, parting), while the camp stays | while | 3 | 3 | 3 | 0.1 |
 | `Setbacks/SetbackTracker.cs:ticks` | per sown field | fixed | 3 | 3 | 3 | 0.1 |
 | `Annals.cs:traditionsBorn` | the year in progress | yearly | 2 | 2 | 2 | 0.1 |

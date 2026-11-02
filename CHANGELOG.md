@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Callers with a purpose
+
+*2 November 2026, version 0.50.2*
+
+- An art collector may come to see the colony's finest sculptures and offer for one by its title; sold, it is carried out to them, and a commission brings them back for the piece your sculptor makes.
+- A neighbouring couple may ask to marry at the colony, with their families at the wedding feast and a night under your roof or round their own fire.
+- After a fight, a burial order may offer to dig graves for the raiders outside the wall, or take the dead away on their pack beast with the raiders' gear.
+- A prisoner's family may come with silver for their freedom, or ask to talk with them at the door of their cell.
+- A travelling barber may set a stool by the gate and give your people new cuts in the styles they like.
+- A drovers' animal doctor may tend your hurt and sick animals where they stand and work one through a step of its training.
+
 ## Wishes for a grave, a crop from home and a lamp
 
 *2 November 2026, version 0.50.1*
