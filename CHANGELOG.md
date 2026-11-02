@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pilgrims, kin and old friends
+
+*2 November 2026, version 0.49.2*
+
+- With Ideology, pilgrims of your faith walk to the colony to pray before its relic, inside the reliquary or at the gate, as you allow.
+- With Royalty, meditators ask to sit at your anima tree, and their meditation feeds its grass as a colonist's does.
+- With Biotech, people of a colonist's own xenotype come to meet them, for an evening at the fire and a lesson in what their genes favour.
+- With Odyssey, when your gravship lands near a friendly settlement its folk walk out to see it, and you can show them round or trade at the gate.
+- A book swapper offers one of their books for one of yours, and makes the swap at your shelf by their own hand.
+- The regulars you know best come back married, with a child taken in on the road, or with the apprentice who will carry on their trade, and when one of them dies of old age or a long illness, word reaches the friend they made here.
+
 ## New ailments with real causes
 
 *2 November 2026, version 0.49.1*
