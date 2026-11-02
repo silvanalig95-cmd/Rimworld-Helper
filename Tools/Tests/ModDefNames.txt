@@ -87,16 +87,37 @@ DankPyon_Wine_Griffon
 DankPyon_Wine_Ice
 DankPyon_Wine_Mulberry
 # Alpha Genes 1.6 (sarg.alphagenes)
+AG_ArmourMajor
+AG_Awe
 AG_Disgust
 AG_Drakonori
 AG_Efreet
+AG_FrailBack
+AG_FrailStomach
+AG_FungalSkin
 AG_HeatRadiating
 AG_Helixien
+AG_Hover
+AG_HoverExploder
+AG_Implanted
 AG_Lapis
 AG_LightSustenance
+AG_LungRotImmunity
+AG_LungRotStrength
 AG_MindDevourer
+AG_Mood_Volatile
 AG_Nereid
+AG_PackMule
+AG_Parasite
+AG_PsychicDrone
+AG_PukedRats
+AG_RaidedBioLab
+AG_SunlightSensitivity_Minor
 AG_Thalassophobia
+AG_ToxicEnvironmentResistance_Frail
+AG_UVSensitivity_Minor
+AG_UsedXenotypeInjector
+AG_VFEI_VenomGland
 AG_Wretch
 # Alpha Memes 1.6 (sarg.alphamemes)
 AM_Artist
