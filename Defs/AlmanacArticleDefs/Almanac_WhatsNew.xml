@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.47.1</version>
+        <date>2 November 2026</date>
+        <title>The stray beast is really there</title>
+        <points>
+          <li>A neighbor's stray beast is really there when the letter comes, standing in the barn, the pen or about the colony, and the letter says where.</li>
+          <li>Give it back, with or without a finder's fee, and their drover walks in with the thanks or the fee and leads it home; keep it and that same beast becomes the colony's.</li>
+          <li>World situation answers can end in more than one way, picked to fit the moment as dilemmas and events are.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.47.0</version>
         <date>2 November 2026</date>
         <title>Every answer says what it does</title>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The stray beast is really there
+
+*2 November 2026, version 0.47.1*
+
+- A neighbor's stray beast is really there when the letter comes, standing in the barn, the pen or about the colony, and the letter says where.
+- Give it back, with or without a finder's fee, and their drover walks in with the thanks or the fee and leads it home; keep it and that same beast becomes the colony's.
+- World situation answers can end in more than one way, picked to fit the moment as dilemmas and events are.
+
 ## Every answer says what it does
 
 *2 November 2026, version 0.47.0*
