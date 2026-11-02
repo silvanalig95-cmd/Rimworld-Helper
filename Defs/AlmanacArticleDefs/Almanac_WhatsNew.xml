@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.49.3</version>
+        <date>2 November 2026</date>
+        <title>Colony news as a letter every day again</title>
+        <points>
+          <li>The evening's Colony news comes as a letter every day again, as it did before 0.44.1; a quiet day no longer turns it into a short message at the top of the screen.</li>
+          <li>The setting "Quiet days in one short message" is gone with it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.49.2</version>
         <date>2 November 2026</date>
         <title>Pilgrims, kin and old friends</title>

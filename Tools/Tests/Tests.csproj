@@ -39,7 +39,6 @@
     <Compile Include="../../Source/ColonyCouncil/Building/AheadMath.cs" Link="AheadMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/Suggest/SuggestMath.cs" Link="SuggestMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/GrowthMath.cs" Link="GrowthMath.cs" />
-    <Compile Include="../../Source/ColonyCouncil/UI/NewsQuietMath.cs" Link="NewsQuietMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/BaseReviewMath.cs" Link="BaseReviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/GroundPlanMath.cs" Link="GroundPlanMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/StorageReviewMath.cs" Link="StorageReviewMath.cs" />

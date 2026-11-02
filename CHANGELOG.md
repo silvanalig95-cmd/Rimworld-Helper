@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Colony news as a letter every day again
+
+*2 November 2026, version 0.49.3*
+
+- The evening's Colony news comes as a letter every day again, as it did before 0.44.1; a quiet day no longer turns it into a short message at the top of the screen.
+- The setting "Quiet days in one short message" is gone with it.
+
 ## Pilgrims, kin and old friends
 
 *2 November 2026, version 0.49.2*
