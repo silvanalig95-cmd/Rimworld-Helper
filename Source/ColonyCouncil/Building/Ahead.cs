@@ -15,7 +15,8 @@ namespace ColonyCouncil
     /// bill another mod sets is never changed), a bill added with what feeds it (Making's chains), a copy on a second
     /// bench, a field grown onto free ground next to it, cells switched from a crop the colony has far more of, a new
     /// field. Bills and fields that are held up get a step of their own saying why (BillStuck, FieldStuck), with the
-    /// fix where there is one. Nothing is done until the player clicks.
+    /// fix where there is one. Colony Manager's targets, the shopping list, rock to mine and spare clothes come from
+    /// <see cref="AheadMore"/>. Nothing is done until the player clicks.
     /// </summary>
     public static class Ahead
     {
@@ -29,6 +30,8 @@ namespace ColonyCouncil
             public List<Suggestion> all = new List<Suggestion>();
             public int needsTick = -1, version = -1;
             public float mealDays, reserveDays;
+            /// <summary>Phase 3: Colony Manager's jobs, the shopping list, the traders here, the clothes worn (Building/AheadMore.cs).</summary>
+            public AheadMore.Extra more = new AheadMore.Extra();
         }
 
         private static readonly Dictionary<int, View> cache = new Dictionary<int, View>();
@@ -56,6 +59,7 @@ namespace ColonyCouncil
                     if (s != null) v.all.Add(s);
                 }
                 Stuck(needs, v.plan, v.all);
+                AheadMore.Add(v);
             }
             catch (Exception e)
             {

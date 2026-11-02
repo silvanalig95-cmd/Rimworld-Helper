@@ -22,16 +22,31 @@ namespace ColonyCouncil
 
         private const float ButtonsW = 290f, LeftW = 44f;
 
+        /// <summary>The Plan page with the next steps switched off: building ahead alone, and a line saying the steps are off.</summary>
+        private static void DrawBuildAheadOnly(Rect rect, Map map)
+        {
+            float top = UiKit.PageHeader(rect, Icons.Plan, "CC_Plan_Header".Translate(), "CC_Plan_Sub".Translate(), null, UiKit.Gold, 170f, "CC_Plan_HeaderTip".Translate());
+            var outRect = new Rect(rect.x, rect.y + top, rect.width, rect.height - top);
+            var view = new Rect(0f, 0f, outRect.width - 18f, height);
+            Widgets.BeginScrollView(outRect, ref scroll, view);
+            float y = 0f;
+            y += BuildAheadPanel.Draw(0f, y, view.width, map) + 10f;
+            y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Plan_Off".Translate(), UiKit.Faint) + 8f;
+            height = Mathf.Max(y + 20f, outRect.height);
+            Widgets.EndScrollView();
+        }
+
         public static void Draw(Rect rect, CouncilGameComponent comp, Map map)
         {
-            if (!NextSteps.On)
-            {
-                UiKit.EmptyState(rect, Icons.Plan, "CC_Plan_Off".Translate());
-                return;
-            }
             if (map == null || !map.IsPlayerHome || comp == null)
             {
                 UiKit.EmptyState(rect, Icons.Colony, "CC_NoHomeMap".Translate());
+                return;
+            }
+            if (!NextSteps.On)
+            {
+                // The next steps are off, but building ahead stays: it is planning ahead, not the plan.
+                DrawBuildAheadOnly(rect, map);
                 return;
             }
             var plan = NextSteps.PlanFor(map);

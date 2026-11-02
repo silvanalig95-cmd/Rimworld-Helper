@@ -384,7 +384,8 @@ namespace ColonyCouncil
                 var pp = plant?.plant;
                 var product = pp?.harvestedThingDef;
                 if (product == null || zone.Cells.Count == 0) continue;
-                bool food = KindOf(product) == AheadMath.Raw || KindOf(product) == AheadMath.Feed;
+                string kind = KindOf(product);
+                bool food = kind == AheadMath.Raw || kind == AheadMath.Feed;
                 float fert = 0f;
                 int sown = 0;
                 foreach (var c in zone.Cells)
@@ -411,7 +412,7 @@ namespace ColonyCouncil
                 var f = new AheadField
                 {
                     key = zone.ID.ToString(), label = zone.label, crop = plant.defName, cropLabel = plant.label, product = product.defName, productLabel = product.label,
-                    food = food, cells = zone.Cells.Count, sown = sown, perCellADay = AheadMath.PerCellADay(pp.harvestYield, worth, pp.growDays, factor, YieldFactor(plant)),
+                    food = food, feedOnly = kind == AheadMath.Feed, cells = zone.Cells.Count, sown = sown, perCellADay = AheadMath.PerCellADay(pp.harvestYield, worth, pp.growDays, factor, YieldFactor(plant)),
                     growFactors = own, stock = have, stockNutrition = food ? have * worth : 0f, useADay = used, measured = measured,
                     harvest = zone.Cells.Count * pp.harvestYield * YieldFactor(plant), stockCells = goods.FirstOrDefault(g => g.key == product.defName)?.cells ?? 0
                 };

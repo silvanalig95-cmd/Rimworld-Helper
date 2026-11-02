@@ -68,6 +68,8 @@ namespace ColonyCouncil
         public string label, crop, cropLabel, product, productLabel;
         /// <summary>Its harvest feeds people or animals.</summary>
         public bool food;
+        /// <summary>Its harvest feeds animals only (hay and the like): never counted as the people's food.</summary>
+        public bool feedOnly;
         public int cells, sown;
         /// <summary>What a cell gives in a day of full growth at its soil: nutrition for food, items else.</summary>
         public float perCellADay;
@@ -174,6 +176,8 @@ namespace ColonyCouncil
         public List<AheadIdea> ideas = new List<AheadIdea>();
         /// <summary>Crop nutrition the colony needs a day; what its food fields give a day over the year's cycle.</summary>
         public float cropNeed, cropGive;
+        /// <summary>Of the need, the people's part (the rest is the animals'); of what the fields give, what only animals eat (hay).</summary>
+        public float peopleNeed, feedOnlyGive;
         /// <summary>Growing days in the cycle ahead, days in it with no growing, and growing days left this year.</summary>
         public float growingDays, growingLeftThisYear;
         public int withoutDays, cycleDays;
@@ -528,68 +532,99 @@ namespace ColonyCouncil
         {
             var typical = x.growFactors ?? new float[0];
             int cycle = p.cycleDays;
-            p.cropNeed = raw.useADay * Clamp01(x.plantShare) + (feed != null && (x.feedAnimals > 0 || feed.have > 0f) ? feed.useADay : 0f);
+            bool feeding = feed != null && (x.feedAnimals > 0 || feed.have > 0f);
+            float peopleNeed = raw.useADay * Clamp01(x.plantShare), feedNeed = feeding ? feed.useADay : 0f;
+            p.peopleNeed = peopleNeed;
+            p.cropNeed = peopleNeed + feedNeed;
             var food = x.fields.Where(f => f.food && f.cells > 0).ToList();
             float PerCycle(float perCell, float[] own) => perCell * GrowingDays(FactorsOf(own, typical));
-            float make = food.Sum(f => f.cells * PerCycle(f.perCellADay, f.growFactors));
-            p.cropGive = cycle > 0 ? make / cycle : 0f;
+            // People eat only what people can eat; the animals eat their own crops (hay) and what the people's fields give beyond the people's need.
+            float makePeople = food.Where(f => !f.feedOnly).Sum(f => f.cells * PerCycle(f.perCellADay, f.growFactors));
+            float makeFeed = food.Where(f => f.feedOnly).Sum(f => f.cells * PerCycle(f.perCellADay, f.growFactors));
+            p.cropGive = cycle > 0 ? (makePeople + makeFeed) / cycle : 0f;
+            p.feedOnlyGive = cycle > 0 ? makeFeed / cycle : 0f;
 
             // When the crop food runs out with the fields as they are.
-            var byDay = new float[cycle];
-            foreach (var f in food)
+            float[] ByDay(bool animals)
             {
-                var ff = FactorsOf(f.growFactors, typical);
-                for (int d = 0; d < cycle; d++) byDay[d] += f.cells * f.perCellADay * (d < ff.Length ? ff[d] : 1f);
+                var byDay = new float[cycle];
+                foreach (var f in food.Where(f => f.feedOnly == animals))
+                {
+                    var ff = FactorsOf(f.growFactors, typical);
+                    for (int d = 0; d < cycle; d++) byDay[d] += f.cells * f.perCellADay * (d < ff.Length ? ff[d] : 1f);
+                }
+                return byDay;
             }
-            float stock = raw.have * Clamp01(x.plantShare) + (feed != null ? feed.have : 0f);
-            p.runsShortIn = RunsShortIn(stock, p.cropNeed, byDay);
+            float peopleStock = raw.have * Clamp01(x.plantShare), feedStock = feed != null ? feed.have : 0f;
+            var peopleByDay = ByDay(false);
+            if (!food.Any(f => f.feedOnly)) p.runsShortIn = RunsShortIn(peopleStock + feedStock, p.cropNeed, peopleByDay);
+            else
+            {
+                // Hay feeds the animals alone; the people's fields feed the animals only with what the people leave.
+                var feedByDay = ByDay(true);
+                for (int d = 0; d < cycle; d++) feedByDay[d] += Math.Max(0f, peopleByDay[d] - peopleNeed);
+                p.runsShortIn = Math.Min(RunsShortIn(peopleStock, peopleNeed, peopleByDay), RunsShortIn(feedStock, feedNeed, feedByDay));
+            }
 
             float need = p.cropNeed * cycle;
-            float shortfall = need - make;
+            float peopleShort = Math.Max(0f, peopleNeed * cycle - makePeople);
+            float feedShort = Math.Max(0f, feedNeed * cycle - makeFeed - Math.Max(0f, makePeople - peopleNeed * cycle));
+            float shortfall = peopleShort + feedShort;
             var crops = x.crops.Where(c => c.perCellADay > 0f).OrderByDescending(c => PerCycle(c.perCellADay, c.growFactors)).ThenBy(c => c.key, StringComparer.Ordinal).ToList();
             var bestCrop = crops.FirstOrDefault();
             float bestPer = bestCrop != null ? PerCycle(bestCrop.perCellADay, bestCrop.growFactors) : food.Select(f => PerCycle(f.perCellADay, f.growFactors)).DefaultIfEmpty(0f).Max();
             if (p.cropNeed <= 0f || shortfall <= need * FieldTolerance) return;
             p.cellsShort = CellsFor(shortfall, bestPer);
             float days = p.runsShortIn;
-            float remaining = shortfall;
+            // What a step adds goes to the people first (their crops feed the animals too); hay only to the animals.
+            float Wanting(bool feedOnly) => feedOnly ? feedShort : peopleShort + feedShort;
+            void Adds(bool feedOnly, float added)
+            {
+                if (!feedOnly)
+                {
+                    float toPeople = Math.Min(peopleShort, added);
+                    peopleShort -= toPeople;
+                    added -= toPeople;
+                }
+                feedShort = Math.Max(0f, feedShort - added);
+            }
 
             // 1. Fields grown onto the free fertile ground next to them, the best yield first, two at most.
             int grown = 0;
             foreach (var f in food.Where(f => f.freeNext >= MinCellsAStep).OrderByDescending(f => PerCycle(f.perCellADay, f.growFactors)).ThenBy(f => f.key, StringComparer.Ordinal))
             {
-                if (remaining <= 0f || grown >= 2) break;
-                if (declined.Contains(GrowKey(f))) continue;
+                if (peopleShort + feedShort <= 0f || grown >= 2) break;
+                if (declined.Contains(GrowKey(f)) || Wanting(f.feedOnly) <= 0f) continue;
                 float per = PerCycle(f.perCellADay, f.growFactors);
-                int cells = Math.Min(Math.Min(CellsFor(remaining, per), f.freeNext), MaxCellsAStep);
+                int cells = Math.Min(Math.Min(CellsFor(Wanting(f.feedOnly), per), f.freeNext), MaxCellsAStep);
                 if (cells < MinCellsAStep) continue;
                 p.ideas.Add(new AheadIdea { key = GrowKey(f), kind = "grow", area = "fields", days = days, row = raw, field = f, cells = cells, from = f.cells, to = f.cells + cells, gives = cells * per / cycle });
-                remaining -= cells * per;
+                Adds(f.feedOnly, cells * per);
                 grown++;
             }
 
-            // 2. Cells switched from a crop the colony has far more of than it uses.
-            foreach (var f in x.fields.Where(f => f.cells > 0 && OverSupplied(f, p.cropNeed)).OrderByDescending(f => f.cells).ThenBy(f => f.key, StringComparer.Ordinal))
+            // 2. Cells switched from a crop the colony has far more of than it uses (hay judged against the animals' need).
+            foreach (var f in x.fields.Where(f => f.cells > 0 && OverSupplied(f, f.feedOnly ? feedNeed : p.cropNeed)).OrderByDescending(f => f.cells).ThenBy(f => f.key, StringComparer.Ordinal))
             {
-                if (remaining <= 0f) break;
-                float own = f.food ? PerCycle(f.perCellADay, f.growFactors) : 0f;
+                if (peopleShort + feedShort <= 0f) break;
+                float own = f.food && !f.feedOnly ? PerCycle(f.perCellADay, f.growFactors) : 0f;
                 var to = crops.FirstOrDefault(c => c.key != f.crop && !declined.Contains(SwitchKey(f, c)) && PerCycle(c.perCellADay, c.growFactors) > own * SwitchGain);
                 if (to == null) continue;
                 float gain = PerCycle(to.perCellADay, to.growFactors) - own;
-                int cells = Math.Min(Math.Min(CellsFor(remaining, gain), f.cells), MaxCellsAStep);
+                int cells = Math.Min(Math.Min(CellsFor(peopleShort + feedShort, gain), f.cells), MaxCellsAStep);
                 if (cells < MinCellsAStep) continue;
                 p.ideas.Add(new AheadIdea { key = SwitchKey(f, to), kind = "switch", area = "fields", days = days, row = raw, field = f, crop = to, cells = cells, gives = cells * gain / cycle });
-                remaining -= cells * gain;
+                Adds(false, cells * gain);
             }
 
             // 3. A new field of the best crop, on free fertile ground near the fields.
-            if (remaining > 0f && x.newGround >= MinCellsAStep)
+            if (peopleShort + feedShort > 0f && x.newGround >= MinCellsAStep)
             {
                 var c = crops.FirstOrDefault(k => !declined.Contains(NewKey(k)));
                 if (c != null)
                 {
                     float per = PerCycle(c.perCellADay, c.growFactors);
-                    int cells = Math.Min(Math.Min(CellsFor(remaining, per), MaxCellsAStep), x.newGround);
+                    int cells = Math.Min(Math.Min(CellsFor(peopleShort + feedShort, per), MaxCellsAStep), x.newGround);
                     if (cells >= MinCellsAStep)
                         p.ideas.Add(new AheadIdea { key = NewKey(c), kind = "new", area = "fields", days = days, row = raw, crop = c, cells = cells, gives = cells * per / cycle });
                 }
@@ -597,14 +632,14 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Far more than the colony uses: a food crop whose stock alone covers a year of the colony's crop need (by its
-        /// nutrition, never by its count); another crop whose stock covers a year of its own use, or that nothing used
-        /// over the record while two of the field's harvests lie in store.
+        /// Far more than the colony uses: a food crop whose stock alone covers a year of the need it feeds (by its
+        /// nutrition, never by its count; hay against the animals' need); another crop, or hay nothing eats, whose stock
+        /// covers a year of its own use, or that nothing used over the record while two of the field's harvests lie in store.
         /// </summary>
         public static bool OverSupplied(AheadField f, float cropNeed)
         {
             if (f == null) return false;
-            if (f.food) return cropNeed > 0f && f.stockNutrition / cropNeed > OverDays;
+            if (f.food && !(f.feedOnly && cropNeed <= 0f)) return cropNeed > 0f && f.stockNutrition / cropNeed > OverDays;
             if (f.useADay > 0f) return f.stock / f.useADay > OverDays;
             return f.measured && f.harvest > 0f && f.stock >= f.harvest * 2f;
         }

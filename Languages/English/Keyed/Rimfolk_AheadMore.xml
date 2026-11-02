@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Planning ahead, phase 3: Colony Manager's targets, the shopping list, where to mine, spare clothes (Source/ColonyCouncil/Building/AheadMore.cs, AheadMoreMath.cs, Integrations/ColonyManagerBridge.cs, UI/AheadMorePanel.cs). -->
+
+  <!-- Colony Manager's jobs beside the stock rows. -->
+  <CC_AheadMore_ManagerTitle>Colony Manager</CC_AheadMore_ManagerTitle>
+  <CC_AheadMore_ManagerTip>The jobs Colony Manager keeps on this map, read from the mod each hour: what each counts, what there is now and the target it works to. The council only reads them; a target changes only when you press a suggestion's button, and Undo puts it back.</CC_AheadMore_ManagerTip>
+  <CC_AheadMore_Col_Job>Job</CC_AheadMore_Col_Job>
+  <CC_AheadMore_Col_JobTip>The manager's job, as Colony Manager names it.</CC_AheadMore_Col_JobTip>
+  <CC_AheadMore_Col_Counts>Counts</CC_AheadMore_Col_Counts>
+  <CC_AheadMore_Col_CountsTip>What the job counts toward its target: the meat, wood or minerals it brings in, or the animals of a herd.</CC_AheadMore_Col_CountsTip>
+  <CC_AheadMore_Col_Now>Now</CC_AheadMore_Col_Now>
+  <CC_AheadMore_Col_NowTip>What there is now, counted the way the manager counts it.</CC_AheadMore_Col_NowTip>
+  <CC_AheadMore_Col_Target>Target</CC_AheadMore_Col_Target>
+  <CC_AheadMore_Col_TargetTip>The count the job works up to. At its target it stops until the count falls again.</CC_AheadMore_Col_TargetTip>
+  <CC_AheadMore_Col_State>How it stands</CC_AheadMore_Col_State>
+  <CC_AheadMore_Col_StateTip>Working, at its target, suspended, or wanting more than its target: what the colony's stocks, blueprints and chains want of its goods.</CC_AheadMore_Col_StateTip>
+  <CC_AheadMore_Job_hunting>Hunting</CC_AheadMore_Job_hunting>
+  <CC_AheadMore_Job_forestry>Logging</CC_AheadMore_Job_forestry>
+  <CC_AheadMore_Job_mining>Mining</CC_AheadMore_Job_mining>
+  <CC_AheadMore_Job_foraging>Foraging</CC_AheadMore_Job_foraging>
+  <CC_AheadMore_Job_livestock>Livestock: {0}</CC_AheadMore_Job_livestock>
+  <CC_AheadMore_GoodsMore>{0} and {1} more</CC_AheadMore_GoodsMore>
+  <CC_AheadMore_State_Unmanaged>Not managed</CC_AheadMore_State_Unmanaged>
+  <CC_AheadMore_State_Suspended>Suspended</CC_AheadMore_State_Suspended>
+  <CC_AheadMore_State_Wants>The colony wants {0}</CC_AheadMore_State_Wants>
+  <CC_AheadMore_State_Done>At its target</CC_AheadMore_State_Done>
+  <CC_AheadMore_State_Working>Working</CC_AheadMore_State_Working>
+  <CC_AheadMore_JobTip>{JOB} counts {GOODS}: {NOW} now, working up to {TARGET}.</CC_AheadMore_JobTip>
+  <CC_AheadMore_JobTipHerd>{JOB} keeps a herd of {GOODS}: {NOW} tame now, {TARGET} wanted in all.</CC_AheadMore_JobTipHerd>
+  <CC_AheadMore_JobTipMax>Its slider goes up to {0}.</CC_AheadMore_JobTipMax>
+  <CC_AheadMore_Idle>Colony Manager's jobs wait: {0}.</CC_AheadMore_Idle>
+
+  <!-- What the colony wants of a job's goods. -->
+  <CC_AheadMore_Want_Meat>The raw food is low: of the {TARGET} nutrition to keep, {SHARE}% is meat by what the colony ate lately, about {MEAT} pieces of meat.</CC_AheadMore_Want_Meat>
+  <CC_AheadMore_Want_Shop>The colony wants {WANT} {WHAT} and has {HAVE} (the shopping list).</CC_AheadMore_Want_Shop>
+  <CC_AheadMore_Want_Build>The blueprints need {SHORT} more {WHAT}.</CC_AheadMore_Want_Build>
+  <CC_AheadMore_Want_Chain>The chain for {FOR} needs {MORE} more {WHAT}.</CC_AheadMore_Want_Chain>
+  <CC_AheadMore_Want_Fuel>The colony used about {ADAY} a day lately (fires, stoves, generators and bills), {KEEP} for {DAYS} days.</CC_AheadMore_Want_Fuel>
+
+  <!-- A target raised, a job resumed. -->
+  <CC_AheadMore_When_Manager>Colony Manager</CC_AheadMore_When_Manager>
+  <CC_AheadMore_Raise_Title>Raise the {JOB} target in Colony Manager from {FROM} to {TO}</CC_AheadMore_Raise_Title>
+  <CC_AheadMore_Raise_Why>{JOB} keeps {GOODS} at {TARGET}; there are {NOW}.</CC_AheadMore_Raise_Why>
+  <CC_AheadMore_Raise_Capped>The job's slider goes no higher than {0}.</CC_AheadMore_Raise_Capped>
+  <CC_AheadMore_Raise_Stalled>The manager is idle now, so the new target waits until that is put right (see its own suggestion).</CC_AheadMore_Raise_Stalled>
+  <CC_AheadMore_Do_Raise>Set to {0}</CC_AheadMore_Do_Raise>
+  <CC_AheadMore_Do_RaiseTip>Sets the {JOB} job's target in Colony Manager from {FROM} to {TO}, so the manager marks more until the count reaches it. Undo puts it back to {FROM}.</CC_AheadMore_Do_RaiseTip>
+  <CC_AheadMore_Resume_Title>Resume {0} in Colony Manager</CC_AheadMore_Resume_Title>
+  <CC_AheadMore_Resume_Why>{JOB} is suspended with {NOW} {GOODS} in store.</CC_AheadMore_Resume_Why>
+  <CC_AheadMore_Do_Resume>Resume the job</CC_AheadMore_Do_Resume>
+  <CC_AheadMore_Do_ResumeTip>Resumes the {0} job in Colony Manager, so its manager works it again. Undo suspends it again.</CC_AheadMore_Do_ResumeTip>
+
+  <!-- A manager that can't work. -->
+  <CC_AheadMore_When_Idle>The manager is idle</CC_AheadMore_When_Idle>
+  <CC_AheadMore_Stall_Jobs>Colony Manager has {COUNT} jobs waiting ({JOBS}).</CC_AheadMore_Stall_Jobs>
+  <CC_AheadMore_Stall_nodesk>Colony Manager has no manager desk</CC_AheadMore_Stall_nodesk>
+  <CC_AheadMore_Stall_deskoff>The manager desk can't be used</CC_AheadMore_Stall_deskoff>
+  <CC_AheadMore_Stall_nomanager>Nobody works as Colony Manager's manager</CC_AheadMore_Stall_nomanager>
+  <CC_AheadMore_Stall_nobodycan>Nobody here can be Colony Manager's manager</CC_AheadMore_Stall_nobodycan>
+  <CC_AheadMore_Stall_NoDeskWhy>A manager works them at a manager desk, and the colony has none. A {0} can be built now from the Production menu.</CC_AheadMore_Stall_NoDeskWhy>
+  <CC_AheadMore_Stall_NoDeskResearch>A manager works them at a manager desk, and the colony has none it can build yet.</CC_AheadMore_Stall_NoDeskResearch>
+  <CC_AheadMore_Stall_DeskForbidden>The {0} is forbidden, so no manager goes to it.</CC_AheadMore_Stall_DeskForbidden>
+  <CC_AheadMore_Stall_DeskOffWhy>The {0} has no power or is broken down, so no manager can work at it.</CC_AheadMore_Stall_DeskOffWhy>
+  <CC_AheadMore_Do_Allow>Allow the desk</CC_AheadMore_Do_Allow>
+  <CC_AheadMore_Do_AllowTip>Allows the {0}, so a manager can work at it. Undo forbids it again.</CC_AheadMore_Do_AllowTip>
+  <CC_AheadMore_Stall_NoManagerWhy>Nobody has {0} switched on.</CC_AheadMore_Stall_NoManagerWhy>
+  <CC_AheadMore_Stall_NobodyCanWhy>Nobody here can do {0}.</CC_AheadMore_Stall_NobodyCanWhy>
+
+  <!-- The checks. -->
+  <CC_AheadMore_NotYet_JobGone>The job is no longer in Colony Manager.</CC_AheadMore_NotYet_JobGone>
+  <CC_AheadMore_NotYet_Suspended>The job is suspended again.</CC_AheadMore_NotYet_Suspended>
+  <CC_AheadMore_NotYet_Manager>The manager hasn't brought more in yet: {NOW} {GOODS} of {TARGET}. There may be nothing more to take within its area.</CC_AheadMore_NotYet_Manager>
+  <CC_AheadMore_NotYet_NoMiners>Nobody has mining switched on.</CC_AheadMore_NotYet_NoMiners>
+  <CC_AheadMore_NotYet_Mine>{MINED} of the {MARKED} cells are mined; {MINERS} colonists have mining switched on, and other work may come first.</CC_AheadMore_NotYet_Mine>
+
+  <!-- The shopping list. -->
+  <CC_AheadMore_ShopTitle>Shopping list for the next trader</CC_AheadMore_ShopTitle>
+  <CC_AheadMore_ShopTip>What the colony wants and can't make here, worked out each hour from its stocks, blueprints, bills and chains: what no bench here makes and no field grows (neutroamine for medicine, steel for components, components before Fabrication, the blueprints' materials), less what is in store and what is already marked to mine. A trader on the map or in orbit is checked for what of it they carry.</CC_AheadMore_ShopTip>
+  <CC_AheadMore_Col_Item>To buy</CC_AheadMore_Col_Item>
+  <CC_AheadMore_Col_ItemTip>A thing the colony wants and can't make here.</CC_AheadMore_Col_ItemTip>
+  <CC_AheadMore_Col_Short>Short</CC_AheadMore_Col_Short>
+  <CC_AheadMore_Col_ShortTip>How many to buy: what is wanted less what is in store and what is marked to mine.</CC_AheadMore_Col_ShortTip>
+  <CC_AheadMore_Col_Have>Have</CC_AheadMore_Col_Have>
+  <CC_AheadMore_Col_HaveTip>What is in store against what all the reasons together would use.</CC_AheadMore_Col_HaveTip>
+  <CC_AheadMore_Col_Worth>Silver</CC_AheadMore_Col_Worth>
+  <CC_AheadMore_Col_WorthTip>What the short ones are worth at their base price; a trader asks more.</CC_AheadMore_Col_WorthTip>
+  <CC_AheadMore_Col_Trader>Where from</CC_AheadMore_Col_Trader>
+  <CC_AheadMore_Col_TraderTip>What a trader here has of it, or that a deposit of it is known on the map to mine.</CC_AheadMore_Col_TraderTip>
+  <CC_AheadMore_HaveOf>{0} of {1}</CC_AheadMore_HaveOf>
+  <CC_AheadMore_TraderHas>A trader here has {0}</CC_AheadMore_TraderHas>
+  <CC_AheadMore_ManagerMines>Colony Manager mines it</CC_AheadMore_ManagerMines>
+  <CC_AheadMore_CanMine>A deposit is known</CC_AheadMore_CanMine>
+  <CC_AheadMore_ShopLine>{WHAT}: the colony wants {WANT} ({WHY}) and has {HAVE}: {SHORT} short.</CC_AheadMore_ShopLine>
+  <CC_AheadMore_ShopPending>The rock marked to mine gives about {0} more.</CC_AheadMore_ShopPending>
+  <CC_AheadMore_ShopTipReason>{WHY}: {USE}</CC_AheadMore_ShopTipReason>
+  <CC_AheadMore_ShopTipManager>Colony Manager's mining job mines it, so a higher target there is suggested rather than marking rock by hand.</CC_AheadMore_ShopTipManager>
+  <CC_AheadMore_ShopTipDeposit>A deposit of it is known on the map: a suggestion marks the nearest for mining.</CC_AheadMore_ShopTipDeposit>
+  <CC_AheadMore_ShopWhy_Chain>for {0}</CC_AheadMore_ShopWhy_Chain>
+  <CC_AheadMore_ShopWhy_Chunks>made here only from {0}, and there is none</CC_AheadMore_ShopWhy_Chunks>
+  <CC_AheadMore_ShopWhy_Build>for the blueprints</CC_AheadMore_ShopWhy_Build>
+  <CC_AheadMore_ShopWhy_Bill>for the bill at the {0}, {1} batches</CC_AheadMore_ShopWhy_Bill>
+  <CC_AheadMore_ShopWhy_Medicine>the medicine stock is low</CC_AheadMore_ShopWhy_Medicine>
+  <CC_AheadMore_ShopWhy_MedicineItself>medicine to keep, {0}, and no bench here makes it</CC_AheadMore_ShopWhy_MedicineItself>
+  <CC_AheadMore_ShopWhy_Clothes>{0} worn below half or soon, none made here</CC_AheadMore_ShopWhy_Clothes>
+  <CC_AheadMore_NoTrader>No trader is on the map or in orbit now.</CC_AheadMore_NoTrader>
+  <CC_AheadMore_Trader_OnMap>on the map</CC_AheadMore_Trader_OnMap>
+  <CC_AheadMore_Trader_Orbit>in orbit</CC_AheadMore_Trader_Orbit>
+  <CC_AheadMore_Trader_Item>{WHAT} {HAS} ({SHORT} short)</CC_AheadMore_Trader_Item>
+  <CC_AheadMore_Trader_Has>{NAME}, {WHERE}, has: {LIST}.</CC_AheadMore_Trader_Has>
+  <CC_AheadMore_Trader_None>{NAME}, {WHERE}, has none of the list.</CC_AheadMore_Trader_None>
+  <CC_AheadMore_Trader_Unread>{NAME}, {WHERE}: what they carry couldn't be read.</CC_AheadMore_Trader_Unread>
+
+  <!-- Where to mine. -->
+  <CC_AheadMore_When_Short>{0} short</CC_AheadMore_When_Short>
+  <CC_AheadMore_Mine_Title>Mark {CELLS} cells of {ROCK} to mine for {WHAT}</CC_AheadMore_Mine_Title>
+  <CC_AheadMore_Mine_Why>The nearest known deposit the colony can walk up to is {FAR} cells from the colony's middle, {LUMP} cells of rock at about {EACH} {WHAT} each; {CELLS} cells give about {GIVES}. Each marked cell is one the miners can reach once the one before is mined, and none leaves a roof without a support in reach.</CC_AheadMore_Mine_Why>
+  <CC_AheadMore_Do_Mine>Mark to mine</CC_AheadMore_Do_Mine>
+  <CC_AheadMore_Do_MineTip>Marks {CELLS} cells of {ROCK} for mining, those nearest the way in first. Undo takes the marks off the cells not mined yet.</CC_AheadMore_Do_MineTip>
+
+  <!-- Spare clothes. -->
+  <CC_AheadMore_When_Clothes>{0} worn below half</CC_AheadMore_When_Clothes>
+  <CC_AheadMore_Clothes_Title>Keep {N} spare {WHAT}</CC_AheadMore_Clothes_Title>
+  <CC_AheadMore_Clothes_Worn>The colony's people wear {WORN} {WHAT}: {FRAYED} below half their hit points now, {SOON} more within {DAYS} days at their wear.</CC_AheadMore_Clothes_Worn>
+  <CC_AheadMore_Clothes_WornOut>By the record about {ADAY} a day wear through, {IN} in {DAYS} days.</CC_AheadMore_Clothes_WornOut>
+  <CC_AheadMore_Clothes_Have>{SPARE} whole ones in store and the bills make {BILLS} more: {SHORT} short.</CC_AheadMore_Clothes_Have>
+  <CC_AheadMore_Clothes_Raise>The bill at the {BENCH} makes them until {FROM}; {TO} keeps enough spares.</CC_AheadMore_Clothes_Raise>
+  <CC_AheadMore_Clothes_Add>The {BENCH} can make them ({PARTS} a piece, in store), and no bill does.</CC_AheadMore_Clothes_Add>
+  <CC_AheadMore_Clothes_AddTip>Adds a bill at the {BENCH}: make {WHAT} until {N} whole ones are in store (worn ones below half don't count). Undo takes the bill off.</CC_AheadMore_Clothes_AddTip>
+  <CC_AheadMore_Clothes_NoParts>The {BENCH} could make them, but what a piece takes ({PARTS}) isn't in store.</CC_AheadMore_Clothes_NoParts>
+
+  <!-- The fields: animal-only crops. -->
+  <CC_AheadMore_FieldsHay>Of what the fields give, {HAY} a day is animal feed only (hay and the like), never counted toward the people's {PEOPLE} a day.</CC_AheadMore_FieldsHay>
+
+  <!-- Building ahead: quest joiners, benches busy by the record, mining for a room. -->
+  <CC_AheadMore_Why_QuestJoining>{0} more once the people an accepted quest brings join.</CC_AheadMore_Why_QuestJoining>
+  <CC_AheadMore_BusyRecorded>the {BENCH}, worked about {WORKED} hours a day lately, with {HOURS} hours of work waiting</CC_AheadMore_BusyRecorded>
+  <CC_AheadMore_Room_Mine>That counts {CELLS} cells of rock to mine first, about {HOURS} hours for one miner; the {MINERS} miners mine about {ADAY} hours a day.</CC_AheadMore_Room_Mine>
+  <CC_AheadMore_Room_MineNobody>That counts {CELLS} cells of rock to mine first, about {HOURS} hours, and nobody has mining switched on.</CC_AheadMore_Room_MineNobody>
+</LanguageData>
