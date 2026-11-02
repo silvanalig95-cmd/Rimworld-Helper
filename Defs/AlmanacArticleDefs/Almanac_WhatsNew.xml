@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.53.4</version>
+        <date>2 November 2026</date>
+        <title>Alpha Genes' moods and bodies</title>
+        <points>
+          <li>With Alpha Genes, the Moods tab says what to do about its moods: fear of water, sun-sore eyes, the volatile gene's good and low days, rat vomit, a forced sting and parasitic eggs, and what keeps awe and a master psychic's calm going.</li>
+          <li>Some Alpha Genes bodies change the chance of everyday ailments: a frail stomach brings more heartburn and worms, wings and gas bags spare the feet in the wet, and plasteel or fungal skin keeps insects and splinters out. The Almanac's ailments page lists them all.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.53.3</version>
         <date>2 November 2026</date>
         <title>Bodies that differ</title>

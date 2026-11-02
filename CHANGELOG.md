@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Alpha Genes' moods and bodies
+
+*2 November 2026, version 0.53.4*
+
+- With Alpha Genes, the Moods tab says what to do about its moods: fear of water, sun-sore eyes, the volatile gene's good and low days, rat vomit, a forced sting and parasitic eggs, and what keeps awe and a master psychic's calm going.
+- Some Alpha Genes bodies change the chance of everyday ailments: a frail stomach brings more heartburn and worms, wings and gas bags spare the feet in the wet, and plasteel or fungal skin keeps insects and splinters out. The Almanac's ailments page lists them all.
+
 ## Bodies that differ
 
 *2 November 2026, version 0.53.3*
