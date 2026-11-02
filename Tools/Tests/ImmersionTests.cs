@@ -83,6 +83,9 @@ public static class ImmersionTests
         "Council_Pool_SayForecastWind", "Council_Pool_SayForecastWrong",
         // A creature evolved (Integrations/PokeWorldLife.cs).
         "Council_Pool_PW_Congratulate", "Council_Pool_PW_SayEvolved",
+        // Quiet troubles said aloud (Setbacks/Troubles.cs).
+        "Rimfolk_Pool_Trouble_Worry", "Rimfolk_Pool_Trouble_Anniversary", "Rimfolk_Pool_Trouble_FormerLife", "Rimfolk_Pool_Trouble_Restless",
+        "Rimfolk_Pool_Trouble_Aches", "Rimfolk_Pool_Trouble_BadNight", "Rimfolk_Pool_Trouble_Envy",
         // Setbacks said aloud (Setbacks/).
         "Council_Pool_Setback_IdeaPassed", "Council_Pool_Setback_NoPlate", "Council_Pool_Setback_Surgery", "Rimfolk_Pool_Setback_Burned",
         "Council_Pool_Setback_CropLost", "Council_Pool_Setback_Rained", "Council_Pool_Setback_Wrecked",
@@ -113,7 +116,10 @@ public static class ImmersionTests
         "Council_Journal_FirstSnowSeason", "Council_Journal_HeatWave", "Council_Journal_ColdSnap", "Council_Journal_Storm", "Council_Journal_Changed",
         "Council_Journal_NewLove", "Council_Journal_Engaged", "Council_Journal_ProposalRefused", "Council_Journal_Expecting", "Council_Journal_Loss", "Council_Journal_ChildGrew",
         "Council_Journal_TookIn", "Council_Journal_TakenIn", "Council_Journal_InheritedRoom", "Council_Journal_OldWeddingDay",
-        "Council_Journal_TookName", "Council_Journal_LastSeason"
+        "Council_Journal_TookName", "Council_Journal_LastSeason",
+        // Quiet troubles written down (Setbacks/Troubles.cs; a bad night's entry is the dream itself).
+        "Rimfolk_Journal_Trouble_Worry", "Rimfolk_Journal_Trouble_Anniversary", "Rimfolk_Journal_Trouble_FormerLife", "Rimfolk_Journal_Trouble_Restless",
+        "Rimfolk_Journal_Trouble_Aches", "Rimfolk_Journal_Trouble_Envy"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };

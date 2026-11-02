@@ -109,8 +109,9 @@ namespace ColonyCouncil
     /// Keeps the setbacks (see <see cref="Setbacks"/>): once an hour it works out the lasting ones (a wish still waiting, a
     /// decree dragging on, a friend who is ill, a caravan in trouble, quiet days...), turns the crops lost since into
     /// moods, and looks at the night's noise, the day's long hauls, gatherings in the rain and anyone left waiting for a
-    /// doctor; once a day it notices who was outshone, which friendships cooled and who had a hard week. What it has to
-    /// remember (who built what, who sowed which field, who was best at what) is pruned as people and things go.
+    /// doctor; once a day it notices who was outshone, which friendships cooled and who had a hard week, and counts who
+    /// has been content how long, for the quiet troubles it gives a chance at each hour (Setbacks/Troubles.cs). What it
+    /// has to remember (who built what, who sowed which field, who was best at what) is pruned as people and things go.
     /// </summary>
     public class SetbackTracker : GameComponent
     {
@@ -129,6 +130,8 @@ namespace ColonyCouncil
         private List<int> grantVoiced = new List<int>();
         private List<int> grantTicks = new List<int>();
         private List<string> grantWho = new List<string>();
+        /// <summary>Colonist ThingID: days in a row they've been content, for the quiet troubles (Setbacks/Troubles.cs).</summary>
+        private Dictionary<string, int> contentDays = new Dictionary<string, int>();
 
         [Unsaved] private Dictionary<int, BuiltRecord> builtById;
         [Unsaved] private Dictionary<string, SownRecord> sownByKey;
@@ -183,6 +186,8 @@ namespace ColonyCouncil
             cachedGame = Current.Game;
             statesTick = -1;
             states.Clear();
+            GoodLife.Reset();
+            Troubles.Reset();
         }
 
         public override void GameComponentTick()
@@ -221,6 +226,28 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>Not had this one within <paramref name="days"/>, without noting anything (see <see cref="Mark"/>).</summary>
+        public bool Rested(Pawn p, string what, float days)
+        {
+            if (p == null) return false;
+            int now = Now;
+            return !(last.TryGetValue(p.ThingID + "|" + what, out int t) && t <= now && now - t < days * GenDate.TicksPerDay);
+        }
+
+        /// <summary>Notes that they had this one now.</summary>
+        public void Mark(Pawn p, string what)
+        {
+            if (p != null) last[p.ThingID + "|" + what] = Now;
+        }
+
+        // ---------------- Content days ----------------
+
+        /// <summary>Days in a row they've been content, as of the last daily look.</summary>
+        public int ContentDays(Pawn p) => p != null && contentDays.TryGetValue(p.ThingID, out int d) ? d : 0;
+
+        /// <summary>The daily look's count for everyone who feels setbacks; those no longer here drop out with it.</summary>
+        public void SetContentDays(Dictionary<string, int> fresh) => contentDays = fresh ?? new Dictionary<string, int>();
+
         // ---------------- The hour ----------------
 
         private void Hourly()
@@ -240,6 +267,8 @@ namespace ColonyCouncil
             Safe("research", () => Research(now));
             // Mishaps at a day's gathering that are jokes by now (Social/Talk/SharedTimes.cs).
             Safe("mishaps", SharedTimes.Hourly);
+            // A quiet trouble for someone content a while (Setbacks/Troubles.cs).
+            Safe("quiet troubles", () => Troubles.Hourly(this, now));
         }
 
         // ---------------- Lasting setbacks ----------------
@@ -866,6 +895,7 @@ namespace ColonyCouncil
             Safe("outshone", Outshone);
             Safe("friendships", Friendships);
             Safe("hard weeks", HardWeeks);
+            Safe("content days", () => Troubles.Daily(this));
             Safe("pruning", Prune);
         }
 
@@ -1016,8 +1046,10 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref grantVoiced, "grantVoiced", LookMode.Value);
             Scribe_Collections.Look(ref grantTicks, "grantTicks", LookMode.Value);
             Scribe_Collections.Look(ref grantWho, "grantWho", LookMode.Value);
+            Scribe_Collections.Look(ref contentDays, "contentDays", LookMode.Value, LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (contentDays == null) contentDays = new Dictionary<string, int>();
                 if (built == null) built = new List<BuiltRecord>();
                 built.RemoveAll(r => r == null);
                 if (sown == null) sown = new List<SownRecord>();

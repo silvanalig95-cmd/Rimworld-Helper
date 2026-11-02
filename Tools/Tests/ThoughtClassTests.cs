@@ -12,7 +12,9 @@ public static class ThoughtClassTests
     {
         "ColonyCouncil.Thought_CouncilMemory",
         "ColonyCouncil.Thought_CouncilSocial",
-        "ColonyCouncil.Thought_Dream"
+        "ColonyCouncil.Thought_Dream",
+        // A quiet trouble's memory (Setbacks/Troubles.cs): a Thought_CouncilMemory that also says who made it pass sooner.
+        "ColonyCouncil.Thought_Trouble"
     };
 
     public static int Run(string root, Action<bool, string> check)

@@ -259,6 +259,8 @@ namespace ColonyCouncil
             Toggle("standardsCoverComforts", "CC_Settings_StandardsComforts", "CC_SetNote_StandardsComforts", "risingStandards");
             Toggle("smallJoysDiminish", "CC_Settings_SmallJoys", "CC_SetNote_SmallJoys");
             Toggle("goodTimesFade", "CC_Settings_GoodTimes", "CC_SetNote_GoodTimes");
+            Toggle("usedToGoodLife", "CC_Settings_GoodLife", "CC_SetNote_GoodLife", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
+            Toggle("quietTroubles", "CC_Settings_QuietTroubles", "CC_SetNote_QuietTroubles", "stakes!=AdvisorOnly", "CC_SetWhy_MoodEffects");
             Toggle("frictions", "CC_Settings_Frictions", "CC_SetNote_Frictions");
             Section("CC_Settings_Bonds");
             Toggle("socialWeb", "CC_Settings_SocialWeb", "CC_SetNote_SocialWeb");
@@ -605,7 +607,8 @@ namespace ColonyCouncil
                 V("stakes", "Demanding"), V("lifePressure", "Demanding"), V("penaltyFactor", "1.15"), V("rewardFactor", "0.8"),
                 V("wishDurationFactor", "0.75"), V("ambitionDeadlineFactor", "0.75"), V("jealousy", "true"), V("allowQuitting", "true"),
                 V("frictions", "true"), V("momentFrequency", "1.25"), V("risingStandards", "true"), V("standardsCoverComforts", "true"),
-                V("smallJoysDiminish", "true"), V("goodTimesFade", "true"), V("heart", "true"), V("heartEpisodes", "true"), V("strainSpeed", "1.25")
+                V("smallJoysDiminish", "true"), V("goodTimesFade", "true"), V("usedToGoodLife", "true"), V("quietTroubles", "true"), V("heart", "true"),
+                V("heartEpisodes", "true"), V("strainSpeed", "1.25")
             });
 
             // Default: everything the three presets above can change, back to how Rimfolk ships. Nothing else. Targets: +3

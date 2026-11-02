@@ -61,6 +61,10 @@ namespace ColonyCouncil
         public bool standardsCoverComforts = true;
         /// <summary>Getting used to good times: Rimfolk's new good memories fade sooner when mood is already high (GoodTimes).</summary>
         public bool goodTimesFade = true;
+        /// <summary>Used to the good life: part of the good moods above a line set by standards is taken back (Moods/GoodLife.cs).</summary>
+        public bool usedToGoodLife = true;
+        /// <summary>Quiet troubles: now and then a low day with a real cause for someone content a while (Setbacks/Troubles.cs).</summary>
+        public bool quietTroubles = true;
         /// <summary>Life's ups and downs: how hard the everyday pressures press (the same meal, the same work, crowding...).</summary>
         public LifePressure lifePressure = LifePressure.Normal;
         public bool enableDilemmas = true;
@@ -383,6 +387,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref smallJoysDiminish, "smallJoysDiminish", true);
             Scribe_Values.Look(ref standardsCoverComforts, "standardsCoverComforts", true);
             Scribe_Values.Look(ref goodTimesFade, "goodTimesFade", true);
+            Scribe_Values.Look(ref usedToGoodLife, "usedToGoodLife", true);
+            Scribe_Values.Look(ref quietTroubles, "quietTroubles", true);
             Scribe_Values.Look(ref lifePressure, "lifePressure", LifePressure.Normal);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
             // The old switch is written from the new choice, and an old settings file with it off reads as "off" (on reads as hints).

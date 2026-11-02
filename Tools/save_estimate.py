@@ -510,6 +510,7 @@ MODEL = {
     "Setbacks/SetbackTracker.cs:grantVoiced": ("window", (20, 0.5), V, "20 days"),
     "Setbacks/SetbackTracker.cs:grantTicks": ("window", (20, 0.5), V, "20 days"),
     "Setbacks/SetbackTracker.cs:grantWho": ("window", (20, 0.5), 40, "20 days"),
+    "Setbacks/SetbackTracker.cs:contentDays": ("colonists", 1, D, "one per colonist, rebuilt each day from those here"),
     # Legacy
     "Lives/Legacy.cs:heirlooms": ("cap", (10, 0.02), 300, "until the heir dies or is discarded, or the thing is lost"),
     "Lives/Legacy.cs:children": ("known", 0.1, 40, "known pawns only"),

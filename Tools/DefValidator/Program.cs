@@ -423,6 +423,8 @@ wishPh.Add("SEASON");
 wishPh.UnionWith(new[] { "FAMILY", "LASTA", "LASTB" });
 // Moving on (Social/MovingOn.cs): the relative or partner someone would go to.
 wishPh.Add("RELATIVE");
+// Quiet troubles (Setbacks/Troubles.cs): the body part and the old injury or complaint that aches, and a rival's honor.
+wishPh.UnionWith(new[] { "PART", "WHAT", "HONOR" });
 var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOUT", "A", "B", "PET", "LEAKER", "TELLER", "X", "SLAYER", "BABY", "THIRD" };
 // The colonist a people remembers by name (World/KinMemory.cs: events, world events, camps).
 pawnPrefixes.Add("FRIEND");

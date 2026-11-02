@@ -85,6 +85,21 @@ None of them comes from nowhere, and none is a flat penalty. Each names its caus
         </table>
       </li>
       <li>
+        <heading>Quiet troubles</heading>
+        <text>A colony that runs well still has people in it with lives of their own. From the third day in a row a grown-up has been content (70% mood or more when the day begins), each day brings a chance of a quiet trouble: 2% on that day, a point more each day after, 12% at most, and never within 10 days of the last one. It comes at the first hour they're up and about at home with no danger near, and only from something in their own life: if nothing there fits, nothing comes.</text>
+        <table>
+          <li>Trouble | What it comes from | Mood | Lasts</li>
+          <li>Worried about family out there | A partner, parent, brother or sister, child or grandparent who lives out in the world, with another people or alone, and whom they don't dislike; more for a partner, a parent or a child (not psychopaths) | -6 to -8 | 2 days</li>
+          <li>A hard day to remember | The date someone they knew or loved died (the colony's calendar keeps it), a year or more on; more for family and a partner | -6 to -9 | 1 day</li>
+          <li>Missing my old life | They came from elsewhere and miss the life their past tells of; most in their first season, seldom after a few years | -6 | 1.5 days</li>
+          <li>Restless | 5 days running of the same work with only one kind of recreation lately, or 8 days of the same work (not for those the same work never wears on) | -6 | 2 days</li>
+          <li>Aching today | An old injury, a bad back or arthritis, or a body of 50 or more, while not in real pain already; twice as likely on a cold or wet day | -6 | 1 day</li>
+          <li>A bad night | They woke from a night's sleep within 4 hours with no dream yet: one of the nightmares, told in a message and written in their journal | -6 | 1 day</li>
+          <li>Envious of a rival | A rival holds a seat on the council, a name or a royal title they don't, once "my rival honored" has faded (not the kind; the jealousy setting) | -5 | 2 days</li>
+        </table>
+        <after>Like the colony's other troubles they follow "Life's ups and downs" and the colonist's standards (about -5 to -11 on Normal), never less than a whole point. Each comes with a line said aloud and most with a line in the journal, and the tooltip says what caused it. A deep talk, a good time with a friend, their partner or family, a party, or a day of remembrance kept together makes it pass sooner: half of what was left of it goes, once. The "Quiet troubles" setting turns them off.</after>
+      </li>
+      <li>
         <heading>Between people</heading>
         <text>These follow the everyday frictions setting; outshone, a rival honoured and envy of a better room also follow the jealousy setting. Someone who was the colony's best at their passion (level 6 or more) and is overtaken by a newcomer or a quicker learner minds it for 3 days (-2), unless it's their own student or they're kind. A friendship that cools stings both for 3 days (-2). Loud work through the wall at night costs a sleeper a point and a little opinion of whoever was at it.
 

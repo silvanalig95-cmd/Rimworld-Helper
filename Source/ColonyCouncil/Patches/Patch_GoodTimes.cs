@@ -9,7 +9,8 @@ namespace ColonyCouncil
     /// Getting used to good times (GoodTimes.cs). Every memory a colonist gains passes through here, however it's given
     /// (the council, a moment, an encounter, a dilemma, a world event): one of Rimfolk's good memories lasts less long
     /// when the colonist's mood is already high. A memory that renews one already there, instead of joining the list,
-    /// passes its time on to that one. The same hook lets a memory leave a mark on a colonist's character (PersonaMarks).
+    /// passes its time on to that one. The same hook lets a memory leave a mark on a colonist's character (PersonaMarks),
+    /// and lets a deep talk or a good time with someone close make a quiet trouble pass sooner (Troubles).
     /// </summary>
     [HarmonyPatch(typeof(MemoryThoughtHandler), nameof(MemoryThoughtHandler.TryGainMemory), new[] { typeof(Thought_Memory), typeof(Pawn) })]
     public static class Patch_GoodTimesFade
@@ -35,6 +36,8 @@ namespace ColonyCouncil
             TraitChanges.Notify_Memory(__instance?.pawn, newThought);
             // A good meal lifts one who saves the best bite for last a while longer (Quirks/QuirkMoments.cs).
             QuirkMoments.Notify_Memory(__instance?.pawn, newThought);
+            // A deep talk or a good time with a friend makes a quiet trouble pass sooner (Setbacks/Troubles.cs).
+            Troubles.Notify_Memory(__instance?.pawn, newThought);
             if (__state == GoodTimes.Untouched) return;
             try
             {

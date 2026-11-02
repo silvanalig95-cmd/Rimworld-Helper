@@ -233,6 +233,8 @@ namespace ColonyCouncil
         [Unsaved] private Dictionary<Pawn, int> sleptHours = new Dictionary<Pawn, int>();
         [Unsaved] private Dictionary<Pawn, bool> wasOut = new Dictionary<Pawn, bool>();
         [Unsaved] private Dictionary<Pawn, int> lastDreamTick = new Dictionary<Pawn, int>();
+        /// <summary>When each woke from a night's sleep (four hours or more), for a bad night (Setbacks/Troubles.cs).</summary>
+        [Unsaved] private Dictionary<Pawn, int> woke = new Dictionary<Pawn, int>();
         [Unsaved] public Dictionary<Pawn, DreamMemo> untold = new Dictionary<Pawn, DreamMemo>();
 
         public class DreamMemo
@@ -270,6 +272,7 @@ namespace ColonyCouncil
                 sleptHours[p] = 0;
                 wasOut[p] = false;
                 if (slept < 4) continue;
+                woke[p] = now;
                 if (lastDreamTick.TryGetValue(p, out int last) && now - last < GenDate.TicksPerHour * 18) continue;
                 // One who keeps a dream book since a dream came true dreams more often (Quirks/QuirkEvents.cs).
                 if (!Rand.Chance(fever ? 0.7f : Mathf.Min(0.95f, ChancePerWaking * S.dreamFrequency * QuirkEvents.DreamFactor(p)))) continue;
@@ -290,6 +293,7 @@ namespace ColonyCouncil
             }
             // Not saved, so only held for this session: the dead and those the game let go of aren't held on to either.
             if (lastDreamTick.Count > 0) lastDreamTick.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded || now - kv.Value >= GenDate.TicksPerHour * 18);
+            if (woke.Count > 0) woke.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded || now - kv.Value >= GenDate.TicksPerHour * 18);
             if (untold.Count > 0) untold.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded || kv.Value == null || now - kv.Value.tick >= GenDate.TicksPerHour * 12);
         }
 
@@ -328,6 +332,45 @@ namespace ColonyCouncil
             if (options.Count == 0) return false;
             Have(comp, p, options.RandomElementByWeight(c => c.weight), fever);
             return true;
+        }
+
+        /// <summary>Woke from a night's sleep in the last four hours, and no dream since: a bad night can still be told of.</summary>
+        public bool WokeFromNight(Pawn p)
+        {
+            if (p == null || !woke.TryGetValue(p, out int t)) return false;
+            int now = Find.TickManager.TicksGame;
+            if (t > now || now - t > GenDate.TicksPerHour * 4) return false;
+            return !(lastDreamTick.TryGetValue(p, out int d) && d >= t);
+        }
+
+        /// <summary>
+        /// A bad night (Setbacks/Troubles.cs): one of the nightmares that fits them, had as any dream is (its lines, its
+        /// effects, the message, the journal, someone to tell it to), except that the quiet trouble gives the mood. The
+        /// dream's words, or null when no nightmare fits.
+        /// </summary>
+        public string BadNight(CouncilGameComponent comp, Pawn p)
+        {
+            if (comp == null || p == null) return null;
+            var options = new List<Cast>();
+            foreach (var def in DefDatabase<DreamDef>.AllDefsListForReading)
+            {
+                if (def.kind != DreamKind.Nightmare || def.omen != null || def.unconscious) continue;
+                Cast c;
+                try
+                {
+                    c = Resolve(comp, def, p, false);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("dream " + def.defName, e);
+                    continue;
+                }
+                if (c != null && c.weight > 0f) options.Add(c);
+            }
+            if (options.Count == 0) return null;
+            string text = Have(comp, p, options.RandomElementByWeight(c => c.weight), false, true);
+            if (text != null) lastDreamTick[p] = Find.TickManager.TicksGame;
+            return text;
         }
 
         private Cast Resolve(CouncilGameComponent comp, DreamDef def, Pawn p, bool fever)
@@ -536,7 +579,8 @@ namespace ColonyCouncil
 
         // ---------------- Having it ----------------
 
-        private void Have(CouncilGameComponent comp, Pawn p, Cast c, bool fever)
+        /// <summary>The dream is had; its words, or null. <paramref name="badNight"/>: a quiet trouble's, which gives its own mood and is always written down.</summary>
+        private string Have(CouncilGameComponent comp, Pawn p, Cast c, bool fever, bool badNight = false)
         {
             var def = c.def;
             // apart: a dream about someone; the telling of it is a game conversation (InteractionWorker_DreamTalk).
@@ -551,7 +595,7 @@ namespace ColonyCouncil
             if (c.tags != null)
                 foreach (var t in c.tags) tags.Add(t);
             string raw = def.lines.Pick(ToneUtility.ToneFor(p), tags);
-            if (raw.NullOrEmpty()) return;
+            if (raw.NullOrEmpty()) return null;
             string text = raw.Formatted(p.Named("PAWN"), (c.other ?? p).Named("OTHER"), (c.pet ?? p).Named("PET"), (c.lost ?? "").Named("LOST"), (c.skill?.label ?? "").Named("SKILL"),
                 (comp.aspirations.Active(p)?.Goal ?? "").Named("GOAL"), (c.name ?? "").Named("NAME")).Resolve();
 
@@ -569,7 +613,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("dream effect " + def.defName, ex);
                 }
             }
-            GiveThought(p, def, text, fever);
+            if (!badNight) GiveThought(p, def, text, fever);
             if (c.other != null && def.changeTie != TieKind.None && def.change != 0f)
             {
                 string note = "CC_TieNote_Dream".Translate(p.LabelShort).Resolve();
@@ -585,7 +629,7 @@ namespace ColonyCouncil
                 lastOmenTick = Find.TickManager.TicksGame;
             }
             // Everyday dreams only sometimes make it into the journal, so they don't crowd out the days (a dream book keeps them all).
-            if (def.Matters || def.AboutEvents || def.AboutNow || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f) || QuirkEvents.WritesDreamsDown(p))
+            if (badNight || def.Matters || def.AboutEvents || def.AboutNow || def.about != DreamAbout.None || def.kind == DreamKind.Omen || Rand.Chance(0.35f) || QuirkEvents.WritesDreamsDown(p))
                 comp.journals.WriteText(p, text);
             recent.Add(new DreamRecord { pawn = p, name = p.LabelShort, text = text, kind = def.kind, tick = Find.TickManager.TicksGame });
             while (recent.Count > 80) recent.RemoveAt(0);
@@ -595,6 +639,7 @@ namespace ColonyCouncil
             News.Post(message, p, NewsKind.People, def.omen != null ? MessageTypeDefOf.NeutralEvent : MessageTypeDefOf.SilentInput,
                 S.allDreamMessages || changed ? Importance.Notable : Importance.Flavor);
             if (def.notable || def.omen != null) comp.AddChronicle(new ChronicleEntry(ChronicleKind.Dream, message, p));
+            return text;
         }
 
         private static ThoughtDef DefaultThought(DreamKind kind)

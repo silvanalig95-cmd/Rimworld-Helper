@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What to do about a good life grown ordinary and the quiet troubles (Defs/ThoughtDefs/Rimfolk_Thoughts_GoodLife.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_GoodLife</defName>
+    <thoughts><li>Rimfolk_UsedToGoodLife</li></thoughts>
+    <fix>Nothing is wrong. Their good moods add up to more than their standards' line (45 for the modest, down to 30 for the spoiled), and part of what is above it is taken back: half of the first 20 points, three quarters of the rest. Every good thing still lifts them, a little less the more they already have, and it leaves room on the mood bar for a bad day to show. It fades in hard times, to nothing near a break. Lower standards keep more: hard times or the austerity decree bring them down.</fix>
+    <act>Part of a good life</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Standards</article>
+    <councilTab>Decrees</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TroubleWorry</defName>
+    <thoughts><li>Rimfolk_Trouble_Worry</li></thoughts>
+    <fix>Family of theirs lives out in the world, and today they can't stop thinking about it. Nobody here can settle that. It passes in two days, and sooner after a deep talk or a good time with a friend, their partner or family at home.</fix>
+    <act>Company helps it pass</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TroubleAnniversary</defName>
+    <thoughts><li>Rimfolk_Trouble_Anniversary</li></thoughts>
+    <fix>Someone they loved died on this day, and the date has come round again. It passes in a day, and sooner after a deep talk, a good time with a friend, or the calendar's day of remembrance kept together.</fix>
+    <act>Company helps it pass</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TroubleFormerLife</defName>
+    <thoughts><li>Rimfolk_Trouble_FormerLife</li></thoughts>
+    <fix>They miss the life they had before they came here. It comes most in their first season and seldom after a few years. It passes in a day and a half, and sooner after a deep talk or a good time with a friend.</fix>
+    <act>Company helps it pass</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TroubleRestless</defName>
+    <thoughts><li>Rimfolk_Trouble_Restless</li></thoughts>
+    <fix>Days of the same work, and only one kind of recreation lately. A day at other work ends the run, and a second kind of recreation at home helps too. It passes in two days, and sooner after a deep talk or a good time with a friend.</fix>
+    <act>Vary their work and fun</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TroubleAches</defName>
+    <thoughts><li>Rimfolk_Trouble_Aches</li></thoughts>
+    <fix>An old injury, a bad back or the years ache today, more often in cold or wet weather. It passes in a day, and sooner after a deep talk or a good time with a friend.</fix>
+    <act>Company helps it pass</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TroubleBadNight</defName>
+    <thoughts><li>Rimfolk_Trouble_BadNight</li></thoughts>
+    <fix>A nightmare kept them up, and the dream is in their journal. It passes in a day, and sooner after a deep talk or a good time with a friend.</fix>
+    <act>Company helps it pass</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_TroubleEnvy</defName>
+    <thoughts><li>Rimfolk_Trouble_Envy</li></thoughts>
+    <fix>A rival holds an honor they don't: a seat on the council, a name, a title. It passes in two days, sooner after a deep talk or a good time with a friend, and stops coming once the two aren't rivals; time apart helps mend a rivalry. Kind colonists don't feel it, and the jealousy setting turns it off.</fix>
+    <act>Mend the rivalry</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_Setbacks</article>
+    <councilTab>Bonds</councilTab>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

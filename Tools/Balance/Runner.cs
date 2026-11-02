@@ -11,6 +11,9 @@ namespace Balance
         public double steadyBad { get; set; }
         public double mood { get; set; }
         public double pinned { get; set; }
+        /// <summary>A low and a high moment of one colonist's whole mood (P10, P90), the game's moods included.</summary>
+        public double moodP10 { get; set; }
+        public double moodP90 { get; set; }
         public double netP10 { get; set; }
         public double netP90 { get; set; }
         public double goodP90 { get; set; }
@@ -81,6 +84,9 @@ namespace Balance
             s.net = s.good + s.bad + s.steadyGood + s.steadyBad;
             s.mood = M(x => x.mood);
             s.pinned = M(x => x.mood >= 0.95f ? 1 : 0);
+            var moods = samples.Select(x => (double)x.s.mood).OrderBy(v => v).ToList();
+            s.moodP10 = Pct(moods, 0.1);
+            s.moodP90 = Pct(moods, 0.9);
             s.goodCount = M(x => x.goodCount);
             s.standards = colonies.SelectMany(c => c.people).Average(p => p.standards);
             var nets = samples.Select(x => (double)(x.s.good + x.s.bad + x.s.steadyGood + x.s.steadyBad)).OrderBy(v => v).ToList();

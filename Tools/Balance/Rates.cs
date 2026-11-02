@@ -439,5 +439,30 @@ namespace Balance
             "Council_Setback_MakingDo", "Council_Setback_LongHauls", "Council_Setback_LeftWaiting", "Council_Setback_ColdMeal",
             "Council_Setback_NoisyNeighbour", "Council_Setback_NoPlate", "Council_Setback_GuestsEat", "Council_Setback_BurnedDish"
         };
+
+        // ---------------- Quiet troubles (Setbacks/Troubles.cs) ----------------
+
+        /// <summary>
+        /// When a quiet trouble's chance comes up (GoodLifeMath.TroubleChance), the share of days on which each cause is in
+        /// a settled colonist's life, and its weight in the code's pick. Estimates: family out in the world is common for
+        /// colonists who joined (the game makes relatives for most of them); a death day matches about one day in sixty
+        /// for those who knew someone who died; most came from elsewhere, a year or more ago (weight 0.6 to 0.3); old
+        /// injuries and bad backs are common in a settled colony, and a cold or wet day doubles the weight; the chance comes
+        /// at the first waking hour, so most mornings follow a night's sleep, and a nightmare fits about two in three; a
+        /// rival with a seat, a name or a title is less usual. Restless (-1) follows the style's work streaks: a run of
+        /// seven days or more, or a third of the shorter runs (with only one kind of recreation).
+        /// </summary>
+        public static readonly (string thought, int stage, float share, float weight)[] Troubles =
+        {
+            ("Rimfolk_Trouble_Worry", 0, 0.3f, 1f),
+            ("Rimfolk_Trouble_Worry", 1, 0.25f, 1f),
+            ("Rimfolk_Trouble_Anniversary", 0, 0.008f, 3f),
+            ("Rimfolk_Trouble_Anniversary", 1, 0.004f, 3f),
+            ("Rimfolk_Trouble_FormerLife", 0, 0.9f, 0.45f),
+            ("Rimfolk_Trouble_Restless", 0, -1f, 1f),
+            ("Rimfolk_Trouble_Aches", 0, 0.45f, 1.3f),
+            ("Rimfolk_Trouble_BadNight", 0, 0.55f, 1f),
+            ("Rimfolk_Trouble_Envy", 0, 0.15f, 1f)
+        };
     }
 }
