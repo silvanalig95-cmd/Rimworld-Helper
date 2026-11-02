@@ -75,6 +75,18 @@ PLAY = {
     # Visitors set to what they came for at the colony's relic, anima tree, gravship or bookcase, or kept by the gate
     # for a word or a lesson (Visitors/VisitorsMore2.cs).
     "VisitEffect_WorkHere": "visitors at it",
+    # Visitors who came to do something, doing it on the map (Visitors/Callers.cs): a piece of art carried out to its
+    # buyer, a sculpture made for a collector, a wedding party's night, graves dug and the dead laid in them or loaded on
+    # the undertakers' beast, a captive walked out to their kin or talked with at their door, haircuts, animals tended.
+    "DilemmaEffect_SellArt": "carried out to a buyer",
+    "DilemmaEffect_ArtCommission": "made for a visitor",
+    "DilemmaEffect_WeddingNight": "a night here",
+    "DilemmaEffect_UndertakersBury": "graves dug",
+    "DilemmaEffect_UndertakersTake": "the dead taken away",
+    "DilemmaEffect_KinFree": "walked out free",
+    "DilemmaEffect_KinTalk": "talk at the door",
+    "DilemmaEffect_BarberCuts": "haircuts",
+    "DilemmaEffect_VetRounds": "animals tended",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.
