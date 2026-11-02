@@ -6,6 +6,9 @@ from `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml`) has every round in the play
 
 ## State (1 November 2026, later)
 
+- 0.54.1, the player's request: answers show hints in words, never numbers, under the answer and on hover
+  (`Dilemmas/ImpactHints.cs`, tested in `ImpactHintTests`; setting `impactShows` = Hints (default) / Exact / Off,
+  replacing `showImpact`; `DilemmaRecord.impactHint`).
 - 0.54.0, the player's request: elections play out (`Offices/Election.cs` saved as `OfficeTracker.election`,
   `ElectionMath.cs` tested in `ElectionTests`, `ElectionPlanks.cs` with `<planks>` on the offices, `OfficesElection.cs`,
   `ElectionGathering.cs` with `LordJob_Election`, `ElectionLetter.cs`, `UI/ElectionPanel.cs` on the Decrees page;

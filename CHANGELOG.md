@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Hints in words under each answer
+
+*2 November 2026, version 0.54.1*
+
+- Under each answer of a dilemma or event there is now a hint in plain words instead of numbers: what happens on the map, which way spirits and trust go and roughly how far, who it touches, what it costs and whether it is a gamble. Hovering shows a fuller hint, still without numbers.
+- The setting "What each answer does" chooses between hints in words (the default), the exact numbers as before, or nothing at all, and the Dilemmas page follows it.
+
 ## Election days
 
 *2 November 2026, version 0.54.0*

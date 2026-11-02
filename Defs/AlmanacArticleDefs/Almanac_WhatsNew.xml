@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.54.1</version>
+        <date>2 November 2026</date>
+        <title>Hints in words under each answer</title>
+        <points>
+          <li>Under each answer of a dilemma or event there is now a hint in plain words instead of numbers: what happens on the map, which way spirits and trust go and roughly how far, who it touches, what it costs and whether it is a gamble. Hovering shows a fuller hint, still without numbers.</li>
+          <li>The setting "What each answer does" chooses between hints in words (the default), the exact numbers as before, or nothing at all, and the Dilemmas page follows it.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.54.0</version>
         <date>2 November 2026</date>
         <title>Election days</title>
