@@ -31,6 +31,35 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.50.1</version>
+        <date>2 November 2026</date>
+        <title>Wishes for a grave, a crop from home and a lamp</title>
+        <points>
+          <li>A named or bonded animal that dies can be given a grave: its person digs one near the colony and carries it in.</li>
+          <li>In spring, someone may miss a crop from home that the colony could sow; promised, a small field of it is laid out.</li>
+          <li>Before and through a real winter, growers and anyone short of fresh food can ask for a sun lamp over an indoor field.</li>
+          <li>Working a bench in the dark brings a wish for a lamp beside it, and coming in soaked brings a wish to roof the way from bed to table.</li>
+          <li>Two new personal stories: getting clean of a drug with a friend's help, and the first days on a new leg.</li>
+          <li>Colonists who have coffee or tea together share a word over their cups, and a new life goal counts the books someone reads.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.50.0</version>
+        <date>2 November 2026</date>
+        <title>Camps that come for the land</title>
+        <points>
+          <li>Fishers camp by water that holds fish and fish it with the game's own catch, and the water's fish stock goes down by it. Their catch can be bought at the gate.</li>
+          <li>A scrap crew comes for the ancient ruins on the colony's land and takes them apart piece by piece. The colony can ask for half the haul, pay to clear the nearest ruin, or claim the ruins.</li>
+          <li>When the growers can't bring in the harvest before the season ends, harvest hands offer to reap it for a sheaf in ten, silver or a hot supper.</li>
+          <li>Stranded spacers camp by their wrecked hull, trade spacer parts and medicine for components, plasteel or steel, and leave the hull behind as salvage.</li>
+          <li>With Anomaly, quiet scholars keep a night watch on the woken monolith, share their notes with the colony's study and ask for beds in a storm.</li>
+          <li>A travelling beast show brings beasts from far places. Buy one, sell them one of the colony's, or let the children help feed them.</li>
+          <li>With Odyssey, the run: in spring or fall the fish come up the water in numbers, and the colony's water stays full of fish until it thins.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.49.3</version>
         <date>2 November 2026</date>
         <title>Colony news as a letter every day again</title>

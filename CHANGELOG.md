@@ -5,6 +5,29 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Wishes for a grave, a crop from home and a lamp
+
+*2 November 2026, version 0.50.1*
+
+- A named or bonded animal that dies can be given a grave: its person digs one near the colony and carries it in.
+- In spring, someone may miss a crop from home that the colony could sow; promised, a small field of it is laid out.
+- Before and through a real winter, growers and anyone short of fresh food can ask for a sun lamp over an indoor field.
+- Working a bench in the dark brings a wish for a lamp beside it, and coming in soaked brings a wish to roof the way from bed to table.
+- Two new personal stories: getting clean of a drug with a friend's help, and the first days on a new leg.
+- Colonists who have coffee or tea together share a word over their cups, and a new life goal counts the books someone reads.
+
+## Camps that come for the land
+
+*2 November 2026, version 0.50.0*
+
+- Fishers camp by water that holds fish and fish it with the game's own catch, and the water's fish stock goes down by it. Their catch can be bought at the gate.
+- A scrap crew comes for the ancient ruins on the colony's land and takes them apart piece by piece. The colony can ask for half the haul, pay to clear the nearest ruin, or claim the ruins.
+- When the growers can't bring in the harvest before the season ends, harvest hands offer to reap it for a sheaf in ten, silver or a hot supper.
+- Stranded spacers camp by their wrecked hull, trade spacer parts and medicine for components, plasteel or steel, and leave the hull behind as salvage.
+- With Anomaly, quiet scholars keep a night watch on the woken monolith, share their notes with the colony's study and ask for beds in a storm.
+- A travelling beast show brings beasts from far places. Buy one, sell them one of the colony's, or let the children help feed them.
+- With Odyssey, the run: in spring or fall the fish come up the water in numbers, and the colony's water stays full of fish until it thins.
+
 ## Colony news as a letter every day again
 
 *2 November 2026, version 0.49.3*
