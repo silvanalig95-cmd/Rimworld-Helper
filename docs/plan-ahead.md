@@ -137,6 +137,76 @@ and the eight automations next) goes through `Building/Suggest/`:
 8. **Room to grow**: keep the side a room will grow into free (the freezer's free wall, the end of the bedroom row) and
    warn before something is built there.
 
+### Phase 2 as built
+
+- **The arithmetic**: `Building/GrowthMath.cs` (pure, `Tools/Tests/GrowthTests.cs`, which also runs the reference colony;
+  `RIMFOLK_GROWTH_PRINT=1` prints it). `GrowthInput` (numbers) to `GrowthPlan` (`GrowthRow` per kind: need, soon, built,
+  planned, days, level, why; `GrowthIdea` per room to build, ordered by days, then level, then the kind's order). Kinds
+  `beds`, `cold`, `dining`, `hospital`, `workshop`, `storage`. Rules: beds for colonists and slaves (lodgers included),
+  plus prisoners being recruited "once they join"; cold store places (stack places) for `mealDays` of meals and
+  `reserveDays` of raw food, then the winter's days without growing (`WinterIn` = the first day under
+  `AheadMath.NoGrowFactor`, the row's days), each by the nutrition a place of the colony's own rotting raw food holds;
+  seats for colonists, slaves and guests less `DiningSlack` 1; hospital beds `ceil(people x 0.25)` or the most laid up
+  at once lately; workshop bench places = benches + one for each busy bench with no idle twin (`Busy`: queued hours over
+  2 days x 8 h), built = benches in a workshop + `SparePlaces` (10 free cells each); store places for 5+ stacks lying
+  about. Builders: `BuildHours(work) = work x 2 / (1.7 x 2500)`, `BuilderHoursADay = speeds x 6`, `Fits` = queued + room
+  within 2 days (any room when nothing is queued, nothing without builders). Stages `StageOf` (clear, walls+roof,
+  climate+power, floors, furniture), `StageMoved`, `RoomGoing`. Room to grow: `KeepDepth`, `GrowSide` (not the door's
+  side, most free rows, the far side on a tie, 3 to 6 deep), `Strip`.
+- **The reader**: `Building/GrowthNeeds.cs`, `GrowthNeeds.For(map, force)` (hourly, forgotten after a step). Beds:
+  `Building_Bed` for humans, not medical/prisoner/crib/Hospitality guest bed (by type name), planned from bed blueprints
+  and frames (not inside a hospital being built). Seats: chairs cardinally beside an eating table (planned: chair
+  blueprints beside a table or table blueprint). Hospital: medical beds; patients = in a medical bed or
+  `HealthAIUtility.ShouldSeekMedicalRest`, the day's most kept 15 days (`BuildAheadTracker.patients`). Cold: Ahead's meal
+  and raw rows' use, slot groups in a room at or below 0 °C or a powered fridge (`ColonyNeeds.Fridge`, now public) that
+  take the meal or a rotting raw food. Workshop: `WorkshopBench` (the bench's `workTableRoomRole`, else not a stove or
+  research bench; spots left out), queued hours of bills still wanted that `BillStuck.Why` lets go ahead. Stores:
+  `listerHaulables` at home, not in storage, that some store takes; free places in the non-cold stores. Builders:
+  Construction active, `ConstructionSpeed` summed; queued work = every blueprint's `WorkToBuild` and frame's `WorkLeft`.
+  Rooms being built add their `adds` as planned (cold, hospital, workshop, storage).
+- **The steps**: `Building/BuildAhead.cs`, source `"build"`. `BuildAhead.For(map)` (cached until the needs, the
+  tracker's `Version` or the projects' `Version` move). Room steps `build:room:<kind>` (at most
+  `GrowthMath.MaxRoomSteps` 2, while they fit the builders' 2 days, else `View.heldBack`): `Pick` takes the kind's
+  room type (`Council_RT_Bedroom` standard then cozy, `_Freezer`, `_DiningRoom`, `_Hospital` without the surgery,
+  `_Workshop`, `_Storeroom`), the smallest size whose resolved furniture adds what is wanted (else the largest), and
+  `TemplatePlanner.FindSpots` (new optional `extraNear`: bedrooms by bedrooms, freezer and dining by the kitchen,
+  workshop and storeroom side by side; the rooms followed and their kept sides as `taken`), the first valid spot with no
+  field under it that has a side to grow, else the best. Do it re-plans at the spot (else picks again) and runs
+  `TemplatePlanner.Execute` as the planner does; `UndoRoomPlaced` cancels its blueprints and frames (by cell and def),
+  unmarks what it marked and drops what it queued; `BuildRoomCheck` two days on. A room with no plan the colony can
+  build, or no spot, is a step that only says why. Nobody building: `build:nobuilder` with `BillStuck.LetDo`.
+- **Projects in stages**: `Building/BuildProjects.cs`. `BuildProject` (saved in `BuildAheadTracker`,
+  `CouncilGameComponent.buildAhead`, 16 at most): footprint, kind, adds, the kept strip. `BuildAhead.Placed(plan, map)`
+  is called by a step and by `Designator_PlanRoom.Place` (so the player's own rooms are followed and keep a side too).
+  `BuildProjects.Read` (pieces left per stage, work left, materials still needed, cutting, mining and taking down marked,
+  queued pieces, the roof: marked or not once the walls stand); `BuildProjects.Why` (nobody with Construction, plant
+  cutting or mining on, a roof nobody marked, skill, reach, forbidden, materials short with how many, research, the
+  builders' other work) with fixes (`LetDo`, mark the roof `UndoRoofMarked`, allow `UndoAllowed`). Steps per project:
+  held up `build:held:<id>:<why>`; else the stage at hand to high priority `build:stage:<id>:<stage>` (when build
+  priorities are on and other building waits; `UndoBuildPriority`, `BuildStageCheck`), and a stockpile for a material
+  needed 40 or more with no store taking it within 14 cells `build:stock:<id>:<def>` (preferred priority; `UndoZone`,
+  `BuildStockCheck`). Hourly (`BuildAhead.Hourly` from `Ahead.Hourly`): finished rooms marked done (kept while their
+  walls stand, for their strip), cancelled ones forgotten, the patients noted.
+- **Room to grow**: the strip is chosen when a room is placed; `build:grow:<id>` warns when blueprints or frames of the
+  colony stand in it (Do it cancels the blueprints, `UndoBlueprintsCancelled` places them again; frames stay), and
+  `BuildAheadOverlay` (a MapComponent) outlines every kept strip with its room's name while a build, zone or room
+  designator is selected, before anything is placed.
+- **The page**: `UI/BuildAheadPanel.cs` at the top of the Plan page (`UI/NextStepsPanel.cs`): the table (need, built,
+  planned, how it stands; the reason in numbers as its tooltip), the rooms being built with their stage, the held-back
+  line, the cards (`AheadPanel.DrawStep`, now public, as are `AheadPanel.Done` and `Aside` with a source), done lately
+  and set aside. `Suggestion.when` (new) is the pill's words when a step isn't about days. Texts in
+  `Languages/English/Keyed/Rimfolk_AheadBuild.xml`; the Almanac's Ahead page has two new sections.
+- **The reference colony** (the fixture's own fill-ins in `GrowthTests.Reference`): beds 9 of 9; nothing kept cold, 38
+  places short now (7 for meals, 31 for five days of raw food at 15.1 a day, 2.44 a place), 100 through the 10 days
+  without growing ahead (from day 13); 17 eat at 8 seats, 8 short; 2 hospital beds for 9, one short, no rush; the
+  workshop and the stores enough. The rooms in order: the cold store, the dining room, then the hospital. Nothing is
+  queued, so the freezer is suggested whatever its size; the dining room beside it only while the two together take the
+  four builders' 2 days (48 hours at 24 a day), else it waits for the freezer and the page says so.
+- Not yet: the advisor's own room-outgrown signals still propose through NextSteps beside these steps (the "same rules"
+  part should route them here); the busy-bench count reads queued bills, not the record of bench hours; quest offers of
+  joiners are not read; mining work is not counted in a room's hours; a room's kept side is not offered to the ground
+  plan's own spot search.
+
 ## Phase 3
 
 9. **Colony Manager**: show its hunting, wood and mining targets beside the stock targets; suggest raising one when a

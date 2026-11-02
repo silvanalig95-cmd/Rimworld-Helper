@@ -27,6 +27,8 @@ namespace ColonyCouncil
         public float days = SuggestMath.NoRush;
         /// <summary>For sources that rank by level instead (4 critical to 0 an idea); used after the days.</summary>
         public int level;
+        /// <summary>What the urgency pill says when it isn't a matter of days ("when the prisoners join"); null: by the days.</summary>
+        public string when;
         public Map map;
         /// <summary>The button's words and what it does on the map (null: "Do it" and the reason).</summary>
         public string doLabel, doTip;

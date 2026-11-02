@@ -337,7 +337,7 @@ namespace ColonyCouncil
         /// comp whose type is named a refrigerator), so food in it keeps however warm the room is. Found by name, so
         /// without such a mod nothing counts.
         /// </summary>
-        private static bool Fridge(Building_Storage b)
+        public static bool Fridge(Building_Storage b)
         {
             if (b?.AllComps == null) return false;
             bool fridge = false;
