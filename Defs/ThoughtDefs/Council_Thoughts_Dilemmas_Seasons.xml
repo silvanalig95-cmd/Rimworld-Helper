@@ -28,7 +28,7 @@
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_Midwinter</defName>
     <durationDays>3</durationDays>
-    <stages><li><label>a warm midwinter</label><description>We spent the longest night of the year together, warm and well fed.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+    <stages><li><label>a warm midwinter</label><description>We spent the longest night of the year together, warm and well fed.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">
@@ -51,8 +51,8 @@
 
   <ThoughtDef ParentName="Council_MemoryBase">
     <defName>Council_Dlm_YearOfTheDead</defName>
-    <durationDays>8</durationDays>
-    <stages><li><label>a year for those we lost</label><description>We named this year for the ones we lost. It's theirs now, every day of it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+    <durationDays>4</durationDays>
+    <stages><li><label>a year for those we lost</label><description>We named this year for the ones we lost. It's theirs now, every day of it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
   </ThoughtDef>
 
   <ThoughtDef ParentName="Council_MemoryBase">

@@ -220,7 +220,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_SellHeirloom"><priceFactor>1.8</priceFactor></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_SoldTheHeirloom</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_SilverInHand</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Grave</to><duration>2~3</duration></li>
         </effects>
@@ -252,6 +252,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmS_RespectedRefusal</thought><about>A</about></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_MoneyWalkedAway</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_MoneyWalkedAway</thought><chance>0.3</chance></li>
         </effects>
       </li>
     </options>
@@ -308,11 +309,12 @@
       </li>
       <li>
         <label>Keep the door locked</label>
-        <outcome>The door stays locked. {A_nameDef} still carries {X_nameDef}'s meals down, and doesn't stay to talk anymore.</outcome>
+        <outcome>The door stays locked, and most of the others think that's sense. {A_nameDef} still carries {X_nameDef}'s meals down, and doesn't stay to talk anymore.</outcome>
         <ways><mercy>-3</mercy><openness>-2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_PleaRefused</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.8</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>RivalsOfA</target><thought>Council_Dlm_FairsFair</thought></li>
         </effects>
       </li>
     </options>
@@ -401,7 +403,7 @@
         <ways><generosity>8</generosity><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>40</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>15</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_FedTheHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_GaveItAway</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
         </effects>
@@ -412,7 +414,7 @@
         <ways><generosity>4</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {FACTION}</label><what>silver</what><count>60</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_GaveItAway</thought><onlyTrait><li>Greedy</li></onlyTrait><chance>0.5</chance></li>
         </effects>
       </li>
@@ -437,7 +439,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Plants</skill><minLevel>8</minLevel><asB>true</asB></li>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count><by>Outsiders</by></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TaughtNeighbors</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_FedTheHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to></li>
@@ -468,11 +470,11 @@
     <options>
       <li>
         <label>Pay for the bite</label>
-        <outcome>The council paid {X_nameDef} eighty silver for the bite. {X_nameDef} counted it with the bandaged hand, which no longer seemed to hurt.</outcome>
+        <outcome>The council paid {X_nameDef} fifty silver for the bite. {X_nameDef} counted it with the bandaged hand, which no longer seemed to hurt.</outcome>
         <ways><generosity>4</generosity><openness>2</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count><by>Outsiders</by></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>50</count><by>Outsiders</by></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_PaidForTheBite</thought></li>
         </effects>
       </li>
@@ -481,7 +483,7 @@
         <outcome>Guests keep their hands off other people's animals, and that was the end of it. {FACTION} took that badly, and {A_nameDef} gave {PET_definite} an extra helping at dinner.</outcome>
         <ways><generosity>-3</generosity><openness>-3</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-12</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_StoodByMyAnimal</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmS_BittenAndBlamed</thought><about>A</about></li>
@@ -493,7 +495,7 @@
         <ways><mercy>-3</mercy><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_GivePet" />
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>12</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_AnimalGivenAway</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
         </effects>
@@ -529,13 +531,14 @@
     <options>
       <li>
         <label>Hunt it</label>
-        <outcome>The council marked {X_definite} for the hunters. {B_nameDef} called it a waste of a fine animal.</outcome>
+        <outcome>The council marked {X_definite} for the hunters. {B_nameDef} called it a waste of a fine animal. Most of the others are glad the den will be cleared.</outcome>
         <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_TheHunt</thought><onlyTrait><li>Bloodlust</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_WastedBeauty</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.6</chance></li>
         </effects>
       </li>
       <li>
@@ -545,16 +548,18 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Tame</designation></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_WorthTaming</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_TamingAPredator</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li><li>Tough</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_TamingAPredator</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li><li>Tough</li></exceptTrait><chance>0.5</chance></li>
         </effects>
       </li>
       <li>
         <label>Leave it alone</label>
-        <outcome>Left to its own business, {X_definite} has kept to its den so far. The haulers have started carrying sticks.</outcome>
+        <outcome>Left to its own business, {X_definite} has kept to its den so far. Nobody had to go near it, which suited most of them. The haulers have started carrying sticks.</outcome>
         <ways><mercy>2</mercy></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_SomethingWatching</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_SomethingWatching</thought><exceptTrait><li>Psychopath</li></exceptTrait><chance>0.3</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_NoFuss</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskOutcome>The council left {X_definite} alone. It didn't return the favor: it came out of the brush at a dead run, straight for the nearest person.</riskOutcome>
@@ -597,7 +602,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_MyVeryOwn</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_AnotherBeast</thought><onlyTrait><li>Greedy</li><li>Abrasive</li></onlyTrait></li>
         </effects>
       </li>
@@ -607,17 +612,19 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Tame</designation></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_HoldingTheFood</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>400</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>1000</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
       </li>
       <li>
         <label>No, and that's final</label>
-        <outcome>No pet. {A_nameDef} has been sulking, loudly, in whichever room the council happens to be in.</outcome>
+        <outcome>No pet. {A_nameDef} has been sulking, loudly, in whichever room the council happens to be in. Most of the others are glad there's no new mouth to feed.</outcome>
         <ways><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_NotAllowed</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_NoFuss</thought><chance>0.7</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Greedy</li><li>Abrasive</li></onlyTrait></li>
         </effects>
         <riskChance>0.25</riskChance>
         <riskOutcome>{A_nameDef} was told no, and set off past the fields toward wherever {X_definite} sleeps, without looking back.</riskOutcome>
@@ -658,7 +665,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_SwallowedIt</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmS_DeferredTo</thought><about>A</about></li>
         </effects>
       </li>
@@ -737,6 +744,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count><by>Outsiders</by></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_WellRested</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TonicWorked</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
         </effects>
         <riskChance>0.4</riskChance>
         <riskReplaces>true</riskReplaces>
@@ -870,6 +878,11 @@
       <li>
         <label>Hunt it down now</label>
         <outcome>A hunt, then. {A_nameDef} was the first to pick up a weapon.</outcome>
+        <riskChance>0.3</riskChance>
+        <riskOutcome>A hunt, then. {A_nameDef} was the first to pick up a weapon, and the rest have been jumpy since, waiting to see how it goes.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_HuntWorried</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
+        </riskEffects>
         <ways><mercy>-5</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Hunt</designation></li>
@@ -881,10 +894,12 @@
       </li>
       <li>
         <label>Keep everyone inside</label>
-        <outcome>People are keeping close to the buildings until {X_definite} wanders off. The work is piling up, and tempers are getting short.</outcome>
+        <outcome>People are keeping close to the buildings until {X_definite} wanders off. The careful are glad of it, but the work is piling up, and tempers are getting short.</outcome>
         <ways><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_CabinFever</thought><exceptTrait><li>Undergrounder</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Wimp</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
         </effects>
       </li>
       <li>
@@ -926,13 +941,13 @@
     <options>
       <li>
         <label>Execute {X_objective}</label>
-        <outcome>The wardens have their orders. {A_nameDef} asked to be there when it happens, and the council agreed.</outcome>
+        <outcome>The wardens have their orders. {A_nameDef} asked to be there when it happens, and the council agreed. Some of the others went quiet when they heard.</outcome>
         <ways><mercy>-11</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>Execution</mode></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_GrimSatisfaction</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_ExecutionOrdered</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_ExecutionOrdered</thought><exceptTrait><li>Bloodlust</li><li>Psychopath</li></exceptTrait><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-2</amount><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
       </li>
@@ -942,6 +957,8 @@
         <ways><mercy>-4</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_UnderOurRoof</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmV_NoFuss</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
       </li>
       <li>
@@ -1016,8 +1033,9 @@
         <outcome>{X_nameDef} gave {PET_definite} one last scratch behind the ears and went back to {X_possessive} people. {A_nameDef} is keeping {PET_nameDef} on a short lead until {X_nameDef} is well down the road.</outcome>
         <ways><mercy>3</mercy><openness>-2</openness></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_KeptMyAnimal</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_MoneyWalkedAway</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_MoneyWalkedAway</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
         </effects>
@@ -1078,7 +1096,7 @@
         <ways><tradition>-3</tradition><openness>4</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>60</count><by>Outsiders</by></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>1500</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>1000</xp></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmS_LearnedFromHealer</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_PracticeDummy</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
@@ -1152,7 +1170,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_PrisonerOrder"><mode>Release</mode></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_KinSetFree</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmS_SoftOnPrisoners</thought><onlyTrait><li>Bloodlust</li></onlyTrait></li>
         </effects>
       </li>
@@ -1170,11 +1188,12 @@
       </li>
       <li>
         <label>Treat {X_objective} like any other prisoner</label>
-        <outcome>{X_nameDef} stays in the cells like any other prisoner, and {A_nameDef} has stopped asking about {X_objective}.</outcome>
+        <outcome>{X_nameDef} stays in the cells like any other prisoner, and the others say that's only fair. {A_nameDef} has stopped asking about {X_objective}.</outcome>
         <ways><mercy>-3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Fam_KinKept</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.8</chance></li>
         </effects>
       </li>
     </options>

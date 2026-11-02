@@ -52,6 +52,8 @@ namespace ColonyCouncil
                 case WorkTask.Wood: return name == "WorkGiver_HaulGeneral" || name == "WorkGiver_PlantsCut";
                 case WorkTask.Stone: return name == "WorkGiver_HaulGeneral";
                 case WorkTask.Roof: return name == "WorkGiver_BuildRoof";
+                // Odyssey's WorkGiver_Fish, or another mod's fishing work by its name.
+                case WorkTask.Fish: return name.StartsWith("WorkGiver_", StringComparison.Ordinal) && name.IndexOf("Fish", StringComparison.Ordinal) >= 0;
                 default: return false;
             }
         }
@@ -107,6 +109,7 @@ namespace ColonyCouncil
             if ((t == WorkTask.Sow || t == WorkTask.Harvest || t == WorkTask.Cut || t == WorkTask.Snow || t == WorkTask.Herd || t == WorkTask.Tend)
                 && Beliefs.Forbids(x, Belief.Indoors)) return false;
             if ((t == WorkTask.Herd || t == WorkTask.Tend) && Beliefs.Forbids(x, Belief.NoRanching)) return false;
+            if (t == WorkTask.Fish && (Beliefs.Forbids(x, Belief.NoFishing) || Beliefs.Forbids(x, Belief.Indoors))) return false;
             return true;
         }
 
@@ -123,11 +126,25 @@ namespace ColonyCouncil
             return TemplatePlanner.ColonyCenter(p.map);
         }
 
-        /// <summary>"butcher": the colony's butcher's table (or spot) nearest the middle; "storeroom": the middle of its biggest stockpile.</summary>
-        private static IntVec3 At(Map map, string at)
+        /// <summary>
+        /// "butcher": the colony's butcher's table (or spot) nearest the middle; "storeroom": the middle of its biggest
+        /// stockpile; "kitchen": the stove nearest the middle (where meals are cooked); "altar": the faith's altar or
+        /// ideogram (Ideology), else any faith's.
+        /// </summary>
+        public static IntVec3 At(Map map, string at)
         {
             if (map == null || at.NullOrEmpty()) return IntVec3.Invalid;
             var center = TemplatePlanner.ColonyCenter(map);
+            if (at == "kitchen")
+            {
+                var stove = Kitchen(map);
+                return stove?.Position ?? IntVec3.Invalid;
+            }
+            if (at == "altar")
+            {
+                var altar = FaithEvenings.Place(map, DecreeWork.ColonyFaith) ?? FaithEvenings.AnyPlace(map);
+                return altar != null && altar.Spawned && altar.Map == map ? altar.Position : IntVec3.Invalid;
+            }
             if (at == "butcher")
             {
                 var b = map.listerBuildings.allBuildingsColonist.Where(t => t.Spawned && t.def.AllRecipes != null && t.def.AllRecipes.Any(r => r.defName == "ButcherCorpseFlesh"))
@@ -140,6 +157,16 @@ namespace ColonyCouncil
                 return z == null ? IntVec3.Invalid : z.Cells[z.Cells.Count / 2];
             }
             return IntVec3.Invalid;
+        }
+
+        /// <summary>The colony's stove nearest the middle of the colony: a bench whose bills cook meals, or null.</summary>
+        public static Thing Kitchen(Map map)
+        {
+            if (map == null) return null;
+            var center = TemplatePlanner.ColonyCenter(map);
+            return map.listerBuildings.allBuildingsColonist
+                .Where(t => t.Spawned && t.def.AllRecipes != null && t.def.AllRecipes.Any(r => r.products != null && r.products.Any(p => p.thingDef?.ingestible != null && p.thingDef.ingestible.IsMeal)))
+                .OrderBy(t => t.Position.DistanceToSquared(center)).FirstOrDefault();
         }
 
         private static bool IsWood(ThingDef d) => d != null && (d == ThingDefOf.WoodLog || d.IsStuff && d.stuffProps?.categories != null && d.stuffProps.categories.Contains(StuffCategoryDefOf.Woody) && d.category == ThingCategory.Item);
@@ -210,9 +237,11 @@ namespace ColonyCouncil
                     try
                     {
                         if (sc.ShouldSkip(x, false)) continue;
+                        // Fishing finds its own spot at the colony's fishing zones (the game's own job for it).
+                        if (t == WorkTask.Fish) job = sc.NonScanJob(x);
                         var danger = Danger.Some;
-                        var things = sc.PotentialWorkThingsGlobal(x);
-                        if (things == null && !sc.PotentialWorkThingRequest.IsUndefined) things = map.listerThings.ThingsMatching(sc.PotentialWorkThingRequest);
+                        var things = job != null ? null : sc.PotentialWorkThingsGlobal(x);
+                        if (job == null && things == null && !sc.PotentialWorkThingRequest.IsUndefined) things = map.listerThings.ThingsMatching(sc.PotentialWorkThingRequest);
                         if (things != null)
                         {
                             foreach (var th in things.Where(th => th != null && th.Spawned && InScope(t, th.Position, map, center) && Fits(t, wg, th, x)
@@ -459,6 +488,9 @@ namespace ColonyCouncil
                 case WorkTask.Tend:
                     // Sheared or milked: whatever it carried is no longer full.
                     return target is Pawn animal && (animal.Destroyed || animal.Dead || !animal.AllComps.OfType<CompHasGatherableBodyResource>().Any(c => c.ActiveAndFull));
+                case WorkTask.Fish:
+                    // A spell at the water's edge: each one counts, catch or no catch.
+                    return true;
                 default:
                     return target != null && (target.Destroyed || !target.Spawned);
             }

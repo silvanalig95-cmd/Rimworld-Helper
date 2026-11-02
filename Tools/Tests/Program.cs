@@ -473,6 +473,7 @@ Console.WriteLine($"Checked {AheadTests.Run(Check, Environment.GetEnvironmentVar
 Console.WriteLine($"Checked {GrowthTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_GROWTH_PRINT") == "1")} things about building ahead (rooms the colony will be short of, the builders' days, stages, room to grow).");
 Console.WriteLine($"Checked {LifeNewTests.Run(Check)} things about the newer wishes and life moments (a crop from home, the morning cup, books read, the way to the table).");
 Console.WriteLine($"Checked {ImpactTests.Run(Check)} things about what each answer does (chances, merging, the short line).");
+Console.WriteLine($"Checked {AnswerShiftTests.Run(Check)} things about what answers change for a while (hours, work, a new limb).");
 Console.WriteLine($"Checked {ConduitTests.Run(Check)} things about laying a conduit to a piece off the power.");
 Console.WriteLine($"Checked {LineRouteTests.Run(Check)} things about lines laid again under the walls.");
 Console.WriteLine($"Checked {GuestWillTests.Run(Check)} things about guests who'd stay (ties at home, what they want, the cost, family asking them back).");

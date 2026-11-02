@@ -69,7 +69,9 @@ namespace ColonyCouncil
             if (p.kind == PlayKind.Visit && p.leavingWalk && p.leaving != null && !p.leavingGone && !p.leaving.Dead && p.leaving.Spawned)
             {
                 // together: the visitor is on their way to them, and keeps them company to the edge (the visit's own job).
-                DilemmaEffect_SendAway.Send(p.leaving);
+                // A slave freed to go home is set free first (Dilemmas/DilemmaWorkers_Variety.cs).
+                if (p.leaving.IsSlaveOfColony) DilemmaEffect_Emancipate.GoHome(p.leaving);
+                else DilemmaEffect_SendAway.Send(p.leaving);
                 p.leavingGone = true;
             }
             Keep(p);
@@ -118,6 +120,7 @@ namespace ColonyCouncil
                     if (p.kind == PlayKind.Procession) DilemmaEffect_LeaveForGood.Leave(p.leaving);
                     // Fed at the hand-over: they go once they've eaten (PlayStrangers.cs).
                     else if (p.kind == PlayKind.Carry && p.strangersFed && p.strangersEat) PlayStrangers.SendOnAfterMeal(p.leaving);
+                    else if (p.leaving.IsSlaveOfColony) DilemmaEffect_Emancipate.GoHome(p.leaving);
                     else DilemmaEffect_SendAway.Send(p.leaving);
                 }
                 LetGo(p);

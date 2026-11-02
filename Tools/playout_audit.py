@@ -72,6 +72,16 @@ PLAY = {
     "DilemmaEffect_Race": "race",
     # The game's own wedding ceremony, on the evening the council set (Social/WeddingPlans.cs), and what follows it.
     "DilemmaEffect_PlanWedding": "wedding",
+    # The colony's own settings changed for a while and put back (Dilemmas/AnswerShifts.cs), and the game's own orders
+    # (Dilemmas/DilemmaWorkers_Variety.cs): timetables shifted, work handed over, an operation on the medical tab, drug
+    # bills suspended, a slave freed by the game's emancipation, self-tend or the best medicine for a patient.
+    "DilemmaEffect_Hours": "hours shifted",
+    "DilemmaEffect_HandOver": "work handed over",
+    "DilemmaEffect_Operation": "operation",
+    "DilemmaEffect_SuspendBills": "bills suspended",
+    "DilemmaEffect_Emancipate": "slave freed",
+    "DilemmaEffect_SelfTend": "self-tend",
+    "DilemmaEffect_MedCare": "best medicine",
     # Visitors set to what they came for at the colony's relic, anima tree, gravship or bookcase, or kept by the gate
     # for a word or a lesson (Visitors/VisitorsMore2.cs).
     "VisitEffect_WorkHere": "visitors at it",

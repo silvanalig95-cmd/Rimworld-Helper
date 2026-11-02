@@ -22,7 +22,10 @@ with each other; the numbers are not a prediction of a real game.
   goods      1 point per 10 silver of market value (silver itself, raw food 1.3 a unit, wood 1.2, medicine 25: more than
              its price, since the last doses can save a life; the rest from the def's MarketValue or the base game's);
              feast meals 0.5 each (the finest are served).
-  people     someone joining the colony +60, someone leaving it -60.
+  people     someone joining the colony +60, someone leaving it -60; a prisoner set for recruiting +15 (an animal taken
+             in counts as goods, 15).
+  filters    an effect for the colony's faithful 0.6 of the group, those outside it 0.4, a faith's precept 0.25, the sick
+             0.3, the children 0.25.
   outside    goodwill 1 per point; a camp's tension -0.5 per point raised; a raid later -40.
   ways       the colony's ways (mercy, generosity, tradition, openness, toil) are flavour: listed, never scored.
   play-outs  gatherings, visits, walks, vigils and the like are the words made real; they cost the colony's time (work
@@ -220,6 +223,15 @@ def people(e, cls):
         n *= 1 - min(0.5, 0.1 * len(exc))
     if text(e, "degreeTrait"):
         n *= 0.125
+    # The colony's faithful, those outside it, a faith's precept, the sick, the children: a part of the group.
+    if text(e, "faithFilter"):
+        n *= 0.6 if text(e, "faithFilter") == "Faithful" else 0.4
+    if text(e, "precepts"):
+        n *= 0.25
+    if text(e, "withHediff"):
+        n *= 0.3
+    if text(e, "childrenOnly") == "true":
+        n *= 0.25
     return n * num(e, "chance", 1.0)
 
 
@@ -330,9 +342,15 @@ def score_effects(defs, d, effects):
             out.append(("goods", ((a[0] + a[1]) / 2 * tv + (v[0] + v[1]) / 2) / 10 * ch, "a find"))
         elif cls == "DilemmaEffect_Felled":
             out.append(("goods", num(e, "count", 20) * 1.2 / 10 * ch, "wood"))
+        elif cls == "DilemmaEffect_Recruit" and text(d, "stranger/kind") in ("Wild", "Pet"):
+            # An animal taken in is an animal, not a person: about what one fetches.
+            out.append(("goods", 15 * ch, "an animal joins"))
         elif cls in ("DilemmaEffect_Recruit", "DilemmaEffect_Join", "DilemmaEffect_AdoptGuest", "DilemmaEffect_CampJoin", "DilemmaEffect_RegularStays",
                      "DilemmaEffect_GuestRecruit", "DilemmaEffect_BringRelative"):
             out.append(("people", 60 * ch, "someone joins"))
+        elif cls == "DilemmaEffect_PrisonerOrder" and text(e, "mode") == "AttemptRecruit":
+            # The wardens set to recruiting: a chance at someone joining, in time.
+            out.append(("people", 15 * ch, "a prisoner to be recruited"))
         elif cls in ("DilemmaEffect_LeaveForGood", "DilemmaEffect_LeaveColony"):
             out.append(("people", -60 * ch, "someone leaves"))
         elif cls == "DilemmaEffect_RaidLater":
@@ -360,8 +378,35 @@ def score_effects(defs, d, effects):
         elif cls == "DilemmaEffect_GivePet":
             out.append(("goods", -10, "pet given"))
         elif cls == "DilemmaEffect_SellHeirloom":
-            out.append(("goods", 10, "heirloom sold above its worth"))
+            # Sold above its worth: an heirloom fetches a good sum, more the harder the haggling.
+            out.append(("goods", 15 * num(e, "priceFactor", 1.0), "heirloom sold above its worth"))
+        elif cls == "DilemmaEffect_Operation":
+            out.append(("wellbeing", 15, "a limb fitted"))
+        elif cls == "DilemmaEffect_Hours":
+            # A timetable shifted for a while (Dilemmas/AnswerShifts.cs), per person: what it costs the work and gives back.
+            w, b = HOURS_PLAN.get(text(e, "plan", "late"), (0, 0))
+            out.append(("work", w * n, "hours: " + text(e, "plan", "late")))
+            out.append(("wellbeing", b * n, "hours: " + text(e, "plan", "late")))
+        elif cls == "DilemmaEffect_SelfTend":
+            out.append(("wellbeing", 3 * n, "tended sooner, by their own hand"))
+        elif cls == "DilemmaEffect_MedCare":
+            out.append(("goods", -25 * n, "the best medicine used"))
+            out.append(("wellbeing", 8 * n, "better tending"))
+        elif cls == "DilemmaEffect_SuspendBills":
+            out.append(("goods", -20 if text(e, "all") == "true" else -10, "drug bills stopped: the trade lost"))
+        elif cls == "DilemmaEffect_Emancipate":
+            if text(e, "home") == "true":
+                out.append(("people", -60, "a slave goes home"))
+            else:
+                # A colonist now, not a slave: their own free time (recreation) comes out of the work.
+                out.append(("work", -10, "a slave freed into the colony"))
     return out
+
+
+# DilemmaEffect_Hours plans, per person: (work, wellbeing). The heat wave's hours trade sleep for the cool of the night,
+# a midday rest gives up a few working hours a day, a night at work gains a night and sleeps the morning, a late start
+# gives up a morning.
+HOURS_PLAN = {"heat": (-1, 2), "siesta": (-4, 4), "night": (2, -2), "late": (-1.5, 1)}
 
 
 # Effects score_effects puts a number on.
@@ -378,6 +423,8 @@ SCORED = {
     "DilemmaEffect_RaidLater", "DilemmaEffect_Loot", "DilemmaEffect_Gift", "DilemmaEffect_Research", "DilemmaEffect_Made",
     "DilemmaEffect_Carving", "DilemmaEffect_BurnFound", "DilemmaEffect_Smash", "DilemmaEffect_Resistance", "DilemmaEffect_HoldBack",
     "DilemmaEffect_Cull", "DilemmaEffect_TurnOut", "DilemmaEffect_LoseAnimal", "DilemmaEffect_GivePet", "DilemmaEffect_SellHeirloom",
+    "DilemmaEffect_Operation", "DilemmaEffect_Hours", "DilemmaEffect_SelfTend", "DilemmaEffect_MedCare", "DilemmaEffect_SuspendBills",
+    "DilemmaEffect_Emancipate", "DilemmaEffect_PrisonerOrder",
 }
 
 # Effects that are the words made real, or a condition, and change nothing the scales measure: scored as nothing.
@@ -385,10 +432,11 @@ NARRATIVE = {
     "DilemmaEffect_Words", "DilemmaEffect_Visit", "DilemmaEffect_Procession", "DilemmaEffect_Vigil", "DilemmaEffect_Gathering",
     "DilemmaEffect_Toast", "DilemmaEffect_Bonfire", "DilemmaEffect_LifeEvent", "DilemmaEffect_Needs", "DilemmaEffect_PlanRoom",
     "DilemmaEffect_MarkGround", "DilemmaEffect_MarkGraves", "DilemmaEffect_Lanterns", "DilemmaEffect_BurnIt", "DilemmaEffect_FindLost",
-    "DilemmaEffect_SendAway", "DilemmaEffect_PrisonerOrder", "DilemmaEffect_Designate", "DilemmaEffect_Snowman", "DilemmaEffect_Race",
+    "DilemmaEffect_SendAway", "DilemmaEffect_Designate", "DilemmaEffect_Snowman", "DilemmaEffect_Race",
     "DilemmaEffect_SwapRooms", "DilemmaEffect_Follow", "DilemmaEffect_BoltDoor", "DilemmaEffect_KeepFire", "DilemmaEffect_SowPatch",
     "DilemmaEffect_Plant", "DilemmaEffect_SmudgeFires", "DilemmaEffect_HaulDead", "DilemmaEffect_Hunt", "DilemmaEffect_HuntParty",
     "DilemmaEffect_Rounds", "DilemmaEffect_PlantingWatch", "DilemmaEffect_FaithCorners", "DilemmaEffect_BeastStance",
+    "DilemmaEffect_HandOver",
 }
 
 

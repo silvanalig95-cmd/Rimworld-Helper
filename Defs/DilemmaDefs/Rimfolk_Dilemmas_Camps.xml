@@ -147,8 +147,9 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>1~1.5</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-9</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmC_Cleared</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskSkill>Social</riskSkill>
@@ -207,18 +208,18 @@
         <ways><tradition>2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Camp</to><duration>0.5~1</duration></li>
-          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
       <li>
         <label>Keep the camp out of the colony</label>
-        <outcome>The council sent word that the camp's people aren't welcome inside the colony any more. They stay on their side now, and it's cold between the two fires.</outcome>
+        <outcome>The council sent word that the camp's people aren't welcome inside the colony any more. They stay on their side now, and it's cold between the two fires. Some here sleep easier for it.</outcome>
         <ways><openness>-3</openness><mercy>-2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>15</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmL_TurnedAwayHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait><chance>0.4</chance></li>
         </effects>
       </li>
     </options>

@@ -462,6 +462,13 @@ Council_DlmA_ResidentBeast [option 3] the taming is the game's own: the beast is
 # Defs/DilemmaDefs/Rimfolk_Dilemmas_Pokemon.xml
 Council_DlmA_ResidentPokemon [option 0] the food is carried out to the Pokémon and left (DilemmaEffect_FeedBeast, a CarryOut to the stranger)
 Council_DlmA_ResidentPokemon [option 2] the colonist walks out to the Pokémon and stays a while (DilemmaEffect_CatchPokemon, a visit); the throw is the player's
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_Customs_New.xml
+Council_Dilemma_SpringCleaning [option 2] a refusal: the custom is let go and the day's own work goes on as it would
+Council_Dilemma_BoundsWalk [option 2] a refusal: the walk is let go; supper is only mentioned
+Council_Dilemma_StarNight [option 2] a refusal: everyone keeps their usual hours, nothing is set going
+Council_Dilemma_AutumnHunt [option 2] a refusal: no hunt is set going
+# Defs/DilemmaDefs/Rimfolk_Dilemmas_New.xml
+Council_DlmV_HeatWave [option 2] a refusal: the work goes on as the timetables already have it; the heat is the game's own
 # Defs/WorldSituationDefs/Rimfolk_WS_New.xml
 Council_WS_OrbitalLanes [agent/0] the goods are carried out to the agent at the gate in the effect's own code (WorldEffect_Sell toVisitor, a CarryOut to the stranger)
 Council_WS_OrbitalLanes [agent/1] the goods are carried out to the agent at the gate in the effect's own code (WorldEffect_Sell toVisitor, a CarryOut to the stranger); the risk is a refusal

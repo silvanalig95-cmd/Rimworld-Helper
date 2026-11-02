@@ -117,7 +117,9 @@ namespace ColonyCouncil
         /// <summary>Stone: chunks and blocks carried to storage; with nowhere to store them, chunks carried off to a heap by the gate.</summary>
         Stone,
         /// <summary>Roofs patched: the gaps in the roofs of the colony's rooms built over (the game's own roof building).</summary>
-        Roof
+        Roof,
+        /// <summary>Fishing at the colony's fishing zones (Odyssey's own fishing job; another mod's fishing work found by name).</summary>
+        Fish
     }
 
     /// <summary>One person on a work party, a walk, a vigil, a search, an errand or a hunt: how long, how far, what they've done.</summary>

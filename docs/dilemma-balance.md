@@ -23,7 +23,10 @@ with each other; the numbers are not a prediction of a real game.
   goods      1 point per 10 silver of market value (silver itself, raw food 1.3 a unit, wood 1.2, medicine 25: more than
              its price, since the last doses can save a life; the rest from the def's MarketValue or the base game's);
              feast meals 0.5 each (the finest are served).
-  people     someone joining the colony +60, someone leaving it -60.
+  people     someone joining the colony +60, someone leaving it -60; a prisoner set for recruiting +15 (an animal taken
+             in counts as goods, 15).
+  filters    an effect for the colony's faithful 0.6 of the group, those outside it 0.4, a faith's precept 0.25, the sick
+             0.3, the children 0.25.
   outside    goodwill 1 per point; a camp's tension -0.5 per point raised; a raid later -40.
   ways       the colony's ways (mercy, generosity, tradition, openness, toil) are flavour: listed, never scored.
   play-outs  gatherings, visits, walks, vigils and the like are the words made real; they cost the colony's time (work
@@ -43,7 +46,7 @@ with an effect the scales don't measure (a faith's certainty, a guardian named, 
 it gets no verdict, and is read by hand.
 ```
 
-193 dilemmas, 663 answers. Flagged: 95 dilemmas, 149 answers (first pass: 58 dilemmas; second pass: 37).
+208 dilemmas, 708 answers. Flagged: 58 dilemmas, 86 answers (first pass: 58 dilemmas; second pass: 0).
 
 ## First pass: the dilemmas rebalanced in this round
 
@@ -465,6 +468,29 @@ it gets no verdict, and is read by hand.
 |  | 2 | Sell it to them at a fair price | 14 | 5 | 0 | 9 | mood +6, goods -1, outside +4 | trade-off |
 |  | 3 | The colony can't spare it | 0 | 13 | 0 | -13 | mood -9, outside -4 | trade-off |
 
+### Rimfolk_Dilemmas_Customs_New.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| spring cleaning (`Council_Dilemma_SpringCleaning`) | 1 | All hands for a day | 107 | 5 | 0 | 102 | mood +98, trust +3, work +1 | trade-off |
+|  | 2 | The morning only | 79 | 0 | 0 | 79 | mood +76, work +3 | trade-off |
+|  | 3 | Not this year | 5 | 26 | 0 | -21 | mood -26, trust +5 | trade-off |
+| the bounds walk (`Council_Dilemma_BoundsWalk`) | 1 | Everyone walks the bounds | 79 | 6 | 0 | 73 | mood +72, trust +3, work -6, skill +4 | trade-off |
+|  | 2 | A walks it with one other | 61 | 9 | 0 | 52 | mood +53, work -1 | trade-off |
+|  | 3 | Not this year | 3 | 4 | 0 | -1 | mood -4, trust +3 | trade-off |
+| the star night (`Council_Dilemma_StarNight`) | 1 | Everyone sits out late | 76 | 17 | 0 | 60 | mood +64, trust +4, wellbeing +8, work -17 | trade-off |
+|  | 2 | An hour under the stars, then bed | 46 | 2 | 0 | 44 | mood +45, trust +2, work -2 | trade-off |
+|  | 3 | Bed as usual | 1 | 4 | 0 | -3 | mood -4, trust +1 | trade-off |
+| the fishing match (`Council_Dilemma_FishingMatch`) | 1 | A match and a fish supper | 56 | 10 | 0 | 45 | mood +48, trust +4, work -2, goods -6 | trade-off |
+|  | 2 | A quiet afternoon for two | 32 | 0 | 0 | 32 | mood +12, trust +2, relations +16, work +3 | trade-off |
+|  | 3 | Not now | 3 | 4 | 0 | -1 | mood -4, trust +3 | trade-off |
+| the autumn hunt (`Council_Dilemma_AutumnHunt`) | 1 | A big hunt, and supper after | 12 | 8 | 0 | 4 | trust +4, wellbeing +8, work -4, goods -4 | trade-off |
+|  | 2 | One hunter, one beast | 2 | 1 | 0 | 2 | trust +2, wellbeing +1, work -1 | trade-off |
+|  | 3 | No hunt this year | 3 | 4 | 0 | -1 | mood -4, trust +3 | trade-off |
+| telling the bees (`Council_Dilemma_TellingTheBees`) | 1 | The family walks round the hives with A | 3 | 2 | 0 | 1 | trust +3, work -2 | trade-off |
+|  | 2 | A goes round alone | 0 | 0 | 0 | -0 | nothing scored | trade-off |
+|  | 3 | It isn't done here | 3 | 7 | 0 | -4 | mood -7, trust +3 | trade-off |
+
 ### Rimfolk_Dilemmas_Faith.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
@@ -592,6 +618,38 @@ it gets no verdict, and is read by hand.
 |  | 2 | Give A someone's room | 0 | 60 | 0 | -60 | mood -60 | partly scored (GiveRoom): read by hand |
 |  | 3 | Insist that A stays | 0 | 218 | 0 | -218 | mood -200, trust -18 | partly scored (GiveRoom): read by hand |
 
+### Rimfolk_Dilemmas_New.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| who gets the new part (`Council_DlmV_NewLimb`) | 1 | Fit it to A, whose {SKILL} needs it most | 54 | 26 | 0 | 28 | mood +10, trust +3, wellbeing +15 | trade-off |
+|  | 2 | Fit it to B | 68 | 49 | 0 | 18 | trust +14, relations -10, wellbeing +15 | trade-off |
+|  | 3 | Keep it until there's one for each | 6 | 16 | 0 | -10 | mood -16, trust +6 | trade-off |
+| a bad batch (`Council_DlmV_BadBatch`) | 1 | Scrub the kitchen top to bottom | 16 | 0 | 0 | 16 | mood +9, trust +4, work +3 | trade-off |
+|  | 2 | B cooks for a few days | 11 | 20 | 0 | -9 | mood -20, trust +8, skill +3 | trade-off |
+|  | 3 | Blame the meat | 26 | 19 | 0 | 7 | mood +1, trust +6 | trade-off |
+| the precept broken (`Council_DlmV_PreceptBroken`) | 1 | A quiet word from B | 38 | 20 | 0 | 18 | mood +16, trust +3 | partly scored (Faith): read by hand |
+|  | 2 | Penance: A cleans the altar room | 8 | 16 | 0 | -8 | mood -16, trust +5, work +3 | partly scored (Faith): read by hand |
+|  | 3 | The council stands by A | 30 | 52 | 0 | -23 | mood -21, trust -1 | partly scored (Faith): read by hand |
+| the doctor is the patient (`Council_DlmV_DoctorPatient`) | 1 | A tends A own wounds | 6 | 6 | 0 | 0 | mood -6, trust +3, wellbeing +3 | trade-off |
+|  | 2 | B tends A, talked through it | 6 | 6 | 0 | -0 | mood -6, skill +6 | trade-off |
+|  | 3 | The best medicine for A | 17 | 26 | 0 | -10 | mood +8, wellbeing +8, goods -25 | trade-off |
+| the heat wave's hours (`Council_DlmV_HeatWave`) | 1 | Work by night, sleep through the heat | 51 | 8 | 3 (30%) | 40 | mood +32, trust +3, wellbeing +16, work -11 | trade-off |
+|  | 2 | A midday rest in the shade | 80 | 36 | 0 | 44 | mood +44, wellbeing +32, work -32 | trade-off |
+|  | 3 | Carry on | 3 | 29 | 0 | -26 | mood -29, trust +3 | trade-off |
+| so close (`Council_DlmV_SoClose`) | 1 | Let A work through tonight | 10 | 2 | 1 (35%) | 7 | mood +8, wellbeing -2, work +1 | trade-off |
+|  | 2 | Send A to bed | 3 | 12 | 0 | -9 | mood -6, wellbeing +3, work -6 | trade-off |
+|  | 3 | A second pair of eyes | 15 | 1 | 0 | 14 | mood +6, relations +6, work -1, skill +3 | trade-off (gated) |
+| lessons through the bars (`Council_DlmV_CellLessons`) | 1 | Lessons at the cell | 24 | 18 | 0 | 5 | mood -2, skill +6, outside +2 | trade-off |
+|  | 2 | Recruit X first | 20 | 6 | 0 | 14 | mood -6, trust +4, people +15 | trade-off |
+|  | 3 | No contact with the prisoner | 7 | 16 | 0 | -9 | mood -16, trust +7 | trade-off |
+| the drug bench (`Council_DlmV_DrugBench`) | 1 | Stop the hard drugs | 30 | 15 | 0 | 14 | mood +20, trust +4, goods -10 | trade-off |
+|  | 2 | Stop every drug but medicine | 54 | 37 | 0 | 16 | mood +28, trust +9, goods -20 | trade-off |
+|  | 3 | Keep making them | 1 | 31 | 0 | -30 | mood -25, trust -5 | trade-off |
+| a slave's freedom (`Council_DlmV_SlaveFreedom`) | 1 | Free X into the colony | 20 | 24 | 0 | -4 | mood +6, work -10 | trade-off |
+|  | 2 | Free X to go home | 30 | 74 | 0 | -44 | mood +2, people -60, outside +15 | trade-off |
+|  | 3 | Not now | 2 | 15 | 0 | -13 | mood -12, trust -1 | trade-off |
+
 ### Rimfolk_Dilemmas_Pokemon.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
@@ -606,66 +664,26 @@ it gets no verdict, and is read by hand.
 
 These files were being written to by others in the same round; their findings wait for a second pass after the merge.
 
-Flagged:
-
-- `Council_Dilemma_YoungHunter` (Council_Dilemmas3.xml): 3 Not until A is older: dominated by answer 2
-- `Council_Dilemma_WhereTheDeadGo` (Council_Dilemmas3.xml): 2 Tell the plain truth: dominated by answer 1; 3 Hold a funeral for the animal: easy: best by 61; 4 Change the subject: dominated by answer 1, dominated by answer 2
-- `Council_Dilemma_PetBite` (Council_Dilemmas3.xml): 1 A pays 30 silver: easy: best by 25; 3 Turn {PET_nameDef} loose: dominated by answer 1; 4 Let it go: dominated by answer 2
-- `Council_Dilemma_OwnFuneral` (Council_Dilemmas3.xml): 3 Let A pick a grave site: dominated by answer 1; 4 Say nothing and hope it passes: dominated by answer 1, dominated by answer 3
-- `Council_Dilemma_Sleepwalker` (Council_Dilemmas3.xml): 4 A can't help it: dominated by answer 1, dominated by answer 3
-- `Council_Dilemma_RemembranceWalk` (Council_Dilemmas_Customs.xml): 1 Walk to the graves together: easy: best by 58; 3 The living have work to do: dominated by answer 2
-- `Council_Dilemma_MidsummerSwim` (Council_Dilemmas_Customs.xml): 1 Everyone to the water: easy: best by 92
-- `Council_Dilemma_HarvestDance` (Council_Dilemmas_Customs.xml): 1 Dance until the fire burns down: easy: best by 138
-- `Council_Dilemma_FirstFrostSoup` (Council_Dilemmas_Customs.xml): 1 One big pot for everyone: easy: best by 34; 3 Everything goes to the winter stores: dominated by answer 2
-- `Council_Dilemma_LanternNight` (Council_Dilemmas_Customs.xml): 1 A lantern in every window: easy: best by 57; 3 Save the fuel for the cold: dominated by answer 2
-- `Council_Dilemma_SunsReturn` (Council_Dilemmas_Customs2.xml): 1 Everyone up to greet the sun: easy: best by 56; 3 The sun comes back without our help: dominated by answer 2
-- `Council_Dilemma_RainWelcome` (Council_Dilemmas_Customs2.xml): 3 It's only rain: dominated by answer 2
-- `Council_Dilemma_MarshLights` (Council_Dilemmas_Customs2.xml): 1 Everyone out with the torches: easy: best by 30; 3 Keep the wood for the fires: dominated by answer 2
-- `Council_Dilemma_HighWatch` (Council_Dilemmas_Customs2.xml): 1 Everyone up to the high ground: easy: best by 18; 2 Those who want to can climb: dominated by answer 1
-- `Council_DlmH_MidwifeApprentice` (Council_Dilemmas_Health.xml): 1 B learns from A: easy: best by 28; 2 Not now: dominated by answer 1, dominated by answer 3; 3 B watches the next birth: dominated by answer 1
-- `Council_Dilemma_Midsummer` (Council_Dilemmas_Seasons.xml): 1 Light the bonfire: easy: best by 38
-- `Council_Dilemma_HarvestHome` (Council_Dilemmas_Seasons.xml): 1 A harvest feast for everyone: easy: best by 77
-- `Council_Dilemma_Midwinter` (Council_Dilemmas_Seasons.xml): 1 Extra rations for the long night: easy: best by 68
-- `Council_Dilemma_NameTheYear` (Council_Dilemmas_Seasons.xml): 2 Name it for those we lost: easy: best by 158
-- `Council_Dilemma_Spoils` (Council_Dilemmas_Seasons.xml): 2 Share everything equally: dominated by answer 1
-- `Council_Dilemma_EnemyDead` (Council_Dilemmas_Seasons.xml): 2 Burn them: dominated by answer 4, dominated by answer 5; 3 Drag them to the treeline: dominated by answer 1, dominated by answer 4; 4 One grave for all of them: easy: best by 12; 5 Into the crematorium: dominated by answer 4
-- `Council_Dilemma_VictoryFeast` (Council_Dilemmas_Seasons.xml): 1 A victory feast: easy: best by 43
-- `Council_DlmS_HeirloomOffer` (Council_Dilemmas_Strangers.xml): 3 It stays with A: easy: best by 75
-- `Council_DlmS_PrisonerPlea` (Council_Dilemmas_Strangers.xml): 3 Keep the door locked: dominated by answer 1, dominated by answer 2
-- `Council_DlmS_Beggars` (Council_Dilemmas_Strangers.xml): 1 Fill their sacks: dominated by answer 4; 2 Give them silver instead: dominated by answer 4; 4 Send them home with seed, and a grower's advice: easy: best by 22
-- `Council_DlmS_PetBit` (Council_Dilemmas_Strangers.xml): 2 Stand by {PET_definite}: easy: best by 24
-- `Council_DlmS_PredatorDen` (Council_Dilemmas_Strangers.xml): 1 Hunt it: dominated by answer 2; 2 Let B try to tame it: easy: best by 20; 3 Leave it alone: dominated by answer 2
-- `Council_DlmS_ChildPet` (Council_Dilemmas_Strangers.xml): 1 Let A keep it: easy: best by 82; 3 No, and that's final: dominated by answer 1, dominated by answer 2
-- `Council_DlmS_NobleSneer` (Council_Dilemmas_Strangers.xml): 1 Say nothing and smile: dominated by answer 3
-- `Council_DlmS_Tonic` (Council_Dilemmas_Strangers.xml): 2 Make X drink some first: dominated by answer 4
-- `Council_DlmS_BeastReturns` (Council_Dilemmas_Strangers.xml): 1 Hunt it down now: easy: best by 30; 2 Keep everyone inside: dominated by answer 1, dominated by answer 3; 3 Try to tame it: dominated by answer 1
-- `Council_DlmS_NemesisInChains` (Council_Dilemmas_Strangers.xml): 1 Execute X: easy: best by 66; 2 Let X rot in there: dominated by answer 1; 3 Try to recruit X: dominated by answer 1, dominated by answer 2
-- `Council_DlmS_BuyTheAnimal` (Council_Dilemmas_Strangers.xml): 3 Not for sale: easy: best by 69
-- `Council_DlmS_Healer` (Council_Dilemmas_Strangers.xml): 2 Pay X to teach B: easy: best by 12
-- `Council_DlmS_KinInChains` (Council_Dilemmas_Strangers.xml): 3 Treat X like any other prisoner: dominated by answer 1, dominated by answer 2
-- `Rimfolk_DlmC_Theft` (Rimfolk_Dilemmas_Camps.xml): 4 Let A go and answer for it: dominated by answer 1
-- `Rimfolk_DlmC_CaughtInStores` (Rimfolk_Dilemmas_Camps.xml): 3 Take it to their elders: dominated by answer 2; 4 Keep the camp out of the colony: dominated by answer 2, dominated by answer 3
-
 ### Council_Dilemmas3.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
 |---|---|---|---|---|---|---|---|---|
 | the young hunter (`Council_Dilemma_YoungHunter`) | 1 | Teach A to shoot | 54 | 18 | 4 (20%) | 31 | mood +16, trust +14, work -1, skill +3 | trade-off |
 |  | 2 | A carries the game bags, nothing more | 5 | 9 | 0 | -4 | mood -5, work -1, skill +2 | trade-off |
-|  | 3 | Not until A is older | 1 | 22 | 0 (25%) | -21 | mood -8, trust -5, work -1 | dominated by answer 2 |
+|  | 3 | Not until A is older | 4 | 16 | 0 (25%) | -12 | mood -8, trust +3, work -1 | trade-off |
 |  | 4 | Let B show A the messy part | 6 | 13 | 0 (40%) | -7 | mood -10, trust +2, wellbeing +1, skill +4 | trade-off |
-| where the dead go (`Council_Dilemma_WhereTheDeadGo`) | 1 | Say the dead go somewhere warm | 25 | 7 | 0 | 18 | mood +13, trust +5 | trade-off |
-|  | 2 | Tell the plain truth | 2 | 23 | 0 (30%) | -21 | mood -13, trust +1, wellbeing +1 | dominated by answer 1 |
-|  | 3 | Hold a funeral for the animal | 90 | 12 | 0 | 79 | mood +38, trust +4, relations +40, work -2, goods -1 | easy: best by 61 |
-|  | 4 | Change the subject | 0 | 14 | 6 (35%) | -19 | mood -15, trust -4 | dominated by answer 1; dominated by answer 2 |
+| where the dead go (`Council_Dilemma_WhereTheDeadGo`) | 1 | Say the dead go somewhere warm | 36 | 7 | 0 | 29 | mood +13, trust +4, relations +12 | trade-off |
+|  | 2 | Tell the plain truth | 5 | 23 | 0 (30%) | -18 | mood -13, trust +1, wellbeing +1, skill +2 | trade-off |
+|  | 3 | Hold a funeral for the animal | 51 | 12 | 0 | 40 | mood +25, trust +4, relations +14, work -2, goods -1 | trade-off |
+|  | 4 | Change the subject | 7 | 10 | 6 (35%) | -9 | mood -15, trust +6 | trade-off |
 | a friend past the wall (`Council_Dilemma_WildFriend`) | 1 | Let A keep feeding it | 33 | 36 | 4 (25%) | -7 | mood -12, trust +8, work -1, goods -2 | trade-off |
 |  | 2 | Chase it off for good | 20 | 68 | 0 | -48 | mood -20, trust -6, relations -22 | trade-off |
 |  | 3 | Let B deal with it | 7 | 142 | 5 (20%) | -139 | mood -111, trust -5, relations -22, work -0 | trade-off |
 |  | 4 | Say nothing | 25 | 16 | 11 (30%) | -3 | mood +3, trust -4, work -1, goods -1 | trade-off |
-| the bite (`Council_Dilemma_PetBite`) | 1 | A pays 30 silver | 20 | 12 | 0 | 8 | mood +10, trust +2, goods -3 | easy: best by 25 |
-|  | 2 | Keep {PET_nameDef} penned for a while | 24 | 36 | 5 (25%) | -17 | mood -10, trust -2, relations -6, wellbeing +1 | trade-off |
-|  | 3 | Turn {PET_nameDef} loose | 21 | 238 | 0 | -217 | mood -167, trust -17, relations -22, goods -10 | dominated by answer 1 |
-|  | 4 | Let it go | 0 | 29 | 5 (25%) | -34 | mood -16, trust -7, relations -11 | dominated by answer 2 |
+| the bite (`Council_Dilemma_PetBite`) | 1 | A pays 30 silver | 20 | 12 | 0 | 8 | mood +10, trust +2, goods -3 | trade-off |
+|  | 2 | Keep {PET_nameDef} penned for a while | 24 | 9 | 5 (25%) | 10 | mood +14, trust +2, relations -6, wellbeing +1 | trade-off |
+|  | 3 | Turn {PET_nameDef} loose | 34 | 229 | 0 | -195 | mood -167, trust +5, relations -22, goods -10 | trade-off |
+|  | 4 | Let it go | 20 | 29 | 3 (15%) | -12 | mood +6, trust -7, relations -11 | trade-off |
 | an animal in decline (`Council_Dilemma_PetFading`) | 1 | Nurse {PET_nameDef} | 28 | 6 | 21 (40%) | 1 | mood +2, trust +6, work -5, goods -2 | trade-off |
 |  | 2 | Take {PET_nameDef} on one last walk | 3 | 115 | 0 | -111 | mood -100, trust -1, work -0, goods -10 | trade-off |
 |  | 3 | Let B decide | 94 | 1 | 114 (50%) | -21 | mood -23, trust -1, relations +9, goods -6 | trade-off |
@@ -678,14 +696,14 @@ Flagged:
 |  | 2 | Give B the worst chores for a week | 29 | 94 | 0 | -65 | mood -55, trust -2, relations -11, work +3 | trade-off |
 |  | 3 | Let A read the rest aloud | 46 | 2 | 51 (40%) | -7 | trust +1, relations -9, wellbeing +3, work -2 | trade-off |
 |  | 4 | Leave it be | 3 | 97 | 0 | -94 | mood -67, trust -8, relations -22, wellbeing +3 | trade-off |
-| a funeral in advance (`Council_Dilemma_OwnFuneral`) | 1 | Build A a coffin now | 51 | 10 | 0 | 41 | mood +34, trust +8, goods -1 | trade-off |
+| a funeral in advance (`Council_Dilemma_OwnFuneral`) | 1 | Build A a coffin now | 51 | 11 | 0 | 40 | mood +34, trust +8, goods -2 | trade-off |
 |  | 2 | Hold a living funeral | 73 | 7 | 29 (30%) | 37 | mood +36, trust +4, wellbeing +2, work -4, goods -1 | trade-off |
-|  | 3 | Let A pick a grave site | 18 | 5 | 0 | 13 | mood +10, trust +3 | dominated by answer 1 |
-|  | 4 | Say nothing and hope it passes | 0 | 20 | 4 (20%) | -24 | mood -12, trust -8, work -4 | dominated by answer 1; dominated by answer 3 |
+|  | 3 | Let A pick a grave site | 18 | 5 | 0 | 13 | mood +10, trust +3 | trade-off |
+|  | 4 | Say nothing and hope it passes | 7 | 15 | 4 (20%) | -12 | mood -12, trust +4, work -4 | trade-off |
 | the sleepwalker (`Council_Dilemma_Sleepwalker`) | 1 | Bolt A's door at night | 24 | 38 | 3 (25%) | -16 | mood -12, trust -2, work -3 | trade-off |
 |  | 2 | B sits up with A at night | 62 | 4 | 26 (30%) | 32 | mood +24, trust +1, relations +9, wellbeing +1, work -4 | trade-off |
 |  | 3 | Tie a bell to A's ankle | 4 | 15 | 4 (30%) | -15 | mood -12, trust -2, wellbeing +3, work -4 | trade-off |
-|  | 4 | A can't help it | 0 | 22 | 5 (25%) | -26 | mood -12, trust -6, work -8 | dominated by answer 1; dominated by answer 3 |
+|  | 4 | A can't help it | 20 | 22 | 5 (25%) | -6 | mood +8, trust -6, work -8 | trade-off |
 | a side deal (`Council_Dilemma_SideDeal`) | 1 | Confiscate the {THING} | 35 | 44 | 8 (20%) | -17 | mood -15, trust +1, relations -4, work -3, goods +4 | trade-off |
 |  | 2 | Take the {THING} and put A to work | 32 | 65 | 0 | -33 | mood -7, trust -8, relations -22, goods +4 | trade-off |
 |  | 3 | Make A the colony's trader | 39 | 77 | 0 (30%) | -38 | mood +2, trust +1, relations -16, wellbeing +1 | trade-off |
@@ -705,40 +723,40 @@ Flagged:
 | the planting day (`Council_Dilemma_PlantingBlessing`) | 1 | Make a day of the planting | 24 | 2 | 0 | 22 | trust +4, work +1, skill +16 | partly scored (PlantingSkipped): read by hand |
 |  | 2 | A sows the first row, the rest in its turn | 6 | 0 | 0 | 6 | trust +2, work +3, skill +2 | partly scored (PlantingSkipped): read by hand |
 |  | 3 | The seed goes in like any other work | 0 | 3 | 0 | -3 | trust -3 | partly scored (PlantingSkipped): read by hand |
-| the remembrance walk (`Council_Dilemma_RemembranceWalk`) | 1 | Walk to the graves together | 105 | 2 | 0 | 103 | mood +86, trust +4, wellbeing +14, work -2 | easy: best by 58 |
-|  | 2 | Those who want to can go | 45 | 0 | 0 | 44 | mood +43, trust +2 | trade-off |
-|  | 3 | The living have work to do | 0 | 9 | 0 | -9 | mood -4, trust -4 | dominated by answer 2 |
-| the midsummer swim (`Council_Dilemma_MidsummerSwim`) | 1 | Everyone to the water | 106 | 6 | 0 | 100 | mood +80, trust +6, wellbeing +20, work -6 | easy: best by 92 |
-|  | 2 | A swim once the day's work is done | 11 | 4 | 0 | 8 | trust +2, wellbeing +10, work -4 | trade-off |
+| the remembrance walk (`Council_Dilemma_RemembranceWalk`) | 1 | Walk to the graves together | 105 | 2 | 0 | 103 | mood +86, trust +4, wellbeing +14, work -2 | trade-off |
+|  | 2 | Those who want to can go | 71 | 0 | 0 | 70 | mood +69, trust +2 | trade-off |
+|  | 3 | The living have work to do | 5 | 6 | 0 | -1 | mood -4, trust +3 | trade-off |
+| the midsummer swim (`Council_Dilemma_MidsummerSwim`) | 1 | Everyone to the water | 106 | 6 | 0 | 100 | mood +80, trust +6, wellbeing +20, work -6 | trade-off |
+|  | 2 | A swim once the day's work is done | 75 | 4 | 0 | 72 | mood +64, trust +2, wellbeing +10, work -4 | trade-off |
 |  | 3 | Keep everyone working | 0 | 17 | 0 | -17 | mood -14, trust -3 | trade-off |
-| the harvest dance (`Council_Dilemma_HarvestDance`) | 1 | Dance until the fire burns down | 154 | 9 | 0 | 145 | mood +120, trust +6, wellbeing +28, work -9 | easy: best by 138 |
-|  | 2 | One dance, then bed | 10 | 2 | 0 | 7 | trust +2, wellbeing +8, work -2 | trade-off |
+| the harvest dance (`Council_Dilemma_HarvestDance`) | 1 | Dance until the fire burns down | 138 | 24 | 0 | 114 | mood +93, trust +6, wellbeing +36, work -21 | trade-off |
+|  | 2 | One dance, then bed | 90 | 2 | 0 | 87 | mood +80, trust +2, wellbeing +8, work -2 | trade-off |
 |  | 3 | There's work in the morning | 0 | 32 | 0 | -32 | mood -29, trust -3 | trade-off |
-| first-frost soup (`Council_Dilemma_FirstFrostSoup`) | 1 | One big pot for everyone | 70 | 9 | 0 | 61 | mood +64, trust +6, work -4, goods -6 | easy: best by 34 |
-|  | 2 | Soup for those working outside | 27 | 0 | 0 | 27 | mood +26, trust +2 | trade-off |
-|  | 3 | Everything goes to the winter stores | 0 | 7 | 0 | -7 | mood -4, trust -3 | dominated by answer 2 |
-| lantern night (`Council_Dilemma_LanternNight`) | 1 | A lantern in every window | 102 | 6 | 0 | 96 | mood +96, trust +6, work -2, goods -4 | easy: best by 57 |
-|  | 2 | One lantern at the gate | 40 | 1 | 0 | 38 | mood +38, trust +2, work -1, goods -1 | trade-off |
-|  | 3 | Save the fuel for the cold | 0 | 17 | 0 | -17 | mood -14, trust -3 | dominated by answer 2 |
+| first-frost soup (`Council_Dilemma_FirstFrostSoup`) | 1 | One big pot for everyone | 70 | 9 | 0 | 61 | mood +64, trust +6, work -4, goods -6 | trade-off |
+|  | 2 | Soup for those working outside | 42 | 0 | 0 | 41 | mood +42 | trade-off |
+|  | 3 | Everything goes to the winter stores | 4 | 6 | 0 | -2 | mood -4, trust +2 | trade-off |
+| lantern night (`Council_Dilemma_LanternNight`) | 1 | Lanterns along the walls | 102 | 6 | 0 | 96 | mood +96, trust +6, work -2, goods -4 | trade-off |
+|  | 2 | One lantern at the gate | 67 | 1 | 0 | 66 | mood +67, work -1, goods -1 | trade-off |
+|  | 3 | Save the fuel for the cold | 4 | 16 | 0 | -12 | mood -14, trust +2 | trade-off |
 
 ### Council_Dilemmas_Customs2.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
 |---|---|---|---|---|---|---|---|---|
-| the sun's return (`Council_Dilemma_SunsReturn`) | 1 | Everyone up to greet the sun | 88 | 5 | 0 | 82 | mood +72, trust +6, wellbeing +10, work -4, goods -2 | easy: best by 56 |
-|  | 2 | Whoever's awake can watch it | 27 | 0 | 0 | 27 | mood +25, trust +2 | trade-off |
-|  | 3 | The sun comes back without our help | 0 | 7 | 0 | -7 | mood -4, trust -3 | dominated by answer 2 |
+| the sun's return (`Council_Dilemma_SunsReturn`) | 1 | Everyone up to greet the sun | 86 | 5 | 0 | 81 | mood +72, trust +4, wellbeing +10, work -4, goods -2 | trade-off |
+|  | 2 | Whoever's awake can watch it | 54 | 0 | 0 | 54 | mood +54 | trade-off |
+|  | 3 | The sun comes back without our help | 5 | 6 | 0 | -1 | mood -4, trust +3 | trade-off |
 | the rain welcome (`Council_Dilemma_RainWelcome`) | 1 | Everyone out in the rain | 18 | 2 | 0 | 16 | trust +6, wellbeing +12, work -2 | trade-off |
 |  | 2 | Catch it in every pot, then back to work | 8 | 0 | 0 | 8 | trust +2, wellbeing +6 | trade-off |
-|  | 3 | It's only rain | 0 | 7 | 0 | -7 | mood -4, trust -3 | dominated by answer 2 |
+|  | 3 | It's only rain | 5 | 6 | 0 | -1 | mood -4, trust +3 | trade-off |
 | the blessing of the waters (`Council_Dilemma_WaterBlessing`) | 1 | Everyone to the water's edge | 24 | 2 | 0 | 22 | trust +24, work -2, goods -1 | partly scored (Faith): read by hand |
 |  | 2 | A can bless it alone | 4 | 0 | 0 | 4 | trust +4 | partly scored (Faith): read by hand |
 |  | 3 | Bread is for eating | 0 | 7 | 0 | -7 | mood -4, trust -3 | partly scored (Faith): read by hand |
-| the marsh lights (`Council_Dilemma_MarshLights`) | 1 | Everyone out with the torches | 54 | 4 | 0 | 50 | mood +48, trust +6, work -2, goods -2 | easy: best by 30 |
-|  | 2 | One torch at each door | 21 | 1 | 0 | 20 | mood +19, trust +2, goods -1 | trade-off |
-|  | 3 | Keep the wood for the fires | 0 | 7 | 0 | -7 | mood -4, trust -3 | dominated by answer 2 |
-| the high watch (`Council_Dilemma_HighWatch`) | 1 | Everyone up to the high ground | 23 | 2 | 0 | 20 | trust +16, wellbeing +6, work -2 | easy: best by 18 |
-|  | 2 | Those who want to can climb | 4 | 2 | 0 | 2 | trust +2, wellbeing +3, work -2 | dominated by answer 1 |
+| the marsh lights (`Council_Dilemma_MarshLights`) | 1 | Everyone out with the torches | 54 | 4 | 0 | 50 | mood +48, trust +6, work -2, goods -2 | trade-off |
+|  | 2 | One torch at each door | 36 | 1 | 0 | 35 | mood +36, goods -1 | trade-off |
+|  | 3 | Keep the wood for the fires | 4 | 6 | 0 | -2 | mood -4, trust +2 | trade-off |
+| the high watch (`Council_Dilemma_HighWatch`) | 1 | Everyone up to the high ground | 14 | 2 | 0 | 12 | trust +8, wellbeing +6, work -2 | trade-off |
+|  | 2 | Those who want to can climb | 5 | 1 | 0 | 3 | trust +2, wellbeing +3, work -1 | trade-off |
 |  | 3 | We can see enough from here | 0 | 7 | 0 | -7 | mood -4, trust -3 | trade-off |
 | the night vigil (`Council_Dilemma_NightVigil`) | 1 | Keep the vigil together | 80 | 5 | 0 | 75 | mood +65, trust +6, wellbeing +10, work -5 | partly scored (Faith): read by hand |
 |  | 2 | A short vigil, then bed | 10 | 2 | 0 | 9 | mood +9, trust +2, work -2 | partly scored (Faith): read by hand |
@@ -763,36 +781,36 @@ Flagged:
 | a say in the operation (`Council_DlmH_FamilySay`) | 1 | Go ahead as planned | 4 | 15 | 0 | -11 | mood -8, trust -3 | partly scored (PutOffSurgery): read by hand |
 |  | 2 | Put it off until they've talked it through | 12 | 2 | 0 | 10 | mood +7, trust +3, work -0 | partly scored (PutOffSurgery): read by hand |
 |  | 3 | B stays at A's side through it | 25 | 0 | 0 | 25 | mood +21, relations +4, work -0 | partly scored (PutOffSurgery): read by hand |
-| the midwife's apprentice (`Council_DlmH_MidwifeApprentice`) | 1 | B learns from A | 35 | 0 | 0 | 34 | mood +24, work -0, skill +11 | easy: best by 28 |
-|  | 2 | Not now | 0 | 4 | 0 | -4 | mood -4 | dominated by answer 1; dominated by answer 3 |
-|  | 3 | B watches the next birth | 6 | 0 | 0 | 6 | mood +4, skill +2 | dominated by answer 1 |
+| the midwife's apprentice (`Council_DlmH_MidwifeApprentice`) | 1 | B learns from A | 35 | 5 | 0 | 30 | mood +24, wellbeing -2, work -3, skill +11 | trade-off |
+|  | 2 | Not now | 3 | 4 | 0 | -1 | mood -4, trust +3 | trade-off |
+|  | 3 | B watches the next birth | 21 | 0 | 0 | 21 | mood +15, skill +6 | trade-off |
 
 ### Council_Dilemmas_Seasons.xml
 
 | Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
 |---|---|---|---|---|---|---|---|---|
-| midsummer night (`Council_Dilemma_Midsummer`) | 1 | Light the bonfire | 112 | 30 | 0 | 81 | mood +90, trust +8, work -11, goods -5 | easy: best by 38 |
+| midsummer night (`Council_Dilemma_Midsummer`) | 1 | Light the bonfire | 112 | 40 | 0 | 72 | mood +80, trust +8, work -11, goods -5 | trade-off |
 |  | 2 | Save the wood this year | 0 | 33 | 0 | -33 | mood -29, trust -4 | trade-off |
-|  | 3 | A small fire, no drinking | 48 | 5 | 0 | 43 | mood +48, work -4, goods -1 | trade-off |
-| harvest home (`Council_Dilemma_HarvestHome`) | 1 | A harvest feast for everyone | 153 | 33 | 0 | 120 | mood +125, trust +9, work -7, goods -7 | easy: best by 77 |
+|  | 3 | A small fire, no drinking | 56 | 5 | 0 | 51 | mood +48, wellbeing +8, work -4, goods -1 | trade-off |
+| harvest home (`Council_Dilemma_HarvestHome`) | 1 | A harvest feast for everyone | 153 | 43 | 0 | 110 | mood +115, trust +9, work -7, goods -7 | trade-off |
 |  | 2 | Store every scrap for winter | 0 | 47 | 0 | -47 | mood -41, trust -6 | trade-off |
-|  | 3 | A modest supper | 51 | 9 | 0 | 42 | mood +48, trust +3, work -4, goods -5 | trade-off |
-| the longest night (`Council_Dilemma_Midwinter`) | 1 | Extra rations for the long night | 126 | 14 | 0 | 112 | mood +120, trust +6, work -7, goods -7 | easy: best by 68 |
-|  | 2 | Stories by the fire, no feast | 51 | 7 | 0 | 44 | mood +48, trust +3, work -7 | trade-off |
+|  | 3 | A modest supper | 89 | 9 | 0 | 81 | mood +86, trust +3, work -4, goods -5 | trade-off |
+| the longest night (`Council_Dilemma_Midwinter`) | 1 | Extra rations for the long night | 102 | 33 | 0 | 69 | mood +77, trust +6, work -7, goods -7 | trade-off |
+|  | 2 | Stories by the fire, no feast | 59 | 7 | 0 | 52 | mood +48, trust +3, wellbeing +8, work -7 | trade-off |
 |  | 3 | Just another night | 0 | 26 | 0 | -26 | mood -26 | trade-off |
 | naming the year (`Council_Dilemma_NameTheYear`) | 1 | The year of A | 57 | 16 | 0 | 41 | mood +32, trust +9 | trade-off |
-|  | 2 | Name it for those we lost | 230 | 5 | 0 | 226 | mood +230, trust -3, work -2 | easy: best by 158 |
+|  | 2 | Name it for those we lost | 86 | 5 | 0 | 82 | mood +86, trust -3, work -2 | trade-off |
 |  | 3 | The year of the muffalo | 72 | 4 | 0 | 68 | mood +72, trust -4 | trade-off |
 | the spoils (`Council_Dilemma_Spoils`) | 1 | A earned first pick | 22 | 14 | 0 | 8 | mood +1, trust +8 | trade-off |
-|  | 2 | Share everything equally | 9 | 4 | 0 | 4 | trust +4 | dominated by answer 1 |
+|  | 2 | Share everything equally | 9 | 6 | 0 | 3 | mood -6, trust +9 | trade-off |
 |  | 3 | The fighters get the spoils | 9 | 14 | 0 | -5 | mood -14, trust +6, work +3 | trade-off |
 |  | 4 | Let the quartermaster share it out | 14 | 0 | 13 (35%) | 1 | mood -10, trust +11 | trade-off (gated) |
-| the enemy dead (`Council_Dilemma_EnemyDead`) | 1 | Give them graves | 12 | 19 | 0 | -8 | mood -12, trust +4 | trade-off |
-|  | 2 | Burn them | 8 | 10 | 0 | -2 | mood -2 | dominated by answer 4; dominated by answer 5 |
-|  | 3 | Drag them to the treeline | 1 | 102 | 0 | -101 | mood -102, trust +1 | dominated by answer 1; dominated by answer 4 |
-|  | 4 | One grave for all of them | 12 | 0 | 0 | 12 | mood +9, trust +3 | easy: best by 12 |
-|  | 5 | Into the crematorium | 0 | 0 | 0 | 0 | nothing scored | dominated by answer 4 |
-| after the battle (`Council_Dilemma_VictoryFeast`) | 1 | A victory feast | 120 | 14 | 0 | 106 | mood +96, trust +24, work -7, goods -7 | easy: best by 43 |
+| the enemy dead (`Council_Dilemma_EnemyDead`) | 1 | Give them graves | 15 | 19 | 0 | -5 | mood -12, trust +8 | trade-off |
+|  | 2 | Burn them | 12 | 10 | 0 | 3 | mood -2, trust +4 | trade-off |
+|  | 3 | Drag them to the treeline | 9 | 102 | 0 | -93 | mood -102, trust +9 | trade-off |
+|  | 4 | One grave for all of them | 12 | 0 | 0 | 12 | mood +9, trust +3 | trade-off |
+|  | 5 | Into the crematorium | 6 | 10 | 0 | -3 | mood -10, trust +6 | trade-off |
+| after the battle (`Council_Dilemma_VictoryFeast`) | 1 | A victory feast | 108 | 28 | 0 | 80 | mood +82, trust +12, work -7, goods -7 | trade-off |
 |  | 2 | Repairs first, celebrations later | 4 | 29 | 0 | -24 | mood -29, trust +2, work +3 | trade-off |
 |  | 3 | A quick hot meal, then the walls | 48 | 7 | 0 | 41 | mood +48, work -2, goods -5 | trade-off |
 |  | 4 | Have the best cook stretch half the food | 100 | 12 | 24 (50%) | 64 | mood +72, trust +2, work -5, goods -5 | trade-off (gated) |
@@ -809,54 +827,54 @@ Flagged:
 |  | 2 | Let it go, they're guests | 0 | 22 | 0 | -22 | mood -17, trust -4 | trade-off |
 |  | 3 | Throw the lot of them out | 26 | 14 | 0 | 12 | mood +16, trust +6, outside -10 | trade-off |
 |  | 4 | Ask our best talker to settle it | 29 | 0 | 20 (40%) | 9 | mood +8, trust +2, outside -1 | trade-off (gated) |
-| the trader's eye (`Council_DlmS_HeirloomOffer`) | 1 | Sell it | 10 | 79 | 0 | -69 | mood -72, trust -6, work -1, goods +10 | trade-off |
-|  | 2 | Haggle until it hurts | 10 | 78 | 0 (35%) | -68 | mood -44, trust -4, goods +6, outside -1 | trade-off |
-|  | 3 | It stays with A | 11 | 4 | 0 | 7 | mood +4, trust +3 | easy: best by 75 |
+| the trader's eye (`Council_DlmS_HeirloomOffer`) | 1 | Sell it | 27 | 36 | 0 | -9 | mood -32, trust -3, work -1, goods +27 | trade-off |
+|  | 2 | Haggle until it hurts | 38 | 38 | 0 (35%) | -0 | mood -18, trust -4, goods +24, outside -1 | trade-off |
+|  | 3 | It stays with A | 11 | 14 | 0 | -3 | mood -6, trust +3 | trade-off |
 | a voice through the door (`Council_DlmS_PrisonerPlea`) | 1 | Let X go home | 35 | 10 | 0 | 25 | mood +14, trust +6, outside +5 | trade-off |
 |  | 2 | Hear X out properly | 22 | 0 | 0 | 21 | trust +2, relations +11, work -0, skill +4, outside +5 | trade-off |
-|  | 3 | Keep the door locked | 0 | 16 | 0 | -16 | mood -12, trust -4 | dominated by answer 1; dominated by answer 2 |
+|  | 3 | Keep the door locked | 9 | 12 | 0 | -3 | mood -12, trust +9 | trade-off |
 | the one still breathing (`Council_DlmS_FallenPlea`) | 1 | Take X prisoner | 1 | 4 | 0 | -3 | mood -4, trust +1 | partly scored (Capture, EndIt): read by hand |
 |  | 2 | End it quickly | 6 | 33 | 0 | -27 | mood -25, trust -2 | partly scored (Capture, EndIt): read by hand |
 |  | 3 | Leave X where X lies | 0 | 11 | 0 | -11 | mood -10, trust -1 | partly scored (Capture, EndIt): read by hand |
-| hungry at the gate (`Council_DlmS_Beggars`) | 1 | Fill their sacks | 8 | 10 | 0 | -2 | mood -5, goods -5, outside +8 | dominated by answer 4 |
-|  | 2 | Give them silver instead | 5 | 8 | 0 | -3 | mood -2, goods -6, outside +5 | dominated by answer 4 |
+| hungry at the gate (`Council_DlmS_Beggars`) | 1 | Fill their sacks | 15 | 10 | 0 | 5 | mood -5, goods -5, outside +15 | trade-off |
+|  | 2 | Give them silver instead | 8 | 8 | 0 | -0 | mood -2, goods -6, outside +8 | trade-off |
 |  | 3 | Turn them away | 0 | 13 | 0 | -13 | mood -10, trust -1, outside -2 | trade-off |
-|  | 4 | Send them home with seed, and a grower's advice | 22 | 2 | 0 | 20 | mood +12, work -0, goods -2, outside +10 | easy: best by 22 (gated) |
-| teeth marks (`Council_DlmS_PetBit`) | 1 | Pay for the bite | 2 | 14 | 0 | -12 | mood -6, goods -8, outside +2 | trade-off |
-|  | 2 | Stand by {PET_definite} | 20 | 8 | 0 | 12 | mood +15, trust +4, outside -8 | easy: best by 24 |
-|  | 3 | Hand {PET_definite} over to them | 5 | 112 | 0 | -107 | mood -90, trust -12, goods -10, outside +5 | trade-off |
-| the den in the brush (`Council_DlmS_PredatorDen`) | 1 | Hunt it | 0 | 9 | 0 | -9 | mood -6, trust -3 | dominated by answer 2 |
-|  | 2 | Let B try to tame it | 16 | 5 | 0 | 11 | mood +7, trust +4 | easy: best by 20 |
-|  | 3 | Leave it alone | 0 | 22 | 0 (30%) | -22 | mood -22 | dominated by answer 2 |
-| can I keep it (`Council_DlmS_ChildPet`) | 1 | Let A keep it | 104 | 2 | 0 | 101 | mood +34, trust +8, people +60 | easy: best by 82 |
-|  | 2 | Let the handlers try, properly | 19 | 0 | 0 | 19 | mood +12, trust +3, skill +4 | trade-off |
-|  | 3 | No, and that's final | 0 | 20 | 5 (25%) | -26 | mood -16, trust -4, work -5 | dominated by answer 1; dominated by answer 2 |
-| a titled critic (`Council_DlmS_NobleSneer`) | 1 | Say nothing and smile | 3 | 23 | 0 | -20 | mood -20, trust -3, outside +3 | dominated by answer 3 |
+|  | 4 | Send them home with seed, and a grower's advice | 16 | 2 | 0 | 14 | mood +12, work -0, goods -2, outside +4 | trade-off (gated) |
+| teeth marks (`Council_DlmS_PetBit`) | 1 | Pay for the bite | 10 | 11 | 0 | -1 | mood -6, goods -5, outside +10 | trade-off |
+|  | 2 | Stand by {PET_definite} | 20 | 12 | 0 | 8 | mood +15, trust +4, outside -12 | trade-off |
+|  | 3 | Hand {PET_definite} over to them | 12 | 112 | 0 | -100 | mood -90, trust -12, goods -10, outside +12 | trade-off |
+| the den in the brush (`Council_DlmS_PredatorDen`) | 1 | Hunt it | 5 | 8 | 0 | -2 | mood -6, trust +4 | trade-off |
+|  | 2 | Let B try to tame it | 14 | 6 | 0 | 7 | mood +6, trust +2 | trade-off |
+|  | 3 | Leave it alone | 5 | 13 | 0 (30%) | -8 | mood -13, trust +5 | trade-off |
+| can I keep it (`Council_DlmS_ChildPet`) | 1 | Let A keep it | 40 | 2 | 0 | 37 | mood +18, trust +4, goods +15 | trade-off |
+|  | 2 | Let the handlers try, properly | 29 | 0 | 0 | 29 | mood +16, trust +3, skill +10 | trade-off |
+|  | 3 | No, and that's final | 8 | 18 | 5 (25%) | -14 | mood -16, trust +7, work -5 | trade-off |
+| a titled critic (`Council_DlmS_NobleSneer`) | 1 | Say nothing and smile | 6 | 23 | 0 | -17 | mood -20, trust -3, outside +6 | trade-off |
 |  | 2 | Let A answer back | 24 | 8 | 0 | 16 | mood +20, trust +4, outside -8 | trade-off |
 |  | 3 | Ask what would please X | 10 | 3 | 0 | 7 | mood -3, skill +8, outside +2 | trade-off |
 | the miracle tonic (`Council_DlmS_Tonic`) | 1 | Buy A the tonic | 20 | 10 | 18 (50%) | -8 | wellbeing +1, work +1, goods -10 | trade-off |
-|  | 2 | Make X drink some first | 17 | 6 | 6 (40%) | 5 | mood +9, work +1, goods -4, outside -1 | dominated by answer 4 |
+|  | 2 | Make X drink some first | 22 | 6 | 8 (40%) | 8 | mood +9, work +1, goods -4, outside +2 | trade-off |
 |  | 3 | Keep the silver | 0 | 1 | 0 | -1 | mood -1 | trade-off |
 |  | 4 | Have our doctor mix a sleeping draught | 13 | 2 | 0 | 11 | mood +12, work +1, goods -2 | trade-off (gated) |
 | a face from before (`Council_DlmS_OldAcquaintance`) | 1 | Pay for X silence | 22 | 19 | 4 (20%) | -1 | mood +8, trust +6, goods -15 | partly scored (RevealSecret): read by hand |
 |  | 2 | Let X talk | 0 | 30 | 0 | -30 | mood -24, trust -6 | partly scored (RevealSecret): read by hand |
 |  | 3 | Threaten X | 16 | 14 | 11 (40%) | -8 | mood +5, trust +3, work -6, outside -10 | partly scored (RevealSecret): read by hand |
-| the beast at the tree line (`Council_DlmS_BeastReturns`) | 1 | Hunt it down now | 12 | 4 | 0 | 8 | mood +8 | easy: best by 30 |
-|  | 2 | Keep everyone inside | 0 | 43 | 0 | -43 | mood -43 | dominated by answer 1; dominated by answer 3 |
-|  | 3 | Try to tame it | 0 | 22 | 0 (35%) | -22 | mood -22 | dominated by answer 1 |
-| the one in the cell (`Council_DlmS_NemesisInChains`) | 1 | Execute X | 58 | 9 | 0 | 48 | mood +43, trust +6 | easy: best by 66 |
-|  | 2 | Let X rot in there | 0 | 18 | 0 | -18 | mood -18 | dominated by answer 1 |
-|  | 3 | Try to recruit X | 0 | 84 | 0 | -84 | mood -80, trust -4 | dominated by answer 1; dominated by answer 2 |
-| a fair offer (`Council_DlmS_BuyTheAnimal`) | 1 | Sell {PET_objective} | 12 | 83 | 0 | -71 | mood -65, trust -8, goods +2 | trade-off |
-|  | 2 | Name a price X won't pay | 25 | 83 | 0 (60%) | -58 | mood -19, trust -3, goods +6, outside -1 | trade-off |
-|  | 3 | Not for sale | 15 | 5 | 0 | 10 | mood +8, trust +3, outside -1 | easy: best by 69 |
+| the beast at the tree line (`Council_DlmS_BeastReturns`) | 1 | Hunt it down now | 12 | 4 | 4 (30%) | 4 | mood +4 | trade-off |
+|  | 2 | Keep everyone inside | 3 | 43 | 0 | -40 | mood -43, trust +3 | trade-off |
+|  | 3 | Try to tame it | 0 | 22 | 0 (35%) | -22 | mood -22 | trade-off |
+| the one in the cell (`Council_DlmS_NemesisInChains`) | 1 | Execute X | 28 | 25 | 0 | 4 | mood +1, trust +3 | trade-off |
+|  | 2 | Let X rot in there | 5 | 10 | 0 | -5 | mood -10, trust +5 | trade-off |
+|  | 3 | Try to recruit X | 15 | 84 | 0 | -70 | mood -80, trust -4, people +15 | trade-off |
+| a fair offer (`Council_DlmS_BuyTheAnimal`) | 1 | Sell {PET_objective} | 12 | 35 | 0 | -23 | mood -17, trust -8, goods +2 | trade-off |
+|  | 2 | Name a price X won't pay | 25 | 35 | 0 (60%) | -10 | mood +1, trust -3, goods +6, outside -1 | trade-off |
+|  | 3 | Not for sale | 15 | 27 | 0 | -12 | mood -10, trust +3, outside -5 | trade-off |
 | the traveling healer (`Council_DlmS_Healer`) | 1 | Pay the healer | 29 | 9 | 9 (30%) | 11 | mood +12, work -1, skill +7, goods -8 | trade-off |
-|  | 2 | Pay X to teach B | 36 | 13 | 0 | 23 | mood +9, trust +3, work -1, skill +18, goods -6 | easy: best by 12 |
+|  | 2 | Pay X to teach B | 31 | 13 | 0 | 18 | mood +9, trust +3, work -1, skill +13, goods -6 | trade-off |
 |  | 3 | Keep the silver | 0 | 8 | 0 | -8 | mood -6, trust -2 | trade-off |
 |  | 4 | Let B treat it, with our own medicine | 37 | 6 | 20 (50%) | 11 | mood +13, work -1, skill +4, goods -5 | trade-off (gated) |
-| family in the cells (`Council_DlmS_KinInChains`) | 1 | Let X go home | 36 | 4 | 0 | 32 | mood +21, trust +6, outside +5 | trade-off |
-|  | 2 | Let A talk X round | 28 | 0 | 0 | 27 | mood +12, trust +3, work -0, outside +12 | trade-off |
-|  | 3 | Treat X like any other prisoner | 0 | 34 | 0 | -34 | mood -30, trust -4 | dominated by answer 1; dominated by answer 2 |
+| family in the cells (`Council_DlmS_KinInChains`) | 1 | Let X go home | 34 | 4 | 0 | 31 | mood +21, trust +4, outside +5 | trade-off |
+|  | 2 | Let A talk X round | 42 | 0 | 0 | 42 | mood +12, trust +3, work -0, people +15, outside +12 | trade-off |
+|  | 3 | Treat X like any other prisoner | 7 | 32 | 0 | -24 | mood -30, trust +6 | trade-off |
 
 ### Rimfolk_Dilemmas_Camps.xml
 
@@ -869,11 +887,11 @@ Flagged:
 | missing from the camp (`Rimfolk_DlmC_Theft`) | 1 | Search the colony for it ourselves | 4 | 1 | 0 | 3 | trust +2, work -1, outside +3 | trade-off |
 |  | 2 | Pay them what it was worth ({COUNT} silver) | 5 | 15 | 0 | -10 | mood -9, goods -6, outside +5 | trade-off |
 |  | 3 | Our people don't steal | 3 | 9 | 0 | -6 | trust +3, outside -9 | trade-off |
-|  | 4 | Let A go and answer for it | 4 | 0 | 7 (35%) | -4 | mood -4, trust +1 | dominated by answer 1 |
+|  | 4 | Let A go and answer for it | 10 | 0 | 9 (35%) | 1 | mood -4, trust +4, outside +2 | trade-off |
 | one of theirs in the storeroom (`Rimfolk_DlmC_CaughtInStores`) | 1 | Let X keep the sack, and add to it | 7 | 4 | 0 | 3 | mood -1, goods -3, outside +7 | trade-off |
 |  | 2 | X works it off | 3 | 1 | 0 | 2 | goods +3, outside -1 | trade-off |
-|  | 3 | Take it to their elders | 1 | 2 | 0 | -1 | outside -1 | dominated by answer 2 |
-|  | 4 | Keep the camp out of the colony | 0 | 16 | 0 | -16 | mood -5, outside -12 | dominated by answer 2; dominated by answer 3 |
+|  | 3 | Take it to their elders | 2 | 0 | 0 | 2 | outside +2 | trade-off |
+|  | 4 | Keep the camp out of the colony | 4 | 16 | 0 | -12 | mood -5, trust +4, outside -12 | trade-off |
 | their beasts in the fields (`Rimfolk_DlmC_HerdInFields`) | 1 | Drive them out now | 0 | 3 | 0 | -3 | outside -3 | partly scored (CampGives, CampHerd): read by hand |
 |  | 2 | Have B walk them back with their people | 6 | 0 | 0 | 5 | skill +2, outside +3 | partly scored (CampGives, CampHerd): read by hand (gated) |
 |  | 3 | Make them pay for the damage | 0 | 5 | 0 | -5 | outside -5 | partly scored (CampGives, CampHerd): read by hand |
