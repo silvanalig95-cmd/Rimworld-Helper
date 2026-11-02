@@ -493,7 +493,7 @@
         <li>[gate] We'll keep an eye on the gate, all of us.</li>
         <li>[beside] I'll sit up with {OTHER_nameDef}.</li>
         <li>[fields] Spread out along the fields and keep your eyes open.</li>
-        <li>[walls] I'll take the far side. Walk it slow and keep your eyes out.</li>
+        <li>[walls] I'll take the far side, so walk it slow and keep your eyes out.</li>
       </plain>
       <warm>
         <li>Come and sit by me, it's warmer with two.</li>

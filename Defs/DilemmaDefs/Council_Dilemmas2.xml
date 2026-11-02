@@ -706,7 +706,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.4</chance></li>
-          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the hauling race</label><target>AAndB</target><tasks><li>Stone</li></tasks><hours>11~18</hours><duration>2.5~3.5</duration><lines><li>That one's mine. Count it.</li><li>You dropped that one. It doesn't count.</li></lines></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the hauling race</label><target>AAndB</target><tasks><li>Stone</li></tasks><hours>11~18</hours><duration>2.5~3.5</duration><lines><li>That one's mine, count it.</li><li>You dropped that one, so it doesn't count.</li></lines></li>
         </effects>
         <riskChance>0.45</riskChance>
         <riskOutcome>{A_nameDef} and {B_nameDef} raced each other hauling stone. The loser accused the winner of cheating, and it came to blows.</riskOutcome>

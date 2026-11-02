@@ -165,8 +165,8 @@
     <onEnact>
       <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the first muster</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>16~20</hours><duration>0.75~1</duration>
         <lines>
-          <li>Two lines, the long weapons in front. Again. And again.</li>
-          <li>Nobody is good at this yet. That's what the evenings are for.</li>
+          <li>Two lines, the long weapons in front, again, and again.</li>
+          <li>Nobody is good at this yet, and that's what the evenings are for.</li>
         </lines>
       </li>
     </onEnact>

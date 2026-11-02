@@ -22,7 +22,7 @@
         <li>Don't anyone say a word about the {THING}.</li>
       </plain>
       <warm>
-        <li>I'm sorry, everyone. There's bread, at least.</li>
+        <li>I'm sorry, everyone, there's bread, at least.</li>
       </warm>
       <blunt>
         <li>Burned. Eat the bread.</li>
@@ -31,10 +31,10 @@
         <li>Well, it's very well done.</li>
       </cheerful>
       <gloomy>
-        <li>Of course it burned. Of course it did.</li>
+        <li>Of course it burned, of course it did.</li>
       </gloomy>
       <cold>
-        <li>The {THING} is ruined. Serve the rest.</li>
+        <li>The {THING} is ruined, so serve the rest.</li>
       </cold>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -164,11 +164,11 @@
     <lines>
       <plain>
         <li>[byother] Has {NAME} ever told you about {LABEL}?</li>
-        <li>[byother] Ask {NAME} about {LABEL} some time. Or I'll tell you now.</li>
+        <li>[byother] Ask {NAME} about {LABEL} some time, or I'll tell you now.</li>
         <li>[byme] I'd better tell you about {LABEL} before {NAME} does.</li>
-        <li>[byme] You've heard about {LABEL}? No? Sit down.</li>
+        <li>[byme] Sit down, have you heard about {LABEL}?</li>
         <li>You weren't there for {LABEL}, were you, {OTHER}?</li>
-        <li>So {NAME} and I, and {LABEL}. You have to hear this.</li>
+        <li>So {NAME} and I, and {LABEL}, you have to hear this.</li>
       </plain>
       <warm>
         <li>I've been saving this one for you, {OTHER}: {LABEL}.</li>
@@ -177,10 +177,10 @@
         <li>{LABEL}. You need to know about it.</li>
       </blunt>
       <cheerful>
-        <li>[byother] Oh, you've never heard about {LABEL}? It's the best one!</li>
+        <li>[byother] Oh, you've never heard about {LABEL}, it's the best one!</li>
       </cheerful>
       <gloomy>
-        <li>You missed {LABEL}. You miss all the good ones.</li>
+        <li>You missed {LABEL}, you miss all the good ones.</li>
       </gloomy>
       <cold>
         <li>For the record, {OTHER}, there was {LABEL}.</li>
@@ -192,7 +192,7 @@
     <defName>Rimfolk_JokeRetold_Reply</defName>
     <lines>
       <plain>
-        <li>[byother] No. {NAME} didn't. Go on.</li>
+        <li>[byother] No, {NAME} didn't, go on.</li>
         <li>[byother] Wait until I see {NAME}.</li>
         <li>[byme] You did not.</li>
         <li>[byme] You never. Really?</li>

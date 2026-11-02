@@ -32,23 +32,23 @@
           <li>[!lowtech,notale] Tuning a dented instrument by the door, {X_nameDef} of {FACTION} asks for a bed. There'll be stories after supper, {X_nameDef} says, for anyone who stays up.</li>
         </texts>
         <lines>
-          <li>...and the dragon said...</li>
-          <li>...three days without water...</li>
-          <li>...and that's why you never trust a muffalo...</li>
-          <li>...the prince never saw it coming...</li>
-          <li>...a storm like you've never seen...</li>
-          <li>...and they all lived, more or less...</li>
-          <li>...on the far side of the mountains...</li>
-          <li>[!lowtech] ...the ship came down in flames...</li>
-          <li>[!lowtech] ...on a glitterworld, they say...</li>
-          <li>[lowtech] ...the old king's crown...</li>
-          <li>[lowtech] ...a knight with no name...</li>
-          <li>...and that's how the hill got its name...</li>
-          <li>...nobody ever saw the cart again...</li>
-          <li>...so she counted the sheep a second time...</li>
-          <li>...and the river ran the wrong way for a day...</li>
-          <li>[lowtech] ...the miller's three sons...</li>
-          <li>[!lowtech] ...the lights in the old city came back on...</li>
+          <li>…and the dragon said…</li>
+          <li>…three days without water…</li>
+          <li>…and that's why you never trust a muffalo…</li>
+          <li>…the prince never saw it coming…</li>
+          <li>…a storm like you've never seen…</li>
+          <li>…and they all lived, more or less…</li>
+          <li>…on the far side of the mountains…</li>
+          <li>[!lowtech] …the ship came down in flames…</li>
+          <li>[!lowtech] …on a glitterworld, they say…</li>
+          <li>[lowtech] …the old king's crown…</li>
+          <li>[lowtech] …a knight with no name…</li>
+          <li>…and that's how the hill got its name…</li>
+          <li>…nobody ever saw the cart again…</li>
+          <li>…so she counted the sheep a second time…</li>
+          <li>…and the river ran the wrong way for a day…</li>
+          <li>[lowtech] …the miller's three sons…</li>
+          <li>[!lowtech] …the lights in the old city came back on…</li>
         </lines>
         <!-- The colony gathers round to hear the tales (PlayOut/): those who come are near enough to be told them. -->
         <effects>

@@ -44,11 +44,11 @@
     <pool>Council_Pool_ObjectMercy</pool>
     <lines>
       <plain>
-        <li>{ABOUT_nameDef} has seen our walls from the inside, and I'd rather that didn't go home with {ABOUT_objective}.</li>
+        <li>{ABOUT_nameDef} has seen inside our walls; that can't go home with {ABOUT_objective}.</li>
         <li>Mercy's a fine thing, {OTHER_nameDef}, but point it at someone who hasn't shot at us.</li>
       </plain>
       <warm>
-        <li>I understand the kindness, {OTHER_nameDef}, but I'm afraid of what it'll cost the rest of us.</li>
+        <li>I see the kindness, {OTHER_nameDef}, but I'm afraid of what it'll cost the rest of us.</li>
         <li>I don't want {ABOUT_nameDef} hurt, but I don't want {ABOUT_objective} free yet, either.</li>
       </warm>
       <blunt>

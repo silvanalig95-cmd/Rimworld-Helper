@@ -691,7 +691,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_ThankedByName</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>the thanks to {A_nameDef}</label><hours>17~22</hours><lines><li>To {A_nameDef}, and the harvest.</li><li>Stand up, {A_nameDef}. Let them see you.</li></lines></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>the thanks to {A_nameDef}</label><hours>17~22</hours><lines><li>To {A_nameDef}, and the harvest.</li><li>Stand up, {A_nameDef}, and let them see you.</li></lines></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.5</chance></li>
         </effects>
       </li>

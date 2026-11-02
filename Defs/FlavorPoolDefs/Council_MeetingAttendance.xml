@@ -72,7 +72,7 @@
       </cheerful>
       <gloomy>
         <li>I'd let you sleep if I could, {OTHER_nameDef}, but the council's meeting.</li>
-        <li>Another meeting, {OTHER_nameDef}. I know, I know.</li>
+        <li>Another meeting, {OTHER_nameDef}, I know, I know.</li>
       </gloomy>
       <cold>
         <li>{OTHER_nameDef}, you're expected at the council.</li>
