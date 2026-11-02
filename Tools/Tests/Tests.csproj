@@ -54,6 +54,7 @@
     <Compile Include="../../Source/ColonyCouncil/Couriers/CourierMath.cs" Link="CourierMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/OnMapMath.cs" Link="OnMapMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorMath.cs" Link="VisitorMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorWork2Math.cs" Link="VisitorWork2Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorActsMath.cs" Link="VisitorActsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampLookMath.cs" Link="CampLookMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampWeatherMath.cs" Link="CampWeatherMath.cs" />

@@ -391,6 +391,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
         Console.WriteLine($"Checked {VisitorWorkTests.Run(root, Check)} things about visitors doing what their letters say (work, roofs, the wall).");
         Console.WriteLine($"Checked {VisitorActsTests.Run(root, Check)} things about visitors and the colony's things (the instrument, fair game, the dead they carry, guest beds).");
+        Console.WriteLine($"Checked {VisitorsMore2Tests.Run(root, Check)} things about visitors for what the colony keeps (the relic, the anima tree, kin, the gravship, books, regulars' lives).");
         Console.WriteLine($"Checked {StoryChainTests.Run(root, Check)} things about story chains told from data and event variants (routes, endings, flags, answers).");
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");

@@ -465,3 +465,7 @@ Council_DlmA_ResidentPokemon [option 2] the colonist walks out to the Pokémon a
 # Defs/WorldSituationDefs/Rimfolk_WS_New.xml
 Council_WS_OrbitalLanes [agent/0] the goods are carried out to the agent at the gate in the effect's own code (WorldEffect_Sell toVisitor, a CarryOut to the stranger)
 Council_WS_OrbitalLanes [agent/1] the goods are carried out to the agent at the gate in the effect's own code (WorldEffect_Sell toVisitor, a CarryOut to the stranger); the risk is a refusal
+
+# Defs/IncidentDefs/Rimfolk_Events_VisitorsMore2.xml
+Rimfolk_Evt_RelicPilgrims [option 3] a refusal: the pilgrims are sent home from the gate (SendAway)
+Rimfolk_Evt_GravshipGawkers [option 2] a refusal: the gawkers are sent home from the gate (SendAway)

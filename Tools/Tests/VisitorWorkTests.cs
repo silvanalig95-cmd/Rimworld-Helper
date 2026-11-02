@@ -27,6 +27,8 @@ public static class VisitorWorkTests
         var m = Regex.Match(src, @"public const string Prospect = ""([a-z]+)"", Glean = ""([a-z]+)"", Sing = ""([a-z]+)"", Hunt = ""([a-z]+)""");
         C(m.Success, "the kinds of work are read from the code");
         var kinds = Enumerable.Range(1, 4).Select(i => m.Groups[i].Value).ToList();
+        // The second round's kinds have their own hours and jobs (VisitorsMore2Tests).
+        var known = kinds.Concat(ColonyCouncil.VisitorWork2Math.Kinds).ToList();
         foreach (var k in kinds) C(Regex.IsMatch(src, "case " + char.ToUpper(k[0]) + k.Substring(1) + @": return hour"), $"{k} has its hours");
 
         // Each kind has its job, with the work it's for.
@@ -64,7 +66,7 @@ public static class VisitorWorkTests
                 if (w != null)
                 {
                     works++;
-                    C(kinds.Contains(w), $"{Path.GetFileName(file)}: work {w} is known");
+                    C(known.Contains(w), $"{Path.GetFileName(file)}: work {w} is known");
                 }
                 if ((string)e.Attribute("Class") != "ColonyCouncil.VisitEffect_Stay") continue;
                 string outcome = e.Parent?.Parent?.Element("outcome")?.Value;

@@ -388,6 +388,7 @@ MODEL = {
     "Visitors/VisitorTracker.cs:trips": ("cap", (C["VisitorTrips"], 0.4), 700, "visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day"),
     "Visitors/VisitorTrip.cs:people": ("while", C["VisitorPeople"], P, "a visit's people, while it lasts"),
     "Visitors/VisitorTrip.cs:animals": ("while", C["VisitorAnimals"], P, "a visit's animals (a pack beast, a family's dog, a herd), while it lasts"),
+    "Visitors/VisitorsMore2.cs:deals": ("while", 2, 260, "a book swapper's bargain, while their visit lasts, two days at most (Visitors/VisitorsMore2.cs)"),
     "PlayOut/PlayOuts.cs:invited": ("fixed", 8, P, "per play-out (counted under plays)"),
     "PlayOut/PlayOuts.cs:spots": ("fixed", 2, 60, "per play-out"),
     "PlayOut/PlayOuts.cs:lines": ("fixed", 4, 120, "per play-out"),

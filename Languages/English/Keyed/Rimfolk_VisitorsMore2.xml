@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The second round of visitors (Source/ColonyCouncil/Visitors/VisitorsMore2.cs, Happenings/Workers_Visitors2.cs). -->
+  <CC_V2_TheShip>the ship</CC_V2_TheShip>
+  <CC_V2_Regular_OldAge>old age</CC_V2_Regular_OldAge>
+  <CC_V2_Book_Swapped>{PAWN_nameDef} took {BOOK} and left {LEFT} in its place.</CC_V2_Book_Swapped>
+  <CC_V2_Book_SoldLeft>{0} silver</CC_V2_Book_SoldLeft>
+  <CC_V2_Book_NoOne>The book swapper isn't at the gate any more.</CC_V2_Book_NoOne>
+  <CC_V2_Book_Gone>{0} isn't on a shelf or in storage now.</CC_V2_Book_Gone>
+
+  <!-- What each answer does (DilemmaEffect Describe). -->
+  <CC_Impact_V2Work_relic>They pray before the relic for {0} hours, inside the colony</CC_Impact_V2Work_relic>
+  <CC_Impact_V2Work_pray>They pray at the gate for {0} hours, facing the relic</CC_Impact_V2Work_pray>
+  <CC_Impact_V2Work_meditate>They meditate at the anima tree for {0} hours, feeding its grass</CC_Impact_V2Work_meditate>
+  <CC_Impact_V2Work_gawk>They walk round the gravship's hull for {0} hours</CC_Impact_V2Work_gawk>
+  <CC_Impact_V2Work_read>The swapper copies the book at the bookcase for {0} hours</CC_Impact_V2Work_read>
+  <CC_Impact_V2Work_swap>The swapper comes in to the shelf for the book</CC_Impact_V2Work_swap>
+  <CC_Impact_V2Work_day>They stay by the gate up to {0} hours for it</CC_Impact_V2Work_day>
+  <CC_Impact_V2WorkBrief>visitors at it</CC_Impact_V2WorkBrief>
+  <CC_Impact_V2Faithful>the colony's {0} of the faith</CC_Impact_V2Faithful>
+  <CC_Impact_V2NotFaithful>{0} not of the faith</CC_Impact_V2NotFaithful>
+  <CC_Impact_V2Goods>Their goods, worth about {0} silver, set down at the gate</CC_Impact_V2Goods>
+  <CC_Impact_V2GoodsBrief>their goods</CC_Impact_V2GoodsBrief>
+  <CC_Impact_V2BookGoes>{0} goes with the swapper</CC_Impact_V2BookGoes>
+  <CC_Impact_V2BookGoesBrief>the book goes</CC_Impact_V2BookGoesBrief>
+  <CC_Impact_V2BookSwap>{0} goes, and {1} comes in its place</CC_Impact_V2BookSwap>
+  <CC_Impact_V2BookSwapBrief>a book for a book</CC_Impact_V2BookSwapBrief>
+  <CC_Impact_V2BookCopy>{0} stays where it is</CC_Impact_V2BookCopy>
+  <CC_Impact_V2BookCopyBrief>the book stays</CC_Impact_V2BookCopyBrief>
+  <CC_Impact_V2Heir>{0} becomes the {1} the colony keeps up with</CC_Impact_V2Heir>
+  <CC_Impact_V2HeirBrief>a new regular</CC_Impact_V2HeirBrief>
+  <CC_Impact_V2Keepsake>A carving for {0}, set down at the gate</CC_Impact_V2Keepsake>
+  <CC_Impact_V2KeepsakeBrief>a keepsake</CC_Impact_V2KeepsakeBrief>
+
+</LanguageData>
