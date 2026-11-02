@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What to do about the moods of the newer ailments (Defs/ThoughtDefs/Rimfolk_Thoughts_Ailments_New.xml) and the
+    newer nuisances (Rimfolk_Thoughts_Nuisances_New.xml).
+  -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilGout</defName>
+    <thoughts><li>Council_Ail_Gout_Mood</li></thoughts>
+    <fix>Rest with the foot up; it passes in three to six days, a little sooner with tending. Plainer meals with fruit or vegetables and fewer drinks make it come back half as often. Only colonists of 45 or over get it.</fix>
+    <act>Rest; plainer meals, fewer drinks</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilWorkDust</defName>
+    <thoughts>
+      <li>Council_Ail_StoneDust_Mood</li>
+      <li>Council_Ail_SoreKnees_Mood</li>
+    </thoughts>
+    <fix>They pass in a few days. Stone-dust cough comes from four hours or more of mining under the mountain, or of cutting stone blocks in a closed room of 60 cells or fewer: a bigger or open stone workshop and turns at the rock face prevent it. Sore knees come from five hours or more of cleaning or sowing in a day: a second cleaner prevents them.</fix>
+    <act>Share the work out</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilRingwormWorms</defName>
+    <thoughts>
+      <li>Council_Ail_Ringworm_Mood</li>
+      <li>Council_Ail_Worms_Mood</li>
+    </thoughts>
+    <fix>Have a doctor tend it: a dose clears worms in a day, a salve shortens ringworm. Cooked meat and fish never bring worms; clean bedrooms and washing stop ringworm going round.</fix>
+    <act>Have a doctor tend it</act>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_AilSmallStings</defName>
+    <thoughts>
+      <li>Council_Ail_SmokersCough_Mood</li>
+      <li>Council_Ail_BeeStings_Mood</li>
+    </thoughts>
+    <fix>They pass on their own: bee stings in a day, a smoker's cough in a day or two without smoke. Fewer smokes keep the cough away; a beekeeper with Animals skill is stung far less.</fix>
+    <act>Passes in a day or two</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_4_25_Ailments</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_NuisanceNew</defName>
+    <thoughts>
+      <li>Council_Nuisance_ButcherSmell</li>
+      <li>Council_Nuisance_DraughtyBed</li>
+    </thoughts>
+    <fix>Fix the cause: move the butcher's table or spot out of rooms where people sleep or eat, and put an anteroom (a second door) between a bedroom and the cold outside.</fix>
+    <act>Fix the nuisance behind it</act>
+    <article>Council_Alm_C_Social</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

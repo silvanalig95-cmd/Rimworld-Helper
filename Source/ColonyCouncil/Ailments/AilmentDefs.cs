@@ -7,8 +7,9 @@ namespace ColonyCouncil
     /// <summary>
     /// What a colonist's day has to hold for an ailment to come on. Most are counted in hours over the day (an hour
     /// counts when the hourly look finds them at it), from <see cref="HeavyWork"/> to <see cref="InSpace"/>; the rest are
-    /// checked on their own (a wound, a bite, a cold in someone frail, the diet, sweets, a meal or a drink). The numbers
-    /// aren't saved anywhere, so new counted ones go before <see cref="Wound"/>.
+    /// checked on their own (a wound, a bite, a cold in someone frail, the diet, sweets, a meal, a drink or a smoke). The
+    /// numbers aren't saved anywhere, so new counted ones go before <see cref="Wound"/>; the counted ones now fill all 32
+    /// bits of the hour's look (<see cref="AilmentChecks.Sample"/>), so one more needs a wider mask.
     /// </summary>
     public enum AilmentTrigger
     {
@@ -67,6 +68,14 @@ namespace ColonyCouncil
         SnowGlare,
         /// <summary>Awake on a map in orbit (Odyssey).</summary>
         InSpace,
+        /// <summary>Mining rock under a mountain roof, or cutting stone blocks at a bench in a closed room of 60 cells or fewer.</summary>
+        StoneDust,
+        /// <summary>On the knees: cleaning, or sowing.</summary>
+        Kneeling,
+        /// <summary>Handling animals: milking, shearing, training, taming.</summary>
+        Handling,
+        /// <summary>Working at an Alpha Bees beehouse or bee chamber (found by name: without the mod it never comes).</summary>
+        Beekeeping,
         /// <summary>A deep wound (bite, scratch, stab, cut) left untended for hours.</summary>
         Wound,
         /// <summary>A bite from a warm-blooded animal (one roll per bite; a bite cleaned within hours halves it).</summary>
@@ -102,7 +111,11 @@ namespace ColonyCouncil
         /// Something that should not exist: a fresh memory of one of the thoughts in <see cref="AilmentCause.after"/>, or a
         /// wound from an entity (Anomaly). Rolled once per memory, and once a day for wounds.
         /// </summary>
-        Horror
+        Horror,
+        /// <summary>Raw meat or raw fish eaten, never anything cooked (rolled per meal).</summary>
+        RawFood,
+        /// <summary>A joint, a cigarette or a cigar (rolled per smoke, likelier for someone who smokes every day).</summary>
+        Smoke
     }
 
     /// <summary>One way an ailment can come on: what the day has to hold, how many hours of it, and the chance.</summary>
@@ -138,10 +151,13 @@ namespace ColonyCouncil
     {
         public string trait;
         public string hediff;
+        /// <summary>A gene they carry, active (Biotech): a strong stomach never takes worms.</summary>
+        public string gene;
         public float factor = 1f;
 
         [Unsaved] private TraitDef traitDef;
         [Unsaved] private HediffDef hediffDef;
+        [Unsaved] private GeneDef geneDef;
         [Unsaved] private bool resolved;
 
         public bool Applies(Pawn p)
@@ -151,8 +167,10 @@ namespace ColonyCouncil
                 resolved = true;
                 if (!trait.NullOrEmpty()) traitDef = DefDatabase<TraitDef>.GetNamedSilentFail(trait);
                 if (!hediff.NullOrEmpty()) hediffDef = DefDatabase<HediffDef>.GetNamedSilentFail(hediff);
+                if (!gene.NullOrEmpty() && ModsConfig.BiotechActive) geneDef = DefDatabase<GeneDef>.GetNamedSilentFail(gene);
             }
             if (traitDef != null && p.story?.traits != null && p.story.traits.HasTrait(traitDef)) return true;
+            if (geneDef != null && p.genes != null && p.genes.HasActiveGene(geneDef)) return true;
             return hediffDef != null && p.health?.hediffSet != null && p.health.hediffSet.HasHediff(hediffDef);
         }
     }
@@ -189,6 +207,19 @@ namespace ColonyCouncil
         public List<AilmentRisk> risks;
         /// <summary>Only children get it (measles: the grown-ups had it long ago).</summary>
         public bool childrenOnly;
+        /// <summary>Only people this old or older, in human years (gout).</summary>
+        public float minAge;
+        /// <summary>
+        /// Someone who has had fruit or vegetables within <see cref="freshDays"/> gets it this much less often from a
+        /// meal or a drink (gout: half as often). 1: the diet makes no difference.
+        /// </summary>
+        public float freshFactor = 1f;
+        public float freshDays = 3f;
+        /// <summary>
+        /// A skill (SkillDef name) that makes it rarer: a beekeeper who knows animals is stung less
+        /// (<see cref="AilmentMath.SkillFactor"/>).
+        /// </summary>
+        public string skill;
         /// <summary>
         /// Only on a map of one of these biomes (BiomeDef names): an ailment of another mod's land, like the spores of
         /// Alpha Biomes' mycotic jungle. A biome that isn't in the game never matches, so without the mod it never comes.

@@ -29,7 +29,7 @@ A rare serious tier sits on top, behind its own setting: thirteen illnesses mode
       </li>
       <li>
         <heading>From the day's work</heading>
-        <text>The hours in the table don't bring an ailment on by themselves: they only make it possible that day. Then there's one small chance, about 1 in 80 for a strained back after a long day of hauling, so even someone who hauls every day goes months between strains. Some people are more at risk: older colonists, anyone who already has a bad back or is frail, and cataracts make eye strain likelier. Tough colonists get strains, sore hands and elbows, blisters, chilblains and chapped hands about half as often. The same ailment doesn't come back to the same person within about two weeks, and nobody carries more than two of these at once.</text>
+        <text>The hours in the table don't bring an ailment on by themselves: they only make it possible that day. Then there's one small chance, about 1 in 140 for a strained back after a long day of hauling, so even someone who hauls every day goes months between strains. Some people are more at risk: older colonists, anyone who already has a bad back or is frail, and cataracts make eye strain likelier. Tough colonists get strains, sore hands, elbows and knees, blisters, chilblains and chapped hands about half as often. The same ailment doesn't come back to the same person within about two weeks, and nobody carries more than two of these at once.</text>
         <table>
           <li>Ailment | Comes from | Lasts | What helps</li>
           <li>Strained back | 6 hours of hauling, mining or building in a day (never children) | 1 to 2 weeks | Bed rest at first, tending</li>
@@ -56,10 +56,17 @@ A rare serious tier sits on top, behind its own setting: thirteen illnesses mode
           <li>Insomnia | 8 hours of worry in a day (mood under 30%, or strain of 30 or more), or 3 hours awake between midnight and five (never night owls) | 4 to 7 days | A regular bedtime and fewer late nights; tending</li>
           <li>Migraine | 6 hours hungry or 6 hours of worry in a day (rarely in children) | About a day, half that in bed | A dark room and rest; tending, industrial best</li>
           <li>Cold sore | 8 hours of worry or 4 hours in the midday heat; 1 in 10 colds leave one | 4 to 7 days | Tending, industrial best (an antiviral)</li>
-          <li>Heartburn | A fine or lavish meal: 3.5% each, half again from 40 and double from 60 | 6 to 10 hours | Smaller helpings</li>
+          <li>Heartburn | A fine or lavish meal: 2% each, half again from 40 and double from 60 | 6 to 10 hours | Smaller helpings</li>
           <li>Hiccups | An alcoholic drink (5%) or a rich meal (1%) | 1 to 2 hours | Nothing; they stop</li>
           <li>Sore elbow | 5 hours of felling or harvesting trees | 4 to 6 days | Turns at the felling; tending</li>
           <li>Chapped hands | 6 hours of outdoor work between -10 and 6 °C | 4 to 8 days | Gloves, grease at night; tending</li>
+          <li>Gout | Only from 45: a fine or lavish meal (0.45% each, 0.6% from 60) or a drink (0.2%), half as often with fruit or vegetables in the last 3 days | 3 to 6 days, less in bed | Plainer meals with vegetables, fewer drinks; rest, tending</li>
+          <li>Stone-dust cough | 4 hours of mining under a mountain roof, or of cutting stone blocks in a closed room of 60 cells or fewer | 2 to 3 days | A big or open stone workshop, turns at the rock face</li>
+          <li>Sore knees | 5 hours of cleaning or sowing in a day | 2 to 5 days, less in bed | A second cleaner; tending a little</li>
+          <li>Ringworm | 2 hours of handling animals (milking, shearing, training, taming), twice as likely in children; it passes to roommates in dirty rooms, like lice | 6 to 9 days, less with tending | Clean bedrooms, washing; a doctor's salve</li>
+          <li>Worms | Raw meat or raw fish: 2% each time, never anything cooked, never with a strong stomach (Biotech) | 7 to 10 days, about a day after one tending | Cook the meat and fish; a doctor's dose, better with proper medicine than herbs</li>
+          <li>Smoker's cough | A joint, a cigarette or a cigar: 0.6% each, up to three times that for someone who smokes every day | 1.5 to 2.5 days | Fewer smokes</li>
+          <li>Bee stings (Alpha Bees only) | An hour at a beehouse or bee chamber: 5%, less with Animals skill (a quarter of that from 15) | About a day | Animals skill; calm, slow hands</li>
           <li>Spore cough (invented; Alpha Biomes' mycotic jungle and miasmic mangrove only) | A night in a damp room, or 4 hours growing or cutting plants outdoors above 10 °C | 2 to 4 days, less with tending | A dry, roofed bedroom; a cloth over the face in the fields</li>
           <li>Fume headache (Alpha Biomes' tar pits and propane lakes only) | 5 hours of hauling, mining or building, or 4 hours at 32 °C or more | 1 to 2 days | Heavy work upwind of the seeps, a rest in the hottest hours</li>
           <li>Pollution cough (Biotech) | 4 hours outdoors on polluted ground or under the acid haze, without a gas mask | 2 to 4 days | A gas mask, clean air, cleaning up the ground; tending</li>
@@ -67,7 +74,7 @@ A rare serious tier sits on top, behind its own setting: thirteen illnesses mode
           <li>Leeches (swamps only) | 2 hours wading through water, marsh or mud in a temperate or tropical swamp | A few hours | Salt or a flame, or one tending; high boots</li>
           <li>Orbit sickness (Odyssey) | 8 hours awake in orbit; not again within 30 days | 1.5 to 3 days, less in bed | Plain food and regular hours; tending</li>
         </table>
-        <after>Once a day holds enough hours of the cause, the ailment gets one small chance that day, from under 1% for a cold sore from worry and 1.5% for a sprained ankle to 12% for ash lung after a fire; heartburn and hiccups are rolled with each meal or drink instead. Someone who works hard at one thing every day gets an ailment about once a month, the same one again only after 6 days or more for most (3 to 5 for nosebleeds, frostnip and insect bites, a day or two for hiccups and heartburn), and never more than two at once.</after>
+        <after>Once a day holds enough hours of the cause, the ailment gets one small chance that day, from under 1% for a cold sore from worry and 1.5% for a sprained ankle to 12% for ash lung after a fire; heartburn, hiccups and gout are rolled with each meal or drink instead, worms with each raw meal and a smoker's cough with each smoke. Someone who works hard at one thing every day gets an ailment about once a month, the same one again only after 6 days or more for most (3 to 5 for nosebleeds, frostnip, insect bites and bee stings, a day or two for hiccups and heartburn), and never more than two at once.</after>
       </li>
       <li>
         <heading>After what happened</heading>

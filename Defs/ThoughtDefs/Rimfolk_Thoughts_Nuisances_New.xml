@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods of the newer home nuisances (Defs/EncounterDefs/Rimfolk_Encounters_Home_New.xml): small and short, like the others. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_ButcherSmell</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>the butcher's smell</label><description>There's a butcher's table where I eat and sleep. The smell of it gets into everything.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Council_Nuisance_DraughtyBed</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>a draught at my bed</label><description>The door by my bed opens straight to the outside. Every time it opens, the cold comes in on me.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

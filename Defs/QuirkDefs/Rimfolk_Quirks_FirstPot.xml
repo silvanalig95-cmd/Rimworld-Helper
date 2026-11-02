@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Makes the first pot (Source/ColonyCouncil/Immersion/FirstPot.cs): a habit for someone up early, like the early
+    riser's, that grows out of being up and busy in the first hours (practice "morning"). Only in a colony with coffee or
+    tea from a mod that it can make or has in its stores (FirstPot.Unfit); its moment is a real cup carried from the
+    stockpile to a friend at their leisure, who drinks it there (Defs/Misc/Rimfolk_FirstPot.xml).
+  -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_Quirk_FirstPot</defName>
+    <label>makes the first pot</label>
+    <passes>true</passes>
+    <byNature>true</byNature>
+    <who><notTrait><li>NightOwl</li></notTrait></who>
+    <chance>0.003</chance>
+    <days>300</days>
+    <practice><li>morning</li></practice>
+    <practiceHours>30</practiceHours>
+    <onlyFromPractice>true</onlyFromPractice>
+    <effect>takes a cup of coffee or tea to a friend in the morning</effect>
+    <gained>
+      <plain>
+        <li>I'm up before the others anyway, so I've started taking a cup round to whoever's about. It's a good way to start the day.</li>
+        <li>[winter] Cold mornings want something hot. I take a cup to someone before the day gets going.</li>
+      </plain>
+      <warm><li>There's nothing like handing someone their first cup of the day and watching them wake up into it.</li></warm>
+      <cheerful><li>First pot of the day is mine now! I take a cup to a friend and we start the morning right.</li></cheerful>
+      <blunt><li>I'm up first. I make the pot. Someone gets a cup.</li></blunt>
+      <gloomy><li>Mornings are long when you're up before everyone. Taking someone a cup gives me something to do with them.</li></gloomy>
+      <cold><li>I take a cup to whoever is awake. People work better with something hot in them.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I haven't taken anyone their morning cup in a while. People fetch their own now.</li></plain>
+      <warm><li>I miss the morning cups. Maybe I'll start again when the mornings are quieter.</li></warm>
+      <blunt><li>Stopped making the first pot. People have legs.</li></blunt>
+      <cheerful><li>Someone else can make the first pot for a while!</li></cheerful>
+      <gloomy><li>Nobody's had a cup from me in weeks. I don't think they noticed.</li></gloomy>
+      <cold><li>I've stopped the morning cups. It took time I could use better.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+</Defs>

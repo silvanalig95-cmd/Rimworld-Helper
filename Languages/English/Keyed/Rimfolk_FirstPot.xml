@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Makes the first pot (Source/ColonyCouncil/Immersion/FirstPot.cs): what the colonist's job says while they carry the cup. -->
+  <CC_Habit_Report_FirstPot>bringing {OTHER} a cup.</CC_Habit_Report_FirstPot>
+
+</LanguageData>

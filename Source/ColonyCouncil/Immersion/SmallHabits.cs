@@ -62,7 +62,9 @@ namespace ColonyCouncil
         /// <summary>One who loves the snow: a while out in it while it falls (Immersion/QuirkHabits.cs).</summary>
         SnowFall,
         /// <summary>One who follows the sun: a while sitting out in it, by day (Immersion/QuirkHabits.cs).</summary>
-        Sun
+        Sun,
+        /// <summary>One who makes the first pot: of a morning, a cup of coffee or tea to a friend (Immersion/FirstPot.cs).</summary>
+        FirstPot
     }
 
     /// <summary>On a small habit's JobDef: which habit it is, what's said on arriving, and whether they chat with whoever is near.</summary>
@@ -129,6 +131,8 @@ namespace ColonyCouncil
             switch (kind)
             {
                 case HabitKind.Walk: return GenDate.TicksPerDay * 2 / 5;
+                // A cup for a friend, and a few hours later perhaps another for someone else.
+                case HabitKind.FirstPot: return GenDate.TicksPerHour * 3;
                 case HabitKind.Snow:
                 case HabitKind.SnowFall:
                 case HabitKind.Animals:
@@ -369,11 +373,11 @@ namespace ColonyCouncil
             string line = Flavor.FromPool(ext.pool, p, null, null, tags.ToArray());
             if (line.NullOrEmpty()) return;
             line = line.Formatted(p.Named("PAWN"), (about ?? p).Named("OTHER")).Resolve();
-            // together: keeping someone company or wishing them a happy birthday, the line is said to them through
-            // Speech.Say, which shows it only when the two are really together; the other habits' lines are about someone
-            // absent (the dead, a friend gone), said at a bedside (the patient may not be up to an answer), or said to an
-            // animal or to nobody.
-            bool to = about != null && (ext.kind == HabitKind.Company || ext.kind == HabitKind.Birthday);
+            // together: keeping someone company, wishing them a happy birthday or handing them a cup, the line is said to
+            // them through Speech.Say, which shows it only when the two are really together; the other habits' lines are
+            // about someone absent (the dead, a friend gone), said at a bedside (the patient may not be up to an answer),
+            // or said to an animal or to nobody.
+            bool to = about != null && (ext.kind == HabitKind.Company || ext.kind == HabitKind.Birthday || ext.kind == HabitKind.FirstPot);
             bool said = to ? Speech.Say(p, line, about, SpeechColor) : Speech.Say(p, line, null, SpeechColor);
             if (said) vt.Spoke(p, now + GenDate.TicksPerDay / 2);
         }
