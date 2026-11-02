@@ -289,6 +289,13 @@ namespace ColonyCouncil
         [MustTranslate] public string riskOutcome;
         public List<DilemmaEffect> riskEffects;
         public bool riskReplaces;
+        /// <summary>
+        /// More ways to tell the outcome (and the risk's), picked by the situation's tags like its other lines (the era,
+        /// the season, its flags, [helped] or [ignored]...), and not the one told lately while another fits. The single
+        /// <see cref="outcome"/> (or <see cref="riskOutcome"/>) is always one of them.
+        /// </summary>
+        [MustTranslate] public List<string> outcomes;
+        [MustTranslate] public List<string> riskOutcomes;
         /// <summary>A's skill at this lowers the risk.</summary>
         public SkillDef riskSkill;
         public WayShift ways;

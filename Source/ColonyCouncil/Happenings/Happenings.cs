@@ -148,7 +148,7 @@ namespace ColonyCouncil
         public bool scenario;
         /// <summary>A place the texts name ({PLACE}): a neighbor's town, the guest room, the land around the colony.</summary>
         public string placeName;
-        /// <summary>Something the event's code keeps for the answer (a def name), never shown.</summary>
+        /// <summary>Something the event's code keeps for the answer (a def name, where a stray stands), never shown.</summary>
         public string note;
 
         public HappeningExtension Ext => incident?.GetModExtension<HappeningExtension>();

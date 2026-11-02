@@ -335,6 +335,12 @@
   <CC_Impact_Animal>{0} {1} for the colony</CC_Impact_Animal>
   <CC_Impact_AnimalBrief>a {0}</CC_Impact_AnimalBrief>
   <CC_Impact_CampBeast>a beast of the camp's own herd</CC_Impact_CampBeast>
+  <CC_Impact_StrayFetched>A drover of {0}'s walks in, takes the {1} from where it stands and leads it home</CC_Impact_StrayFetched>
+  <CC_Impact_StrayFetchedBrief>the {0} led home</CC_Impact_StrayFetchedBrief>
+  <CC_Impact_StrayWalks>The {1} walks home to {0} by itself</CC_Impact_StrayWalks>
+  <CC_Impact_StrayWalksBrief>the {0} sent home</CC_Impact_StrayWalksBrief>
+  <CC_Impact_StrayKept>{0}'s {1} becomes the colony's, where it stands</CC_Impact_StrayKept>
+  <CC_Impact_StrayKeptBrief>a {0} kept</CC_Impact_StrayKeptBrief>
   <CC_Impact_AnimalBond>{0} and {1} bond</CC_Impact_AnimalBond>
   <CC_Impact_Adopt>{0} raises {1} from now on</CC_Impact_Adopt>
   <CC_Impact_AdoptBrief>{0} as guardian</CC_Impact_AdoptBrief>
