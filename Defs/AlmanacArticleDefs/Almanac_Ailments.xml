@@ -60,13 +60,13 @@ A rare serious tier sits on top, behind its own setting: thirteen illnesses mode
           <li>Hiccups | An alcoholic drink (5%) or a rich meal (1%) | 1 to 2 hours | Nothing; they stop</li>
           <li>Sore elbow | 5 hours of felling or harvesting trees | 4 to 6 days | Turns at the felling; tending</li>
           <li>Chapped hands | 6 hours of outdoor work between -10 and 6 °C | 4 to 8 days | Gloves, grease at night; tending</li>
-          <li>Gout | Only from 45: a fine or lavish meal (0.45% each, 0.6% from 60) or a drink (0.2%), half as often with fruit or vegetables in the last 3 days | 3 to 6 days, less in bed | Plainer meals with vegetables, fewer drinks; rest, tending</li>
-          <li>Stone-dust cough | 4 hours of mining under a mountain roof, or of cutting stone blocks in a closed room of 60 cells or fewer | 2 to 3 days | A big or open stone workshop, turns at the rock face</li>
-          <li>Sore knees | 5 hours of cleaning or sowing in a day | 2 to 5 days, less in bed | A second cleaner; tending a little</li>
-          <li>Ringworm | 2 hours of handling animals (milking, shearing, training, taming), twice as likely in children; it passes to roommates in dirty rooms, like lice | 6 to 9 days, less with tending | Clean bedrooms, washing; a doctor's salve</li>
-          <li>Worms | Raw meat or raw fish: 2% each time, never anything cooked, never with a strong stomach (Biotech) | 7 to 10 days, about a day after one tending | Cook the meat and fish; a doctor's dose, better with proper medicine than herbs</li>
-          <li>Smoker's cough | A joint, a cigarette or a cigar: 0.6% each, up to three times that for someone who smokes every day | 1.5 to 2.5 days | Fewer smokes</li>
-          <li>Bee stings (Alpha Bees only) | An hour at a beehouse or bee chamber: 5%, less with Animals skill (a quarter of that from 15) | About a day | Animals skill; calm, slow hands</li>
+          <li>Gout | From 45: a fine or lavish meal (0.45%, 0.6% from 60) or a drink (0.2%); half that with fruit or vegetables lately | 3 to 6 days | Plain meals with greens, fewer drinks</li>
+          <li>Stone-dust cough | 4 hours mining under a mountain roof, or cutting stone blocks in a closed room of 60 cells or fewer | 2 to 3 days | A big or open workshop; turns</li>
+          <li>Sore knees | 5 hours of cleaning or sowing | 2 to 5 days | A second cleaner</li>
+          <li>Ringworm | 2 hours handling animals (milking, shearing, training, taming), more in children; spreads in dirty rooms like lice | 6 to 9 days | Clean rooms, washing; tending</li>
+          <li>Worms | Raw meat or fish: 2% each; never cooked food, never a strong stomach (Biotech) | 7 to 10 days, a day once tended | Cooked meat; tending</li>
+          <li>Smoker's cough | A joint, cigarette or cigar: 0.6% each, up to three times that for a daily smoker | 1.5 to 2.5 days | Fewer smokes</li>
+          <li>Bee stings (Alpha Bees only) | An hour at a beehouse or bee chamber: 5%, a quarter of that from Animals 15 | About a day | Animals skill</li>
           <li>Spore cough (invented; Alpha Biomes' mycotic jungle and miasmic mangrove only) | A night in a damp room, or 4 hours growing or cutting plants outdoors above 10 °C | 2 to 4 days, less with tending | A dry, roofed bedroom; a cloth over the face in the fields</li>
           <li>Fume headache (Alpha Biomes' tar pits and propane lakes only) | 5 hours of hauling, mining or building, or 4 hours at 32 °C or more | 1 to 2 days | Heavy work upwind of the seeps, a rest in the hottest hours</li>
           <li>Pollution cough (Biotech) | 4 hours outdoors on polluted ground or under the acid haze, without a gas mask | 2 to 4 days | A gas mask, clean air, cleaning up the ground; tending</li>
