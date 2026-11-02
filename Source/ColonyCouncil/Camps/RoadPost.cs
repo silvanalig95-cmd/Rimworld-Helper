@@ -163,6 +163,14 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_RoadCarry : DilemmaEffect_CarryOut
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c == null || !c.holding || c.LoadOnRoad) return;
+            base.Describe(ctx, sheet);
+            sheet.Add(ImpactKind.Goods, 1, "CC_Impact_RoadPaid".Translate().Resolve(), "", "roadpaid");
+        }
+
         public DilemmaEffect_RoadCarry()
         {
             to = PlaySpot.Camp;

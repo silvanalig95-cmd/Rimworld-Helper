@@ -190,6 +190,14 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_FindLost : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = DilemmaWorker_Camp.CampOn(ctx?.map) ?? CampTracker.Instance?.camp;
+            if (c == null || !c.LostActive) return;
+            string key = "CC_Impact_Lost_" + how;
+            sheet.Add(ImpactKind.People, 0, (key.CanTranslate() ? key : "CC_Impact_Lost_dawn").Translate().Resolve());
+        }
+
         public string how = "dawn";
 
         public const string Search = "findlost";

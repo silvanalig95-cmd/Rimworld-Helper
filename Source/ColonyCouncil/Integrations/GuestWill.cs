@@ -682,6 +682,14 @@ namespace ColonyCouncil
     /// <summary>The guest is taken in after all, the way Hospitality's Recruit button does it, at its price.</summary>
     public class DilemmaEffect_GuestRecruit : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!(ctx is GuestInviteContext c) || c.stranger == null || c.stranger.Dead) return;
+            sheet.Add(ImpactKind.People, 1, "CC_Impact_Join".Translate(c.stranger.LabelShort).Resolve(), "CC_Impact_JoinBrief".Translate(c.stranger.LabelShort).Resolve(), "join|" + c.stranger.thingIDNumber);
+            var f = c.stranger.Faction;
+            if (c.penalty != 0 && f != null && !f.IsPlayer) sheet.Goodwill(f, -Mathf.Abs(c.penalty));
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var x = ctx.stranger;
@@ -758,6 +766,11 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_GoHomeWith : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a != null && ctx.stranger != null) sheet.Add(ImpactKind.People, 0, "CC_Impact_GoesWith".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort).Resolve());
+        }
+
         /// <summary>Never one of the colony's last four grown-ups (as with moving on).</summary>
         public override string Unavailable(DilemmaContext ctx) =>
             ctx?.map != null && !MovingOn.Spare(ctx.map) ? "CC_GuestWill_CantSpare".Translate(ctx.a.Named("PAWN")).Resolve() : null;

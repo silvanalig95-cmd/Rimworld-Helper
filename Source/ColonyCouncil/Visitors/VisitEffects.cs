@@ -13,6 +13,19 @@ namespace ColonyCouncil
     /// <summary>What every visit effect shares: who comes and what they're called.</summary>
     public abstract class VisitEffect : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        /// <summary>Whether it would happen now (the setting, the colony's age, the event's flags), whatever its chance.</summary>
+        protected bool Could(DilemmaContext ctx)
+        {
+            if (!Visitors.On || ctx == null || (onlyLowtech && !Avail.IsPreIndustrial)) return false;
+            var s = SituationEffectUtil.Of(ctx);
+            if (!requires.NullOrEmpty() && (s == null || !s.Has(requires))) return false;
+            return forbids.NullOrEmpty() || s == null || !s.Has(forbids);
+        }
+
+        protected string HowMany => DilemmaImpact.Range(count.min, count.max);
+
         public IntRange count = new IntRange(1, 1);
         /// <summary>What they are, for what they say and the messages: rider, family, travelers, mourners, drovers...</summary>
         public string what = "rider";
@@ -80,6 +93,11 @@ namespace ColonyCouncil
     /// </summary>
     public class VisitEffect_AtGate : VisitEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (Could(ctx)) sheet.Play("CC_Impact_AtGate".Translate(HowMany, DilemmaImpact.Hours(hours)).Resolve(), "CC_Impact_AtGateBrief".Translate().Resolve());
+        }
+
         /// <summary>How long they stay when the letter asks nothing.</summary>
         public FloatRange hours = new FloatRange(2f, 4f);
         /// <summary>Came with next to nothing (robbed on the road).</summary>
@@ -122,6 +140,12 @@ namespace ColonyCouncil
     /// </summary>
     public class VisitEffect_Stay : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!Visitors.On || VisitorTracker.Instance?.WaitingFor(ctx) == null) return;
+            sheet.Play((inside ? "CC_Impact_StayInside" : "CC_Impact_Stay").Translate(nights, ("CC_Impact_VisitSpot_" + spot).Translate().Resolve()).Resolve(), "CC_Impact_StayBrief".Translate(nights).Resolve());
+        }
+
         public int nights = 1;
         /// <summary>Where they stay: where they are (the gate), or they move on to the far ground or just outside the colony.</summary>
         public VisitSpot spot = VisitSpot.Gate;
@@ -153,6 +177,13 @@ namespace ColonyCouncil
     /// </summary>
     public class VisitEffect_Come : VisitEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!Could(ctx)) return;
+            string where = ("CC_Impact_VisitSpot_" + spot).Translate().Resolve();
+            sheet.Play(nights > 0 ? "CC_Impact_ComeNights".Translate(HowMany, where, nights).Resolve() : "CC_Impact_Come".Translate(HowMany, where).Resolve(), "CC_Impact_ComeBrief".Translate().Resolve());
+        }
+
         public VisitSpot spot = VisitSpot.Road;
         public int hourFrom = 7;
         public int hourTo = 18;
@@ -204,6 +235,14 @@ namespace ColonyCouncil
     /// </summary>
     public class VisitEffect_Go : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            int situation = (ctx as SituationContext)?.situationId ?? -1;
+            var tracker = VisitorTracker.Instance;
+            if (tracker == null || situation < 0 || !tracker.trips.Any(t => t.situationId == situation && (what.NullOrEmpty() || t.what == what))) return;
+            sheet.Play("CC_Impact_VisitGo".Translate().Resolve());
+        }
+
         public string what;
 
         public override void Apply(DilemmaContext ctx)

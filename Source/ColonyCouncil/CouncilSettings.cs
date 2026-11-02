@@ -64,6 +64,8 @@ namespace ColonyCouncil
         /// <summary>Life's ups and downs: how hard the everyday pressures press (the same meal, the same work, crowding...).</summary>
         public LifePressure lifePressure = LifePressure.Normal;
         public bool enableDilemmas = true;
+        /// <summary>What each answer of a dilemma or an event does, under it in the letter and on the Dilemmas page (Dilemmas/DilemmaImpact.cs).</summary>
+        public bool showImpact = true;
         public bool annals = true;
         public bool decreeRequests = true;
         public bool anniversaries = true;
@@ -375,6 +377,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref goodTimesFade, "goodTimesFade", true);
             Scribe_Values.Look(ref lifePressure, "lifePressure", LifePressure.Normal);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
+            Scribe_Values.Look(ref showImpact, "showImpact", true);
             Scribe_Values.Look(ref annals, "annals", true);
             Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
             Scribe_Values.Look(ref anniversaries, "anniversaries", true);

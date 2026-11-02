@@ -116,6 +116,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_SwapRooms : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.b == null) return;
+            sheet.Play("CC_Impact_SwapRooms".Translate(ctx.b.LabelShort, ctx.a.LabelShort).Resolve(), "CC_Impact_SwapRoomsBrief".Translate().Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var a = ctx?.a;

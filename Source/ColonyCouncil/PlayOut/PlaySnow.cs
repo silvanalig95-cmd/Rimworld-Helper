@@ -67,6 +67,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Snowman : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var p = PlayOuts.Who(who, ctx);
+            if (!PlayOuts.On || p == null) return;
+            sheet.Play("CC_Impact_Snowman".Translate(p.LabelShort).Resolve(), "CC_Impact_SnowmanBrief".Translate().Resolve());
+        }
+
         public PlayWho who = PlayWho.A;
 
         public override void Apply(DilemmaContext ctx)

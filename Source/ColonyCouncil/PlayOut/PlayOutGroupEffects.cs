@@ -21,6 +21,9 @@ namespace ColonyCouncil
     /// </summary>
     public abstract class DilemmaEffect_Group : DilemmaEffect_PlayOut
     {
+        /// <summary>How many go: the effect's number, else the kind's own, never more than eight, nor more than there are.</summary>
+        protected virtual int Going(int there) => Math.Min(there, Math.Min(PlayOutMath.MaxGroup, count > 0 ? count : DefaultCount));
+
         public int count;
         public PlayWho organizer = PlayWho.A;
         public string pool;
@@ -64,6 +67,16 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_WorkParty : DilemmaEffect_Group
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            var who = Everyone(ctx);
+            int n = Going(who.Count);
+            if (n == 0) return;
+            var work = (tasks.NullOrEmpty() ? new List<WorkTask> { WorkTask.Clean, WorkTask.Haul } : tasks.Distinct().ToList())
+                .Select(t => ("CC_Impact_Task_" + t).Translate().Resolve()).ToList();
+            sheet.Play("CC_Impact_WorkParty".Translate(label, n, TextUtil.JoinAnd(work), DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+        }
+
         public List<WorkTask> tasks;
         public List<PlaySpot> near;
         /// <summary>The work is looked for round a place the words name: "butcher" (the butcher's table), "storeroom" (the biggest stockpile).</summary>
@@ -96,6 +109,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Procession : DilemmaEffect_Group
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            int n = Going(Everyone(ctx).Count);
+            if (n == 0) return;
+            sheet.Play("CC_Impact_Procession".Translate(label, n, DilemmaImpact.Spot(to, ctx), DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+        }
+
         public PlaySpot to = PlaySpot.Walk;
 
         public DilemmaEffect_Procession()
@@ -129,6 +149,24 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Vigil : DilemmaEffect_Group
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            var who = Everyone(ctx);
+            Pawn o = null;
+            if (to == PlaySpot.Person || to == PlaySpot.Stranger)
+            {
+                o = PlayOuts.Who(to == PlaySpot.Stranger ? PlayWho.X : whom, ctx);
+                if (o == null || !DilemmaEffect_Visit.Here(o, ctx)) return;
+                who.Remove(o);
+            }
+            int n = Going(who.Count);
+            if (n == 0) return;
+            string place = o != null ? DilemmaImpact.Spot(PlaySpot.Person, ctx, o) : DilemmaImpact.Spot(to, ctx);
+            string how = untilDawn ? "CC_Impact_UntilDawn".Translate().Resolve() : DilemmaImpact.Hours(new FloatRange(PlayOutMath.CapHours(duration.min, true), PlayOutMath.CapHours(duration.max, true)));
+            string names = n >= who.Count ? WhoOf(ctx, who) : n.ToString();
+            sheet.Play((patrol && o == null ? "CC_Impact_Patrol" : "CC_Impact_Vigil").Translate(label, names, place, DilemmaImpact.When(hours), how).Resolve(), label);
+        }
+
         public PlaySpot to = PlaySpot.Grave;
         public PlayWho whom = PlayWho.A;
         public bool patrol;
@@ -177,6 +215,21 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Search : DilemmaEffect_Group
     {
+        protected override int Going(int there) => Math.Min(base.Going(there), 4);
+
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            int n = Going(Everyone(ctx).Count);
+            if (n == 0) return;
+            sheet.Play("CC_Impact_Search".Translate(label, n, DilemmaImpact.Spot(to, ctx), DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+            if (thing != null && Era && amount.max > 0)
+                sheet.Add(ImpactKind.Goods, 1, "CC_Impact_Find".Translate(DilemmaImpact.Range(Math.Max(1, amount.min), Math.Max(1, amount.max)), thing.label).Resolve(),
+                    "CC_Impact_FindBrief".Translate(thing.label).Resolve(), "find|" + thing.defName);
+            if (value.max > 0f)
+                sheet.Add(ImpactKind.Goods, 1, "CC_Impact_FindValue".Translate(DilemmaImpact.Range((int)value.min, (int)value.max)).Resolve(),
+                    "CC_Impact_FindValueBrief".Translate().Resolve(), "findvalue");
+        }
+
         public PlaySpot to = PlaySpot.Walk;
         public ThingDef thing;
         public IntRange amount = new IntRange(0, 0);
@@ -248,6 +301,31 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_CarryOut : DilemmaEffect_PlayOut
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var map = ctx?.map ?? HappeningTracker.HomeMap();
+            if (map == null) return;
+            int need = Need(ctx);
+            if (need <= 0) return;
+            var def = Def(ctx);
+            if (ifHave && PlayCarry.Have(map, what, def) < need) return;
+            // Taken from the stores whether or not anyone carries it out.
+            if (what == "silver") sheet.Silver(-need);
+            else sheet.Goods(-1, PlayCarry.Label(what, def), need, what.NullOrEmpty() ? def?.defName : what);
+            if (!PlayOuts.On) return;
+            var carrier = PlayOuts.Who(who, ctx);
+            string by = carrier != null && PlayOuts.OurPerson(carrier) ? carrier.LabelShort : "CC_Impact_Someone".Translate().Resolve();
+            var x = toGroup ? (ctx as HappeningContext)?.group.FirstOrDefault(g => g != null && g.Spawned && g.Map == map) : ctx.stranger;
+            string dest = to == PlaySpot.Camp ? DilemmaImpact.Spot(PlaySpot.Camp, ctx)
+                : to == PlaySpot.Person ? DilemmaImpact.Spot(PlaySpot.Person, ctx, PlayOuts.Who(whom, ctx))
+                : x != null && !x.Dead && (x.RaceProps?.Humanlike ?? false) && x.Faction != Faction.OfPlayer ? x.LabelShort
+                : DilemmaImpact.Spot(PlaySpot.Gate, ctx);
+            string text = "CC_Impact_Carry".Translate(by, dest, DilemmaImpact.When(hours)).Resolve();
+            if (eat) text += "CC_Impact_CarryEat".Translate().Resolve();
+            if (night) text += "CC_Impact_CarryNight".Translate().Resolve();
+            sheet.Play(text, "CC_Impact_CarryBrief".Translate(dest).Resolve());
+        }
+
         public string what;
         public int count;
         public float factor = 1f;
@@ -380,6 +458,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_HuntParty : DilemmaEffect_PlayOut
     {
+        protected override void DescribePlay(DilemmaContext ctx, ImpactSheet sheet, string label)
+        {
+            string what = ctx.stranger != null && ctx.stranger.RaceProps.Animal ? ctx.stranger.LabelShort : DilemmaImpact.Kinds(kinds, Math.Max(1, Math.Min(3, animals)));
+            sheet.Play("CC_Impact_HuntParty".Translate(label, Math.Max(1, Math.Min(2, count)), what, DilemmaImpact.When(hours), DilemmaImpact.Hours(duration)).Resolve(), label);
+        }
+
         public PlayWho who = PlayWho.None;
         public int count = 1;
         public int animals = 1;

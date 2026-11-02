@@ -101,6 +101,14 @@ namespace ColonyCouncil
     /// <summary>The colony's doctor (A) sees the patient who came for the hospital (X): tended, counted, remembered.</summary>
     public class DilemmaEffect_HospitalPatient : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.stranger == null) return;
+            sheet.Add(ImpactKind.Goodwill, 1, "CC_Impact_Patient".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (chance < 1f && !Rand.Chance(chance)) return;

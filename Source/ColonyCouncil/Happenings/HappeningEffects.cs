@@ -12,6 +12,17 @@ namespace ColonyCouncil
     /// <summary>X joins the colony (walking in from the edge if they were waiting out in the world). With withGroup, everyone who came with them too.</summary>
     public class DilemmaEffect_Join : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x == null || ctx.map == null || Gone(ctx)) return;
+            int more = withGroup ? (ctx as HappeningContext)?.group.Count(p => p != null && !p.Dead && p != x) ?? 0 : 0;
+            string text = more > 0 ? "CC_Impact_JoinGroup".Translate(x.LabelShort, more).Resolve() : "CC_Impact_Join".Translate(x.LabelShort).Resolve();
+            sheet.Add(ImpactKind.People, 1, text, "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
+        }
+
         public bool withGroup;
 
         /// <summary>Someone who was here (a visitor, a lost child) and has gone can't be asked to stay.</summary>
@@ -47,6 +58,19 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_RaidLater : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var h = ctx as HappeningContext;
+            var f = h?.enemy ?? ctx?.faction;
+            if (f == null || ctx.map == null || !Raids.CanRaid(f)) return;
+            if (forA && (ctx.a == null || ctx.a.Dead || !ctx.a.IsColonist)) return;
+            var pts = points.max > 0f ? points : h?.Ext?.points ?? new FloatRange(0.5f, 0.7f);
+            string share = ImpactMath.Number(pts.min * 100f) + (pts.max > pts.min + 0.001f ? "CC_Impact_To".Translate().Resolve() + ImpactMath.Number(pts.max * 100f) : "") + "%";
+            sheet.Add(ImpactKind.People, -1, "CC_Impact_Raid".Translate(f.Name, share).Resolve(), "CC_Impact_RaidBrief".Translate(f.Name).Resolve(), "raid|" + f.loadID);
+        }
+
         public FloatRange points = FloatRange.Zero;
         public FloatRange delayHours = FloatRange.Zero;
         [MustTranslate] public string label;
@@ -79,6 +103,17 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Loot : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null) return;
+            var v = value.max > 0f ? value : (ctx as HappeningContext)?.Ext?.value ?? new FloatRange(300f, 700f);
+            float f = Mathf.Clamp(Mathf.Sqrt(Mathf.Max(1f, ctx.map.wealthWatcher.WealthTotal) / 40000f), 0.6f, 2f);
+            sheet.Add(ImpactKind.Goods, 1, "CC_Impact_Loot".Translate(DilemmaImpact.Range(Mathf.RoundToInt(v.min * f), Mathf.RoundToInt(v.max * f))).Resolve(),
+                "CC_Impact_LootBrief".Translate().Resolve(), "loot");
+        }
+
         public FloatRange value = FloatRange.Zero;
         public bool fancy;
         public bool pod;
@@ -103,6 +138,15 @@ namespace ColonyCouncil
     /// <summary>Progress on the research project in hand: a share of what's left of it.</summary>
     public class DilemmaEffect_Research : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var proj = Project;
+            if (proj == null || proj.IsFinished) return;
+            float left = proj.Cost - Find.ResearchManager.GetProgress(proj);
+            float amount = Mathf.Min(left * share, max, left - 1f);
+            if (amount > 1f) sheet.Add(ImpactKind.Other, 1, "CC_Impact_Research".Translate(amount.ToString("0"), proj.label).Resolve(), "CC_Impact_ResearchBrief".Translate().Resolve(), "research");
+        }
+
         public float share = 0.25f;
         public float max = 1500f;
 
@@ -123,6 +167,16 @@ namespace ColonyCouncil
     /// <summary>A bond between A and X (or A and B): friends, rivals, comrades.</summary>
     public class DilemmaEffect_Tie : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var other = withB ? ctx?.b : ctx?.stranger;
+            if (ctx?.a == null || other == null || !ColonyCouncilMod.Settings.socialWeb) return;
+            // Someone who joins with the same answer counts: they're one of the colony by then.
+            DilemmaImpact.Tie(sheet, ctx.a, other, kind, amount);
+        }
+
         public TieKind kind = TieKind.Friends;
         public float amount = 20f;
         public bool withB;
@@ -140,6 +194,12 @@ namespace ColonyCouncil
     /// <summary>A takes X on as a student of the event's skill.</summary>
     public class DilemmaEffect_Mentor : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.stranger == null || ctx.skill == null) return;
+            sheet.Add(ImpactKind.Skill, 1, "CC_Impact_Mentor".Translate(ctx.a.LabelShort, ctx.stranger.LabelShort, ctx.skill.label).Resolve(), "CC_Impact_MentorBrief".Translate(ctx.stranger.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (ctx.a == null || ctx.stranger == null || ctx.skill == null || ctx.stranger.Faction != Faction.OfPlayer) return;
@@ -150,6 +210,14 @@ namespace ColonyCouncil
     /// <summary>X arrives with something to hide (Rimfolk's secrets).</summary>
     public class DilemmaEffect_Secret : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.stranger == null || !ColonyCouncilMod.Settings.secrets) return;
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_Secret".Translate(ctx.stranger.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (ctx.stranger == null || ctx.stranger.Faction != Faction.OfPlayer) return;
@@ -161,6 +229,12 @@ namespace ColonyCouncil
     /// <summary>The target colonist leaves the colony for good (walks off the map).</summary>
     public class DilemmaEffect_LeaveColony : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx).Where(p => !p.Dead && p.Faction == Faction.OfPlayer && p.RaceProps.Humanlike).ToList();
+            if (who.Count > 0) sheet.Add(ImpactKind.People, -1, "CC_Impact_Leave".Translate(WhoOf(ctx, who)).Resolve(), "CC_Impact_LeaveBrief".Translate(WhoOf(ctx, who)).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             foreach (var p in Targets(ctx).ToList())
@@ -176,6 +250,16 @@ namespace ColonyCouncil
     /// <summary>Recreation for the targets (an evening of tales, a feast with guests).</summary>
     public class DilemmaEffect_Joy : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var who = Reached(ctx).Where(p => p.needs?.joy != null).ToList();
+            if (who.Count == 0 || amount <= 0f) return;
+            string w = WhoOf(ctx, who);
+            string pct = "+" + (amount * 100f).ToString("0") + "%";
+            var l = sheet.Add(ImpactKind.Needs, 1, "CC_Impact_Joy".Translate(w, pct).Resolve(), "CC_Impact_JoyBrief".Translate(w, pct).Resolve(), "joy|" + KeyOf(who));
+            if (l != null) l.each = who.Count > 1;
+        }
+
         public float amount = 0.2f;
 
         public override void Apply(DilemmaContext ctx)
@@ -187,6 +271,15 @@ namespace ColonyCouncil
     /// <summary>The colony's standing with the event's own faction (for the enemy: <see cref="enemy"/>).</summary>
     public class DilemmaEffect_EventGoodwill : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var f = enemy ? (ctx as HappeningContext)?.enemy : ctx?.faction ?? ctx?.stranger?.Faction;
+            if (f == null || f.IsPlayer || f.defeated || !f.HasGoodwill) return;
+            sheet.Goodwill(f, amount);
+        }
+
         public int amount;
         public bool enemy;
 

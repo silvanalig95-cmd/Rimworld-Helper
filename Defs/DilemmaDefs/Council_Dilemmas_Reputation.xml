@@ -37,7 +37,7 @@
         <ways><mercy>6</mercy><openness>3</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-12</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-20</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_GaveSanctuary</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_MercyShown</thought><onlyTrait><li>Kind</li></onlyTrait></li>
@@ -148,7 +148,7 @@
         <outcome>Sacks of the colony's food went out the gate for {FACTION}, with no letter and no price. {A_nameDef} carried the first one down, and stood at the gate a while after the last.</outcome>
         <ways><mercy>8</mercy><generosity>4</generosity></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>30</count><to>Gate</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {FACTION}</label><what>rawfood</what><count>45</count><to>Gate</to></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_KindnessSent</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
@@ -161,7 +161,7 @@
         <ways><mercy>4</mercy><generosity>3</generosity></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>80</count><by>Outsiders</by></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>12</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_SilverNotMercy</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
         </effects>
@@ -263,7 +263,7 @@
         <ways><generosity>6</generosity><mercy>2</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the hungry at the gate</label><what>rawfood</what><count>40</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>10</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_NoOneTurnedAway</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FeedingTheRoad</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_FeedingTheRoad</thought><onlyTrait><li>Greedy</li></onlyTrait></li>
@@ -278,6 +278,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FoodForWork</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count><by>Outsiders</by></li>
         </effects>
       </li>
       <li>
@@ -435,7 +436,7 @@
         <ways><tradition>8</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><count>15</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_OldWaysBack</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_OldWaysBack</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_CustomRestored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the old custom</label><music>true</music><hours>16~22</hours></li>
@@ -450,6 +451,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_NotQuiteHowItWas</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the old custom</label><music>true</music><hours>16~22</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_OldWaysBack</thought><chance>0.3</chance></li>
         </effects>
       </li>
       <li>
@@ -564,6 +566,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_RulesBent</thought><onlyTrait><li>Abrasive</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>17~23</hours><duration>2~3</duration><sit>true</sit></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmR_RulesBent</thought><chance>0.3</chance></li>
         </effects>
       </li>
       <li>
@@ -582,7 +585,7 @@
         <ways><openness>2</openness></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_NightOutsideTheWalls</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff><severity>0.5</severity><exceptTrait><li>NightOwl</li></exceptTrait><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>18~23</hours><duration>2~3</duration></li>
@@ -626,10 +629,11 @@
         <outcome>The council declared a day of rest for the whole colony, and people are standing about the yard, unsure what to do with their hands.</outcome>
         <ways><toil>-10</toil></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_RestDay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_RestDay</thought><chance>0.7</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmR_IdleDay</thought><degreeTrait>Industriousness</degreeTrait><minDegree>1</minDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>Colony</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Standards"><target>Colony</target><amount>0.02</amount></li>
         </effects>
       </li>
       <li>
@@ -686,8 +690,9 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_ThankedByName</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Motivated</hediff><severity>0.5</severity></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Motivated</hediff><severity>0.8</severity></li>
           <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>the thanks to {A_nameDef}</label><hours>17~22</hours><lines><li>To {A_nameDef}, and the harvest.</li><li>Stand up, {A_nameDef}. Let them see you.</li></lines></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><chance>0.5</chance></li>
         </effects>
       </li>
       <li>
