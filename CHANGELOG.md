@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning ahead: the manager, the shopping list and spare clothes
+
+*2 November 2026, version 0.53.0*
+
+- Colony Manager's targets show in the Ahead section, and when the colony needs more meat, wood or ore than a job's target, the council suggests raising it, with Undo.
+- The Ahead section keeps a shopping list for the next trader: what the colony needs but can't make here, how many and why, and what a trader on the map or in orbit carries of it.
+- When a needed ore is short, the council can mark the nearest reachable deposit for mining, with every roof kept supported.
+- When worn clothes outrun the spares in store, the council suggests a bill that keeps enough whole spares.
+- Hay no longer counts as the colonists' food in the field plan, and people an accepted quest brings are counted in beds and seats.
+- Busy benches go by the hours actually worked, a room's mining counts in its building time, and Building ahead stays on the Plan page with next steps switched off.
+
 ## A covered face hides looks
 
 *2 November 2026, version 0.52.1*

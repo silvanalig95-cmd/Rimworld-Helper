@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.53.0</version>
+        <date>2 November 2026</date>
+        <title>Planning ahead: the manager, the shopping list and spare clothes</title>
+        <points>
+          <li>Colony Manager's targets show in the Ahead section, and when the colony needs more meat, wood or ore than a job's target, the council suggests raising it, with Undo.</li>
+          <li>The Ahead section keeps a shopping list for the next trader: what the colony needs but can't make here, how many and why, and what a trader on the map or in orbit carries of it.</li>
+          <li>When a needed ore is short, the council can mark the nearest reachable deposit for mining, with every roof kept supported.</li>
+          <li>When worn clothes outrun the spares in store, the council suggests a bill that keeps enough whole spares.</li>
+          <li>Hay no longer counts as the colonists' food in the field plan, and people an accepted quest brings are counted in beds and seats.</li>
+          <li>Busy benches go by the hours actually worked, a room's mining counts in its building time, and Building ahead stays on the Plan page with next steps switched off.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.52.1</version>
         <date>2 November 2026</date>
         <title>A covered face hides looks</title>
