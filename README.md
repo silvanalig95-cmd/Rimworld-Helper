@@ -2783,7 +2783,7 @@ illness.
 
 - **Going round** (the game's own disease events, so immunity, genes and the medical tab work as usual; never babies):
   a head cold, a stomach bug, a chest cold in cold weather, hay fever in spring and summer (back to the same people
-  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 35 days, more where the
+  each year), pinkeye, and dreamfever, an invented rim fever of vivid dreams. About one every 50 days, more where the
   game's diseases are common, less on gentle storyteller settings.
 - **From the day's work**, once a colonist's day holds enough hours of the cause: a strained back after long hauling,
   mining or building, sore hands after long bench work, blisters after a day's walking or a caravan trip, chilblains

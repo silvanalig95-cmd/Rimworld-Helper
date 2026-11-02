@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.53.2</version>
+        <date>2 November 2026</date>
+        <title>Ailments less often, and care counts for more</title>
+        <points>
+          <li>Everyday ailments come less often: an average colonist now has one about a seventh of the time instead of a sixth, and in a well-run colony about a tenth.</li>
+          <li>The mildest ailments pass sooner (heartburn in a few hours, a stiff neck or a smoke cough in about a day, splinters, sunburn and blisters in a few days), and colds and the other catching ailments go round about every 50 days instead of 35.</li>
+          <li>Rest and care count for more: bed rest speeds sore hands and elbows, chilblains and chapped hands, and tending does more for insomnia, a rimrot cough and chilblains.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.53.1</version>
         <date>2 November 2026</date>
         <title>One sentence over a head</title>

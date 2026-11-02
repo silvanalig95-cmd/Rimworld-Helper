@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ailments less often, and care counts for more
+
+*2 November 2026, version 0.53.2*
+
+- Everyday ailments come less often: an average colonist now has one about a seventh of the time instead of a sixth, and in a well-run colony about a tenth.
+- The mildest ailments pass sooner (heartburn in a few hours, a stiff neck or a smoke cough in about a day, splinters, sunburn and blisters in a few days), and colds and the other catching ailments go round about every 50 days instead of 35.
+- Rest and care count for more: bed rest speeds sore hands and elbows, chilblains and chapped hands, and tending does more for insomnia, a rimrot cough and chilblains.
+
 ## One sentence over a head
 
 *2 November 2026, version 0.53.1*
