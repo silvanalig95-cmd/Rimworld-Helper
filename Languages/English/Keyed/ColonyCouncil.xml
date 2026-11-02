@@ -1908,6 +1908,9 @@ Those against it ({WHO}) will trust the council less and resent it more than usu
   <CC_Ways_Why_Event>{0}: "{1}"</CC_Ways_Why_Event>
   <CC_Chronicle_EventChoice>{0}: the colony chose "{1}".</CC_Chronicle_EventChoice>
   <CC_Evt_NoResearch>No research project in hand</CC_Evt_NoResearch>
+  <CC_Stray_NotHere>The beast is gone</CC_Stray_NotHere>
+  <CC_Stray_WalkedOutcome>Nobody from {0} could come for the beast, so it was turned toward home and went on its own.</CC_Stray_WalkedOutcome>
+  <CC_Stray_GoneOutcome>The beast was gone before {0}'s drover could come for it, but {0} sent their thanks for the word all the same.</CC_Stray_GoneOutcome>
   <CC_Evt_Trust_Back>let back in</CC_Evt_Trust_Back>
   <CC_Evt_TributeHave>The colony has {0} silver. They ask for {1}.</CC_Evt_TributeHave>
   <CC_Evt_PilgrimsFood>Feeding them takes {1} raw food (vegetables, berries, meat) from the stores; the colony has {0}.</CC_Evt_PilgrimsFood>

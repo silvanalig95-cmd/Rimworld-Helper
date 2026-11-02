@@ -195,6 +195,23 @@ namespace ColonyCouncil
     /// <summary>A beast bought from drovers, or given: an animal of one of these kinds that suits the weather, tame and the colony's.</summary>
     public class DilemmaEffect_SpawnAnimal : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var map = ctx?.map;
+            if (map == null) return;
+            string label = fromCamp && count <= 1 && CampOn(map) != null ? "CC_Impact_CampBeast".Translate().Resolve() : null;
+            if (label == null)
+            {
+                var kinds = this.kinds?.Select(n => DefDatabase<PawnKindDef>.GetNamedSilentFail(n))
+                    .Where(k => k?.race?.race != null && k.RaceProps.Animal && map.mapTemperature.SeasonAndOutdoorTemperatureAcceptableFor(k.race, 0f)).Select(k => k.label).Distinct().ToList();
+                if (kinds.NullOrEmpty()) return;
+                label = kinds.Count == 1 ? kinds[0] : string.Join(", ", kinds.Take(kinds.Count - 1)) + " " + "CC_Impact_Or".Translate().Resolve() + " " + kinds[kinds.Count - 1];
+            }
+            sheet.Add(ImpactKind.People, 1, "CC_Impact_Animal".Translate(Math.Max(1, count), label).Resolve(), "CC_Impact_AnimalBrief".Translate(label).Resolve(), "animal");
+        }
+
         /// <summary>PawnKindDef names, the first that suits the weather and exists; "Muffalo|Cow".</summary>
         public List<string> kinds = new List<string>();
         public int count = 1;

@@ -461,16 +461,18 @@
           <li>{FACTION}'s brand</li>
         </titles>
         <texts>
-          <li>A big draft beast with {PLACE}'s brand on its flank came out of the trees yesterday and started on the colony's hay as if it had always lived here. {A_nameDef} has had it in the barn overnight.\n\nA rider passed this morning asking at every gate along the road: {FACTION} lost one of their best draft animals in the last storm.</li>
-          <li>[lowtech] There's a beast in the colony's pen that isn't the colony's. It wandered in at dusk with a cut rope hanging from its neck and {FACTION}'s mark burned into its hide, and {A_nameDef} hadn't the heart to drive it off.\n\n{FACTION}'s people at {PLACE} will be looking for it. Or they may never think to look here.</li>
-          <li>[winter] It came in out of the snow with frost on its back and {PLACE}'s brand on its flank, and went straight into the barn to stand with the others. {A_nameDef} fed it. {FACTION} will want it back before the thaw, if they know where it went.</li>
+          <li>[barn] A big draft beast with {PLACE}'s brand on its flank came out of the trees yesterday and started on the colony's hay as if it had always lived here. {A_nameDef} has had it in the barn overnight.\n\nA rider passed this morning asking at every gate along the road: {FACTION} lost one of their best draft animals in the last storm.</li>
+          <li>[pen] There's a beast in the colony's pen that isn't the colony's. It wandered in at dusk with a cut rope hanging from its neck and {FACTION}'s mark burned into its hide, and {A_nameDef} hadn't the heart to drive it off.\n\n{FACTION}'s people at {PLACE} will be looking for it. Or they may never think to look here.</li>
+          <li>[winter,barn] It came in out of the snow with frost on its back and {PLACE}'s brand on its flank, and went straight into the barn to stand with the others. {A_nameDef} fed it. {FACTION} will want it back before the thaw, if they know where it went.</li>
+          <li>[yard] A big draft beast with {PLACE}'s brand on its flank wandered in out of the trees yesterday, and has stood about the colony ever since as if waiting to be told where it lives. {A_nameDef} has been feeding it.\n\nA rider passed this morning asking at every gate along the road: {FACTION} lost one of their best draft animals in the last storm.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Send word to {PLACE} to come for it</label>
-            <outcome>A drover from {PLACE} came for the beast the next morning, with a sack of something by way of thanks and a lot of talk about the storm. {FACTION} will remember the colony gave it back.</outcome>
+            <outcome>A drover from {PLACE} came for the beast with a sack of something by way of thanks and a lot of talk about how far it had strayed. {FACTION} will remember the colony gave it back.</outcome>
             <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StrayHome" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>favorDone</kind></li>
               <li Class="ColonyCouncil.DilemmaEffect_Loot"><by>Outsiders</by></li>
@@ -479,8 +481,9 @@
           </li>
           <li>
             <label>Ask {FACTION} for a finder's fee ({COUNT} silver)</label>
-            <outcome>{FACTION} paid the fee when their drover came for the beast. The drover counted it out without a smile, and led the animal off without a word.</outcome>
+            <outcome>{FACTION} paid the fee when their drover came for the beast. The drover counted it out without a smile, and led the animal off without a word of thanks.</outcome>
             <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_StrayHome" />
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-2</amount></li>
             </effects>
@@ -492,7 +495,7 @@
             <riskChance>0.4</riskChance>
             <riskOutcome>The brand was clipped and the beast stays, but one of {FACTION}'s traders knew it in the colony's pen at a glance. {FACTION} know now where their animal went, and what the colony did about it.</riskOutcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Muffalo</li><li>Yak</li><li>Dromedary</li><li>Horse</li><li>Donkey</li><li>Bison</li><li>Cow</li></kinds></li>
+              <li Class="ColonyCouncil.DilemmaEffect_KeepStray" />
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_FairGoodwill"><amount>-10</amount></li>
@@ -505,6 +508,7 @@
       <li Class="ColonyCouncil.HappeningSetting">
         <neighbor>true</neighbor>
         <wealthScaled>false</wealthScaled>
+        <stray><li>Muffalo</li><li>Yak</li><li>Dromedary</li><li>Horse</li><li>Donkey</li><li>Bison</li><li>Cow</li></stray>
       </li>
     </modExtensions>
   </IncidentDef>

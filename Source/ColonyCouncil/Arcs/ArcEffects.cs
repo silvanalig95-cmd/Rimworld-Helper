@@ -31,6 +31,18 @@ namespace ColonyCouncil
     /// </summary>
     public class ArcEffect_Cast : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var arc = (ctx as ArcEffectContext)?.arc;
+            if (arc == null || effects.NullOrEmpty() || !TagIs(arc, ifTag)) return;
+            var c = new ArcEffectContext { arc = arc, map = ctx.map, a = Who(arc, a), b = Who(arc, b), third = arc.third, pet = ctx.pet, skill = ctx.skill, faction = ctx.faction };
+            if (c.a == null || c.a.Dead) return;
+            if (c.b == c.a || (c.b != null && c.b.Dead)) c.b = null;
+            sheet.lines.AddRange(DilemmaImpact.Of(c, effects));
+        }
+
         public ArcPerson a = ArcPerson.Colonist;
         public ArcPerson b = ArcPerson.Other;
         public string ifTag;
@@ -172,6 +184,14 @@ namespace ColonyCouncil
     /// <summary>A bond between A and B grows (or, with a negative amount, fades, and may end).</summary>
     public class ArcEffect_Tie : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (CouncilGameComponent.Instance?.social == null || ctx?.a == null || ctx.b == null) return;
+            DilemmaImpact.Tie(sheet, ctx.a, ctx.b, kind, amount);
+        }
+
         public TieKind kind = TieKind.Friends;
         public float amount = 10f;
 
@@ -189,6 +209,13 @@ namespace ColonyCouncil
     /// <summary>Strain lifted (a negative amount) as a weight comes off: catharsis, in the heart's terms.</summary>
     public class ArcEffect_Strain : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (!Heart.On || amount == 0f) return;
+            var who = Reached(ctx).Where(p => Heart.Eligible(p)).ToList();
+            if (who.Count > 0) DilemmaImpact.Strain(sheet, WhoOf(ctx, who), KeyOf(who), amount, who.Count > 1);
+        }
+
         public float amount = -8f;
 
         public override void Apply(DilemmaContext ctx)
@@ -202,6 +229,14 @@ namespace ColonyCouncil
     /// <summary>A quirk the story leaves behind (if they have room for one).</summary>
     public class ArcEffect_Quirk : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var comp = CouncilGameComponent.Instance;
+            if (comp == null || quirk == null || !ColonyCouncilMod.Settings.quirks) return;
+            var who = Reached(ctx).Where(p => comp.quirks.Get(p, quirk) == null && comp.quirks.Of(p).Count() < QuirkTracker.MaxPerPawn).ToList();
+            if (who.Count > 0) sheet.Add(ImpactKind.Other, 0, "CC_Impact_Quirk".Translate(WhoOf(ctx, who), quirk.label).Resolve());
+        }
+
         public QuirkDef quirk;
 
         public override void Apply(DilemmaContext ctx)
@@ -219,6 +254,15 @@ namespace ColonyCouncil
     /// <summary>Quirks the story ends (a fear faced): they're simply gone.</summary>
     public class ArcEffect_RemoveQuirk : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var comp = CouncilGameComponent.Instance;
+            if (comp == null || quirks.NullOrEmpty()) return;
+            foreach (var p in Reached(ctx))
+                foreach (var q in comp.quirks.Of(p).Where(q => quirks.Contains(q.def)))
+                    sheet.Add(ImpactKind.Other, 1, "CC_Impact_QuirkGone".Translate(p.LabelShort, q.Label).Resolve());
+        }
+
         public List<QuirkDef> quirks;
 
         public override void Apply(DilemmaContext ctx)
@@ -236,6 +280,13 @@ namespace ColonyCouncil
     /// </summary>
     public class ArcEffect_Epithet : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (epithet == null || !ColonyCouncilMod.Settings.epithets) return;
+            var who = Reached(ctx);
+            if (who.Count > 0) sheet.Add(ImpactKind.Other, 1, "CC_Impact_Epithet".Translate(WhoOf(ctx, who), epithet.label).Resolve());
+        }
+
         public EpithetDef epithet;
         /// <summary>Only after a journey of at least this many days (the long way home).</summary>
         public int minAwayDays;
@@ -256,6 +307,13 @@ namespace ColonyCouncil
     /// </summary>
     public class ArcEffect_Passion : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.skill == null) return;
+            var who = Reached(ctx).Where(p => p.skills?.GetSkill(ctx.skill) is SkillRecord r && !r.TotallyDisabled && r.passion != Passion.Major).ToList();
+            if (who.Count > 0) sheet.Add(ImpactKind.Skill, 1, "CC_Impact_Passion".Translate(WhoOf(ctx, who), ctx.skill.label).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (ctx.skill == null) return;
@@ -276,6 +334,14 @@ namespace ColonyCouncil
     /// <summary>A real mentorship in the social web, in the story's skill: B teaches A (or A teaches B).</summary>
     public class ArcEffect_Mentorship : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (CouncilGameComponent.Instance?.social == null || ctx?.a == null || ctx.b == null || ctx.skill == null) return;
+            var t = aTeaches ? ctx.a : ctx.b;
+            var s = aTeaches ? ctx.b : ctx.a;
+            sheet.Add(ImpactKind.Skill, 1, "CC_Impact_Mentor".Translate(t.LabelShort, s.LabelShort, ctx.skill.label).Resolve(), "CC_Impact_MentorBrief".Translate(s.LabelShort).Resolve());
+        }
+
         /// <summary>A is the teacher (an elder passing a craft on) rather than the student.</summary>
         public bool aTeaches;
 
@@ -291,6 +357,13 @@ namespace ColonyCouncil
     /// <summary>A tells B their secret (Rimfolk's secrets: the friend knows now, with what that brings).</summary>
     public class ArcEffect_Confide : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var s = CouncilGameComponent.Instance?.secrets.Of(ctx?.a);
+            if (s == null || s.revealed || ctx.b == null || s.knowers.Contains(ctx.b)) return;
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_Confide".Translate(ctx.a.LabelShort, ctx.b.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var comp = CouncilGameComponent.Instance;
@@ -308,6 +381,13 @@ namespace ColonyCouncil
     /// </summary>
     public class ArcEffect_Confess : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var s = CouncilGameComponent.Instance?.secrets.Of(ctx?.a);
+            if (s == null || s.revealed) return;
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_Confess".Translate(ctx.a.LabelShort).Resolve(), "CC_Impact_ConfessBrief".Translate(ctx.a.LabelShort).Resolve());
+        }
+
         public bool gathering;
 
         public override void Apply(DilemmaContext ctx)
@@ -350,6 +430,13 @@ namespace ColonyCouncil
     /// <summary>A's vendetta against the story's faction is laid down, without the satisfaction of vengeance.</summary>
     public class ArcEffect_SettleVendetta : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var faction = (ctx as ArcEffectContext)?.arc?.faction ?? ctx?.faction;
+            if (ctx?.a == null || faction == null) return;
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_SettleVendetta".Translate(ctx.a.LabelShort, faction.Name).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var comp = CouncilGameComponent.Instance;
@@ -362,6 +449,14 @@ namespace ColonyCouncil
     /// <summary>A and the story's animal bond, the game's own way (if the game allows a bond between them).</summary>
     public class ArcEffect_AnimalBond : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var animal = ctx?.pet;
+            if (ctx?.a?.relations == null || animal == null || animal.Dead || animal.Faction != Faction.OfPlayer) return;
+            if (ctx.a.relations.DirectRelationExists(PawnRelationDefOf.Bond, animal)) return;
+            sheet.Add(ImpactKind.Opinion, 1, "CC_Impact_AnimalBond".Translate(ctx.a.LabelShort, animal.LabelShort).Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var p = ctx.a;

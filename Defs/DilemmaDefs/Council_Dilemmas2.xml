@@ -175,7 +175,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>8</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Omen</thought><exceptTrait><li>TooSmart</li><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Omen</thought><exceptTrait><li>TooSmart</li><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Superstition</thought><onlyTrait><li>TooSmart</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Others</target><hediff>Council_Dlm_Rattled</hediff><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Others</target><hediff>Council_Dlm_NightWatch</hediff><chance>0.35</chance></li>
@@ -203,14 +203,19 @@
         <outcome>Each colonist scratched a fear on a scrap of wood and threw it on {A_nameDef}'s fire. A few scratched nothing and threw theirs in anyway. The colony slept through the night.</outcome>
         <ways><tradition>7</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>30</count></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Rite</thought><exceptTrait><li>TooSmart</li><li>Psychopath</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>40</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_Rite</thought><exceptTrait><li>TooSmart</li><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Superstition</thought><onlyTrait><li>TooSmart</li></onlyTrait></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Colony</target><hediff>Council_Dlm_Calm</hediff></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Colony</target><hediff>Council_Dlm_Calm</hediff><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Understood</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{A_nameDef}'s fire</label><woodPaid>true</woodPaid><lines><li>Into the fire with it.</li><li>There. Let it burn.</li><li>I wrote mine small.</li></lines></li>
         </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>Each colonist threw a fear on {A_nameDef}'s fire, and it spat sparks as they went in. Someone said that was a bad sign, and few slept well after it.</riskOutcome>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Omen</thought><exceptTrait><li>TooSmart</li><li>Psychopath</li></exceptTrait><chance>0.5</chance></li>
+        </riskEffects>
       </li>
       <li>
         <label>Tell {A_nameDef} to keep it quiet</label>
@@ -582,7 +587,7 @@
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Silenced</thought></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-5</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>NightOwl</li></exceptTrait><chance>0.4</chance></li>
@@ -595,7 +600,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>3</amount></li>
         </effects>
-        <riskChance>0.3</riskChance>
+        <riskChance>0.2</riskChance>
         <riskReplaces>true</riskReplaces>
         <riskOutcome>Quiet hours were agreed, but {A_nameDef} keeps playing past midnight, and {B_nameDef} is lying awake again.</riskOutcome>
         <riskEffects>
@@ -653,8 +658,8 @@
         <ways><mercy>-5</mercy><tradition>4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.6</chance></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.45</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodFight</thought><onlyTrait><li>Bloodlust</li><li>Brawler</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_GoodFight</thought><exceptTrait><li>Kind</li><li>Wimp</li></exceptTrait><chance>0.3</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
@@ -667,8 +672,9 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Forbidden</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-4</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><onlyTrait><li>Kind</li></onlyTrait></li>
         </effects>
-        <riskChance>0.4</riskChance>
+        <riskChance>0.2</riskChance>
         <riskOutcome>The council forbade the duel. {A_nameDef} and {B_nameDef} held it anyway, behind the latrine, with no witnesses and no rules.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
@@ -702,7 +708,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.4</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the hauling race</label><target>AAndB</target><tasks><li>Stone</li></tasks><hours>11~18</hours><duration>2.5~3.5</duration><lines><li>That one's mine. Count it.</li><li>You dropped that one. It doesn't count.</li></lines></li>
         </effects>
-        <riskChance>0.35</riskChance>
+        <riskChance>0.45</riskChance>
         <riskOutcome>{A_nameDef} and {B_nameDef} raced each other hauling stone. The loser accused the winner of cheating, and it came to blows.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
@@ -763,8 +769,9 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_BossedAround</thought><chance>0.25</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} puts the storeroom in order</label><target>A</target><count>1</count><tasks><li>Haul</li></tasks><at>storeroom</at></li>
         </effects>
-        <riskChance>0.3</riskChance>
+        <riskChance>0.2</riskChance>
         <riskReplaces>true</riskReplaces>
         <riskOutcome>{A_nameDef} asked for a seat at the table and was given the storeroom keys instead, and took it as an insult.</riskOutcome>
         <riskEffects>
@@ -950,19 +957,20 @@
         <outcome>It stays between {A_nameDef} and {B_nameDef}, by the council's order. {B_nameDef} agreed to that, and hasn't turned {B_possessive} back on {A_nameDef} since.</outcome>
         <ways><mercy>3</mercy></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Forgiven</thought></li>
         </effects>
-        <riskChance>0.4</riskChance>
+        <riskChance>0.2</riskChance>
         <riskReplaces>true</riskReplaces>
         <riskOutcome>By morning the whole story was out. {A_nameDef} has been eating alone since.</riskOutcome>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Humiliated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought><about>A</about></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Distrust</thought><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Distrust</thought><exceptTrait><li>Psychopath</li><li>Bloodlust</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Colony</target><amount>-4</amount></li>
         </riskEffects>
       </li>

@@ -220,6 +220,47 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_FaithClash : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var faith = (ctx as FaithDilemmaContext)?.Faith ?? Faiths.Census().FirstOrDefault()?.ideo;
+            if (!Faiths.On || faith == null) return;
+            var holds = Reached(ctx).Where(Faiths.Holds).ToList();
+            void Trust(List<Pawn> who, float amount)
+            {
+                if (who.Count > 0) sheet.Trust(DilemmaImpact.Who(ctx, DilemmaTarget.Colony, who, null), KeyOf(who), amount, who.Count > 1);
+            }
+            switch (answer)
+            {
+                case FaithAnswer.Share:
+                    var open = holds.Where(p => Persona.Get(p, PersonaAxis.Openness) >= FaithCouncilMath.OpenFrom).ToList();
+                    Trust(open, 2f);
+                    Trust(holds.Where(p => !open.Contains(p) && Faiths.Devout(p)).ToList(), -1f);
+                    break;
+                case FaithAnswer.Corners:
+                    Trust(holds, 1f);
+                    if (holds.Count > 0) DilemmaImpact.Certainty(sheet, DilemmaImpact.Who(ctx, DilemmaTarget.Colony, holds, null), 0.03f);
+                    break;
+                case FaithAnswer.Name:
+                    Trust(holds.Where(p => Faiths.Of(p) == faith).ToList(), 3f);
+                    var others = holds.Where(p => Faiths.Of(p) != faith).ToList();
+                    Trust(others, -2f);
+                    if (others.Count > 0)
+                        sheet.Add(ImpactKind.Other, 0, "CC_Impact_Swayed".Translate(DilemmaImpact.Who(ctx, DilemmaTarget.Colony, others, null), faith.name).Resolve());
+                    var devout = others.Where(Faiths.Devout).ToList();
+                    if (devout.Count > 0)
+                    {
+                        var l = sheet.Amount(ImpactKind.Trust, 1, -4f, "CC_Impact_Trust".Translate(DilemmaImpact.Who(ctx, DilemmaTarget.Colony, devout, null), ImpactSheet.Mark).Resolve(),
+                            "CC_Impact_TrustBrief".Translate(DilemmaImpact.Who(ctx, DilemmaTarget.Colony, devout, null), ImpactSheet.Mark).Resolve(), "faithnamed|" + KeyOf(devout));
+                        if (l != null)
+                        {
+                            l.chance = devout.Any(Faiths.DislikesPreaching) ? 0.9f : 0.6f;
+                            l.each = devout.Count > 1;
+                        }
+                    }
+                    break;
+            }
+        }
+
         public FaithAnswer answer;
 
         public DilemmaEffect_FaithClash()
@@ -275,6 +316,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_FaithCorners : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null || !Faiths.On) return;
+            sheet.Add(ImpactKind.Other, 0, "CC_Impact_FaithCorners".Translate().Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var map = ctx?.map;
@@ -320,6 +367,14 @@ namespace ColonyCouncil
     /// <summary>Certainty steadied (Faiths.Steady): for the believers of the question's faith among the targets, or for everyone with a faith (<see cref="allFaiths"/>).</summary>
     public class DilemmaEffect_FaithSteady : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var faith = (ctx as FaithDilemmaContext)?.Faith;
+            if (!Faiths.On || amount <= 0f || (faith == null && !allFaiths)) return;
+            var who = Reached(ctx).Where(p => allFaiths ? Faiths.Holds(p) : Faiths.Of(p) == faith).ToList();
+            if (who.Count > 0) DilemmaImpact.Certainty(sheet, WhoOf(ctx, who), amount * Interplay.FaithFactor);
+        }
+
         public float amount = 0.03f;
         public bool allFaiths;
 
@@ -342,6 +397,13 @@ namespace ColonyCouncil
     /// <summary>The council says yes to an evening of faith: it's called now (Faith/FaithEvenings.cs), when it still can be.</summary>
     public class DilemmaEffect_FaithEvening : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null || !FaithEvenings.CanCall(ctx.map, FaithOf(ctx), out _)) return;
+            var f = FaithOf(ctx);
+            sheet.Play("CC_Impact_FaithEvening".Translate(f?.name ?? "").Resolve(), "CC_Impact_FaithEveningBrief".Translate().Resolve());
+        }
+
         private static Ideo FaithOf(DilemmaContext ctx) => (ctx as FaithDilemmaContext)?.Faith ?? Faiths.Of(ctx?.a);
 
         public override string Unavailable(DilemmaContext ctx) =>

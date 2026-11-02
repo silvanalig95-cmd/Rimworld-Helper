@@ -38,6 +38,7 @@
     <Compile Include="../../Source/ColonyCouncil/Building/UseLog.cs" Link="UseLog.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/AheadMath.cs" Link="AheadMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/Suggest/SuggestMath.cs" Link="SuggestMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Building/GrowthMath.cs" Link="GrowthMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/NewsQuietMath.cs" Link="NewsQuietMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/BaseReviewMath.cs" Link="BaseReviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/GroundPlanMath.cs" Link="GroundPlanMath.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="../../Source/ColonyCouncil/Arcs/ArcMath.cs" Link="ArcMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Calendar/CalendarMath.cs" Link="CalendarMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/CustomYearsMath.cs" Link="CustomYearsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Dilemmas/OutcomeMath.cs" Link="OutcomeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/PlayOutMath.cs" Link="PlayOutMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Couriers/CourierMath.cs" Link="CourierMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/OnMapMath.cs" Link="OnMapMath.cs" />
@@ -116,5 +118,6 @@
     <Compile Include="../../Source/ColonyCouncil/Hud/HudWorkMath.cs" Link="HudWorkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudEnums.cs" Link="HudEnums.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudInventoryMath.cs" Link="HudInventoryMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Dilemmas/ImpactMath.cs" Link="ImpactMath.cs" />
   </ItemGroup>
 </Project>

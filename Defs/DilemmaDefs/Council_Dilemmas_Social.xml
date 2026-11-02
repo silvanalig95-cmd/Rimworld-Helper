@@ -211,7 +211,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Dlm_Penance</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Disciplined</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-4</amount></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Kind</li></exceptTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Harsh</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the punishment</label><target>AAndB</target><tasks><li>Clean</li><li>Haul</li></tasks><duration>2~3</duration></li>
@@ -290,7 +290,7 @@
         <ways><generosity>3</generosity><tradition>6</tradition><toil>-3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmSoc_Remembrance</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmSoc_Remembrance</thought><chance>0.6</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_ToldTheStory</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>Colony</target><hediff>Council_Dlm_Sleepless</hediff><chance>0.5</chance></li>
@@ -774,12 +774,13 @@
         <ways><mercy>3</mercy></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>AAndB</target><hediff>Council_Dlm_Penance</hediff></li>
-          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Bonded</thought><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Forgiven</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmSoc_PleaHeard</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>Jealous</li></exceptTrait><chance>0.5</chance></li>
           <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the shared punishment</label><target>AAndB</target><tasks><li>Haul</li><li>Clean</li></tasks><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Disciplined</thought></li>
         </effects>
       </li>
       <li>

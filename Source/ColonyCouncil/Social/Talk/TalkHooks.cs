@@ -737,6 +737,12 @@ namespace ColonyCouncil
     /// <summary>A dilemma's answer or a social event that leaves a shared memory between A and B (an in-joke, a scare survived).</summary>
     public class DilemmaEffect_SharedMemory : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (memory == null || ctx?.a == null || ctx.b == null || !Persona.On) return;
+            sheet.Add(ImpactKind.Opinion, 1, "CC_Impact_SharedMemory".Translate(ctx.a.LabelShort, ctx.b.LabelShort).Resolve());
+        }
+
         public SharedMemoryDef memory;
         [MustTranslate] public string label;
         public float weight = 1f;

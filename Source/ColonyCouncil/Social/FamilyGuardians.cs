@@ -172,6 +172,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_Adopt : DilemmaEffect_Needs
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.a.Dead || !Guardians.Child(ctx.a)) return;
+            var parent = childChooses ? Guardians.Chosen(ctx.a, ctx.Colonists) ?? ctx.b : ctx.b;
+            if (parent != null && !parent.Dead) sheet.Add(ImpactKind.Opinion, 1, "CC_Impact_Adopt".Translate(parent.LabelShort, ctx.a.LabelShort).Resolve(), "CC_Impact_AdoptBrief".Translate(parent.LabelShort).Resolve());
+        }
+
         public bool childChooses;
 
         public override string Unavailable(DilemmaContext ctx)

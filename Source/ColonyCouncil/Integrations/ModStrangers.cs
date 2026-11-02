@@ -309,6 +309,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_AdoptGuest : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var x = ctx?.stranger;
+            if (x == null || x.Dead || !x.Spawned || x.Faction == Faction.OfPlayer || !Strangers.IsHospitalityGuest(x)) return;
+            sheet.Add(ImpactKind.People, 1, "CC_Impact_Join".Translate(x.LabelShort).Resolve(), "CC_Impact_JoinBrief".Translate(x.LabelShort).Resolve(), "join|" + x.thingIDNumber);
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var x = ctx.stranger;

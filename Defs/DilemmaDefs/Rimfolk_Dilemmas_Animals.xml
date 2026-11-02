@@ -77,6 +77,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Cull"><count>1</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_InCharge</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_DlmA_LeanDays</thought><exceptTrait><li>Ascetic</li></exceptTrait><chance>0.4</chance></li>
         </effects>
       </li>
     </options>

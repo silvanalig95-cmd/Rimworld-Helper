@@ -168,6 +168,13 @@ namespace ColonyCouncil
     /// <summary>The council sets how the couple (A and B) are married (<see cref="style"/>: WeddingPlans' feast, quiet or wait).</summary>
     public class DilemmaEffect_PlanWedding : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.a == null || ctx.b == null) return;
+            string key = "CC_Impact_Wedding_" + style;
+            sheet.Add(ImpactKind.Map, 0, (key.CanTranslate() ? key : "CC_Impact_Wedding").Translate(ctx.a.LabelShort, ctx.b.LabelShort).Resolve(), "CC_Impact_WeddingBrief".Translate().Resolve());
+        }
+
         public string style = WeddingPlans.Quiet;
 
         public override void Apply(DilemmaContext ctx)

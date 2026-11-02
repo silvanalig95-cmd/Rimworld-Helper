@@ -124,6 +124,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_PlantingSkipped : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (thought == null) return;
+            bool faith = !memes.NullOrEmpty() && DecreeWork.ColonyFaith != null && DecreeWork.FaithHas(memes);
+            var who = Reached(ctx).Where(p => !p.DevelopmentalStage.Juvenile()
+                                              && (People.Passionate(p.skills?.GetSkill(SkillDefOf.Plants)) || (faith && DecreeWork.Believer(p)))).ToList();
+            if (who.Count > 0) sheet.Thought(who, DilemmaImpact.Who(ctx, DilemmaTarget.Colony, who, null), thought, _ => null);
+        }
+
         public ThoughtDef thought;
         public List<string> memes = new List<string> { "NaturePrimacy", "TreeConnection" };
 
@@ -154,6 +163,11 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_PlantingWatch : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map != null) sheet.Add(ImpactKind.Other, 0, "CC_Impact_PlantingWatch".Translate().Resolve());
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             if (ctx?.map == null) return;

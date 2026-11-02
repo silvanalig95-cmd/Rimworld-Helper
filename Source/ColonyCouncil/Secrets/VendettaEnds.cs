@@ -215,6 +215,15 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_EndVendetta : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var v = VendettaEnds.Of(ctx);
+            if (v == null) return;
+            string who = v.avenger?.LabelShort ?? "?";
+            sheet.Add(ImpactKind.Goodwill, 1, (byAvenger ? "CC_Impact_VendettaAsk" : "CC_Impact_VendettaEnd").Translate(who, v.faction?.Name ?? "").Resolve(),
+                "CC_Impact_VendettaBrief".Translate().Resolve());
+        }
+
         public string how = "ransom";
         public bool byAvenger;
         public string deed;

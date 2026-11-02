@@ -196,6 +196,13 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_Camp : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var def = DefDatabase<CampKindDef>.GetNamedSilentFail(kind ?? "");
+            if (def == null || !CampTracker.Enabled || CampTracker.Instance?.camp != null || !Allowed(ctx)) return;
+            sheet.Add(ImpactKind.People, 0, "CC_Impact_CampComes".Translate(def.label).Resolve(), "CC_Impact_CampComesBrief".Translate(def.label).Resolve());
+        }
+
         public string kind;
         public string flag;
 
@@ -225,6 +232,14 @@ namespace ColonyCouncil
     /// </summary>
     public class WorldEffect_CampSettle : WorldEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var tracker = CampTracker.Instance;
+            var c = tracker?.camp;
+            if (c == null || tracker.holding != null || c.kind?.defName != kind || !c.CanTalk || !Allowed(ctx)) return;
+            sheet.Add(ImpactKind.People, 1, "CC_Impact_CampSettles".Translate(c.kind.label).Resolve(), "CC_Impact_CampSettlesBrief".Translate().Resolve());
+        }
+
         public string kind;
         public string flag;
 

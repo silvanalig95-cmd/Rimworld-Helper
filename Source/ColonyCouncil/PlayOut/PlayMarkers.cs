@@ -125,6 +125,12 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_MarkGround : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null) return;
+            sheet.Play(("CC_Impact_Mark_" + (kind == PlayMarkers.Stone ? "stone" : "rebury")).Translate().Resolve());
+        }
+
         public string kind = PlayMarkers.Rebury;
 
         public override void Apply(DilemmaContext ctx)
@@ -147,6 +153,13 @@ namespace ColonyCouncil
     /// </summary>
     public class DilemmaEffect_MarkGraves : DilemmaEffect
     {
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            if (ctx?.map == null) return;
+            var by = PlayOuts.Who(who, ctx);
+            sheet.Play("CC_Impact_MarkGraves".Translate(by?.LabelShort ?? "CC_Impact_Someone".Translate().Resolve()).Resolve(), "CC_Impact_MarkGravesBrief".Translate().Resolve());
+        }
+
         public PlayWho who = PlayWho.X;
 
         public override void Apply(DilemmaContext ctx)

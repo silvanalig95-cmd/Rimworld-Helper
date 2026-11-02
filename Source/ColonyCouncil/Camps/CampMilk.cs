@@ -118,6 +118,14 @@ namespace ColonyCouncil
     /// <summary>The colony buys the herd's milk (the drovers' ask): see <see cref="Camp.StartMilkSale"/>.</summary>
     public class DilemmaEffect_CampMilkSale : DilemmaEffect
     {
+        public override bool ChanceEach => false;
+
+        public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
+        {
+            var c = CampOnMap.For(ctx);
+            if (c != null && c.MilkSaleBlocked() == null) sheet.Play("CC_Impact_MilkSale".Translate(c.Label).Resolve(), "CC_Impact_MilkSaleBrief".Translate().Resolve());
+        }
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var c = CampOnMap.For(ctx);

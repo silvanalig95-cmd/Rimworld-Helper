@@ -163,12 +163,22 @@ namespace ColonyCouncil
         }
 
         private static string UrgencyText(Suggestion s) =>
-            s.days >= SuggestMath.NoRush || s.days >= AheadMath.Far ? "CC_Ahead_NoRush".Translate().Resolve()
+            s.days >= SuggestMath.NoRush || s.days >= AheadMath.Far ? (s.when.NullOrEmpty() ? "CC_Ahead_NoRush".Translate().Resolve() : s.when)
             : s.days < 0.05f ? "CC_Ahead_ShortNow".Translate().Resolve() : "CC_Ahead_ShortIn".Translate(Num(s.days)).Resolve();
+
+        /// <summary>After a step was done or undone: the needs read again, so the pages show the map as it is now.</summary>
+        private static void Refresh(Map map)
+        {
+            if (map == null) return;
+            ColonyNeeds.For(map, true);
+            Making.For(map, true);
+            BuildAhead.Refresh(map);
+        }
 
         private static Color LevelColor(int level) => level >= 4 ? UiKit.Bad : level >= 3 ? UiKit.Warn : level >= 2 ? UiKit.Gold : level >= 1 ? UiKit.Info : UiKit.Faint;
 
-        private static float DrawStep(Suggestion s, float x, float y, float width)
+        /// <summary>One suggestion as a card, from any source: its urgency, its words and numbers, and Do it / Show / Not this.</summary>
+        public static float DrawStep(Suggestion s, float x, float y, float width)
         {
             var labels = new List<string>();
             string doLabel = s.CanApply ? s.doLabel ?? "CC_Ahead_DoIt".Translate().Resolve() : null;
@@ -209,11 +219,7 @@ namespace ColonyCouncil
                 if (Widgets.ButtonText(r, doLabel))
                 {
                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
-                    if (tracker?.Apply(s) != null && s.map != null)
-                    {
-                        ColonyNeeds.For(s.map, true);
-                        Making.For(s.map, true);
-                    }
+                    if (tracker?.Apply(s) != null) Refresh(s.map);
                 }
                 TooltipHandler.TipRegion(r, (s.doTip ?? s.title) + "\n\n" + "CC_Ahead_DoItTip".Translate().Resolve());
                 by += 28f;
@@ -253,10 +259,11 @@ namespace ColonyCouncil
 
         // ---------------- Done lately ----------------
 
-        private static float Done(float x, float y, float width, Map map)
+        /// <summary>The steps a source did lately on a map, each with Undo and whether it worked.</summary>
+        public static float Done(float x, float y, float width, Map map, string source = Ahead.Source)
         {
             var tracker = SuggestTracker.Instance;
-            var done = tracker?.DoneFor(Ahead.Source, map, 6);
+            var done = tracker?.DoneFor(source, map, 6);
             if (done == null || done.Count == 0) return 0f;
             float top = y;
             Text.Font = GameFont.Small;
@@ -308,11 +315,7 @@ namespace ColonyCouncil
                     {
                         SoundDefOf.Tick_Low.PlayOneShotOnCamera();
                         tracker.Undo(d);
-                        if (d.map != null)
-                        {
-                            ColonyNeeds.For(d.map, true);
-                            Making.For(d.map, true);
-                        }
+                        Refresh(d.map);
                     }
                     TooltipHandler.TipRegion(ur, "CC_Ahead_UndoTip".Translate(d.text).Resolve());
                 }
@@ -323,13 +326,14 @@ namespace ColonyCouncil
 
         // ---------------- Set aside ----------------
 
-        private static float Aside(float x, float y, float width)
+        /// <summary>What the player set aside of a source's suggestions, folded, each to bring back.</summary>
+        public static float Aside(float x, float y, float width, string source = Ahead.Source, Folds into = null)
         {
             var tracker = SuggestTracker.Instance;
-            var aside = tracker?.DeclinedFor(Ahead.Source);
+            var aside = tracker?.DeclinedFor(source);
             if (aside == null || aside.Count == 0) return 0f;
             float top = y;
-            y += UiKit.FoldTitle(x, y, width, "CC_Ahead_Aside".Translate(aside.Count), folds, "aside", out bool open, null, UiKit.Faint);
+            y += UiKit.FoldTitle(x, y, width, "CC_Ahead_Aside".Translate(aside.Count), into ?? folds, "aside", out bool open, null, UiKit.Faint);
             if (!open) return y - top;
             string back = "CC_Ahead_BringBack".Translate().Resolve();
             float bw = ButtonsWidth(new[] { back });

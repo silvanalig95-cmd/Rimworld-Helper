@@ -27,13 +27,13 @@ namespace ColonyCouncil
         /// <summary>A pen or a barn for the herd on this map.</summary>
         public static bool HasShelter(Map map) => map != null && (Barns(map).Any() || Pens(map).Any());
 
-        private static IEnumerable<Room> Barns(Map map)
+        internal static IEnumerable<Room> Barns(Map map)
         {
             var role = RoomUtil.Barn;
             return role == null ? Enumerable.Empty<Room>() : RoomUtil.RoomsWithRole(map, role).Where(r => !r.PsychologicallyOutdoors);
         }
 
-        private static IEnumerable<CompAnimalPenMarker> Pens(Map map)
+        internal static IEnumerable<CompAnimalPenMarker> Pens(Map map)
         {
             foreach (var b in map.listerBuildings.allBuildingsColonist)
             {
