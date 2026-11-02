@@ -35,7 +35,8 @@ public static class BodyTests
         C(!BodyMath.BitterCold(-15f, -10f) && BodyMath.BitterCold(-25f, -10f), "a fox tail's bitter cold starts at -20 °C");
         C(!BodyMath.Sweltering(35f, false, 10f) && BodyMath.Sweltering(43f, false, 10f), "ten degrees more heat: sweltering from 42 °C");
         C(BodyMath.ColdDay(5f, 10f) && !BodyMath.ColdDay(5f, 0f), "a body that feels the cold sooner (+10): a cold day at 5 °C");
-        C(BodyMath.ChillyRoom(-5f, 0f, -10f) && !BodyMath.ChillyRoom(5f, 0f, -10f), "a fox tail's chilly room is -10 to 2 °C");
+        C(BodyMath.ChillyRoom(-5f, -6f, -10f) && !BodyMath.ChillyRoom(5f, -6f, -10f), "a fox tail's chilly room is -10 to 2 °C");
+        C(!BodyMath.ChillyRoom(-5f, 0f, -10f), "a fox tail's room isn't chilly while it's above -5 °C outside");
 
         // ---------- An immunity never reaches the line ----------
         for (float t = -270f; t <= 60f; t += 5f)

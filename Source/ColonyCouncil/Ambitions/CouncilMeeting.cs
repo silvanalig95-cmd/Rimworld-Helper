@@ -188,7 +188,10 @@ namespace ColonyCouncil
             spot = IntVec3.Invalid;
             venue = "CC_Venue_Outside".Translate();
             var gd = GatheringDef;
+            // Never somewhere that would hurt the chair or those round them (the sun on a skin that burns, a closed room for
+            // gas they breathe out: PlayOut/PlaySafety.cs); the others the place would hurt are excused (MeetingAttendance).
             bool Ok(IntVec3 c) => c.IsValid && c.InBounds(map) && c.Standable(map) && (chair == null || chair.CanReach(c, Verse.AI.PathEndMode.Touch, Danger.None))
+                                  && (chair == null || PlaySafety.Safe(chair, c, map))
                                   && (!strict || gd == null || GatheringsUtility.ValidateGatheringSpot(c, gd, chair, true, true));
 
             foreach (var room in RoomUtil.RoomsWithRole(map, RoomUtil.DiningRoom).OrderByDescending(r => r.CellCount))

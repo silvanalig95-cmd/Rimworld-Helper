@@ -298,6 +298,10 @@ namespace ColonyCouncil
             if ((h & Harm.Water) != 0 && (wet || ((outside || fields) && Raining(map)))) return false;
             if ((h & Harm.Gas) != 0 && p.kind == PlayKind.Vigil && p.to == PlaySpot.Person) return false;
             if ((h & Harm.Deadlife) != 0 && (p.kind == PlayKind.Haul || (p.kind == PlayKind.WorkParty && p.tasks != null && p.tasks.Contains(WorkTask.Corpses)))) return false;
+            // Something carried, handed over or watched over at someone's side goes to where they are now.
+            var o = p.other;
+            bool toThem = p.kind == PlayKind.Carry || p.kind == PlayKind.Give || (p.kind == PlayKind.Vigil && p.to == PlaySpot.Person);
+            if (toThem && o != null && o.Spawned && o.Map == map && HarmAt(x, o.Position, map, false) != Harm.None) return false;
             return true;
         }
 
