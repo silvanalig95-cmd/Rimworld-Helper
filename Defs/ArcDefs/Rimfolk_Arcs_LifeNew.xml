@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two life moments (Source/ColonyCouncil/Arcs/ArcWorkers_LifeNew.cs):
+    - getting clean: someone in the game's own drug withdrawal, and a friend who sits with them of an evening, stays
+      the worst night at their side, and raises a cup at supper once the addiction is gone (tea, never the drug: see
+      Integrations/ToastDrinks.cs). A slip back to the drug ends it without blame, and it can start over another time;
+    - the new leg: a replacement leg the game's own operation fitted, first steps with a friend at their side (a short
+      walk to the gate and back), a frustrating day, the first full day's work, and pride.
+    Their moods are in Defs/ThoughtDefs/Rimfolk_Thoughts_LifeNew.xml.
+  -->
+
+  <!-- ===================================================================================================== -->
+  <!-- Getting clean                                                                                          -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_GettingClean</defName>
+    <label>getting clean</label>
+    <summary>Someone in withdrawal from a drug, and a friend who sits with them of an evening, stays with them through the worst night and raises a cup at supper once the addiction is gone. A slip back to the drug ends it without blame, and it can begin again another time.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_GettingClean</workerClass>
+    <weight>1.5</weight>
+    <maxDays>70</maxDays>
+    <again>true</again>
+    <stages>
+      <li>
+        <label>the shakes</label>
+        <waiting>Next: an evening or two with {OTHER_nameDef}, then the worst night.</waiting>
+        <journal>
+          <plain>
+            <li>My hands won't stop shaking. Everything in me wants one more dose, just one.</li>
+            <li>I'm sweating and freezing at the same time. They say this is what getting off it feels like.</li>
+            <li>{OTHER_nameDef} says {OTHER_pronoun}'ll sit with me this evening. I said I didn't need it. I do.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is coming by this evening to sit with me. I'm glad, and I'll never say so.</li></warm>
+          <blunt><li>It's bad. I'm not taking any more. Don't ask me how I am.</li></blunt>
+          <cheerful><li>Day one of the rest of my life, they say. Day one feels awful, but I'm still counting it.</li></cheerful>
+          <gloomy><li>I don't know if I can do this. Every hour is longer than the one before.</li></gloomy>
+          <cold><li>The withdrawal is as described. I will not take the drug. I am keeping count of the hours.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>I'm going to sit with {OTHER_nameDef} this evening. Someone should, while the shakes are this bad.</li></plain>
+          <warm><li>{OTHER_nameDef} is trying to get clean. I'm going to be there every evening I can.</li></warm>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is trying to get clean, and {OTHER_nameDef} is to sit with {PAWN_objective} of an evening.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an evening with {A_nameDef}</label><who>B</who><whom>A</whom><hours>18~21</hours><duration>1.5~2</duration></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>2</days>
+          <minDays>2</minDays>
+        </gate>
+      </li>
+      <li>
+        <label>a bad night</label>
+        <waiting>Next: the craving wears off and the addiction is gone.</waiting>
+        <journal>
+          <plain>
+            <li>Tonight's the worst of it, they say. {OTHER_nameDef} is staying at my side until morning.</li>
+            <li>I begged {OTHER_nameDef} to fetch me some. {OTHER_nameDef} said no, and said {OTHER_pronoun}'d stay the night instead.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} pulled a chair up to my bed for the night. I don't deserve a friend like that.</li></warm>
+          <blunt><li>Bad night coming. {OTHER_nameDef}'s staying. Still clean.</li></blunt>
+          <cheerful><li>Get through tonight and it's downhill from here, {OTHER_nameDef} says, and {OTHER_nameDef} is staying to see I do.</li></cheerful>
+          <gloomy><li>I think tonight might be the end of me. {OTHER_nameDef} is sitting by the bed as if that were a perfectly ordinary thing to do.</li></gloomy>
+          <cold><li>The worst of the withdrawal is expected tonight. {OTHER_nameDef} will keep watch. The count goes on.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>Staying up with {OTHER_nameDef} tonight, through the worst of it. I don't think either of us will sleep.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} is staying at {PAWN_nameDef}'s side through the worst night of the withdrawal.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>a bad night at {A_nameDef}'s side</label><target>B</target><to>Person</to><whom>A</whom><hours>21~23</hours><duration>3~4</duration></li>
+        </effects>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>1</minDays>
+          <timeoutDays>50</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>clean</label>
+        <journal>
+          <plain>
+            <li>It's gone. No craving this morning, none at noon. I'm clean.</li>
+            <li>{OTHER_nameDef} is raising a cup to me at supper. Nothing stronger than tea for me, and that's fine.</li>
+          </plain>
+          <warm><li>I couldn't have done it without {OTHER_nameDef}, and I'm going to tell everyone at supper.</li></warm>
+          <blunt><li>Clean. Staying that way.</li></blunt>
+          <cheerful><li>I'm clean! I keep saying it out loud just to hear it.</li></cheerful>
+          <gloomy><li>Clean, for now. I know it's always there, waiting. But not today.</li></gloomy>
+          <cold><li>The addiction is gone. I have no intention of acquiring another.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} is clean. I'm raising a cup to {OTHER_objective} at supper tonight, and I don't care who sees me cry.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is clean of the drug, and {OTHER_nameDef} is raising a cup to {PAWN_objective} at supper.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Arc_Clean</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Arc_StayedWithMe</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Arc_SawThemThrough</thought><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a cup raised to {A_nameDef}</label><target>CloseToA</target><organizer>B</organizer><hours>18~20</hours></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>10</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-8</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[relapse] I took it again. I'm not proud of it. {OTHER_nameDef} didn't say a word against me, and next time I'll try again.</li>
+        <li>[relapse] The craving won this time. It doesn't have to win the next one.</li>
+        <li>[otherdead] {OTHER_nameDef} sat with me through the worst of it, and now {OTHER_nameDef} is gone. I don't know how to keep going without {OTHER_objective}.</li>
+        <li>[timeout] It's taking longer than anyone said. I'm still not clean, and I'm tired.</li>
+        <li>I haven't managed it yet. I will.</li>
+      </plain>
+      <gloomy><li>[relapse] Back where I started. Worse, because now I know how hard the way out is.</li></gloomy>
+      <warm><li>[relapse] {OTHER_nameDef} still sat with me after I slipped. That's what I'll remember.</li></warm>
+    </fizzle>
+    <fizzleChronicle>
+      <li>[relapse] {PAWN_nameDef} took the drug again. Nobody blames {PAWN_objective}, and the next try is {PAWN_possessive} own to make.</li>
+      <li>{PAWN_nameDef} isn't clean yet.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was trying so hard to get clean. I sat with {OTHER_objective} every evening. I'd sit there now if I could.</li>
+      </plain>
+      <cold><li>{OTHER_nameDef} was fighting an addiction, and fighting well. That should be remembered.</li></cold>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- The new leg                                                                                            -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_NewLeg</defName>
+    <label>the new leg</label>
+    <summary>A replacement leg fitted by the game's own operation: first steps with a friend at their side, a frustrating day, the first full day's work at what they do best, and pride.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_NewLimb</workerClass>
+    <weight>1.5</weight>
+    <maxDays>30</maxDays>
+    <stages>
+      <li>
+        <label>first steps</label>
+        <waiting>Next: a day or two of getting used to it.</waiting>
+        <journal>
+          <plain>
+            <li>First steps on the new leg today. {OTHER_nameDef} is walking me to the gate and back, slow as I need.</li>
+            <li>It doesn't feel like mine yet. It feels like walking on someone else's word that it'll hold.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} promised not to hold my arm on the walk, only to stay close. That's exactly right.</li></warm>
+          <blunt><li>New leg. Walking to the gate today. Not going to fall.</li></blunt>
+          <cheerful><li>Today I walk to the gate and back on my own two feet, near enough!</li></cheerful>
+          <gloomy><li>Every step I wait for it to give way. Today I find out.</li></gloomy>
+          <cold><li>The replacement bears weight. Gait is uneven. I will practice.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>Walking {OTHER_nameDef} to the gate on the new leg today. No help wanted, I'm told.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is taking the first steps on a new leg, with {OTHER_nameDef} walking alongside to the gate and back.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>first steps with {A_nameDef}</label><target>AAndB</target><to>Gate</to><count>2</count><hours>9~17</hours><duration>0.5~0.75</duration></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>1.5</days>
+          <minDays>1</minDays>
+        </gate>
+      </li>
+      <li>
+        <label>a frustrating day</label>
+        <waiting>Next: a full day's work at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>Bad day with the leg. It caught on every step and I snapped at everyone who looked at it.</li>
+            <li>I tried to hurry today and the leg wouldn't. I sat down on the path and swore at it for a while.</li>
+          </plain>
+          <warm><li>I was short with {OTHER_nameDef} today, and {OTHER_nameDef} let it go. I owe {OTHER_objective} an apology.</li></warm>
+          <blunt><li>Leg's slow. I'm slow. Hate it.</li></blunt>
+          <cheerful><li>Today was rubbish, but tomorrow I'm going to work a full day on this thing, just to show it.</li></cheerful>
+          <gloomy><li>Maybe I'll always be this slow now. Maybe this is just how it is.</li></gloomy>
+          <cold><li>Progress was poor today. Frustration is not useful. I will try again.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} had a frustrating day getting used to the new leg.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>4</amount></li>
+        </effects>
+        <gate>
+          <kind>Practice</kind>
+          <amount>1200</amount>
+          <minDays>1</minDays>
+          <timeoutDays>10</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>a full day's work</label>
+        <waiting>Next: a couple of ordinary days on it.</waiting>
+        <journal>
+          <plain>
+            <li>A full day at {SKILL} today, on the new leg. I forgot about it for a whole hour in the afternoon.</li>
+            <li>Worked from morning to supper at {SKILL}. My hip aches, but the work got done, all of it.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} saw me at work and just nodded, the way you'd nod at anyone. That's what I wanted.</li></warm>
+          <blunt><li>Full day's work at {SKILL}. Back to normal.</li></blunt>
+          <cheerful><li>A whole day at {SKILL}, and I barely noticed the leg once!</li></cheerful>
+          <gloomy><li>I got through a day's work. I'm too tired to be glad about it yet.</li></gloomy>
+          <cold><li>Output at {SKILL} is back to what it was. The leg is adequate.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} put in a full day's work at {SKILL} on the new leg.</li>
+        </chronicle>
+        <gate>
+          <kind>Time</kind>
+          <days>2</days>
+          <minDays>1</minDays>
+        </gate>
+      </li>
+      <li>
+        <label>on their own two feet</label>
+        <journal>
+          <plain>
+            <li>I don't think about the leg any more, most days. It's just my leg now.</li>
+            <li>Someone asked me which one was new. I had to think about it.</li>
+          </plain>
+          <warm><li>I thanked {OTHER_nameDef} for those first steps. {OTHER_nameDef} said I'd have managed anyway. I'm not so sure.</li></warm>
+          <blunt><li>It's my leg. Done.</li></blunt>
+          <cheerful><li>I forgot which leg was the new one for a whole afternoon.</li></cheerful>
+          <gloomy><li>It still aches when it rains. But it holds.</li></gloomy>
+          <cold><li>The replacement is fully integrated into my routine. The matter is closed.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} doesn't need me walking alongside any more, and that's the best news of the week.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is back on {PAWN_possessive} own two feet, and doesn't think about the new leg much any more.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Arc_NewLegProud</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Arc_WalkedWithMe</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>6</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-6</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[gone] The leg's gone again. I'll learn to walk on whatever comes next.</li>
+        <li>[otherdead] {OTHER_nameDef} walked my first steps with me, and now {OTHER_nameDef} is gone.</li>
+        <li>[timeout] I'm still not used to it. Maybe I never will be, quite.</li>
+        <li>It's not mine yet, this leg. Not quite.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} is still getting used to the new leg.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} had only just got back on {OTHER_possessive} feet. I walked those first steps with {OTHER_objective}, to the gate and back.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

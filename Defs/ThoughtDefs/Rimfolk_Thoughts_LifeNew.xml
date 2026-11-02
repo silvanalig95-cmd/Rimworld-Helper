@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of the newer wishes (Defs/WishDefs/Rimfolk_Wishes_LifeNew.xml) and the two life stories
+    (Defs/ArcDefs/Rimfolk_Arcs_LifeNew.xml): getting clean and the new leg. The stories' good endings give something
+    other than mood (RewardInstead), as the other stories do; a memory about someone keeps its opinion.
+  -->
+
+  <!-- ===================== The wishes granted ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_PetGrave</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>laid my animal to rest</label>
+        <description>It's in the ground now, near home, where nobody will butcher it or leave it for the crows. I know where to go when I miss it.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_HomeCrop</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a crop from home</label>
+        <description>Something I grew up with is coming up in our fields. I keep walking past to look at the rows.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_WinterGreen</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>something green in winter</label>
+        <description>There's a lamp over a field indoors now, and green things growing under it while the snow comes down.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_BenchLamp</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a lamp at my bench</label>
+        <description>I can see what my hands are doing now, even after dark. My eyes are thankful.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Granted_RoofedWay</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>a dry way to the table</label>
+        <description>The way from my bed to the table is under a roof now. I get to supper as dry as I left.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== Getting clean ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Arc_Clean</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>clean</label><description>It's out of my blood. I got through the shaking and the bad nights, and I'm still here.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>4</felt><comfort>0.15</comfort><journal>true</journal><feelings><li>Pride</li><li>Relief</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Arc_StayedWithMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>stayed with me through it</label><description>They sat with me every evening while I was getting clean, and stayed the worst night. I won't forget it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>15</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Gratitude</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Arc_SawThemThrough</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>saw them through it</label><description>I sat with them while they got clean. They did the hard part, but I was there for it.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Pride</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The new leg ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Arc_NewLegProud</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>on my own two feet</label><description>A full day's work on the new leg, and another after it. I stopped thinking about it somewhere around noon.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>4</felt><joy>0.1</joy><journal>true</journal><feelings><li>Pride</li><li>Hope</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_Arc_WalkedWithMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>walked with me</label><description>They walked beside me on my first steps with the new leg, slow as I needed, and didn't once offer an arm I hadn't asked for.</description><baseMoodEffect>0</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><felt>2</felt><feelings><li>Gratitude</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+</Defs>

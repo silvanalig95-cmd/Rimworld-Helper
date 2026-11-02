@@ -1322,6 +1322,14 @@ namespace Balance
                         case "Sweets":
                             chance *= 1.5f;
                             break;
+                        case "RawFood":
+                            // Rolled per raw meal: the share of days with raw meat or fish.
+                            chance *= style.rawFood;
+                            break;
+                        case "Smoke":
+                            // Rolled per smoke: the share of days with one, at a middling tolerance.
+                            chance *= style.smokes * AilmentMath.SmokeFactor(0.3f);
+                            break;
                         case "Wound":
                         case "AnimalBite":
                         case "InsectBite":
@@ -1332,6 +1340,9 @@ namespace Balance
                             if (!held.Contains(cause.trigger)) continue;
                             break;
                     }
+                    // Gout: only from 45, half as often with fruit or vegetables lately.
+                    if (a.minAge > 0f) chance *= Rates.ShareFromAge(a.minAge);
+                    if (a.freshFactor != 1f) chance *= 1f + (a.freshFactor - 1f) * style.freshShare;
                     if (Chance(chance) && CanGet(c, a))
                     {
                         Give(c, a, Range(a.startMin, a.startMax));

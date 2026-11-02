@@ -19,6 +19,10 @@ namespace ColonyCouncil
         public float stayNear;
         /// <summary>The game's effect while the work is done (chaff for gathering, dirt for digging), at the errand's place if it has one, else at the target.</summary>
         public EffecterDef effecter;
+        /// <summary>The same by name, for an effect only a DLC brings (Odyssey's fishing): none when it isn't there.</summary>
+        public string effecterNamed;
+
+        public EffecterDef Effecter => effecter ?? (effecterNamed.NullOrEmpty() ? null : DefDatabase<EffecterDef>.GetNamedSilentFail(effecterNamed));
         /// <summary>An animal as the target stands still for the work (milking, shearing), as the game's own gathering has it.</summary>
         public bool holdTarget;
         /// <summary>The work shows its progress in a bar, as the game's own milking and shearing do.</summary>
@@ -106,6 +110,12 @@ namespace ColonyCouncil
             {
                 var walk = camp.WalkJob(pawn);
                 if (walk != null) return walk;
+            }
+            // The night's own work of a land kind: the watch at the monolith, a bed in the colony out of the storm (CampKindsLand.cs).
+            if (!pawn.DevelopmentalStage.Juvenile())
+            {
+                var nightWork = camp.LandNightJob(pawn, hour);
+                if (nightWork != null) return nightWork;
             }
             if (rest != null && (rest.CurLevelPercentage < 0.2f || (night && rest.CurLevelPercentage < 0.95f))) return Sleep(camp, pawn);
             bool adult = !pawn.DevelopmentalStage.Juvenile();
@@ -293,7 +303,7 @@ namespace ColonyCouncil
             // off: bodies by the butchering spot, the rest at the stash. What they put out has its own place (porters move it).
             foreach (var t in map.listerThings.ThingsInGroup(ThingRequestGroup.HaulableEver))
             {
-                if (!camp.Owns(t) || !t.Spawned || camp.IsProp(t) || camp.IsWare(t) || InColony(t, home) || !t.Position.InHorDistOf(camp.center, CampSite.WorkRadius)) continue;
+                if (!camp.Owns(t) || !t.Spawned || camp.IsProp(t) || camp.IsWare(t) || InColony(t, home) || !t.Position.InHorDistOf(camp.center, camp.FetchRadius)) continue;
                 var to = t is Corpse ? killSpot : camp.stash;
                 if (t.Position.InHorDistOf(to, 3.5f)) continue;
                 if (!pawn.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some)) continue;
@@ -370,6 +380,9 @@ namespace ColonyCouncil
             // One of them walks over to buy what the camp needs at the colony's market stalls (CampMarket.cs).
             var shop = camp.MarketJob(pawn);
             if (shop != null) return shop;
+            // Their own work on the land: fishing, stripping the ruins, reaping, mending the hull, watching (CampKindsLand.cs).
+            var landWork = camp.LandJob(pawn);
+            if (landWork != null) return landWork;
             if (camp.dayHunts < camp.huntsToday && camp.prey.Count == 0 && CanHunt(pawn))
             {
                 var animal = Prey(camp, pawn);
@@ -549,6 +562,7 @@ namespace ColonyCouncil
                 else if (def == CampDefOf.Council_CampErrand || def == CampDefOf.Council_CampErrandTo || def == CampDefOf.Council_CampErrandDig) camp.ErrandWorked(pawn, job);
                 else if (def == CampDefOf.Council_CampGather) camp.Gathered(pawn, job.targetA.Thing);
                 else if (def == CampDefOf.Council_CampMilk || def == CampDefOf.Council_CampShear) camp.Milked(pawn, job.targetA.Thing as Pawn);
+                else camp.LandJobDone(pawn, job);
             }
             catch (Exception e)
             {
@@ -653,7 +667,7 @@ namespace ColonyCouncil
         {
             // A body to butcher, a plant to gather from, a beast to milk: theirs alone while they work on it.
             var def = job.def;
-            if ((def == CampDefOf.Council_CampButcher || def == CampDefOf.Council_CampGather || def == CampDefOf.Council_CampMilk || def == CampDefOf.Council_CampShear) && job.targetA.HasThing)
+            if ((def == CampDefOf.Council_CampButcher || def == CampDefOf.Council_CampGather || def == CampDefOf.Council_CampMilk || def == CampDefOf.Council_CampShear || CampLand.Reserves(def)) && job.targetA.HasThing)
                 return pawn.Reserve(job.targetA, job, 1, -1, null, errorOnFailed);
             return true;
         }
@@ -688,7 +702,7 @@ namespace ColonyCouncil
                     EndJobWith(JobCondition.Incompletable);
             };
             if (ext != null && ext.repairEffect) work.WithEffect(() => job.targetA.Thing?.def?.repairEffect ?? EffecterDefOf.ConstructMetal, TargetIndex.A);
-            if (ext?.effecter != null) work.WithEffect(ext.effecter, job.targetB.IsValid ? TargetIndex.B : TargetIndex.A);
+            if (ext?.Effecter != null) work.WithEffect(ext.Effecter, job.targetB.IsValid ? TargetIndex.B : TargetIndex.A);
             if (ext != null && ext.progress) work.WithProgressBarToilDelay(TargetIndex.A);
             yield return work;
             yield return Toils_General.Do(() => CampWork.Done(pawn, job));

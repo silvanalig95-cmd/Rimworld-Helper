@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two more home nuisances (Source/ColonyCouncil/Strangers/NuisancesNew.cs), read from the real map like the others:
+    the smell of a butcher's table or spot in the room where someone eats or sleeps, and in the cold a draught from a
+    door straight to the outside a few steps from their bed. Fixing the cause is the cure. Moods in
+    Rimfolk_Thoughts_Nuisances_New.xml.
+  -->
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_ButcherSmell</defName>
+    <label>the butcher's smell</label>
+    <checkClass>ColonyCouncil.NuisanceCheck_ButcherSmell</checkClass>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Council_Nuisance_ButcherSmell</thought>
+    <texts>
+      <li>{A_nameDef} wrinkled {A_possessive} nose at the smell from the {THING} across the room.</li>
+      <li>The {THING} in the corner still smelled of the last carcass, and {A_nameDef} could think of nothing else.</li>
+      <li>{A_nameDef} looked at the stains on the {THING} and wished someone would move it somewhere else.</li>
+      <li>[eating] {A_nameDef} ate quickly, with the smell of the {THING} at {A_possessive} back.</li>
+      <li>[eating] {A_nameDef} pushed the plate away half full. Hard to enjoy a meal next to the {THING}.</li>
+      <li>[!eating] {A_nameDef} lay down to the smell of old blood from the {THING} in the room.</li>
+      <li>[morning,!eating] {A_nameDef} woke up to the smell of the {THING} again.</li>
+      <li>[child] "Why do we sleep next to where the animals get cut up?" {A_nameDef} asked.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Council_Nuisance_DraughtyBed</defName>
+    <label>a draught at the bed</label>
+    <checkClass>ColonyCouncil.NuisanceCheck_DraughtyBed</checkClass>
+    <who>morning|evening</who>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>3</cooldownDays>
+    <thought>Council_Nuisance_DraughtyBed</thought>
+    <texts>
+      <li>Every time someone used the {THING} by {A_nameDef}'s bed, the cold came straight in.</li>
+      <li>{A_nameDef} stuffed a rolled-up shirt along the bottom of the {THING}. The draught came in anyway.</li>
+      <li>[morning] {A_nameDef} had felt the cold air from the {THING} across the bed all night.</li>
+      <li>[morning] {A_nameDef} woke up with cold feet. The draught from the {THING} again.</li>
+      <li>[evening] {A_nameDef} pulled the blanket up and turned away from the cold coming in at the {THING}.</li>
+      <li>[morning,snow] Snow had blown in under the {THING} by {A_nameDef}'s bed during the night.</li>
+      <li>[child,morning] {A_nameDef} had slept with {A_possessive} head under the blanket because of the cold from the {THING}.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+</Defs>

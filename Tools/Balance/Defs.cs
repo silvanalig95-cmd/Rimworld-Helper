@@ -126,6 +126,8 @@ namespace Balance
         public bool immunizable;
         public float sevNotImmune, immunityPerDay, sevImmune;
         public float childFactor = 1f, oldFactor = 1f;
+        /// <summary>Only from this age (gout, 45), and the factor with fruit or vegetables lately (gout, 0.5).</summary>
+        public float minAge, freshFactor = 1f;
         public List<AilmentCauseInfo> causes = new List<AilmentCauseInfo>();
         public List<(string hediff, float chance, float sevMin, float sevMax)> after = new List<(string, float, float, float)>();
         public float[] moods = new float[0];
@@ -585,6 +587,8 @@ namespace Balance
                 cooldownDays = F((string)main.Element("cooldownDays"), 15f),
                 childFactor = F((string)main.Element("childFactor"), 1f),
                 oldFactor = F((string)main.Element("oldFactor"), 1f),
+                minAge = F((string)main.Element("minAge"), 0f),
+                freshFactor = F((string)main.Element("freshFactor"), 1f),
                 initialSeverity = F(Get(el, "initialSeverity"), 0.4f)
             };
             (a.startMin, a.startMax) = Range((string)main.Element("startSeverity"), 0.3f, 0.5f);

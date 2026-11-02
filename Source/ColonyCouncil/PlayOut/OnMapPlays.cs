@@ -651,12 +651,18 @@ namespace ColonyCouncil
     {
         public const string Pyre = "pyre", Treeline = "treeline", Graves = "graves", Trench = "trench", Crematorium = "crematorium";
 
+        /// <summary>A pet's grave, dug near the colony for one animal (PlayPetGrave.cs), set going by its person's wish.</summary>
+        public const string Pet = "petgrave";
+
         /// <summary>The mode's part of its text keys (CC_Play_Label_Pyre, CC_Play_Where_Graves...).</summary>
         public static string Key(string mode) =>
-            mode == Treeline ? "Treeline" : mode == Graves ? "DeadGraves" : mode == Trench ? "Trench" : mode == Crematorium ? "Crematorium" : "Pyre";
+            mode == Treeline ? "Treeline" : mode == Graves ? "DeadGraves" : mode == Trench ? "Trench" : mode == Crematorium ? "Crematorium" : mode == Pet ? "PetGrave" : "Pyre";
 
         /// <summary>The dead go into graves dug for them.</summary>
-        public static bool Burial(PlayOut p) => p.mode == Graves || p.mode == Trench;
+        public static bool Burial(PlayOut p) => p.mode == Graves || p.mode == Trench || p.mode == Pet;
+
+        /// <summary>One of this plan's dead still to be seen to: the enemy dead, or for a pet's grave the pet's body.</summary>
+        public static bool ToBury(PlayOut p, Thing t) => p != null && p.mode == Pet ? PetGrave.Lies(t) : EnemyCorpse(t);
 
         /// <summary>The body of someone who came against the colony, lying on the open map (not buried, not in the fog).</summary>
         public static bool EnemyCorpse(Thing t)
@@ -685,7 +691,7 @@ namespace ColonyCouncil
             Burial(p) ? PlayBurial.Buried(p, c) : p.mode != Crematorium && AtPile(p, c);
 
         /// <summary>Still to see to: one of the dead, not yet where they're going.</summary>
-        private static bool ToCarry(PlayOut p, Thing c) => EnemyCorpse(c) && !Delivered(p, c);
+        private static bool ToCarry(PlayOut p, Thing c) => ToBury(p, c) && !Delivered(p, c);
 
         /// <summary>On this plan's work: carrying one of its dead (or digging one of its graves) with the game's own jobs.</summary>
         public static bool OnIt(PlayOut p, Pawn x)
@@ -701,10 +707,10 @@ namespace ColonyCouncil
         {
             where = null;
             var lead = p.hands[0].pawn;
-            p.things.RemoveAll(c => !EnemyCorpse(c));
+            p.things.RemoveAll(c => !ToBury(p, c));
             if (p.things.Count == 0)
             {
-                t.Fallback(p, "CC_Play_Why_NoDead".Translate(), false);
+                t.Fallback(p, (p.mode == Pet ? "CC_Play_Why_NoPetBody" : "CC_Play_Why_NoDead").Translate(), false);
                 return false;
             }
             if (p.mode == Crematorium)
@@ -721,7 +727,8 @@ namespace ColonyCouncil
             {
                 if (p.plots.Count == 0)
                 {
-                    var plots = PlayBurial.Plot(p.map, lead, p.things.Count, p.mode == Graves, out var rot);
+                    Rot4 rot;
+                    var plots = p.mode == Pet ? PetGrave.Plot(p.map, lead, out rot) : PlayBurial.Plot(p.map, lead, p.things.Count, p.mode == Graves, out rot);
                     // No room for a grave each with ground between: side by side, as for a trench.
                     if (plots.Count == 0 && p.mode == Graves) plots = PlayBurial.Plot(p.map, lead, p.things.Count, false, out rot);
                     p.plots = plots;

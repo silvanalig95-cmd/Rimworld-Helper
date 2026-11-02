@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A reader's year (Source/ColonyCouncil/Aspirations/AspirationWorkers_LifeNew.cs): read so many different books from
+    the colony's shelves, with the game's own reading. Each book counts once, seen in hand being read
+    (Lives/LifeNew.cs counts it as "booksread"). Only for someone who can read, in a colony with a few different books.
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_ReadersYear</defName>
+    <label>a reader's year</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Books</workerClass>
+    <counter>booksread</counter>
+    <amount>6</amount>
+    <weight>0.7</weight>
+    <goal>read {COUNT} different books from the colony's shelves</goal>
+    <deed>read {COUNT} different books</deed>
+    <forbiddenBy><li>NoBooks</li></forbiddenBy>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>There are books on our shelves I've never opened. I'm going to {GOAL}.</li>
+        <li>I used to read every night, before all this. I'd like to be a reader again.</li>
+        <li>[old] I've spent my life working. Now I'd like to read what other people thought about while I worked.</li>
+      </plain>
+      <warm><li>Someone wrote every one of those books hoping it would be read. I'll do my part.</li></warm>
+      <blunt><li>Going to read the books on the shelf. All of them, if I can.</li></blunt>
+      <cheerful><li>So many books, and I've only read the one about soil! Time to fix that.</li></cheerful>
+      <gloomy><li>Books are the only way out of here I can think of. I'll take it.</li></gloomy>
+      <cold><li>The shelves hold knowledge nobody is using. I'll {GOAL}.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>That's the last of them for this year. I feel as though I've been a long way and come home.</li>
+        <li>I've read every book I said I would. My head is full of other people's lives.</li>
+      </plain>
+      <warm><li>I keep thinking about the people in those books, as if I'd met them.</li></warm>
+      <cheerful><li>Done, and I already know which one I'm reading again first.</li></cheerful>
+      <cold><li>The reading is done. I retained most of it.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

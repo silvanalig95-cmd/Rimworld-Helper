@@ -430,7 +430,7 @@ namespace ColonyCouncil
             foreach (var p in PawnsFinder.AllMaps_FreeColonists.ToList().Where(Eligible).ToList())
             {
                 if (Of(p).Count() >= MaxPerPawn) continue;
-                var options = DefDatabase<QuirkDef>.AllDefsListForReading.Where(d => Get(p, d) == null && Triggered(comp, d, p) && DilemmaRole.Fits(d.who, p, d.children) && !WeatherMods.Unfit(d, p)).ToList();
+                var options = DefDatabase<QuirkDef>.AllDefsListForReading.Where(d => Get(p, d) == null && Triggered(comp, d, p) && DilemmaRole.Fits(d.who, p, d.children) && !WeatherMods.Unfit(d, p) && !FirstPot.Unfit(d)).ToList();
                 foreach (var d in options.InRandomOrder())
                 {
                     // Someone at the matching work has it sooner, and some come only from the work (Practice.cs).

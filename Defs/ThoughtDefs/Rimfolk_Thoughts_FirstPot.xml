@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A cup of coffee or tea brought by one who makes the first pot (Source/ColonyCouncil/Immersion/FirstPot.cs): once from each of them a morning. -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Habit_FirstCup</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>0.25</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>brought me a cup</label><description>They brought me the first cup of the morning, hot, before I'd even thought of it.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>4</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+</Defs>

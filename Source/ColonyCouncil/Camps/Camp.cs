@@ -443,6 +443,8 @@ namespace ColonyCouncil
             ExposeRoadPost();
             // Their trips to the colony's market stalls (CampMarket.cs).
             ExposeMarket();
+            // The land kinds' work: the catch, the ruins stripped, the harvest, the hull, the watch (CampKindsLand.cs).
+            ExposeLand();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 asksMade ??= new List<string>();

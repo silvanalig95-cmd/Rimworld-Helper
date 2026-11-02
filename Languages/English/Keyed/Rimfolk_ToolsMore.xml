@@ -32,11 +32,5 @@
   <CC_Rearr_Keep_Firm>Firmly</CC_Rearr_Keep_Firm>
   <CC_Rearr_Keep_Firm_Tip>Furniture moves only for a clear gain: a room that works stays much as it is.</CC_Rearr_Keep_Firm_Tip>
 
-  <!-- A quiet day's evening news (Source/ColonyCouncil/UI/NewsQuiet.cs). -->
-  <CC_News_QuietDay>A quiet day in the colony. {0}</CC_News_QuietDay>
-  <CC_Settings_QuietNewsDays>Quiet days in one short message</CC_Settings_QuietNewsDays>
-  <CC_Settings_QuietNewsDays_Tip>On a day with only two to four small pieces of colony news and nothing bad among them, the evening's news comes as one short message, kept in the History tab, instead of a letter. A busy day, or one with bad news, keeps its letter.</CC_Settings_QuietNewsDays_Tip>
-  <CC_SetNote_QuietNewsDays>A quiet day's news is one short message, not a letter.</CC_SetNote_QuietNewsDays>
-  <CC_SetWhy_QuietNewsDays>Only with the colony news gathered in the evening.</CC_SetWhy_QuietNewsDays>
 
 </LanguageData>

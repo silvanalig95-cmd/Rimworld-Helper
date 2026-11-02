@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Rimfolk events that grow out of what is happening at the colony (Source/ColonyCouncil/Happenings/Workers_NewEvents.cs):
+       a young animal left by a hunter's kill, a wild one at the pens at dusk, a pocket of ore at the rock face, a visitor's
+       challenge at the game table, and a neighbour's commission. Each comes only while what it speaks of is there. -->
+
+  <!-- ===================== Orphaned young ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_OrphanedYoung</defName>
+    <label>orphaned young</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Orphan</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>5</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A young one by the kill</li>
+          <li>Orphaned young</li>
+        </titles>
+        <texts>
+          <li>[body] When {A_nameDef} went back for the {BEAST} {A_pronoun} had brought down, a young one of its kind was standing over the body. It backed off a few steps and would go no further.\n\nIt is too young to do well on its own.</li>
+          <li>[body] There is a young {BEAST} by the body of the one {A_nameDef} brought down this morning. It noses at it, wanders a little way off, and comes back.\n\nIt won't leave, and it won't last long out there on its own.</li>
+          <li>[!body] Where {A_nameDef} brought the {BEAST} down, a young one of its kind is still waiting. It runs a few steps when anyone comes near, then turns and waits again.\n\nIt is too young to do well on its own.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Tame it</label>
+            <outcome>The young {BEAST} is marked for taming. The colony's handlers will go out to it with food and patience.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Tame</designation></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Take it in and raise it by hand</label>
+            <outcome>{A_nameDef} brings food out to the young {BEAST}, and from today it is the colony's to raise.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Recruit" />
+              <li Class="ColonyCouncil.DilemmaEffect_FeedBeast"><count>6</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Evt_RaisedYoung</thought></li>
+            </effects>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Leave it be</label>
+            <outcome>The young {BEAST} is left where it is, to find its own way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Evt_LeftYoung</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A wild one at the pens ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_WildAtPens</defName>
+    <label>a wild one at the pens</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WildAtPens</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A wild one at the pens</li>
+          <li>Calling across the fence</li>
+        </titles>
+        <texts>
+          <li>A wild {BEAST} is coming down to the pens in the dusk, calling across the fence to the colony's own. They are calling back.\n\n{A_nameDef}, who knows the animals best, thinks it could be tamed. It could also be left to come and go, or chased off before it gets bold.</li>
+          <li>In the last of the light a wild {BEAST} is making its way down to the pens, drawn by the colony's own herd.\n\n{A_nameDef} says it looks healthy, and tame enough to try. Others would rather it stayed out on the land, or went back to wherever it came from.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Tame it</label>
+            <outcome>The wild {BEAST} is marked for taming. The handlers will try it with food at the fence.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Designate"><designation>Tame</designation></li>
+            </effects>
+          </li>
+          <li>
+            <label>Let it be</label>
+            <outcome>The wild {BEAST} is left to come and go. The colony will keep an eye on it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WatchBeast" />
+            </effects>
+          </li>
+          <li>
+            <label>Drive it off</label>
+            <outcome>A few shouts and a waved arm, and the wild {BEAST} makes off for the edge of the land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_DriveOff" />
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A rich seam ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_RichSeam</defName>
+    <label>a rich seam</label>
+    <workerClass>ColonyCouncil.HappeningWorker_RichSeam</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A rich seam</li>
+          <li>{BEAST} in the rock</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef}'s pick broke through into a pocket of {BEAST}, deep under the mountain. Past the pocket, the seam runs on into the rock.\n\nFollowing it means opening more of the deep rock, and the deeper the colony digs under the mountain, the likelier it is that something nests there.</li>
+          <li>Under the mountain, {A_nameDef} has hit {BEAST}: a pocket of it beside the face, and a seam that runs on further in.\n\nThe seam would pay well, but it goes deep, and open ground under thick rock is where insects make their hives.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Follow the seam</label>
+            <outcome>The pocket and the seam beyond it are marked for mining, all the way into the rock.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MineSeam"><seam>true</seam></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Take only the pocket</label>
+            <outcome>The pocket beside the face is marked for mining. The seam stays in the rock.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MineSeam" />
+            </effects>
+          </li>
+          <li>
+            <label>Leave it in the rock for now</label>
+            <outcome>The {BEAST} stays where it is. It will be there when the colony wants it.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A game for a stake ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_TableGame</defName>
+    <label>a game for a stake</label>
+    <workerClass>ColonyCouncil.HappeningWorker_TableGame</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>[chess] A challenge at the chess table</li>
+          <li>[poker] A hand of poker</li>
+          <li>[game] A challenge at the table</li>
+          <li>A game for a stake</li>
+        </titles>
+        <texts>
+          <li>[chess] {X_nameDef} of {FACTION} has been looking at the colony's chess table all morning, and has finally asked who here plays. The answer is {A_nameDef}.\n\n{X_nameDef} would like a game, and would like it more for {COUNT} silver.</li>
+          <li>[poker] {X_nameDef} of {FACTION} has sat down at the colony's poker table, shuffled the deck twice, and asked who will play. {A_nameDef} is the one the others point at.\n\n{X_nameDef} suggests a stake of {COUNT} silver, to keep it interesting.</li>
+          <li>[game] {X_nameDef} of {FACTION} has challenged the colony's best to a game at its table, and the colony's best is {A_nameDef}. A stake of {COUNT} silver, {X_nameDef} suggests, or just for the pleasure of it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Play for {COUNT} silver</label>
+            <outcome>{A_nameDef} sits down across the table from {X_nameDef}. Skill and luck will decide who goes away richer.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><sit>true</sit><sitBy>Place</sitBy><duration>1~1.5</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Play for the fun of it</label>
+            <outcome>{A_nameDef} sits down across the table from {X_nameDef}, and the others gather in the rec room to watch.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><sit>true</sit><sitBy>Place</sitBy><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><target>Others</target><organizer>None</organizer><spots><li>Rec</li></spots><duration>1~1.5</duration></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{A_nameDef} has work to do. {X_nameDef} shrugs and puts the pieces away.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A commission ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Council_Evt_Commission</defName>
+    <label>a commission</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Commission</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A commission from {FACTION}</li>
+          <li>[patron] {FACTION} want another</li>
+        </titles>
+        <texts>
+          <li>[patron] {FACTION} were so pleased with the last piece that they have written again. They want a {THING}, made at the colony's own bench by {A_nameDef}, of good quality or better, for {COUNT} silver.\n\nAt plain quality they would still take it, for {TALE}.</li>
+          <li>[apparel] Someone of {FACTION} has seen the colony's work and wants a {THING} of their own, cut and sewn by {A_nameDef}. Of good quality or better, they will pay {COUNT} silver for it. At plain quality, {TALE}.\n\nTheir rider will come for it when it's ready.</li>
+          <li>[weapon] {FACTION} want a {THING} made for one of their people, and they have heard that {A_nameDef} makes them well. Of good quality or better, {COUNT} silver; at plain quality, {TALE}.\n\nTheir rider will come for it when it's ready.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take it: good quality, {COUNT} silver</label>
+            <outcome>The bill for the {THING} goes up at the bench, and only a piece of good quality or better will do. {FACTION}'s rider will come when it's made.</outcome>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Take it at plain quality, {TALE} silver</label>
+            <outcome>The bill for the {THING} goes up at the bench. Any piece of plain quality or better will do, and {FACTION}'s rider will come when it's made.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Turn it down</label>
+            <outcome>The colony's benches have enough to do. {FACTION} will look elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningMoreText">
+        <doneTitles>
+          <li>[fine] A masterwork for {FACTION}</li>
+          <li>[plain] The commission is ready</li>
+        </doneTitles>
+        <done>
+          <li>[fine] The {THING} came off the bench a masterwork, and word has gone to {FACTION}. Their rider is on the way for it with {COUNT} silver, more than was promised, and they will want the colony's work again.</li>
+          <li>[plain] The {THING} is made, and word has gone to {FACTION}. Their rider is on the way to collect it and pay the {COUNT} silver.</li>
+        </done>
+        <failTitles>
+          <li>The commission lapsed</li>
+        </failTitles>
+        <fail>
+          <li>{FACTION} have given up waiting for their {THING}, and found someone else to make it. The bill has come off the bench.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} want nothing from the colony now. The bill for their {THING} has come off the bench.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

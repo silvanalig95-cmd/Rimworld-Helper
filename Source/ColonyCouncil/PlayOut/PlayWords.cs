@@ -36,6 +36,11 @@ namespace ColonyCouncil
 
         private static string Pool(PlayKind k, int stage) => Pools.TryGetValue(k, out var names) ? names[stage] : null;
 
+        /// <summary>A pet's grave has its own words (PlayPetGrave.cs): it isn't the raiders being carried out.</summary>
+        private static readonly string[] PetGravePools = { "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave", "Rimfolk_Journal_PetGrave", "Rimfolk_Journal_PetGraveMissed" };
+
+        private static string Pool(PlayOut p, int stage) => PetGrave.Is(p) ? PetGravePools[stage] : Pool(p.kind, stage);
+
         /// <summary>The tags its lines are picked by: the kind of work, the place.</summary>
         public static string[] Tags(PlayOut p, Pawn speaker = null)
         {
@@ -118,7 +123,9 @@ namespace ColonyCouncil
                     return "CC_Play_Begin_Give".Translate(label, names, what, where ?? p.other?.LabelShort ?? "").Resolve();
                 }
                 case PlayKind.Rounds: return "CC_Play_Begin_Rounds".Translate(label, names, where ?? "").Resolve();
-                case PlayKind.Haul: return "CC_Play_Begin_Haul".Translate(label, names, p.things.Count, where ?? "").Resolve();
+                case PlayKind.Haul:
+                    if (PetGrave.Is(p)) return "CC_Play_Begin_PetGrave".Translate(label, names, where ?? "").Resolve();
+                    return "CC_Play_Begin_Haul".Translate(label, names, p.things.Count, where ?? "").Resolve();
                 default: return label;
             }
         }
@@ -129,7 +136,7 @@ namespace ColonyCouncil
             try
             {
                 var lead = Lead(p);
-                string pool = Pool(p.kind, Invitation);
+                string pool = Pool(p, Invitation);
                 if (lead == null || pool == null) return;
                 string line = Flavor.FromPool(pool, lead, null, null, Tags(p, lead));
                 // together: said by whoever leads it as it sets off, to no one in particular; the others are on their way to them.
@@ -151,7 +158,7 @@ namespace ColonyCouncil
                 if (!p.lines.NullOrEmpty() && Rand.Chance(0.5f)) line = p.lines.RandomElement();
                 if (line.NullOrEmpty())
                 {
-                    string pool = !p.pool.NullOrEmpty() ? p.pool : Pool(p.kind, While);
+                    string pool = !p.pool.NullOrEmpty() ? p.pool : Pool(p, While);
                     if (pool != null) line = Flavor.FromPool(pool, speaker, null, null, Tags(p, speaker));
                 }
                 // together: said at the work party, the walk, the vigil, the search or the hunt itself, by one of those on it;
@@ -177,7 +184,7 @@ namespace ColonyCouncil
         public static void After(PlayOut p, List<Pawn> took)
         {
             var journals = CouncilGameComponent.Instance?.journals;
-            string pool = Pool(p.kind, Afterwards);
+            string pool = Pool(p, Afterwards);
             if (journals == null || pool == null || took.NullOrEmpty()) return;
             try
             {
@@ -196,7 +203,7 @@ namespace ColonyCouncil
         public static void Missed(PlayOut p)
         {
             var journals = CouncilGameComponent.Instance?.journals;
-            string pool = Pool(p.kind, FellThrough);
+            string pool = Pool(p, FellThrough);
             if (journals == null || pool == null) return;
             try
             {

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    An everyday ailment for another mod's work (Source/ColonyCouncil/Ailments/): bee stings from Alpha Bees' beehouses
+    and bee chambers, found by name (RB_...Beehouse, RB_BroodChamber, RB_HybridizationChamber). Without the mod nothing
+    is ever at them, so it never comes. A beekeeper with Animals skill is stung far less (AilmentMath.SkillFactor).
+  -->
+
+  <HediffDef ParentName="Council_AilmentBase">
+    <defName>Council_Ail_BeeStings</defName>
+    <label>bee stings</label>
+    <description>A sting or two on the hand from working the beehouses: a hot, swollen hand that throbs for a day. Nothing worse ever comes of it. A beekeeper who knows animals is stung far less (a quarter as often from Animals 15 on); slow, calm hands at the hives are the whole secret.</description>
+    <comps>
+      <li Class="ColonyCouncil.HediffCompProperties_Ailment">
+        <key>BeeStings</key>
+        <quiet>true</quiet>
+        <causes><li><trigger>Beekeeping</trigger><hours>1</hours><chance>0.05</chance></li></causes>
+        <skill>Animals</skill>
+        <childFactor>1.5</childFactor>
+        <cooldownDays>3</cooldownDays>
+        <startSeverity>0.4~0.6</startSeverity>
+        <gotText>The bees stung {PAWN_nameDef} on the hand at the beehouse.</gotText>
+        <gotTexts>
+          <li>[again] The bees got {PAWN_nameDef} again, on the same hand.</li>
+          <li>[summer] The bees were busy and short-tempered, and {PAWN_nameDef} came away from the beehouse stung.</li>
+        </gotTexts>
+        <notes>
+          <li>Scrape the sting out, cold water on it, and it'll be down by tomorrow.</li>
+          <li>[lowtech] Scrape the sting out with a thumbnail, a dab of mud or honey on it, and leave it be.</li>
+          <li>[!lowtech] Scrape the sting out, a cold pack, and something for the itch. It's gone in a day.</li>
+        </notes>
+      </li>
+      <li Class="ColonyCouncil.HediffCompProperties_AilmentRecovery">
+        <severityPerDay>-0.6</severityPerDay>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <label>swollen hand</label>
+        <painOffset>0.03</painOffset>
+        <capMods><li><capacity>Manipulation</capacity><offset>-0.05</offset></li></capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>

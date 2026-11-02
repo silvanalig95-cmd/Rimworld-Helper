@@ -134,6 +134,8 @@ namespace ColonyCouncil
             }
             WatchMembers();
             KeepHerd();
+            // The land kinds' hour: the harvest hands' supper, the watchers' shelter, a sale on its way (CampKindsLand.cs).
+            LandHourly();
             if (phase == CampPhase.Coming)
             {
                 // Lost on the way: they give up and go.
@@ -850,6 +852,8 @@ namespace ColonyCouncil
             ending = reason;
             leftTick = Now;
             carries.Clear();
+            // Beds lent for the night given back, the wrecked craft left behind (CampKindsLand.cs).
+            LandLeaving();
             // A day's stall at the gate is packed up first.
             PackWares();
             if (LordAlive) lord.ReceiveMemo(fast ? LordJob_Camp.MemoFlee : LordJob_Camp.MemoLeave);
@@ -1091,6 +1095,7 @@ namespace ColonyCouncil
             try
             {
                 ClearUp();
+                LandLeaving();
             }
             catch (Exception e)
             {
@@ -1183,7 +1188,7 @@ namespace ColonyCouncil
             var comp = CouncilGameComponent.Instance;
             var colonists = IncidentWorker_Happening.Colonists(map);
             // apart: the camp has gone; the friendship was made face to face at their fire (Visited, Visitors need them together).
-            bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "moved";
+            bool peaceful = ending == "time" || ending == "asked" || ending == "weather" || ending == "raid" || ending == "hunger" || ending == "crowded" || ending == "moved" || ending == "declined";
             string outcome = peaceful ? "left" : ending == "forced" ? "forced" : ending == "fight" ? "fight" : ending == "fallout" ? "fallout" : "fled";
             var them = members.Where(m => m != null && !m.Dead && !joined.Contains(m)).ToList();
             Pawn friend = null, friendOf = null, foe = null, foeOf = null;

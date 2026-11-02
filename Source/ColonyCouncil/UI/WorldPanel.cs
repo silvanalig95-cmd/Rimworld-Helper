@@ -179,6 +179,12 @@ namespace ColonyCouncil
                     icon = Icons.Trader;
                     color = UiKit.Gold;
                 }
+                else if (mm.kind == HappeningWorker_Commission.Kind)
+                {
+                    line = HappeningWorker_Commission.WorldLine(mm, now);
+                    icon = Icons.Trader;
+                    color = UiKit.Gold;
+                }
                 else if (LivingEvents.IsPending(mm))
                 {
                     line = LivingEvents.WorldLine(mm, now);

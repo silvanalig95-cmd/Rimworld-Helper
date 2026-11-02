@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Visitors who come to do something (Source/ColonyCouncil/Happenings/Workers_Callers.cs, Visitors/Callers.cs): the
+       art collector and their return for a commission, a wedding at the colony, the undertakers after a fight, a
+       captive's kin, the traveling barber, the animal doctor. Each comes only when the colony has what they come for,
+       and what the answer says is done on the map. The lines are said over the visitors' heads at moments of their
+       work, by tag: view, bought, fire, dig, load, talk, free, cut, tend, train. -->
+
+  <!-- ===================== The art collector ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Collector</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>art collector</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Collector</workerClass>
+    <baseChance>0.9</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <regular>collector</regular>
+        <drawnBy><li>Artful</li></drawnBy>
+        <ages>35~70</ages>
+        <stayHours>16~22</stayHours>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>An art collector</li>
+          <li>{X_nameDef} has an eye for the colony's art</li>
+        </titles>
+        <texts>
+          <li>[maker] {X_nameDef}, who buys art for the great houses of {FACTION}, heard of the colony's pieces on the road and has come to see them. {X_pronoun} has walked round them all, and stopped longest before "{TALE}", the {THING} {A_nameDef} made. {X_pronoun} offers {COUNT} silver for it, well above what any trader would give.</li>
+          <li>[!maker] {X_nameDef}, a collector of {FACTION}, has come a long way on the strength of a rumour about the colony's art. {X_pronoun} is going from piece to piece with {X_possessive} hands behind {X_possessive} back, and one of them has caught {X_possessive} eye: "{TALE}". {X_pronoun} offers {COUNT} silver for it, well above its worth.</li>
+          <li>[lowtech] A traveller in a good cloak, {X_nameDef} of {FACTION}, buys carvings for the halls of the rich, and has come to see the colony's. {X_pronoun} has looked at each one a long while, and asks after "{TALE}" by name: {COUNT} silver for it, more than a trader would ever pay.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Sell "{TALE}" for {COUNT} silver</label>
+            <outcome>The {THING} was carried out to {X_nameDef}, who paid the {COUNT} silver there and then and wrapped it for the road.</outcome>
+            <outcomes>
+              <li>[standing] The {THING} was taken up from where it stood and carried out to {X_nameDef}, who paid the {COUNT} silver there and then and wrapped it for the road.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SellArt" />
+            </effects>
+            <ways><openness>1</openness><generosity>-1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep it</label>
+            <outcome>{X_nameDef} took a last long look at "{TALE}" and went on down the road. The colony's art will be talked of where {X_pronoun} goes.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ArtWord" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Offer a new piece by {B_nameDef} instead</label>
+            <outcome>{B_nameDef} spent the day at the sculptor's table on a small sculpture for {X_nameDef}, who will come back for it and pay by how fine it turned out.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_ArtCommission" />
+            </effects>
+            <ways><toil>1</toil><openness>1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[view] Whoever carved this had patient hands.</li>
+          <li>[view] Look at the light on that, just there.</li>
+          <li>[view] I'd stand this in a hall, not a hut.</li>
+          <li>[view] Hm, the base is rushed, but the face is good.</li>
+          <li>[view] Nobody told me the colony made things like this.</li>
+          <li>[view] I could look at this one all afternoon.</li>
+          <li>[bought] It will travel well, I'll see to that.</li>
+          <li>[bought] My patron will be very pleased with this.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_CollectorBack</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the collector comes back</label>
+    <workerClass>ColonyCouncil.HappeningWorker_CollectorBack</workerClass>
+    <baseChance>2</baseChance>
+    <minRefireDays>2</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <regular>back</regular>
+        <stayHours>8~14</stayHours>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>{X_nameDef} comes for the commission</li>
+        </titles>
+        <texts>
+          <li>[maker] {X_nameDef} the collector is back at the gate for the {THING} {A_nameDef} made for {X_objective}. It turned out {TALE}, and {X_pronoun} has {COUNT} silver ready for it, as agreed.</li>
+          <li>[!maker] {X_nameDef} the collector is back at the gate for the {THING} made for {X_objective} at the colony's bench. It turned out {TALE}, and {X_pronoun} has {COUNT} silver ready for it, as agreed.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Hand it over for {COUNT} silver</label>
+            <outcome>The {THING} was carried out to {X_nameDef}, who turned it in the light a while and paid the {COUNT} silver.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SellArt"><commission>true</commission></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Keep it after all</label>
+            <outcome>The colony kept the {THING}. {X_nameDef} went home with an empty pack and a poorer opinion of the colony's word.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_KeepCommission" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-6</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><openness>-1</openness><generosity>-1</generosity></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[bought] Worth the walk back, every step of it.</li>
+          <li>[bought] Tell your sculptor I said so.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A wedding at the colony ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Wedding</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a wedding at the colony</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Wedding</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <stayHours>28~34</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A wedding at the colony</li>
+          <li>{X_nameDef} and {TALE} ask to marry here</li>
+        </titles>
+        <texts>
+          <li>[spot] {X_nameDef} and {TALE} of {FACTION} are to be married, and they have come to the gate with their families to ask if it might be here, at the colony's marriage spot, with a feast after and a night under its roof. The colony has been good to their people, they say, and they would like to start their life where people are kind.</li>
+          <li>[!spot] {X_nameDef} and {TALE} of {FACTION} are to be married, and their families have walked them to the colony's gate to ask a favour: the wedding here, the feast at the colony's table, and a night before the road home. {FACTION} have spoken well of the colony for a long time, and the couple wanted to see it for themselves.</li>
+          <li>[lowtech] Ribbons on their sleeves and dust on their boots, {X_nameDef} and {TALE} of {FACTION} have come to the gate with their families. They are to be wed, and have asked to be wed here, with a feast after and a night by the colony's hearth, for the luck of it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Host it, and feed everyone ({COUNT} raw food)</label>
+            <outcome>{X_nameDef} and {TALE} were married at the colony, and everyone ate together after at the feast the colony cooked. Their families paid for the food, and the whole party is staying the night under the colony's roof.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast">
+                <label>the wedding feast</label>
+                <guests>stranger</guests>
+                <guestCount>8</guestCount>
+                <organizer>A</organizer>
+                <spots><li>Place</li><li>Dining</li><li>Gather</li><li>Outdoors</li></spots>
+                <hours>17~22</hours>
+                <duration>3~4</duration>
+                <lines>
+                  <li>To the two of them, and a long road together.</li>
+                  <li>May their roof never leak and their larder never empty.</li>
+                  <li>I've not seen a bride smile like that in years.</li>
+                  <li>Somebody pass the bride a plate before it's gone.</li>
+                  <li>Their people will talk of this night for a long while.</li>
+                </lines>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_Paid"><factor>0.8</factor></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>10</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WeddingNight"><inside>true</inside></li>
+            </effects>
+            <ways><openness>2</openness><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Host it, if they bring the food</label>
+            <outcome>The families brought the food, the colony cooked the feast of it, and {X_nameDef} and {TALE} were married among friends. The party is camping round its own fire beyond the wall tonight.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Feast">
+                <label>the wedding feast</label>
+                <guests>stranger</guests>
+                <guestCount>8</guestCount>
+                <organizer>A</organizer>
+                <spots><li>Place</li><li>Dining</li><li>Gather</li><li>Outdoors</li></spots>
+                <hours>17~22</hours>
+                <duration>3~4</duration>
+                <lines>
+                  <li>To the two of them, and a long road together.</li>
+                  <li>Their own food, our own stove, and a good night of it.</li>
+                  <li>I've not seen a bride smile like that in years.</li>
+                  <li>Somebody pass the bride a plate before it's gone.</li>
+                  <li>Their people will talk of this night for a long while.</li>
+                </lines>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_GuestsBringFood" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>4</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WeddingNight"><inside>false</inside></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not here, with our thanks</label>
+            <outcome>{X_nameDef} and {TALE} thanked the colony all the same, and the families walked them home to be married there.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-2</amount></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[fire] A fire of our own, and the night all ours.</li>
+          <li>[fire] Sit closer, it's our wedding night out here too.</li>
+          <li>[fire] Our people have married under the stars for longer than anyone remembers.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The undertakers ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Undertakers</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the undertakers</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Undertakers</workerClass>
+    <baseChance>1.5</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <count>3~4</count>
+        <ages>25~60</ages>
+        <stayHours>18~24</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The undertakers</li>
+          <li>A burial order at the gate</li>
+        </titles>
+        <texts>
+          <li>[!nobeast] Word of the fight has travelled. A burial order of {FACTION}, with {X_nameDef} at its head, has come to the gate to see to the raiders still lying where they fell. They will dig a grave for each beyond the wall for {COUNT} silver, or load the dead on their pack beast and take them away for nothing, if they may keep what the raiders carried.</li>
+          <li>[lowtech,!nobeast] Grey cloaks and long spades: the ash-keepers of {FACTION} go wherever the dead lie unburied, and {X_nameDef} says the raiders by the colony have lain long enough. Graves beyond the wall for {COUNT} silver, or the dead carried off on their beast for nothing, the raiders' gear going with them.</li>
+          <li>[nobeast] Word of the fight has travelled. A burial order of {FACTION}, with {X_nameDef} at its head, has come to the gate to see to the raiders still lying where they fell. They will dig a grave for each beyond the wall for {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Graves outside the wall, for {COUNT} silver</label>
+            <outcome>{X_nameDef}'s order dug a row of graves beyond the gate and laid the raiders in them, one to a grave. The ground is quiet again.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_UndertakersBury" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them take the dead, gear and all</label>
+            <outcome>The undertakers carried the raiders to their beast one by one, gathered up the weapons lying by them, and led it away down the road with the dead and all they wore.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_UndertakersTake" />
+            </effects>
+            <ways><mercy>1</mercy><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>We'll see to them ourselves</label>
+            <outcome>{X_nameDef} bowed, and the order went on its way. The dead are still the colony's to deal with.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[dig] Deep enough that nothing digs them up again.</li>
+          <li>[dig] Whoever they were, they get a straight edge to their grave.</li>
+          <li>[dig] The ground here is kind, at least.</li>
+          <li>[load] Steady, steady, this is the last road for this one.</li>
+          <li>[load] Mind his head, he's somebody's son.</li>
+          <li>[load] One more, and then the next.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Kin come for a captive ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_KinForCaptive</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>kin come for a captive</label>
+    <workerClass>ColonyCouncil.HappeningWorker_KinForCaptive</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <stayHours>16~22</stayHours>
+        <answerDays>0.75</answerDays>
+        <titles>
+          <li>Family at the gate</li>
+          <li>{TALE}'s {RELATION} at the gate</li>
+        </titles>
+        <texts>
+          <li>[prisoner] {X_nameDef}, {TALE}'s {RELATION}, has come to the gate from {FACTION} with {X_possessive} partner and a purse of {COUNT} silver. They heard {TALE} is held here, and they have come to buy {TALE}'s freedom, or at least to see {TALE} once.</li>
+          <li>[slave] {X_nameDef}, {TALE}'s {RELATION}, has come to the gate from {FACTION} with {X_possessive} partner and {COUNT} silver, saved a coin at a time. They heard {TALE} works here as a slave, and they have come to take {TALE} home.</li>
+          <li>[prisoner,lowtech] Two travellers stand at the gate with their hats in their hands: {X_nameDef} of {FACTION}, {TALE}'s {RELATION}, and {X_possessive} partner. They have {COUNT} silver, every coin they could raise, for {TALE}'s freedom.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Take the {COUNT} silver, and let {TALE} go</label>
+            <outcome>{X_nameDef} paid the {COUNT} silver, and {TALE} left by the gate with the family, free.</outcome>
+            <outcomes>
+              <li>[prisoner] {X_nameDef} paid the {COUNT} silver, {TALE} was walked out of the cell to the family, and they went home together.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Paid" />
+              <li Class="ColonyCouncil.DilemmaEffect_KinFree" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let {TALE} go with them, and keep their silver</label>
+            <outcome>The colony would not take their silver. {TALE} left by the gate with the family, free, and {FACTION} will remember it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>12</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_KinFree" />
+            </effects>
+            <ways><mercy>2</mercy><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Let them talk with {TALE} first</label>
+            <outcome>{X_nameDef} was shown to {TALE}'s door and talked with {TALE} through it for an hour, then the family went home. {TALE} has been quieter since.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_KinTalk" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Turn them away</label>
+            <outcome>The family was turned away at the gate. {TALE} heard of it, and has dug in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+              <li Class="ColonyCouncil.DilemmaEffect_KinRefused" />
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-4</amount></li>
+            </effects>
+            <ways><mercy>-1</mercy><openness>-1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[talk] Your sister sends her love, and your old dog still waits by the door.</li>
+          <li>[talk] Eat what they give you, and keep your head down.</li>
+          <li>[talk] We'll find a way, we always have.</li>
+          <li>[free] Come on, then, it's a long walk home and there's bread waiting.</li>
+          <li>[free] Home, now, all of us.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The traveling barber ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Barber</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>traveling barber</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Barber</workerClass>
+    <baseChance>1</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>22~60</ages>
+        <stayHours>14~18</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A traveling barber</li>
+          <li>{X_nameDef} sets up a stool</li>
+        </titles>
+        <texts>
+          <li>[!station] {X_nameDef}, a traveling barber of {FACTION}, has set a stool down by the gate and laid out combs and shears on a clean cloth. {X_pronoun} will give any of the colony a new cut, whatever their people's way or their own taste favours. Those who'd like one: {TALE}.</li>
+          <li>[station] {X_nameDef}, a traveling barber of {FACTION}, has seen the colony's styling station and asked to work beside it. {X_pronoun} will give any of the colony a new cut, whatever their people's way or their own taste favours. Those who'd like one: {TALE}.</li>
+          <li>[lowtech,!station] A barber's pole strapped to {X_possessive} pack, {X_nameDef} of {FACTION} has set down a stool by the gate and is stropping a razor. A new cut for anyone who wants one, the way their people wear it. Those keen: {TALE}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A cut for everyone ({COUNT} silver)</label>
+            <outcome>{X_nameDef} cut everyone's hair in turn by the gate, talking all the while, and the colony hardly knows itself.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BarberCuts" />
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Only those who want one</label>
+            <outcome>{X_nameDef} cut the hair of those who wanted it, talking all the while, and the rest kept theirs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what><variant>true</variant></li>
+              <li Class="ColonyCouncil.DilemmaEffect_BarberCuts"><willing>true</willing></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} folded up the cloth, shouldered the stool and went on down the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[cut] Hold still now, nearly there.</li>
+          <li>[cut] There, that suits you far better.</li>
+          <li>[cut] You've been cutting it yourself, haven't you.</li>
+          <li>[cut] A little off the sides and you'll look a new person.</li>
+          <li>[cut] Next, and mind the stool, it wobbles.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The animal doctor ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_Vet</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>animal doctor</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Vet</workerClass>
+    <baseChance>1.1</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <regular>vet</regular>
+        <ages>28~60</ages>
+        <stayHours>14~18</stayHours>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>An animal doctor</li>
+          <li>{X_nameDef} looks at the colony's animals</li>
+        </titles>
+        <texts>
+          <li>[hurt,young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been looking over the fence at the colony's animals. {X_pronoun} offers to see to {TALE}, with medicine of {X_possessive} own, and to work {PET_nameDef} a while, for {COUNT} silver or the feed; for a corner to sleep in, the tending alone.</li>
+          <li>[hurt,!young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been looking over the fence at the colony's animals. {X_pronoun} offers to see to {TALE}, with medicine of {X_possessive} own, for {COUNT} silver, or the feed, or a corner to sleep in.</li>
+          <li>[nohurt,young] {X_nameDef}, an animal doctor who travels with {FACTION}'s drovers, stopped at the gate and has been watching {PET_nameDef} for some time. {X_pronoun} offers to work {PET_objective} a morning, for {COUNT} silver or the feed.</li>
+          <li>[hurt,lowtech] {X_nameDef} of {FACTION} doctors the drovers' beasts, and smells like it. {X_pronoun} has had a look at the colony's animals over the fence and offers to see to {TALE} with salves of {X_possessive} own, for {COUNT} silver, the feed, or a corner to sleep in.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>Pay {COUNT} silver</label>
+            <outcome>{X_nameDef} saw to the colony's animals one by one, as agreed.</outcome>
+            <outcomes>
+              <li>[hurt,young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, and then worked {PET_nameDef} a long while.</li>
+              <li>[hurt,!young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay.</li>
+              <li>[nohurt] {X_nameDef} worked {PET_nameDef} a long while, and {PET_pronoun} is the better for it.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {X_nameDef}</label><what>silver</what></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VetRounds" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Pay in feed instead</label>
+            <outcome>{X_nameDef} saw to the colony's animals one by one, for a load of {THING} for the drovers' beasts.</outcome>
+            <outcomes>
+              <li>[hurt,young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, and then worked {PET_nameDef} a long while, for a load of {THING} for the drovers' beasts.</li>
+              <li>[hurt,!young] {X_nameDef} went from animal to animal, tending the hurt and the sick where they lay, for a load of {THING} for the drovers' beasts.</li>
+              <li>[nohurt] {X_nameDef} worked {PET_nameDef} a long while, for a load of {THING} for the drovers' beasts.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the feed for {X_nameDef}</label><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.DilemmaEffect_VetRounds" />
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>A warm corner for the night instead</label>
+            <outcome>{X_nameDef} tended the hurt and the sick for a corner to sleep in, and will be on the road again in the morning.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_VetRounds"><train>false</train><lodge>true</lodge></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} gave the fence a last look and went after the drovers.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[tend] Easy, easy, this won't take long.</li>
+          <li>[tend] Who's been looking after this leg, then.</li>
+          <li>[tend] There, that'll mend if you keep off it.</li>
+          <li>[train] Again, and good, that's it.</li>
+          <li>[train] Clever thing, this one, you'll see.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

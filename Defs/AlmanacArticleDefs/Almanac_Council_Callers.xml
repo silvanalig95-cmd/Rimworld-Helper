@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Visitors who come to do something (Source/ColonyCouncil/Visitors/Callers.cs, Happenings/Workers_Callers.cs): the art
+    collector, a wedding at the colony, the undertakers, a captive's kin, the traveling barber, the animal doctor.
+  -->
+
+  <ColonyCouncil.AlmanacArticleDef>
+    <defName>Council_Alm_C_Callers</defName>
+    <label>visitors who come to do something</label>
+    <category>Council</category>
+    <order>22</order>
+    <summary>An art collector, a wedding party, a burial order, a captive's family, a barber and an animal doctor come when the colony has what they come for, and do what your answer says on the map.</summary>
+    <tip>Most of them pay or are paid by hand at the gate: keep the way to the gate clear, and someone free to carry things out.</tip>
+    <description>These visitors come only when something in the colony calls them: art worth seeing, a people that likes you, raiders' bodies left lying, a captive, colonists with hair to cut, animals hurt or untrained. They walk in from the edge and wait for your answer, and while they wait they may look about (the collector walks round your art). What the answer says is then done on the map, in their own time, a piece at a time; the answer's words are told when it's done, or a word says how far they got if they have to go first (raiders, a hard frost, the visit's end). Their stay is stretched while there is work left. With "Answers play out on the map" off, it all happens at once, as answers used to.</description>
+    <sections>
+      <li>
+        <heading>Who comes</heading>
+        <table>
+          <li>Who | When | What you can answer</li>
+          <li>An art collector | Three or more sculptures of Good quality or better, standing in your rooms or packed in your stores | Sell the piece they ask for by its title, at well above its worth; keep it; or have your best sculptor make them a small one instead</li>
+          <li>The collector again | A few days after a piece made for them is finished | Hand it over for silver by its quality, or keep it and lose their goodwill</li>
+          <li>A wedding party | A people with goodwill 20 or more, and a dining room or a marriage spot | Host it and feed everyone (they pay for the food), host it if they bring their own food, or decline</li>
+          <li>The undertakers | Four or more enemy dead still lying out a day after a fight | Graves outside the wall for silver, the dead taken away with their gear for nothing, or send them on</li>
+          <li>A captive's kin | A prisoner held five days or more, or with Ideology a slave kept a month | Take their silver and let the captive go, let them go for nothing, let the family talk with them at their door, or turn them away</li>
+          <li>The traveling barber | Two or more of your people with hair to cut | A cut for everyone, only for those who want one, or not today</li>
+          <li>The animal doctor | One of your animals hurt or sick, or short of training it's meant to have | Pay in silver or in feed, give them a warm corner for the night (the tending alone), or not today</li>
+        </table>
+      </li>
+      <li>
+        <heading>The art collector</heading>
+        <text>The collector walks round your art while you decide, stopping a while before each piece, and offers for one of your three finest by its title, at 1.6 times its worth. Sold, one of your people takes it up (uninstalling it where it stands, with the game's own uninstalling) and carries it out to them, and they pay into that person's hands. The one who made it is proud of the sale, unless art is their passion and they're not greedy, then it hurts them for five days. Kept, the collector speaks of your art on the road, and the colony's name for it grows (the "artful" colony trait). Commissioned, your best sculptor carries the wood, stone or metal to the sculptor's table and works a day on a small sculpture for them, its quality their skill's; three days after it's done the collector may come back for it and pay 1.4 times its worth. A collector who never comes back within 60 days leaves it to you. Collectors become faces that come back.</text>
+      </li>
+      <li>
+        <heading>A wedding at the colony</heading>
+        <text>The couple comes with a parent each, sometimes a younger brother or sister. Hosted, the wedding feast is at your marriage spot, else your dining table, in the evening, with the families as its guests and served from your meals: for the first answer the raw food (a meal's worth for each who eats) is cooked into meals at your stove beforehand and the families pay for it; for the second they set down the food themselves and your cook makes the feast of it. The night after is under your roof, each in a spare bed of yours (the couple sharing one, the beds given back in the morning) or on a warm floor; or, if they brought their own food, round a fire of their own beyond the wall, put out to ash when they go.</text>
+      </li>
+      <li>
+        <heading>The undertakers</heading>
+        <text>A burial order of three or four, often with a pack beast. For silver they dig a grave each beyond the gate, off your home area, as many as the dead (eight at most), with the game's own digging look, and lay one body in each: the graves are yours, set to take strangers. For nothing they carry each body to their beast and load it on, putting the weapons lying by it in their packs, and lead the beast home with the dead and all they wore. Either way it saves your people the hauling, and the second costs you the raiders' gear.</text>
+      </li>
+      <li>
+        <heading>A captive's kin</heading>
+        <text>A captive's family (their parents, if they have none in the game yet; else a brother or sister; or, for someone over forty, a grown son or daughter; each with their partner, and all of it real in the game's relations) bring silver for their freedom, a share of what the captive is worth. Let go, a prisoner is walked out by your wardens with the game's own release, and a slave is set free; they join their family, become one of their people, and walk home with them. Let the family talk first, and one of them is shown to the door of the cell and talks through it for an hour: the prisoner's resistance falls by 6 and their will by 1, and the family goes home. Turned away, the prisoner hears of it, and their resistance rises by 3.</text>
+      </li>
+      <li>
+        <heading>The traveling barber</heading>
+        <text>The barber sets a stool by your gate, or works beside your styling station with Ideology, and your people come over one at a time when they're free, never from their sleep, their meal or a job you gave them. Each gets a style their faith or their taste likes (the look they had in mind, with Ideology), a beard to match where one grows, the clippings left on the ground, and a good talk meanwhile as recreation. Those who want one: anyone with an eye for their looks, or a look in mind with Ideology, and about three in five of the rest on a given day; ascetics and psychopaths don't bother.</text>
+      </li>
+      <li>
+        <heading>The animal doctor</heading>
+        <text>A drovers' animal doctor tends your hurt and sick animals where they are, the nearest first, with the game's own tending and medicine they brought, an awake animal standing still for it; then, if you pay, works one young animal a while with the game's training words, and it learns one step of what it's being taught. Paid in feed, the feed (hay or kibble, whichever you have more of) is carried out to them. Given a warm corner for the night instead, they tend but don't train, and sleep indoors. They become a face that comes back.</text>
+      </li>
+    </sections>
+    <keywords><li>art collector</li><li>commission</li><li>wedding party</li><li>undertakers</li><li>burial order</li><li>captive's kin</li><li>traveling barber</li><li>haircut</li><li>animal doctor</li><li>vet</li></keywords>
+    <seeAlso><li>Council_Alm_C_Visitors</li><li>Council_Alm_C_PlayOut</li><li>Council_Alm_C_WorldEvents</li></seeAlso>
+  </ColonyCouncil.AlmanacArticleDef>
+
+</Defs>

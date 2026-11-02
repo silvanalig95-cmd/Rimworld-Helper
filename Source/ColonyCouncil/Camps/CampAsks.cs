@@ -68,10 +68,11 @@ namespace ColonyCouncil
         public List<string> asksMade = new List<string>();
 
         public int AskCost(CampAsk a) =>
-            a?.price == "milk" ? MilkCost() : a == null || a.silver <= 0 ? 0 : CampAnswers.Round10(a.silver * LivingEvents.WealthFactor(map));
+            a?.price == "milk" ? MilkCost() : a?.price == CatchSale ? CatchCost() : !(a?.price).NullOrEmpty() ? 0
+            : a == null || a.silver <= 0 ? 0 : CampAnswers.Round10(a.silver * LivingEvents.WealthFactor(map));
 
         /// <summary>What the ask is for, for {THING}: the herd's milk ready now ("about 26 milk for about 49 silver"); else nothing.</summary>
-        public string AskThing(CampAsk a) => a?.price == "milk" ? MilkWords() : null;
+        public string AskThing(CampAsk a) => a?.price == "milk" ? MilkWords() : LandAskThing(a);
 
         /// <summary>Why this can't be asked now (null: it can).</summary>
         public string AskBlocked(CampAsk a)
@@ -109,6 +110,13 @@ namespace ColonyCouncil
                 {
                     // Beasts of theirs with milk to give now, and a drover free to milk them (CampMilk.cs).
                     string why = MilkSaleBlocked();
+                    if (why != null) return why;
+                    break;
+                }
+                default:
+                {
+                    // What the land kinds' asks need: their catch, their haul, a near ruin, the hiring, a child (CampKindsLand.cs).
+                    string why = LandAskBlocked(a);
                     if (why != null) return why;
                     break;
                 }

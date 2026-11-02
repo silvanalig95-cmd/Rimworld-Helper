@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The second round of what visitors come to do (Source/ColonyCouncil/Visitors/VisitorsMore2.cs, the kinds and their
+    hours in VisitorWork2Math.cs): praying before the colony's relic in its reliquary, or at the gate facing it;
+    meditating in a ring round the anima tree (its grass grows from it as from a colonist's meditation); walking round
+    the landed gravship's hull; copying a book at the colony's bookcase; and the book swapper's bargain at the shelf.
+    Each is a stint of the visit work, done in its own hours (Rimfolk_VisitWork's JobGiver_VisitWork).
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_VisitRelic</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>praying before the relic.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>relic</work>
+        <social>Off</social>
+        <ticks>1800~3000</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitPray</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>praying at the gate.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>pray</work>
+        <social>Off</social>
+        <ticks>1500~2500</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitMeditate</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitMeditate</driverClass>
+    <reportString>meditating at the anima tree.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>meditate</work>
+        <social>Off</social>
+        <ticks>2500~4000</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitGawk</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>looking over the gravship's hull.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>gawk</work>
+        <social>SuperActive</social>
+        <ticks>500~900</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitRead</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>copying a book at the bookcase.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>read</work>
+        <social>Off</social>
+        <ticks>2500~4000</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_VisitSwap</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitSwap</driverClass>
+    <reportString>swapping a book at the shelf.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <work>swap</work>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+</Defs>

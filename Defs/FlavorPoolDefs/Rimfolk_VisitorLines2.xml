@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the second round of visitors say at their work (Source/ColonyCouncil/Visitors/VisitorsMore2.cs), over their
+    heads through Speech, picked by the same tags as Rimfolk_VisitorLines (what they are, their people's ways). Every
+    line carries its moment: relic (praying before the colony's relic), pray (at the gate facing it), meditate (at the
+    anima tree), gawk (round the gravship's hull), read (copying at the bookcase), swap (the book changing hands).
+    One short sentence each.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_VisitorLines2</defName>
+    <lines>
+      <plain>
+        <li>[relic] We walked a long way for this.</li>
+        <li>[relic] I never thought I'd stand this close to it.</li>
+        <li>[relic] Keep it well, it's all of ours.</li>
+        <li>[relic] My mother would have given anything to see this.</li>
+        <li>[pray] Even from here we can feel it.</li>
+        <li>[pray] The gate is near enough.</li>
+        <li>[pray] We'll pray here and go our way.</li>
+        <li>[meditate] Listen, the tree is humming.</li>
+        <li>[meditate] Breathe slow and let the tree do the rest.</li>
+        <li>[meditate] Feel how still it is under the branches.</li>
+        <li>[meditate,theirLowtech] The old ones say the tree remembers every face.</li>
+        <li>[gawk] How does a thing that size stay up?</li>
+        <li>[gawk] Look at the plating on this side.</li>
+        <li>[gawk] Wait until they hear about this back home.</li>
+        <li>[gawk] I never saw anything so big come down out of the sky.</li>
+        <li>[gawk,theirLowtech] It came down out of the sky like a stone.</li>
+        <li>[read] Just one more chapter before the light goes.</li>
+        <li>[read] Your copy has notes in the margins, that's the best kind.</li>
+        <li>[read] My hand aches, but it's worth every page.</li>
+        <li>[swap] One book in, one book out, that's the rule.</li>
+        <li>[swap] This one's going to a good shelf, I promise.</li>
+        <li>[swap] Mind the spine on that one, it's older than me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

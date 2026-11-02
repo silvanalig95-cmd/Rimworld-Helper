@@ -39,7 +39,7 @@
     <Compile Include="../../Source/ColonyCouncil/Building/AheadMath.cs" Link="AheadMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/Suggest/SuggestMath.cs" Link="SuggestMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/GrowthMath.cs" Link="GrowthMath.cs" />
-    <Compile Include="../../Source/ColonyCouncil/UI/NewsQuietMath.cs" Link="NewsQuietMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Lives/LifeNewMath.cs" Link="LifeNewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/BaseReviewMath.cs" Link="BaseReviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/GroundPlanMath.cs" Link="GroundPlanMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Building/StorageReviewMath.cs" Link="StorageReviewMath.cs" />
@@ -54,13 +54,16 @@
     <Compile Include="../../Source/ColonyCouncil/Couriers/CourierMath.cs" Link="CourierMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/PlayOut/OnMapMath.cs" Link="OnMapMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorMath.cs" Link="VisitorMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorWork2Math.cs" Link="VisitorWork2Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/VisitorActsMath.cs" Link="VisitorActsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampLookMath.cs" Link="CampLookMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampWeatherMath.cs" Link="CampWeatherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/CampStoryMath.cs" Link="CampStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Happenings/RegularMath.cs" Link="RegularMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Visitors/CallerMath.cs" Link="CallerMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/RivalMath.cs" Link="RivalMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Camps/RoadPostMath.cs" Link="RoadPostMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampLandMath.cs" Link="CampLandMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Animals/HerdStoryMath.cs" Link="HerdStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/MovingOnMath.cs" Link="MovingOnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalRewardMath.cs" Link="GoalRewardMath.cs" />

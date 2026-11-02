@@ -26,7 +26,7 @@ public static class ImmersionTests
         "Council_Pool_PlayFamilySupper", "Council_Pool_SaySiblingClose", "Council_Pool_SaySiblingRival",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).
         "Council_Pool_HabitTidy", "Council_Pool_HabitSunrise", "Council_Pool_HabitStones", "Council_Pool_HabitBirds", "Council_Pool_HabitWhittle",
-        "Council_Pool_HabitWhetstone", "Council_Pool_HabitTreeLine", "Council_Pool_HabitPatient", "Council_Pool_HabitBirthday",
+        "Council_Pool_HabitWhetstone", "Council_Pool_HabitTreeLine", "Council_Pool_HabitPatient", "Council_Pool_HabitBirthday", "Rimfolk_Pool_HabitFirstPot",
         "Council_Pool_BubbleHums", "Council_Pool_BubbleStove", "Council_Pool_BubbleSleepTalk", "Council_Pool_BubbleBestBite", "Council_Pool_BubbleMeasure",
         "Council_Pool_BubbleHaul", "Council_Pool_BubbleLateHours", "Council_Pool_BubbleFidgets", "Council_Pool_BubbleReads", "Council_Pool_BubbleWarden",
         "Council_Pool_BubbleMends", "Council_Pool_BubbleDoodles", "Council_Pool_BubbleLightSleep",
@@ -38,7 +38,11 @@ public static class ImmersionTests
         // Visitors at the colony's instrument, their kill, its dressing (Visitors/VisitorActs.cs).
         "Rimfolk_VisitorActLines",
         // What visitors say on arriving, waiting, staying and leaving (Visitors/VisitorWords.cs).
-        "Rimfolk_VisitorLines"
+        "Rimfolk_VisitorLines",
+        // What visitors say at the relic, the anima tree, the gravship and the bookcase (Visitors/VisitorsMore2.cs).
+        "Rimfolk_VisitorLines2",
+        // A pet's grave being dug (PlayOut/PlayPetGrave.cs, said through PlayWords).
+        "Rimfolk_Pool_PetGraveInvite", "Rimfolk_Pool_PetGrave"
     };
 
     private static readonly string[] JournalPools =

@@ -391,6 +391,8 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {ArcTests.Run(root, Check)} things about personal stories (their pace, stages and lines).");
         Console.WriteLine($"Checked {VisitorWorkTests.Run(root, Check)} things about visitors doing what their letters say (work, roofs, the wall).");
         Console.WriteLine($"Checked {VisitorActsTests.Run(root, Check)} things about visitors and the colony's things (the instrument, fair game, the dead they carry, guest beds).");
+        Console.WriteLine($"Checked {VisitorsMore2Tests.Run(root, Check)} things about visitors for what the colony keeps (the relic, the anima tree, kin, the gravship, books, regulars' lives).");
+        Console.WriteLine($"Checked {CampLandTests.Run(root, Check)} things about camps that come for the land (the harvest, the sheaf in ten, the catch, the ruins, the run).");
         Console.WriteLine($"Checked {StoryChainTests.Run(root, Check)} things about story chains told from data and event variants (routes, endings, flags, answers).");
         Console.WriteLine($"Checked {HealthTests.Run(root, Check)} claims about convalescence and healers.");
         Console.WriteLine($"Checked {SettingsTests.Run(root, Check)} things about the settings window (every field on one page, presets, keys, sizes).");
@@ -404,6 +406,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {FamilyYearsTests.Run(Check)} things about families across the years (years asleep, generations in the line, ages the wrong way round, remarks).");
         Console.WriteLine($"Checked {StallCounterTests.Run(Check)} things about RimMarket's sales table, Rimfolk's way (prices as RimMarket keeps them, counts, how a price sells).");
         Console.WriteLine($"Checked {VisitorTradeTests.Run(root, Check)} things about visitors and campers buying at the colony's stalls, and the drovers' milk.");
+        Console.WriteLine($"Checked {CallerTests.Run(root, Check)} things about visitors who come to do something (prices, cuts, their jobs and lines).");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
         Console.WriteLine($"Checked {CustomYearsTests.Run(root, Check)} things about customs kept year after year (their tags, lines that can come true, what's said at them).");
         Console.WriteLine($"Checked {OutcomeTests.Run(root, Check)} things about how answers are told (the risk's words, variants picked by tags, world situations' answers).");
@@ -468,7 +471,7 @@ Console.WriteLine($"Checked {AutomationTests.Run(Check)} things about the counci
 Console.WriteLine($"Checked {ChainTests.Run(Check)} things about production chains followed to the end.");
 Console.WriteLine($"Checked {AheadTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_AHEAD_PRINT") == "1")} things about planning ahead (stocks, bills, fields) and the shared suggestions.");
 Console.WriteLine($"Checked {GrowthTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_GROWTH_PRINT") == "1")} things about building ahead (rooms the colony will be short of, the builders' days, stages, room to grow).");
-Console.WriteLine($"Checked {NewsQuietTests.Run(Check)} things about a quiet day's evening news.");
+Console.WriteLine($"Checked {LifeNewTests.Run(Check)} things about the newer wishes and life moments (a crop from home, the morning cup, books read, the way to the table).");
 Console.WriteLine($"Checked {ImpactTests.Run(Check)} things about what each answer does (chances, merging, the short line).");
 Console.WriteLine($"Checked {ConduitTests.Run(Check)} things about laying a conduit to a piece off the power.");
 Console.WriteLine($"Checked {LineRouteTests.Run(Check)} things about lines laid again under the walls.");

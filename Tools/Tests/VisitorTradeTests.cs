@@ -29,6 +29,18 @@ public static class VisitorTradeTests
         C(VisitorTradeMath.Wants("family").Contains(TradeGoods.Clothes) && VisitorTradeMath.Wants("family")[0] == TradeGoods.Meal, "a family looks for a meal first, and clothes");
         C(VisitorTradeMath.Wants("someone new").SequenceEqual(VisitorTradeMath.RoadNeeds) && VisitorTradeMath.Wants((string)null).SequenceEqual(VisitorTradeMath.RoadNeeds),
             "anyone else looks for what the road needs");
+        // A market day's buyers (Council_WS_MarketDays): food first, then a bit of everything, each with a purse of their own.
+        var market = VisitorTradeMath.Wants(VisitorTradeMath.Buyers);
+        C(market[0] == TradeGoods.RawFood && market.Distinct().Count() == market.Length, "market-day buyers look for food first, and each kind once");
+        foreach (TradeGoods g in Enum.GetValues(typeof(TradeGoods)))
+            if (g != TradeGoods.None) C(VisitorTradeMath.Fit(g, market) > 0, $"market-day buyers will look at {g}");
+        var (bMin, bMax) = VisitorTradeMath.Purse(VisitorTradeMath.Buyers, false);
+        C(bMin >= VisitorTradeMath.LeastSilver && bMax > bMin && bMin > VisitorTradeMath.Purse("family", false).max - 1 && VisitorTradeMath.Purse(VisitorTradeMath.Buyers, true).max == 0,
+            "market-day buyers come with more coin than the poor, and none if robbed");
+        C(VisitorTradeMath.MarketBuys > VisitorTradeMath.VisitBuys, "a market day's buyers buy more than a passing visit");
+        var (soonLo, soonHi) = VisitorTradeMath.NextTryHours(true);
+        var (lateLo, lateHi) = VisitorTradeMath.NextTryHours(false);
+        C(soonLo >= 1 && soonHi >= soonLo && soonHi < lateLo && lateHi >= lateLo, "market-day buyers go back to the stalls sooner than other visitors");
         C(VisitorTradeMath.Wants(new[] { "Feed", "roadfood", "nonsense", "Feed" }).SequenceEqual(new[] { TradeGoods.Feed, TradeGoods.RoadFood }),
             "a camp kind's list, in order, any case, unknown words and repeats left out");
         C(VisitorTradeMath.Wants(new string[0]).SequenceEqual(VisitorTradeMath.RoadNeeds) && VisitorTradeMath.Wants((string[])null).SequenceEqual(VisitorTradeMath.RoadNeeds),

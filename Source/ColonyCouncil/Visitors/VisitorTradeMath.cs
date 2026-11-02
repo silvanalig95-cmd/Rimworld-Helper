@@ -37,6 +37,19 @@ namespace ColonyCouncil
         /// <summary>Purchases a visit makes at most, and a camp over its whole stay (one a day).</summary>
         public const int VisitBuys = 2, CampBuys = 3;
 
+        /// <summary>A market day's buyers (a world event's visit "buyers"): each of them shops, and between them they buy this many at most.</summary>
+        public const int MarketBuys = 5;
+
+        /// <summary>What a market day's buyers are called (the visit's <c>what</c>).</summary>
+        public const string Buyers = "buyers";
+
+        /// <summary>A market day's buyers look at a bit of everything, food first.</summary>
+        public static readonly TradeGoods[] MarketNeeds =
+        {
+            TradeGoods.RawFood, TradeGoods.Meal, TradeGoods.Textiles, TradeGoods.Clothes, TradeGoods.Drink, TradeGoods.Medicine, TradeGoods.Metal,
+            TradeGoods.Art, TradeGoods.RoadFood, TradeGoods.Feed
+        };
+
         /// <summary>The market's hours when RimMarket doesn't say (its ShopHoursStart and ShopHoursEnd).</summary>
         public const int ShopFrom = 8, ShopTo = 18;
 
@@ -57,6 +70,7 @@ namespace ColonyCouncil
         /// <summary>What a visit's people look for first, by what they are (a visit's <c>what</c>): drovers feed for the herd, a smith metal, a family a meal and clothes.</summary>
         public static TradeGoods[] Wants(string who)
         {
+            if (who == Buyers) return MarketNeeds;
             if (Is(who, Herders)) return new[] { TradeGoods.Feed, TradeGoods.RoadFood, TradeGoods.Medicine };
             if (Is(who, Poor)) return new[] { TradeGoods.Meal, TradeGoods.RoadFood, TradeGoods.Clothes, TradeGoods.Medicine };
             if (Is(who, Faithful)) return new[] { TradeGoods.Meal, TradeGoods.RawFood, TradeGoods.RoadFood };
@@ -160,10 +174,14 @@ namespace ColonyCouncil
         public static (int min, int max) Purse(string who, bool robbed)
         {
             if (robbed) return (0, 0);
+            if (who == Buyers) return (80, 220);
             if (Is(who, Poor) || Is(who, Faithful) || who == "gleaners") return (15, 50);
             if (Is(who, Herders) || Is(who, Dealers) || Is(who, Makers) || Is(who, Diggers) || who == "surveyors") return (60, 160);
             return (30, 100);
         }
+
+        /// <summary>The hours before a buyer goes back to the stalls: soon on a market day, a good while otherwise.</summary>
+        public static (int min, int max) NextTryHours(bool market) => market ? (1, 2) : (4, 8);
 
         /// <summary>Within the market's hours, with time to walk over and back before it closes.</summary>
         public static bool ShopHour(int hour, int from, int to) => hour >= from && hour < to - 1;

@@ -783,7 +783,7 @@ namespace ColonyCouncil
                 foreach (var p in pool)
                 {
                     if (Of(p) != null || p.InMentalState || p.Downed) continue;
-                    if (past.Any(r => r.pawnId == p.ThingID && r.defName == def.defName)) continue;
+                    if (past.Any(r => r.pawnId == p.ThingID && r.defName == def.defName && !(def.again && r.outcome == ArcOutcome.Fizzled))) continue;
                     if (!ignoreCooldowns && past.Any(r => r.pawnId == p.ThingID && now - r.endTick < Day * 10)) continue;
                     if (!DilemmaRole.Fits(def.who, p, def.children)) continue;
                     ArcCandidate c;

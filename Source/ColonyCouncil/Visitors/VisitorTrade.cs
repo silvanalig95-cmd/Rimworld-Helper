@@ -48,6 +48,9 @@ namespace ColonyCouncil
         /// <summary>The stall can still sell to them: open as RimMarket has it, and nothing threatening on the map.</summary>
         public static bool StillOpen(Pawn p, Thing stall) => On && stall != null && stall.Spawned && !MapFacts.ThreatOn(p.Map) && RimMarketStall.OpenForSale(stall);
 
+        /// <summary>A market day's buyers, there at their spot (a world event's visit "buyers"): they came to shop, each of them.</summary>
+        public static bool Market(VisitorTrip t) => t != null && t.what == VisitorTradeMath.Buyers && t.state == VisitState.Here;
+
         /// <summary>Someone of the group other than <paramref name="but"/> is on the way to a stall or at one.</summary>
         public static bool AnyShopping(IEnumerable<Pawn> group, Pawn but) => group.Any(x => x != but && x.CurJobDef == TradeDefOf.Rimfolk_MarketBuy);
 
@@ -175,7 +178,8 @@ namespace ColonyCouncil
         {
             if (!On || p?.Map == null || !p.RaceProps.Humanlike || p.Downed || p.InMentalState || p.DevelopmentalStage.Juvenile()) return null;
             var t = TripOf(p);
-            if (t == null || !VisitorCamp.Camps(t) || t.shopped >= VisitorTradeMath.VisitBuys) return null;
+            bool market = Market(t);
+            if (t == null || !(market || VisitorCamp.Camps(t)) || t.shopped >= (market ? VisitorTradeMath.MarketBuys : VisitorTradeMath.VisitBuys)) return null;
             int now = Now;
             if (t.shopNext < 0)
             {
@@ -184,6 +188,7 @@ namespace ColonyCouncil
             }
             if (now < t.shopNext || VisitorWork.WantsSleep(p) || !MayShop(p.Map, t.faction)) return null;
             var group = t.Standing;
+            if (market) return MarketJob(p, t, group, now);
             if (AnyShopping(group, p)) return null;
             // Someone else carries the group's coin: they go (or, all of it spent, nobody does).
             bool coin = RimMarketStall.SilverIn(p) >= VisitorTradeMath.LeastSilver;
@@ -201,6 +206,24 @@ namespace ColonyCouncil
                     return null;
                 }
                 GivePurse(p, Rand.RangeInclusive(min, max));
+            }
+            return ShopJob(p, VisitorTradeMath.Wants(t.what));
+        }
+
+        /// <summary>
+        /// One of a market day's buyers: each grown-up of them has a purse of their own (handed round once, the first time
+        /// one of them goes), and goes to the stalls in turn, two at most at a time.
+        /// </summary>
+        private static Job MarketJob(Pawn p, VisitorTrip t, List<Pawn> group, int now)
+        {
+            if (group.Count(x => x != p && x.CurJobDef == TradeDefOf.Rimfolk_MarketBuy) >= 2) return null;
+            t.shopNext = now + GenDate.TicksPerHour / 2;
+            if (RimMarketStall.OpenStalls(p.Map).Count == 0) return null;
+            if (!t.purse)
+            {
+                t.purse = true;
+                var (min, max) = VisitorTradeMath.Purse(t.what, t.robbed);
+                foreach (var x in group.Where(x => !x.DevelopmentalStage.Juvenile())) GivePurse(x, Rand.RangeInclusive(min, max));
             }
             return ShopJob(p, VisitorTradeMath.Wants(t.what));
         }
@@ -250,7 +273,8 @@ namespace ColonyCouncil
                 if (trip != null)
                 {
                     trip.shopped++;
-                    trip.shopNext = Now + Rand.Range(GenDate.TicksPerHour * 4, GenDate.TicksPerHour * 8);
+                    var (lo, hi) = VisitorTradeMath.NextTryHours(Market(trip));
+                    trip.shopNext = Now + Rand.Range(GenDate.TicksPerHour * lo, GenDate.TicksPerHour * hi);
                 }
                 camp?.MarketBought();
             }

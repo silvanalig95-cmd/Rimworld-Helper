@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Makes the first pot (Source/ColonyCouncil/Immersion/FirstPot.cs): of a morning (five to ten), one with the habit
+    takes a cup of coffee or tea from the colony's stores to a friend at their leisure, who drinks it there. Under the
+    same rules as the other small habits: the "Small habits" setting, free time, a cooldown of a few hours, and only for
+    a colonist who has the quirk. The friend's thank-you is Rimfolk_Habit_FirstCup (Rimfolk_Thoughts_FirstPot.xml).
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_Habit_FirstPot</defName>
+    <driverClass>ColonyCouncil.JobDriver_FirstPot</driverClass>
+    <reportString>bringing someone a cup.</reportString>
+    <joyKind>Social</joyKind>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <modExtensions>
+      <li Class="ColonyCouncil.HabitExtension">
+        <kind>FirstPot</kind>
+        <pool>Rimfolk_Pool_HabitFirstPot</pool>
+        <social>true</social>
+        <quirk>Rimfolk_Quirk_FirstPot</quirk>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JoyGiverDef>
+    <defName>Rimfolk_HabitGiver_FirstPot</defName>
+    <giverClass>ColonyCouncil.JoyGiver_HabitFirstPot</giverClass>
+    <baseChance>8</baseChance>
+    <jobDef>Rimfolk_Habit_FirstPot</jobDef>
+    <joyKind>Social</joyKind>
+    <requiredCapacities>
+      <li>Moving</li>
+      <li>Manipulation</li>
+      <li>Talking</li>
+    </requiredCapacities>
+  </JoyGiverDef>
+
+</Defs>

@@ -492,6 +492,8 @@ namespace ColonyCouncil
             Safe("automations", () => automations.Hourly(this));
             Safe("suggestions", Ahead.Hourly);
             Safe("lines under the walls", () => relays.Hourly(this));
+            // Books being read, benches worked in the dark, coming in soaked (Lives/LifeNew.cs).
+            Safe("life moments", () => LifeNewTracker.Hourly(this));
         }
 
         private void HourlyEvents()

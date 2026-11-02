@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Visitors who come to do something (Source/ColonyCouncil/Visitors/Callers.cs, Happenings/Workers_Callers.cs). -->
+
+  <CC_Regular_Kind_collector>collector</CC_Regular_Kind_collector>
+  <CC_Regular_Kind_vet>animal doctor</CC_Regular_Kind_vet>
+
+  <!-- On the map -->
+  <CC_Caller_Hand_Begin>{PAWN_nameDef} goes to take the {THING} out to {OTHER_nameDef}.</CC_Caller_Hand_Begin>
+  <CC_Caller_Hand_None>{PAWN} had to go before the piece was brought out, and took nothing and paid nothing.</CC_Caller_Hand_None>
+  <CC_Caller_Cut_Begin>{PAWN_nameDef} calls the first of {1} colonists over to the stool.</CC_Caller_Cut_Begin>
+  <CC_Caller_Cut_Part>{PAWN} cut the hair of {1} of the {2} before going on.</CC_Caller_Cut_Part>
+  <CC_Caller_Cut_None>{PAWN} had to go before anyone sat down for a cut.</CC_Caller_Cut_None>
+  <CC_Caller_Vet_Begin>{PAWN_nameDef} goes to see to the colony's animals, {1} of them.</CC_Caller_Vet_Begin>
+  <CC_Caller_Vet_Part>{PAWN} saw to {1} of the {2} before going on.</CC_Caller_Vet_Part>
+  <CC_Caller_Vet_None>{PAWN} had to go before seeing to any of the colony's animals.</CC_Caller_Vet_None>
+  <CC_Caller_Graves_Begin>{PAWN_nameDef}'s order starts digging graves beyond the gate, for {1} of the dead.</CC_Caller_Graves_Begin>
+  <CC_Caller_Graves_Part>{PAWN}'s order laid {1} of the {2} dead in graves before going on. The rest are the colony's to see to.</CC_Caller_Graves_Part>
+  <CC_Caller_Graves_None>{PAWN}'s order had to go before laying any of the dead to rest.</CC_Caller_Graves_None>
+  <CC_Caller_Load_Begin>{PAWN_nameDef}'s order starts carrying the dead to their pack beast, {1} of them.</CC_Caller_Load_Begin>
+  <CC_Caller_Load_Part>{PAWN}'s order took {1} of the {2} dead away. The rest are the colony's to see to.</CC_Caller_Load_Part>
+  <CC_Caller_Load_None>{PAWN}'s order had to go before taking any of the dead.</CC_Caller_Load_None>
+  <CC_Caller_Talk_Begin>{PAWN_nameDef} is shown to {OTHER_nameDef}'s door.</CC_Caller_Talk_Begin>
+  <CC_Caller_Talk_None>{PAWN} had to go before getting to talk at the door.</CC_Caller_Talk_None>
+  <CC_Caller_Free_None>{PAWN}'s family had to go on before the captive was let out to them.</CC_Caller_Free_None>
+  <CC_Caller_Commission_Kept>{OTHER} won't be coming back for the {THING} after all. It is the colony's to keep.</CC_Caller_Commission_Kept>
+  <CC_Caller_Commission_Label>a sculpture for {OTHER_nameDef}</CC_Caller_Commission_Label>
+
+  <!-- What they're doing (inspect pane) -->
+  <CC_Caller_Report_View>looking at the {THING}.</CC_Caller_Report_View>
+  <CC_Caller_Report_CarryArt>taking the {THING} out to {OTHER_nameDef}.</CC_Caller_Report_CarryArt>
+  <CC_Caller_Report_Cut>cutting {OTHER_nameDef}'s hair.</CC_Caller_Report_Cut>
+  <CC_Caller_Report_GetCut>having a haircut from {OTHER_nameDef}.</CC_Caller_Report_GetCut>
+  <CC_Caller_Report_Tend>tending {OTHER_nameDef}.</CC_Caller_Report_Tend>
+  <CC_Caller_Report_Train>working {OTHER_nameDef}.</CC_Caller_Report_Train>
+  <CC_Caller_Report_Dig>digging a grave.</CC_Caller_Report_Dig>
+  <CC_Caller_Report_Bury>laying the dead in a grave.</CC_Caller_Report_Bury>
+  <CC_Caller_Report_Load>carrying the dead to {OTHER_nameDef}.</CC_Caller_Report_Load>
+  <CC_Caller_Report_Talk>talking with {OTHER_nameDef} through the door.</CC_Caller_Report_Talk>
+
+  <!-- The letters -->
+  <CC_Caller_Collector_Extra>The piece: "{TITLE}" by {AUTHOR}, {QUALITY}, worth about {VALUE} silver to a trader.</CC_Caller_Collector_Extra>
+  <CC_Caller_ArtGone>The piece is no longer the colony's to sell.</CC_Caller_ArtGone>
+  <CC_Caller_NoSculptor>Nobody in the colony can make a sculpture now.</CC_Caller_NoSculptor>
+  <CC_Caller_NoBench>The colony has no sculptor's table.</CC_Caller_NoBench>
+  <CC_Caller_Stuff>wood, stone blocks or metal of one kind</CC_Caller_Stuff>
+  <CC_Caller_Wedding_Extra>The feast would take {0} raw food from the stores, for the colony and the {2} guests; the families would pay {1} silver for it.</CC_Caller_Wedding_Extra>
+  <CC_Caller_Undertakers_Extra>The raiders lying out: {0}. What they wear and the weapons lying by them are worth about {1} silver.</CC_Caller_Undertakers_Extra>
+  <CC_Caller_NoGraveRoom>There's no room for a row of graves outside the wall.</CC_Caller_NoGraveRoom>
+  <CC_Caller_NoBeast>They have no beast to carry the dead.</CC_Caller_NoBeast>
+  <CC_Caller_RaidersGear>pieces of the raiders' gear</CC_Caller_RaidersGear>
+  <CC_Caller_Kin_Mother>mother</CC_Caller_Kin_Mother>
+  <CC_Caller_Kin_Father>father</CC_Caller_Kin_Father>
+  <CC_Caller_Kin_Daughter>daughter</CC_Caller_Kin_Daughter>
+  <CC_Caller_Kin_Son>son</CC_Caller_Kin_Son>
+  <CC_Caller_Kin_Sister>sister</CC_Caller_Kin_Sister>
+  <CC_Caller_Kin_Brother>brother</CC_Caller_Kin_Brother>
+  <CC_Caller_CaptiveGone>The captive is no longer the colony's to let go.</CC_Caller_CaptiveGone>
+  <CC_Caller_OnlyPrisoner>Only a prisoner can be talked with at the door of their cell.</CC_Caller_OnlyPrisoner>
+  <CC_Caller_Barber_Nobody>nobody, as it happens</CC_Caller_Barber_Nobody>
+  <CC_Caller_Barber_Extra>{0} silver a head. Those who want a cut: {1}, {2} silver for them alone.</CC_Caller_Barber_Extra>
+  <CC_Caller_Barber_NobodyWants>Nobody in the colony wants a cut today.</CC_Caller_Barber_NobodyWants>
+  <CC_Caller_Vet_NoPatients>none of the colony's animals</CC_Caller_Vet_NoPatients>
+  <CC_Caller_Vet_More> and {0} more</CC_Caller_Vet_More>
+  <CC_Caller_Vet_Nothing>None of the colony's animals is hurt or sick now.</CC_Caller_Vet_Nothing>
+
+  <!-- What each answer does -->
+  <CC_Impact_Caller_SellArt>The {THING} is taken up and carried out to {OTHER_nameDef}, who pays for it there</CC_Impact_Caller_SellArt>
+  <CC_Impact_Caller_SellArtBrief>carried out</CC_Impact_Caller_SellArtBrief>
+  <CC_Impact_Caller_ArtWord>{OTHER_nameDef} speaks of the colony's art on the road: its name for art grows</CC_Impact_Caller_ArtWord>
+  <CC_Impact_Caller_ArtWordBrief>its name for art grows</CC_Impact_Caller_ArtWordBrief>
+  <CC_Impact_Caller_Commission>{PAWN_nameDef} makes a {THING} at the sculptor's table ({HOURS} hours); {OTHER_nameDef} comes back for it and pays by its quality</CC_Impact_Caller_Commission>
+  <CC_Impact_Caller_CommissionBrief>a commission</CC_Impact_Caller_CommissionBrief>
+  <CC_Impact_Caller_KeepCommission>The colony keeps the {THING}</CC_Impact_Caller_KeepCommission>
+  <CC_Impact_Caller_NightInside>The wedding party sleeps the night in the colony's spare beds, or on a warm floor</CC_Impact_Caller_NightInside>
+  <CC_Impact_Caller_NightFire>The wedding party camps the night round its own fire beyond the wall</CC_Impact_Caller_NightFire>
+  <CC_Impact_Caller_NightBrief>a night here</CC_Impact_Caller_NightBrief>
+  <CC_Impact_Caller_BringFood>{OTHER_nameDef} sets down {1} {2} of theirs for the feast's cooking</CC_Impact_Caller_BringFood>
+  <CC_Impact_Caller_BringFoodBrief>their own food</CC_Impact_Caller_BringFoodBrief>
+  <CC_Impact_Caller_Graves>The undertakers dig {0} graves beyond the gate and lay the raiders in them</CC_Impact_Caller_Graves>
+  <CC_Impact_Caller_GravesBrief>graves dug</CC_Impact_Caller_GravesBrief>
+  <CC_Impact_Caller_TakeDead>The undertakers load {0} of the dead on {OTHER_nameDef} and take them away, with the weapons lying by them</CC_Impact_Caller_TakeDead>
+  <CC_Impact_Caller_TakeDeadBrief>the dead taken away</CC_Impact_Caller_TakeDeadBrief>
+  <CC_Impact_Caller_Free>{PAWN_nameDef} is let go and leaves with {OTHER_nameDef}</CC_Impact_Caller_Free>
+  <CC_Impact_Caller_FreeBrief>{PAWN_nameDef} goes home</CC_Impact_Caller_FreeBrief>
+  <CC_Impact_Caller_Talk>{OTHER_nameDef} talks with {PAWN_nameDef} at the door an hour, then the family goes home</CC_Impact_Caller_Talk>
+  <CC_Impact_Caller_TalkBrief>a talk at the door</CC_Impact_Caller_TalkBrief>
+  <CC_Impact_Caller_TalkSoftens>{PAWN_nameDef}: resistance -{1}, will -{2}</CC_Impact_Caller_TalkSoftens>
+  <CC_Impact_Caller_Refused>{PAWN_nameDef}: resistance +{1}</CC_Impact_Caller_Refused>
+  <CC_Impact_Caller_Cut>{OTHER_nameDef} gives {1} a new cut by the gate, one at a time</CC_Impact_Caller_Cut>
+  <CC_Impact_Caller_CutBrief>{0} haircuts</CC_Impact_Caller_CutBrief>
+  <CC_Impact_Caller_CutCount>{0} of the colony</CC_Impact_Caller_CutCount>
+  <CC_Impact_Caller_CutJoy>{0}: a good talk while they sit, as recreation</CC_Impact_Caller_CutJoy>
+  <CC_Impact_Caller_Tend>{OTHER_nameDef} tends {1} of the colony's animals where they are, with medicine of their own</CC_Impact_Caller_Tend>
+  <CC_Impact_Caller_TendBrief>{0} animals tended</CC_Impact_Caller_TendBrief>
+  <CC_Impact_Caller_Train>{PET_nameDef}: one step of training ({1})</CC_Impact_Caller_Train>
+  <CC_Impact_Caller_TrainBrief>a training session</CC_Impact_Caller_TrainBrief>
+  <CC_Impact_Caller_Lodge>{OTHER_nameDef} sleeps the night in a warm corner of the colony's</CC_Impact_Caller_Lodge>
+</LanguageData>
