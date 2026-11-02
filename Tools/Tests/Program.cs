@@ -492,6 +492,7 @@ Console.WriteLine($"Checked {HudTests.Run(Check)} things about the on-screen pan
 Console.WriteLine($"Checked {HudPanelTests.Run(Check)} things about the alerts, health, and work and idle panels (the health filter, the race, orders, starting places).");
 Console.WriteLine($"Checked {HudLayerTests.Run(Check)} things about the panels beneath the game's interface, health details and the inventory (tab row, places, healing, recovery, stock order and change, grid).");
 Console.WriteLine($"Checked {BodyTests.Run(Check)} things about what a colonist's own body changes (the cold and the heat, barely eating, armour in the skin, the water a thalassophobe minds).");
+Console.WriteLine($"Checked {DrinkBeforeWorkTests.Run(Check)} things about a drink before work for Alpha Skills' drunken passion (how often, how near, which work, tolerance).");
 
 Console.WriteLine(failures == 0 ? "All tests passed (template math, layout, strain, meetings, pressures, ailments, line memory, good times, tab sizes, calendar, personal stories, clock and caps, faction memory, answers on the map, setbacks, promises kept, what colonists say, the heart's needs, beliefs and diets, animals, other mods)." : failures + " failure(s).");
 return failures == 0 ? 0 : 1;

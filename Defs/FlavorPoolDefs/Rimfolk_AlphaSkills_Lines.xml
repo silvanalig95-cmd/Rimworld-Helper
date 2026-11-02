@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A colonist with Alpha Skills' drunken passion, raising a drink before the work it trains; tagged with the skill
+       (Source/ColonyCouncil/Integrations/DrinkBeforeWork.cs). -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_DrinkBeforeWork</defName>
+    <lines>
+      <plain>
+        <li>One cup, then to work.</li>
+        <li>A drop for steady hands.</li>
+        <li>I work better with one of these in me.</li>
+        <li>Just the one, and back to it.</li>
+        <li>[crafting] One cup, then to the bench.</li>
+        <li>[crafting] This is how the good pieces get made.</li>
+        <li>[construction] A sip before I raise the walls.</li>
+        <li>[mining] One for the dark of the mine.</li>
+        <li>[plants] A drink, then the fields.</li>
+        <li>[intellectual] Loosens the thinking, this does.</li>
+        <li>[artistic] A cup to wake the eye before I carve.</li>
+        <li>[cooking] One for the cook before the pots.</li>
+        <li>[social] A drink first, then I'll talk them round.</li>
+      </plain>
+      <warm><li>Here's to good work today.</li></warm>
+      <blunt><li>One drink, then work.</li></blunt>
+      <cheerful><li>Cheers, now watch what these hands can do!</li></cheerful>
+      <gloomy><li>Easier to face the work after one of these.</li></gloomy>
+      <cold><li>It helps me learn, so I drink.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

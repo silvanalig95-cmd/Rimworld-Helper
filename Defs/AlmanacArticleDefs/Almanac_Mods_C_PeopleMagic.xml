@@ -753,11 +753,11 @@ Vanilla Social Interactions Expanded can also give out traits. If traits change 
       </li>
       <li>
         <heading>Alpha Skills</heading>
-        <text>Alpha Skills adds 26 passions and 19 expertises. Passions like drunken, night, rainy day, vengeful, nomadic and competitive learn much faster only while their condition holds, so match them to the work: put colonists with the night passion on night shifts, and those with the rainy day passion outdoors when it rains.</text>
+        <text>Alpha Skills adds 26 passions and 19 expertises. Passions like drunken, night, rainy day, vengeful, nomadic and competitive learn much faster only while their condition holds, so match them to the work: put colonists with the night passion on night shifts (it wakes from 8 in the evening until 6 in the morning), and give those with the rainy day passion that work while it rains on the map, indoors or out.</text>
       </li>
       <li>
         <heading>With Rimfolk</heading>
-        <text>Passions are judged by how fast they make someone learn. Apathy counts as no passion, natural and critical count as burning, and an Alpha Skills passion that switches on and off counts by its current state. A colonist close to unlocking an expertise in a skill they love may set their heart on earning one.</text>
+        <text>Passions are judged by how fast they make someone learn. Apathy counts as no passion, natural and critical count as burning, and an Alpha Skills passion that switches on and off counts by its current state. A colonist close to unlocking an expertise in a skill they love may set their heart on earning one. A colonist with the drunken passion often has one drink from the stores before work that trains that skill, so the passion is awake while they work: only a drink their drug policy and beliefs allow, never for a teetotaler, a child or someone addicted, never before tending, surgery, hunting or animal work, and at most once in eight hours (the setting A drink before work).</text>
       </li>
     </sections>
     <keywords>

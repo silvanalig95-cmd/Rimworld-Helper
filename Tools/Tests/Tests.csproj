@@ -72,6 +72,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/MovingOnMath.cs" Link="MovingOnMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Aspirations/GoalRewardMath.cs" Link="GoalRewardMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestWillMath.cs" Link="GuestWillMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Integrations/DrinkBeforeWorkMath.cs" Link="DrinkBeforeWorkMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Setbacks/SetbackMath.cs" Link="SetbackMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Sched.cs" Link="Sched.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/Caps.cs" Link="Caps.cs" />

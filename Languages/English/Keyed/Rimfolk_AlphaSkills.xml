@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A drink before work for Alpha Skills' drunken passion (Source/ColonyCouncil/Integrations/DrinkBeforeWork.cs). -->
+  <CC_Settings_DrinkBeforeWork>A drink before work (Alpha Skills)</CC_Settings_DrinkBeforeWork>
+  <CC_Settings_DrinkBeforeWork_Tip>With Alpha Skills: a colonist with the drunken passion in a skill learns it much faster while drunk. With this on, before work that trains that skill they usually take one drink from the colony's stores first (beer, or another mod's drink that makes them drunk the same way), then go on to the work. Only a drink their drug policy allows for fun, or a scheduled dose that's due, and their beliefs allow; never for a teetotaler, a child, someone addicted, pregnant or hurt, or someone whose tolerance is getting high; never in danger, never before tending, surgery, hunting or work with animals; at most once in eight hours, and only from a stockpile a short walk away. Needs the deeper game hooks.</CC_Settings_DrinkBeforeWork_Tip>
+  <CC_SetNote_DrinkBeforeWork>With Alpha Skills, a colonist with a drunken passion often has a drink from the stores before that work.</CC_SetNote_DrinkBeforeWork>
+
+</LanguageData>

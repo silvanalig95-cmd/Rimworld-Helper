@@ -1,6 +1,6 @@
 # The defNames of other mods that Rimfolk's defs use, each found in that mod's own defs (the mod and version it was
-# read from heads each group). Tools/Tests/ModsTests.cs checks every such name in Rimfolk's defs against this list:
-# a new one must be looked up in the mod's defs and added here.
+# read from heads each group). Tools/Tests/ModsTests.cs checks every such name in Rimfolk's defs (and Alpha Skills'
+# names in its code) against this list: a new one must be looked up in the mod's defs and added here.
 # Medieval Overhaul 1.6 (dankpyon.medieval.overhaul)
 DankPyon_Apiary
 DankPyon_AteApplePie
@@ -152,6 +152,9 @@ Outland_RedburnPact
 Outland_VathunNobles
 # Outland 1.5 (Outland-Genetics)
 # Outland 1.5 (Outland-Furniture-Decor)
+# Alpha Skills 1.6 (sarg.alphaskills)
+AS_DrunkenPassion
+AS_DrunkenPassion_Active
 # Traits read for a person's character (Defs/PersonaDefs/Rimfolk_PersonaNature_*.xml), from each mod's 1.6 TraitDefs
 # Medieval Overhaul 1.6 (dankpyon.medieval.overhaul)
 DankPyon_Fighter
