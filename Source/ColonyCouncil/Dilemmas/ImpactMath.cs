@@ -50,11 +50,52 @@ namespace ColonyCouncil
         /// <summary>The chance is rolled for each person it could touch.</summary>
         public bool each;
 
+        // For the hints in words (Dilemmas/ImpactHints.cs), set where a line's own words carry numbers.
+
+        /// <summary>What the line is about, for telling it in words; None: its own words with the numbers taken out.</summary>
+        public HintTopic topic;
+        /// <summary>Who it touches, as the exact line names them ("everyone (10)", "Mara and Tam").</summary>
+        public string who;
+        /// <summary>The thing, person, people, skill or way it is about ("beer", "Tam", "the Iron Hand", "cooking").</summary>
+        public string about;
+        /// <summary>Its size when it doesn't add up (a mood's points, recreation as a share of the bar), signed.</summary>
+        public float size;
+        /// <summary>How many the stores hold, for goods (below 0: not known).</summary>
+        public float stock = -1f;
+        /// <summary>How many days a mood lasts (0: while it lasts).</summary>
+        public float days;
+        /// <summary>The short hint in words, when the line's own short form has numbers in it.</summary>
+        public string hint;
+        /// <summary>The hint in words for the tooltip, when the line's own words have numbers in it.</summary>
+        public string hintFull;
+        /// <summary>Something on the map: how many hours it takes.</summary>
+        public float hours;
+        /// <summary>Something on the map in working hours that takes people from their work.</summary>
+        public bool workTime;
+
         /// <summary>Good (1), a cost (-1) or neither (0), as it stands with its amount.</summary>
         public int Sign => sum && amount < 0f ? -sign : sign;
 
         public string Text => ImpactMath.Fill(text, amount, sum && signed);
         public string Brief => ImpactMath.Fill(brief ?? text, amount, sum && signed);
+    }
+
+    /// <summary>All an answer does: its lines, what more happens when its gamble goes wrong, and its live odds.</summary>
+    public sealed class OptionImpact
+    {
+        public List<ImpactLine> lines = new List<ImpactLine>();
+        /// <summary>What happens when the risk comes true: all of it when it replaces the plain effects, else what it adds.</summary>
+        public List<ImpactLine> risk = new List<ImpactLine>();
+        public float riskChance;
+        public bool riskReplaces;
+        /// <summary>"Mara's Social brings it down from 1 in 4", or null.</summary>
+        public string riskNote;
+        /// <summary>The skill that makes the gamble less likely to go wrong ("social"), or null.</summary>
+        public string riskSkill;
+        /// <summary>Who brings the risk down with that skill now, or null.</summary>
+        public string riskHelper;
+
+        public bool Empty => lines.Count == 0 && risk.Count == 0 && riskChance <= 0f;
     }
 
     /// <summary>
@@ -171,7 +212,8 @@ namespace ColonyCouncil
                     var copy = new ImpactLine
                     {
                         kind = l.kind, sign = l.sign, text = l.text, brief = l.brief, key = l.key, amount = l.amount, sum = l.sum,
-                        signed = l.signed, chance = l.chance, each = l.each
+                        signed = l.signed, chance = l.chance, each = l.each, topic = l.topic, who = l.who, about = l.about, size = l.size,
+                        stock = l.stock, days = l.days, hint = l.hint, hintFull = l.hintFull, hours = l.hours, workTime = l.workTime
                     };
                     if (copy.key != null) byKey[copy.key] = copy;
                     else if (!seen.Add((int)copy.kind + "|" + copy.text + "|" + copy.chance.ToString(CultureInfo.InvariantCulture))) continue;

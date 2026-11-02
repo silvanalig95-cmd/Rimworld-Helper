@@ -253,8 +253,10 @@ namespace ColonyCouncil
             tip.Add(r.question.Colorize(ColoredText.TipSectionTitleColor) + "\n" + "CC_Dil_TipAnswer".Translate(r.answer).Resolve());
             if (r.byDefault) tip.Add("CC_Dil_TipDefault".Translate());
             if (!r.outcome.NullOrEmpty()) tip.Add(r.outcome);
-            // What the answer was to do (the gamble's part only if it came true is the "How it went" column's to tell).
-            if (!r.impact.NullOrEmpty() && ColonyCouncilMod.Settings.showImpact) tip.Add(r.impact);
+            // What the answer was to do, in words or in numbers as the setting has it (the gamble's part only if it came true
+            // is the "How it went" column's to tell).
+            string impact = DilemmaImpact.RecordFor(r);
+            if (!impact.NullOrEmpty()) tip.Add(impact);
             tip.Add(("CC_Dil_Went_" + went + "_Tip").Translate(r.playLabel ?? "").Resolve().Colorize(ColoredText.SubtleGrayColor));
             return new Line
             {

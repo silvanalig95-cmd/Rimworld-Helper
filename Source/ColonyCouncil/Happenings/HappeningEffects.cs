@@ -257,7 +257,11 @@ namespace ColonyCouncil
             string w = WhoOf(ctx, who);
             string pct = "+" + (amount * 100f).ToString("0") + "%";
             var l = sheet.Add(ImpactKind.Needs, 1, "CC_Impact_Joy".Translate(w, pct).Resolve(), "CC_Impact_JoyBrief".Translate(w, pct).Resolve(), "joy|" + KeyOf(who));
-            if (l != null) l.each = who.Count > 1;
+            if (l == null) return;
+            l.each = who.Count > 1;
+            l.topic = HintTopic.Joy;
+            l.who = w;
+            l.size = amount;
         }
 
         public float amount = 0.2f;

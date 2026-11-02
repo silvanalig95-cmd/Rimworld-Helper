@@ -54,30 +54,54 @@ namespace ColonyCouncil
         public void Trust(string who, string whoKey, float amount, bool many)
         {
             var l = Amount(ImpactKind.Trust, 1, amount, "CC_Impact_Trust".Translate(who, Mark).Resolve(), "CC_Impact_TrustBrief".Translate(who, Mark).Resolve(), "trust|" + whoKey);
-            if (l != null) l.each = many;
+            if (l == null) return;
+            l.each = many;
+            l.topic = HintTopic.Trust;
+            l.who = who;
         }
 
-        /// <summary>Things the colony gets (sign 1) or gives up (sign -1): <paramref name="count"/> of <paramref name="label"/>.</summary>
-        public void Goods(int sign, string label, int count, string key = null)
+        /// <summary>
+        /// Things the colony gets (sign 1) or gives up (sign -1): <paramref name="count"/> of <paramref name="label"/>, with
+        /// how many the stores hold when known (for the hint's "some" or "much").
+        /// </summary>
+        public void Goods(int sign, string label, int count, string key = null, float stock = -1f)
         {
             if (count <= 0 || label.NullOrEmpty()) return;
             string k = (sign > 0 ? "gain|" : "cost|") + (key ?? label);
-            Amount(ImpactKind.Goods, sign, count, (sign > 0 ? "CC_Impact_Gain" : "CC_Impact_Cost").Translate(Mark, label).Resolve(),
+            var l = Amount(ImpactKind.Goods, sign, count, (sign > 0 ? "CC_Impact_Gain" : "CC_Impact_Cost").Translate(Mark, label).Resolve(),
                 (sign > 0 ? "CC_Impact_GainBrief" : "CC_Impact_CostBrief").Translate(Mark, label).Resolve(), k, false);
+            if (l == null) return;
+            l.topic = HintTopic.Goods;
+            l.about = label;
+            l.stock = stock;
         }
 
-        public void Goods(int sign, ThingDef def, int count) => Goods(sign, def?.label, count, def?.defName);
+        public void Goods(int sign, ThingDef def, int count) => Goods(sign, def?.label, count, def?.defName, Stock(def));
+
+        /// <summary>How many of a thing the colony's stores hold (-1 when the game doesn't count it).</summary>
+        public float Stock(ThingDef def)
+        {
+            var map = Map;
+            if (def == null || map?.resourceCounter == null || !def.CountAsResource) return -1f;
+            return map.resourceCounter.GetCount(def);
+        }
 
         /// <summary>Silver to the colony (positive) or out of it (negative).</summary>
-        public void Silver(int amount, string key = "silver") =>
-            Amount(ImpactKind.Goods, 1, amount, "CC_Impact_Silver".Translate(Mark).Resolve(), "CC_Impact_SilverBrief".Translate(Mark).Resolve(), key);
+        public void Silver(int amount, string key = "silver")
+        {
+            var l = Amount(ImpactKind.Goods, 1, amount, "CC_Impact_Silver".Translate(Mark).Resolve(), "CC_Impact_SilverBrief".Translate(Mark).Resolve(), key);
+            if (l != null) l.topic = HintTopic.Silver;
+        }
 
         /// <summary>Goodwill with a people.</summary>
         public void Goodwill(Faction f, float amount)
         {
             if (f == null || f.IsPlayer) return;
-            Amount(ImpactKind.Goodwill, 1, amount, "CC_Impact_Goodwill".Translate(f.Name, Mark).Resolve(), "CC_Impact_GoodwillBrief".Translate(f.Name, Mark).Resolve(),
+            var l = Amount(ImpactKind.Goodwill, 1, amount, "CC_Impact_Goodwill".Translate(f.Name, Mark).Resolve(), "CC_Impact_GoodwillBrief".Translate(f.Name, Mark).Resolve(),
                 "goodwill|" + f.loadID);
+            if (l == null) return;
+            l.topic = HintTopic.Goodwill;
+            l.about = f.Name;
         }
 
         /// <summary>
@@ -115,7 +139,15 @@ namespace ColonyCouncil
                     var l = Add(ImpactKind.Mood, positive ? 1 : -1,
                         days != null ? "CC_Impact_Mood".Translate(whoText, range, days, label).Resolve() : "CC_Impact_MoodNow".Translate(whoText, range, label).Resolve(),
                         "CC_Impact_MoodBrief".Translate(whoText, range).Resolve(), "mood|" + t.defName + "|" + whoText);
-                    if (l != null) l.each = many;
+                    if (l != null)
+                    {
+                        l.each = many;
+                        l.topic = HintTopic.Mood;
+                        l.who = whoText;
+                        l.size = positive ? hi : lo;
+                        l.days = t.durationDays;
+                        l.about = label;
+                    }
                 }
             }
             if (t.IsSocial && Mathf.Abs(stage.baseOpinionOffset) > 0.01f)
@@ -125,7 +157,15 @@ namespace ColonyCouncil
                 var l = Add(ImpactKind.Opinion, stage.baseOpinionOffset > 0f ? 1 : -1,
                     days != null ? "CC_Impact_Opinion".Translate(whoText, v, of, days, label).Resolve() : "CC_Impact_OpinionNow".Translate(whoText, v, of, label).Resolve(),
                     "CC_Impact_OpinionBrief".Translate(whoText, v, of).Resolve(), "opinion|" + t.defName + "|" + whoText);
-                if (l != null) l.each = many;
+                if (l != null)
+                {
+                    l.each = many;
+                    l.topic = HintTopic.Opinion;
+                    l.who = whoText;
+                    l.size = stage.baseOpinionOffset;
+                    l.days = t.durationDays;
+                    l.about = of;
+                }
             }
             Instead(who, whoText, t);
         }
@@ -145,19 +185,32 @@ namespace ColonyCouncil
             if (x == null) return;
             float scale = ColonyCouncilMod.Settings.rewardFactor;
             bool many = who.Count > 1;
-            void Line(ImpactKind kind, string key, params NamedArgument[] args)
+            ImpactLine Line(ImpactKind kind, string key, params NamedArgument[] args)
             {
                 var l = Add(kind, 1, key.Translate(args).Resolve(), (key + "Brief").Translate(args).Resolve(), key + "|" + t.defName + "|" + whoText);
-                if (l != null) l.each = many;
+                if (l != null)
+                {
+                    l.each = many;
+                    l.who = whoText;
+                }
+                return l;
+            }
+            void Sized(ImpactLine l, HintTopic topic, float size, string what = null)
+            {
+                if (l == null) return;
+                l.topic = topic;
+                l.size = size;
+                l.about = what;
             }
             string Pct(float v) => "+" + (v * scale * 100f).ToString("0") + "%";
-            if (x.joy > 0f) Line(ImpactKind.Needs, "CC_Impact_InsteadJoy", whoText, Pct(x.joy));
-            if (x.rest > 0f) Line(ImpactKind.Needs, "CC_Impact_InsteadRest", whoText, Pct(x.rest));
-            if (x.comfort > 0f) Line(ImpactKind.Needs, "CC_Impact_InsteadComfort", whoText, Pct(x.comfort));
+            if (x.joy > 0f) Sized(Line(ImpactKind.Needs, "CC_Impact_InsteadJoy", whoText, Pct(x.joy)), HintTopic.Joy, x.joy * scale);
+            if (x.rest > 0f) Sized(Line(ImpactKind.Needs, "CC_Impact_InsteadRest", whoText, Pct(x.rest)), HintTopic.Rest, x.rest * scale);
+            if (x.comfort > 0f) Sized(Line(ImpactKind.Needs, "CC_Impact_InsteadComfort", whoText, Pct(x.comfort)), HintTopic.Comfort, x.comfort * scale);
             if (x.xp > 0f)
             {
                 string skill = x.skill?.label ?? ("CC_Impact_SkillFrom_" + (x.skillFrom ?? "mine")).Translate().Resolve();
-                Line(ImpactKind.Skill, "CC_Impact_InsteadXp", whoText, (x.xp * scale).ToString("0"), skill);
+                string hintSkill = x.skill?.label ?? ("CC_ImpactHint_SkillFrom_" + (x.skillFrom ?? "mine")).Translate().Resolve();
+                Sized(Line(ImpactKind.Skill, "CC_Impact_InsteadXp", whoText, (x.xp * scale).ToString("0"), skill), HintTopic.Skill, x.xp * scale, hintSkill);
             }
             if (x.trust > 0f) Trust(whoText, whoText, x.trust * scale, many);
             if (x.research > 0f) Line(ImpactKind.Other, "CC_Impact_InsteadResearch", (x.research * scale).ToString("0"));
@@ -169,38 +222,32 @@ namespace ColonyCouncil
                 {
                     l.chance = Mathf.Clamp01(x.inspiration * scale);
                     l.each = many;
+                    l.topic = HintTopic.Inspire;
+                    l.who = whoText;
                 }
             }
             if (x.journal) Line(ImpactKind.Other, "CC_Impact_InsteadJournal", whoText);
         }
     }
 
-    /// <summary>All an answer does: its lines, what more happens when its gamble goes wrong, and its live odds.</summary>
-    public sealed class OptionImpact
-    {
-        public List<ImpactLine> lines = new List<ImpactLine>();
-        /// <summary>What happens when the risk comes true: all of it when it replaces the plain effects, else what it adds.</summary>
-        public List<ImpactLine> risk = new List<ImpactLine>();
-        public float riskChance;
-        public bool riskReplaces;
-        /// <summary>"Mara's Social brings it down from 1 in 4", or null.</summary>
-        public string riskNote;
-
-        public bool Empty => lines.Count == 0 && risk.Count == 0 && riskChance <= 0f;
-    }
-
     /// <summary>
     /// Shows what each answer does, where the player chooses (the letters of dilemmas, Rimfolk's events and world
     /// events) and on the Dilemmas page afterwards: a short line under the answer and the full list in its tooltip,
     /// grouped by kind, the same things merged, from the live moment (who is involved, what the stores hold, how each
-    /// colonist will feel it). With "Show what each answer does" off, the letters are as they were.
+    /// colonist will feel it). As hints (the default) it is said in plain words without numbers (Dilemmas/ImpactHints.cs);
+    /// as exact numbers, every size, day, count and chance; off, the letters are as they were.
     /// </summary>
     public static class DilemmaImpact
     {
         /// <summary>The short line's length before the rest is left to the tooltip (two lines under an answer).</summary>
         public const int CompactChars = 190;
 
-        public static bool On => ColonyCouncilMod.Settings?.showImpact ?? true;
+        public static ImpactShow Mode => ColonyCouncilMod.Settings?.impactShows ?? ImpactShow.Hints;
+
+        public static bool On => Mode != ImpactShow.Off;
+
+        /// <summary>The words hints are made of, from the game's translations.</summary>
+        public static readonly HintWords Words = new HintWords(k => k.Translate().RawText);
 
         /// <summary>The lines of some effects, merged.</summary>
         public static List<ImpactLine> Of(DilemmaContext ctx, IEnumerable<DilemmaEffect> effects)
@@ -225,8 +272,41 @@ namespace ColonyCouncil
                         if (e.chance < 1f) l.chance = Mathf.Min(l.chance, e.chance);
                         if (!e.ChanceEach) l.each = false;
                     }
+                    if (e is DilemmaEffect_PlayOut play) ForHint(ctx, play, sheet.lines, before);
                 }
             return ImpactMath.Merge(sheet.lines);
+        }
+
+        /// <summary>
+        /// What plays out, for the hint in words: its name and when ("The high watch together in the evening"), the hours
+        /// it takes from work in the day (not when it is work itself), and a lesson's learning by its size.
+        /// </summary>
+        private static void ForHint(DilemmaContext ctx, DilemmaEffect_PlayOut play, List<ImpactLine> lines, int from)
+        {
+            bool work = play is DilemmaEffect_WorkParty || play is DilemmaEffect_Search || play is DilemmaEffect_HuntParty || play is DilemmaEffect_HaulDead;
+            bool marked = false;
+            for (int i = from; i < lines.Count; i++)
+            {
+                var l = lines[i];
+                if (!marked && l.kind == ImpactKind.Map && !l.brief.NullOrEmpty() && l.text != null && l.text.StartsWith(l.brief, StringComparison.Ordinal))
+                {
+                    marked = true;
+                    l.topic = HintTopic.Play;
+                    l.hint ??= (play is DilemmaEffect_Gathering ? "CC_ImpactHint_PlayTogether" : "CC_ImpactHint_Play").Translate(l.brief, WhenHint(play.hours)).Resolve();
+                    l.hours = (play.duration.min + play.duration.max) / 2f;
+                    l.workTime = !work && ImpactHints.InWorkHours(ImpactHints.WhenKind(play.hours.min, play.hours.max));
+                }
+                else if (play is DilemmaEffect_Lesson lesson && l.kind == ImpactKind.Skill && l.key != null && l.key.StartsWith("lesson|", StringComparison.Ordinal))
+                {
+                    var student = PlayOuts.Who(lesson.student, ctx);
+                    var skill = DefDatabase<SkillDef>.GetNamedSilentFail(l.key.Substring(l.key.LastIndexOf('|') + 1));
+                    if (student == null || skill == null) continue;
+                    l.topic = HintTopic.Skill;
+                    l.who = student.LabelShort;
+                    l.about = skill.label;
+                    l.size = lesson.xpPerHour * lesson.duration.Average;
+                }
+            }
         }
 
         /// <summary>Everything one answer does, for the moment it's asked in.</summary>
@@ -254,7 +334,12 @@ namespace ColonyCouncil
             if (ColonyCouncilMod.Settings.colonyCharacter && ways != null && ways.Any)
             {
                 string shift = ways.Summary();
-                if (!shift.NullOrEmpty()) r.lines.Add(new ImpactLine { kind = ImpactKind.Ways, text = "CC_Impact_Ways".Translate(shift).Resolve(), brief = "CC_Impact_WaysBrief".Translate(shift).Resolve() });
+                if (!shift.NullOrEmpty())
+                    r.lines.Add(new ImpactLine
+                    {
+                        kind = ImpactKind.Ways, text = "CC_Impact_Ways".Translate(shift).Resolve(), brief = "CC_Impact_WaysBrief".Translate(shift).Resolve(),
+                        topic = HintTopic.Ways, about = Leaning(ways)
+                    });
             }
             if (riskBase <= 0f) return r;
             r.riskChance = riskLive;
@@ -264,10 +349,23 @@ namespace ColonyCouncil
             if (riskSkill == null) return r;
             var best = helpers.Where(p => p?.skills?.GetSkill(riskSkill) is SkillRecord s && !s.TotallyDisabled)
                 .OrderByDescending(p => p.skills.GetSkill(riskSkill).Level).FirstOrDefault();
-            r.riskNote = best != null && riskLive < riskBase - 0.001f
+            bool lowered = best != null && riskLive < riskBase - 0.001f;
+            r.riskNote = lowered
                 ? "CC_Impact_RiskLowered".Translate(best.LabelShort, riskSkill.label, best.skills.GetSkill(riskSkill).Level, Odds(riskBase)).Resolve()
                 : "CC_Impact_RiskSkill".Translate(riskSkill.label).Resolve();
+            r.riskSkill = riskSkill.label;
+            r.riskHelper = lowered ? best.LabelShort : null;
             return r;
+        }
+
+        /// <summary>The way an answer leans the colony most ("traditional"), for the hint.</summary>
+        private static string Leaning(WayShift ways)
+        {
+            Way? most = null;
+            foreach (Way w in Enum.GetValues(typeof(Way)))
+                if (Mathf.Abs(ways.Get(w)) >= 0.5f && (most == null || Mathf.Abs(ways.Get(w)) > Mathf.Abs(ways.Get(most.Value))))
+                    most = w;
+            return most == null ? null : CharacterTracker.PoleLabel(most.Value, ways.Get(most.Value) > 0f);
         }
 
         /// <summary>A custom kept or broken: the tradition's moods and trust (Dilemmas.cs, Tradition).</summary>
@@ -285,11 +383,19 @@ namespace ColonyCouncil
                 else
                 {
                     int had = tracker.TraditionCount(def);
-                    lines.Add(new ImpactLine { kind = ImpactKind.Other, sign = 1, text = "CC_Impact_TraditionToward".Translate(name, had + 1, def.traditionAfter).Resolve() });
+                    lines.Add(new ImpactLine
+                    {
+                        kind = ImpactKind.Other, sign = 1, text = "CC_Impact_TraditionToward".Translate(name, had + 1, def.traditionAfter).Resolve(),
+                        hint = "CC_ImpactHint_TraditionToward".Translate(name).Resolve(), hintFull = "CC_ImpactHint_TraditionTowardFull".Translate(name).Resolve()
+                    });
                 }
             }
             else if (tracker.IsTradition(def))
-                lines.Add(new ImpactLine { kind = ImpactKind.Other, sign = -1, text = "CC_Impact_TraditionBroken".Translate(name).Resolve(), brief = "CC_Impact_TraditionBrokenBrief".Translate(name).Resolve() });
+                lines.Add(new ImpactLine
+                {
+                    kind = ImpactKind.Other, sign = -1, text = "CC_Impact_TraditionBroken".Translate(name).Resolve(), brief = "CC_Impact_TraditionBrokenBrief".Translate(name).Resolve(),
+                    hintFull = "CC_ImpactHint_TraditionBroken".Translate(name).Resolve()
+                });
         }
 
         // ---------------- Words ----------------
@@ -345,6 +451,32 @@ namespace ColonyCouncil
                 sb.Append("\n  " + LineText(l).Colorize(ColorOf(l)));
             }
         }
+
+        /// <summary>The hint under an answer, in words without numbers (Dilemmas/ImpactHints.cs).</summary>
+        public static string Hint(OptionImpact r) => ImpactHints.Line(r, Words);
+
+        /// <summary>The hint's tooltip: what the answer does in words, grouped by kind, then the gamble, without numbers.</summary>
+        public static string HintFull(OptionImpact r)
+        {
+            var sb = new System.Text.StringBuilder();
+            foreach (var row in ImpactHints.Rows(r, Words))
+            {
+                if (row.heading)
+                {
+                    if (sb.Length > 0) sb.Append("\n\n");
+                    sb.Append(row.text.Colorize(sb.Length == 0 ? ColoredText.TipSectionTitleColor : ColoredText.SubtleGrayColor));
+                }
+                else if (row.risk) sb.Append("\n\n" + row.text.Colorize(UiKit.Warn));
+                else sb.Append((sb.Length > 0 ? "\n  " : "") + row.text.Colorize(row.sign > 0 ? UiKit.Good : row.sign < 0 ? UiKit.Bad : Color.white));
+            }
+            return sb.ToString();
+        }
+
+        /// <summary>"in the evening", "around midday": when something is set for, in words (for the hints).</summary>
+        public static string WhenHint(IntRange hours) => ("CC_ImpactHint_When_" + ImpactHints.WhenKind(hours.min, hours.max)).Translate().Resolve();
+
+        /// <summary>What plays out, for the hint: "The high watch in the evening".</summary>
+        public static string PlayHint(string label, IntRange hours) => "CC_ImpactHint_Play".Translate(label, WhenHint(hours)).Resolve();
 
         /// <summary>The short line under an answer: the things it does in order, then the gamble, cut at a whole part.</summary>
         public static string Compact(OptionImpact r)
@@ -446,8 +578,9 @@ namespace ColonyCouncil
         {
             if (a == null || b == null || a == b || Mathf.Abs(amount) < 0.01f || kind == TieKind.None) return;
             string k = ("CC_Tie_" + kind).Translate().Resolve();
-            sheet.Amount(ImpactKind.Opinion, kind == TieKind.Rivals ? -1 : 1, amount, "CC_Impact_Tie".Translate(a.LabelShort, b.LabelShort, k, ImpactSheet.Mark).Resolve(),
+            var l = sheet.Amount(ImpactKind.Opinion, kind == TieKind.Rivals ? -1 : 1, amount, "CC_Impact_Tie".Translate(a.LabelShort, b.LabelShort, k, ImpactSheet.Mark).Resolve(),
                 "CC_Impact_TieBrief".Translate(a.LabelShort, b.LabelShort, k).Resolve(), "tie|" + kind + "|" + Math.Min(a.thingIDNumber, b.thingIDNumber) + "|" + Math.Max(a.thingIDNumber, b.thingIDNumber));
+            if (l != null) l.hintFull = (amount > 0f ? "CC_ImpactHint_TieUp" : "CC_ImpactHint_TieDown").Translate(a.LabelShort, b.LabelShort, k).Resolve();
         }
 
         /// <summary>Strain added (positive) or eased (negative), with feelings and strain on.</summary>
@@ -456,7 +589,10 @@ namespace ColonyCouncil
             if (who.NullOrEmpty() || Mathf.Abs(amount) < 0.01f) return;
             var l = sheet.Amount(ImpactKind.Needs, -1, amount, "CC_Impact_Strain".Translate(who, ImpactSheet.Mark).Resolve(), "CC_Impact_StrainBrief".Translate(who, ImpactSheet.Mark).Resolve(),
                 "strain|" + whoKey);
-            if (l != null) l.each = many;
+            if (l == null) return;
+            l.each = many;
+            l.topic = HintTopic.Strain;
+            l.who = who;
         }
 
         /// <summary>Certainty in their faith (Ideology): a share of the bar, steadied or shaken.</summary>
@@ -464,14 +600,19 @@ namespace ColonyCouncil
         {
             if (who.NullOrEmpty() || Mathf.Abs(amount) < 0.0001f) return;
             string pct = (amount >= 0f ? "+" : "") + (amount * 100f).ToString("0.#") + "%";
-            sheet.Add(ImpactKind.Other, amount > 0f ? 1 : -1, "CC_Impact_Certainty".Translate(who, pct).Resolve(), "CC_Impact_CertaintyBrief".Translate(who, pct).Resolve(), "certainty|" + who);
+            var l = sheet.Add(ImpactKind.Other, amount > 0f ? 1 : -1, "CC_Impact_Certainty".Translate(who, pct).Resolve(), "CC_Impact_CertaintyBrief".Translate(who, pct).Resolve(), "certainty|" + who);
+            if (l == null) return;
+            l.topic = HintTopic.Certainty;
+            l.who = who;
+            l.size = amount * 100f;
         }
 
         /// <summary>The camp's tension toward the colony: up (a refusal) or down (a kindness).</summary>
         public static void Tension(ImpactSheet sheet, float amount)
         {
             if (Mathf.Abs(amount) < 0.01f) return;
-            sheet.Amount(ImpactKind.Goodwill, -1, amount, "CC_Impact_Tension".Translate(ImpactSheet.Mark).Resolve(), "CC_Impact_TensionBrief".Translate(ImpactSheet.Mark).Resolve(), "tension");
+            var l = sheet.Amount(ImpactKind.Goodwill, -1, amount, "CC_Impact_Tension".Translate(ImpactSheet.Mark).Resolve(), "CC_Impact_TensionBrief".Translate(ImpactSheet.Mark).Resolve(), "tension");
+            if (l != null) l.topic = HintTopic.Tension;
         }
 
         /// <summary>"3", or "3 to 6".</summary>
@@ -493,7 +634,11 @@ namespace ColonyCouncil
             if (skill == null || xp <= 0f || who.NullOrEmpty()) return;
             var l = sheet.Amount(ImpactKind.Skill, 1, xp, "CC_Impact_Xp".Translate(who, ImpactSheet.Mark, skill.label).Resolve(),
                 "CC_Impact_XpBrief".Translate(who, ImpactSheet.Mark, skill.label).Resolve(), "xp|" + skill.defName + "|" + whoKey, false);
-            if (l != null) l.each = many;
+            if (l == null) return;
+            l.each = many;
+            l.topic = HintTopic.Skill;
+            l.who = who;
+            l.about = skill.label;
         }
 
         /// <summary>What a condition does at a severity, in the game's own words for its stats: "Global work speed +10%".</summary>
@@ -567,7 +712,9 @@ namespace ColonyCouncil
                 {
                     CouncilLog.ErrorOnce("answer impact", e);
                 }
-                opt = r == null || r.Empty ? new DiaOption(label) : new DiaOption_Impact(label, Compact(r), Full(r));
+                opt = r == null || r.Empty ? new DiaOption(label)
+                    : Mode == ImpactShow.Exact ? new DiaOption_Impact(label, Compact(r), Full(r))
+                    : new DiaOption_Impact(label, Hint(r), HintFull(r));
             }
             else opt = new DiaOption(label);
             if (why != null) opt.Disable(why);
@@ -576,15 +723,19 @@ namespace ColonyCouncil
             return opt;
         }
 
-        /// <summary>What the answer given did, for the Dilemmas page: the full list as it stood when it was given. Never throws.</summary>
-        public static string Record(DilemmaContext ctx, DilemmaOption o)
+        /// <summary>
+        /// What the answer given did, for the Dilemmas page: the full list as it stood when it was given, in numbers, and
+        /// the same in words (<paramref name="hint"/>), so the page can follow the setting. Never throws.
+        /// </summary>
+        public static string Record(DilemmaContext ctx, DilemmaOption o, out string hint)
         {
+            hint = null;
             try
             {
                 var r = For(ctx, o);
                 if (r.Empty) return null;
-                string text = Full(r);
-                return text.Length > 1600 ? text.Substring(0, 1600) : text;
+                hint = Cut(HintFull(r), 1200);
+                return Cut(Full(r), 1600);
             }
             catch (Exception e)
             {
@@ -592,10 +743,24 @@ namespace ColonyCouncil
                 return null;
             }
         }
+
+        private static string Cut(string text, int max) => text == null || text.Length <= max ? text : text.Substring(0, max);
+
+        /// <summary>What an answer given was to do, for the Dilemmas page, as the setting shows it (null: nothing to show).</summary>
+        public static string RecordFor(DilemmaRecord r)
+        {
+            switch (Mode)
+            {
+                case ImpactShow.Exact: return r?.impact;
+                case ImpactShow.Hints: return r?.impactHint;
+                default: return null;
+            }
+        }
     }
 
     /// <summary>
-    /// An answer in a letter with what it does: a short line under its label, the full list on hover. Drawn by
+    /// An answer in a letter with what it does: a short line under its label (a hint in words, or the numbers), the full
+    /// list on hover. Drawn by
     /// <see cref="Patch_DiaOptionImpact"/>; without that hook the short line is written into the label itself.
     /// </summary>
     public class DiaOption_Impact : DiaOption

@@ -64,8 +64,10 @@ namespace ColonyCouncil
         /// <summary>Life's ups and downs: how hard the everyday pressures press (the same meal, the same work, crowding...).</summary>
         public LifePressure lifePressure = LifePressure.Normal;
         public bool enableDilemmas = true;
-        /// <summary>What each answer of a dilemma or an event does, under it in the letter and on the Dilemmas page (Dilemmas/DilemmaImpact.cs).</summary>
+        /// <summary>The old "show what each answer does" switch, kept in step with <see cref="impactShows"/> (off when it is Off) so older settings files load.</summary>
         public bool showImpact = true;
+        /// <summary>What each answer of a dilemma or an event does, under it in the letter and on the Dilemmas page: hints in words, exact numbers, or nothing (Dilemmas/DilemmaImpact.cs).</summary>
+        public ImpactShow impactShows = ImpactShow.Hints;
         public bool annals = true;
         public bool decreeRequests = true;
         public bool anniversaries = true;
@@ -377,7 +379,11 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref goodTimesFade, "goodTimesFade", true);
             Scribe_Values.Look(ref lifePressure, "lifePressure", LifePressure.Normal);
             Scribe_Values.Look(ref enableDilemmas, "enableDilemmas", true);
+            // The old switch is written from the new choice, and an old settings file with it off reads as "off" (on reads as hints).
+            if (Scribe.mode == LoadSaveMode.Saving) showImpact = impactShows != ImpactShow.Off;
             Scribe_Values.Look(ref showImpact, "showImpact", true);
+            Scribe_Values.Look(ref impactShows, "impactShows", ImpactShow.Hints);
+            if (Scribe.mode == LoadSaveMode.LoadingVars && !showImpact) impactShows = ImpactShow.Off;
             Scribe_Values.Look(ref annals, "annals", true);
             Scribe_Values.Look(ref decreeRequests, "decreeRequests", true);
             Scribe_Values.Look(ref anniversaries, "anniversaries", true);

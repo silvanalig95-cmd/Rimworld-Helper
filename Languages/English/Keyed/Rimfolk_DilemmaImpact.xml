@@ -5,9 +5,136 @@
        hover, and the same list on the Dilemmas page for answers given. %n% (where it appears in a code argument) is the
        amount, filled in after merging. -->
 
-  <CC_Settings_ShowImpact>Show what each answer does</CC_Settings_ShowImpact>
-  <CC_Settings_ShowImpact_Tip>Under each answer of a dilemma, an event or a world event, a short line says what it does: who feels what and for how long, trust, what it costs or gives, what happens on the map, and the chance of a gamble going wrong. Hover the answer for the full list. On the Dilemmas page, hover an answer given to see what it was to do.</CC_Settings_ShowImpact_Tip>
-  <CC_SetNote_ShowImpact>Moods, trust, goods and risks under each answer, from the colony as it is now.</CC_SetNote_ShowImpact>
+  <CC_Settings_ShowImpact>What each answer does</CC_Settings_ShowImpact>
+  <CC_Settings_ShowImpact_Tip>Under each answer of a dilemma, an event or a world event, a short line tells what it does, and hovering the answer tells more. As hints, it is said in plain words without numbers: which way moods and trust go and roughly how far, who it touches, what it costs, what happens on the map and whether it's a gamble. As exact numbers, it gives every size, day, count and chance. The Dilemmas page shows answers given the same way.</CC_Settings_ShowImpact_Tip>
+  <CC_ImpactShows_Hints>Hints in words</CC_ImpactShows_Hints>
+  <CC_ImpactShows_Hints_Tip>A hint in plain words under each answer, and a fuller one on hover, without numbers: "spirits rise a little, especially Alo's; uses some of the stores' beer; a gamble".</CC_ImpactShows_Hints_Tip>
+  <CC_ImpactShows_Exact>Exact numbers</CC_ImpactShows_Exact>
+  <CC_ImpactShows_Exact_Tip>Every number under each answer and on hover: the size and days of each mood, trust, goods counted from the stores, and the odds of a gamble going wrong, as "1 in 4".</CC_ImpactShows_Exact_Tip>
+  <CC_ImpactShows_Off>Off</CC_ImpactShows_Off>
+  <CC_ImpactShows_Off_Tip>Nothing under the answers: you choose by the words of the letter alone.</CC_ImpactShows_Off_Tip>
+  <CC_SetNote_ImpactShows_Hints>A hint in plain words under each answer, without numbers; more on hover.</CC_SetNote_ImpactShows_Hints>
+  <CC_SetNote_ImpactShows_Exact>Moods, trust, goods and risks in numbers under each answer, from the colony as it is now.</CC_SetNote_ImpactShows_Exact>
+  <CC_SetNote_ImpactShows_Off>Nothing under the answers; the letters read as they are.</CC_SetNote_ImpactShows_Off>
+
+  <!-- The hints in words (Dilemmas/ImpactHints.cs): no numbers anywhere. A key with "|" holds a verb's forms, for one
+       person, for several, and after "may"; a noun ending in "|pl" is plural. -->
+  <CC_ImpactHint_Everyone>everyone</CC_ImpactHint_Everyone>
+  <CC_ImpactHint_AFew>a few</CC_ImpactHint_AFew>
+  <CC_ImpactHint_Some>some</CC_ImpactHint_Some>
+  <CC_ImpactHint_Most>most</CC_ImpactHint_Most>
+  <CC_ImpactHint_Of>{0} of {1}</CC_ImpactHint_Of>
+  <CC_ImpactHint_May>may {0}</CC_ImpactHint_May>
+  <CC_ImpactHint_Likely>likely {0}</CC_ImpactHint_Likely>
+  <CC_ImpactHint_Surely>almost surely {0}</CC_ImpactHint_Surely>
+  <CC_ImpactHint_Perhaps>perhaps {0}</CC_ImpactHint_Perhaps>
+  <CC_ImpactHint_LikelyThat>likely {0}</CC_ImpactHint_LikelyThat>
+  <CC_ImpactHint_SurelyThat>almost surely {0}</CC_ImpactHint_SurelyThat>
+  <CC_ImpactHint_SmallWords>the a an one some</CC_ImpactHint_SmallWords>
+  <CC_ImpactHint_Poss>{0}'s</CC_ImpactHint_Poss>
+  <CC_ImpactHint_For>{0} for {1}</CC_ImpactHint_For>
+  <CC_ImpactHint_Especially>{0}, especially {1}</CC_ImpactHint_Especially>
+  <CC_ImpactHint_With>{0}, with {1}</CC_ImpactHint_With>
+
+  <CC_ImpactHint_Noun_Mood>spirits|pl</CC_ImpactHint_Noun_Mood>
+  <CC_ImpactHint_Noun_Trust>trust in the council</CC_ImpactHint_Noun_Trust>
+  <CC_ImpactHint_Noun_Standards>standards|pl</CC_ImpactHint_Noun_Standards>
+  <CC_ImpactHint_Noun_Certainty>certainty in the faith</CC_ImpactHint_Noun_Certainty>
+  <CC_ImpactHint_Rise>rises|rise</CC_ImpactHint_Rise>
+  <CC_ImpactHint_Fall>falls|fall</CC_ImpactHint_Fall>
+  <CC_ImpactHint_Scale_0>a little</CC_ImpactHint_Scale_0>
+  <CC_ImpactHint_Scale_1>noticeably</CC_ImpactHint_Scale_1>
+  <CC_ImpactHint_Scale_2>greatly</CC_ImpactHint_Scale_2>
+  <CC_ImpactHint_Much_0>a little</CC_ImpactHint_Much_0>
+  <CC_ImpactHint_Much_1>noticeably</CC_ImpactHint_Much_1>
+  <CC_ImpactHint_Much_2>much</CC_ImpactHint_Much_2>
+  <CC_ImpactHint_Amount_0>a little</CC_ImpactHint_Amount_0>
+  <CC_ImpactHint_Amount_1>some</CC_ImpactHint_Amount_1>
+  <CC_ImpactHint_Amount_2>plenty of</CC_ImpactHint_Amount_2>
+  <CC_ImpactHint_Share_0>a little</CC_ImpactHint_Share_0>
+  <CC_ImpactHint_Share_1>some</CC_ImpactHint_Share_1>
+  <CC_ImpactHint_Share_2>much</CC_ImpactHint_Share_2>
+  <CC_ImpactHint_Strain_0>a little</CC_ImpactHint_Strain_0>
+  <CC_ImpactHint_Strain_1>some</CC_ImpactHint_Strain_1>
+  <CC_ImpactHint_Strain_2>heavy</CC_ImpactHint_Strain_2>
+  <CC_ImpactHint_ForDays>for {0}</CC_ImpactHint_ForDays>
+  <CC_ImpactHint_WhileItLasts>while it lasts</CC_ImpactHint_WhileItLasts>
+  <CC_ImpactHint_Days_0>a day</CC_ImpactHint_Days_0>
+  <CC_ImpactHint_Days_1>a few days</CC_ImpactHint_Days_1>
+  <CC_ImpactHint_Days_2>some days</CC_ImpactHint_Days_2>
+  <CC_ImpactHint_Days_3>many days</CC_ImpactHint_Days_3>
+  <CC_ImpactHint_Hours_0>about an hour</CC_ImpactHint_Hours_0>
+  <CC_ImpactHint_Hours_1>a few hours</CC_ImpactHint_Hours_1>
+  <CC_ImpactHint_Hours_2>much of a day</CC_ImpactHint_Hours_2>
+  <CC_ImpactHint_Hours_3>a day or more</CC_ImpactHint_Hours_3>
+  <CC_ImpactHint_Nights_0>a night</CC_ImpactHint_Nights_0>
+  <CC_ImpactHint_Nights_1>a few nights</CC_ImpactHint_Nights_1>
+  <CC_ImpactHint_Silver_0>a little silver</CC_ImpactHint_Silver_0>
+  <CC_ImpactHint_Silver_1>some silver</CC_ImpactHint_Silver_1>
+  <CC_ImpactHint_Silver_2>much silver</CC_ImpactHint_Silver_2>
+  <CC_ImpactHint_When_Night>at night</CC_ImpactHint_When_Night>
+  <CC_ImpactHint_When_Evening>in the evening</CC_ImpactHint_When_Evening>
+  <CC_ImpactHint_When_Day>in the day</CC_ImpactHint_When_Day>
+  <CC_ImpactHint_When_Morning>in the morning</CC_ImpactHint_When_Morning>
+  <CC_ImpactHint_When_Midday>around midday</CC_ImpactHint_When_Midday>
+  <CC_ImpactHint_When_Afternoon>in the afternoon</CC_ImpactHint_When_Afternoon>
+  <CC_ImpactHint_Up>up</CC_ImpactHint_Up>
+  <CC_ImpactHint_Down>down</CC_ImpactHint_Down>
+  <CC_ImpactHint_Faster>faster</CC_ImpactHint_Faster>
+  <CC_ImpactHint_Slower>slower</CC_ImpactHint_Slower>
+  <CC_ImpactHint_Count_1>one</CC_ImpactHint_Count_1>
+  <CC_ImpactHint_Count_Few>a few</CC_ImpactHint_Count_Few>
+  <CC_ImpactHint_Count_2>some</CC_ImpactHint_Count_2>
+  <CC_ImpactHint_OfWord>of</CC_ImpactHint_OfWord>
+
+  <CC_ImpactHint_ThinkBetter>thinks {0} better of {1}|think {0} better of {1}</CC_ImpactHint_ThinkBetter>
+  <CC_ImpactHint_ThinkWorse>thinks {0} worse of {1}|think {0} worse of {1}</CC_ImpactHint_ThinkWorse>
+  <CC_ImpactHint_Joy>gets {0} recreation|get {0} recreation</CC_ImpactHint_Joy>
+  <CC_ImpactHint_Rest>gets {0} rest|get {0} rest</CC_ImpactHint_Rest>
+  <CC_ImpactHint_Comfort>gets {0} comfort|get {0} comfort</CC_ImpactHint_Comfort>
+  <CC_ImpactHint_StrainUp>is put under {0} strain|are put under {0} strain|be put under {0} strain</CC_ImpactHint_StrainUp>
+  <CC_ImpactHint_StrainDown>is {0} less strained|are {0} less strained|be {0} less strained</CC_ImpactHint_StrainDown>
+  <CC_ImpactHint_Skill>learns {0} {1}|learn {0} {1}</CC_ImpactHint_Skill>
+  <CC_ImpactHint_SkillFrom_shared>in a skill they share</CC_ImpactHint_SkillFrom_shared>
+  <CC_ImpactHint_SkillFrom_theirs>of what the other is better at</CC_ImpactHint_SkillFrom_theirs>
+  <CC_ImpactHint_SkillFrom_mine>in one of their passions</CC_ImpactHint_SkillFrom_mine>
+  <CC_ImpactHint_Inspire>is inspired|are inspired|be inspired</CC_ImpactHint_Inspire>
+  <CC_ImpactHint_Break>breaks down|break down</CC_ImpactHint_Break>
+  <CC_ImpactHint_Brings>brings in {0} {1}|bring in {0} {1}</CC_ImpactHint_Brings>
+  <CC_ImpactHint_Uses>uses {0} of the stores' {1}|use {0} of the stores' {1}</CC_ImpactHint_Uses>
+  <CC_ImpactHint_BringsSilver>brings in {0} silver|bring in {0} silver</CC_ImpactHint_BringsSilver>
+  <CC_ImpactHint_CostsSilver>costs {0} silver|cost {0} silver</CC_ImpactHint_CostsSilver>
+  <CC_ImpactHint_Meals>cooked meals</CC_ImpactHint_Meals>
+  <CC_ImpactHint_Relations>relations with {0}</CC_ImpactHint_Relations>
+  <CC_ImpactHint_Improve>improve {0}</CC_ImpactHint_Improve>
+  <CC_ImpactHint_Worsen>worsen {0}</CC_ImpactHint_Worsen>
+  <CC_ImpactHint_TheCamp>the camp</CC_ImpactHint_TheCamp>
+  <CC_ImpactHint_TenseUp>grows {0} tenser|grow {0} tenser</CC_ImpactHint_TenseUp>
+  <CC_ImpactHint_TenseDown>calms {0}|calm {0}</CC_ImpactHint_TenseDown>
+  <CC_ImpactHint_Ways>the colony leans {0}</CC_ImpactHint_Ways>
+
+  <CC_ImpactHint_Play>{0} {1}</CC_ImpactHint_Play>
+  <CC_ImpactHint_PlayTogether>{0} together {1}</CC_ImpactHint_PlayTogether>
+  <CC_ImpactHint_WorkTime>costs {0} of work</CC_ImpactHint_WorkTime>
+  <CC_ImpactHint_PlayWork>{0}; it costs {1} of work</CC_ImpactHint_PlayWork>
+  <CC_ImpactHint_Risk_0>a small risk it goes wrong</CC_ImpactHint_Risk_0>
+  <CC_ImpactHint_Risk_1>a gamble</CC_ImpactHint_Risk_1>
+  <CC_ImpactHint_Risk_2>a big gamble</CC_ImpactHint_Risk_2>
+  <CC_ImpactHint_RiskWhat>{0}: {1}</CC_ImpactHint_RiskWhat>
+  <CC_ImpactHint_RiskHead_0>A small risk it goes wrong</CC_ImpactHint_RiskHead_0>
+  <CC_ImpactHint_RiskHead_1>A gamble: it may well go wrong</CC_ImpactHint_RiskHead_1>
+  <CC_ImpactHint_RiskHead_2>A big gamble: it likely goes wrong</CC_ImpactHint_RiskHead_2>
+  <CC_ImpactHint_RiskAlso>{0}{1}, and then also:</CC_ImpactHint_RiskAlso>
+  <CC_ImpactHint_RiskInstead>{0}{1}, and then only this happens:</CC_ImpactHint_RiskInstead>
+  <CC_ImpactHint_RiskLowered> ({0}'s {1} makes it less likely)</CC_ImpactHint_RiskLowered>
+  <CC_ImpactHint_RiskSkill> (less likely with a better hand at {0})</CC_ImpactHint_RiskSkill>
+  <CC_ImpactHint_TraditionToward>a step toward a tradition of {0}</CC_ImpactHint_TraditionToward>
+  <CC_ImpactHint_TraditionTowardFull>A step toward a tradition of {0}: chosen a few more times, it becomes one</CC_ImpactHint_TraditionTowardFull>
+  <CC_ImpactHint_TraditionBroken>The tradition of {0} is broken: spirits and trust in the council fall for everyone but the ascetic</CC_ImpactHint_TraditionBroken>
+  <CC_ImpactHint_Helper>{0} does it, with their {1}</CC_ImpactHint_Helper>
+  <CC_ImpactHint_RoomPromised>A room of their own promised soon: trust rises if it is kept, and falls if it isn't</CC_ImpactHint_RoomPromised>
+  <CC_ImpactHint_TieUp>{0} and {1} grow closer as {2}</CC_ImpactHint_TieUp>
+  <CC_ImpactHint_TieDown>{0} and {1} drift apart as {2}</CC_ImpactHint_TieDown>
 
   <CC_Impact_Header>What this answer does</CC_Impact_Header>
   <CC_Impact_Nothing>Nothing you can see changes: it is the council's word, and the story goes on from it.</CC_Impact_Nothing>

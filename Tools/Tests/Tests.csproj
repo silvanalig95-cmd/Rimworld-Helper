@@ -124,6 +124,7 @@
     <Compile Include="../../Source/ColonyCouncil/Hud/HudEnums.cs" Link="HudEnums.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hud/HudInventoryMath.cs" Link="HudInventoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/ImpactMath.cs" Link="ImpactMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Dilemmas/ImpactHints.cs" Link="ImpactHints.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/AnswerShiftMath.cs" Link="AnswerShiftMath.cs" />
   </ItemGroup>
 </Project>

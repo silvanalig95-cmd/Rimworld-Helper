@@ -314,7 +314,7 @@ MODEL = {
     "UI/News.cs:items": ("cap", (C["NewsWaiting"], 10), 200, "per news letter; the game's archive keeps 200 letters"),
     "UI/WeekMemory.cs:pinnedPawns": ("fixed", 4, 40, "pins: only the player's clicks, the gone dropped"),
     "UI/WeekMemory.cs:pinnedWishes": ("fixed", 2, V, "pins of open wishes"),
-    "UI/WeekMemory.cs:dilemmas": ("cap", (C["DilemmaRecords"], 0.5), 900, "DilemmaLog.MaxRecords; each with what the answer was to do (about 500 characters, at most 1600)"),
+    "UI/WeekMemory.cs:dilemmas": ("cap", (C["DilemmaRecords"], 0.5), 1300, "DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600) and in words (about 400, at most 1200)"),
     "UI/WeekMemory.cs:trustKeys": ("colonists", 1, 40, "a trail per colonist, forgotten after 10 days away"),
     "UI/WeekMemory.cs:trustValues": ("colonists", 1, 25 + 8 * C["TrailDays"], "8 days of trust each"),
     "Scenarios/Scenarios.cs:events": ("fixed", 3, 40, "a scenario part's events"),
