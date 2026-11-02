@@ -407,6 +407,8 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {VisitorTradeTests.Run(root, Check)} things about visitors and campers buying at the colony's stalls, and the drovers' milk.");
         Console.WriteLine($"Checked {SetbackTests.Run(root, Check)} things about setbacks (when they come, how big, their settings and hints).");
         Console.WriteLine($"Checked {CustomYearsTests.Run(root, Check)} things about customs kept year after year (their tags, lines that can come true, what's said at them).");
+        Console.WriteLine($"Checked {OutcomeTests.Run(root, Check)} things about how answers are told (the risk's words, variants picked by tags, world situations' answers).");
+        Console.WriteLine($"Checked {StrayBeastTests.Run(root, Check)} things about the neighbors' stray (really there, where the letter says, led home or kept).");
         Console.WriteLine($"Checked {ImmersionTests.Run(root, Check)} things about what colonists say and their small habits.");
         Console.WriteLine($"Checked {TogetherTests.Run(root, Check)} things about moments that need people together, and how speech shows.");
         Console.WriteLine($"Checked {PersonaTests.Run(root, Check)} things about characters (nature, marks, drift, words, likeness).");
@@ -466,6 +468,7 @@ Console.WriteLine($"Checked {MakingTests.Run(Check)} things about what the colon
 Console.WriteLine($"Checked {AutomationTests.Run(Check)} things about the council's automations.");
 Console.WriteLine($"Checked {ChainTests.Run(Check)} things about production chains followed to the end.");
 Console.WriteLine($"Checked {AheadTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_AHEAD_PRINT") == "1")} things about planning ahead (stocks, bills, fields) and the shared suggestions.");
+Console.WriteLine($"Checked {GrowthTests.Run(Check, Environment.GetEnvironmentVariable("RIMFOLK_GROWTH_PRINT") == "1")} things about building ahead (rooms the colony will be short of, the builders' days, stages, room to grow).");
 Console.WriteLine($"Checked {NewsQuietTests.Run(Check)} things about a quiet day's evening news.");
 Console.WriteLine($"Checked {ImpactTests.Run(Check)} things about what each answer does (chances, merging, the short line).");
 Console.WriteLine($"Checked {ConduitTests.Run(Check)} things about laying a conduit to a piece off the power.");

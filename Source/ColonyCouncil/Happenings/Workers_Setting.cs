@@ -22,9 +22,9 @@ namespace ColonyCouncil
     ///
     /// <para>Lines can ask for the land ([cold], [hot], [temperate], [dry], [wet], [river], [coast], [hills], [swamp],
     /// [desert], [forest], [jungle], [tundra]), for [camp] and [grave], for A's ailment ([ail:cough]...) and strain
-    /// ([strained], [worn], [breaking]), as well as the usual era, season and people tags. {TALE} is a line picked
-    /// from <see cref="tales"/> (or, with an ailing A, the ailment's name); {PLACE} from <see cref="places"/> (or the
-    /// visitor's nearest town, or the camp's spot).</para>
+    /// ([strained], [worn], [breaking]), where a stray stands ([barn], [pen], [yard]), as well as the usual era, season
+    /// and people tags. {TALE} is a line picked from <see cref="tales"/> (or, with an ailing A, the ailment's name);
+    /// {PLACE} from <see cref="places"/> (or the visitor's nearest town, or the camp's spot).</para>
     /// </summary>
     public class HappeningSetting : DefModExtension
     {
@@ -67,6 +67,13 @@ namespace ColonyCouncil
         public bool enemy;
         /// <summary>{COUNT} (the extension's amount) grows with the colony's wealth.</summary>
         public bool wealthScaled = true;
+        /// <summary>
+        /// A stray beast of {FACTION}'s comes with the letter (Happenings/StrayBeast.cs): an animal of one of these kinds
+        /// (PawnKindDef names: one that exists and suits the weather, the land's own pack animals first), theirs, standing
+        /// in the colony's barn, in its pen, or about the colony near A ([barn], [pen], [yard] for the lines), and kept
+        /// there while the letter waits. It is X; the answers reach it with DilemmaEffect_StrayHome and _KeepStray.
+        /// </summary>
+        public List<string> stray;
         [MustTranslate] public List<string> places;
         [MustTranslate] public List<string> tales;
         /// <summary>Answers that need something more than the event does (singing at the graves needs a grave): greyed out without it.</summary>
@@ -100,6 +107,7 @@ namespace ColonyCouncil
             if (s.visitor && People(s) == null) return false;
             if (s.neighbor && Neighbor() == null) return false;
             if (s.enemy && Raids.Enemy() == null) return false;
+            if (!s.stray.NullOrEmpty() && StrayBeast.Kind(map, s.stray) == null) return false;
             if (ext.condition != null && map.gameConditionManager.ConditionIsActive(ext.condition)) return false;
             var pool = Candidates(map, ext, s);
             if (pool.Count == 0) return false;
@@ -313,6 +321,14 @@ namespace ColonyCouncil
                 var cond = GameConditionMaker.MakeCondition(ext.condition, Mathf.RoundToInt(ext.days.RandomInRange * GenDate.TicksPerDay));
                 map.gameConditionManager.RegisterCondition(cond);
             }
+            // The neighbors' stray is really there: in the barn, the pen or about the colony, as the letter will say.
+            if (!s.stray.NullOrEmpty())
+            {
+                ctx.stranger = StrayBeast.Spawn(map, ctx.faction, ctx.a, s.stray, out string where);
+                if (ctx.stranger == null) return false;
+                ctx.note = where;
+                return true;
+            }
             if (!s.visitor || s.Needs("camp") || ctx.stranger == null) return true;
             var people = ctx.group.Prepend(ctx.stranger).Where(p => p != null).ToList();
             if (s.waits)
@@ -394,6 +410,8 @@ namespace ColonyCouncil
                 }
             }
             if (ctx.pet != null) tags.Add("pet:" + ctx.pet.def.defName);
+            // Where the stray was found standing: barn, pen or yard.
+            if (!s.stray.NullOrEmpty() && !ctx.note.NullOrEmpty()) tags.Add(ctx.note);
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
@@ -409,7 +427,10 @@ namespace ColonyCouncil
                 // They stay until what the answer set going with them has had its time.
                 VisitorServices.StayFor(x, ctx.plays);
             }
-            return base.Resolved(ctx, option, risk, byDefault, outcome);
+            outcome = base.Resolved(ctx, option, risk, byDefault, outcome);
+            // The stray given back is told of when their drover has led it off; gone before anyone came, that instead.
+            if (!Setting.stray.NullOrEmpty()) outcome = StrayBeast.Outcome(ctx, byDefault, outcome);
+            return outcome;
         }
 
         /// <summary>The land's tags, read from the colony's tile (works for modded biomes too).</summary>

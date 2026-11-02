@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 387; modelled: 387; growing without end: 0.
-Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** after two, **2,287 KB** after five.
+Saved collections found: 403; modelled: 403; growing without end: 0.
+Rimfolk's part of the save, roughly: **1,813 KB** after a year, **2,194 KB** after two, **2,310 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -75,7 +75,9 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition | defs | 58 | 58 | 58 | 5.1 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 57 | 57 | 57 | 5.0 |
+| `Building/BuildProjects.cs:projects` | rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand | fixed | 16 | 16 | 16 | 5.0 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
+| `Building/BuildAhead.cs:pieceDefs` | with the above: what each blueprint was | fixed | 120 | 120 | 120 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
@@ -93,6 +95,7 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Hud/HudComponent.cs:samples` | the mood trend: one packed number an hour, the last week (HudComponent.MaxSamples) | cap | 168 | 168 | 168 | 3.3 |
 | `Faith/FaithCouncilTracker.cs:heard` | who heard which faith spoken for lately: one per colonist, 30 days, FaithCouncilTracker.MaxHeard | cap | 36 | 40 | 40 | 3.1 |
 | `Faith/FaithPeople.cs:people` | one per colonist whose faith moved or is watched; known pawns only, empty records dropped daily and at saving | colonists | 20 | 20 | 20 | 3.1 |
+| `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
 | `Social/SocialWeb.cs:lost` | 40 lost bonds | cap | 3 | 6 | 15 | 2.9 |
 | `Wishes/Kept.cs:watches` | granted wishes still watched (grace days) | window | 8 | 8 | 8 | 2.9 |
@@ -143,10 +146,13 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Ambitions/CouncilMeeting.cs:invites` | while a meeting is called | while | 20 | 20 | 20 | 1.6 |
 | `Building/Automations.cs:billKeys` | bills the council set (bench id and recipe), while they stand on the bench | fixed | 40 | 40 | 40 | 1.6 |
 | `Building/Automations.cs:droppedKeys` | bills the player removed, forgotten after a fortnight (AutomationMath.DroppedDays) | fixed | 40 | 40 | 40 | 1.6 |
+| `Building/BuildAhead.cs:queueDefs` | with the above: what each was | fixed | 40 | 40 | 40 | 1.6 |
 | `Calendar/CalendarWatch.cs:knownCrops` | one per crop the colony has grown (crop defs) | fixed | 40 | 40 | 40 | 1.6 |
 | `Advisor/AdvisorCore.cs:wealthHistory` | 60 days of wealth | window | 60 | 60 | 60 | 1.5 |
 | `Animals/HerdStory.cs:lineGens` | their generations, beside the ids | fixed | 60 | 60 | 60 | 1.5 |
 | `Animals/HerdStory.cs:lineIds` | animals of the herd leader's line (ids), the newest 60 (HerdStory.LineMax) | fixed | 60 | 60 | 60 | 1.5 |
+| `Building/BuildAhead.cs:cutCells` | per room step: the plants it marked to cut, inside the footprint | fixed | 60 | 60 | 60 | 1.5 |
+| `Building/BuildAhead.cs:mineCells` | per room step: the rock it marked to mine, inside the footprint | fixed | 60 | 60 | 60 | 1.5 |
 | `Camps/Camp.cs:felledTicks` | with the above | while | 60 | 60 | 60 | 1.5 |
 | `CouncilGameComponent.cs:expectingTold` | pregnancies told to the family, the newest 60 (Social/FamilyLife.cs) | fixed | 60 | 60 | 60 | 1.5 |
 | `CouncilGameComponent.cs:movingOnAsked` | who the council was asked about moving on, and why, the newest 60 (Social/MovingOn.cs) | fixed | 60 | 60 | 60 | 1.5 |
@@ -155,6 +161,8 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Health/HealthTracker.cs:cases` | cases while the patient lives | cap | 2 | 4 | 5 | 1.5 |
 | `CouncilGameComponent.cs:guestKin` | those who joined from a visit with family among their people, at most 45 days each (Integrations/GuestWill.cs) | fixed | 6 | 6 | 6 | 1.3 |
 | `Ambitions/CouncilMeeting.cs:remarks` | while a meeting is called | while | 10 | 10 | 10 | 1.2 |
+| `Building/BuildAhead.cs:defs` | per step: the blueprints taken out of a room's kept side, one strip at most | fixed | 30 | 30 | 30 | 1.2 |
+| `Building/BuildAhead.cs:stuffs` | with the above: their materials | fixed | 30 | 30 | 30 | 1.2 |
 | `Happenings/Happenings.cs:grudges` | grudges 2 years | window | 3 | 6 | 6 | 1.2 |
 | `Social/Gossip/ReputationTracker.cs:told` | one packed number per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 1.2 |
 | `Strangers/Pets.cs:known` | animals known: the dead get their farewell, the discarded are dropped | fixed | 30 | 30 | 30 | 1.2 |
@@ -164,6 +172,7 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
 | `Arcs/ArcTracker.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
+| `Building/BuildAhead.cs:queueCells` | per room step: the pieces it queued until the ground is clear | fixed | 40 | 40 | 40 | 1.0 |
 | `Camps/Camp.cs:owned` | the camp's goods, pruned of the gone at saving | while | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:guardianAsked` | children the council was asked about, who raises them, the newest 40 (Social/FamilyGuardians.cs) | fixed | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:recentWishDefs` | recent wishes, 20 days | window | 40 | 40 | 40 | 1.0 |
@@ -193,6 +202,8 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `UI/WeekMemory.cs:trustKeys` | a trail per colonist, forgotten after 10 days away | colonists | 20 | 20 | 20 | 0.8 |
 | `World/WorldSituation.cs:beats` | per situation | fixed | 4 | 4 | 4 | 0.8 |
 | `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 19 | 19 | 19 | 0.8 |
+| `Building/BuildAhead.cs:cells` | with the above: where they stood | fixed | 30 | 30 | 30 | 0.7 |
+| `Building/BuildAhead.cs:rots` | with the above: which way they faced | fixed | 30 | 30 | 30 | 0.7 |
 | `Social/Groups/GroupTracker.cs:newcomers` | newcomers, 40 days at most | cap | 5 | 5 | 5 | 0.7 |
 | `Annals.cs:tiesFormed` | the year in progress | yearly | 12 | 12 | 12 | 0.7 |
 | `Camps/Camp.cs:warmth` | while the camp stays | while | 8 | 8 | 8 | 0.7 |
@@ -208,6 +219,7 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Ailments/AilmentTracker.cs:woundsRolled` | only hediffs colonists still have | colonists | 20 | 20 | 20 | 0.5 |
 | `Ambitions/Ambitions.cs:voterChoice` | while the letter waits | while | 20 | 20 | 20 | 0.5 |
 | `Animals/ResidentBeast.cs:knownIds` | wild beasts whose story has closed (ids), the newest 20 (ResidentBeast.KnownMax) | fixed | 20 | 20 | 20 | 0.5 |
+| `Building/BuildAhead.cs:removeCells` | per room step: what it marked to take down, inside the footprint | fixed | 20 | 20 | 20 | 0.5 |
 | `Defense/DefenseLinesWatch.cs:downedSeen` | colonists downed in the raid under way, cleared when it ends | while | 20 | 20 | 20 | 0.5 |
 | `Social/Autonomy.cs:lastActed` | with the above | window | 20 | 20 | 20 | 0.5 |
 | `Annals.cs:decrees` | the year in progress | yearly | 12 | 12 | 12 | 0.5 |
@@ -229,6 +241,7 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Happenings/VisitorServices.cs:things` | per task: what the tinker still has to mend (30 at most, fewer as the work goes on), mending only | fixed | 10 | 10 | 10 | 0.4 |
 | `Setbacks/SetbackTracker.cs:grantWho` | 20 days | window | 10 | 10 | 10 | 0.4 |
 | `Social/Autonomy.cs:plans` | plans until built | cap | 10 | 10 | 10 | 0.4 |
+| `Building/BuildProjects.cs:patients` | the most laid up at once, one a day, BuildAheadTracker.PatientDays at most | fixed | 15 | 15 | 15 | 0.4 |
 | `Standing.cs:recentGrants` | per colonist, 30 days | window | 15 | 15 | 15 | 0.4 |
 | `Annals.cs:goals` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
 | `Annals.cs:omens` | the year in progress | yearly | 6 | 6 | 6 | 0.4 |
@@ -334,6 +347,9 @@ Rimfolk's part of the save, roughly: **1,790 KB** after a year, **2,172 KB** aft
 | `Arcs/Arc.cs:told` | per story (counted under active and past) | fixed | 6 | 6 | 6 | (in its record) |
 | `Building/Ahead.cs:cells` | per step (counted under done): the cells a field step's check looks at, AheadMath.MaxCellsAStep at most | fixed | 80 | 80 | 80 | (in its record) |
 | `Building/Automations.cs:things` | per action (counted under actions): the bench, the things ordered down, the blueprints, the trees | fixed | 8 | 8 | 8 | (in its record) |
+| `Building/BuildAhead.cs:pieceCells` | per room step (counted under done): where its blueprints went, one room's footprint at most | fixed | 120 | 120 | 120 | (in its record) |
+| `Building/BuildProjects.cs:cells` | per step (counted under done): the roof cells a step marked, a room's inside at most | fixed | 60 | 60 | 60 | (in its record) |
+| `Building/BuildProjects.cs:things` | per step (counted under done): the blueprints and frames a step allowed or set a priority on, one room's at most | fixed | 120 | 120 | 120 | (in its record) |
 | `Building/CustomRooms.cs:pieces` | per saved room, in the mod's settings file | settings | 30 | 30 | 30 | (settings file) |
 | `Building/LineRoutes.cs:lay` | per relay (counted under list): the new lines' cells, a net's worth at most | fixed | 120 | 120 | 120 | (in its record) |
 | `Building/LineRoutes.cs:takeUp` | per relay (counted under list): the old lines' cells to take up | fixed | 80 | 80 | 80 | (in its record) |

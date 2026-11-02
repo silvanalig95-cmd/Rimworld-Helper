@@ -53,6 +53,9 @@ namespace ColonyCouncil
             Widgets.BeginScrollView(outRect, ref scroll, view);
             float y = 0f;
 
+            // Building ahead: the rooms the colony will be short of and what to build next (UI/BuildAheadPanel.cs).
+            y += BuildAheadPanel.Draw(0f, y, view.width, map) + 10f;
+
             y += UiKit.SectionTitle(0f, y, view.width, "CC_Plan_ThePlan".Translate(), Icons.Plan, UiKit.HeaderColor) + 4f;
             if (plan.Count == 0) y += UiKit.Paragraph(8f, y, view.width - 16f, "CC_Plan_Empty".Translate(), UiKit.Faint) + 8f;
             int n = 0;

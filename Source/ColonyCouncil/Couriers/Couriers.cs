@@ -589,8 +589,9 @@ namespace ColonyCouncil
         /// Someone handed over to outsiders: a prisoner they paid for (<paramref name="prisoner"/>), an animal given back.
         /// They come for them (with <paramref name="pay"/>, set down once they have them) and leave with them; the
         /// prisoner goes back to their own people once off the map. False: nobody comes, and the caller does it the old way.
+        /// <paramref name="label"/>: what the messages call them (their name by default).
         /// </summary>
-        public static bool Fetch(Map map, Pawn x, Faction to, List<Thing> pay, IntVec3 near, bool prisoner)
+        public static bool Fetch(Map map, Pawn x, Faction to, List<Thing> pay, IntVec3 near, bool prisoner, string label = null)
         {
             if (map == null || x == null || x.Dead || !x.Spawned || x.Map != map || !On || to == null) return false;
             try
@@ -600,7 +601,7 @@ namespace ColonyCouncil
                 t.fetch = x;
                 t.fetchPrisoner = prisoner;
                 t.oldSpot = near;
-                t.takeLabel = x.LabelShort;
+                t.takeLabel = label.NullOrEmpty() ? x.LabelShort : label;
                 t.takeTag = prisoner ? "person" : "animal";
                 if (!pay.NullOrEmpty())
                 {

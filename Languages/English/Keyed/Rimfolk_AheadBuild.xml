@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Building ahead: the Plan page's section (Source/ColonyCouncil/Building/BuildAhead.cs, GrowthNeeds.cs, GrowthMath.cs, BuildProjects.cs; UI/BuildAheadPanel.cs). -->
+
+  <CC_Build_Section>Building ahead</CC_Build_Section>
+  <CC_Build_SectionTip>The rooms the colony will be short of, worked out each hour from the map and the colony's own numbers, and the next one or two rooms to build, the most urgent first. Nothing is placed until you click.</CC_Build_SectionTip>
+  <CC_Build_Intro>Rooms for the colony as it is now: {0}.</CC_Build_Intro>
+  <CC_Build_Builders>{BUILDERS} build, about {ADAY} hours of building a day; {QUEUED} hours are queued.</CC_Build_Builders>
+  <CC_Build_BuildersNone>Nobody here has Construction switched on.</CC_Build_BuildersNone>
+  <CC_Build_None>Nothing to build ahead for now: every room has what the colony needs.</CC_Build_None>
+
+  <!-- The table -->
+  <CC_Build_Col_Room>Room</CC_Build_Col_Room>
+  <CC_Build_Col_RoomTip>What the colony needs room for.</CC_Build_Col_RoomTip>
+  <CC_Build_Col_Need>Needed</CC_Build_Col_Need>
+  <CC_Build_Col_NeedTip>What the colony needs now; after the comma, what it needs once what is coming has come (the prisoners being recruited, the winter).</CC_Build_Col_NeedTip>
+  <CC_Build_Col_Built>Built</CC_Build_Col_Built>
+  <CC_Build_Col_BuiltTip>What stands and is in use now.</CC_Build_Col_BuiltTip>
+  <CC_Build_Col_Planned>Planned</CC_Build_Col_Planned>
+  <CC_Build_Col_PlannedTip>In blueprints and frames, and in rooms being built.</CC_Build_Col_PlannedTip>
+  <CC_Build_Col_State>How it stands</CC_Build_Col_State>
+  <CC_Build_Col_StateTip>Short now, short once what is coming has come, or enough.</CC_Build_Col_StateTip>
+  <CC_Build_NeedSoon>{0}, {1} later</CC_Build_NeedSoon>
+
+  <CC_Build_Row_beds>Beds</CC_Build_Row_beds>
+  <CC_Build_Row_cold>Cold store places</CC_Build_Row_cold>
+  <CC_Build_Row_dining>Seats at tables</CC_Build_Row_dining>
+  <CC_Build_Row_hospital>Hospital beds</CC_Build_Row_hospital>
+  <CC_Build_Row_workshop>Workshop bench places</CC_Build_Row_workshop>
+  <CC_Build_Row_storage>Store places</CC_Build_Row_storage>
+
+  <CC_Build_Kind_beds>bedroom</CC_Build_Kind_beds>
+  <CC_Build_Kind_cold>freezer</CC_Build_Kind_cold>
+  <CC_Build_Kind_dining>dining room</CC_Build_Kind_dining>
+  <CC_Build_Kind_hospital>hospital</CC_Build_Kind_hospital>
+  <CC_Build_Kind_workshop>workshop</CC_Build_Kind_workshop>
+  <CC_Build_Kind_storage>storeroom</CC_Build_Kind_storage>
+
+  <CC_Build_Adds1_beds>1 more bed</CC_Build_Adds1_beds>
+  <CC_Build_Adds_beds>{0} more beds</CC_Build_Adds_beds>
+  <CC_Build_Adds1_cold>1 more place for food</CC_Build_Adds1_cold>
+  <CC_Build_Adds_cold>{0} more places for food</CC_Build_Adds_cold>
+  <CC_Build_Adds1_dining>1 more seat</CC_Build_Adds1_dining>
+  <CC_Build_Adds_dining>{0} more seats</CC_Build_Adds_dining>
+  <CC_Build_Adds1_hospital>1 more hospital bed</CC_Build_Adds1_hospital>
+  <CC_Build_Adds_hospital>{0} more hospital beds</CC_Build_Adds_hospital>
+  <CC_Build_Adds1_workshop>room for 1 more bench</CC_Build_Adds1_workshop>
+  <CC_Build_Adds_workshop>room for {0} more benches</CC_Build_Adds_workshop>
+  <CC_Build_Adds1_storage>1 more store place</CC_Build_Adds1_storage>
+  <CC_Build_Adds_storage>{0} more store places</CC_Build_Adds_storage>
+
+  <CC_Build_State_ShortNow>{0} short now</CC_Build_State_ShortNow>
+  <CC_Build_State_ShortIn>{SHORT} short in {DAYS} days, the winter</CC_Build_State_ShortIn>
+  <CC_Build_State_ShortSoon>{0} short once they join</CC_Build_State_ShortSoon>
+  <CC_Build_State_Enough>Enough</CC_Build_State_Enough>
+  <CC_Build_State_None>Not needed yet</CC_Build_State_None>
+
+  <!-- The reasons, with the numbers -->
+  <CC_Build_Why_Beds>Beds for {BUILT}, {NEED} sleep here.</CC_Build_Why_Beds>
+  <CC_Build_Why_BedsJoining>{0} more once the prisoners being recruited join.</CC_Build_Why_BedsJoining>
+  <CC_Build_Why_BedsShared>{0} sleep in a room they share.</CC_Build_Why_BedsShared>
+  <CC_Build_Why_ColdNone>Nothing here keeps food cold.</CC_Build_Why_ColdNone>
+  <CC_Build_Why_ColdHolds>The cold stores hold {SLOTS} stacks: {HOLDS} days of raw food beside {MEALDAYS} days of meals.</CC_Build_Why_ColdHolds>
+  <CC_Build_Why_ColdWants>The stock targets want {NEED} places: {MEALS} for {MEALDAYS} days of meals and {RAW} for {RESERVE} days of raw food at {USE} nutrition a day, {PER} to a place as it lies in store.</CC_Build_Why_ColdWants>
+  <CC_Build_Why_ColdWinter>The {WITHOUT} days without growing ahead want {SOON} places, {WANTS} days of raw food.</CC_Build_Why_ColdWinter>
+  <CC_Build_Why_Dining>Seats at the tables for {BUILT}; {EATERS} eat here ({WHO}), so {NEED} are enough.</CC_Build_Why_Dining>
+  <CC_Build_Why_DiningJoining>{0} more once the prisoners being recruited join.</CC_Build_Why_DiningJoining>
+  <CC_Build_Why_Hospital>{BUILT} hospital beds for {PEOPLE} people; one for every four would be {SIZE}.</CC_Build_Why_Hospital>
+  <CC_Build_Why_HospitalMost>At most {MOST} were laid up at once over the last {DAYS} days, {NOW} now.</CC_Build_Why_HospitalMost>
+  <CC_Build_Why_Workshop>{BENCHES} workshop benches, {IN} of them in a workshop with room there for {SPARE} more.</CC_Build_Why_Workshop>
+  <CC_Build_Why_WorkshopBusy>Busy: {0}.</CC_Build_Why_WorkshopBusy>
+  <CC_Build_BusyOne>the {BENCH} with {HOURS} hours of work waiting</CC_Build_BusyOne>
+  <CC_Build_Why_Storage>{LYING} stacks lie about at home ({OUT} out under the sky), and the stores have {FREE} places free.</CC_Build_Why_Storage>
+  <CC_Build_Why_Planned>{0} more planned.</CC_Build_Why_Planned>
+  <CC_Build_Why_ShortNow>{0} short now.</CC_Build_Why_ShortNow>
+  <CC_Build_Why_ShortSoon>{0} short once they join.</CC_Build_Why_ShortSoon>
+  <CC_Build_Why_ShortWinter>{SHORT} short once the winter comes.</CC_Build_Why_ShortWinter>
+  <CC_Build_Why_Enough>Enough for now.</CC_Build_Why_Enough>
+
+  <!-- The rooms to build -->
+  <CC_Build_Room_Title>Build {ROOM}: {ADDS}</CC_Build_Room_Title>
+  <CC_Build_Room_Where>Where: {0}.</CC_Build_Room_Where>
+  <CC_Build_Room_Grow>Its {SIDE} side ({W} by {H} cells) is kept free to grow into.</CC_Build_Room_Grow>
+  <CC_Build_Room_NoGrow>No side of it has free ground to grow into.</CC_Build_Room_NoGrow>
+  <CC_Build_Room_Work>About {HOURS} hours of building; the {BUILDERS} builders do about {ADAY} a day.</CC_Build_Room_Work>
+  <CC_Build_Room_NoPlan>A {0} would help</CC_Build_Room_NoPlan>
+  <CC_Build_Room_NoPlanWhy>None can be planned yet: {0}</CC_Build_Room_NoPlanWhy>
+  <CC_Build_Room_Nowhere>No spot near the colony takes all of {0}; the room planner can place it by hand.</CC_Build_Room_Nowhere>
+  <CC_Build_NoPlanKind>no size of it has what this needs.</CC_Build_NoPlanKind>
+  <CC_Build_Do_Place>Place the blueprints</CC_Build_Do_Place>
+  <CC_Build_Do_PlaceTip>Places the walls, door, furniture and floor of {ROOM} as blueprints at the outlined spot, with {STUFF} walls, as the room planner would, and marks what is in the way to cut, mine or take down. Undo takes the blueprints and the marks away again.</CC_Build_Do_PlaceTip>
+  <CC_Build_Do_PlaceGrowTip>Its {0} side is kept free to grow into, and shows on the map while you place other buildings.</CC_Build_Do_PlaceGrowTip>
+  <CC_Build_HeldBack>{ROOM} waits: {QUEUED} hours of building are queued, and the {BUILDERS} builders do about {ADAY} a day. It is suggested once that is down to a couple of days.</CC_Build_HeldBack>
+  <CC_Build_HeldBack_NoBuilders>The next room waits: nobody here builds.</CC_Build_HeldBack_NoBuilders>
+  <CC_Build_NoBuildersTitle>Nobody here builds</CC_Build_NoBuildersTitle>
+  <CC_Build_NoBuilders>Nobody has Construction switched on, so no blueprint gets built.</CC_Build_NoBuilders>
+
+  <!-- Rooms being built -->
+  <CC_Build_Project_Line>{ROOM}: {STAGE} (stage {N} of 5), {LEFT} pieces left, about {HOURS} hours of building.</CC_Build_Project_Line>
+  <CC_Build_Project_Built>{0}: built.</CC_Build_Project_Built>
+  <CC_Build_Project_Keeps>Its {0} side is kept free to grow into.</CC_Build_Project_Keeps>
+  <CC_Build_Project_TipStage>{STAGE}: {LEFT} left</CC_Build_Project_TipStage>
+  <CC_Build_Kept>{0} rooms keep a side free to grow into; it shows on the map while you place a building or a zone.</CC_Build_Kept>
+  <CC_Build_KeptLabel>Kept free: the {0} grows here</CC_Build_KeptLabel>
+  <CC_Build_ProjectDone>The {0} is built.</CC_Build_ProjectDone>
+
+  <CC_Build_Stage_clear>clearing the ground</CC_Build_Stage_clear>
+  <CC_Build_Stage_walls>walls, doors and roof</CC_Build_Stage_walls>
+  <CC_Build_Stage_climate>cooling, heating and power</CC_Build_Stage_climate>
+  <CC_Build_Stage_floors>floors</CC_Build_Stage_floors>
+  <CC_Build_Stage_furniture>furniture</CC_Build_Stage_furniture>
+  <CC_Build_Stage_finished>done</CC_Build_Stage_finished>
+
+  <CC_Build_Stage_Title>Build the {STAGE} of the {ROOM} first</CC_Build_Stage_Title>
+  <CC_Build_Stage_Why>Set to high build priority, its {COUNT} pieces of {STAGE} are taken before other building.</CC_Build_Stage_Why>
+  <CC_Build_Do_Stage>Build this stage first</CC_Build_Do_Stage>
+  <CC_Build_Do_StageTip>Sets the {COUNT} blueprints and frames of the {STAGE} of the {ROOM} to high build priority, so the builders take them before other building. Undo sets them back to what they were.</CC_Build_Do_StageTip>
+
+  <CC_Build_Stock_Title>Make a stockpile for the {MATERIAL} beside the {ROOM}</CC_Build_Stock_Title>
+  <CC_Build_Stock_Why>The {ROOM} still needs {NEED} {MATERIAL}, and the nearest store that takes it is {FAR} cells from the site ({HAVE} in the colony). A stockpile beside the site lets the haulers bring it close before the builders need it.</CC_Build_Stock_Why>
+  <CC_Build_Do_Stock>Make the stockpile</CC_Build_Do_Stock>
+  <CC_Build_Do_StockTip>Makes a stockpile of {CELLS} cells beside the {ROOM} that takes only {MATERIAL}, at preferred priority, so the haulers carry it there. Undo removes the stockpile.</CC_Build_Do_StockTip>
+  <CC_Build_StockName>{0} for the {1}</CC_Build_StockName>
+
+  <!-- What holds a room up -->
+  <CC_Build_Held_Title>The {0} is held up</CC_Build_Held_Title>
+  <CC_Build_Stuck_NoBuilder>Nobody here can build: Construction is disabled for everyone, so the {0} waits.</CC_Build_Stuck_NoBuilder>
+  <CC_Build_Stuck_BuildOff>Nobody has Construction switched on, so the {0} waits.</CC_Build_Stuck_BuildOff>
+  <CC_Build_Stuck_Plants>{0} plants in the way of the {1} are marked to cut, and nobody has plant cutting switched on.</CC_Build_Stuck_Plants>
+  <CC_Build_Stuck_Rock>{0} cells of rock in the way of the {1} are marked to mine, and nobody has mining switched on.</CC_Build_Stuck_Rock>
+  <CC_Build_Stuck_Roof>The walls of the {1} stand, but {0} cells inside have no roof and none is marked to build.</CC_Build_Stuck_Roof>
+  <CC_Build_Fix_Roof>Mark the roof</CC_Build_Fix_Roof>
+  <CC_Build_Fix_RoofTip>Marks the {0} cells inside the {1} for a roof, so the builders put one up. Undo takes the marks off again.</CC_Build_Fix_RoofTip>
+  <CC_Build_Stuck_Skill>The {PIECE} needs Construction {NEED}, and the best builder here has {HAVE}.</CC_Build_Stuck_Skill>
+  <CC_Build_Stuck_Reach>Nobody can reach the {0} from the colony.</CC_Build_Stuck_Reach>
+  <CC_Build_Stuck_Forbidden>{0} of the blueprints and frames of the {1} are forbidden.</CC_Build_Stuck_Forbidden>
+  <CC_Build_Fix_Allow>Allow them</CC_Build_Fix_Allow>
+  <CC_Build_Fix_AllowTip>Allows the {0} forbidden blueprints and frames of the {1}. Undo forbids them again.</CC_Build_Fix_AllowTip>
+  <CC_Build_Stuck_Materials>For its {0}, the {1} is short of {2}.</CC_Build_Stuck_Materials>
+  <CC_Build_Stuck_ShortOne>{SHORT} {MATERIAL} (it needs {NEED}, {HAVE} here)</CC_Build_Stuck_ShortOne>
+  <CC_Build_Stuck_Research>The {PIECE} waits on research: {RESEARCH}.</CC_Build_Stuck_Research>
+  <CC_Build_Stuck_Busy>The builders have {HOURS} hours of other building first, about {DAYS} days, before the {ROOM}.</CC_Build_Stuck_Busy>
+
+  <!-- Whether a step worked -->
+  <CC_Build_NotYet_Room>Only {0} of the {1} wall cells of the {2} stand so far.</CC_Build_NotYet_Room>
+  <CC_Build_NotYet_Stage>{0} pieces of the stage of the {1} are still to build.</CC_Build_NotYet_Stage>
+  <CC_Build_NotYet_StockNone>There is no {0} in the colony to bring.</CC_Build_NotYet_StockNone>
+  <CC_Build_NotYet_StockHaul>Nobody has carried {0} there yet.</CC_Build_NotYet_StockHaul>
+
+  <!-- Room to grow -->
+  <CC_Build_Grow_Title>Something is planned where the {0} was to grow</CC_Build_Grow_Title>
+  <CC_Build_Grow_Why>{COUNT} blueprints ({WHAT}) stand in the {W} by {H} cells kept free on the {SIDE} side of the {ROOM} for it to grow into. Built there, the {ROOM} can only grow once they are taken down.</CC_Build_Grow_Why>
+  <CC_Build_Grow_Frames>{0} of them are already being built and stay.</CC_Build_Grow_Frames>
+  <CC_Build_Do_Cancel>Take the blueprints away</CC_Build_Do_Cancel>
+  <CC_Build_Do_CancelTip>Cancels the {0} blueprints in the cells the {1} keeps free; frames already being built stay. Undo places the blueprints again.</CC_Build_Do_CancelTip>
+
+  <!-- The urgency pill when it isn't a matter of days -->
+  <CC_Build_When_joining>When they join</CC_Build_When_joining>
+  <CC_Build_When_size>For the colony's size</CC_Build_When_size>
+  <CC_Build_When_injuries>After recent injuries</CC_Build_When_injuries>
+  <CC_Build_When_busy>Benches busy</CC_Build_When_busy>
+  <CC_Build_When_outside>Benches outside</CC_Build_When_outside>
+  <CC_Build_When_lying>Things lie about</CC_Build_When_lying>
+  <CC_Build_When_Building>Being built</CC_Build_When_Building>
+  <CC_Build_When_Held>Held up</CC_Build_When_Held>
+  <CC_Build_When_Grow>Room to grow</CC_Build_When_Grow>
+
+  <CC_Build_Side_0>north</CC_Build_Side_0>
+  <CC_Build_Side_1>east</CC_Build_Side_1>
+  <CC_Build_Side_2>south</CC_Build_Side_2>
+  <CC_Build_Side_3>west</CC_Build_Side_3>
+
+</LanguageData>

@@ -5,6 +5,25 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Planning ahead: building and growing the base
+
+*2 November 2026, version 0.48.0*
+
+- The Plan page opens with Building ahead: beds, cold storage, dining seats, hospital beds, workshop room and store space, each set against what the colony needs, with the reason in numbers.
+- The next one or two rooms to build are suggested before you run short, beside the rooms they belong with. A click places them as blueprints, and Undo takes them away again.
+- Cold storage is sized by the nutrition your own food takes per place and allows for the days without growing ahead; fridges from RimFridge count.
+- A room being built is followed stage by stage: its walls first, a stockpile for its materials beside the site, and what holds it up, with a fix where there is one.
+- Each new room keeps one side free to grow into. It shows while you place things, and a blueprint put there gets a warning you can act on or set aside.
+- Never more building is suggested than your builders can do in a couple of days, and nothing is placed until you click Do it.
+
+## The stray beast is really there
+
+*2 November 2026, version 0.47.1*
+
+- A neighbor's stray beast is really there when the letter comes, standing in the barn, the pen or about the colony, and the letter says where.
+- Give it back, with or without a finder's fee, and their drover walks in with the thanks or the fee and leads it home; keep it and that same beast becomes the colony's.
+- World situation answers can end in more than one way, picked to fit the moment as dilemmas and events are.
+
 ## Every answer says what it does
 
 *2 November 2026, version 0.47.0*

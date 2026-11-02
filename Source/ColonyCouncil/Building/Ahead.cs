@@ -79,6 +79,8 @@ namespace ColonyCouncil
             SuggestTracker.Instance?.Hourly();
             foreach (var map in Find.Maps)
                 if (map.IsPlayerHome) For(map);
+            // Building ahead: the rooms being built followed, the people laid up noted (Building/BuildAhead.cs).
+            BuildAhead.Hourly();
         }
 
         // ---------------- Words ----------------
